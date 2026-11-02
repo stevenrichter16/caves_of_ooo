@@ -1,0 +1,5 @@
+# Independent review
+
+Source: coverage_priorities found one P2 in inactive test-fixture teardown, not production. Root now detaches the borrowed catalog and explicitly invokes EnvironmentSpriteRenderer.OnDestroy, following the existing regional fixture. Added hot-Ash negative backing controls for a Lair POI and actual authored Felling floor. Final32/32 passed. Reviewer rechecked saved correction and XML: no remaining P1/P2. Production169/169 receipt remains valid; runtime unchanged afterward.
+
+Visual: capture_route viewed matched1×/2× and reader. Initially requested an ember cue based on blueprint180°C, then withdrew P2 after reviewing actual-owner.json:44.347°C and empty tile state. Native mound removes black rectangle and fits real stone; world/reader identity consistent. No static orange glow was added. Independent hazard marks remain authoritative; native controls cover heat/charge/water/steam, actual hot-state play remains unobserved. Broad pink clearings, small tree silhouettes and orderly bush rows remain scene debt. No full-area acceptance.

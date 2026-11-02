@@ -5641,7 +5641,73 @@
             "Docs/Verification/GraphicsExecution/RimForest/after-east.png"
           ]
         },
-        "population_review": "Bounded72-Bush addition actual verified; not full-area acceptance"
+        "population_review": "Bounded72-Bush addition actual verified; not full-area acceptance",
+        "ash_bed_observation": {
+          "recorded_utc": "2026-11-02T10:09:51.799959+00:00",
+          "base": "93265126ed5509cb1a756293f3353ec0c10d1b8b",
+          "scope": "Shared canonical AshBed body and ordinary Stump real-stone backing",
+          "status": "bounded-editor-verified",
+          "art": "Approved campfire-scorch frame0; source PNG/meta/Blender/Objects.json hashes unchanged",
+          "actual": {
+            "seed": 65,
+            "zone": "Overworld.2.3.0",
+            "owner_id": "12036",
+            "cell": [
+              60,
+              18
+            ],
+            "matched_player": [
+              60,
+              17
+            ],
+            "baseline_turn": 2910,
+            "baseline_hp": 40,
+            "temperature": 44.3471565,
+            "tile_state": "empty at baseline; active heat not observed",
+            "reader": "Native Ash portrait and existing description",
+            "movement": "Down onto60,18 HP40; Up attempt hit adjacent snake; ordinary world-map roundtrip2.3\u21922.4\u21922.3",
+            "damage": "Real snake damage40\u219239 while protectionOFF; no damage attributed to ash",
+            "save_turn": 3010,
+            "reload_player": [
+              40,
+              12
+            ],
+            "reload_hp": 39,
+            "reload_world_changed_pixels": 141,
+            "reload_total_pixels": 639200,
+            "reload_difference_cause": "unproven; no exact pixel parity",
+            "protection": "Earlier earned approach used F12 then OFF before baseline; no new protection during accepted after play"
+          },
+          "native": {
+            "red_failed": 30,
+            "focused_green": 30,
+            "regression_passed": 169,
+            "final_focused_after_test_cleanup_and_scope_counters": 32,
+            "counts_nonadditive": true,
+            "runtime_unchanged_after169": true,
+            "scope_counters": "HotAsh body allowed, new ground exception refused in Lair POI and actual Felling; independent heat/charge/water/steam painter controls pass"
+          },
+          "review": {
+            "source": "coverage_priorities: inactive fixture resource leak P2 corrected; final32 verified; no production P1/P2",
+            "visual": "capture_route: initial hot180 assumption corrected against actual44.347/emptyTileState; P2 withdrawn; no new observed P1/P2. Native hot-state controls separate from actual play"
+          },
+          "performance": {
+            "short_seconds": 31.8776289,
+            "reload_seconds": 59.7451833,
+            "reload_renderer_p95_ms": 0.073,
+            "reload_renderer_max_ms": 179.174,
+            "reload_main_max_ms": 994.519,
+            "limit": "Editor after-only; reload window slightly under60s, no new R11 acceptance, no causal performance claim"
+          },
+          "delivery": "Current fedc68 Mac/Linux exclude this and RimForest; next batch",
+          "limits": [
+            "Actual only seed65 Stump; global shared body integration is not other-biome gameplay acceptance",
+            "No new sprites/pixels, population, shadows or full-area polish",
+            "Hot/charged/wet/steam native painter tests are not observed hotter actual gameplay",
+            "Broad pink fields, orderly understory, tiny trees and remaining glyphs stay open",
+            "Linux/physical Deck not executed"
+          ]
+        }
       },
       {
         "biome": "Stump",
@@ -15783,5 +15849,71 @@
     "new_sprite_coverage": false,
     "whole_area_accepted": false,
     "packaged": false
+  },
+  "shared_ash_bed": {
+    "recorded_utc": "2026-11-02T10:09:51.799959+00:00",
+    "base": "93265126ed5509cb1a756293f3353ec0c10d1b8b",
+    "scope": "Shared canonical AshBed body and ordinary Stump real-stone backing",
+    "status": "bounded-editor-verified",
+    "art": "Approved campfire-scorch frame0; source PNG/meta/Blender/Objects.json hashes unchanged",
+    "actual": {
+      "seed": 65,
+      "zone": "Overworld.2.3.0",
+      "owner_id": "12036",
+      "cell": [
+        60,
+        18
+      ],
+      "matched_player": [
+        60,
+        17
+      ],
+      "baseline_turn": 2910,
+      "baseline_hp": 40,
+      "temperature": 44.3471565,
+      "tile_state": "empty at baseline; active heat not observed",
+      "reader": "Native Ash portrait and existing description",
+      "movement": "Down onto60,18 HP40; Up attempt hit adjacent snake; ordinary world-map roundtrip2.3\u21922.4\u21922.3",
+      "damage": "Real snake damage40\u219239 while protectionOFF; no damage attributed to ash",
+      "save_turn": 3010,
+      "reload_player": [
+        40,
+        12
+      ],
+      "reload_hp": 39,
+      "reload_world_changed_pixels": 141,
+      "reload_total_pixels": 639200,
+      "reload_difference_cause": "unproven; no exact pixel parity",
+      "protection": "Earlier earned approach used F12 then OFF before baseline; no new protection during accepted after play"
+    },
+    "native": {
+      "red_failed": 30,
+      "focused_green": 30,
+      "regression_passed": 169,
+      "final_focused_after_test_cleanup_and_scope_counters": 32,
+      "counts_nonadditive": true,
+      "runtime_unchanged_after169": true,
+      "scope_counters": "HotAsh body allowed, new ground exception refused in Lair POI and actual Felling; independent heat/charge/water/steam painter controls pass"
+    },
+    "review": {
+      "source": "coverage_priorities: inactive fixture resource leak P2 corrected; final32 verified; no production P1/P2",
+      "visual": "capture_route: initial hot180 assumption corrected against actual44.347/emptyTileState; P2 withdrawn; no new observed P1/P2. Native hot-state controls separate from actual play"
+    },
+    "performance": {
+      "short_seconds": 31.8776289,
+      "reload_seconds": 59.7451833,
+      "reload_renderer_p95_ms": 0.073,
+      "reload_renderer_max_ms": 179.174,
+      "reload_main_max_ms": 994.519,
+      "limit": "Editor after-only; reload window slightly under60s, no new R11 acceptance, no causal performance claim"
+    },
+    "delivery": "Current fedc68 Mac/Linux exclude this and RimForest; next batch",
+    "limits": [
+      "Actual only seed65 Stump; global shared body integration is not other-biome gameplay acceptance",
+      "No new sprites/pixels, population, shadows or full-area polish",
+      "Hot/charged/wet/steam native painter tests are not observed hotter actual gameplay",
+      "Broad pink fields, orderly understory, tiny trees and remaining glyphs stay open",
+      "Linux/physical Deck not executed"
+    ]
   }
 }

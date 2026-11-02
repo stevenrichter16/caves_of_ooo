@@ -9,22 +9,32 @@ namespace CavesOfOoo.Rendering
     /// determine whether its independent tile source emits. Owns views only.</summary>
     public sealed class FlatPixelSharedSteamVentCatalog : IDisposable
     {
-        readonly Tile body;
+        readonly Tile body, ash;
         bool disposed;
         public FlatPixelSharedSteamVentCatalog()
-            : this(Resources.Load<Texture2D>("Sprites/Environment/steam_vent")) { }
+            : this(Resources.Load<Texture2D>("Sprites/Environment/steam_vent"),
+                Resources.Load<Texture2D>(FlatPixelSettlementGroundCatalog.ScorchResourcePath)) { }
         public FlatPixelSharedSteamVentCatalog(Texture2D natural16)
-        { body = Build(natural16, 16, 16, 0, "natural steam vent"); }
-        public static bool HasKnownRole(Entity owner) => owner?.BlueprintName == "SteamVent";
+            : this(natural16, null) { }
+        public FlatPixelSharedSteamVentCatalog(Texture2D natural16, Texture2D scorch2)
+        {
+            body = Build(natural16, 16, 16, 0, "natural steam vent");
+            // The first approved stain is the ash body, never a substitute for
+            // independent heat/steam marks or a claim about current temperature.
+            ash = Build(scorch2, 32, 24, 0, "natural ash bed");
+        }
+        public static bool HasKnownRole(Entity owner) => owner?.BlueprintName == "SteamVent" || owner?.BlueprintName == "AshBed";
         public bool TryResolve(Entity owner, out Tile tile)
         {
             tile = null;
-            if (disposed || !IsEligibleBody(owner)) return false;
+            if (disposed) return false;
+            if (IsEligibleAshBody(owner)) { tile = ash; return tile != null; }
+            if (!IsEligibleBody(owner)) return false;
             tile = body; return tile != null;
         }
         internal static bool IsEligibleBody(Entity owner)
         {
-            if (!HasKnownRole(owner) || !owner.HasTag("Terrain") || owner.HasTag("Solid")
+            if (owner?.BlueprintName != "SteamVent" || !owner.HasTag("Terrain") || owner.HasTag("Solid")
                 || owner.HasTag("Player") || owner.HasTag("Creature") || owner.HasTag("Item")
                 || owner.HasTag("Crop") || ForeignMeaning(owner)) return false;
             var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
@@ -43,6 +53,28 @@ namespace CavesOfOoo.Rendering
                 && t != null && float.IsFinite(t.Temperature) && t.VaporTemperature == 100f && t.HeatCapacity == 1.8f
                 && s != null && s.Coating == "water" && s.CoatingTurns == 2 && s.Heat == 1
                 && s.Cold == 0 && s.Charge == 0 && !s.RadiatesEnergy && string.IsNullOrEmpty(s.Residue);
+        }
+        // Separate from SteamVent eligibility: regional water/fixture adapters
+        // must not silently inherit permission to paint beneath hot ash.
+        internal static bool IsEligibleAshBody(Entity owner)
+        {
+            if (owner?.BlueprintName != "AshBed" || !owner.HasTag("Terrain") || owner.HasTag("Solid")
+                || owner.HasTag("Wall") || owner.HasTag("Vegetation") || owner.HasTag("Player")
+                || owner.HasTag("Creature") || owner.HasTag("Item") || owner.HasTag("Crop") || ForeignMeaning(owner)) return false;
+            var r=Owned<RenderPart>(owner); var p=Owned<PhysicsPart>(owner);
+            var m=Owned<MaterialPart>(owner); var t=Owned<ThermalPart>(owner); var s=Owned<TileStateSourcePart>(owner);
+            if (r==null || !r.Visible || r.RenderLayer!=1 || r.RenderString!="." || r.ColorString!="&r"
+                || !string.IsNullOrEmpty(r.BackgroundColor) || !string.IsNullOrEmpty(r.VisualID)
+                || !string.IsNullOrEmpty(r.VisualVariant) || !string.IsNullOrEmpty(r.GlyphVariants)
+                || p==null || p.Solid || p.Takeable || p.InInventory!=null || p.Equipped!=null
+                || Owned<ExaminablePart>(owner)==null || !SingleCell(owner) || !OptionalOwned<StatusEffectsPart>(owner)) return false;
+            if (owner.HasPart<StackerPart>())
+            { var stack=Owned<StackerPart>(owner); if (stack==null || stack.StackCount<=0) return false; }
+            return m!=null && m.MaterialID=="Ash" && m.Combustibility==0 && m.Conductivity==0
+                && m.Porosity==0 && m.HasMaterialTag("Ash")
+                && t!=null && float.IsFinite(t.Temperature) && t.FlameTemperature==400 && t.HeatCapacity==3
+                && s!=null && s.Heat==1 && s.Cold==0 && s.Charge==0 && s.RadiatesEnergy
+                && string.IsNullOrEmpty(s.Coating) && string.IsNullOrEmpty(s.Residue);
         }
         static bool ForeignMeaning(Entity owner)
             => owner.HasPart<Body>() || owner.HasPart<BrainPart>() || owner.GetStat("Hitpoints") != null
@@ -85,7 +117,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrame(body);
+            DestroyFrame(body); DestroyFrame(ash);
         }
         static void DestroyFrame(Tile tile)
         { if (tile == null) return; DestroyOwned(tile.sprite); DestroyOwned(tile); }

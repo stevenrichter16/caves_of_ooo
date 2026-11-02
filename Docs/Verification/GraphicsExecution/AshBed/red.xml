@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Failed(Child)" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:14Z" duration="1.8923248">
+  <test-suite type="TestSuite" id="44146" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35977" result="Failed" site="Child" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:14Z" duration="1.892325" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44118" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35977" result="Failed" site="Child" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:14Z" duration="1.853625" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44119" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35977" result="Failed" site="Child" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:14Z" duration="1.849477" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44120" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35977" result="Failed" site="Child" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:14Z" duration="1.846812" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1117" name="FlatPixelAshBedTests" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:14Z" duration="1.836312" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1147" name="ActualPainterKeepsIndependentHazardsAndCoverPriority" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ActualPainterKeepsIndependentHazardsAndCoverPriority" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.316161" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1143" name="ActualPainterKeepsIndependentHazardsAndCoverPriority(&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ActualPainterKeepsIndependentHazardsAndCoverPriority(&quot;heat&quot;,'^')" methodname="ActualPainterKeepsIndependentHazardsAndCoverPriority" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="816400219" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.175241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ActualPainterKeepsIndependentHazardsAndCoverPriority (System.String effect, System.Char glyph) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1144" name="ActualPainterKeepsIndependentHazardsAndCoverPriority(&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ActualPainterKeepsIndependentHazardsAndCoverPriority(&quot;charge&quot;,'*')" methodname="ActualPainterKeepsIndependentHazardsAndCoverPriority" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="726982461" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.040853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ActualPainterKeepsIndependentHazardsAndCoverPriority (System.String effect, System.Char glyph) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1145" name="ActualPainterKeepsIndependentHazardsAndCoverPriority(&quot;water&quot;,'~')" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ActualPainterKeepsIndependentHazardsAndCoverPriority(&quot;water&quot;,'~')" methodname="ActualPainterKeepsIndependentHazardsAndCoverPriority" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1684667498" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.040930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ActualPainterKeepsIndependentHazardsAndCoverPriority (System.String effect, System.Char glyph) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1146" name="ActualPainterKeepsIndependentHazardsAndCoverPriority(&quot;steam&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ActualPainterKeepsIndependentHazardsAndCoverPriority(&quot;steam&quot;,'\'')" methodname="ActualPainterKeepsIndependentHazardsAndCoverPriority" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="190693559" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.040930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ActualPainterKeepsIndependentHazardsAndCoverPriority (System.String effect, System.Char glyph) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1141" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:13Z" duration="0.712652" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1125" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;source&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1433765099" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.043690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1126" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;duplicate-source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;duplicate-source&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1100362583" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.041747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1127" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;foreign-source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;foreign-source&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="579311615" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.040287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1128" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;render&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="427480148" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.041249" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1129" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;hidden&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1779539374" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:12Z" duration="0.040779" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1130" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;material&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="532717093" result="Failed" start-time="2026-11-02 09:53:12Z" end-time="2026-11-02 09:53:13Z" duration="0.042383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1131" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;heat&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="27498903" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.042088" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1132" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;radiation&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;radiation&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="335016477" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.040728" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1133" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;coating&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1810418115" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.040670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1134" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;charge&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1125048087" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.042455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1135" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;capacity&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;capacity&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1051491436" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.042679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1136" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;nonfinite&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;nonfinite&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="255101357" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.043283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1137" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;solid&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="346633140" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.046569" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1138" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;carried&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1053299075" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.052532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1139" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;service&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;service&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="494902944" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.041637" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1140" name="ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;duplicate-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking(&quot;duplicate-physics&quot;)" methodname="ChangedMeaningRefusesBothNativeBodyAndStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1283989894" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.041847" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ChangedMeaningRefusesBothNativeBodyAndStumpBacking (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1149" name="DuplicateOrForeignGroundCannotBorrowStumpBacking" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.DuplicateOrForeignGroundCannotBorrowStumpBacking" methodname="DuplicateOrForeignGroundCannotBorrowStumpBacking" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="775541980" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.042324" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.DuplicateOrForeignGroundCannotBorrowStumpBacking () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:80
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1123" name="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:14Z" duration="0.583908" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1118" name="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;Overworld.2.3.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;Overworld.2.3.0&quot;)" methodname="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1995225210" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.042779" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch (System.String id) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1119" name="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;Overworld.19.14.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;Overworld.19.14.0&quot;)" methodname="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1823311103" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.057683" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch (System.String id) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1120" name="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;Overworld.16.13.9&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;Overworld.16.13.9&quot;)" methodname="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="612314427" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.104760" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch (System.String id) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1121" name="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;Overworld.12.10.0&quot;)" methodname="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="220151278" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:13Z" duration="0.109871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch (System.String id) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1122" name="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;StandaloneAsh&quot;)" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch(&quot;StandaloneAsh&quot;)" methodname="ExactAshBodyAndAuthorizedReaderReuseApprovedScorch" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="753278304" result="Failed" start-time="2026-11-02 09:53:13Z" end-time="2026-11-02 09:53:14Z" duration="0.239954" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.ExactAshBodyAndAuthorizedReaderReuseApprovedScorch (System.String id) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1148" name="HiddenRememberedMovedAndReplacedOwnersLoseCurrentReaderAuthority" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.HiddenRememberedMovedAndReplacedOwnersLoseCurrentReaderAuthority" methodname="HiddenRememberedMovedAndReplacedOwnersLoseCurrentReaderAuthority" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1455409594" result="Failed" start-time="2026-11-02 09:53:14Z" end-time="2026-11-02 09:53:14Z" duration="0.042338" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.HiddenRememberedMovedAndReplacedOwnersLoseCurrentReaderAuthority () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:68
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1150" name="OptionalAshResourceIsIndependentAndBorrowedTextureSurvivesDisposal" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.OptionalAshResourceIsIndependentAndBorrowedTextureSurvivesDisposal" methodname="OptionalAshResourceIsIndependentAndBorrowedTextureSurvivesDisposal" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1136215443" result="Failed" start-time="2026-11-02 09:53:14Z" end-time="2026-11-02 09:53:14Z" duration="0.038036" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Optional ash input missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Inject (UnityEngine.Texture2D vent, UnityEngine.Texture2D ash) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:32
+at CavesOfOoo.Tests.FlatPixelAshBedTests.OptionalAshResourceIsIndependentAndBorrowedTextureSurvivesDisposal () [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:85
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1124" name="StumpBackingRequiresTheExactDisclosedSourceAndRealStone" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.StumpBackingRequiresTheExactDisclosedSourceAndRealStone" methodname="StumpBackingRequiresTheExactDisclosedSourceAndRealStone" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1938932849" result="Failed" start-time="2026-11-02 09:53:14Z" end-time="2026-11-02 09:53:14Z" duration="0.040555" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.StumpBackingRequiresTheExactDisclosedSourceAndRealStone () [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:41
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1142" name="TemperatureEvolutionDoesNotInventOrRenewHazards" fullname="CavesOfOoo.Tests.FlatPixelAshBedTests.TemperatureEvolutionDoesNotInventOrRenewHazards" methodname="TemperatureEvolutionDoesNotInventOrRenewHazards" classname="CavesOfOoo.Tests.FlatPixelAshBedTests" runstate="Runnable" seed="1123834944" result="Failed" start-time="2026-11-02 09:53:14Z" end-time="2026-11-02 09:53:14Z" duration="0.040911" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelAshBedTests.Body (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:29
+at CavesOfOoo.Tests.FlatPixelAshBedTests.TemperatureEvolutionDoesNotInventOrRenewHazards () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelAshBedTests.cs:56
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -238,6 +238,10 @@ namespace CavesOfOoo.Rendering
                 // real stone; this exception never admits a site or Felling view.
                 else if (FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(owner)
                     && !fellingAuthored && IsSupportedZone(zone)) fixture = true;
+                // Real disclosed ash lies on stone. Its independently painted
+                // heat/steam cues remain above both layers; no residual-state grant.
+                else if (FlatPixelSharedSteamVentCatalog.IsEligibleAshBody(owner)
+                    && !fellingAuthored && IsSupportedZone(zone)) fixture = true;
                 // A lit hearth stands on the real ground, as in the other four biome resolvers
                 // (2026-10-31: a watcher's-camp waysite fire burned on black without it).
                 else if (FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner)) { }

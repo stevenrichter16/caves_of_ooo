@@ -2292,7 +2292,8 @@ namespace CavesOfOoo.Rendering
         // including its missing-resource fallback. Other contexts use the natural body.
         private static bool SharedSteamRole(Zone zone, Entity owner)
             => FlatPixelSharedSteamVentCatalog.HasKnownRole(owner)
-                && !(IsAdmitted(zone) && (zone.ZoneID == "Overworld.12.10.0" || zone.ZoneID == "Overworld.12.11.0"));
+                && !(owner.BlueprintName == "SteamVent" && IsAdmitted(zone)
+                    && (zone.ZoneID == "Overworld.12.10.0" || zone.ZoneID == "Overworld.12.11.0"));
         private FlatPixelSharedSteamVentCatalog SharedSteamVentArtFor(Zone zone, Entity owner)
         {
             if (!SharedSteamRole(zone, owner)) return null;
