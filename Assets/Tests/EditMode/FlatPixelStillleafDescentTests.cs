@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
 using NUnit.Framework;
@@ -69,7 +70,15 @@ namespace CavesOfOoo.Tests
         public void EqualMaterialNamesCannotExpandPilotAddress(string id)
         {
             Native();zone=new Zone(id);manager.SetActiveZone(zone);fc=zone.GetCell(10,10);fc.Explored=fc.IsVisible=true;
-            floor=content.Factory.CreateEntity("SandstoneFloor");zone.AddEntity(floor,10,10);Assert.False(View(fc).LocalGround);
+            floor=content.Factory.CreateEntity("SandstoneFloor");zone.AddEntity(floor,10,10);
+            // Other independently admitted site catalogs may legitimately render this address.
+            // Pin this pilot's boundary directly rather than requiring every family to stay glyphs.
+            using(var selector=new FlatPixelFallbackCatalog())using(var art=new FlatPixelShallowCavesCatalog(selector))
+            {
+                var method=typeof(FlatPixelShallowCavesCatalog).GetMethod("AdmittingStillleafDescent",BindingFlags.Instance|BindingFlags.NonPublic);
+                Assert.NotNull(method);method.Invoke(art,null);
+                Assert.False(art.TryResolveGround(zone,fc.X,fc.Y,out _,out _));
+            }
         }
         [TestCase("hidden")] [TestCase("memory")] [TestCase("changed")] [TestCase("coating")]
         public void DisclosureAndMaterialStateKeepTruthfulFallback(string change)

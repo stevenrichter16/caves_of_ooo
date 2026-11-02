@@ -229,3 +229,7 @@ now matches packages; R11/physicalhardware and separatepopulation/polish remaino
 Spread10.15 seed65 now records the15-owner cold field-margin pilot separately under population=reviewed. Three actual viewpoints,2×readability, interactions and exact reload passed; full-area polish, encounter balance and R11 remain open. Current packagesa72a22983 exclude the addition. See `GRAPHICS-SPREAD-FIELD-COMPOSITION.md`. Next actual Ginmere floor baseline; no universal coverage/polish promotion.
 
 2026-11-01: Ginmere/Cathedral surfaceSandstoneFloor bounded observations added to six overlapping records (surface/depth0/stack).177floor owners per actual seed704860946site;239distinct native passes. Ginmere matched/reload exact, Cathedral after-only. No whole-area polish/population/shadow acceptance. See [surface floor record](GRAPHICS-GROVE-SINKHOLE-FLOORS.md).
+
+## Ginmere first descent — 2026-11-02
+
+`sinkhole/ginmere/depth/1` records observed bounded SandstoneFloor/Wall reuse,137native passes and actual readers/movement/collision/stairs/reload. The overlapping stack gets a bounded note; depth2 remains untouched. Coverage stays fallback for remaining owners, polish in-progress, population/shadows not advanced. R11 and20750worldpixel restart differences remain open. See [slice](GRAPHICS-GINMERE-DESCENT.md).

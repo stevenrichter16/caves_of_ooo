@@ -13642,5 +13642,42 @@
       "R11",
       "whole-area audit"
     ]
+  },
+  "ginmere_first_descent_materials": {
+    "status": "integrated-observed-bounded",
+    "record": "Docs/GRAPHICS-GINMERE-DESCENT.md",
+    "zone": "Overworld.2.7.1",
+    "seed": 704860946,
+    "owners": [
+      "SandstoneFloor",
+      "SandstoneWall"
+    ],
+    "art": "unchanged beating-materials12–15 and shallow-caves0–1",
+    "native_tests": {
+      "red_failures": 25,
+      "red_counter_pass": 1,
+      "green": 137
+    },
+    "actual": [
+      "matched1x",
+      "2x detail",
+      "floor and wall readers",
+      "movement and real wall strike",
+      "stairs roundtrip",
+      "F5turn1490",
+      "freshContinue52,12HP40"
+    ],
+    "reload": {
+      "owner_states_exact": 2562,
+      "eligible_ground": 1617,
+      "world_pixels_changed": 20750,
+      "world_pixels_total": 639200
+    },
+    "limitations": [
+      "Other owners and depths unchanged",
+      "Memory/ledge glyphs, shallow relief, special backings and sparse center remain",
+      "R11 open; unequal Editor sample windows and large outliers",
+      "No whole-area polish/population/shadow/package/hardware acceptance"
+    ]
   }
 }

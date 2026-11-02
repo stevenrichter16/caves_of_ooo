@@ -13,6 +13,23 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public static class FlatPixelSiteAdmission
     {
+        // Exact authored first descent; material presentation does not enroll other depths.
+        internal static bool IsGinmereDescent(Zone zone)
+        {
+            if (zone?.ZoneID != "Overworld.2.7.1") return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || !ReferenceEquals(current, zone)) return false;
+            var map = manager.WorldMap;
+            if (map?.Tiles == null || map.POIs == null
+                || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
+                || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
+            var poi = map.GetPOI(2, 7);
+            return poi != null && poi.Type == POIType.Sinkhole && poi.Name == "Ginmere"
+                && SinkholeArchetypes.ForSite(poi) == SinkholeArchetype.DrownedSima
+                && !LairStacks.HasSavedColumn(manager, "Overworld.2.7.0");
+        }
+
         internal static bool IsGroveSinkholeFloor(Zone zone)
         {
             bool ginmere = zone?.ZoneID == "Overworld.2.7.0";

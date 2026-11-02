@@ -117,7 +117,15 @@ namespace CavesOfOoo.Tests
         public void SameMaterialCannotExpandAddress(string id)
         {
             Native();zone=new Zone(id);manager.SetActiveZone(zone);cell=zone.GetCell(10,10);cell.Explored=cell.IsVisible=true;
-            floor=content.Factory.CreateEntity("SandstoneFloor");zone.AddEntity(floor,10,10);Assert.False(View().LocalGround);
+            floor=content.Factory.CreateEntity("SandstoneFloor");zone.AddEntity(floor,10,10);
+            // Other independently admitted site catalogs may legitimately render this address.
+            // Pin this pilot's boundary directly rather than requiring every family to stay glyphs.
+            using(var selector=new FlatPixelFallbackCatalog())using(var art=new FlatPixelShallowCavesCatalog(selector))
+            {
+                var method=typeof(FlatPixelShallowCavesCatalog).GetMethod("AdmittingGroveSinkholeFloors",BindingFlags.Instance|BindingFlags.NonPublic);
+                Assert.NotNull(method);method.Invoke(art,null);
+                Assert.False(art.TryResolveGround(zone,cell.X,cell.Y,out _,out _));
+            }
         }
     }
 }

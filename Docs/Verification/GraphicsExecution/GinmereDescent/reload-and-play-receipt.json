@@ -1,0 +1,51 @@
+{
+  "scope": "Actual Editor native movement/readers/stairs/save/fresh Continue; not packaged or full-area acceptance",
+  "seed": 704860946,
+  "save_turn": 1490,
+  "zone": "Overworld.2.7.1",
+  "position": {
+    "Item1": 52,
+    "Item2": 12
+  },
+  "hp": 40,
+  "F12_used": false,
+  "floor_wall_owner_count": 2562,
+  "floor_wall_ids_positions_structure_exact": true,
+  "eligible_local_ground_before_reload": 1617,
+  "eligible_local_ground_after_reload": 1617,
+  "world_crop": [
+    0,
+    0,
+    940,
+    680
+  ],
+  "world_changed_pixels": 20750,
+  "world_total_pixels": 639200,
+  "changed_bounds": [
+    401,
+    216,
+    677,
+    529
+  ],
+  "difference_cause": "Mostly around existing player illumination; 192 changes outside x400..600/y240..440. Cause not established. Not pixel-exact acceptance.",
+  "collision": {
+    "player_before": [
+      54,
+      3
+    ],
+    "player_after": [
+      54,
+      3
+    ],
+    "wall_id": "15246",
+    "wall_hp_before": 30,
+    "wall_hp_after": 29
+  },
+  "route": "floor52,11 reader; return52,12; Left4/Right4; 2x detail; normal1x; Up9/Right2 wall54,2 reader; Up real wall strike; return with one PaleStalker obstruction; actual stair ascent2.7.0 and descent2.7.1; F5; fresh Continue",
+  "input_correction": "Window > General > Game restored real GameView focus after editor restart. Earlier stairs reader and ineffective movement/profile files explicitly excluded.",
+  "profiles": {
+    "baseline_seconds": 58.8048922,
+    "after_seconds": 158.7184649,
+    "comparability": "Different durations and two additional focus-check moves. After includes long idle reader period while context recovered and screenshots. No execute_code during sample; does not close R11."
+  }
+}

@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="26" result="Failed(Child)" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 23:53:08Z" end-time="2026-11-01 23:53:25Z" duration="16.2507716">
+  <test-suite type="TestSuite" id="43513" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35432" result="Failed" site="Child" start-time="2026-11-01 23:53:08Z" end-time="2026-11-01 23:53:25Z" duration="16.250772" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43485" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35432" result="Failed" site="Child" start-time="2026-11-01 23:53:09Z" end-time="2026-11-01 23:53:25Z" duration="16.174714" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99456" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43486" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35432" result="Failed" site="Child" start-time="2026-11-01 23:53:09Z" end-time="2026-11-01 23:53:25Z" duration="16.126827" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43487" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35432" result="Failed" site="Child" start-time="2026-11-01 23:53:09Z" end-time="2026-11-01 23:53:25Z" duration="16.077596" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1142" name="FlatPixelGinmereDescentTests" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-11-01 23:53:09Z" end-time="2026-11-01 23:53:25Z" duration="15.912509" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1143" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1375772714" result="Failed" start-time="2026-11-01 23:53:09Z" end-time="2026-11-01 23:53:10Z" duration="0.917549" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:31
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1173" name="ChangedWallStateAndCoveredReaderRevoke" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.ChangedWallStateAndCoveredReaderRevoke" methodname="ChangedWallStateAndCoveredReaderRevoke" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="50355120" result="Failed" start-time="2026-11-01 23:53:10Z" end-time="2026-11-01 23:53:10Z" duration="0.343293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.ChangedWallStateAndCoveredReaderRevoke () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:122
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1172" name="CompetingMaterialHonorsDisclosure" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 23:53:10Z" end-time="2026-11-01 23:53:11Z" duration="0.692762" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1170" name="CompetingMaterialHonorsDisclosure(False)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.CompetingMaterialHonorsDisclosure(False)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1861711667" result="Failed" start-time="2026-11-01 23:53:10Z" end-time="2026-11-01 23:53:10Z" duration="0.332303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1171" name="CompetingMaterialHonorsDisclosure(True)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.CompetingMaterialHonorsDisclosure(True)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1967887052" result="Failed" start-time="2026-11-01 23:53:10Z" end-time="2026-11-01 23:53:11Z" duration="0.325239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1145" name="DifferentSiteLabelRevokesBothMaterials" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DifferentSiteLabelRevokesBothMaterials" methodname="DifferentSiteLabelRevokesBothMaterials" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1711063225" result="Failed" start-time="2026-11-01 23:53:11Z" end-time="2026-11-01 23:53:11Z" duration="0.324855" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DifferentSiteLabelRevokesBothMaterials () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:47
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1162" name="DisclosureAndMaterialStateKeepTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 23:53:11Z" end-time="2026-11-01 23:53:13Z" duration="1.699583" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1158" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1625325627" result="Failed" start-time="2026-11-01 23:53:11Z" end-time="2026-11-01 23:53:12Z" duration="0.442295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1159" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1969058514" result="Failed" start-time="2026-11-01 23:53:12Z" end-time="2026-11-01 23:53:12Z" duration="0.557842" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1160" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="2009624062" result="Failed" start-time="2026-11-01 23:53:12Z" end-time="2026-11-01 23:53:13Z" duration="0.340653" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1161" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="951288792" result="Failed" start-time="2026-11-01 23:53:13Z" end-time="2026-11-01 23:53:13Z" duration="0.324576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1157" name="EqualMaterialNamesCannotExpandPilotAddress" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 23:53:13Z" end-time="2026-11-01 23:53:15Z" duration="1.717183" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1153" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.02.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.02.7.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1824400096" result="Failed" start-time="2026-11-01 23:53:13Z" end-time="2026-11-01 23:53:13Z" duration="0.328134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1154" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.0&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="2030637534" result="Failed" start-time="2026-11-01 23:53:13Z" end-time="2026-11-01 23:53:14Z" duration="0.327584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1155" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.2&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1462617821" result="Failed" start-time="2026-11-01 23:53:14Z" end-time="2026-11-01 23:53:14Z" duration="0.678609" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1156" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1654731207" result="Failed" start-time="2026-11-01 23:53:14Z" end-time="2026-11-01 23:53:15Z" duration="0.345800" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1167" name="HiddenOrRememberedWallCannotUseLiveSprite" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 23:53:15Z" end-time="2026-11-01 23:53:15Z" duration="0.705132" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1165" name="HiddenOrRememberedWallCannotUseLiveSprite(False)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.HiddenOrRememberedWallCannotUseLiveSprite(False)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="816342761" result="Failed" start-time="2026-11-01 23:53:15Z" end-time="2026-11-01 23:53:15Z" duration="0.342213" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1166" name="HiddenOrRememberedWallCannotUseLiveSprite(True)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.HiddenOrRememberedWallCannotUseLiveSprite(True)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="2024993239" result="Failed" start-time="2026-11-01 23:53:15Z" end-time="2026-11-01 23:53:15Z" duration="0.327155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1163" name="LegacyNameStillAdmitsButConflictingProfileRevokes" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.LegacyNameStillAdmitsButConflictingProfileRevokes" methodname="LegacyNameStillAdmitsButConflictingProfileRevokes" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1497381462" result="Failed" start-time="2026-11-01 23:53:15Z" end-time="2026-11-01 23:53:16Z" duration="0.330642" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.LegacyNameStillAdmitsButConflictingProfileRevokes () [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:88
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1169" name="MissingOptionalArtKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.MissingOptionalArtKeepsFallback" methodname="MissingOptionalArtKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="596382513" result="Passed" start-time="2026-11-01 23:53:16Z" end-time="2026-11-01 23:53:16Z" duration="0.331547" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1168" name="SavedLairColumnRevokesEvenWithRestoredSiteLabel" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.SavedLairColumnRevokesEvenWithRestoredSiteLabel" methodname="SavedLairColumnRevokesEvenWithRestoredSiteLabel" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="470876802" result="Failed" start-time="2026-11-01 23:53:16Z" end-time="2026-11-01 23:53:18Z" duration="1.698466" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.SavedLairColumnRevokesEvenWithRestoredSiteLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:108
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1164" name="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.SpecialDescentLedgesKeepTheirOwnTerrainMeaning" methodname="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1272661108" result="Failed" start-time="2026-11-01 23:53:18Z" end-time="2026-11-01 23:53:20Z" duration="2.372280" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.SpecialDescentLedgesKeepTheirOwnTerrainMeaning () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:94
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1144" name="UnderfootAndWallReadersUseTheirActualWorldIdentity" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.UnderfootAndWallReadersUseTheirActualWorldIdentity" methodname="UnderfootAndWallReadersUseTheirActualWorldIdentity" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1466347719" result="Failed" start-time="2026-11-01 23:53:20Z" end-time="2026-11-01 23:53:21Z" duration="1.195336" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.UnderfootAndWallReadersUseTheirActualWorldIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:42
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1152" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-01 23:53:21Z" end-time="2026-11-01 23:53:25Z" duration="3.517300" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1146" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="156755520" result="Failed" start-time="2026-11-01 23:53:21Z" end-time="2026-11-01 23:53:22Z" duration="0.451817" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1147" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="649576005" result="Failed" start-time="2026-11-01 23:53:22Z" end-time="2026-11-01 23:53:22Z" duration="0.725830" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1148" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="192377822" result="Failed" start-time="2026-11-01 23:53:22Z" end-time="2026-11-01 23:53:23Z" duration="0.433112" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1149" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="600560647" result="Failed" start-time="2026-11-01 23:53:23Z" end-time="2026-11-01 23:53:24Z" duration="0.796342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1150" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1593507097" result="Failed" start-time="2026-11-01 23:53:24Z" end-time="2026-11-01 23:53:24Z" duration="0.447382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1151" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelGinmereDescentTests" runstate="Runnable" seed="1099477350" result="Failed" start-time="2026-11-01 23:53:24Z" end-time="2026-11-01 23:53:25Z" duration="0.628553" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ginmere sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGinmereDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

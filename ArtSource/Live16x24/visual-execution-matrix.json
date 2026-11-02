@@ -16103,7 +16103,7 @@
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Ginmere first-descent2.7.1 actual glyph continuity repair, then Felling rock/water/ritual comparison. No all-depth admission.",
+      "next_action": "Surface and first-descent floor/wall bounded slices verified; deeper2.7.2 and full-stack polish remain unaudited. Next program slice Felling surface.",
       "legacy_inventory_pointer": "/sinkhole_stacks/4",
       "authored_depth_scope": [
         0,
@@ -16135,6 +16135,45 @@
             "Ginmere matched baseline/reload; Cathedral after-only entry/reader/movement/save",
             "No whole-area polish, population or shadow acceptance; R11 open"
           ]
+        },
+        {
+          "status": "integrated-observed-bounded",
+          "record": "Docs/GRAPHICS-GINMERE-DESCENT.md",
+          "zone": "Overworld.2.7.1",
+          "seed": 704860946,
+          "owners": [
+            "SandstoneFloor",
+            "SandstoneWall"
+          ],
+          "art": "unchanged beating-materials12–15 and shallow-caves0–1",
+          "native_tests": {
+            "red_failures": 25,
+            "red_counter_pass": 1,
+            "green": 137
+          },
+          "actual": [
+            "matched1x",
+            "2x detail",
+            "floor and wall readers",
+            "movement and real wall strike",
+            "stairs roundtrip",
+            "F5turn1490",
+            "freshContinue52,12HP40"
+          ],
+          "reload": {
+            "owner_states_exact": 2562,
+            "eligible_ground": 1617,
+            "world_pixels_changed": 20750,
+            "world_pixels_total": 639200
+          },
+          "limitations": [
+            "Other owners and depths unchanged",
+            "Memory/ledge glyphs, shallow relief, special backings and sparse center remain",
+            "R11 open; unequal Editor sample windows and large outliers",
+            "No whole-area polish/population/shadow/package/hardware acceptance"
+          ],
+          "id": "ginmere-first-descent-materials",
+          "axis": "coverage"
         }
       ],
       "evidence": {
@@ -16200,7 +16239,7 @@
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Ginmere first-descent2.7.1 actual glyph continuity repair, then Felling rock/water/ritual comparison. No all-depth admission.",
+      "next_action": "Surface and first-descent floor/wall bounded slices verified; deeper2.7.2 and full-stack polish remain unaudited. Next program slice Felling surface.",
       "parent_id": "sinkhole/ginmere",
       "depth": 0,
       "required_roles": [
@@ -16286,14 +16325,14 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Walk descent/return and each reachable interior; audit this depth separately from its mouth.",
+      "next_action": "Retain bounded floor/wall evidence; separately audit memory, ledges and special owners. Next program slice Felling surface materials, not more cave depths.",
       "parent_id": "sinkhole/ginmere",
       "depth": 1,
       "required_roles": [
@@ -16303,6 +16342,111 @@
         "doors_and_seals",
         "loot",
         "return_route"
+      ],
+      "observed_seed": 704860946,
+      "bounded_slices": [
+        {
+          "status": "integrated-observed-bounded",
+          "record": "Docs/GRAPHICS-GINMERE-DESCENT.md",
+          "zone": "Overworld.2.7.1",
+          "seed": 704860946,
+          "owners": [
+            "SandstoneFloor",
+            "SandstoneWall"
+          ],
+          "art": "unchanged beating-materials12–15 and shallow-caves0–1",
+          "native_tests": {
+            "red_failures": 25,
+            "red_counter_pass": 1,
+            "green": 137
+          },
+          "actual": [
+            "matched1x",
+            "2x detail",
+            "floor and wall readers",
+            "movement and real wall strike",
+            "stairs roundtrip",
+            "F5turn1490",
+            "freshContinue52,12HP40"
+          ],
+          "reload": {
+            "owner_states_exact": 2562,
+            "eligible_ground": 1617,
+            "world_pixels_changed": 20750,
+            "world_pixels_total": 639200
+          },
+          "limitations": [
+            "Other owners and depths unchanged",
+            "Memory/ledge glyphs, shallow relief, special backings and sparse center remain",
+            "R11 open; unequal Editor sample windows and large outliers",
+            "No whole-area polish/population/shadow/package/hardware acceptance"
+          ],
+          "id": "ginmere-first-descent-materials",
+          "axis": "coverage"
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [
+          "Docs/Verification/GraphicsExecution/GinmereDescent/before.png",
+          "Docs/Verification/GraphicsExecution/GinmereDescent/before-close.png"
+        ],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/GinmereDescent/after.png",
+          "Docs/Verification/GraphicsExecution/GinmereDescent/after-close.png",
+          "Docs/Verification/GraphicsExecution/GinmereDescent/after-ascent.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/GinmereDescent/after-reader.png",
+          "Docs/Verification/GraphicsExecution/GinmereDescent/after-wall-reader.png"
+        ],
+        "reload_checks": [
+          "Docs/Verification/GraphicsExecution/GinmereDescent/reload-and-play-receipt.json"
+        ],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/GinmereDescent/red.xml",
+          "Docs/Verification/GraphicsExecution/GinmereDescent/initial-regression-scope-failures.xml",
+          "Docs/Verification/GraphicsExecution/GinmereDescent/green.xml"
+        ],
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/GinmereDescent/before-profile.json",
+          "Docs/Verification/GraphicsExecution/GinmereDescent/after-profile.json"
+        ],
+        "independent_reviews": [
+          "Docs/GRAPHICS-GINMERE-DESCENT.md"
+        ]
+      },
+      "actual_zoom_resolution": "1280x800 Editor1x;2x detail",
+      "named_defects": [
+        {
+          "id": "GIND-MATERIAL",
+          "status": "resolved-bounded",
+          "description": "Disclosed canonical first-descent floor/wall glyphs now native sandstone."
+        },
+        {
+          "id": "GIND-LEDGE",
+          "status": "open",
+          "description": "253 DescentLedge owners remain glyphs."
+        },
+        {
+          "id": "GIND-MEMORY",
+          "status": "open",
+          "description": "Memory-edge glyph strips remain."
+        },
+        {
+          "id": "GIND-RELIEF",
+          "status": "open",
+          "description": "Wall relief is shallow."
+        },
+        {
+          "id": "GIND-SPECIAL",
+          "status": "open",
+          "description": "Special owner black backings remain."
+        },
+        {
+          "id": "GIND-FULLNESS",
+          "status": "open",
+          "description": "Broad center remains sparse."
+        }
       ]
     },
     {

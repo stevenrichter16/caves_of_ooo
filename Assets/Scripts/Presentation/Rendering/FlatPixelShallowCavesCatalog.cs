@@ -14,6 +14,10 @@ namespace CavesOfOoo.Rendering
         Func<Zone, bool> admits = IsSupportedZone;
         bool allowCoveredFloorReader;
         bool floorOnly;
+        bool structuralOnly;
+        /// <summary>Only real sandstone floor/wall owners; no ambient or prop borrowing.</summary>
+        internal FlatPixelShallowCavesCatalog AdmittingGinmereDescent()
+        { admits = FlatPixelSiteAdmission.IsGinmereDescent; allowCoveredFloorReader = true; structuralOnly = true; return this; }
         /// <summary>Surface sandstone only; never lends cave bodies or ambient backing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingGroveSinkholeFloors()
         { admits = FlatPixelSiteAdmission.IsGroveSinkholeFloor; allowCoveredFloorReader = true; floorOnly = true; return this; }
@@ -114,7 +118,8 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
-            if (floorOnly || !ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner)
+            if (floorOnly || structuralOnly && owner?.BlueprintName != "SandstoneWall"
+                || !ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner)
                 || !Placed(zone, cell, owner) || !OrdinaryForeground(owner)) return false;
             Tile[] group;
             switch (owner.BlueprintName)
@@ -136,7 +141,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveCellBackdrop(Zone zone, int x, int y, out Tile tile, out Color color)
         {
             tile = null; color = default;
-            if (floorOnly || !ReadyCell(zone, x, y, out var cell) || selector.BackgroundTile == null) return false;
+            if (floorOnly || structuralOnly || !ReadyCell(zone, x, y, out var cell) || selector.BackgroundTile == null) return false;
             var state = zone.TileState.Get(x, y);
             if (state != null && !state.IsEmpty) return false;
             foreach (var owner in cell.Occupants)
