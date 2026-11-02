@@ -1,3 +1,26 @@
+# Current graphics packages — 5f34547aa
+
+Source `5f34547aa8ece11c33afc604ea3c482b1e4355c3` is verified on origin/main. Includes d681 connected Duckboard artwork and 5f345 covered-owner/reader continuity, plus prior river/shadow work.
+
+- Mac: `Builds/Verification/2026-11-02-graphics-5f34547aa-current/CavesOfOoo.app`.
+- Linux: `Builds/SteamDeck/2026-11-02-graphics-5f34547aa-current/CavesOfOoo-current`.
+- Transfer archive: sibling `CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`.
+
+
+Completed: both development builds, archive integrity, actual Mac launch/reader/movement/travel/F5/fresh Continue, independent source/wrapper/archive/visual review, and guarded restoration. No remaining new P1/P2 in this bounded delivery. Linux/physical Deck execution and R11 remain open.
+
+Mac: build-42ed786fcd,55.794986s,548.86MB,0errors6warnings. Linux: build-fcfd94c965,117.812788s,409.71MB,0errors4warnings. Archive162131736bytes,319members(306files/13directories),305internalchecksums; SHA256 3afaadf6ff9c4771e6d3ce6e6cb0374a085bc6d0c59c34d6122b0c7fe793d0b1. Both are Development=true, larger than the previous nondevelopment builds. Exact build receipts and integrity records are adjacent.
+
+Two actual Mac processes at ordinary3024×1898: Causeway19.7 continuous deck beneath actors, native duckboard Wood8/8 reader, movement and19.7→19.8→19.7 travel, F5turn2680/freshContinue40,15HP30. Real snake hit38→30; no F12. Saved/reload5798/3576624worldpixels differ locally; snake colors differ, cause unproven.
+
+`mac-comparison.json` records the localized changed rectangle. Both current logs have zero Exception/Load failed/error CS matches;10/6premature-thread notices respectively, and ComputeBuffer disposal messages. Debug build logs include ordinary Debug.Log stack traces; this is not a performance benchmark. Initial *excluded.png images belong to the older app accidentally bound by display name; exact absolute-path binding is required and those images establish no current-build failure.
+
+Restoration applied12:28:50Z. All56530snapshot objects,77dirty(75foreign+2root-neutral),normal Editor saves/preferences and prior fa616 builds preserved; four reviewed generated build settings restored; test-owned standalone save tree archived at /private/tmp/coo-5f345-preserved-after. Standalone normal preferences restored. No cleanup.
+
+Next: fresh PeatCuts15.5 normal-zoom baseline from earned sodden-ordinary-before-peat-cuts65, distinguish Dark lighting from missing relief before altering PeatBank18–19. Also attribute remaining Causeway black-backed glyphs; ordinary missing presentation outranks optional art refinement. Coverage, full-area polish, population, shadows and R11 remain separate and incomplete.
+
+## Previous preserved checkpoint
+
 # Current graphics packages — fa616fcd7
 
 Source `fa616fcd7d35f8fa1c10e8a531e62ac488bffd6d` is verified on origin/main. Includes Morrowfast native river/bridge supports and Cinderhold short sandstone wall shadows, plus earlier accepted slices.
