@@ -1,0 +1,40 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "c144a6dacd4942c0822f58efd1e8334f",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793606619667,
+      "finished_unix_ms": 1793606622400,
+      "last_update_unix_ms": 1793606622400,
+      "progress": {
+        "completed": 7,
+        "total": 7,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793606622122,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelFloodWaterTests.SoddenPilotUsesQuietVariedWaterWhileOtherRegionsKeepApprovedViews(65)",
+        "last_finished_unix_ms": 1793606622316,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelFloodWaterTests.SoddenPilotUsesQuietVariedWaterWhileOtherRegionsKeepApprovedViews(64)",
+            "message": "  The pilot must show its optional water surface, not the solid teal interior.\n  Expected string length 18 but was 14. Strings differ at index 0.\n  Expected: \"sodden-flood-water\"\n  But was:  \"opening-ground\"\n  -----------^\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelFloodWaterTests.SoddenPilotUsesQuietVariedWaterWhileOtherRegionsKeepApprovedViews(65)",
+            "message": "  The pilot must show its optional water surface, not the solid teal interior.\n  Expected string length 18 but was 14. Strings differ at index 0.\n  Expected: \"sodden-flood-water\"\n  But was:  \"opening-ground\"\n  -----------^\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

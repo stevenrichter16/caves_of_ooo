@@ -1,0 +1,124 @@
+{
+  "recorded_utc": "2026-11-02T08:24:31.907371+00:00",
+  "scope": "Ordinary Sodden Overworld.16.5.0 flood-water material only",
+  "status": "bounded-editor-verified",
+  "source_base": "dae429eca381b90aafe5eb7d8bc80d7528dd3f76",
+  "art": {
+    "frames": 128,
+    "size": [
+      2048,
+      24
+    ],
+    "editable_quads": 49152,
+    "changed_interior_pixels": 920,
+    "protected_bank_border_and_four_inputs": "exact",
+    "iterations": 2,
+    "ai_reference": "concept only; not gameplay or sampled production art"
+  },
+  "native": {
+    "initial_red_job": "c144a6dacd4942c0822f58efd1e8334f",
+    "initial_red": "2 new failures; remaining 5 completed but Passed/Inconclusive split unproven",
+    "scope_red": "authority-red.xml:2/2 failed before ordinary-Sodden authority correction",
+    "final_job": "89f65f5c9e4144e5987f21d55446af4a",
+    "result": "green-final.xml",
+    "total": 150,
+    "passed": 147,
+    "failed": 0,
+    "inconclusive": 3,
+    "skipped": 0,
+    "seconds": 11.9049035,
+    "limits": "3 allocation-counter positive controls inconclusive; no allocation acceptance. 16 FloodWater plus134 SoddenTravel, not whole game."
+  },
+  "actual": {
+    "game_id": "50e670c30b6d48feb82756df64bd1cbc",
+    "fixture": "Docs/Verification/GraphicsExecution/SoddenSources/BeforeCheckpoint",
+    "seed": 65,
+    "zone": "Overworld.16.5.0",
+    "before_turn": 2630,
+    "matched_position": [
+      40,
+      12
+    ],
+    "matched_zoom": "1x; after-only2x readability",
+    "reader": "Grass with water on the ground; existing ASCII Grass portrait remains",
+    "walk": "40,9 water reader; blocked by real DeadTree40,8; routed39,7 through flooded grass",
+    "damage": "Real sari-snake/bleeding reduced HP38 to28; noF12 used",
+    "travel": [
+      "Overworld.16.5.0",
+      "Overworld.17.5.0",
+      "Overworld.16.5.0"
+    ],
+    "save_turn": 2790,
+    "save_utc": "2026-11-02T08:17:30.9377810Z",
+    "fresh_position": [
+      40,
+      12
+    ],
+    "fresh_hp": 28
+  },
+  "comparison": {
+    "material": {
+      "before": "before.png",
+      "after": "after.png",
+      "size": [
+        1280,
+        800
+      ],
+      "world_bounds": [
+        0,
+        0,
+        940,
+        680
+      ],
+      "changed_world_pixels": 1979,
+      "world_pixels": 639200,
+      "world_bbox": [
+        0,
+        92,
+        938,
+        589
+      ],
+      "max_channel_difference": 25,
+      "right_ui_equal": true
+    },
+    "reload": {
+      "before": "saved.png",
+      "after": "reload.png",
+      "size": [
+        1280,
+        800
+      ],
+      "world_bounds": [
+        0,
+        0,
+        940,
+        680
+      ],
+      "changed_world_pixels": 0,
+      "world_pixels": 639200,
+      "world_bbox": null,
+      "max_channel_difference": 0,
+      "right_ui_equal": false
+    }
+  },
+  "profile": {
+    "seconds": 125.270265,
+    "renderer_p95_ms": 0.092875,
+    "renderer_max_ms": 168.129333,
+    "main_thread_max_ms": 2275.668666,
+    "gc_max_bytes": 560783927,
+    "limits": "After-only Editor manual reader/movement/encounter/travel/captures. No execute_code in profile. No causal attribution or packaged/hardware performance acceptance; R11 open."
+  },
+  "review": {
+    "source": "coverage_priorities:0 remaining P1/P2 after ordinary-Sodden site/biome authority correction",
+    "visual": "capture_route:0newP1/P2; candidate2 quiet patches improve flat teal, preserve banks/reeds/player; bounded material only"
+  },
+  "limits": [
+    "No new sprite coverage, population, geometry, animation or shadow expansion.",
+    "Short dashes still repeat, water depth is shallow-looking, rigid corners/repeated grass/other ASCII remain.",
+    "Whole-area/interior/state audit and R11 remain open.",
+    "Current fbfea Mac/Linux packages exclude this pilot; batch delivery later.",
+    "No new actual hidden/memory walk-through; native disclosure counters only.",
+    "Saved/reloaded world exact; right log UI differs as expected from Continue."
+  ]
+}

@@ -58,6 +58,31 @@ namespace CavesOfOoo.Tests
             Assert.GreaterOrEqual(native, total * 95 / 100, id + ": " + native + " of " + total);
         }
 
+        [TestCase(64)] [TestCase(65)]
+        public void SoddenPilotUsesQuietVariedWaterWhileOtherRegionsKeepApprovedViews(int seed)
+        {
+            manager = OverworldZoneManager.CreateDetached(factory, seed);
+            var zone = Visit("Overworld.16.5.0");
+            int wet = 0;
+            var variants = new System.Collections.Generic.HashSet<float>();
+            for (int y = 0; y < Zone.Height; y++) for (int x = 0; x < Zone.Width; x++)
+            {
+                if (!Flooded(zone, x, y)) continue;
+                Assert.True(world.TryResolvePresentation(zone, x, y, out var view));
+                Assert.AreEqual("sodden-flood-water", view.GroundTile.sprite.texture.name,
+                    "The pilot must show its optional water surface, not the solid teal interior.");
+                Assert.AreEqual(Color.white, view.GroundColor);
+                variants.Add(Mathf.Floor(view.GroundTile.sprite.rect.x / (16 * 16)));
+                wet++;
+            }
+            Assert.Greater(wet, 100);
+            Assert.Greater(variants.Count, 3, "A broad pool must avoid repeating one ripple in every cell.");
+            zone = Visit("Overworld.18.10.0");
+            var other = Enumerable.Range(0, Zone.Width * Zone.Height)
+                .Select(i => (x: i % Zone.Width, y: i / Zone.Width)).First(c => Flooded(zone, c.x, c.y));
+            Assert.True(NativeWater(zone, other.x, other.y), "Other Sodden areas retain approved water during the pilot.");
+        }
+
         [Test] public void PassingWaterMixedStateAndPoolsKeepTheirOwnPresentation()
         {
             var zone = Visit("Overworld.18.10.0");
@@ -68,6 +93,64 @@ namespace CavesOfOoo.Tests
             var wet = Enumerable.Range(0, Zone.Width * Zone.Height).Select(i => (x: i % Zone.Width, y: i / Zone.Width)).First(c => Flooded(zone, c.x, c.y));
             zone.TileState.WriteCoating(wet.x, wet.y, "oil", 4);
             Assert.False(NativeWater(zone, wet.x, wet.y), "mixed liquids are not plain water");
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void WarmPilotRevertsToApprovedWaterWhenSiteOrBiomeAuthorityChanges(bool spread)
+        {
+            var zone = Visit("Overworld.16.5.0");
+            var wet = Enumerable.Range(0, Zone.Width * Zone.Height)
+                .Select(i => (x: i % Zone.Width, y: i / Zone.Width)).First(c => Flooded(zone, c.x, c.y));
+            using (var selector = new FlatPixelFallbackCatalog())
+            using (var catalog = new FlatPixelFloodWaterCatalog(selector))
+            {
+                Assert.True(catalog.TryResolveWaterGround(zone, wet.x, wet.y, out var before, out _));
+                Assert.AreEqual("sodden-flood-water", before.sprite.texture.name);
+                manager.WorldMap.SetPOI(16, 5, new PointOfInterest(POIType.MerchantCamp, "scope counter"));
+                if (spread) manager.WorldMap.Tiles[16, 5] = BiomeType.Spread;
+                Assert.True(catalog.TryResolveWaterGround(zone, wet.x, wet.y, out var after, out _),
+                    "The shared flood fallback must remain available for sites.");
+                Assert.AreEqual("opening-ground", after.sprite.texture.name);
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void MissingOrMalformedSurfaceKeepsApprovedWaterWithoutDestroyingBorrowedArt(bool malformed)
+        {
+            var zone = Visit("Overworld.16.5.0");
+            var wet = Enumerable.Range(0, Zone.Width * Zone.Height)
+                .Select(i => (x: i % Zone.Width, y: i / Zone.Width)).First(c => Flooded(zone, c.x, c.y));
+            var original = Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath);
+            var bad = malformed ? new Texture2D(16, 24) : null;
+            using (var selector = new FlatPixelFallbackCatalog())
+            using (var catalog = new FlatPixelFloodWaterCatalog(original, selector, bad))
+            {
+                Assert.True(catalog.TryResolveWaterGround(zone, wet.x, wet.y, out var tile, out _));
+                Assert.AreSame(original, tile.sprite.texture);
+                catalog.Dispose();
+                Assert.False(catalog.TryResolveWaterGround(zone, wet.x, wet.y, out _, out _));
+            }
+            Assert.IsTrue(original != null);
+            if (malformed) { Assert.IsTrue(bad != null); Object.DestroyImmediate(bad); }
+        }
+
+        [TestCase("hidden")] [TestCase("unexplored")] [TestCase("mixed")]
+        [TestCase("passing")] [TestCase("projected")]
+        public void SurfacePilotRetainsDisclosureAndCoatingAuthority(string condition)
+        {
+            var zone = Visit("Overworld.16.5.0");
+            var wet = Enumerable.Range(0, Zone.Width * Zone.Height)
+                .Select(i => (x: i % Zone.Width, y: i / Zone.Width)).First(c => Flooded(zone, c.x, c.y));
+            var cell = zone.GetCell(wet.x, wet.y);
+            var coating = zone.TileState.Get(wet.x, wet.y).Coatings[0];
+            if (condition == "hidden") cell.IsVisible = false;
+            if (condition == "unexplored") cell.Explored = false;
+            if (condition == "mixed") zone.TileState.WriteCoating(wet.x, wet.y, "oil", 4);
+            if (condition == "passing") coating.Turns = 4;
+            if (condition == "projected") coating.ProjectionOwnerId = "counter-control";
+            using (var selector = new FlatPixelFallbackCatalog())
+            using (var catalog = new FlatPixelFloodWaterCatalog(selector))
+                Assert.False(catalog.TryResolveWaterGround(zone, wet.x, wet.y, out _, out _));
         }
 
         [Test] public void GrovelandsKeepsItsOwnFenWaterAndOtherBiomesAreNotAdmitted()
