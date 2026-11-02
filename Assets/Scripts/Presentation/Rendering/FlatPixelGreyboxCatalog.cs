@@ -1526,7 +1526,7 @@ namespace CavesOfOoo.Rendering
             // Static memory has a separate policy: no live floor/condition or
             // adjacency queries, and no reader/collision authority. The selector
             // has already excluded live families. Keep a wall's fallback ground.
-            bool sillMemoryGround = false;
+            bool staticMemoryGround = false;
             if (fallback.Remembered)
             {
                 var memory = SillEnvelopeArtFor(zone);
@@ -1537,7 +1537,7 @@ namespace CavesOfOoo.Rendering
                     if (memoryGround != null)
                     {
                         groundTile = memoryGround; groundColor = tint; foreground = null;
-                        kind = FlatPixelGreyboxKind.Ground; native = false; sillMemoryGround = true;
+                        kind = FlatPixelGreyboxKind.Ground; native = false; staticMemoryGround = true;
                         ground = owner.BlueprintName == "StoneFloor"
                             ? FlatPixelGreyboxGround.StoneFloor : FlatPixelGreyboxGround.Ground;
                     }
@@ -1556,13 +1556,35 @@ namespace CavesOfOoo.Rendering
                     if (settledGround != null)
                     {
                         groundTile = settledGround; groundColor = tint; foreground = null;
-                        kind = FlatPixelGreyboxKind.Ground; native = false; sillMemoryGround = true;
+                        kind = FlatPixelGreyboxKind.Ground; native = false; staticMemoryGround = true;
                         ground = FlatPixelSettlementGroundCatalog.GroundKind(owner);
                     }
                     else
                     {
                         foreground = settledWall; foregroundColor = tint;
                         kind = FlatPixelGreyboxKind.Wall; native = true;
+                    }
+                }
+                // Ordinary Beating uses the same static selector authority; other
+                // biome/site adapters remain outside this bounded memory policy.
+                if (FlatPixelBeatingMaterialsCatalog.IsSupportedZone(zone))
+                {
+                    var beatingMemory = BeatingMaterialsArtFor(zone);
+                    if (beatingMemory != null && beatingMemory.TryResolveRemembered(zone, x, y, owner,
+                        out var rememberedGround, out var rememberedWall))
+                    {
+                        var tint = new Color(.35f, .35f, .35f, 1f);
+                        if (rememberedGround != null)
+                        {
+                            groundTile = rememberedGround; groundColor = tint; foreground = null;
+                            kind = FlatPixelGreyboxKind.Ground; native = false; staticMemoryGround = true;
+                            ground = FlatPixelGreyboxGround.Ground;
+                        }
+                        else
+                        {
+                            foreground = rememberedWall; foregroundColor = tint;
+                            kind = FlatPixelGreyboxKind.Wall; native = true;
+                        }
                     }
                 }
             }
@@ -1572,7 +1594,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || staticMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 

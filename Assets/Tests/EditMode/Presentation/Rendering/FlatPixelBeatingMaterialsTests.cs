@@ -717,7 +717,10 @@ namespace CavesOfOoo.Tests
             var doc=ExamineDocumentBuilder.BuildWorld(tar,zone,zone.GetCell(X,Y),viewer);Assert.True(ExamineDocumentBuilder.IsCurrentSubject(doc));
             using(var paint=new Paint(world,zone))
             {
-                zone.GetCell(X,Y).IsVisible=false;Assert.False(Subject(tar));Assert.False(View().NativeForeground);Assert.False(View().LocalGround);
+                zone.GetCell(X,Y).IsVisible=false;Assert.False(Subject(tar));Assert.False(View().NativeForeground);
+                var memory=View();Assert.True(memory.LocalGround);Assert.AreEqual("Sand",memory.Owner.BlueprintName);
+                NativeTile(memory.GroundTile,Atlas);Assert.AreEqual(new Color(.35f,.35f,.35f,1),memory.GroundColor);
+                Assert.False(memory.RepresentedBrine);
                 Assert.True(paint.Renderer.TryGetFlatExaminePortrait(doc,out var hidden));Assert.IsNull(hidden.Texture);
                 zone.GetCell(X,Y).Explored=false;Assert.False(world.TryResolvePresentation(zone,X,Y,out _));
                 zone.GetCell(X,Y).IsVisible=zone.GetCell(X,Y).Explored=true;tar.GetPart<RenderPart>().Visible=false;

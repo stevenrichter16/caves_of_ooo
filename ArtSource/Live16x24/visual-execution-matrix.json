@@ -9515,17 +9515,17 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [
         "seed65/Overworld.19.12.0",
         "seed64/Overworld.19.12.0"
       ],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Other unsupported glyphs and sparse ruin composition; compare wider regional memory gaps before another material revision. R11 open.",
       "coordinates": [
         19,
         12,
@@ -9536,7 +9536,82 @@
       "authored_river": false,
       "formation": null,
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
-      "related_scope_ids": []
+      "related_scope_ids": [],
+      "bounded_static_memory_observation": {
+        "recorded_utc": "2026-11-02T04:26:53.171942+00:00",
+        "baseline_source": "889d1182fb13aeb4adcb83972bc4e981cb5f48ee",
+        "zone": "Overworld.19.12.0",
+        "seed": 64,
+        "six_static_families": [
+          "Sand",
+          "SaltCrust",
+          "SandstoneFloor",
+          "RoadStone",
+          "SandstoneWall",
+          "StoneWall"
+        ],
+        "tests": {
+          "initial_red": {
+            "total": 171,
+            "passed": 157,
+            "failed": 14,
+            "genuine_missing_memory": 8,
+            "test_premise_errors": 6
+          },
+          "initial_combined_green": {
+            "total": 243,
+            "passed": 242,
+            "failed": 1
+          },
+          "final_beating": {
+            "total": 171,
+            "passed": 171
+          },
+          "unchanged_adjacent_previously_passed": 72
+        },
+        "actual": {
+          "matched_before_after": [
+            66,
+            6
+          ],
+          "reader_and_2x": [
+            62,
+            6
+          ],
+          "saved_fresh_position": [
+            60,
+            8
+          ],
+          "hp": "40/40",
+          "turn": 1620,
+          "new_F12_toggles": false,
+          "inherited_protected_history": true
+        },
+        "reload": {
+          "source_capture": "Docs/Verification/Live16x24/greybox-game-20261102-042511.png",
+          "world_pixels": 639200,
+          "changed_pixels": 0,
+          "bbox": null
+        },
+        "review": {
+          "source": "coverage_priorities:0 actionableP1/P2; visible baseline assertion strengthened",
+          "visual": "capture_route:0 newP1/P2 including exact reload"
+        },
+        "performance": "R11 open;87.76s Editor profile with17.596s MainThread max; baseline short/unmatched",
+        "preservation": {
+          "foreign_hashes": 75,
+          "changed": 0,
+          "play": false,
+          "save_root": null,
+          "scene_dirty": false,
+          "cleanup": "none"
+        },
+        "delivery": "source pending; current ca323 packages exclude change"
+      },
+      "limitations": [
+        "Bounded six static material families observed; other fallback glyphs remain.",
+        "No full-area, new population/shadow, packaged or performance acceptance."
+      ]
     },
     {
       "id": "surface/Overworld.0.13.0",

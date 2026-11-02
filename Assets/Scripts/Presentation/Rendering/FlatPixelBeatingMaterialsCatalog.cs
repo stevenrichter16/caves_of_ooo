@@ -99,6 +99,56 @@ namespace CavesOfOoo.Rendering
                 && !LairStacks.HasSavedColumn(manager, zone.ZoneID);
         }
 
+        /// <summary>Conservative static memory, following the existing fallback selector.
+        /// Ordinary Beating only. No live state, HP, temperature, solidity, effect
+        /// values or neighbor queries; not a historical snapshot or reader authority.</summary>
+        public bool TryResolveRemembered(Zone zone, int x, int y, Entity owner,
+            out Tile groundTile, out Tile wallTile)
+        {
+            groundTile = null; wallTile = null;
+            if (disposed || selector == null || stumpBrineOnly || owner == null
+                || !IsSupportedZone(zone) || !admits(zone)) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
+                || !cell.Explored || cell.IsVisible
+                || !selector.TryResolve(zone, x, y, out var selected)
+                || !selected.Remembered || !ReferenceEquals(selected.Owner, owner)) return false;
+            var render = Owned<RenderPart>(owner);
+            if (render == null || render.RenderLayer != 0 || HasForeignMeaning(owner)
+                || !string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant)
+                || owner.HasTag("Vegetation") || owner.HasTag("Barren")) return false;
+            int frame;
+            if (IsGroundName(owner.BlueprintName))
+            {
+                if (!owner.HasTag("Terrain") || owner.HasTag("Wall") || !NoMaterialState(owner)) return false;
+                switch (owner.BlueprintName)
+                {
+                    case "Sand": case "SandstoneFloor":
+                        if (render.RenderString != "." || render.GlyphVariants != "...,.'`") return false;
+                        frame = (owner.BlueprintName == "Sand" ? 0 : 12) + VariantAt(x, y); break;
+                    case "SaltCrust":
+                        if (render.RenderString != "+" || render.GlyphVariants != "+-|") return false;
+                        frame = 4 + VariantAt(x, y); break;
+                    default:
+                        if (render.RenderString != "=" || !string.IsNullOrEmpty(render.GlyphVariants)) return false;
+                        frame = 32 + ((x + y) & 1); break;
+                }
+                groundTile = materials == null ? null : materials[frame];
+            }
+            else if (owner.BlueprintName == "SandstoneWall" || owner.BlueprintName == "StoneWall")
+            {
+                if (!owner.HasTag("Wall") || render.RenderString != "#"
+                    || !string.IsNullOrEmpty(render.GlyphVariants) || Owned<DestructiblePart>(owner) == null) return false;
+                if (owner.BlueprintName == "SandstoneWall")
+                {
+                    if (!Material(owner, "Stone")) return false;
+                    wallTile = materials == null ? null : materials[16 + ((x + y) & 1)];
+                }
+                else wallTile = masonry == null ? null : masonry[0];
+            }
+            return groundTile != null || wallTile != null;
+        }
+
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
