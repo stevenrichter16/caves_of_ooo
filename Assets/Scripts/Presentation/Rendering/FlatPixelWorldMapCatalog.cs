@@ -6,26 +6,34 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Bounded live Spread/Beating/Sodden cartography. Reuses approved ground; does not
+    /// <summary>Live authored-biome cartography. Reuses approved ground; does not
     /// change map knowledge, POI symbols, traversal, memory or source textures.</summary>
     public sealed class FlatPixelWorldMapCatalog : IDisposable
     {
         // Map symbols retain their authored tint; quiet the continuous substrate.
         public static readonly Color GroundTint = new Color(.65f,.65f,.65f,1f);
         public static readonly Color BeatingGroundTint = new Color(.45f,.45f,.45f,1f);
+        public static readonly Color StumpGroundTint = new Color(.25f,.25f,.25f,1f);
         public const string SoddenResourcePath = "Sprites/Live16x24/sodden-flood-water";
-        readonly Tile[] turf, sand, wetland;
+        readonly Tile[] turf, sand, wetland, forest, stone, bleached;
         bool disposed;
         public FlatPixelWorldMapCatalog() : this(Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath),
-            Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),Resources.Load<Texture2D>(SoddenResourcePath)) { }
+            Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),Resources.Load<Texture2D>(SoddenResourcePath),
+            Resources.Load<Texture2D>(FlatPixelGrovelandsMaterialsCatalog.GroundResourcePath),
+            Resources.Load<Texture2D>(FlatPixelStumpMaterialsCatalog.ResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOverwritMaterialsCatalog.ResourcePath)) { }
         public FlatPixelWorldMapCatalog(Texture2D source) : this(source,null) { }
         public FlatPixelWorldMapCatalog(Texture2D spread,Texture2D beating) : this(spread,beating,null) { }
-        public FlatPixelWorldMapCatalog(Texture2D spread,Texture2D beating,Texture2D sodden)
+        public FlatPixelWorldMapCatalog(Texture2D spread,Texture2D beating,Texture2D sodden) : this(spread,beating,sodden,null,null,null) { }
+        public FlatPixelWorldMapCatalog(Texture2D spread,Texture2D beating,Texture2D sodden,Texture2D grovelands,Texture2D stump,Texture2D overwrit)
         {
             turf=CreateViews(spread,9,"Spread");
             sand=CreateViews(beating,FlatPixelBeatingMaterialsCatalog.FrameCount,"Beating");
             // Cartographic wetland only: bank-mask zero, never read neighboring knowledge.
             wetland=CreateViews(sodden,128,"Sodden",8,16);
+            forest=CreateViews(grovelands,4,"Grovelands");
+            stone=CreateViews(stump,FlatPixelStumpMaterialsCatalog.FrameCount,"Stump");
+            bleached=CreateViews(overwrit,FlatPixelOverwritMaterialsCatalog.FrameCount,"Overwrit");
         }
         static Tile[] CreateViews(Texture2D source,int frames,string biome,int count=4,int stride=1)
         {
@@ -43,9 +51,12 @@ namespace CavesOfOoo.Rendering
         }
         public Color TintFor(Tile ground)
         {
-            if(sand!=null)foreach(var tile in sand)if(ReferenceEquals(tile,ground))return BeatingGroundTint;
+            if(Contains(stone,ground))return StumpGroundTint;
+            if(Contains(sand,ground)||Contains(bleached,ground))return BeatingGroundTint;
             return GroundTint;
         }
+        static bool Contains(Tile[] views,Tile ground)
+        { if(views!=null)foreach(var tile in views)if(ReferenceEquals(tile,ground))return true;return false; }
         public bool TryResolveGround(Zone zone,int x,int y,out Tile tile,out Entity floor)
         {
             tile=null;floor=null;
@@ -59,7 +70,8 @@ namespace CavesOfOoo.Rendering
             var (wx,wy)=WorldMap.ZoneCellToWorldCell(x,y);
             if(!map.InBounds(wx,wy))return false;
             var biome=map.GetBiome(wx,wy);
-            var views=biome==BiomeType.Spread ? turf : biome==BiomeType.Beating ? sand : biome==BiomeType.Sodden ? wetland : null;
+            var views=biome==BiomeType.Spread ? turf : biome==BiomeType.Beating ? sand : biome==BiomeType.Sodden ? wetland
+                : biome==BiomeType.Grovelands ? forest : biome==BiomeType.Stump ? stone : biome==BiomeType.Overwrit ? bleached : null;
             if(views==null)return false;
             var poi=map.GetPOI(wx,wy);
             // Hidden sinkholes MUST be indistinguishable from ordinary terrain.
@@ -86,7 +98,10 @@ namespace CavesOfOoo.Rendering
         public static bool IsPlainTerrain(Entity owner) => owner?.GetPart<RenderPart>() is RenderPart render
             && (render.RenderString=="," && render.ColorString=="&g" && render.DisplayName=="the Spread"
                 || render.RenderString=="." && render.ColorString=="&Y" && render.DisplayName=="the Beating"
-                || render.RenderString=="~" && render.ColorString=="&c" && render.DisplayName=="the Sodden");
+                || render.RenderString=="~" && render.ColorString=="&c" && render.DisplayName=="the Sodden"
+                || render.RenderString=="%" && render.ColorString=="&m" && render.DisplayName=="the Grovelands"
+                || render.RenderString=="^" && render.ColorString=="&w" && render.DisplayName=="the Stump"
+                || render.RenderString==" " && render.ColorString=="&K" && render.DisplayName=="the Overwrit");
         static bool Canonical(Entity owner,int wx,int wy,string glyph,string color,string name)
         {
             if(owner.BlueprintName!="WorldMapCell" || !owner.HasTag("WorldMapCell") || owner.Parts.Count!=3)return false;
@@ -108,7 +123,7 @@ namespace CavesOfOoo.Rendering
         }
         public void Dispose()
         {
-            if(disposed)return;disposed=true;DisposeViews(turf);DisposeViews(sand);DisposeViews(wetland);
+            if(disposed)return;disposed=true;DisposeViews(turf);DisposeViews(sand);DisposeViews(wetland);DisposeViews(forest);DisposeViews(stone);DisposeViews(bleached);
         }
         static void DisposeViews(Tile[] views)
         {

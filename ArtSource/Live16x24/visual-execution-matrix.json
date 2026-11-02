@@ -20468,14 +20468,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMap.cs"
       ],
       "status_axes": {
-        "coverage": "integrated",
+        "coverage": "observed",
         "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "packaged-verified"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Remaining Grovelands43/Stump22/Overwrit23 native map terrain, then localenvironment/shadowgap; retain full-map polish debt.",
+      "next_action": "Batch delivery; localenvironment/shadow next. Retain mapscale/contrast/texture/boundary polish debt.",
       "parent_id": "area-family/world_map",
       "scope_note": "Map markers/fog are an intentional cartographic role, not automatically missing world sprites.",
       "spread_material_pilot": {
@@ -20560,6 +20560,22 @@
         "actual": "matched47,16;Look48,9;17.6descent/return;F5turn3540;fresh47,9HP38Dark;world0/639200",
         "review": "environment_gaps_audit/capture_route:0newP1/P2",
         "limits": "No full-map/localSodden/population/shadow/R11/hardware acceptance; current5a5d packages exclude slice."
+      },
+      "bounded_remaining_map": {
+        "status": "bounded-editor-observed",
+        "new_cells": {
+          "Grovelands": 43,
+          "Stump": 22,
+          "Overwrit": 23
+        },
+        "all_authored_map_native": 400,
+        "doc": "Docs/GRAPHICS-WORLD-MAP-REMAINING.md",
+        "evidence": "Docs/Verification/GraphicsExecution/WorldMapRemaining",
+        "native": "Final186Passed+6allocationInconclusive/192scheduled; earlier run same counts; not additive",
+        "actual": "Overwrit2.13candidate;finalStump3.2/Grove3.0descent-return;FellingSite33,8Look;F5turn4040;fresh33,7HP38Height;world0/639200",
+        "review": "source0P1/P2;visualFellingOcontrastP2fixedStump.25,final0P1/P2",
+        "limits": "Only mapterrain coverage; wholemap/localarea/shadow/population/R11/platform remainopen",
+        "delivery": "Current5a5d packages exclude colonnade+Sodden+remainingmap; batch next"
       }
     },
     {

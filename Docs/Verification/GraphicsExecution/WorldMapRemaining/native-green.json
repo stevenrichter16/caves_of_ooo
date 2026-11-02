@@ -1,0 +1,1780 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"0e51d6b2cfc04dd7a50104d876544135\",\"status\":\"succeeded\",\"mode\":\"EditMode\",\"started_unix_ms\":1793643232201,\"finished_unix_ms\":1793643276253,\"last_update_unix_ms\":1793643276253,\"progress\":{\"completed\":192,\"total\":192,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1793643276072,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"last_finished_unix_ms\":1793643276137,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[],\"failures_capped\":false},\"error\":null,\"result\":{\"mode\":\"EditMode\",\"summary\":{\"total\":186,\"passed\":186,\"failed\":0,\"skipped\":0,\"durationSeconds\":41.3421213,\"resultState\":\"Passed\"},\"results\":[{\"name\":\"CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"state\":\"Passed\",\"durationSeconds\":0.6207929,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisposalOwnsOnlyViewsAndIsIdempotent\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisposalOwnsOnlyViewsAndIsIdempotent\",\"state\":\"Passed\",\"durationSeconds\":0.0743475,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenCompetitorDoesNotRevealItselfThroughGround\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).HiddenCompetitorDoesNotRevealItselfThroughGround\",\"state\":\"Passed\",\"durationSeconds\":0.1211645,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"state\":\"Passed\",\"durationSeconds\":0.1061747,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"state\":\"Passed\",\"durationSeconds\":0.5595604,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"state\":\"Passed\",\"durationSeconds\":0.4503845,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OtherBiomesAndBorderRemainOutsidePilot\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).OtherBiomesAndBorderRemainOutsidePilot\",\"state\":\"Passed\",\"durationSeconds\":0.4405847,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"state\":\"Passed\",\"durationSeconds\":0.4191691,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmGroundResolutionDoesNotAllocate\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).WarmGroundResolutionDoesNotAllocate\",\"state\":\"Inconclusive\",\"durationSeconds\":0.4299058,\"message\":\"Allocation counter cannot detect positive control.\",\"stackTrace\":\"at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\\n\",\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"state\":\"Passed\",\"durationSeconds\":1.7064112,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.2523357,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.6539547,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.4593886,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.2789958,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.101189,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1108572,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1195825,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.12374,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.3625167,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0973944,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0947818,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0949531,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0932412,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0988399,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1163807,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Village)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(Village)\",\"state\":\"Passed\",\"durationSeconds\":0.1179196,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Lair)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(Lair)\",\"state\":\"Passed\",\"durationSeconds\":0.1113463,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"state\":\"Passed\",\"durationSeconds\":0.33496,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Root)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(Root)\",\"state\":\"Passed\",\"durationSeconds\":0.1017566,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(FellingSite)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(FellingSite)\",\"state\":\"Passed\",\"durationSeconds\":0.1008023,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"state\":\"Passed\",\"durationSeconds\":0.1019709,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"state\":\"Passed\",\"durationSeconds\":0.0887007,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"state\":\"Passed\",\"durationSeconds\":0.1758924,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisposalOwnsOnlyViewsAndIsIdempotent\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisposalOwnsOnlyViewsAndIsIdempotent\",\"state\":\"Passed\",\"durationSeconds\":0.0857398,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenCompetitorDoesNotRevealItselfThroughGround\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).HiddenCompetitorDoesNotRevealItselfThroughGround\",\"state\":\"Passed\",\"durationSeconds\":0.0969986,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"state\":\"Passed\",\"durationSeconds\":0.3550315,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"state\":\"Passed\",\"durationSeconds\":0.0937465,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"state\":\"Passed\",\"durationSeconds\":0.0770486,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OtherBiomesAndBorderRemainOutsidePilot\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).OtherBiomesAndBorderRemainOutsidePilot\",\"state\":\"Passed\",\"durationSeconds\":0.0685543,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"state\":\"Passed\",\"durationSeconds\":0.0680292,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmGroundResolutionDoesNotAllocate\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).WarmGroundResolutionDoesNotAllocate\",\"state\":\"Inconclusive\",\"durationSeconds\":0.0658128,\"message\":\"Allocation counter cannot detect positive control.\",\"stackTrace\":\"at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\\n\",\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0682953,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0697984,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0669627,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0700687,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0727207,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0725366,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0682895,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0695024,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0681458,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0702123,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0690604,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0786335,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0870559,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1773779,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1869455,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0685923,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Village)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(Village)\",\"state\":\"Passed\",\"durationSeconds\":0.075267,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Lair)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(Lair)\",\"state\":\"Passed\",\"durationSeconds\":0.0684918,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"state\":\"Passed\",\"durationSeconds\":0.067341,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Root)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(Root)\",\"state\":\"Passed\",\"durationSeconds\":0.0976969,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(FellingSite)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(FellingSite)\",\"state\":\"Passed\",\"durationSeconds\":0.1738987,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"state\":\"Passed\",\"durationSeconds\":0.1940425,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"state\":\"Passed\",\"durationSeconds\":0.0705317,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"state\":\"Passed\",\"durationSeconds\":0.1420478,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisposalOwnsOnlyViewsAndIsIdempotent\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisposalOwnsOnlyViewsAndIsIdempotent\",\"state\":\"Passed\",\"durationSeconds\":0.066271,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenCompetitorDoesNotRevealItselfThroughGround\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).HiddenCompetitorDoesNotRevealItselfThroughGround\",\"state\":\"Passed\",\"durationSeconds\":0.0691331,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"state\":\"Passed\",\"durationSeconds\":0.0687266,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"state\":\"Passed\",\"durationSeconds\":0.065723,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"state\":\"Passed\",\"durationSeconds\":0.0674313,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OtherBiomesAndBorderRemainOutsidePilot\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).OtherBiomesAndBorderRemainOutsidePilot\",\"state\":\"Passed\",\"durationSeconds\":0.0667564,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"state\":\"Passed\",\"durationSeconds\":0.066541,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmGroundResolutionDoesNotAllocate\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).WarmGroundResolutionDoesNotAllocate\",\"state\":\"Inconclusive\",\"durationSeconds\":0.0631193,\"message\":\"Allocation counter cannot detect positive control.\",\"stackTrace\":\"at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\\n\",\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0657448,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0681793,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0671708,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0697279,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0723488,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.071558,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0750847,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0722479,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0761071,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0734552,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1143983,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.2679344,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.06903,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.067952,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0683292,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0663458,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Village)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(Village)\",\"state\":\"Passed\",\"durationSeconds\":0.0673723,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Lair)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(Lair)\",\"state\":\"Passed\",\"durationSeconds\":0.0669916,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"state\":\"Passed\",\"durationSeconds\":0.0677547,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Root)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(Root)\",\"state\":\"Passed\",\"durationSeconds\":0.0675962,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(FellingSite)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(FellingSite)\",\"state\":\"Passed\",\"durationSeconds\":0.0672212,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"state\":\"Passed\",\"durationSeconds\":0.0655634,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"state\":\"Passed\",\"durationSeconds\":0.0675953,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"state\":\"Passed\",\"durationSeconds\":0.1353533,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisposalOwnsOnlyViewsAndIsIdempotent\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisposalOwnsOnlyViewsAndIsIdempotent\",\"state\":\"Passed\",\"durationSeconds\":0.0630962,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenCompetitorDoesNotRevealItselfThroughGround\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).HiddenCompetitorDoesNotRevealItselfThroughGround\",\"state\":\"Passed\",\"durationSeconds\":0.0705347,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"state\":\"Passed\",\"durationSeconds\":0.0683465,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"state\":\"Passed\",\"durationSeconds\":0.0719202,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"state\":\"Passed\",\"durationSeconds\":0.0697555,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OtherBiomesAndBorderRemainOutsidePilot\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).OtherBiomesAndBorderRemainOutsidePilot\",\"state\":\"Passed\",\"durationSeconds\":0.0682861,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"state\":\"Passed\",\"durationSeconds\":0.0673191,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmGroundResolutionDoesNotAllocate\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).WarmGroundResolutionDoesNotAllocate\",\"state\":\"Inconclusive\",\"durationSeconds\":0.0622436,\"message\":\"Allocation counter cannot detect positive control.\",\"stackTrace\":\"at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\\n\",\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0709571,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.115158,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.2556114,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0743141,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0681771,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0659132,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0652555,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0705476,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0647733,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0675866,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0667023,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0653689,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0654856,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0651171,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0667919,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.067042,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Village)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(Village)\",\"state\":\"Passed\",\"durationSeconds\":0.0674547,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Lair)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(Lair)\",\"state\":\"Passed\",\"durationSeconds\":0.0664418,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"state\":\"Passed\",\"durationSeconds\":0.0677173,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Root)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(Root)\",\"state\":\"Passed\",\"durationSeconds\":0.0677183,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(FellingSite)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(FellingSite)\",\"state\":\"Passed\",\"durationSeconds\":0.0661948,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"state\":\"Passed\",\"durationSeconds\":0.0647141,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"state\":\"Passed\",\"durationSeconds\":0.06828,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"state\":\"Passed\",\"durationSeconds\":0.1374488,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisposalOwnsOnlyViewsAndIsIdempotent\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisposalOwnsOnlyViewsAndIsIdempotent\",\"state\":\"Passed\",\"durationSeconds\":0.1117246,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenCompetitorDoesNotRevealItselfThroughGround\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).HiddenCompetitorDoesNotRevealItselfThroughGround\",\"state\":\"Passed\",\"durationSeconds\":0.2600233,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"state\":\"Passed\",\"durationSeconds\":0.0678673,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"state\":\"Passed\",\"durationSeconds\":0.0652533,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"state\":\"Passed\",\"durationSeconds\":0.0658755,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OtherBiomesAndBorderRemainOutsidePilot\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).OtherBiomesAndBorderRemainOutsidePilot\",\"state\":\"Passed\",\"durationSeconds\":0.0711099,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"state\":\"Passed\",\"durationSeconds\":0.0656492,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmGroundResolutionDoesNotAllocate\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).WarmGroundResolutionDoesNotAllocate\",\"state\":\"Inconclusive\",\"durationSeconds\":0.0632846,\"message\":\"Allocation counter cannot detect positive control.\",\"stackTrace\":\"at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\\n\",\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0695892,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0684948,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0687432,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.070833,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.06934,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0669747,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0685106,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0639995,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0657062,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0662617,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0684527,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0680545,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0652627,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.065633,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0644371,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0929023,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Village)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(Village)\",\"state\":\"Passed\",\"durationSeconds\":0.1559715,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Lair)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(Lair)\",\"state\":\"Passed\",\"durationSeconds\":0.2091124,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"state\":\"Passed\",\"durationSeconds\":0.0673585,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Root)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(Root)\",\"state\":\"Passed\",\"durationSeconds\":0.0734908,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(FellingSite)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(FellingSite)\",\"state\":\"Passed\",\"durationSeconds\":0.0684534,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"state\":\"Passed\",\"durationSeconds\":0.0687138,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"state\":\"Passed\",\"durationSeconds\":0.0657934,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity\",\"state\":\"Passed\",\"durationSeconds\":0.1407811,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisposalOwnsOnlyViewsAndIsIdempotent\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisposalOwnsOnlyViewsAndIsIdempotent\",\"state\":\"Passed\",\"durationSeconds\":0.0634298,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenCompetitorDoesNotRevealItselfThroughGround\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).HiddenCompetitorDoesNotRevealItselfThroughGround\",\"state\":\"Passed\",\"durationSeconds\":0.0672196,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery\",\"state\":\"Passed\",\"durationSeconds\":0.0673022,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).OneOptionalBiomeResourceDoesNotDependOnTheOther\",\"state\":\"Passed\",\"durationSeconds\":0.0635331,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld\",\"state\":\"Passed\",\"durationSeconds\":0.0668341,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OtherBiomesAndBorderRemainOutsidePilot\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).OtherBiomesAndBorderRemainOutsidePilot\",\"state\":\"Passed\",\"durationSeconds\":0.068551,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors\",\"state\":\"Passed\",\"durationSeconds\":0.0643578,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmGroundResolutionDoesNotAllocate\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).WarmGroundResolutionDoesNotAllocate\",\"state\":\"Inconclusive\",\"durationSeconds\":0.0668469,\"message\":\"Allocation counter cannot detect positive control.\",\"stackTrace\":\"at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\\n\",\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"hidden\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.065896,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"memory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0678384,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"unexplored\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0661109,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"coordinates\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0654785,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-owner\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0658881,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"duplicate-part\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0649046,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"variant\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0649711,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"color\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1138766,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"glyph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.2712573,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"solid\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0665955,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"inventory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0679529,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"graph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0675975,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"biome\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0674162,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"map\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0661749,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"state\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0683907,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\\\"name\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0654339,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Village)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(Village)\",\"state\":\"Passed\",\"durationSeconds\":0.0669826,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Lair)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(Lair)\",\"state\":\"Passed\",\"durationSeconds\":0.0666702,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(MerchantCamp)\",\"state\":\"Passed\",\"durationSeconds\":0.06601,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(Root)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(Root)\",\"state\":\"Passed\",\"durationSeconds\":0.0654212,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosedSitesKeepTheirMarkers(FellingSite)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(FellingSite)\",\"state\":\"Passed\",\"durationSeconds\":0.0659847,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).MissingOrMalformedResourceDeclinesWithoutReload(False)\",\"state\":\"Passed\",\"durationSeconds\":0.0682237,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).MissingOrMalformedResourceDeclinesWithoutReload(True)\",\"state\":\"Passed\",\"durationSeconds\":0.0655104,\"message\":null,\"stackTrace\":null,\"output\":\"\"}]}},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "0e51d6b2cfc04dd7a50104d876544135",
+        "status": "succeeded",
+        "mode": "EditMode",
+        "started_unix_ms": 1793643232201,
+        "finished_unix_ms": 1793643276253,
+        "last_update_unix_ms": 1793643276253,
+        "progress": {
+          "completed": 192,
+          "total": 192,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1793643276072,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).MissingOrMalformedResourceDeclinesWithoutReload(True)",
+          "last_finished_unix_ms": 1793643276137,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": {
+          "mode": "EditMode",
+          "summary": {
+            "total": 186,
+            "passed": 186,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 41.3421213,
+            "resultState": "Passed"
+          },
+          "results": [
+            {
+              "name": "CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "state": "Passed",
+              "durationSeconds": 0.6207929,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisposalOwnsOnlyViewsAndIsIdempotent",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisposalOwnsOnlyViewsAndIsIdempotent",
+              "state": "Passed",
+              "durationSeconds": 0.0743475,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "state": "Passed",
+              "durationSeconds": 0.1211645,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "state": "Passed",
+              "durationSeconds": 0.1061747,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "state": "Passed",
+              "durationSeconds": 0.5595604,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "state": "Passed",
+              "durationSeconds": 0.4503845,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OtherBiomesAndBorderRemainOutsidePilot",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).OtherBiomesAndBorderRemainOutsidePilot",
+              "state": "Passed",
+              "durationSeconds": 0.4405847,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "state": "Passed",
+              "durationSeconds": 0.4191691,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmGroundResolutionDoesNotAllocate",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).WarmGroundResolutionDoesNotAllocate",
+              "state": "Inconclusive",
+              "durationSeconds": 0.4299058,
+              "message": "Allocation counter cannot detect positive control.",
+              "stackTrace": "at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\n",
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "state": "Passed",
+              "durationSeconds": 1.7064112,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "state": "Passed",
+              "durationSeconds": 0.2523357,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "state": "Passed",
+              "durationSeconds": 0.6539547,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "state": "Passed",
+              "durationSeconds": 0.4593886,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "state": "Passed",
+              "durationSeconds": 0.2789958,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "state": "Passed",
+              "durationSeconds": 0.101189,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "state": "Passed",
+              "durationSeconds": 0.1108572,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "state": "Passed",
+              "durationSeconds": 0.1195825,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "state": "Passed",
+              "durationSeconds": 0.12374,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "state": "Passed",
+              "durationSeconds": 0.3625167,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0973944,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0947818,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "state": "Passed",
+              "durationSeconds": 0.0949531,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "state": "Passed",
+              "durationSeconds": 0.0932412,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "state": "Passed",
+              "durationSeconds": 0.0988399,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "state": "Passed",
+              "durationSeconds": 0.1163807,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Village)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(Village)",
+              "state": "Passed",
+              "durationSeconds": 0.1179196,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Lair)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(Lair)",
+              "state": "Passed",
+              "durationSeconds": 0.1113463,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "state": "Passed",
+              "durationSeconds": 0.33496,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Root)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(Root)",
+              "state": "Passed",
+              "durationSeconds": 0.1017566,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "state": "Passed",
+              "durationSeconds": 0.1008023,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "state": "Passed",
+              "durationSeconds": 0.1019709,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Beating).MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "state": "Passed",
+              "durationSeconds": 0.0887007,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "state": "Passed",
+              "durationSeconds": 0.1758924,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisposalOwnsOnlyViewsAndIsIdempotent",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisposalOwnsOnlyViewsAndIsIdempotent",
+              "state": "Passed",
+              "durationSeconds": 0.0857398,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "state": "Passed",
+              "durationSeconds": 0.0969986,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "state": "Passed",
+              "durationSeconds": 0.3550315,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "state": "Passed",
+              "durationSeconds": 0.0937465,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "state": "Passed",
+              "durationSeconds": 0.0770486,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OtherBiomesAndBorderRemainOutsidePilot",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).OtherBiomesAndBorderRemainOutsidePilot",
+              "state": "Passed",
+              "durationSeconds": 0.0685543,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "state": "Passed",
+              "durationSeconds": 0.0680292,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmGroundResolutionDoesNotAllocate",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).WarmGroundResolutionDoesNotAllocate",
+              "state": "Inconclusive",
+              "durationSeconds": 0.0658128,
+              "message": "Allocation counter cannot detect positive control.",
+              "stackTrace": "at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\n",
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "state": "Passed",
+              "durationSeconds": 0.0682953,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0697984,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "state": "Passed",
+              "durationSeconds": 0.0669627,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "state": "Passed",
+              "durationSeconds": 0.0700687,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "state": "Passed",
+              "durationSeconds": 0.0727207,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "state": "Passed",
+              "durationSeconds": 0.0725366,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "state": "Passed",
+              "durationSeconds": 0.0682895,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "state": "Passed",
+              "durationSeconds": 0.0695024,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0681458,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "state": "Passed",
+              "durationSeconds": 0.0702123,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0690604,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0786335,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "state": "Passed",
+              "durationSeconds": 0.0870559,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "state": "Passed",
+              "durationSeconds": 0.1773779,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "state": "Passed",
+              "durationSeconds": 0.1869455,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "state": "Passed",
+              "durationSeconds": 0.0685923,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Village)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(Village)",
+              "state": "Passed",
+              "durationSeconds": 0.075267,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Lair)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(Lair)",
+              "state": "Passed",
+              "durationSeconds": 0.0684918,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "state": "Passed",
+              "durationSeconds": 0.067341,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Root)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(Root)",
+              "state": "Passed",
+              "durationSeconds": 0.0976969,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "state": "Passed",
+              "durationSeconds": 0.1738987,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "state": "Passed",
+              "durationSeconds": 0.1940425,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Grovelands).MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "state": "Passed",
+              "durationSeconds": 0.0705317,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "state": "Passed",
+              "durationSeconds": 0.1420478,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisposalOwnsOnlyViewsAndIsIdempotent",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisposalOwnsOnlyViewsAndIsIdempotent",
+              "state": "Passed",
+              "durationSeconds": 0.066271,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "state": "Passed",
+              "durationSeconds": 0.0691331,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "state": "Passed",
+              "durationSeconds": 0.0687266,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "state": "Passed",
+              "durationSeconds": 0.065723,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "state": "Passed",
+              "durationSeconds": 0.0674313,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OtherBiomesAndBorderRemainOutsidePilot",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).OtherBiomesAndBorderRemainOutsidePilot",
+              "state": "Passed",
+              "durationSeconds": 0.0667564,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "state": "Passed",
+              "durationSeconds": 0.066541,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmGroundResolutionDoesNotAllocate",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).WarmGroundResolutionDoesNotAllocate",
+              "state": "Inconclusive",
+              "durationSeconds": 0.0631193,
+              "message": "Allocation counter cannot detect positive control.",
+              "stackTrace": "at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\n",
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "state": "Passed",
+              "durationSeconds": 0.0657448,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0681793,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "state": "Passed",
+              "durationSeconds": 0.0671708,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "state": "Passed",
+              "durationSeconds": 0.0697279,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "state": "Passed",
+              "durationSeconds": 0.0723488,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "state": "Passed",
+              "durationSeconds": 0.071558,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "state": "Passed",
+              "durationSeconds": 0.0750847,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "state": "Passed",
+              "durationSeconds": 0.0722479,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0761071,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "state": "Passed",
+              "durationSeconds": 0.0734552,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "state": "Passed",
+              "durationSeconds": 0.1143983,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "state": "Passed",
+              "durationSeconds": 0.2679344,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "state": "Passed",
+              "durationSeconds": 0.06903,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "state": "Passed",
+              "durationSeconds": 0.067952,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "state": "Passed",
+              "durationSeconds": 0.0683292,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "state": "Passed",
+              "durationSeconds": 0.0663458,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Village)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(Village)",
+              "state": "Passed",
+              "durationSeconds": 0.0673723,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Lair)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(Lair)",
+              "state": "Passed",
+              "durationSeconds": 0.0669916,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "state": "Passed",
+              "durationSeconds": 0.0677547,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Root)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(Root)",
+              "state": "Passed",
+              "durationSeconds": 0.0675962,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "state": "Passed",
+              "durationSeconds": 0.0672212,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "state": "Passed",
+              "durationSeconds": 0.0655634,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Overwrit).MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "state": "Passed",
+              "durationSeconds": 0.0675953,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "state": "Passed",
+              "durationSeconds": 0.1353533,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisposalOwnsOnlyViewsAndIsIdempotent",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisposalOwnsOnlyViewsAndIsIdempotent",
+              "state": "Passed",
+              "durationSeconds": 0.0630962,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "state": "Passed",
+              "durationSeconds": 0.0705347,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "state": "Passed",
+              "durationSeconds": 0.0683465,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "state": "Passed",
+              "durationSeconds": 0.0719202,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "state": "Passed",
+              "durationSeconds": 0.0697555,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OtherBiomesAndBorderRemainOutsidePilot",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).OtherBiomesAndBorderRemainOutsidePilot",
+              "state": "Passed",
+              "durationSeconds": 0.0682861,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "state": "Passed",
+              "durationSeconds": 0.0673191,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmGroundResolutionDoesNotAllocate",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).WarmGroundResolutionDoesNotAllocate",
+              "state": "Inconclusive",
+              "durationSeconds": 0.0622436,
+              "message": "Allocation counter cannot detect positive control.",
+              "stackTrace": "at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\n",
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "state": "Passed",
+              "durationSeconds": 0.0709571,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "state": "Passed",
+              "durationSeconds": 0.115158,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "state": "Passed",
+              "durationSeconds": 0.2556114,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "state": "Passed",
+              "durationSeconds": 0.0743141,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "state": "Passed",
+              "durationSeconds": 0.0681771,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "state": "Passed",
+              "durationSeconds": 0.0659132,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "state": "Passed",
+              "durationSeconds": 0.0652555,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "state": "Passed",
+              "durationSeconds": 0.0705476,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0647733,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "state": "Passed",
+              "durationSeconds": 0.0675866,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0667023,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0653689,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "state": "Passed",
+              "durationSeconds": 0.0654856,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "state": "Passed",
+              "durationSeconds": 0.0651171,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "state": "Passed",
+              "durationSeconds": 0.0667919,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "state": "Passed",
+              "durationSeconds": 0.067042,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Village)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(Village)",
+              "state": "Passed",
+              "durationSeconds": 0.0674547,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Lair)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(Lair)",
+              "state": "Passed",
+              "durationSeconds": 0.0664418,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "state": "Passed",
+              "durationSeconds": 0.0677173,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Root)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(Root)",
+              "state": "Passed",
+              "durationSeconds": 0.0677183,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "state": "Passed",
+              "durationSeconds": 0.0661948,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "state": "Passed",
+              "durationSeconds": 0.0647141,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Sodden).MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "state": "Passed",
+              "durationSeconds": 0.06828,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "state": "Passed",
+              "durationSeconds": 0.1374488,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisposalOwnsOnlyViewsAndIsIdempotent",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisposalOwnsOnlyViewsAndIsIdempotent",
+              "state": "Passed",
+              "durationSeconds": 0.1117246,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "state": "Passed",
+              "durationSeconds": 0.2600233,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "state": "Passed",
+              "durationSeconds": 0.0678673,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "state": "Passed",
+              "durationSeconds": 0.0652533,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "state": "Passed",
+              "durationSeconds": 0.0658755,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OtherBiomesAndBorderRemainOutsidePilot",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).OtherBiomesAndBorderRemainOutsidePilot",
+              "state": "Passed",
+              "durationSeconds": 0.0711099,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "state": "Passed",
+              "durationSeconds": 0.0656492,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmGroundResolutionDoesNotAllocate",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).WarmGroundResolutionDoesNotAllocate",
+              "state": "Inconclusive",
+              "durationSeconds": 0.0632846,
+              "message": "Allocation counter cannot detect positive control.",
+              "stackTrace": "at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\n",
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "state": "Passed",
+              "durationSeconds": 0.0695892,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0684948,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "state": "Passed",
+              "durationSeconds": 0.0687432,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "state": "Passed",
+              "durationSeconds": 0.070833,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "state": "Passed",
+              "durationSeconds": 0.06934,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "state": "Passed",
+              "durationSeconds": 0.0669747,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "state": "Passed",
+              "durationSeconds": 0.0685106,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "state": "Passed",
+              "durationSeconds": 0.0639995,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0657062,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "state": "Passed",
+              "durationSeconds": 0.0662617,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0684527,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0680545,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "state": "Passed",
+              "durationSeconds": 0.0652627,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "state": "Passed",
+              "durationSeconds": 0.065633,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "state": "Passed",
+              "durationSeconds": 0.0644371,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "state": "Passed",
+              "durationSeconds": 0.0929023,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Village)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(Village)",
+              "state": "Passed",
+              "durationSeconds": 0.1559715,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Lair)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(Lair)",
+              "state": "Passed",
+              "durationSeconds": 0.2091124,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "state": "Passed",
+              "durationSeconds": 0.0673585,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Root)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(Root)",
+              "state": "Passed",
+              "durationSeconds": 0.0734908,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "state": "Passed",
+              "durationSeconds": 0.0684534,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "state": "Passed",
+              "durationSeconds": 0.0687138,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Spread).MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "state": "Passed",
+              "durationSeconds": 0.0657934,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).CoveredPlayerKeepsGroundAndIncrementalFullRepaintParity",
+              "state": "Passed",
+              "durationSeconds": 0.1407811,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisposalOwnsOnlyViewsAndIsIdempotent",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisposalOwnsOnlyViewsAndIsIdempotent",
+              "state": "Passed",
+              "durationSeconds": 0.0634298,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).HiddenCompetitorDoesNotRevealItselfThroughGround",
+              "state": "Passed",
+              "durationSeconds": 0.0672196,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).HiddenSinkholeMatchesOrdinaryTerrainUntilDiscovery",
+              "state": "Passed",
+              "durationSeconds": 0.0673022,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).OneOptionalBiomeResourceDoesNotDependOnTheOther",
+              "state": "Passed",
+              "durationSeconds": 0.0635331,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).OrdinaryTerrainAndExactReaderUseSameNativeFrameWithoutMutatingWorld",
+              "state": "Passed",
+              "durationSeconds": 0.0668341,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OtherBiomesAndBorderRemainOutsidePilot",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).OtherBiomesAndBorderRemainOutsidePilot",
+              "state": "Passed",
+              "durationSeconds": 0.068551,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors",
+              "state": "Passed",
+              "durationSeconds": 0.0643578,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmGroundResolutionDoesNotAllocate",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).WarmGroundResolutionDoesNotAllocate",
+              "state": "Inconclusive",
+              "durationSeconds": 0.0668469,
+              "message": "Allocation counter cannot detect positive control.",
+              "stackTrace": "at CavesOfOoo.Tests.FlatPixelWorldMapTests.WarmGroundResolutionDoesNotAllocate () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorldMapTests.cs:165\n",
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"hidden\")",
+              "state": "Passed",
+              "durationSeconds": 0.065896,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"memory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0678384,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"unexplored\")",
+              "state": "Passed",
+              "durationSeconds": 0.0661109,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"coordinates\")",
+              "state": "Passed",
+              "durationSeconds": 0.0654785,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"duplicate-owner\")",
+              "state": "Passed",
+              "durationSeconds": 0.0658881,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"duplicate-part\")",
+              "state": "Passed",
+              "durationSeconds": 0.0649046,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"variant\")",
+              "state": "Passed",
+              "durationSeconds": 0.0649711,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"color\")",
+              "state": "Passed",
+              "durationSeconds": 0.1138766,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"glyph\")",
+              "state": "Passed",
+              "durationSeconds": 0.2712573,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"solid\")",
+              "state": "Passed",
+              "durationSeconds": 0.0665955,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"inventory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0679529,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"graph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0675975,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"biome\")",
+              "state": "Passed",
+              "durationSeconds": 0.0674162,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"map\")",
+              "state": "Passed",
+              "durationSeconds": 0.0661749,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"state\")",
+              "state": "Passed",
+              "durationSeconds": 0.0683907,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).ChangedAuthorityOrMeaningDeclines(\"name\")",
+              "state": "Passed",
+              "durationSeconds": 0.0654339,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Village)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(Village)",
+              "state": "Passed",
+              "durationSeconds": 0.0669826,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Lair)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(Lair)",
+              "state": "Passed",
+              "durationSeconds": 0.0666702,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(MerchantCamp)",
+              "state": "Passed",
+              "durationSeconds": 0.06601,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(Root)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(Root)",
+              "state": "Passed",
+              "durationSeconds": 0.0654212,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).DisclosedSitesKeepTheirMarkers(FellingSite)",
+              "state": "Passed",
+              "durationSeconds": 0.0659847,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).MissingOrMalformedResourceDeclinesWithoutReload(False)",
+              "state": "Passed",
+              "durationSeconds": 0.0682237,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelWorldMapTests(Stump).MissingOrMalformedResourceDeclinesWithoutReload(True)",
+              "state": "Passed",
+              "durationSeconds": 0.0655104,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            }
+          ]
+        }
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

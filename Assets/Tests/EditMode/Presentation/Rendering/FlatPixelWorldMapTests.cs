@@ -10,11 +10,16 @@ namespace CavesOfOoo.Tests
     [TestFixture(BiomeType.Spread)]
     [TestFixture(BiomeType.Beating)]
     [TestFixture(BiomeType.Sodden)]
+    [TestFixture(BiomeType.Grovelands)]
+    [TestFixture(BiomeType.Stump)]
+    [TestFixture(BiomeType.Overwrit)]
     public sealed class FlatPixelWorldMapTests
     {
         readonly BiomeType biome;
         public FlatPixelWorldMapTests(BiomeType biome) { this.biome=biome; }
-        string ResourcePath => biome==BiomeType.Spread ? FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath : biome==BiomeType.Beating ? FlatPixelBeatingMaterialsCatalog.ResourcePath : FlatPixelWorldMapCatalog.SoddenResourcePath;
+        string ResourcePath => biome==BiomeType.Spread ? FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath : biome==BiomeType.Beating ? FlatPixelBeatingMaterialsCatalog.ResourcePath : biome==BiomeType.Sodden ? FlatPixelWorldMapCatalog.SoddenResourcePath
+            : biome==BiomeType.Grovelands ? FlatPixelGrovelandsMaterialsCatalog.GroundResourcePath
+            : biome==BiomeType.Stump ? FlatPixelStumpMaterialsCatalog.ResourcePath : FlatPixelOverwritMaterialsCatalog.ResourcePath;
         const int X = 40, Y = 13, WX = 10, WY = 10;
         DensityLootTestScope content;
         OverworldZoneManager manager;
@@ -38,11 +43,12 @@ namespace CavesOfOoo.Tests
             Assert.True(p.LocalGround, "Ordinary supported map terrain needs native ground");
             Assert.AreSame(Resources.Load<Texture2D>(ResourcePath), p.GroundTile.sprite.texture);
             Assert.AreEqual(new Vector2(16,24), p.GroundTile.sprite.rect.size);
-            Assert.AreEqual(biome==BiomeType.Beating ? new Color(.45f,.45f,.45f,1f) : new Color(.65f,.65f,.65f,1f),p.GroundColor); return p;
+            Assert.AreEqual(biome==BiomeType.Stump ? new Color(.25f,.25f,.25f,1f) : (biome==BiomeType.Beating||biome==BiomeType.Overwrit) ? new Color(.45f,.45f,.45f,1f) : new Color(.65f,.65f,.65f,1f),p.GroundColor); return p;
         }
-        FlatPixelWorldMapCatalog ForResource(Texture2D source) => biome==BiomeType.Spread
-            ? new FlatPixelWorldMapCatalog(source,null,null) : biome==BiomeType.Beating
-            ? new FlatPixelWorldMapCatalog(null,source,null) : new FlatPixelWorldMapCatalog(null,null,source);
+        FlatPixelWorldMapCatalog ForResource(Texture2D source) => new FlatPixelWorldMapCatalog(
+            biome==BiomeType.Spread?source:null,biome==BiomeType.Beating?source:null,
+            biome==BiomeType.Sodden?source:null,biome==BiomeType.Grovelands?source:null,
+            biome==BiomeType.Stump?source:null,biome==BiomeType.Overwrit?source:null);
         [Test] public void OneOptionalBiomeResourceDoesNotDependOnTheOther()
         {
             using(var catalog=ForResource(Resources.Load<Texture2D>(ResourcePath)))
@@ -62,7 +68,7 @@ namespace CavesOfOoo.Tests
             int version = zone.EntityVersion; string state = zone.TileState.ToSaveString();
             var p = On(); Assert.AreSame(floor,p.Owner); Assert.IsNull(p.ForegroundTile); Assert.False(p.BlocksMovement);
             Assert.True(art.TryGetPresentationSubjectSprite(zone,floor,X,Y,out var sprite,out var tint));
-            Assert.AreSame(p.GroundTile.sprite,sprite); Assert.AreEqual(biome==BiomeType.Beating ? new Color(.45f,.45f,.45f,1f) : new Color(.65f,.65f,.65f,1f),tint);
+            Assert.AreSame(p.GroundTile.sprite,sprite); Assert.AreEqual(biome==BiomeType.Stump ? new Color(.25f,.25f,.25f,1f) : (biome==BiomeType.Beating||biome==BiomeType.Overwrit) ? new Color(.45f,.45f,.45f,1f) : new Color(.65f,.65f,.65f,1f),tint);
             Assert.AreEqual(tint,p.GroundColor);
             Assert.AreEqual(version,zone.EntityVersion); Assert.AreEqual(state,zone.TileState.ToSaveString());
         }
@@ -77,6 +83,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("o",floor.GetPart<RenderPart>().RenderString);
         }
         [TestCase(POIType.Village)] [TestCase(POIType.Lair)] [TestCase(POIType.MerchantCamp)]
+        [TestCase(POIType.Root)] [TestCase(POIType.FellingSite)]
         public void DisclosedSitesKeepTheirMarkers(POIType type)
         {
             On(); manager.WorldMap.SetPOI(WX,WY,new PointOfInterest(type,"site")); Refresh(); var p = On(); Assert.NotNull(p.ForegroundTile);
@@ -105,7 +112,7 @@ namespace CavesOfOoo.Tests
                 case "solid": floor.GetPart<PhysicsPart>().Solid=true;break;
                 case "inventory": floor.GetPart<PhysicsPart>().InInventory=new Entity();break;
                 case "graph": manager.CachedZones[zone.ZoneID]=new Zone(zone.ZoneID);break;
-                case "biome": manager.WorldMap.Tiles[WX,WY]=BiomeType.Stump;break;
+                case "biome": manager.WorldMap.Tiles[WX,WY]=BiomeType.Cave;break;
                 case "map": manager.WorldMap.POIs=new PointOfInterest[1,1];break;
                 case "state": zone.TileState.AddHeat(X,Y,1);break;
                 case "name": floor.GetPart<RenderPart>().DisplayName="foreign";break;
@@ -173,7 +180,7 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void OtherBiomesAndBorderRemainOutsidePilot()
         {
-            On(); manager.WorldMap.Tiles[WX,WY]=BiomeType.Stump;Refresh();Off();
+            On(); manager.WorldMap.Tiles[WX,WY]=BiomeType.Cave;Refresh();Off();
             Assert.True(art.TryResolvePresentation(zone,29,13,out var p));Assert.False(p.LocalGround);
         }
     }
