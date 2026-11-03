@@ -49,7 +49,7 @@ namespace CavesOfOoo.Editor
             PlayerSettings.runInBackground = false;
 
             var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
-                scenes = new[] { "Assets/Scenes/SampleScene.unity" }, locationPathName = destination,
+                scenes = new[] { "Assets/Scenes/Main/SampleScene.unity" }, locationPathName = destination,
                 target = BuildTarget.WebGL, options = BuildOptions.None
             });
             if (report.summary.result != BuildResult.Succeeded)

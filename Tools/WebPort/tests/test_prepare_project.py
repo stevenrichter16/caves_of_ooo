@@ -42,7 +42,7 @@ class PrepareProjectTests(unittest.TestCase):
         self.git("config", "commit.gpgsign", "false")
         self.git("config", "core.autocrlf", "false")
         self.git("config", "core.hooksPath", str(self.root / "unused-hooks"))
-        self.write("Assets/Scenes/SampleScene.unity", "original scene\n")
+        self.write("Assets/Scenes/Main/SampleScene.unity", "original scene\n")
         self.write("Assets/Editor/WebPhoneBuild.cs", "// committed Web build entry\n")
         self.write("Assets/Editor/KeepThisTool.cs", "// unrelated editor tool\n")
         self.write("Assets/WebGLTemplates/CavesPhone/index.html", "<title>Caves</title>\n")

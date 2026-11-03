@@ -42,7 +42,7 @@ def prepare(repo, ref, output, dry_run=False):
             raise ValueError('Unsupported project entry: ' + path)
         records.append((oid, path, mode))
     paths = {path for _, path, _ in records}
-    required = {'Assets/Scenes/SampleScene.unity', 'Assets/Editor/WebPhoneBuild.cs',
+    required = {'Assets/Scenes/Main/SampleScene.unity', 'Assets/Editor/WebPhoneBuild.cs',
                 'Assets/WebGLTemplates/CavesPhone/index.html', 'Packages/manifest.json'}
     required.update('Assets/WebGLTemplates/CavesPhone/' + name for name in
                     ('phone.js', 'phone.css', 'web-save-store.js', 'service-worker.js', 'manifest.webmanifest', 'icon.svg'))

@@ -57,7 +57,7 @@ highlighting, scroll ergonomics and every modal must still be qualified in Unity
 A disposable-project exporter removes only the local MCP build dependency and
 its five Editor adapters, pins the existing Newtonsoft version, and supplies
 reflection preservation. The build entry pins Unity 6000.3.4f1 and selects the
-actual SampleScene with IL2CPP/WebGL 2. It generates hashed assets, provenance,
+actual `Assets/Scenes/Main/SampleScene.unity` with IL2CPP/WebGL 2. It generates hashed assets, provenance,
 and the offline asset manifest. The worker caches the current build before
 installation completes and waits for old game tabs to close before updating.
 
@@ -95,6 +95,10 @@ direction selection spending turns, background FX double settlement, inaccessibl
 colon footer actions, stale throw details, travel behind overlays, landscape
 reader width, topmost modal mirroring, and first-visit offline asset caching. Tests cover the pure and
 browser contracts; source review is the only evidence for the native input hooks.
+
+A final committed-project dry run caught and corrected a stale scene path
+missing the `Main/` directory; build entry, exporter, plan, and fixture now match
+`EditorBuildSettings.asset`.
 
 The first next step is a real build using the documented exporter and Unity
 6000.3.4f1 + Web Build Support. Do not merge runtime changes or call the port

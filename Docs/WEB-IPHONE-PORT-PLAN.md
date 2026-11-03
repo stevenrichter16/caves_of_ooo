@@ -115,7 +115,7 @@ Gesture invariants:
 ## 6. Browser builds and compatibility
 
 1. Make a clean-machine dependency resolution path. Pin or vendor the developer MCP package at a verified revision, or use an isolated documented build manifest that excludes editor tooling after dependency analysis. Do not silently alter the user's working editor setup.
-2. Add a Web build profile/script using the current gameplay scene `Assets/Scenes/SampleScene.unity`, flat presentation and production-safe diagnostics. Retain desktop profiles.
+2. Add a Web build profile/script using the current gameplay scene `Assets/Scenes/Main/SampleScene.unity`, flat presentation and production-safe diagnostics. Retain desktop profiles.
 3. Use IL2CPP/WebAssembly and WebGL 2; initially avoid experimental native threading or a mandatory cross-origin-isolated deployment.
 4. Audit player-included assemblies/plugins for System.Threading, blocking waits, filesystem assumptions, sockets, native DLLs and Editor-only dependencies. Distinguish reachable runtime paths from tests/tools.
 5. Add/link preservation for Parts, Effects, skills and save-restored concrete types. Exercise the full content construction set and representative complex saves with release stripping.
