@@ -40,6 +40,7 @@ Evidence is pinned to the baseline above. Documentation records are historical e
 | Latest qualified presentation is flat 16×24 with 1×/2× zoom at 1280×800 | [Docs/STEAM-DECK-FLAT-READINESS.md](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Docs/STEAM-DECK-FLAT-READINESS.md) | Reuse flat rendering; older voxel-era descriptions do not define current scope. Editor/Mac evidence is not a phone or WebGL pass. |
 | Build depends on a machine-local editor package | [Packages/manifest.json:3](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Packages/manifest.json#L3) | Resolve the local unity-mcp dependency reproducibly in the build environment; retain normal developer tooling. |
 | Typed world command vocabulary already exists | [Assets/Scripts/Presentation/Input/NativeGamepadInput.cs:10](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Assets/Scripts/Presentation/Input/NativeGamepadInput.cs#L10) and [Assets/Scripts/Presentation/Input/InputHandler.Controller.cs:95](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Assets/Scripts/Presentation/Input/InputHandler.Controller.cs#L95) | Reuse command semantics. Extract a device-neutral dispatcher rather than simulating keyboard input. |
+| Loadout names poll physical keyboard keys | [Assets/Scripts/Presentation/UI/InventoryUI.Loadouts.cs:120](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Assets/Scripts/Presentation/UI/InventoryUI.Loadouts.cs#L120) | Add an actual mobile text input field/bridge; viewport resizing alone cannot provide software-keyboard editing. |
 | Fixed modal grid and persistent side/bottom panels | [Assets/Scripts/Presentation/Rendering/CenteredPopupLayout.cs:12](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Assets/Scripts/Presentation/Rendering/CenteredPopupLayout.cs#L12), [Assets/Scripts/Presentation/Rendering/GameplayViewportLayout.cs:117](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Assets/Scripts/Presentation/Rendering/GameplayViewportLayout.cs#L117) | Add responsive phone layout. Shrinking the desktop canvas is insufficient. |
 | Saves use Task.Run and a synchronous wait | [Assets/Scripts/Gameplay/Save/BackgroundSaveQueue.cs:40](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Assets/Scripts/Gameplay/Save/BackgroundSaveQueue.cs#L40) and [Assets/Scripts/Gameplay/Save/BackgroundSaveQueue.cs:89](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Assets/Scripts/Gameplay/Save/BackgroundSaveQueue.cs#L89) | Browser needs a non-blocking, non-managed-thread save path. |
 | Durable save currently means filesystem commit | [Assets/Scripts/Gameplay/Save/SaveSystem.cs:910](https://github.com/stevenrichter16/caves_of_ooo/blob/8c4573ae51a58916884e23efa282859d0669d645/Assets/Scripts/Gameplay/Save/SaveSystem.cs#L910) | C# file creation/flush/replace is not evidence of completed browser persistence. |
@@ -56,6 +57,7 @@ Corrections to tempting assumptions:
 - `Tools/EditModeRunner` can help audit core separation, but uses Unity stubs and test substitutions. It is not a production browser runtime.
 - Historical save profiling includes a roughly 35.5 MB raw snapshot with twenty cached zones. This is a stress-workload warning, not the current phone footprint or timing.
 - Source/asset repository size and desktop archive size are not Web download size. Obtain an actual Web BuildReport.
+- Fire/reload/replace-cell commands currently report unavailable systems in `InputHandler.Controller.cs`. Preserve truthful responses for reserved commands; implementing missile weapons or energy cells is outside this port.
 
 ## 4. Shared architecture
 
@@ -85,7 +87,7 @@ A phone version must complete the opening, a fight, a trade, travel, inventory m
 | --- | --- |
 | Movement and waiting | Eight-direction control with deliberate step semantics; explicit Wait. Optional repeat has a threshold and stops on release/danger. |
 | World selection | Tap selects or inspects. Show a disambiguation list for stacked occupants and small targets. Selection spends no turn. |
-| Attacking/abilities | Select target and see range/affected cells, then explicit confirm; visible Cancel. Force attack, fire, throw and reload remain reachable. |
+| Attacking/abilities | Select target and see range/affected cells, then explicit confirm; visible Cancel. Implemented force attack and throw remain reachable. Reserved fire/reload commands retain truthful unavailable responses; no new weapon system is implied. |
 | Interaction | Contextual Act with readable choices for doors, people, containers, items and services; stairs get explicit actions. |
 | Travel | Reuse existing auto-walk/explore and danger interruption. A persistent Stop button cancels immediately. |
 | Map | Free pan and zoom. Camera changes never expose undiscovered information or alter simulation visibility. |
@@ -97,6 +99,8 @@ A phone version must complete the opening, a fight, a trade, travel, inventory m
 Use at least 44 CSS-pixel targets, generally 48 where space permits; default readable text around 16 CSS pixels with user scaling. These are proposed UI targets, measured in effective CSS space, not framebuffer pixels.
 
 Account for notches/home indicator, browser bars, on-screen keyboard, landscape/portrait changes and browser zoom. Cap world rendering resolution independently of text size. A narrower camera follows the player; there is no requirement to fit all 80 columns on screen.
+
+Provide a real software-keyboard path for loadout naming and any other text entry: an HTML input bridge or supported Unity mobile text field focused from a user gesture. Transfer edited values/composition events rather than synthesizing physical letter keys; support selection, deletion, paste, confirm/cancel and existing length/validation rules. While editing, quarantine world commands and ensure the field stays above the keyboard. Verify on a real iPhone.
 
 Phone panels should consume existing state/action models. Where desktop panels combine rendering and actions, extract small presenters/models incrementally. Start with the project's existing UI stack; avoid an unrelated UI framework migration.
 
@@ -119,6 +123,8 @@ Gesture invariants:
 7. Require an explicit user gesture to start audio. Test mute, app switching and audio resume with normal game input.
 8. Check safe canvas resizing, keyboard focus, text entry, feature detection and context-loss recovery.
 9. Host real release artifacts with correct MIME types and Content-Encoding for compressed WASM/JS/data. Test the exact HTTPS host, not just Unity Build and Run.
+
+M0 may pull forward the minimum M1/M2 save-queue/platform work required to travel without invoking the unsupported desktop worker path. Any temporary nonpersistent save mode must be explicit, isolated and excluded from save acceptance. Full durable storage remains the M2 gate.
 
 The first spike may use an explicitly temporary minimal touch shell; it must not count as complete mobile UI. It must use actual game scenes/content and standard actions rather than a separate toy demo.
 
@@ -188,7 +194,7 @@ Agent-work-hour allocations are provisional, not human typing days or delivery d
 | M0 — Feasibility spike | Reproducible checkout/dependencies, Web build profile, minimal touch, actual flat opening on Safari, startup/render/memory measurements | Physical iPhone boots, takes turns, travels, renders correctly; blocker inventory and preliminary budgets recorded | 6–12 |
 | M1 — Runtime compatibility | Thread/file/plugin guards, shared platform seams, IL2CPP preservation, content creation, startup loading fixes | Release Web build exercises standard actions/content without runtime/AOT failures; desktop baseline passes | 8–16 |
 | M2 — Durable campaigns | Browser backend, stable snapshots, lifecycle, recovery, export/import, writer conflict protection | Confirmed save survives reload/termination; failed/corrupt writes retain prior valid save; actual cross-platform compatible roundtrip | 16–32 |
-| M3 — Complete touch play | Shared action dispatch, responsive HUD/panels, targeting/gestures, all menus and text entry, portrait/landscape | Entire representative opening loop completed by touch, no keyboard, accidental turns or inaccessible actions | 24–48 |
+| M3 — Complete touch play | Shared action dispatch, responsive HUD/panels, targeting/gestures, all menus and text entry, portrait/landscape | Entire representative opening loop completed by touch, including loadout naming with the iPhone software keyboard; no external keyboard, accidental turns or inaccessible implemented actions | 24–48 |
 | M4 — Size/performance | Build report, measured asset/audio changes, safe staging, grown-campaign load/save/memory work | Agreed budgets met on lowest supported test device and long-session route | 12–28 |
 | M5 — Web distribution | Hosted loader, headers, install/offline/update handling, diagnostics and rollback | Exact hosted release passes cold/warm/offline/update/recovery paths | 6–12 |
 | M6 — Qualification | Physical device matrix, gameplay coverage, adversarial save/input tests, desktop/controller regressions | Evidence-backed support matrix and known-limitations record; no release-blocking save loss/input traps | 12–24 |
@@ -207,7 +213,7 @@ Decision after early gates:
 
 - **Devices:** baseline iPhone 13 class, a smaller/older device admitted to the support floor, and a recent iPhone; current supported Safari plus the proposed minimum where available. Record physical model, OS, browser, viewport, build SHA and hosting config.
 - **Sessions:** browser tab and Home Screen; portrait/landscape, safe area, software keyboard, audio, background/app switch/lock, killed-page recovery, WebGL context loss.
-- **Actions:** eight directions/wait, dialogue, readers, stacked-object selection, pickup/drop, equipment, trade/quantities, all targeting forms, throw/fire/reload, stairs/map, travel interruption, crafting/skills, journal, save/load and death recovery.
+- **Actions:** eight directions/wait, dialogue, readers, stacked-object selection, pickup/drop, equipment, trade/quantities, all implemented targeting forms and throw, truthful unavailable responses for reserved fire/reload/cell commands, stairs/map, travel interruption, crafting/skills, journal, save/load and death recovery.
 - **Simulation:** equivalent seeded action sequences preserve relevant final state across desktop and Web. Compare IDs, items, effects, costs, discovered information and scheduler state; investigate differences rather than assuming platform determinism.
 - **Content:** generated/reflectively created Parts and representative late-game effects/skills restore under release IL2CPP stripping.
 - **Storage failures:** interrupted save, failed transaction, quota denied/full, missing/evicted database, corrupt newest generation, incompatible import, concurrent tab, app update and failed asset update.
@@ -231,6 +237,7 @@ Findings addressed in this plan: current flat baseline, Deck-versus-iPhone evide
 
 Implementation log:
 - 2026-11-03: pinned latest remote main; local executor unavailable; inspected current repository rules/source; completed two independent bounded source audits and primary-source browser review.
+- Independent plan review: corrected the reserved fire/reload scope, added an explicit mobile text input implementation/gate, and clarified minimum save compatibility needed by M0. These are planning fixes; no runtime acceptance is claimed.
 - Files proposed/changed for this planning delivery: `Docs/WEB-IPHONE-PORT-PLAN.md` only.
 - Validation: source claims cross-checked; plan reviewed for feasibility and testable gates. Build size, phone performance, Web correctness and actual ergonomics are unverified.
 
