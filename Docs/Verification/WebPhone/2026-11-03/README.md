@@ -17,6 +17,9 @@ returned HTTP 404; no licensed local Editor was available.
   using fake IndexedDB for transaction fault injection.
 - `project-export-tests.txt`: 13 passing Python cases for committed-source
   export, source preservation, dependencies, and missing required assets.
+- `project-dry-run.json`: the actual committed project at `51fe0038`, with
+  25,615 tracked project files and the configured gameplay scene. This checks
+  export completeness without downloading all assets or invoking Unity.
 - `browser-tests.json`: 42 passing cases across Chromium 156 and Linux WebKit
   27.2, with phone-sized portrait and landscape viewports. Real IndexedDB,
   compression and service workers; Unity/WebGL capability and build binaries
