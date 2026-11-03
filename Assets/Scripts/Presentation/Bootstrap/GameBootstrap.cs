@@ -70,6 +70,11 @@ namespace CavesOfOoo
 
         private void Start()
         {
+            CavesOfOoo.Rendering.BrowserPlatform.StartWhenReady(StartAfterStorage);
+        }
+
+        private void StartAfterStorage()
+        {
             Debug.Log("[Bootstrap] Start called");
             try
             {

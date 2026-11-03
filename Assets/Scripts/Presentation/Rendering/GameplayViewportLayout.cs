@@ -111,6 +111,7 @@ namespace CavesOfOoo.Rendering
             int sidebarWidthChars,
             int hotbarRows)
         {
+            if (PhoneInput.Enabled) { sidebarWidthChars = 0; hotbarRows = 0; }
             float clampedAspect = Mathf.Max(0.01f, displayAspect);
             float scale = orthographicSize / Mathf.Max(0.01f, referenceZoom);
             float charWidthWorld = 0.5f * scale;

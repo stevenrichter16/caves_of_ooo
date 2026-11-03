@@ -1,0 +1,12 @@
+{
+  "name": "caves-of-ooo-web-verification",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "fake-indexeddb": "6.2.4"
+  }
+}

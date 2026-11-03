@@ -94,7 +94,13 @@ namespace UnityEngine
         public static void Log(object m, Object ctx) => Log(m);
         public static void LogWarning(object m) { if (!Quiet) Console.WriteLine("[Warn] " + m); }
         public static void LogWarning(object m, Object ctx) => LogWarning(m);
-        public static void LogError(object m) { Console.WriteLine("[Error] " + m); }
+        public static void LogError(object m)
+        {
+#if COO_HEADLESS_SAVE_UI
+            UnityEngine.TestTools.LogAssert.Observe(LogType.Error, m?.ToString());
+#endif
+            Console.WriteLine("[Error] " + m);
+        }
         public static void LogError(object m, Object ctx) => LogError(m);
         public static void LogException(Exception e) { Console.WriteLine("[Exception] " + e); }
         public static void LogFormat(string f, params object[] a) => Log(string.Format(f, a));
@@ -237,6 +243,8 @@ namespace UnityEngine
         public static void SetString(string k, string v) => Store[k] = v;
         public static int GetInt(string k, int d = 0) => Store.TryGetValue(k, out var v) && int.TryParse(v, out int i) ? i : d;
         public static void SetInt(string k, int v) => Store[k] = v.ToString();
+        public static float GetFloat(string k, float d = 0f) => Store.TryGetValue(k, out var v) && float.TryParse(v, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float f) ? f : d;
+        public static void SetFloat(string k, float v) => Store[k] = v.ToString(System.Globalization.CultureInfo.InvariantCulture);
         public static bool HasKey(string k) => Store.ContainsKey(k);
         public static void DeleteKey(string k) => Store.Remove(k);
         public static void Save() { }

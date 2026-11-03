@@ -1,0 +1,36 @@
+
+> test
+> node --test tests/*.test.cjs
+
+✔ failed first transaction leaves no discoverable campaign and retry remains possible (52.540917ms)
+✔ a concurrent caller cannot interleave another slot during an active commit (9.576677ms)
+✔ the payload returned by commit cannot mutate the retained backup generation (6.842087ms)
+✔ hydration consumers cannot mutate the next checkpoint backup generation (12.671058ms)
+✔ a conflicting session cannot bypass its lock by calling hydrate again (4.150378ms)
+✔ a database upgrade invalidates this store instead of reopening it as writable (1.964994ms)
+✔ canonical publication failure tells C# storage is unavailable after the durable commit (8.078306ms)
+✔ hydration publication failure cannot signal an empty or ready campaign (5.060709ms)
+✔ backup roundtrip keeps real compressed bytes and retains the destination checkpoint as previous (52.743347ms)
+✔ a late invalid backup record prevents every checkpoint write (16.048073ms)
+✔ backup validation rejects build, path, metadata, duplicate-key, and encoding ambiguities without mutation (10.183106ms)
+✔ backup import verifies gzip integrity and the decoded game header (35.748733ms)
+✔ backup import rejects a small gzip bomb exceeding the total decompressed budget (2357.661324ms)
+✔ backup decompression budget applies across records before any import writes (4689.589445ms)
+✔ export is read-only and does not refresh a stale gameplay session revision (4.205625ms)
+✔ a fresh unhydrated instance can export persisted checkpoints without starting gameplay (1.632624ms)
+✔ raw recovery export preserves unrecoverable bytes without changing storage or enabling gameplay (8.408574ms)
+✔ opening is distinct from hydration; commits require successful hydration (30.874595ms)
+✔ a fresh browser discovers the complete payload/metadata pair and previous generation (11.04812ms)
+✔ transaction abort after a successful put does not acknowledge or replace the checkpoint (11.169175ms)
+✔ two tabs cannot silently overwrite one another; conflict stays latched (17.125669ms)
+✔ corrupt newest generation recovers previous and retains it on the next commit (4.999592ms)
+✔ unrecoverable or unsafe records fail hydration instead of becoming a fresh game (3.229902ms)
+✔ caller mutation after submission cannot alter the stored bytes (1.623814ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7571.424636

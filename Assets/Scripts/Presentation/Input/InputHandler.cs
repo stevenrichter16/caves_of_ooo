@@ -385,7 +385,7 @@ namespace CavesOfOoo.Rendering
             ExitCenteredPopupOverlayViewToGameplay();
             MessageLog.Add("You begin as " + (build?.Name ?? "a wanderer") + ".");
             bool saved = _saveLoadService.BeginNewGame();
-            MessageLog.Add(saved ? "Initial checkpoint saved."
+            MessageLog.Add(saved ? (SaveLoadFeedback.IsAsync(_saveLoadService) ? "Saving…" : "Initial checkpoint saved.")
                 : "New game started, but the initial save failed. Press [F5] to retry.");
         }
 
@@ -458,12 +458,14 @@ namespace CavesOfOoo.Rendering
         private void Update()
         {
             RefreshControllerSession();
+            BeginPhoneFrame();
             NativeGamepadInput.SetContext(ControllerContext());
             try { UpdateInput(); }
             finally
             {
                 NativeGamepadInput.SetContext(ControllerContext());
                 RefreshControllerDirectionCue();
+                EndPhoneFrame();
             }
         }
 
@@ -472,6 +474,7 @@ namespace CavesOfOoo.Rendering
             // Completion owns Unity/preferences/log work. Pump even behind a
             // modal or before the player graph exists; the worker never does it.
             SaveGameService.PumpPendingSaves();
+            if (PhoneInput.Enabled && PhoneInput.Gate.Suspended) return;
             if (ZoneRenderer != null) ZoneRenderer.SetAffordanceInput(this);
             if (SpellFxSettingsPanel.IsOpen) return;
             using (PerformanceMarkers.Input.Update.Auto())
@@ -541,7 +544,7 @@ namespace CavesOfOoo.Rendering
             if (_controllerTravel != ControllerTravelMode.None &&
                 (NativeGamepadInput.AnyPressed || UnityEngine.Input.anyKeyDown
                  || UnityEngine.InputSystem.Keyboard.current?.anyKey.wasPressedThisFrame == true
-                 || !NativeGamepadInput.IsConnected))
+                 || PhoneInput.AnyPressed || (!NativeGamepadInput.IsConnected && !_phoneTravel)))
                 CancelControllerTravel("You stop.");
 
             if (_inputState == InputState.LogHistoryOpen) { HandleLogHistoryInput(); return; }
@@ -593,7 +596,7 @@ namespace CavesOfOoo.Rendering
             // pressed INSIDE an open inventory belongs to the modal,
             // and no walk is stepping while a modal is up anyway —
             // ShouldInterrupt re-checks safety before every step.)
-            if (_stairPath != null && (UnityEngine.Input.anyKeyDown || NativeGamepadInput.AnyPressed
+            if (_stairPath != null && (PhoneInput.AnyPressed || UnityEngine.Input.anyKeyDown || NativeGamepadInput.AnyPressed
                 || UnityEngine.InputSystem.Keyboard.current?.anyKey.wasPressedThisFrame == true))
                 _stairInterruptRequested = true;
 
@@ -683,6 +686,7 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            if (_inputState == InputState.Normal && HandlePhoneWorldInput()) return;
             if (_inputState == InputState.Normal && HandleControllerWorldInput()) return;
 
             // Wait/skip turn (tap or hold) — placed BEFORE the general rate
@@ -2525,6 +2529,7 @@ namespace CavesOfOoo.Rendering
                 _worldCursorState.Y);
 
             ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+            PhoneLookSnapshot = snapshot;
             ZoneRenderer?.SetLookSnapshot(snapshot);
         }
 
@@ -4094,6 +4099,8 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (PhoneInput.FrameIntent?.kind == "text")
+                InventoryUI.SubmitPhoneLoadoutName(PhoneInput.FrameIntent.value);
             InventoryUI.HandleInput();
 
             if (InventoryUI.ConsumePendingEverydayTurn())
@@ -4180,6 +4187,7 @@ namespace CavesOfOoo.Rendering
         private bool GetDirectionKeyDown(out int dx, out int dy)
         {
             bool cursor = _inputState == InputState.LookMode || _inputState == InputState.ThrowTargeting || IsVaultTargeting;
+            if (PhoneInput.TryDirection(cursor, out dx, out dy)) return true;
             if (cursor && NativeGamepadInput.TryDirection(true, out dx, out dy)) return true;
             if (!cursor && NativeGamepadInput.GetKeyDown(KeyCode.Return)
                 && NativeGamepadInput.TrySelectedDirection(out dx, out dy)) return true;

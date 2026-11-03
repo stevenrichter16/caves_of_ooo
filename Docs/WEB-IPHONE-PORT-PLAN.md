@@ -1,8 +1,8 @@
 # iPhone browser version — feasibility and implementation plan
 
-Status: proposed, source-reviewed on 2026-11-03. No Web build or iPhone run has been performed for this plan.
+Status: implementation in progress, 2026-11-03. Browser persistence, touch shell, build tooling and automated checks now exist; see [implementation checkpoint](WEB-IPHONE-IMPLEMENTATION.md). Unity Web build and physical iPhone qualification remain blocked.
 
-Baseline: main at `8c4573ae51a58916884e23efa282859d0669d645` (“Deliver Deck-sized controls and display qualification builds”, 2026-11-02). The managed executor was unavailable: a local `git pull` could not run. This plan was prepared from that exact remote commit through GitHub, including independent architecture and input/save reviews. Before implementation, restore a usable checkout, inspect local changes, fetch main, fast-forward only when safe, or create an isolated worktree. Reconcile any newer main changes and update this baseline.
+Baseline: main at `8c4573ae51a58916884e23efa282859d0669d645` (“Deliver Deck-sized controls and display qualification builds”, 2026-11-02). Initial planning used pinned GitHub source while the executor was unavailable. The executor subsequently came online; main was pulled with `--ff-only` and confirmed unchanged. Implementation is isolated on `codex/iphone-web-implementation`. The user explicitly authorized sustained implementation; native/runtime release gates still apply.
 
 ## 1. Decision
 
@@ -220,7 +220,7 @@ Decision after early gates:
 - **Scale:** fresh start, twenty explored zones and a larger real campaign; dense combat/material effects, repeated transitions, long idle/resume and 30–60 minute play.
 - **Desktop:** current keyboard/gamepad routes, 1280×800 layouts, normal save files, fresh Continue, flat rendering and representative Mac/Linux build checks. Physical hardware claims require hardware evidence.
 
-Implementation follows the repository's RED→GREEN→adversarial→review process for new production behavior. Include counterchecks for no touch/no action, cancelled gestures, failed writes and stale generations. Use source tests, browser integration tests and real device gameplay for their respective claims. No runtime tests were run for this documentation-only plan.
+Implementation follows the repository's RED→GREEN→adversarial→review process for new production behavior. Include counterchecks for no touch/no action, cancelled gestures, failed writes and stale generations. Use source tests, browser integration tests and real device gameplay for their respective claims. The initial plan was documentation-only. Current automated results and their platform limits are recorded in the implementation checkpoint; they do not satisfy native or physical-device gates.
 
 ## 12. Review, divergences and handoff
 
@@ -231,17 +231,17 @@ Scope choices:
 - Prefer a shared Unity Web target over a second implementation of the game.
 - Full phone action coverage, durable saves and import/export are release scope.
 - Account/cloud sync, multiplayer, App Store submission and an independent TypeScript rewrite are deferred.
-- Actual implementation and platform validation remain pending.
+- Source implementation is underway; actual Unity build and platform validation remain pending.
 
 Findings addressed in this plan: current flat baseline, Deck-versus-iPhone evidence limits, real save threading blocker, current schema 8, non-runtime “MOBILE” docs, AOT reflection risk without claiming reflection is forbidden, and the distinction between browser filesystem writes and durable storage.
 
 Implementation log:
 - 2026-11-03: pinned latest remote main; local executor unavailable; inspected current repository rules/source; completed two independent bounded source audits and primary-source browser review.
 - Independent plan review: corrected the reserved fire/reload scope, added an explicit mobile text input implementation/gate, and clarified minimum save compatibility needed by M0. These are planning fixes; no runtime acceptance is claimed.
-- Files proposed/changed for this planning delivery: `Docs/WEB-IPHONE-PORT-PLAN.md` only.
+- Historical files changed for the initial planning delivery: `Docs/WEB-IPHONE-PORT-PLAN.md` only.
 - Validation: source claims cross-checked; plan reviewed for feasibility and testable gates. Build size, phone performance, Web correctness and actual ergonomics are unverified.
 
-Next executable task: restore checkout access and perform M0 with Unity 6000.3.4f1 + Web Build Support and a physical iPhone. Record the exact build report and observed blockers before committing to the full estimate.
+Current next task: reconnect Unity 6000.3.4f1 + Web Build Support, produce the exact-source Web build with `Tools/WebPort/prepare_project.py`, and execute M0 on a physical iPhone. Independent source work and verification have advanced; see [WEB-IPHONE-IMPLEMENTATION.md](WEB-IPHONE-IMPLEMENTATION.md) for the implementation, storage design refinement, test results and remaining work.
 
 ## Primary platform references
 

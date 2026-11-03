@@ -388,7 +388,7 @@ namespace CavesOfOoo.Rendering
             // Retained geometry exclusively owns pointer input in every mode/modal.
             if (HandleLedgerPointer()) return true;
             if (HandleLedgerCommandsInput()) return true;
-            if (NativeGamepadInput.GetKeyDown(KeyCode.I) && !LedgerHasPopup)
+            if ((NativeGamepadInput.GetKeyDown(KeyCode.I) || PhoneInput.GetKey(KeyCode.I)) && !LedgerHasPopup)
             { OpenLedgerCommands(); return true; }
 
             // Popups intercept all input when active

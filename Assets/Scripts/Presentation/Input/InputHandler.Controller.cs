@@ -90,6 +90,12 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
+        private bool TryActionDirection(out int x, out int y)
+        {
+            if (PhoneInput.Enabled && PhoneInput.AnyPressed) return PhoneInput.TrySelectedDirection(out x, out y);
+            return NativeGamepadInput.TrySelectedDirection(out x, out y);
+        }
+
         private void ExecuteControllerCommand(GamepadCommand command)
         {
             switch (command)
@@ -104,11 +110,11 @@ namespace CavesOfOoo.Rendering
                 case GamepadCommand.Character: OpenControllerCharacter(); break;
                 case GamepadCommand.Help: OpenControlsReader(); break;
                 case GamepadCommand.Interact:
-                    if (NativeGamepadInput.TrySelectedDirection(out int ix, out int iy)) InteractInDirection(ix, iy);
+                    if (TryActionDirection(out int ix, out int iy)) InteractInDirection(ix, iy);
                     else ControllerContextualInteract();
                     break;
                 case GamepadCommand.InteractDirection:
-                    if (NativeGamepadInput.TrySelectedDirection(out int ax, out int ay)) InteractInDirection(ax, ay);
+                    if (TryActionDirection(out int ax, out int ay)) InteractInDirection(ax, ay);
                     else OpenControllerNearby();
                     break;
                 case GamepadCommand.WaitUntilHealed: ControllerRest(); break;
@@ -117,7 +123,7 @@ namespace CavesOfOoo.Rendering
                 case GamepadCommand.Abilities: OpenAbilityManager(); break;
                 case GamepadCommand.Walk:
                 case GamepadCommand.ForceAttack:
-                    if (NativeGamepadInput.TrySelectedDirection(out int dx, out int dy)) ControllerDirectionalAction(command, dx, dy);
+                    if (TryActionDirection(out int dx, out int dy)) ControllerDirectionalAction(command, dx, dy);
                     else
                     {
                         _controllerDirectionCommand = command; _inputState = InputState.ControllerDirection;
@@ -397,6 +403,7 @@ namespace CavesOfOoo.Rendering
         }
         private void BeginControllerTravel(ControllerTravelMode mode, int x, int y)
         {
+            _phoneTravel = PhoneInput.Enabled && PhoneInput.AnyPressed;
             if (ControllerTravel.HasDanger(CurrentZone, PlayerEntity)) { MessageLog.Add("Not safe to travel or wait automatically here."); return; }
             CancelStairTravel(null);
             _controllerTravel = mode; _controllerTravelZone = CurrentZone; _controllerTravelActor = PlayerEntity;
@@ -407,6 +414,7 @@ namespace CavesOfOoo.Rendering
         }
         private void CancelControllerTravel(string reason)
         {
+            _phoneTravel = false;
             bool active = _controllerTravel != ControllerTravelMode.None;
             _controllerTravel = ControllerTravelMode.None; _controllerTravelActor = null; _controllerTravelZone = null;
             if (active && !string.IsNullOrEmpty(reason)) MessageLog.Add(reason);
@@ -450,7 +458,8 @@ namespace CavesOfOoo.Rendering
                 && (_inputState == InputState.Normal || _inputState == InputState.ControllerDirection
                     || _inputState == InputState.AwaitingDirection || _inputState == InputState.AwaitingTalkDirection
                     || _inputState == InputState.AwaitingRitePreviewDirection);
-            if (aiming && NativeGamepadInput.TrySelectedDirection(out int dx, out int dy))
+            if (aiming && (PhoneInput.TrySelectedDirection(out int dx, out int dy)
+                || NativeGamepadInput.TrySelectedDirection(out dx, out dy)))
             {
                 var at = CurrentZone.GetEntityCell(PlayerEntity);
                 if (at != null && CurrentZone.InBounds(at.X + dx, at.Y + dy))

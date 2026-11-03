@@ -15,7 +15,7 @@ namespace CavesOfOoo.Core
 #endif
         public static bool SuppressBuildChoiceForAudit()
         {
-            if(string.IsNullOrEmpty(SaveGameService.SaveRootOverride))return false;
+            if(SaveGameService.UsesBrowserStorage || string.IsNullOrEmpty(SaveGameService.SaveRootOverride))return false;
 #if UNITY_EDITOR
             return !AllowStartingBuildChoice || ResolveSeed()==0;
 #else

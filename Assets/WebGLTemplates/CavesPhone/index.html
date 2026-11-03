@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101d19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Caves of Ooo</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="phone.css">
+</head>
+<body>
+  <main id="app">
+    <header class="masthead">
+      <span class="wordmark">Caves of <em>Ooo</em></span>
+      <span id="vitals" aria-live="polite"></span>
+      <button id="journal-toggle" aria-label="Open recent messages">Log</button>
+    </header>
+    <section id="play-area" aria-label="Game">
+      <div id="world">
+        <canvas id="unity-canvas" tabindex="-1" aria-label="Game world"></canvas>
+        <div id="map-touch" aria-label="Tap the map to inspect a place"></div>
+        <aside id="target-reader" hidden aria-label="Look details"></aside>
+        <span id="map-hint">Tap to look · each step takes a turn</span>
+      </div>
+      <section id="reader" aria-label="Current game menu" hidden>
+        <header><h1 id="reader-title">Choose your path</h1><button id="reader-back">Back</button></header>
+        <div id="reader-content" tabindex="0"></div>
+        <form id="name-form" hidden>
+          <label for="loadout-name">Loadout name</label>
+          <input id="loadout-name" type="text" maxlength="40" autocomplete="off" enterkeyhint="done">
+          <button type="submit">Save name</button>
+        </form>
+        <div id="menu-shortcuts" class="shortcuts" aria-label="Menu actions"></div>
+        <div class="menu-navigation">
+          <button data-key="PageUp" aria-label="Previous page">Page ↑</button>
+          <button data-key="UpArrow" aria-label="Previous item">↑</button>
+          <button data-key="DownArrow" aria-label="Next item">↓</button>
+          <button data-key="PageDown" aria-label="Next page">Page ↓</button>
+          <button data-key="LeftArrow" aria-label="Previous column">←</button>
+          <button data-key="Tab">Tab</button>
+          <button data-key="RightArrow" aria-label="Next column">→</button>
+          <button class="primary" data-key="Return">Confirm</button>
+        </div>
+      </section>
+      <aside id="controls" aria-label="Touch controls">
+        <div class="dpad" aria-label="Movement and targeting">
+          <button data-step="-1,-1" aria-label="Northwest">↖</button>
+          <button data-step="0,-1" aria-label="North">↑</button>
+          <button data-step="1,-1" aria-label="Northeast">↗</button>
+          <button data-step="-1,0" aria-label="West">←</button>
+          <button id="wait" aria-label="Wait one turn">·</button>
+          <button data-step="1,0" aria-label="East">→</button>
+          <button data-step="-1,1" aria-label="Southwest">↙</button>
+          <button data-step="0,1" aria-label="South">↓</button>
+          <button data-step="1,1" aria-label="Southeast">↘</button>
+        </div>
+        <div class="primary-actions">
+          <button class="primary" data-command="Interact">Interact</button>
+          <button data-command="ActivateAbility">Use ability</button>
+          <button data-command="Character">Character</button>
+          <button id="more-toggle" aria-expanded="false">More</button>
+        </div>
+        <div id="target-actions" hidden>
+          <button data-key="Return" class="primary">Confirm target</button>
+          <button data-key="Escape">Back</button>
+          <button data-key="Tab">Aim mode</button><button data-key="F">Splash preview</button>
+        </div>
+        <div id="more-actions" class="shortcuts" hidden>
+          <button data-command="Look">Look</button><button data-command="Abilities">Abilities</button>
+          <button data-command="Throw">Throw</button><button data-command="ForceAttack">Force attack</button>
+          <button data-command="WaitMenu">Wait / rest</button><button data-command="AutoExplore">Explore</button>
+          <button data-command="Walk">Walk to edge</button><button data-command="PointOfInterest">Nearby places</button>
+          <button data-command="Ascend">Ascend</button><button data-command="Descend">Descend</button>
+          <button data-command="PreviousAbility">Previous ability</button><button data-command="NextAbility">Next ability</button>
+          <button data-command="ZoomIn">Zoom in</button><button data-command="ZoomOut">Zoom out</button>
+          <button data-key="F5">Save</button><button data-command="Pause">Pause</button>
+          <button id="export-save">Export saves</button><button id="storage-persist">Keep saves on device</button>
+        </div>
+      </aside>
+    </section>
+    <footer><span id="save-status" role="status">Preparing your expedition</span><span id="latest-message"></span></footer>
+    <section id="journal" hidden aria-label="Recent messages"><header><h2>Field notes</h2><button id="journal-close">Close</button></header><div id="journal-content"></div></section>
+    <section id="launch" aria-label="Launch game">
+      <div class="launch-card"><img src="icon.svg" alt="" width="72" height="72">
+        <p class="eyebrow">A WORLD BELOW THE FAMILIAR</p><h1>Caves of <em>Ooo</em></h1>
+        <p>Take a step. See what answers.</p>
+        <button id="play" class="primary">Begin expedition <span aria-hidden="true">→</span></button>
+        <progress id="loading" max="1" value="0" hidden aria-label="Loading game"></progress>
+        <p id="launch-status" role="status">Turn by turn. At your pace.</p>
+        <label class="import-label">Import a backup<input id="import-save" type="file" accept=".json,application/json"></label>
+        <p class="small">Your progress stays in this browser. Export a backup before clearing website data.</p>
+      </div>
+    </section>
+    <section id="error-panel" hidden role="alert"><h2>We couldn’t open the expedition</h2><p id="error-message"></p><button id="reload">Reload</button><button id="recovery-export">Export recovery data</button></section>
+  </main>
+  <script src="web-save-store.js"></script>
+  <script>
+    window.cooBuildConfig = {
+      loaderUrl: 'Build/{{{ LOADER_FILENAME }}}',
+      dataUrl: 'Build/{{{ DATA_FILENAME }}}',
+      frameworkUrl: 'Build/{{{ FRAMEWORK_FILENAME }}}',
+      codeUrl: 'Build/{{{ CODE_FILENAME }}}',
+      streamingAssetsUrl: 'StreamingAssets', companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+      productName: {{{ JSON.stringify(PRODUCT_NAME) }}}, productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+      devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+      matchWebGLToCanvasSize: true
+    };
+  </script>
+  <script src="phone.js"></script>
+</body>
+</html>

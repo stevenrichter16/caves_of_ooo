@@ -78,6 +78,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static bool GetKeyDown(KeyCode keyCode)
         {
+            if (PhoneInput.GetKey(keyCode)) return true;
             if (NativeGamepadInput.GetKeyDown(keyCode)) return true;
             return GetKeyboardKeyDown(keyCode);
         }
@@ -86,6 +87,7 @@ namespace CavesOfOoo.Rendering
         /// arrows synthesized by a controller selecting a direction.</summary>
         public static bool GetKeyboardKeyDown(KeyCode keyCode)
         {
+            if (PhoneInput.GetMenuKey(keyCode)) return true;
             if (Input.GetKeyDown(keyCode))
                 return true;
 
@@ -100,6 +102,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static bool GetKey(KeyCode keyCode)
         {
+            if (PhoneInput.GetKey(keyCode)) return true;
             if (NativeGamepadInput.GetKey(keyCode)) return true;
             return GetKeyboardKey(keyCode);
         }

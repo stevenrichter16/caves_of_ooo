@@ -23,7 +23,7 @@ namespace CavesOfOoo.Rendering
         RectTransform _ledgerContent;
         GameObject _ledgerRoot;
         RawImage _ledgerPortrait;
-        int _ledgerImageUsed, _ledgerLabelUsed;
+        int _ledgerImageUsed, _ledgerLabelUsed, _phoneModalLabelStart;
         bool _ledgerHidden;
         InventoryScreenData.ScreenState _ledgerSelectionState;
         Entity _ledgerSelectionOwner, _ledgerSelectionViewer;
@@ -153,6 +153,7 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isOpen || _ledgerHidden) return;
             EnsureLedgerView();
+            PhoneMenuMirror.MarkDirty();
             _ledgerRoot.SetActive(true);
             _ledgerImageUsed = _ledgerLabelUsed = 0; _ledgerHits.Clear();
             _ledgerPortrait.gameObject.SetActive(false);
@@ -181,6 +182,7 @@ namespace CavesOfOoo.Rendering
                 RenderLedgerSelection();
             }
             RenderLedgerFooter();
+            _phoneModalLabelStart = LedgerHasPopup ? _ledgerLabelUsed : 0;
             RenderLedgerPopup();
             RenderLoadoutNamePrompt();
             // A refused action leaves its modal open for retry. Keep the reason

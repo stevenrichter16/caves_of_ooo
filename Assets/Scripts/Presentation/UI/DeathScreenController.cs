@@ -64,6 +64,8 @@ namespace CavesOfOoo.Rendering
 
             bool loadPressed = input.GetKeyDown(LoadKey);
             bool restartPressed = input.GetKeyDown(RestartKey);
+            if ((loadPressed || restartPressed) && SaveLoadFeedback.IsBusy(service))
+            { log?.Invoke(SaveLoadFeedback.Busy); return; }
 
             // Load wins same-frame collisions — non-destructive op preferred.
             if (loadPressed)

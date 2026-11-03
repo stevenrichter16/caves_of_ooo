@@ -74,6 +74,7 @@ namespace CavesOfOoo.Rendering
         void Render()
         {
             if(!IsOpen || hidden)return;
+            PhoneMenuMirror.MarkDirty();
             EnsureView();RenderCount++;lastController=NativeGamepadInput.IsConnected;
             imageUsed=labelUsed=0;hits.Clear();
             Label(new Rect(24,22,470,32),"SKILLS / FIELD MANUAL",Gold,28);
@@ -105,6 +106,7 @@ namespace CavesOfOoo.Rendering
             Button(new Rect(266,744,266,36),Model.CanAssign?(lastController?"[X] Assign to hotbar":"[I] Assign to hotbar"):"No active to assign",HitKind.Assign,enabled:Model.CanAssign);
             Button(new Rect(1132,744,124,36),lastController?"[B] Back":"[Esc] Back",HitKind.Close);
             Label(new Rect(552,744,564,45),lastController?"D-pad / LS: browse\nRS: details pages":"Arrows: browse   PgUp/PgDn: details\nClick: select   Wheel: browse",Muted,18);
+            phoneModalLabelStart = IsReviewingPurchase || assigning ? labelUsed : 0;
             if(IsReviewingPurchase)RenderReview();else if(assigning)RenderAssignment();
             EndPools();
         }

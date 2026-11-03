@@ -281,11 +281,12 @@ namespace CavesOfOoo.Rendering
 
                 case SaveIndex:
                     bool saveOk = service != null && service.QuickSave();
-                    log?.Invoke(saveOk ? "Game saved." : "Save failed — see console.");
+                    log?.Invoke(SaveLoadFeedback.SaveResult(service, saveOk));
                     Close();
                     break;
 
                 case LoadIndex:
+                    if (SaveLoadFeedback.IsBusy(service)) { log?.Invoke(SaveLoadFeedback.Busy); return; }
                     if (service == null || !service.HasQuickSave())
                     {
                         log?.Invoke("No save to load.");

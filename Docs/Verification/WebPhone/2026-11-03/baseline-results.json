@@ -1,0 +1,100 @@
+{
+  "main_default": {
+    "result": "Failed",
+    "total": "200",
+    "passed": "194",
+    "failed": "6",
+    "skipped": "0",
+    "duration": "18.945762",
+    "start-time": "2026-11-03T13:38:13.6515046Z",
+    "end-time": "2026-11-03T13:38:32.5973054Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.ClaimedSuppliesSaveTests.FinalAcceptanceUsesTheExactCurrentGraphAfterGenerationCallbacks(False)",
+        "message": "  Callback must actually observe the new cache duty.\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ClaimedSuppliesSaveTests.FinalAcceptanceUsesTheExactCurrentGraphAfterGenerationCallbacks(True)",
+        "message": "  Callback must actually observe the new cache duty.\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ClaimedSuppliesSaveTests.RealTakenStockAndActualPostAftermathSurviveSaveWithoutRecomposition(False)",
+        "message": "System.InvalidOperationException : Sequence contains no matching element"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ClaimedSuppliesSaveTests.RealTakenStockAndActualPostAftermathSurviveSaveWithoutRecomposition(True)",
+        "message": "System.InvalidOperationException : Sequence contains no matching element"
+      },
+      {
+        "name": "CavesOfOoo.Tests.FellingSiteSaveTests.LoadingDoesNotGenerateAnUncachedWorldMap",
+        "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+      },
+      {
+        "name": "CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup",
+        "message": "  The warm common-field path must avoid reflection value boxing and repeated type metadata allocations.\n  Expected: less than or equal to 2048\n  But was:  72000\n"
+      }
+    ],
+    "originalReceipt": "baseline-save-input.xml"
+  },
+  "main_focused": {
+    "result": "Passed",
+    "total": "111",
+    "passed": "111",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "0.947044",
+    "start-time": "2026-11-03T13:38:30.6381112Z",
+    "end-time": "2026-11-03T13:38:31.5852052Z",
+    "failures": [],
+    "originalReceipt": "staging-baseline.xml"
+  },
+  "current_focused": {
+    "result": "Passed",
+    "total": "111",
+    "passed": "111",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "0.771865",
+    "start-time": "2026-11-03T13:39:33.4450186Z",
+    "end-time": "2026-11-03T13:39:34.2169158Z",
+    "failures": [],
+    "originalReceipt": "staging-current.xml"
+  },
+  "main_isolated_failures": {
+    "result": "Failed",
+    "total": "6",
+    "passed": "0",
+    "failed": "6",
+    "skipped": "0",
+    "duration": "1.416014",
+    "start-time": "2026-11-03T13:39:10.9800064Z",
+    "end-time": "2026-11-03T13:39:12.3960465Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.ClaimedSuppliesSaveTests.FinalAcceptanceUsesTheExactCurrentGraphAfterGenerationCallbacks(False)",
+        "message": "  Callback must actually observe the new cache duty.\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ClaimedSuppliesSaveTests.FinalAcceptanceUsesTheExactCurrentGraphAfterGenerationCallbacks(True)",
+        "message": "  Callback must actually observe the new cache duty.\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ClaimedSuppliesSaveTests.RealTakenStockAndActualPostAftermathSurviveSaveWithoutRecomposition(False)",
+        "message": "System.InvalidOperationException : Sequence contains no matching element"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ClaimedSuppliesSaveTests.RealTakenStockAndActualPostAftermathSurviveSaveWithoutRecomposition(True)",
+        "message": "System.InvalidOperationException : Sequence contains no matching element"
+      },
+      {
+        "name": "CavesOfOoo.Tests.FellingSiteSaveTests.LoadingDoesNotGenerateAnUncachedWorldMap",
+        "message": "System.NullReferenceException : Object reference not set to an instance of an object."
+      },
+      {
+        "name": "CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup",
+        "message": "  The warm common-field path must avoid reflection value boxing and repeated type metadata allocations.\n  Expected: less than or equal to 2048\n  But was:  72000\n"
+      }
+    ],
+    "originalReceipt": "baseline-six-isolated.xml"
+  }
+}

@@ -175,9 +175,10 @@ namespace CavesOfOoo.Rendering
             var details=new List<string>{description,"Cyan: known route / initial splash.","Yellow: item rest / spill. Red: first contact.","Magenta: conditional push.","Tab / Y: body or ground. F / LB: splash.","Enter / A: confirm. Esc / B: cancel."};
             if(IsMeasuredFollowup)
                 details=new List<string>{ThrowActionHint(NativeGamepadInput.IsConnected),"Item and target retained. Cancel to choose another target.",description};
-            ZoneRenderer?.SetLookSnapshot(new LookSnapshot(state.Intent.X,state.Intent.Y,heading,
+            PhoneLookSnapshot = new LookSnapshot(state.Intent.X,state.Intent.Y,heading,
                 IsMeasuredFollowup || state.Mode==ThrowMode.Measured?ThrowPhaseText():state.Intent.Kind==ThrowAimKind.Entity?"Body aim":"Ground aim",details,
-                state.Intent.Target,CurrentZone.GetCell(state.Intent.X,state.Intent.Y)));
+                state.Intent.Target,CurrentZone.GetCell(state.Intent.X,state.Intent.Y));
+            ZoneRenderer?.SetLookSnapshot(PhoneLookSnapshot);
             ZoneRenderer?.SetWorldCursorState(_worldCursorState,PlayerEntity);
         }
 

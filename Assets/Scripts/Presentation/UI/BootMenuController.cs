@@ -66,6 +66,8 @@ namespace CavesOfOoo.Rendering
 
             bool continuePressed = input.GetKeyDown(ContinueKey);
             bool newGamePressed = input.GetKeyDown(NewGameKey);
+            if ((continuePressed || newGamePressed) && SaveLoadFeedback.IsBusy(service))
+            { log?.Invoke(SaveLoadFeedback.Busy); return; }
 
             // Continue wins same-frame collisions — non-destructive op preferred.
             if (continuePressed)
@@ -100,7 +102,7 @@ namespace CavesOfOoo.Rendering
 
                 bool saved = service.BeginNewGame();
                 IsActive = false;
-                log?.Invoke(saved ? "Starting a new game. Initial checkpoint saved."
+                log?.Invoke(saved ? (SaveLoadFeedback.IsAsync(service) ? "Starting a new game. Saving…" : "Starting a new game. Initial checkpoint saved.")
                     : "New game started, but the initial save failed. Press [F5] to retry.");
             }
         }

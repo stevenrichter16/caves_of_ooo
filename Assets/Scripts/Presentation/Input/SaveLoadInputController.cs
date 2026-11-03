@@ -28,6 +28,23 @@ namespace CavesOfOoo.Rendering
         bool HasQuickSave();
     }
 
+    /// <summary>Optional status for services whose acceptance precedes durability.</summary>
+    public interface ISaveLoadStatus
+    {
+        bool IsAsynchronous { get; }
+        bool IsBusy { get; }
+    }
+
+    public static class SaveLoadFeedback
+    {
+        public const string Busy = "Waiting for browser storage. Try again when saving finishes.";
+        public static bool IsBusy(ISaveLoadService service) => service is ISaveLoadStatus status && status.IsBusy;
+        public static bool IsAsync(ISaveLoadService service) => service is ISaveLoadStatus status && status.IsAsynchronous;
+        public static string SaveResult(ISaveLoadService service, bool accepted) => accepted
+            ? (IsAsync(service) ? "Saving…" : "Game saved.")
+            : (IsBusy(service) ? Busy : "Save failed — see console.");
+    }
+
     /// <summary>
     /// Pure dispatch logic for the save/load hotkeys. Per
     /// <c>Docs/QUD-PARITY.md §2.1</c> (TDD) and <c>Docs/roadmap.md</c>
@@ -65,12 +82,13 @@ namespace CavesOfOoo.Rendering
             if (savePressed)
             {
                 bool ok = service.QuickSave();
-                log?.Invoke(ok ? "Game saved." : "Save failed — see console.");
+                log?.Invoke(SaveLoadFeedback.SaveResult(service, ok));
                 return true;
             }
 
             if (loadPressed)
             {
+                if (SaveLoadFeedback.IsBusy(service)) { log?.Invoke(SaveLoadFeedback.Busy); return true; }
                 if (!service.HasQuickSave())
                 {
                     log?.Invoke("No save to load.");

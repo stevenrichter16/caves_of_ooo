@@ -487,7 +487,7 @@ namespace CavesOfOoo.Core
         }
     }
 
-    public static class SaveGameService
+    public static partial class SaveGameService
     {
         private const string PrimaryName = "Primary";
         private const string QuickName = "Quick";
@@ -523,7 +523,7 @@ namespace CavesOfOoo.Core
         /// <summary>Latest completed save stages, published only by main-thread operations.</summary>
         public static SavePerformanceSample LastCompletedSavePerformance { get; private set; }
         /// <summary>True while an autosave is writing, queued, or awaiting completion delivery.</summary>
-        public static bool HasPendingSave => PendingSaves.HasPending;
+        public static bool HasPendingSave => UsesBrowserStorage ? _browserSaves.HasPending : PendingSaves.HasPending;
         private static readonly HashSet<string> DeferredStableSlots = new HashSet<string>(StringComparer.Ordinal);
         private static bool _deferredStableQuick;
 
@@ -533,7 +533,13 @@ namespace CavesOfOoo.Core
         public static string SaveRootOverride
         {
             get => _saveRootOverride;
-            set { FlushPendingSaves(); _saveRootOverride = value; }
+            set
+            {
+                RequireStorageIdle();
+                if (UsesBrowserStorage && !string.Equals(value, _saveRootOverride, StringComparison.Ordinal))
+                    throw new InvalidOperationException("The browser save root is fixed for this session.");
+                FlushPendingSaves(); _saveRootOverride = value;
+            }
         }
         private static string SavesRoot => string.IsNullOrEmpty(SaveRootOverride)
             ? Path.Combine(Application.persistentDataPath, "Saves") : SaveRootOverride;
@@ -543,6 +549,7 @@ namespace CavesOfOoo.Core
         /// load binding intact so the boot menu can still Continue a prior save.</summary>
         public static void RegisterRuntime(Func<GameSessionState> captureCurrent, Action<GameSessionState> applyLoaded, string newGameID = null)
         {
+            RequireStorageIdle();
             FlushPendingSaves();
             DeferredStableSlots.Clear(); _deferredStableQuick = false;
             _captureCurrent = captureCurrent;
@@ -557,7 +564,7 @@ namespace CavesOfOoo.Core
         public static bool BeginNewGame()
         {
             if (ActionResolutionGuard.IsUnstable || MeleeStrikeScope.IsResolving) return false;
-            if (_startingNewGame) return false;
+            if (_startingNewGame || (UsesBrowserStorage && IsStorageBusy)) return false;
             FlushPendingSaves();
             _startingNewGame = true;
             if (string.IsNullOrEmpty(_newGameID)) _newGameID = Guid.NewGuid().ToString("N");
@@ -584,6 +591,7 @@ namespace CavesOfOoo.Core
         {
             if (!string.IsNullOrEmpty(gameID))
             {
+                RequireStorageIdle();
                 FlushPendingSaves();
                 _activeGameID = gameID;
             }
@@ -646,6 +654,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static void ResolveActiveGameIDOnBoot()
         {
+            RequireStorageIdle();
             string root = SavesRoot;
 
             string pref = PlayerPrefs.GetString(LastGameIDPrefsKey, null);
@@ -682,6 +691,9 @@ namespace CavesOfOoo.Core
         /// checkpoints may be superseded. Pump or flush reports durable completion.</summary>
         public static bool RequestQuickSave()
         {
+            if (!IsStorageReady) return false;
+            if (UsesBrowserStorage && _browserManualPending)
+            { _deferredStableQuick = true; return true; }
             if (ActionResolutionGuard.IsUnstable)
             { _deferredStableQuick = true; return true; }
             if(MeleeStrikeScope.IsResolving)return false;
@@ -693,9 +705,15 @@ namespace CavesOfOoo.Core
                 if (string.IsNullOrEmpty(state.GameID)) state.GameID = _activeGameID;
                 // A caller that changes identity without re-registering still cannot
                 // coalesce away another game's accepted checkpoint.
-                if (!string.Equals(_activeGameID, state.GameID, StringComparison.Ordinal)) FlushPendingSaves();
+                if (!string.Equals(_activeGameID, state.GameID, StringComparison.Ordinal))
+                {
+                    if (UsesBrowserStorage && HasPendingSave) return false;
+                    FlushPendingSaves();
+                }
                 _activeGameID = state.GameID;
-                PendingSaves.Enqueue(CaptureSave(QuickName, state));
+                var captured = CaptureSave(QuickName, state);
+                if (UsesBrowserStorage) _browserSaves.Enqueue(captured);
+                else PendingSaves.Enqueue(captured);
                 return true;
             }
             catch (Exception ex)
@@ -707,12 +725,27 @@ namespace CavesOfOoo.Core
 
         /// <summary>Publish completed autosaves on the main thread, without waiting
         /// for in-flight work. Call once per frame even while gameplay is paused.</summary>
-        public static void PumpPendingSaves() => PendingSaves.Pump(PublishAutosave);
+        public static void PumpPendingSaves()
+        {
+            if (UsesBrowserStorage)
+            {
+                _browserSaves.Pump(PublishBrowserSave);
+                if (!HasPendingSave && IsStorageReady && (DeferredStableSlots.Count > 0 || _deferredStableQuick))
+                    FlushStableRequests();
+            }
+            else PendingSaves.Pump(PublishAutosave);
+        }
 
         /// <summary>Wait for every accepted checkpoint before load, reset, runtime
         /// replacement or quit. False reports any newly delivered write failure;
         /// the last valid checkpoint remains available for recovery.</summary>
-        public static bool FlushPendingSaves() => PendingSaves.Flush(PublishAutosave);
+        public static bool FlushPendingSaves()
+        {
+            if (!UsesBrowserStorage) return PendingSaves.Flush(PublishAutosave);
+            bool succeeded = true;
+            _browserSaves.Pump((save, error) => { succeeded &= error == null; PublishBrowserSave(save, error); });
+            return succeeded && !IsStorageBusy;
+        }
 
         private static void PublishAutosave(CapturedSave save, Exception error)
         {
@@ -729,8 +762,10 @@ namespace CavesOfOoo.Core
 
         public static bool SaveSlot(string name)
         {
+            if (!IsStorageReady) return false;
             if (ActionResolutionGuard.IsUnstable)
             { DeferredStableSlots.Add(name); return true; }
+            if (UsesBrowserStorage && IsStorageBusy) return false;
             if(MeleeStrikeScope.IsResolving)return false;
             FlushPendingSaves();
             try
@@ -758,7 +793,11 @@ namespace CavesOfOoo.Core
             bool quick = _deferredStableQuick;
             DeferredStableSlots.Clear(); _deferredStableQuick = false;
             bool succeeded = true;
-            foreach (var name in slots) succeeded &= SaveSlot(name);
+            foreach (var name in slots)
+            {
+                if (UsesBrowserStorage && IsStorageBusy) { DeferredStableSlots.Add(name); continue; }
+                succeeded &= SaveSlot(name);
+            }
             if (quick && !slots.Contains(QuickName)) succeeded &= RequestQuickSave();
             return succeeded;
         }
@@ -820,6 +859,7 @@ namespace CavesOfOoo.Core
             try
             {
                 save = CaptureSave(name, state);
+                if (UsesBrowserStorage) { _browserManualPending = true; _browserSaves.Enqueue(save); return true; }
                 CommitCapturedSave(save);
                 RememberSavedGame(save.GameID);
                 PublishSavePerformance(save, true);
@@ -835,6 +875,7 @@ namespace CavesOfOoo.Core
 
         public static bool LoadSlot(string name)
         {
+            if (UsesBrowserStorage && IsStorageBusy) return false;
             if (ActionResolutionGuard.IsUnstable || MeleeStrikeScope.IsResolving) return false;
             FlushPendingSaves();
             if (_applyLoaded == null)
@@ -883,7 +924,8 @@ namespace CavesOfOoo.Core
         {
             // This gates explicit load actions, including the first accepted
             // checkpoint after an initial disk failure. Resolve it before saying no.
-            FlushPendingSaves();
+            if (!IsStorageReady) return false;
+            if (!UsesBrowserStorage) FlushPendingSaves();
             return File.Exists(GetSavePath(name));
         }
 

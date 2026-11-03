@@ -9,6 +9,9 @@
     <RepoRoot Condition="'$(RepoRoot)' == ''">$(MSBuildThisFileDirectory)../..</RepoRoot>
     <DefineConstants>UNITY_INCLUDE_TESTS</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(CooSaveUiTests)' == 'true'">
+    <DefineConstants>$(DefineConstants);COO_HEADLESS_SAVE_UI</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnitLite" Version="3.14.0" />
@@ -33,4 +36,13 @@
   </ItemGroup>
   <Import Project="patched.props" Condition="Exists('patched.props')" />
   <Import Project="tests.props" Condition="Exists('tests.props')" />
+  <ItemGroup Condition="'$(CooSaveUiTests)' == 'true'">
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/UI/PauseMenuController.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/UI/DeathScreenController.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/Input/SaveLoadInputAdapters.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/Rendering/WorldPresentationSettings.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/Rendering/Village3DSettings.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/Rendering/WorldAudioSettings.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/Rendering/SpellFxSettings.cs" />
+  </ItemGroup>
 </Project>
