@@ -1,0 +1,202 @@
+{
+  "total": 37,
+  "passed": 27,
+  "failed": 10,
+  "cases": [
+    {
+      "name": "canonical start uses real content, build and scheduler",
+      "status": "passed",
+      "durationMs": 1232
+    },
+    {
+      "name": "look is free and does not change the player's state",
+      "status": "passed",
+      "durationMs": 132
+    },
+    {
+      "name": "a stale input revision cannot spend a turn or move",
+      "status": "passed",
+      "durationMs": 34
+    },
+    {
+      "name": "oversized movement cannot bypass the one-step contract",
+      "status": "passed",
+      "durationMs": 50
+    },
+    {
+      "name": "a valid step moves through the real turn pipeline",
+      "status": "passed",
+      "durationMs": 115
+    },
+    {
+      "name": "an indestructible adjacent wall blocks without spending a turn",
+      "status": "passed",
+      "durationMs": 60
+    },
+    {
+      "name": "wait advances the actual game scheduler",
+      "status": "passed",
+      "durationMs": 63
+    },
+    {
+      "name": "item commands reject remote and nonexistent ownership",
+      "status": "passed",
+      "durationMs": 107
+    },
+    {
+      "name": "a valid owned item command still executes",
+      "status": "passed",
+      "durationMs": 62
+    },
+    {
+      "name": "save and load restore exact position, tick, HP and inventory",
+      "status": "passed",
+      "durationMs": 312
+    },
+    {
+      "name": "malformed saves leave the active session intact",
+      "status": "passed",
+      "durationMs": 420
+    },
+    {
+      "name": "damage changes current HP without shrinking maximum HP",
+      "status": "passed",
+      "durationMs": 304
+    },
+    {
+      "name": "a valid checkpoint recovers an interrupted, faulted turn",
+      "status": "passed",
+      "durationMs": 617
+    },
+    {
+      "name": "the real opening stairs enter the cellar and return",
+      "status": "passed",
+      "durationMs": 1136
+    },
+    {
+      "name": "starting build duelist applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 255
+    },
+    {
+      "name": "starting build breaker applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 274
+    },
+    {
+      "name": "starting build stormcaller applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 256
+    },
+    {
+      "name": "starting build bombardier applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 321
+    },
+    {
+      "name": "starting build warden applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 200
+    },
+    {
+      "name": "starting build hurler applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 225
+    },
+    {
+      "name": "starting build classic applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 262
+    },
+    {
+      "name": "a grouped pickup transfers selected items with one paid turn",
+      "status": "passed",
+      "durationMs": 292
+    },
+    {
+      "name": "ordinary throws preview freely, validate, then pay once",
+      "status": "passed",
+      "durationMs": 272
+    },
+    {
+      "name": "a changed throw target cannot consume an item or turn",
+      "status": "passed",
+      "durationMs": 250
+    },
+    {
+      "name": "Measured Throw preserves its distinct preparation and launch turns",
+      "status": "passed",
+      "durationMs": 803
+    },
+    {
+      "name": "cellar supplies repair the actual opening well and persist",
+      "status": "passed",
+      "durationMs": 1537
+    },
+    {
+      "name": "crafting previews and brews use native ownership and free menu timing",
+      "status": "passed",
+      "durationMs": 442
+    },
+    {
+      "name": "world travel exposes actual coordinates while reading the map stays free",
+      "status": "failed",
+      "durationMs": 301,
+      "error": "System.Exception: Missing boolean: isWorldMap\n   at Program.Boolean(JsonObject state, String name) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 509\n   at Program.AtWorld(JsonObject state, Int32 x, Int32 y, Boolean onMap) in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 34\n   at Program.WorldMapPanelIsFree() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 50\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    },
+    {
+      "name": "surface to world map and back pays one turn each and retains the exact square",
+      "status": "failed",
+      "durationMs": 254,
+      "error": "System.Exception: Entering the world map: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 529\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 497\n   at Program.EnterWorldMap() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 42\n   at Program.WorldTravelRoundTrip() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 62\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    },
+    {
+      "name": "one world-map step pays the native surcharge and reaches persistent Sill",
+      "status": "failed",
+      "durationMs": 336,
+      "error": "System.Exception: Entering the world map: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 529\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 497\n   at Program.EnterWorldMap() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 42\n   at Program.WorldTravelToSill() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 76\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    },
+    {
+      "name": "stairs away from an entrance use native world-map vertical fallback",
+      "status": "failed",
+      "durationMs": 277,
+      "error": "System.Exception: Ascending from surface away from stairs: Stand on the up stairs first.\n   at Program.Check(Boolean condition, String message) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 529\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 497\n   at Program.WorldTravelStairsFallback() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 90\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    },
+    {
+      "name": "underground travel cannot skip local stairs or spend a refused turn",
+      "status": "failed",
+      "durationMs": 710,
+      "error": "System.Exception: Missing boolean: isWorldMap\n   at Program.Boolean(JsonObject state, String name) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 509\n   at Program.AtWorld(JsonObject state, Int32 x, Int32 y, Boolean onMap) in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 34\n   at Program.UndergroundWorldTravelIsRefused() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 100\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    },
+    {
+      "name": "stale and inapplicable travel cannot change location or spend a turn",
+      "status": "failed",
+      "durationMs": 383,
+      "error": "System.Exception: Entering the world map: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 529\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 497\n   at Program.EnterWorldMap() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 42\n   at Program.StaleWorldTravelIsRefused() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 115\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    },
+    {
+      "name": "all four world-map borders refuse movement without damage or a turn",
+      "status": "failed",
+      "durationMs": 392,
+      "error": "System.Exception: Entering the world map: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 529\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 497\n   at Program.EnterWorldMap() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 42\n   at Program.WorldMapBordersAreFree() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 123\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    },
+    {
+      "name": "saving on the world map preserves coordinates and the return location",
+      "status": "failed",
+      "durationMs": 311,
+      "error": "System.Exception: Entering the world map: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 529\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 497\n   at Program.EnterWorldMap() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 42\n   at Program.WorldMapCheckpoint() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 150\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    },
+    {
+      "name": "world-map cells are bounded and expose native live names and visited flags",
+      "status": "failed",
+      "durationMs": 287,
+      "error": "System.Exception: Entering the world map: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 529\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 497\n   at Program.EnterWorldMap() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 42\n   at Program.WorldMapCellSnapshot() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 161\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    },
+    {
+      "name": "unvisited sinkhole names remain hidden until native discovery",
+      "status": "failed",
+      "durationMs": 267,
+      "error": "System.Exception: Entering the world map: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 529\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 497\n   at Program.EnterWorldMap() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 42\n   at Program.WorldMapHiddenSinkholes() in /workspace/sites/caves-of-ooo-web/Verification/WorldTravelContracts.cs:line 176\n   at Program.Run(String name, Action test) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 533"
+    }
+  ]
+}

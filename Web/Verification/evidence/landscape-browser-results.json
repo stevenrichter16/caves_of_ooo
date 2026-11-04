@@ -1,0 +1,1552 @@
+{
+  "startedAt": "2026-11-04T02:54:14.714Z",
+  "url": "http://127.0.0.1:8098",
+  "scope": "Real WASM browser acceptance with emulated viewports. Rotation and CSS padding are test fixtures, not physical iPhone or OS-safe-area evidence.",
+  "cases": [
+    {
+      "name": "chromium-844x390",
+      "engine": "chromium",
+      "viewport": {
+        "width": 844,
+        "height": 390,
+        "baseline": {
+          "width": 652,
+          "height": 249
+        }
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:54:14.715Z",
+      "steps": [
+        {
+          "name": "real seeded Classic expedition boots and saves",
+          "status": "passed",
+          "ms": 7347,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-844x390"
+          }
+        },
+        {
+          "name": "canvas is substantially larger and uses the available landscape height",
+          "status": "passed",
+          "ms": 91,
+          "detail": {
+            "canvas": {
+              "x": 7,
+              "y": 7,
+              "width": 674,
+              "height": 376
+            },
+            "availableWidth": 844,
+            "availableHeight": 390,
+            "baseline": {
+              "width": 652,
+              "height": 249
+            },
+            "areaMultiplier": 1.5609924360016754,
+            "overflow": {
+              "width": 844,
+              "height": 390,
+              "docWidth": 844,
+              "docHeight": 390
+            }
+          }
+        },
+        {
+          "name": "health focus save status and all primary controls stay visible",
+          "status": "passed",
+          "ms": 158,
+          "detail": {
+            "hud": {
+              "mobile-hp": {
+                "text": "♥ 40/40",
+                "box": {
+                  "x": 694,
+                  "y": 14.5,
+                  "width": 54.796875,
+                  "height": 15
+                }
+              },
+              "mobile-focus": {
+                "text": "Focus 0",
+                "box": {
+                  "x": 787.640625,
+                  "y": 15.5,
+                  "width": 46.359375,
+                  "height": 13
+                }
+              },
+              "landscape-save-state": {
+                "text": "Saved on this device",
+                "box": {
+                  "x": 694,
+                  "y": 366,
+                  "width": 140,
+                  "height": 14
+                }
+              },
+              "location": {
+                "text": "Gleaners’ Glade",
+                "box": {
+                  "x": 17,
+                  "y": 11,
+                  "width": 109.65625,
+                  "height": 24
+                }
+              }
+            },
+            "controls": 17
+          }
+        },
+        {
+          "name": "Pack Abilities Skills Journal and More remain free and scrollable",
+          "status": "passed",
+          "ms": 1296,
+          "detail": {
+            "pack": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 311,
+              "scrollHeight": 629,
+              "before": 0,
+              "after": 318
+            },
+            "abilities": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 311,
+              "scrollHeight": 550,
+              "before": 239,
+              "after": 239
+            },
+            "skills": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 311,
+              "scrollHeight": 1569,
+              "before": 239,
+              "after": 1258
+            },
+            "journal": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 110,
+              "scrollHeight": 110,
+              "before": 0,
+              "after": 0
+            },
+            "more": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 311,
+              "scrollHeight": 621,
+              "before": 0,
+              "after": 310
+            }
+          }
+        },
+        {
+          "name": "aim and cancel preserve a turn with accessible confirmation controls",
+          "status": "passed",
+          "ms": 564,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-844x390"
+          }
+        },
+        {
+          "name": "confirm casts real Jet Blast eastward and spends exactly one turn",
+          "status": "passed",
+          "ms": 565,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 10,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-844x390"
+            },
+            "after": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-844x390"
+            },
+            "narration": "Nerrel Rillpost, villager [left hand: fist] hits marlback scrabbler in the left arm but fails to penetrate!"
+          }
+        },
+        {
+          "name": "real compass movement remains available beside the larger map",
+          "status": "passed",
+          "ms": 254,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-844x390"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": 30,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-844x390"
+            },
+            "narration": "marlback scrabbler is stunned!"
+          }
+        },
+        {
+          "name": "checkpoint saves from the landscape menu",
+          "status": "passed",
+          "ms": 477,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-844x390"
+          }
+        },
+        {
+          "name": "fresh page restores the same character position tick and HP",
+          "status": "passed",
+          "ms": 3647,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-844x390"
+          }
+        },
+        {
+          "name": "no runtime console or HTTP errors",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0
+          }
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "chromium-844x390-map.png",
+        "chromium-844x390-aiming.png",
+        "chromium-844x390-saved.png",
+        "chromium-844x390-restored.png"
+      ],
+      "release": "b2c41edad8ae06e7",
+      "finishedAt": "2026-11-04T02:54:29.266Z"
+    },
+    {
+      "name": "chromium-667x375",
+      "engine": "chromium",
+      "viewport": {
+        "width": 667,
+        "height": 375,
+        "baseline": {
+          "width": 475,
+          "height": 234
+        }
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:54:29.267Z",
+      "steps": [
+        {
+          "name": "real seeded Classic expedition boots and saves",
+          "status": "passed",
+          "ms": 6968,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-667x375"
+          }
+        },
+        {
+          "name": "canvas is substantially larger and uses the available landscape height",
+          "status": "passed",
+          "ms": 61,
+          "detail": {
+            "canvas": {
+              "x": 7,
+              "y": 7,
+              "width": 497,
+              "height": 361
+            },
+            "availableWidth": 667,
+            "availableHeight": 375,
+            "baseline": {
+              "width": 475,
+              "height": 234
+            },
+            "areaMultiplier": 1.6141880341880341,
+            "overflow": {
+              "width": 667,
+              "height": 375,
+              "docWidth": 667,
+              "docHeight": 375
+            }
+          }
+        },
+        {
+          "name": "health focus save status and all primary controls stay visible",
+          "status": "passed",
+          "ms": 108,
+          "detail": {
+            "hud": {
+              "mobile-hp": {
+                "text": "♥ 40/40",
+                "box": {
+                  "x": 517,
+                  "y": 14.5,
+                  "width": 54.796875,
+                  "height": 15
+                }
+              },
+              "mobile-focus": {
+                "text": "Focus 0",
+                "box": {
+                  "x": 610.640625,
+                  "y": 15.5,
+                  "width": 46.359375,
+                  "height": 13
+                }
+              },
+              "landscape-save-state": {
+                "text": "Saved on this device",
+                "box": {
+                  "x": 517,
+                  "y": 351,
+                  "width": 140,
+                  "height": 14
+                }
+              },
+              "location": {
+                "text": "Gleaners’ Glade",
+                "box": {
+                  "x": 17,
+                  "y": 11,
+                  "width": 109.65625,
+                  "height": 24
+                }
+              }
+            },
+            "controls": 17
+          }
+        },
+        {
+          "name": "Pack Abilities Skills Journal and More remain free and scrollable",
+          "status": "passed",
+          "ms": 1169,
+          "detail": {
+            "pack": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 296,
+              "scrollHeight": 629,
+              "before": 0,
+              "after": 333
+            },
+            "abilities": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 296,
+              "scrollHeight": 550,
+              "before": 254,
+              "after": 254
+            },
+            "skills": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 296,
+              "scrollHeight": 1569,
+              "before": 239,
+              "after": 1273
+            },
+            "journal": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 110,
+              "scrollHeight": 110,
+              "before": 0,
+              "after": 0
+            },
+            "more": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 296,
+              "scrollHeight": 621,
+              "before": 0,
+              "after": 325
+            }
+          }
+        },
+        {
+          "name": "aim and cancel preserve a turn with accessible confirmation controls",
+          "status": "passed",
+          "ms": 542,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-667x375"
+          }
+        },
+        {
+          "name": "confirm casts real Jet Blast eastward and spends exactly one turn",
+          "status": "passed",
+          "ms": 536,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 10,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-667x375"
+            },
+            "after": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-667x375"
+            },
+            "narration": "Nerrel Rillpost, villager [left hand: fist] hits marlback scrabbler in the left arm but fails to penetrate!"
+          }
+        },
+        {
+          "name": "real compass movement remains available beside the larger map",
+          "status": "passed",
+          "ms": 153,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-667x375"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": 30,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-667x375"
+            },
+            "narration": "Nerrel Rillpost, villager [left hand: fist] hits marlback scrabbler in the left hand but fails to penetrate!"
+          }
+        },
+        {
+          "name": "checkpoint saves from the landscape menu",
+          "status": "passed",
+          "ms": 395,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-667x375"
+          }
+        },
+        {
+          "name": "fresh page restores the same character position tick and HP",
+          "status": "passed",
+          "ms": 3322,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-667x375"
+          }
+        },
+        {
+          "name": "no runtime console or HTTP errors",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0
+          }
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "chromium-667x375-map.png",
+        "chromium-667x375-aiming.png",
+        "chromium-667x375-saved.png",
+        "chromium-667x375-restored.png"
+      ],
+      "release": "b2c41edad8ae06e7",
+      "finishedAt": "2026-11-04T02:54:42.675Z"
+    },
+    {
+      "name": "chromium-568x320",
+      "engine": "chromium",
+      "viewport": {
+        "width": 568,
+        "height": 320,
+        "baseline": {
+          "width": 376,
+          "height": 179
+        }
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:54:42.676Z",
+      "steps": [
+        {
+          "name": "real seeded Classic expedition boots and saves",
+          "status": "passed",
+          "ms": 9568,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-568x320"
+          }
+        },
+        {
+          "name": "canvas is substantially larger and uses the available landscape height",
+          "status": "passed",
+          "ms": 122,
+          "detail": {
+            "canvas": {
+              "x": 7,
+              "y": 7,
+              "width": 398,
+              "height": 306
+            },
+            "availableWidth": 568,
+            "availableHeight": 320,
+            "baseline": {
+              "width": 376,
+              "height": 179
+            },
+            "areaMultiplier": 1.8095209794365863,
+            "overflow": {
+              "width": 568,
+              "height": 320,
+              "docWidth": 568,
+              "docHeight": 320
+            }
+          }
+        },
+        {
+          "name": "health focus save status and all primary controls stay visible",
+          "status": "passed",
+          "ms": 262,
+          "detail": {
+            "hud": {
+              "mobile-hp": {
+                "text": "♥ 40/40",
+                "box": {
+                  "x": 418,
+                  "y": 13.5,
+                  "width": 54.796875,
+                  "height": 15
+                }
+              },
+              "mobile-focus": {
+                "text": "Focus 0",
+                "box": {
+                  "x": 511.640625,
+                  "y": 14.5,
+                  "width": 46.359375,
+                  "height": 13
+                }
+              },
+              "landscape-save-state": {
+                "text": "Saved on this device",
+                "box": {
+                  "x": 418,
+                  "y": 296,
+                  "width": 140,
+                  "height": 14
+                }
+              },
+              "location": {
+                "text": "Gleaners’ Glade",
+                "box": {
+                  "x": 17,
+                  "y": 11,
+                  "width": 109.65625,
+                  "height": 24
+                }
+              }
+            },
+            "controls": 17
+          }
+        },
+        {
+          "name": "Pack Abilities Skills Journal and More remain free and scrollable",
+          "status": "passed",
+          "ms": 1392,
+          "detail": {
+            "pack": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 241,
+              "scrollHeight": 639,
+              "before": 0,
+              "after": 398
+            },
+            "abilities": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 241,
+              "scrollHeight": 560,
+              "before": 319,
+              "after": 319
+            },
+            "skills": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 241,
+              "scrollHeight": 1603,
+              "before": 156,
+              "after": 1362
+            },
+            "journal": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 110,
+              "scrollHeight": 110,
+              "before": 0,
+              "after": 0
+            },
+            "more": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 241,
+              "scrollHeight": 629,
+              "before": 0,
+              "after": 388
+            }
+          }
+        },
+        {
+          "name": "aim and cancel preserve a turn with accessible confirmation controls",
+          "status": "passed",
+          "ms": 618,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-568x320"
+          }
+        },
+        {
+          "name": "confirm casts real Jet Blast eastward and spends exactly one turn",
+          "status": "passed",
+          "ms": 801,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 10,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-568x320"
+            },
+            "after": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-568x320"
+            },
+            "narration": "Nerrel Rillpost, villager [left hand: fist] hits marlback scrabbler in the left arm but fails to penetrate!"
+          }
+        },
+        {
+          "name": "real compass movement remains available beside the larger map",
+          "status": "passed",
+          "ms": 192,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-568x320"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": 30,
+              "hp": "40 / 40",
+              "name": "Landscape chromium-568x320"
+            },
+            "narration": "marlback scrabbler is stunned!"
+          }
+        },
+        {
+          "name": "checkpoint saves from the landscape menu",
+          "status": "passed",
+          "ms": 429,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-568x320"
+          }
+        },
+        {
+          "name": "fresh page restores the same character position tick and HP",
+          "status": "passed",
+          "ms": 4694,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape chromium-568x320"
+          }
+        },
+        {
+          "name": "no runtime console or HTTP errors",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0
+          }
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "chromium-568x320-map.png",
+        "chromium-568x320-aiming.png",
+        "chromium-568x320-saved.png",
+        "chromium-568x320-restored.png"
+      ],
+      "release": "b2c41edad8ae06e7",
+      "finishedAt": "2026-11-04T02:55:00.942Z"
+    },
+    {
+      "name": "webkit-844x390",
+      "engine": "webkit",
+      "viewport": {
+        "width": 844,
+        "height": 390,
+        "baseline": {
+          "width": 652,
+          "height": 249
+        }
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:55:00.943Z",
+      "steps": [
+        {
+          "name": "real seeded Classic expedition boots and saves",
+          "status": "passed",
+          "ms": 9468,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-844x390"
+          }
+        },
+        {
+          "name": "portrait zoom survives landscape and portrait rotation without a turn",
+          "status": "passed",
+          "ms": 863,
+          "detail": {
+            "initial": 1.35,
+            "zoomed": 1.55,
+            "readings": [
+              {
+                "viewport": {
+                  "width": 844,
+                  "height": 390
+                },
+                "zoom": 1.55
+              },
+              {
+                "viewport": {
+                  "width": 390,
+                  "height": 844
+                },
+                "zoom": 1.55
+              },
+              {
+                "viewport": {
+                  "width": 844,
+                  "height": 390
+                },
+                "zoom": 1.55
+              }
+            ]
+          }
+        },
+        {
+          "name": "canvas is substantially larger and uses the available landscape height",
+          "status": "passed",
+          "ms": 127,
+          "detail": {
+            "canvas": {
+              "x": 7,
+              "y": 7,
+              "width": 674,
+              "height": 376
+            },
+            "availableWidth": 844,
+            "availableHeight": 390,
+            "baseline": {
+              "width": 652,
+              "height": 249
+            },
+            "areaMultiplier": 1.5609924360016754,
+            "overflow": {
+              "width": 844,
+              "height": 390,
+              "docWidth": 844,
+              "docHeight": 390
+            }
+          }
+        },
+        {
+          "name": "health focus save status and all primary controls stay visible",
+          "status": "passed",
+          "ms": 323,
+          "detail": {
+            "hud": {
+              "mobile-hp": {
+                "text": "♥ 40/40",
+                "box": {
+                  "x": 694,
+                  "y": 14.5,
+                  "width": 49.921875,
+                  "height": 15
+                }
+              },
+              "mobile-focus": {
+                "text": "Focus 0",
+                "box": {
+                  "x": 793.953125,
+                  "y": 15.5,
+                  "width": 40.046875,
+                  "height": 13
+                }
+              },
+              "landscape-save-state": {
+                "text": "Saved on this device",
+                "box": {
+                  "x": 694,
+                  "y": 366,
+                  "width": 140,
+                  "height": 14
+                }
+              },
+              "location": {
+                "text": "Gleaners’ Glade",
+                "box": {
+                  "x": 17,
+                  "y": 11,
+                  "width": 127,
+                  "height": 24
+                }
+              }
+            },
+            "controls": 17
+          }
+        },
+        {
+          "name": "Pack Abilities Skills Journal and More remain free and scrollable",
+          "status": "passed",
+          "ms": 2479,
+          "detail": {
+            "pack": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 311,
+              "scrollHeight": 631,
+              "before": 0,
+              "after": 320
+            },
+            "abilities": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 311,
+              "scrollHeight": 550,
+              "before": 239,
+              "after": 239
+            },
+            "skills": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 311,
+              "scrollHeight": 1629,
+              "before": 238,
+              "after": 1318
+            },
+            "journal": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 111,
+              "scrollHeight": 111,
+              "before": 0,
+              "after": 0
+            },
+            "more": {
+              "width": 678,
+              "scrollWidth": 678,
+              "height": 311,
+              "scrollHeight": 621,
+              "before": 0,
+              "after": 310
+            }
+          }
+        },
+        {
+          "name": "aim and cancel preserve a turn with accessible confirmation controls",
+          "status": "passed",
+          "ms": 869,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-844x390"
+          }
+        },
+        {
+          "name": "short landscape safe-area fixture preserves complete44px aim controls",
+          "status": "passed",
+          "ms": 2274,
+          "detail": {
+            "fixture": "CSS bottom padding only, not actual OS safe-area values.",
+            "readings": [
+              {
+                "height": 320,
+                "target": {
+                  "x": 790,
+                  "y": 179,
+                  "width": 44,
+                  "height": 92
+                },
+                "south": {
+                  "x": 690,
+                  "y": 179.5,
+                  "width": 44,
+                  "height": 44
+                }
+              },
+              {
+                "height": 315,
+                "target": {
+                  "x": 790,
+                  "y": 174,
+                  "width": 44,
+                  "height": 92
+                },
+                "south": {
+                  "x": 690,
+                  "y": 177,
+                  "width": 44,
+                  "height": 44
+                }
+              },
+              {
+                "height": 301,
+                "target": {
+                  "x": 790,
+                  "y": 160,
+                  "width": 44,
+                  "height": 92
+                },
+                "south": {
+                  "x": 690,
+                  "y": 170,
+                  "width": 44,
+                  "height": 44
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "confirm casts real Jet Blast eastward and spends exactly one turn",
+          "status": "passed",
+          "ms": 834,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 10,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-844x390"
+            },
+            "after": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-844x390"
+            },
+            "narration": "Nerrel Rillpost, villager [left hand: fist] hits marlback scrabbler in the left arm but fails to penetrate!"
+          }
+        },
+        {
+          "name": "real compass movement remains available beside the larger map",
+          "status": "passed",
+          "ms": 156,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-844x390"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": 30,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-844x390"
+            },
+            "narration": "marlback scrabbler is stunned!"
+          }
+        },
+        {
+          "name": "checkpoint saves from the landscape menu",
+          "status": "passed",
+          "ms": 563,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-844x390"
+          }
+        },
+        {
+          "name": "fresh page restores the same character position tick and HP",
+          "status": "passed",
+          "ms": 4383,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-844x390"
+          }
+        },
+        {
+          "name": "simulated47px side and21px bottom padding keeps controls accessible",
+          "status": "passed",
+          "ms": 334,
+          "detail": {
+            "fixture": "CSS app padding only; not actual OS safe-area environment values.",
+            "insets": {
+              "left": 47,
+              "right": 47,
+              "bottom": 21
+            },
+            "metrics": {
+              "canvas": {
+                "x": 54,
+                "y": 7,
+                "width": 580,
+                "height": 355
+              },
+              "availableWidth": 750,
+              "availableHeight": 369,
+              "baseline": {
+                "width": 652,
+                "height": 249
+              },
+              "areaMultiplier": 1.268263236997068,
+              "overflow": {
+                "width": 844,
+                "height": 390,
+                "docWidth": 844,
+                "docHeight": 390
+              }
+            }
+          }
+        },
+        {
+          "name": "no runtime console or HTTP errors",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0
+          }
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "webkit-844x390-rotated-portrait.png",
+        "webkit-844x390-map.png",
+        "webkit-844x390-aiming.png",
+        "webkit-844x390-simulated-bottom21-height320-aiming.png",
+        "webkit-844x390-simulated-bottom21-height315-aiming.png",
+        "webkit-844x390-simulated-bottom21-height301-aiming.png",
+        "webkit-844x390-saved.png",
+        "webkit-844x390-restored.png",
+        "webkit-844x390-simulated-insets.png"
+      ],
+      "release": "b2c41edad8ae06e7",
+      "finishedAt": "2026-11-04T02:55:24.106Z"
+    },
+    {
+      "name": "webkit-667x375",
+      "engine": "webkit",
+      "viewport": {
+        "width": 667,
+        "height": 375,
+        "baseline": {
+          "width": 475,
+          "height": 234
+        }
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:55:24.107Z",
+      "steps": [
+        {
+          "name": "real seeded Classic expedition boots and saves",
+          "status": "passed",
+          "ms": 8631,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-667x375"
+          }
+        },
+        {
+          "name": "canvas is substantially larger and uses the available landscape height",
+          "status": "passed",
+          "ms": 65,
+          "detail": {
+            "canvas": {
+              "x": 7,
+              "y": 7,
+              "width": 497,
+              "height": 361
+            },
+            "availableWidth": 667,
+            "availableHeight": 375,
+            "baseline": {
+              "width": 475,
+              "height": 234
+            },
+            "areaMultiplier": 1.6141880341880341,
+            "overflow": {
+              "width": 667,
+              "height": 375,
+              "docWidth": 667,
+              "docHeight": 375
+            }
+          }
+        },
+        {
+          "name": "health focus save status and all primary controls stay visible",
+          "status": "passed",
+          "ms": 134,
+          "detail": {
+            "hud": {
+              "mobile-hp": {
+                "text": "♥ 40/40",
+                "box": {
+                  "x": 517,
+                  "y": 14.5,
+                  "width": 49.921875,
+                  "height": 15
+                }
+              },
+              "mobile-focus": {
+                "text": "Focus 0",
+                "box": {
+                  "x": 616.953125,
+                  "y": 15.5,
+                  "width": 40.046875,
+                  "height": 13
+                }
+              },
+              "landscape-save-state": {
+                "text": "Saved on this device",
+                "box": {
+                  "x": 517,
+                  "y": 351,
+                  "width": 140,
+                  "height": 14
+                }
+              },
+              "location": {
+                "text": "Gleaners’ Glade",
+                "box": {
+                  "x": 17,
+                  "y": 11,
+                  "width": 127,
+                  "height": 24
+                }
+              }
+            },
+            "controls": 17
+          }
+        },
+        {
+          "name": "Pack Abilities Skills Journal and More remain free and scrollable",
+          "status": "passed",
+          "ms": 1552,
+          "detail": {
+            "pack": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 296,
+              "scrollHeight": 631,
+              "before": 0,
+              "after": 335
+            },
+            "abilities": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 296,
+              "scrollHeight": 550,
+              "before": 254,
+              "after": 254
+            },
+            "skills": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 296,
+              "scrollHeight": 1629,
+              "before": 238,
+              "after": 1333
+            },
+            "journal": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 111,
+              "scrollHeight": 111,
+              "before": 0,
+              "after": 0
+            },
+            "more": {
+              "width": 649,
+              "scrollWidth": 649,
+              "height": 296,
+              "scrollHeight": 621,
+              "before": 0,
+              "after": 325
+            }
+          }
+        },
+        {
+          "name": "aim and cancel preserve a turn with accessible confirmation controls",
+          "status": "passed",
+          "ms": 603,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-667x375"
+          }
+        },
+        {
+          "name": "confirm casts real Jet Blast eastward and spends exactly one turn",
+          "status": "passed",
+          "ms": 558,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 10,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-667x375"
+            },
+            "after": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-667x375"
+            },
+            "narration": "Nerrel Rillpost, villager [left hand: fist] hits marlback scrabbler in the left arm but fails to penetrate!"
+          }
+        },
+        {
+          "name": "real compass movement remains available beside the larger map",
+          "status": "passed",
+          "ms": 154,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-667x375"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": 30,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-667x375"
+            },
+            "narration": "Nerrel Rillpost, villager [left hand: fist] hits marlback scrabbler in the left hand but fails to penetrate!"
+          }
+        },
+        {
+          "name": "checkpoint saves from the landscape menu",
+          "status": "passed",
+          "ms": 371,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-667x375"
+          }
+        },
+        {
+          "name": "fresh page restores the same character position tick and HP",
+          "status": "passed",
+          "ms": 3303,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-667x375"
+          }
+        },
+        {
+          "name": "no runtime console or HTTP errors",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0
+          }
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "webkit-667x375-map.png",
+        "webkit-667x375-aiming.png",
+        "webkit-667x375-saved.png",
+        "webkit-667x375-restored.png"
+      ],
+      "release": "b2c41edad8ae06e7",
+      "finishedAt": "2026-11-04T02:55:39.912Z"
+    },
+    {
+      "name": "webkit-568x320",
+      "engine": "webkit",
+      "viewport": {
+        "width": 568,
+        "height": 320,
+        "baseline": {
+          "width": 376,
+          "height": 179
+        }
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:55:39.913Z",
+      "steps": [
+        {
+          "name": "real seeded Classic expedition boots and saves",
+          "status": "passed",
+          "ms": 6507,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-568x320"
+          }
+        },
+        {
+          "name": "canvas is substantially larger and uses the available landscape height",
+          "status": "passed",
+          "ms": 54,
+          "detail": {
+            "canvas": {
+              "x": 7,
+              "y": 7,
+              "width": 398,
+              "height": 306
+            },
+            "availableWidth": 568,
+            "availableHeight": 320,
+            "baseline": {
+              "width": 376,
+              "height": 179
+            },
+            "areaMultiplier": 1.8095209794365863,
+            "overflow": {
+              "width": 568,
+              "height": 320,
+              "docWidth": 568,
+              "docHeight": 320
+            }
+          }
+        },
+        {
+          "name": "health focus save status and all primary controls stay visible",
+          "status": "passed",
+          "ms": 131,
+          "detail": {
+            "hud": {
+              "mobile-hp": {
+                "text": "♥ 40/40",
+                "box": {
+                  "x": 418,
+                  "y": 13.5,
+                  "width": 49.921875,
+                  "height": 15
+                }
+              },
+              "mobile-focus": {
+                "text": "Focus 0",
+                "box": {
+                  "x": 517.953125,
+                  "y": 14.5,
+                  "width": 40.046875,
+                  "height": 13
+                }
+              },
+              "landscape-save-state": {
+                "text": "Saved on this device",
+                "box": {
+                  "x": 418,
+                  "y": 296,
+                  "width": 140,
+                  "height": 14
+                }
+              },
+              "location": {
+                "text": "Gleaners’ Glade",
+                "box": {
+                  "x": 17,
+                  "y": 11,
+                  "width": 127,
+                  "height": 24
+                }
+              }
+            },
+            "controls": 17
+          }
+        },
+        {
+          "name": "Pack Abilities Skills Journal and More remain free and scrollable",
+          "status": "passed",
+          "ms": 1363,
+          "detail": {
+            "pack": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 241,
+              "scrollHeight": 641,
+              "before": 0,
+              "after": 400
+            },
+            "abilities": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 241,
+              "scrollHeight": 560,
+              "before": 319,
+              "after": 319
+            },
+            "skills": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 241,
+              "scrollHeight": 1663,
+              "before": 156,
+              "after": 1422
+            },
+            "journal": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 111,
+              "scrollHeight": 111,
+              "before": 0,
+              "after": 0
+            },
+            "more": {
+              "width": 550,
+              "scrollWidth": 550,
+              "height": 241,
+              "scrollHeight": 629,
+              "before": 0,
+              "after": 388
+            }
+          }
+        },
+        {
+          "name": "aim and cancel preserve a turn with accessible confirmation controls",
+          "status": "passed",
+          "ms": 513,
+          "detail": {
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-568x320"
+          }
+        },
+        {
+          "name": "confirm casts real Jet Blast eastward and spends exactly one turn",
+          "status": "passed",
+          "ms": 479,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 10,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-568x320"
+            },
+            "after": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-568x320"
+            },
+            "narration": "Nerrel Rillpost, villager [left hand: fist] hits marlback scrabbler in the left arm but fails to penetrate!"
+          }
+        },
+        {
+          "name": "real compass movement remains available beside the larger map",
+          "status": "passed",
+          "ms": 209,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-568x320"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": 30,
+              "hp": "40 / 40",
+              "name": "Landscape webkit-568x320"
+            },
+            "narration": "marlback scrabbler is stunned!"
+          }
+        },
+        {
+          "name": "checkpoint saves from the landscape menu",
+          "status": "passed",
+          "ms": 370,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-568x320"
+          }
+        },
+        {
+          "name": "fresh page restores the same character position tick and HP",
+          "status": "passed",
+          "ms": 3533,
+          "detail": {
+            "position": "41, 12",
+            "tick": 30,
+            "hp": "40 / 40",
+            "name": "Landscape webkit-568x320"
+          }
+        },
+        {
+          "name": "no runtime console or HTTP errors",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0
+          }
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "webkit-568x320-map.png",
+        "webkit-568x320-aiming.png",
+        "webkit-568x320-saved.png",
+        "webkit-568x320-restored.png"
+      ],
+      "release": "b2c41edad8ae06e7",
+      "finishedAt": "2026-11-04T02:55:53.408Z"
+    }
+  ],
+  "finishedAt": "2026-11-04T02:55:53.409Z",
+  "passed": 6,
+  "failed": 0
+}

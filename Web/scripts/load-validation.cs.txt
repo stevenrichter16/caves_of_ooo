@@ -1,0 +1,5 @@
+            // Standalone browser import must reject incomplete sessions before any live singleton publication.
+            if (state.Player == null || state.World == null || state.TurnManager == null || state.ZoneManager == null
+                || string.IsNullOrEmpty(state.ActiveZoneID) || !state.ZoneManager.CachedZones.TryGetValue(state.ActiveZoneID, out var browserActiveZone)
+                || browserActiveZone.GetEntityCell(state.Player) == null || state.Player.GetStat("Hitpoints") == null)
+                throw new InvalidDataException("The checkpoint has no complete expedition.");

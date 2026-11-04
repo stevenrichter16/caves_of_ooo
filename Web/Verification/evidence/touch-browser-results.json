@@ -1,0 +1,718 @@
+{
+  "baseUrl": "http://127.0.0.1:8098",
+  "startedAt": "2026-11-04T02:16:51.469Z",
+  "scope": "Real Blazor WASM; mobile viewport emulation, not physical iPhone.",
+  "cases": [
+    {
+      "name": "chromium-portrait",
+      "engine": "chromium",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:16:51.470Z",
+      "steps": [
+        {
+          "name": "start page loads without horizontal overflow",
+          "status": "passed",
+          "durationMs": 391,
+          "detail": {
+            "viewport": 390,
+            "document": 390,
+            "body": 390
+          }
+        },
+        {
+          "name": "create a real seeded expedition through the phone UI",
+          "status": "passed",
+          "durationMs": 6365,
+          "detail": {
+            "position": "40, 12",
+            "tick": "TICK 10",
+            "hp": "40 / 40",
+            "name": "Smoke chromium-portrait"
+          }
+        },
+        {
+          "name": "game viewport and compass remain usable",
+          "status": "passed",
+          "durationMs": 16,
+          "detail": {
+            "viewport": 390,
+            "document": 390,
+            "body": 390
+          }
+        },
+        {
+          "name": "map inspection is free",
+          "status": "passed",
+          "durationMs": 443
+        },
+        {
+          "name": "pack inspection is free and fits the phone",
+          "status": "passed",
+          "durationMs": 371
+        },
+        {
+          "name": "compass movement advances the real game",
+          "status": "passed",
+          "durationMs": 178,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": "TICK 10",
+              "hp": "40 / 40",
+              "name": "Smoke chromium-portrait"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": "TICK 20",
+              "hp": "40 / 40",
+              "name": "Smoke chromium-portrait"
+            }
+          }
+        },
+        {
+          "name": "rapid direction taps keep scale, selection, and one turn per tap",
+          "status": "passed",
+          "durationMs": 706,
+          "detail": {
+            "before": {
+              "position": "41, 12",
+              "tick": "TICK 20",
+              "hp": "40 / 40",
+              "name": "Smoke chromium-portrait"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": "TICK 60",
+              "hp": "40 / 40",
+              "name": "Smoke chromium-portrait"
+            },
+            "gestures": {
+              "scale": 1,
+              "width": 390,
+              "selection": ""
+            },
+            "intervalsMs": [
+              113,
+              75,
+              105
+            ],
+            "keyboardWaitTick": 70
+          }
+        },
+        {
+          "name": "explicit checkpoint reaches browser storage",
+          "status": "passed",
+          "durationMs": 349,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke chromium-portrait"
+          }
+        },
+        {
+          "name": "fresh page restores exact position, tick, HP, and character",
+          "status": "passed",
+          "durationMs": 3002,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke chromium-portrait"
+          }
+        },
+        {
+          "name": "export downloads the actual compressed checkpoint",
+          "status": "passed",
+          "durationMs": 436,
+          "detail": {
+            "compressedBytes": 71109,
+            "rawBytes": 2503985,
+            "buildId": "standalone-web-1"
+          }
+        },
+        {
+          "name": "offline fresh page continues the acknowledged checkpoint",
+          "status": "passed",
+          "durationMs": 2758,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke chromium-portrait"
+          }
+        },
+        {
+          "name": "backup imports into a clean browser profile",
+          "status": "passed",
+          "durationMs": 4054,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke chromium-portrait"
+          }
+        },
+        {
+          "name": "browser reports no runtime or HTTP errors",
+          "status": "passed",
+          "durationMs": 0,
+          "detail": {
+            "pageErrors": 0,
+            "consoleErrors": 0,
+            "httpErrors": 0,
+            "requestFailures": []
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-portrait-start.png",
+        "chromium-portrait-game.png",
+        "chromium-portrait-inspection.png",
+        "chromium-portrait-rapid-taps.png",
+        "chromium-portrait-saved.png",
+        "chromium-portrait-restored.png",
+        "chromium-portrait-offline.png",
+        "chromium-portrait-imported.png"
+      ],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "httpErrors": [],
+      "requestFailures": [],
+      "backup": "chromium-portrait-checkpoint.json",
+      "finishedAt": "2026-11-04T02:17:10.703Z"
+    },
+    {
+      "name": "chromium-landscape",
+      "engine": "chromium",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:17:10.704Z",
+      "steps": [
+        {
+          "name": "start page loads without horizontal overflow",
+          "status": "passed",
+          "durationMs": 314,
+          "detail": {
+            "viewport": 844,
+            "document": 844,
+            "body": 844
+          }
+        },
+        {
+          "name": "create a real seeded expedition through the phone UI",
+          "status": "passed",
+          "durationMs": 6120,
+          "detail": {
+            "position": "40, 12",
+            "tick": "TICK 10",
+            "hp": "40 / 40",
+            "name": "Smoke chromium-landscape"
+          }
+        },
+        {
+          "name": "game viewport and compass remain usable",
+          "status": "passed",
+          "durationMs": 13,
+          "detail": {
+            "viewport": 844,
+            "document": 844,
+            "body": 844
+          }
+        },
+        {
+          "name": "map inspection is free",
+          "status": "passed",
+          "durationMs": 425
+        },
+        {
+          "name": "pack inspection is free and fits the phone",
+          "status": "passed",
+          "durationMs": 343
+        },
+        {
+          "name": "compass movement advances the real game",
+          "status": "passed",
+          "durationMs": 156,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": "TICK 10",
+              "hp": "40 / 40",
+              "name": "Smoke chromium-landscape"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": "TICK 20",
+              "hp": "40 / 40",
+              "name": "Smoke chromium-landscape"
+            }
+          }
+        },
+        {
+          "name": "rapid direction taps keep scale, selection, and one turn per tap",
+          "status": "passed",
+          "durationMs": 630,
+          "detail": {
+            "before": {
+              "position": "41, 12",
+              "tick": "TICK 20",
+              "hp": "40 / 40",
+              "name": "Smoke chromium-landscape"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": "TICK 60",
+              "hp": "40 / 40",
+              "name": "Smoke chromium-landscape"
+            },
+            "gestures": {
+              "scale": 1,
+              "width": 844,
+              "selection": ""
+            },
+            "intervalsMs": [
+              107,
+              77,
+              88
+            ],
+            "keyboardWaitTick": 70
+          }
+        },
+        {
+          "name": "explicit checkpoint reaches browser storage",
+          "status": "passed",
+          "durationMs": 363,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke chromium-landscape"
+          }
+        },
+        {
+          "name": "fresh page restores exact position, tick, HP, and character",
+          "status": "passed",
+          "durationMs": 3037,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke chromium-landscape"
+          }
+        },
+        {
+          "name": "export downloads the actual compressed checkpoint",
+          "status": "passed",
+          "durationMs": 404,
+          "detail": {
+            "compressedBytes": 71438,
+            "rawBytes": 2505908,
+            "buildId": "standalone-web-1"
+          }
+        },
+        {
+          "name": "offline fresh page continues the acknowledged checkpoint",
+          "status": "passed",
+          "durationMs": 3313,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke chromium-landscape"
+          }
+        },
+        {
+          "name": "browser reports no runtime or HTTP errors",
+          "status": "passed",
+          "durationMs": 0,
+          "detail": {
+            "pageErrors": 0,
+            "consoleErrors": 0,
+            "httpErrors": 0,
+            "requestFailures": []
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-landscape-start.png",
+        "chromium-landscape-game.png",
+        "chromium-landscape-inspection.png",
+        "chromium-landscape-rapid-taps.png",
+        "chromium-landscape-saved.png",
+        "chromium-landscape-restored.png",
+        "chromium-landscape-offline.png"
+      ],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "httpErrors": [],
+      "requestFailures": [],
+      "backup": "chromium-landscape-checkpoint.json",
+      "finishedAt": "2026-11-04T02:17:25.950Z"
+    },
+    {
+      "name": "webkit-portrait",
+      "engine": "webkit",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:17:25.951Z",
+      "steps": [
+        {
+          "name": "start page loads without horizontal overflow",
+          "status": "passed",
+          "durationMs": 429,
+          "detail": {
+            "viewport": 390,
+            "document": 390,
+            "body": 390
+          }
+        },
+        {
+          "name": "create a real seeded expedition through the phone UI",
+          "status": "passed",
+          "durationMs": 6262,
+          "detail": {
+            "position": "40, 12",
+            "tick": "TICK 10",
+            "hp": "40 / 40",
+            "name": "Smoke webkit-portrait"
+          }
+        },
+        {
+          "name": "game viewport and compass remain usable",
+          "status": "passed",
+          "durationMs": 18,
+          "detail": {
+            "viewport": 390,
+            "document": 390,
+            "body": 390
+          }
+        },
+        {
+          "name": "map inspection is free",
+          "status": "passed",
+          "durationMs": 440
+        },
+        {
+          "name": "pack inspection is free and fits the phone",
+          "status": "passed",
+          "durationMs": 415
+        },
+        {
+          "name": "compass movement advances the real game",
+          "status": "passed",
+          "durationMs": 202,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": "TICK 10",
+              "hp": "40 / 40",
+              "name": "Smoke webkit-portrait"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": "TICK 20",
+              "hp": "40 / 40",
+              "name": "Smoke webkit-portrait"
+            }
+          }
+        },
+        {
+          "name": "rapid direction taps keep scale, selection, and one turn per tap",
+          "status": "passed",
+          "durationMs": 776,
+          "detail": {
+            "before": {
+              "position": "41, 12",
+              "tick": "TICK 20",
+              "hp": "40 / 40",
+              "name": "Smoke webkit-portrait"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": "TICK 60",
+              "hp": "40 / 40",
+              "name": "Smoke webkit-portrait"
+            },
+            "gestures": {
+              "scale": 1,
+              "width": 390,
+              "selection": ""
+            },
+            "intervalsMs": [
+              122,
+              129,
+              92
+            ],
+            "keyboardWaitTick": 70
+          }
+        },
+        {
+          "name": "explicit checkpoint reaches browser storage",
+          "status": "passed",
+          "durationMs": 409,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke webkit-portrait"
+          }
+        },
+        {
+          "name": "fresh page restores exact position, tick, HP, and character",
+          "status": "passed",
+          "durationMs": 3267,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke webkit-portrait"
+          }
+        },
+        {
+          "name": "export downloads the actual compressed checkpoint",
+          "status": "passed",
+          "durationMs": 496,
+          "detail": {
+            "compressedBytes": 74350,
+            "rawBytes": 2503832,
+            "buildId": "standalone-web-1"
+          }
+        },
+        {
+          "name": "offline fresh page continues the acknowledged checkpoint",
+          "status": "passed",
+          "durationMs": 2701,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke webkit-portrait"
+          }
+        },
+        {
+          "name": "backup imports into a clean browser profile",
+          "status": "passed",
+          "durationMs": 4685,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke webkit-portrait"
+          }
+        },
+        {
+          "name": "browser reports no runtime or HTTP errors",
+          "status": "passed",
+          "durationMs": 0,
+          "detail": {
+            "pageErrors": 0,
+            "consoleErrors": 0,
+            "httpErrors": 0,
+            "requestFailures": []
+          }
+        }
+      ],
+      "screenshots": [
+        "webkit-portrait-start.png",
+        "webkit-portrait-game.png",
+        "webkit-portrait-inspection.png",
+        "webkit-portrait-rapid-taps.png",
+        "webkit-portrait-saved.png",
+        "webkit-portrait-restored.png",
+        "webkit-portrait-offline.png",
+        "webkit-portrait-imported.png"
+      ],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "httpErrors": [],
+      "requestFailures": [],
+      "backup": "webkit-portrait-checkpoint.json",
+      "finishedAt": "2026-11-04T02:17:46.443Z"
+    },
+    {
+      "name": "webkit-landscape",
+      "engine": "webkit",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "status": "passed",
+      "startedAt": "2026-11-04T02:17:46.444Z",
+      "steps": [
+        {
+          "name": "start page loads without horizontal overflow",
+          "status": "passed",
+          "durationMs": 499,
+          "detail": {
+            "viewport": 844,
+            "document": 844,
+            "body": 844
+          }
+        },
+        {
+          "name": "create a real seeded expedition through the phone UI",
+          "status": "passed",
+          "durationMs": 6218,
+          "detail": {
+            "position": "40, 12",
+            "tick": "TICK 10",
+            "hp": "40 / 40",
+            "name": "Smoke webkit-landscape"
+          }
+        },
+        {
+          "name": "game viewport and compass remain usable",
+          "status": "passed",
+          "durationMs": 17,
+          "detail": {
+            "viewport": 844,
+            "document": 844,
+            "body": 844
+          }
+        },
+        {
+          "name": "map inspection is free",
+          "status": "passed",
+          "durationMs": 416
+        },
+        {
+          "name": "pack inspection is free and fits the phone",
+          "status": "passed",
+          "durationMs": 454
+        },
+        {
+          "name": "compass movement advances the real game",
+          "status": "passed",
+          "durationMs": 145,
+          "detail": {
+            "before": {
+              "position": "40, 12",
+              "tick": "TICK 10",
+              "hp": "40 / 40",
+              "name": "Smoke webkit-landscape"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": "TICK 20",
+              "hp": "40 / 40",
+              "name": "Smoke webkit-landscape"
+            }
+          }
+        },
+        {
+          "name": "rapid direction taps keep scale, selection, and one turn per tap",
+          "status": "passed",
+          "durationMs": 822,
+          "detail": {
+            "before": {
+              "position": "41, 12",
+              "tick": "TICK 20",
+              "hp": "40 / 40",
+              "name": "Smoke webkit-landscape"
+            },
+            "after": {
+              "position": "41, 12",
+              "tick": "TICK 60",
+              "hp": "40 / 40",
+              "name": "Smoke webkit-landscape"
+            },
+            "gestures": {
+              "scale": 1,
+              "width": 844,
+              "selection": ""
+            },
+            "intervalsMs": [
+              94,
+              77,
+              84
+            ],
+            "keyboardWaitTick": 70
+          }
+        },
+        {
+          "name": "explicit checkpoint reaches browser storage",
+          "status": "passed",
+          "durationMs": 440,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke webkit-landscape"
+          }
+        },
+        {
+          "name": "fresh page restores exact position, tick, HP, and character",
+          "status": "passed",
+          "durationMs": 3337,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke webkit-landscape"
+          }
+        },
+        {
+          "name": "export downloads the actual compressed checkpoint",
+          "status": "passed",
+          "durationMs": 550,
+          "detail": {
+            "compressedBytes": 74547,
+            "rawBytes": 2504051,
+            "buildId": "standalone-web-1"
+          }
+        },
+        {
+          "name": "offline fresh page continues the acknowledged checkpoint",
+          "status": "passed",
+          "durationMs": 3099,
+          "detail": {
+            "position": "41, 12",
+            "tick": "TICK 70",
+            "hp": "40 / 40",
+            "name": "Smoke webkit-landscape"
+          }
+        },
+        {
+          "name": "browser reports no runtime or HTTP errors",
+          "status": "passed",
+          "durationMs": 0,
+          "detail": {
+            "pageErrors": 0,
+            "consoleErrors": 0,
+            "httpErrors": 0,
+            "requestFailures": []
+          }
+        }
+      ],
+      "screenshots": [
+        "webkit-landscape-start.png",
+        "webkit-landscape-game.png",
+        "webkit-landscape-inspection.png",
+        "webkit-landscape-rapid-taps.png",
+        "webkit-landscape-saved.png",
+        "webkit-landscape-restored.png",
+        "webkit-landscape-offline.png"
+      ],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "httpErrors": [],
+      "requestFailures": [],
+      "backup": "webkit-landscape-checkpoint.json",
+      "finishedAt": "2026-11-04T02:18:02.752Z"
+    }
+  ],
+  "finishedAt": "2026-11-04T02:18:02.753Z",
+  "passed": 4,
+  "failed": 0
+}

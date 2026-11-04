@@ -1,0 +1,16 @@
+{
+  "name": "caves-of-ooo-standalone-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "python3 scripts/build.py",
+    "test:storage": "node --test Verification/storage*.test.cjs",
+    "test:browser": "node Verification/browser-smoke.cjs",
+    "test:landscape": "node Verification/landscape-smoke.cjs",
+    "test:travel": "node Verification/world-travel-smoke.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "fake-indexeddb": "6.2.4"
+  }
+}
