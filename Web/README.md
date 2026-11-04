@@ -10,6 +10,7 @@ Open the deployed site in Safari on iPhone; Share → Add to Home Screen gives i
 
 - Use the eight-direction compass or arrows / H J K L / Y U B N. Center dot or period waits.
 - Tap a tile to inspect for free; drag to pan. Bump hostile creatures to attack.
+- Turn your phone sideways for a full-height map, with health, focus and controls in a compact side rail. Aiming puts Cancel/Confirm beside the map. Rotating preserves your zoom and takes no turn.
 - Pack holds equipment, consumables, grouped pickup, crafting and alchemy. Nearby interactions expose conversations, trading, gathering, repairs and world actions.
 - Abilities target visible cells. Throws have a preview and explicit confirmation; Measured Throw prepares for one turn and launches on a separately confirmed turn.
 - Skills and attributes use the native requirements and purchase confirmation. The journal shows objectives and completed quests.
@@ -37,11 +38,12 @@ npm ci
 npm run test:storage
 npx playwright install chromium webkit
 npm run test:browser
+npm run test:landscape
 ```
 
 `dist/` is the deployable static site. `scripts/build.py` generates a content-versioned service worker from the exact release. An update waits for existing game tabs to close; it cannot replace assemblies under a running game. Serve `.wasm` as `application/wasm` over HTTPS in production. The published Site keeps its own private hosting identity. This directory contains the portable source; no deployment credential is stored in the repository.
 
-`Verification/browser-smoke.cjs` accepts `COO_SMOKE_URL` and `COO_SMOKE_OUTPUT`. Mobile viewport/WebKit tests do not establish physical iPhone performance or OS background lifecycle behavior. See `Verification/RESULTS.md` for this release’s evidence and remaining limits.
+`Verification/browser-smoke.cjs` and `Verification/landscape-smoke.cjs` accept `COO_SMOKE_URL` and `COO_SMOKE_OUTPUT`. The landscape suite covers three phone sizes, menus, aiming, movement, checkpoints and orientation changes using the real WASM game. Mobile viewport/WebKit tests do not establish physical iPhone performance or OS background lifecycle behavior. See `Verification/RESULTS.md` for this release’s evidence and remaining limits.
 
 ## Architecture and future updates
 

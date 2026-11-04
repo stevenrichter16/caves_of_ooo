@@ -3,7 +3,7 @@ const atlases=new Map();
 export const imagesReady=Promise.all(['base','cast','anchors','states','items','cellar','ground','motion'].map(name=>new Promise(resolve=>{const image=new Image();image.src=`art/opening-${name}.png`;image.onload=()=>{atlases.set(`opening-${name}`,image);resolve();};image.onerror=resolve;})).concat([new Promise(resolve=>{const image=new Image();image.src='art/sill-environment.png';image.onload=()=>{atlases.set('sill-environment',image);resolve();};image.onerror=resolve;})]));
 export function color(code){return palette[(code||'&y').replace(/[^a-zA-Z]/g,'').slice(-1)]||palette.y;}
 export class WorldMapView {
- constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.scale=window.innerWidth<650?1.35:1.7;this.cx=40;this.cy=12;this.follow=true;this.target=null;this.data=null;this.bounds=null;this.observer=new ResizeObserver(()=>this.draw());this.observer.observe(canvas);}
+ constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.scale=Math.min(window.innerWidth,window.innerHeight)<650?1.35:1.7;this.cx=40;this.cy=12;this.follow=true;this.target=null;this.data=null;this.bounds=null;this.observer=new ResizeObserver(()=>this.draw());this.observer.observe(canvas);}
  set(data){const changed=this.data?.zone!==data.zone;this.data=data;if(this.follow||changed){this.cx=data.x;this.cy=data.y;this.follow=true;}this.draw();}
  center(){if(this.data){this.follow=true;this.cx=this.data.x;this.cy=this.data.y;this.draw();}}
  zoom(change){this.scale=Math.min(3,Math.max(.65,this.scale+change));this.draw();}

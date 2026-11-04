@@ -26,3 +26,21 @@ Release `cc5955d5d7843d31` blocks browser gestures on the compass, disables butt
 The actual-WASM browser suite now passes 50 checks in Chromium/WebKit at both phone orientations. Each case sends four directional taps 75–129 ms apart: exactly four turns, return to the same position, viewport scale 1, unchanged viewport width, and empty text selection. Keyboard Space still spends exactly one wait turn. Existing save/restore, import/export and offline checks pass; browser error counts remain zero. All 30 storage/coordinator checks pass. No gameplay-core source changed, so native gameplay contracts were not rerun.
 
 Receipt: `evidence/touch-browser-results.json`. This is browser emulation, not a physical iPhone Safari gesture test. Existing installations need their open game clients closed before the waiting offline update can activate.
+
+## Landscape map and controls — 4 November 2026
+
+Release `b2c41edad8ae06e7` gives the map the full available landscape height. A compact side rail keeps HP, focus, movement, actions and save status visible. Zone/tick and the latest narration overlay the map; aiming confirmation replaces the action shortcuts beside it. Very short windows arrange movement and actions side by side. A container query measures the height remaining after safe-area padding so targeting controls cannot cover movement buttons. Rotation cancels an unfinished map gesture and preserves manually selected zoom.
+
+| Emulated viewport | Previous canvas | New canvas | Map area increase |
+| --- | --- | --- | --- |
+| 844×390 | 652×249 | 674×376 | 56% |
+| 667×375 | 475×234 | 497×361 | 61% |
+| 568×320 | 376×179 | 398×306 | 81% |
+
+The browser presentation omits the native CP437 turn-divider entries from the mini-log, journal and death recap, retaining the actual latest narration. Simulation messages and checkpoint data remain unchanged.
+
+The final landscape suite passes **63 checks across six actual-WASM Chromium/WebKit cases**. It verifies button centers and edges, free scrollable menus, actual Jet Blast targeting/cancellation/casting, movement, exact checkpoint restoration, readable narration, and portrait/landscape rotation retaining zoom. Simulated 47px side/21px bottom padding and 301/315/320px short-window bottom insets pass; the latter reproduced and verified the fix for targeting controls overlapping the compass. A separate WebKit 844×275 check passes with a 622×261 canvas and reachable movement/actions/aiming controls.
+
+The existing portrait/landscape browser regression passes all **50 checks**, including repeated direction taps, one-turn keyboard activation, backup export/import and offline reopening. All **30 storage/coordinator checks** pass. Final suites report zero runtime, console or HTTP errors. No native gameplay source changed.
+
+Receipts: `evidence/landscape-browser-results.json`, `evidence/landscape-regression-results.json`, `evidence/landscape-short-window-results.json`, and `evidence/landscape-storage-results.txt`. Screenshots include the standard map, smaller-screen aiming and the very short window. These are browser-emulation and CSS-padding fixtures, not physical iPhone or OS safe-area validation.

@@ -5,7 +5,8 @@
   "scripts": {
     "build": "python3 scripts/build.py",
     "test:storage": "node --test Verification/storage*.test.cjs",
-    "test:browser": "node Verification/browser-smoke.cjs"
+    "test:browser": "node Verification/browser-smoke.cjs",
+    "test:landscape": "node Verification/landscape-smoke.cjs"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",

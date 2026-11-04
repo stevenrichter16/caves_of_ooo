@@ -16,7 +16,7 @@ function deferred() {
 function element() {
   return {
     hidden: true, disabled: false, textContent: '', value: '', style: {}, dataset: {},
-    firstChild: { textContent: '' }, classList: { add() {}, remove() {} },
+    firstChild: { textContent: '' }, classList: { add() {}, remove() {}, toggle() {} },
     append() {}, replaceChildren() {}, after() {}, click() {}, setAttribute() {},
     addEventListener() {}, getBoundingClientRect: () => ({ left: 0, top: 0 }),
   };

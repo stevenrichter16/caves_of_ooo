@@ -6,10 +6,12 @@ const map=new WorldMapView($('world-canvas'));
 drawOpening($('opening-art'));imagesReady.then(()=>map.draw());
 const clean=value=>String(value??'').replace(/\{\{[^|{}]+\|([^{}]*)\}\}/g,'$1').replace(/[&^][kKrRgGwWbBmMcCyY]/g,'');
 function text(id,value){$(id).textContent=clean(value);}
+// The core's CP437 turn rule is decorative; keep the latest narration visible.
+function narrativeMessages(){return state.messages.filter(m=>!/^\u00cd+$/.test(clean(m).trim()));}
 function el(tag,content,cls){const node=document.createElement(tag);if(content!=null)node.textContent=clean(content);if(cls)node.className=cls;return node;}
 function button(label,fn,cls=''){const b=el('button',label,cls);b.type='button';b.addEventListener('click',fn);return b;}
 function toast(message){text('toast',message);$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,5000);}
-function status(message,error=false){text('save-state',message);$('save-state').style.color=error?'var(--danger)':'';}
+function status(message,error=false){for(const id of ['save-state','landscape-save-state']){text(id,message);$(id).style.color=error?'var(--danger)':'';}}
 function showLoading(title,detail){text('loading-title',title);text('loading-detail',detail);$('loading-screen').hidden=false;}
 function hideLoading(){$('loading-screen').hidden=true;}
 function showOverlay(title,kicker,children){text('overlay-title',title);text('overlay-kicker',kicker);$('overlay-body').replaceChildren(...children.filter(Boolean));$('overlay').hidden=false;}
@@ -41,10 +43,12 @@ function playState(next){
 }
 function render(){
  if(!state)return;
+ document.body.classList.toggle('targeting',!!target);
+ text('landscape-target-name',target?.label||'');
  text('location',state.zoneName);text('biome-label',state.zone.endsWith('.0')?'THE OVERWORLD':'BENEATH THE SURFACE');text('position',`${state.x}, ${state.y}`);text('turn-number',`TICK ${state.tick}`);
  text('character-name',state.name);text('character-build',`${state.build||'Wayfarer'} · level ${state.level||1}`);text('hp-text',`${state.hp} / ${state.maxHp}`);$('hp-bar').style.width=`${Math.max(0,Math.min(100,100*state.hp/state.maxHp))}%`;
- text('drams',state.drams);text('focus',state.focus);text('mobile-hp',`♥ ${state.hp}/${state.maxHp}`);text('mobile-drams',`${state.drams} drams`);text('mobile-turn',`t ${state.tick}`);
- $('log-lines').replaceChildren(...state.messages.slice(-3).map(m=>el('p',m)));
+ text('drams',state.drams);text('focus',state.focus);text('mobile-hp',`♥ ${state.hp}/${state.maxHp}`);text('mobile-focus',`Focus ${state.focus}`);text('mobile-drams',`${state.drams} drams`);text('mobile-turn',`t ${state.tick}`);
+ $('log-lines').replaceChildren(...narrativeMessages().slice(-3).map(m=>el('p',m)));
  $('wait-button').disabled=!!target||state.dead||state.faulted;
  $('target-banner').hidden=!target;$('map-instruction').hidden=!!target;
  if(target){text('target-label',target.label);text('confirm-target',target.kind==='throw'?'Review throw':'Confirm');$('confirm-target').disabled=!map.target;}
@@ -135,7 +139,7 @@ function renderPanel(){
     }}
     if(state.quests.Completed?.length)list.push(heading('Completed'),...state.quests.Completed.map(q=>el('p',`✓ ${human(q)}`)));
    }
-   list.push(heading('Field notes'),...state.messages.slice().reverse().map(m=>el('div',m,'journal-entry')));
+   list.push(heading('Field notes'),...narrativeMessages().reverse().map(m=>el('div',m,'journal-entry')));
    showOverlay('Field journal','THINGS WORTH REMEMBERING',list);break;
   case 'character':
    list.push(el('h3',state.name),el('p',`${state.build} · ${state.zoneName}`,'details'));
@@ -200,7 +204,7 @@ function gameMenu(){if(!state||busy)return;localMenu=true;showOverlay('Your expe
 $('more-button').onclick=gameMenu;$('menu-button').onclick=gameMenu;$('save-button').onclick=()=>saveCheckpoint().catch(()=>{});
 function showHelp(){localMenu=true;showOverlay('One turn at a time','A FIELD GUIDE',[el('p','The world waits while you think. Use the compass to move in eight directions. Bump into a hostile creature to strike; the center dot waits one turn.'),el('p','Tap a tile to inspect it for free. Drag the map to look farther away. Interact lists the things within reach: conversations, supplies, doors, plants, and the work of a place.'),el('p','Pack holds your belongings and equipment. Abilities opens targeting: choose a tile, then confirm. Looking, reading, and choosing never rush you.'),heading('Keyboard'),el('p','Arrow keys or H J K L move. Y U B N move diagonally. Period waits. I opens your pack; A abilities; E interactions; Shift+K skills; Shift+J journal; M visited places. Esc closes a menu; F5 saves. Use < and > on stairs.'),heading('Along the way'),el('p','Read the notice near the glade’s center. The well needs fire clay. There is a cellar to the west, and beyond the glade lies Sill.'),heading('On your iPhone'),el('p','Open this page in Safari. Use Share → Add to Home Screen for a full-screen expedition. Once the game has finished downloading, it can reopen offline while its cached files remain on your device.'),heading('Your progress'),el('p','Checkpoints save locally after several actions, on travel, and when you press Save. Wait for “Saved on this device” before closing. Export a backup before clearing browser data. Different browsers keep separate expeditions.')]);}
 $('help-start').onclick=showHelp;
-function showDeath(){localMenu=true;target=null;showOverlay('The expedition ends','EVERY ROAD LEAVES A STORY',[el('p',`${clean(state.name)} fell in ${state.zoneName}. Your last living checkpoint is kept.`),actions([['Continue checkpoint',()=>continueGame(state.gameId),'gold'],['Another expedition',()=>{closeLocal();showCreation();}]]),...state.messages.slice(-6).map(m=>el('div',m,'journal-entry'))]);}
+function showDeath(){localMenu=true;target=null;showOverlay('The expedition ends','EVERY ROAD LEAVES A STORY',[el('p',`${clean(state.name)} fell in ${state.zoneName}. Your last living checkpoint is kept.`),actions([['Continue checkpoint',()=>continueGame(state.gameId),'gold'],['Another expedition',()=>{closeLocal();showCreation();}]]),...narrativeMessages().slice(-6).map(m=>el('div',m,'journal-entry'))]);}
 async function compress(raw){return new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer());}
 async function decompress(bytes){
  const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip')).getReader();const chunks=[];let total=0;
@@ -331,6 +335,6 @@ document.addEventListener('keydown',event=>{
 });
 document.addEventListener('visibilitychange',()=>{pointer=null;if(document.hidden){if(busy)saveAfterAction=true;else if(dirty)saveCheckpoint().catch(()=>{});}});
 window.addEventListener('pagehide',()=>{if(busy)saveAfterAction=true;else if(dirty)saveCheckpoint().catch(()=>{});});
-window.addEventListener('resize',()=>map.draw());
+window.addEventListener('resize',()=>{if(pointer){const id=pointer.id;pointer=null;if($('world-canvas').hasPointerCapture(id))$('world-canvas').releasePointerCapture(id);}map.draw();});
 // Cache only this static release; a waiting update never replaces a running game.
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
