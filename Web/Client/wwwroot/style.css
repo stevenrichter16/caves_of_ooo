@@ -98,6 +98,9 @@ body.playing{overflow:hidden}body.playing #app{height:100svh;display:flex;flex-d
 .loot-choice{display:flex;align-items:center;gap:12px;min-height:48px;border-bottom:1px solid var(--line);cursor:pointer}.loot-choice input{width:22px;height:22px;accent-color:var(--gold)}
 
 .compass svg{display:block;width:24px;height:24px;margin:auto;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#interact-label{font-weight:inherit}
+.place-entry{margin-bottom:7px}
+.world-map #interact-button{border-color:var(--gold);color:var(--gold)}
 
 /* The compass is a game surface: repeated taps must never zoom or select UI.
    Keep gesture blocking off the scrollable action column and reading panels. */

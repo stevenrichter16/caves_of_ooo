@@ -56,6 +56,7 @@ namespace CavesOfOoo.Web
                     case "buy":case "sell":Trade(a);break;
                     case "ability":Ability(a);break;
                     case "stairs":Stairs(a.value=="up");break;
+                    case "travel":Travel(a.value);break;
                     case "throw":ThrowAction(a);break;
                     case "throwPreview":PreviewThrow(a);break;
                     case "recover":RecoverThrow(a);break;
@@ -71,6 +72,11 @@ namespace CavesOfOoo.Web
         {
             if(dx<-1||dx>1||dy<-1||dy>1||(dx==0&&dy==0)){error="Choose a single step in one direction.";return;}
             var start=zone.GetEntityCell(player);if(start==null)return;
+            if(OnWorldMap)
+            {
+                var (wx,wy)=WorldMap.ZoneCellToWorldCell(start.X+dx,start.Y+dy);
+                if(!zones.WorldMap.InBounds(wx,wy)){error="That is the edge of the world map.";return;}
+            }
             var move=MovementSystem.TryMoveDetailed(player,zone,dx,dy);var blocked=move.BlockedBy;
             if(move.Moved||move.ActionPerformed){EndTurn();return;}
             if(blocked!=null&&blocked.HasTag("Creature")&&(FactionManager.IsHostile(player,blocked)||blocked.GetPart<SpreadTerritoryPart>()?.IsEnforcingAgainst(player,zone)==true))
@@ -159,7 +165,13 @@ namespace CavesOfOoo.Web
         void Stairs(bool up)
         {
             var here=zone.GetEntityCell(player);
-            if(here==null||!(up?here.HasObjectWithPart<StairsUpPart>():here.HasObjectWithPart<StairsDownPart>())){error="Stand on the "+(up?"up":"down")+" stairs first.";return;}
+            if(here==null)return;
+            if(!(up?here.HasObjectWithPart<StairsUpPart>():here.HasObjectWithPart<StairsDownPart>()))
+            {
+                if(up&&CanEnterWorldMap()){Travel("world");return;}
+                if(!up&&OnWorldMap){Travel("local");return;}
+                error="Stand on the "+(up?"up":"down")+" stairs first.";return;
+            }
             var r=ZoneTransitionSystem.TransitionPlayerVertical(player,zone,!up,here.X,here.Y,zones);
             if(r.Success){EnterZone(r);EndTurn();}else error="The way is blocked.";
         }

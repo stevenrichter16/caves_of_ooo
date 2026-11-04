@@ -10,7 +10,7 @@ using CavesOfOoo.Web;
 // Console-level integration contracts for the real shared engine and browser
 // facade. These run without Unity, DOM, WebAssembly, or synthetic game rules.
 // Temporary fixtures are explicitly owned, cleaned up, and never shipped content.
-internal static class Program
+internal static partial class Program
 {
     private static readonly BrowserGame Game = new();
     private static readonly List<object> Results = new();
@@ -41,6 +41,7 @@ internal static class Program
         Run("Measured Throw preserves its distinct preparation and launch turns", MeasuredThrow);
         Run("cellar supplies repair the actual opening well and persist", OpeningRepair);
         Run("crafting previews and brews use native ownership and free menu timing", NativeBrew);
+        RunWorldTravelContracts();
         if (Failures == 0 && args.Contains("--opening-snapshot", StringComparer.Ordinal))
             File.WriteAllText("/tmp/coo-opening-view.json", Game.NewGame("classic", 8128, "Wanderer"));
         Console.WriteLine(JsonSerializer.Serialize(new { total = Results.Count, passed = Results.Count - Failures, failed = Failures, cases = Results }));

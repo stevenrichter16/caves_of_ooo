@@ -20,8 +20,10 @@ namespace CavesOfOoo.Web
         public string Snapshot()
         {
             if(!IsReady)return JsonConvert.SerializeObject(new {revision,error,ready=false});
-            var here=zone.GetEntityCell(player);var cells=new List<object>(1600);
-            for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+            var here=zone.GetEntityCell(player);bool isWorldMap=OnWorldMap;
+            var (worldX,worldY,depth)=WorldCoordinates();var biome=zones.WorldMap.GetBiome(worldX,worldY);
+            var cells=isWorldMap?WorldMapCells():new List<object>(1600);
+            if(!isWorldMap)for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
             {
                 var cell=zone.GetCell(x,y);if(!cell.Explored)continue;
                 Entity top=null,groundOwner=null;
@@ -58,7 +60,8 @@ namespace CavesOfOoo.Web
                     target=selected==null?null:new {id=selected.ID,name=selected.GetDisplayName(),art=Art(selected,lookX,lookY)},
                     reachable=selected!=null&&Adjacent(selected),
                     actions=selected!=null&&Adjacent(selected)?WorldInteractionSystem.GatherActions(selected,player).Select(a=>new{name=a.Display,command=a.Command}).ToArray():null,
-                    items=InventorySystem.GetTakeableItemsInCell(lookCell,player).Select(e=>ItemRow(e)).ToArray(),underfoot=here!=null&&here.X==lookX&&here.Y==lookY};
+                    items=InventorySystem.GetTakeableItemsInCell(lookCell,player).Select(e=>ItemRow(e)).ToArray(),underfoot=here!=null&&here.X==lookX&&here.Y==lookY,
+                    mapLocation=isWorldMap?MapLocation(lookX,lookY):null};
             }
             object conversation=ConversationManager.IsActive?new {speaker=ConversationManager.Speaker?.GetDisplayName(),text=ConversationManager.CurrentText,
                 choices=ConversationManager.VisibleChoices.Select((c,i)=>new{index=i,text=c.Text}).ToArray(),escape=ConversationManager.CurrentNode?.AllowEscape??true}:null;
@@ -69,6 +72,9 @@ namespace CavesOfOoo.Web
             object contents=container!=null&&Adjacent(container)?new{name=container.GetDisplayName(),items=container.GetPart<ContainerPart>()?.Contents.Select(e=>ItemRow(e)).ToArray()}:null;
             return JsonConvert.SerializeObject(new {revision,ready=true,error,faulted,gameId,build=buildId,seed=zones.WorldSeed,
                 name=player.GetDisplayName(),tick=turns.TickCount,zone=zone.ZoneID,zoneName=PlaceName(),x=here?.X??0,y=here?.Y??0,width=Zone.Width,height=Zone.Height,
+                isWorldMap,worldX,worldY,depth,biome=biome.ToString(),regionName=WorldMapZoneBuilder.GetBiomeRender(biome).displayName,
+                mapBounds=isWorldMap?new{x=WorldMap.WorldMapXOffset,y=WorldMap.WorldMapYOffset,width=WorldMap.Width,height=WorldMap.Height}:null,
+                mapLocation=isWorldMap?MapLocation(here.X,here.Y):null,travel=new{canEnter=CanEnterWorldMap(),canLeave=isWorldMap},journey=panel=="map"?JourneyView():null,
                 hp=player.GetStatValue("Hitpoints"),maxHp=player.GetStat("Hitpoints")?.Max??40,dead=Dead,
                 level=player.GetStatValue("Level"),focus=player.GetStatValue("Focus"),drams=TradeSystem.GetDrams(player),weight=pack.GetCarriedWeight(),
                 stats=new[]{"Strength","Agility","Toughness","Intelligence","Willpower","Ego","AV","DV","Speed","XP","SP"}.Select(s=>new{name=s,value=player.GetStatValue(s)}).ToArray(),
@@ -79,10 +85,17 @@ namespace CavesOfOoo.Web
         }
         string PlaceName()
         {
+            if(OnWorldMap)return "World map";
             if(zone.ZoneID=="Overworld.11.10.0")return "Gleaners’ Glade";
             if(zone.ZoneID=="Overworld.11.10.1")return "Gleaners’ Cellar";
             if(zone.ZoneID=="Overworld.10.10.0")return "Sill";
-            return zone.ZoneID.Replace("Overworld.","The Overworld · ").Replace('.','·');
+            var (x,y,depth)=WorldCoordinates();
+            if(!zones.WorldMap.InBounds(x,y))return zone.ZoneID;
+            // The actor is physically in this area, so its local name is known.
+            string name=zones.WorldMap.GetPOI(x,y)?.Name;
+            if(string.IsNullOrWhiteSpace(name))name=WorldMapZoneBuilder.GetBiomeRender(zones.WorldMap.GetBiome(x,y)).displayName;
+            name=char.ToUpperInvariant(name[0])+name.Substring(1);
+            return depth>0?name+" · depth "+depth:name;
         }
         static string Art(Entity e,int x,int y)
         {

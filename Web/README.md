@@ -14,8 +14,11 @@ Open the deployed site in Safari on iPhone; Share → Add to Home Screen gives i
 - Pack holds equipment, consumables, grouped pickup, crafting and alchemy. Nearby interactions expose conversations, trading, gathering, repairs and world actions.
 - Abilities target visible cells. Throws have a preview and explicit confirmation; Measured Throw prepares for one turn and launches on a separately confirmed turn.
 - Skills and attributes use the native requirements and purchase confirmation. The journal shows objectives and completed quests.
-- Stand on stairs, then use More → Ascend/Descend. Cross a zone edge to travel.
-- Keyboard shortcuts: I pack, A abilities, E interactions, Shift+K skills, Shift+J journal, M visited places, C character, F5 checkpoint, Escape close.
+- Open More → World map, then Set out to travel between areas. Use the compass on the map and Enter area to explore on foot. Tap landmarks to read for free; zoom and pan for a closer view.
+- Stand on stairs, then use More → Ascend/Descend. The `<` key also enters the world map from the surface; `>` enters the area beneath your world-map marker. Crossing a local zone edge still works.
+- Keyboard shortcuts: I pack, A abilities, E interactions, Shift+K skills, Shift+J journal, M world map guide, C character, F5 checkpoint, Escape close.
+
+Map travel uses native time costs: entering/leaving the map takes one ordinary turn, and moving one world cell also adds the native travel surcharge. Returning immediately to the area you left restores your previous square. The native game remembers the last surface location, not a separate return square for every area.
 
 Read the notice in Gleaners’ Glade. The well needs fire clay; the cellar and neighboring settlement of Sill are part of the original world.
 
@@ -39,11 +42,14 @@ npm run test:storage
 npx playwright install chromium webkit
 npm run test:browser
 npm run test:landscape
+npm run test:travel
 ```
 
 `dist/` is the deployable static site. `scripts/build.py` generates a content-versioned service worker from the exact release. An update waits for existing game tabs to close; it cannot replace assemblies under a running game. Serve `.wasm` as `application/wasm` over HTTPS in production. The published Site keeps its own private hosting identity. This directory contains the portable source; no deployment credential is stored in the repository.
 
 `Verification/browser-smoke.cjs` and `Verification/landscape-smoke.cjs` accept `COO_SMOKE_URL` and `COO_SMOKE_OUTPUT`. The landscape suite covers three phone sizes, menus, aiming, movement, checkpoints and orientation changes using the real WASM game. Mobile viewport/WebKit tests do not establish physical iPhone performance or OS background lifecycle behavior. See `Verification/RESULTS.md` for this release’s evidence and remaining limits.
+
+`Verification/world-travel-smoke.cjs` uses the same variables and optional `COO_SMOKE_CASE`. It covers real world-map entry, terrain/landmark projection, touch inspection, Sill travel, native return-position behavior, local zoom preservation and saved world-map continuation. The source-audited migration backlog and scope are in `Docs/WEB-MIGRATION.md`.
 
 ## Architecture and future updates
 

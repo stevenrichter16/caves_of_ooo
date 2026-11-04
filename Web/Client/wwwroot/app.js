@@ -44,11 +44,15 @@ function playState(next){
 function render(){
  if(!state)return;
  document.body.classList.toggle('targeting',!!target);
+ document.body.classList.toggle('world-map',!!state.isWorldMap);
  text('landscape-target-name',target?.label||'');
- text('location',state.zoneName);text('biome-label',state.zone.endsWith('.0')?'THE OVERWORLD':'BENEATH THE SURFACE');text('position',`${state.x}, ${state.y}`);text('turn-number',`TICK ${state.tick}`);
+ text('location',state.zoneName);text('biome-label',state.isWorldMap?'THE LANDS OF OOO':`${state.regionName||'The overworld'}${state.depth>0?' · below the surface':''}`.toUpperCase());text('position',state.isWorldMap?`${state.worldX}, ${state.worldY}`:`${state.x}, ${state.y}`);text('turn-number',`TICK ${state.tick}`);
+ text('interact-label',state.isWorldMap?'Enter area':'Interact');
+ text('map-instruction',state.isWorldMap?'Tap a place to read · compass to travel · Enter area to explore':'Tap to look · drag to pan · the world waits for you');
  text('character-name',state.name);text('character-build',`${state.build||'Wayfarer'} · level ${state.level||1}`);text('hp-text',`${state.hp} / ${state.maxHp}`);$('hp-bar').style.width=`${Math.max(0,Math.min(100,100*state.hp/state.maxHp))}%`;
  text('drams',state.drams);text('focus',state.focus);text('mobile-hp',`♥ ${state.hp}/${state.maxHp}`);text('mobile-focus',`Focus ${state.focus}`);text('mobile-drams',`${state.drams} drams`);text('mobile-turn',`t ${state.tick}`);
- $('log-lines').replaceChildren(...narrativeMessages().slice(-3).map(m=>el('p',m)));
+ const recent=state.isWorldMap?[`${clean(state.mapLocation?.name||state.regionName)} · ${state.worldX}, ${state.worldY} · Enter area to explore`]:narrativeMessages().slice(-3);
+ $('log-lines').replaceChildren(...recent.map(m=>el('p',m)));
  $('wait-button').disabled=!!target||state.dead||state.faulted;
  $('target-banner').hidden=!target;$('map-instruction').hidden=!!target;
  if(target){text('target-label',target.label);text('confirm-target',target.kind==='throw'?'Review throw':'Confirm');$('confirm-target').disabled=!map.target;}
@@ -92,6 +96,13 @@ function renderPanel(){
    showOverlay(item.name,'IN YOUR HANDS',list);break;}
   case 'look':{
    const look=state.look;if(!look){closeLocal();return;}
+   if(state.isWorldMap&&look.mapLocation){
+    const place=look.mapLocation;
+    list.push(el('p',`The ${place.biome} · ${place.visited?'Visited':'Not yet visited'}`,'details'));
+    if(look.underfoot)list.push(button('Enter this area · 1 turn',()=>act('travel',{value:'local'}),'gold'));
+    else list.push(el('p','Use the compass to travel here, then choose Enter area. Reading this place takes no time.','details'));
+    showOverlay(place.name,`${place.worldX}, ${place.worldY} · LOOKING TAKES NO TIME`,list);break;
+   }
    list.push(el('p',look.summary),...look.details.map(d=>el('p',d,'details')));
    if(look.actions?.length)list.push(heading('Interactions'),rows(look.actions.map(a=>row(a.name,'',()=>worldAction(look.target.id,a)))));
    else if(look.target&&!look.reachable)list.push(el('p','Move beside it to interact.','details'));
@@ -154,8 +165,17 @@ function renderPanel(){
    list.push(el('p',`You: ${state.drams} drams · ${clean(state.trade.name)}: ${state.trade.drams} drams`,'details'),heading('Buy'),rows(state.trade.stock.map(i=>row(i.name,`Stack of ${i.count}`,()=>act('buy',{id:i.id}),`${i.price} drams`))),heading('Sell'),rows(state.trade.sell.map(i=>row(i.name,'',()=>act('sell',{id:i.id}),`${i.price} drams`))));
    showOverlay(state.trade.name,'TRADE',list);break;
   case 'map':
-   list.push(el('p','Walk to a zone’s edge to continue into the next place. Use stairs to travel below.','details'),rows(state.visited.map(v=>row(v,v===state.zone?'You are here':'Visited',()=>toast('Travel there through the world.'),v===state.zone?'⌖':'·'))));
-   showOverlay('Places visited','YOUR JOURNEY',list);break;
+   list.push(el('p','The compass crosses one area at a time on the world map. Travel advances time; reading places is free. Enter an area to explore it on foot.','details'));
+   if(state.travel.canLeave)list.push(button('Enter this area · 1 turn',()=>act('travel',{value:'local'}),'gold'),button('← Return to the map',()=>act('close'),'outline'));
+   else if(state.travel.canEnter)list.push(button('Set out on the world map · 1 turn',()=>act('travel',{value:'world'}),'gold'));
+   else list.push(el('p','Return to the surface using the stairs before setting out on the world map.','details'));
+   list.push(heading('Regions'),el('p','The Spread · The Sodden · The Beating · The Grovelands · The Overwrit · The Stump','details'),heading('Known places'));
+   for(const place of [...(state.journey?.places||[])].sort((a,b)=>Number(b.current)-Number(a.current)||a.name.localeCompare(b.name))){
+    const detail=`${place.x}, ${place.y} · ${place.biome} · ${place.current?'You are here':place.visited?'Visited':'Unvisited'}`;
+    if(state.isWorldMap)list.push(row(place.name,detail,()=>act('look',{x:place.x+state.mapBounds.x,y:place.y+state.mapBounds.y}),place.glyph||'·'));
+    else {const entry=el('div',null,'row place-entry'),body=el('div');body.append(el('strong',place.name),el('small',detail));entry.append(body,el('span',place.glyph||'·','price'));list.push(entry);}
+   }
+   showOverlay('World map','YOUR JOURNEY',list);break;
   default:$('overlay').hidden=true;break;
  }
 }
@@ -191,18 +211,20 @@ const compass=document.querySelector('.compass');
 for(const type of ['dblclick','contextmenu','selectstart'])compass.addEventListener(type,event=>event.preventDefault());
 document.querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>{const [x,y]=b.dataset.move.split(',').map(Number);if(target){const origin=map.target||state;map.target={x:Math.max(0,Math.min(79,origin.x+x)),y:Math.max(0,Math.min(24,origin.y+y))};map.draw();render();}else act('step',{x,y});});
 $('wait-button').onclick=()=>act('wait');document.querySelectorAll('[data-panel]').forEach(b=>b.onclick=()=>act('panel',{value:b.dataset.panel}));$('log-open').onclick=()=>act('panel',{value:'journal'});
+$('interact-button').onclick=()=>state?.isWorldMap?act('travel',{value:'local'}):act('panel',{value:'nearby'});
 function gameMenu(){if(!state||busy)return;localMenu=true;showOverlay('Your expedition','TAKE YOUR TIME',[rows([
  row('Save checkpoint','Keep this moment on this device',async()=>{try{await saveCheckpoint();closeLocal();}catch{}},'↓'),
  row('Export checkpoint','Download a backup file',exportBackup,'↗'),
  row('Character','Attributes, equipment, and abilities',()=>act('panel',{value:'character'})),
  row('Skills & attributes','Learn and improve',()=>act('panel',{value:'skills'})),
- row('Descend','Stand on a downward stair',()=>{closeLocal();act('stairs',{value:'down'});},'↓'),
- row('Ascend','Stand on an upward stair',()=>{closeLocal();act('stairs',{value:'up'});},'↑'),
+ row('World map','Regions, known places, and travel',()=>act('panel',{value:'map'}),'⌖'),
+ row(state.isWorldMap?'Enter area':'Descend',state.isWorldMap?'Explore the place beneath your marker':'Stand on a downward stair',()=>{closeLocal();act('stairs',{value:'down'});},'↓'),
+ row('Ascend',state.travel.canEnter?'Use stairs or set out on the world map':'Stand on an upward stair',()=>{closeLocal();act('stairs',{value:'up'});},'↑'),
  row('How to play','Touch and keyboard controls',showHelp,'?'),
  row('Begin another expedition','Your saved expedition is kept',async()=>{await saveCheckpoint();closeLocal();showCreation();},'+')
  ])]);}
 $('more-button').onclick=gameMenu;$('menu-button').onclick=gameMenu;$('save-button').onclick=()=>saveCheckpoint().catch(()=>{});
-function showHelp(){localMenu=true;showOverlay('One turn at a time','A FIELD GUIDE',[el('p','The world waits while you think. Use the compass to move in eight directions. Bump into a hostile creature to strike; the center dot waits one turn.'),el('p','Tap a tile to inspect it for free. Drag the map to look farther away. Interact lists the things within reach: conversations, supplies, doors, plants, and the work of a place.'),el('p','Pack holds your belongings and equipment. Abilities opens targeting: choose a tile, then confirm. Looking, reading, and choosing never rush you.'),heading('Keyboard'),el('p','Arrow keys or H J K L move. Y U B N move diagonally. Period waits. I opens your pack; A abilities; E interactions; Shift+K skills; Shift+J journal; M visited places. Esc closes a menu; F5 saves. Use < and > on stairs.'),heading('Along the way'),el('p','Read the notice near the glade’s center. The well needs fire clay. There is a cellar to the west, and beyond the glade lies Sill.'),heading('On your iPhone'),el('p','Open this page in Safari. Use Share → Add to Home Screen for a full-screen expedition. Once the game has finished downloading, it can reopen offline while its cached files remain on your device.'),heading('Your progress'),el('p','Checkpoints save locally after several actions, on travel, and when you press Save. Wait for “Saved on this device” before closing. Export a backup before clearing browser data. Different browsers keep separate expeditions.')]);}
+function showHelp(){localMenu=true;showOverlay('One turn at a time','A FIELD GUIDE',[el('p','The world waits while you think. Use the compass to move in eight directions. Bump into a hostile creature to strike; the center dot waits one turn.'),el('p','Tap a tile to inspect it for free. Drag the map to look farther away. Interact lists the things within reach: conversations, supplies, doors, plants, and the work of a place.'),el('p','Pack holds your belongings and equipment. Abilities opens targeting: choose a tile, then confirm. Looking, reading, and choosing never rush you.'),heading('Keyboard'),el('p','Arrow keys or H J K L move. Y U B N move diagonally. Period waits. I opens your pack; A abilities; E interactions; Shift+K skills; Shift+J journal; M opens the world map guide. Esc closes a menu; F5 saves. Use < and > on stairs; < from the surface enters the world map, and > enters the area beneath your marker.'),heading('World travel'),el('p','Open More → World map to set out from the surface. Move with the compass, tap landmarks to read, then choose Enter area. Returning immediately to the area you left restores your previous position.'),heading('Along the way'),el('p','Read the notice near the glade’s center. The well needs fire clay. There is a cellar to the west, and beyond the glade lies Sill.'),heading('On your iPhone'),el('p','Open this page in Safari. Use Share → Add to Home Screen for a full-screen expedition. Once the game has finished downloading, it can reopen offline while its cached files remain on your device.'),heading('Your progress'),el('p','Checkpoints save locally after several actions, on travel, and when you press Save. Wait for “Saved on this device” before closing. Export a backup before clearing browser data. Different browsers keep separate expeditions.')]);}
 $('help-start').onclick=showHelp;
 function showDeath(){localMenu=true;target=null;showOverlay('The expedition ends','EVERY ROAD LEAVES A STORY',[el('p',`${clean(state.name)} fell in ${state.zoneName}. Your last living checkpoint is kept.`),actions([['Continue checkpoint',()=>continueGame(state.gameId),'gold'],['Another expedition',()=>{closeLocal();showCreation();}]]),...narrativeMessages().slice(-6).map(m=>el('div',m,'journal-entry'))]);}
 async function compress(raw){return new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer());}
