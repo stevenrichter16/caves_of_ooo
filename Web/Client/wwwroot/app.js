@@ -181,6 +181,10 @@ $('world-canvas').addEventListener('pointermove',e=>{if(!pointer||pointer.id!==e
 $('world-canvas').addEventListener('pointerup',e=>{const p=pointer;pointer=null;if(!p||p.id!==e.pointerId||p.moved||busy||!state)return;const rect=e.currentTarget.getBoundingClientRect(),tile=map.tileAt(e.clientX-rect.left,e.clientY-rect.top);if(!tile)return;if(target){if(!state.cells.some(t=>t.x===tile.x&&t.y===tile.y&&t.v)){toast('Choose a visible place.');return;}map.target=tile;map.draw();render();}else act('look',tile);});
 $('world-canvas').addEventListener('pointercancel',()=>pointer=null);
 $('zoom-in').onclick=()=>map.zoom(.2);$('zoom-out').onclick=()=>map.zoom(-.2);$('center-map').onclick=()=>map.center();
+// Keep a single click activation path for touch, mouse, keyboard and assistive tech.
+// Cancel browser-only follow-up gestures, including Safari selection/callout fallbacks.
+const compass=document.querySelector('.compass');
+for(const type of ['dblclick','contextmenu','selectstart'])compass.addEventListener(type,event=>event.preventDefault());
 document.querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>{const [x,y]=b.dataset.move.split(',').map(Number);if(target){const origin=map.target||state;map.target={x:Math.max(0,Math.min(79,origin.x+x)),y:Math.max(0,Math.min(24,origin.y+y))};map.draw();render();}else act('step',{x,y});});
 $('wait-button').onclick=()=>act('wait');document.querySelectorAll('[data-panel]').forEach(b=>b.onclick=()=>act('panel',{value:b.dataset.panel}));$('log-open').onclick=()=>act('panel',{value:'journal'});
 function gameMenu(){if(!state||busy)return;localMenu=true;showOverlay('Your expedition','TAKE YOUR TIME',[rows([

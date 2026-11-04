@@ -182,6 +182,34 @@ async function exercise(record, engine, viewport) {
       return { before, after };
     });
 
+    await step(record, 'rapid direction taps keep scale, selection, and one turn per tap', async () => {
+      const before = await stateFromUi(page);
+      const originalScale = await page.evaluate(() => visualViewport?.scale || 1);
+      const originalWidth = await page.evaluate(() => innerWidth);
+      let tick = Number(before.tick.replace('TICK ', ''));
+      const intervals = []; let previousTap = 0;
+      for (const direction of ['1,0','1,0','-1,0','-1,0']) {
+        const box = await page.locator(`[data-move="${direction}"]`).boundingBox();
+        const now = Date.now(); if(previousTap) intervals.push(now - previousTap); previousTap = now;
+        await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
+        tick += 10;
+        await page.waitForFunction(expected => Number(document.getElementById('turn-number').textContent.replace('TICK ', '')) === expected,
+          tick, { timeout: STEP_TIMEOUT });
+        await page.waitForFunction(() => !document.getElementById('save-state').textContent.startsWith('Saving'), null, { timeout: STEP_TIMEOUT });
+      }
+      const after = await stateFromUi(page);
+      const gestures = await page.evaluate(() => ({scale:visualViewport?.scale || 1,width:innerWidth,selection:getSelection()?.toString() || ''}));
+      check(after.position === before.position, `The four directional taps did not return to their starting point: ${JSON.stringify({before,after})}`);
+      check(gestures.scale === originalScale && gestures.width === originalWidth, `Repeated taps zoomed the page: ${JSON.stringify(gestures)}`);
+      check(!gestures.selection, `Repeated taps selected text: ${gestures.selection}`);
+      // A keyboard-activated click must continue to use the same one-turn action path.
+      await page.locator('#wait-button').focus(); await page.keyboard.press('Space'); tick += 10;
+      await page.waitForFunction(expected => Number(document.getElementById('turn-number').textContent.replace('TICK ', '')) === expected,
+        tick, { timeout: STEP_TIMEOUT });
+      await page.waitForFunction(() => !document.getElementById('save-state').textContent.startsWith('Saving'), null, { timeout: STEP_TIMEOUT });
+      await screenshots('rapid-taps'); return {before,after,gestures,intervalsMs:intervals,keyboardWaitTick:tick};
+    });
+
     const saved = await step(record, 'explicit checkpoint reaches browser storage', async () => {
       await openExpeditionMenu(page);
       await page.getByRole('button', { name: /^Save checkpoint/ }).tap();

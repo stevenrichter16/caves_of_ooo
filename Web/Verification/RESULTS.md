@@ -18,3 +18,11 @@ Initial portrait acceptance failed: a synthesized touch click dismissed the insp
 Receipts are in `evidence/`. Browser evidence covers mobile viewport emulation on Linux, not physical iPhone hardware, iOS Safari lifecycle behavior, or device performance. The original world/content runs, but every late-game quest, ability, crafting variant and region has not been browser-qualified. No desktop visual/audio or save-format parity claim is made.
 
 Build succeeds with existing core warnings (reflection-populated fields, member hiding, and obsolete serialization APIs). Imported source whitespace is preserved. Browser adapter syntax and patch-whitespace checks pass.
+
+## Repeated-touch fix — 4 November 2026
+
+Release `cc5955d5d7843d31` blocks browser gestures on the compass, disables button text selection/callouts, and keeps one click activation path. Gesture suppression is scoped away from scrollable menus and reading panels.
+
+The actual-WASM browser suite now passes 50 checks in Chromium/WebKit at both phone orientations. Each case sends four directional taps 75–129 ms apart: exactly four turns, return to the same position, viewport scale 1, unchanged viewport width, and empty text selection. Keyboard Space still spends exactly one wait turn. Existing save/restore, import/export and offline checks pass; browser error counts remain zero. All 30 storage/coordinator checks pass. No gameplay-core source changed, so native gameplay contracts were not rerun.
+
+Receipt: `evidence/touch-browser-results.json`. This is browser emulation, not a physical iPhone Safari gesture test. Existing installations need their open game clients closed before the waiting offline update can activate.

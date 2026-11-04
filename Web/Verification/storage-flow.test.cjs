@@ -39,7 +39,7 @@ function harness(initialStore, candidates = []) {
   const document = {
     hidden: false, body: element(),
     getElementById(id) { if (!elements.has(id)) elements.set(id, element()); return elements.get(id); },
-    createElement: () => element(), querySelectorAll: () => [],
+    createElement: () => element(), querySelector: () => element(), querySelectorAll: () => [],
     addEventListener: (name, handler) => { documentHandlers[name] = handler; },
   };
   const stores = [initialStore, ...candidates];
