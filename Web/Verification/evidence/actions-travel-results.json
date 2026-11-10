@@ -1,0 +1,2054 @@
+{
+  "startedAt": "2026-11-08T03:03:52.463Z",
+  "url": "http://127.0.0.1:8098",
+  "scope": "Real WASM and IndexedDB; emulated phone viewports; read-only renderer observations; no game fixtures.",
+  "nativeReturnPolicy": "The native actor remembers its last surface zone and position, not a position per zone. An immediate same-zone return restores its exact position; ascending from Sill replaces that memory, so later glade descent uses the center.",
+  "cases": [
+    {
+      "name": "chromium-portrait",
+      "engine": "chromium",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "passed",
+      "startedAt": "2026-11-08T03:03:52.465Z",
+      "steps": [
+        {
+          "name": "real seeded Classic glade boots and saves",
+          "status": "passed",
+          "ms": 9422,
+          "detail": {
+            "mode": "local",
+            "location": "Gleaners’ Glade",
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Travel chromium-portrait",
+            "zone": "Overworld.11.10.0",
+            "worldX": 11,
+            "worldY": 10
+          }
+        },
+        {
+          "name": "manual local zoom and World map reader are free",
+          "status": "passed",
+          "ms": 777,
+          "detail": 1.55
+        },
+        {
+          "name": "moved glade position restores exactly on an immediate native roundtrip",
+          "status": "passed",
+          "ms": 3016,
+          "detail": {
+            "moved": {
+              "mode": "local",
+              "location": "Gleaners’ Glade",
+              "position": "41, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Travel chromium-portrait",
+              "zone": "Overworld.11.10.0",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "ascent": {
+              "before": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "41, 12",
+                "tick": 20,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 30,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 30,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "41, 12",
+                "tick": 40,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "policy": "The native actor remembers its last surface zone and position, not a position per zone. An immediate same-zone return restores its exact position; ascending from Sill replaces that memory, so later glade descent uses the center."
+          }
+        },
+        {
+          "name": "world-map entry costs exactly one turn",
+          "status": "passed",
+          "ms": 936,
+          "detail": {
+            "before": {
+              "mode": "local",
+              "location": "Gleaners’ Glade",
+              "position": "41, 12",
+              "tick": 40,
+              "hp": "40 / 40",
+              "name": "Travel chromium-portrait",
+              "zone": "Overworld.11.10.0",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "world",
+              "location": "World map",
+              "position": "11, 10",
+              "tick": 50,
+              "hp": "40 / 40",
+              "name": "Travel chromium-portrait",
+              "zone": "WorldMap",
+              "worldX": 11,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "all400 cells fit and receive taps with native markers and44px controls",
+          "status": "passed",
+          "ms": 249,
+          "detail": {
+            "mode": "world",
+            "isWorldMap": true,
+            "mapBounds": {
+              "x": 30,
+              "y": 3,
+              "width": 20,
+              "height": 20
+            },
+            "scale": 1,
+            "position": {
+              "x": 41,
+              "y": 13,
+              "worldX": 11,
+              "worldY": 10
+            },
+            "cellCount": 400,
+            "uniqueCells": 400,
+            "hitTestedCells": 400,
+            "blockedCellCount": 0,
+            "blockedCells": [],
+            "namedCells": 400,
+            "landmarkCount": 27,
+            "sill": {
+              "x": 40,
+              "y": 13,
+              "v": true,
+              "g": "!",
+              "c": "&Y",
+              "art": null,
+              "name": "Sill village",
+              "biome": "Spread",
+              "visited": false,
+              "mapGround": "sill-environment:2",
+              "mapTint": 0.65,
+              "mapGlyph": "!",
+              "mapColor": "&Y",
+              "landmark": true,
+              "hostile": false,
+              "solid": false
+            },
+            "playerCell": {
+              "x": 41,
+              "y": 13,
+              "v": true,
+              "g": "@",
+              "c": "&Y",
+              "art": "opening-base:0",
+              "name": "the Spread",
+              "biome": "Spread",
+              "visited": true,
+              "mapGround": "sill-environment:0",
+              "mapTint": 0.65,
+              "mapGlyph": ",",
+              "mapColor": "&g",
+              "landmark": false,
+              "hostile": false,
+              "solid": false
+            },
+            "bounds": {
+              "ox": -336,
+              "oy": 9,
+              "tw": 13,
+              "th": 19,
+              "W": 368,
+              "H": 480.0625
+            },
+            "canvas": {
+              "width": 368,
+              "height": 480.0625
+            },
+            "extent": {
+              "left": 54,
+              "top": 66,
+              "right": 314,
+              "bottom": 446
+            }
+          }
+        },
+        {
+          "name": "remote world inspection is free and cannot teleport",
+          "status": "passed",
+          "ms": 283,
+          "detail": {
+            "inspectedLogicalCell": [
+              13,
+              14
+            ],
+            "point": {
+              "x": 229.5,
+              "y": 341.5
+            },
+            "text": "The Beating · Not yet visitedUse the compass to travel here, then choose Enter area. Reading this place takes no time."
+          }
+        },
+        {
+          "name": "west compass moves one world cell for20ticks",
+          "status": "passed",
+          "ms": 137,
+          "detail": {
+            "before": {
+              "mode": "world",
+              "location": "World map",
+              "position": "11, 10",
+              "tick": 50,
+              "hp": "40 / 40",
+              "name": "Travel chromium-portrait",
+              "zone": "WorldMap",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 70,
+              "hp": "40 / 40",
+              "name": "Travel chromium-portrait",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "Enter area descends into actual Sill",
+          "status": "passed",
+          "ms": 2041,
+          "detail": {
+            "before": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 70,
+              "hp": "40 / 40",
+              "name": "Travel chromium-portrait",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "local",
+              "location": "Sill",
+              "position": "39, 11",
+              "tick": 80,
+              "hp": "40 / 40",
+              "name": "Travel chromium-portrait",
+              "zone": "Overworld.10.10.0",
+              "worldX": 10,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "return to map and east to glade preserve native travel",
+          "status": "passed",
+          "ms": 2272,
+          "detail": {
+            "ascent": {
+              "before": {
+                "mode": "local",
+                "location": "Sill",
+                "position": "39, 11",
+                "tick": 80,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "Overworld.10.10.0",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 90,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              }
+            },
+            "east": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 90,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 110,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 110,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "40, 12",
+                "tick": 120,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "localZoom": 1.55,
+            "policy": "The native actor remembers its last surface zone and position, not a position per zone. An immediate same-zone return restores its exact position; ascending from Sill replaces that memory, so later glade descent uses the center."
+          }
+        },
+        {
+          "name": "checkpoint saves while physically on world map",
+          "status": "passed",
+          "ms": 2082,
+          "detail": {
+            "mode": "world",
+            "location": "World map",
+            "position": "10, 10",
+            "tick": 150,
+            "hp": "40 / 40",
+            "name": "Travel chromium-portrait",
+            "zone": "WorldMap",
+            "worldX": 10,
+            "worldY": 10
+          }
+        },
+        {
+          "name": "new page Continue restores world position and supports descent",
+          "status": "passed",
+          "ms": 11428,
+          "detail": {
+            "restored": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 150,
+              "hp": "40 / 40",
+              "name": "Travel chromium-portrait",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 150,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Sill",
+                "position": "39, 11",
+                "tick": 160,
+                "hp": "40 / 40",
+                "name": "Travel chromium-portrait",
+                "zone": "Overworld.10.10.0",
+                "worldX": 10,
+                "worldY": 10
+              }
+            }
+          }
+        },
+        {
+          "name": "no browser runtime console or HTTP failures",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0,
+            "requestFailures": []
+          }
+        }
+      ],
+      "errors": [],
+      "requestFailures": [],
+      "screenshots": [
+        "chromium-portrait-glade.png",
+        "chromium-portrait-travel-panel.png",
+        "chromium-portrait-world-map.png",
+        "chromium-portrait-sill.png",
+        "chromium-portrait-returned-glade.png",
+        "chromium-portrait-saved-world-map.png",
+        "chromium-portrait-continued-world-map.png",
+        "chromium-portrait-continued-sill.png"
+      ],
+      "release": "0e3ec926d6c4379d",
+      "finishedAt": "2026-11-08T03:04:25.282Z"
+    },
+    {
+      "name": "chromium-landscape",
+      "engine": "chromium",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "status": "passed",
+      "startedAt": "2026-11-08T03:04:25.283Z",
+      "steps": [
+        {
+          "name": "real seeded Classic glade boots and saves",
+          "status": "passed",
+          "ms": 8838,
+          "detail": {
+            "mode": "local",
+            "location": "Gleaners’ Glade",
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Travel chromium-landscape",
+            "zone": "Overworld.11.10.0",
+            "worldX": 11,
+            "worldY": 10
+          }
+        },
+        {
+          "name": "manual local zoom and World map reader are free",
+          "status": "passed",
+          "ms": 780,
+          "detail": 1.55
+        },
+        {
+          "name": "moved glade position restores exactly on an immediate native roundtrip",
+          "status": "passed",
+          "ms": 3514,
+          "detail": {
+            "moved": {
+              "mode": "local",
+              "location": "Gleaners’ Glade",
+              "position": "41, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Travel chromium-landscape",
+              "zone": "Overworld.11.10.0",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "ascent": {
+              "before": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "41, 12",
+                "tick": 20,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 30,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 30,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "41, 12",
+                "tick": 40,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "policy": "The native actor remembers its last surface zone and position, not a position per zone. An immediate same-zone return restores its exact position; ascending from Sill replaces that memory, so later glade descent uses the center."
+          }
+        },
+        {
+          "name": "world-map entry costs exactly one turn",
+          "status": "passed",
+          "ms": 1098,
+          "detail": {
+            "before": {
+              "mode": "local",
+              "location": "Gleaners’ Glade",
+              "position": "41, 12",
+              "tick": 40,
+              "hp": "40 / 40",
+              "name": "Travel chromium-landscape",
+              "zone": "Overworld.11.10.0",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "world",
+              "location": "World map",
+              "position": "11, 10",
+              "tick": 50,
+              "hp": "40 / 40",
+              "name": "Travel chromium-landscape",
+              "zone": "WorldMap",
+              "worldX": 11,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "all400 cells fit and receive taps with native markers and44px controls",
+          "status": "passed",
+          "ms": 345,
+          "detail": {
+            "mode": "world",
+            "isWorldMap": true,
+            "mapBounds": {
+              "x": 30,
+              "y": 3,
+              "width": 20,
+              "height": 20
+            },
+            "scale": 1,
+            "position": {
+              "x": 41,
+              "y": 13,
+              "worldX": 11,
+              "worldY": 10
+            },
+            "cellCount": 400,
+            "uniqueCells": 400,
+            "hitTestedCells": 400,
+            "blockedCellCount": 0,
+            "blockedCells": [],
+            "namedCells": 400,
+            "landmarkCount": 27,
+            "sill": {
+              "x": 40,
+              "y": 13,
+              "v": true,
+              "g": "!",
+              "c": "&Y",
+              "art": null,
+              "name": "Sill village",
+              "biome": "Spread",
+              "visited": false,
+              "mapGround": "sill-environment:2",
+              "mapTint": 0.65,
+              "mapGlyph": "!",
+              "mapColor": "&Y",
+              "landmark": true,
+              "hostile": false,
+              "solid": false
+            },
+            "playerCell": {
+              "x": 41,
+              "y": 13,
+              "v": true,
+              "g": "@",
+              "c": "&Y",
+              "art": "opening-base:0",
+              "name": "the Spread",
+              "biome": "Spread",
+              "visited": true,
+              "mapGround": "sill-environment:0",
+              "mapTint": 0.65,
+              "mapGlyph": ",",
+              "mapColor": "&g",
+              "landmark": false,
+              "hostile": false,
+              "solid": false
+            },
+            "bounds": {
+              "ox": -63,
+              "oy": 0,
+              "tw": 10,
+              "th": 14,
+              "W": 674,
+              "H": 376
+            },
+            "canvas": {
+              "width": 674,
+              "height": 376
+            },
+            "extent": {
+              "left": 237,
+              "top": 42,
+              "right": 437,
+              "bottom": 322
+            }
+          }
+        },
+        {
+          "name": "remote world inspection is free and cannot teleport",
+          "status": "passed",
+          "ms": 527,
+          "detail": {
+            "inspectedLogicalCell": [
+              13,
+              14
+            ],
+            "point": {
+              "x": 372,
+              "y": 245
+            },
+            "text": "The Beating · Not yet visitedUse the compass to travel here, then choose Enter area. Reading this place takes no time."
+          }
+        },
+        {
+          "name": "west compass moves one world cell for20ticks",
+          "status": "passed",
+          "ms": 258,
+          "detail": {
+            "before": {
+              "mode": "world",
+              "location": "World map",
+              "position": "11, 10",
+              "tick": 50,
+              "hp": "40 / 40",
+              "name": "Travel chromium-landscape",
+              "zone": "WorldMap",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 70,
+              "hp": "40 / 40",
+              "name": "Travel chromium-landscape",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "Enter area descends into actual Sill",
+          "status": "passed",
+          "ms": 3271,
+          "detail": {
+            "before": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 70,
+              "hp": "40 / 40",
+              "name": "Travel chromium-landscape",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "local",
+              "location": "Sill",
+              "position": "39, 11",
+              "tick": 80,
+              "hp": "40 / 40",
+              "name": "Travel chromium-landscape",
+              "zone": "Overworld.10.10.0",
+              "worldX": 10,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "return to map and east to glade preserve native travel",
+          "status": "passed",
+          "ms": 8435,
+          "detail": {
+            "ascent": {
+              "before": {
+                "mode": "local",
+                "location": "Sill",
+                "position": "39, 11",
+                "tick": 80,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "Overworld.10.10.0",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 90,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              }
+            },
+            "east": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 90,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 110,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 110,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "40, 12",
+                "tick": 120,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "localZoom": 1.55,
+            "policy": "The native actor remembers its last surface zone and position, not a position per zone. An immediate same-zone return restores its exact position; ascending from Sill replaces that memory, so later glade descent uses the center."
+          }
+        },
+        {
+          "name": "checkpoint saves while physically on world map",
+          "status": "passed",
+          "ms": 7358,
+          "detail": {
+            "mode": "world",
+            "location": "World map",
+            "position": "10, 10",
+            "tick": 150,
+            "hp": "40 / 40",
+            "name": "Travel chromium-landscape",
+            "zone": "WorldMap",
+            "worldX": 10,
+            "worldY": 10
+          }
+        },
+        {
+          "name": "new page Continue restores world position and supports descent",
+          "status": "passed",
+          "ms": 13523,
+          "detail": {
+            "restored": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 150,
+              "hp": "40 / 40",
+              "name": "Travel chromium-landscape",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 150,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Sill",
+                "position": "39, 11",
+                "tick": 160,
+                "hp": "40 / 40",
+                "name": "Travel chromium-landscape",
+                "zone": "Overworld.10.10.0",
+                "worldX": 10,
+                "worldY": 10
+              }
+            }
+          }
+        },
+        {
+          "name": "no browser runtime console or HTTP failures",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0,
+            "requestFailures": []
+          }
+        }
+      ],
+      "errors": [],
+      "requestFailures": [],
+      "screenshots": [
+        "chromium-landscape-glade.png",
+        "chromium-landscape-travel-panel.png",
+        "chromium-landscape-world-map.png",
+        "chromium-landscape-sill.png",
+        "chromium-landscape-returned-glade.png",
+        "chromium-landscape-saved-world-map.png",
+        "chromium-landscape-continued-world-map.png",
+        "chromium-landscape-continued-sill.png"
+      ],
+      "release": "0e3ec926d6c4379d",
+      "finishedAt": "2026-11-08T03:05:13.426Z"
+    },
+    {
+      "name": "webkit-portrait",
+      "engine": "webkit",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "passed",
+      "startedAt": "2026-11-08T03:05:13.426Z",
+      "steps": [
+        {
+          "name": "real seeded Classic glade boots and saves",
+          "status": "passed",
+          "ms": 15905,
+          "detail": {
+            "mode": "local",
+            "location": "Gleaners’ Glade",
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Travel webkit-portrait",
+            "zone": "Overworld.11.10.0",
+            "worldX": 11,
+            "worldY": 10
+          }
+        },
+        {
+          "name": "manual local zoom and World map reader are free",
+          "status": "passed",
+          "ms": 1818,
+          "detail": 1.55
+        },
+        {
+          "name": "moved glade position restores exactly on an immediate native roundtrip",
+          "status": "passed",
+          "ms": 5997,
+          "detail": {
+            "moved": {
+              "mode": "local",
+              "location": "Gleaners’ Glade",
+              "position": "41, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Travel webkit-portrait",
+              "zone": "Overworld.11.10.0",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "ascent": {
+              "before": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "41, 12",
+                "tick": 20,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 30,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 30,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "41, 12",
+                "tick": 40,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "policy": "The native actor remembers its last surface zone and position, not a position per zone. An immediate same-zone return restores its exact position; ascending from Sill replaces that memory, so later glade descent uses the center."
+          }
+        },
+        {
+          "name": "world-map entry costs exactly one turn",
+          "status": "passed",
+          "ms": 2003,
+          "detail": {
+            "before": {
+              "mode": "local",
+              "location": "Gleaners’ Glade",
+              "position": "41, 12",
+              "tick": 40,
+              "hp": "40 / 40",
+              "name": "Travel webkit-portrait",
+              "zone": "Overworld.11.10.0",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "world",
+              "location": "World map",
+              "position": "11, 10",
+              "tick": 50,
+              "hp": "40 / 40",
+              "name": "Travel webkit-portrait",
+              "zone": "WorldMap",
+              "worldX": 11,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "all400 cells fit and receive taps with native markers and44px controls",
+          "status": "passed",
+          "ms": 555,
+          "detail": {
+            "mode": "world",
+            "isWorldMap": true,
+            "mapBounds": {
+              "x": 30,
+              "y": 3,
+              "width": 20,
+              "height": 20
+            },
+            "scale": 1,
+            "position": {
+              "x": 41,
+              "y": 13,
+              "worldX": 11,
+              "worldY": 10
+            },
+            "cellCount": 400,
+            "uniqueCells": 400,
+            "hitTestedCells": 400,
+            "blockedCellCount": 0,
+            "blockedCells": [],
+            "namedCells": 400,
+            "landmarkCount": 27,
+            "sill": {
+              "x": 40,
+              "y": 13,
+              "v": true,
+              "g": "!",
+              "c": "&Y",
+              "art": null,
+              "name": "Sill village",
+              "biome": "Spread",
+              "visited": false,
+              "mapGround": "sill-environment:2",
+              "mapTint": 0.65,
+              "mapGlyph": "!",
+              "mapColor": "&Y",
+              "landmark": true,
+              "hostile": false,
+              "solid": false
+            },
+            "playerCell": {
+              "x": 41,
+              "y": 13,
+              "v": true,
+              "g": "@",
+              "c": "&Y",
+              "art": "opening-base:0",
+              "name": "the Spread",
+              "biome": "Spread",
+              "visited": true,
+              "mapGround": "sill-environment:0",
+              "mapTint": 0.65,
+              "mapGlyph": ",",
+              "mapColor": "&g",
+              "landmark": false,
+              "hostile": false,
+              "solid": false
+            },
+            "bounds": {
+              "ox": -336,
+              "oy": 9,
+              "tw": 13,
+              "th": 19,
+              "W": 368,
+              "H": 480.0625
+            },
+            "canvas": {
+              "width": 368,
+              "height": 480.0625
+            },
+            "extent": {
+              "left": 54,
+              "top": 66,
+              "right": 314,
+              "bottom": 446
+            }
+          }
+        },
+        {
+          "name": "remote world inspection is free and cannot teleport",
+          "status": "passed",
+          "ms": 539,
+          "detail": {
+            "inspectedLogicalCell": [
+              13,
+              14
+            ],
+            "point": {
+              "x": 229.5,
+              "y": 341.5
+            },
+            "text": "The Beating · Not yet visitedUse the compass to travel here, then choose Enter area. Reading this place takes no time."
+          }
+        },
+        {
+          "name": "west compass moves one world cell for20ticks",
+          "status": "passed",
+          "ms": 358,
+          "detail": {
+            "before": {
+              "mode": "world",
+              "location": "World map",
+              "position": "11, 10",
+              "tick": 50,
+              "hp": "40 / 40",
+              "name": "Travel webkit-portrait",
+              "zone": "WorldMap",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 70,
+              "hp": "40 / 40",
+              "name": "Travel webkit-portrait",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "Enter area descends into actual Sill",
+          "status": "passed",
+          "ms": 2196,
+          "detail": {
+            "before": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 70,
+              "hp": "40 / 40",
+              "name": "Travel webkit-portrait",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "local",
+              "location": "Sill",
+              "position": "39, 11",
+              "tick": 80,
+              "hp": "40 / 40",
+              "name": "Travel webkit-portrait",
+              "zone": "Overworld.10.10.0",
+              "worldX": 10,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "return to map and east to glade preserve native travel",
+          "status": "passed",
+          "ms": 2217,
+          "detail": {
+            "ascent": {
+              "before": {
+                "mode": "local",
+                "location": "Sill",
+                "position": "39, 11",
+                "tick": 80,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "Overworld.10.10.0",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 90,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              }
+            },
+            "east": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 90,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 110,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 110,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "40, 12",
+                "tick": 120,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "localZoom": 1.55,
+            "policy": "The native actor remembers its last surface zone and position, not a position per zone. An immediate same-zone return restores its exact position; ascending from Sill replaces that memory, so later glade descent uses the center."
+          }
+        },
+        {
+          "name": "checkpoint saves while physically on world map",
+          "status": "passed",
+          "ms": 2369,
+          "detail": {
+            "mode": "world",
+            "location": "World map",
+            "position": "10, 10",
+            "tick": 150,
+            "hp": "40 / 40",
+            "name": "Travel webkit-portrait",
+            "zone": "WorldMap",
+            "worldX": 10,
+            "worldY": 10
+          }
+        },
+        {
+          "name": "new page Continue restores world position and supports descent",
+          "status": "passed",
+          "ms": 7294,
+          "detail": {
+            "restored": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 150,
+              "hp": "40 / 40",
+              "name": "Travel webkit-portrait",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 150,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Sill",
+                "position": "39, 11",
+                "tick": 160,
+                "hp": "40 / 40",
+                "name": "Travel webkit-portrait",
+                "zone": "Overworld.10.10.0",
+                "worldX": 10,
+                "worldY": 10
+              }
+            }
+          }
+        },
+        {
+          "name": "no browser runtime console or HTTP failures",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0,
+            "requestFailures": []
+          }
+        }
+      ],
+      "errors": [],
+      "requestFailures": [],
+      "screenshots": [
+        "webkit-portrait-glade.png",
+        "webkit-portrait-travel-panel.png",
+        "webkit-portrait-world-map.png",
+        "webkit-portrait-sill.png",
+        "webkit-portrait-returned-glade.png",
+        "webkit-portrait-saved-world-map.png",
+        "webkit-portrait-continued-world-map.png",
+        "webkit-portrait-continued-sill.png"
+      ],
+      "release": "0e3ec926d6c4379d",
+      "finishedAt": "2026-11-08T03:05:55.585Z"
+    },
+    {
+      "name": "webkit-landscape",
+      "engine": "webkit",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "status": "passed",
+      "startedAt": "2026-11-08T03:05:55.586Z",
+      "steps": [
+        {
+          "name": "real seeded Classic glade boots and saves",
+          "status": "passed",
+          "ms": 8210,
+          "detail": {
+            "mode": "local",
+            "location": "Gleaners’ Glade",
+            "position": "40, 12",
+            "tick": 10,
+            "hp": "40 / 40",
+            "name": "Travel webkit-landscape",
+            "zone": "Overworld.11.10.0",
+            "worldX": 11,
+            "worldY": 10
+          }
+        },
+        {
+          "name": "manual local zoom and World map reader are free",
+          "status": "passed",
+          "ms": 919,
+          "detail": 1.55
+        },
+        {
+          "name": "moved glade position restores exactly on an immediate native roundtrip",
+          "status": "passed",
+          "ms": 2777,
+          "detail": {
+            "moved": {
+              "mode": "local",
+              "location": "Gleaners’ Glade",
+              "position": "41, 12",
+              "tick": 20,
+              "hp": "40 / 40",
+              "name": "Travel webkit-landscape",
+              "zone": "Overworld.11.10.0",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "ascent": {
+              "before": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "41, 12",
+                "tick": 20,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 30,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 30,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "41, 12",
+                "tick": 40,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "policy": "The native actor remembers its last surface zone and position, not a position per zone. An immediate same-zone return restores its exact position; ascending from Sill replaces that memory, so later glade descent uses the center."
+          }
+        },
+        {
+          "name": "world-map entry costs exactly one turn",
+          "status": "passed",
+          "ms": 1129,
+          "detail": {
+            "before": {
+              "mode": "local",
+              "location": "Gleaners’ Glade",
+              "position": "41, 12",
+              "tick": 40,
+              "hp": "40 / 40",
+              "name": "Travel webkit-landscape",
+              "zone": "Overworld.11.10.0",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "world",
+              "location": "World map",
+              "position": "11, 10",
+              "tick": 50,
+              "hp": "40 / 40",
+              "name": "Travel webkit-landscape",
+              "zone": "WorldMap",
+              "worldX": 11,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "all400 cells fit and receive taps with native markers and44px controls",
+          "status": "passed",
+          "ms": 226,
+          "detail": {
+            "mode": "world",
+            "isWorldMap": true,
+            "mapBounds": {
+              "x": 30,
+              "y": 3,
+              "width": 20,
+              "height": 20
+            },
+            "scale": 1,
+            "position": {
+              "x": 41,
+              "y": 13,
+              "worldX": 11,
+              "worldY": 10
+            },
+            "cellCount": 400,
+            "uniqueCells": 400,
+            "hitTestedCells": 400,
+            "blockedCellCount": 0,
+            "blockedCells": [],
+            "namedCells": 400,
+            "landmarkCount": 27,
+            "sill": {
+              "x": 40,
+              "y": 13,
+              "v": true,
+              "g": "!",
+              "c": "&Y",
+              "art": null,
+              "name": "Sill village",
+              "biome": "Spread",
+              "visited": false,
+              "mapGround": "sill-environment:2",
+              "mapTint": 0.65,
+              "mapGlyph": "!",
+              "mapColor": "&Y",
+              "landmark": true,
+              "hostile": false,
+              "solid": false
+            },
+            "playerCell": {
+              "x": 41,
+              "y": 13,
+              "v": true,
+              "g": "@",
+              "c": "&Y",
+              "art": "opening-base:0",
+              "name": "the Spread",
+              "biome": "Spread",
+              "visited": true,
+              "mapGround": "sill-environment:0",
+              "mapTint": 0.65,
+              "mapGlyph": ",",
+              "mapColor": "&g",
+              "landmark": false,
+              "hostile": false,
+              "solid": false
+            },
+            "bounds": {
+              "ox": -63,
+              "oy": 0,
+              "tw": 10,
+              "th": 14,
+              "W": 674,
+              "H": 376
+            },
+            "canvas": {
+              "width": 674,
+              "height": 376
+            },
+            "extent": {
+              "left": 237,
+              "top": 42,
+              "right": 437,
+              "bottom": 322
+            }
+          }
+        },
+        {
+          "name": "short landscape keeps all400 world cells tappable at default zoom",
+          "status": "passed",
+          "ms": 1262,
+          "detail": {
+            "viewport": {
+              "width": 568,
+              "height": 320
+            },
+            "compact": {
+              "mode": "world",
+              "isWorldMap": true,
+              "mapBounds": {
+                "x": 30,
+                "y": 3,
+                "width": 20,
+                "height": 20
+              },
+              "scale": 1,
+              "position": {
+                "x": 41,
+                "y": 13,
+                "worldX": 11,
+                "worldY": 10
+              },
+              "cellCount": 400,
+              "uniqueCells": 400,
+              "hitTestedCells": 400,
+              "blockedCellCount": 0,
+              "blockedCells": [],
+              "namedCells": 400,
+              "landmarkCount": 27,
+              "sill": {
+                "x": 40,
+                "y": 13,
+                "v": true,
+                "g": "!",
+                "c": "&Y",
+                "art": null,
+                "name": "Sill village",
+                "biome": "Spread",
+                "visited": false,
+                "mapGround": "sill-environment:2",
+                "mapTint": 0.65,
+                "mapGlyph": "!",
+                "mapColor": "&Y",
+                "landmark": true,
+                "hostile": false,
+                "solid": false
+              },
+              "playerCell": {
+                "x": 41,
+                "y": 13,
+                "v": true,
+                "g": "@",
+                "c": "&Y",
+                "art": "opening-base:0",
+                "name": "the Spread",
+                "biome": "Spread",
+                "visited": true,
+                "mapGround": "sill-environment:0",
+                "mapTint": 0.65,
+                "mapGlyph": ",",
+                "mapColor": "&g",
+                "landmark": false,
+                "hostile": false,
+                "solid": false
+              },
+              "bounds": {
+                "ox": -41,
+                "oy": 17,
+                "tw": 6,
+                "th": 8,
+                "W": 398,
+                "H": 306
+              },
+              "canvas": {
+                "width": 398,
+                "height": 306
+              },
+              "extent": {
+                "left": 139,
+                "top": 41,
+                "right": 259,
+                "bottom": 201
+              }
+            },
+            "afterAimCancel": {
+              "mode": "world",
+              "isWorldMap": true,
+              "mapBounds": {
+                "x": 30,
+                "y": 3,
+                "width": 20,
+                "height": 20
+              },
+              "scale": 1,
+              "position": {
+                "x": 41,
+                "y": 13,
+                "worldX": 11,
+                "worldY": 10
+              },
+              "cellCount": 400,
+              "uniqueCells": 400,
+              "hitTestedCells": 400,
+              "blockedCellCount": 0,
+              "blockedCells": [],
+              "namedCells": 400,
+              "landmarkCount": 27,
+              "sill": {
+                "x": 40,
+                "y": 13,
+                "v": true,
+                "g": "!",
+                "c": "&Y",
+                "art": null,
+                "name": "Sill village",
+                "biome": "Spread",
+                "visited": false,
+                "mapGround": "sill-environment:2",
+                "mapTint": 0.65,
+                "mapGlyph": "!",
+                "mapColor": "&Y",
+                "landmark": true,
+                "hostile": false,
+                "solid": false
+              },
+              "playerCell": {
+                "x": 41,
+                "y": 13,
+                "v": true,
+                "g": "@",
+                "c": "&Y",
+                "art": "opening-base:0",
+                "name": "the Spread",
+                "biome": "Spread",
+                "visited": true,
+                "mapGround": "sill-environment:0",
+                "mapTint": 0.65,
+                "mapGlyph": ",",
+                "mapColor": "&g",
+                "landmark": false,
+                "hostile": false,
+                "solid": false
+              },
+              "bounds": {
+                "ox": -41,
+                "oy": 17,
+                "tw": 6,
+                "th": 8,
+                "W": 398,
+                "H": 306
+              },
+              "canvas": {
+                "width": 398,
+                "height": 306
+              },
+              "extent": {
+                "left": 139,
+                "top": 41,
+                "right": 259,
+                "bottom": 201
+              }
+            },
+            "restored": {
+              "mode": "world",
+              "isWorldMap": true,
+              "mapBounds": {
+                "x": 30,
+                "y": 3,
+                "width": 20,
+                "height": 20
+              },
+              "scale": 1,
+              "position": {
+                "x": 41,
+                "y": 13,
+                "worldX": 11,
+                "worldY": 10
+              },
+              "cellCount": 400,
+              "uniqueCells": 400,
+              "hitTestedCells": 400,
+              "blockedCellCount": 0,
+              "blockedCells": [],
+              "namedCells": 400,
+              "landmarkCount": 27,
+              "sill": {
+                "x": 40,
+                "y": 13,
+                "v": true,
+                "g": "!",
+                "c": "&Y",
+                "art": null,
+                "name": "Sill village",
+                "biome": "Spread",
+                "visited": false,
+                "mapGround": "sill-environment:2",
+                "mapTint": 0.65,
+                "mapGlyph": "!",
+                "mapColor": "&Y",
+                "landmark": true,
+                "hostile": false,
+                "solid": false
+              },
+              "playerCell": {
+                "x": 41,
+                "y": 13,
+                "v": true,
+                "g": "@",
+                "c": "&Y",
+                "art": "opening-base:0",
+                "name": "the Spread",
+                "biome": "Spread",
+                "visited": true,
+                "mapGround": "sill-environment:0",
+                "mapTint": 0.65,
+                "mapGlyph": ",",
+                "mapColor": "&g",
+                "landmark": false,
+                "hostile": false,
+                "solid": false
+              },
+              "bounds": {
+                "ox": -63,
+                "oy": 0,
+                "tw": 10,
+                "th": 14,
+                "W": 674,
+                "H": 376
+              },
+              "canvas": {
+                "width": 674,
+                "height": 376
+              },
+              "extent": {
+                "left": 237,
+                "top": 42,
+                "right": 437,
+                "bottom": 322
+              }
+            }
+          }
+        },
+        {
+          "name": "remote world inspection is free and cannot teleport",
+          "status": "passed",
+          "ms": 342,
+          "detail": {
+            "inspectedLogicalCell": [
+              13,
+              14
+            ],
+            "point": {
+              "x": 372,
+              "y": 245
+            },
+            "text": "The Beating · Not yet visitedUse the compass to travel here, then choose Enter area. Reading this place takes no time."
+          }
+        },
+        {
+          "name": "west compass moves one world cell for20ticks",
+          "status": "passed",
+          "ms": 130,
+          "detail": {
+            "before": {
+              "mode": "world",
+              "location": "World map",
+              "position": "11, 10",
+              "tick": 50,
+              "hp": "40 / 40",
+              "name": "Travel webkit-landscape",
+              "zone": "WorldMap",
+              "worldX": 11,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 70,
+              "hp": "40 / 40",
+              "name": "Travel webkit-landscape",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "Enter area descends into actual Sill",
+          "status": "passed",
+          "ms": 2117,
+          "detail": {
+            "before": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 70,
+              "hp": "40 / 40",
+              "name": "Travel webkit-landscape",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            },
+            "after": {
+              "mode": "local",
+              "location": "Sill",
+              "position": "39, 11",
+              "tick": 80,
+              "hp": "40 / 40",
+              "name": "Travel webkit-landscape",
+              "zone": "Overworld.10.10.0",
+              "worldX": 10,
+              "worldY": 10
+            }
+          }
+        },
+        {
+          "name": "return to map and east to glade preserve native travel",
+          "status": "passed",
+          "ms": 2097,
+          "detail": {
+            "ascent": {
+              "before": {
+                "mode": "local",
+                "location": "Sill",
+                "position": "39, 11",
+                "tick": 80,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "Overworld.10.10.0",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 90,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              }
+            },
+            "east": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 90,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 110,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "11, 10",
+                "tick": 110,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "WorldMap",
+                "worldX": 11,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Gleaners’ Glade",
+                "position": "40, 12",
+                "tick": 120,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "Overworld.11.10.0",
+                "worldX": 11,
+                "worldY": 10
+              }
+            },
+            "localZoom": 1.55,
+            "policy": "The native actor remembers its last surface zone and position, not a position per zone. An immediate same-zone return restores its exact position; ascending from Sill replaces that memory, so later glade descent uses the center."
+          }
+        },
+        {
+          "name": "checkpoint saves while physically on world map",
+          "status": "passed",
+          "ms": 2133,
+          "detail": {
+            "mode": "world",
+            "location": "World map",
+            "position": "10, 10",
+            "tick": 150,
+            "hp": "40 / 40",
+            "name": "Travel webkit-landscape",
+            "zone": "WorldMap",
+            "worldX": 10,
+            "worldY": 10
+          }
+        },
+        {
+          "name": "new page Continue restores world position and supports descent",
+          "status": "passed",
+          "ms": 6086,
+          "detail": {
+            "restored": {
+              "mode": "world",
+              "location": "World map",
+              "position": "10, 10",
+              "tick": 150,
+              "hp": "40 / 40",
+              "name": "Travel webkit-landscape",
+              "zone": "WorldMap",
+              "worldX": 10,
+              "worldY": 10
+            },
+            "descent": {
+              "before": {
+                "mode": "world",
+                "location": "World map",
+                "position": "10, 10",
+                "tick": 150,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "WorldMap",
+                "worldX": 10,
+                "worldY": 10
+              },
+              "after": {
+                "mode": "local",
+                "location": "Sill",
+                "position": "39, 11",
+                "tick": 160,
+                "hp": "40 / 40",
+                "name": "Travel webkit-landscape",
+                "zone": "Overworld.10.10.0",
+                "worldX": 10,
+                "worldY": 10
+              }
+            }
+          }
+        },
+        {
+          "name": "no browser runtime console or HTTP failures",
+          "status": "passed",
+          "ms": 0,
+          "detail": {
+            "errors": 0,
+            "requestFailures": []
+          }
+        }
+      ],
+      "errors": [],
+      "requestFailures": [],
+      "screenshots": [
+        "webkit-landscape-glade.png",
+        "webkit-landscape-travel-panel.png",
+        "webkit-landscape-world-map.png",
+        "webkit-landscape-world-map-short-landscape.png",
+        "webkit-landscape-world-map-short-landscape-after-aim-cancel.png",
+        "webkit-landscape-sill.png",
+        "webkit-landscape-returned-glade.png",
+        "webkit-landscape-saved-world-map.png",
+        "webkit-landscape-continued-world-map.png",
+        "webkit-landscape-continued-sill.png"
+      ],
+      "release": "0e3ec926d6c4379d",
+      "finishedAt": "2026-11-08T03:06:23.445Z"
+    }
+  ],
+  "finishedAt": "2026-11-08T03:06:23.449Z",
+  "passed": 4,
+  "failed": 0
+}
