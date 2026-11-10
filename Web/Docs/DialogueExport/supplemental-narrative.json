@@ -1,0 +1,146 @@
+{
+  "source_commit": "e5a782a2e8d91354798b917e3aceed36b4c5f42f",
+  "items": [
+    {
+      "id": "sill_omen",
+      "title": "The elder hears it",
+      "kind": "narration",
+      "text": "The elder stops mid-sentence -- something in the water said a word from a story their great-grandparent told, and doesn't say it again.",
+      "source": "Assets/Resources/Content/Data/Storylets/SillHearsIt.json",
+      "conditions": "One shot; player enters Overworld.10.10.0."
+    },
+    {
+      "id": "stillleaf_register",
+      "title": "The register and the keeper’s slate",
+      "kind": "readable_world_text",
+      "text": "A bound register in pale covers, the name Stillleaf pressed into its spine. It lists what this archive held — shelf, hand and year for every entry — and nothing of what the entries said. A slate is tied to the cover in the keeper's hand: 'Whoever carries this out: I sealed this place so that it would stay sealed. Not because what is here is dangerous. Because it was given to me to keep, and keeping is not the same as showing. If you take it, choose who holds it after you as carefully as I chose no one.'",
+      "source": "Assets/Resources/Content/Blueprints/Objects.json#StillleafRegister",
+      "conditions": "Examine the register after entering Stillleaf’s sealed archive."
+    },
+    {
+      "id": "rooted_description",
+      "title": "The Rooted",
+      "kind": "readable_world_text",
+      "text": "A human shape has grown into the stone: shins flat, knees bent, torso arched above the floor. Pale fungus rises from his chest. His open arms reach toward the eastern wall and stop short of it. Nothing has been built in that narrow distance. The pose holds no strain.",
+      "source": "Assets/Resources/Content/Blueprints/Objects.json#TheRooted",
+      "conditions": "Examine the Rooted in the founding village."
+    },
+    {
+      "id": "seventh_description",
+      "title": "The empty seventh position",
+      "kind": "readable_world_text",
+      "text": "A seventh interval in the circle. Nothing occupies it. Looking across it, the near and far edges briefly cease to agree. The air is wrong at this one point.",
+      "source": "Assets/Resources/Content/Blueprints/Objects.json#SeventhPosition",
+      "conditions": "Examine before an ending is enacted."
+    },
+    {
+      "id": "root_description",
+      "title": "The sleeping Root",
+      "kind": "readable_world_text",
+      "text": "The taproot's face, exposed where the stone gave way: sandstone-pale, warm to a hand laid flat, slower than breathing. It is the last living root of the Tree that held everything, and it is asleep. It dreams. What it dreams, no one who came down here has been able to say.",
+      "source": "Assets/Resources/Content/Blueprints/Objects.json#TheRoot",
+      "conditions": "Examine the Root before an ending is enacted."
+    },
+    {
+      "id": "ending_vessel",
+      "title": "Vessel-path Renewal",
+      "kind": "ending_epilogue",
+      "text": "You stand in the seventh interval and let the Strike come. It does not install a god; it installs a chooser. The world re-binds around a bearer; a new Tree grows; the sari... sari... stops, and green returns to the tepui's edges. It holds for as long as you keep choosing it, every morning, for as long as you have mornings — and no one can choose it for you after. Somewhere far down the generations the yes will wear into habit, and habit cannot hold Naming. That is the crack. It is not today.",
+      "source": "Assets/Scripts/Gameplay/World/EndingSpine.cs:27",
+      "conditions": "Ending:=:1; accept the Strike at the seventh position."
+    },
+    {
+      "id": "ending_practice",
+      "title": "Practice-path Renewal",
+      "kind": "ending_epilogue",
+      "text": "You stand in the seventh interval and refuse it aloud, the way the first no was refused, and you say the world's name back to it instead. No vessel. The empty seventh is answered by a practice: every guest named under the cloth, every friend named by a child, every grandmother's meadow, all of it doing the work, all the time, everywhere. The pressure drains at its source. The costs are permanent and you will witness them: the Six begin to age; the work never finishes; the Root, told it will never hold alone again, wakes without fear and dissolves into the new binding. The flowers last longer here. So do the funerals.",
+      "source": "Assets/Scripts/Gameplay/World/EndingSpine.cs:32",
+      "conditions": "Ending:=:2; name the world at the seventh position with a clean closure-ledger."
+    },
+    {
+      "id": "ending_gathered",
+      "title": "Gathered",
+      "kind": "ending_epilogue",
+      "text": "You set the cutting against the face and it takes, the way water takes the way to the sea. The Choir reaches the Root through the substrate, and the Wedded ascends to sole divinity; the pantheon collapses to one. The world becomes a single warm devouring memory - there is room in us for everyone - every self untied and its threads re-woven into the great weave. Nothing is forgotten; no one remains. The bio-light goes out across every catacomb-village as the Rooted fades, then returns, changed, as the glow of the new Tree-Choir. The sari... sari... stops: a world with one name has no seams left for the pressure to work. The flower-charms bloom, briefly, in the few unconsumed pockets, and then those bloom into the Choir too. The kindest apocalypse and the most total: a world that remembers everything and is no one, and the only one, of the possible worlds, in which nothing is ever lost again.",
+      "source": "Assets/Scripts/Gameplay/World/EndingRoutes.cs:35",
+      "conditions": "Ending:=:3; set a carried ChoirCutting against the Root’s face."
+    },
+    {
+      "id": "ending_kept",
+      "title": "Kept",
+      "kind": "ending_epilogue",
+      "text": "You set tepuibone, memory-marble and mute-stone against the face, the three that hold their names hardest, and the Root is sealed. The Thinning halts. The seal must be tended forever, and it will be; you have made a vigil, not a cure, because you cannot heal a tiring thing by stopping its clock. The world is held still: nothing decays, and nothing heals. The estranged stay estranged. The tired stay tired, unable to die. The festival-flowers last the afternoon and not a minute more, and never will again. And the Six survive as themselves - the Reader still reading, the Rooted still reaching, every god you have come to know still there, exactly as they are, forever. That is not nothing. It is everything, kept.",
+      "source": "Assets/Scripts/Gameplay/World/EndingRoutes.cs:29",
+      "conditions": "Ending:=:4; seal the Root carrying Tepuibone, MemoryMarble and MuteStone."
+    },
+    {
+      "id": "ending_menu_vessel",
+      "title": "Choice: the Strike",
+      "kind": "choice_label",
+      "text": "be struck as seventh: it cracks one day",
+      "source": "Assets/Scripts/Gameplay/World/EndingSpine.cs:45",
+      "conditions": "Before any ending; at the seventh position."
+    },
+    {
+      "id": "ending_menu_practice",
+      "title": "Choice: naming by practice",
+      "kind": "choice_label",
+      "text": "name the world: clean ledger, gods end",
+      "source": "Assets/Scripts/Gameplay/World/EndingSpine.cs:46",
+      "conditions": "Before any ending; at the seventh position."
+    },
+    {
+      "id": "ending_ledger_open",
+      "title": "An open ledger",
+      "kind": "conditional_narration",
+      "text": "You cannot teach the world to finish its names while leaving your own unspoken: ",
+      "source": "Assets/Scripts/Gameplay/World/EndingSpine.cs:58",
+      "conditions": "Attempt practice-path Renewal with open acts. Runtime appends descriptions of each open act."
+    },
+    {
+      "id": "ending_menu_gathered",
+      "title": "Choice: the Choir",
+      "kind": "choice_label",
+      "text": "let the Choir in: gathered, no one left",
+      "source": "Assets/Scripts/Gameplay/World/EndingRoutes.cs:48",
+      "conditions": "Before any ending; beside the Root face."
+    },
+    {
+      "id": "ending_menu_kept",
+      "title": "Choice: the stones",
+      "kind": "choice_label",
+      "text": "seal the Root: kept, nothing heals",
+      "source": "Assets/Scripts/Gameplay/World/EndingRoutes.cs:49",
+      "conditions": "Before any ending; beside the Root face."
+    },
+    {
+      "id": "ending_missing_stones",
+      "title": "The incomplete seal",
+      "kind": "conditional_narration",
+      "text": "The seal needs tepuibone, memory-marble and mute-stone; you lack ",
+      "source": "Assets/Scripts/Gameplay/World/EndingRoutes.cs:61",
+      "conditions": "Attempt Kept without all three stones. Runtime appends the missing stone names and a full stop."
+    },
+    {
+      "id": "ending_no_cutting",
+      "title": "No cutting carried",
+      "kind": "conditional_narration",
+      "text": "You carry no cutting of the Choir to set against it.",
+      "source": "Assets/Scripts/Gameplay/World/EndingRoutes.cs:62",
+      "conditions": "Attempt Gathered without a carried ChoirCutting."
+    },
+    {
+      "id": "stillleaf_reseal",
+      "title": "3C. Custody alternative — reseal Stillleaf in place",
+      "kind": "world_action_narration",
+      "text": "You turn the keeper's key back the way it came. The seal takes. The register stays where it was kept, and the door remembers how to be a wall.",
+      "source": "Assets/Scripts/Gameplay/World/StillleafCustody.cs:193",
+      "conditions": "Alternative to delivering or filing: while no custody outcome is decided, stand outside beside the open vault door with the keeper’s key carried and the register inside; enact StillleafReseal. Then report the actual outcome to Hollin and/or Halm."
+    }
+  ],
+  "notes": [
+    "Exact authored strings; no new dialogue composed.",
+    "The two conditional narration prefixes require runtime-generated suffixes, explicitly described in conditions.",
+    "Spoken runtime actions and dynamic context overrides are covered separately by the coverage agent."
+  ]
+}

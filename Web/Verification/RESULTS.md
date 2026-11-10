@@ -73,3 +73,10 @@ Independent source review caught an out-of-map DirectionLine heading spending Je
 `import-core.py` reproduces all955 C# source files and provenance byte-for-byte. Native equipment callback transaction semantics are retained. A direction guide is a heading/range aid, not a guaranteed damage footprint. Physical iPhone performance/lifecycle and every late-game interaction remain unqualified. The original Unity project is untouched; no old web-save conversion was required.
 
 Receipts: `evidence/actions-core-results.json`, `actions-core-run.txt`, `actions-baseline-red-results.json`, `actions-baseline-red-run.txt`, `actions-storage-results.txt`, `actions-browser-results.json`, `actions-regression-results.json`, `actions-landscape-results.json`, and `actions-travel-results.json`. Selected final screenshots have the `actions-` prefix. Full browser output is retained outside the source repositories in `/workspace/coo-actions-full-evidence`.
+
+
+## Downloadable dialogue script — 10 November 2026
+
+PDF, DOCX and TXT assets add the requested complete dialogue script to `/downloads/`. Coverage checks account for 672 fixed nodes, 1,465 choices, 450 runtime passages and 17 supplemental passages; all 1,122 fixed/runtime reference identifiers occur in PDF text and DOCX XML. Independent review verifies Stillleaf order and all four exact ending epilogues before their matching aftermaths. The final PDF is238 pages with linked contents and branch references; cover, contents and dialogue pages were visually inspected. No gameplay code changed after the tested `0e3ec926d6c4379d` candidate; the publication additionally includes these static documents and their reproducible export inputs.
+
+Final static release `94a4ee8539551ffc` includes the documents. Six actual file downloads (PDF, DOCX, TXT in Chromium and WebKit at390×844) match the export manifest SHA256s and expected filenames; the download page fits the phone viewport. Receipt: `evidence/dialogue-download-results.json`.
