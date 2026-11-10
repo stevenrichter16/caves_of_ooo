@@ -56,6 +56,11 @@ export class WorldMapView {
   c.globalAlpha=1;
   const px=ox+this.data.x*tw,py=oy+this.data.y*th;
   c.strokeStyle='#e4cd8b';c.lineWidth=1;c.strokeRect(px+1,py+1,tw-2,th-2);
+  if(this.aim){
+   const a=this.aim,d=this.data;c.strokeStyle='#f2d38499';c.lineWidth=1;c.setLineDash([3,4]);c.beginPath();c.moveTo(ox+(d.x+.5)*tw,oy+(d.y+.5)*th);
+   let x=d.x,y=d.y;for(let i=1;i<=a.range;i++){const nx=d.x+a.dx*i,ny=d.y+a.dy*i;if(!d.cells.some(t=>t.x===nx&&t.y===ny&&t.v))break;x=nx;y=ny;}
+   c.lineTo(ox+(x+.5)*tw,oy+(y+.5)*th);c.stroke();c.setLineDash([]);
+  }
   if(this.target){const tx=ox+this.target.x*tw,ty=oy+this.target.y*th;c.strokeStyle='#f2d384';c.lineWidth=2;c.strokeRect(tx+1,ty+1,tw-2,th-2);c.fillStyle='#e7c47b33';c.fillRect(tx,ty,tw,th);}
  }
  drawMapCell(t,x,y,tw,th){

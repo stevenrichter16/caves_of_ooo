@@ -21,7 +21,7 @@ function heading(title){return el('p',title,'subheading');}
 function rows(list){const box=el('div',null,'rows');box.append(...list);return box;}
 function empty(message){return el('p',message,'empty-state');}
 function closeLocal(){localMenu=false;$('overlay').hidden=true;}
-async function closePanel(){if(busy)return;if(localMenu){closeLocal();return;}await act('close');}
+async function closePanel(){if(busy)return;if(localMenu){closeLocal();if(state?.panel)await act('close');return;}await act('close');}
 $('close-overlay').onclick=closePanel;
 $('overlay').addEventListener('pointerdown',e=>{if(e.target===$('overlay')){e.preventDefault();closePanel();}});
 async function runtime(){
@@ -34,7 +34,7 @@ async function runtime(){
  }
  return enginePromise;
 }
-async function invoke(method,...args){await runtime();return DotNet.invokeMethodAsync('CavesWeb',method,...args);}
+async function invoke(method,...args){await runtime();const result=await DotNet.invokeMethodAsync('CavesWeb',method,...args);if(method==='NewGame'||method==='Restore')resetAim();return result;}
 function playState(next){
  const old=state;state=typeof next==='string'?JSON.parse(next):next;
  $('start-screen').hidden=true;$('creation-screen').hidden=true;$('game-screen').hidden=false;$('menu-button').hidden=false;document.body.classList.add('playing');
@@ -55,16 +55,17 @@ function render(){
  $('log-lines').replaceChildren(...recent.map(m=>el('p',m)));
  $('wait-button').disabled=!!target||state.dead||state.faulted;
  $('target-banner').hidden=!target;$('map-instruction').hidden=!!target;
- if(target){text('target-label',target.label);text('confirm-target',target.kind==='throw'?'Review throw':'Confirm');$('confirm-target').disabled=!map.target;}
+ if(target){text('target-label',target.label);text('confirm-target',target.kind==='throw'?'Review throw':target.kind==='ritePreview'?'Read marks':'Review ability');$('confirm-target').disabled=!map.target;}
  if(!localMenu)renderPanel();
 }
 async function act(kind,extra={}){
  if(!state||busy||saving||document.hidden)return false;
+ if(target&&!['abilityPreview','throwPreview','ritePreview'].includes(kind))resetAim();
  busy=true;localMenu=false;let delay=setTimeout(()=>{$('busy-overlay').hidden=false;},160);
  const before=state;
  try{
   playState(await invoke('Dispatch',JSON.stringify({kind,...extra,revision:state.revision})));
-  const mutation=!['look','panel','close','select','throwPreview'].includes(kind)&&!(kind==='skill'&&['select','review','cancel'].includes(extra.command));
+  const mutation=!['look','panel','close','select','throwPreview','abilityPreview','ritePreview'].includes(kind)&&!(kind==='item'&&extra.command==='Equip')&&!(kind==='ability'&&state.panel==='throwing')&&!(kind==='abilityManage'&&extra.command==='details')&&!(kind==='equipment'&&extra.command!=='confirm')&&!(kind==='skill'&&['select','review','cancel'].includes(extra.command));
   if(mutation&&(!state.error||state.tick!==before.tick||JSON.stringify(state.inventory)!==JSON.stringify(before.inventory))){dirty++;status('Checkpoint pending');}
   if(!state.dead&&!state.faulted&&(state.zone!==before.zone||dirty>=6||state.tick-lastSaveTick>=50))await saveCheckpoint(true);
   return !state.error;
@@ -88,8 +89,8 @@ function renderPanel(){
   case 'item':{
    const item=state.item;if(!item){act('panel',{value:'inventory'});return;}
    list.push(el('p',`${item.count} item${item.count===1?'':'s'} · weight ${item.weight}${item.equipped?' · equipped':''}`,'details'));
-   list.push(actions([[item.equipped?'Unequip':'Equip',()=>act('item',{id:item.id,command:item.equipped?'Unequip':'Equip'})],['Drop',()=>act('item',{id:item.id,command:'Drop'})],['Throw…',()=>beginTarget({kind:'throw',id:item.id,label:`Throw ${clean(item.name)} · choose a tile`})]]));
-   if(item.focus)list.push(button('Throw with focused splash…',()=>beginTarget({kind:'throw',id:item.id,focused:true,label:`Focused splash · choose a tile`}), 'outline'));
+   list.push(actions([[item.equipped?'Unequip':'Equip',()=>act(item.equipped?'item':'equipment',{id:item.id,command:item.equipped?'Unequip':'choose'})],['Drop',()=>act('item',{id:item.id,command:'Drop'})],['Throw…',()=>chooseThrow({kind:'throw',id:item.id,label:`Throw ${clean(item.name)}`})]]));
+   if(item.focus)list.push(button('Throw with focused splash…',()=>chooseThrow({kind:'throw',id:item.id,focused:true,label:'Focused splash'}), 'outline'));
    const own=(item.actions||[]).filter(a=>!['equip','unequip','drop','throw'].includes(a.command.toLowerCase()));
    list.push(rows(own.map(a=>row(a.name,'',()=>act('item',{id:item.id,command:a.command})))));
    list.push(button('← Back to pack',()=>act('panel',{value:'inventory'}),'quiet'));
@@ -114,19 +115,52 @@ function renderPanel(){
    if(!list.length)list.push(empty('Nothing is within reach. Tap a tile to look, or move closer.'));
    showOverlay('Within reach','THE WORLD AROUND YOU',list);break;
   case 'abilities':
-   list.push(el('p','Choose an ability, then a target. Selecting and aiming take no time.','details'));
-   list.push(rows((state.abilities||[]).map(a=>{const b=row(a.name,`${a.category} · ${a.targeting==='SelfCentered'?'self':`range ${a.range}`}`,()=>a.targeting==='SelfCentered'?act('ability',{id:a.id,x:state.x,y:state.y}):beginTarget({kind:'ability',id:a.id,label:`${clean(a.name)} · range ${a.range}`}),a.cooldown?`${a.cooldown} turns`:'Ready');b.disabled=a.cooldown>0;return b;})));
+   list.push(el('p','Inspect an ability, arrange your slots, or prepare to use it. Reading and aiming take no time.','details'));
+   list.push(rows([...(state.abilities||[])].sort((a,b)=>(a.slot<0?10:a.slot)-(b.slot<0?10:b.slot)).map(a=>row(a.name,`${a.slot<0?'Unassigned':`Slot ${a.slot+1}`} · ${a.category} · ${a.targeting==='SelfCentered'?'self':`range ${a.range}`}`,()=>act('abilityManage',{id:a.id,command:'details'}),a.cooldown?`${a.cooldown} turns`:'Inspect'))));
    if(!state.abilities?.length)list.push(empty('No active abilities yet. Learn skills to discover new ways to act.'));
    list.push(button('Skills & attributes',()=>act('panel',{value:'skills'}),'outline'));
    showOverlay('Abilities','THE THINGS YOU CAN DO',list);break;
+  case 'abilityDetails':{
+   const a=state.abilityDetails;if(!a)break;
+   list.push(el('p',a.details,'details'));
+   const use=button('Use ability',()=>useAbility(a),'gold');use.disabled=!a.canUse;list.push(use);
+   if(a.rite)list.push(button('Read marks',()=>readRite(a),'outline'));
+   list.push(button('Assign slot…',()=>showAbilitySlots(a),'outline'));
+   if(a.slot>=0)list.push(button('Remove assignment',()=>act('abilityManage',{command:'unassign',id:a.id}),'quiet'));
+   list.push(button('← Back to abilities',()=>act('panel',{value:'abilities'}),'quiet'));
+   showOverlay(a.name,a.slot<0?'UNASSIGNED · STILL USABLE':`SLOT ${a.slot+1}`,list);break;}
+  case 'abilityPreview':{
+   const a=state.abilityPreview;if(!a)break;
+   if(a.mode==='DirectionLine')list.push(el('p',`${directionName(a.direction.x,a.direction.y)} · range ${a.range}. This is a heading, not a guaranteed area of impact.`,'details'));
+   if(a.landing)list.push(el('p',`Land at ${a.landing.x}, ${a.landing.y}${a.targetName?` · attack ${clean(a.targetName)}`:''}.`));
+   if(a.requiresNeutralConfirmation)list.push(el('p',`${clean(a.targetName)} is not hostile. This Vault will attack them.`,'warning'));
+   list.push(el('p',a.details,'details'),actions([[a.requiresNeutralConfirmation?`Attack ${clean(a.targetName)} · 1 turn`:'Use ability · 1 turn',()=>act('abilityConfirm',{token:a.token,acceptNeutralAttack:a.requiresNeutralConfirmation}),'gold'],['Cancel',()=>act('close')]]));
+   showOverlay(a.name,'REVIEW ABILITY · THE WORLD WAITS',list);break;}
+  case 'ritePreview':
+   list.push(el('p',state.ritePreview?.text||'No reading available.','details'),button('← Back to abilities',()=>act('panel',{value:'abilities'}),'quiet'));
+   showOverlay('Read marks','READING ONLY · NO INK OR TURN',list);break;
+  case 'equipment':{
+   const e=state.equipment;if(!e)break;
+   list.push(el('p',e.name,'details'));
+   list.push(rows(e.slots.map(slot=>{const sub=[slot.primary?'Primary':'',slot.equippedName||slot.naturalName||'Empty',slot.valid?`Uses ${slot.claimed.join(', ')}`:slot.reason].filter(Boolean).join(' · ');const b=row(slot.name,sub,()=>act('equipment',{command:'review',id:e.itemId,index:slot.id}));b.disabled=!slot.valid;return b;})));
+   if(e.comparison)list.push(heading('Equipment comparison'),el('p',e.comparison,'details'));
+   list.push(button('← Back to pack',()=>act('panel',{value:'inventory'}),'quiet'));
+   showOverlay('Choose equipment slot','PLACEMENT TAKES NO TIME',list);break;}
+  case 'equipReview':{
+   const e=state.equipReview;if(!e)break;
+   list.push(el('h3',e.name),el('p',`Uses ${e.claimed.join(', ')}.`));
+   if(e.displaced.length)list.push(heading('Returns to your pack'),...e.displaced.map(i=>el('p',`${clean(i.name)} · ${i.slot}`)));
+   else list.push(el('p','No equipment will be replaced.','details'));
+   list.push(actions([['Equip · no turn',()=>act('equipment',{command:'confirm',token:e.token}),'gold'],['Cancel',()=>act('close')]]));
+   showOverlay('Review equipment','THE WORLD WAITS',list);break;}
   case 'throwing':{
    const t=state.throwing;list.push(el('p',t.mode==='Measured'?'Prepare your aim for one turn, then confirm the throw on your next action.':t.mode==='Recovery'?'Step to a nearby item you threw and collect it.':'Choose a heavy item to drive into a target.','details'));
-   list.push(rows(t.items.map(i=>row(i.name,t.mode==='Recovery'?'Recover · one turn':`Range ${i.range}`,()=>t.mode==='Recovery'?act('recover',{id:i.id}):beginTarget({kind:'throw',id:i.id,mode:t.mode,label:`${t.mode} throw · range ${i.range}`})))));
+   list.push(rows(t.items.map(i=>row(i.name,t.mode==='Recovery'?'Recover · one turn':`Range ${i.range}`,()=>t.mode==='Recovery'?act('recover',{id:i.id}):chooseThrow({kind:'throw',id:i.id,mode:t.mode,label:`${t.mode} throw · range ${i.range}`})))));
    if(!t.items.length)list.push(empty('No suitable items are in reach.'));
    showOverlay(t.mode==='Recovery'?'Recovering step':`${t.mode} throw`,'CHOOSE AN ITEM',list);break;}
   case 'throwPreview':
    if(!state.throwPreview){closeLocal();return;}
-   list.push(el('p',state.throwPreview.description),actions([[state.throwPreview.mode==='Measured'?'Prepare aim · 1 turn':'Throw · 1 turn',()=>act('throw'),'gold'],['Cancel',()=>act('close')]]));
+   list.push(el('p',state.throwPreview.aim==='ground'?'Aim: ground':'Aim: visible body, otherwise ground','details'),el('p',state.throwPreview.description),actions([[state.throwPreview.mode==='Measured'?'Prepare aim · 1 turn':'Throw · 1 turn',()=>act('throw'),'gold'],['Cancel',()=>act('close')]]));
    showOverlay('Review your throw','THE WORLD WAITS',list);break;
   case 'crafting':{
    const c=state.crafting;list.push(el('p','Set ingredients aside to preview a combination. Nothing is consumed until you confirm crafting.','details'));
@@ -179,7 +213,7 @@ function renderPanel(){
   default:$('overlay').hidden=true;break;
  }
 }
-function worldAction(id,a){return a.command==='Throw'?beginTarget({kind:'throw',id,label:'Throw · choose a visible tile'}):act('world',{id,command:a.command});}
+function worldAction(id,a){return a.command==='Throw'?chooseThrow({kind:'throw',id,label:'Throw'}):act('world',{id,command:a.command});}
 function lootPicker(items,kind){
  const box=el('div'),chosen=new Set();
  for(const i of items){const label=el('label',null,'loot-choice'),input=document.createElement('input');input.type='checkbox';input.onchange=()=>{if(input.checked)chosen.add(i.id);else chosen.delete(i.id);};label.append(input,el('span',`${clean(i.name)}${i.count>1?` × ${i.count}`:''}`));box.append(label);}
@@ -195,21 +229,50 @@ function showSkills(){
  for(const group of s.groups){const section=el('details',null,'skill-group');section.open=group.rows.some(r=>r.id===s.selected);section.append(el('summary',group.name));for(const r of group.rows){section.append(row(r.name,`${r.state} · rank ${r.rank}/${r.maxRank}`,()=>act('skill',{command:'select',id:r.id}),r.cost>0?`${r.cost} SP`:'—'));if(r.id===s.selected&&r.eligible)section.append(button('Review purchase',()=>act('skill',{command:'review',id:r.id}),'gold'));}list.push(section);}
  showOverlay('Skills & attributes','CHOOSE WHAT YOU BECOME',list);
 }
-async function beginTarget(choice){if(await act('close')){target=choice;map.target=null;render();map.draw();}}
-function clearTarget(){target=null;map.target=null;render();map.draw();}
+function showAbilitySlots(a){
+ localMenu=true;
+ showOverlay('Assign ability slot',a.name,[el('p','Selecting an occupied slot replaces its assignment. The other ability stays available in Abilities.','details'),rows(Array.from({length:10},(_,index)=>{const occupant=state.abilities.find(b=>b.slot===index);return row(`Slot ${index+1}`,occupant?`Replace ${clean(occupant.name)}`:'Empty',()=>act('abilityManage',{command:'assign',id:a.id,index}),occupant?.id===a.id?'Assigned':'Choose');})),button('Cancel',()=>act('abilityManage',{command:'details',id:a.id}),'quiet')]);
+}
+function useAbility(a){
+ if(a.throwing)return act('ability',{id:a.id});
+ if(a.targeting==='SelfCentered')return act('abilityPreview',{id:a.id});
+ return beginTarget({kind:'abilityPreview',id:a.id,targeting:a.targeting,range:a.range,label:`${clean(a.name)} · ${a.targeting==='DirectionLine'?'choose a direction':a.targeting==='AdjacentCell'?'choose a neighbor':`range ${a.range}`}`});
+}
+function readRite(a){return a.targeting==='DirectionLine'?beginTarget({kind:'ritePreview',id:a.id,targeting:a.targeting,range:a.range,label:`Read ${clean(a.name)} · choose a direction`}):act('ritePreview',{id:a.id});}
+function chooseThrow(choice){localMenu=true;showOverlay('Choose throw style',choice.label,[el('p','Body aim follows a visible creature or object at the chosen tile. Ground aim selects the floor even if someone stands there.','details'),button('Throw at a body…',()=>beginTarget({...choice,command:'body',label:`${choice.label} · body aim`}), 'gold'),button('Throw at the ground…',()=>beginTarget({...choice,command:'ground',label:`${choice.label} · ground aim`}), 'outline')]);}
+function directionName(x,y){return ({'-1,-1':'Northwest','0,-1':'North','1,-1':'Northeast','-1,0':'West','1,0':'East','-1,1':'Southwest','0,1':'South','1,1':'Southeast'})[`${x},${y}`]||'Choose a direction';}
+function aimAt(tile){
+ if(!target||!state)return;
+ let dx=tile.x-state.x,dy=tile.y-state.y;
+ if(target.targeting==='DirectionLine'||target.targeting==='AdjacentCell'){
+  if(!dx&&!dy){toast('Choose a direction away from your position.');return;}
+  // Snap the tap to the nearest of eight headings, rather than treating it as an impact tile.
+  const angle=Math.round(Math.atan2(dy,dx)/(Math.PI/4));dx=Math.round(Math.cos(angle*Math.PI/4));dy=Math.round(Math.sin(angle*Math.PI/4));
+  tile={x:state.x+dx,y:state.y+dy};
+ }
+ if(tile.x<0||tile.y<0||tile.x>=state.width||tile.y>=state.height){toast('That direction leads beyond the edge of the area.');return;}
+ if(target.targeting!=='DirectionLine'&&!state.cells.some(t=>t.x===tile.x&&t.y===tile.y&&t.v)){toast('Choose a visible place.');return;}
+ if(target.range&&Math.max(Math.abs(tile.x-state.x),Math.abs(tile.y-state.y))>target.range){toast(`Choose a target within ${target.range} tiles.`);return;}
+ map.target=tile;map.aim=target.targeting==='DirectionLine'?{dx,dy,range:target.range}:null;map.draw();render();
+ if(map.aim)text('target-label',`${target.label.split(' · ')[0]} · ${directionName(dx,dy)} · range ${target.range}`);
+}
+function moveAim(x,y){const origin=['DirectionLine','AdjacentCell'].includes(target?.targeting)?state:(map.target||state);aimAt({x:origin.x+x,y:origin.y+y});}
+async function beginTarget(choice){if(await act('close')){target=choice;map.target=null;map.aim=null;render();map.draw();}}
+function resetAim(){target=null;map.target=null;map.aim=null;pointer=null;}
+function clearTarget(){resetAim();render();map.draw();}
 $('cancel-target').onclick=clearTarget;
-$('confirm-target').onclick=async()=>{if(!target||!map.target||busy)return;const t=target,point=map.target;if(await act(t.kind==='throw'?'throwPreview':t.kind,{id:t.id,value:t.mode||'Ordinary',focused:!!t.focused,x:point.x,y:point.y}))clearTarget();};
+$('confirm-target').onclick=async()=>{if(!target||!map.target||busy)return;const t=target,point=map.target;if(await act(t.kind==='throw'?'throwPreview':t.kind,{id:t.id,value:t.mode||'Ordinary',command:t.command,focused:!!t.focused,x:point.x,y:point.y,dx:Math.sign(point.x-state.x),dy:Math.sign(point.y-state.y)}))clearTarget();};
 let pointer=null;
 $('world-canvas').addEventListener('pointerdown',e=>{if(busy)return;pointer={id:e.pointerId,x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};e.currentTarget.setPointerCapture(e.pointerId);});
 $('world-canvas').addEventListener('pointermove',e=>{if(!pointer||pointer.id!==e.pointerId)return;const dx=e.clientX-pointer.lastX,dy=e.clientY-pointer.lastY;if(Math.hypot(e.clientX-pointer.x,e.clientY-pointer.y)>8)pointer.moved=true;if(pointer.moved)map.pan(dx,dy);pointer.lastX=e.clientX;pointer.lastY=e.clientY;});
-$('world-canvas').addEventListener('pointerup',e=>{const p=pointer;pointer=null;if(!p||p.id!==e.pointerId||p.moved||busy||!state)return;const rect=e.currentTarget.getBoundingClientRect(),tile=map.tileAt(e.clientX-rect.left,e.clientY-rect.top);if(!tile)return;if(target){if(!state.cells.some(t=>t.x===tile.x&&t.y===tile.y&&t.v)){toast('Choose a visible place.');return;}map.target=tile;map.draw();render();}else act('look',tile);});
+$('world-canvas').addEventListener('pointerup',e=>{const p=pointer;pointer=null;if(!p||p.id!==e.pointerId||p.moved||busy||!state)return;const rect=e.currentTarget.getBoundingClientRect(),tile=map.tileAt(e.clientX-rect.left,e.clientY-rect.top);if(!tile)return;if(target){aimAt(tile);}else act('look',tile);});
 $('world-canvas').addEventListener('pointercancel',()=>pointer=null);
 $('zoom-in').onclick=()=>map.zoom(.2);$('zoom-out').onclick=()=>map.zoom(-.2);$('center-map').onclick=()=>map.center();
 // Keep a single click activation path for touch, mouse, keyboard and assistive tech.
 // Cancel browser-only follow-up gestures, including Safari selection/callout fallbacks.
 const compass=document.querySelector('.compass');
 for(const type of ['dblclick','contextmenu','selectstart'])compass.addEventListener(type,event=>event.preventDefault());
-document.querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>{const [x,y]=b.dataset.move.split(',').map(Number);if(target){const origin=map.target||state;map.target={x:Math.max(0,Math.min(79,origin.x+x)),y:Math.max(0,Math.min(24,origin.y+y))};map.draw();render();}else act('step',{x,y});});
+document.querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>{const [x,y]=b.dataset.move.split(',').map(Number);if(target){moveAim(x,y);}else act('step',{x,y});});
 $('wait-button').onclick=()=>act('wait');document.querySelectorAll('[data-panel]').forEach(b=>b.onclick=()=>act('panel',{value:b.dataset.panel}));$('log-open').onclick=()=>act('panel',{value:'journal'});
 $('interact-button').onclick=()=>state?.isWorldMap?act('travel',{value:'local'}):act('panel',{value:'nearby'});
 function gameMenu(){if(!state||busy)return;localMenu=true;showOverlay('Your expedition','TAKE YOUR TIME',[rows([
@@ -224,9 +287,9 @@ function gameMenu(){if(!state||busy)return;localMenu=true;showOverlay('Your expe
  row('Begin another expedition','Your saved expedition is kept',async()=>{await saveCheckpoint();closeLocal();showCreation();},'+')
  ])]);}
 $('more-button').onclick=gameMenu;$('menu-button').onclick=gameMenu;$('save-button').onclick=()=>saveCheckpoint().catch(()=>{});
-function showHelp(){localMenu=true;showOverlay('One turn at a time','A FIELD GUIDE',[el('p','The world waits while you think. Use the compass to move in eight directions. Bump into a hostile creature to strike; the center dot waits one turn.'),el('p','Tap a tile to inspect it for free. Drag the map to look farther away. Interact lists the things within reach: conversations, supplies, doors, plants, and the work of a place.'),el('p','Pack holds your belongings and equipment. Abilities opens targeting: choose a tile, then confirm. Looking, reading, and choosing never rush you.'),heading('Keyboard'),el('p','Arrow keys or H J K L move. Y U B N move diagonally. Period waits. I opens your pack; A abilities; E interactions; Shift+K skills; Shift+J journal; M opens the world map guide. Esc closes a menu; F5 saves. Use < and > on stairs; < from the surface enters the world map, and > enters the area beneath your marker.'),heading('World travel'),el('p','Open More → World map to set out from the surface. Move with the compass, tap landmarks to read, then choose Enter area. Returning immediately to the area you left restores your previous position.'),heading('Along the way'),el('p','Read the notice near the glade’s center. The well needs fire clay. There is a cellar to the west, and beyond the glade lies Sill.'),heading('On your iPhone'),el('p','Open this page in Safari. Use Share → Add to Home Screen for a full-screen expedition. Once the game has finished downloading, it can reopen offline while its cached files remain on your device.'),heading('Your progress'),el('p','Checkpoints save locally after several actions, on travel, and when you press Save. Wait for “Saved on this device” before closing. Export a backup before clearing browser data. Different browsers keep separate expeditions.')]);}
+function showHelp(){localMenu=true;showOverlay('One turn at a time','A FIELD GUIDE',[el('p','The world waits while you think. Use the compass to move in eight directions. Bump into a hostile creature to strike; the center dot waits one turn.'),el('p','Tap a tile to inspect it for free. Drag the map to look farther away. Interact lists the things within reach: conversations, supplies, doors, plants, and the work of a place.'),el('p','Pack holds your belongings and equipment. Abilities shows details and ten assignable slots. Use an ability to aim, review, then confirm. Directional abilities follow one of eight headings; their guides do not promise an area of impact. Looking, reading, and choosing never rush you.'),heading('Keyboard'),el('p','Arrow keys or H J K L move. Y U B N move diagonally. Period waits. I opens your pack; A abilities; E interactions; Shift+K skills; Shift+J journal; M opens the world map guide. Esc closes a menu; F5 saves. Use < and > on stairs; < from the surface enters the world map, and > enters the area beneath your marker.'),heading('World travel'),el('p','Open More → World map to set out from the surface. Move with the compass, tap landmarks to read, then choose Enter area. Returning immediately to the area you left restores your previous position.'),heading('Along the way'),el('p','Read the notice near the glade’s center. The well needs fire clay. There is a cellar to the west, and beyond the glade lies Sill.'),heading('On your iPhone'),el('p','Open this page in Safari. Use Share → Add to Home Screen for a full-screen expedition. Once the game has finished downloading, it can reopen offline while its cached files remain on your device.'),heading('Your progress'),el('p','Checkpoints save locally after several actions, on travel, and when you press Save. Wait for “Saved on this device” before closing. Export a backup before clearing browser data. Different browsers keep separate expeditions.')]);}
 $('help-start').onclick=showHelp;
-function showDeath(){localMenu=true;target=null;showOverlay('The expedition ends','EVERY ROAD LEAVES A STORY',[el('p',`${clean(state.name)} fell in ${state.zoneName}. Your last living checkpoint is kept.`),actions([['Continue checkpoint',()=>continueGame(state.gameId),'gold'],['Another expedition',()=>{closeLocal();showCreation();}]]),...narrativeMessages().slice(-6).map(m=>el('div',m,'journal-entry'))]);}
+function showDeath(){localMenu=true;resetAim();showOverlay('The expedition ends','EVERY ROAD LEAVES A STORY',[el('p',`${clean(state.name)} fell in ${state.zoneName}. Your last living checkpoint is kept.`),actions([['Continue checkpoint',()=>continueGame(state.gameId),'gold'],['Another expedition',()=>{closeLocal();showCreation();}]]),...narrativeMessages().slice(-6).map(m=>el('div',m,'journal-entry'))]);}
 async function compress(raw){return new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer());}
 async function decompress(bytes){
  const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip')).getReader();const chunks=[];let total=0;
@@ -277,7 +340,7 @@ async function continueGame(id){
 let builds=[];
 async function showCreation(){
  if(busy)return;
- $('start-screen').hidden=true;$('game-screen').hidden=true;$('creation-screen').hidden=false;document.body.classList.remove('playing');$('menu-button').hidden=true;localMenu=false;target=null;$('overlay').hidden=true;
+ $('start-screen').hidden=true;$('game-screen').hidden=true;$('creation-screen').hidden=false;document.body.classList.remove('playing');$('menu-button').hidden=true;localMenu=false;resetAim();$('overlay').hidden=true;
  $('world-seed').value=String(1+crypto.getRandomValues(new Uint32Array(1))[0]%2147483646);
  if(!builds.length){
   try{builds=await(await fetch('builds.json')).json();builds=builds.Builds||builds;}
@@ -349,7 +412,7 @@ document.addEventListener('keydown',event=>{
  if(!state||$('game-screen').hidden)return;
  if(event.key==='F5'){event.preventDefault();saveCheckpoint().catch(()=>{});return;}
  if(!$('overlay').hidden)return;
- if(moves[event.key]){event.preventDefault();const [x,y]=moves[event.key];if(!target)act('step',{x,y});return;}
+ if(moves[event.key]){event.preventDefault();const [x,y]=moves[event.key];if(target)moveAim(x,y);else act('step',{x,y});return;}
  if(event.key==='.'||event.key==='5'){event.preventDefault();if(!target)act('wait');return;}
  const panels={i:'inventory',a:'abilities',e:'nearby',K:'skills',J:'journal',m:'map',c:'character'};
  if(panels[event.key]){event.preventDefault();act('panel',{value:panels[event.key]});return;}

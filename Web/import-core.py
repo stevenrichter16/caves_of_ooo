@@ -8,7 +8,7 @@ cli.add_argument('repository',type=Path,help='Local Caves of Ooo Git checkout')
 cli.add_argument('--commit',default=json.loads((root/'source-provenance.json').read_text())['sourceCommit'])
 args=cli.parse_args();repo=args.repository.resolve()
 commit=subprocess.check_output(['git','rev-parse',args.commit+'^{commit}'],cwd=repo,text=True).strip()
-rendering=('QudColorParser','AsciiWorldRenderPolicy','ZoneRenderHooks','EntityVisualHooks','QuestLogSnapshot','QuestLogStateBuilder','SkillBrowserModel','SkillsScreenStateBuilder','SkillsScreenSnapshot','AbilityDetailsBuilder','AbilityManagerStateBuilder','AbilityManagerSnapshot')
+rendering=('QudColorParser','AsciiWorldRenderPolicy','ZoneRenderHooks','EntityVisualHooks','QuestLogSnapshot','QuestLogStateBuilder','SkillBrowserModel','SkillsScreenStateBuilder','SkillsScreenSnapshot','AbilityDetailsBuilder','RitePreviewBuilder','AbilityManagerStateBuilder','AbilityManagerSnapshot')
 sprites=('opening-base','opening-cast','opening-anchors','opening-states','opening-items','opening-cellar','opening-ground','opening-motion','sill-environment')
 paths=['Assets/Scripts/'+g for g in ('Gameplay','Data','Shared')]+['Assets/Resources/Content']+['Assets/Scripts/Presentation/Rendering/'+n+'.cs' for n in rendering]+['Assets/Resources/Sprites/Live16x24/'+n+'.png' for n in sprites]
 tree=subprocess.check_output(['git','ls-tree','-rz',commit,*paths],cwd=repo)
@@ -38,7 +38,10 @@ subs={'Gameplay/World/Map/OverworldZoneManager.cs':('zoneID.GetHashCode()','CooR
 for file,(old,new) in subs.items():
  p=root/'Core/Source'/file;text=p.read_text();assert old in text,f'Adaptation target changed: {file}';p.write_text(text.replace(old,new))
 p=root/'Core/Source/Gameplay/Save/SaveSystem.cs';text=p.read_text();needle='            state.TurnManager?.Activate();';assert text.count(needle)==1
-p.write_text(text.replace(needle,(root/'scripts/load-validation.cs.txt').read_text()+needle))
-manifest={'repository':'stevenrichter16/caves_of_ooo','sourceCommit':commit,'sourceFiles':len(list((root/'Core/Source').rglob('*.cs'))),'contentFiles':len(list((root/'Core/Content').rglob('*.json'))),'changes':['Standalone .NET compatibility layer and embedded Resources; no Unity runtime','Stable string hashes and approximate Perlin noise from the existing headless adaptation; no desktop seed parity claim','Validate complete imported sessions before publishing live singleton state','Browser facade and canvas/DOM presentation kept outside the imported core']}
+text=text.replace(needle,(root/'scripts/load-validation.cs.txt').read_text()+needle)
+# An explicit ten-slot save can intentionally contain no assignments.
+needle='            part.MigrateLegacyAssignments();';assert text.count(needle)==1
+p.write_text(text.replace(needle,'            if (slots == 0) part.MigrateLegacyAssignments();'))
+manifest={'repository':'stevenrichter16/caves_of_ooo','sourceCommit':commit,'sourceFiles':len(list((root/'Core/Source').rglob('*.cs'))),'contentFiles':len(list((root/'Core/Content').rglob('*.json'))),'changes':['Standalone .NET compatibility layer and embedded Resources; no Unity runtime','Stable string hashes and approximate Perlin noise from the existing headless adaptation; no desktop seed parity claim','Validate complete imported sessions before publishing live singleton state','Preserve explicitly empty saved ability slot assignments; legacy backfill only for absent slots','Browser facade and canvas/DOM presentation kept outside the imported core']}
 (root/'source-provenance.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(json.dumps(manifest))

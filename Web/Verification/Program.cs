@@ -42,6 +42,8 @@ internal static partial class Program
         Run("cellar supplies repair the actual opening well and persist", OpeningRepair);
         Run("crafting previews and brews use native ownership and free menu timing", NativeBrew);
         RunWorldTravelContracts();
+        RunActionControlContracts();
+        RunTargetingContracts();
         if (Failures == 0 && args.Contains("--opening-snapshot", StringComparer.Ordinal))
             File.WriteAllText("/tmp/coo-opening-view.json", Game.NewGame("classic", 8128, "Wanderer"));
         Console.WriteLine(JsonSerializer.Serialize(new { total = Results.Count, passed = Results.Count - Failures, failed = Failures, cases = Results }));

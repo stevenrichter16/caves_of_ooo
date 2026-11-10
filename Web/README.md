@@ -1,6 +1,6 @@
 # Caves of Ooo — standalone web expedition
 
-Play: https://caves-of-ooo-web.stevenaaaaaa.chatgpt.site
+Play: https://caves-of-ooo-web.stevenaaaaaa.chatgpt.site (owner-private).
 
 A playable, touch-friendly browser edition of Caves of Ooo. The existing Unity project stays independent. This edition runs the real C# gameplay and JSON content as .NET WebAssembly, with a canvas map and HTML interface. It needs no Unity installation, Unity player, account backend, or gameplay server.
 
@@ -12,7 +12,9 @@ Open the deployed site in Safari on iPhone; Share → Add to Home Screen gives i
 - Tap a tile to inspect for free; drag to pan. Bump hostile creatures to attack.
 - Turn your phone sideways for a full-height map, with health, focus and controls in a compact side rail. Aiming puts Cancel/Confirm beside the map. Rotating preserves your zoom and takes no turn.
 - Pack holds equipment, consumables, grouped pickup, crafting and alchemy. Nearby interactions expose conversations, trading, gathering, repairs and world actions.
-- Abilities target visible cells. Throws have a preview and explicit confirmation; Measured Throw prepares for one turn and launches on a separately confirmed turn.
+- Abilities opens native descriptions, cooldowns and ten assignable slots. Read details during cooldown; unassigned abilities remain usable. Directional abilities use one of eight headings; adjacent skills and Vault select cells. Review before committing; Vault shows its landing and asks explicitly before attacking a non-hostile target.
+- Equip from your pack to choose a body slot and review everything it will replace. Placement, comparison and ability-slot management take no turn.
+- Throws offer body or ground aim, a native preview and explicit confirmation. Measured Throw prepares for one turn and launches on a separately confirmed turn. Rites offer a separate Read marks action that spends neither ink nor time.
 - Skills and attributes use the native requirements and purchase confirmation. The journal shows objectives and completed quests.
 - Open More → World map, then Set out to travel between areas. Use the compass on the map and Enter area to explore on foot. Tap landmarks to read for free; zoom and pan for a closer view.
 - Stand on stairs, then use More → Ascend/Descend. The `<` key also enters the world map from the surface; `>` enters the area beneath your world-map marker. Crossing a local zone edge still works.
@@ -43,13 +45,14 @@ npx playwright install chromium webkit
 npm run test:browser
 npm run test:landscape
 npm run test:travel
+npm run test:actions
 ```
 
-`dist/` is the deployable static site. `scripts/build.py` generates a content-versioned service worker from the exact release. An update waits for existing game tabs to close; it cannot replace assemblies under a running game. Serve `.wasm` as `application/wasm` over HTTPS in production. The published Site keeps its own private hosting identity. This directory contains the portable source; no deployment credential is stored in the repository.
+`dist/` is the deployable static site. `scripts/build.py` generates a content-versioned service worker from the exact release. An update waits for existing game tabs to close; it cannot replace assemblies under a running game. Serve `.wasm` as `application/wasm` over HTTPS in production. The private Sites hosting identity is maintained separately; this directory contains portable source and no deployment credential.
 
 `Verification/browser-smoke.cjs` and `Verification/landscape-smoke.cjs` accept `COO_SMOKE_URL` and `COO_SMOKE_OUTPUT`. The landscape suite covers three phone sizes, menus, aiming, movement, checkpoints and orientation changes using the real WASM game. Mobile viewport/WebKit tests do not establish physical iPhone performance or OS background lifecycle behavior. See `Verification/RESULTS.md` for this release’s evidence and remaining limits.
 
-`Verification/world-travel-smoke.cjs` uses the same variables and optional `COO_SMOKE_CASE`. It covers real world-map entry, terrain/landmark projection, touch inspection, Sill travel, native return-position behavior, local zoom preservation and saved world-map continuation. The source-audited migration backlog and scope are in `Docs/WEB-MIGRATION.md`.
+`Verification/world-travel-smoke.cjs` uses the same variables and optional `COO_SMOKE_CASE`. It covers real world-map entry, terrain/landmark projection, touch inspection, Sill travel, native return-position behavior, local zoom preservation and saved world-map continuation. `Verification/action-controls-smoke.cjs` covers actual touch assignment/equipment flows, direction controls, cancellation, body/ground throw previews, cooldown inspection and checkpoint persistence. The source-audited migration backlog and scope are in `Docs/WEB-MIGRATION.md`.
 
 ## Architecture and future updates
 
@@ -66,8 +69,8 @@ python3 import-core.py /path/to/caves_of_ooo --commit FULL_COMMIT_SHA
 python3 scripts/build.py
 ```
 
-The importer requests only selected Git blobs, which also works with partial clones. It does not replace browser adapters. It applies six bounded source adaptations: five stable string hash substitutions and complete-session validation before publishing an imported save. The platform layer stays separately owned. Keep the exact upstream commit and run the contracts before publishing.
+The importer requests only selected Git blobs, which also works with partial clones. It does not replace browser adapters. It applies seven bounded source adaptations: five stable string hash substitutions, complete-session validation before publishing an imported save, and preservation of explicitly empty saved ability assignments. The platform layer stays separately owned. Keep the exact upstream commit and run the contracts before publishing.
 
-This is a first playable browser edition, not a claim of complete presentation parity. It retains original starting builds, authored opening, world generation, AI, combat, quests, inventory, trading, abilities, progression and crafting rules. The original opening art is used with glyph fallback elsewhere. Native lighting, animated effects/audio, controller-specific menus, full region art treatment and advanced crafting/ability-slot presentation remain future work. The core and full content are present, but every late-game interaction has not been browser-qualified.
+This is a first playable browser edition, not a claim of complete presentation parity. It retains original starting builds, authored opening, world generation, AI, combat, quests, inventory, trading, abilities, progression and crafting rules. The original opening art is used with glyph fallback elsewhere. Native lighting, animated effects/audio, controller-specific menus, full region art treatment and advanced crafting presentation remain future work. The core and full content are present, but every late-game interaction has not been browser-qualified.
 
 The useful-affliction and misplaced-season ideas discussed in chat have not been added as new lore during this port. This build uses the repository’s authored content.

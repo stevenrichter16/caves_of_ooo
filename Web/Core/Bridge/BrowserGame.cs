@@ -86,7 +86,7 @@ namespace CavesOfOoo.Web
             zones.SetActiveZone(zone); turns=new TurnManager(); StoryletPart.LocalPlayer=player;
             BindClock(); RegisterCreatures(true); SettlementRuntime.ActiveZone=zone;
             turns.ProcessUntilPlayerTurn(); CropTime.ReconcileZone(zone,turns.TickCount); KitchenBatchPart.ReconcileZone(zone);
-            selected=trader=container=null; panel="";error="";faulted=false;revision++; UpdateVision();
+            ClearControlReviews();pendingThrow=null;selected=trader=container=null; panel="";error="";faulted=false;revision++; UpdateVision();
             return Snapshot();
         }
         void BindClock() { zones.SetTurnProvider(()=>turns.TickCount);MessageLog.TickProvider=()=>turns.TickCount; }
@@ -127,7 +127,7 @@ namespace CavesOfOoo.Web
             zones.SettlementManager?.RefreshActiveZonePresentation(zone);
             if(zones.SettlementManager!=null)foreach(var msg in zones.SettlementManager.ConsumePendingMessages(zone.ZoneID))MessageLog.Add(msg);
             SariAmbience.OnZoneEntered(player,zone);EconomyUpkeep.OnZoneEntered(player,zone,turns.TickCount);
-            selected=trader=container=null; panel="";
+            ClearControlReviews();pendingThrow=null;selected=trader=container=null; panel="";
         }
         public byte[] Save()
         {
@@ -164,7 +164,7 @@ namespace CavesOfOoo.Web
             ConversationManager.EndConversation();WorldClock.Reset();BeatingGlareSystem.Reset();
             foreach(var saved in zones.CachedZones.Values)CropTime.InitializeLegacyZone(saved,turns.TickCount);
             CropTime.ReconcileZone(zone,turns.TickCount);KitchenBatchPart.ReconcileZone(zone);zones.SettlementManager?.RefreshActiveZonePresentation(zone);
-            selected=trader=container=null;pendingThrow=null;panel="";error="";faulted=false;revision++;UpdateVision();return Snapshot();
+            ClearControlReviews();selected=trader=container=null;pendingThrow=null;panel="";error="";faulted=false;revision++;UpdateVision();return Snapshot();
         }
     }
 }

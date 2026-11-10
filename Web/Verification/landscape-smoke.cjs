@@ -110,6 +110,8 @@ async function aim(page) {
   await page.locator('#touch-controls [data-panel="abilities"]').tap();
   await page.locator('#overlay-title').filter({ hasText: 'Abilities' }).waitFor();
   await page.getByRole('button', { name: /^Jet Blast/ }).tap();
+  await page.getByRole('heading', { name: 'Jet Blast', exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Use ability', exact: true }).tap();
   await page.locator('#target-banner').waitFor({ state: 'visible' });
   await page.locator('[data-move="1,0"]').tap();
   await page.waitForFunction(() => !document.getElementById('confirm-target').disabled);
@@ -211,6 +213,10 @@ async function run(record, engine, viewport, rotate) {
     await step(record, 'confirm casts real Jet Blast eastward and spends exactly one turn', async () => {
       const before = await state(page); await aim(page); await page.locator('#confirm-target').tap();
       await page.locator('#target-banner').waitFor({ state: 'hidden' });
+      await page.getByRole('button', { name: /^(Use ability|Attack .+) · 1 turn$/ }).waitFor();
+      same(before, await state(page), 'Reviewing the ability spent a turn');
+      await page.getByRole('button', { name: /^(Use ability|Attack .+) · 1 turn$/ }).tap();
+      await page.locator('#overlay').waitFor({ state: 'hidden' });
       const after = await state(page); check(after.tick === before.tick + 10, `Cast turn differs: ${JSON.stringify({ before, after })}`);
       check(after.position === before.position && after.hp === before.hp, 'The controlled eastward ground cast moved or harmed the caster.');
       await hud(page); return { before, after, narration: await narration(page) };

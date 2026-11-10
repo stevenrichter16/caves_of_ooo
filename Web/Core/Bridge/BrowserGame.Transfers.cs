@@ -34,7 +34,7 @@ namespace CavesOfOoo.Web
         sealed class PendingThrow
         {
             public Entity Actor,Item;public Zone Zone;public ThrowIntent Intent;
-            public ThrowMode Mode;public bool Focused;public string Description;
+            public ThrowMode Mode;public bool Focused,GroundAim;public string Description;
         }
         PendingThrow pendingThrow;
         string throwingMode="Ordinary";
@@ -69,7 +69,7 @@ namespace CavesOfOoo.Web
             {error=reason;return;}
             var at=zone.GetEntityCell(player);int range=HandlingService.GetThrowRange(player,item);
             if(Math.Max(Math.Abs(at.X-a.x),Math.Abs(at.Y-a.y))>range){error=$"Choose a target within {range} tiles.";return;}
-            pendingThrow=new PendingThrow{Actor=player,Zone=zone,Item=item,Intent=intent,Mode=mode,Focused=a.focused,
+            pendingThrow=new PendingThrow{Actor=player,Zone=zone,Item=item,Intent=intent,Mode=mode,Focused=a.focused,GroundAim=a.command=="ground",
                 Description=ThrowPreview.Build(zone,player,item,intent,range,a.focused,mode==ThrowMode.Driving,mode==ThrowMode.Measured).Description};
             panel="throwPreview";
         }

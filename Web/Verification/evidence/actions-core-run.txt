@@ -1,0 +1,62 @@
+PASS canonical start uses real content, build and scheduler
+PASS look is free and does not change the player's state
+PASS a stale input revision cannot spend a turn or move
+PASS oversized movement cannot bypass the one-step contract
+PASS a valid step moves through the real turn pipeline
+PASS an indestructible adjacent wall blocks without spending a turn
+PASS wait advances the actual game scheduler
+PASS item commands reject remote and nonexistent ownership
+PASS a valid owned item command still executes
+PASS save and load restore exact position, tick, HP and inventory
+PASS malformed saves leave the active session intact
+PASS damage changes current HP without shrinking maximum HP
+System.InvalidOperationException: Expected contract fixture: interrupted EndTurn.
+   at Program.EndTurnProbe.HandleEvent(GameEvent e) in /workspace/sites/caves-of-ooo-web/Verification/Program.cs:line 491
+   at CavesOfOoo.Core.Entity.FireEvent(GameEvent e) in /workspace/sites/caves-of-ooo-web/Core/Source/Gameplay/Entities/Entity.cs:line 273
+   at CavesOfOoo.Core.Entity.FireEventAndRelease(GameEvent e) in /workspace/sites/caves-of-ooo-web/Core/Source/Gameplay/Entities/Entity.cs:line 304
+   at CavesOfOoo.Core.TurnManager.EndTurn(Entity actor, Zone zone) in /workspace/sites/caves-of-ooo-web/Core/Source/Gameplay/Turns/TurnManager.cs:line 402
+   at CavesOfOoo.Web.BrowserGame.EndTurn() in /workspace/sites/caves-of-ooo-web/Core/Bridge/BrowserGame.cs:line 110
+   at CavesOfOoo.Web.BrowserGame.Dispatch(String requestJson) in /workspace/sites/caves-of-ooo-web/Core/Bridge/BrowserGame.Actions.cs:line 40
+PASS a valid checkpoint recovers an interrupted, faulted turn
+PASS the real opening stairs enter the cellar and return
+PASS starting build duelist applies its actual gear and skills
+PASS starting build breaker applies its actual gear and skills
+PASS starting build stormcaller applies its actual gear and skills
+PASS starting build bombardier applies its actual gear and skills
+PASS starting build warden applies its actual gear and skills
+PASS starting build hurler applies its actual gear and skills
+PASS starting build classic applies its actual gear and skills
+PASS a grouped pickup transfers selected items with one paid turn
+PASS ordinary throws preview freely, validate, then pay once
+PASS a changed throw target cannot consume an item or turn
+PASS Measured Throw preserves its distinct preparation and launch turns
+PASS cellar supplies repair the actual opening well and persist
+PASS crafting previews and brews use native ownership and free menu timing
+PASS world travel exposes actual coordinates while reading the map stays free
+PASS surface to world map and back pays one turn each and retains the exact square
+PASS one world-map step pays the native surcharge and reaches persistent Sill
+PASS stairs away from an entrance use native world-map vertical fallback
+PASS underground travel cannot skip local stairs or spend a refused turn
+PASS stale and inapplicable travel cannot change location or spend a turn
+PASS all four world-map borders refuse movement without damage or a turn
+PASS saving on the world map preserves coordinates and the return location
+PASS world-map cells are bounded and expose native live names and visited flags
+PASS unvisited sinkhole names remain hidden until native discovery
+PASS ability details expose native cooldown and remain a free read
+PASS ability slots include0and9 and replacement unbinds without swapping
+PASS ability management rejects unknown ownership stale views and invalid slots freely
+PASS a deliberately empty ability hotbar survives complete save and load
+PASS equipment choice explicitly equips the offhand and preserves native fallback
+PASS two-handed equipment review identifies both claims and displaced items
+PASS equipment confirmation rejects invalid limbs and changed anatomy ownership or displacement
+PASS equipment review tokens are one-use cancelled and revision checked
+PASS ability previews and cancellation preserve resources, turns and FX
+PASS directional targeting requires a unit heading and omits TargetCell
+PASS directional abilities reject headings outside every local-map edge
+PASS adjacent targeting rejects self and sends the exact selected cell
+PASS self-centered activation ignores coordinates and omits TargetCell
+PASS ability confirmations reject stale, cancelled and reused tokens
+PASS Vault requires explicit consent before attacking a neutral target
+PASS Vault confirmation rechecks target, landing, source and ownership
+PASS rite readings stay free on cooldown and conceal hidden candidates
+{"total":54,"passed":54,"failed":0,"cases":[{"name":"canonical start uses real content, build and scheduler","status":"passed","durationMs":1217},{"name":"look is free and does not change the player\u0027s state","status":"passed","durationMs":119},{"name":"a stale input revision cannot spend a turn or move","status":"passed","durationMs":28},{"name":"oversized movement cannot bypass the one-step contract","status":"passed","durationMs":48},{"name":"a valid step moves through the real turn pipeline","status":"passed","durationMs":144},{"name":"an indestructible adjacent wall blocks without spending a turn","status":"passed","durationMs":59},{"name":"wait advances the actual game scheduler","status":"passed","durationMs":47},{"name":"item commands reject remote and nonexistent ownership","status":"passed","durationMs":89},{"name":"a valid owned item command still executes","status":"passed","durationMs":57},{"name":"save and load restore exact position, tick, HP and inventory","status":"passed","durationMs":409},{"name":"malformed saves leave the active session intact","status":"passed","durationMs":765},{"name":"damage changes current HP without shrinking maximum HP","status":"passed","durationMs":617},{"name":"a valid checkpoint recovers an interrupted, faulted turn","status":"passed","durationMs":838},{"name":"the real opening stairs enter the cellar and return","status":"passed","durationMs":594},{"name":"starting build duelist applies its actual gear and skills","status":"passed","durationMs":259},{"name":"starting build breaker applies its actual gear and skills","status":"passed","durationMs":236},{"name":"starting build stormcaller applies its actual gear and skills","status":"passed","durationMs":262},{"name":"starting build bombardier applies its actual gear and skills","status":"passed","durationMs":278},{"name":"starting build warden applies its actual gear and skills","status":"passed","durationMs":360},{"name":"starting build hurler applies its actual gear and skills","status":"passed","durationMs":307},{"name":"starting build classic applies its actual gear and skills","status":"passed","durationMs":355},{"name":"a grouped pickup transfers selected items with one paid turn","status":"passed","durationMs":340},{"name":"ordinary throws preview freely, validate, then pay once","status":"passed","durationMs":761},{"name":"a changed throw target cannot consume an item or turn","status":"passed","durationMs":925},{"name":"Measured Throw preserves its distinct preparation and launch turns","status":"passed","durationMs":1679},{"name":"cellar supplies repair the actual opening well and persist","status":"passed","durationMs":2097},{"name":"crafting previews and brews use native ownership and free menu timing","status":"passed","durationMs":362},{"name":"world travel exposes actual coordinates while reading the map stays free","status":"passed","durationMs":345},{"name":"surface to world map and back pays one turn each and retains the exact square","status":"passed","durationMs":276},{"name":"one world-map step pays the native surcharge and reaches persistent Sill","status":"passed","durationMs":974},{"name":"stairs away from an entrance use native world-map vertical fallback","status":"passed","durationMs":321},{"name":"underground travel cannot skip local stairs or spend a refused turn","status":"passed","durationMs":746},{"name":"stale and inapplicable travel cannot change location or spend a turn","status":"passed","durationMs":537},{"name":"all four world-map borders refuse movement without damage or a turn","status":"passed","durationMs":916},{"name":"saving on the world map preserves coordinates and the return location","status":"passed","durationMs":598},{"name":"world-map cells are bounded and expose native live names and visited flags","status":"passed","durationMs":259},{"name":"unvisited sinkhole names remain hidden until native discovery","status":"passed","durationMs":415},{"name":"ability details expose native cooldown and remain a free read","status":"passed","durationMs":241},{"name":"ability slots include0and9 and replacement unbinds without swapping","status":"passed","durationMs":437},{"name":"ability management rejects unknown ownership stale views and invalid slots freely","status":"passed","durationMs":329},{"name":"a deliberately empty ability hotbar survives complete save and load","status":"passed","durationMs":825},{"name":"equipment choice explicitly equips the offhand and preserves native fallback","status":"passed","durationMs":346},{"name":"two-handed equipment review identifies both claims and displaced items","status":"passed","durationMs":281},{"name":"equipment confirmation rejects invalid limbs and changed anatomy ownership or displacement","status":"passed","durationMs":1089},{"name":"equipment review tokens are one-use cancelled and revision checked","status":"passed","durationMs":359},{"name":"ability previews and cancellation preserve resources, turns and FX","status":"passed","durationMs":318},{"name":"directional targeting requires a unit heading and omits TargetCell","status":"passed","durationMs":791},{"name":"directional abilities reject headings outside every local-map edge","status":"passed","durationMs":280},{"name":"adjacent targeting rejects self and sends the exact selected cell","status":"passed","durationMs":226},{"name":"self-centered activation ignores coordinates and omits TargetCell","status":"passed","durationMs":233},{"name":"ability confirmations reject stale, cancelled and reused tokens","status":"passed","durationMs":228},{"name":"Vault requires explicit consent before attacking a neutral target","status":"passed","durationMs":218},{"name":"Vault confirmation rechecks target, landing, source and ownership","status":"passed","durationMs":845},{"name":"rite readings stay free on cooldown and conceal hidden candidates","status":"passed","durationMs":194}]}

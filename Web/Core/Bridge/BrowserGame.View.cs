@@ -41,7 +41,7 @@ namespace CavesOfOoo.Web
                     hostile=cell.IsVisible&&top!=null&&top.HasTag("Creature")&&FactionManager.IsHostile(player,top),solid=cell.IsSolid(),floor=top?.HasTag("Floor")==true,ground=groundOwner?.BlueprintName??"Grass",wet=cell.IsVisible&&zone.TileState.Get(x,y)?.Coatings?.Any(k=>k.Id=="water"&&k.Turns>0)==true});
             }
             var pack=player.GetPart<InventoryPart>();var inventory=pack.Objects.Concat(pack.GetAllEquipped()).Distinct().Select(e=>ItemRow(e)).ToArray();
-            var abilities=player.GetPart<ActivatedAbilitiesPart>()?.AbilityList.Select(a=>new {id=a.ID.ToString(),name=a.DisplayName,category=a.Class,range=a.Range,targeting=a.TargetingMode.ToString(),cooldown=a.CooldownRemaining}).ToArray();
+            var abilities=player.GetPart<ActivatedAbilitiesPart>()?.AbilityList.Select(a=>new {id=a.ID.ToString(),name=a.DisplayName,category=a.Class,range=a.Range,targeting=a.TargetingMode.ToString(),cooldown=a.CooldownRemaining,slot=player.GetPart<ActivatedAbilitiesPart>().GetSlotForAbility(a.ID)}).ToArray();
             var nearby=new List<object>();var seen=new HashSet<string>();
             if(here!=null)for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)
             {
@@ -78,8 +78,10 @@ namespace CavesOfOoo.Web
                 hp=player.GetStatValue("Hitpoints"),maxHp=player.GetStat("Hitpoints")?.Max??40,dead=Dead,
                 level=player.GetStatValue("Level"),focus=player.GetStatValue("Focus"),drams=TradeSystem.GetDrams(player),weight=pack.GetCarriedWeight(),
                 stats=new[]{"Strength","Agility","Toughness","Intelligence","Willpower","Ego","AV","DV","Speed","XP","SP"}.Select(s=>new{name=s,value=player.GetStatValue(s)}).ToArray(),
-                cells,inventory,abilities,nearby,look,conversation,trade,contents,panel,skills=panel=="skills"?SkillsView():null,item=selected!=null&&Owned(selected.ID)!=null?ItemRow(selected,true):null,
-                crafting=panel=="crafting"?CraftingView():null,throwing=panel=="throwing"?ThrowingView():null,throwPreview=panel=="throwPreview"&&pendingThrow!=null?new{description=pendingThrow.Description,mode=pendingThrow.Mode.ToString()}:null,
+                cells,inventory,abilities,nearby,look,conversation,trade,contents,panel,
+                abilityDetails=panel=="abilityDetails"?AbilityDetailsView():null,abilityPreview=panel=="abilityPreview"?AbilityPreviewView():null,ritePreview=panel=="ritePreview"?new{text=riteReading}:null,
+                equipment=panel=="equipment"?EquipmentView():null,equipReview=panel=="equipReview"?EquipmentReviewView():null,skills=panel=="skills"?SkillsView():null,item=selected!=null&&Owned(selected.ID)!=null?ItemRow(selected,true):null,
+                crafting=panel=="crafting"?CraftingView():null,throwing=panel=="throwing"?ThrowingView():null,throwPreview=panel=="throwPreview"&&pendingThrow!=null?new{description=pendingThrow.Description,mode=pendingThrow.Mode.ToString(),aim=pendingThrow.GroundAim?"ground":"body"}:null,
                 messages=MessageLog.GetRecent(80),quests=QuestLogStateBuilder.Build(StoryletPart.Current),
                 visited=zones.CachedZones.Keys.ToArray(),ground=InventorySystem.GetTakeableItemsAtFeet(player,zone).Select(e=>ItemRow(e)).ToArray()});
         }

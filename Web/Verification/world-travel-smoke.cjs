@@ -219,6 +219,8 @@ async function run(record, engine) {
       await page.locator('#touch-controls [data-panel="abilities"]').tap();
       await page.getByRole('heading', { name: 'Abilities', exact: true }).waitFor();
       await page.getByRole('button', { name: /^Jet Blast/ }).tap();
+      await page.getByRole('heading', { name: 'Jet Blast', exact: true }).waitFor();
+      await page.getByRole('button', { name: 'Use ability', exact: true }).tap();
       await page.locator('#target-banner').waitFor({ state: 'visible' }); await frames(page);
       unchanged(before, await state(page), 'Opening world-map aim spent a turn');
       await page.locator('#cancel-target').tap(); await page.locator('#target-banner').waitFor({ state: 'hidden' }); await settled(page);

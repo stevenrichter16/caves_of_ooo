@@ -9,7 +9,7 @@ namespace CavesOfOoo.Web
     public partial class BrowserGame
     {
         bool faulted;
-        sealed class Intent { public string kind,id,command,value; public string[] ids; public bool focused; public int x,y,index,revision; }
+        sealed class Intent { public string kind,id,command,value,token; public string[] ids; public bool focused,acceptNeutralAttack; public int x,y,dx,dy,index,revision; }
         static readonly string[] FreeActions={"Examine","Chat","OpenContainer","Read","ReadDocument","ViewRecipe","PreviewRepair"};
         Entity Owned(string id) => player.GetPart<InventoryPart>()?.Objects.Concat(player.GetPart<InventoryPart>().GetAllEquipped()).FirstOrDefault(e=>e.ID==id);
         bool Adjacent(Entity entity)
@@ -24,11 +24,14 @@ namespace CavesOfOoo.Web
             if(!IsReady)throw new InvalidOperationException("Begin or continue an expedition first.");
             if(requestJson==null||requestJson.Length>8192){error="Invalid command.";return Snapshot();}
             Intent a;try{a=JsonConvert.DeserializeObject<Intent>(requestJson);}catch(JsonException){error="Invalid command.";return Snapshot();}
-            if(a==null||a.revision!=revision){error="That action belonged to an older view.";return Snapshot();}
+            if(a==null||a.revision!=revision){error="That action belonged to an older view.";RecordControl(a);return Snapshot();}
             error="";
             try
             {
-                bool query=a.kind=="look"||a.kind=="panel"||a.kind=="close"||a.kind=="select"||a.kind=="throwPreview";
+                bool query=a.kind=="look"||a.kind=="panel"||a.kind=="close"||a.kind=="select"||a.kind=="throwPreview"||a.kind=="abilityPreview"||a.kind=="ritePreview"
+                    ||(a.kind=="abilityManage"&&a.command=="details")||(a.kind=="equipment"&&a.command!="confirm");
+                if(a.kind!="abilityConfirm")pendingAbility=null;
+                if(a.kind!="equipment"||a.command!="confirm")pendingEquipment=null;
                 if((Dead||faulted)&&!query){error=Dead?"This expedition has ended. Continue a checkpoint or begin again.":"Reload a checkpoint before taking another turn.";return Snapshot();}
                 if(ConversationManager.IsActive&&a.kind!="choice"&&a.kind!="close"&&a.kind!="panel") {error="Finish the conversation first.";return Snapshot();}
                 switch(a.kind)
@@ -55,6 +58,11 @@ namespace CavesOfOoo.Web
                         else panel=ConversationManager.IsActive?"conversation":"";break;
                     case "buy":case "sell":Trade(a);break;
                     case "ability":Ability(a);break;
+                    case "abilityManage":ManageAbility(a);break;
+                    case "abilityPreview":PreviewAbility(a);break;
+                    case "abilityConfirm":ConfirmAbility(a);break;
+                    case "ritePreview":ReadRite(a);break;
+                    case "equipment":Equipment(a);break;
                     case "stairs":Stairs(a.value=="up");break;
                     case "travel":Travel(a.value);break;
                     case "throw":ThrowAction(a);break;
@@ -65,7 +73,7 @@ namespace CavesOfOoo.Web
             }
             catch(ArgumentException e){error=e.Message;}
             catch(Exception e){faulted=true;error="The expedition paused after an unexpected error. Reload your checkpoint.";Console.Error.WriteLine(e);}
-            finally {revision++;}
+            finally {RecordControl(a);revision++;}
             return Snapshot();
         }
         void Step(int dx,int dy)
@@ -104,7 +112,7 @@ namespace CavesOfOoo.Web
             switch(a.command)
             {
                 case "Drop":success=InventorySystem.Drop(player,item,zone);break;
-                case "Equip":success=InventorySystem.Equip(player,item);break;
+                case "Equip":Equipment(new Intent{command="choose",id=item.ID});return;
                 case "Unequip":success=InventorySystem.UnequipItem(player,item);break;
                 default:
                     if(!InventorySystem.GetActions(player,item).Any(x=>x.Command==a.command)){error="That item cannot do that.";return;}
@@ -146,22 +154,24 @@ namespace CavesOfOoo.Web
         }
         void Ability(Intent a)
         {
-            var ability=player.GetPart<ActivatedAbilitiesPart>()?.AbilityList.FirstOrDefault(x=>x.ID.ToString()==a.id);
+            var ability=OwnedAbility(a.id);
             if(ability==null||!ability.IsUsable){error="That ability is not ready.";return;}
-            if(new[]{"CommandMeasuredThrow","CommandDrivingThrow","CommandRecoveringStep"}.Contains(ability.Command))
+            if(IsThrowingAbility(ability))
             {
                 if(!ThrowingRules.TryBeginSelection(player,ability.Command,out var request)){error="That throwing skill is not available.";return;}
                 throwingMode=request.Kind.ToString();panel="throwing";return;
             }
-            var source=zone.GetEntityCell(player);var target=zone.GetCell(a.x,a.y);
-            if(ability.TargetingMode!=AbilityTargetingMode.SelfCentered && (target==null||!target.IsVisible||Math.Max(Math.Abs(a.x-source.X),Math.Abs(a.y-source.Y))>ability.Range))
-            {error="Choose a visible target within range.";return;}
-            var ev=GameEvent.New(ability.Command);ev.SetParameter("Zone",(object)zone);ev.SetParameter("RNG",(object)rng);ev.SetParameter("SourceCell",(object)source);
-            ev.SetParameter("DirectionX",Math.Sign(a.x-source.X));ev.SetParameter("DirectionY",Math.Sign(a.y-source.Y));ev.SetParameter("Range",ability.Range);
-            if(target!=null)ev.SetParameter("TargetCell",(object)target);
-            player.FireEvent(ev);bool handled=ev.Handled;ev.Release();
-            if(handled){panel="";EndTurn();}else error="The ability could not resolve.";
+            var plan=PlanAbility(a,true);if(plan==null)return;
+            if(plan.Neutral){error="Review Vault and explicitly confirm attacking this non-hostile target.";return;}
+            ExecuteAbility(plan);
         }
+        void RecordControl(Intent a)
+        {
+            if(a==null||!new[]{"ability","abilityManage","abilityPreview","abilityConfirm","ritePreview","equipment"}.Contains(a.kind))return;
+            CavesOfOoo.Diagnostics.Diag.Record("event",string.IsNullOrEmpty(error)?"BrowserActionRouted":"BrowserActionRejected",actor:player,
+                payload:new{action=a.kind,command=a.command,ability=a.id,reason=error});
+        }
+        void ClearControlReviews(){pendingAbility=null;pendingEquipment=null;inspectedAbility=equipmentItem=riteReading=null;}
         void Stairs(bool up)
         {
             var here=zone.GetEntityCell(player);
