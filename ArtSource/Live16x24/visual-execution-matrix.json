@@ -6092,7 +6092,7 @@
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Bounded Sumphold quiet-water comparison with approved atlas and current pool/disclosure authority; preserve dry boards and banks.",
+      "next_action": "Batch current Mac/Linux including grade+water; actual Mac launch/readers/travel/save/fresh reload. Then bounded duckboard contrast comparison and whole-area service/interior audit.",
       "coordinates": [
         15,
         6,
@@ -6112,7 +6112,8 @@
         "scope": "center, occupied room, protected waterfront; not full-area coverage/polish",
         "limitation": "Grade now bounded accepted; whole-area interior/service/routes remain unaudited."
       },
-      "grade_evidence": "Docs/Verification/GraphicsExecution/SumpholdGrade"
+      "grade_evidence": "Docs/Verification/GraphicsExecution/SumpholdGrade",
+      "water_evidence": "Docs/Verification/GraphicsExecution/SumpholdWater"
     },
     {
       "id": "surface/Overworld.16.6.0",
@@ -18324,7 +18325,7 @@
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Bounded Sumphold quiet-water comparison with approved atlas and current pool/disclosure authority; preserve dry boards and banks.",
+      "next_action": "Batch current Mac/Linux including grade+water; actual Mac launch/readers/travel/save/fresh reload. Then bounded duckboard contrast comparison and whole-area service/interior audit.",
       "faction": "Villagers",
       "profile": "Boatyard",
       "legacy_inventory_pointer": "/settlements/12",
@@ -18347,7 +18348,8 @@
         "scope": "center, occupied room, protected waterfront; not full-area coverage/polish",
         "limitation": "Grade now bounded accepted; whole-area interior/service/routes remain unaudited."
       },
-      "grade_evidence": "Docs/Verification/GraphicsExecution/SumpholdGrade"
+      "grade_evidence": "Docs/Verification/GraphicsExecution/SumpholdGrade",
+      "water_evidence": "Docs/Verification/GraphicsExecution/SumpholdWater"
     },
     {
       "id": "settlement/the-drowned-ledger",
@@ -25593,20 +25595,20 @@
     "deferred_by_user": "2026-11-14"
   },
   "sumphold_next_scene": {
-    "recorded_utc": "2026-11-14T20:36:06.965117+00:00",
-    "status": "palette accepted; waterfront material next",
-    "record": "Docs/GRAPHICS-SUMPHOLD-GRADE.md",
-    "source_commit": "e5a782a2e8d91354798b917e3aceed36b4c5f42f",
-    "next": "Bounded Sumphold quiet-water comparison with approved atlas and current pool/disclosure authority; preserve dry boards and banks.",
+    "recorded_utc": "2026-11-14T21:09:13.431517+00:00",
+    "status": "grade and water accepted; batch delivery next",
+    "record": "Docs/GRAPHICS-SUMPHOLD-WATER.md",
+    "source_commit": "dc9c8de7660e110fbb8e4964a673f7f3c11beef3",
+    "next": "Batch current Mac/Linux including grade+water; actual Mac launch/readers/travel/save/fresh reload. Then bounded duckboard contrast comparison and whole-area service/interior audit.",
     "runtime_changes": true,
     "actual_capture": true,
     "unity_pid": 44659,
     "mcp_server_pid": 11581,
     "coverage": "existing native routes; no new coverage",
-    "polish": "bounded grade accepted; full area in progress",
+    "polish": "bounded grade+water accepted; full area in progress",
     "population": "no change",
     "shadow": "candidate only",
-    "evidence": "Docs/Verification/GraphicsExecution/SumpholdGrade",
+    "evidence": "Docs/Verification/GraphicsExecution/SumpholdWater",
     "editor_after": "stopped; root null; clean SampleScene",
     "reviewer": "sumphold_baseline_review",
     "source_audit_commit": "8c4573ae51a58916884e23efa282859d0669d645",
@@ -25657,5 +25659,33 @@
     "shadow": "unchanged",
     "delivery": "Editor only; existing packages exclude grade",
     "r11": "open; 42.155s after-only Editor observation, short of usual60\u201390s"
+  },
+  "sumphold_water": {
+    "recorded_utc": "2026-11-14T21:09:13.431517+00:00",
+    "status": "bounded Editor water polish accepted; full area in progress",
+    "baseline_source": "dc9c8de7660e110fbb8e4964a673f7f3c11beef3",
+    "record": "Docs/GRAPHICS-SUMPHOLD-WATER.md",
+    "evidence": "Docs/Verification/GraphicsExecution/SumpholdWater",
+    "scope": "current cached Spread Sumphold Boatyard; existing real pool authority and16bank masks",
+    "art": "approved sodden-flood-water128; no atlas edits",
+    "tests": {
+      "red_failed": 31,
+      "red_negative_passed": 1,
+      "green_passed": 165,
+      "green_failed": 0
+    },
+    "actual": "2matchedviews/wetstep/native fullreader/travel/save/freshContinue",
+    "reload_difference": {
+      "world_pixels_changed": 144,
+      "total": 639200,
+      "cause": "unproven"
+    },
+    "review": "source/visual0P1/P2",
+    "coverage": "unchanged",
+    "polish": "bounded water accepted; full area in progress",
+    "population": "unchanged",
+    "shadow": "unchanged",
+    "delivery": "editor only; batch next",
+    "r11": "open;58.005safter-onlyEditor observation"
   }
 }
