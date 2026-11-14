@@ -1,0 +1,150 @@
+{
+  "source_commit": "669a186969050be8523154694a00091a8a8e2724",
+  "runtime_source_commit": "669a186969050be8523154694a00091a8a8e2724",
+  "built_after_utc": "2026-11-14T21:10:16.703205+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-14-graphics-669a18696-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-14-graphics-669a18696-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-14-graphics-669a18696-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+  "planned_new_files": 32,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch669a/mac-build.json",
+      "sha256": "2cf0280bd69a64c53221e9e6e38cdef06ad3d2fd737aba314e163675909f8494",
+      "summary": {
+        "job_id": "build-b5cdda531c",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-14-graphics-669a18696-current/CavesOfOoo.app",
+        "started_at": "2026-11-14T21:10:41.331861Z",
+        "duration_seconds": 30.397028,
+        "completed_at": "2026-11-14T21:11:11.728889Z",
+        "total_size_mb": 548.92,
+        "errors": 0,
+        "warnings": 6
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch669a/linux-build.json",
+      "sha256": "c2c22f19784c488b9a5f9da76da46e3f15e8eef38a19ad71701038307843b1b5",
+      "summary": {
+        "job_id": "build-b5724ba1dd",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-14-graphics-669a18696-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-14T21:12:48.589588Z",
+        "duration_seconds": 24.73172,
+        "completed_at": "2026-11-14T21:13:13.321308Z",
+        "total_size_mb": 409.78,
+        "errors": 0,
+        "warnings": 6
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/SumpholdGrade/native-green.xml",
+        "sha256": "ff4ba65a6f10af417f1103e244f422937d832bd645a058b37108bea9be7f859a",
+        "passed": 53,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-14T20:29:40+00:00",
+        "completed_at_utc": "2026-11-14T20:29:42+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/SumpholdWater/native-green.xml",
+        "sha256": "fd22a86f839437cf45b41d6e802e648357ae954765d42694a9c68838615f10e4",
+        "passed": 165,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-14T21:01:50+00:00",
+        "completed_at_utc": "2026-11-14T21:02:28+00:00",
+        "inconclusive_cases": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained Sumphold grade53 and water165 checkpoints; nonadditive; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/Batch669a/build-input-audit.json",
+    "sha256": "5ec0ead125c85650736f35057e85aa316ac4227ad0a71003a74c310e11e7ca2f",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 77,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 66
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0,
+      "rootOwnedNeutralMetadata": 0
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-14T21:10:16.703205+00:00",
+      "checks": [],
+      "scope": "Root confirmed Play stopped/rootnull/originalLastGame/clean scene before snapshot."
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 83,
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/Batch669a/package.py",
+    "sha256": "aea03620228ad7c0c72473b3c1a1956475397c81ac5769ba2c9776ab92e0730f",
+    "adapted_from": "Docs/Verification/SteamDeckFlat/Delivery/package.py",
+    "adapted_from_sha256": "e595c7e65176b30758aab14a86d5cbf56bc14ff635dc283a97c00bf6753573e6"
+  },
+  "created_at_utc": "2026-11-14T21:15:33.905008+00:00",
+  "package_flavor": "current-flat-graphics",
+  "scope": "Published graphics through669a18696: Sumphold palette and quiet water, prior graphics retained. Separate Editor53/165nonadditive tests. Linux execution unverified; Deck deferred.",
+  "source_provenance": "Source/runtime revision and build boundary are root assertions. Exact output/job/time receipts and neutral input/settings bytes are checked; current runtime-byte equality is a retained root assertion; no source-to-binary reproducibility claim.",
+  "preservation_sequence": "Prebuild snapshot /private/tmp/coo-graphics-build-protection-sumphold-669a18696: 57564 tracked objects,79dirty, normal saves/preferences and prior16af packages protected. Final restoration separate.",
+  "canonical_executable_copy": {
+    "source_commit": "669a186969050be8523154694a00091a8a8e2724",
+    "at_utc": "2026-11-14T21:15:33.904607+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-11-14-graphics-669a18696-current/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-11-14-graphics-669a18696-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4456,
+    "both_sha256": "26901901cc6dd63212d741b339897f072d34cb7b3f08419fe451fc8e77c79a1f",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "current_native_status": {
+    "grade": "Docs/Verification/GraphicsExecution/SumpholdGrade/native-green.xml:53/53",
+    "water": "Docs/Verification/GraphicsExecution/SumpholdWater/native-green.xml:165/165",
+    "counts_added_together": false,
+    "actual": "Editor matched views/readers/movement/travel/F5fresh; packaged smoke separate"
+  },
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing controller documentation is carried forward unchanged. No new Deck qualification; user deferred that work.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "performance_limits": "Separate Editor manual profiles exist, including matched Felling observations; this helper neither validates those measurements nor treats them as packaged/Linux/Deck performance acceptance.",
+  "whole_area_polish_accepted": false,
+  "development_builds": true,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}

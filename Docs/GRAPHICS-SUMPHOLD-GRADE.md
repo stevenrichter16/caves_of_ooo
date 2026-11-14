@@ -1,3 +1,5 @@
+**Delivery update — 2026-11-14T21:22:28.408250+00:00:** Included in current669a18696 Mac/Linux packages. Actual Mac launch/readers/travel/save/fresh Continue verified; Linux archive integrity independently passed, execution untested. Steam Deck deferred. See [batch record](Verification/GraphicsExecution/Batch669a/README.md).
+
 # Sumphold material separation
 
 Bounded Editor acceptance, 2026-11-14. Whole-area polish remains in progress. Baseline source76b1c2519; earned Sumphold checkpoint, seed64, HP19, Dusk. The repeated olive wash made native earth, stone, timber and water harder to distinguish.

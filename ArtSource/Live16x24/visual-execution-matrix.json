@@ -22746,67 +22746,106 @@
     }
   ],
   "current_delivery": {
-    "recorded_utc": "2026-11-02T22:12:35.600636+00:00",
-    "source_commit": "16afcc497446968f815e092ea2c1d2f27630d6c7",
+    "recorded_utc": "2026-11-14T21:22:28.408250+00:00",
+    "source_commit": "669a186969050be8523154694a00091a8a8e2724",
     "source_remote_verified": true,
-    "mac": "Builds/Verification/2026-11-02-deck-16afcc497-current/CavesOfOoo.app",
-    "linux": "Builds/SteamDeck/2026-11-02-deck-16afcc497-current/CavesOfOoo-current",
-    "archive": "Builds/SteamDeck/2026-11-02-deck-16afcc497-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
-    "archive_sha256": "ba9dfeee376856bc669e0e4cc4d942852eb2455e42b7b50a80a53924fb9c8ab8",
-    "archive_bytes": 162168409,
+    "mac": "Builds/Verification/2026-11-14-graphics-669a18696-current/CavesOfOoo.app",
+    "linux": "Builds/SteamDeck/2026-11-14-graphics-669a18696-current/CavesOfOoo-current",
+    "archive": "Builds/SteamDeck/2026-11-14-graphics-669a18696-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+    "archive_sha256": "921140276429af3919a7e5c64743b6d7e4e2352e8079e57a1565dfbf604dc994",
+    "archive_bytes": 162168214,
     "archive_members": 320,
     "internal_checksums": 306,
-    "source_pins": 170,
+    "source_pins": 254,
     "build_results": {
-      "mac": "build-6533222db2:0errors4warnings",
-      "linux": "build-f7bd80d24b:0errors4warnings"
+      "mac": "build-b5cdda531c:0errors6warnings",
+      "linux": "build-b5724ba1dd:0errors6warnings"
     },
     "mac_actual": {
-      "requested": [
-        1280,
-        800
+      "recorded_utc": "2026-11-14T21:22:28.408250+00:00",
+      "source_commit": "669a186969050be8523154694a00091a8a8e2724",
+      "method": "Actual keyboard input via CUA in exact absolute-path Mac app. UI screenshots observed in conversation; no durable Mac screenshot files and no pixel-equality claim.",
+      "process_receipts": [
+        "mac-process1.json",
+        "mac-process2.json"
       ],
-      "capture": [
-        1280,
-        856
-      ],
-      "window_title_height": 56,
-      "effective_game_area": [
-        1280,
-        800
-      ],
-      "route": "Continue Causeway19.7; Graphics/Abilities menus; Map49,10 and return; Left39,12HP24; PageUp/Down zoom; F5turn2860 and fresh Continue39,12HP24Height",
-      "controller_scope": "Keyboard coexistence in Mac player; synthetic gamepad verified separately in Editor",
-      "reload_comparison": {
-        "world_rect": [
-          0,
-          56,
-          940,
-          736
+      "resolution": {
+        "requested": [
+          1280,
+          800
         ],
-        "different_pixels": 950,
-        "total_pixels": 639200,
-        "relative_bounds": [
-          879,
-          192,
-          929,
-          249
+        "observed_window": [
+          1280,
+          856
         ],
-        "cause": "not established"
+        "titlebar_height": 56,
+        "game_area": [
+          1280,
+          800
+        ]
       },
-      "limits": "First Mac launch overlapped build; not performance evidence"
+      "route": [
+        "Continue earned water checkpoint at Sumphold39,11 HP19 Dark",
+        "Down4 Left6 to33,15; wetness applied; Look then full native Puddle of water Examine portrait and water properties",
+        "After closing reader, ascent to15.6 worldmap; Left to14.6; descend neighboring Spread at40,12; original green grade observed",
+        "Ascent, Right to15.6, descent back to Sumphold; Down4 Right2 to41,15 duckboard; Look retained floor+duckboard ownership",
+        "F5 at41,15 HP19 Dark turn3590; quit process25297",
+        "Fresh process25986, C Continue:41,15 HP19 Dark, neutral palette, native water detail and board path visible; quit"
+      ],
+      "excluded_attempts": [
+        "First close/travel sequence remained in Look32,15; no travel claimed until Escape and observed map.",
+        "OS screenshot shortcut attempt produced no durable screenshot; not used as capture evidence."
+      ],
+      "saved_checkpoint": "MacCheckpoint",
+      "save_metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.6.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.6.0",
+        "Turn": 3590,
+        "SaveTimestampUtc": "2026-11-14T21:17:07.0104110Z",
+        "HPSummary": "19/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "f12_used": false,
+      "hp_start_end": [
+        19,
+        19
+      ],
+      "reload": "Functional position/HP/appearance verified; no Mac pixel comparison.",
+      "performance": "No packaged benchmark. First run began while archive packaging was active.",
+      "logs": {
+        "run1": "Eight Exception string matches are System.Exception parameter types in ordinary autosave Debug.Log stack traces, not thrown exceptions.",
+        "run2": "No Exception/error CS/Load failed string matches.",
+        "memoryless_matches": [
+          0,
+          0
+        ],
+        "shutdown_notices": {
+          "compute_buffer_disposal_each": 1,
+          "premature_thread_finalization": [
+            6,
+            5
+          ]
+        }
+      },
+      "limits": [
+        "Linux execution unverified",
+        "Steam Deck-specific qualification deferred by user",
+        "Whole-area polish, population, shadows and R11 not closed"
+      ]
     },
-    "review": {
-      "source": "coverage_priorities:0remainingP1/P2",
-      "editor_visual": "capture_route:reported P2s resolved,0additionalblockingP1/P2 in reviewed captures",
-      "mac_visual": "capture_route:0newP1/P2; bounded readability/reload acceptance",
-      "archive": "portable_equipment_final_review:fullgzipEOF,modes,306checksums,170pinsverified;0P1/P2"
-    },
+    "review": "build_comparison_plan: wrapper/archive0findings; Sumphold source/Editor visual0P1/P2 retained",
     "restoration": {
-      "source_commit": "16afcc497446968f815e092ea2c1d2f27630d6c7",
-      "reviewed_manifest_sha256": "a6dffe40dcd2e1a5458b9dd70b06f927f51fa2a11e58b3b69b4f07f786cfc5ec",
-      "tracked_files": 57481,
-      "dirty_tracked_files_preserved": 77,
+      "source_commit": "669a186969050be8523154694a00091a8a8e2724",
+      "reviewed_manifest_sha256": "2dba275ecf04f0f300074fe067ca8bee37ecfac9764e873ba36fb814edb33f80",
+      "tracked_files": 57564,
+      "dirty_tracked_files_preserved": 79,
       "build_serialization_to_restore": [
         "Assets/Settings/UniversalRP.asset",
         "Assets/UniversalRenderPipelineGlobalSettings.asset",
@@ -22815,21 +22854,27 @@
       ],
       "prior_builds_preserved": true,
       "editor_preferences_and_saves_unchanged": true,
-      "current_editor_state_preserved": "Retain idle Editor preferences and unchanged normal save tree; all root-owned standalone session files archived.",
+      "current_editor_state_preserved": {
+        "normal_save_tree_unchanged": true,
+        "editor_preferences": "Preserve current logical preferences after native build/session telemetry; no game or scene active.",
+        "reviewed_generated_settings": "Only four build serialization changes: URP shader prefilter/runtime lists, preload/batching settings, UnityConnect build flag. Exact generated bytes archived before restoring baseline."
+      },
       "normal_standalone_saves_originally_absent": true,
-      "test_save_archive": "/private/tmp/coo-deck16af-preserved-after/standalone-session-Saves",
+      "test_save_archive": "/private/tmp/coo-sumphold669a-restored/standalone-session-Saves",
       "preference_extra_key_count": 5,
       "cache_deletion": false,
-      "at_utc": "2026-11-02T22:11:17.791892+00:00",
+      "at_utc": "2026-11-14T21:21:28.742076+00:00",
       "applied": true,
       "all_tracked_snapshot_objects_equal": true,
       "normal_standalone_saves_and_preferences_restored": true,
       "current_normal_editor_state_preserved": true,
-      "free_bytes": 330919534592,
+      "free_bytes": 347712401408,
       "limits": "Root supplies Editor-idle assertion; no Unity/build/player invocation or cache cleanup. No unrelated file restored."
     },
-    "hardware": "Linux/physicalDeck/SteamInput/performance/suspend unverified",
-    "next": "Fresh Sumphold15.6 normal-zoom scene; no assumed ASCII gap where existing native routes already cover owners."
+    "hardware": "Linux execution unverified; SteamDeck-specific qualification deferred by direct user2026-11-14",
+    "record": "Docs/Verification/GraphicsExecution/Batch669a/README.md",
+    "next": "Bounded Sumphold duckboard contrast; then service/interior scene review",
+    "last_actual_hourly_report_utc": "2026-11-14T21:20:19Z"
   },
   "sodden_native_receipt_correction": {
     "total": 393,
@@ -22844,6 +22889,92 @@
     "reason": "Current-thread allocation counter did not detect the positive control."
   },
   "delivery_history": [
+    {
+      "recorded_utc": "2026-11-02T22:12:35.600636+00:00",
+      "source_commit": "16afcc497446968f815e092ea2c1d2f27630d6c7",
+      "source_remote_verified": true,
+      "mac": "Builds/Verification/2026-11-02-deck-16afcc497-current/CavesOfOoo.app",
+      "linux": "Builds/SteamDeck/2026-11-02-deck-16afcc497-current/CavesOfOoo-current",
+      "archive": "Builds/SteamDeck/2026-11-02-deck-16afcc497-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "archive_sha256": "ba9dfeee376856bc669e0e4cc4d942852eb2455e42b7b50a80a53924fb9c8ab8",
+      "archive_bytes": 162168409,
+      "archive_members": 320,
+      "internal_checksums": 306,
+      "source_pins": 170,
+      "build_results": {
+        "mac": "build-6533222db2:0errors4warnings",
+        "linux": "build-f7bd80d24b:0errors4warnings"
+      },
+      "mac_actual": {
+        "requested": [
+          1280,
+          800
+        ],
+        "capture": [
+          1280,
+          856
+        ],
+        "window_title_height": 56,
+        "effective_game_area": [
+          1280,
+          800
+        ],
+        "route": "Continue Causeway19.7; Graphics/Abilities menus; Map49,10 and return; Left39,12HP24; PageUp/Down zoom; F5turn2860 and fresh Continue39,12HP24Height",
+        "controller_scope": "Keyboard coexistence in Mac player; synthetic gamepad verified separately in Editor",
+        "reload_comparison": {
+          "world_rect": [
+            0,
+            56,
+            940,
+            736
+          ],
+          "different_pixels": 950,
+          "total_pixels": 639200,
+          "relative_bounds": [
+            879,
+            192,
+            929,
+            249
+          ],
+          "cause": "not established"
+        },
+        "limits": "First Mac launch overlapped build; not performance evidence"
+      },
+      "review": {
+        "source": "coverage_priorities:0remainingP1/P2",
+        "editor_visual": "capture_route:reported P2s resolved,0additionalblockingP1/P2 in reviewed captures",
+        "mac_visual": "capture_route:0newP1/P2; bounded readability/reload acceptance",
+        "archive": "portable_equipment_final_review:fullgzipEOF,modes,306checksums,170pinsverified;0P1/P2"
+      },
+      "restoration": {
+        "source_commit": "16afcc497446968f815e092ea2c1d2f27630d6c7",
+        "reviewed_manifest_sha256": "a6dffe40dcd2e1a5458b9dd70b06f927f51fa2a11e58b3b69b4f07f786cfc5ec",
+        "tracked_files": 57481,
+        "dirty_tracked_files_preserved": 77,
+        "build_serialization_to_restore": [
+          "Assets/Settings/UniversalRP.asset",
+          "Assets/UniversalRenderPipelineGlobalSettings.asset",
+          "ProjectSettings/ProjectSettings.asset",
+          "ProjectSettings/UnityConnectSettings.asset"
+        ],
+        "prior_builds_preserved": true,
+        "editor_preferences_and_saves_unchanged": true,
+        "current_editor_state_preserved": "Retain idle Editor preferences and unchanged normal save tree; all root-owned standalone session files archived.",
+        "normal_standalone_saves_originally_absent": true,
+        "test_save_archive": "/private/tmp/coo-deck16af-preserved-after/standalone-session-Saves",
+        "preference_extra_key_count": 5,
+        "cache_deletion": false,
+        "at_utc": "2026-11-02T22:11:17.791892+00:00",
+        "applied": true,
+        "all_tracked_snapshot_objects_equal": true,
+        "normal_standalone_saves_and_preferences_restored": true,
+        "current_normal_editor_state_preserved": true,
+        "free_bytes": 330919534592,
+        "limits": "Root supplies Editor-idle assertion; no Unity/build/player invocation or cache cleanup. No unrelated file restored."
+      },
+      "hardware": "Linux/physicalDeck/SteamInput/performance/suspend unverified",
+      "next": "Fresh Sumphold15.6 normal-zoom scene; no assumed ASCII gap where existing native routes already cover owners."
+    },
     {
       "source_commit": "f77e4c8702e3cf10dd19f79f9091efe5463ad370",
       "recorded_utc": "2026-11-02T13:24:13.449894+00:00",
@@ -25595,11 +25726,11 @@
     "deferred_by_user": "2026-11-14"
   },
   "sumphold_next_scene": {
-    "recorded_utc": "2026-11-14T21:09:13.431517+00:00",
-    "status": "grade and water accepted; batch delivery next",
+    "recorded_utc": "2026-11-14T21:22:28.408250+00:00",
+    "status": "grade and water delivered; duckboard contrast next",
     "record": "Docs/GRAPHICS-SUMPHOLD-WATER.md",
-    "source_commit": "dc9c8de7660e110fbb8e4964a673f7f3c11beef3",
-    "next": "Batch current Mac/Linux including grade+water; actual Mac launch/readers/travel/save/fresh reload. Then bounded duckboard contrast comparison and whole-area service/interior audit.",
+    "source_commit": "669a186969050be8523154694a00091a8a8e2724",
+    "next": "Bounded Sumphold-only duckboard contrast comparison; then actual service/interior scene review. Preserve routes, approved art and canonical Spread outside-area controls.",
     "runtime_changes": true,
     "actual_capture": true,
     "unity_pid": 44659,
@@ -25612,7 +25743,7 @@
     "editor_after": "stopped; root null; clean SampleScene",
     "reviewer": "sumphold_baseline_review",
     "source_audit_commit": "8c4573ae51a58916884e23efa282859d0669d645",
-    "last_report_utc": "2026-11-03T22:39:27.656558+00:00"
+    "last_report_utc": "2026-11-14T21:20:19Z"
   },
   "current_user_priority": {
     "recorded_utc": "2026-11-14T20:15:14.397602+00:00",
@@ -25657,7 +25788,7 @@
     "polish": "bounded palette accepted; full area in progress",
     "population": "unchanged",
     "shadow": "unchanged",
-    "delivery": "Editor only; existing packages exclude grade",
+    "delivery": "Current669a18696 Mac/Linux; Mac actual launch/readers/travel/save/fresh Continue verified; Linux archive verified, execution untested; Deck deferred",
     "r11": "open; 42.155s after-only Editor observation, short of usual60\u201390s"
   },
   "sumphold_water": {
@@ -25685,7 +25816,7 @@
     "polish": "bounded water accepted; full area in progress",
     "population": "unchanged",
     "shadow": "unchanged",
-    "delivery": "editor only; batch next",
+    "delivery": "Current669a18696 Mac/Linux; Mac actual launch/readers/travel/save/fresh Continue verified; Linux archive verified, execution untested; Deck deferred",
     "r11": "open;58.005safter-onlyEditor observation"
   }
 }

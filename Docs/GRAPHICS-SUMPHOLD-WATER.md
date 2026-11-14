@@ -1,3 +1,5 @@
+**Delivery update — 2026-11-14T21:22:28.408250+00:00:** Included in current669a18696 Mac/Linux packages. Actual Mac launch/readers/travel/save/fresh Continue verified; Linux archive integrity independently passed, execution untested. Steam Deck deferred. See [batch record](Verification/GraphicsExecution/Batch669a/README.md).
+
 # Sumphold quiet water
 
 Bounded Editor acceptance2026-11-14, baseline source dc9c8de7660e110fbb8e4964a673f7f3c11beef3. The accepted neutral grade revealed broad, nearly solid-color water in Sumphold15.6. Sparse approved quiet-water strokes now break that flat fill without changing its base hue, shoreline or dry routes.
