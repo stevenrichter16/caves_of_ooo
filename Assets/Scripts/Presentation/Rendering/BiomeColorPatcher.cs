@@ -58,6 +58,7 @@ namespace CavesOfOoo.Presentation.Rendering
         private bool _nativeMarrowstyeGrade;
         private bool _nativeDuneGrade;
         private bool _nativeMorrowfastGrade;
+        private bool _nativeSumpholdGrade;
         // Bounded material-hue pilot. The native sprites already contain the intended
         // warm earth/stone hues; the old green filter made those surfaces too similar.
         private static readonly BiomePalette NativeMarrowstyePalette = new BiomePalette(
@@ -70,6 +71,10 @@ namespace CavesOfOoo.Presentation.Rendering
         // Keep authored Grovelands contrast while removing the duplicate green cast.
         private static readonly BiomePalette NativeMorrowfastPalette = new BiomePalette(
             BiomeType.Grovelands, Color.white, 8f, 0f, 0f);
+        // Sumphold is authored Spread. Preserve its contrast while letting native
+        // earth, stone, boards and water keep their own material hues.
+        private static readonly BiomePalette NativeSumpholdPalette = new BiomePalette(
+            BiomeType.Spread, Color.white, 5f, 0f, 0f);
 
         // Reference back to gameplay state. Set by GameBootstrap.
         // CurrentZone is updated on zone-change via SetCurrentZone()
@@ -169,18 +174,26 @@ namespace CavesOfOoo.Presentation.Rendering
                 && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
                 && CurrentZone?.ZoneID == MorrowfastSceneRuntime.ZoneID
                 && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone);
+            bool nativeSumphold = currentBiome == BiomeType.Spread
+                && _zoneRendererRef != null && _zoneRendererRef.FlatPixelModeActive
+                && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
+                && CurrentZone?.ZoneID == SumpholdCompositionPlan.ZoneID
+                && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone)
+                && AreaCompositionScope.IsSumpholdSite(currentManager.WorldMap.GetPOI(15, 6));
             // Admission can change without changing biome: same-biome travel,
             // legacy toggle, sprites disabled or a replacement loaded world graph.
             if (!_hasResolvedPalette || currentBiome != _activeBiome
                 || nativeMarrowstye != _nativeMarrowstyeGrade || nativeDune != _nativeDuneGrade
-                || nativeMorrowfast != _nativeMorrowfastGrade)
+                || nativeMorrowfast != _nativeMorrowfastGrade || nativeSumphold != _nativeSumpholdGrade)
             {
                 _hasResolvedPalette = true;
                 _activeBiome = currentBiome;
                 _nativeMarrowstyeGrade = nativeMarrowstye;
                 _nativeDuneGrade = nativeDune;
                 _nativeMorrowfastGrade = nativeMorrowfast;
-                _targetPalette = nativeMorrowfast ? NativeMorrowfastPalette
+                _nativeSumpholdGrade = nativeSumphold;
+                _targetPalette = nativeSumphold ? NativeSumpholdPalette
+                    : nativeMorrowfast ? NativeMorrowfastPalette
                     : nativeMarrowstye ? NativeMarrowstyePalette
                     : nativeDune ? NativeDunePalette : BiomePalette.GetForBiome(currentBiome);
                 _fadeProgress = 0f;

@@ -1,6 +1,6 @@
 # Sumphold visual review preparation
 
-Status: source audit complete; three-view actual baseline recorded2026-11-14. Previous editor blocker resolved. No visual implementation or area acceptance.
+Status: neutral native palette comparison accepted2026-11-14; see `GRAPHICS-SUMPHOLD-GRADE.md` for matched evidence and continuation. Whole-area acceptance remains open. Historical baseline/preparation below is retained.
 
 **User direction — 2026-11-14:** Focus on graphics. Steam Deck-specific controls, resolution, Steam Input, physical hardware qualification and Deck delivery work are deferred until reactivated by the user; preserve completed work/builds. Hourly graphics task `overnight-clearing-art-pipeline` is ACTIVE, every hour, with this priority saved. Deferred Deck gates do not block graphics progress.
 
@@ -25,7 +25,7 @@ Use the earned `Docs/Verification/GraphicsExecution/SoddenSources/AfterCheckpoin
 Independent `environment_gaps_audit` review, root spot-check at source8c4573ae5:
 
 - `Assets/Scripts/Presentation/Rendering/FlatPixelSettlementGroundCatalog.cs` already admits the current cached Sumphold Village and excludes saved lairs. Floor uses town-floor, StoneFloor uses the Sill room floor, sandstone uses Beating wall art. WaterPuddle, Duckboard, PeatBank and Reeds already have adapters. A new art atlas is not justified without an observed defect.
-- `BiomeColorPatcher.cs` has no Sumphold exception. Canonical Sodden grading is(.82,.86,.80), contrast6, saturation+4. Only if a matched scene shows muddy material separation, trial white/contrast6/saturation0 scoped to current flat15.6, exact Sumphold/Boatyard authority; preserve surrounding Sodden. Reuse Morrowfast Volume/transition tests but do not copy its biome or scene-runtime requirement.
+- **Corrected2026-11-14 from authored source and actual loaded world:** Sumphold15.6 is Spread, not Sodden. Its actual canonical filter is(.85,1.05,.90), contrast5, saturation+12. The prior Sodden/contrast6 suggestion was an incorrect premise and is withdrawn. Compare white/contrast5/saturation0 only for current flat Spread15.6 with exact Sumphold/Boatyard authority. Preserve surrounding Spread and foreign saved biomes unchanged. No map/biome mutation is part of the presentation experiment. Reuse Morrowfast Volume/transition tests without copying its biome or scene-runtime requirement.
 - `EnvironmentSpriteRenderer.FlatShadow.cs` has no Sumphold sandstone admission. If the baseline warrants it, reuse existing2px south/16% shade with disclosed canonical dry receivers. Reject water, boards, entrances, occupied or competing cells. The shared receiver's `intakeRoad: !gantry` deliberately uses Beating road resources for other sites; do not copy it into Sumphold. Exclude unobserved roads or use their actual material route.
 - Existing `BiomeColorPatcherMorrowfastGradeTests` and `FlatPixelCinderholdShadowTests` supply relevant admission, transition, disclosure, resource-loss and full/incremental controls. Scope tests to the selected change after baseline; no redundant suite run now.
 

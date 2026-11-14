@@ -6086,13 +6086,13 @@
       ],
       "status_axes": {
         "coverage": "not-audited",
-        "polish": "not-audited",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Inspect actual floor/board owners and loaded biome, then bounded matched grade comparison; continue full interior/service/route audit.",
+      "next_action": "Bounded Sumphold quiet-water comparison with approved atlas and current pool/disclosure authority; preserve dry boards and banks.",
       "coordinates": [
         15,
         6,
@@ -6110,8 +6110,9 @@
         "utc": "2026-11-14T20:15:14.397602+00:00",
         "evidence": "Docs/Verification/GraphicsExecution/SumpholdBaseline/2026-11-14/baseline.json",
         "scope": "center, occupied room, protected waterfront; not full-area coverage/polish",
-        "limitation": "Native routes visible; owner/loaded-biome attribution and matched grade comparison next."
-      }
+        "limitation": "Grade now bounded accepted; whole-area interior/service/routes remain unaudited."
+      },
+      "grade_evidence": "Docs/Verification/GraphicsExecution/SumpholdGrade"
     },
     {
       "id": "surface/Overworld.16.6.0",
@@ -18317,13 +18318,13 @@
       ],
       "status_axes": {
         "coverage": "not-audited",
-        "polish": "not-audited",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Inspect actual floor/board owners and loaded biome, then bounded matched grade comparison; continue full interior/service/route audit.",
+      "next_action": "Bounded Sumphold quiet-water comparison with approved atlas and current pool/disclosure authority; preserve dry boards and banks.",
       "faction": "Villagers",
       "profile": "Boatyard",
       "legacy_inventory_pointer": "/settlements/12",
@@ -18344,8 +18345,9 @@
         "utc": "2026-11-14T20:15:14.397602+00:00",
         "evidence": "Docs/Verification/GraphicsExecution/SumpholdBaseline/2026-11-14/baseline.json",
         "scope": "center, occupied room, protected waterfront; not full-area coverage/polish",
-        "limitation": "Native routes visible; owner/loaded-biome attribution and matched grade comparison next."
-      }
+        "limitation": "Grade now bounded accepted; whole-area interior/service/routes remain unaudited."
+      },
+      "grade_evidence": "Docs/Verification/GraphicsExecution/SumpholdGrade"
     },
     {
       "id": "settlement/the-drowned-ledger",
@@ -25591,20 +25593,20 @@
     "deferred_by_user": "2026-11-14"
   },
   "sumphold_next_scene": {
-    "recorded_utc": "2026-11-14T20:15:14.397602+00:00",
-    "status": "source-audited; three-view actual baseline recorded; implementation pending",
-    "record": "Docs/GRAPHICS-SUMPHOLD-READINESS.md",
+    "recorded_utc": "2026-11-14T20:36:06.965117+00:00",
+    "status": "palette accepted; waterfront material next",
+    "record": "Docs/GRAPHICS-SUMPHOLD-GRADE.md",
     "source_commit": "e5a782a2e8d91354798b917e3aceed36b4c5f42f",
-    "next": "Inspect selected floor/board owners and loaded biome; freeze matched position/visibility/time; bounded Sumphold grade comparison with outside-area controls.",
-    "runtime_changes": false,
+    "next": "Bounded Sumphold quiet-water comparison with approved atlas and current pool/disclosure authority; preserve dry boards and banks.",
+    "runtime_changes": true,
     "actual_capture": true,
     "unity_pid": 44659,
     "mcp_server_pid": 11581,
     "coverage": "existing native routes; no new coverage",
-    "polish": "three-view baseline only; full-area unaccepted",
+    "polish": "bounded grade accepted; full area in progress",
     "population": "no change",
     "shadow": "candidate only",
-    "evidence": "Docs/Verification/GraphicsExecution/SumpholdBaseline/2026-11-14/baseline.json",
+    "evidence": "Docs/Verification/GraphicsExecution/SumpholdGrade",
     "editor_after": "stopped; root null; clean SampleScene",
     "reviewer": "sumphold_baseline_review",
     "source_audit_commit": "8c4573ae51a58916884e23efa282859d0669d645",
@@ -25619,5 +25621,41 @@
       "status": "ACTIVE",
       "interval": "hourly"
     }
+  },
+  "sumphold_grade": {
+    "recorded_utc": "2026-11-14T20:36:06.965117+00:00",
+    "status": "bounded Editor palette acceptance; full area in progress",
+    "baseline_source": "76b1c2519a7cc6c9ea5fbf92fe96f09cb266b773",
+    "record": "Docs/GRAPHICS-SUMPHOLD-GRADE.md",
+    "evidence": "Docs/Verification/GraphicsExecution/SumpholdGrade",
+    "canonical_biome": "Spread",
+    "palette": {
+      "filter": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "contrast": 5,
+      "saturation": 0,
+      "vignette": 0
+    },
+    "native_tests": {
+      "red_new_failed": 12,
+      "red_prior_passed": 36,
+      "green_passed": 53,
+      "green_failed": 0
+    },
+    "actual_play": "3 matched views; board reader/movement; 15.6\u219414.6; F5 and fresh Continue",
+    "reload_world_changed_pixels": 48,
+    "reload_world_total_pixels": 639200,
+    "reload_difference_cause": "unproven",
+    "review": "source/visual no P1/P2",
+    "coverage": "no new coverage",
+    "polish": "bounded palette accepted; full area in progress",
+    "population": "unchanged",
+    "shadow": "unchanged",
+    "delivery": "Editor only; existing packages exclude grade",
+    "r11": "open; 42.155s after-only Editor observation, short of usual60\u201390s"
   }
 }
