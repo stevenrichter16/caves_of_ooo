@@ -1,0 +1,62 @@
+{
+  "recorded_utc": "2026-11-14T20:13:37.538140+00:00",
+  "source_commit": "e5a782a2e8d91354798b917e3aceed36b4c5f42f",
+  "kind": "actual GameBootstrap Editor baseline only; no visual implementation",
+  "zone": "Overworld.15.6.0",
+  "fixture": "Docs/Verification/GraphicsExecution/SoddenSources/AfterCheckpoint",
+  "captures": {
+    "center-1x.png": {
+      "position": [
+        39,
+        11
+      ],
+      "invincibility": false,
+      "time": "Height"
+    },
+    "occupied-room-1x.png": {
+      "position": [
+        39,
+        6
+      ],
+      "invincibility": false,
+      "time": "Dusk"
+    },
+    "waterfront-protected-1x.png": {
+      "position": [
+        39,
+        15
+      ],
+      "invincibility": true,
+      "time": "Dusk",
+      "limitation": "Protected visual survey; sari-snake killed during movement; XP42 to84. No encounter/balance acceptance."
+    }
+  },
+  "png_dimensions": [
+    1280,
+    800
+  ],
+  "scope": "Three views, not a whole-chunk acceptance. Native1x capture; no2x yet. Time changes between views prevent matched grade comparison.",
+  "route": "Earned16.5 -> world map -> accidental15.7 detour -> world map ->15.6 center -> occupied room -> waterfront. Read-only runtime confirmed15.6 at capture positions. Detour excluded from Sumphold evidence.",
+  "saved": {
+    "position": [
+      39,
+      15
+    ],
+    "turn": 3130,
+    "hp": "19/40",
+    "invincibility": false,
+    "fresh_reload_verified": false
+  },
+  "reviewer": "/root/sumphold_baseline_review",
+  "review": "Scoped grade trial first; weak olive material separation. Water and reeds readable. Sandstone shapes/occupied room render. No atlas or population justified. Shadows secondary; inspect true owners.",
+  "tests": "No new code or native test run; actual keyboard travel/movement/F5 only.",
+  "next": "Freeze matched actual views/time and compare canonical grade with Sumphold-only white/contrast6/saturation0 candidate; inspect floor/board owners first. Keep outsideSodden controls.",
+  "sha256": {
+    "center-1x.png": "440825ae5acd4df873dca2b8d34529c738084ea5d83c6c4e1ed0e316c21da226",
+    "waterfront-protected-1x.png": "f3a283dc27871bb4329ca8f87e1419e0a3b24248e35fd29f0f424ae7d8a9b2a3",
+    "occupied-room-1x.png": "2a7aa0b8c5ccef4d637c8edfbe6cfd9089bea8f898798a27490a2f1499bdb67d",
+    "Checkpoint/Quick.sav.gz": "9c3a68f70e8749d08ddbae09e012bbc81a2458c14edd5ace279a6887dc450ceb",
+    "Checkpoint/Quick.json": "f43b02c453c5dd219514be612315e3dedcac05c43d3969502d9d04b29f925dcc"
+  },
+  "display_limit": "PNG output is1280x800. A read-only Screen query reported2321x1285 editor size; no physical-display/resolution qualification is claimed."
+}

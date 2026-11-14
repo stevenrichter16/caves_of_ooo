@@ -6092,7 +6092,7 @@
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Inspect actual floor/board owners and loaded biome, then bounded matched grade comparison; continue full interior/service/route audit.",
       "coordinates": [
         15,
         6,
@@ -6105,7 +6105,13 @@
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
       "related_scope_ids": [
         "settlement/sumphold"
-      ]
+      ],
+      "baseline_observations": {
+        "utc": "2026-11-14T20:15:14.397602+00:00",
+        "evidence": "Docs/Verification/GraphicsExecution/SumpholdBaseline/2026-11-14/baseline.json",
+        "scope": "center, occupied room, protected waterfront; not full-area coverage/polish",
+        "limitation": "Native routes visible; owner/loaded-biome attribution and matched grade comparison next."
+      }
     },
     {
       "id": "surface/Overworld.16.6.0",
@@ -18317,7 +18323,7 @@
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Enumerate real interior/service footprints and states; walk all approaches and compare native materials/readers.",
+      "next_action": "Inspect actual floor/board owners and loaded biome, then bounded matched grade comparison; continue full interior/service/route audit.",
       "faction": "Villagers",
       "profile": "Boatyard",
       "legacy_inventory_pointer": "/settlements/12",
@@ -18333,6 +18339,12 @@
         "status": "not-enumerated",
         "records": [],
         "rule": "Use actual footprint/owner IDs; do not invent separate zone IDs for same-graph interiors."
+      },
+      "baseline_observations": {
+        "utc": "2026-11-14T20:15:14.397602+00:00",
+        "evidence": "Docs/Verification/GraphicsExecution/SumpholdBaseline/2026-11-14/baseline.json",
+        "scope": "center, occupied room, protected waterfront; not full-area coverage/polish",
+        "limitation": "Native routes visible; owner/loaded-biome attribution and matched grade comparison next."
       }
     },
     {
@@ -25568,29 +25580,44 @@
   "steam_deck_current_priority": {
     "requested": "2026-11-02T21:43:15.679903+00:00",
     "status": "bounded Editor/Mac verified; Linux packaged; hardware unverified",
-    "next": "Retain Deck gate for future input/UI/camera changes; next graphics scene Sumphold15.6",
+    "next": "Deferred; focus graphics. Retain existing evidence and unknown hardware limits.",
     "record": "Docs/STEAM-DECK-FLAT-READINESS.md",
     "evidence": "Docs/Verification/SteamDeckFlat",
     "actual": "46/46 at1280x800;14captures;gamepadboot,zoom,menuSaveLoad",
     "native": "198input/framing/backend and83finalUI,overlapping",
     "hardware": "unverified",
     "delivery": "Docs/Verification/SteamDeckFlat/Delivery/delivery.json",
-    "last_hourly_report_utc": "2026-11-02T22:07:18Z"
+    "last_hourly_report_utc": "2026-11-02T22:07:18Z",
+    "deferred_by_user": "2026-11-14"
   },
   "sumphold_next_scene": {
-    "recorded_utc": "2026-11-03T22:39:27.656558+00:00",
-    "status": "source-audited; actual-baseline-blocked",
+    "recorded_utc": "2026-11-14T20:15:14.397602+00:00",
+    "status": "source-audited; three-view actual baseline recorded; implementation pending",
     "record": "Docs/GRAPHICS-SUMPHOLD-READINESS.md",
-    "source_commit": "8c4573ae51a58916884e23efa282859d0669d645",
-    "next": "Expose/inspect Unity modal and restore MCP, then actual isolated Sumphold15.6 baseline; no blind dialog acceptance.",
+    "source_commit": "e5a782a2e8d91354798b917e3aceed36b4c5f42f",
+    "next": "Inspect selected floor/board owners and loaded biome; freeze matched position/visibility/time; bounded Sumphold grade comparison with outside-area controls.",
     "runtime_changes": false,
-    "actual_capture": false,
+    "actual_capture": true,
     "unity_pid": 44659,
-    "mcp_server_pid": 46263,
-    "last_report_utc": "2026-11-03T22:39:27.656558+00:00",
+    "mcp_server_pid": 11581,
     "coverage": "existing native routes; no new coverage",
-    "polish": "not-audited in current actual scene",
+    "polish": "three-view baseline only; full-area unaccepted",
     "population": "no change",
-    "shadow": "candidate only"
+    "shadow": "candidate only",
+    "evidence": "Docs/Verification/GraphicsExecution/SumpholdBaseline/2026-11-14/baseline.json",
+    "editor_after": "stopped; root null; clean SampleScene",
+    "reviewer": "sumphold_baseline_review",
+    "source_audit_commit": "8c4573ae51a58916884e23efa282859d0669d645",
+    "last_report_utc": "2026-11-03T22:39:27.656558+00:00"
+  },
+  "current_user_priority": {
+    "recorded_utc": "2026-11-14T20:15:14.397602+00:00",
+    "focus": "graphics",
+    "steam_deck": "deferred by user2026-11-14; preserve completed work/builds; no further Deck-specific qualification until reactivated",
+    "automation": {
+      "id": "overnight-clearing-art-pipeline",
+      "status": "ACTIVE",
+      "interval": "hourly"
+    }
   }
 }

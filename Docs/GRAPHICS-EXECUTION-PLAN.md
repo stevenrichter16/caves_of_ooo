@@ -1,5 +1,7 @@
 # Whole-game visual completion and delivery
 
+**User direction — 2026-11-14:** Focus on graphics. Steam Deck-specific controls, resolution, Steam Input, physical hardware qualification and Deck delivery work are deferred until reactivated by the user; preserve completed work/builds. Hourly graphics task `overnight-clearing-art-pipeline` is ACTIVE, every hour, with this priority saved. Deferred Deck gates do not block graphics progress.
+
 Status: executing. Owner: Codex root; root serializes Unity and Git. Authorized by the
 user on 2026-11-01: make a comprehensive professional plan and execute autonomously.
 Baseline: `1f68a9ba87f3bbaf37284c0a6ea6b43892719acd`. This plan supersedes old queue

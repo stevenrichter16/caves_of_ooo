@@ -1,8 +1,22 @@
 # Sumphold visual review preparation
 
-Status: source audit complete; actual baseline blocked. No visual implementation or acceptance.
+Status: source audit complete; three-view actual baseline recorded2026-11-14. Previous editor blocker resolved. No visual implementation or area acceptance.
 
-## Next actual scene
+**User direction — 2026-11-14:** Focus on graphics. Steam Deck-specific controls, resolution, Steam Input, physical hardware qualification and Deck delivery work are deferred until reactivated by the user; preserve completed work/builds. Hourly graphics task `overnight-clearing-art-pipeline` is ACTIVE, every hour, with this priority saved. Deferred Deck gates do not block graphics progress.
+
+## Current actual baseline and next action
+
+Evidence: `Docs/Verification/GraphicsExecution/SumpholdBaseline/2026-11-14/baseline.json`. Actual GameBootstrap, earned Sodden checkpoint, ordinary map travel to15.6, center39,11, occupied stone-floor room39,6, waterfront39,15. Three native-view1280x800 PNGs; a read-only Screen query differed from PNG dimensions, so no physical-display qualification. A15.7 route detour is excluded from Sumphold evidence. Time progresses Height toDusk: these views are not a matched palette comparison.
+
+Center/interior were unprotected. Waterfront used F12 invincibility; a sari-snake died during ordinary movement and XP rose42→84. No combat/balance acceptance. F12 was disabled before F5, turn3130, HP19/40 at39,15; checkpoint retained. Fresh Continue remains unverified.
+
+Independent visual review (`sumphold_baseline_review`) agrees that stone room floor, exterior floor and narrow waterfront detail have weak olive material separation. Gold brick shapes, occupied room, teal water and reeds are visible. No new atlas or population is justified. Shadows are secondary. Next inspect actual selected floor/board owners and loaded biome (matrix registration label is not runtime authority), freeze matched position/visibility/time, then compare canonical grade against the bounded candidate below. Preserve outside-area controls, fog, routes and genuine owners. Whole-chunk service/interior audit remains open.
+
+Restoration: all79 pre-existing dirty files, normal save bytes and gameplay preferences preserved. One Unity Insights session event and four Unity telemetry preference keys changed as session bookkeeping; retained and disclosed in preservation.json. Isolated saves archived locally; editor stopped, original LastGameID restored, root null and clean SampleScene. No build/package change or storage reclamation.
+
+The previous blocker section below is historical. CUA could bind Unity on2026-11-14, and localhost8080 MCP connected to the correct idle project; the stale remote connector404 was bypassed through the existing local MCP server. Local `mcp__unity` tools subsequently became available.
+
+## Original baseline route (retained for reproduction)
 
 Use the earned `Docs/Verification/GraphicsExecution/SoddenSources/AfterCheckpoint/Quick.{json,sav.gz}` at16.5 in the existing isolated LiveFlatPixelGreybox workflow, then ordinary map travel Left1, Down1 to Sumphold15.6. Capture center, waterfront and an occupied interior at1280×800 normal1×, with2× supplementary. Inspect selected owners before calling any family ASCII or missing. Review routes, water/board transitions, walls, doors and service cues before proposing population.
 
@@ -17,7 +31,7 @@ Independent `environment_gaps_audit` review, root spot-check at source8c4573ae5:
 
 Population and shadows remain separate decisions. Existing Sumphold is substantial; improve missing/readability presentation before adding owners. No geometry, art, runtime source, normal saves or builds changed during this preparation.
 
-## Tool blocker and recovery
+## Historical tool blocker and recovery (resolved2026-11-14)
 
 Root launched Unity PID44659 after confirming no editor/player. The process remains present but cannot be observed through CUA: repeated native binding timed out, then `cgWindowNotFound`, including after a CUA reset. A one-second process sample shows `EditorDialog::DisplayComplexDecisionDialogNative` → `NSAlert runModal`; dialog contents are unknown and no blind acceptance/key was sent. No Play session was started.
 
