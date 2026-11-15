@@ -1323,8 +1323,9 @@ namespace CavesOfOoo.Core
 
             // Stillleaf Archive SA.3: the Curation Indexer and the keeper's file
             // at the Salt-Vault; installed once, on fresh generation.
-            if (zoneID == StillleafSaltVault.ZoneId && WorldMap.GetPOI(wx, wy)?.Faction == "PaleCuration")
-                StillleafSaltVault.TryInstall(zone, Factory);
+            if (zoneID == StillleafSaltVault.ZoneId && WorldMap.GetPOI(wx, wy)?.Faction == "PaleCuration"
+                && StillleafSaltVault.TryInstall(zone, Factory))
+                SaltVaultArchiveApproach.TryApply(zone, this);
 
             if (zoneID == MultiCellPilotRuntime.ZoneID)
             {

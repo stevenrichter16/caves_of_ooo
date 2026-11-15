@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 16:43:53Z" end-time="2026-11-15 16:43:54Z" duration="1.2361859">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37797" result="Failed" site="Child" start-time="2026-11-15 16:43:53Z" end-time="2026-11-15 16:43:54Z" duration="1.236186" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46278" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37797" result="Failed" site="Child" start-time="2026-11-15 16:43:53Z" end-time="2026-11-15 16:43:54Z" duration="1.008032" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46279" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37797" result="Failed" site="Child" start-time="2026-11-15 16:43:53Z" end-time="2026-11-15 16:43:54Z" duration="0.866595" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46280" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37797" result="Failed" site="Child" start-time="2026-11-15 16:43:54Z" end-time="2026-11-15 16:43:54Z" duration="0.636974" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25600" name="SaltVaultApproachTests" fullname="CavesOfOoo.Tests.SaltVaultApproachTests" classname="CavesOfOoo.Tests.SaltVaultApproachTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 16:43:54Z" end-time="2026-11-15 16:43:54Z" duration="0.315796" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25604" name="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile" fullname="CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile" classname="CavesOfOoo.Tests.SaltVaultApproachTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 16:43:54Z" end-time="2026-11-15 16:43:54Z" duration="0.313687" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25601" name="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile(64)" fullname="CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile(64)" methodname="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile" classname="CavesOfOoo.Tests.SaltVaultApproachTests" runstate="Runnable" seed="1686535891" result="Failed" start-time="2026-11-15 16:43:54Z" end-time="2026-11-15 16:43:54Z" duration="0.168073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the archive should have a modest real approach on otherwise bare sand
+  Expected: in range (6,9)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile (System.Int32 seed) [0x0004d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SaltVaultApproachTests.cs:17
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'WeaponRackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+              </test-case>
+              <test-case id="25602" name="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile(1729)" fullname="CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile(1729)" methodname="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile" classname="CavesOfOoo.Tests.SaltVaultApproachTests" runstate="Runnable" seed="947703343" result="Failed" start-time="2026-11-15 16:43:54Z" end-time="2026-11-15 16:43:54Z" duration="0.070479" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the archive should have a modest real approach on otherwise bare sand
+  Expected: in range (6,9)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile (System.Int32 seed) [0x0004d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SaltVaultApproachTests.cs:17
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="25603" name="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile(224401440)" fullname="CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile(224401440)" methodname="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile" classname="CavesOfOoo.Tests.SaltVaultApproachTests" runstate="Runnable" seed="1261345384" result="Failed" start-time="2026-11-15 16:43:54Z" end-time="2026-11-15 16:43:54Z" duration="0.069861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the archive should have a modest real approach on otherwise bare sand
+  Expected: in range (6,9)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile (System.Int32 seed) [0x0004d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SaltVaultApproachTests.cs:17
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

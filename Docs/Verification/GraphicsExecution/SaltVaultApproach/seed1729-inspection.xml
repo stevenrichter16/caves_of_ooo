@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 16:48:42Z" end-time="2026-11-15 16:48:43Z" duration="0.266967">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37797" result="Failed" site="Child" start-time="2026-11-15 16:48:42Z" end-time="2026-11-15 16:48:43Z" duration="0.266967" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46278" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37797" result="Failed" site="Child" start-time="2026-11-15 16:48:42Z" end-time="2026-11-15 16:48:43Z" duration="0.257241" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46279" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37797" result="Failed" site="Child" start-time="2026-11-15 16:48:42Z" end-time="2026-11-15 16:48:43Z" duration="0.251803" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46280" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37797" result="Failed" site="Child" start-time="2026-11-15 16:48:42Z" end-time="2026-11-15 16:48:43Z" duration="0.242201" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25600" name="SaltVaultApproachTests" fullname="CavesOfOoo.Tests.SaltVaultApproachTests" classname="CavesOfOoo.Tests.SaltVaultApproachTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 16:48:42Z" end-time="2026-11-15 16:48:43Z" duration="0.231830" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25604" name="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile" fullname="CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile" classname="CavesOfOoo.Tests.SaltVaultApproachTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 16:48:42Z" end-time="2026-11-15 16:48:43Z" duration="0.230409" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25602" name="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile(1729)" fullname="CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile(1729)" methodname="FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile" classname="CavesOfOoo.Tests.SaltVaultApproachTests" runstate="Runnable" seed="1832219173" result="Failed" start-time="2026-11-15 16:48:42Z" end-time="2026-11-15 16:48:43Z" duration="0.226846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the archive should have a modest real approach on otherwise bare sand
+  Expected: in range (6,9)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SaltVaultApproachTests.FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile (System.Int32 seed) [0x0028f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SaltVaultApproachTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+FILE=20,17
+DOOR=28,13
+22,10 interior=False reserve=False owners=Sand
+23,10 interior=False reserve=False owners=Sand
+24,10 interior=False reserve=False owners=Sand,SandstoneWall
+25,10 interior=False reserve=False owners=Sand,SandstoneWall
+26,10 interior=False reserve=False owners=Sand,SandstoneWall
+27,10 interior=False reserve=False owners=Sand,SandstoneWall
+28,10 interior=False reserve=False owners=Sand,SandstoneWall
+29,10 interior=False reserve=False owners=Sand
+30,10 interior=False reserve=False owners=Sand
+31,10 interior=False reserve=False owners=Sand
+32,10 interior=False reserve=False owners=Sand
+33,10 interior=False reserve=False owners=Sand
+34,10 interior=False reserve=False owners=Sand
+22,11 interior=False reserve=False owners=Sand
+23,11 interior=False reserve=False owners=Sand
+24,11 interior=False reserve=False owners=Sand
+25,11 interior=False reserve=False owners=Sand
+26,11 interior=False reserve=False owners=Sand
+27,11 interior=False reserve=False owners=Sand
+28,11 interior=False reserve=False owners=Sand
+29,11 interior=False reserve=False owners=Sand
+30,11 interior=False reserve=False owners=Sand
+31,11 interior=False reserve=False owners=Sand
+32,11 interior=False reserve=False owners=Sand
+33,11 interior=False reserve=False owners=Sand
+34,11 interior=False reserve=False owners=Sand
+22,12 interior=False reserve=False owners=Sand
+23,12 interior=False reserve=False owners=Sand
+24,12 interior=False reserve=False owners=Sand,SandstoneWall
+25,12 interior=False reserve=False owners=Sand,SandstoneWall
+26,12 interior=False reserve=False owners=Sand,SandstoneWall
+27,12 interior=False reserve=False owners=Sand,SandstoneWall
+28,12 interior=False reserve=False owners=Sand,SandstoneWall
+29,12 interior=False reserve=False owners=Sand
+30,12 interior=False reserve=False owners=Sand
+31,12 interior=False reserve=False owners=Sand
+32,12 interior=False reserve=False owners=Sand
+33,12 interior=False reserve=False owners=Sand
+34,12 interior=False reserve=False owners=Sand
+22,13 interior=False reserve=False owners=Sand
+23,13 interior=False reserve=False owners=Sand
+24,13 interior=False reserve=False owners=Sand,SandstoneWall
+25,13 interior=True reserve=False owners=StoneFloor,Bed
+26,13 interior=True reserve=False owners=StoneFloor
+27,13 interior=True reserve=True owners=StoneFloor
+28,13 interior=False reserve=True owners=Sand,VillageDoor
+29,13 interior=False reserve=True owners=Sand
+30,13 interior=False reserve=False owners=Sand
+31,13 interior=False reserve=False owners=Sand
+32,13 interior=False reserve=False owners=Sand
+33,13 interior=False reserve=False owners=Sand
+34,13 interior=False reserve=False owners=Sand
+22,14 interior=False reserve=False owners=Sand
+23,14 interior=False reserve=False owners=Sand
+24,14 interior=False reserve=False owners=Sand,SandstoneWall
+25,14 interior=True reserve=False owners=StoneFloor
+26,14 interior=True reserve=False owners=StoneFloor,Chair
+27,14 interior=True reserve=False owners=StoneFloor,Innkeeper
+28,14 interior=False reserve=False owners=Sand,SandstoneWall
+29,14 interior=False reserve=False owners=Sand
+30,14 interior=False reserve=False owners=Sand
+31,14 interior=False reserve=False owners=Sand
+32,14 interior=False reserve=False owners=Sand
+33,14 interior=False reserve=False owners=Sand
+34,14 interior=False reserve=False owners=Sand
+22,15 interior=False reserve=False owners=Sand
+23,15 interior=False reserve=False owners=Sand
+24,15 interior=False reserve=False owners=Sand,SandstoneWall
+25,15 interior=True reserve=False owners=StoneFloor,Merchant
+26,15 interior=True reserve=False owners=StoneFloor,VillageChild
+27,15 interior=True reserve=False owners=StoneFloor
+28,15 interior=False reserve=False owners=Sand,SandstoneWall
+29,15 interior=False reserve=False owners=Sand
+30,15 interior=False reserve=False owners=Sand
+31,15 interior=False reserve=False owners=Sand
+32,15 interior=False reserve=False owners=Sand
+33,15 interior=False reserve=False owners=Sand
+34,15 interior=False reserve=False owners=Sand
+22,16 interior=False reserve=False owners=Sand
+23,16 interior=False reserve=False owners=Sand
+24,16 interior=False reserve=False owners=Sand,SandstoneWall
+25,16 interior=False reserve=False owners=Sand,SandstoneWall
+26,16 interior=False reserve=False owners=Sand,SandstoneWall
+27,16 interior=False reserve=False owners=Sand,SandstoneWall
+28,16 interior=False reserve=False owners=Sand,SandstoneWall
+29,16 interior=False reserve=False owners=Sand
+30,16 interior=False reserve=False owners=Sand
+31,16 interior=False reserve=False owners=Sand
+32,16 interior=False reserve=False owners=Sand
+33,16 interior=False reserve=False owners=Sand
+34,16 interior=False reserve=False owners=Sand
+DOOR=27,5
+DOOR=53,16
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
