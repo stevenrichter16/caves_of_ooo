@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="20" result="Failed(Child)" total="20" passed="3" failed="17" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.1506567">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38231" result="Failed" site="Child" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.150657" total="20" passed="3" failed="17" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46793" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38231" result="Failed" site="Child" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.142697" total="20" passed="3" failed="17" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46794" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38231" result="Failed" site="Child" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.142165" total="20" passed="3" failed="17" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46795" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38231" result="Failed" site="Child" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.141807" total="20" passed="3" failed="17" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31034" name="BiomeColorPatcherTravelTests" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="189" result="Failed" site="Child" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.112483" total="20" passed="3" failed="17" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31116" name="NativePosyGradeDoesNotReinterpretForeignSavedBiomes" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.037305" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31113" name="NativePosyGradeDoesNotReinterpretForeignSavedBiomes(Sodden)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeDoesNotReinterpretForeignSavedBiomes(Sodden)" methodname="NativePosyGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1205278817" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.027097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31114" name="NativePosyGradeDoesNotReinterpretForeignSavedBiomes(Beating)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeDoesNotReinterpretForeignSavedBiomes(Beating)" methodname="NativePosyGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="499005395" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31115" name="NativePosyGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" methodname="NativePosyGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="39736739" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31112" name="NativePosyGradeFollowsDisplayedReplacementAndExcludesSavedLair" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeFollowsDisplayedReplacementAndExcludesSavedLair" methodname="NativePosyGradeFollowsDisplayedReplacementAndExcludesSavedLair" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1656953109" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003715" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeFollowsDisplayedReplacementAndExcludesSavedLair () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:80
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31111" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.039704" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31101" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;legacy&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="199252018" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.004046" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31102" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;sprites-off&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1005306268" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003831" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31103" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;wrong-poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;wrong-poi&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="419447446" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003807" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31104" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;wrong-name&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;wrong-name&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1572029419" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003615" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31105" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;wrong-profile&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;wrong-profile&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="429883549" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003677" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31106" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;wrong-type&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;wrong-type&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2061250261" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003684" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31107" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;null-pois&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;null-pois&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="517342396" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003635" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31108" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;short-pois&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;short-pois&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1540480241" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003568" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31109" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;detached&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1823401461" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003596" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31110" name="NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;replaced-cache&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority(&quot;replaced-cache&quot;)" methodname="NativePosyGradeLosesAndRecoversCurrentPosyAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="496817180" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeLosesAndRecoversCurrentPosyAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31100" name="NativePosyGradePreservesContrastAndRestoresSameBiomeTravel" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradePreservesContrastAndRestoresSameBiomeTravel" methodname="NativePosyGradePreservesContrastAndRestoresSameBiomeTravel" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="932150155" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003660" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradePreservesContrastAndRestoresSameBiomeTravel () [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31120" name="NativePosyGradeRejectsAliasAndDepth" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeRejectsAliasAndDepth" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.014850" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31117" name="NativePosyGradeRejectsAliasAndDepth(&quot;Overworld.05.9.0&quot;,Spread)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeRejectsAliasAndDepth(&quot;Overworld.05.9.0&quot;,Spread)" methodname="NativePosyGradeRejectsAliasAndDepth" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="807095968" result="Passed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.005446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31118" name="NativePosyGradeRejectsAliasAndDepth(&quot;Overworld.5.9.0.extra&quot;,Cave)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeRejectsAliasAndDepth(&quot;Overworld.5.9.0.extra&quot;,Cave)" methodname="NativePosyGradeRejectsAliasAndDepth" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="939893426" result="Passed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31119" name="NativePosyGradeRejectsAliasAndDepth(&quot;Overworld.5.9.1&quot;,Cave)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativePosyGradeRejectsAliasAndDepth(&quot;Overworld.5.9.1&quot;,Cave)" methodname="NativePosyGradeRejectsAliasAndDepth" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="7390469" result="Passed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003436" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31123" name="PosyAllowsBothEmptyProfileRepresentations" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.PosyAllowsBothEmptyProfileRepresentations" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.008973" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31121" name="PosyAllowsBothEmptyProfileRepresentations(&quot;&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.PosyAllowsBothEmptyProfileRepresentations(&quot;&quot;)" methodname="PosyAllowsBothEmptyProfileRepresentations" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1318980099" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003642" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.PosyAllowsBothEmptyProfileRepresentations (System.String profile) [0x0003d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:126
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31122" name="PosyAllowsBothEmptyProfileRepresentations(null)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.PosyAllowsBothEmptyProfileRepresentations(null)" methodname="PosyAllowsBothEmptyProfileRepresentations" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1369696502" result="Failed" start-time="2026-11-15 22:33:25Z" end-time="2026-11-15 22:33:25Z" duration="0.003506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertPosyGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.PosyAllowsBothEmptyProfileRepresentations (System.String profile) [0x0003d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherPosyGradeTests.cs:126
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
