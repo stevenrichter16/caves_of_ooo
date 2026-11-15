@@ -1,0 +1,5 @@
+# Independent acceptance
+
+Source/test reviewer `sumphold_grade_source_review`: 0 remaining P1/P2. Exact current Quiet16.1/Sodden/CatacombFolk/empty-profile gate follows successful settlement-water resolution; owner, dry-bank mask, reader, fallback and resource lifetime unchanged. Copied type/lair test coordinates corrected before RED. Slip is authored Spread; its same-biome counter explicitly mutates to Sodden. Broad expected-art correction for Quiet and already accepted Drowned Ledger is warranted; thresholds remain unchanged.
+
+Visual reviewer `sumphold_baseline_review`: 0 visible P1/P2 in all four actual pairs. Sparse ripples improve the band without obscuring shores, actors or doorway visibility. Arrival928/bank953/doorway443 world pixels change, all teal source-color family, max25RGB. Interior entire frame is identical. All four sidebars/hotbars are identical. Reload water/hotbar unchanged,112 world pixels on remembered green wall glyph differ max7RGB (cause unproven), sidebar logs differ. Reader identifies Puddle of water; wet-step39,20 shows99% drenched/40HP. Whole-area/memory-wall work remains open.

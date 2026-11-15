@@ -1,0 +1,95 @@
+{
+  "utc": "2026-11-15T17:37:16.106936+00:00",
+  "source_base": "e67ce79bcf05c564b799b7e8c05b2c69de87f2a7",
+  "seed": 224401440,
+  "zone": "Overworld.16.1.0",
+  "authority": {
+    "type": "Village",
+    "name": "the Quiet's Door",
+    "biome": "Sodden",
+    "faction": "CatacombFolk",
+    "profile": null
+  },
+  "baseline_checkpoints": "../QuietDoorBaseline: earned arrival5660, doorway5820, bank6070, interior6320; all40HP",
+  "matched_views": {
+    "arrival": [
+      39,
+      11
+    ],
+    "bank": [
+      39,
+      18
+    ],
+    "doorway": [
+      24,
+      12
+    ],
+    "interior": [
+      22,
+      12
+    ]
+  },
+  "actual_actions": [
+    "Bank6070 Continue at39,18; Down to39,19; c,Down,F1 read WaterPuddle39,20",
+    "Escape twice; Down to39,20, HP40,99%drenched; Up to39,19",
+    "Ordinary map travel16.1 to17.1 (40,12HP40) and return16.1 (39,11HP40)",
+    "F5 saved6180; fresh isolated Play and Continue restored39,11HP40, F12false"
+  ],
+  "native": {
+    "id": "2",
+    "testcasecount": "260",
+    "result": "Passed",
+    "total": "260",
+    "passed": "260",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-11-15 17:29:56Z",
+    "end-time": "2026-11-15 17:30:23Z",
+    "duration": "26.9309826"
+  },
+  "comparisons": {
+    "arrival": {
+      "world_changed_pixels": 928,
+      "sidebar_changed_pixels": 0,
+      "hotbar_changed_pixels": 0,
+      "max_channel_difference": 25
+    },
+    "bank": {
+      "world_changed_pixels": 953,
+      "sidebar_changed_pixels": 0,
+      "hotbar_changed_pixels": 0,
+      "max_channel_difference": 25
+    },
+    "doorway": {
+      "world_changed_pixels": 443,
+      "sidebar_changed_pixels": 0,
+      "hotbar_changed_pixels": 0,
+      "max_channel_difference": 25
+    },
+    "interior": {
+      "world_changed_pixels": 0,
+      "sidebar_changed_pixels": 0,
+      "hotbar_changed_pixels": 0,
+      "max_channel_difference": 0
+    },
+    "reload": {
+      "world_changed_pixels": 112,
+      "sidebar_changed_pixels": 18334,
+      "hotbar_changed_pixels": 0,
+      "max_channel_difference": 243
+    }
+  },
+  "review": "Independent source/test and four-view visual review:0 remaining P1/P2",
+  "reload_limit": "112 world pixels on remembered green VineWall glyph differ by max7RGB; cause unproven. Water/hotbar unchanged; sidebar logs differ. No fullframe equality claim.",
+  "performance": "83.7720335s after-only Editor observation;54515 samples/marker, no wrap;rendererP95 0.099125ms/max203.226041ms;Mainmax880.476292ms. Tool/readers/travel included; no matched attribution, packageFPS or R11 closure.",
+  "limits": [
+    "No gameplay injection, F12, healing, combat, destruction or transfers",
+    "No new art, population, architecture, shadows or remembered-water policy",
+    "Whole-area polish and V0\u2013V7 incomplete; Deck deferred; builds87ef330b7 exclude this slice until next batch"
+  ],
+  "preservation": "preservation.json"
+}

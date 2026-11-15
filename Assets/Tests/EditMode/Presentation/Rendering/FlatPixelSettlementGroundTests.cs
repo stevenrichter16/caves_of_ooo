@@ -118,7 +118,8 @@ namespace CavesOfOoo.Tests
             var zone = Visit(id);
             var cells = Cells(zone, "WaterPuddle").ToList();
             Assert.Greater(cells.Count, 100, "precondition: visible settlement water");
-            bool quietSurface = id == "Overworld.5.9.0" || id == TineCompositionPlan.ZoneID;
+            bool quietSurface = id == "Overworld.5.9.0" || id == TineCompositionPlan.ZoneID
+                || id == DrownedLedgerCompositionPlan.ZoneID || id == "Overworld.16.1.0";
             var water = Resources.Load<Texture2D>(quietSurface ? "Sprites/Live16x24/sodden-flood-water" : OpeningGround);
             bool Native(FlatPixelGreyboxCell v) => v.LocalGround && v.GroundKind == FlatPixelGreyboxGround.Water && v.ForegroundTile == null
                 && v.GroundTile?.sprite != null && ReferenceEquals(v.GroundTile.sprite.texture, water) && v.GroundTile.sprite.rect.x / 16 < (quietSurface ? 128 : 16);
