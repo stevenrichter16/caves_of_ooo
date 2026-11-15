@@ -1,3 +1,5 @@
+**Scope correction:** RememberedGrass promotion in5f0d24f15 is withdrawn afterCutbankreview exposedunderlyingGrass beneathMire. OnlyStoneFloor/Wall memory remains. See GRAPHICS-PEAT-WORKS-MEMORY-CORRECTION.md. Currentpackagesstillcontainoldbehaviorpendingnextbatch; earlieracceptancebelowishistorical.
+
 **Delivery update:** Published source5f0d24f15/currentMacLinux Batch5F0D24. ActualMacreaders/interactions/walk/travel/save/freshreloadpassed;Linuxunexecuted. See Verification/GraphicsExecution/Batch5F0D24/README.md. Earlierpending-delivery statements arehistorical.
 
 # Abandoned peat works: material continuity in explored areas

@@ -10,7 +10,7 @@ namespace CavesOfOoo.Tests
         void PeatHome() { zone=Attach(SoddenDistrictPlan.WorksZoneID); }
         string PeatResource(string bp) => bp=="Grass" ? FenAtlas : bp=="StoneFloor"
             ? "Sprites/Live16x24/cellar-floor" : "Sprites/Live16x24/opening-cellar";
-        [TestCase("Grass")][TestCase("StoneFloor")][TestCase("StoneWall")]
+        [TestCase("StoneFloor")][TestCase("StoneWall")]
         public void PeatMemoryKeepsStaticFrameSingleDimAndNoReader(string bp)
         {
             PeatHome();var owner=Add(bp);var live=View();bool floor=bp!="StoneWall";
@@ -24,7 +24,7 @@ namespace CavesOfOoo.Tests
             using(var paint=new Paint(world,zone)){paint.Step();Assert.AreSame(tile,floor?paint.GroundAt(X,Y):paint.At(X,Y));Assert.IsNull(paint.Mark);}
             zone.GetCell(X,Y).IsVisible=true;var again=View();Assert.AreSame(liveTile,floor?again.GroundTile:again.ForegroundTile);
         }
-        [TestCase("Grass")][TestCase("StoneFloor")][TestCase("StoneWall")]
+        [TestCase("StoneFloor")][TestCase("StoneWall")]
         public void PeatMemoryIgnoresUnseenLiveStateAndNeighbours(string bp)
         {
             PeatHome();var owner=Add(bp);zone.GetCell(X,Y).IsVisible=false;bool floor=bp!="StoneWall";
@@ -45,7 +45,7 @@ namespace CavesOfOoo.Tests
         [TestCase("brain")][TestCase("body")]
         public void PeatMemoryRefusesUnsupportedIdentity(string fault)
         {
-            PeatHome();var owner=Add("Grass");zone.GetCell(X,Y).IsVisible=false;NativeTile(View().GroundTile,FenAtlas);
+            PeatHome();var owner=Add("StoneFloor");zone.GetCell(X,Y).IsVisible=false;NativeTile(View().GroundTile,"Sprites/Live16x24/cellar-floor");
             if(fault=="unexplored")zone.GetCell(X,Y).Explored=false;
             if(fault=="hidden-render")owner.GetPart<RenderPart>().Visible=false;
             if(fault=="visual-id")owner.GetPart<RenderPart>().VisualID="custom";
@@ -57,12 +57,12 @@ namespace CavesOfOoo.Tests
             if(fault=="duplicate-render")owner.AddPart(new RenderPart());
             if(fault=="foreign-physics")owner.GetPart<PhysicsPart>().ParentEntity=content.Factory.CreateEntity("Grass");
             bool ok=world.TryResolvePresentation(zone,X,Y,out var view);
-            Assert.False(ok&&view.GroundTile?.sprite?.texture==Resources.Load<Texture2D>(FenAtlas));
+            Assert.False(ok&&view.GroundTile?.sprite?.texture==Resources.Load<Texture2D>("Sprites/Live16x24/cellar-floor"));
         }
         [TestCase("stale")][TestCase("detached")][TestCase("biome")][TestCase("poi")][TestCase("lair")][TestCase("shape")]
         public void PeatMemoryRequiresCurrentWorldAuthority(string fault)
         {
-            PeatHome();Add("Grass");zone.GetCell(X,Y).IsVisible=false;NativeTile(View().GroundTile,FenAtlas);
+            PeatHome();Add("StoneFloor");zone.GetCell(X,Y).IsVisible=false;NativeTile(View().GroundTile,"Sprites/Live16x24/cellar-floor");
             if(fault=="stale")manager.CachedZones[zone.ZoneID]=new Zone(zone.ZoneID);
             if(fault=="detached")manager.CachedZones.Remove(zone.ZoneID);
             if(fault=="biome")manager.WorldMap.Tiles[17,7]=BiomeType.Spread;
@@ -71,13 +71,13 @@ namespace CavesOfOoo.Tests
             if(fault=="lair"){manager.WorldMap.SetPOI(17,7,new PointOfInterest(POIType.Lair,"old",null,1,"DesertProwler"));LairStacks.Restore(manager,null);manager.WorldMap.SetPOI(17,7,null);}
             bool ok=world.TryResolvePresentation(zone,X,Y,out var v);
             if(fault=="stale"||fault=="detached")Assert.False(ok);
-            else { Assert.True(ok);Assert.AreNotSame(Resources.Load<Texture2D>(FenAtlas),v.GroundTile.sprite.texture); }
+            else { Assert.True(ok);Assert.AreNotSame(Resources.Load<Texture2D>("Sprites/Live16x24/cellar-floor"),v.GroundTile.sprite.texture); }
         }
         [TestCase("Overworld.15.7.0")][TestCase("Overworld.16.7.0")][TestCase("Overworld.017.7.0")][TestCase("Overworld.17.7.1")]
         public void PeatMemoryDoesNotExpandToOtherAddresses(string id)
         {
-            zone=Attach(id);Add("Grass");zone.GetCell(X,Y).IsVisible=false;var v=View();
-            Assert.AreNotSame(Resources.Load<Texture2D>(FenAtlas),v.GroundTile.sprite.texture);
+            zone=Attach(id);Add("StoneFloor");zone.GetCell(X,Y).IsVisible=false;var v=View();
+            Assert.AreNotSame(Resources.Load<Texture2D>("Sprites/Live16x24/cellar-floor"),v.GroundTile.sprite.texture);
         }
         [TestCase("Duckboard")][TestCase("PeatBank")][TestCase("DeadTree")][TestCase("Reeds")][TestCase("MirePool")]
         public void PeatMemoryDoesNotPromoteLiveOrAdjacentFamilies(string bp)
@@ -89,10 +89,27 @@ namespace CavesOfOoo.Tests
             bool reader=world.TryGetPresentationSubjectSprite(zone,owner,X,Y,out var portrait,out _);
             Assert.False(reader&&portrait.texture==live.sprite.texture);
         }
-        [Test] public void PeatMemoryLegacyInjectedGroundStillUsesItsOwnBorrowedGroup()
+        [Test] public void PeatMemoryLegacyInjectedGrassKeepsFallback()
         {
             PeatHome();Inject(Resources.Load<Texture2D>(Atlas));Add("Grass");var live=View().GroundTile;
-            NativeTile(live,GrassAtlas);zone.GetCell(X,Y).IsVisible=false;Assert.AreSame(live,View().GroundTile);
+            NativeTile(live,GrassAtlas);zone.GetCell(X,Y).IsVisible=false;
+            Assert.True(world.TryResolveFallback(zone,X,Y,out var fallback));Assert.AreSame(fallback.GroundTile,View().GroundTile);
+        }
+        [TestCase("dry")][TestCase("wet-mire")][TestCase("depleted-mire")]
+        public void PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting(string state)
+        {
+            PeatHome();Add("Grass");
+            if(state!="dry")
+            {
+                var pool=Add("MirePool");
+                if(state=="depleted-mire")pool.GetPart<LiquidPoolPart>().Volume=0;
+            }
+            zone.GetCell(X,Y).IsVisible=false;
+            Assert.True(world.TryResolveFallback(zone,X,Y,out var fallback));var memory=View();
+            Assert.AreSame(fallback.GroundTile,memory.GroundTile,
+                "No durable last-seen wet-surface record exists; Grass beneath unseen Mire must not be promoted to dry native turf.");
+            Assert.AreSame(fallback.ForegroundTile,memory.ForegroundTile);
+            Assert.AreEqual(fallback.GroundColor,memory.GroundColor);
         }
         [Test] public void PeatMemoryMissingGroupsKeepFallbackWithoutReloadingResources()
         {

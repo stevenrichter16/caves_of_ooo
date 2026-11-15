@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.6164735">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37713" result="Failed" site="Child" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.616474" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46173" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37713" result="Failed" site="Child" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.558069" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46174" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37713" result="Failed" site="Child" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.553962" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46175" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37713" result="Failed" site="Child" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.550496" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="35239" name="FlatPixelSoddenTravelTests" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="213" result="Failed" site="Child" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.541575" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="35281" name="PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.539013" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35278" name="PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting(&quot;dry&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting(&quot;dry&quot;)" methodname="PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="833190267" result="Failed" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.282103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No durable last-seen wet-surface record exists; Grass beneath unseen Mire must not be promoted to dry native turf.
+  Expected: same as <Flat world glyph 256 (UnityEngine.Tilemaps.Tile)>
+  But was:  <Live16x24 Sodden fen ground 3 (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting (System.String state) [0x0008a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPeatWorksMemoryTests.cs:108
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35279" name="PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting(&quot;wet-mire&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting(&quot;wet-mire&quot;)" methodname="PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="177800905" result="Failed" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.182841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No durable last-seen wet-surface record exists; Grass beneath unseen Mire must not be promoted to dry native turf.
+  Expected: same as <Flat world glyph 256 (UnityEngine.Tilemaps.Tile)>
+  But was:  <Live16x24 Sodden fen ground 3 (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting (System.String state) [0x0008a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPeatWorksMemoryTests.cs:108
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35280" name="PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting(&quot;depleted-mire&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting(&quot;depleted-mire&quot;)" methodname="PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1658161588" result="Failed" start-time="2026-11-15 12:21:09Z" end-time="2026-11-15 12:21:09Z" duration="0.044004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No durable last-seen wet-surface record exists; Grass beneath unseen Mire must not be promoted to dry native turf.
+  Expected: same as <Flat world glyph 256 (UnityEngine.Tilemaps.Tile)>
+  But was:  <Live16x24 Sodden fen ground 3 (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.PeatMemoryDoesNotPresentUnrecordedGrassAsDryFooting (System.String state) [0x0008a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPeatWorksMemoryTests.cs:108
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

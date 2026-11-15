@@ -108,7 +108,8 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>Peat works static memory only: keep the selector's remembered
-        /// Grass, StoneFloor or StoneWall frame. Never read hidden condition,
+        /// StoneFloor or StoneWall frame. Grass stays on fallback: no durable
+        /// last-seen surface records distinguish it from underlying wet ground. Never read hidden condition,
         /// tile state, adjacent cells or other occupants; the caller dims once.</summary>
         public bool TryResolveRemembered(Zone zone, int x, int y, Entity owner,
             out Tile groundTile, out Tile wallTile)
@@ -127,22 +128,13 @@ namespace CavesOfOoo.Rendering
                 || owner.HasTag("Creature") || owner.HasTag("Player") || owner.HasTag("Item")
                 || owner.HasPart<StackerPart>() || owner.HasPart<SpatialFootprintPart>()
                 || !string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant)) return false;
-            if (owner.BlueprintName == "Grass" || owner.BlueprintName == "StoneFloor")
+            if (owner.BlueprintName == "StoneFloor")
             {
                 if (!owner.HasTag("Terrain") || owner.HasTag("Wall") || owner.HasTag("Barren")
-                    || owner.HasPart<MaterialPart>() || owner.HasPart<ThermalPart>() || owner.HasPart<DestructiblePart>()
+                    || owner.HasTag("Vegetation") || owner.HasPart<MaterialPart>()
+                    || owner.HasPart<ThermalPart>() || owner.HasPart<DestructiblePart>()
                     || render.RenderString != "." || render.GlyphVariants != "...,.'`") return false;
-                if (owner.BlueprintName == "Grass")
-                {
-                    if (!owner.HasTag("Vegetation") || !owner.HasTag("Plantable")) return false;
-                    groundTile = fenGround != null ? fenGround[FenGroundVariantAt(zone, x, y)]
-                        : grass == null ? null : grass[20 + GroundVariantAt(x, y)];
-                }
-                else
-                {
-                    if (owner.HasTag("Vegetation")) return false;
-                    groundTile = stoneFloor == null ? null : stoneFloor[GroundVariantAt(x, y)];
-                }
+                groundTile = stoneFloor == null ? null : stoneFloor[GroundVariantAt(x, y)];
             }
             else if (owner.BlueprintName == "StoneWall")
             {
