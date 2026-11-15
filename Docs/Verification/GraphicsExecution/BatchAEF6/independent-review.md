@@ -1,0 +1,5 @@
+# Spivenor and Cathedral delivery review
+
+Reviewer `build_comparison_plan`: 0 P1/P2. Correct current source/scope340/283/job e8dd71151d/fresh paths/prior5a487. All348 distinct pins (267resource entries plus neutral/scene overlap) match. Snapshot58513objects80dirty, original standaloneabsent and prior5a487 protected. Package controls and launch/restore normalizedAST unchanged; pinned base/adaptedsource match. No helper execution or edits by reviewer.
+
+Final independent full-stream archive verification:129127190bytes, SHA256abc4b68f60f6372a48a0de234996b6fa2095b97aad0a860ef2287f2b1ecf2fa7;205members=192files+13dirs;343635541unpackedbytes. Full outputsets/hash/size/mode,191internalchecksums,safe root/no links,gzipEOFCRC/footer,6credits/5licenses/starter sources verified.348pins/source/embeddedreports/audit/info/helperfce35ebcb7461c8acb142befae5a705767408bcaa66e7690d04039800af0b996 match. Bothbuilds0errors4warnings. No extractionwrites/executable/helper/Unity/Git actions. Macactual/restoration separate rootgates; Linux/Deck/performance unknown.
