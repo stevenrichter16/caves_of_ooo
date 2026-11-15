@@ -7681,14 +7681,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "observed",
+        "polish": "bounded-accepted",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Retain bounded reed/grass acceptance; separate drawpoint/peat/pipe and broader area remain; batch current packaging after next accepted graphics slice.",
       "coordinates": [
         6,
         8,
@@ -7699,7 +7699,36 @@
       "authored_river": false,
       "formation": null,
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
-      "related_scope_ids": []
+      "related_scope_ids": [],
+      "spread_reeds": {
+        "recorded_utc": "2026-11-15T04:16:00.250534+00:00",
+        "status": "bounded Editor accepted; packaging pending",
+        "record": "Docs/GRAPHICS-SPREAD-REEDS.md",
+        "evidence": "Docs/Verification/GraphicsExecution/SpreadReeds",
+        "zone": "Overworld.6.8.0",
+        "seed": 65,
+        "coverage": "exact ordinary Spread Reeds + actual Grass; approved opening frames3/4 reused",
+        "polish": "three visible bank views bounded accepted; fullarea open",
+        "population": "unchanged",
+        "shadows": "unchanged",
+        "native_red": {
+          "failed": 24,
+          "passed": 36
+        },
+        "native_green": 60,
+        "adjacent_regression": {
+          "passed": 206,
+          "inconclusive": 3,
+          "failed": 0
+        },
+        "actual": "center/west/east matched pairs; adjacent/underfoot textreader; protected crossing; F12OFF travel/F5fresh2900HP22at40,12;94 disclosed reedrecords exact",
+        "reload_world_changed": 0,
+        "exclusions": "hostile death run excluded; protected surveys not combat acceptance; east HUD55,12 vs cell56,12 unproven",
+        "limits": "R11/fullarea/V0\u2013V7open; current468a88packages exclude",
+        "next": "Cinderhold6.6 actual grade/material comparison then batch",
+        "hourly_report_utc": "2026-11-15T03:17:54Z"
+      },
+      "actual_seed": 65
     },
     {
       "id": "surface/Overworld.7.8.0",
@@ -26289,5 +26318,33 @@
     "next": "publish+batchgrade/residents then otherregion",
     "hourly_report_utc": "2026-11-15T03:17:54Z",
     "source_revision": "468a88da8736de9f295c4fcbdc24adc75045a0de"
+  },
+  "spread_reeds": {
+    "recorded_utc": "2026-11-15T04:16:00.250534+00:00",
+    "status": "bounded Editor accepted; packaging pending",
+    "record": "Docs/GRAPHICS-SPREAD-REEDS.md",
+    "evidence": "Docs/Verification/GraphicsExecution/SpreadReeds",
+    "zone": "Overworld.6.8.0",
+    "seed": 65,
+    "coverage": "exact ordinary Spread Reeds + actual Grass; approved opening frames3/4 reused",
+    "polish": "three visible bank views bounded accepted; fullarea open",
+    "population": "unchanged",
+    "shadows": "unchanged",
+    "native_red": {
+      "failed": 24,
+      "passed": 36
+    },
+    "native_green": 60,
+    "adjacent_regression": {
+      "passed": 206,
+      "inconclusive": 3,
+      "failed": 0
+    },
+    "actual": "center/west/east matched pairs; adjacent/underfoot textreader; protected crossing; F12OFF travel/F5fresh2900HP22at40,12;94 disclosed reedrecords exact",
+    "reload_world_changed": 0,
+    "exclusions": "hostile death run excluded; protected surveys not combat acceptance; east HUD55,12 vs cell56,12 unproven",
+    "limits": "R11/fullarea/V0\u2013V7open; current468a88packages exclude",
+    "next": "Cinderhold6.6 actual grade/material comparison then batch",
+    "hourly_report_utc": "2026-11-15T03:17:54Z"
   }
 }

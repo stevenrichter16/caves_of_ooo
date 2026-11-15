@@ -22,7 +22,7 @@ namespace CavesOfOoo.Rendering
         const int Width=16, Height=24;
         readonly FlatPixelFallbackCatalog selector;
         public const string ConjuredFlowersResourcePath="Sprites/Live16x24/conjured-flowers";
-        readonly Tile[] turf, road, hedges, tree, berry, bush, flowers, conjured, signpost, fieldSoil, fieldRows, plainWalls;
+        readonly Tile[] turf, road, hedges, tree, berry, bush, flowers, conjured, signpost, fieldSoil, fieldRows, plainWalls, reeds;
         bool disposed;
         static readonly Dictionary<string,Vector2Int> addresses=BuildAddresses();
         static Dictionary<string,Vector2Int> BuildAddresses()
@@ -82,6 +82,7 @@ namespace CavesOfOoo.Rendering
             conjured=Frames(conjured2,2,0,2);signpost=Frames(anchors12,12,8,1);
             fieldSoil=Frames(ground21,21,18,1);fieldRows=Frames(base10,10,7,2);
             plainWalls=Frames(cellar9,9,8,1);
+            reeds=Frames(base10,10,3,2);
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -112,6 +113,9 @@ namespace CavesOfOoo.Rendering
                 else if(FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner)){}
                 // Only when its own sprite is available; otherwise it keeps competing as before.
                 else if(conjured!=null&&IsConjuredFlowers(owner,state))petals=true;
+                // Exact ordinary river reeds disclose their real floor, but do not
+                // exempt it from live coatings as settlement fixtures can.
+                else if(reeds!=null&&IsSupportedZone(zone)&&IsEligibleReed(owner)){}
                 else if(CompetingGround(owner))return false;
             }
             // Hazard marks remain on the independent higher tile-state layer. This
@@ -144,6 +148,11 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone,int x,int y,Entity owner,out Tile tile)
         {
             tile=null;if(!ReadyCell(zone,x,y,out _)||!Selected(zone,x,y,owner))return false;
+            if(owner.BlueprintName=="Reeds")
+            {
+                if(reeds==null||!IsSupportedZone(zone)||!IsEligibleReed(owner))return false;
+                tile=reeds[(x+y)&1];return true;
+            }
             if(owner.BlueprintName=="Wall")
             {
                 if(!IsSupportedZone(zone)||plainWalls==null||!FlatPixelStumpMaterialsCatalog.IsOrdinaryStoneWall(owner))return false;
@@ -182,6 +191,13 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone,Entity owner,int x,int y,out Sprite sprite)
         {
             sprite=null;if(owner==null||!ReadyCell(zone,x,y,out _))return false;
+            // The exact reader subject may be under the Player without becoming
+            // the selected world foreground. Never substitute the Player's body.
+            if(owner.BlueprintName=="Reeds")
+            {
+                if(reeds==null||!IsSupportedZone(zone)||!IsEligibleReed(owner)||!Placed(zone,zone.GetCell(x,y),owner))return false;
+                sprite=reeds[(x+y)&1].sprite;return true;
+            }
             if(IsEligibleFieldRow(owner))
             {
                 if(fieldRows==null||!Placed(zone,zone.GetCell(x,y),owner)||!DryFieldCell(zone,x,y))return false;
@@ -222,6 +238,14 @@ namespace CavesOfOoo.Rendering
         {
             var cell=zone.GetCell(x,y);return cell!=null&&cell.Explored&&cell.IsVisible
                 &&selector.TryResolve(zone,x,y,out var v)&&!v.Remembered&&v.Owner?.BlueprintName=="Hedge"&&EligibleBody(v.Owner);
+        }
+        static bool IsEligibleReed(Entity owner)
+        {
+            if(owner?.BlueprintName!="Reeds"||!Plain(owner)||ForeignMeaning(owner)
+                ||!FlatPixelSoddenTravelCatalog.IsSettlementFixture(owner,0,0))return false;
+            var render=Owned<RenderPart>(owner);
+            return render.RenderString=="|"&&render.GlyphVariants=="|!"&&render.ColorString=="&G"
+                &&render.RenderLayer==1&&string.IsNullOrEmpty(render.BackgroundColor);
         }
         static bool Floor(Entity owner,bool grass)
         {
@@ -420,7 +444,7 @@ namespace CavesOfOoo.Rendering
             }
             return result;
         }
-        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(berry);Release(bush);Release(flowers);Release(conjured);Release(signpost);Release(fieldSoil);Release(fieldRows);Release(plainWalls);}
+        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(berry);Release(bush);Release(flowers);Release(conjured);Release(signpost);Release(fieldSoil);Release(fieldRows);Release(plainWalls);Release(reeds);}
         static void Release(Tile[] tiles){if(tiles==null)return;foreach(var tile in tiles)if(tile!=null){Destroy(tile.sprite);Destroy(tile);}}
         static void Destroy(Object value){if(value==null)return;if(Application.isPlaying)Object.Destroy(value);else Object.DestroyImmediate(value);}
     }

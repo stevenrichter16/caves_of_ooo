@@ -11,7 +11,7 @@ using Object = UnityEngine.Object;
 namespace CavesOfOoo.Tests
 {
     // Real owners/selector/painter; reflection makes the missing adapter an assertion RED.
-    public sealed class FlatPixelSpreadEnvironmentTests
+    public sealed partial class FlatPixelSpreadEnvironmentTests
     {
         const string Home="Overworld.10.11.0", Turf="Sprites/Live16x24/sill-environment", Road="Sprites/Live16x24/opening-ground",
             Hedge="Sprites/Live16x24/hedge-continuity", Trees="Sprites/Live16x24/north-vegetation", Bush="Sprites/Live16x24/opening-base";
