@@ -49,7 +49,7 @@ namespace CavesOfOoo.Tests
         }
         [TestCase("empty")][TestCase("Player")][TestCase("DescentLedge")][TestCase("HearthPatch")][TestCase("NicheHome")][TestCase("PlaqueWall")]
         public void OtherCellsNeverAcquireRockBacking(string name)
-        {if(name!="empty")Add(name);Assert.False(Back());Assert.False(View().AmbientBackdrop);}
+        {if(name!="empty")Add(name);bool hearth=depth==2&&name=="HearthPatch";Assert.AreEqual(hearth,Back());Assert.AreEqual(hearth,View().AmbientBackdrop);}
         [TestCase("hidden")][TestCase("memory")][TestCase("moved")][TestCase("custody")][TestCase("changed")][TestCase("duplicate")]
         public void InvalidRockCannotAuthorizeBacking(string fault)
         {
@@ -73,7 +73,7 @@ namespace CavesOfOoo.Tests
             if(fault=="charge")zone.TileState.AddCharge(X,Y,1);
             if(fault=="background")e.GetPart<RenderPart>().BackgroundColor="^r";
             if(fault=="hearth")Add("HearthPatch");
-            string state=zone.TileState.ToSaveString();Assert.False(Back());Assert.AreEqual(state,zone.TileState.ToSaveString());
+            string state=zone.TileState.ToSaveString();Assert.AreEqual(depth==2&&fault=="hearth",Back());Assert.AreEqual(state,zone.TileState.ToSaveString());
         }
         [Test] public void RealFloorWinsEvenWhenItsTextureIsMissing()
         {

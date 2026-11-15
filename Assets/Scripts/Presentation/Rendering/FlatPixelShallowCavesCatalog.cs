@@ -18,6 +18,7 @@ namespace CavesOfOoo.Rendering
         bool sandstoneOnly;
         bool allowStoneFloor;
         bool rockBackdropOnly;
+        bool lampwellHearth;
         /// <summary>Olderdeep's real stone/sandstone floors and sandstone walls only.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingOlderdeepDescent()
         { admits = FlatPixelSiteAdmission.IsOlderdeepDescent; allowCoveredFloorReader = allowStoneFloor = structuralOnly = sandstoneOnly = true; return this; }
@@ -27,9 +28,9 @@ namespace CavesOfOoo.Rendering
         /// <summary>Root chamber sandstone and canonical rocks; no empty-cell or ending backing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingRootChamber()
         { admits = FlatPixelSiteAdmission.IsRootChamber; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
-        /// <summary>Lampwell's sandstone and canonical rock owners; backing requires a real disclosed rock.</summary>
+        /// <summary>Lampwell sandstone/rocks, plus disclosed hearth backing in the inhabited second chamber.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingLampwellStone()
-        { admits = FlatPixelSiteAdmission.IsLampwellStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
+        { admits = FlatPixelSiteAdmission.IsLampwellStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = lampwellHearth = true; return this; }
         /// <summary>Spivenor's sandstone and canonical rock owners; backing requires a real disclosed rock.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingSpivenorStone()
         { admits = FlatPixelSiteAdmission.IsSpivenorStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
@@ -130,6 +131,7 @@ namespace CavesOfOoo.Rendering
             bool frostFloor = FlatPixelFrostVentCatalog.HasFloor(zone, x, y);
             if (state != null && !state.IsEmpty && !frostFloor) return false;
             Entity actual = null;
+            int hearths = 0;
             foreach (var owner in cell.Occupants)
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
@@ -137,6 +139,8 @@ namespace CavesOfOoo.Rendering
                 { if (actual != null || floors == null || !OrdinaryFloor(owner)) return false; actual = owner; }
                 else if (allowStoneFloor && owner.BlueprintName == "StoneFloor")
                 { if (actual != null || stoneFloors == null || !OrdinaryStoneFloor(owner)) return false; actual = owner; }
+                else if (lampwellHearth && zone.ZoneID == "Overworld.12.3.2" && owner.BlueprintName == "HearthPatch")
+                { if (!OrdinaryLampwellHearth(owner) || ++hearths > 1) return false; }
                 else if (!(frostFloor && FlatPixelFrostVentCatalog.Eligible(owner)) && CompetingGround(owner)) return false;
             }
             if (actual == null) return false;
@@ -187,14 +191,21 @@ namespace CavesOfOoo.Rendering
             if (floorOnly || structuralOnly && !rockBackdropOnly || !ReadyCell(zone, x, y, out var cell) || selector.BackgroundTile == null) return false;
             var state = zone.TileState.Get(x, y);
             if (state != null && !state.IsEmpty) return false;
-            int rocks = 0;
+            int rocks = 0, hearths = 0;
+            bool stalagmitePresent = false;
             foreach (var owner in cell.Occupants)
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                if (lampwellHearth && zone.ZoneID == "Overworld.12.3.2" && owner.BlueprintName == "HearthPatch")
+                {
+                    if (!OrdinaryLampwellHearth(owner) || ++hearths > 1) return false;
+                    continue;
+                }
                 if (rockBackdropOnly && (owner.BlueprintName == "Rubble" || owner.BlueprintName == "Stalagmite"))
                 {
                     if (!OrdinaryForeground(owner) || (owner.BlueprintName == "Rubble" ? rubble : stalagmite) == null
                         || ++rocks > 1) return false;
+                    stalagmitePresent = owner.BlueprintName == "Stalagmite";
                 }
                 // A missing/rejected floor resource is not permission to
                 // conceal that owner's fallback with an ambient substitute.
@@ -202,7 +213,7 @@ namespace CavesOfOoo.Rendering
                     || !string.IsNullOrEmpty(Owned<RenderPart>(owner).BackgroundColor)
                     || owner.BlueprintName == "Rubble" && !OrdinaryForeground(owner)) return false;
             }
-            if (rockBackdropOnly && rocks != 1) return false;
+            if (hearths == 1 ? stalagmitePresent : rockBackdropOnly && rocks != 1) return false;
             tile = selector.BackgroundTile;
             color = new Color32(128, 106, 76, 255); // Unmarked base of the borrowed sandstone floor.
             return true;
@@ -245,6 +256,36 @@ namespace CavesOfOoo.Rendering
             var render = Owned<RenderPart>(owner);
             return Render(render, ".", "&y", 0) && render.GlyphVariants == "...,.'`"
                 && string.IsNullOrEmpty(render.BackgroundColor);
+        }
+        // This is only a backing exception. The original fungus glyph, light,
+        // collision, description and political damage handler remain its own.
+        // A local finite part set keeps shared ending/ground vetoes unchanged.
+        static bool OrdinaryLampwellHearth(Entity owner)
+        {
+            if (owner?.BlueprintName != "HearthPatch" || !PlainOwner(owner)
+                || !owner.HasTag("Terrain") || !owner.HasTag("Vegetation") || !owner.HasTag("Solid")
+                || !Owned<PhysicsPart>(owner).Solid || owner.HasTag("Wall") || owner.HasTag("UnderfootInteractable")
+                || owner.HasTag("StairsUp") || owner.HasTag("StairsDown") || owner.HasTag("Restable")
+                || owner.HasTag("WellGroundMarker") || owner.HasTag("OvenGroundMarker") || owner.HasTag("LanternGroundMarker")) return false;
+            foreach (var part in owner.Parts)
+            {
+                var type = part.GetType();
+                if (type != typeof(RenderPart) && type != typeof(PhysicsPart) && type != typeof(ExaminablePart)
+                    && type != typeof(MaterialPart) && type != typeof(ThermalPart) && type != typeof(DestructiblePart)
+                    && type != typeof(HearthPatchPart) && type != typeof(LightSourcePart)
+                    && type != typeof(StackerPart) && type != typeof(SpatialFootprintPart) && type != typeof(StatusEffectsPart)) return false;
+            }
+            var render = Owned<RenderPart>(owner); var material = Owned<MaterialPart>(owner);
+            var hp = Owned<DestructiblePart>(owner); var hearth = Owned<HearthPatchPart>(owner); var light = Owned<LightSourcePart>(owner);
+            return Render(render, "*", "&G", 2) && string.IsNullOrEmpty(render.GlyphVariants)
+                && string.IsNullOrEmpty(render.BackgroundColor) && string.IsNullOrEmpty(render.Tile)
+                && string.IsNullOrEmpty(render.TileColor) && string.IsNullOrEmpty(render.DetailColor)
+                && material != null && material.MaterialID == "Plant" && material.Combustibility == .1f
+                && material.HasMaterialTag("Plant") && material.HasMaterialTag("Organic") && NeutralThermal(owner)
+                && hp != null && !hp.Gone && !hp.Indestructible && hp.HP > 0 && hp.HP <= 40 && hp.MaxHP == 40
+                && hp.Hardness == 0 && string.IsNullOrEmpty(hp.WreckageBlueprint)
+                && hearth != null && hearth.WarRep == PlayerReputation.HATED_THRESHOLD
+                && light != null && light.Radius == 4 && light.LightColor == "&G" && light.Intensity == .8f;
         }
         static bool OrdinaryForeground(Entity owner)
         {

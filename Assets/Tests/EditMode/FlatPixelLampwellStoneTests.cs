@@ -171,7 +171,7 @@ namespace CavesOfOoo.Tests
             {
                 Admit(art);Assert.False(art.TryResolveForeground(zone,fc.X,fc.Y,owner,out _));
                 Assert.False(art.TryGetSubjectSprite(zone,owner,fc.X,fc.Y,out _));
-                if(name=="HearthPatch" || name=="DroseraRing") Assert.False(art.TryResolveGround(zone,fc.X,fc.Y,out _,out _));
+                if(name=="HearthPatch" || name=="DroseraRing") Assert.AreEqual(depth==2&&name=="HearthPatch",art.TryResolveGround(zone,fc.X,fc.Y,out _,out _));
             }
         }
         [Test] public void PartialWallRemainsNativeButGoneOrZeroHealthRefuses()
