@@ -62,6 +62,7 @@ namespace CavesOfOoo.Presentation.Rendering
         private bool _nativeRuinGrade;
         private bool _nativeGantryGrade;
         private bool _nativeCinderholdGrade;
+        private bool _nativeTallyGrade;
         // Bounded material-hue pilot. The native sprites already contain the intended
         // warm earth/stone hues; the old green filter made those surfaces too similar.
         private static readonly BiomePalette NativeMarrowstyePalette = new BiomePalette(
@@ -90,6 +91,11 @@ namespace CavesOfOoo.Presentation.Rendering
         // their own hues. Retain Grovelands contrast and existing contact shade.
         private static readonly BiomePalette NativeCinderholdPalette = new BiomePalette(
             BiomeType.Grovelands, Color.white, 8f, 0f, 0f);
+
+        // Tally's cloth shelters, pale stone floors and earthen loading routes
+        // carry their authored hues; retain Spread contrast without a green wash.
+        private static readonly BiomePalette NativeTallyPalette = new BiomePalette(
+            BiomeType.Spread, Color.white, 5f, 0f, 0f);
 
         // Reference back to gameplay state. Set by GameBootstrap.
         // CurrentZone is updated on zone-change via SetCurrentZone()
@@ -212,13 +218,19 @@ namespace CavesOfOoo.Presentation.Rendering
                 && CurrentZone?.ZoneID == CinderholdCompositionPlan.ZoneID
                 && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone)
                 && AreaCompositionScope.IsCinderholdSite(currentManager.WorldMap.GetPOI(6, 6));
+            bool nativeTally = currentBiome == BiomeType.Spread
+                && _zoneRendererRef != null && _zoneRendererRef.FlatPixelModeActive
+                && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
+                && CurrentZone?.ZoneID == TallyCompositionPlan.ZoneID
+                && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone)
+                && AreaCompositionScope.IsTallySite(currentManager.WorldMap.GetPOI(10, 14));
             // Admission can change without changing biome: same-biome travel,
             // legacy toggle, sprites disabled or a replacement loaded world graph.
             if (!_hasResolvedPalette || currentBiome != _activeBiome
                 || nativeMarrowstye != _nativeMarrowstyeGrade || nativeDune != _nativeDuneGrade
                 || nativeMorrowfast != _nativeMorrowfastGrade || nativeSumphold != _nativeSumpholdGrade
                 || nativeRuin != _nativeRuinGrade || nativeGantry != _nativeGantryGrade
-                || nativeCinderhold != _nativeCinderholdGrade)
+                || nativeCinderhold != _nativeCinderholdGrade || nativeTally != _nativeTallyGrade)
             {
                 _hasResolvedPalette = true;
                 _activeBiome = currentBiome;
@@ -229,7 +241,9 @@ namespace CavesOfOoo.Presentation.Rendering
                 _nativeRuinGrade = nativeRuin;
                 _nativeGantryGrade = nativeGantry;
                 _nativeCinderholdGrade = nativeCinderhold;
-                _targetPalette = nativeCinderhold ? NativeCinderholdPalette
+                _nativeTallyGrade = nativeTally;
+                _targetPalette = nativeTally ? NativeTallyPalette
+                    : nativeCinderhold ? NativeCinderholdPalette
                     : nativeGantry ? NativeGantryPalette
                     : nativeRuin ? NativeRuinPalette
                     : nativeSumphold ? NativeSumpholdPalette

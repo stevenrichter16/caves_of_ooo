@@ -1,0 +1,68 @@
+{
+  "recordedUtc": "2026-11-15T06:22:52.709443+00:00",
+  "source_base": "e921e48f195b975b413524da66c042dd87f66dda",
+  "status": "bounded Editor accepted; publication and packaging pending",
+  "zone": "Overworld.10.14.0",
+  "seed": 224401440,
+  "scope": "Current authored Spread Village Tally / CentralExchange only: white filter, contrast5, saturation0; approved Beating road frames32/33. Terrain, shelters, owners, geometry and fog authority unchanged. Legacy and neighboring grades retained.",
+  "native_red": {
+    "job": "84e412c89ef8432a86335aeff324ed70",
+    "failed": 2,
+    "path": "Docs/Verification/GraphicsExecution/TallyMaterials/native-red.xml"
+  },
+  "native_green": {
+    "job": "633e6c1f1c62464f88269256df06a940",
+    "passed": 191,
+    "failed": 0,
+    "path": "Docs/Verification/GraphicsExecution/TallyMaterials/native-green.xml"
+  },
+  "actual": {
+    "baseline_route": "earned Marrowstye12.12 turn4210HP40 \u2192 worldmap Left2 Down2 \u2192 Tally39,11; centerF5turn4310; Left22 Up5 \u2192 exchange interior17,6F5turn4580",
+    "matched_captures": [
+      "before-center.png",
+      "after-center.png",
+      "before-interior.png",
+      "after-interior.png"
+    ],
+    "readers": [
+      "floor38,11",
+      "Packed road40,11",
+      "stone floor17,5",
+      "tent wall17,1 Cloth8/8"
+    ],
+    "travel": "ordinary10.14\u21929.14\u219210.14; outside nativeTally flag false; return walk LeftRight",
+    "save_reload": "F5turn4680HP40/freshContinue39,11",
+    "selected_records": 2216,
+    "records_equal_before_presave_reload": true,
+    "reload_world_changed_pixels": 0,
+    "reload_hotbar_changed_pixels": 0,
+    "reload_sidebar_log_changed_pixels": 21916,
+    "protection": "No F12/state injection. Normal save roots isolated."
+  },
+  "comparison_limits": [
+    "after-interior-route.png is a real walk, but actor/log positions differ; matched comparison uses independently restored BeforeInteriorCheckpoint",
+    "outside9.14 is an after-travel observation, not a matched neighbor baseline",
+    "one failed Finish menu path with extra Play suffix had no effect; corrected documented menu used",
+    "initial road-reader selection was actual floor38,11; retained honestly as yard-reader.png; road40,11 independently observed"
+  ],
+  "performance": {
+    "seconds": 69.8882562,
+    "scope": "after-only AppleM5 OSXEditor manual gameplay",
+    "renderer_p95_ms": 0.073917,
+    "renderer_max_ms": 64.747834,
+    "main_thread_max_ms": 761.772958,
+    "R11": "open; no packaged benchmark or spike attribution"
+  },
+  "reviews": {
+    "source": "sumphold_grade_source_review:0P1/P2",
+    "visual": "sumphold_baseline_review:0visibleP1/P2 bounded material acceptance"
+  },
+  "preservation": "80 foreign files and normal gameplay saves/preferences preserved; test/telemetry exceptions retained; rootnull/playfalse/clean scene",
+  "coverage": "existing selected native materials observed, no new family coverage",
+  "population": "unchanged; broad uniform interiors and small furnishings remain composition debt",
+  "shadows": "unchanged",
+  "whole_area": "incomplete",
+  "delivery": "current0d8c55071 excludes Tally/Posy residents; batch next",
+  "hourly_report_utc": "2026-11-15T06:18:44Z",
+  "next": "Publish and batch with Posy residents, then different-area environmental/composition baseline; SteamDeck deferred."
+}

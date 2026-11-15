@@ -167,12 +167,14 @@ namespace CavesOfOoo.Rendering
             var (wx, wy, _) = WorldMap.FromZoneID(zone.ZoneID);
             var map = WorldLocationContext.For(zone).WorldMap;
             var biome = map.GetBiome(wx, wy);
-            // Intake and Cinderhold packed roads should read as worn stone/earth,
-            // distinct from its warm yards. Reuse approved road art; no geometry change.
+            // Intake, Cinderhold and Tally packed roads should read as worn stone/earth,
+            // distinct from their warm yards. Reuse approved road art; no geometry change.
             bool intakeRoad = zone.ZoneID == MarrowstyeCompositionPlan.ZoneID
                 && AreaCompositionScope.IsMarrowstyeSite(map.GetPOI(wx, wy))
                 || zone.ZoneID == CinderholdCompositionPlan.ZoneID
-                && AreaCompositionScope.IsCinderholdSite(map.GetPOI(wx, wy));
+                && AreaCompositionScope.IsCinderholdSite(map.GetPOI(wx, wy))
+                || zone.ZoneID == TallyCompositionPlan.ZoneID && biome == BiomeType.Spread
+                && AreaCompositionScope.IsTallySite(map.GetPOI(wx, wy));
             return MaterialFor(floor, x, y, biome, intakeRoad);
         }
 

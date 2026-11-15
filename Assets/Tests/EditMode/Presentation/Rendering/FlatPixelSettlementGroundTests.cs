@@ -67,7 +67,7 @@ namespace CavesOfOoo.Tests
         [TestCase("Overworld.5.17.0", "Sand", Beating)]                 // the First Tent, Beating
         [TestCase("Overworld.10.14.0", "StoneFloor", SillLawnAndFloors)] // Tally
         [TestCase("Overworld.12.12.0", "RoadStone", Beating)] // Intake road: approved neutral stone
-        [TestCase("Overworld.10.14.0", "RoadStone", OpeningGround)]     // Tally, Spread road
+        [TestCase("Overworld.10.14.0", "RoadStone", Beating)]     // Tally: approved neutral stone road
         [TestCase("Overworld.8.16.0", "RoadStone", Beating)]            // Wellmeet, Beating road
         [TestCase("Overworld.13.7.0", "Floor", TownFloor)]              // Tine: town yard
         [TestCase("Overworld.15.6.0", "Floor", TownFloor)]              // Sumphold
@@ -262,7 +262,7 @@ namespace CavesOfOoo.Tests
         [TestCase("Overworld.13.7.0", "Floor", TownFloor, false)]          // Tine town floor
         [TestCase("Overworld.5.9.0", "Grass", SillLawnAndFloors, false)]   // Posy lawn
         [TestCase("Overworld.12.12.0", "RoadStone", Beating, false)] // same static Intake road in memory
-        [TestCase("Overworld.10.14.0", "RoadStone", OpeningGround, false)] // Tally road
+        [TestCase("Overworld.10.14.0", "RoadStone", Beating, false)] // Tally road
         [TestCase("Overworld.18.18.0", "SandstoneWall", Beating, true)]    // the Last Counter wall
         public void RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(string id, string blueprint, string resource, bool wall)
         {

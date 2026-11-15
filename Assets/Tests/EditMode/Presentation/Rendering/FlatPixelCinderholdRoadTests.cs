@@ -59,11 +59,11 @@ namespace CavesOfOoo.Tests
                 finally{field.SetValue(art,tiles);}p.Renderer.MarkDirty("restore road");p.Step();Assert.NotNull(p.Shade.GetTile(Paint.Position(X,Y-1)));
             }
         }
-        [Test]public void PlayerKeepsNativeRoadAndTallyKeepsItsExistingRoad()
+        [Test]public void PlayerKeepsNativeRoadAndSlipKeepsItsExistingRoad()
         {
             var original=Road().GroundTile;var player=content.Factory.CreateEntity("Player");zone.AddEntity(player,X,Y);
             Assert.AreSame(original,Road().GroundTile);Assert.AreSame(player,Road().Owner);
-            var other=new Zone("Overworld.10.14.0");manager.SetActiveZone(other);foreach(var c in other.Cells)c.IsVisible=c.Explored=true;
+            var other=new Zone("Overworld.16.11.0");manager.SetActiveZone(other);foreach(var c in other.Cells)c.IsVisible=c.Explored=true;
             zone.RemoveEntity(road);other.AddEntity(road,X,Y);Assert.True(world.TryResolvePresentation(other,X,Y,out var p));
             Assert.AreSame(Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath),p.GroundTile.sprite.texture);
         }

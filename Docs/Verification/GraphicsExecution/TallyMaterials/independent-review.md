@@ -1,0 +1,5 @@
+# Tally material review
+
+Source review: `sumphold_grade_source_review`, 2026-11-15, 0 P1/P2. Exact authored Spread/current cached graph/display/flat-mode authority; canonical grade restored on loss; unchanged shared profile. Existing owner, tile-state and disclosure guards precede road choice. World, static memory and exact reader share the selector; existing optional atlas lifetime reused. Missing art declines; Slip negative control retained. Native execution is root-owned.
+
+Visual review: `sumphold_baseline_review`, 2026-11-15, 0 visible P1/P2. Accept bounded material change: lighter packed roads, neutral stone interiors, darker yards and brown cloth walls separate clearly. Quiet floors; readable actors, furnishings, entrances and fog. Four truthful readers including Cloth8/8. Both matched pairs keep sidebar/hotbar exact. Route-interior excluded from pair. Save/reload world/hotbar exact, sidebar log changes only. Outside9.14 retains green appearance but has no matched baseline. Broad uniform interiors/small furnishings remain composition considerations. No whole-area acceptance.
