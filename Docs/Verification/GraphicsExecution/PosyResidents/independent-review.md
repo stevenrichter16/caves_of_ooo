@@ -1,0 +1,3 @@
+Source: sumphold_grade_source_review0remainingP1/P2. Corrected testcookresource typo beforeGREEN. Exactalias/currentgraph/ownedparts,borrowedoptionalinput/disposal and oldconstructors guarded. Questphasebodyinvariance native.
+
+Visual: sumphold_baseline_review0remainingP1/P2. Bothpairs preserveHUD; bodyreadability andquestcues coherent, additional smalllocaldifferences unproven. Fullreaders/dialogues matchidentities. Cleanroutefreshworld+hotbar pixel-exact;sidebar16726logpixels differ. Excludedruns supportnoacceptanceclaim.

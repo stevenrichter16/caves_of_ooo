@@ -2335,7 +2335,8 @@ namespace CavesOfOoo.Rendering
                     _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Environment/elder") : null,
                     _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Environment/village_child") : null,
                     _loadOptionalResources ? Resources.Load<Texture2D>(FlatPixelSharedResidentsCatalog.KeepersResourcePath) : null,
-                    _loadOptionalResources ? Resources.Load<Texture2D>(FlatPixelSharedResidentsCatalog.FactorResourcePath) : null);
+                    _loadOptionalResources ? Resources.Load<Texture2D>(FlatPixelSharedResidentsCatalog.FactorResourcePath) : null,
+                    _loadOptionalResources ? Resources.Load<Texture2D>(FlatPixelEastKitchenCatalog.CookResourcePath) : null);
             return _sharedResidentsArt;
         }
 

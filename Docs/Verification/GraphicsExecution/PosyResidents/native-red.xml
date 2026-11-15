@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 05:56:43Z" end-time="2026-11-15 05:56:43Z" duration="0.2206546">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36930" result="Failed" site="Child" start-time="2026-11-15 05:56:43Z" end-time="2026-11-15 05:56:43Z" duration="0.220655" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45227" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36930" result="Failed" site="Child" start-time="2026-11-15 05:56:43Z" end-time="2026-11-15 05:56:43Z" duration="0.206745" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45228" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36930" result="Failed" site="Child" start-time="2026-11-15 05:56:43Z" end-time="2026-11-15 05:56:43Z" duration="0.203096" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45229" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36930" result="Failed" site="Child" start-time="2026-11-15 05:56:43Z" end-time="2026-11-15 05:56:43Z" duration="0.200010" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1179" name="FlatPixelSharedResidentsTests" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-11-15 05:56:43Z" end-time="2026-11-15 05:56:43Z" duration="0.190972" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1222" name="PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 05:56:43Z" end-time="2026-11-15 05:56:43Z" duration="0.188846" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1220" name="PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation(False)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation(False)" methodname="PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1796097317" result="Failed" start-time="2026-11-15 05:56:43Z" end-time="2026-11-15 05:56:43Z" duration="0.136135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.PosyNative (CavesOfOoo.Core.Entity e, System.Boolean baker) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelPosyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation (System.Boolean baker) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelPosyResidentsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1221" name="PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation(True)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation(True)" methodname="PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="2105862409" result="Failed" start-time="2026-11-15 05:56:43Z" end-time="2026-11-15 05:56:43Z" duration="0.044887" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.PosyNative (CavesOfOoo.Core.Entity e, System.Boolean baker) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelPosyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.PosyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation (System.Boolean baker) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelPosyResidentsTests.cs:46
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
