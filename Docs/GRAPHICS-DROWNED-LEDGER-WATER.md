@@ -1,0 +1,15 @@
+# Drowned Ledger quiet excavation water
+
+Current actual center and western-bank views showed broad solid teal water beside native boards, peat faces and ground. Reuse the existing approved quiet-water atlas, with no palette/art/layout/gameplay change. Exact17.5 + current Sodden/ExcavationCamp only, after the existing native real-pool resolver validates authored Village/name/cache/full-map/no-lair, disclosure, real water source/substrate and sole permanent water state. Preserve its owner and bank mask. Missing/malformed optional art retains original water; readers share the same resolved surface.
+
+Native35 genuine RED +5passing controls →173/173 DrownedLedger/Sumphold/Tine/Posy/SillRiver cases,29.593999s,0skip/inconclusive. Independent source review0P1/P2; final visual review0P1/P2 accepted. No new legacy-renderer toggle test; the legacy path is unchanged. Hazard state/actor preservation is tested, painted hazard pixels are not newly qualified.
+
+Actual seed224401440: ordinary Quillhold14.9→17.5 routeRight3Up4. Center5110HP40at39,11, ReadingTent5370HP40at18,6, western bank5490HP40at14,14. Original saved checkpoints retained and paired after. Actual dry-board crossing/reader Wood8/8, preserved-body reader, water reader with surface effects, wet step15,17 with native Soaked100%/Drenched36 and40HP, exit to dry15,16. Ordinary17.5↔18.5 travel, normal MainWell drinking, F5/fresh5540HP40at39,11,F12off. No combat, destructive route, healing or runtime injection.
+
+Center798worldpixels/max25RGB; westernbank490/max25; reading358/max109 includes transient nonwater variance. UI sidebar/hotbar0 on all matched comparisons. Reload186worldpixels/max8 at610,524–635,585, cause unproven; hotbar0,sidebar logs differ. These receipts do not establish full-area acceptance.
+
+After-only Editor profile183.127s,renderer p950.079042ms/max270.967292ms;Mainmax20106.523584ms. No raw-frame attribution/speedup/packaged FPS claim;R11open. All80 unrelated changes, normal gameplay state/preferences and approved art preserved. Rootnull/scene clean; no cleanup.
+
+Current623d980ab Mac/Linux excludes this slice. Next abandoned peat works17.7 (SoddenDistrict) fresh actual center40,12/equipment54,9/salvage26,15 baseline from earned DrownedLedger5540HP40: worldDown2. Existing Sodden material art; preserve real finite locker/salvage/MawToad and dry routes. Batch accepted slices for Mac/Linux afterward; Deck deferred, R11 and V0–V7 open. Deck deferred; hourly ACTIVE,lastactual11:19:24Z; V0–V7 and whole-area polish incomplete.
+
+Independent sumphold_baseline_review:0 visible P1/P2, accept bounded quiet-water slice. Sparse ripples improve broad pools without glare/repetition; banks, boards, interior and fog readable. Independent localization: center676water+122yellowmarker pixels at624–635/524–538,max1; west368water+122yellowmarker at786–797/524–538,max1. Reading58water+300nonwater (252player/localfloor includingmax109,48rememberedboard at466–477/576–585,max5). Causes unproven. Reload186pixels only yellow/green glyphs610–635/524–585,max8; visiblewater andhotbar unchanged,sidebar17332. Water/board/bodyreaders and100%wet40HP visible. No whole-area acceptance.

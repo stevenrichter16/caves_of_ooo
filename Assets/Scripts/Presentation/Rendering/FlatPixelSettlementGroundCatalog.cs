@@ -242,7 +242,8 @@ namespace CavesOfOoo.Rendering
             // Only replace a successfully resolved real pool. Keep its disclosed dry-bank
             // mask and owner; do not borrow the ownerless flood-water resolver's authority.
             if (sumpholdWater != null && (zone.ZoneID == SumpholdCompositionPlan.ZoneID
-                || zone.ZoneID == "Overworld.5.9.0" || zone.ZoneID == TineCompositionPlan.ZoneID))
+                || zone.ZoneID == "Overworld.5.9.0" || zone.ZoneID == TineCompositionPlan.ZoneID
+                || zone.ZoneID == DrownedLedgerCompositionPlan.ZoneID))
             {
                 var map = WorldLocationContext.For(zone).WorldMap; // Sill resolver proved current settlement authority.
                 int mask = (int)tile.sprite.rect.x / Width;
@@ -250,7 +251,9 @@ namespace CavesOfOoo.Rendering
                     ? map.GetBiome(15, 6) == BiomeType.Spread && AreaCompositionScope.IsSumpholdSite(map.GetPOI(15, 6))
                     : zone.ZoneID == TineCompositionPlan.ZoneID
                         ? map.GetBiome(13, 7) == BiomeType.Spread && AreaCompositionScope.IsTineSite(map.GetPOI(13, 7))
-                        : map.GetBiome(5, 9) == BiomeType.Spread && string.IsNullOrEmpty(map.GetPOI(5, 9).Profile);
+                        : zone.ZoneID == DrownedLedgerCompositionPlan.ZoneID
+                            ? map.GetBiome(17, 5) == BiomeType.Sodden && AreaCompositionScope.IsDrownedLedgerSite(map.GetPOI(17, 5))
+                            : map.GetBiome(5, 9) == BiomeType.Spread && string.IsNullOrEmpty(map.GetPOI(5, 9).Profile);
                 if (mask >= 0 && mask < 16 && quietSurface)
                     tile = sumpholdWater[FlatPixelFloodWaterCatalog.SurfaceVariant(x, y) * 16 + mask];
             }
