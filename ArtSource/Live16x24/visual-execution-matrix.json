@@ -25848,24 +25848,9 @@
     "deferred_by_user": "2026-11-14"
   },
   "sumphold_next_scene": {
-    "recorded_utc": "2026-11-15T01:25:02.565960+00:00",
-    "status": "grade and water delivered; boards Editor accepted; service/interior review next",
-    "record": "Docs/GRAPHICS-SUMPHOLD-WATER.md",
-    "source_commit": "669a186969050be8523154694a00091a8a8e2724",
-    "next": "Use SumpholdBoards/AfterCheckpoint41,15: west2, north via39,11 to doorway39,7/room39,6. Identify real service owners and exercise available menus; select one owner-bound silhouette/cue for service purpose. Preserve entrance/routes; no assumed merchants or added population. Batch boards with next accepted graphics work.",
-    "runtime_changes": true,
-    "actual_capture": true,
-    "unity_pid": 44659,
-    "mcp_server_pid": 11581,
-    "coverage": "existing native routes; no new coverage",
-    "polish": "bounded grade+water accepted; full area in progress",
-    "population": "no change",
-    "shadow": "candidate only",
-    "evidence": "Docs/Verification/GraphicsExecution/SumpholdWater",
-    "editor_after": "stopped; root null; clean SampleScene",
-    "reviewer": "sumphold_baseline_review",
-    "source_audit_commit": "8c4573ae51a58916884e23efa282859d0669d645",
-    "last_report_utc": "2026-11-15T01:17:24Z"
+    "recorded_utc": "2026-11-15T02:51:14.319424+00:00",
+    "status": "bounded Sumphold slices accepted; move to different areas per user",
+    "next": "Fresh Beating RuinField19.12 palette/material comparison from BeatingColonnade/AfterCheckpoint; preserve completed colonnade/relief/shadows; batch delivery after next accepted slice"
   },
   "current_user_priority": {
     "recorded_utc": "2026-11-14T20:15:14.397602+00:00",
@@ -25875,7 +25860,8 @@
       "id": "overnight-clearing-art-pipeline",
       "status": "ACTIVE",
       "interval": "hourly"
-    }
+    },
+    "continuous_work_after_sumphold": "2026-11-14 direct: keep executing as long as possible alongside hourly task; move to different areas."
   },
   "sumphold_grade": {
     "recorded_utc": "2026-11-14T20:36:06.965117+00:00",
@@ -26064,5 +26050,37 @@
     "delivery": "Current dd8028 Mac/Linux builds; actual Mac readers/travel/F5/fresh Continue verified; Linux archive verified but unexecuted, Deck deferred. See current_delivery and BatchDD8028.",
     "r11": "open:72.171safter-onlyEditor;renderer max269.689916ms/Mainmax2039.543209ms;unattributed",
     "last_report_utc": "2026-11-15T01:17:24Z"
+  },
+  "sumphold_composition": {
+    "recorded_utc": "2026-11-15T02:51:14.319424+00:00",
+    "status": "bounded Editor actual composition accepted; batch delivery pending",
+    "record": "Docs/GRAPHICS-SUMPHOLD-COMPOSITION.md",
+    "evidence": "Docs/Verification/GraphicsExecution/SumpholdComposition",
+    "fresh_only_furnishings": 5,
+    "new_actors": 0,
+    "new_art": 0,
+    "native_final_passes": 135,
+    "actual_views": [
+      "cutters16,6",
+      "west20,18",
+      "records68,6",
+      "east64,18"
+    ],
+    "actual_interaction": "3 new furniture owners used by ordinary NPCs; native Bed/Chair/Crate readers, crate Open empty, adjacent-chair distance refusal",
+    "limits": "No player Sit/Sleep positive or deposit/retrieve; underfoot-only deposit UI. Protected survey/combat, no balance claim. R11/fullarea/V0-V7 open.",
+    "reload": {
+      "turn": 5290,
+      "hp": 19,
+      "position": [
+        39,
+        11
+      ],
+      "exact_furniture_records": 11,
+      "world_pixels_differ": 192,
+      "world_pixels_total": 639200
+    },
+    "old_save_control": "6originalowners,no retrofit",
+    "preservation": "80baseline dirty hashes/normal saves/gameplay prefs unchanged; test/telemetry differences disclosed",
+    "delivery": "currentdd8028excludescomposition"
   }
 }

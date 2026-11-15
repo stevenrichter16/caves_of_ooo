@@ -13,6 +13,8 @@ namespace CavesOfOoo.Core
         public SumpholdCompositionPlan Plan {get;private set;}
         internal Zone RealizedZone {get;private set;}
         internal bool ProfileRealized;
+        internal int Seed => seed;
+        internal EntityFactory SourceFactory {get;private set;}
         private readonly int seed;
         public SumpholdCompositionBuilder(int seed){this.seed=seed;}
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
@@ -33,7 +35,7 @@ namespace CavesOfOoo.Core
             {if(!zone.AddEntity(s.e,s.x,s.y)){foreach(var e in added)zone.RemoveEntity(e);return Reject(zone,"placement-refused");}added.Add(s.e);}
             for(int y=0;y<25;y++)for(int x=0;x<80;x++)
             {zone.GetCell(x,y).IsInterior=p.IsInterior(x,y);if(p.IsReserved(x,y))zone.GenReservedCells.Add((x,y));}
-            Plan=p;RealizedZone=zone;ProfileRealized=false;Diag.Record("worldgen","SumpholdCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,rooms=p.Rooms.Count});return true;
+            Plan=p;RealizedZone=zone;SourceFactory=factory;ProfileRealized=false;Diag.Record("worldgen","SumpholdCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,rooms=p.Rooms.Count});return true;
         }
         internal static bool Valid(Entity e,string bp)
         {

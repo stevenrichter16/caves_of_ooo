@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Failed(Child)" total="25" passed="5" failed="20" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 02:27:56Z" end-time="2026-11-15 02:27:59Z" duration="2.01694">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36711" result="Failed" site="Child" start-time="2026-11-15 02:27:56Z" end-time="2026-11-15 02:27:59Z" duration="2.016940" total="25" passed="5" failed="20" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44972" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36711" result="Failed" site="Child" start-time="2026-11-15 02:27:56Z" end-time="2026-11-15 02:27:59Z" duration="2.005442" total="25" passed="5" failed="20" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44973" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36711" result="Failed" site="Child" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:59Z" duration="1.996784" total="25" passed="5" failed="20" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44974" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36711" result="Failed" site="Child" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:59Z" duration="1.989011" total="25" passed="5" failed="20" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27909" name="SumpholdFurnishingTests" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:59Z" duration="1.979631" total="25" passed="5" failed="20" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27910" name="AddsFiveUsefulOwnersWithoutChangingOriginalsReservationsOrRng" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.AddsFiveUsefulOwnersWithoutChangingOriginalsReservationsOrRng" methodname="AddsFiveUsefulOwnersWithoutChangingOriginalsReservationsOrRng" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1553200471" result="Failed" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:57Z" duration="0.093098" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.AddsFiveUsefulOwnersWithoutChangingOriginalsReservationsOrRng () [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:42
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27938" name="FullPipelinePreservesDryExitsDoorsAndServiceFrontages" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.FullPipelinePreservesDryExitsDoorsAndServiceFrontages" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:57Z" duration="0.804588" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27933" name="FullPipelinePreservesDryExitsDoorsAndServiceFrontages(1)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.FullPipelinePreservesDryExitsDoorsAndServiceFrontages(1)" methodname="FullPipelinePreservesDryExitsDoorsAndServiceFrontages" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="64409814" result="Passed" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:57Z" duration="0.160354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="27934" name="FullPipelinePreservesDryExitsDoorsAndServiceFrontages(64)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.FullPipelinePreservesDryExitsDoorsAndServiceFrontages(64)" methodname="FullPipelinePreservesDryExitsDoorsAndServiceFrontages" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="785558155" result="Passed" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:57Z" duration="0.160201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="27935" name="FullPipelinePreservesDryExitsDoorsAndServiceFrontages(65)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.FullPipelinePreservesDryExitsDoorsAndServiceFrontages(65)" methodname="FullPipelinePreservesDryExitsDoorsAndServiceFrontages" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1134094607" result="Passed" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:57Z" duration="0.232542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="27936" name="FullPipelinePreservesDryExitsDoorsAndServiceFrontages(1729)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.FullPipelinePreservesDryExitsDoorsAndServiceFrontages(1729)" methodname="FullPipelinePreservesDryExitsDoorsAndServiceFrontages" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1443875166" result="Passed" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:57Z" duration="0.124532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="27937" name="FullPipelinePreservesDryExitsDoorsAndServiceFrontages(729490642)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.FullPipelinePreservesDryExitsDoorsAndServiceFrontages(729490642)" methodname="FullPipelinePreservesDryExitsDoorsAndServiceFrontages" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="64375157" result="Passed" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:57Z" duration="0.124627" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27932" name="RefusesUnavailableWestCargoWithoutRemovingOtherGroups" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:58Z" duration="0.234517" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27927" name="RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;anchor&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;anchor&quot;)" methodname="RefusesUnavailableWestCargoWithoutRemovingOtherGroups" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="68046655" result="Failed" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:57Z" duration="0.046991" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups (System.String reason) [0x00176] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27928" name="RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;reserved&quot;)" methodname="RefusesUnavailableWestCargoWithoutRemovingOtherGroups" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1795117886" result="Failed" start-time="2026-11-15 02:27:57Z" end-time="2026-11-15 02:27:58Z" duration="0.046481" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups (System.String reason) [0x00176] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27929" name="RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;wet&quot;)" methodname="RefusesUnavailableWestCargoWithoutRemovingOtherGroups" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="973704889" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.046041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups (System.String reason) [0x00176] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27930" name="RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;occupied&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;occupied&quot;)" methodname="RefusesUnavailableWestCargoWithoutRemovingOtherGroups" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1781810993" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.046555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups (System.String reason) [0x00176] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27931" name="RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;access&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups(&quot;access&quot;)" methodname="RefusesUnavailableWestCargoWithoutRemovingOtherGroups" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="865175266" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.046560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesUnavailableWestCargoWithoutRemovingOtherGroups (System.String reason) [0x00176] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27926" name="RefusesWholeRestPairWhenEitherDestinationIsUnavailable" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.286961" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27920" name="RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;reserved&quot;)" methodname="RefusesWholeRestPairWhenEitherDestinationIsUnavailable" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1650520585" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.046544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable (System.String reason) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27921" name="RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;wet&quot;)" methodname="RefusesWholeRestPairWhenEitherDestinationIsUnavailable" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="33697352" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.046167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable (System.String reason) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27922" name="RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;occupied&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;occupied&quot;)" methodname="RefusesWholeRestPairWhenEitherDestinationIsUnavailable" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="2039089268" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.046466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable (System.String reason) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27923" name="RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;ground&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;ground&quot;)" methodname="RefusesWholeRestPairWhenEitherDestinationIsUnavailable" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="957790426" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.047082" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable (System.String reason) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27924" name="RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;interior&quot;)" methodname="RefusesWholeRestPairWhenEitherDestinationIsUnavailable" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1242044284" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.049081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable (System.String reason) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27925" name="RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable(&quot;footprint&quot;)" methodname="RefusesWholeRestPairWhenEitherDestinationIsUnavailable" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1100812636" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.049975" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.RefusesWholeRestPairWhenEitherDestinationIsUnavailable (System.String reason) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27919" name="WrongAuthorityIsSuccessfulNoOp" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:59Z" duration="0.555094" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27911" name="WrongAuthorityIsSuccessfulNoOp(&quot;zone&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp(&quot;zone&quot;)" methodname="WrongAuthorityIsSuccessfulNoOp" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1732658790" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.062627" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27912" name="WrongAuthorityIsSuccessfulNoOp(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp(&quot;graph&quot;)" methodname="WrongAuthorityIsSuccessfulNoOp" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="995478937" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.087151" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27913" name="WrongAuthorityIsSuccessfulNoOp(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp(&quot;profile&quot;)" methodname="WrongAuthorityIsSuccessfulNoOp" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1616644677" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.153974" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27914" name="WrongAuthorityIsSuccessfulNoOp(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp(&quot;biome&quot;)" methodname="WrongAuthorityIsSuccessfulNoOp" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="663592027" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.048745" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27915" name="WrongAuthorityIsSuccessfulNoOp(&quot;factory&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp(&quot;factory&quot;)" methodname="WrongAuthorityIsSuccessfulNoOp" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="918453661" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.048472" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27916" name="WrongAuthorityIsSuccessfulNoOp(&quot;unprofiled&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp(&quot;unprofiled&quot;)" methodname="WrongAuthorityIsSuccessfulNoOp" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1493122811" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.047658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27917" name="WrongAuthorityIsSuccessfulNoOp(&quot;seed&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp(&quot;seed&quot;)" methodname="WrongAuthorityIsSuccessfulNoOp" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="1343333942" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:58Z" duration="0.048387" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27918" name="WrongAuthorityIsSuccessfulNoOp(&quot;cached&quot;)" fullname="CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp(&quot;cached&quot;)" methodname="WrongAuthorityIsSuccessfulNoOp" classname="CavesOfOoo.Tests.SumpholdFurnishingTests" runstate="Runnable" seed="131374620" result="Failed" start-time="2026-11-15 02:27:58Z" end-time="2026-11-15 02:27:59Z" duration="0.048798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh Sumphold rooms/work fingers lack the bounded furnishing finalizer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SumpholdFurnishingTests.Detail (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SumpholdCompositionBuilder b) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:29
+at CavesOfOoo.Tests.SumpholdFurnishingTests.WrongAuthorityIsSuccessfulNoOp (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SumpholdFurnishingTests.cs:59
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

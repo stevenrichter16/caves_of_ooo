@@ -1160,6 +1160,7 @@ namespace CavesOfOoo.Core
                 pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]){RespectReservations=ordinaryVillage!=null||cinderhold||sumphold||drownedLedger||marrowstye||firstTent||lastCounter||civicQuartet,CanOpenOrdinaryDoors=ordinaryVillage!=null});
             }
 
+            if(sumphold)pipeline.AddBuilder(new SumpholdFurnishingBuilder(this,yard));
             return pipeline;
         }
 
