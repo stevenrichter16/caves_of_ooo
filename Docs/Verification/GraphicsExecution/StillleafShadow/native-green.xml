@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="82" result="Passed" total="82" passed="82" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:43:27Z" duration="40.8627091">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36855" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:43:27Z" duration="40.862709" total="82" passed="82" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="45140" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36855" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:43:27Z" duration="40.850585" total="82" passed="82" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="45141" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36855" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:43:27Z" duration="40.846384" total="82" passed="82" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="45142" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36855" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:43:27Z" duration="40.842794" total="82" passed="82" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="31815" name="FlatPixelBeatingWallShadowTests" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:42:48Z" duration="1.627865" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="31824" name="ChangedMapOrReplacedCurrentGraphCannotBorrowBeatingShadowAdmission" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.ChangedMapOrReplacedCurrentGraphCannotBorrowBeatingShadowAdmission" methodname="ChangedMapOrReplacedCurrentGraphCannotBorrowBeatingShadowAdmission" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="1854831217" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:42:47Z" duration="0.292237" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31826" name="ExistingSillStoneWallShadeRetainsItsOwnMaterialAndReceiverPolicy" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.ExistingSillStoneWallShadeRetainsItsOwnMaterialAndReceiverPolicy" methodname="ExistingSillStoneWallShadeRetainsItsOwnMaterialAndReceiverPolicy" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="1951567061" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:42:47Z" duration="0.201196" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31825" name="MissingNativeAtlasKeepsFallbackBodyAndCannotCastAnApprovedShade" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.MissingNativeAtlasKeepsFallbackBodyAndCannotCastAnApprovedShade" methodname="MissingNativeAtlasKeepsFallbackBodyAndCannotCastAnApprovedShade" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="36265616" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:42:47Z" duration="0.216266" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31822" name="RealWallDestructionClearsShadeAndKeepsTheReceiverMaterial" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.RealWallDestructionClearsShadeAndKeepsTheReceiverMaterial" methodname="RealWallDestructionClearsShadeAndKeepsTheReceiverMaterial" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="2095231268" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:42:47Z" duration="0.117248" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31820" name="ReceiverRequiresDisclosedUnambiguousDryGroundWithoutVisibleOccupants" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.ReceiverRequiresDisclosedUnambiguousDryGroundWithoutVisibleOccupants" methodname="ReceiverRequiresDisclosedUnambiguousDryGroundWithoutVisibleOccupants" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="1395772528" result="Passed" start-time="2026-11-15 04:42:47Z" end-time="2026-11-15 04:42:48Z" duration="0.130051" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31823" name="ReversibleOptionAndLegacyExitClearOnlyShadeAndRestoreItOnReturn" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.ReversibleOptionAndLegacyExitClearOnlyShadeAndRestoreItOnReturn" methodname="ReversibleOptionAndLegacyExitClearOnlyShadeAndRestoreItOnReturn" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="1403581933" result="Passed" start-time="2026-11-15 04:42:48Z" end-time="2026-11-15 04:42:48Z" duration="0.174140" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31819" name="SourceMustStayDisclosedSelectedAndCanonicallyNative" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.SourceMustStayDisclosedSelectedAndCanonicallyNative" methodname="SourceMustStayDisclosedSelectedAndCanonicallyNative" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="643017248" result="Passed" start-time="2026-11-15 04:42:48Z" end-time="2026-11-15 04:42:48Z" duration="0.112711" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31821" name="SouthOnlyDirtyChangesWithdrawAndRestoreShadeWithFullPassParity" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.SouthOnlyDirtyChangesWithdrawAndRestoreShadeWithFullPassParity" methodname="SouthOnlyDirtyChangesWithdrawAndRestoreShadeWithFullPassParity" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="105226112" result="Passed" start-time="2026-11-15 04:42:48Z" end-time="2026-11-15 04:42:48Z" duration="0.195511" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31818" name="SubmittedShadeBorrowsOpaqueWallAndExtendsExactlyTwoNativePixelsOntoDryMaterial" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.SubmittedShadeBorrowsOpaqueWallAndExtendsExactlyTwoNativePixelsOntoDryMaterial" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 04:42:48Z" end-time="2026-11-15 04:42:48Z" duration="0.179451" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31816" name="SubmittedShadeBorrowsOpaqueWallAndExtendsExactlyTwoNativePixelsOntoDryMaterial(&quot;Sand&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.SubmittedShadeBorrowsOpaqueWallAndExtendsExactlyTwoNativePixelsOntoDryMaterial(&quot;Sand&quot;)" methodname="SubmittedShadeBorrowsOpaqueWallAndExtendsExactlyTwoNativePixelsOntoDryMaterial" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="261430210" result="Passed" start-time="2026-11-15 04:42:48Z" end-time="2026-11-15 04:42:48Z" duration="0.090685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31817" name="SubmittedShadeBorrowsOpaqueWallAndExtendsExactlyTwoNativePixelsOntoDryMaterial(&quot;SandstoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.SubmittedShadeBorrowsOpaqueWallAndExtendsExactlyTwoNativePixelsOntoDryMaterial(&quot;SandstoneFloor&quot;)" methodname="SubmittedShadeBorrowsOpaqueWallAndExtendsExactlyTwoNativePixelsOntoDryMaterial" classname="CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests" runstate="Runnable" seed="818952340" result="Passed" start-time="2026-11-15 04:42:48Z" end-time="2026-11-15 04:42:48Z" duration="0.083489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="2468" name="FlatPixelStillleafDescentTests" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-11-15 04:42:48Z" end-time="2026-11-15 04:42:56Z" duration="7.366743" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2469" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1900578968" result="Passed" start-time="2026-11-15 04:42:48Z" end-time="2026-11-15 04:42:49Z" duration="0.258291" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2488" name="DisclosureAndMaterialStateKeepTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 04:42:49Z" end-time="2026-11-15 04:42:49Z" duration="0.937394" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2484" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="716208163" result="Passed" start-time="2026-11-15 04:42:49Z" end-time="2026-11-15 04:42:49Z" duration="0.340388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2485" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="461351032" result="Passed" start-time="2026-11-15 04:42:49Z" end-time="2026-11-15 04:42:49Z" duration="0.204054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2486" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="446326201" result="Passed" start-time="2026-11-15 04:42:49Z" end-time="2026-11-15 04:42:49Z" duration="0.194807" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2487" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="717154562" result="Passed" start-time="2026-11-15 04:42:49Z" end-time="2026-11-15 04:42:49Z" duration="0.194528" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2483" name="EqualMaterialNamesCannotExpandPilotAddress" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 04:42:49Z" end-time="2026-11-15 04:42:50Z" duration="0.992143" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2479" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.02.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.02.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="276098213" result="Passed" start-time="2026-11-15 04:42:49Z" end-time="2026-11-15 04:42:50Z" duration="0.197752" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2480" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.0&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1791481714" result="Passed" start-time="2026-11-15 04:42:50Z" end-time="2026-11-15 04:42:50Z" duration="0.197998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2481" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.2&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="556151103" result="Passed" start-time="2026-11-15 04:42:50Z" end-time="2026-11-15 04:42:50Z" duration="0.290597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2482" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1896394770" result="Passed" start-time="2026-11-15 04:42:50Z" end-time="2026-11-15 04:42:50Z" duration="0.300946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2493" name="HiddenOrRememberedWallCannotUseLiveSprite" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 04:42:50Z" end-time="2026-11-15 04:42:51Z" duration="0.405861" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2491" name="HiddenOrRememberedWallCannotUseLiveSprite(False)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.HiddenOrRememberedWallCannotUseLiveSprite(False)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="595685593" result="Passed" start-time="2026-11-15 04:42:50Z" end-time="2026-11-15 04:42:51Z" duration="0.204608" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2492" name="HiddenOrRememberedWallCannotUseLiveSprite(True)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.HiddenOrRememberedWallCannotUseLiveSprite(True)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1197018240" result="Passed" start-time="2026-11-15 04:42:51Z" end-time="2026-11-15 04:42:51Z" duration="0.197286" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="2489" name="LegacyNameStillAdmitsButConflictingProfileRevokes" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.LegacyNameStillAdmitsButConflictingProfileRevokes" methodname="LegacyNameStillAdmitsButConflictingProfileRevokes" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="567222526" result="Passed" start-time="2026-11-15 04:42:51Z" end-time="2026-11-15 04:42:51Z" duration="0.195895" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2495" name="MissingOptionalArtKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.MissingOptionalArtKeepsFallback" methodname="MissingOptionalArtKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="247924856" result="Passed" start-time="2026-11-15 04:42:51Z" end-time="2026-11-15 04:42:51Z" duration="0.198122" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2471" name="PersistedLibraryProfileSurvivesAStoryRename" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.PersistedLibraryProfileSurvivesAStoryRename" methodname="PersistedLibraryProfileSurvivesAStoryRename" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="2045576851" result="Passed" start-time="2026-11-15 04:42:51Z" end-time="2026-11-15 04:42:51Z" duration="0.196422" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2494" name="SavedLairColumnRevokesEvenWithRestoredLibraryLabel" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.SavedLairColumnRevokesEvenWithRestoredLibraryLabel" methodname="SavedLairColumnRevokesEvenWithRestoredLibraryLabel" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="2143593614" result="Passed" start-time="2026-11-15 04:42:51Z" end-time="2026-11-15 04:42:52Z" duration="0.378922" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2490" name="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.SpecialDescentLedgesKeepTheirOwnTerrainMeaning" methodname="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="873944615" result="Passed" start-time="2026-11-15 04:42:52Z" end-time="2026-11-15 04:42:52Z" duration="0.218720" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2470" name="UnderfootAndWallReadersUseTheirActualWorldIdentity" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.UnderfootAndWallReadersUseTheirActualWorldIdentity" methodname="UnderfootAndWallReadersUseTheirActualWorldIdentity" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1511933099" result="Passed" start-time="2026-11-15 04:42:52Z" end-time="2026-11-15 04:42:52Z" duration="0.200599" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2478" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 04:42:52Z" end-time="2026-11-15 04:42:56Z" duration="3.379944" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2472" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="676815406" result="Passed" start-time="2026-11-15 04:42:52Z" end-time="2026-11-15 04:42:52Z" duration="0.200823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2473" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="701261686" result="Passed" start-time="2026-11-15 04:42:52Z" end-time="2026-11-15 04:42:53Z" duration="0.198210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2474" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1021755136" result="Passed" start-time="2026-11-15 04:42:53Z" end-time="2026-11-15 04:42:53Z" duration="0.201779" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2475" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1081450765" result="Passed" start-time="2026-11-15 04:42:53Z" end-time="2026-11-15 04:42:53Z" duration="0.221995" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2476" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1723109498" result="Passed" start-time="2026-11-15 04:42:53Z" end-time="2026-11-15 04:42:55Z" duration="1.728313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2477" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1275281293" result="Passed" start-time="2026-11-15 04:42:55Z" end-time="2026-11-15 04:42:56Z" duration="0.822378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="2496" name="FlatPixelStillleafLedgeTests" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-11-15 04:42:56Z" end-time="2026-11-15 04:43:21Z" duration="25.162927" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2497" name="AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" methodname="AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="903526934" result="Passed" start-time="2026-11-15 04:42:56Z" end-time="2026-11-15 04:42:56Z" duration="0.355774" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2514" name="ChangedMeaningOrDisclosureFallsBack" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 04:42:56Z" end-time="2026-11-15 04:42:58Z" duration="2.170299" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2508" name="ChangedMeaningOrDisclosureFallsBack(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;color&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="539535804" result="Passed" start-time="2026-11-15 04:42:56Z" end-time="2026-11-15 04:42:56Z" duration="0.249642" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2509" name="ChangedMeaningOrDisclosureFallsBack(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;solid&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1637858599" result="Passed" start-time="2026-11-15 04:42:56Z" end-time="2026-11-15 04:42:57Z" duration="0.782014" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2510" name="ChangedMeaningOrDisclosureFallsBack(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;visual&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1932575369" result="Passed" start-time="2026-11-15 04:42:57Z" end-time="2026-11-15 04:42:57Z" duration="0.251938" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2511" name="ChangedMeaningOrDisclosureFallsBack(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;coating&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1839583792" result="Passed" start-time="2026-11-15 04:42:57Z" end-time="2026-11-15 04:42:58Z" duration="0.376308" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2512" name="ChangedMeaningOrDisclosureFallsBack(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;hidden&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1303798453" result="Passed" start-time="2026-11-15 04:42:58Z" end-time="2026-11-15 04:42:58Z" duration="0.258239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2513" name="ChangedMeaningOrDisclosureFallsBack(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;memory&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1702582108" result="Passed" start-time="2026-11-15 04:42:58Z" end-time="2026-11-15 04:42:58Z" duration="0.248266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2526" name="CoveredReaderRevokesAndRecoversWithDisclosure" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 04:42:58Z" end-time="2026-11-15 04:42:59Z" duration="0.622919" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2524" name="CoveredReaderRevokesAndRecoversWithDisclosure(False)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure(False)" methodname="CoveredReaderRevokesAndRecoversWithDisclosure" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="40250740" result="Passed" start-time="2026-11-15 04:42:58Z" end-time="2026-11-15 04:42:59Z" duration="0.362613" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2525" name="CoveredReaderRevokesAndRecoversWithDisclosure(True)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure(True)" methodname="CoveredReaderRevokesAndRecoversWithDisclosure" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1588188902" result="Passed" start-time="2026-11-15 04:42:59Z" end-time="2026-11-15 04:42:59Z" duration="0.256543" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2520" name="EqualBlueprintDoesNotExpandThisCatalog" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 04:42:59Z" end-time="2026-11-15 04:43:00Z" duration="0.901642" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2516" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.02.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.02.4.1&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1373223174" result="Passed" start-time="2026-11-15 04:42:59Z" end-time="2026-11-15 04:42:59Z" duration="0.337462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2517" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.0&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1018214505" result="Passed" start-time="2026-11-15 04:42:59Z" end-time="2026-11-15 04:42:59Z" duration="0.196286" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2518" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.2&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="35756545" result="Passed" start-time="2026-11-15 04:42:59Z" end-time="2026-11-15 04:43:00Z" duration="0.184184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2519" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.7.1&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1816684126" result="Passed" start-time="2026-11-15 04:43:00Z" end-time="2026-11-15 04:43:00Z" duration="0.180059" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="2515" name="ForeignOrRemovedReaderCannotBorrowLedgeArt" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ForeignOrRemovedReaderCannotBorrowLedgeArt" methodname="ForeignOrRemovedReaderCannotBorrowLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="959813236" result="Passed" start-time="2026-11-15 04:43:00Z" end-time="2026-11-15 04:43:00Z" duration="0.188692" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2523" name="MissingOrMalformedOptionalAtlasDeclines" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 04:43:00Z" end-time="2026-11-15 04:43:00Z" duration="0.514028" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2521" name="MissingOrMalformedOptionalAtlasDeclines(False)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.MissingOrMalformedOptionalAtlasDeclines(False)" methodname="MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1736072884" result="Passed" start-time="2026-11-15 04:43:00Z" end-time="2026-11-15 04:43:00Z" duration="0.207521" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2522" name="MissingOrMalformedOptionalAtlasDeclines(True)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.MissingOrMalformedOptionalAtlasDeclines(True)" methodname="MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="5654879" result="Passed" start-time="2026-11-15 04:43:00Z" end-time="2026-11-15 04:43:00Z" duration="0.292460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="2506" name="PersistedLibraryProfilePermitsStoryRename" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.PersistedLibraryProfilePermitsStoryRename" methodname="PersistedLibraryProfilePermitsStoryRename" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="890466224" result="Passed" start-time="2026-11-15 04:43:00Z" end-time="2026-11-15 04:43:01Z" duration="0.182910" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2527" name="PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" methodname="PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="146436173" result="Passed" start-time="2026-11-15 04:43:01Z" end-time="2026-11-15 04:43:01Z" duration="0.178006" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2507" name="SavedLairAuthorityWinsOverRestoredStillleafLabel" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.SavedLairAuthorityWinsOverRestoredStillleafLabel" methodname="SavedLairAuthorityWinsOverRestoredStillleafLabel" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1362466337" result="Passed" start-time="2026-11-15 04:43:01Z" end-time="2026-11-15 04:43:01Z" duration="0.177884" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2505" name="WarmCurrentAuthorityChangesRevokeLedgeArt" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 04:43:01Z" end-time="2026-11-15 04:43:21Z" duration="19.681077" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2499" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;name&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1150583735" result="Passed" start-time="2026-11-15 04:43:19Z" end-time="2026-11-15 04:43:20Z" duration="0.184141" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2500" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;poi&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="539147771" result="Passed" start-time="2026-11-15 04:43:20Z" end-time="2026-11-15 04:43:20Z" duration="0.227983" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2501" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;profile&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1835279359" result="Passed" start-time="2026-11-15 04:43:20Z" end-time="2026-11-15 04:43:20Z" duration="0.273771" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2502" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;absent&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="462693966" result="Passed" start-time="2026-11-15 04:43:20Z" end-time="2026-11-15 04:43:20Z" duration="0.185019" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2503" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;graph&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1403692763" result="Passed" start-time="2026-11-15 04:43:20Z" end-time="2026-11-15 04:43:20Z" duration="0.180199" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2504" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;map&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="414059820" result="Passed" start-time="2026-11-15 04:43:20Z" end-time="2026-11-15 04:43:21Z" duration="0.188393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="2498" name="WorldAndCoveredExamineKeepTheSameLedgeIdentity" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WorldAndCoveredExamineKeepTheSameLedgeIdentity" methodname="WorldAndCoveredExamineKeepTheSameLedgeIdentity" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="895738674" result="Passed" start-time="2026-11-15 04:43:21Z" end-time="2026-11-15 04:43:21Z" duration="0.184690" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="35396" name="FlatPixelStillleafWallShadowTests" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-11-15 04:43:21Z" end-time="2026-11-15 04:43:27Z" duration="6.662159" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="35424" name="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 04:43:21Z" end-time="2026-11-15 04:43:22Z" duration="0.690193" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35422" name="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade(True)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade(True)" methodname="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1183957281" result="Passed" start-time="2026-11-15 04:43:21Z" end-time="2026-11-15 04:43:21Z" duration="0.313973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35423" name="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade(False)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade(False)" methodname="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1689909691" result="Passed" start-time="2026-11-15 04:43:21Z" end-time="2026-11-15 04:43:22Z" duration="0.375375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="35408" name="NoFloorOrChangedOwnerCannotBorrowAmbientBackingAndDestructionClearsShade" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.NoFloorOrChangedOwnerCannotBorrowAmbientBackingAndDestructionClearsShade" methodname="NoFloorOrChangedOwnerCannotBorrowAmbientBackingAndDestructionClearsShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1161362076" result="Passed" start-time="2026-11-15 04:43:22Z" end-time="2026-11-15 04:43:22Z" duration="0.242222" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="35409" name="OptionAndLegacyExitClearShadeWithoutChangingBodies" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OptionAndLegacyExitClearShadeWithoutChangingBodies" methodname="OptionAndLegacyExitClearShadeWithoutChangingBodies" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1781494686" result="Passed" start-time="2026-11-15 04:43:22Z" end-time="2026-11-15 04:43:22Z" duration="0.298229" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="35421" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 04:43:22Z" end-time="2026-11-15 04:43:23Z" duration="1.181693" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35417" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.4.0&quot;)" methodname="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="584421807" result="Passed" start-time="2026-11-15 04:43:22Z" end-time="2026-11-15 04:43:22Z" duration="0.266446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35418" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.4.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.4.2&quot;)" methodname="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1710996907" result="Passed" start-time="2026-11-15 04:43:22Z" end-time="2026-11-15 04:43:23Z" duration="0.390933" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35419" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.7.1&quot;)" methodname="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="449324948" result="Passed" start-time="2026-11-15 04:43:23Z" end-time="2026-11-15 04:43:23Z" duration="0.265096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35420" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.02.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.02.4.1&quot;)" methodname="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1466232819" result="Passed" start-time="2026-11-15 04:43:23Z" end-time="2026-11-15 04:43:23Z" duration="0.254604" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35404" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 04:43:23Z" end-time="2026-11-15 04:43:25Z" duration="1.752191" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35398" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;DescentLedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;DescentLedge&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="34252978" result="Passed" start-time="2026-11-15 04:43:23Z" end-time="2026-11-15 04:43:24Z" duration="0.267702" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35399" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Player&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1945101877" result="Passed" start-time="2026-11-15 04:43:24Z" end-time="2026-11-15 04:43:24Z" duration="0.269104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35400" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Dagger&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="162359925" result="Passed" start-time="2026-11-15 04:43:24Z" end-time="2026-11-15 04:43:24Z" duration="0.407684" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35401" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Rubble&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Rubble&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="197266167" result="Passed" start-time="2026-11-15 04:43:24Z" end-time="2026-11-15 04:43:24Z" duration="0.273027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35402" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;WaterPuddle&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="518579162" result="Passed" start-time="2026-11-15 04:43:24Z" end-time="2026-11-15 04:43:25Z" duration="0.266005" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35403" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;SandstoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;SandstoneFloor&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1600056588" result="Passed" start-time="2026-11-15 04:43:25Z" end-time="2026-11-15 04:43:25Z" duration="0.263768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35407" name="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 04:43:25Z" end-time="2026-11-15 04:43:26Z" duration="0.687492" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35405" name="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState(False)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState(False)" methodname="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1582079517" result="Passed" start-time="2026-11-15 04:43:25Z" end-time="2026-11-15 04:43:25Z" duration="0.271972" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35406" name="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState(True)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState(True)" methodname="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="527829738" result="Passed" start-time="2026-11-15 04:43:25Z" end-time="2026-11-15 04:43:26Z" duration="0.410186" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="35397" name="SubmittedShadeIsTwoPixelsSouthUsingOpaqueBorrowedWallAndPreservesWorld" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SubmittedShadeIsTwoPixelsSouthUsingOpaqueBorrowedWallAndPreservesWorld" methodname="SubmittedShadeIsTwoPixelsSouthUsingOpaqueBorrowedWallAndPreservesWorld" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1136437338" result="Passed" start-time="2026-11-15 04:43:26Z" end-time="2026-11-15 04:43:26Z" duration="0.224642" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="35416" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 04:43:26Z" end-time="2026-11-15 04:43:27Z" duration="1.580028" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35410" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;graph&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1723903729" result="Passed" start-time="2026-11-15 04:43:26Z" end-time="2026-11-15 04:43:26Z" duration="0.222584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35411" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;profile&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1246900575" result="Passed" start-time="2026-11-15 04:43:26Z" end-time="2026-11-15 04:43:26Z" duration="0.235851" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35412" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;poi&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1285711463" result="Passed" start-time="2026-11-15 04:43:26Z" end-time="2026-11-15 04:43:27Z" duration="0.242645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35413" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;tiles&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1498096007" result="Passed" start-time="2026-11-15 04:43:27Z" end-time="2026-11-15 04:43:27Z" duration="0.275744" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35414" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;pois&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1659525531" result="Passed" start-time="2026-11-15 04:43:27Z" end-time="2026-11-15 04:43:27Z" duration="0.350529" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35415" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;lair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;lair&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="955015808" result="Passed" start-time="2026-11-15 04:43:27Z" end-time="2026-11-15 04:43:27Z" duration="0.247586" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

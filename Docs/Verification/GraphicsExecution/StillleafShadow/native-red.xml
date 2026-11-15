@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Failed(Child)" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 04:41:22Z" end-time="2026-11-15 04:41:29Z" duration="6.9604641">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36855" result="Failed" site="Child" start-time="2026-11-15 04:41:22Z" end-time="2026-11-15 04:41:29Z" duration="6.960464" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45140" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36855" result="Failed" site="Child" start-time="2026-11-15 04:41:22Z" end-time="2026-11-15 04:41:29Z" duration="6.949078" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45141" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36855" result="Failed" site="Child" start-time="2026-11-15 04:41:22Z" end-time="2026-11-15 04:41:29Z" duration="6.945615" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45142" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36855" result="Failed" site="Child" start-time="2026-11-15 04:41:22Z" end-time="2026-11-15 04:41:29Z" duration="6.942605" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="35396" name="FlatPixelStillleafWallShadowTests" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-11-15 04:41:22Z" end-time="2026-11-15 04:41:29Z" duration="6.931386" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="35424" name="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 04:41:22Z" end-time="2026-11-15 04:41:23Z" duration="0.908473" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35422" name="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade(True)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade(True)" methodname="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="392734381" result="Failed" start-time="2026-11-15 04:41:22Z" end-time="2026-11-15 04:41:22Z" duration="0.655605" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade (System.Boolean wallMissing) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35423" name="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade(False)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade(False)" methodname="MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="2017170082" result="Failed" start-time="2026-11-15 04:41:22Z" end-time="2026-11-15 04:41:23Z" duration="0.249625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.MissingWallOrFloorArtCannotBorrowAmbientOrFallbackForShade (System.Boolean wallMissing) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="35408" name="NoFloorOrChangedOwnerCannotBorrowAmbientBackingAndDestructionClearsShade" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.NoFloorOrChangedOwnerCannotBorrowAmbientBackingAndDestructionClearsShade" methodname="NoFloorOrChangedOwnerCannotBorrowAmbientBackingAndDestructionClearsShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="748792188" result="Failed" start-time="2026-11-15 04:41:23Z" end-time="2026-11-15 04:41:23Z" duration="0.251884" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.NoFloorOrChangedOwnerCannotBorrowAmbientBackingAndDestructionClearsShade () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:124
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="35409" name="OptionAndLegacyExitClearShadeWithoutChangingBodies" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OptionAndLegacyExitClearShadeWithoutChangingBodies" methodname="OptionAndLegacyExitClearShadeWithoutChangingBodies" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="2142602282" result="Failed" start-time="2026-11-15 04:41:23Z" end-time="2026-11-15 04:41:23Z" duration="0.250439" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OptionAndLegacyExitClearShadeWithoutChangingBodies () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:139
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="35421" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 04:41:23Z" end-time="2026-11-15 04:41:24Z" duration="1.210228" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35417" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.4.0&quot;)" methodname="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1515302993" result="Failed" start-time="2026-11-15 04:41:23Z" end-time="2026-11-15 04:41:24Z" duration="0.260331" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade (System.String id) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35418" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.4.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.4.2&quot;)" methodname="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="2111261210" result="Failed" start-time="2026-11-15 04:41:24Z" end-time="2026-11-15 04:41:24Z" duration="0.432378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade (System.String id) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35419" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.2.7.1&quot;)" methodname="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1977771721" result="Failed" start-time="2026-11-15 04:41:24Z" end-time="2026-11-15 04:41:24Z" duration="0.262738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade (System.String id) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35420" name="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.02.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade(&quot;Overworld.02.4.1&quot;)" methodname="OtherDepthsGinmereAndAliasNeverBorrowStillleafShade" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="531800925" result="Failed" start-time="2026-11-15 04:41:24Z" end-time="2026-11-15 04:41:24Z" duration="0.250138" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.OtherDepthsGinmereAndAliasNeverBorrowStillleafShade (System.String id) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35404" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-15 04:41:24Z" end-time="2026-11-15 04:41:26Z" duration="1.677665" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35398" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;DescentLedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;DescentLedge&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1416226047" result="Failed" start-time="2026-11-15 04:41:24Z" end-time="2026-11-15 04:41:25Z" duration="0.246011" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35399" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Player&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1891120278" result="Failed" start-time="2026-11-15 04:41:25Z" end-time="2026-11-15 04:41:25Z" duration="0.249712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35400" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Dagger&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1110821382" result="Failed" start-time="2026-11-15 04:41:25Z" end-time="2026-11-15 04:41:25Z" duration="0.427893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35401" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Rubble&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;Rubble&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="179187639" result="Failed" start-time="2026-11-15 04:41:25Z" end-time="2026-11-15 04:41:26Z" duration="0.252972" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35402" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;WaterPuddle&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="975203558" result="Failed" start-time="2026-11-15 04:41:26Z" end-time="2026-11-15 04:41:26Z" duration="0.247916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35403" name="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;SandstoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges(&quot;SandstoneFloor&quot;)" methodname="ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="118064175" result="Failed" start-time="2026-11-15 04:41:26Z" end-time="2026-11-15 04:41:26Z" duration="0.249136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.ReceiverOnlyDirtyOccupancyWithdrawsShadeWithoutChangingWallsOrLedges (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35407" name="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 04:41:26Z" end-time="2026-11-15 04:41:27Z" duration="0.588453" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35405" name="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState(False)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState(False)" methodname="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="837993242" result="Failed" start-time="2026-11-15 04:41:26Z" end-time="2026-11-15 04:41:26Z" duration="0.249826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState (System.Boolean source) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:110
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35406" name="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState(True)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState(True)" methodname="SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="502238882" result="Failed" start-time="2026-11-15 04:41:26Z" end-time="2026-11-15 04:41:27Z" duration="0.328977" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SourceAndReceiverMustRemainVisibleExploredAndFreeOfTileState (System.Boolean source) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:110
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="35397" name="SubmittedShadeIsTwoPixelsSouthUsingOpaqueBorrowedWallAndPreservesWorld" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SubmittedShadeIsTwoPixelsSouthUsingOpaqueBorrowedWallAndPreservesWorld" methodname="SubmittedShadeIsTwoPixelsSouthUsingOpaqueBorrowedWallAndPreservesWorld" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1101223765" result="Failed" start-time="2026-11-15 04:41:27Z" end-time="2026-11-15 04:41:27Z" duration="0.355488" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.SubmittedShadeIsTwoPixelsSouthUsingOpaqueBorrowedWallAndPreservesWorld () [0x0003f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:62
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="35416" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-15 04:41:27Z" end-time="2026-11-15 04:41:29Z" duration="1.681833" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35410" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;graph&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="226102032" result="Failed" start-time="2026-11-15 04:41:27Z" end-time="2026-11-15 04:41:27Z" duration="0.251747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35411" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;profile&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1162556473" result="Failed" start-time="2026-11-15 04:41:27Z" end-time="2026-11-15 04:41:28Z" duration="0.247356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35412" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;poi&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="220241482" result="Failed" start-time="2026-11-15 04:41:28Z" end-time="2026-11-15 04:41:28Z" duration="0.244982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35413" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;tiles&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1214911437" result="Failed" start-time="2026-11-15 04:41:28Z" end-time="2026-11-15 04:41:28Z" duration="0.246008" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35414" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;pois&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="1728945451" result="Failed" start-time="2026-11-15 04:41:28Z" end-time="2026-11-15 04:41:29Z" duration="0.436458" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35415" name="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;lair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot(&quot;lair&quot;)" methodname="WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot" classname="CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests" runstate="Runnable" seed="268271896" result="Failed" start-time="2026-11-15 04:41:29Z" end-time="2026-11-15 04:41:29Z" duration="0.249594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Disclosed Stillleaf wall over empty native sandstone floor needs bounded depth.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.Present (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:44
+at CavesOfOoo.Tests.FlatPixelStillleafWallShadowTests.WarmLibraryAuthorityRevokesAndValidStoryRenameDoesNot (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStillleafWallShadowTests.cs:154
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

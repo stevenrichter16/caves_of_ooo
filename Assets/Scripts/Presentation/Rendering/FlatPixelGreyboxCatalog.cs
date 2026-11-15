@@ -2087,6 +2087,9 @@ namespace CavesOfOoo.Rendering
         internal bool CanReceiveMarrowstyeWallShadow(Zone zone, int x, int y)
             => _settlementGroundArt != null && _settlementGroundArt.CanReceiveMarrowstyeWallShadow(zone, x, y);
 
+        internal bool CanReceiveStillleafWallShadow(Zone zone, int x, int y, Entity source)
+            => _stillleafDescentArt != null && _stillleafDescentArt.CanReceiveStillleafWallShadow(zone, x, y, source);
+
         private FlatPixelShallowCavesCatalog ShallowCavesArtFor(Zone zone)
         {
             if (FlatPixelSiteAdmission.IsGinmereDescent(zone))

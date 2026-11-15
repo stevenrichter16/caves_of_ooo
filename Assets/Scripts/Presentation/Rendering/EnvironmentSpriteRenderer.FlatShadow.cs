@@ -104,7 +104,8 @@ namespace CavesOfOoo.Rendering
                     && (FlatPixelBeatingMaterialsCatalog.CanReceiveWallShadow(zone, x, y + 1)
                         || _flatPixelGreybox != null && (_flatPixelGreybox.CanReceiveMarrowstyeWallShadow(zone, x, y + 1)
                             || _flatPixelGreybox.CanReceiveCinderholdWallShadow(zone, x, y + 1)
-                            || _flatPixelGreybox.CanReceiveSumpholdWallShadow(zone, x, y + 1)));
+                            || _flatPixelGreybox.CanReceiveSumpholdWallShadow(zone, x, y + 1)
+                            || _flatPixelGreybox.CanReceiveStillleafWallShadow(zone, x, y + 1, flat.Owner)));
             if (!receiver && flat.Owner?.BlueprintName == FlatPixelWildFaunaCatalog.GantryTimberBlueprint)
                 receiver = _flatPixelGreybox != null
                     && _flatPixelGreybox.CanReceiveGantryWallShadow(zone, x, y + 1, flat.Owner);

@@ -1,0 +1,33 @@
+{
+  "baseline": "Overworld.2.4.1",
+  "presave": {
+    "zone": "Overworld.2.4.1",
+    "x": 52,
+    "y": 12,
+    "hp": 40,
+    "turn": 1090,
+    "seed": 704860946,
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/e80036ecb4a845aca0cff711d4d7a549"
+  },
+  "reload": {
+    "zone": "Overworld.2.4.1",
+    "x": 52,
+    "y": 12,
+    "hp": 40,
+    "turn": 1090,
+    "seed": 704860946,
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/92aea96a1f7847fb9e5a18ceec36c42f"
+  },
+  "owners_equal": true,
+  "owner_count": 2862,
+  "ledges": 233,
+  "route": "52,12 to50,4 wallreader50,3 HP30/30; route toward56,9 stopped at54,9 byOreCache55,9, corrected via54,8 to56,8;56,8 to56,7 to56,8 crossing andunderfootreader;52,12 stairup2.4.0 thenback2.4.1,F5turn1090; noF12/hp40 throughout",
+  "source_review": "sumphold_grade_source_review:0P1/P2",
+  "visual_review": "sumphold_baseline_review:0P1/P2 initial and reload;13709worlddifferences confined410,250\u2013589,429,12846<=1RGB,863=2RGB;max2darkening, causeunproven; perimeter/ledges unchanged.",
+  "native": {
+    "red": "fa8f51edbb4e4d8c9882584ac3398aec:23failed expected missing shade",
+    "green": "b3cea1c3fbf74547bb1672732c94e021:82passed0failed0skipped0inconclusive",
+    "pre_red_setup": "initial discovery0tests before forcedimport; missing Data namespace fixed before genuine23RED; neither establishes acceptance"
+  },
+  "limits": "Single bounded wall-depth comparison, no newmaterials/population/area completion. Memory glyphs retained. Profile includes UI/captures/readonly probes; spikesunattributedR11open."
+}

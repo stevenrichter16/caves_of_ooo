@@ -136,6 +136,22 @@ namespace CavesOfOoo.Rendering
             tile = group[owner.BlueprintName == "SandstoneWall" && VariantAt(x, y) != 0 ? 1 : 0];
             return true;
         }
+        /// <summary>Only the authored Stillleaf descent casts this bounded shade.
+        /// A real disclosed native wall needs exactly one empty native sandstone
+        /// receiver. Ledges and ambient canvas never receive a wall shadow.</summary>
+        internal bool CanReceiveStillleafWallShadow(Zone zone, int x, int y, Entity source)
+        {
+            if (source?.BlueprintName != "SandstoneWall" || !FlatPixelSiteAdmission.IsStillleafDescent(zone)
+                || !TryResolveForeground(zone, x, y - 1, source, out _)
+                || !TryResolveGround(zone, x, y, out _, out var floor)) return false;
+            var sourceState = zone.TileState.Get(x, y - 1);
+            var receiverState = zone.TileState.Get(x, y);
+            if (sourceState != null && !sourceState.IsEmpty || receiverState != null && !receiverState.IsEmpty) return false;
+            var cell = zone.GetCell(x, y);
+            foreach (var owner in cell.Occupants)
+                if (Placed(zone, cell, owner) && VisiblePhysicalOwner(owner) && !ReferenceEquals(owner, floor)) return false;
+            return true;
+        }
         /// <summary>Quiet visible-cell canvas, not a terrain owner or material.
         /// It cannot replace real ground, authored backgrounds or live hazards.
         /// Hidden/custodied occupants never alter this presentation decision.</summary>
