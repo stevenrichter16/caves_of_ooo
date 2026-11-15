@@ -118,9 +118,10 @@ namespace CavesOfOoo.Tests
             var zone = Visit(id);
             var cells = Cells(zone, "WaterPuddle").ToList();
             Assert.Greater(cells.Count, 100, "precondition: visible settlement water");
-            var water = Resources.Load<Texture2D>(OpeningGround);
+            bool quietPosy = id == "Overworld.5.9.0";
+            var water = Resources.Load<Texture2D>(quietPosy ? "Sprites/Live16x24/sodden-flood-water" : OpeningGround);
             bool Native(FlatPixelGreyboxCell v) => v.LocalGround && v.GroundKind == FlatPixelGreyboxGround.Water && v.ForegroundTile == null
-                && v.GroundTile?.sprite != null && ReferenceEquals(v.GroundTile.sprite.texture, water) && v.GroundTile.sprite.rect.x / 16 < 16;
+                && v.GroundTile?.sprite != null && ReferenceEquals(v.GroundTile.sprite.texture, water) && v.GroundTile.sprite.rect.x / 16 < (quietPosy ? 128 : 16);
             int native = cells.Count(c => Native(c.view));
             Assert.GreaterOrEqual(native, cells.Count * 95 / 100, "WaterPuddle in " + id + ": " + native + " of " + cells.Count + " native");
             foreach (var c in cells.Where(c => Native(c.view)).Take(25))

@@ -239,12 +239,14 @@ namespace CavesOfOoo.Rendering
             if (water == null || !water.TryResolveWaterGround(zone, x, y, out tile, out source)) return false;
             // Only replace a successfully resolved real pool. Keep its disclosed dry-bank
             // mask and owner; do not borrow the ownerless flood-water resolver's authority.
-            if (sumpholdWater != null && zone.ZoneID == SumpholdCompositionPlan.ZoneID)
+            if (sumpholdWater != null && (zone.ZoneID == SumpholdCompositionPlan.ZoneID || zone.ZoneID == "Overworld.5.9.0"))
             {
                 var map = WorldLocationContext.For(zone).WorldMap; // Sill resolver proved current settlement authority.
                 int mask = (int)tile.sprite.rect.x / Width;
-                if (mask >= 0 && mask < 16 && map.GetBiome(15, 6) == BiomeType.Spread
-                    && AreaCompositionScope.IsSumpholdSite(map.GetPOI(15, 6)))
+                bool quietSurface = zone.ZoneID == SumpholdCompositionPlan.ZoneID
+                    ? map.GetBiome(15, 6) == BiomeType.Spread && AreaCompositionScope.IsSumpholdSite(map.GetPOI(15, 6))
+                    : map.GetBiome(5, 9) == BiomeType.Spread && string.IsNullOrEmpty(map.GetPOI(5, 9).Profile);
+                if (mask >= 0 && mask < 16 && quietSurface)
                     tile = sumpholdWater[FlatPixelFloodWaterCatalog.SurfaceVariant(x, y) * 16 + mask];
             }
             return true;

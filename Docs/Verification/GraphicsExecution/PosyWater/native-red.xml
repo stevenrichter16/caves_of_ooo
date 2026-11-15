@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="38" result="Failed(Child)" total="38" passed="3" failed="35" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 05:40:52Z" end-time="2026-11-15 05:40:54Z" duration="1.9978956">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36896" result="Failed" site="Child" start-time="2026-11-15 05:40:52Z" end-time="2026-11-15 05:40:54Z" duration="1.997896" total="38" passed="3" failed="35" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45187" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36896" result="Failed" site="Child" start-time="2026-11-15 05:40:52Z" end-time="2026-11-15 05:40:54Z" duration="1.985110" total="38" passed="3" failed="35" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45188" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36896" result="Failed" site="Child" start-time="2026-11-15 05:40:52Z" end-time="2026-11-15 05:40:54Z" duration="1.981241" total="38" passed="3" failed="35" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45189" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36896" result="Failed" site="Child" start-time="2026-11-15 05:40:52Z" end-time="2026-11-15 05:40:54Z" duration="1.978334" total="38" passed="3" failed="35" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="34509" name="FlatPixelPosyWaterTests" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-11-15 05:40:52Z" end-time="2026-11-15 05:40:54Z" duration="1.969694" total="38" passed="3" failed="35" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="34551" name="ActorAndIndependentHazardKeepTheirMeaningAboveQuietWater" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.ActorAndIndependentHazardKeepTheirMeaningAboveQuietWater" methodname="ActorAndIndependentHazardKeepTheirMeaningAboveQuietWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1285928113" result="Failed" start-time="2026-11-15 05:40:52Z" end-time="2026-11-15 05:40:53Z" duration="0.124397" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.ActorAndIndependentHazardKeepTheirMeaningAboveQuietWater () [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:140
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="34536" name="AnotherAuthoredSettlementDoesNotBorrowPosySurface" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.AnotherAuthoredSettlementDoesNotBorrowPosySurface" methodname="AnotherAuthoredSettlementDoesNotBorrowPosySurface" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1791688145" result="Passed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.050415" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="34535" name="CurrentPosyAuthorityIsRequired" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.302252" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34528" name="CurrentPosyAuthorityIsRequired(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired(&quot;profile&quot;)" methodname="CurrentPosyAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1859788891" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.043809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired (System.String loss) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34529" name="CurrentPosyAuthorityIsRequired(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired(&quot;biome&quot;)" methodname="CurrentPosyAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="61851358" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.043290" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired (System.String loss) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34530" name="CurrentPosyAuthorityIsRequired(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired(&quot;name&quot;)" methodname="CurrentPosyAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1302874021" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.042672" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired (System.String loss) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34531" name="CurrentPosyAuthorityIsRequired(&quot;type&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired(&quot;type&quot;)" methodname="CurrentPosyAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="521608616" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.042272" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired (System.String loss) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34532" name="CurrentPosyAuthorityIsRequired(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired(&quot;detached&quot;)" methodname="CurrentPosyAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1816094592" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.042006" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired (System.String loss) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34533" name="CurrentPosyAuthorityIsRequired(&quot;cache&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired(&quot;cache&quot;)" methodname="CurrentPosyAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1734453487" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.042500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired (System.String loss) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34534" name="CurrentPosyAuthorityIsRequired(&quot;lair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired(&quot;lair&quot;)" methodname="CurrentPosyAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="84869722" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.041406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.CurrentPosyAuthorityIsRequired (System.String loss) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="34546" name="EmptyAndNullAuthoredProfilesBothUseQuietSurface" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.EmptyAndNullAuthoredProfilesBothUseQuietSurface" methodname="EmptyAndNullAuthoredProfilesBothUseQuietSurface" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="2114663629" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.042222" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.EmptyAndNullAuthoredProfilesBothUseQuietSurface () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:117
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="34545" name="HiddenDryNeighbourDoesNotRevealBankAndVisibleOneRestoresIt" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.HiddenDryNeighbourDoesNotRevealBankAndVisibleOneRestoresIt" methodname="HiddenDryNeighbourDoesNotRevealBankAndVisibleOneRestoresIt" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="825513799" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.041481" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.HiddenDryNeighbourDoesNotRevealBankAndVisibleOneRestoresIt () [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:110
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="34544" name="InvalidPoolStillRefusesNativeWater" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.424658" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34537" name="InvalidPoolStillRefusesNativeWater(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater(&quot;hidden&quot;)" methodname="InvalidPoolStillRefusesNativeWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1740847928" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.040624" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34538" name="InvalidPoolStillRefusesNativeWater(&quot;depleted&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater(&quot;depleted&quot;)" methodname="InvalidPoolStillRefusesNativeWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1048391580" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.041203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34539" name="InvalidPoolStillRefusesNativeWater(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater(&quot;frozen&quot;)" methodname="InvalidPoolStillRefusesNativeWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1293562304" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.053822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34540" name="InvalidPoolStillRefusesNativeWater(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater(&quot;duplicate&quot;)" methodname="InvalidPoolStillRefusesNativeWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1746054499" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.157520" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34541" name="InvalidPoolStillRefusesNativeWater(&quot;mixed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater(&quot;mixed&quot;)" methodname="InvalidPoolStillRefusesNativeWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1071235265" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.042959" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34542" name="InvalidPoolStillRefusesNativeWater(&quot;temporary&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater(&quot;temporary&quot;)" methodname="InvalidPoolStillRefusesNativeWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="981322590" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.043413" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34543" name="InvalidPoolStillRefusesNativeWater(&quot;projected&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater(&quot;projected&quot;)" methodname="InvalidPoolStillRefusesNativeWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="216827549" result="Failed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.041410" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.InvalidPoolStillRefusesNativeWater (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34549" name="MissingOrMalformedOptionalSurfaceKeepsOriginalWater" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.MissingOrMalformedOptionalSurfaceKeepsOriginalWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:54Z" duration="0.087694" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="34547" name="MissingOrMalformedOptionalSurfaceKeepsOriginalWater(False)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.MissingOrMalformedOptionalSurfaceKeepsOriginalWater(False)" methodname="MissingOrMalformedOptionalSurfaceKeepsOriginalWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="672137905" result="Passed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:53Z" duration="0.042210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="34548" name="MissingOrMalformedOptionalSurfaceKeepsOriginalWater(True)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.MissingOrMalformedOptionalSurfaceKeepsOriginalWater(True)" methodname="MissingOrMalformedOptionalSurfaceKeepsOriginalWater" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1076251366" result="Passed" start-time="2026-11-15 05:40:53Z" end-time="2026-11-15 05:40:54Z" duration="0.042717" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="34550" name="OptionalSurfaceDoesNotReplaceMissingRequiredWaterAndOwnsOnlyItsViews" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.OptionalSurfaceDoesNotReplaceMissingRequiredWaterAndOwnsOnlyItsViews" methodname="OptionalSurfaceDoesNotReplaceMissingRequiredWaterAndOwnsOnlyItsViews" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1270034796" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.045030" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.OptionalSurfaceDoesNotReplaceMissingRequiredWaterAndOwnsOnlyItsViews () [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:133
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="34526" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.800298" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34510" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(0)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(0)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1813515999" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.041404" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34511" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(1)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(1)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1935667572" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.041168" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34512" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(2)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(2)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="402747958" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.041162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34513" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(3)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(3)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="984843330" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.040952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34514" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(4)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(4)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="752433526" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.040614" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34515" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(5)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(5)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="203137020" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.041171" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34516" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(6)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(6)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="120523490" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.041645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34517" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(7)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(7)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="698968020" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.040625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34518" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(8)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(8)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1970096015" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.042444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34519" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(9)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(9)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="278394385" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.043336" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34520" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(10)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(10)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="140340092" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.052982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34521" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(11)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(11)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="137781438" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.160022" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34522" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(12)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(12)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="2073471281" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.043465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34523" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(13)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(13)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="196948439" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.042845" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34524" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(14)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(14)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1780910144" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.041647" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34525" name="QuietSurfacePreservesAllDisclosedDryBanksAndReader(15)" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader(15)" methodname="QuietSurfacePreservesAllDisclosedDryBanksAndReader" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="741666768" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.041228" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.QuietSurfacePreservesAllDisclosedDryBanksAndReader (System.Int32 mask) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="34527" name="SurfaceVariesWithoutChangingPoolsAndDryMaterials" fullname="CavesOfOoo.Tests.FlatPixelPosyWaterTests.SurfaceVariesWithoutChangingPoolsAndDryMaterials" methodname="SurfaceVariesWithoutChangingPoolsAndDryMaterials" classname="CavesOfOoo.Tests.FlatPixelPosyWaterTests" runstate="Runnable" seed="1630051318" result="Failed" start-time="2026-11-15 05:40:54Z" end-time="2026-11-15 05:40:54Z" duration="0.041773" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sodden-flood-water (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPosyWaterTests.Water (CavesOfOoo.Core.Entity owner, System.Boolean quiet, System.Int32 x, System.Int32 y) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:38
+at CavesOfOoo.Tests.FlatPixelPosyWaterTests.SurfaceVariesWithoutChangingPoolsAndDryMaterials () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPosyWaterTests.cs:63
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
