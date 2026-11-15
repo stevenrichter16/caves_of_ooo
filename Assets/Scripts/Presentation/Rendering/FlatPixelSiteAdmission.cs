@@ -13,6 +13,22 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public static class FlatPixelSiteAdmission
     {
+        // First Cathedral shelf level only; current site authority is never cached.
+        internal static bool IsCathedralDescent(Zone zone)
+        {
+            if (zone?.ZoneID != "Overworld.5.4.1") return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || !ReferenceEquals(current, zone)) return false;
+            var map = manager.WorldMap;
+            if (map?.Tiles == null || map.POIs == null
+                || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
+                || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
+            var poi = map.GetPOI(5, 4);
+            return map.GetBiome(5, 4) == BiomeType.Grovelands && AreaCompositionScope.IsCathedralSite(poi)
+                && string.IsNullOrEmpty(poi.Profile) && !LairStacks.HasSavedColumn(manager, "Overworld.5.4.0");
+        }
+
         // Exact current Lampwell sandstone foundation, preserving its authored village owners.
         internal static bool IsLampwellStone(Zone zone)
         {

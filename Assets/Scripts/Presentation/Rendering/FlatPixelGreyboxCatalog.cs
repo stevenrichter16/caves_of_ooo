@@ -125,6 +125,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsSiteArt;
         private FlatPixelStumpMaterialsCatalog _stumpSiteArt;
         private FlatPixelStumpMaterialsCatalog _fellingGroundArt;
+        private FlatPixelStumpMaterialsCatalog _cathedralLedgeArt;
         private FlatPixelStumpMaterialsCatalog _ginmereLedgeArt;
         private FlatPixelStumpMaterialsCatalog _stillleafLedgeArt;
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsMaterialsArt;
@@ -133,6 +134,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelShallowCavesCatalog _shallowCavesArt;
         private FlatPixelShallowCavesCatalog _stillleafDescentArt;
         private FlatPixelShallowCavesCatalog _groveSinkholeFloorArt;
+        private FlatPixelShallowCavesCatalog _cathedralDescentArt;
         private FlatPixelShallowCavesCatalog _ginmereDescentArt;
         private FlatPixelShallowCavesCatalog _lampwellStoneArt;
         private FlatPixelShallowCavesCatalog _spivenorStoneArt;
@@ -2127,6 +2129,18 @@ namespace CavesOfOoo.Rendering
                 }
                 return _spivenorStoneArt;
             }
+            if (FlatPixelSiteAdmission.IsCathedralDescent(zone))
+            {
+                if (_cathedralDescentArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _cathedralDescentArt = new FlatPixelShallowCavesCatalog(
+                        Resources.Load<Texture2D>(FlatPixelShallowCavesCatalog.ResourcePath),
+                        Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),
+                        null, null, null, null, _glyphFallback).AdmittingCathedralDescent();
+                }
+                return _cathedralDescentArt;
+            }
             if (FlatPixelSiteAdmission.IsGinmereDescent(zone))
             {
                 if (_ginmereDescentArt == null && _loadOptionalResources)
@@ -2236,6 +2250,17 @@ namespace CavesOfOoo.Rendering
                         null, null, _glyphFallback).AdmittingStillleafLedges();
                 }
                 return _stillleafLedgeArt;
+            }
+            if (FlatPixelSiteAdmission.IsCathedralDescent(zone))
+            {
+                if (_cathedralLedgeArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _cathedralLedgeArt = new FlatPixelStumpMaterialsCatalog(
+                        Resources.Load<Texture2D>(FlatPixelStumpMaterialsCatalog.ResourcePath),
+                        null, null, _glyphFallback).AdmittingCathedralLedges();
+                }
+                return _cathedralLedgeArt;
             }
             if (FlatPixelSiteAdmission.IsGinmereDescent(zone))
             {
@@ -2725,7 +2750,9 @@ namespace CavesOfOoo.Rendering
             _stumpMaterialsArt?.Dispose();
             _stumpSiteArt?.Dispose();
             _fellingGroundArt?.Dispose();
+            _cathedralLedgeArt?.Dispose();
             _ginmereLedgeArt?.Dispose();
+            _cathedralLedgeArt = null;
             _ginmereLedgeArt = null;
             _stillleafLedgeArt?.Dispose();
             _stillleafLedgeArt = null;
@@ -2734,6 +2761,7 @@ namespace CavesOfOoo.Rendering
             _shallowCavesArt?.Dispose();
             _stillleafDescentArt?.Dispose();
             _groveSinkholeFloorArt?.Dispose();
+            _cathedralDescentArt?.Dispose();
             _ginmereDescentArt?.Dispose();
             _lampwellStoneArt?.Dispose();
             _spivenorStoneArt?.Dispose();
@@ -2748,6 +2776,7 @@ namespace CavesOfOoo.Rendering
             _shallowCavesArt = null;
             _stillleafDescentArt = null;
             _groveSinkholeFloorArt = null;
+            _cathedralDescentArt = null;
             _ginmereDescentArt = null;
             _lampwellStoneArt = null;
             _spivenorStoneArt = null;

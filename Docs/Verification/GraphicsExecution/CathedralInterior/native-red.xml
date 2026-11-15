@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="62" result="Failed(Child)" total="62" passed="1" failed="61" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 08:39:38Z" end-time="2026-11-15 08:40:12Z" duration="34.2647829">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37331" result="Failed" site="Child" start-time="2026-11-15 08:39:38Z" end-time="2026-11-15 08:40:12Z" duration="34.264783" total="62" passed="1" failed="61" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45710" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37331" result="Failed" site="Child" start-time="2026-11-15 08:39:38Z" end-time="2026-11-15 08:40:12Z" duration="34.236772" total="62" passed="1" failed="61" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45711" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37331" result="Failed" site="Child" start-time="2026-11-15 08:39:38Z" end-time="2026-11-15 08:40:12Z" duration="34.231184" total="62" passed="1" failed="61" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45712" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37331" result="Failed" site="Child" start-time="2026-11-15 08:39:38Z" end-time="2026-11-15 08:40:12Z" duration="34.224621" total="62" passed="1" failed="61" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1294" name="FlatPixelCathedralDescentTests" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" testcasecount="34" result="Failed" site="Child" start-time="2026-11-15 08:39:38Z" end-time="2026-11-15 08:39:46Z" duration="7.460489" total="34" passed="1" failed="33" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1295" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1413618013" result="Failed" start-time="2026-11-15 08:39:38Z" end-time="2026-11-15 08:39:39Z" duration="0.460451" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:32
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1331" name="AvailableOtherGroupsCannotExpandStructuralPilot" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.AvailableOtherGroupsCannotExpandStructuralPilot" methodname="AvailableOtherGroupsCannotExpandStructuralPilot" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1359133013" result="Failed" start-time="2026-11-15 08:39:39Z" end-time="2026-11-15 08:39:39Z" duration="0.175621" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.AvailableOtherGroupsCannotExpandStructuralPilot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:150
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1327" name="ChangedWallStateAndCoveredReaderRevoke" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.ChangedWallStateAndCoveredReaderRevoke" methodname="ChangedWallStateAndCoveredReaderRevoke" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1535385830" result="Failed" start-time="2026-11-15 08:39:39Z" end-time="2026-11-15 08:39:39Z" duration="0.173247" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.ChangedWallStateAndCoveredReaderRevoke () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:132
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1326" name="CompetingMaterialHonorsDisclosure" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:39:39Z" end-time="2026-11-15 08:39:39Z" duration="0.353771" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1324" name="CompetingMaterialHonorsDisclosure(False)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.CompetingMaterialHonorsDisclosure(False)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="2145766170" result="Failed" start-time="2026-11-15 08:39:39Z" end-time="2026-11-15 08:39:39Z" duration="0.175184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:127
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1325" name="CompetingMaterialHonorsDisclosure(True)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.CompetingMaterialHonorsDisclosure(True)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1999184626" result="Failed" start-time="2026-11-15 08:39:39Z" end-time="2026-11-15 08:39:39Z" duration="0.174361" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:127
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1332" name="CoveredRubbleCannotBorrowArtEvenWhenResourcesAreAvailable" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.CoveredRubbleCannotBorrowArtEvenWhenResourcesAreAvailable" methodname="CoveredRubbleCannotBorrowArtEvenWhenResourcesAreAvailable" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1771987895" result="Failed" start-time="2026-11-15 08:39:39Z" end-time="2026-11-15 08:39:40Z" duration="0.170634" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.CoveredRubbleCannotBorrowArtEvenWhenResourcesAreAvailable () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:162
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1297" name="DifferentSiteLabelRevokesBothMaterials" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DifferentSiteLabelRevokesBothMaterials" methodname="DifferentSiteLabelRevokesBothMaterials" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1559683385" result="Failed" start-time="2026-11-15 08:39:40Z" end-time="2026-11-15 08:39:40Z" duration="0.170603" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DifferentSiteLabelRevokesBothMaterials () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:48
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1316" name="DisclosureAndMaterialStateKeepTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 08:39:40Z" end-time="2026-11-15 08:39:41Z" duration="1.279959" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1312" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1670762650" result="Failed" start-time="2026-11-15 08:39:40Z" end-time="2026-11-15 08:39:40Z" duration="0.295296" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1313" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1938756799" result="Failed" start-time="2026-11-15 08:39:40Z" end-time="2026-11-15 08:39:41Z" duration="0.479103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1314" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1999130696" result="Failed" start-time="2026-11-15 08:39:41Z" end-time="2026-11-15 08:39:41Z" duration="0.317740" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1315" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="2065444188" result="Failed" start-time="2026-11-15 08:39:41Z" end-time="2026-11-15 08:39:41Z" duration="0.184042" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1311" name="EqualMaterialNamesCannotExpandPilotAddress" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 08:39:41Z" end-time="2026-11-15 08:39:42Z" duration="0.709348" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1307" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.05.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.05.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="537058628" result="Failed" start-time="2026-11-15 08:39:41Z" end-time="2026-11-15 08:39:41Z" duration="0.179102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1308" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.5.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.5.4.0&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="331677275" result="Failed" start-time="2026-11-15 08:39:41Z" end-time="2026-11-15 08:39:41Z" duration="0.174514" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1309" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.5.4.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.5.4.2&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1808935975" result="Failed" start-time="2026-11-15 08:39:41Z" end-time="2026-11-15 08:39:42Z" duration="0.175045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1310" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1812628285" result="Failed" start-time="2026-11-15 08:39:42Z" end-time="2026-11-15 08:39:42Z" duration="0.177400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1321" name="HiddenOrRememberedWallCannotUseLiveSprite" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:39:42Z" end-time="2026-11-15 08:39:42Z" duration="0.564041" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1319" name="HiddenOrRememberedWallCannotUseLiveSprite(False)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.HiddenOrRememberedWallCannotUseLiveSprite(False)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1804175165" result="Failed" start-time="2026-11-15 08:39:42Z" end-time="2026-11-15 08:39:42Z" duration="0.374509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1320" name="HiddenOrRememberedWallCannotUseLiveSprite(True)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.HiddenOrRememberedWallCannotUseLiveSprite(True)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1977559909" result="Failed" start-time="2026-11-15 08:39:42Z" end-time="2026-11-15 08:39:42Z" duration="0.183294" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1317" name="LegacyNameStillAdmitsButConflictingProfileRevokes" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.LegacyNameStillAdmitsButConflictingProfileRevokes" methodname="LegacyNameStillAdmitsButConflictingProfileRevokes" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1267051792" result="Failed" start-time="2026-11-15 08:39:42Z" end-time="2026-11-15 08:39:43Z" duration="0.180775" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.LegacyNameStillAdmitsButConflictingProfileRevokes () [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:97
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1330" name="MissingGroupsFailIndependently" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:39:43Z" end-time="2026-11-15 08:39:43Z" duration="0.360659" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1328" name="MissingGroupsFailIndependently(False)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingGroupsFailIndependently(False)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1140581575" result="Failed" start-time="2026-11-15 08:39:43Z" end-time="2026-11-15 08:39:43Z" duration="0.177453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1329" name="MissingGroupsFailIndependently(True)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingGroupsFailIndependently(True)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1431458107" result="Failed" start-time="2026-11-15 08:39:43Z" end-time="2026-11-15 08:39:43Z" duration="0.175492" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1323" name="MissingOptionalArtKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingOptionalArtKeepsFallback" methodname="MissingOptionalArtKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1082659393" result="Passed" start-time="2026-11-15 08:39:43Z" end-time="2026-11-15 08:39:43Z" duration="0.177432" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1335" name="MissingOrMalformedWallDoesNotBorrowOtherMaterials" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingOrMalformedWallDoesNotBorrowOtherMaterials" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:39:43Z" end-time="2026-11-15 08:39:44Z" duration="0.531278" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1333" name="MissingOrMalformedWallDoesNotBorrowOtherMaterials(False)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingOrMalformedWallDoesNotBorrowOtherMaterials(False)" methodname="MissingOrMalformedWallDoesNotBorrowOtherMaterials" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1320657601" result="Failed" start-time="2026-11-15 08:39:43Z" end-time="2026-11-15 08:39:43Z" duration="0.213169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Admit (CavesOfOoo.Rendering.FlatPixelShallowCavesCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:178
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingOrMalformedWallDoesNotBorrowOtherMaterials (System.Boolean malformed) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1334" name="MissingOrMalformedWallDoesNotBorrowOtherMaterials(True)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingOrMalformedWallDoesNotBorrowOtherMaterials(True)" methodname="MissingOrMalformedWallDoesNotBorrowOtherMaterials" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1396707635" result="Failed" start-time="2026-11-15 08:39:43Z" end-time="2026-11-15 08:39:44Z" duration="0.314457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Admit (CavesOfOoo.Rendering.FlatPixelShallowCavesCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:178
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.MissingOrMalformedWallDoesNotBorrowOtherMaterials (System.Boolean malformed) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1322" name="SavedLairColumnRevokesEvenWithRestoredSiteLabel" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.SavedLairColumnRevokesEvenWithRestoredSiteLabel" methodname="SavedLairColumnRevokesEvenWithRestoredSiteLabel" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="396209388" result="Failed" start-time="2026-11-15 08:39:44Z" end-time="2026-11-15 08:39:44Z" duration="0.183295" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.SavedLairColumnRevokesEvenWithRestoredSiteLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:118
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1318" name="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.SpecialDescentLedgesKeepTheirOwnTerrainMeaning" methodname="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1881422801" result="Failed" start-time="2026-11-15 08:39:44Z" end-time="2026-11-15 08:39:44Z" duration="0.181644" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.SpecialDescentLedgesKeepTheirOwnTerrainMeaning () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:103
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1296" name="UnderfootAndWallReadersUseTheirActualWorldIdentity" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.UnderfootAndWallReadersUseTheirActualWorldIdentity" methodname="UnderfootAndWallReadersUseTheirActualWorldIdentity" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="131867117" result="Failed" start-time="2026-11-15 08:39:44Z" end-time="2026-11-15 08:39:44Z" duration="0.179085" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.UnderfootAndWallReadersUseTheirActualWorldIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1306" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 08:39:44Z" end-time="2026-11-15 08:39:46Z" duration="1.592509" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1298" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="723096270" result="Failed" start-time="2026-11-15 08:39:44Z" end-time="2026-11-15 08:39:44Z" duration="0.175910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1299" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="11554370" result="Failed" start-time="2026-11-15 08:39:44Z" end-time="2026-11-15 08:39:44Z" duration="0.177494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1300" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1718534890" result="Failed" start-time="2026-11-15 08:39:44Z" end-time="2026-11-15 08:39:45Z" duration="0.228321" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1301" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1205294661" result="Failed" start-time="2026-11-15 08:39:45Z" end-time="2026-11-15 08:39:45Z" duration="0.300457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1302" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1742781587" result="Failed" start-time="2026-11-15 08:39:45Z" end-time="2026-11-15 08:39:45Z" duration="0.182058" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1303" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1443274064" result="Failed" start-time="2026-11-15 08:39:45Z" end-time="2026-11-15 08:39:45Z" duration="0.176214" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1304" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="1911648314" result="Failed" start-time="2026-11-15 08:39:45Z" end-time="2026-11-15 08:39:46Z" duration="0.174086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1305" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;unknown-profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;unknown-profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelCathedralDescentTests" runstate="Runnable" seed="358106141" result="Failed" start-time="2026-11-15 08:39:46Z" end-time="2026-11-15 08:39:46Z" duration="0.173941" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cathedral sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralDescentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1336" name="FlatPixelCathedralLedgeTests" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-11-15 08:39:46Z" end-time="2026-11-15 08:40:12Z" duration="26.731305" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1337" name="AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" methodname="AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1270565032" result="Failed" start-time="2026-11-15 08:39:46Z" end-time="2026-11-15 08:39:46Z" duration="0.363642" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:30
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1356" name="ChangedMeaningOrDisclosureFallsBack" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-15 08:39:46Z" end-time="2026-11-15 08:39:50Z" duration="3.435448" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1350" name="ChangedMeaningOrDisclosureFallsBack(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;color&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="210884442" result="Failed" start-time="2026-11-15 08:39:46Z" end-time="2026-11-15 08:39:47Z" duration="1.337678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1351" name="ChangedMeaningOrDisclosureFallsBack(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;solid&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="2004637698" result="Failed" start-time="2026-11-15 08:39:47Z" end-time="2026-11-15 08:39:48Z" duration="0.963157" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1352" name="ChangedMeaningOrDisclosureFallsBack(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;visual&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1332081894" result="Failed" start-time="2026-11-15 08:39:48Z" end-time="2026-11-15 08:39:49Z" duration="0.331189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1353" name="ChangedMeaningOrDisclosureFallsBack(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;coating&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1455111291" result="Failed" start-time="2026-11-15 08:39:49Z" end-time="2026-11-15 08:39:49Z" duration="0.218602" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1354" name="ChangedMeaningOrDisclosureFallsBack(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;hidden&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="901970191" result="Failed" start-time="2026-11-15 08:39:49Z" end-time="2026-11-15 08:39:49Z" duration="0.218618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1355" name="ChangedMeaningOrDisclosureFallsBack(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;memory&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="560484552" result="Failed" start-time="2026-11-15 08:39:49Z" end-time="2026-11-15 08:39:50Z" duration="0.362462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1368" name="CoveredReaderRevokesAndRecoversWithDisclosure" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:39:50Z" end-time="2026-11-15 08:39:50Z" duration="0.509049" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1366" name="CoveredReaderRevokesAndRecoversWithDisclosure(False)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure(False)" methodname="CoveredReaderRevokesAndRecoversWithDisclosure" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="556649887" result="Failed" start-time="2026-11-15 08:39:50Z" end-time="2026-11-15 08:39:50Z" duration="0.225813" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1367" name="CoveredReaderRevokesAndRecoversWithDisclosure(True)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure(True)" methodname="CoveredReaderRevokesAndRecoversWithDisclosure" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="258102680" result="Failed" start-time="2026-11-15 08:39:50Z" end-time="2026-11-15 08:39:50Z" duration="0.279495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1362" name="EqualBlueprintDoesNotExpandThisCatalog" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 08:39:50Z" end-time="2026-11-15 08:39:51Z" duration="1.142369" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1358" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.05.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.05.4.1&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="990690838" result="Failed" start-time="2026-11-15 08:39:50Z" end-time="2026-11-15 08:39:50Z" duration="0.228433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:126
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:124
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1359" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.5.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.5.4.0&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="287313037" result="Failed" start-time="2026-11-15 08:39:50Z" end-time="2026-11-15 08:39:51Z" duration="0.218232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:126
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:124
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1360" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.5.4.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.5.4.2&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="2069086029" result="Failed" start-time="2026-11-15 08:39:51Z" end-time="2026-11-15 08:39:51Z" duration="0.378185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:126
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:124
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1361" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.1&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1113986298" result="Failed" start-time="2026-11-15 08:39:51Z" end-time="2026-11-15 08:39:51Z" duration="0.215811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:126
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:124
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1357" name="ForeignOrRemovedReaderCannotBorrowLedgeArt" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ForeignOrRemovedReaderCannotBorrowLedgeArt" methodname="ForeignOrRemovedReaderCannotBorrowLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="2042913948" result="Failed" start-time="2026-11-15 08:39:51Z" end-time="2026-11-15 08:39:51Z" duration="0.162790" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.ForeignOrRemovedReaderCannotBorrowLedgeArt () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:76
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1365" name="MissingOrMalformedOptionalAtlasDeclines" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:39:51Z" end-time="2026-11-15 08:39:52Z" duration="0.328142" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1363" name="MissingOrMalformedOptionalAtlasDeclines(False)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.MissingOrMalformedOptionalAtlasDeclines(False)" methodname="MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1459506782" result="Failed" start-time="2026-11-15 08:39:51Z" end-time="2026-11-15 08:39:52Z" duration="0.160705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:126
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.MissingOrMalformedOptionalAtlasDeclines (System.Boolean malformed) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1364" name="MissingOrMalformedOptionalAtlasDeclines(True)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.MissingOrMalformedOptionalAtlasDeclines(True)" methodname="MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="147822044" result="Failed" start-time="2026-11-15 08:39:52Z" end-time="2026-11-15 08:39:52Z" duration="0.159908" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:126
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.MissingOrMalformedOptionalAtlasDeclines (System.Boolean malformed) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1369" name="PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" methodname="PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1432672104" result="Failed" start-time="2026-11-15 08:39:52Z" end-time="2026-11-15 08:39:52Z" duration="0.305139" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:126
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:124
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:112
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1349" name="SavedLairAuthorityWinsOverRestoredCathedralLabel" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.SavedLairAuthorityWinsOverRestoredCathedralLabel" methodname="SavedLairAuthorityWinsOverRestoredCathedralLabel" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1521416577" result="Failed" start-time="2026-11-15 08:39:52Z" end-time="2026-11-15 08:39:52Z" duration="0.166823" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.SavedLairAuthorityWinsOverRestoredCathedralLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:57
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1348" name="WarmCurrentAuthorityChangesRevokeLedgeArt" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-11-15 08:39:52Z" end-time="2026-11-15 08:40:12Z" duration="20.151317" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1339" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;name&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="585467326" result="Failed" start-time="2026-11-15 08:40:11Z" end-time="2026-11-15 08:40:11Z" duration="0.166132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1340" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;poi&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1453995892" result="Failed" start-time="2026-11-15 08:40:11Z" end-time="2026-11-15 08:40:11Z" duration="0.159480" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1341" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;profile&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1486056455" result="Failed" start-time="2026-11-15 08:40:11Z" end-time="2026-11-15 08:40:11Z" duration="0.159646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1342" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;absent&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="280850531" result="Failed" start-time="2026-11-15 08:40:11Z" end-time="2026-11-15 08:40:11Z" duration="0.163647" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1343" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;graph&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="42340623" result="Failed" start-time="2026-11-15 08:40:11Z" end-time="2026-11-15 08:40:11Z" duration="0.159863" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1344" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;map&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1479273564" result="Failed" start-time="2026-11-15 08:40:11Z" end-time="2026-11-15 08:40:12Z" duration="0.314715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1345" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;pois&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="358007417" result="Failed" start-time="2026-11-15 08:40:12Z" end-time="2026-11-15 08:40:12Z" duration="0.165172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1346" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;biome&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="1605187891" result="Failed" start-time="2026-11-15 08:40:12Z" end-time="2026-11-15 08:40:12Z" duration="0.160638" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1347" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;unknown-profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;unknown-profile&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="913955574" result="Failed" start-time="2026-11-15 08:40:12Z" end-time="2026-11-15 08:40:12Z" duration="0.159616" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1338" name="WorldAndCoveredExamineKeepTheSameLedgeIdentity" fullname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WorldAndCoveredExamineKeepTheSameLedgeIdentity" methodname="WorldAndCoveredExamineKeepTheSameLedgeIdentity" classname="CavesOfOoo.Tests.FlatPixelCathedralLedgeTests" runstate="Runnable" seed="408329759" result="Failed" start-time="2026-11-15 08:40:12Z" end-time="2026-11-15 08:40:12Z" duration="0.160440" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Cathedral ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelCathedralLedgeTests.WorldAndCoveredExamineKeepTheSameLedgeIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCathedralLedgeTests.cs:40
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

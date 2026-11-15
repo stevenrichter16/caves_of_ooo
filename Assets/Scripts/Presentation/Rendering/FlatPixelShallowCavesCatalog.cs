@@ -15,7 +15,11 @@ namespace CavesOfOoo.Rendering
         bool allowCoveredFloorReader;
         bool floorOnly;
         bool structuralOnly;
+        bool sandstoneOnly;
         bool rockBackdropOnly;
+        /// <summary>Cathedral sandstone only; no rock, stair or ambient borrowing.</summary>
+        internal FlatPixelShallowCavesCatalog AdmittingCathedralDescent()
+        { admits = FlatPixelSiteAdmission.IsCathedralDescent; allowCoveredFloorReader = true; structuralOnly = sandstoneOnly = true; return this; }
         /// <summary>Lampwell's sandstone and canonical rock owners; backing requires a real disclosed rock.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingLampwellStone()
         { admits = FlatPixelSiteAdmission.IsLampwellStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
@@ -126,7 +130,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
-            if (floorOnly || structuralOnly && owner?.BlueprintName != "SandstoneWall" && owner?.BlueprintName != "Stalagmite" && owner?.BlueprintName != "Rubble"
+            if (floorOnly || sandstoneOnly && owner?.BlueprintName != "SandstoneWall" || structuralOnly && owner?.BlueprintName != "SandstoneWall" && owner?.BlueprintName != "Stalagmite" && owner?.BlueprintName != "Rubble"
                 || !ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner)
                 || !Placed(zone, cell, owner) || !OrdinaryForeground(owner)) return false;
             Tile[] group;
@@ -196,7 +200,7 @@ namespace CavesOfOoo.Rendering
             { sprite = foreground.sprite; return sprite != null; }
             // Passable Ginmere rubble retains its subject identity under an actor.
             // This does not change world selection or disclose another cell.
-            if (structuralOnly && owner?.BlueprintName == "Rubble" && rubble != null
+            if (structuralOnly && !sandstoneOnly && owner?.BlueprintName == "Rubble" && rubble != null
                 && Placed(zone, cell, owner) && OrdinaryForeground(owner))
             { sprite = rubble[0].sprite; return sprite != null; }
             if (TryResolveGround(zone, x, y, out var ground, out var floor) && ReferenceEquals(floor, owner))
