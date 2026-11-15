@@ -18994,7 +18994,7 @@
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Bounded depth1/2 sandstone accepted; immediate disclosed rubble continuity next, no whole-area completion.",
+      "next_action": "Bounded sandstone and rock continuity accepted; hearth/niches/plaque/inhabitants and whole-scene remain. Package then differentareaSpivenor livebaseline.",
       "legacy_inventory_pointer": "/sinkhole_stacks/2",
       "authored_depth_scope": [
         0,
@@ -19009,7 +19009,8 @@
         "loot",
         "return_route"
       ],
-      "lampwell_stone_receipt": "Docs/Verification/GraphicsExecution/LampwellInterior/receipt.json"
+      "lampwell_stone_receipt": "Docs/Verification/GraphicsExecution/LampwellInterior/receipt.json",
+      "lampwell_rocks_receipt": "Docs/Verification/GraphicsExecution/LampwellRocks/receipt.json"
     },
     {
       "id": "sinkhole/lampwell/depth/0",
@@ -19064,7 +19065,7 @@
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Bounded depth1/2 sandstone accepted; immediate disclosed rubble continuity next, no whole-area completion.",
+      "next_action": "Bounded sandstone and rock continuity accepted; hearth/niches/plaque/inhabitants and whole-scene remain. Package then differentareaSpivenor livebaseline.",
       "parent_id": "sinkhole/lampwell",
       "depth": 1,
       "required_roles": [
@@ -19075,7 +19076,8 @@
         "loot",
         "return_route"
       ],
-      "lampwell_stone_receipt": "Docs/Verification/GraphicsExecution/LampwellInterior/receipt.json"
+      "lampwell_stone_receipt": "Docs/Verification/GraphicsExecution/LampwellInterior/receipt.json",
+      "lampwell_rocks_receipt": "Docs/Verification/GraphicsExecution/LampwellRocks/receipt.json"
     },
     {
       "id": "sinkhole/lampwell/depth/2",
@@ -19097,7 +19099,7 @@
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Bounded depth1/2 sandstone accepted; immediate disclosed rubble continuity next, no whole-area completion.",
+      "next_action": "Bounded sandstone and rock continuity accepted; hearth/niches/plaque/inhabitants and whole-scene remain. Package then differentareaSpivenor livebaseline.",
       "parent_id": "sinkhole/lampwell",
       "depth": 2,
       "required_roles": [
@@ -19108,7 +19110,8 @@
         "loot",
         "return_route"
       ],
-      "lampwell_stone_receipt": "Docs/Verification/GraphicsExecution/LampwellInterior/receipt.json"
+      "lampwell_stone_receipt": "Docs/Verification/GraphicsExecution/LampwellInterior/receipt.json",
+      "lampwell_rocks_receipt": "Docs/Verification/GraphicsExecution/LampwellRocks/receipt.json"
     },
     {
       "id": "sinkhole/spivenor",
@@ -27342,5 +27345,77 @@
     "delivery": "currenteede744faMac/Linux excludesTine andLampwell; batch after rubble accepted",
     "hourlyReportUTC": "2026-11-15T07:18:55Z",
     "next": "Lampwell disclosed canonical rubble/rock body and bounded backing comparison; no generic floor on special owners. Then currentMac/Linux batch; continue differentareas. Deckdeferred."
+  },
+  "lampwell_rocks": {
+    "recordedUTC": "2026-11-15T08:03:58.479771+00:00",
+    "sourceBase": "aa85471427d793ee2afd8d52673be384eb526c39",
+    "status": "bounded Editor accepted; publication and packaging pending",
+    "zones": [
+      "Overworld.12.3.1",
+      "Overworld.12.3.2"
+    ],
+    "seed": 224401440,
+    "scope": "Reuse native Rubble/Stalagmite bodies/readers. Exact current Lampwell sandstone admission; nonmaterial ambient backing only for exactly one disclosed canonical rock with available native resource and no actual floor, competing ground, explicit background or tile-state hazard. Empty cells unchanged; no floor owner/collider/generation or global borrowing.",
+    "nativeRED": {
+      "job": "d4bea75f20d642e080b6db28b3ffa8ab",
+      "failed": 38,
+      "passed": 16
+    },
+    "nativeGREEN": {
+      "job": "cf4c86bc691e4d0a9c7a0d30769f3658",
+      "passed": 246,
+      "failed": 0,
+      "suites": "rock and stone both depths; GinmereDescent, StillleafDescent, ShallowCaves",
+      "counts": "final nonadditive"
+    },
+    "actual": {
+      "baseline": "Reused actual foundation after screenshots from6050depth1 and6060depth2 checkpoints, fresh independently loaded afters at40,12HP39",
+      "readers": "Rubble39,12 native Terrain description; Stalagmite18,6 depth1 native Object portrait, solid flag and real sandstonefloor present",
+      "movement": "ActualLeft onto39,12 Rubble andRight return; stairs12.3.2\u219212.3.1\u219212.3.2. No F12/injection. Stalagmite remote Look only, no bump/approach claimed.",
+      "saveReload": "Separate fresh6060 load, LeftRight then explicitF5 in active game-ID folder6080HP39; freshContinue12.3.2at40,12HP39",
+      "records": "1925descent records exact against baseline;2081inhabited before/after/presave/reload exact byID",
+      "comparisons": {
+        "descent": {
+          "world": 29863,
+          "sidebar": 0,
+          "hotbar": 0
+        },
+        "inhabited": {
+          "world": 41023,
+          "sidebar": 0,
+          "hotbar": 0
+        },
+        "reload": {
+          "world": 18684,
+          "sidebar": 20352,
+          "hotbar": 0
+        }
+      }
+    },
+    "performance": {
+      "seconds": 144.2242526,
+      "rendererP95Ms": 0.074375,
+      "rendererMaxMs": 254.750709,
+      "mainMaxMs": 2046.630333,
+      "scope": "after-only Editor readers/rubble walking/stairs; no matched-before or packaged performance claim; R11 open"
+    },
+    "reviews": {
+      "source": "sumphold_grade_source_review:0P1/P2; exact single-owner/resource/nohazard/background/floor guard, sibling contracts and disposal intact",
+      "visual": "sumphold_baseline_review:0visibleP1/P2; both depths improve ground continuity without widened passage/newledge; HUD exact; emptycells and memory remain distinct",
+      "reload": "Reload: reviewer0newP1/P2,18684worldpixels localized(284,243)\u2013(568,438), all changed channels darken or remain equal,max5RGB; stable silhouettes/material/readability. Causeunproven. Sidebar20352log/hotbar0."
+    },
+    "limits": [
+      "Initial exact fixture discovery0 excluded-zero-discovery.xml; actual RED54 and GREEN246 only counted.",
+      "First save checkpoint copy selected imported FlatPixelGreyboxMarker/Quick6060 instead of active game-ID folder; stale copy/timestamp excluded and retained, repeated F5 produces verified6080. Original actual reader/travel observations remain valid.",
+      "No new art, generation, population, shadow or memory expansion. Hollow genuinely emptycells, hearth/niches/plaque/inhabitants remain separate debt.",
+      "Reload comparison is measured, not assumed pixel-identical."
+    ],
+    "coverage": "two named depths real rock owners only",
+    "areaPolish": "in progress",
+    "population": "unchanged",
+    "shadows": "unchanged",
+    "delivery": "currenteede744faMac/Linux excludesTine+Lampwell; nextbatch",
+    "hourlyReportUTC": "2026-11-15T07:18:55Z",
+    "next": "Publish exact files, batchTine+Lampwell currentMac/Linux; then Spivenor16.4 actualmouth/descent/inhabited baseline before any extension. Deckdeferred."
   }
 }

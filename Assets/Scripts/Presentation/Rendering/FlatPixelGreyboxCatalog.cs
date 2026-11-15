@@ -2108,7 +2108,8 @@ namespace CavesOfOoo.Rendering
                     _lampwellStoneArt = new FlatPixelShallowCavesCatalog(
                         Resources.Load<Texture2D>(FlatPixelShallowCavesCatalog.ResourcePath),
                         Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),
-                        null, null, null, null, _glyphFallback).AdmittingLampwellStone();
+                        Resources.Load<Texture2D>("Sprites/Environment/rubble"),
+                        Resources.Load<Texture2D>("Sprites/Environment/stalagmite"), null, null, _glyphFallback).AdmittingLampwellStone();
                 }
                 return _lampwellStoneArt;
             }

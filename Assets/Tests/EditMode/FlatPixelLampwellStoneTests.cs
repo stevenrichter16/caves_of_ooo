@@ -162,7 +162,7 @@ namespace CavesOfOoo.Tests
                 Assert.True(zone.RemoveEntity(floor));Assert.False(art.TryResolveCellBackdrop(zone,fc.X,fc.Y,out _,out _));
             }
         }
-        [TestCase("Rubble")][TestCase("Stalagmite")][TestCase("DescentLedge")]
+        [TestCase("DescentLedge")]
         [TestCase("HearthPatch")][TestCase("DroseraRing")][TestCase("NicheHome")][TestCase("PlaqueWall")]
         public void SpecialOwnersNeverBorrowSandstoneBodyOrReader(string name)
         {
