@@ -1,0 +1,162 @@
+{
+  "recordedUTC": "2026-11-15T19:47:45.413058+00:00",
+  "sourceBase": "3f57ec68c89a9579f230c529e062f6e0015deedc",
+  "status": "bounded Editor accepted; publication and packaging pending",
+  "zone": "Overworld.13.7.0",
+  "seed": 224401440,
+  "scope": "Native exact current canonical Tine Spread Village/LakesideVillage uses white filter, contrast5, saturation0; existing Volume-owned fade. Art, water resolver, geometry, population, shadows, mechanics and memory policy unchanged.",
+  "nativeRED": {
+    "job": "35d4b631e21f4fc2b8b2719b0c16e774",
+    "total": 21,
+    "genuinePositivePremiseFailures": 17,
+    "controlsPassed": 3,
+    "testOracleFailure": 1,
+    "correction": "Malformed .extra ID parser returns(-1,-1,-1), so existing fallback is Cave, not Spread. Corrected test only; not a runtime defect."
+  },
+  "nativeGREEN": {
+    "job": "5a67463cdea94eebb38d7e4fb86b9ba5",
+    "passed": 214,
+    "failed": 0,
+    "skipped": 0,
+    "newTineCases": 21,
+    "suites": [
+      "BiomeColorPatcherTravelTests",
+      "BiomeColorPatcherTests",
+      "FlatPixelTineWaterTests"
+    ],
+    "nativeStart": "2026-11-15 19:42:13Z",
+    "nativeEnd": "2026-11-15 19:42:18Z",
+    "seconds": 4.5129862,
+    "connectorLimit": "Initialization timeout preceded delayed native run; native XML proves214passes. No retry/overlap."
+  },
+  "actual": {
+    "fixture": "../TineWater/AfterCheckpoint/Quick.json + Quick.sav.gz",
+    "start": "5430HP40at39,11",
+    "sameRoute": "Left8 Up5 \u219231,6turn5560; board31,7 reading only; Right1\u219232,6 water33,6 reading only; Left1 Down5 Left19 Up4\u219212,7turn5860",
+    "travel": "Down4 Right27, ordinary world mapLeft and descent12.7turn6210; ordinary Right and descent13.7, F5fresh6250HP40at39,11",
+    "conditions": "Wet77\u219264\u219263\u219234\u2192dried naturally; Dusk\u2192Dawn. No F12, injection, healing, combat, Break execution, transaction or ending action.",
+    "records": "2582 terrain/wall/duckboard/reed/boat IDs,blueprints,positions,solid,HP,poolVolume exact against retained earned checkpoint owners-reload.json",
+    "comparisons": {
+      "center": {
+        "world": {
+          "pixels": 564000,
+          "maxRGB": 76
+        },
+        "sidebar": {
+          "pixels": 0,
+          "maxRGB": 0
+        },
+        "hotbar": {
+          "pixels": 0,
+          "maxRGB": 0
+        }
+      },
+      "waterfront": {
+        "world": {
+          "pixels": 564000,
+          "maxRGB": 76
+        },
+        "sidebar": {
+          "pixels": 0,
+          "maxRGB": 0
+        },
+        "hotbar": {
+          "pixels": 0,
+          "maxRGB": 0
+        }
+      },
+      "interior": {
+        "world": {
+          "pixels": 550192,
+          "maxRGB": 76
+        },
+        "sidebar": {
+          "pixels": 0,
+          "maxRGB": 0
+        },
+        "hotbar": {
+          "pixels": 0,
+          "maxRGB": 0
+        }
+      },
+      "board-reader": {
+        "world": {
+          "pixels": 344886,
+          "maxRGB": 76
+        },
+        "sidebar": {
+          "pixels": 0,
+          "maxRGB": 0
+        },
+        "hotbar": {
+          "pixels": 0,
+          "maxRGB": 0
+        },
+        "reader": {
+          "pixels": 0,
+          "maxRGB": 0
+        }
+      },
+      "water-reader": {
+        "world": {
+          "pixels": 344886,
+          "maxRGB": 76
+        },
+        "sidebar": {
+          "pixels": 0,
+          "maxRGB": 0
+        },
+        "hotbar": {
+          "pixels": 0,
+          "maxRGB": 0
+        },
+        "reader": {
+          "pixels": 0,
+          "maxRGB": 0
+        }
+      },
+      "reload": {
+        "world": {
+          "pixels": 0,
+          "maxRGB": 0
+        },
+        "sidebar": {
+          "pixels": 20339,
+          "maxRGB": 243
+        },
+        "hotbar": {
+          "pixels": 0,
+          "maxRGB": 0
+        }
+      }
+    },
+    "rectangles": "world x0..939/y40..639; sidebar940..1279/y0..799; hotbar0..939/y680..799; reader143..798/y181..508. Global grade also affects letterbox; no imagery edited."
+  },
+  "performance": {
+    "seconds": 55.0592504,
+    "samples": 40197,
+    "wrapped": false,
+    "rendererP95Ms": 0.086083,
+    "rendererMaxMs": 105.834958,
+    "mainMaxMs": 735.278208,
+    "scope": "After-only Editor ordinary interior-return/walk/world travel/F5 and tool scheduling. No baseline attribution, packaged FPS or R11 closure."
+  },
+  "independentReview": {
+    "source": "sumphold_grade_source_review:0P1/P2",
+    "visual": "sumphold_baseline_review:0visibleP1/P2 all5pairs and freshreload; reader/sidebar/hotbarexact in pairs; reloadworld/hotbar0/sidebar20339logpixels"
+  },
+  "preservation": "83foreign hashes and normalfb61 saves/gameplaypreferences exact; four test/runtime metadata exceptions. No art/build mutation or cleanup. Root stopped/rootnull/clean.",
+  "limits": [
+    "Initial Play request during post-test restoration yielded playingfalse/rootnull, no gameplay claimed; second request after explicit idle succeeded.",
+    "Before first board reader, rapid key batch only opened interact; state observed then Down/F1 opened full reader without turn or Break.",
+    "Neighbor diagnostic used fixed Tine POI metadata; corrected receipt omits that metadata while preserving actual active zone and filter."
+  ],
+  "coverage": "no new art family coverage",
+  "polish": "bounded palette accepted; whole-area incomplete",
+  "population": "unchanged",
+  "shadows": "unchanged",
+  "delivery": "Current d5e022bff Mac/Linux excludes Lampwell and Tine grade; batch next. Linux unexecuted; Deck deferred.",
+  "remaining": "Grass-like packed roads, remembered shoreline/dock black-backed glyphs, sparse courts, broader population/shadows/whole-area V0\u2013V7 and R11.",
+  "hourlyReportUTC": "2026-11-15T18:51:19Z",
+  "next": "Publish exact slice, batch current Lampwell/Tine Mac/Linux with actual Mac checks, then next evidenced material/composition gap."
+}

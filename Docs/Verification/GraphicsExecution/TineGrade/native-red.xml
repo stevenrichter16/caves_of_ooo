@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="21" result="Failed(Child)" total="21" passed="3" failed="18" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 19:40:19Z" end-time="2026-11-15 19:40:20Z" duration="1.5948335">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38032" result="Failed" site="Child" start-time="2026-11-15 19:40:19Z" end-time="2026-11-15 19:40:20Z" duration="1.594834" total="21" passed="3" failed="18" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46555" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38032" result="Failed" site="Child" start-time="2026-11-15 19:40:19Z" end-time="2026-11-15 19:40:20Z" duration="1.584076" total="21" passed="3" failed="18" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46556" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38032" result="Failed" site="Child" start-time="2026-11-15 19:40:19Z" end-time="2026-11-15 19:40:20Z" duration="1.578307" total="21" passed="3" failed="18" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46557" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38032" result="Failed" site="Child" start-time="2026-11-15 19:40:19Z" end-time="2026-11-15 19:40:20Z" duration="1.572687" total="21" passed="3" failed="18" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30882" name="BiomeColorPatcherTravelTests" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="169" result="Failed" site="Child" start-time="2026-11-15 19:40:19Z" end-time="2026-11-15 19:40:20Z" duration="0.969173" total="21" passed="3" failed="18" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31050" name="NativeTineGradeDoesNotReinterpretForeignSavedBiomes" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 19:40:19Z" end-time="2026-11-15 19:40:20Z" duration="0.482094" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31047" name="NativeTineGradeDoesNotReinterpretForeignSavedBiomes(Sodden)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeDoesNotReinterpretForeignSavedBiomes(Sodden)" methodname="NativeTineGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="353703875" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.198319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31048" name="NativeTineGradeDoesNotReinterpretForeignSavedBiomes(Beating)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeDoesNotReinterpretForeignSavedBiomes(Beating)" methodname="NativeTineGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1667944159" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.005398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31049" name="NativeTineGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" methodname="NativeTineGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1818408544" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.005089" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31046" name="NativeTineGradeFollowsDisplayedReplacementAndExcludesSavedLair" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeFollowsDisplayedReplacementAndExcludesSavedLair" methodname="NativeTineGradeFollowsDisplayedReplacementAndExcludesSavedLair" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="975303768" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.004231" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeFollowsDisplayedReplacementAndExcludesSavedLair () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:82
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31045" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.214804" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31033" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;legacy&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1925594751" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.054303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31034" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;sprites-off&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1913315715" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.003903" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31035" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;wrong-poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;wrong-poi&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="625606545" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.004263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31036" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;wrong-name&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;wrong-name&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="806810321" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.004225" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31037" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;wrong-profile&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;wrong-profile&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1599605389" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.004206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31038" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;wrong-type&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;wrong-type&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="786916862" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.004928" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31039" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;empty-profile&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;empty-profile&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="977783889" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.061625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31040" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;null-profile&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;null-profile&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2042282247" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.003948" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31041" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;null-pois&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;null-pois&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1394425740" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.004888" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31042" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;short-pois&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;short-pois&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2093365012" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.005387" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31043" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;detached&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1518344650" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.024616" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31044" name="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;replaced-cache&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority(&quot;replaced-cache&quot;)" methodname="NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="257231474" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.034856" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeLosesAndRecoversCurrentLakesideVillageAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31032" name="NativeTineGradePreservesContrastAndRestoresSameBiomeTravel" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradePreservesContrastAndRestoresSameBiomeTravel" methodname="NativeTineGradePreservesContrastAndRestoresSameBiomeTravel" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1417076751" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.006451" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradePreservesContrastAndRestoresSameBiomeTravel () [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31054" name="NativeTineGradeRejectsAliasAndDepth" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeRejectsAliasAndDepth" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.239669" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31051" name="NativeTineGradeRejectsAliasAndDepth(&quot;Overworld.013.7.0&quot;,Spread)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeRejectsAliasAndDepth(&quot;Overworld.013.7.0&quot;,Spread)" methodname="NativeTineGradeRejectsAliasAndDepth" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1781539644" result="Passed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.178784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31052" name="NativeTineGradeRejectsAliasAndDepth(&quot;Overworld.13.7.0.extra&quot;,Spread)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeRejectsAliasAndDepth(&quot;Overworld.13.7.0.extra&quot;,Spread)" methodname="NativeTineGradeRejectsAliasAndDepth" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1914290262" result="Failed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.054531" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertTineGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeRejectsAliasAndDepth (System.String zoneId, CavesOfOoo.Core.BiomeType biome) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherTineGradeTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31053" name="NativeTineGradeRejectsAliasAndDepth(&quot;Overworld.13.7.1&quot;,Cave)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeRejectsAliasAndDepth(&quot;Overworld.13.7.1&quot;,Cave)" methodname="NativeTineGradeRejectsAliasAndDepth" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="585034789" result="Passed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.003796" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31055" name="NativeTineGradeRejectsProfileAtAnotherAuthoredTown" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeTineGradeRejectsProfileAtAnotherAuthoredTown" methodname="NativeTineGradeRejectsProfileAtAnotherAuthoredTown" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2110015831" result="Passed" start-time="2026-11-15 19:40:20Z" end-time="2026-11-15 19:40:20Z" duration="0.005680" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
