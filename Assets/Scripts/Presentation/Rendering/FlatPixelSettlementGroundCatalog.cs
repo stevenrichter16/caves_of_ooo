@@ -167,7 +167,7 @@ namespace CavesOfOoo.Rendering
             var (wx, wy, _) = WorldMap.FromZoneID(zone.ZoneID);
             var map = WorldLocationContext.For(zone).WorldMap;
             var biome = map.GetBiome(wx, wy);
-            // Intake, Cinderhold, Tally, Quillhold and Gantry roads read as worn stone/earth,
+            // Intake, Cinderhold, Tally, Quillhold, Gantry and Tine roads read as worn stone/earth,
             // distinct from adjacent yards. Reuse approved road art; no geometry change.
             bool intakeRoad = zone.ZoneID == MarrowstyeCompositionPlan.ZoneID
                 && AreaCompositionScope.IsMarrowstyeSite(map.GetPOI(wx, wy))
@@ -178,7 +178,9 @@ namespace CavesOfOoo.Rendering
                 || zone.ZoneID == QuillholdCompositionPlan.ZoneID && biome == BiomeType.Spread
                 && AreaCompositionScope.IsQuillholdSite(map.GetPOI(wx, wy))
                 || zone.ZoneID == GantryCompositionPlan.ZoneID && biome == BiomeType.Spread
-                && AreaCompositionScope.IsGantrySite(map.GetPOI(wx, wy));
+                && AreaCompositionScope.IsGantrySite(map.GetPOI(wx, wy))
+                || zone.ZoneID == TineCompositionPlan.ZoneID && biome == BiomeType.Spread
+                && AreaCompositionScope.IsTineSite(map.GetPOI(wx, wy));
             return MaterialFor(floor, x, y, biome, intakeRoad);
         }
 

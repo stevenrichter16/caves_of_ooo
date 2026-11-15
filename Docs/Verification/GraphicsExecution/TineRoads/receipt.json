@@ -1,0 +1,112 @@
+{
+  "recorded_utc": "2026-11-15T21:45:07.965869+00:00",
+  "source_base": "ce0293bd296377ba5fa72a15805dce471bf6917c",
+  "scope": "Exact current Tine13.7 Spread/LakesideVillage RoadStone uses approved32/33. No art/layout/palette/population/shadows/mechanics/memory-policy expansion.",
+  "native": [
+    {
+      "path": "native-red.xml",
+      "total": "26",
+      "passed": "8",
+      "failed": "18",
+      "skipped": "0",
+      "start-time": "2026-11-15 21:37:10Z",
+      "end-time": "2026-11-15 21:37:12Z",
+      "duration": "1.3543976"
+    },
+    {
+      "path": "native-green.xml",
+      "total": "151",
+      "passed": "151",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-11-15 21:38:20Z",
+      "end-time": "2026-11-15 21:39:07Z",
+      "duration": "46.7287399"
+    }
+  ],
+  "test_jobs": [
+    "29957e4d1b594b5fa4f6abd3bbd8ad0f",
+    "6f9546fe3d3f48aa862171f6307e7671"
+  ],
+  "native_interpretation": "18 shared-positive-premise RED failures,8passingcontrols;151/151GREEN, no oracle removal",
+  "actual": {
+    "fixture": "TineGrade/AfterCheckpoint6250HP40seed224401440at39,11",
+    "route": "center; E+period one wait repeated both runs; C/period/F1reader;Left8Up5waterfront31,6;Down5Left19Up4interior12,7/6670;Down4Right27,13.7\u219412.7,F5fresh7060HP40at39,11",
+    "invincible": false,
+    "terrain": "2469IDs/positions/cooccupants/parts exact except1ambientLightSource intensity;TileState/player/seed exact; same across reload",
+    "image_comparisons": {
+      "center": {
+        "world": 69972,
+        "sidebar": 0,
+        "hotbar": 0,
+        "maxRGB": 70
+      },
+      "waterfront": {
+        "world": 69248,
+        "sidebar": 0,
+        "hotbar": 0,
+        "maxRGB": 70
+      },
+      "interior": {
+        "world": 68928,
+        "sidebar": 0,
+        "hotbar": 0,
+        "maxRGB": 70
+      },
+      "road-reader": {
+        "world": 29360,
+        "sidebar": 0,
+        "hotbar": 0,
+        "maxRGB": 69,
+        "reader_panel": 0
+      },
+      "reload": {
+        "world": 0,
+        "sidebar": 19666,
+        "hotbar": 0
+      }
+    },
+    "no_actions": "No F12/protection/injection/healing/combat/destruction/transfer; readingonlyinteraction. Initial interrupted assembly-reload startup excluded."
+  },
+  "profile": {
+    "path": "profile.json",
+    "seconds": 81.4149741,
+    "samples": 64139,
+    "wrapped": false,
+    "renderer_p95_ms": 0.081708,
+    "renderer_max_ms": 99.799834,
+    "main_max_ms": 651.824042,
+    "limits": "after-onlyEditor2319x1283; no matchedattribution/packageFPS/R11closure"
+  },
+  "reviews": {
+    "source": "sumphold_grade_source_review0P1/P2",
+    "visual": "build_comparison_plan0P1/P2all4actualpairs",
+    "debt": "sparseyards/angularroadedges/thresholdcontrast remain"
+  },
+  "preservation": {
+    "at_utc": "2026-11-15T21:44:03.706035+00:00",
+    "foreignTrackedExact": 83,
+    "normal_saves": {
+      "normal-editor": true,
+      "normal-standalone": true
+    },
+    "preferenceChangedKeys": {
+      "unity.DefaultCompany.caves-of-ooo": [
+        "PT_Run",
+        "unity.player_session_count",
+        "unity.player_sessionid",
+        "unity_connect.session_id"
+      ],
+      "com.DefaultCompany.2D-URP": []
+    },
+    "baseline": "/private/tmp/coo-graphics-build-protection-420e905aa-restored-source/before.json",
+    "cleanup": false,
+    "unity": "stopped/rootnull/clean"
+  },
+  "coverage": "no new art family",
+  "polish": "bounded road readability accepted;wholearea incomplete",
+  "population": "unchanged",
+  "shadows": "unchanged",
+  "delivery": "current420e905aa excludesGantry+Tineroads;batchnext",
+  "next": "Batch Gantry+Tine Mac/Linux with actual Mac acceptance, then live Lampwell12.3.2 PebbleSundewThreshold backing baseline from LampwellHearth/AfterCheckpoint6300HP39seed224401440at40,12; Left9to31,12 thenUp1to31,11. Retained28owners:26SandstoneFloor/1Rubble/1bare, confirmlive before reuseapproved12\u201315/ambient; preserve glyphs/stepping/faction/memory. No acceptance of next slice yet. Deckdeferred/hourlyACTIVE/traversaldesignonly."
+}
