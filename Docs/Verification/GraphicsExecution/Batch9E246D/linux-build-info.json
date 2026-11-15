@@ -1,0 +1,150 @@
+{
+  "source_commit": "9e246d3ef0adb3298102c3f5ea2a02f9287482ac",
+  "runtime_source_commit": "9e246d3ef0adb3298102c3f5ea2a02f9287482ac",
+  "built_after_utc": "2026-11-15T23:27:16.295261+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-9e246d3ef-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-15-graphics-9e246d3ef-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-9e246d3ef-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+  "planned_new_files": 32,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch9E246D/mac-build.json",
+      "sha256": "7a0adcd4fc4f811a3bec65ef32bc4a459a04160cc9b2cccf130110e30e575aae",
+      "summary": {
+        "job_id": "build-33974c13dc",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-15-graphics-9e246d3ef-current/CavesOfOoo.app",
+        "started_at": "2026-11-15T23:28:07.312925Z",
+        "duration_seconds": 31.399849,
+        "completed_at": "2026-11-15T23:28:38.712774Z",
+        "total_size_mb": 549.01,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch9E246D/linux-build.json",
+      "sha256": "5ffe917122510e860d322ef1023cf36e5c7a2fa95415b99e46e029f2e241440d",
+      "summary": {
+        "job_id": "build-78f5b01a9d",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-15-graphics-9e246d3ef-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-15T23:29:06.939427Z",
+        "duration_seconds": 21.662221,
+        "completed_at": "2026-11-15T23:29:28.601648Z",
+        "total_size_mb": 409.87,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/RootSurfaceRocks/native-green.xml",
+        "sha256": "cf7cdc22ed6e3c142c9e9dd012e8dc495a8a18fb12ba16299f6002cd4fcbd8f6",
+        "passed": 406,
+        "started_at_utc": "2026-11-15T23:05:18+00:00",
+        "completed_at_utc": "2026-11-15T23:06:12+00:00"
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/SpivenorSundew/native-green.xml",
+        "sha256": "01c801cd94ff24615dbf23df100a140ecdf89c789ecded17386e03b4bf432112",
+        "passed": 461,
+        "started_at_utc": "2026-11-15T23:18:51+00:00",
+        "completed_at_utc": "2026-11-15T23:20:16+00:00"
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Root406 and Spivenor461 are separate bounded native gates; counts are not added. No combined final-source suite claim. Helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/Batch9E246D/build-input-audit.json",
+    "sha256": "eb0f9c40253a0e8c21b3c40ba17dc5a9884743e3f1724f9c6390cb5e3254b5d5",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 78,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 67
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0,
+      "rootOwnedNeutralMetadata": 1
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-15T23:27:16.295261+00:00",
+      "checks": []
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 85,
+    "preservedStartupOverlay": {
+      "files": {
+        "Packages/manifest.json": "70bcbc90efe3eb4f62e7dc314f2f618c7e9b7fa323458a2692b9932cac86315a",
+        "Packages/packages-lock.json": "4af2b287f43908facf297e32f0f24f9bfeb1e36445ff4d9c110e7286653980f0",
+        "ProjectSettings/ProjectSettings.asset": "ef1dcb4e861d7506b1caa73e977081270aed0c6074296a4ee0a9eb6aebafaf91"
+      },
+      "description": "Existing unstaged Linux SDK/toolchain/sysroot1.1.1 (HEAD1.1.0) and explicit Standalone static1/dynamic0 batching entry. Predates resumed work; preserved, included in builds, not a clean-settings or binary reproducibility claim."
+    },
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/Batch9E246D/package.py",
+    "sha256": "77194c9507825b704c591172fbbe222618867d2bbd9fe6306e2e5575d4ee46ad",
+    "adapted_from": "Docs/Verification/GraphicsExecution/Batch79F4A9/package.py",
+    "adapted_from_sha256": "e55494baec338956dad4b95cd8b7711b3d7c9309648cf60d0287ecdd89eac8b5"
+  },
+  "created_at_utc": "2026-11-15T23:29:55.532996+00:00",
+  "package_flavor": "current-flat-graphics",
+  "scope": "Published graphics through9e246d3ef: Root surface rocks and Spivenor sundew backing. Root406 and Spivenor461 are separate bounded native gates; counts never added. Linux execution unverified; Deck deferred; no whole-area or packaged performance acceptance.",
+  "source_provenance": "Source/runtime revision and build boundary are root assertions. Exact output/job/time receipts and neutral input/settings bytes are checked; current runtime-byte equality is a retained root assertion; no source-to-binary reproducibility claim.",
+  "preservation_sequence": "Prebuild snapshot /private/tmp/coo-graphics-build-protection-9e246d3ef:59744tracked paths (59742 hashed objects plus2 directory/gitlink entries),84dirty=83foreign+1owned neutral metadata,normal saves/preferences and prior79f4a98f0 packages protected. Final restoration separate.",
+  "canonical_executable_copy": {
+    "source_commit": "9e246d3ef0adb3298102c3f5ea2a02f9287482ac",
+    "at_utc": "2026-11-15T23:29:55.532634+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-11-15-graphics-9e246d3ef-current/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-11-15-graphics-9e246d3ef-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4456,
+    "both_sha256": "26901901cc6dd63212d741b339897f072d34cb7b3f08419fe451fc8e77c79a1f",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "current_native_status": {
+    "root_surface_rocks": "406/406",
+    "spivenor_sundew": "461/461",
+    "counts_added_together": false,
+    "actual": "Editor accepted; packaged smoke pending"
+  },
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing controller documentation is carried forward unchanged. No new Deck qualification; user deferred that work.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "performance_limits": "Separate after-only Root and Spivenor Editor profiles are retained; this helper neither validates those measurements nor treats them as packaged/Linux/Deck performance acceptance.",
+  "whole_area_polish_accepted": false,
+  "development_builds": true,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance.",
+  "metadata_correction": "Initial archive retained as Builds/SteamDeck/2026-11-15-graphics-9e246d3ef-current/CavesOfOoo-Linux-flat16x24-correction-pass1.tar.gz; source/runtime binaries unchanged. Only current metadata prose/pins and derived checksums/archive corrected."
+}
