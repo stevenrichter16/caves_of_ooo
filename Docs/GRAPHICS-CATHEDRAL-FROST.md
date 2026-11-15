@@ -1,3 +1,5 @@
+**Delivery update:** Sourcea33b46cab currentMac/Linux, BatchA33B46; actualMacreaders/walk/travel/save/freshreload accepted with disclosed encounter. Linuxunexecuted,Deckdeferred. Earlierpending statementsbelow historical.
+
 # Cathedral frost vents
 
 Two actual black-backed frost glyphs on the Cathedral first shelf now use the approved flat vent shape with a Cathedral-specific cool palette. The original Ginmere source and runtime stay unchanged. The first shared-palette comparison failed readability review; the saved native-material correction strengthens existing fissure, rim, sparse rime and short-breath pixels without enlarging the footprint. All1152native pixels reproduce from the reopened editable Blender source.

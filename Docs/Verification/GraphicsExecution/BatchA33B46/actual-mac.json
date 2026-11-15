@@ -1,0 +1,62 @@
+{
+  "recorded_utc": "2026-11-15T18:19:13.451356+00:00",
+  "source": "a33b46cabfb8b2173ab988c421610d75b79c0a35",
+  "app": "Builds/Verification/2026-11-15-graphics-a33b46cab-current/CavesOfOoo.app",
+  "processes": [
+    24331,
+    25154,
+    25263,
+    25503
+  ],
+  "all_closed": true,
+  "cathedral": {
+    "fixture": "../CathedralFrost/AfterCheckpoint1840HP40at58,8",
+    "actions": "Full frost-vent field-note reader; ordinary movement and stairs5.4.1\u21925.4.0\u21925.4.1; F5; fullprocessrestart/Continue",
+    "encounter": "Nativefist hit PaleStalker rightarm3damage/47HPremaining during stairroute; blocked step corrected by ordinaryDown. Player remained40HP; no encounterbalanceclaim.",
+    "save": "CathedralAfterSave1990",
+    "fresh_continue": "5.4.1 at52,12HP40; stairsup and currentfrostsprites visible"
+  },
+  "quiet_door": {
+    "fixture": "../QuietDoorWater/AfterSave6180HP40at39,11",
+    "actions": "Down8 to39,19; cDownF1 waterreader;Down39,20 shows99%drenched/40HP;Up;worldmap16.1\u219217.1\u219216.1;F5;fullprocessrestart/Continue",
+    "save": "QuietAfterSave6360",
+    "fresh_continue": "16.1.0 at39,11HP40,wet92%;correctedwater visible"
+  },
+  "input_boundaries": "No F12/injection/healing/destruction/transfer; ordinary encounter disclosed",
+  "screenshots": "Actual CUA screenshots shown inline1280x856 including56px titlebar; no durableMacPNG or pixelcomparisonclaim",
+  "selection_incident": {
+    "old_process": 24409,
+    "old_app": "Builds/Verification/2026-10-25-flat16x24-current/CavesOfOoo.app",
+    "cause": "CUAgetApp bydisplayname opened/bound older registered application while current24331 was running",
+    "effect": "Two Continue attempts failed only inoldapp; excluded fromcurrentacceptance. Currentrun1log had no loadattempt atthatpoint.",
+    "resolution": "Closedoldapp throughCUA; pgrepverifiedonly24331; everycurrentbindingafterward usedexactfullapppath; currentContinue succeeded",
+    "save_preservation": "No newgame or save input inoldapp; finalfullsnapshot restoration exact"
+  },
+  "logs": {
+    "mac-run1.log": {
+      "compute_buffer_disposal_warnings": 1,
+      "premature_thread_notices": 6,
+      "development_shutdown_memory_diagnostics": 1,
+      "save_load_failure_messages": 0
+    },
+    "mac-run2.log": {
+      "compute_buffer_disposal_warnings": 1,
+      "premature_thread_notices": 6,
+      "development_shutdown_memory_diagnostics": 1,
+      "save_load_failure_messages": 0
+    },
+    "mac-run3.log": {
+      "compute_buffer_disposal_warnings": 1,
+      "premature_thread_notices": 6,
+      "development_shutdown_memory_diagnostics": 1,
+      "save_load_failure_messages": 0
+    },
+    "mac-run4.log": {
+      "compute_buffer_disposal_warnings": 1,
+      "premature_thread_notices": 6,
+      "development_shutdown_memory_diagnostics": 1,
+      "save_load_failure_messages": 0
+    }
+  },
+  "limits": "Developmentbuild; no sustainedperformance orR11claim; Linux unexecuted; Deckdeferred"
+}

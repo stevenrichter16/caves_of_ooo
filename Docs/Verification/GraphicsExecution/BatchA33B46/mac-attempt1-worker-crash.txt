@@ -1,0 +1,70 @@
+0.00 ms.
+Asset Pipeline Refresh (id=0c6b7fa007bce4d90a8dbae7d0a11fe6): Total: 0.015 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unexpected transport error from import worker 0 (possible crash). code=2 error=End of file -- for more information, check Logs/AssetImportWorker0.log
+[OnDemand] Worker 0: WorkerState(Connected), ImporterState(Preparing) session transport - while handling artifactKey Guid(00000000000000000000000000000000) Importer(-2,00000000000000000000000000000000) - path  - see Logs/AssetImportWorker0.log
+Asset Pipeline Refresh (id=ac93312ee0c9c4b73ab188253bf0d897): Total: 0.128 seconds - Initiated by RefreshV2(NoUpdateAssetOptio
+ng 0x6175731712x from 0x8402340288x
+Pkilling 0x6192525312x from 0x8402340288x
+Pkilling 0x6177452032x from 0x8402340288x
+Pkilling 0x6165409792x from 0x8402340288x
+Entering thread summarizer pause from 0x8402340288x
+Finished thread summarizer pause from 0x8402340288x.
+Failed to create breadcrumb file (null)/crash_hash_0x0
+debugger-agent: Unable to listen on 53
+
+Waiting for dumping threads to resume
+
+=================================================================
+	External Debugger Dump:
+=================================================================
+
+=================================================================
+	Basic Fault Address Reporting
+=================================================================
+Memory around native instruction pointer (0x1010ce388):0x1010ce378  8a 02 40 f9 ab f1 7d d3 6b 01 0d cb 40 01 0b 8b  ..@...}.k...@...
+0x1010ce388  0c 00 40 b9 9f 01 09 6b 01 03 00 54 eb 03 00 aa  ..@....k...T....
+0x1010ce398  6e 8d 40 f8 6f 7d 40 39 f0 03 80 52 10 02 0f cb  n.@.o}@9...R....
+0x1010ce3a8  71 09 40 f9 ff 01 01 71 6f 31 8e 9a 0e 32 91 9a  q.@....qo1...2..
+
+=================================================================
+	Managed Stacktrace:
+=================================================================
+=================================================================
+Obtained 37 stack frames.
+#0  0x000001010ce388 in core::base_hash_set<core::pair<core::basic_string<char, core::StringStorageDefault<char>> const, keywords::LocalKeyword, true>, core::hash_pair<core::hash<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>, core::equal_pair<std::__1::equal_to<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>>::node* core::base_hash_set<core::pair<core::basic_string<char, core::StringStorageDefault<char>> const, keywords::LocalKeyword, true>, core::hash_pair<core::hash<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>, core::equal_pair<std::__1::equal_to<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>>::lookup<core::basic_string_ref<char>, core::equal_pair<std::__1::equal_to<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>>(core::basic_string_ref<char> const&, core::equal_pair<std::__1::equal_to<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>> const&) const
+#1  0x000001010ca508 in keywords::KeywordRemap::Init(keywords::LocalSpace const&, keywords::LocalSpace const&)
+#2  0x000001010ee404 in ShaderLab::IntShader::ResolveFallback(ShaderLab::SerializedShader const&, Shader*, core::vector<PPtr<Shader>, core::allocator<PPtr<Shader>, 0ul>>&, bool)
+#3  0x00000101065140 in ShaderLab::IntShader::CreateFromSerializedShaderMainThread(ShaderLab::IntShader*, ShaderLab::SerializedShader const&, core::vector<PPtr<Shader>, core::allocator<PPtr<Shader>, 0ul>>&, bool, Shader*)
+#4  0x0000010106961c in ShaderFromSerializedShaderMainThread(ShaderLab::IntShader*, ShaderLab::SerializedShader const*, core::vector<PPtr<Shader>, core::allocator<PPtr<Shader>, 0ul>>&, bool, Shader*)
+#5  0x000001030f8eb8 in Shader::CreateFromParsedForm()
+#6  0x000001030f9114 in Shader::AwakeFromLoad(AwakeFromLoadMode)
+#7  0x00000101409a60 in AwakeFromLoadQueue::InvokePersistentManagerAwake(AwakeFromLoadQueue::Item*, unsigned int, AwakeFromLoadMode, bool)
+#8  0x00000101409498 in AwakeFromLoadQueue::PersistentManagerSingleQueueAwakeFromLoad(int, AwakeFromLoadMode)
+#9  0x000001014090c8 in AwakeFromLoadQueue::PersistentManagerAwakeFromLoad_NoChecks(AwakeFromLoadMode)
+#10 0x00000101414bcc in PersistentManager::IntegrateAllThreadedObjects()
+#11 0x00000101415dc4 in PersistentManager::LoadAndIntegrateAllPreallocatedObjects(PersistentManager::LockFlags)
+#12 0x00000101418014 in PersistentManager::LoadObjects(EntityId const*, int, bool)
+#13 0x00000102cc75a0 in ReloadInstances(core::vector<EntityId, core::allocator<EntityId, 0ul>> const&, core::hash_map<EntityId, ScriptingGCHandle, core::hash<EntityId>, std::__1::equal_to<EntityId>> const&)
+#14 0x00000102cc964c in ReloadAssetIfLoaded(UnityGUID const&)
+#15 0x00000102c8af20 in invocation function for block in AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_4::operator()() const
+#16 0x000001881aeac4 in _dispatch_client_callout
+#17 0x000001881a4a18 in _dispatch_async_and_wait_invoke
+#18 0x000001881aeac4 in _dispatch_client_callout
+#19 0x000001881cc0e4 in _dispatch_main_queue_drain.cold.5
+#20 0x000001881a3f48 in _dispatch_main_queue_drain
+#21 0x000001881a3e84 in _dispatch_main_queue_callback_4CF
+#22 0x0000018841c098 in __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+#23 0x000001883ee8cc in __CFRunLoopRun
+#24 0x000001884ac898 in _CFRunLoopRunSpecificWithOptions
+#25 0x00000194dec730 in RunCurrentEventLoopInMode
+#26 0x00000194def9d0 in ReceiveNextEventCommon
+#27 0x00000194f791f4 in _BlockUntilNextEventMatchingListInMode
+#28 0x0000018ccc6294 in _DPSBlockUntilNextEventMatchingListInMode
+#29 0x0000018c7dcedc in _DPSNextEvent
+#30 0x0000018d22f990 in -[NSApplication(NSEventRouting) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+#31 0x0000018d22f69c in -[NSApplication(NSEventRouting) nextEventMatchingMask:untilDate:inMode:dequeue:]
+#32 0x0000018c7d5720 in -[NSApplication run]
+#33 0x0000018c7c1694 in NSApplicationMain
+#34 0x0000010383c928 in EditorMain(int, char const**)
+#35 0x0000010383cc0c in main
+#36 0x00000187f91d54 in start

@@ -1,3 +1,5 @@
+**Delivery update:** Sourcea33b46cab currentMac/Linux, BatchA33B46; actualMacreaders/walk/travel/save/freshreload accepted with disclosed encounter. Linuxunexecuted,Deckdeferred. Earlierpending statementsbelow historical.
+
 # Quiet’s Door water polish
 
 The actual arrival, doorway and riverbank views showed a broad solid teal band. Reuse of the approved `sodden-flood-water` atlas adds sparse ripples while preserving the shoreline and quiet ground hierarchy. No new image or editable art was needed.

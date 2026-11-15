@@ -1,0 +1,13 @@
+# Quiet’s Door and Cathedral graphics delivery
+
+Source `a33b46cabfb8b2173ab988c421610d75b79c0a35` contains accepted Quiet’s Door water and Cathedral frost readability. Current Mac build9c07e94afa succeeded21.798317s/549.0MB; Linuxe35cfbd5df succeeded20.349564s/409.85MB; both0errors4warnings. These are explicit development builds. Quiet260 and Cathedral189 native checkpoints remain separate/nonadditive.
+
+FirstMacf08acd1f51 reported success with1error: an asset-import worker native crash in shader keyword fallback handling. That attempt, diagnostic excerpt and receipt are retained in the separate attempt1 location. A single unchanged-source retry passed0errors. No cache deletion or root-cause fix claim.
+
+Actual currentMac: Cathedral full frost reader, ordinary walking/stairs, F5/fresh1990HP40at52,12; Quietwater fullreader, wet-step99%drenched,16.1↔17.1,F5/fresh6360HP40at39,11. Four current processes closed. Cathedral movement included a3damagefist hit on PaleStalker/47remaining; player40HP. CUA initially opened an older2026-10-25app bydisplayname; its failedContinue attempts are excluded, it wasclosed, and exactcurrentapppath bindings then succeeded. Normal saves remained intact. No F12/injection/healing/destruction/transfer. Actual CUA1280x856 screenshots include56px titlebar; no durableMacPNG/pixel/performance claim. Eachcurrentprocess retains1ComputeBuffer disposalwarning,6prematurethreadnotices anddevelopmentshutdownmemorydiagnostics; no clean-shutdownclaim.
+
+Archive162,183,698bytes SHA256 `d2f7a504e0ade7bbb31b79225cd793063b9de99d3a9d40cb4f7930d8fd382f32`;320members/306checksums/391distinctpins (308resourceentries) independentlyverified. Existing78neutralmetadata+6stableuntrackedinputs and3preexistingSDK/toolchain/sysroot1.1.1/settings deltas remain disclosed, preserved and unstaged. No source-to-binary equivalenceclaim.
+
+Restoration 2026-11-15T18:17:49.373289+00:00:59174trackedobjects/83dirtypaths, normalEditor state includingfb61selection, standalone saves/preferences and prior87efpackages preserved. DirtyProjectSettings andownedmetadata were separately guarded/restored; other3generatedsettings restored afterward. Ownedtestsave trees archived; no cleanup. Linuxunexecuted;Deckdeferred;R11/fullarea/V0–V7open.
+
+Next: Quillhold14.9 court/road separation: fresh earned QuillholdMemory/AfterCheckpoint4950HP40at39,11seed224401440. Capture center/CopyHall approach and selected road/court/interior full readers plus current tile-state conditions. If warranted reuse existing worn-road32/33 under exact authority; preserve completed marble/memory and quiet courts. HourlyACTIVE,lastactual17:51:21Z.
