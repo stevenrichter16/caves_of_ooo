@@ -107,6 +107,52 @@ namespace CavesOfOoo.Rendering
                 && !LairStacks.HasSavedColumn(manager, zone.ZoneID);
         }
 
+        /// <summary>Peat works static memory only: keep the selector's remembered
+        /// Grass, StoneFloor or StoneWall frame. Never read hidden condition,
+        /// tile state, adjacent cells or other occupants; the caller dims once.</summary>
+        public bool TryResolveRemembered(Zone zone, int x, int y, Entity owner,
+            out Tile groundTile, out Tile wallTile)
+        {
+            groundTile = null; wallTile = null;
+            if (disposed || selector == null || owner == null || zone?.ZoneID != SoddenDistrictPlan.WorksZoneID
+                || !IsSupportedZone(zone) || !admits(zone)) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
+                || !cell.Explored || cell.IsVisible || !selector.TryResolve(zone, x, y, out var selected)
+                || !selected.Remembered || !ReferenceEquals(selected.Owner, owner)) return false;
+            var render = Owned<RenderPart>(owner); var physics = Owned<PhysicsPart>(owner);
+            if (render == null || !render.Visible || render.RenderLayer != 0 || physics == null || physics.Takeable
+                || physics.InInventory != null || physics.Equipped != null || HasForeignMeaning(owner, false)
+                || owner.HasPart<BrainPart>() || owner.HasPart<Body>()
+                || owner.HasTag("Creature") || owner.HasTag("Player") || owner.HasTag("Item")
+                || owner.HasPart<StackerPart>() || owner.HasPart<SpatialFootprintPart>()
+                || !string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant)) return false;
+            if (owner.BlueprintName == "Grass" || owner.BlueprintName == "StoneFloor")
+            {
+                if (!owner.HasTag("Terrain") || owner.HasTag("Wall") || owner.HasTag("Barren")
+                    || owner.HasPart<MaterialPart>() || owner.HasPart<ThermalPart>() || owner.HasPart<DestructiblePart>()
+                    || render.RenderString != "." || render.GlyphVariants != "...,.'`") return false;
+                if (owner.BlueprintName == "Grass")
+                {
+                    if (!owner.HasTag("Vegetation") || !owner.HasTag("Plantable")) return false;
+                    groundTile = fenGround != null ? fenGround[FenGroundVariantAt(zone, x, y)]
+                        : grass == null ? null : grass[20 + GroundVariantAt(x, y)];
+                }
+                else
+                {
+                    if (owner.HasTag("Vegetation")) return false;
+                    groundTile = stoneFloor == null ? null : stoneFloor[GroundVariantAt(x, y)];
+                }
+            }
+            else if (owner.BlueprintName == "StoneWall")
+            {
+                if (!owner.HasTag("Wall") || owner.HasTag("Vegetation") || render.RenderString != "#"
+                    || !EmptyVariants(render) || !Material(owner, "Stone") || Owned<DestructiblePart>(owner) == null) return false;
+                wallTile = masonry == null ? null : masonry[8];
+            }
+            return groundTile != null || wallTile != null;
+        }
+
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;

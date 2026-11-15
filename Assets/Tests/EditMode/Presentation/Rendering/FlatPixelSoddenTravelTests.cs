@@ -17,7 +17,7 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Tests
 {
-    public sealed class FlatPixelSoddenTravelTests
+    public sealed partial class FlatPixelSoddenTravelTests
     {
         const string Crossing = "Overworld.16.7.0";
         const string Atlas = "Sprites/Live16x24/sodden-travel";

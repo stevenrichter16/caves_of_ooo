@@ -1648,6 +1648,27 @@ namespace CavesOfOoo.Rendering
                         }
                     }
                 }
+                if (zone.ZoneID == SoddenDistrictPlan.WorksZoneID)
+                {
+                    var peatMemory = SoddenTravelArtFor(zone);
+                    if (peatMemory != null && peatMemory.TryResolveRemembered(zone, x, y, owner,
+                        out var peatGround, out var peatWall))
+                    {
+                        var tint = new Color(.35f, .35f, .35f, 1f);
+                        if (peatGround != null)
+                        {
+                            groundTile = peatGround; groundColor = tint; foreground = null;
+                            kind = FlatPixelGreyboxKind.Ground; native = false; staticMemoryGround = true;
+                            ground = owner.BlueprintName == "StoneFloor"
+                                ? FlatPixelGreyboxGround.StoneFloor : FlatPixelGreyboxGround.Ground;
+                        }
+                        else
+                        {
+                            foreground = peatWall; foregroundColor = tint;
+                            kind = FlatPixelGreyboxKind.Wall; native = true;
+                        }
+                    }
+                }
                 // Ordinary Beating uses the same static selector authority; other
                 // biome/site adapters remain outside this bounded memory policy.
                 if (FlatPixelBeatingMaterialsCatalog.IsSupportedZone(zone))
