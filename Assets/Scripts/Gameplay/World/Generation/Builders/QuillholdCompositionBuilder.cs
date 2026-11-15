@@ -12,6 +12,8 @@ namespace CavesOfOoo.Core
         public string Name=>"QuillholdComposition";public int Priority=>1000;
         public QuillholdCompositionPlan Plan{get;private set;}
         public Zone RealizedZone{get;private set;}
+        internal EntityFactory SourceFactory{get;private set;}
+        internal int Seed=>seed;
         internal bool ProfileRealized;
         private readonly int seed;
         public QuillholdCompositionBuilder(int seed){this.seed=seed;}
@@ -31,7 +33,7 @@ namespace CavesOfOoo.Core
             var added=new List<Entity>();foreach(var p in staged)
             {if(!zone.AddEntity(p.e,p.x,p.y)){foreach(var e in added)zone.RemoveEntity(e);return Reject(zone,"placement-refused");}added.Add(p.e);}
             for(int y=0;y<25;y++)for(int x=0;x<80;x++){zone.GetCell(x,y).IsInterior=plan.IsInterior(x,y);if(plan.IsReserved(x,y))zone.GenReservedCells.Add((x,y));}
-            Plan=plan;RealizedZone=zone;ProfileRealized=false;
+            Plan=plan;RealizedZone=zone;SourceFactory=factory;ProfileRealized=false;
             Diag.Record("worldgen","QuillholdCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,rooms=plan.Rooms.Count,profile=plan.Profile.Count});return true;
         }
         /// <summary>Native cave roll may use only current unreserved dry exterior

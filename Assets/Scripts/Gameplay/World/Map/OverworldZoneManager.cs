@@ -1161,6 +1161,7 @@ namespace CavesOfOoo.Core
             }
 
             if(sumphold)pipeline.AddBuilder(new SumpholdFurnishingBuilder(this,yard));
+            if(quillhold)pipeline.AddBuilder(new QuillholdCopyHallBuilder(this,quillholdBase));
             return pipeline;
         }
 

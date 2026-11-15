@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="143" result="Passed" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:11:24Z" duration="37.5479398">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38066" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:11:24Z" duration="37.547940" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="46595" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38066" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:11:24Z" duration="37.537038" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="46596" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38066" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:11:24Z" duration="37.531016" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="46597" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38066" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:11:24Z" duration="37.526079" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="3778" name="ChairOwnershipTests" fullname="CavesOfOoo.Tests.ChairOwnershipTests" classname="CavesOfOoo.Tests.ChairOwnershipTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:10:46Z" duration="0.310015" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="3779" name="Innkeeper_Blueprint_Exists" fullname="CavesOfOoo.Tests.ChairOwnershipTests.Innkeeper_Blueprint_Exists" methodname="Innkeeper_Blueprint_Exists" classname="CavesOfOoo.Tests.ChairOwnershipTests" runstate="Runnable" seed="2035310294" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:10:46Z" duration="0.041071" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3780" name="Innkeeper_InheritsVillagerBehavior" fullname="CavesOfOoo.Tests.ChairOwnershipTests.Innkeeper_InheritsVillagerBehavior" methodname="Innkeeper_InheritsVillagerBehavior" classname="CavesOfOoo.Tests.ChairOwnershipTests" runstate="Runnable" seed="1707249324" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:10:46Z" duration="0.102148" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3782" name="Innkeeper_OwnsNearestChair" fullname="CavesOfOoo.Tests.ChairOwnershipTests.Innkeeper_OwnsNearestChair" methodname="Innkeeper_OwnsNearestChair" classname="CavesOfOoo.Tests.ChairOwnershipTests" runstate="Runnable" seed="1944998856" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:10:46Z" duration="0.052628" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3784" name="InnkeepersChair_AcceptsInnkeeper" fullname="CavesOfOoo.Tests.ChairOwnershipTests.InnkeepersChair_AcceptsInnkeeper" methodname="InnkeepersChair_AcceptsInnkeeper" classname="CavesOfOoo.Tests.ChairOwnershipTests" runstate="Runnable" seed="1072109798" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:10:46Z" duration="0.024581" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3783" name="InnkeepersChair_RejectsOtherVillagers" fullname="CavesOfOoo.Tests.ChairOwnershipTests.InnkeepersChair_RejectsOtherVillagers" methodname="InnkeepersChair_RejectsOtherVillagers" classname="CavesOfOoo.Tests.ChairOwnershipTests" runstate="Runnable" seed="2116855565" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:10:46Z" duration="0.023150" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3785" name="UnownedChair_AcceptsAnyAllowIdleBehaviorNPC" fullname="CavesOfOoo.Tests.ChairOwnershipTests.UnownedChair_AcceptsAnyAllowIdleBehaviorNPC" methodname="UnownedChair_AcceptsAnyAllowIdleBehaviorNPC" classname="CavesOfOoo.Tests.ChairOwnershipTests" runstate="Runnable" seed="1181191712" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:10:46Z" duration="0.021666" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3781" name="VillagePopulationBuilder_SpawnsInnkeeper" fullname="CavesOfOoo.Tests.ChairOwnershipTests.VillagePopulationBuilder_SpawnsInnkeeper" methodname="VillagePopulationBuilder_SpawnsInnkeeper" classname="CavesOfOoo.Tests.ChairOwnershipTests" runstate="Runnable" seed="805388980" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:10:46Z" duration="0.036823" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="4504" name="DensityPlayerChairTests" fullname="CavesOfOoo.Tests.DensityPlayerChairTests" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-15 20:10:46Z" end-time="2026-11-15 20:11:07Z" duration="20.167048" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="4512" name="AdjacentOrRemoteChair_RequiresStandingAtSeat" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.AdjacentOrRemoteChair_RequiresStandingAtSeat" methodname="AdjacentOrRemoteChair_RequiresStandingAtSeat" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="371366201" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.005148" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4513" name="BedInventoryTransaction_DoesNotGrantFreeInnHealing" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.BedInventoryTransaction_DoesNotGrantFreeInnHealing" methodname="BedInventoryTransaction_DoesNotGrantFreeInnHealing" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="213115828" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.003225" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="4525" name="DeadPlayer_CannotReserveSeat" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.DeadPlayer_CannotReserveSeat" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.004397" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="4523" name="DeadPlayer_CannotReserveSeat(False)" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.DeadPlayer_CannotReserveSeat(False)" methodname="DeadPlayer_CannotReserveSeat" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1840288875" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000706" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="4524" name="DeadPlayer_CannotReserveSeat(True)" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.DeadPlayer_CannotReserveSeat(True)" methodname="DeadPlayer_CannotReserveSeat" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1555576743" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000293" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="4518" name="Death_ReleasesReservation" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.Death_ReleasesReservation" methodname="Death_ReleasesReservation" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1216735762" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.004758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4515" name="EffectApplicationVeto_LeavesChairUnclaimed" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.EffectApplicationVeto_LeavesChairUnclaimed" methodname="EffectApplicationVeto_LeavesChairUnclaimed" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="80985425" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000835" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4520" name="FirstEffectChairExceptionRollsBackTheActuallyCreatedEffectAndReservation" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.FirstEffectChairExceptionRollsBackTheActuallyCreatedEffectAndReservation" methodname="FirstEffectChairExceptionRollsBackTheActuallyCreatedEffectAndReservation" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1140112447" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.054299" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4506" name="FirstEffectChairUseSupportsRealPlayerWithoutPreinstalledStatusContainer" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.FirstEffectChairUseSupportsRealPlayerWithoutPreinstalledStatusContainer" methodname="FirstEffectChairUseSupportsRealPlayerWithoutPreinstalledStatusContainer" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1259088848" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.031552" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4505" name="FreeChair_PlayerCanSitThenStand_WithActualReservation" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.FreeChair_PlayerCanSitThenStand_WithActualReservation" methodname="FreeChair_PlayerCanSitThenStand_WithActualReservation" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="827139392" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000457" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4519" name="GenericCommandException_RestoresChairAndEffect" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.GenericCommandException_RestoresChairAndEffect" methodname="GenericCommandException_RestoresChairAndEffect" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1223956908" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000344" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4514" name="NonPlayer_CannotUsePlayerSeatCommand" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.NonPlayer_CannotUsePlayerSeatCommand" methodname="NonPlayer_CannotUsePlayerSeatCommand" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1174038741" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000298" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4511" name="OutstandingNpcReservation_CannotBeStolenOrStoodFrom" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OutstandingNpcReservation_CannotBeStolenOrStoodFrom" methodname="OutstandingNpcReservation_CannotBeStolenOrStoodFrom" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1823644280" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000303" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="4510" name="OwnerIdOrTag_IsRespected" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.002370" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="4507" name="OwnerIdOrTag_IsRespected(&quot;player&quot;,True)" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(&quot;player&quot;,True)" methodname="OwnerIdOrTag_IsRespected" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1806035296" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="4508" name="OwnerIdOrTag_IsRespected(&quot;Stillcord&quot;,True)" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(&quot;Stillcord&quot;,True)" methodname="OwnerIdOrTag_IsRespected" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="677800701" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000281" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="4509" name="OwnerIdOrTag_IsRespected(&quot;other-owner&quot;,False)" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(&quot;other-owner&quot;,False)" methodname="OwnerIdOrTag_IsRespected" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="986906032" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="4527" name="RemovingStaleEffect_CannotReleaseDifferentPlayerOccupant" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.RemovingStaleEffect_CannotReleaseDifferentPlayerOccupant" methodname="RemovingStaleEffect_CannotReleaseDifferentPlayerOccupant" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1703690312" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:06Z" duration="0.000443" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4522" name="SaveGraph_PreservesSeatReferenceAndReservation" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.SaveGraph_PreservesSeatReferenceAndReservation" methodname="SaveGraph_PreservesSeatReferenceAndReservation" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="2048280097" result="Passed" start-time="2026-11-15 20:11:06Z" end-time="2026-11-15 20:11:07Z" duration="0.004296" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4521" name="StandFromDifferentChair_DoesNotReleaseOriginalSeat" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.StandFromDifferentChair_DoesNotReleaseOriginalSeat" methodname="StandFromDifferentChair_DoesNotReleaseOriginalSeat" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1705404049" result="Passed" start-time="2026-11-15 20:11:07Z" end-time="2026-11-15 20:11:07Z" duration="0.000343" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4526" name="StandingRollback_RestoresExactSeatAndEffect" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.StandingRollback_RestoresExactSeatAndEffect" methodname="StandingRollback_RestoresExactSeatAndEffect" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="149019998" result="Passed" start-time="2026-11-15 20:11:07Z" end-time="2026-11-15 20:11:07Z" duration="0.000359" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4516" name="SuccessfulMovement_ReleasesOwnSeat_ButBlockedMovementDoesNot" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.SuccessfulMovement_ReleasesOwnSeat_ButBlockedMovementDoesNot" methodname="SuccessfulMovement_ReleasesOwnSeat_ButBlockedMovementDoesNot" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="2051601496" result="Passed" start-time="2026-11-15 20:11:07Z" end-time="2026-11-15 20:11:07Z" duration="0.002174" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="4517" name="TakingDamage_StandsPlayerWithoutHealing" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.TakingDamage_StandsPlayerWithoutHealing" methodname="TakingDamage_StandsPlayerWithoutHealing" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1795197816" result="Passed" start-time="2026-11-15 20:11:07Z" end-time="2026-11-15 20:11:07Z" duration="0.002386" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="25508" name="QuillholdCompositionAdversarialTests" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-11-15 20:11:07Z" end-time="2026-11-15 20:11:16Z" duration="9.115995" total="57" passed="57" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25562" name="ActualCaveRollsAvoidStacksAndCopyingHallAndReserveRealDryArrivals" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.ActualCaveRollsAvoidStacksAndCopyingHallAndReserveRealDryArrivals" methodname="ActualCaveRollsAvoidStacksAndCopyingHallAndReserveRealDryArrivals" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="807084875" result="Passed" start-time="2026-11-15 20:11:07Z" end-time="2026-11-15 20:11:10Z" duration="3.897497" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25556" name="ActualMapProfileAndPlaceTypeVetoTheComposition" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.ActualMapProfileAndPlaceTypeVetoTheComposition" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 20:11:10Z" end-time="2026-11-15 20:11:11Z" duration="0.113508" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25552" name="ActualMapProfileAndPlaceTypeVetoTheComposition(Village,&quot;CentralExchange&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.ActualMapProfileAndPlaceTypeVetoTheComposition(Village,&quot;CentralExchange&quot;)" methodname="ActualMapProfileAndPlaceTypeVetoTheComposition" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1745910922" result="Passed" start-time="2026-11-15 20:11:10Z" end-time="2026-11-15 20:11:10Z" duration="0.029358" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25553" name="ActualMapProfileAndPlaceTypeVetoTheComposition(Village,null)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.ActualMapProfileAndPlaceTypeVetoTheComposition(Village,null)" methodname="ActualMapProfileAndPlaceTypeVetoTheComposition" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="788024210" result="Passed" start-time="2026-11-15 20:11:10Z" end-time="2026-11-15 20:11:10Z" duration="0.027489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25554" name="ActualMapProfileAndPlaceTypeVetoTheComposition(Lair,&quot;PrimaryArchive&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.ActualMapProfileAndPlaceTypeVetoTheComposition(Lair,&quot;PrimaryArchive&quot;)" methodname="ActualMapProfileAndPlaceTypeVetoTheComposition" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="728524770" result="Passed" start-time="2026-11-15 20:11:10Z" end-time="2026-11-15 20:11:10Z" duration="0.026641" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25555" name="ActualMapProfileAndPlaceTypeVetoTheComposition(Village,&quot;primaryarchive&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.ActualMapProfileAndPlaceTypeVetoTheComposition(Village,&quot;primaryarchive&quot;)" methodname="ActualMapProfileAndPlaceTypeVetoTheComposition" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1408224339" result="Passed" start-time="2026-11-15 20:11:10Z" end-time="2026-11-15 20:11:11Z" duration="0.027140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Worldgen] Unknown village profile 'primaryarchive' on Quillhold — generating plain.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25575" name="CopyingServiceRetainsAnExplicitReservedStandingApronAgainstLaterFurniture" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.CopyingServiceRetainsAnExplicitReservedStandingApronAgainstLaterFurniture" methodname="CopyingServiceRetainsAnExplicitReservedStandingApronAgainstLaterFurniture" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="802477281" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.033750" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25536" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.275603" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25524" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;Floor&quot;,&quot;Render&quot;,&quot;RenderString&quot;,&quot;?&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;Floor&quot;,&quot;Render&quot;,&quot;RenderString&quot;,&quot;?&quot;)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1246933508" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.023574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25525" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;StoneFloor&quot;,&quot;Physics&quot;,&quot;Takeable&quot;,&quot;true&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;StoneFloor&quot;,&quot;Physics&quot;,&quot;Takeable&quot;,&quot;true&quot;)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="522717852" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.022244" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25526" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;RoadStone&quot;,&quot;Physics&quot;,&quot;Solid&quot;,&quot;true&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;RoadStone&quot;,&quot;Physics&quot;,&quot;Solid&quot;,&quot;true&quot;)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="283136097" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.022415" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25527" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdArchiveWall&quot;,&quot;Destructible&quot;,&quot;HP&quot;,&quot;0&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdArchiveWall&quot;,&quot;Destructible&quot;,&quot;HP&quot;,&quot;0&quot;)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="2141455577" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.022067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25528" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdArchiveWall&quot;,&quot;Material&quot;,null,null)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdArchiveWall&quot;,&quot;Material&quot;,null,null)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="2116926650" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.022259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25529" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdArchiveShelf&quot;,&quot;Container&quot;,null,null)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdArchiveShelf&quot;,&quot;Container&quot;,null,null)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1882446716" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.022459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25530" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdArchiveShelf&quot;,&quot;Destructible&quot;,&quot;Indestructible&quot;,&quot;true&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdArchiveShelf&quot;,&quot;Destructible&quot;,&quot;Indestructible&quot;,&quot;true&quot;)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1857723888" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.022701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25531" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdRefectoryTable&quot;,&quot;Destructible&quot;,null,null)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdRefectoryTable&quot;,&quot;Destructible&quot;,null,null)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="113447839" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.022158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25532" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdCopyDesk&quot;,&quot;Destructible&quot;,null,null)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;QuillholdCopyDesk&quot;,&quot;Destructible&quot;,null,null)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="2126442043" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.022197" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25533" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;Scribe&quot;,&quot;Conversation&quot;,&quot;ConversationID&quot;,&quot;Merchant_1&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;Scribe&quot;,&quot;Conversation&quot;,&quot;ConversationID&quot;,&quot;Merchant_1&quot;)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="799777197" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.021883" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25534" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;Scribe&quot;,&quot;Render&quot;,&quot;RenderString&quot;,&quot;?&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;Scribe&quot;,&quot;Render&quot;,&quot;RenderString&quot;,&quot;?&quot;)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1576592007" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.021818" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25535" name="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;Scribe&quot;,&quot;Trader&quot;,null,null)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners(&quot;Scribe&quot;,&quot;Trader&quot;,null,null)" methodname="FailSoftPartFieldsCannotPublishVisibleButMechanicallyFalseOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1598705725" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.028103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25540" name="InvalidCoordinatesNeverClampToArchiveInteriors" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.InvalidCoordinatesNeverClampToArchiveInteriors" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.006751" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25537" name="InvalidCoordinatesNeverClampToArchiveInteriors(-1,0)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.InvalidCoordinatesNeverClampToArchiveInteriors(-1,0)" methodname="InvalidCoordinatesNeverClampToArchiveInteriors" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="315606938" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.001966" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25538" name="InvalidCoordinatesNeverClampToArchiveInteriors(80,25)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.InvalidCoordinatesNeverClampToArchiveInteriors(80,25)" methodname="InvalidCoordinatesNeverClampToArchiveInteriors" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="351904532" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.001796" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25539" name="InvalidCoordinatesNeverClampToArchiveInteriors(int.MinValue,int.MaxValue)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.InvalidCoordinatesNeverClampToArchiveInteriors(int.MinValue,int.MaxValue)" methodname="InvalidCoordinatesNeverClampToArchiveInteriors" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1923530839" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.001831" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25551" name="LastOwnerFailureCannotPublishHalfTheArchive" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.LastOwnerFailureCannotPublishHalfTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.177252" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25549" name="LastOwnerFailureCannotPublishHalfTheArchive(False)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.LastOwnerFailureCannotPublishHalfTheArchive(False)" methodname="LastOwnerFailureCannotPublishHalfTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1131875457" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.087189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25550" name="LastOwnerFailureCannotPublishHalfTheArchive(True)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.LastOwnerFailureCannotPublishHalfTheArchive(True)" methodname="LastOwnerFailureCannotPublishHalfTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="736076661" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.089527" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25574" name="LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:12Z" duration="1.471614" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25571" name="LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages(64)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages(64)" methodname="LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1469172989" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:11Z" duration="0.456714" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25572" name="LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages(1729)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages(1729)" methodname="LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="2100858038" result="Passed" start-time="2026-11-15 20:11:11Z" end-time="2026-11-15 20:11:12Z" duration="0.509769" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25573" name="LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages(729490642)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages(729490642)" methodname="LaterPopulationAndContainersCannotSealArchiveAislesOrServiceFrontages" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="691098898" result="Passed" start-time="2026-11-15 20:11:12Z" end-time="2026-11-15 20:11:12Z" duration="0.503788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25523" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-15 20:11:12Z" end-time="2026-11-15 20:11:13Z" duration="0.473358" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25509" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Floor&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Floor&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1198548885" result="Passed" start-time="2026-11-15 20:11:12Z" end-time="2026-11-15 20:11:13Z" duration="0.024095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25510" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;StoneFloor&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;StoneFloor&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="827995415" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.023385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25511" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;RoadStone&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="537314004" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.022849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25512" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;QuillholdArchiveWall&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;QuillholdArchiveWall&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="639134396" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.022724" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25513" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;QuillholdRefectoryTable&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;QuillholdRefectoryTable&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="585935846" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.022073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25514" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Bed&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Bed&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="2000124507" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.022142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25515" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Chair&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Chair&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1120207707" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.021770" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25516" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Crate&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Crate&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1710579914" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.022315" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25517" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;QuillholdCopyDesk&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;QuillholdCopyDesk&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1382080133" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.021568" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25518" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;QuillholdArchiveShelf&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;QuillholdArchiveShelf&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1820854486" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.021902" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25519" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Scribe&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;Scribe&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="672559396" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.022348" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25520" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;WardGleamGrimoire&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;WardGleamGrimoire&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="801434060" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.080839" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25521" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;DryingBreezeGrimoire&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;DryingBreezeGrimoire&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1432500915" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.069061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25522" name="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;InkVial&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive(&quot;InkVial&quot;)" methodname="MissingEarlyOrLateDependencyCannotLeaveAnUnfinishedArchive" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="192670972" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.074325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25544" name="MissingZoneFactoryOrRandomCannotMutateFlags" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingZoneFactoryOrRandomCannotMutateFlags" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.153581" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25541" name="MissingZoneFactoryOrRandomCannotMutateFlags(0)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingZoneFactoryOrRandomCannotMutateFlags(0)" methodname="MissingZoneFactoryOrRandomCannotMutateFlags" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="147686982" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.070162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25542" name="MissingZoneFactoryOrRandomCannotMutateFlags(1)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingZoneFactoryOrRandomCannotMutateFlags(1)" methodname="MissingZoneFactoryOrRandomCannotMutateFlags" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="652615363" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.002910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25543" name="MissingZoneFactoryOrRandomCannotMutateFlags(2)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.MissingZoneFactoryOrRandomCannotMutateFlags(2)" methodname="MissingZoneFactoryOrRandomCannotMutateFlags" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="33074339" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.079488" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25561" name="NativeCaveGateTestsLiveNeighborsNotJustAnEmptyCandidateCentre" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.NativeCaveGateTestsLiveNeighborsNotJustAnEmptyCandidateCentre" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.182878" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25559" name="NativeCaveGateTestsLiveNeighborsNotJustAnEmptyCandidateCentre(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.NativeCaveGateTestsLiveNeighborsNotJustAnEmptyCandidateCentre(&quot;WaterPuddle&quot;)" methodname="NativeCaveGateTestsLiveNeighborsNotJustAnEmptyCandidateCentre" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="568939385" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.139218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25560" name="NativeCaveGateTestsLiveNeighborsNotJustAnEmptyCandidateCentre(&quot;SandstoneWall&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.NativeCaveGateTestsLiveNeighborsNotJustAnEmptyCandidateCentre(&quot;SandstoneWall&quot;)" methodname="NativeCaveGateTestsLiveNeighborsNotJustAnEmptyCandidateCentre" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1961014328" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.042852" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25567" name="NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.168490" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25563" name="NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce(&quot;QuillholdArchiveWall&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce(&quot;QuillholdArchiveWall&quot;)" methodname="NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="65858977" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.044426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25564" name="NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce(&quot;QuillholdArchiveShelf&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce(&quot;QuillholdArchiveShelf&quot;)" methodname="NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="191997451" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.041972" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25565" name="NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce(&quot;QuillholdCopyDesk&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce(&quot;QuillholdCopyDesk&quot;)" methodname="NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1719192179" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.041337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25566" name="NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce(&quot;QuillholdRefectoryTable&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce(&quot;QuillholdRefectoryTable&quot;)" methodname="NewArchiveFurnitureIsDestructibleAndStoredContentsSpillOnlyOnce" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="329395431" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:13Z" duration="0.039939" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25570" name="PalimpsestScribesKeepActualRenewingInkStockAndItsFactoryGate" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.PalimpsestScribesKeepActualRenewingInkStockAndItsFactoryGate" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:14Z" duration="1.027155" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25568" name="PalimpsestScribesKeepActualRenewingInkStockAndItsFactoryGate(False)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.PalimpsestScribesKeepActualRenewingInkStockAndItsFactoryGate(False)" methodname="PalimpsestScribesKeepActualRenewingInkStockAndItsFactoryGate" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="15287632" result="Passed" start-time="2026-11-15 20:11:13Z" end-time="2026-11-15 20:11:14Z" duration="0.459267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25569" name="PalimpsestScribesKeepActualRenewingInkStockAndItsFactoryGate(True)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.PalimpsestScribesKeepActualRenewingInkStockAndItsFactoryGate(True)" methodname="PalimpsestScribesKeepActualRenewingInkStockAndItsFactoryGate" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="311323417" result="Passed" start-time="2026-11-15 20:11:14Z" end-time="2026-11-15 20:11:14Z" duration="0.567145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25547" name="RejectedReuseCannotInvalidateAnAlreadySuccessfulOwnersPendingProfile" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.RejectedReuseCannotInvalidateAnAlreadySuccessfulOwnersPendingProfile" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 20:11:14Z" end-time="2026-11-15 20:11:15Z" duration="0.084710" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25545" name="RejectedReuseCannotInvalidateAnAlreadySuccessfulOwnersPendingProfile(False)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.RejectedReuseCannotInvalidateAnAlreadySuccessfulOwnersPendingProfile(False)" methodname="RejectedReuseCannotInvalidateAnAlreadySuccessfulOwnersPendingProfile" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1212759780" result="Passed" start-time="2026-11-15 20:11:14Z" end-time="2026-11-15 20:11:15Z" duration="0.042248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25546" name="RejectedReuseCannotInvalidateAnAlreadySuccessfulOwnersPendingProfile(True)" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.RejectedReuseCannotInvalidateAnAlreadySuccessfulOwnersPendingProfile(True)" methodname="RejectedReuseCannotInvalidateAnAlreadySuccessfulOwnersPendingProfile" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="2067025766" result="Passed" start-time="2026-11-15 20:11:15Z" end-time="2026-11-15 20:11:15Z" duration="0.041443" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25548" name="RemovingAShelfNeverResurrectsItButAnExplicitEmptyRetryGetsFreshOwners" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.RemovingAShelfNeverResurrectsItButAnExplicitEmptyRetryGetsFreshOwners" methodname="RemovingAShelfNeverResurrectsItButAnExplicitEmptyRetryGetsFreshOwners" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1238806665" result="Passed" start-time="2026-11-15 20:11:15Z" end-time="2026-11-15 20:11:15Z" duration="0.069284" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25557" name="RenamingThePlaceCannotRemoveItsProfileOrSpreadItToAnotherAddress" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.RenamingThePlaceCannotRemoveItsProfileOrSpreadItToAnotherAddress" methodname="RenamingThePlaceCannotRemoveItsProfileOrSpreadItToAnotherAddress" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="929395113" result="Passed" start-time="2026-11-15 20:11:15Z" end-time="2026-11-15 20:11:15Z" duration="0.028321" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25576" name="SixShelvesFormTwoCoherentRunsWithAnOpenCrossingAisle" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.SixShelvesFormTwoCoherentRunsWithAnOpenCrossingAisle" methodname="SixShelvesFormTwoCoherentRunsWithAnOpenCrossingAisle" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="1967049028" result="Passed" start-time="2026-11-15 20:11:15Z" end-time="2026-11-15 20:11:15Z" duration="0.036918" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25558" name="ThirtyTwoSeedsAndExtremeSeedsKeepEveryOpenBaseCellReachable" fullname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests.ThirtyTwoSeedsAndExtremeSeedsKeepEveryOpenBaseCellReachable" methodname="ThirtyTwoSeedsAndExtremeSeedsKeepEveryOpenBaseCellReachable" classname="CavesOfOoo.Tests.QuillholdCompositionAdversarialTests" runstate="Runnable" seed="900420543" result="Passed" start-time="2026-11-15 20:11:15Z" end-time="2026-11-15 20:11:16Z" duration="0.912915" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="25577" name="QuillholdCompositionTests" fullname="CavesOfOoo.Tests.QuillholdCompositionTests" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-15 20:11:16Z" end-time="2026-11-15 20:11:19Z" duration="2.960611" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="25602" name="ActualPlacedScribeCopiesAnOriginalButCannotCopyAnEmptyCopy" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.ActualPlacedScribeCopiesAnOriginalButCannotCopyAnEmptyCopy" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 20:11:16Z" end-time="2026-11-15 20:11:17Z" duration="1.014005" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25600" name="ActualPlacedScribeCopiesAnOriginalButCannotCopyAnEmptyCopy(False)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.ActualPlacedScribeCopiesAnOriginalButCannotCopyAnEmptyCopy(False)" methodname="ActualPlacedScribeCopiesAnOriginalButCannotCopyAnEmptyCopy" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1145087093" result="Passed" start-time="2026-11-15 20:11:16Z" end-time="2026-11-15 20:11:16Z" duration="0.458844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Conversation] Conversation 'StillleafSearcher_1' not found.
+]]></output>
+              </test-case>
+              <test-case id="25601" name="ActualPlacedScribeCopiesAnOriginalButCannotCopyAnEmptyCopy(True)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.ActualPlacedScribeCopiesAnOriginalButCannotCopyAnEmptyCopy(True)" methodname="ActualPlacedScribeCopiesAnOriginalButCannotCopyAnEmptyCopy" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="727585772" result="Passed" start-time="2026-11-15 20:11:16Z" end-time="2026-11-15 20:11:17Z" duration="0.554623" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Conversation] Conversation 'StillleafSearcher_1' not found.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25591" name="AddressParsingCannotExpandTheArchive" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.010160" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25579" name="AddressParsingCannotExpandTheArchive(null)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(null)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1558274352" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.001825" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25580" name="AddressParsingCannotExpandTheArchive(&quot;&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="654404172" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000688" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25581" name="AddressParsingCannotExpandTheArchive(&quot;Overworld.14.9.1&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;Overworld.14.9.1&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="80184920" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25582" name="AddressParsingCannotExpandTheArchive(&quot;Overworld.14.9.-1&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;Overworld.14.9.-1&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="374580740" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000566" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25583" name="AddressParsingCannotExpandTheArchive(&quot;Overworld.014.9.0&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;Overworld.014.9.0&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="837387883" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25584" name="AddressParsingCannotExpandTheArchive(&quot;Overworld.14.09.0&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;Overworld.14.09.0&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="75636105" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000553" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25585" name="AddressParsingCannotExpandTheArchive(&quot; Overworld.14.9.0&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot; Overworld.14.9.0&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="2093694895" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25586" name="AddressParsingCannotExpandTheArchive(&quot;Overworld.14.9.0 &quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;Overworld.14.9.0 &quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1696044935" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25587" name="AddressParsingCannotExpandTheArchive(&quot;overworld.14.9.0&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;overworld.14.9.0&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1234551810" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000565" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25588" name="AddressParsingCannotExpandTheArchive(&quot;Overworld.10.14.0&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;Overworld.10.14.0&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="835628363" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000601" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25589" name="AddressParsingCannotExpandTheArchive(&quot;Overworld.999999999999.9.0&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;Overworld.999999999999.9.0&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1673547449" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000591" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25590" name="AddressParsingCannotExpandTheArchive(&quot;Overworld.14.9&quot;)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.AddressParsingCannotExpandTheArchive(&quot;Overworld.14.9&quot;)" methodname="AddressParsingCannotExpandTheArchive" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="966025370" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.000570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25578" name="NativeAddressAndAuthoredTierRemainExactWhileSeedChangesSemanticRoles" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.NativeAddressAndAuthoredTierRemainExactWhileSeedChangesSemanticRoles" methodname="NativeAddressAndAuthoredTierRemainExactWhileSeedChangesSemanticRoles" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1918600457" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.136880" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25595" name="PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.130919" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25592" name="PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks(64)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks(64)" methodname="PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1958724885" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.043736" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25593" name="PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks(1729)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks(1729)" methodname="PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1374050611" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.042842" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25594" name="PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks(729490642)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks(729490642)" methodname="PublicArchiveHasAccessibleFunctionalInteriorsAndRealStoredBooks" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="188941100" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:17Z" duration="0.043641" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25599" name="RealManagerRetainsVillageServicesAndStockWithoutInventingARiver" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.RealManagerRetainsVillageServicesAndStockWithoutInventingARiver" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:19Z" duration="1.661147" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25596" name="RealManagerRetainsVillageServicesAndStockWithoutInventingARiver(64)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.RealManagerRetainsVillageServicesAndStockWithoutInventingARiver(64)" methodname="RealManagerRetainsVillageServicesAndStockWithoutInventingARiver" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1657940922" result="Passed" start-time="2026-11-15 20:11:17Z" end-time="2026-11-15 20:11:18Z" duration="0.596965" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Conversation] Loaded 80 conversations from 31 files.
+]]></output>
+              </test-case>
+              <test-case id="25597" name="RealManagerRetainsVillageServicesAndStockWithoutInventingARiver(1729)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.RealManagerRetainsVillageServicesAndStockWithoutInventingARiver(1729)" methodname="RealManagerRetainsVillageServicesAndStockWithoutInventingARiver" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="153110240" result="Passed" start-time="2026-11-15 20:11:18Z" end-time="2026-11-15 20:11:18Z" duration="0.476021" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25598" name="RealManagerRetainsVillageServicesAndStockWithoutInventingARiver(729490642)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.RealManagerRetainsVillageServicesAndStockWithoutInventingARiver(729490642)" methodname="RealManagerRetainsVillageServicesAndStockWithoutInventingARiver" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="785736581" result="Passed" start-time="2026-11-15 20:11:18Z" end-time="2026-11-15 20:11:19Z" duration="0.587283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25606" name="RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:19Z" duration="0.006539" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25603" name="RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest(64)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest(64)" methodname="RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="738258300" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:19Z" duration="0.002283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25604" name="RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest(1729)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest(1729)" methodname="RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1150332813" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:19Z" duration="0.001468" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25605" name="RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest(729490642)" fullname="CavesOfOoo.Tests.QuillholdCompositionTests.RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest(729490642)" methodname="RefectoryIsACommunalEatingRoomAndReceivingKeepsSeparateCourierRest" classname="CavesOfOoo.Tests.QuillholdCompositionTests" runstate="Runnable" seed="1136371519" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:19Z" duration="0.001460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="25607" name="QuillholdCopyHallTests" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="34" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:24Z" duration="4.947867" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="25616" name="AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:19Z" duration="0.518048" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25613" name="AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes(64)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes(64)" methodname="AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1494698258" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:19Z" duration="0.175210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25614" name="AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes(2)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes(2)" methodname="AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1496338223" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:19Z" duration="0.171046" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25615" name="AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes(224401440)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes(224401440)" methodname="AllThreeFormationsAddOnlyThreeOrdinarySeatsPreservingOwnersAndRoutes" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1036968474" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:19Z" duration="0.171176" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25646" name="CacheReturnDoesNotReplenishMissingSeatsOrModifyStock" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.CacheReturnDoesNotReplenishMissingSeatsOrModifyStock" methodname="CacheReturnDoesNotReplenishMissingSeatsOrModifyStock" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="434685509" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:19Z" duration="0.140914" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25612" name="ExistingInnkeeperChairAndScribeApronRemainOwnedAndOpen" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.ExistingInnkeeperChairAndScribeApronRemainOwnedAndOpen" methodname="ExistingInnkeeperChairAndScribeApronRemainOwnedAndOpen" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="866381161" result="Passed" start-time="2026-11-15 20:11:19Z" end-time="2026-11-15 20:11:20Z" duration="0.567141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25611" name="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:11:20Z" end-time="2026-11-15 20:11:21Z" duration="1.455094" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25608" name="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(13,19)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(13,19)" methodname="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="882499801" result="Passed" start-time="2026-11-15 20:11:20Z" end-time="2026-11-15 20:11:20Z" duration="0.447899" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25609" name="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(13,21)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(13,21)" methodname="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="462783467" result="Passed" start-time="2026-11-15 20:11:20Z" end-time="2026-11-15 20:11:21Z" duration="0.563083" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25610" name="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(24,21)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(24,21)" methodname="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1101038933" result="Passed" start-time="2026-11-15 20:11:21Z" end-time="2026-11-15 20:11:21Z" duration="0.442961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25645" name="MalformedSeatCannotMutateTheExistingRoom" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-15 20:11:21Z" end-time="2026-11-15 20:11:22Z" duration="1.144269" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25634" name="MalformedSeatCannotMutateTheExistingRoom(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;missing&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="860794038" result="Passed" start-time="2026-11-15 20:11:21Z" end-time="2026-11-15 20:11:21Z" duration="0.081059" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25635" name="MalformedSeatCannotMutateTheExistingRoom(&quot;owned&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;owned&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1195917986" result="Passed" start-time="2026-11-15 20:11:21Z" end-time="2026-11-15 20:11:21Z" duration="0.094509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25636" name="MalformedSeatCannotMutateTheExistingRoom(&quot;occupied&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;occupied&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1246650616" result="Passed" start-time="2026-11-15 20:11:21Z" end-time="2026-11-15 20:11:22Z" duration="0.098571" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25637" name="MalformedSeatCannotMutateTheExistingRoom(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;solid&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="498860132" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:22Z" duration="0.206248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25638" name="MalformedSeatCannotMutateTheExistingRoom(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;hidden&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1753588165" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:22Z" duration="0.095774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25639" name="MalformedSeatCannotMutateTheExistingRoom(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;glyph&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="225657033" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:22Z" duration="0.096327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25640" name="MalformedSeatCannotMutateTheExistingRoom(&quot;Barren&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;Barren&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="183880242" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:22Z" duration="0.094556" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25641" name="MalformedSeatCannotMutateTheExistingRoom(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;footprint&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1294184976" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:22Z" duration="0.096120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25642" name="MalformedSeatCannotMutateTheExistingRoom(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;layer&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1104799670" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:22Z" duration="0.094787" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25643" name="MalformedSeatCannotMutateTheExistingRoom(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;variant&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1659239755" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:22Z" duration="0.091703" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25644" name="MalformedSeatCannotMutateTheExistingRoom(&quot;campfire&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;campfire&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1748968387" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:22Z" duration="0.092885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25633" name="UnavailableDestinationOrDeskRefusesTheWholeGroup" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.UnavailableDestinationOrDeskRefusesTheWholeGroup" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:23Z" duration="0.518374" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25626" name="UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;reserved&quot;)" methodname="UnavailableDestinationOrDeskRefusesTheWholeGroup" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="342554044" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:22Z" duration="0.058084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25627" name="UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;wet&quot;)" methodname="UnavailableDestinationOrDeskRefusesTheWholeGroup" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1935659576" result="Passed" start-time="2026-11-15 20:11:22Z" end-time="2026-11-15 20:11:23Z" duration="0.057814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25628" name="UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;occupied&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;occupied&quot;)" methodname="UnavailableDestinationOrDeskRefusesTheWholeGroup" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1820255081" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.056917" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25629" name="UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;interior&quot;)" methodname="UnavailableDestinationOrDeskRefusesTheWholeGroup" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="903596504" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.062370" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25630" name="UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;ground&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;ground&quot;)" methodname="UnavailableDestinationOrDeskRefusesTheWholeGroup" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1659070801" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.103399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25631" name="UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;anchor&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;anchor&quot;)" methodname="UnavailableDestinationOrDeskRefusesTheWholeGroup" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="482927697" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.117200" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25632" name="UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.UnavailableDestinationOrDeskRefusesTheWholeGroup(&quot;footprint&quot;)" methodname="UnavailableDestinationOrDeskRefusesTheWholeGroup" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1972782805" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.061017" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25625" name="WrongOrCachedAuthorityIsUnchanged" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.WrongOrCachedAuthorityIsUnchanged" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:24Z" duration="0.603155" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25617" name="WrongOrCachedAuthorityIsUnchanged(&quot;zone&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.WrongOrCachedAuthorityIsUnchanged(&quot;zone&quot;)" methodname="WrongOrCachedAuthorityIsUnchanged" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1566758689" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.058666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25618" name="WrongOrCachedAuthorityIsUnchanged(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.WrongOrCachedAuthorityIsUnchanged(&quot;graph&quot;)" methodname="WrongOrCachedAuthorityIsUnchanged" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="554649509" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.058555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25619" name="WrongOrCachedAuthorityIsUnchanged(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.WrongOrCachedAuthorityIsUnchanged(&quot;profile&quot;)" methodname="WrongOrCachedAuthorityIsUnchanged" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="866211664" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.074084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25620" name="WrongOrCachedAuthorityIsUnchanged(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.WrongOrCachedAuthorityIsUnchanged(&quot;biome&quot;)" methodname="WrongOrCachedAuthorityIsUnchanged" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1526444464" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.073667" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25621" name="WrongOrCachedAuthorityIsUnchanged(&quot;factory&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.WrongOrCachedAuthorityIsUnchanged(&quot;factory&quot;)" methodname="WrongOrCachedAuthorityIsUnchanged" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="2065609960" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.094220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25622" name="WrongOrCachedAuthorityIsUnchanged(&quot;seed&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.WrongOrCachedAuthorityIsUnchanged(&quot;seed&quot;)" methodname="WrongOrCachedAuthorityIsUnchanged" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1983846807" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.075762" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25623" name="WrongOrCachedAuthorityIsUnchanged(&quot;cached&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.WrongOrCachedAuthorityIsUnchanged(&quot;cached&quot;)" methodname="WrongOrCachedAuthorityIsUnchanged" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1153961383" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:23Z" duration="0.073614" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25624" name="WrongOrCachedAuthorityIsUnchanged(&quot;unprofiled&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.WrongOrCachedAuthorityIsUnchanged(&quot;unprofiled&quot;)" methodname="WrongOrCachedAuthorityIsUnchanged" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1567919689" result="Passed" start-time="2026-11-15 20:11:23Z" end-time="2026-11-15 20:11:24Z" duration="0.090854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

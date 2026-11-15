@@ -1,0 +1,80 @@
+{
+  "recordedUTC": "2026-11-15T20:26:17.388378+00:00",
+  "sourceBase": "9b04d867abceeccc539a55b51cd2274131b931b4",
+  "status": "bounded Editor acceptance; publication pending; current c53 packages exclude this slice",
+  "zone": "Overworld.14.9.0",
+  "seed": 224401440,
+  "scope": "Fresh-only three ordinary chairs complete two existing Copy Hall desk bays. Late priority4600 preserves earlier Innkeeper chair ownership, population, stock and original owners. No art, renderer, palette, shadow, geometry, reserve or mechanic change. NPC seating activity can redistribute normally.",
+  "native": {
+    "finalJob": "0ec0796b3cbd4a5bbcf964be49f3a4e8",
+    "finalXML": {
+      "id": "2",
+      "testcasecount": "183",
+      "result": "Passed",
+      "total": "183",
+      "passed": "183",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-15 20:15:42Z",
+      "end-time": "2026-11-15 20:16:02Z",
+      "duration": "20.5157095"
+    },
+    "red": {
+      "initial": "de5ca05f81a74cf38e865c7ae0d1a91d:3genuinepositivepremise missingseat failures+1ownershipcontrolpass",
+      "duplicate": "fc30e063cd744c29b06857eee6292a3e:4genuineduplicatepartfailures+11controls",
+      "optional": "c893ec51b560431d80df90d17fa723eb:3genuineoptionalpartfailures+15controls"
+    },
+    "earlierGreen": "143 passes superseded; intermediate duplicate15/optional18 overlap; do not sum",
+    "suites": [
+      "QuillholdCopyHallTests",
+      "QuillholdCompositionTests",
+      "QuillholdCompositionAdversarialTests",
+      "DensityPlayerChairTests",
+      "ChairOwnershipTests",
+      "FlatPixelSharedFurnitureTests"
+    ]
+  },
+  "actual": {
+    "freshFixture": "Docs/Verification/GraphicsExecution/Marrowstye/after-save",
+    "freshProof": "Independent binary v8 header/cache decode:8unique keys,14.9.0 absent; QuillholdWalls4330 positive control contains14.9.0. Gzip hash matches original play receipt.",
+    "baseline": "From12.12.0 at40,11 worldRight2Up3\u219214.9.0 at39,11;Left20Down6\u219219,17,F5actual4180HP40. Do not infer turn from step count.",
+    "after": "Same3800 fixture/route gives same4180HP40at19,17; three new seats20469(13,19),20470(13,21),20471(24,21). Original chair19821at24,19 owner20419 preserved.",
+    "interaction": "Actual full CopyDesk/newChair readers and Scribe reader showing Sitting. New seat Sit refuses normally because NPC-reserved; successful player Sit/Stand NOT observed. Original Innkeeper-owned seat refuses in baseline. No invented public-seat guarantee.",
+    "travel": "Ordinary14.9\u219213.9\u219214.9 then hall; two blocked entrance-route steps corrected by ordinary Up2; NPC passage dialogue, no combat.",
+    "reload": "F5actual4980HP40at19,17; fresh isolated normal Continue, all8chair IDs/positions/owners/occupied/occupant exact. F12off.",
+    "cachedControl": "Fresh isolated Continue of pre-change BeforeHallCheckpoint4180HP40; original5 totalchairs, only original1hallchair and no new3. No cached retrofit.",
+    "prohibitedActions": "No F12 protection, gameplay injection, healing, combat, item transfer, Break execution or ending action in this slice. Prior Marrow fixture log retains historical wall strikes.",
+    "visual": {
+      "center": "full image identical",
+      "hall": "7074 worldpixels differ including ordinary NPC positions; sidebar/hotbar exact",
+      "reload": "286 worldpixels around player; cause unproven; hotbar0/sidebar21652logpixels",
+      "cachedControl": "285 worldpixels around player; new3cells+originalchaircell exact; sidebar/hotbar exact"
+    }
+  },
+  "profile": {
+    "path": "manual-profile.json",
+    "seconds": 46.2094737,
+    "samples": 25187,
+    "wrapped": false,
+    "rendererP95ms": 0.1035,
+    "rendererMaxMs": 463.438292,
+    "mainP95ms": 2.204167,
+    "mainMaxMs": 2208.303,
+    "limit": "Short after-only Editor observation, includes generation/travel/capture. No paired speed comparison, packaged performance, spike attribution or R11 closure."
+  },
+  "review": {
+    "source": "sumphold_grade_source_review:0 remaining P1/P2 after seven malformed-payload RED controls/fixes",
+    "visual": "sumphold_baseline_review:0 visible P1/P2 on hall/center/reload/cached control"
+  },
+  "preservation": "preservation.json;83foreigntracked/normal saves/gameplay preferences exact; four Editor session metadata exceptions; stopped/rootnull/clean; no cleanup",
+  "next": "Spivenor16.4.2 hearth backing fresh baseline; reuse approved stone + distinct nonmaterial ambient backing for all47canonicalHearthPatch (40stone/6rubble/1bare), preserve native glyph/light/readers/mechanics. Batch after accepted slice; Deck deferred.",
+  "limits": [
+    "Only seed224401440 actual fresh town; other plans covered natively.",
+    "Whole Quillhold, population audit, shadows, allV0\u2013V7, Linux execution and R11 remain open.",
+    "Current Mac/Linux sourcec53bcf434 excludes Copy Hall; delivery pending next accepted slice."
+  ]
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 20:08:01Z" end-time="2026-11-15 20:08:03Z" duration="1.8464516">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38036" result="Failed" site="Child" start-time="2026-11-15 20:08:01Z" end-time="2026-11-15 20:08:03Z" duration="1.846452" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46561" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38036" result="Failed" site="Child" start-time="2026-11-15 20:08:01Z" end-time="2026-11-15 20:08:03Z" duration="1.834640" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46562" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38036" result="Failed" site="Child" start-time="2026-11-15 20:08:01Z" end-time="2026-11-15 20:08:03Z" duration="1.828081" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46563" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38036" result="Failed" site="Child" start-time="2026-11-15 20:08:01Z" end-time="2026-11-15 20:08:03Z" duration="1.821606" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25607" name="QuillholdCopyHallTests" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 20:08:01Z" end-time="2026-11-15 20:08:03Z" duration="1.811971" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="25612" name="ExistingInnkeeperChairAndScribeApronRemainOwnedAndOpen" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.ExistingInnkeeperChairAndScribeApronRemainOwnedAndOpen" methodname="ExistingInnkeeperChairAndScribeApronRemainOwnedAndOpen" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1104751925" result="Passed" start-time="2026-11-15 20:08:01Z" end-time="2026-11-15 20:08:01Z" duration="0.589797" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25611" name="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 20:08:01Z" end-time="2026-11-15 20:08:03Z" duration="1.216251" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25608" name="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(13,19)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(13,19)" methodname="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1686036934" result="Failed" start-time="2026-11-15 20:08:01Z" end-time="2026-11-15 20:08:02Z" duration="0.370206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary seat at the copying bay.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks (System.Int32 x, System.Int32 y) [0x000ec] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/QuillholdCopyHallTests.cs:24
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25609" name="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(13,21)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(13,21)" methodname="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1145601864" result="Failed" start-time="2026-11-15 20:08:02Z" end-time="2026-11-15 20:08:02Z" duration="0.480574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary seat at the copying bay.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks (System.Int32 x, System.Int32 y) [0x000ec] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/QuillholdCopyHallTests.cs:24
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25610" name="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(24,21)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(24,21)" methodname="FreshCopyHallProvidesPairedSeatsAtDisclosedDesks" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="636443850" result="Failed" start-time="2026-11-15 20:08:02Z" end-time="2026-11-15 20:08:03Z" duration="0.362985" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary seat at the copying bay.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.QuillholdCopyHallTests.FreshCopyHallProvidesPairedSeatsAtDisclosedDesks (System.Int32 x, System.Int32 y) [0x000ec] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/QuillholdCopyHallTests.cs:24
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

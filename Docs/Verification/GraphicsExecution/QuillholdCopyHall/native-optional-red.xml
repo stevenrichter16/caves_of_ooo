@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Failed(Child)" total="18" passed="15" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 20:14:14Z" end-time="2026-11-15 20:14:17Z" duration="2.2211936">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38073" result="Failed" site="Child" start-time="2026-11-15 20:14:14Z" end-time="2026-11-15 20:14:17Z" duration="2.221194" total="18" passed="15" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46602" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38073" result="Failed" site="Child" start-time="2026-11-15 20:14:14Z" end-time="2026-11-15 20:14:17Z" duration="2.201805" total="18" passed="15" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46603" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38073" result="Failed" site="Child" start-time="2026-11-15 20:14:14Z" end-time="2026-11-15 20:14:17Z" duration="2.185189" total="18" passed="15" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46604" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38073" result="Failed" site="Child" start-time="2026-11-15 20:14:14Z" end-time="2026-11-15 20:14:17Z" duration="2.170818" total="18" passed="15" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25607" name="QuillholdCopyHallTests" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-11-15 20:14:14Z" end-time="2026-11-15 20:14:17Z" duration="2.104657" total="18" passed="15" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25652" name="MalformedSeatCannotMutateTheExistingRoom" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-11-15 20:14:14Z" end-time="2026-11-15 20:14:17Z" duration="2.102789" total="18" passed="15" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25634" name="MalformedSeatCannotMutateTheExistingRoom(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;missing&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1871486753" result="Passed" start-time="2026-11-15 20:14:14Z" end-time="2026-11-15 20:14:15Z" duration="0.130879" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25635" name="MalformedSeatCannotMutateTheExistingRoom(&quot;owned&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;owned&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="2138993568" result="Passed" start-time="2026-11-15 20:14:15Z" end-time="2026-11-15 20:14:15Z" duration="0.103416" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25636" name="MalformedSeatCannotMutateTheExistingRoom(&quot;occupied&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;occupied&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1289070310" result="Passed" start-time="2026-11-15 20:14:15Z" end-time="2026-11-15 20:14:15Z" duration="0.096908" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25637" name="MalformedSeatCannotMutateTheExistingRoom(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;solid&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="84703037" result="Passed" start-time="2026-11-15 20:14:15Z" end-time="2026-11-15 20:14:15Z" duration="0.096710" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25638" name="MalformedSeatCannotMutateTheExistingRoom(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;hidden&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1090426334" result="Passed" start-time="2026-11-15 20:14:15Z" end-time="2026-11-15 20:14:15Z" duration="0.096577" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25639" name="MalformedSeatCannotMutateTheExistingRoom(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;glyph&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1420926611" result="Passed" start-time="2026-11-15 20:14:15Z" end-time="2026-11-15 20:14:15Z" duration="0.093402" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25640" name="MalformedSeatCannotMutateTheExistingRoom(&quot;Barren&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;Barren&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1898763352" result="Passed" start-time="2026-11-15 20:14:15Z" end-time="2026-11-15 20:14:15Z" duration="0.091741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25641" name="MalformedSeatCannotMutateTheExistingRoom(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;footprint&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="782945728" result="Passed" start-time="2026-11-15 20:14:15Z" end-time="2026-11-15 20:14:15Z" duration="0.091271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25642" name="MalformedSeatCannotMutateTheExistingRoom(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;layer&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1875494429" result="Passed" start-time="2026-11-15 20:14:15Z" end-time="2026-11-15 20:14:15Z" duration="0.199679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25643" name="MalformedSeatCannotMutateTheExistingRoom(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;variant&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="47284191" result="Passed" start-time="2026-11-15 20:14:15Z" end-time="2026-11-15 20:14:16Z" duration="0.100341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25644" name="MalformedSeatCannotMutateTheExistingRoom(&quot;campfire&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;campfire&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1033372349" result="Passed" start-time="2026-11-15 20:14:16Z" end-time="2026-11-15 20:14:16Z" duration="0.095123" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25645" name="MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-chair&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-chair&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1300544383" result="Passed" start-time="2026-11-15 20:14:16Z" end-time="2026-11-15 20:14:16Z" duration="0.095205" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25646" name="MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-render&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-render&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1676731756" result="Passed" start-time="2026-11-15 20:14:16Z" end-time="2026-11-15 20:14:16Z" duration="0.095990" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25647" name="MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-physics&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-physics&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1581942054" result="Passed" start-time="2026-11-15 20:14:16Z" end-time="2026-11-15 20:14:16Z" duration="0.097648" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25648" name="MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-examinable&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-examinable&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1211183313" result="Passed" start-time="2026-11-15 20:14:16Z" end-time="2026-11-15 20:14:16Z" duration="0.095823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25649" name="MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-status&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-status&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1729780467" result="Failed" start-time="2026-11-15 20:14:16Z" end-time="2026-11-15 20:14:16Z" duration="0.141433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 70891 but was 70978. Strings differ at index 42483.
+  Expected: "...helf|(61, 16)|True|18||2213\n222|Floor|(30, 2)|False|||\n223..."
+  But was:  "...helf|(61, 16)|True|18||2213\n2214|Chair|(13, 19)|False|||\n2..."
+  ---------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom (System.String kind) [0x000c6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/QuillholdCopyHallTests.cs:127
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25650" name="MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-stack&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;duplicate-stack&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="2073294298" result="Failed" start-time="2026-11-15 20:14:16Z" end-time="2026-11-15 20:14:16Z" duration="0.177401" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 70891 but was 70978. Strings differ at index 42483.
+  Expected: "...helf|(61, 16)|True|18||2213\n222|Floor|(30, 2)|False|||\n223..."
+  But was:  "...helf|(61, 16)|True|18||2213\n2214|Chair|(13, 19)|False|||\n2..."
+  ---------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom (System.String kind) [0x000c6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/QuillholdCopyHallTests.cs:127
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25651" name="MalformedSeatCannotMutateTheExistingRoom(&quot;empty-stack&quot;)" fullname="CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom(&quot;empty-stack&quot;)" methodname="MalformedSeatCannotMutateTheExistingRoom" classname="CavesOfOoo.Tests.QuillholdCopyHallTests" runstate="Runnable" seed="1291581426" result="Failed" start-time="2026-11-15 20:14:16Z" end-time="2026-11-15 20:14:17Z" duration="0.196190" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 70891 but was 70978. Strings differ at index 42483.
+  Expected: "...helf|(61, 16)|True|18||2213\n222|Floor|(30, 2)|False|||\n223..."
+  But was:  "...helf|(61, 16)|True|18||2213\n2214|Chair|(13, 19)|False|||\n2..."
+  ---------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.QuillholdCopyHallTests.MalformedSeatCannotMutateTheExistingRoom (System.String kind) [0x000c6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/QuillholdCopyHallTests.cs:127
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
