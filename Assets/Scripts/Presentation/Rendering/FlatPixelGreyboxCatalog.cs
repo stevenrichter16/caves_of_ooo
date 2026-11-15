@@ -2081,6 +2081,9 @@ namespace CavesOfOoo.Rendering
         internal bool CanReceiveCinderholdWallShadow(Zone zone, int x, int y)
             => _settlementGroundArt != null && _settlementGroundArt.CanReceiveCinderholdWallShadow(zone, x, y);
 
+        internal bool CanReceiveSumpholdWallShadow(Zone zone, int x, int y)
+            => _settlementGroundArt != null && _settlementGroundArt.CanReceiveSumpholdWallShadow(zone, x, y);
+
         internal bool CanReceiveMarrowstyeWallShadow(Zone zone, int x, int y)
             => _settlementGroundArt != null && _settlementGroundArt.CanReceiveMarrowstyeWallShadow(zone, x, y);
 
