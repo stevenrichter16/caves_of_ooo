@@ -19,7 +19,7 @@ namespace CavesOfOoo.Rendering
         bool allowStoneFloor;
         bool rockBackdropOnly;
         string inhabitedHearthZone;
-        bool lampwellSundewBacking;
+        bool inhabitedSundewBacking;
         /// <summary>Olderdeep's real stone/sandstone floors and sandstone walls only.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingOlderdeepDescent()
         { admits = FlatPixelSiteAdmission.IsOlderdeepDescent; allowCoveredFloorReader = allowStoneFloor = structuralOnly = sandstoneOnly = true; return this; }
@@ -29,12 +29,12 @@ namespace CavesOfOoo.Rendering
         /// <summary>Root chamber sandstone and canonical rocks; no empty-cell or ending backing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingRootChamber()
         { admits = FlatPixelSiteAdmission.IsRootChamber; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
-        /// <summary>Lampwell sandstone/rocks, plus disclosed hearth backing in the inhabited second chamber.</summary>
+        /// <summary>Lampwell sandstone/rocks, plus disclosed hearth/sundew backing in the inhabited second chamber.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingLampwellStone()
-        { admits = FlatPixelSiteAdmission.IsLampwellStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; inhabitedHearthZone = "Overworld.12.3.2"; lampwellSundewBacking = true; return this; }
-        /// <summary>Spivenor sandstone/rocks, plus disclosed hearth backing in the inhabited second chamber.</summary>
+        { admits = FlatPixelSiteAdmission.IsLampwellStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; inhabitedHearthZone = "Overworld.12.3.2"; inhabitedSundewBacking = true; return this; }
+        /// <summary>Spivenor sandstone/rocks, plus disclosed hearth/sundew backing in the inhabited second chamber.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingSpivenorStone()
-        { admits = FlatPixelSiteAdmission.IsSpivenorStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; inhabitedHearthZone = "Overworld.16.4.2"; return this; }
+        { admits = FlatPixelSiteAdmission.IsSpivenorStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; inhabitedHearthZone = "Overworld.16.4.2"; inhabitedSundewBacking = true; return this; }
         /// <summary>Real sandstone and low rockfall owners only; no ambient or stair borrowing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingGinmereDescent()
         { admits = FlatPixelSiteAdmission.IsGinmereDescent; allowCoveredFloorReader = true; structuralOnly = true; return this; }
@@ -142,8 +142,8 @@ namespace CavesOfOoo.Rendering
                 { if (actual != null || stoneFloors == null || !OrdinaryStoneFloor(owner)) return false; actual = owner; }
                 else if (zone.ZoneID == inhabitedHearthZone && owner.BlueprintName == "HearthPatch")
                 { if (!OrdinaryInhabitedHearth(owner) || ++hearths > 1 || thresholds != 0) return false; }
-                else if (lampwellSundewBacking && zone.ZoneID == "Overworld.12.3.2" && owner.BlueprintName == "PebbleSundewThreshold")
-                { if (!OrdinaryLampwellThreshold(owner) || ++thresholds > 1 || hearths != 0) return false; }
+                else if (inhabitedSundewBacking && zone.ZoneID == inhabitedHearthZone && owner.BlueprintName == "PebbleSundewThreshold")
+                { if (!OrdinaryInhabitedThreshold(owner) || ++thresholds > 1 || hearths != 0) return false; }
                 else if (!(frostFloor && FlatPixelFrostVentCatalog.Eligible(owner)) && CompetingGround(owner)) return false;
             }
             if (actual == null) return false;
@@ -204,9 +204,9 @@ namespace CavesOfOoo.Rendering
                     if (!OrdinaryInhabitedHearth(owner) || ++hearths > 1 || thresholds != 0) return false;
                     continue;
                 }
-                if (lampwellSundewBacking && zone.ZoneID == "Overworld.12.3.2" && owner.BlueprintName == "PebbleSundewThreshold")
+                if (inhabitedSundewBacking && zone.ZoneID == inhabitedHearthZone && owner.BlueprintName == "PebbleSundewThreshold")
                 {
-                    if (!OrdinaryLampwellThreshold(owner) || ++thresholds > 1 || hearths != 0) return false;
+                    if (!OrdinaryInhabitedThreshold(owner) || ++thresholds > 1 || hearths != 0) return false;
                     continue;
                 }
                 if (rockBackdropOnly && (owner.BlueprintName == "Rubble" || owner.BlueprintName == "Stalagmite"))
@@ -295,9 +295,9 @@ namespace CavesOfOoo.Rendering
                 && hearth != null && hearth.WarRep == PlayerReputation.HATED_THRESHOLD
                 && light != null && light.Radius == 4 && light.LightColor == "&G" && light.Intensity == .8f;
         }
-        // Only Lampwell's disclosed greeting mat may borrow its real substrate.
+        // Only an admitted inhabited chamber's disclosed greeting mat borrows its substrate.
         // The trigger remains a glyph; generic trigger and hazard vetoes stay intact.
-        static bool OrdinaryLampwellThreshold(Entity owner)
+        static bool OrdinaryInhabitedThreshold(Entity owner)
         {
             if (owner?.BlueprintName != "PebbleSundewThreshold") return false;
             foreach (var part in owner.Parts)
