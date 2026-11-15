@@ -1,0 +1,11 @@
+# Current Posy and Tally graphics delivery
+
+Source4233a848d56ac098f121dab5baddf9eee82e7880 remotelyverified. Posy native questresidents and Tally yard/sheltermaterials, with allprioracceptedgraphics. Native94 and191separatePassed checkpoints/nonadditive. Macbuildcbad56416d29.564s and Linuxb20d33b41022.448s, both0errors4warnings,developmentfalse.
+
+ActualMac: bakerfullreader/nativecook and originaldialogue, ordinary5.9↔4.9, F5turn3280HP40/fresh39,12Dusk. Separateearnedhermit27,18 run verifiesfullreader26,18/nativecivilian and originaldialogue; no questacceptance/newhermitreloadclaim. Tallyshelter17,6,Cloth8/8reader, Down5Right22, Packedroadreader40,11,10.14↔9.14, F5turn4940HP40/fresh39,11Dawn. NoF12. Fiveguardedprocesses exited. Severalbatcheddescents remainedonworldmap; correctedaftervisualinspection. IntermediatePosymapF5excluded, correctedlocalsave/reloadauthoritative. CUA1280×856incl56titlebar; no durableMacPNG/pixelcomparisonclaim. Firstlaunch overlapsarchive; no packagedperformanceclaim. Shutdownwarnings retained.
+
+Linuxarchive independentlyverified205members192files13dirs191checksums326combinedpins,129129432bytesSHA db7a8e06b89e9a3d06c7fc5065fdf74d8041c4395e6932003c6d67210841b1e3. Linuxunexecuted;SteamDeckdeferred.78neutralmetadata6stableuntrackedinputs/ignored339inheritedcensus; no clean/reproduciblebinaryclaim. Initialstaleprovenancepin/overbroadforeignmetadatadiagnostics failedsafely beforepackagewrites; currentcommitted/approvedneutralpinscorrected and independentlyreviewed. Macbuild hadstarted afterruntimechecks; finalaudittimestamp afterstartdisclosed.
+
+Restoration2026-11-15T06:31:56.305184+00:00 verified58191trackedobjects80dirty/normalstate/prior0d8c packages. Fourgeneratedsettingsrestored,ownedsessionsarchived,nocleanup. Snapshot/private/tmp/coo-graphics-build-protection-4233a848d;reviewed/private/tmp/coo-4233a8-reviewed.json;archive/private/tmp/coo-4233a8-restored.
+
+NextactualQuillhold14.9 wall/interiorbaseline. Existinglivepropindex means no missingnativecoverageclaimbeforeinspection; distinguish rememberedwallglyphs from liveart. R11/wholearea/population/shadows/V0–V7open. HourlyACTIVE,lastactual06:18:44Z.

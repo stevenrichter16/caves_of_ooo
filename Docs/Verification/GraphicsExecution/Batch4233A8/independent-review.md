@@ -1,0 +1,5 @@
+# Combined Posy/Tally delivery review
+
+`build_comparison_plan`, read-only, 2026-11-15:0 P1/P2 before apply. All326 distinctcurrentpins,245resourceentries,80foreignhashes,58191tracked snapshot,absentnormalstandalone/prior0d8c paths verified. Native94 and191uniquePassed separately,nonadditive. Normalizedpackagecontrolflow and launch/restoreAST unchanged. Exactpinnedbasehelpers and adaptedprior checked. Two diagnosticaborts and finalauditafterbuildstart disclosed. HelperSHA4eb4ecd45868ea89a8e6d7d19277868fb1ac221b2ed347caacc1352564f89ec6.
+
+Finalarchive independent0P1/P2:129129432bytesSHA db7a8e06b89e9a3d06c7fc5065fdf74d8041c4395e6932003c6d67210841b1e3;205members192files13dirs343629313unpackedbytes. Fullarchive/outputsets/hash/size/modes,191checksums,single-saferoot/nolinks,gzipEOFCRC/footer,6credits/5licenses/starter sourcesverified. Source/currentreports/manifest/audit326pinsverified; bothbuilds0errors4warnings. No helpers/executable/Unity/Git/mutations byreviewer. ActualMac/restoration root-owned; no Linuxexecution or packagedperformanceclaim.
