@@ -20,9 +20,10 @@ namespace CavesOfOoo.Rendering
         bool rockBackdropOnly;
         string inhabitedHearthZone;
         bool inhabitedSundewBacking;
-        /// <summary>Olderdeep's real stone/sandstone floors and sandstone walls only.</summary>
+        bool foundingPlumeBacking;
+        /// <summary>Olderdeep's real floors/walls, including stone beneath disclosed founding plumes.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingOlderdeepDescent()
-        { admits = FlatPixelSiteAdmission.IsOlderdeepDescent; allowCoveredFloorReader = allowStoneFloor = structuralOnly = sandstoneOnly = true; return this; }
+        { admits = FlatPixelSiteAdmission.IsOlderdeepDescent; allowCoveredFloorReader = allowStoneFloor = structuralOnly = sandstoneOnly = foundingPlumeBacking = true; return this; }
         /// <summary>Cathedral sandstone only; no rock, stair or ambient borrowing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingCathedralDescent()
         { admits = FlatPixelSiteAdmission.IsCathedralDescent; allowCoveredFloorReader = true; structuralOnly = sandstoneOnly = true; return this; }
@@ -132,7 +133,7 @@ namespace CavesOfOoo.Rendering
             bool frostFloor = FlatPixelFrostVentCatalog.HasFloor(zone, x, y);
             if (state != null && !state.IsEmpty && !frostFloor) return false;
             Entity actual = null;
-            int hearths = 0, thresholds = 0;
+            int hearths = 0, thresholds = 0, plumes = 0;
             foreach (var owner in cell.Occupants)
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
@@ -144,9 +145,11 @@ namespace CavesOfOoo.Rendering
                 { if (!OrdinaryInhabitedHearth(owner) || ++hearths > 1 || thresholds != 0) return false; }
                 else if (inhabitedSundewBacking && zone.ZoneID == inhabitedHearthZone && owner.BlueprintName == "PebbleSundewThreshold")
                 { if (!OrdinaryInhabitedThreshold(owner) || ++thresholds > 1 || hearths != 0) return false; }
+                else if (foundingPlumeBacking && zone.ZoneID == "Overworld.4.6.2" && owner.BlueprintName == "FoundingPlume")
+                { if (!OrdinaryFoundingPlume(owner) || ++plumes > 1) return false; }
                 else if (!(frostFloor && FlatPixelFrostVentCatalog.Eligible(owner)) && CompetingGround(owner)) return false;
             }
-            if (actual == null) return false;
+            if (actual == null || plumes != 0 && actual.BlueprintName != "StoneFloor") return false;
             floor = actual; tile = (actual.BlueprintName == "StoneFloor" ? stoneFloors : floors)[VariantAt(x, y)]; return true;
         }
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
@@ -317,6 +320,36 @@ namespace CavesOfOoo.Rendering
                 && string.IsNullOrEmpty(render.BackgroundColor) && string.IsNullOrEmpty(render.Tile)
                 && string.IsNullOrEmpty(render.TileColor) && string.IsNullOrEmpty(render.DetailColor)
                 && threshold != null && threshold.TriggerFaction == "CatacombFolk" && !threshold.ConsumeOnTrigger;
+        }
+        // The founding bed keeps its own glyph, light and rest action. Only its
+        // real stone substrate is admitted; bare plumes never gain a canvas.
+        static bool OrdinaryFoundingPlume(Entity owner)
+        {
+            if (owner?.BlueprintName != "FoundingPlume") return false;
+            foreach (var part in owner.Parts)
+            {
+                if (part == null) return false;
+                var type = part.GetType();
+                if (type != typeof(RenderPart) && type != typeof(PhysicsPart) && type != typeof(ExaminablePart)
+                    && type != typeof(MaterialPart) && type != typeof(ThermalPart) && type != typeof(DestructiblePart)
+                    && type != typeof(HearthPatchPart) && type != typeof(LightSourcePart) && type != typeof(FoundingPlumePart)
+                    && type != typeof(StackerPart) && type != typeof(SpatialFootprintPart) && type != typeof(StatusEffectsPart)) return false;
+            }
+            if (!PlainOwner(owner) || Owned<PhysicsPart>(owner).Solid || owner.Tags.Count != 5
+                || !owner.HasTag("Terrain") || !owner.HasTag("Vegetation") || !owner.HasTag("UnderfootInteractable")
+                || !owner.HasTag("Plant") || !owner.HasTag("Organic") || Owned<FoundingPlumePart>(owner) == null) return false;
+            var render = Owned<RenderPart>(owner); var material = Owned<MaterialPart>(owner); var thermal = Owned<ThermalPart>(owner);
+            var hp = Owned<DestructiblePart>(owner); var hearth = Owned<HearthPatchPart>(owner); var light = Owned<LightSourcePart>(owner);
+            return Render(render, "*", "&W", 2) && render.VisualFacing == (EntityVisualFacing)0
+                && string.IsNullOrEmpty(render.GlyphVariants) && string.IsNullOrEmpty(render.BackgroundColor)
+                && string.IsNullOrEmpty(render.Tile) && string.IsNullOrEmpty(render.TileColor) && string.IsNullOrEmpty(render.DetailColor)
+                && material != null && material.MaterialID == "Plant" && material.Combustibility == .1f
+                && material.HasMaterialTag("Plant") && material.HasMaterialTag("Organic") && NeutralThermal(owner)
+                && thermal.FreezeTemperature == 0 && thermal.FlameTemperature == 420
+                && hp != null && !hp.Gone && !hp.Indestructible && hp.HP > 0 && hp.HP <= 40 && hp.MaxHP == 40
+                && hp.Hardness == 0 && string.IsNullOrEmpty(hp.WreckageBlueprint)
+                && hearth != null && hearth.WarRep == PlayerReputation.HATED_THRESHOLD
+                && light != null && light.Enabled && light.Radius == 5 && light.LightColor == "&G" && light.Intensity == .8f;
         }
         static bool OrdinaryForeground(Entity owner)
         {

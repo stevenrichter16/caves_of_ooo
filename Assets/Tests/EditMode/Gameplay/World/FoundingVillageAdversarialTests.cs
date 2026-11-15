@@ -182,6 +182,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(ConversationPredicates.IsRegistered("IfFoundingBloom"));
             var zone = new Zone(); var actor = Actor(zone); var plume = _factory.CreateEntity("FoundingPlume"); zone.AddEntity(plume, 10, 10);
             var e = GameEvent.New("InventoryAction"); e.SetParameter("Command", "SleepOnFoundingPlume"); e.SetParameter("Actor", actor); e.SetParameter("Zone", zone); plume.FireEventAndRelease(e);
+            Assert.IsTrue(FoundingPlumePart.HasBloom(actor), "sleep must actually establish bloom before testing expiry");
             TurnManager.Active.AdvanceClock(elapsed);
             Assert.AreEqual(scented, ConversationPredicates.Evaluate("IfFoundingBloom", null, actor, ""));
         }
@@ -204,7 +205,7 @@ namespace CavesOfOoo.Tests
         }
         private static Entity Actor(Zone zone)
         {
-            var actor = new Entity(); actor.SetTag("Player");
+            var actor = new Entity(); actor.SetTag("Player"); actor.AddPart(new PhysicsPart());
             actor.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 5, Max = 40 };
             actor.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Max = 200 };
             zone.AddEntity(actor, 10, 10); var turns = new TurnManager(); turns.AddEntity(actor); turns.ProcessUntilPlayerTurn(); return actor;

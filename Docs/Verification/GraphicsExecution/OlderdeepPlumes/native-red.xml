@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="61" result="Failed(Child)" total="61" passed="6" failed="55" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 23:44:39Z" end-time="2026-11-15 23:44:43Z" duration="3.0425011">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38399" result="Failed" site="Child" start-time="2026-11-15 23:44:39Z" end-time="2026-11-15 23:44:43Z" duration="3.042501" total="61" passed="6" failed="55" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46981" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38399" result="Failed" site="Child" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:43Z" duration="3.027545" total="61" passed="6" failed="55" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46982" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38399" result="Failed" site="Child" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:43Z" duration="3.023289" total="61" passed="6" failed="55" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46983" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38399" result="Failed" site="Child" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:43Z" duration="3.020417" total="61" passed="6" failed="55" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2210" name="FlatPixelOlderdeepPlumeTests" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" testcasecount="61" result="Failed" site="Child" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:43Z" duration="3.010304" total="61" passed="6" failed="55" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="2258" name="ChangedOwnerOrHazardRetainsFallback" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" testcasecount="44" result="Failed" site="Child" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:42Z" duration="2.121834" total="44" passed="0" failed="44" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2214" name="ChangedOwnerOrHazardRetainsFallback(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;duplicate&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="2135109442" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.106435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2215" name="ChangedOwnerOrHazardRetainsFallback(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;glyph&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1491428809" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.042054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2216" name="ChangedOwnerOrHazardRetainsFallback(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;color&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="911042386" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.042629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2217" name="ChangedOwnerOrHazardRetainsFallback(&quot;background&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;background&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1372622482" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.040925" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2218" name="ChangedOwnerOrHazardRetainsFallback(&quot;tile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;tile&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="320233039" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.040207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2219" name="ChangedOwnerOrHazardRetainsFallback(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;variant&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1108247071" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.041555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2220" name="ChangedOwnerOrHazardRetainsFallback(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;layer&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1903321927" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.041473" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2221" name="ChangedOwnerOrHazardRetainsFallback(&quot;tile-color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;tile-color&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1664315953" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.040839" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2222" name="ChangedOwnerOrHazardRetainsFallback(&quot;detail&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;detail&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="214123543" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.040999" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2223" name="ChangedOwnerOrHazardRetainsFallback(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;visual&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="195947133" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.040425" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2224" name="ChangedOwnerOrHazardRetainsFallback(&quot;facing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;facing&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1410651438" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.040945" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2225" name="ChangedOwnerOrHazardRetainsFallback(&quot;wall-tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;wall-tag&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1746254211" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.040423" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2226" name="ChangedOwnerOrHazardRetainsFallback(&quot;null-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;null-part&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="436718560" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.047803" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2227" name="ChangedOwnerOrHazardRetainsFallback(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;solid&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1570175321" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.055127" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2228" name="ChangedOwnerOrHazardRetainsFallback(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;takeable&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="2008567795" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.142003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2229" name="ChangedOwnerOrHazardRetainsFallback(&quot;foreign-role&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;foreign-role&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="726708368" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.044846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2230" name="ChangedOwnerOrHazardRetainsFallback(&quot;missing-plume&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;missing-plume&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="628286188" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.041940" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2231" name="ChangedOwnerOrHazardRetainsFallback(&quot;duplicate-plume-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;duplicate-plume-part&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1190078968" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:40Z" duration="0.041933" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2232" name="ChangedOwnerOrHazardRetainsFallback(&quot;foreign-plume-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;foreign-plume-part&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1505111190" result="Failed" start-time="2026-11-15 23:44:40Z" end-time="2026-11-15 23:44:41Z" duration="0.041517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2233" name="ChangedOwnerOrHazardRetainsFallback(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;material&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="89503183" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.041174" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2234" name="ChangedOwnerOrHazardRetainsFallback(&quot;combustibility&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;combustibility&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="839265062" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.041105" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2235" name="ChangedOwnerOrHazardRetainsFallback(&quot;burning&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;burning&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="843522415" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.040591" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2236" name="ChangedOwnerOrHazardRetainsFallback(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;frozen&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1826365741" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.041288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2237" name="ChangedOwnerOrHazardRetainsFallback(&quot;nan-temperature&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;nan-temperature&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1691922880" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.040421" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2238" name="ChangedOwnerOrHazardRetainsFallback(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;dead&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="987679466" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.040960" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2239" name="ChangedOwnerOrHazardRetainsFallback(&quot;gone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;gone&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="2129712356" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.041544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2240" name="ChangedOwnerOrHazardRetainsFallback(&quot;maxhp&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;maxhp&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="660049711" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.040576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2241" name="ChangedOwnerOrHazardRetainsFallback(&quot;hardness&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;hardness&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="675412709" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.039940" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2242" name="ChangedOwnerOrHazardRetainsFallback(&quot;indestructible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;indestructible&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="684476735" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.040896" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2243" name="ChangedOwnerOrHazardRetainsFallback(&quot;wreckage&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;wreckage&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1634359662" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.040753" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2244" name="ChangedOwnerOrHazardRetainsFallback(&quot;light-radius&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;light-radius&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1077284533" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.041084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2245" name="ChangedOwnerOrHazardRetainsFallback(&quot;light-color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;light-color&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1924400110" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.041141" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2246" name="ChangedOwnerOrHazardRetainsFallback(&quot;light-intensity&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;light-intensity&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1539335311" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.045156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2247" name="ChangedOwnerOrHazardRetainsFallback(&quot;light-disabled&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;light-disabled&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="838760987" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.147802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2248" name="ChangedOwnerOrHazardRetainsFallback(&quot;war-rep&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;war-rep&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1238305307" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.045462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2249" name="ChangedOwnerOrHazardRetainsFallback(&quot;hearth&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;hearth&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="671655856" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.041540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2250" name="ChangedOwnerOrHazardRetainsFallback(&quot;sundew&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;sundew&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="620755420" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.041694" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2251" name="ChangedOwnerOrHazardRetainsFallback(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;water&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="126201178" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.042019" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2252" name="ChangedOwnerOrHazardRetainsFallback(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;charge&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="82208965" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.040492" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2253" name="ChangedOwnerOrHazardRetainsFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;memory&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1193140282" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:41Z" duration="0.040248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2254" name="ChangedOwnerOrHazardRetainsFallback(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;unexplored&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1258752807" result="Failed" start-time="2026-11-15 23:44:41Z" end-time="2026-11-15 23:44:42Z" duration="0.041144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2255" name="ChangedOwnerOrHazardRetainsFallback(&quot;duplicate-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;duplicate-floor&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="209099580" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.040826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2256" name="ChangedOwnerOrHazardRetainsFallback(&quot;changed-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;changed-floor&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1387893798" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.040982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2257" name="ChangedOwnerOrHazardRetainsFallback(&quot;authority&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback(&quot;authority&quot;)" methodname="ChangedOwnerOrHazardRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1773087487" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.041142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ChangedOwnerOrHazardRetainsFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2275" name="ExactInhabitedChamberIsRequired" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ExactInhabitedChamberIsRequired" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.129190" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2272" name="ExactInhabitedChamberIsRequired(&quot;Overworld.4.6.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ExactInhabitedChamberIsRequired(&quot;Overworld.4.6.1&quot;)" methodname="ExactInhabitedChamberIsRequired" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1944538562" result="Passed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.043409" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2273" name="ExactInhabitedChamberIsRequired(&quot;Overworld.04.6.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ExactInhabitedChamberIsRequired(&quot;Overworld.04.6.2&quot;)" methodname="ExactInhabitedChamberIsRequired" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1897599876" result="Passed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.040746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2274" name="ExactInhabitedChamberIsRequired(&quot;Overworld.12.3.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.ExactInhabitedChamberIsRequired(&quot;Overworld.12.3.2&quot;)" methodname="ExactInhabitedChamberIsRequired" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="2007792906" result="Passed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.040173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2271" name="MissingOrMalformedStoneGroupCannotBorrowOtherArt" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.MissingOrMalformedStoneGroupCannotBorrowOtherArt" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.082949" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2269" name="MissingOrMalformedStoneGroupCannotBorrowOtherArt(False)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.MissingOrMalformedStoneGroupCannotBorrowOtherArt(False)" methodname="MissingOrMalformedStoneGroupCannotBorrowOtherArt" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="703698926" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.040685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.MissingOrMalformedStoneGroupCannotBorrowOtherArt (System.Boolean malformed) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2270" name="MissingOrMalformedStoneGroupCannotBorrowOtherArt(True)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.MissingOrMalformedStoneGroupCannotBorrowOtherArt(True)" methodname="MissingOrMalformedStoneGroupCannotBorrowOtherArt" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1224658614" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.039920" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.MissingOrMalformedStoneGroupCannotBorrowOtherArt (System.Boolean malformed) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2277" name="OtherCatalogInstancesNeverGainPlumeException" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.OtherCatalogInstancesNeverGainPlumeException" methodname="OtherCatalogInstancesNeverGainPlumeException" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1766514446" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.040605" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.OtherCatalogInstancesNeverGainPlumeException () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:99
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2213" name="RealStoneBacksPlumeWithoutChangingOwnerOrRest" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.RealStoneBacksPlumeWithoutChangingOwnerOrRest" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.087976" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2211" name="RealStoneBacksPlumeWithoutChangingOwnerOrRest(False)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.RealStoneBacksPlumeWithoutChangingOwnerOrRest(False)" methodname="RealStoneBacksPlumeWithoutChangingOwnerOrRest" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1056211294" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.041597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.RealStoneBacksPlumeWithoutChangingOwnerOrRest (System.Boolean covered) [0x0007f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2212" name="RealStoneBacksPlumeWithoutChangingOwnerOrRest(True)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.RealStoneBacksPlumeWithoutChangingOwnerOrRest(True)" methodname="RealStoneBacksPlumeWithoutChangingOwnerOrRest" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="2035484879" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.043829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.RealStoneBacksPlumeWithoutChangingOwnerOrRest (System.Boolean covered) [0x0007f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2276" name="StoryRenameAndPartialDamageRemainValidButStaleGraphDoesNot" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.StoryRenameAndPartialDamageRemainValidButStaleGraphDoesNot" methodname="StoryRenameAndPartialDamageRemainValidButStaleGraphDoesNot" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="391951117" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.078929" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.StoryRenameAndPartialDamageRemainValidButStaleGraphDoesNot () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:94
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2268" name="UndisclosedPlumeCannotVetoRealFloor" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.304963" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2263" name="UndisclosedPlumeCannotVetoRealFloor(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor(&quot;hidden&quot;)" methodname="UndisclosedPlumeCannotVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="804492099" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.121854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2264" name="UndisclosedPlumeCannotVetoRealFloor(&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor(&quot;custody&quot;)" methodname="UndisclosedPlumeCannotVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="244946917" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.041619" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2265" name="UndisclosedPlumeCannotVetoRealFloor(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor(&quot;equipped&quot;)" methodname="UndisclosedPlumeCannotVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1388114313" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.046094" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2266" name="UndisclosedPlumeCannotVetoRealFloor(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor(&quot;removed&quot;)" methodname="UndisclosedPlumeCannotVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1110695650" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.050069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2267" name="UndisclosedPlumeCannotVetoRealFloor(&quot;empty-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor(&quot;empty-stack&quot;)" methodname="UndisclosedPlumeCannotVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1358093595" result="Failed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.041358" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UndisclosedPlumeCannotVetoRealFloor (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelOlderdeepPlumeTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2262" name="UnobservedSubstratesDoNotBorrowBacking" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UnobservedSubstratesDoNotBorrowBacking" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:43Z" duration="0.155423" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2259" name="UnobservedSubstratesDoNotBorrowBacking(&quot;none&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UnobservedSubstratesDoNotBorrowBacking(&quot;none&quot;)" methodname="UnobservedSubstratesDoNotBorrowBacking" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1861707834" result="Passed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.064512" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2260" name="UnobservedSubstratesDoNotBorrowBacking(&quot;Rubble&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UnobservedSubstratesDoNotBorrowBacking(&quot;Rubble&quot;)" methodname="UnobservedSubstratesDoNotBorrowBacking" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="1292783297" result="Passed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:42Z" duration="0.044283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2261" name="UnobservedSubstratesDoNotBorrowBacking(&quot;SandstoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests.UnobservedSubstratesDoNotBorrowBacking(&quot;SandstoneFloor&quot;)" methodname="UnobservedSubstratesDoNotBorrowBacking" classname="CavesOfOoo.Tests.FlatPixelOlderdeepPlumeTests" runstate="Runnable" seed="667955779" result="Passed" start-time="2026-11-15 23:44:42Z" end-time="2026-11-15 23:44:43Z" duration="0.043484" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
