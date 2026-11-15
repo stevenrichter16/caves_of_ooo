@@ -12,7 +12,7 @@ using UnityEngine.Tilemaps;
 using Object=UnityEngine.Object;
 namespace CavesOfOoo.Tests
 {
-    public sealed class FlatPixelSharedResidentsTests
+    public sealed partial class FlatPixelSharedResidentsTests
     {
         const int X=10,Y=10;
         const string Cast="Sprites/Live16x24/opening-cast",Merchant="Sprites/Environment/merchant";

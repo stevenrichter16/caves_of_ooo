@@ -2,7 +2,7 @@
 
 Status: bounded Editor memory continuity verified; full-area acceptance remains open. Exact7.8 native Gantry profile only. Current fbfea packages exclude this pilot, Sodden water and Gantry shade.
 
-Current actual GantryShadow/AfterCheckpoint (seed704860946,turn1930,39,11HP22) shows remembered buildings as long ASCII# bands while disclosed timber is native. Reuse approved frames68–70 for the exact static wall already selected by the existing fallback; single35%dim, same coordinate variant, no shadow. No new art or geometry.
+Current actual GantryShadow/AfterCheckpoint (seed65 (corrected from the earlier mislabeled704860946; saved session and manager both confirm65),turn1930,39,11HP22) shows remembered buildings as long ASCII# bands while disclosed timber is native. Reuse approved frames68–70 for the exact static wall already selected by the existing fallback; single35%dim, same coordinate variant, no shadow. No new art or geometry.
 
 There is no historical terrain snapshot: saves retain explored flags and current entities. Existing conservative memory selection admits static terrain/walls and rejects actors/items/live families. Preserve that authority precisely. Never call the live prop resolver (reads hiddenHP/status), inspect hidden neighbors, solidity,heat/coatings or read other occupants to choose this art. No reader-access expansion. Missing optional atlas and unsupported identity/profile/graph retain fallback.
 

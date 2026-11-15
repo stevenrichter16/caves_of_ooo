@@ -2,7 +2,7 @@
 
 Status: bounded Editor comparison accepted; publication and later batch delivery pending. This is not full-area completion.
 
-The actual Gantry7.8 checkpoint (seed704860946, turn2190, HP22,39,11Dark) confirms Spread/CrossroadsExchange with canonical filter(.85,1.05,.9), contrast5, saturation12, vignette0. The accepted white/5/0/0 grade lets timber, stone floors, cloth and grass retain their authored hues. Existing art, geometry, encounters, furniture, material admission, shadows and memory disclosure remain unchanged. Global grading does alter remembered RGB.
+The actual Gantry7.8 checkpoint (seed65 (corrected from the earlier mislabeled704860946; saved session and manager both confirm65), turn2190, HP22,39,11Dark) confirms Spread/CrossroadsExchange with canonical filter(.85,1.05,.9), contrast5, saturation12, vignette0. The accepted white/5/0/0 grade lets timber, stone floors, cloth and grass retain their authored hues. Existing art, geometry, encounters, furniture, material admission, shadows and memory disclosure remain unchanged. Global grading does alter remembered RGB.
 
 Exact current native7.8/currentSpread/current displayed graph plus existing settlement-ground authority and CrossroadsExchange profile are required. Same-biome6.8 travel restores canonical grading. Wrong profile/name/type, detached/replaced cache, sprites off, legacy presentation, replacement world, saved lair, foreign biomes including Jungle, depth and address aliases are covered. Shared profile isolation remains intact.
 

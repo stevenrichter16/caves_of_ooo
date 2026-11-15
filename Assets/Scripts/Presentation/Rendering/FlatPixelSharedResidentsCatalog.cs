@@ -1,5 +1,6 @@
 using System;
 using CavesOfOoo.Core;
+using CavesOfOoo.Storylets;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
@@ -10,6 +11,8 @@ namespace CavesOfOoo.Rendering
     public sealed class FlatPixelSharedResidentsCatalog : IDisposable
     {
         public const string KeepersResourcePath = "Sprites/Live16x24/settlement-keepers";
+        public const string FactorResourcePath = "Sprites/Environment/concord_factor";
+        readonly Tile factor;
         readonly Tile villager, merchant, weaponsmith, tinker, wellKeeper, elder, child, innkeeper, quartermaster, scribe;
         bool disposed;
         public FlatPixelSharedResidentsCatalog()
@@ -19,7 +22,7 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>("Sprites/Live16x24/shared-specialists"),
                 Resources.Load<Texture2D>("Sprites/Environment/elder"),
                 Resources.Load<Texture2D>("Sprites/Environment/village_child"),
-                Resources.Load<Texture2D>(KeepersResourcePath)) { }
+                Resources.Load<Texture2D>(KeepersResourcePath), Resources.Load<Texture2D>(FactorResourcePath)) { }
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16)
             : this(cast64, merchant16, null) { }
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16)
@@ -30,7 +33,12 @@ namespace CavesOfOoo.Rendering
             : this(cast64, merchant16, weaponsmith16, specialists32, elder16, child16, null) { }
         /// <summary>Also the original settlement keepers (Innkeeper, Quartermaster, Scribe; 48x24).</summary>
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16, Texture2D specialists32, Texture2D elder16, Texture2D child16, Texture2D keepers48)
+            : this(cast64, merchant16, weaponsmith16, specialists32, elder16, child16, keepers48, null) { }
+        /// <summary>Optional approved Concord Factor body for the exact Gantry Candy Tax clerk.
+        /// Inputs are borrowed; missing art keeps the authored glyph without reloading resources.</summary>
+        public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16, Texture2D specialists32, Texture2D elder16, Texture2D child16, Texture2D keepers48, Texture2D factor16)
         {
+            factor = Build(factor16, 16, 16, 0, "Candy Tax clerk");
             villager = Build(cast64, 64, 24, 0, "villager");
             merchant = Build(merchant16, 16, 16, 0, "merchant");
             weaponsmith = Build(weaponsmith16, 16, 16, 0, "weaponsmith");
@@ -69,8 +77,10 @@ namespace CavesOfOoo.Rendering
                 || ForeignMeaning(owner)) return false;
             var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
             var hp = owner.GetStat("Hitpoints");
-            if (r == null || !r.Visible || r.RenderLayer != 10 || r.RenderString != (owner.BlueprintName == "VillageChild" ? "c" : "@")
-                || r.ColorString != ExpectedColor(owner.BlueprintName)
+            int candy = CandyRole(owner, r);
+            bool ordinary = r != null && r.RenderString == (owner.BlueprintName == "VillageChild" ? "c" : "@")
+                && r.ColorString == ExpectedColor(owner.BlueprintName);
+            if (r == null || !r.Visible || r.RenderLayer != 10 || !ordinary && candy == 0
                 || !string.IsNullOrEmpty(r.BackgroundColor) || !string.IsNullOrEmpty(r.VisualID)
                 || !string.IsNullOrEmpty(r.VisualVariant) || !string.IsNullOrEmpty(r.GlyphVariants)
                 || p == null || p.Takeable || p.InInventory != null || p.Equipped != null
@@ -84,7 +94,7 @@ namespace CavesOfOoo.Rendering
             { var stack = Owned<StackerPart>(owner); if (stack == null || stack.StackCount <= 0) return false; }
             switch (owner.BlueprintName)
             {
-                case "Villager": tile = villager; break;
+                case "Villager": tile = candy == 2 ? factor : villager; break;
                 case "Merchant": tile = merchant; break;
                 case "Weaponsmith": tile = weaponsmith; break;
                 case "Tinker": tile = tinker; break;
@@ -96,6 +106,29 @@ namespace CavesOfOoo.Rendering
                 case "Scribe": tile = scribe; break;
             }
             return tile != null;
+        }
+        // Exact quest aliases only. Ordinary neutral residents retain their portable contract.
+        // Names, payment/completion facts and inventories never drive appearance.
+        static int CandyRole(Entity owner, RenderPart render)
+        {
+            if (owner.BlueprintName != "Villager" || render == null
+                || !(render.RenderString == "c" && render.ColorString == "&m"
+                    || render.RenderString == "P" && render.ColorString == "&W")) return 0;
+            var zone = owner.SpatialZone;
+            if (zone?.ZoneID != GantryCompositionPlan.ZoneID
+                || owner.GetProperty("SettlementId") != zone.ZoneID
+                || !FlatPixelSettlementGroundCatalog.IsSupportedZone(zone)) return 0;
+            var map = WorldLocationContext.For(zone).WorldMap;
+            var cell = zone.GetEntityCell(owner);
+            if (map.GetBiome(7, 8) != BiomeType.Spread || !AreaCompositionScope.IsGantrySite(map.GetPOI(7, 8))
+                || cell == null || cell.ParentZone != zone || !ReferenceEquals(zone.GetCell(cell.X, cell.Y), cell)
+                || !cell.Objects.Contains(owner)
+                || owner.HasPart<SpatialFootprintPart>() && !zone.IsFootprintCurrent(owner)) return 0;
+            var conversation = Owned<ConversationPart>(owner);
+            if (render.RenderString == "c")
+                return conversation?.ConversationID == "CandyCitizen" && !owner.HasPart<QuestBeaconPart>() ? 1 : 0;
+            var beacon = Owned<QuestBeaconPart>(owner);
+            return conversation?.ConversationID == "CandyTax_Quest" && beacon?.Quest == "TheCandyTax" ? 2 : 0;
         }
         static bool ForeignMeaning(Entity owner)
             => owner.HasPart<ContainerPart>() || owner.HasPart<LockPart>() || owner.HasPart<ForgePart>()
@@ -136,7 +169,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrame(villager); DestroyFrame(merchant); DestroyFrame(weaponsmith);
+            DestroyFrame(factor); DestroyFrame(villager); DestroyFrame(merchant); DestroyFrame(weaponsmith);
             DestroyFrame(tinker); DestroyFrame(wellKeeper); DestroyFrame(elder); DestroyFrame(child);
             DestroyFrame(innkeeper); DestroyFrame(quartermaster); DestroyFrame(scribe);
         }

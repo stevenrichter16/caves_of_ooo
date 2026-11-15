@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="56" result="Failed(Child)" total="56" passed="24" failed="32" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:07Z" duration="6.1182555">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36789" result="Failed" site="Child" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:07Z" duration="6.118256" total="56" passed="24" failed="32" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45063" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36789" result="Failed" site="Child" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:07Z" duration="6.109497" total="56" passed="24" failed="32" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45064" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36789" result="Failed" site="Child" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:07Z" duration="6.105615" total="56" passed="24" failed="32" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45065" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36789" result="Failed" site="Child" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:07Z" duration="6.102796" total="56" passed="24" failed="32" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1179" name="FlatPixelSharedResidentsTests" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:07Z" duration="6.093220" total="56" passed="24" failed="32" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1247" name="CachedViewsDisposeWithoutDestroyingInputsOrIndependentPeer" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CachedViewsDisposeWithoutDestroyingInputsOrIndependentPeer" methodname="CachedViewsDisposeWithoutDestroyingInputsOrIndependentPeer" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="372971395" result="Passed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.092899" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1197" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.785943" total="14" passed="0" failed="14" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1183" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;conversation&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;conversation&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1681260111" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.077505" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1184" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;foreign-conversation&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;foreign-conversation&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1930779164" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.045750" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1185" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;duplicate-conversation&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;duplicate-conversation&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="729830134" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.044441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1186" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;color&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1031224617" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.044192" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1187" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;glyph&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="231150374" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.043741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1188" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;visual&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="993273342" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.043735" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1189" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;settlement&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;settlement&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="467164173" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.043206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1190" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;dead&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="723961870" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.047205" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1191" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;corpse&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;corpse&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="2114009698" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.073591" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1192" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;inventory&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1915763366" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.143712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1193" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;container&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;container&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1009034473" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.044379" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1194" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;footprint&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="717914867" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.043658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1195" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;invisible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;invisible&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1720195231" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.043476" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1196" name="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning(&quot;foreign-render&quot;)" methodname="CandyAliasesNeverBorrowThroughForeignOrChangedMeaning" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="883629459" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:01Z" duration="0.043578" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAliasesNeverBorrowThroughForeignOrChangedMeaning (System.String fault) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1182" name="CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:02Z" duration="0.092863" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1180" name="CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation(False)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation(False)" methodname="CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="380147334" result="Failed" start-time="2026-11-15 03:35:01Z" end-time="2026-11-15 03:35:02Z" duration="0.045044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation (System.Boolean clerk) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1181" name="CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation(True)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation(True)" methodname="CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1917303297" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.044151" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyAuthoredRolesShareWorldAndReaderWithoutSimulationMutation (System.Boolean clerk) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1202" name="CandyClerkRequiresHisOwnedQuestBeacon" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyClerkRequiresHisOwnedQuestBeacon" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.177470" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1198" name="CandyClerkRequiresHisOwnedQuestBeacon(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyClerkRequiresHisOwnedQuestBeacon(&quot;missing&quot;)" methodname="CandyClerkRequiresHisOwnedQuestBeacon" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="403377791" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.044502" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyClerkRequiresHisOwnedQuestBeacon (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1199" name="CandyClerkRequiresHisOwnedQuestBeacon(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyClerkRequiresHisOwnedQuestBeacon(&quot;foreign&quot;)" methodname="CandyClerkRequiresHisOwnedQuestBeacon" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="777356593" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.043830" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyClerkRequiresHisOwnedQuestBeacon (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1200" name="CandyClerkRequiresHisOwnedQuestBeacon(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyClerkRequiresHisOwnedQuestBeacon(&quot;duplicate&quot;)" methodname="CandyClerkRequiresHisOwnedQuestBeacon" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="507305283" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.042890" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyClerkRequiresHisOwnedQuestBeacon (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1201" name="CandyClerkRequiresHisOwnedQuestBeacon(&quot;wrong&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyClerkRequiresHisOwnedQuestBeacon(&quot;wrong&quot;)" methodname="CandyClerkRequiresHisOwnedQuestBeacon" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1509720736" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.043918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyClerkRequiresHisOwnedQuestBeacon (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1214" name="CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.091223" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1212" name="CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority(False)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority(False)" methodname="CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="885335043" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.044706" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority (System.Boolean clerk) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1213" name="CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority(True)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority(True)" methodname="CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1104369824" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.043675" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyHiddenCoveredAndReplacedSubjectsLoseReaderAuthority (System.Boolean clerk) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1217" name="CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.078568" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1215" name="CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas(False)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas(False)" methodname="CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="644742423" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.038424" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas (System.Boolean malformed) [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:138
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1216" name="CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas(True)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas(True)" methodname="CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1474343755" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.037961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyMissingFactorNeverReloadsOrDamagesBorrowedCitizenAtlas (System.Boolean malformed) [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:138
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1211" name="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.479645" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1203" name="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;cache&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;cache&quot;)" methodname="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="79405039" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.043596" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1204" name="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;replaced&quot;)" methodname="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1286568361" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.044288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1205" name="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;profile&quot;)" methodname="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="839976307" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.042495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1206" name="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;biome&quot;)" methodname="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1322329092" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.043001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1207" name="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;lair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;lair&quot;)" methodname="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="800658193" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.043792" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1208" name="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;other-zone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;other-zone&quot;)" methodname="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="2132860513" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.076102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1209" name="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;depth&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;depth&quot;)" methodname="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1725536357" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.141705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1210" name="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere(&quot;alias&quot;)" methodname="CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="569578775" result="Failed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:02Z" duration="0.041697" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyNative (CavesOfOoo.Core.Entity e, System.Boolean clerk) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSharedResidentsTests.CandyPilotRequiresCurrentGantryGraphAndRestoresOrdinaryResidentsElsewhere (System.String fault) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCandyResidentsTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1242" name="DisclosureSelectedOwnerDirtyCoverAndStaleGraphRetireWorldAndReaders" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.DisclosureSelectedOwnerDirtyCoverAndStaleGraphRetireWorldAndReaders" methodname="DisclosureSelectedOwnerDirtyCoverAndStaleGraphRetireWorldAndReaders" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="393960342" result="Passed" start-time="2026-11-15 03:35:02Z" end-time="2026-11-15 03:35:03Z" duration="0.140676" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1227" name="EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.156837" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1224" name="EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback(&quot;missing&quot;)" methodname="EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="975992328" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.054385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1225" name="EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback(&quot;foreign&quot;)" methodname="EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="44786308" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.049352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1226" name="EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback(&quot;duplicate&quot;)" methodname="EveryEssentialPartMustBeUniqueAndOwnedBeforeAnyLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1464819011" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.049772" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1220" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.409446" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1218" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(&quot;Villager&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(&quot;Villager&quot;)" methodname="ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="212333401" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.206106" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1219" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(&quot;Merchant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(&quot;Merchant&quot;)" methodname="ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="475422040" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.200910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1233" name="ExistingExplicitLocalCastInjectionRetainsVillagerAndOtherCastOwners" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.ExistingExplicitLocalCastInjectionRetainsVillagerAndOtherCastOwners" methodname="ExistingExplicitLocalCastInjectionRetainsVillagerAndOtherCastOwners" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="502914756" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.041410" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1231" name="ForeignServicesAndNonActorMeaningCannotBorrowResidents" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.ForeignServicesAndNonActorMeaningCannotBorrowResidents" methodname="ForeignServicesAndNonActorMeaningCannotBorrowResidents" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="628789310" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.045618" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1232" name="HitpointsMustBelongToThisLivingOwnerWithoutPinningInitialHealth" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.HitpointsMustBelongToThisLivingOwnerWithoutPinningInitialHealth" methodname="HitpointsMustBelongToThisLivingOwnerWithoutPinningInitialHealth" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="430022144" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.044141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1238" name="MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:05Z" duration="1.711685" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1234" name="MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast(0,False)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast(0,False)" methodname="MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="827332531" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:03Z" duration="0.085930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1235" name="MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast(0,True)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast(0,True)" methodname="MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1457180944" result="Passed" start-time="2026-11-15 03:35:03Z" end-time="2026-11-15 03:35:04Z" duration="0.204188" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1236" name="MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast(1,False)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast(1,False)" methodname="MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1520049839" result="Passed" start-time="2026-11-15 03:35:04Z" end-time="2026-11-15 03:35:05Z" duration="1.054021" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1237" name="MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast(1,True)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast(1,True)" methodname="MissingOrMalformedIndependentResourcesCannotBypassThroughValidOldLocalCast" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="640786554" result="Passed" start-time="2026-11-15 03:35:05Z" end-time="2026-11-15 03:35:05Z" duration="0.362759" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1223" name="NamesDialoguePurseInventoryEquipmentAndAiRemainMutableWithoutPresentationQueries" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.NamesDialoguePurseInventoryEquipmentAndAiRemainMutableWithoutPresentationQueries" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 03:35:05Z" end-time="2026-11-15 03:35:06Z" duration="0.777906" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1221" name="NamesDialoguePurseInventoryEquipmentAndAiRemainMutableWithoutPresentationQueries(&quot;Villager&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.NamesDialoguePurseInventoryEquipmentAndAiRemainMutableWithoutPresentationQueries(&quot;Villager&quot;)" methodname="NamesDialoguePurseInventoryEquipmentAndAiRemainMutableWithoutPresentationQueries" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="251184247" result="Passed" start-time="2026-11-15 03:35:05Z" end-time="2026-11-15 03:35:06Z" duration="0.610496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1222" name="NamesDialoguePurseInventoryEquipmentAndAiRemainMutableWithoutPresentationQueries(&quot;Merchant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.NamesDialoguePurseInventoryEquipmentAndAiRemainMutableWithoutPresentationQueries(&quot;Merchant&quot;)" methodname="NamesDialoguePurseInventoryEquipmentAndAiRemainMutableWithoutPresentationQueries" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="515519373" result="Passed" start-time="2026-11-15 03:35:06Z" end-time="2026-11-15 03:35:06Z" duration="0.091620" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1246" name="OtherResidentsAndSourceBlueprintAliasesDoNotAcquireTheseBodiesAndFarmerStaysUnchanged" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.OtherResidentsAndSourceBlueprintAliasesDoNotAcquireTheseBodiesAndFarmerStaysUnchanged" methodname="OtherResidentsAndSourceBlueprintAliasesDoNotAcquireTheseBodiesAndFarmerStaysUnchanged" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="663008257" result="Passed" start-time="2026-11-15 03:35:06Z" end-time="2026-11-15 03:35:06Z" duration="0.145693" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1248" name="RealChatOfferAndTradeRemainIndependentAndNativeQueriesNeverRestock" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.RealChatOfferAndTradeRemainIndependentAndNativeQueriesNeverRestock" methodname="RealChatOfferAndTradeRemainIndependentAndNativeQueriesNeverRestock" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="750238338" result="Passed" start-time="2026-11-15 03:35:06Z" end-time="2026-11-15 03:35:06Z" duration="0.117852" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1245" name="RealDamageAndDeathKeepLiveBodyThenProduceSeparateCorpse" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.RealDamageAndDeathKeepLiveBodyThenProduceSeparateCorpse" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 03:35:06Z" end-time="2026-11-15 03:35:06Z" duration="0.228835" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1243" name="RealDamageAndDeathKeepLiveBodyThenProduceSeparateCorpse(&quot;Villager&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.RealDamageAndDeathKeepLiveBodyThenProduceSeparateCorpse(&quot;Villager&quot;)" methodname="RealDamageAndDeathKeepLiveBodyThenProduceSeparateCorpse" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1815716582" result="Passed" start-time="2026-11-15 03:35:06Z" end-time="2026-11-15 03:35:06Z" duration="0.116392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1244" name="RealDamageAndDeathKeepLiveBodyThenProduceSeparateCorpse(&quot;Merchant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.RealDamageAndDeathKeepLiveBodyThenProduceSeparateCorpse(&quot;Merchant&quot;)" methodname="RealDamageAndDeathKeepLiveBodyThenProduceSeparateCorpse" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="406313262" result="Passed" start-time="2026-11-15 03:35:06Z" end-time="2026-11-15 03:35:06Z" duration="0.107811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1241" name="RealWetCueUsesOneRenderEventAndDoesNotReplaceBodyOrTintPortrait" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.RealWetCueUsesOneRenderEventAndDoesNotReplaceBodyOrTintPortrait" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 03:35:06Z" end-time="2026-11-15 03:35:07Z" duration="0.330941" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1239" name="RealWetCueUsesOneRenderEventAndDoesNotReplaceBodyOrTintPortrait(&quot;Villager&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.RealWetCueUsesOneRenderEventAndDoesNotReplaceBodyOrTintPortrait(&quot;Villager&quot;)" methodname="RealWetCueUsesOneRenderEventAndDoesNotReplaceBodyOrTintPortrait" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1436545050" result="Passed" start-time="2026-11-15 03:35:06Z" end-time="2026-11-15 03:35:06Z" duration="0.108014" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1240" name="RealWetCueUsesOneRenderEventAndDoesNotReplaceBodyOrTintPortrait(&quot;Merchant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.RealWetCueUsesOneRenderEventAndDoesNotReplaceBodyOrTintPortrait(&quot;Merchant&quot;)" methodname="RealWetCueUsesOneRenderEventAndDoesNotReplaceBodyOrTintPortrait" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1632767990" result="Passed" start-time="2026-11-15 03:35:06Z" end-time="2026-11-15 03:35:07Z" duration="0.219018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1230" name="ReskinsIncludingEllunAndCustodiedOrMulticellOwnersStayFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.ReskinsIncludingEllunAndCustodiedOrMulticellOwnersStayFallback" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 03:35:07Z" end-time="2026-11-15 03:35:07Z" duration="0.135505" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1228" name="ReskinsIncludingEllunAndCustodiedOrMulticellOwnersStayFallback(&quot;identity&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.ReskinsIncludingEllunAndCustodiedOrMulticellOwnersStayFallback(&quot;identity&quot;)" methodname="ReskinsIncludingEllunAndCustodiedOrMulticellOwnersStayFallback" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1987282344" result="Passed" start-time="2026-11-15 03:35:07Z" end-time="2026-11-15 03:35:07Z" duration="0.070109" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1229" name="ReskinsIncludingEllunAndCustodiedOrMulticellOwnersStayFallback(&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests.ReskinsIncludingEllunAndCustodiedOrMulticellOwnersStayFallback(&quot;custody&quot;)" methodname="ReskinsIncludingEllunAndCustodiedOrMulticellOwnersStayFallback" classname="CavesOfOoo.Tests.FlatPixelSharedResidentsTests" runstate="Runnable" seed="1873770937" result="Passed" start-time="2026-11-15 03:35:07Z" end-time="2026-11-15 03:35:07Z" duration="0.061303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
