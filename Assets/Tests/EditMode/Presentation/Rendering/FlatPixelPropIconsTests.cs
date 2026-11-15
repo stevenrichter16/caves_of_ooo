@@ -184,6 +184,37 @@ namespace CavesOfOoo.Tests
 
         // ════════════════ the painted places' scene owners ════════════════
 
+        [TestCase("guest-bed-west")] [TestCase("guest-bed-east")]
+        public void DryHemBeddingReadsAsAuthoredGreenTextile(string id)
+        {
+            var town = manager.GetZone(MorrowfastSceneRuntime.ZoneID); manager.SetActiveZone(town);
+            foreach (var c in town.Cells) c.Explored = c.IsVisible = true;
+            var bed = town.GetAllEntities().Single(e => e.GetPart<MorrowfastPropPart>()?.ComponentId == id);
+            var (x, y) = town.GetEntityPosition(bed);
+            Assert.True(world.TryResolvePresentation(town, x, y, out var v));
+            Assert.AreSame(bed, v.Owner); Assert.True(v.NativeForeground);
+            var row = RowOf("MorrowfastSceneProp", id);
+            Assert.AreEqual("bed", row.Family);
+            var pixels = new Texture2D(2, 2);
+            try
+            {
+                Assert.True(pixels.LoadImage(File.ReadAllBytes(Path.Combine(Application.dataPath, "Resources/Sprites/Live16x24/prop-icons.png"))));
+                int green = 0, opaque = 0;
+                var rect = v.ForegroundTile.sprite.rect;
+                for (int py = (int)rect.yMin; py < rect.yMax; py++)
+                    for (int px = (int)rect.xMin; px < rect.xMax; px++)
+                    {
+                        var c = pixels.GetPixel(px, py);
+                        if (c.a == 0) continue;
+                        Assert.AreEqual(1f, c.a); opaque++;
+                        if (c.g > c.r + .1f && c.g > c.b + .1f) green++;
+                    }
+                Assert.That(green, Is.GreaterThanOrEqualTo(25), "The existing green cover must separate from grey flagstone.");
+                Assert.That(green, Is.LessThan(opaque / 2), "Timber and pillow remain distinct from the cover.");
+            }
+            finally { Object.DestroyImmediate(pixels); }
+        }
+
         [Test] public void EveryFurnishingOfMorrowfastDrawsItsKindAndDoorsShowTheirState()
         {
             var town = manager.GetZone(MorrowfastSceneRuntime.ZoneID); manager.SetActiveZone(town);
@@ -295,7 +326,21 @@ namespace CavesOfOoo.Tests
                 .SelectMany(f => Regex.Matches(File.ReadAllText(f), "\"([A-Z][A-Za-z0-9]+)\"").Cast<Match>().Select(m => m.Groups[1].Value)).ToHashSet();
             var items = JsonUtility.FromJson<FileData>(Resources.Load<TextAsset>(FlatPixelWildFaunaCatalog.ItemIndexResourcePath).text).Icons.Select(r => r.Blueprint).ToHashSet();
             var props = Index().Icons.Select(r => r.Blueprint).Distinct().ToList();
-            CollectionAssert.IsEmpty(props.Where(named.Contains).ToList(), "approved art keeps its owners");
+            // The Morrowfast river adapter names this shared blueprint only for
+            // western-footbridge support; other ComponentIds still use prop art.
+            CollectionAssert.IsEmpty(props.Where(p => p != "MorrowfastSceneProp" && named.Contains(p)).ToList(), "approved art keeps its owners");
+            var sceneRows = Index().Icons.Where(r => r.Blueprint == "MorrowfastSceneProp").ToList();
+            Assert.IsNotEmpty(sceneRows);
+            foreach (var row in sceneRows)
+            {
+                Assert.IsNotEmpty(row.State, "A generic scene-owner fallback would hide dedicated art.");
+                Assert.NotNull(MorrowfastSceneDefinition.Load().FindOwner(row.State.Split('|')[0]));
+            }
+            foreach (var ordinary in new[] { "Chair", "Crate", "Campfire" })
+            {
+                Assert.True(named.Contains(ordinary));
+                Assert.False(props.Contains(ordinary), "Dedicated ordinary furniture must stay out of prop art.");
+            }
             CollectionAssert.IsEmpty(props.Where(items.Contains).ToList(), "an item is never also a prop");
         }
     }

@@ -763,6 +763,8 @@ def main():
             pal = palette(key, color[1])
             if fam.startswith("scene:") and key in SCENE_MATERIAL: pal.update(SCENE_MATERIAL[key])
             items.paint(sheet, tpl, pal, (k % cols) * W, (k // cols) * H, tile_edges=fam in TILE_EDGES)
+            if name == "MorrowfastSceneProp" and state in DRY_HEM_BEDS:
+                apply_dry_hem_textile(sheet, tpl, (k % cols) * W, (k // cols) * H)
             k += 1
         row = {"Blueprint": name, "State": state, "Frame": first, "Glyph": glyph, "Color": color, "Background": back,
                "Family": fams[0][6:] if fams[0].startswith("scene:") else "crop:" + fams[0].split(":")[1] if fams[0].startswith("crop") else fams[0]}
@@ -792,6 +794,59 @@ def update_gantry_only():
     (out/"source-cells.json").write_text(json.dumps({"palette":{k:bytes(pal[k][:3]).hex().upper() for k in sorted(used)},"frames":frames},indent=2)+"\n")
     print("Exported only GantryTimberWall frames68–70; index and other cells preserved")
 
+
+# Existing Dry Hem owners specify green bed covers. Reuse the approved muted
+# item green; preserve the neutral-rendered outline, timber and pillow cells.
+DRY_HEM_BEDS = {"guest-bed-west": 288, "guest-bed-east": 289}
+def apply_dry_hem_textile(sheet, tpl, fx, fy):
+    colors = dict(zip(("A", "a", "H"), items.CODES["g"]))
+    for y, row in enumerate(tpl):
+        for x, ch in enumerate(row):
+            if ch in colors: sheet.putpixel((fx+x, fy+y), colors[ch]+(255,))
+
+def update_morrowfast_beds_only():
+    """Export two existing frames; preserve every other atlas cell and index byte."""
+    from pathlib import Path
+    import hashlib
+    out = Path(ROOT)/"ArtSource/Live16x24/morrowfast-bedding"
+    for rel, pin in json.loads((out/"protected-inputs.json").read_text()).items():
+        assert hashlib.sha256((Path(ROOT)/rel).read_bytes()).hexdigest() == pin, rel
+    index = json.load(open(INDEX)); assert index["Columns"] == 16 and index["FrameHeight"] == 24
+    sheet = Image.open(ATLAS).convert("RGBA")
+    approved = Image.open(out/"before/prop-icons.png").convert("RGBA")
+    assert sheet.size == approved.size
+    tpl = ["."*16]*8 + T["bed"]
+    frames=[]; palette_out={}
+    for cid, f in DRY_HEM_BEDS.items():
+        rows=[r for r in index["Icons"] if r["Blueprint"] == "MorrowfastSceneProp" and r["State"] == cid]
+        assert len(rows)==1 and rows[0] == {"Blueprint":"MorrowfastSceneProp","State":cid,"Frame":f,"Glyph":"*","Color":"&y","Background":"","Family":"bed"}
+        fx,fy=(f%16)*16,(f//16)*24
+        baseline=Image.new("RGBA",(16,24));items.paint(baseline,tpl,palette("bed","y"),0,0)
+        assert baseline.tobytes() == approved.crop((fx,fy,fx+16,fy+24)).tobytes(), 'Approved source template drift'
+        corrected=baseline.copy();apply_dry_hem_textile(corrected,tpl,0,0)
+        current=sheet.crop((fx,fy,fx+16,fy+24)).tobytes()
+        assert current in (baseline.tobytes(), corrected.tobytes()), 'Unreviewed current bed edits'
+        sheet.paste(corrected,(fx,fy)); cells=[]
+        for y,row in enumerate(tpl):
+            line=[]
+            for x,ch in enumerate(row):
+                c=corrected.getpixel((x,y))
+                if c[3]==0:line.append(None);continue
+                assert c[3]==255
+                key='c'+bytes(c[:3]).hex().upper();palette_out[key]=key[1:]
+                part='textile' if ch in 'AaH' else 'pillow' if ch in 'pP' else 'timber' if ch in 'tT' else 'outline'
+                line.append([part,key])
+            cells.append(line)
+        frames.append({'id':cid,'atlas_frame':f,'cells':cells})
+    allowed={(x,y) for y in range(432,456) for x in range(32)}
+    for y in range(sheet.height):
+        for x in range(sheet.width):
+            if (x,y) not in allowed:assert sheet.getpixel((x,y)) == approved.getpixel((x,y)), 'Unreviewed other atlas edit'
+    sheet.save(ATLAS)
+    (out/"source-cells.json").write_text(json.dumps({'palette':palette_out,'frames':frames},indent=2)+'\n')
+    print('Exported only Dry Hem bedding: frames288/289, index and non-textile pixels preserved')
+
 if __name__ == "__main__":
-    if "--gantry-only" in sys.argv:update_gantry_only()
+    if "--morrowfast-beds-only" in sys.argv:update_morrowfast_beds_only()
+    elif "--gantry-only" in sys.argv:update_gantry_only()
     else:main()
