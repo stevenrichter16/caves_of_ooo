@@ -15,6 +15,11 @@ namespace CavesOfOoo.Rendering
         // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
         System.Func<Zone, bool> admits = IsSupportedZone;
         bool brineOnly;
+        bool rootRocksOnly;
+        // Separate, current Root-mouth authority. Only its plain disclosed rocks
+        // borrow the approved Beating bodies; ground and memory remain separate.
+        internal FlatPixelBeatingMaterialsCatalog AdmittingRootSurfaceRocks()
+        { admits = FlatPixelSiteAdmission.IsRootSurface; rootRocksOnly = true; return this; }
         /// <summary>Independent ordinary Stump reuse of the existing brine states only.</summary>
         internal FlatPixelBeatingMaterialsCatalog AdmittingStumpBrine()
         { admits = FlatPixelStumpMaterialsCatalog.IsSupportedZone; brineOnly = true; return this; }
@@ -122,7 +127,7 @@ namespace CavesOfOoo.Rendering
             out Tile groundTile, out Tile wallTile)
         {
             groundTile = null; wallTile = null;
-            if (disposed || selector == null || brineOnly || owner == null
+            if (disposed || selector == null || brineOnly || rootRocksOnly || owner == null
                 || !IsSupportedZone(zone) || !admits(zone)) return false;
             var cell = zone.GetCell(x, y);
             if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
@@ -168,8 +173,10 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
+            if (!ReadyCell(zone, x, y, out _)) return false;
+            if (rootRocksOnly && !RootRock(owner, zone?.TileState.Get(x, y))) return false;
             if (brineOnly && owner?.BlueprintName != "BrinePool") return false;
-            if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
+            if (!Selected(zone, x, y, owner)) return false;
             int frame = ForegroundFrame(owner, zone.TileState.Get(x, y), x, y);
             if (frame < 0) return false;
             if (owner.BlueprintName == "DryBrush") tile = vegetation == null ? null : vegetation[3];
@@ -210,7 +217,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveGround(Zone zone, int x, int y, out Tile tile, out Entity floor)
         {
             tile = null; floor = null;
-            if (brineOnly) return false;
+            if (brineOnly || rootRocksOnly) return false;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
             bool live = state != null && !state.IsEmpty;
@@ -296,6 +303,11 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
+            if (rootRocksOnly)
+            {
+                if (!TryResolveForeground(zone, x, y, owner, out var rockTile)) return false;
+                sprite = rockTile.sprite; return sprite != null;
+            }
             if (brineOnly)
             {
                 if (owner?.BlueprintName != "BrinePool" || !Placed(zone, cell, owner) || materials == null) return false;
@@ -348,6 +360,29 @@ namespace CavesOfOoo.Rendering
         /// <summary>A DryBrush the Beating would draw natively, by exactly its rule.</summary>
         internal static bool IsEligibleDryBrush(Entity owner)
             => owner?.BlueprintName == "DryBrush" && ForegroundFrame(owner, null, 0, 0) >= 0;
+
+        static bool RootRock(Entity owner, ZoneTileState.TileState state)
+        {
+            if (owner?.BlueprintName != "Rock" || state != null && !state.IsEmpty
+                || owner.Tags == null || owner.Tags.Count != 3 || !owner.HasTag("Solid")
+                || !owner.HasTag("Stone") || !owner.HasTag("Mineral")
+                || owner.Parts == null || owner.Parts.Count != 5) return false;
+            // The actual Root rocks have exactly these five parts. Extra actions,
+            // effects, ending meanings or foreign ownership retain glyph fallback.
+            foreach (var part in owner.Parts)
+            {
+                if (part == null || part.ParentEntity != owner) return false;
+                var type = part.GetType();
+                if (type != typeof(RenderPart) && type != typeof(PhysicsPart)
+                    && type != typeof(ExaminablePart) && type != typeof(MaterialPart)
+                    && type != typeof(ThermalPart)) return false;
+            }
+            var render = Owned<RenderPart>(owner);
+            return render != null && Owned<ExaminablePart>(owner) != null
+                && render.ColorString == "&y" && string.IsNullOrEmpty(render.BackgroundColor)
+                && string.IsNullOrEmpty(render.DetailColor) && string.IsNullOrEmpty(render.TileColor)
+                && string.IsNullOrEmpty(render.Tile);
+        }
 
         static int ForegroundFrame(Entity owner, ZoneTileState.TileState state, int x, int y)
         {

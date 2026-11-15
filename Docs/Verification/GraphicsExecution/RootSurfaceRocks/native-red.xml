@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="59" result="Failed(Child)" total="59" passed="14" failed="45" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:13Z" duration="3.1932315">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38290" result="Failed" site="Child" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:13Z" duration="3.193232" total="59" passed="14" failed="45" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46857" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38290" result="Failed" site="Child" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:13Z" duration="3.180465" total="59" passed="14" failed="45" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46858" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38290" result="Failed" site="Child" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:13Z" duration="3.176462" total="59" passed="14" failed="45" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46859" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38290" result="Failed" site="Child" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:13Z" duration="3.173753" total="59" passed="14" failed="45" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2442" name="FlatPixelRootSurfaceRockTests" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" testcasecount="59" result="Failed" site="Child" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:13Z" duration="3.161421" total="59" passed="14" failed="45" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2443" name="CanonicalBodyAndReaderKeepRealGroundAndOwners" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.CanonicalBodyAndReaderKeepRealGroundAndOwners" methodname="CanonicalBodyAndReaderKeepRealGroundAndOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="543151397" result="Failed" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:10Z" duration="0.255757" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.CanonicalBodyAndReaderKeepRealGroundAndOwners () [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:56
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2474" name="ChangedOrUndisclosedRocksKeepFallback" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:12Z" duration="1.425397" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2445" name="ChangedOrUndisclosedRocksKeepFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;hidden&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="179865661" result="Failed" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:10Z" duration="0.047538" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2446" name="ChangedOrUndisclosedRocksKeepFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;memory&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="937637112" result="Failed" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:10Z" duration="0.046060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2447" name="ChangedOrUndisclosedRocksKeepFallback(&quot;unknown&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;unknown&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="433661193" result="Failed" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:10Z" duration="0.044943" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2448" name="ChangedOrUndisclosedRocksKeepFallback(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;moved&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1570290488" result="Failed" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:10Z" duration="0.044399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2449" name="ChangedOrUndisclosedRocksKeepFallback(&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;custody&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="57620455" result="Failed" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:10Z" duration="0.045936" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2450" name="ChangedOrUndisclosedRocksKeepFallback(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;solid&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1274046574" result="Failed" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:10Z" duration="0.045336" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2451" name="ChangedOrUndisclosedRocksKeepFallback(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;material&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1687057660" result="Failed" start-time="2026-11-15 22:59:10Z" end-time="2026-11-15 22:59:11Z" duration="0.044932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2452" name="ChangedOrUndisclosedRocksKeepFallback(&quot;temperature&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;temperature&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1749891675" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.044737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2453" name="ChangedOrUndisclosedRocksKeepFallback(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;color&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1534383578" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.044781" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2454" name="ChangedOrUndisclosedRocksKeepFallback(&quot;background&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;background&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1199428688" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.043599" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2455" name="ChangedOrUndisclosedRocksKeepFallback(&quot;detail&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;detail&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1020745408" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.045756" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2456" name="ChangedOrUndisclosedRocksKeepFallback(&quot;tilecolor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;tilecolor&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1084025266" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.045087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2457" name="ChangedOrUndisclosedRocksKeepFallback(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;glyph&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1959784493" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.044433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2458" name="ChangedOrUndisclosedRocksKeepFallback(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;layer&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="279239540" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.044618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2459" name="ChangedOrUndisclosedRocksKeepFallback(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;variant&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="363503624" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.045457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2460" name="ChangedOrUndisclosedRocksKeepFallback(&quot;tile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;tile&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1318398713" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.043050" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2461" name="ChangedOrUndisclosedRocksKeepFallback(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;visual&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1253300036" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.041732" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2462" name="ChangedOrUndisclosedRocksKeepFallback(&quot;extraTag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;extraTag&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1596316448" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.046369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2463" name="ChangedOrUndisclosedRocksKeepFallback(&quot;nullTags&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;nullTags&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1780891807" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.045850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2464" name="ChangedOrUndisclosedRocksKeepFallback(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;charge&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1112019099" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.044506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2465" name="ChangedOrUndisclosedRocksKeepFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;coating&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1502468247" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.044349" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2466" name="ChangedOrUndisclosedRocksKeepFallback(&quot;rootFace&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;rootFace&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="911447995" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.076519" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2467" name="ChangedOrUndisclosedRocksKeepFallback(&quot;hearth&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;hearth&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1497807922" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.124387" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2468" name="ChangedOrUndisclosedRocksKeepFallback(&quot;seventh&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;seventh&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1258404239" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.045851" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2469" name="ChangedOrUndisclosedRocksKeepFallback(&quot;plume&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;plume&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1469173593" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.044501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2470" name="ChangedOrUndisclosedRocksKeepFallback(&quot;restable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;restable&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1354831662" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:11Z" duration="0.045301" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2471" name="ChangedOrUndisclosedRocksKeepFallback(&quot;destructible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;destructible&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="860736102" result="Failed" start-time="2026-11-15 22:59:11Z" end-time="2026-11-15 22:59:12Z" duration="0.044299" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2472" name="ChangedOrUndisclosedRocksKeepFallback(&quot;foreignParent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;foreignParent&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="344227213" result="Failed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.048674" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2473" name="ChangedOrUndisclosedRocksKeepFallback(&quot;missingExam&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback(&quot;missingExam&quot;)" methodname="ChangedOrUndisclosedRocksKeepFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="2126223004" result="Failed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.045850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.ChangedOrUndisclosedRocksKeepFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2505" name="DisposalLeavesBorrowedAtlasAndSelectorAlive" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.DisposalLeavesBorrowedAtlasAndSelectorAlive" methodname="DisposalLeavesBorrowedAtlasAndSelectorAlive" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1373030507" result="Failed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.045328" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.DisposalLeavesBorrowedAtlasAndSelectorAlive () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:164
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2444" name="GeneratedRootRocksUseOnlyApprovedBodiesOverTheirOwnStone" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.GeneratedRootRocksUseOnlyApprovedBodiesOverTheirOwnStone" methodname="GeneratedRootRocksUseOnlyApprovedBodiesOverTheirOwnStone" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="487850942" result="Failed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.153697" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  34
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.GeneratedRootRocksUseOnlyApprovedBodiesOverTheirOwnStone () [0x0013e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:70
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2503" name="MissingOrMalformedAtlasKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.MissingOrMalformedAtlasKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.090529" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2501" name="MissingOrMalformedAtlasKeepsFallback(False)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.MissingOrMalformedAtlasKeepsFallback(False)" methodname="MissingOrMalformedAtlasKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="999424736" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.043884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2502" name="MissingOrMalformedAtlasKeepsFallback(True)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.MissingOrMalformedAtlasKeepsFallback(True)" methodname="MissingOrMalformedAtlasKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="734852500" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.041958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="2504" name="RemovingRockWithdrawsBodyWithoutInventingOrRemovingGround" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RemovingRockWithdrawsBodyWithoutInventingOrRemovingGround" methodname="RemovingRockWithdrawsBodyWithoutInventingOrRemovingGround" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="262384339" result="Failed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.044719" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RemovingRockWithdrawsBodyWithoutInventingOrRemovingGround () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:162
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2500" name="RootRockInstanceNeverAdmitsOtherFamilies" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:13Z" duration="0.603694" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2488" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;Sand&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;Sand&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="565977833" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.042408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2489" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;SandstoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;SandstoneFloor&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="306689804" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.040544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2490" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;SandstoneWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;SandstoneWall&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="437003032" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.039918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2491" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;StoneWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;StoneWall&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="2071482488" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.039794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2492" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;BrinePool&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1823507403" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.039417" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2493" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;TarSeep&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;TarSeep&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1729759018" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.039814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2494" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;DryBrush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;DryBrush&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1982178706" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.039622" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2495" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;Tree&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;Tree&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="950507606" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.039314" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2496" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;TheRoot&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;TheRoot&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="451130040" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.039532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2497" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;TheRooted&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;TheRooted&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="829927037" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:12Z" duration="0.066549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2498" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;FoundingPlume&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;FoundingPlume&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="765985985" result="Passed" start-time="2026-11-15 22:59:12Z" end-time="2026-11-15 22:59:13Z" duration="0.132215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2499" name="RootRockInstanceNeverAdmitsOtherFamilies(&quot;TepuiStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.RootRockInstanceNeverAdmitsOtherFamilies(&quot;TepuiStone&quot;)" methodname="RootRockInstanceNeverAdmitsOtherFamilies" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="252243230" result="Passed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.041204" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2487" name="WarmAuthorityChangesRevokeTheRockBody" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.532942" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2475" name="WarmAuthorityChangesRevokeTheRockBody(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;name&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="960857946" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.044889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2476" name="WarmAuthorityChangesRevokeTheRockBody(&quot;type&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;type&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1386998578" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.044300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2477" name="WarmAuthorityChangesRevokeTheRockBody(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;profile&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1261300118" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.044300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2478" name="WarmAuthorityChangesRevokeTheRockBody(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;biome&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1139534526" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.044248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2479" name="WarmAuthorityChangesRevokeTheRockBody(&quot;cache&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;cache&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="693591968" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.043723" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2480" name="WarmAuthorityChangesRevokeTheRockBody(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;map&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1262036434" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.043601" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2481" name="WarmAuthorityChangesRevokeTheRockBody(&quot;shortMap&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;shortMap&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="832437550" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.043381" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2482" name="WarmAuthorityChangesRevokeTheRockBody(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;poi&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1688305934" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.042670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2483" name="WarmAuthorityChangesRevokeTheRockBody(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;alias&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="820130518" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.046649" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2484" name="WarmAuthorityChangesRevokeTheRockBody(&quot;depth&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;depth&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1227582997" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.044105" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2485" name="WarmAuthorityChangesRevokeTheRockBody(&quot;lair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;lair&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="194640094" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.043337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2486" name="WarmAuthorityChangesRevokeTheRockBody(&quot;world&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody(&quot;world&quot;)" methodname="WarmAuthorityChangesRevokeTheRockBody" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests" runstate="Runnable" seed="1639999392" result="Failed" start-time="2026-11-15 22:59:13Z" end-time="2026-11-15 22:59:13Z" duration="0.043751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Root rock must have a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.Native () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:44
+at CavesOfOoo.Tests.FlatPixelRootSurfaceRockTests.WarmAuthorityChangesRevokeTheRockBody (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceRockTests.cs:125
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
