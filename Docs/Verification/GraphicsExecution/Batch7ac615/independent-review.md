@@ -1,0 +1,1 @@
+Independent bounded review:0 unresolved P1/P2. Source bindings, preservation guards and corrected source-change provenance accepted. Archive320members (307files/13dirs),306 internal checksums, all archive/disk hashes/sizes/modes and gzip EOF verified.200resource pins/282combined pins match. Native135/61 checkpoints nonadditive. Linux unexecuted.

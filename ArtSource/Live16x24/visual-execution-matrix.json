@@ -22746,126 +22746,67 @@
     }
   ],
   "current_delivery": {
-    "recorded_utc": "2026-11-15T02:03:02.699655+00:00",
-    "source_commit": "dd8028a5e82e6c822c2dda9a857d6a5195f8f452",
+    "recorded_utc": "2026-11-15T03:14:57.092665+00:00",
+    "source_commit": "7ac615ef2147c2ff3664b8aefac7abc679a53796",
     "source_remote_verified": true,
-    "mac": "Builds/Verification/2026-11-15-graphics-dd8028a5e-current-retry1/CavesOfOoo.app",
-    "linux": "Builds/SteamDeck/2026-11-15-graphics-dd8028a5e-current/CavesOfOoo-current",
-    "archive": "Builds/SteamDeck/2026-11-15-graphics-dd8028a5e-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
-    "archive_sha256": "a170d0508ffe48526b3fd812601b2537bb1ea2924ed75d68ac57648732d2dcd2",
-    "archive_bytes": 162170700,
+    "mac": "Builds/Verification/2026-11-15-graphics-7ac615ef2-current/CavesOfOoo.app",
+    "linux": "Builds/SteamDeck/2026-11-15-graphics-7ac615ef2-current/CavesOfOoo-current",
+    "archive": "Builds/SteamDeck/2026-11-15-graphics-7ac615ef2-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+    "archive_sha256": "13c13065105f6d470ee3e808f5f8cf11d7aca4608516462eb5a9480df0db8605",
+    "archive_bytes": 162171680,
     "archive_members": 320,
     "internal_checksums": 306,
-    "resource_pins": 187,
+    "resource_pins": 200,
     "build_results": {
-      "mac": "build-4afda2253c:0errors4warnings",
-      "linux": "build-a7f0e32513:0errors4warnings",
-      "excluded_mac": "build-d6f2c8f5de:1error5warnings; retained separately"
+      "mac": "0errors5warnings",
+      "linux": "0errors4warnings"
     },
     "mac_actual": {
-      "recorded_utc": "2026-11-15T02:01:56.704399+00:00",
-      "source_commit": "dd8028a5e82e6c822c2dda9a857d6a5195f8f452",
-      "method": "Actual CUA keyboard input in exact absolute-path built Mac app. Screenshots observed in conversation; no durable Mac PNG and no pixel comparison.",
-      "process_receipts": [
-        "mac-process1.json",
-        "mac-process2.json"
+      "recordedUtc": "2026-11-15T03:13:48.645099+00:00",
+      "source": "7ac615ef2147c2ff3664b8aefac7abc679a53796",
+      "actual_native_keyboard_play": true,
+      "processes": [
+        52347,
+        52585,
+        52673,
+        53078
       ],
-      "resolution": {
-        "requested": [
-          1280,
-          800
+      "beating": {
+        "reader": "Sand40,11 full reader",
+        "travel": "19.12 to19.13 canonical and return",
+        "moves": "40,12 to41,12 and back",
+        "saved_turn": 2320,
+        "hp": 40,
+        "fresh_position": [
+          40,
+          12
         ],
-        "observed_window": [
-          1280,
-          856
+        "f12": "OFF throughout Mac route"
+      },
+      "sumphold": {
+        "cargo": "new wooden crate19,19 full reader/Open empty",
+        "rest": "new bed20,6 native full reader via pile; ordinary elder Sitting over it",
+        "movement": "39,11 to20,18 then via17,10 entrance to17,6",
+        "travel": "15.6 to14.6 and return; first return attempt refused nearby enemies; moved east then ordinary map travel succeeded",
+        "saved_turn": 5890,
+        "hp": 19,
+        "fresh_position": [
+          39,
+          11
         ],
-        "titlebar_height": 56,
-        "game_area": [
-          1280,
-          800
-        ]
+        "f12": "ON for long furniture survey; OFF before cross-zone travel/save/reload",
+        "limits": "No player Sleep or deposit/retrieve claim"
       },
-      "route": [
-        "PID37909: Continue earned SumpholdShadow/AfterCheckpoint at39,6 HP19 Dawn; shelter contact shade visible.",
-        "Look Down Left to38,7 sandstone wall, interaction menu then native full Examine Stone19/30. Damage is inherited from disclosed Editor wall strikes, not a new Mac mutation.",
-        "Close reader and Look; worldmap15.6, Left then descend14.6 at40,12; ordinary green Spread grade observed. Ascent Right and descent returns neutral Sumphold at39,11.",
-        "Down4 Right2 to41,15 on Duckboard; Look Down41,16 then full native Examine Wood8/8 portrait.",
-        "Close reader; Page Up twice and Page Down restore normal zoom. F5 at41,15 HP19 Height turn3900; saved Quick files retained in MacCheckpoint.",
-        "PID38696 fresh launch: C Continue reopened41,15 HP19 Height with floor+duckboard focus and native water/board appearance. No additional movement or F5. Final screenshot directly observed through CUA before this record."
-      ],
-      "excluded_attempts": [
-        "After super+q closed PID37909, CUA getAXState automatically reopened app as PID38511 without requested logfile. No Continue/gameplay input; excluded-cua-relaunch.json/log retained; verified exact process stopped by SIGTERM.",
-        "First CUA Continue call after launching PID38696 failed with inactive ComputerUse before input. Rebound exact app, then C/AX/screenshot verified actual Continue."
-      ],
-      "saved_checkpoint": "MacCheckpoint",
-      "save_metadata": {
-        "SaveVersion": 8,
-        "GameVersion": "1.0",
-        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
-        "PlayerName": "Player",
-        "PlayerDisplayName": "you",
-        "PlayerLevel": 1,
-        "ActiveZoneID": "Overworld.15.6.0",
-        "ActiveZoneDisplayLabel": "Overworld.15.6.0",
-        "Turn": 3900,
-        "SaveTimestampUtc": "2026-11-15T01:57:05.5073310Z",
-        "HPSummary": "19/40",
-        "Glyph": "@",
-        "Color": "&Y"
-      },
-      "f12_used": false,
-      "hp_start_end": [
-        19,
-        19
-      ],
-      "reload": "Functional position/HP/appearance verified in fresh process; no Mac pixel comparison.",
-      "shutdown": "First accepted process closed via super+q; excluded relaunch38511 and second accepted38696 stopped with normal SIGTERM after exact executable-path verification. No force kill.",
-      "performance": "No packaged benchmark; first Mac run overlapped Linux build/archive packaging.",
-      "logs": {
-        "run1": "Eight Exception matches are System.Exception parameter types in ordinary autosave log stack traces, not thrown exceptions; no error CS, Load failed or memoryless matches. One ComputeBuffer-disposal shutdown line and six premature-thread-finalization notices retained.",
-        "run2": "No Exception, error CS, Load failed, memoryless, ComputeBuffer or premature-thread-finalization matches. SIGTERM does not establish graceful cleanup."
-      },
-      "limits": [
-        "Linux execution unverified",
-        "Steam Deck-specific qualification deferred by user",
-        "Whole-area polish, remaining environmental coverage, population and R11 remain open"
-      ]
+      "captures": "CUA observed1280x856 including56px titlebar; effective game1280x800. No durable Mac PNG/pixel equality claim.",
+      "shutdown": "Command-Q each intended process, pgrep verifies stopped; no unintended reopened process.",
+      "performance": "First Mac Beating run overlapped Linux build/packaging; no packaged performance claim.",
+      "linux_execution": "untested",
+      "deck": "deferred",
+      "log_notes": "Exception string matches are method signatures in autosave logging. ComputeBuffer disposal and premature thread finalization warnings occur on shutdown; PlayerConnection memory-leak telemetry also retained. No error CS, Load failed or memoryless matches. These warnings remain open and no clean-shutdown/performance claim is made."
     },
-    "restoration": {
-      "source_commit": "dd8028a5e82e6c822c2dda9a857d6a5195f8f452",
-      "reviewed_manifest_sha256": "f3a41e5196ec71b36afe2ed20de928d9191d4b0a98365aefb6a797ec65726b59",
-      "tracked_files": 57655,
-      "dirty_tracked_files_preserved": 79,
-      "build_serialization_to_restore": [
-        "Assets/Resources/Sprites/Live16x24/sumphold-boards.png.meta",
-        "Assets/Settings/UniversalRP.asset",
-        "Assets/UniversalRenderPipelineGlobalSettings.asset",
-        "ProjectSettings/ProjectSettings.asset",
-        "ProjectSettings/UnityConnectSettings.asset"
-      ],
-      "prior_builds_preserved": true,
-      "editor_preferences_and_saves_unchanged": true,
-      "current_editor_state_preserved": "Preserve current Editor preferences and normal saves; see exact reviewed key delta.",
-      "normal_standalone_saves_originally_absent": true,
-      "test_save_archive": "/private/tmp/coo-sumpholdDD8028-restored/standalone-session-Saves",
-      "preference_extra_key_count": 5,
-      "cache_deletion": false,
-      "at_utc": "2026-11-15T02:01:39.838738+00:00",
-      "applied": true,
-      "all_tracked_snapshot_objects_equal": true,
-      "normal_standalone_saves_and_preferences_restored": true,
-      "current_normal_editor_state_preserved": true,
-      "free_bytes": 343619108864,
-      "limits": "Root supplies Editor-idle assertion; no Unity/build/player invocation or cache cleanup. No unrelated file restored."
-    },
-    "review": "Source/Editor visual0remainingP1/P2; independent archive and helper review complete; see BatchDD8028/independent-review.md",
-    "linux_execution": false,
-    "steam_deck": "deferred by direct user instruction; prior work preserved",
-    "r11": "open; no packaged performance benchmark; first Mac run overlapped build/packaging",
-    "next": "Actual Sumphold side-room/waterfront whole-scene review; avoid repeated native service inventory or weak single-counter candidate; then largest evidenced environmental material/composition gap.",
-    "evidence": "Docs/Verification/GraphicsExecution/BatchDD8028",
-    "last_report_utc": "2026-11-15T01:17:24Z",
-    "whole_plan_complete": false
+    "restoration": "Docs/Verification/GraphicsExecution/Batch7ac615/restoration.json",
+    "next": "fresh Gantry7.8 whole-scene material comparison",
+    "limits": "Linux unexecuted; Deckdeferred; R11 and wholearea/V0-V7 open"
   },
   "sodden_native_receipt_correction": {
     "total": 393,
@@ -25549,6 +25490,128 @@
         "CurrentDeckcontrol/1280x800 qualification now directuserpriority",
         "No fullarea/performance acceptance; faintvents/mosslikeacid remain"
       ]
+    },
+    {
+      "recorded_utc": "2026-11-15T02:03:02.699655+00:00",
+      "source_commit": "dd8028a5e82e6c822c2dda9a857d6a5195f8f452",
+      "source_remote_verified": true,
+      "mac": "Builds/Verification/2026-11-15-graphics-dd8028a5e-current-retry1/CavesOfOoo.app",
+      "linux": "Builds/SteamDeck/2026-11-15-graphics-dd8028a5e-current/CavesOfOoo-current",
+      "archive": "Builds/SteamDeck/2026-11-15-graphics-dd8028a5e-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+      "archive_sha256": "a170d0508ffe48526b3fd812601b2537bb1ea2924ed75d68ac57648732d2dcd2",
+      "archive_bytes": 162170700,
+      "archive_members": 320,
+      "internal_checksums": 306,
+      "resource_pins": 187,
+      "build_results": {
+        "mac": "build-4afda2253c:0errors4warnings",
+        "linux": "build-a7f0e32513:0errors4warnings",
+        "excluded_mac": "build-d6f2c8f5de:1error5warnings; retained separately"
+      },
+      "mac_actual": {
+        "recorded_utc": "2026-11-15T02:01:56.704399+00:00",
+        "source_commit": "dd8028a5e82e6c822c2dda9a857d6a5195f8f452",
+        "method": "Actual CUA keyboard input in exact absolute-path built Mac app. Screenshots observed in conversation; no durable Mac PNG and no pixel comparison.",
+        "process_receipts": [
+          "mac-process1.json",
+          "mac-process2.json"
+        ],
+        "resolution": {
+          "requested": [
+            1280,
+            800
+          ],
+          "observed_window": [
+            1280,
+            856
+          ],
+          "titlebar_height": 56,
+          "game_area": [
+            1280,
+            800
+          ]
+        },
+        "route": [
+          "PID37909: Continue earned SumpholdShadow/AfterCheckpoint at39,6 HP19 Dawn; shelter contact shade visible.",
+          "Look Down Left to38,7 sandstone wall, interaction menu then native full Examine Stone19/30. Damage is inherited from disclosed Editor wall strikes, not a new Mac mutation.",
+          "Close reader and Look; worldmap15.6, Left then descend14.6 at40,12; ordinary green Spread grade observed. Ascent Right and descent returns neutral Sumphold at39,11.",
+          "Down4 Right2 to41,15 on Duckboard; Look Down41,16 then full native Examine Wood8/8 portrait.",
+          "Close reader; Page Up twice and Page Down restore normal zoom. F5 at41,15 HP19 Height turn3900; saved Quick files retained in MacCheckpoint.",
+          "PID38696 fresh launch: C Continue reopened41,15 HP19 Height with floor+duckboard focus and native water/board appearance. No additional movement or F5. Final screenshot directly observed through CUA before this record."
+        ],
+        "excluded_attempts": [
+          "After super+q closed PID37909, CUA getAXState automatically reopened app as PID38511 without requested logfile. No Continue/gameplay input; excluded-cua-relaunch.json/log retained; verified exact process stopped by SIGTERM.",
+          "First CUA Continue call after launching PID38696 failed with inactive ComputerUse before input. Rebound exact app, then C/AX/screenshot verified actual Continue."
+        ],
+        "saved_checkpoint": "MacCheckpoint",
+        "save_metadata": {
+          "SaveVersion": 8,
+          "GameVersion": "1.0",
+          "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+          "PlayerName": "Player",
+          "PlayerDisplayName": "you",
+          "PlayerLevel": 1,
+          "ActiveZoneID": "Overworld.15.6.0",
+          "ActiveZoneDisplayLabel": "Overworld.15.6.0",
+          "Turn": 3900,
+          "SaveTimestampUtc": "2026-11-15T01:57:05.5073310Z",
+          "HPSummary": "19/40",
+          "Glyph": "@",
+          "Color": "&Y"
+        },
+        "f12_used": false,
+        "hp_start_end": [
+          19,
+          19
+        ],
+        "reload": "Functional position/HP/appearance verified in fresh process; no Mac pixel comparison.",
+        "shutdown": "First accepted process closed via super+q; excluded relaunch38511 and second accepted38696 stopped with normal SIGTERM after exact executable-path verification. No force kill.",
+        "performance": "No packaged benchmark; first Mac run overlapped Linux build/archive packaging.",
+        "logs": {
+          "run1": "Eight Exception matches are System.Exception parameter types in ordinary autosave log stack traces, not thrown exceptions; no error CS, Load failed or memoryless matches. One ComputeBuffer-disposal shutdown line and six premature-thread-finalization notices retained.",
+          "run2": "No Exception, error CS, Load failed, memoryless, ComputeBuffer or premature-thread-finalization matches. SIGTERM does not establish graceful cleanup."
+        },
+        "limits": [
+          "Linux execution unverified",
+          "Steam Deck-specific qualification deferred by user",
+          "Whole-area polish, remaining environmental coverage, population and R11 remain open"
+        ]
+      },
+      "restoration": {
+        "source_commit": "dd8028a5e82e6c822c2dda9a857d6a5195f8f452",
+        "reviewed_manifest_sha256": "f3a41e5196ec71b36afe2ed20de928d9191d4b0a98365aefb6a797ec65726b59",
+        "tracked_files": 57655,
+        "dirty_tracked_files_preserved": 79,
+        "build_serialization_to_restore": [
+          "Assets/Resources/Sprites/Live16x24/sumphold-boards.png.meta",
+          "Assets/Settings/UniversalRP.asset",
+          "Assets/UniversalRenderPipelineGlobalSettings.asset",
+          "ProjectSettings/ProjectSettings.asset",
+          "ProjectSettings/UnityConnectSettings.asset"
+        ],
+        "prior_builds_preserved": true,
+        "editor_preferences_and_saves_unchanged": true,
+        "current_editor_state_preserved": "Preserve current Editor preferences and normal saves; see exact reviewed key delta.",
+        "normal_standalone_saves_originally_absent": true,
+        "test_save_archive": "/private/tmp/coo-sumpholdDD8028-restored/standalone-session-Saves",
+        "preference_extra_key_count": 5,
+        "cache_deletion": false,
+        "at_utc": "2026-11-15T02:01:39.838738+00:00",
+        "applied": true,
+        "all_tracked_snapshot_objects_equal": true,
+        "normal_standalone_saves_and_preferences_restored": true,
+        "current_normal_editor_state_preserved": true,
+        "free_bytes": 343619108864,
+        "limits": "Root supplies Editor-idle assertion; no Unity/build/player invocation or cache cleanup. No unrelated file restored."
+      },
+      "review": "Source/Editor visual0remainingP1/P2; independent archive and helper review complete; see BatchDD8028/independent-review.md",
+      "linux_execution": false,
+      "steam_deck": "deferred by direct user instruction; prior work preserved",
+      "r11": "open; no packaged performance benchmark; first Mac run overlapped build/packaging",
+      "next": "Actual Sumphold side-room/waterfront whole-scene review; avoid repeated native service inventory or weak single-counter candidate; then largest evidenced environmental material/composition gap.",
+      "evidence": "Docs/Verification/GraphicsExecution/BatchDD8028",
+      "last_report_utc": "2026-11-15T01:17:24Z",
+      "whole_plan_complete": false
     }
   ],
   "stump_dome_shadow": {
@@ -26081,7 +26144,7 @@
     },
     "old_save_control": "6originalowners,no retrofit",
     "preservation": "80baseline dirty hashes/normal saves/gameplay prefs unchanged; test/telemetry differences disclosed",
-    "delivery": "currentdd8028excludescomposition",
+    "delivery": "current7ac615 Mac/Linux; actualMacverified",
     "published_source": "287c6d86974a53297aa159e9a763518b07b3c5f8"
   },
   "beating_ruin_grade": {
@@ -26117,7 +26180,7 @@
       "world_total": 639200
     },
     "scope": "Exact current native19.12 only; no coverage/population/shadow expansion. Short after-only Editor profile; R11/fullarea/V0-V7 open.",
-    "delivery": "dd8028 packages exclude this and published Sumpholdcomposition287c6d869",
+    "delivery": "current7ac615 Mac/Linux; actualMacverified",
     "next": "batch Mac/Linux, then Gantry7.8"
   }
 }
