@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="41" result="Failed(Child)" total="41" passed="3" failed="38" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:51Z" duration="2.0682363">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38114" result="Failed" site="Child" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:51Z" duration="2.068236" total="41" passed="3" failed="38" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46651" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38114" result="Failed" site="Child" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:51Z" duration="2.058041" total="41" passed="3" failed="38" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46652" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38114" result="Failed" site="Child" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:51Z" duration="2.053254" total="41" passed="3" failed="38" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46653" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38114" result="Failed" site="Child" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:51Z" duration="2.049266" total="41" passed="3" failed="38" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="3105" name="FlatPixelSpivenorHearthTests" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:51Z" duration="2.037750" total="41" passed="3" failed="38" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="3153" name="CurrentAuthorityRecoversAndMemoryCannotUseLiveBacking" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.CurrentAuthorityRecoversAndMemoryCannotUseLiveBacking" methodname="CurrentAuthorityRecoversAndMemoryCannotUseLiveBacking" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="9227652" result="Failed" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.099266" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.CurrentAuthorityRecoversAndMemoryCannotUseLiveBacking () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:118
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="3139" name="FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.087252" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3137" name="FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous(&quot;duplicate&quot;)" methodname="FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1493257892" result="Failed" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.042360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:82
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3138" name="FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous(&quot;foreign-role&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous(&quot;foreign-role&quot;)" methodname="FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="771654719" result="Failed" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.041800" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.FloorlessHearthWithdrawsBackingWhenItsOwnerBecomesAmbiguous (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:82
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3142" name="MissingOrMalformedRealFloorNeverBecomesAmbient" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.MissingOrMalformedRealFloorNeverBecomesAmbient" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.085105" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3140" name="MissingOrMalformedRealFloorNeverBecomesAmbient(False)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.MissingOrMalformedRealFloorNeverBecomesAmbient(False)" methodname="MissingOrMalformedRealFloorNeverBecomesAmbient" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="764766501" result="Failed" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.042739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.MissingOrMalformedRealFloorNeverBecomesAmbient (System.Boolean malformed) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3141" name="MissingOrMalformedRealFloorNeverBecomesAmbient(True)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.MissingOrMalformedRealFloorNeverBecomesAmbient(True)" methodname="MissingOrMalformedRealFloorNeverBecomesAmbient" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="528560148" result="Failed" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.040239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.MissingOrMalformedRealFloorNeverBecomesAmbient (System.Boolean malformed) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="3148" name="PartialHealthAndDisabledLightArePreservedWithoutTriggeringPolitics" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.PartialHealthAndDisabledLightArePreservedWithoutTriggeringPolitics" methodname="PartialHealthAndDisabledLightArePreservedWithoutTriggeringPolitics" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="527025563" result="Failed" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.039876" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.PartialHealthAndDisabledLightArePreservedWithoutTriggeringPolitics () [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:107
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="3147" name="RubbleWithHearthNeedsExactlyOneSupportedRubble" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.RubbleWithHearthNeedsExactlyOneSupportedRubble" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:50Z" duration="0.217178" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3143" name="RubbleWithHearthNeedsExactlyOneSupportedRubble(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.RubbleWithHearthNeedsExactlyOneSupportedRubble(&quot;missing&quot;)" methodname="RubbleWithHearthNeedsExactlyOneSupportedRubble" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1479489511" result="Failed" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.039947" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.RubbleWithHearthNeedsExactlyOneSupportedRubble (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:96
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3144" name="RubbleWithHearthNeedsExactlyOneSupportedRubble(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.RubbleWithHearthNeedsExactlyOneSupportedRubble(&quot;changed&quot;)" methodname="RubbleWithHearthNeedsExactlyOneSupportedRubble" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="717256315" result="Failed" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:49Z" duration="0.041414" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.RubbleWithHearthNeedsExactlyOneSupportedRubble (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:96
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3145" name="RubbleWithHearthNeedsExactlyOneSupportedRubble(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.RubbleWithHearthNeedsExactlyOneSupportedRubble(&quot;duplicate&quot;)" methodname="RubbleWithHearthNeedsExactlyOneSupportedRubble" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="535906330" result="Failed" start-time="2026-11-15 20:29:49Z" end-time="2026-11-15 20:29:50Z" duration="0.041257" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.RubbleWithHearthNeedsExactlyOneSupportedRubble (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:96
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3146" name="RubbleWithHearthNeedsExactlyOneSupportedRubble(&quot;stalagmite&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.RubbleWithHearthNeedsExactlyOneSupportedRubble(&quot;stalagmite&quot;)" methodname="RubbleWithHearthNeedsExactlyOneSupportedRubble" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1197000591" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.091879" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.RubbleWithHearthNeedsExactlyOneSupportedRubble (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:96
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3152" name="SameOwnersElsewhereDoNotGainHearthException" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.SameOwnersElsewhereDoNotGainHearthException" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.190910" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3149" name="SameOwnersElsewhereDoNotGainHearthException(&quot;Overworld.16.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.SameOwnersElsewhereDoNotGainHearthException(&quot;Overworld.16.4.1&quot;)" methodname="SameOwnersElsewhereDoNotGainHearthException" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1636412139" result="Passed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.105227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3150" name="SameOwnersElsewhereDoNotGainHearthException(&quot;Overworld.3.3.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.SameOwnersElsewhereDoNotGainHearthException(&quot;Overworld.3.3.1&quot;)" methodname="SameOwnersElsewhereDoNotGainHearthException" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="2142917372" result="Passed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.040446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3151" name="SameOwnersElsewhereDoNotGainHearthException(&quot;Overworld.2.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.SameOwnersElsewhereDoNotGainHearthException(&quot;Overworld.2.4.1&quot;)" methodname="SameOwnersElsewhereDoNotGainHearthException" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="388650492" result="Passed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.039212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3136" name="UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.145087" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3133" name="UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor(&quot;hidden&quot;)" methodname="UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1109982" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.048223" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3134" name="UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor(&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor(&quot;custody&quot;)" methodname="UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1260244212" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.053193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3135" name="UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor(&quot;moved&quot;)" methodname="UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="2030707383" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.041193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.UndisclosedHearthCannotAuthorizeBackdropOrVetoRealFloor (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3132" name="VisibleNoncanonicalHearthAndHazardsKeepFallback" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:51Z" duration="1.029342" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3110" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;duplicate&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1874382690" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.041737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3111" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;glyph&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1122565081" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.040904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3112" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;color&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="180702760" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.040817" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3113" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;background&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;background&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1668318102" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.041238" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3114" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;tile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;tile&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="16306555" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.040880" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3115" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;variant&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1569395065" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.041351" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3116" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;light&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;light&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="2066095879" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.040385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3117" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;duplicate-light&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;duplicate-light&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1808910175" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.039711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3118" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;foreign-light&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;foreign-light&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="2142632706" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.040383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3119" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;duplicate-hearth&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;duplicate-hearth&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1841553183" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:50Z" duration="0.071385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3120" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;foreign-role&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;foreign-role&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="265994254" result="Failed" start-time="2026-11-15 20:29:50Z" end-time="2026-11-15 20:29:51Z" duration="0.129934" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3121" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;solid&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="499331879" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.043724" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3122" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;material&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1752188284" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.040990" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3123" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;gone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;gone&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1298600304" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.040502" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3124" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;zero&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;zero&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="836505909" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.042645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3125" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;frozen&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="851065189" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.041639" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3126" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;burning&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;burning&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1354442144" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.040869" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3127" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;nan&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;nan&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="461827308" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.040568" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3128" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;water&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="958861540" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.040417" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3129" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;charge&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1693397316" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.041314" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3130" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;memory&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1775156917" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.040445" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3131" name="VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;authority&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback(&quot;authority&quot;)" methodname="VisibleNoncanonicalHearthAndHazardsKeepFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="449252852" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.043044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive premise
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.VisibleNoncanonicalHearthAndHazardsKeepFallback (System.String fault) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3109" name="WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.136569" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3106" name="WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity(&quot;SandstoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity(&quot;SandstoneFloor&quot;)" methodname="WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="202534286" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.046282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity (System.String substrate) [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3107" name="WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity(&quot;Rubble&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity(&quot;Rubble&quot;)" methodname="WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="851874576" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.041189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity (System.String substrate) [0x00090] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3108" name="WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity(&quot;none&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity(&quot;none&quot;)" methodname="WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity" classname="CavesOfOoo.Tests.FlatPixelSpivenorHearthTests" runstate="Runnable" seed="1157220780" result="Failed" start-time="2026-11-15 20:29:51Z" end-time="2026-11-15 20:29:51Z" duration="0.041021" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorHearthTests.WholeCircleUsesOnlyItsRealSubstrateAndRetainsHearthIdentity (System.String substrate) [0x00090] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorHearthTests.cs:33
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

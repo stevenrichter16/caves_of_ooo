@@ -18,7 +18,7 @@ namespace CavesOfOoo.Rendering
         bool sandstoneOnly;
         bool allowStoneFloor;
         bool rockBackdropOnly;
-        bool lampwellHearth;
+        string inhabitedHearthZone;
         /// <summary>Olderdeep's real stone/sandstone floors and sandstone walls only.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingOlderdeepDescent()
         { admits = FlatPixelSiteAdmission.IsOlderdeepDescent; allowCoveredFloorReader = allowStoneFloor = structuralOnly = sandstoneOnly = true; return this; }
@@ -30,10 +30,10 @@ namespace CavesOfOoo.Rendering
         { admits = FlatPixelSiteAdmission.IsRootChamber; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
         /// <summary>Lampwell sandstone/rocks, plus disclosed hearth backing in the inhabited second chamber.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingLampwellStone()
-        { admits = FlatPixelSiteAdmission.IsLampwellStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = lampwellHearth = true; return this; }
-        /// <summary>Spivenor's sandstone and canonical rock owners; backing requires a real disclosed rock.</summary>
+        { admits = FlatPixelSiteAdmission.IsLampwellStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; inhabitedHearthZone = "Overworld.12.3.2"; return this; }
+        /// <summary>Spivenor sandstone/rocks, plus disclosed hearth backing in the inhabited second chamber.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingSpivenorStone()
-        { admits = FlatPixelSiteAdmission.IsSpivenorStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
+        { admits = FlatPixelSiteAdmission.IsSpivenorStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; inhabitedHearthZone = "Overworld.16.4.2"; return this; }
         /// <summary>Real sandstone and low rockfall owners only; no ambient or stair borrowing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingGinmereDescent()
         { admits = FlatPixelSiteAdmission.IsGinmereDescent; allowCoveredFloorReader = true; structuralOnly = true; return this; }
@@ -139,8 +139,8 @@ namespace CavesOfOoo.Rendering
                 { if (actual != null || floors == null || !OrdinaryFloor(owner)) return false; actual = owner; }
                 else if (allowStoneFloor && owner.BlueprintName == "StoneFloor")
                 { if (actual != null || stoneFloors == null || !OrdinaryStoneFloor(owner)) return false; actual = owner; }
-                else if (lampwellHearth && zone.ZoneID == "Overworld.12.3.2" && owner.BlueprintName == "HearthPatch")
-                { if (!OrdinaryLampwellHearth(owner) || ++hearths > 1) return false; }
+                else if (zone.ZoneID == inhabitedHearthZone && owner.BlueprintName == "HearthPatch")
+                { if (!OrdinaryInhabitedHearth(owner) || ++hearths > 1) return false; }
                 else if (!(frostFloor && FlatPixelFrostVentCatalog.Eligible(owner)) && CompetingGround(owner)) return false;
             }
             if (actual == null) return false;
@@ -196,9 +196,9 @@ namespace CavesOfOoo.Rendering
             foreach (var owner in cell.Occupants)
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
-                if (lampwellHearth && zone.ZoneID == "Overworld.12.3.2" && owner.BlueprintName == "HearthPatch")
+                if (zone.ZoneID == inhabitedHearthZone && owner.BlueprintName == "HearthPatch")
                 {
-                    if (!OrdinaryLampwellHearth(owner) || ++hearths > 1) return false;
+                    if (!OrdinaryInhabitedHearth(owner) || ++hearths > 1) return false;
                     continue;
                 }
                 if (rockBackdropOnly && (owner.BlueprintName == "Rubble" || owner.BlueprintName == "Stalagmite"))
@@ -260,7 +260,7 @@ namespace CavesOfOoo.Rendering
         // This is only a backing exception. The original fungus glyph, light,
         // collision, description and political damage handler remain its own.
         // A local finite part set keeps shared ending/ground vetoes unchanged.
-        static bool OrdinaryLampwellHearth(Entity owner)
+        static bool OrdinaryInhabitedHearth(Entity owner)
         {
             if (owner?.BlueprintName != "HearthPatch" || !PlainOwner(owner)
                 || !owner.HasTag("Terrain") || !owner.HasTag("Vegetation") || !owner.HasTag("Solid")

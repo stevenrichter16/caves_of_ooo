@@ -171,7 +171,8 @@ namespace CavesOfOoo.Tests
             {
                 Admit(art);Assert.False(art.TryResolveForeground(zone,fc.X,fc.Y,owner,out _));
                 Assert.False(art.TryGetSubjectSprite(zone,owner,fc.X,fc.Y,out _));
-                if(name=="HearthPatch" || name=="DroseraRing") Assert.False(art.TryResolveGround(zone,fc.X,fc.Y,out _,out _));
+                if(name=="HearthPatch" || name=="DroseraRing")
+                    Assert.AreEqual(name=="HearthPatch" && depth==2,art.TryResolveGround(zone,fc.X,fc.Y,out _,out _));
             }
         }
         [Test] public void PartialWallRemainsNativeButGoneOrZeroHealthRefuses()
@@ -200,7 +201,7 @@ namespace CavesOfOoo.Tests
             Assert.True(zone.RemoveEntity(rock));Assert.False(View(c).AmbientBackdrop);Assert.AreEqual(0,c.Objects.Count);
         }
         [TestCase("water")][TestCase("charge")][TestCase("background")][TestCase("hearth")][TestCase("duplicate")][TestCase("memory")][TestCase("malformed")]
-        public void InvalidRockBackingNeverMasksEnvironment(string fault)
+        public void RockBackingHonorsHazardsAndInhabitedHearthScope(string fault)
         {
             Native();zone=new Zone("Overworld.16.4."+depth);manager.SetActiveZone(zone);var c=zone.GetCell(20,10);c.Explored=c.IsVisible=true;
             var rock=content.Factory.CreateEntity("Rubble");Assert.True(zone.AddEntity(rock,20,10));Assert.True(View(c).AmbientBackdrop);
@@ -213,7 +214,8 @@ namespace CavesOfOoo.Tests
                 case "memory":c.IsVisible=false;break;
                 case "malformed":rock.GetPart<RenderPart>().ColorString="&R";break;
             }
-            if(world.TryResolvePresentation(zone,20,10,out var v))Assert.False(v.AmbientBackdrop);
+            if(world.TryResolvePresentation(zone,20,10,out var v))
+                Assert.AreEqual(fault=="hearth" && depth==2,v.AmbientBackdrop);
         }
         static void Admit(FlatPixelShallowCavesCatalog art)
         {

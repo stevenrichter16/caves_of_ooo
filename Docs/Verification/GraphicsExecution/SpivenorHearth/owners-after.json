@@ -1,0 +1,2122 @@
+{
+  "zone": "Overworld.16.4.2",
+  "seed": 224401440,
+  "x": 31,
+  "y": 12,
+  "hp": 40,
+  "invincible": false,
+  "rep": 0,
+  "tileState": "{\"Entries\":[{\"Key\":402,\"State\":{\"Coatings\":[{\"Id\":\"brine\",\"Turns\":2147483647,\"ProjectionOwnerId\":\"\"}],\"Residues\":[],\"Heat\":0,\"Cold\":0,\"Charge\":0,\"Cloud\":\"\",\"CloudTurns\":0}},{\"Key\":482,\"State\":{\"Coatings\":[{\"Id\":\"brine\",\"Turns\":2147483647,\"ProjectionOwnerId\":\"\"}],\"Residues\":[],\"Heat\":0,\"Cold\":0,\"Charge\":0,\"Cloud\":\"\",\"CloudTurns\":0}},{\"Key\":483,\"State\":{\"Coatings\":[{\"Id\":\"brine\",\"Turns\":2147483647,\"ProjectionOwnerId\":\"\"}],\"Residues\":[],\"Heat\":0,\"Cold\":0,\"Charge\":0,\"Cloud\":\"\",\"CloudTurns\":0}},{\"Key\":555,\"State\":{\"Coatings\":[{\"Id\":\"oil\",\"Turns\":2147483647,\"ProjectionOwnerId\":\"\"}],\"Residues\":[],\"Heat\":0,\"Cold\":0,\"Charge\":0,\"Cloud\":\"\",\"CloudTurns\":0}},{\"Key\":556,\"State\":{\"Coatings\":[{\"Id\":\"oil\",\"Turns\":2147483647,\"ProjectionOwnerId\":\"\"}],\"Residues\":[],\"Heat\":0,\"Cold\":0,\"Charge\":0,\"Cloud\":\"\",\"CloudTurns\":0}}]}",
+  "rows": [
+    {
+      "id": "41098",
+      "x": 22,
+      "y": 11,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40009",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41099",
+      "x": 22,
+      "y": 12,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40010",
+          "BlueprintName": "Rubble"
+        }
+      ]
+    },
+    {
+      "id": "41100",
+      "x": 22,
+      "y": 13,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40011",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41101",
+      "x": 23,
+      "y": 10,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40027",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41102",
+      "x": 23,
+      "y": 11,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40028",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41103",
+      "x": 23,
+      "y": 12,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40029",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41104",
+      "x": 23,
+      "y": 13,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40030",
+          "BlueprintName": "Rubble"
+        }
+      ]
+    },
+    {
+      "id": "41105",
+      "x": 23,
+      "y": 14,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40031",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41106",
+      "x": 24,
+      "y": 9,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40045",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41107",
+      "x": 24,
+      "y": 10,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40046",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41108",
+      "x": 24,
+      "y": 11,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40047",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41109",
+      "x": 24,
+      "y": 12,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40048",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41110",
+      "x": 24,
+      "y": 13,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40049",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41111",
+      "x": 25,
+      "y": 9,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40060",
+          "BlueprintName": "Rubble"
+        }
+      ]
+    },
+    {
+      "id": "41112",
+      "x": 25,
+      "y": 10,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40061",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41113",
+      "x": 25,
+      "y": 11,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40062",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41114",
+      "x": 25,
+      "y": 12,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40063",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41115",
+      "x": 25,
+      "y": 13,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40064",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41116",
+      "x": 25,
+      "y": 14,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40065",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41117",
+      "x": 26,
+      "y": 9,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40075",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41118",
+      "x": 26,
+      "y": 10,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40076",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41119",
+      "x": 26,
+      "y": 11,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40077",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41120",
+      "x": 26,
+      "y": 12,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40078",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41121",
+      "x": 26,
+      "y": 13,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40079",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41122",
+      "x": 26,
+      "y": 14,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40080",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41123",
+      "x": 27,
+      "y": 9,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40092",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41124",
+      "x": 27,
+      "y": 10,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40093",
+          "BlueprintName": "Rubble"
+        }
+      ]
+    },
+    {
+      "id": "41125",
+      "x": 27,
+      "y": 11,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40094",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41126",
+      "x": 27,
+      "y": 12,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40095",
+          "BlueprintName": "Rubble"
+        }
+      ]
+    },
+    {
+      "id": "41127",
+      "x": 27,
+      "y": 13,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40096",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41128",
+      "x": 27,
+      "y": 14,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40097",
+          "BlueprintName": "Rubble"
+        }
+      ]
+    },
+    {
+      "id": "41129",
+      "x": 27,
+      "y": 15,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40098",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41130",
+      "x": 28,
+      "y": 9,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40116",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41131",
+      "x": 28,
+      "y": 10,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40117",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41132",
+      "x": 28,
+      "y": 11,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40118",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41133",
+      "x": 28,
+      "y": 12,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40119",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41134",
+      "x": 28,
+      "y": 13,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40120",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41135",
+      "x": 28,
+      "y": 14,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40121",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41136",
+      "x": 28,
+      "y": 15,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": []
+    },
+    {
+      "id": "41137",
+      "x": 29,
+      "y": 10,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40140",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41138",
+      "x": 29,
+      "y": 11,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40141",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41139",
+      "x": 29,
+      "y": 12,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40142",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41140",
+      "x": 29,
+      "y": 13,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40143",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41141",
+      "x": 29,
+      "y": 14,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40144",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41142",
+      "x": 30,
+      "y": 11,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40164",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41143",
+      "x": 30,
+      "y": 12,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40165",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "41144",
+      "x": 30,
+      "y": 13,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"hearth-patch\",\"RenderString\":\"*\",\"ColorString\":\"&G\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":2,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it.\"}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Plant\",\"Combustibility\":0.10000000149011612,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Plant,Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":420.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.019999999552965165,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "DestructiblePart",
+          "json": "{\"HP\":40,\"MaxHP\":40,\"Indestructible\":false,\"WreckageBlueprint\":\"\",\"Hardness\":0,\"Gone\":false}"
+        },
+        {
+          "type": "HearthPatchPart",
+          "json": "{\"WarRep\":-150}"
+        },
+        {
+          "type": "LightSourcePart",
+          "json": "{\"Radius\":4,\"LightColor\":\"&G\",\"Intensity\":0.800000011920929,\"Enabled\":true}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "40166",
+          "BlueprintName": "SandstoneFloor"
+        }
+      ]
+    }
+  ]
+}
