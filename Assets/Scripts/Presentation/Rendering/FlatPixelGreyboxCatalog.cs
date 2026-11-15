@@ -142,6 +142,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelShallowCavesCatalog _groveSinkholeFloorArt;
         private FlatPixelShallowCavesCatalog _olderdeepDescentArt;
         private FlatPixelShallowCavesCatalog _cathedralDescentArt;
+        private FlatPixelShallowCavesCatalog _rootChamberArt;
         private FlatPixelShallowCavesCatalog _ginmereDescentArt;
         private FlatPixelShallowCavesCatalog _lampwellStoneArt;
         private FlatPixelShallowCavesCatalog _spivenorStoneArt;
@@ -2204,6 +2205,19 @@ namespace CavesOfOoo.Rendering
                 }
                 return _cathedralDescentArt;
             }
+            if (FlatPixelSiteAdmission.IsRootChamber(zone))
+            {
+                if (_rootChamberArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _rootChamberArt = new FlatPixelShallowCavesCatalog(
+                        Resources.Load<Texture2D>(FlatPixelShallowCavesCatalog.ResourcePath),
+                        Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),
+                        Resources.Load<Texture2D>("Sprites/Environment/rubble"),
+                        Resources.Load<Texture2D>("Sprites/Environment/stalagmite"), null, null, _glyphFallback).AdmittingRootChamber();
+                }
+                return _rootChamberArt;
+            }
             if (FlatPixelSiteAdmission.IsGinmereDescent(zone))
             {
                 if (_ginmereDescentArt == null && _loadOptionalResources)
@@ -2864,6 +2878,7 @@ namespace CavesOfOoo.Rendering
             _groveSinkholeFloorArt?.Dispose();
             _olderdeepDescentArt?.Dispose();
             _cathedralDescentArt?.Dispose();
+            _rootChamberArt?.Dispose();
             _ginmereDescentArt?.Dispose();
             _lampwellStoneArt?.Dispose();
             _spivenorStoneArt?.Dispose();
@@ -2880,6 +2895,7 @@ namespace CavesOfOoo.Rendering
             _groveSinkholeFloorArt = null;
             _olderdeepDescentArt = null;
             _cathedralDescentArt = null;
+            _rootChamberArt = null;
             _ginmereDescentArt = null;
             _lampwellStoneArt = null;
             _spivenorStoneArt = null;

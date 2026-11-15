@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 12:37:26Z" end-time="2026-11-15 12:37:28Z" duration="2.591649">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37746" result="Failed" site="Child" start-time="2026-11-15 12:37:26Z" end-time="2026-11-15 12:37:28Z" duration="2.591649" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46215" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37746" result="Failed" site="Child" start-time="2026-11-15 12:37:26Z" end-time="2026-11-15 12:37:28Z" duration="2.529125" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46216" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37746" result="Failed" site="Child" start-time="2026-11-15 12:37:26Z" end-time="2026-11-15 12:37:28Z" duration="2.525209" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46217" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37746" result="Failed" site="Child" start-time="2026-11-15 12:37:26Z" end-time="2026-11-15 12:37:28Z" duration="2.522193" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2249" name="FlatPixelRootChamberTests" fullname="CavesOfOoo.Tests.FlatPixelRootChamberTests" classname="CavesOfOoo.Tests.FlatPixelRootChamberTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-11-15 12:37:26Z" end-time="2026-11-15 12:37:28Z" duration="2.513395" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2250" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelRootChamberTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelRootChamberTests" runstate="Runnable" seed="1917429759" result="Failed" start-time="2026-11-15 12:37:26Z" end-time="2026-11-15 12:37:28Z" duration="2.478554" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  RootChamber sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootChamberTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootChamberTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootChamberTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootChamberTests.cs:32
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

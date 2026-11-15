@@ -24,6 +24,9 @@ namespace CavesOfOoo.Rendering
         /// <summary>Cathedral sandstone only; no rock, stair or ambient borrowing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingCathedralDescent()
         { admits = FlatPixelSiteAdmission.IsCathedralDescent; allowCoveredFloorReader = true; structuralOnly = sandstoneOnly = true; return this; }
+        /// <summary>Root chamber sandstone and canonical rocks; no empty-cell or ending backing.</summary>
+        internal FlatPixelShallowCavesCatalog AdmittingRootChamber()
+        { admits = FlatPixelSiteAdmission.IsRootChamber; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
         /// <summary>Lampwell's sandstone and canonical rock owners; backing requires a real disclosed rock.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingLampwellStone()
         { admits = FlatPixelSiteAdmission.IsLampwellStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
@@ -303,6 +306,8 @@ namespace CavesOfOoo.Rendering
                 || owner.HasPart<HarvestablePart>() || owner.HasPart<LiquidPoolPart>() || owner.HasPart<WellPart>()
                 || owner.HasPart<RepairablePart>() || owner.HasPart<DoorPart>() || owner.HasPart<ContainerPart>()
                 || owner.HasPart<ConversationPart>() || owner.HasPart<TraderPart>()
+                || owner.HasPart<RootFacePart>() || owner.HasPart<SeventhPositionPart>()
+                || owner.HasPart<HearthPatchPart>() || owner.HasPart<FoundingPlumePart>()
                 || owner.HasPart("Restable") || owner.HasTag("Restable") || owner.HasPart<RegionalSignpostPart>()
                 || owner.HasPart<CampfirePart>() || owner.HasPart<TorchLightPart>() || owner.HasPart<LightSourcePart>()
                 || owner.HasPart<AlchemyStillPart>() || owner.HasPart<SoddenPreparationPart>() || owner.HasPart<TriggerOnStepPart>()
@@ -335,6 +340,8 @@ namespace CavesOfOoo.Rendering
             => owner.HasPart<CropPart>() || owner.HasPart<FieldHarvestPart>() || owner.HasPart<CultivatedSoilPart>()
                 || owner.HasPart<LiquidPoolPart>() || owner.HasPart<GasPoolPart>() || owner.HasPart<TileStateSourcePart>()
                 || owner.HasPart<TriggerOnStepPart>() || owner.HasPart<FiniteLiquidFilmPart>()
+                || owner.HasPart<RootFacePart>() || owner.HasPart<SeventhPositionPart>()
+                || owner.HasPart<HearthPatchPart>() || owner.HasPart<FoundingPlumePart>()
                 || owner.HasTag("WellGroundMarker") || owner.HasTag("OvenGroundMarker") || owner.HasTag("LanternGroundMarker")
                 || owner.HasTag("Terrain") && !OrdinaryForeground(owner)
                     && !FlatPixelSharedStonePropsCatalog.IsNeutralFloorOverlay(owner);

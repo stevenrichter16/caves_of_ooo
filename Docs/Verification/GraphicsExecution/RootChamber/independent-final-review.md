@@ -1,0 +1,5 @@
+# Independent final review
+
+Source reviewer sumphold_grade_source_review:0P1/P2. Exactly one disclosed current canonical Rubble/Stalagmite with available art may authorize backing; real floors, hazards, authored backgrounds and ending parts veto it. Empty cells remain unfilled. Covered rubble retains its reader; no memory path. The Root face cell deliberately has no floor. Adjacent shallow adapters are included in the final365/365 native suite because the ending-part veto is shared.
+
+Visual reviewer sumphold_baseline_review: priorP2rockholes resolved;0remaining visibleP1/P2 in matched arrival/west/face. Native rubble and stalagmites make sandstone surface coherent. Actors, red ending face and blue features remain readable. Genuine emptiness and ASCII memory are separate debt; no blanket filling. All3foundation-to-final sidebar/hotbar comparisons exact; original-to-final west/face logs differ. Actualmovement/readers/reload subsequently verified by root and detailed in receipt.json, not inferred from screenshots.

@@ -30,6 +30,23 @@ namespace CavesOfOoo.Rendering
                 && string.IsNullOrEmpty(poi.Profile) && !LairStacks.HasSavedColumn(manager, zone.ZoneID);
         }
 
+        // Only the native ending chamber sandstone; ending owners are not material art.
+        internal static bool IsRootChamber(Zone zone)
+        {
+            if (zone?.ZoneID != RootSiteBuilder.ChamberZoneID) return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || !ReferenceEquals(current, zone)) return false;
+            var map = manager.WorldMap;
+            if (map?.Tiles == null || map.POIs == null
+                || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
+                || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
+            var poi = map.GetPOI(RootSiteBuilder.WorldX, RootSiteBuilder.WorldY);
+            return map.GetBiome(RootSiteBuilder.WorldX, RootSiteBuilder.WorldY) == BiomeType.Stump
+                && poi != null && poi.Type == POIType.Root && poi.Name == RootSiteBuilder.SiteName
+                && string.IsNullOrEmpty(poi.Profile) && !LairStacks.HasSavedColumn(manager, RootSiteBuilder.MouthZoneID);
+        }
+
         // Founding profile survives a story rename; only these two current interiors qualify.
         internal static bool IsOlderdeepDescent(Zone zone)
         {
