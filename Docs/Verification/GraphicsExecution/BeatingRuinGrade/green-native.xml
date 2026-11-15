@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="61" result="Passed" total="61" passed="61" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.8863126">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36740" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.886313" total="61" passed="61" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="45005" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36740" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.881661" total="61" passed="61" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="45006" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36740" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.881105" total="61" passed="61" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="45007" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36740" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.880753" total="61" passed="61" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="29954" name="BiomeColorPatcherTravelTests" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="61" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.872257" total="61" passed="61" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="30017" name="ActualContinueAdoptsReplacementManagerEvenWhenZoneIdIsUnchanged" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ActualContinueAdoptsReplacementManagerEvenWhenZoneIdIsUnchanged" methodname="ActualContinueAdoptsReplacementManagerEvenWhenZoneIdIsUnchanged" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1884766415" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.047841" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30026" name="ExplicitZoneRemainsUsableWithoutAShownRendererZone" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.009001" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="30024" name="ExplicitZoneRemainsUsableWithoutAShownRendererZone(False)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone(False)" methodname="ExplicitZoneRemainsUsableWithoutAShownRendererZone" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1856365355" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003720" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30025" name="ExplicitZoneRemainsUsableWithoutAShownRendererZone(True)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone(True)" methodname="ExplicitZoneRemainsUsableWithoutAShownRendererZone" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1531510497" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30023" name="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.008156" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="30021" name="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(&quot;Overworld.4.12.1&quot;,Spread)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(&quot;Overworld.4.12.1&quot;,Spread)" methodname="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="196069333" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003637" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30022" name="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(&quot;Overworld.4.12.0&quot;,Cave)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(&quot;Overworld.4.12.0&quot;,Cave)" methodname="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1986962629" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30020" name="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.008026" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="30018" name="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(False)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(False)" methodname="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="899736643" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003436" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30019" name="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(True)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(True)" methodname="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="812013245" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="30027" name="MissingVolumeRemainsANoOpWithExplicitGameplayReferences" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.MissingVolumeRemainsANoOpWithExplicitGameplayReferences" methodname="MissingVolumeRemainsANoOpWithExplicitGameplayReferences" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="874316381" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.004351" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[BiomeColorPatcher] No global Volume found or profile missing. Component is a no-op.
+]]></output>
+            </test-case>
+            <test-case id="30001" name="NativeDuneGradeFollowsReplacementDisplayedWorldRatherThanOldManager" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDuneGradeFollowsReplacementDisplayedWorldRatherThanOldManager" methodname="NativeDuneGradeFollowsReplacementDisplayedWorldRatherThanOldManager" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="413186845" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.009876" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30000" name="NativeDuneGradeLosesAndRecoversAuthority" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDuneGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.019075" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29995" name="NativeDuneGradeLosesAndRecoversAuthority(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDuneGradeLosesAndRecoversAuthority(&quot;legacy&quot;)" methodname="NativeDuneGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="981212125" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003780" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29996" name="NativeDuneGradeLosesAndRecoversAuthority(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDuneGradeLosesAndRecoversAuthority(&quot;sprites-off&quot;)" methodname="NativeDuneGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="265139831" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003397" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29997" name="NativeDuneGradeLosesAndRecoversAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDuneGradeLosesAndRecoversAuthority(&quot;detached&quot;)" methodname="NativeDuneGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1807967188" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29998" name="NativeDuneGradeLosesAndRecoversAuthority(&quot;replaced-graph&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDuneGradeLosesAndRecoversAuthority(&quot;replaced-graph&quot;)" methodname="NativeDuneGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1062073407" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003598" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29999" name="NativeDuneGradeLosesAndRecoversAuthority(&quot;wrong-poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDuneGradeLosesAndRecoversAuthority(&quot;wrong-poi&quot;)" methodname="NativeDuneGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1524983322" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29994" name="NativeDuneGradePreservesWarmAuthoredArtAndRestoresSameBiomeNeighbor" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDuneGradePreservesWarmAuthoredArtAndRestoresSameBiomeNeighbor" methodname="NativeDuneGradePreservesWarmAuthoredArtAndRestoresSameBiomeNeighbor" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="92103856" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003626" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29982" name="NativeMarrowstyeRestoresAuthoredMaterialHueAndSameBiomeTravelRestoresGrade" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMarrowstyeRestoresAuthoredMaterialHueAndSameBiomeTravelRestoresGrade" methodname="NativeMarrowstyeRestoresAuthoredMaterialHueAndSameBiomeTravelRestoresGrade" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1608846191" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003867" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29965" name="NativeMorrowfastGradeFollowsDisplayedReplacementAndSavedLairRefusal" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeFollowsDisplayedReplacementAndSavedLairRefusal" methodname="NativeMorrowfastGradeFollowsDisplayedReplacementAndSavedLairRefusal" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1504153866" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.113647" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29964" name="NativeMorrowfastGradeRequiresCurrentInstalledScene" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeRequiresCurrentInstalledScene" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.458717" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29956" name="NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;legacy&quot;)" methodname="NativeMorrowfastGradeRequiresCurrentInstalledScene" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1115578601" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.050995" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29957" name="NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;sprites-off&quot;)" methodname="NativeMorrowfastGradeRequiresCurrentInstalledScene" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1460376612" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.101409" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29958" name="NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;wrong-poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;wrong-poi&quot;)" methodname="NativeMorrowfastGradeRequiresCurrentInstalledScene" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="580031052" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.096503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29959" name="NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;wrong-name&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;wrong-name&quot;)" methodname="NativeMorrowfastGradeRequiresCurrentInstalledScene" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1962855025" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.042663" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29960" name="NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;detached&quot;)" methodname="NativeMorrowfastGradeRequiresCurrentInstalledScene" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="905016582" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.040666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29961" name="NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;replaced-graph&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;replaced-graph&quot;)" methodname="NativeMorrowfastGradeRequiresCurrentInstalledScene" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="643369586" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.041125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29962" name="NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;missing-scene&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;missing-scene&quot;)" methodname="NativeMorrowfastGradeRequiresCurrentInstalledScene" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="776304245" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.042037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29963" name="NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;revision&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeRequiresCurrentInstalledScene(&quot;revision&quot;)" methodname="NativeMorrowfastGradeRequiresCurrentInstalledScene" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="35378290" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.039998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29955" name="NativeMorrowfastGradeSeparatesMaterialsAndRestoresSameBiomeTravel" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMorrowfastGradeSeparatesMaterialsAndRestoresSameBiomeTravel" methodname="NativeMorrowfastGradeSeparatesMaterialsAndRestoresSameBiomeTravel" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2134049565" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.040125" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29981" name="NativeRuinGradeDoesNotAdoptDepthOrAddressAliases" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeDoesNotAdoptDepthOrAddressAliases" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.012709" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29978" name="NativeRuinGradeDoesNotAdoptDepthOrAddressAliases(&quot;Overworld.19.12.1&quot;,Cave)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeDoesNotAdoptDepthOrAddressAliases(&quot;Overworld.19.12.1&quot;,Cave)" methodname="NativeRuinGradeDoesNotAdoptDepthOrAddressAliases" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="642890470" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003648" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29979" name="NativeRuinGradeDoesNotAdoptDepthOrAddressAliases(&quot;Overworld.019.12.0&quot;,Beating)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeDoesNotAdoptDepthOrAddressAliases(&quot;Overworld.019.12.0&quot;,Beating)" methodname="NativeRuinGradeDoesNotAdoptDepthOrAddressAliases" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1798848411" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003297" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29980" name="NativeRuinGradeDoesNotAdoptDepthOrAddressAliases(&quot;Overworld.19.012.0&quot;,Beating)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeDoesNotAdoptDepthOrAddressAliases(&quot;Overworld.19.012.0&quot;,Beating)" methodname="NativeRuinGradeDoesNotAdoptDepthOrAddressAliases" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1233222045" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29977" name="NativeRuinGradeDoesNotChangeForeignSavedBiome" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeDoesNotChangeForeignSavedBiome" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.011752" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29974" name="NativeRuinGradeDoesNotChangeForeignSavedBiome(Spread)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeDoesNotChangeForeignSavedBiome(Spread)" methodname="NativeRuinGradeDoesNotChangeForeignSavedBiome" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="810916469" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29975" name="NativeRuinGradeDoesNotChangeForeignSavedBiome(Sodden)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeDoesNotChangeForeignSavedBiome(Sodden)" methodname="NativeRuinGradeDoesNotChangeForeignSavedBiome" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1114947941" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29976" name="NativeRuinGradeDoesNotChangeForeignSavedBiome(Grovelands)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeDoesNotChangeForeignSavedBiome(Grovelands)" methodname="NativeRuinGradeDoesNotChangeForeignSavedBiome" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1707542001" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29973" name="NativeRuinGradeFollowsReplacementWorldAndRejectsSavedLair" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeFollowsReplacementWorldAndRejectsSavedLair" methodname="NativeRuinGradeFollowsReplacementWorldAndRejectsSavedLair" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1158414473" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.006852" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29972" name="NativeRuinGradeLosesAndRecoversCurrentAuthority" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeLosesAndRecoversCurrentAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.018976" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29967" name="NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;legacy&quot;)" methodname="NativeRuinGradeLosesAndRecoversCurrentAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1831763514" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003630" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29968" name="NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;sprites-off&quot;)" methodname="NativeRuinGradeLosesAndRecoversCurrentAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2014250668" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29969" name="NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;detached&quot;)" methodname="NativeRuinGradeLosesAndRecoversCurrentAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1401502782" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29970" name="NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;replaced-cache&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;replaced-cache&quot;)" methodname="NativeRuinGradeLosesAndRecoversCurrentAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="534055135" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003504" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29971" name="NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradeLosesAndRecoversCurrentAuthority(&quot;poi&quot;)" methodname="NativeRuinGradeLosesAndRecoversCurrentAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1411656500" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29966" name="NativeRuinGradePreservesContrastAndRestoresRoadAndDune" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeRuinGradePreservesContrastAndRestoresRoadAndDune" methodname="NativeRuinGradePreservesContrastAndRestoresRoadAndDune" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="290518904" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003881" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29988" name="NativeSettlementGradeLosesAndRecoversAuthority" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.018005" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29983" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;legacy&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1004244341" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003448" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29984" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;sprites-off&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="865124419" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29985" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;wrong-poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;wrong-poi&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1879927241" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003225" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29986" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;detached&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="537298426" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29987" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;wrong-profile&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;wrong-profile&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="794080688" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003171" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30015" name="NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.011496" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="30012" name="NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes(Sodden)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes(Sodden)" methodname="NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="980017077" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30013" name="NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes(Beating)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes(Beating)" methodname="NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1328586134" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003179" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30014" name="NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" methodname="NativeSumpholdGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="603856460" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003213" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="30011" name="NativeSumpholdGradeFollowsDisplayedReplacementAndExcludesSavedLair" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeFollowsDisplayedReplacementAndExcludesSavedLair" methodname="NativeSumpholdGradeFollowsDisplayedReplacementAndExcludesSavedLair" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1701410310" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.006588" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30010" name="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.024516" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="30003" name="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;legacy&quot;)" methodname="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1818888588" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30004" name="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;sprites-off&quot;)" methodname="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="418105548" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003163" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30005" name="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;wrong-poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;wrong-poi&quot;)" methodname="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="422118226" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30006" name="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;wrong-name&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;wrong-name&quot;)" methodname="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2095973909" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003245" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30007" name="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;wrong-profile&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;wrong-profile&quot;)" methodname="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="213723440" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003186" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30008" name="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;detached&quot;)" methodname="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="286469973" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30009" name="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;replaced-cache&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority(&quot;replaced-cache&quot;)" methodname="NativeSumpholdGradeLosesAndRecoversCurrentBoatyardAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="83266912" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="30002" name="NativeSumpholdGradePreservesContrastAndRestoresSameBiomeTravel" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSumpholdGradePreservesContrastAndRestoresSameBiomeTravel" methodname="NativeSumpholdGradePreservesContrastAndRestoresSameBiomeTravel" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="746090732" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003582" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29993" name="OtherSpreadAreasKeepTheirExistingPalette" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.OtherSpreadAreasKeepTheirExistingPalette" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.011150" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29990" name="OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.12.13.0&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.12.13.0&quot;)" methodname="OtherSpreadAreasKeepTheirExistingPalette" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1694526410" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29991" name="OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.10.10.0&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.10.10.0&quot;)" methodname="OtherSpreadAreasKeepTheirExistingPalette" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1938551413" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29992" name="OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.3.6.0&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.3.6.0&quot;)" methodname="OtherSpreadAreasKeepTheirExistingPalette" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1861881597" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.003170" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29989" name="ReplacementGraphAtSameAddressReevaluatesSettlementGrade" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ReplacementGraphAtSameAddressReevaluatesSettlementGrade" methodname="ReplacementGraphAtSameAddressReevaluatesSettlementGrade" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="968012329" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.006193" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30016" name="SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel" methodname="SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1118856454" result="Passed" start-time="2026-11-15 03:00:47Z" end-time="2026-11-15 03:00:47Z" duration="0.004080" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

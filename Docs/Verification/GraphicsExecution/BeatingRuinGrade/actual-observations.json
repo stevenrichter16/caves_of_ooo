@@ -1,0 +1,156 @@
+{
+  "road": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.19.13.0",
+        "x": 40,
+        "y": 12,
+        "hp": 40,
+        "turn": 2140,
+        "ruin": false,
+        "filter": [
+          1.1,
+          1.05,
+          0.85
+        ],
+        "contrast": 12,
+        "saturation": 15,
+        "pillars": [
+          {
+            "ID": "11859",
+            "at": {
+              "Item1": 73,
+              "Item2": 2
+            },
+            "hp": 0
+          }
+        ],
+        "logs": [
+          "The air here says sari, sari, and does not finish the word.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Autosaved."
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "returned": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.19.12.0",
+        "x": 40,
+        "y": 12,
+        "hp": 40,
+        "turn": 2220,
+        "ruin": true,
+        "filter": [
+          1,
+          1,
+          1
+        ],
+        "contrast": 12,
+        "saturation": 0,
+        "pillars": [
+          {
+            "ID": "9817",
+            "at": {
+              "Item1": 32,
+              "Item2": 17
+            },
+            "hp": 0
+          },
+          {
+            "ID": "9821",
+            "at": {
+              "Item1": 32,
+              "Item2": 19
+            },
+            "hp": 0
+          }
+        ],
+        "logs": [
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Debug: player invincibility OFF.",
+          "Game saved."
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "reload": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.19.12.0",
+        "x": 40,
+        "y": 12,
+        "hp": 40,
+        "turn": 2220,
+        "ruin": true,
+        "filter": [
+          1,
+          1,
+          1
+        ],
+        "contrast": 12,
+        "saturation": 0,
+        "pillars": [
+          {
+            "ID": "9817",
+            "at": {
+              "Item1": 32,
+              "Item2": 17
+            },
+            "hp": 28
+          },
+          {
+            "ID": "9821",
+            "at": {
+              "Item1": 32,
+              "Item2": 19
+            },
+            "hp": 50
+          }
+        ],
+        "logs": [
+          "sky-sari drops out of the sky and its talons close on empty ground.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Debug: player invincibility OFF."
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "pillarsBefore": {
+    "pillars": [
+      {
+        "ID": "9817",
+        "at": {
+          "Item1": 32,
+          "Item2": 17
+        },
+        "hp": 28
+      },
+      {
+        "ID": "9821",
+        "at": {
+          "Item1": 32,
+          "Item2": 19
+        },
+        "hp": 50
+      }
+    ],
+    "zone": "Overworld.19.12.0",
+    "x": 33,
+    "y": 17,
+    "hp": 40,
+    "seed": 64,
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/465810fe0f9f4868a10daeaf7b3a702b"
+  },
+  "note": "returned/road early observation used creature Hitpoints for props and returned 0; not structural damage. Correct reload uses DestructiblePart.HP; inherited 28/50 and 50/50 exact."
+}

@@ -59,6 +59,7 @@ namespace CavesOfOoo.Presentation.Rendering
         private bool _nativeDuneGrade;
         private bool _nativeMorrowfastGrade;
         private bool _nativeSumpholdGrade;
+        private bool _nativeRuinGrade;
         // Bounded material-hue pilot. The native sprites already contain the intended
         // warm earth/stone hues; the old green filter made those surfaces too similar.
         private static readonly BiomePalette NativeMarrowstyePalette = new BiomePalette(
@@ -75,6 +76,10 @@ namespace CavesOfOoo.Presentation.Rendering
         // earth, stone, boards and water keep their own material hues.
         private static readonly BiomePalette NativeSumpholdPalette = new BiomePalette(
             BiomeType.Spread, Color.white, 5f, 0f, 0f);
+        // RuinField's sand, paving and masonry retain authored hues and the
+        // existing Beating contrast, without a second yellow/saturation wash.
+        private static readonly BiomePalette NativeRuinPalette = new BiomePalette(
+            BiomeType.Beating, Color.white, 12f, 0f, 0f);
 
         // Reference back to gameplay state. Set by GameBootstrap.
         // CurrentZone is updated on zone-change via SetCurrentZone()
@@ -167,6 +172,11 @@ namespace CavesOfOoo.Presentation.Rendering
                 && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
                 && CurrentZone?.ZoneID == "Overworld.19.14.0"
                 && CavesOfOoo.Rendering.FlatPixelBeatingMaterialsCatalog.IsSupportedZone(CurrentZone);
+            bool nativeRuin = currentBiome == BiomeType.Beating
+                && _zoneRendererRef != null && _zoneRendererRef.FlatPixelModeActive
+                && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
+                && CurrentZone?.ZoneID == "Overworld.19.12.0"
+                && CavesOfOoo.Rendering.FlatPixelBeatingMaterialsCatalog.IsSupportedZone(CurrentZone);
             // Morrowfast's installed native masonry, flagstones and grassy yards
             // already carry separate material hues. Keep its legacy grade elsewhere.
             bool nativeMorrowfast = currentBiome == BiomeType.Grovelands
@@ -184,7 +194,8 @@ namespace CavesOfOoo.Presentation.Rendering
             // legacy toggle, sprites disabled or a replacement loaded world graph.
             if (!_hasResolvedPalette || currentBiome != _activeBiome
                 || nativeMarrowstye != _nativeMarrowstyeGrade || nativeDune != _nativeDuneGrade
-                || nativeMorrowfast != _nativeMorrowfastGrade || nativeSumphold != _nativeSumpholdGrade)
+                || nativeMorrowfast != _nativeMorrowfastGrade || nativeSumphold != _nativeSumpholdGrade
+                || nativeRuin != _nativeRuinGrade)
             {
                 _hasResolvedPalette = true;
                 _activeBiome = currentBiome;
@@ -192,7 +203,9 @@ namespace CavesOfOoo.Presentation.Rendering
                 _nativeDuneGrade = nativeDune;
                 _nativeMorrowfastGrade = nativeMorrowfast;
                 _nativeSumpholdGrade = nativeSumphold;
-                _targetPalette = nativeSumphold ? NativeSumpholdPalette
+                _nativeRuinGrade = nativeRuin;
+                _targetPalette = nativeRuin ? NativeRuinPalette
+                    : nativeSumphold ? NativeSumpholdPalette
                     : nativeMorrowfast ? NativeMorrowfastPalette
                     : nativeMarrowstye ? NativeMarrowstyePalette
                     : nativeDune ? NativeDunePalette : BiomePalette.GetForBiome(currentBiome);
