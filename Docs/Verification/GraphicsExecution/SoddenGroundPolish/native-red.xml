@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 04:53:32Z" end-time="2026-11-15 04:53:32Z" duration="0.135511">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36856" result="Failed" site="Child" start-time="2026-11-15 04:53:32Z" end-time="2026-11-15 04:53:32Z" duration="0.135511" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45141" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36856" result="Failed" site="Child" start-time="2026-11-15 04:53:32Z" end-time="2026-11-15 04:53:32Z" duration="0.123932" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45142" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36856" result="Failed" site="Child" start-time="2026-11-15 04:53:32Z" end-time="2026-11-15 04:53:32Z" duration="0.120306" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45143" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36856" result="Failed" site="Child" start-time="2026-11-15 04:53:32Z" end-time="2026-11-15 04:53:32Z" duration="0.117252" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="34995" name="FlatPixelSoddenEnvironmentTests" fullname="CavesOfOoo.Tests.FlatPixelSoddenEnvironmentTests" classname="CavesOfOoo.Tests.FlatPixelSoddenEnvironmentTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-11-15 04:53:32Z" end-time="2026-11-15 04:53:32Z" duration="0.108754" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="35004" name="AuthoredFenDetailsStayWithinQuietSurfaceContrastAndKeepFlatBorders" fullname="CavesOfOoo.Tests.FlatPixelSoddenEnvironmentTests.AuthoredFenDetailsStayWithinQuietSurfaceContrastAndKeepFlatBorders" methodname="AuthoredFenDetailsStayWithinQuietSurfaceContrastAndKeepFlatBorders" classname="CavesOfOoo.Tests.FlatPixelSoddenEnvironmentTests" runstate="Runnable" seed="310259039" result="Failed" start-time="2026-11-15 04:53:32Z" end-time="2026-11-15 04:53:32Z" duration="0.100688" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ground red accent contrast
+  Expected: less than or equal to 14
+  But was:  16
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenEnvironmentTests.AuthoredFenDetailsStayWithinQuietSurfaceContrastAndKeepFlatBorders () [0x000dd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenEnvironmentTests.cs:160
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

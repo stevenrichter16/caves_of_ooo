@@ -10,7 +10,9 @@ sys.dont_write_bytecode=True
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'ArtSource/Live16x24/sodden-environment'
 W,H,COUNT=16,24,36
-P={'ground':'3D492E','quiet-mat':'414C30','moss-soft':'454F33','moss':'4D593A','moss-dark':'39452C','sedge':'515D3D','straw':'545D3D',
+# V7: lower only detailed ground cores; preserve v6 geometry, plain frame0,
+# borders and every wet/bank pixel. Broad scene repetition stays subordinate.
+P={'ground':'3D492E','quiet-mat':'414C30','moss-soft':'454F33','moss':'485236','moss-dark':'39452C','sedge':'4B5538','straw':'545D3D',
    'wet':'303B37','deep':'2D3733','film':'3A453D','interior-film':'34403B','film-light':'3D493F',
    'shore':'52543B','shore-light':'626345','shore-dark':'28312C'}
 SIDES=((1,'N'),(2,'E'),(4,'S'),(8,'W'))
@@ -19,6 +21,14 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def save(n,v):(OUT/n).write_text(json.dumps(v,indent=2)+'\n')
 def guard():
     pins=json.loads((OUT/'protected-inputs.json').read_text())
+    # Preserve the historical pin map. Only the two reviewed peat-bank inputs
+    # accepted in df4fc6764 supersede it; arbitrary edits still fail closed.
+    accepted=json.loads((OUT/'accepted-input-supersessions.json').read_text())
+    assert accepted['source_commit']=='df4fc6764'
+    assert accepted['files']=={
+        'Assets/Resources/Sprites/Live16x24/sodden-travel.png':'380b8f5cd96c0b309c8aaa0743cc276cd7ccea340fd32f20772e5cb6212239f1',
+        'Tools/Live16x24/build_sodden_travel.py':'c0c70133ceb4668c7dccb4aa593ffc54edbfcb0bfad794e46b25423f83ecf797'}
+    pins.update(accepted['files'])
     for p,h in pins.items():assert sha(ROOT/p)==h,p
     return len(pins)
 def snapshot():
@@ -204,7 +214,7 @@ def verify():
         try:validate(s,(576,24),bad)
         except AssertionError:rejected.append(name)
         else:raise AssertionError(name)
-    save('source-verification.json',{'passed':True,**stats,'contact_and_pattern_pixels':checked,'corruptions_rejected':rejected,'png_sha256':sha(OUT/'sodden-ground.png'),'blend_sha256':sha(OUT/'editable.blend'),'protected_inputs_unchanged':count,'runtime_or_visual_gameplay_acceptance':False})
+    save('source-verification.json',{'passed':True,**stats,'contact_and_pattern_pixels':checked,'corruptions_rejected':rejected,'png_sha256':sha(OUT/'sodden-ground.png'),'blend_sha256':sha(OUT/'editable.blend'),'protected_inputs_verified':count,'historical_inputs_unchanged':count-2,'accepted_exact_supersessions':2,'runtime_or_visual_gameplay_acceptance':False})
     print(json.dumps(stats))
 
 def inspect_blend():

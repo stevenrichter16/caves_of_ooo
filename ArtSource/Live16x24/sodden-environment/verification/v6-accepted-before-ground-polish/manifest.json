@@ -1,0 +1,32 @@
+{
+  "frames": 36,
+  "size": [
+    576,
+    24
+  ],
+  "rect": "index*16,0,16,24",
+  "ground": [
+    0,
+    3
+  ],
+  "filled": "4+mask",
+  "depletedWetFilm": "20+mask",
+  "connections": {
+    "N": 1,
+    "E": 2,
+    "S": 4,
+    "W": 8
+  },
+  "alpha": "Fully opaque",
+  "source_only": true,
+  "pixelsPerUnit": 16,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "filter": "Point",
+  "wrap": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "scope": "Original ground/mire material pixels only; no new terrain owner, geometry, collision or hazard semantics."
+}

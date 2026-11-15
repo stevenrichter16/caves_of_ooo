@@ -141,6 +141,32 @@ namespace CavesOfOoo.Tests
             Assert.True(world.TryGetPresentationSubjectSprite(zone,stone,X,Y,out var portrait,out _));Assert.AreSame(Old(FlatPixelCellarFloorCatalog.ResourcePath),portrait.texture);
         }
 
+        [Test] public void AuthoredFenDetailsStayWithinQuietSurfaceContrastAndKeepFlatBorders()
+        {
+            // Native resource check complements placement tests: repeated bright
+            // moss cores must not compete with real reeds across broad ground.
+            var pixels = new Texture2D(2, 2);
+            try
+            {
+                Assert.True(pixels.LoadImage(System.IO.File.ReadAllBytes(System.IO.Path.Combine(
+                    Application.dataPath, "Resources/Sprites/Live16x24/sodden-ground.png"))));
+                Assert.AreEqual(576, pixels.width); Assert.AreEqual(24, pixels.height);
+                var basis = new Color32(61, 73, 46, 255); int detailed = 0;
+                for (int frame = 0; frame < 4; frame++) for (int y = 0; y < 24; y++) for (int x = 0; x < 16; x++)
+                {
+                    Color32 color = pixels.GetPixel(frame * 16 + x, y);
+                    Assert.AreEqual(255, color.a);
+                    if (frame == 0 || x == 0 || x == 15 || y == 0 || y == 23) Assert.AreEqual(basis, color);
+                    Assert.That(Math.Abs(color.r - basis.r), Is.LessThanOrEqualTo(14), "Ground red accent contrast");
+                    Assert.That(Math.Abs(color.g - basis.g), Is.LessThanOrEqualTo(14), "Ground green accent contrast");
+                    Assert.That(Math.Abs(color.b - basis.b), Is.LessThanOrEqualTo(14), "Ground blue accent contrast");
+                    if (!color.Equals(basis)) detailed++;
+                }
+                Assert.Greater(detailed, 100, "Quiet surface must retain its low material detail.");
+            }
+            finally { Object.DestroyImmediate(pixels); }
+        }
+
         [Test] public void NewGroundNeverMasksIndependentCoatingsOrCurrentOwnerRefusals()
         {
             var input=Texture(36);Inject(input);var grass=Add("Grass");Frame(View().GroundTile,input,0,3);
