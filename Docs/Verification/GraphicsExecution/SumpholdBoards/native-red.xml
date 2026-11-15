@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="32" result="Failed(Child)" total="32" passed="1" failed="31" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 21:28:55Z" end-time="2026-11-14 21:28:59Z" duration="3.8426117">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36647" result="Failed" site="Child" start-time="2026-11-14 21:28:55Z" end-time="2026-11-14 21:28:59Z" duration="3.842612" total="32" passed="1" failed="31" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44894" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36647" result="Failed" site="Child" start-time="2026-11-14 21:28:55Z" end-time="2026-11-14 21:28:59Z" duration="3.643259" total="32" passed="1" failed="31" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44895" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36647" result="Failed" site="Child" start-time="2026-11-14 21:28:56Z" end-time="2026-11-14 21:28:59Z" duration="3.445404" total="32" passed="1" failed="31" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44896" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36647" result="Failed" site="Child" start-time="2026-11-14 21:28:56Z" end-time="2026-11-14 21:28:59Z" duration="3.345335" total="32" passed="1" failed="31" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="35285" name="FlatPixelSumpholdBoardTests" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-11-14 21:28:56Z" end-time="2026-11-14 21:28:59Z" duration="3.144638" total="32" passed="1" failed="31" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="35311" name="AnotherAuthoredBoatyardRetainsOriginalBoards" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.AnotherAuthoredBoatyardRetainsOriginalBoards" methodname="AnotherAuthoredBoatyardRetainsOriginalBoards" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="895859722" result="Passed" start-time="2026-11-14 21:28:56Z" end-time="2026-11-14 21:28:56Z" duration="0.169333" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="35319" name="CoveredNeighborStillConnectsButUndisclosedNeighborDoesNot" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CoveredNeighborStillConnectsButUndisclosedNeighborDoesNot" methodname="CoveredNeighborStillConnectsButUndisclosedNeighborDoesNot" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="84193963" result="Failed" start-time="2026-11-14 21:28:56Z" end-time="2026-11-14 21:28:56Z" duration="0.083762" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CoveredNeighborStillConnectsButUndisclosedNeighborDoesNot () [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:98
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="35320" name="CoveredReaderRetainsBoardIdentityWithoutTakingActorForeground" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CoveredReaderRetainsBoardIdentityWithoutTakingActorForeground" methodname="CoveredReaderRetainsBoardIdentityWithoutTakingActorForeground" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1900767112" result="Failed" start-time="2026-11-14 21:28:56Z" end-time="2026-11-14 21:28:56Z" duration="0.070584" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CoveredReaderRetainsBoardIdentityWithoutTakingActorForeground () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:103
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="35310" name="CurrentSumpholdAuthorityIsRequired" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-14 21:28:56Z" end-time="2026-11-14 21:28:57Z" duration="0.613815" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35303" name="CurrentSumpholdAuthorityIsRequired(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired(&quot;profile&quot;)" methodname="CurrentSumpholdAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="631483194" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.072195" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired (System.String loss) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35304" name="CurrentSumpholdAuthorityIsRequired(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired(&quot;biome&quot;)" methodname="CurrentSumpholdAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="239963920" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.068737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired (System.String loss) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35305" name="CurrentSumpholdAuthorityIsRequired(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired(&quot;name&quot;)" methodname="CurrentSumpholdAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="477159374" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.072384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired (System.String loss) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35306" name="CurrentSumpholdAuthorityIsRequired(&quot;type&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired(&quot;type&quot;)" methodname="CurrentSumpholdAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1578863911" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.067887" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired (System.String loss) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35307" name="CurrentSumpholdAuthorityIsRequired(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired(&quot;detached&quot;)" methodname="CurrentSumpholdAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1392458027" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.072694" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired (System.String loss) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35308" name="CurrentSumpholdAuthorityIsRequired(&quot;cache&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired(&quot;cache&quot;)" methodname="CurrentSumpholdAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="522937499" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.074020" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired (System.String loss) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35309" name="CurrentSumpholdAuthorityIsRequired(&quot;lair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired(&quot;lair&quot;)" methodname="CurrentSumpholdAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="701496752" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.112050" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.CurrentSumpholdAuthorityIsRequired (System.String loss) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35318" name="InvalidBoardKeepsExistingFallbackAndReaderRefusal" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:58Z" duration="0.620177" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35312" name="InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;hidden-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;hidden-cell&quot;)" methodname="InvalidBoardKeepsExistingFallbackAndReaderRefusal" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1058992824" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.217010" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35313" name="InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;hidden-owner&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;hidden-owner&quot;)" methodname="InvalidBoardKeepsExistingFallbackAndReaderRefusal" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1152844429" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.069961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35314" name="InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;damaged&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;damaged&quot;)" methodname="InvalidBoardKeepsExistingFallbackAndReaderRefusal" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="525219202" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:57Z" duration="0.067254" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35315" name="InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;frozen&quot;)" methodname="InvalidBoardKeepsExistingFallbackAndReaderRefusal" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="787043310" result="Failed" start-time="2026-11-14 21:28:57Z" end-time="2026-11-14 21:28:58Z" duration="0.069571" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35316" name="InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;duplicate&quot;)" methodname="InvalidBoardKeepsExistingFallbackAndReaderRefusal" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1223240834" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.069745" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35317" name="InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal(&quot;variant&quot;)" methodname="InvalidBoardKeepsExistingFallbackAndReaderRefusal" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="872242461" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.068529" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.InvalidBoardKeepsExistingFallbackAndReaderRefusal (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35302" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:59Z" duration="1.381488" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35286" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(0)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(0)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1303553119" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.072697" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35287" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(1)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(1)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="314524151" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.071292" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35288" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(2)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(2)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1180117473" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.069493" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35289" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(3)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(3)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="897086392" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.070038" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35290" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(4)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(4)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1546900684" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.067510" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35291" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(5)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(5)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1441408144" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.073481" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35292" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(6)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(6)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="2070105010" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.075692" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35293" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(7)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(7)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1995276327" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.074822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35294" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(8)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(8)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="2117107374" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:58Z" duration="0.076839" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35295" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(9)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(9)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="414939734" result="Failed" start-time="2026-11-14 21:28:58Z" end-time="2026-11-14 21:28:59Z" duration="0.116773" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35296" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(10)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(10)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1562963455" result="Failed" start-time="2026-11-14 21:28:59Z" end-time="2026-11-14 21:28:59Z" duration="0.209043" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35297" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(11)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(11)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1825254677" result="Failed" start-time="2026-11-14 21:28:59Z" end-time="2026-11-14 21:28:59Z" duration="0.070900" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35298" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(12)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(12)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1043803917" result="Failed" start-time="2026-11-14 21:28:59Z" end-time="2026-11-14 21:28:59Z" duration="0.072587" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35299" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(13)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(13)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="1036440721" result="Failed" start-time="2026-11-14 21:28:59Z" end-time="2026-11-14 21:28:59Z" duration="0.074031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35300" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(14)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(14)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="150529630" result="Failed" start-time="2026-11-14 21:28:59Z" end-time="2026-11-14 21:28:59Z" duration="0.073268" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35301" name="WarmBoardPreservesAllCardinalMasksAndIsolatedReader(15)" fullname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader(15)" methodname="WarmBoardPreservesAllCardinalMasksAndIsolatedReader" classname="CavesOfOoo.Tests.FlatPixelSumpholdBoardTests" runstate="Runnable" seed="115937004" result="Failed" start-time="2026-11-14 21:28:59Z" end-time="2026-11-14 21:28:59Z" duration="0.073714" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sumphold-boards (UnityEngine.Texture2D)>
+  But was:  <sodden-travel (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.Board (CavesOfOoo.Core.Entity owner, System.Boolean warm) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSumpholdBoardTests.WarmBoardPreservesAllCardinalMasksAndIsolatedReader (System.Int32 mask) [0x000d3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSumpholdBoardTests.cs:47
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

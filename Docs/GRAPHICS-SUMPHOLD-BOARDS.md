@@ -1,0 +1,19 @@
+# Sumphold board contrast — bounded Editor acceptance
+
+Thin Duckboard runs remained close in value to the muted yard after the neutral grade and quiet-water polish. A separate optional16-frame Sumphold palette improves route readability. It changes two original native palette entries only; all6144 alpha values, frame cells, plank shapes, topology masks, seams and darkest/grain colors remain exact. Shared Sodden art is unchanged.
+
+Actual baseline→built-in imagegen reference→independent critique→editable native Blender/source-cells→integration is retained in ArtSource/Live16x24/sumphold-boards. The reference's enlarged planks/bevels/nails were rejected. Saved.blend reopened and re-rendered all6144RGBA pixels exactly. New art is256×24, Point/uncompressed/noMip,16pixels/unit.
+
+Existing fixture resolution must succeed first. Current cached Spread Sumphold/Boatyard alone may remap the resolved mask; native reader deliberately keeps isolated frame0, including under actors. Missing/malformed optional art keeps original boards. No simulation/RNG/owner/footprint/collision/population/shadow changes. Settlement covered-board submission remains the prior limitation, not a claimed fix.
+
+Native RED31fail/1foreignnegativepass preceded integration. Broader regression306pass/1wrongtest/3allocationinconclusive(310total); source reviewer found the test's7HP refusal contradicted existingHP>0 authority. Corrected to0HP refusal plus7HP positive, then36/36focusedGREEN. Production was unchanged after the broader run; checkpoints are nonadditive. Allocation positive controls were not detected, so allocation remains unknown. Native XML wall clock spans21:30→01:12 with104.687s reported duration; no performance claim from that discrepancy.
+
+Actual matched GameBootstrap39,15 comparison changes3504worldpixels, exclusively the two prior board colors; HUD/hotbar exact. Independent visual review accepts modest separation on long runs and the junction,0P1/P2. Ordinary Right2 reaches41,15; native Duckboard Wood8/8 Examine; Down2 reaches41,17. Real15.6↔14.6 travel retains neighboring Spread grade and returns neutral Sumphold. F5turn3310HP19 and fresh isolated Continue41,15HP19 passed. NoF12 this slice; inherited protected-survey/combat logs remain disclosed. Reload96/639200 worldpixels differ within832,384–875,441 in two dark colors; cause unproven. No whole-scene equality claim.
+
+A70.104s after-only Editor profile includes movement, map travel, captures and tool scheduling: rendererp95.078291ms/max179.407708ms; Mainmax638.144833ms. Screenquery2321×1283 differs from1280×800 game captures. Not matched performance, packagedFPS or R11 closure. Two memoryless Metal depth load/store messages observed. The initial CUA desktop image was stale39,7/green; excluded in favor of actual ScreenCapture and current read-only observations.
+
+Play stopped, isolatedrootnull, originalLastGame restored, scene clean. Both owned test roots archived. All79foreign paths and normal saves preserved; TestResults.xml and Unity session telemetry updates disclosed. No cleanup. Current669a Mac/Linux packages include palette+water and exclude this board slice until a later graphics batch. Linux execution remains untested; Deck deferred.
+
+Next: review Sumphold service/interior/whole-chunk purpose at normal zoom; coverage, area polish, population and shadows remain separate. Do not expand mechanics or accept the area from this viewport. V0–V7/R11 remain open. Last actual report2026-11-15T01:17:24Z; hourly graphics task remains ACTIVE.
+
+Independent next-route review selects the central occupied room’s unclear service purpose. Start from this slice’s AfterCheckpoint41,15; west2 then north via39,11/doorway39,7 into39,6 when clear. Inspect real occupant names and existing actions before selecting an owner-bound visual cue. Existing crate/chair and supported services are candidates; do not add population or infer merchant identity from a sprite. See next-route.json.

@@ -24,9 +24,10 @@ namespace CavesOfOoo.Rendering
         const int Width = 16, Height = 24;
         public const string TownFloorResourcePath = "Sprites/Live16x24/town-floor";
         public const string SumpholdWaterResourcePath = "Sprites/Live16x24/sodden-flood-water";
+        public const string SumpholdBoardResourcePath = "Sprites/Live16x24/sumphold-boards";
         public const string ScorchResourcePath = "Sprites/Live16x24/campfire-scorch";
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] lawn, floors, masonry, forest, sand, beatingRoad, road, walls, yard, tree, berry, dryBrush, bush, hearth, scorch, warden, sumpholdWater;
+        readonly Tile[] lawn, floors, masonry, forest, sand, beatingRoad, road, walls, yard, tree, berry, dryBrush, bush, hearth, scorch, warden, sumpholdWater, sumpholdBoards;
         readonly FlatPixelSillRiverCatalog water;
         readonly FlatPixelMorrowfastRiverCatalog morrowRiver;
         readonly FlatPixelSoddenTravelCatalog fixtures;
@@ -43,7 +44,7 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelSoddenTravelCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath),
                 Resources.Load<Texture2D>(ScorchResourcePath), Resources.Load<Texture2D>(FlatPixelMorrowfastRiverCatalog.ResourcePath),
-                Resources.Load<Texture2D>(SumpholdWaterResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(SumpholdWaterResourcePath), Resources.Load<Texture2D>(SumpholdBoardResourcePath), borrowedSelector) { }
 
         /// <summary>Each borrowed group is independent: a missing or malformed atlas only leaves
         /// its own identities on the fallback. No Resources reload on failure.</summary>
@@ -80,6 +81,15 @@ namespace CavesOfOoo.Rendering
             Texture2D beating34, Texture2D openingGround21, Texture2D townFloor4,
             Texture2D vegetation4, Texture2D base10, Texture2D soddenTravel28, Texture2D states12, Texture2D scorch2,
             Texture2D morrowWater17, Texture2D optionalSumpholdWater128, FlatPixelFallbackCatalog borrowedSelector)
+            : this(sillEnvironment9, forestGround4, beating34, openingGround21, townFloor4,
+                vegetation4, base10, soddenTravel28, states12, scorch2, morrowWater17, optionalSumpholdWater128, null, borrowedSelector) { }
+
+        /// <summary>Optional Sumphold-only board palette; all owner, topology and reader
+        /// authority remains with the existing fixture catalog. Missing art keeps its original views.</summary>
+        public FlatPixelSettlementGroundCatalog(Texture2D sillEnvironment9, Texture2D forestGround4,
+            Texture2D beating34, Texture2D openingGround21, Texture2D townFloor4,
+            Texture2D vegetation4, Texture2D base10, Texture2D soddenTravel28, Texture2D states12, Texture2D scorch2,
+            Texture2D morrowWater17, Texture2D optionalSumpholdWater128, Texture2D optionalSumpholdBoards16, FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -94,6 +104,7 @@ namespace CavesOfOoo.Rendering
             walls = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 16, 2, "sandstone wall");
             water = new FlatPixelSillRiverCatalog(openingGround21, selector, IsSupportedZone, WaterSubstrate);
             sumpholdWater = Frames(optionalSumpholdWater128, 128, 0, 128, "quiet Sumphold water");
+            sumpholdBoards = Frames(optionalSumpholdBoards16, 16, 0, 16, "Sumphold boards");
             morrowRiver = new FlatPixelMorrowfastRiverCatalog(morrowWater17, soddenTravel28, selector);
             tree = Frames(vegetation4, 4, 0, 1, "tree");
             berry = Frames(vegetation4, 4, 2, 1, "berry bush");
@@ -264,7 +275,13 @@ namespace CavesOfOoo.Rendering
                 case "Warden": tile = CanonicalWarden(owner) ? Pick(warden, 0) : null; break;
                 case "CampfireGroundMarker": tile = OrdinaryScorch(owner) ? Pick(scorch, (x + y) & 1) : null; break;
                 case "Duckboard": case "Reeds": case "PeatBank":
-                    return fixtures != null && fixtures.TryResolveForeground(zone, x, y, owner, out tile);
+                    if (fixtures == null || !fixtures.TryResolveForeground(zone, x, y, owner, out tile)) return false;
+                    if (UsesSumpholdBoards(zone, owner))
+                    {
+                        int mask = (int)tile.sprite.rect.x / Width;
+                        if (mask >= 0 && mask < 16) tile = sumpholdBoards[mask];
+                    }
+                    return true;
             }
             return tile != null;
         }
@@ -275,7 +292,12 @@ namespace CavesOfOoo.Rendering
             sprite = null;
             if (owner == null) return false;
             if (owner.BlueprintName == "Duckboard" || owner.BlueprintName == "Reeds" || owner.BlueprintName == "PeatBank")
-                return fixtures != null && fixtures.TryGetSubjectSprite(zone, owner, x, y, out sprite);
+            {
+                if (fixtures == null || !fixtures.TryGetSubjectSprite(zone, owner, x, y, out sprite)) return false;
+                // The fixture reader deliberately uses isolated frame0, including below actors.
+                if (UsesSumpholdBoards(zone, owner)) sprite = sumpholdBoards[0].sprite;
+                return true;
+            }
             if (owner.BlueprintName == "SandstoneWall" || owner.BlueprintName == "Bush" || owner.BlueprintName == "Tree" || owner.BlueprintName == "BerryBush"
                 || owner.BlueprintName == "TepuiStone" && MorrowfastRole(owner) == MorrowfastSceneRuntime.WallName
                 || owner.BlueprintName == "DryBrush" || owner.BlueprintName == "Campfire" || owner.BlueprintName == "CampfireGroundMarker"
@@ -520,6 +542,14 @@ namespace CavesOfOoo.Rendering
             value ^= value >> 16; value = unchecked(value * 0x7feb352du); value ^= value >> 15;
             return (value & 15u) < 12u ? 0 : 1 + (int)((value >> 4) % 3u);
         }
+        // Call only after the fixture resolver has proved current settlement/cell/owner authority.
+        bool UsesSumpholdBoards(Zone zone, Entity owner)
+        {
+            if (sumpholdBoards == null || owner.BlueprintName != "Duckboard" || zone.ZoneID != SumpholdCompositionPlan.ZoneID) return false;
+            var map = WorldLocationContext.For(zone).WorldMap;
+            return map.GetBiome(15, 6) == BiomeType.Spread && AreaCompositionScope.IsSumpholdSite(map.GetPOI(15, 6));
+        }
+
         internal static Tile[] Frames(Texture2D texture, int atlasCount, int start, int count, string group)
         {
             if (texture == null || texture.width != atlasCount * Width || texture.height != Height) return null;
@@ -537,7 +567,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             water?.Dispose(); fixtures?.Dispose(); morrowRiver?.Dispose();
-            foreach (var group in new[] { lawn, floors, masonry, forest, sand, beatingRoad, road, walls, yard, tree, berry, dryBrush, bush, hearth, scorch, warden, sumpholdWater })
+            foreach (var group in new[] { lawn, floors, masonry, forest, sand, beatingRoad, road, walls, yard, tree, berry, dryBrush, bush, hearth, scorch, warden, sumpholdWater, sumpholdBoards })
             {
                 if (group == null) continue;
                 foreach (var tile in group) { if (tile == null) continue; DestroyOwned(tile.sprite); DestroyOwned(tile); }

@@ -1,0 +1,5 @@
+# Sumphold board palette review
+
+Source/art reviewer: `/root/sumphold_grade_source_review`. Production scope/remap, owner authority, optional fallback, isolated reader, constructor compatibility and disposal: no defects. One incorrect test expected7/8HP board refusal; existing fixture authority accepts HP>0. Corrected to0HP refusal and added7HP positive. Final36/36 passes. Native16 frame arrays, alpha and all5 protected shared inputs verified exact;1687/6144 pixels changed only in2palette entries. Saved blend reopen/render subsequently matched6144RGBA pixels.
+
+Visual reviewer: `/root/sumphold_baseline_review`. Actual matched waterfront before/after at native1×: no visibleP1/P2. Long strips and short junction separate more clearly from the ground; muted tan reads as wood without excessive shine/clutter/new seams. Dark divisions, sandstone, reeds, water and actor hierarchy retained. Accept palette only; root separately verified movement/readers/travel/save/freshContinue. Full-area acceptance is not implied.
