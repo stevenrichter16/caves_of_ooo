@@ -1,0 +1,106 @@
+{
+  "source_commit": "420e905aa1353d9e43e520da6e36de714a6120c3",
+  "at_utc": "2026-11-15T20:57:49.769722+00:00",
+  "runs": [
+    {
+      "run": 1,
+      "pid": 61638,
+      "closed": true,
+      "log": "Docs/Verification/GraphicsExecution/Batch420E90/mac-run1.log.gz",
+      "raw_sha256": "7b2509f3ad22efc192501c0253fd8698664c64fb37eff9728ea3847591827d5c",
+      "gzip_sha256": "4ad7e617becfdaff6fe2c683c9cc343f2ef986a2002623ade1e77de54439fe9b",
+      "compute_buffer_shutdown_warning": true,
+      "premature_thread_finalization_notices": 6,
+      "development_shutdown_MemoryLeaks_records": 1
+    },
+    {
+      "run": 2,
+      "pid": 62503,
+      "closed": true,
+      "log": "Docs/Verification/GraphicsExecution/Batch420E90/mac-run2.log.gz",
+      "raw_sha256": "cfc66828e3fb34fdbc7fdb92e439a9e04c853260e6135d172f3fba17d9e4e26a",
+      "gzip_sha256": "34a83de39b26078ec4f638db002a46daf70dbae711b9e3fbf123d3e54fe984a3",
+      "compute_buffer_shutdown_warning": true,
+      "premature_thread_finalization_notices": 5,
+      "development_shutdown_MemoryLeaks_records": 1
+    },
+    {
+      "run": 3,
+      "pid": 62616,
+      "closed": true,
+      "log": "Docs/Verification/GraphicsExecution/Batch420E90/mac-run3.log.gz",
+      "raw_sha256": "441e9ae2d16df9a14ed4492efdd62f279353adbd9a2440bfc89e12547ceb49ad",
+      "gzip_sha256": "ea9e815b70b436ceb27b1565988d243868f1923ec1749c86d169e0f90a3774e4",
+      "compute_buffer_shutdown_warning": true,
+      "premature_thread_finalization_notices": 6,
+      "development_shutdown_MemoryLeaks_records": 1
+    },
+    {
+      "run": 4,
+      "pid": 63017,
+      "closed": true,
+      "log": "Docs/Verification/GraphicsExecution/Batch420E90/mac-run4.log.gz",
+      "raw_sha256": "f89ec99e82fec02cc28c5d5c5b570f7832b58fa623d5819cac0be98ddda26342",
+      "gzip_sha256": "140e154d873751b32e60d412362fb460c1e5f0a0b9361c8dc16fba0852f4f9ea",
+      "compute_buffer_shutdown_warning": true,
+      "premature_thread_finalization_notices": 6,
+      "development_shutdown_MemoryLeaks_records": 1
+    }
+  ],
+  "quillhold": {
+    "input": "Marrowstye/after-save3800HP40seed224401440, uncached Quillhold",
+    "ordinary_actions": [
+      "Continue",
+      "world Right2Up3 to14.9",
+      "Left20Down6 to fresh hall19,17",
+      "full CopyDesk and new Chair readers",
+      "underfoot Sit refused: seat already in use or already sitting; no successful player sitting claim",
+      "exit hall to39,11",
+      "14.9 to13.9 and back",
+      "F5",
+      "quit/new process Continue at39,11 HP40",
+      "walk to19,17 with added hall chairs retained"
+    ],
+    "saved_turn": 4720,
+    "saved_hp": "40/40",
+    "saved_zone": "Overworld.14.9.0",
+    "saved_position": [
+      39,
+      11
+    ],
+    "reload_hall_position": [
+      19,
+      17
+    ]
+  },
+  "spivenor": {
+    "input": "SpivenorHearth/AfterCheckpoint6310HP40seed224401440, historical protected acquisition disclosed in slice",
+    "ordinary_actions": [
+      "Continue at40,12",
+      "Left9 across existing sundew to31,12",
+      "full HearthPatch reader west; read-only Break option never executed",
+      "Up4 to north31,8",
+      "Down4Right9",
+      "stairs2 to1 to2",
+      "F5",
+      "quit/new process Continue at40,12 HP40 with stone-backed hearth retained"
+    ],
+    "saved_turn": 6590,
+    "saved_hp": "40/40",
+    "saved_zone": "Overworld.16.4.2",
+    "saved_position": [
+      40,
+      12
+    ]
+  },
+  "evidence_limits": [
+    "Actual CUA screenshots shown inline only; no durable Mac PNG or packaged pixel equality claim",
+    "No F12 input, injection, healing, combat, destruction or transfer during these current smoke runs; no direct standalone invincibility probe",
+    "Development build; no sustained package FPS measurement",
+    "Historical fixture acquisition is not current natural progression/balance evidence",
+    "ComputeBuffer disposal warnings at shutdown retained in all four logs",
+    "Linux execution unverified; Deck-specific work deferred",
+    "No whole-area/V0-V7 completion claim",
+    "Respectively6/5/6/6premature thread finalization notices and one development shutdown MemoryLeaks record per process retained; not a clean-warning or leak-free claim."
+  ]
+}

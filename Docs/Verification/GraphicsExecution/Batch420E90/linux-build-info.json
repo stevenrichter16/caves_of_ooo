@@ -1,0 +1,167 @@
+{
+  "source_commit": "420e905aa1353d9e43e520da6e36de714a6120c3",
+  "runtime_source_commit": "420e905aa1353d9e43e520da6e36de714a6120c3",
+  "built_after_utc": "2026-11-15T20:43:16.683906+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-420e905aa-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-15-graphics-420e905aa-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-420e905aa-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+  "planned_new_files": 32,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch420E90/mac-build.json",
+      "sha256": "e96b25b0ecdf314789b4a6c86d86c170a3e4c268eb95acba7c4e2cf7e6c6ec77",
+      "summary": {
+        "job_id": "build-79261f3249",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-15-graphics-420e905aa-current/CavesOfOoo.app",
+        "started_at": "2026-11-15T20:43:25.684709Z",
+        "duration_seconds": 29.781368999999998,
+        "completed_at": "2026-11-15T20:43:55.466078Z",
+        "total_size_mb": 549.01,
+        "errors": 0,
+        "warnings": 4,
+        "source_commit": "420e905aa1353d9e43e520da6e36de714a6120c3"
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch420E90/linux-build.json",
+      "sha256": "df44a2aa1874e33a462058d9111209aad782b2fa69b452b67dc3661bfbc87297",
+      "summary": {
+        "job_id": "build-41b01964f2",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-15-graphics-420e905aa-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-15T20:44:24.616961Z",
+        "duration_seconds": 22.118971,
+        "completed_at": "2026-11-15T20:44:46.735932Z",
+        "total_size_mb": 409.86,
+        "errors": 0,
+        "warnings": 4,
+        "source_commit": "420e905aa1353d9e43e520da6e36de714a6120c3"
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/QuillholdCopyHall/native-final.xml",
+        "sha256": "09bc10b42603a6213e07e3d5d59976ba801366285813101b8666abbf810f7d11",
+        "raw_passed": 183,
+        "raw_failed": 0,
+        "selected_current_passed": 183,
+        "excluded_superseded_material_suite": false,
+        "started_at_utc": "2026-11-15T20:15:42+00:00",
+        "completed_at_utc": "2026-11-15T20:16:02+00:00"
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/SpivenorHearth/native-green-first.xml",
+        "sha256": "1b2ae1501b2894435f4ad443409b6e70f56437e1b2da08a7588b1b62128e2d45",
+        "raw_passed": 431,
+        "raw_failed": 2,
+        "selected_current_passed": 339,
+        "excluded_superseded_material_suite": true,
+        "started_at_utc": "2026-11-15T20:30:57+00:00",
+        "completed_at_utc": "2026-11-15T20:32:31+00:00"
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/SpivenorHearth/native-material-regression.xml",
+        "sha256": "75905cff5b2398dbf07ed879c47dd96cb5120e96243cf5c715a95ecd14e265cf",
+        "raw_passed": 94,
+        "raw_failed": 0,
+        "selected_current_passed": 94,
+        "excluded_superseded_material_suite": false,
+        "started_at_utc": "2026-11-15T20:33:41+00:00",
+        "completed_at_utc": "2026-11-15T20:34:34+00:00"
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Quillhold183 and Spivenor433 are separate bounded gates. Spivenor retains339 nonmaterials plus replacement94materials; never union renamed methods or sum repeated92 passes. Raw first run retains2 superseded failures. Helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/Batch420E90/build-input-audit.json",
+    "sha256": "cf02eb7b9b1a50476a3d63ab81c23bce36d0222b305cc5cbbda651ee055d659b",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 78,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 67
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0,
+      "rootOwnedNeutralMetadata": 0
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-15T20:43:16.683906+00:00",
+      "checks": []
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 84,
+    "preservedStartupOverlay": {
+      "files": {
+        "Packages/manifest.json": "70bcbc90efe3eb4f62e7dc314f2f618c7e9b7fa323458a2692b9932cac86315a",
+        "Packages/packages-lock.json": "4af2b287f43908facf297e32f0f24f9bfeb1e36445ff4d9c110e7286653980f0",
+        "ProjectSettings/ProjectSettings.asset": "ef1dcb4e861d7506b1caa73e977081270aed0c6074296a4ee0a9eb6aebafaf91"
+      },
+      "description": "Existing unstaged Linux SDK/toolchain/sysroot1.1.1 (HEAD1.1.0) and explicit Standalone static1/dynamic0 batching entry. Predates resumed work; preserved, included in builds, not a clean-settings or binary reproducibility claim."
+    },
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/Batch420E90/package.py",
+    "sha256": "d38465ffff8b92aa94b534651fab6946be28521df26a3909e5daa82eaf6ab39c",
+    "adapted_from": "Docs/Verification/GraphicsExecution/BatchC53BCF/package.py",
+    "adapted_from_sha256": "ac7a19e0a45f963ffb58ad0784b2455bdfb640f6295b5f24eebd3974bd354c00"
+  },
+  "created_at_utc": "2026-11-15T20:58:23.735305+00:00",
+  "package_flavor": "current-flat-graphics",
+  "scope": "Published graphics through 420e905aa: Quillhold fresh Copy Hall and Spivenor hearth backing. Quillhold183 and Spivenor433 distinct current passes (339 shared/new plus replacement94 material cases); existing Linux SDK/toolchain/sysroot1.1.1 and Standalone batching overlay disclosed. Linux execution unverified; Deck deferred.",
+  "source_provenance": "Source/runtime revision and build boundary are root assertions. Exact output/job/time receipts and neutral input/settings bytes are checked; current runtime-byte equality is a retained root assertion; no source-to-binary reproducibility claim.",
+  "preservation_sequence": "Prebuild snapshot /private/tmp/coo-graphics-build-protection-420e905aa-restored-source: current tracked snapshot,83dirty, normal saves/preferences and priorc53bcf434 packages protected. Earlier84dirty snapshot retained. Final restoration separate.",
+  "canonical_executable_copy": {
+    "source_commit": "420e905aa1353d9e43e520da6e36de714a6120c3",
+    "at_utc": "2026-11-15T20:58:23.734931+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-11-15-graphics-420e905aa-current/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-11-15-graphics-420e905aa-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4456,
+    "both_sha256": "26901901cc6dd63212d741b339897f072d34cb7b3f08419fe451fc8e77c79a1f",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "current_native_status": {
+    "quillhold": "183/183 final",
+    "spivenor": "433distinct:339nonmaterials from first433 XML +replacement94materials; first2obsoleteoracles retained but excluded",
+    "counts_added_together": false,
+    "actual": "Editor accepted; current packaged smoke pending"
+  },
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing controller documentation is carried forward unchanged. No new Deck qualification; user deferred that work.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "performance_limits": "Separate Editor manual profiles exist, including after-only Quillhold/Spivenor observations; this helper neither validates those measurements nor treats them as packaged/Linux/Deck performance acceptance.",
+  "whole_area_polish_accepted": false,
+  "development_builds": true,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}
