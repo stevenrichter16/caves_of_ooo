@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Failed(Child)" total="35" passed="5" failed="30" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:29Z" duration="4.2340155">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37637" result="Failed" site="Child" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:29Z" duration="4.234016" total="35" passed="5" failed="30" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46084" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37637" result="Failed" site="Child" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:29Z" duration="4.189243" total="35" passed="5" failed="30" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46085" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37637" result="Failed" site="Child" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:29Z" duration="4.186009" total="35" passed="5" failed="30" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46086" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37637" result="Failed" site="Child" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:29Z" duration="4.183362" total="35" passed="5" failed="30" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="34130" name="FlatPixelLastCounterShadowTests" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:29Z" duration="4.174637" total="35" passed="5" failed="30" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="34133" name="CanonicalDryReceiversGetOnlyShortSouthShade" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:25Z" duration="0.469421" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34131" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Floor&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1251147565" result="Failed" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:25Z" duration="0.368689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34132" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;StoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;StoneFloor&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1724355619" result="Failed" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:25Z" duration="0.097465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34169" name="ChangedBiomeRevokesAndRestorationRecovers" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedBiomeRevokesAndRestorationRecovers" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:26Z" duration="0.471118" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34166" name="ChangedBiomeRevokesAndRestorationRecovers(Spread)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedBiomeRevokesAndRestorationRecovers(Spread)" methodname="ChangedBiomeRevokesAndRestorationRecovers" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="695269679" result="Failed" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:25Z" duration="0.106098" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedBiomeRevokesAndRestorationRecovers (CavesOfOoo.Core.BiomeType biome) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:147
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34167" name="ChangedBiomeRevokesAndRestorationRecovers(Sodden)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedBiomeRevokesAndRestorationRecovers(Sodden)" methodname="ChangedBiomeRevokesAndRestorationRecovers" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="152216876" result="Failed" start-time="2026-11-15 11:04:25Z" end-time="2026-11-15 11:04:26Z" duration="0.263079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedBiomeRevokesAndRestorationRecovers (CavesOfOoo.Core.BiomeType biome) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:147
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34168" name="ChangedBiomeRevokesAndRestorationRecovers(Grovelands)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedBiomeRevokesAndRestorationRecovers(Grovelands)" methodname="ChangedBiomeRevokesAndRestorationRecovers" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="372355996" result="Failed" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:26Z" duration="0.098303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedBiomeRevokesAndRestorationRecovers (CavesOfOoo.Core.BiomeType biome) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:147
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34174" name="ChangedWallRefusesShadow" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedWallRefusesShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:26Z" duration="0.388105" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34170" name="ChangedWallRefusesShadow(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedWallRefusesShadow(&quot;solid&quot;)" methodname="ChangedWallRefusesShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="932512889" result="Failed" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:26Z" duration="0.096612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedWallRefusesShadow (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:157
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34171" name="ChangedWallRefusesShadow(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedWallRefusesShadow(&quot;material&quot;)" methodname="ChangedWallRefusesShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="2028123368" result="Failed" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:26Z" duration="0.096278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedWallRefusesShadow (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:157
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34172" name="ChangedWallRefusesShadow(&quot;health&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedWallRefusesShadow(&quot;health&quot;)" methodname="ChangedWallRefusesShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1314974971" result="Failed" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:26Z" duration="0.095871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedWallRefusesShadow (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:157
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34173" name="ChangedWallRefusesShadow(&quot;thermal&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedWallRefusesShadow(&quot;thermal&quot;)" methodname="ChangedWallRefusesShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1623635942" result="Failed" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:26Z" duration="0.095288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.ChangedWallRefusesShadow (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:157
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34146" name="DisclosureAndLiveStateRemoveOnlyShade" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:27Z" duration="0.684966" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34139" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;source-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;source-hidden&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1663999460" result="Failed" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:26Z" duration="0.096884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34140" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;source-memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;source-memory&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1464016657" result="Failed" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:26Z" duration="0.098697" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34141" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-hidden&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1798951242" result="Failed" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:26Z" duration="0.095429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34142" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-memory&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1158778699" result="Failed" start-time="2026-11-15 11:04:26Z" end-time="2026-11-15 11:04:27Z" duration="0.096221" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34143" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;oil&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="565964720" result="Failed" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:27Z" duration="0.095123" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34144" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;changed&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1382378144" result="Failed" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:27Z" duration="0.095005" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34145" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;heat&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="679546909" result="Failed" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:27Z" duration="0.103059" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="34147" name="HiddenOccupantsCannotAffectTheDisclosedShadow" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.HiddenOccupantsCannotAffectTheDisclosedShadow" methodname="HiddenOccupantsCannotAffectTheDisclosedShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1553115701" result="Failed" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:27Z" duration="0.095195" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.HiddenOccupantsCannotAffectTheDisclosedShadow () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:78
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="34165" name="LegacyModeClearsAndRestoresWithoutChangingBodies" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.LegacyModeClearsAndRestoresWithoutChangingBodies" methodname="LegacyModeClearsAndRestoresWithoutChangingBodies" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="17432541" result="Failed" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:27Z" duration="0.110041" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.LegacyModeClearsAndRestoresWithoutChangingBodies () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:138
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="34157" name="MissingReceiverAtlasCannotBorrowTheValidWallAtlas" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.MissingReceiverAtlasCannotBorrowTheValidWallAtlas" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:27Z" duration="0.329491" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="34155" name="MissingReceiverAtlasCannotBorrowTheValidWallAtlas(&quot;Floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.MissingReceiverAtlasCannotBorrowTheValidWallAtlas(&quot;Floor&quot;)" methodname="MissingReceiverAtlasCannotBorrowTheValidWallAtlas" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="590261764" result="Passed" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:27Z" duration="0.228655" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="34156" name="MissingReceiverAtlasCannotBorrowTheValidWallAtlas(&quot;StoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.MissingReceiverAtlasCannotBorrowTheValidWallAtlas(&quot;StoneFloor&quot;)" methodname="MissingReceiverAtlasCannotBorrowTheValidWallAtlas" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1389760678" result="Passed" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:27Z" duration="0.093420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34138" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:28Z" duration="0.387107" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34134" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Player&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="333482869" result="Failed" start-time="2026-11-15 11:04:27Z" end-time="2026-11-15 11:04:28Z" duration="0.095595" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34135" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Dagger&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1760502119" result="Failed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.094062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34136" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;VillageDoor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;VillageDoor&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="212634352" result="Failed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.096618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34137" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;WaterPuddle&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="303258970" result="Failed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.096047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34161" name="OtherDryMaterialsCannotBorrowTheSiteShadow" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OtherDryMaterialsCannotBorrowTheSiteShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.292220" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="34158" name="OtherDryMaterialsCannotBorrowTheSiteShadow(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OtherDryMaterialsCannotBorrowTheSiteShadow(&quot;Grass&quot;)" methodname="OtherDryMaterialsCannotBorrowTheSiteShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="939582748" result="Passed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.096913" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="34159" name="OtherDryMaterialsCannotBorrowTheSiteShadow(&quot;Sand&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OtherDryMaterialsCannotBorrowTheSiteShadow(&quot;Sand&quot;)" methodname="OtherDryMaterialsCannotBorrowTheSiteShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1039679651" result="Passed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.095310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="34160" name="OtherDryMaterialsCannotBorrowTheSiteShadow(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.OtherDryMaterialsCannotBorrowTheSiteShadow(&quot;RoadStone&quot;)" methodname="OtherDryMaterialsCannotBorrowTheSiteShadow" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="2057598091" result="Passed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.094602" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="34154" name="SavedSurfaceLairRevokesShade" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.SavedSurfaceLairRevokesShade" methodname="SavedSurfaceLairRevokesShade" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="769466371" result="Failed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.096245" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.SavedSurfaceLairRevokesShade () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:100
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="34164" name="SourceAndReceiverRequireExplorationAndEmptyState" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.SourceAndReceiverRequireExplorationAndEmptyState" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.197291" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34162" name="SourceAndReceiverRequireExplorationAndEmptyState(True)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.SourceAndReceiverRequireExplorationAndEmptyState(True)" methodname="SourceAndReceiverRequireExplorationAndEmptyState" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1870074089" result="Failed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.096164" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.SourceAndReceiverRequireExplorationAndEmptyState (System.Boolean source) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:126
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34163" name="SourceAndReceiverRequireExplorationAndEmptyState(False)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.SourceAndReceiverRequireExplorationAndEmptyState(False)" methodname="SourceAndReceiverRequireExplorationAndEmptyState" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="498105862" result="Failed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.095376" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.SourceAndReceiverRequireExplorationAndEmptyState (System.Boolean source) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:126
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34153" name="WarmAuthorityRevocationClearsThePilot" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:29Z" duration="0.629160" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34148" name="WarmAuthorityRevocationClearsThePilot(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;profile&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="222586904" result="Failed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:28Z" duration="0.093330" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34149" name="WarmAuthorityRevocationClearsThePilot(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;name&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="105579073" result="Failed" start-time="2026-11-15 11:04:28Z" end-time="2026-11-15 11:04:29Z" duration="0.095417" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34150" name="WarmAuthorityRevocationClearsThePilot(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;graph&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="670876042" result="Failed" start-time="2026-11-15 11:04:29Z" end-time="2026-11-15 11:04:29Z" duration="0.118596" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34151" name="WarmAuthorityRevocationClearsThePilot(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;map&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="195405706" result="Failed" start-time="2026-11-15 11:04:29Z" end-time="2026-11-15 11:04:29Z" duration="0.220485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34152" name="WarmAuthorityRevocationClearsThePilot(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;alias&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelLastCounterShadowTests" runstate="Runnable" seed="1243546856" result="Failed" start-time="2026-11-15 11:04:29Z" end-time="2026-11-15 11:04:29Z" duration="0.095561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LastCounter native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelLastCounterShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLastCounterShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

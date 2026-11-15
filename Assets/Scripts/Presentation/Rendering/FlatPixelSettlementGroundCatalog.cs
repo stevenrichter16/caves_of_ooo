@@ -373,6 +373,28 @@ namespace CavesOfOoo.Rendering
         internal bool CanReceiveSumpholdWallShadow(Zone zone, int x, int y)
             => CanReceiveSettlementWallShadow(zone, x, y, false, false, true);
 
+        /// <summary>Last Counter masonry casts only onto one disclosed empty
+        /// yard or stone floor, using the already admitted native wall body.</summary>
+        internal bool CanReceiveLastCounterWallShadow(Zone zone, int x, int y, Entity source)
+        {
+            if (zone?.ZoneID != LastCounterCompositionPlan.ZoneID || !IsSupportedZone(zone)
+                || source?.BlueprintName != "SandstoneWall" || !Plain(source) || ForeignMeaning(source)) return false;
+            var map = WorldLocationContext.For(zone).WorldMap;
+            if (map.GetBiome(18, 18) != BiomeType.Beating
+                || !AreaCompositionScope.IsLastCounterSite(map.GetPOI(18, 18))
+                || !TryResolveForeground(zone, x, y - 1, source, out _)
+                || !TryResolveGround(zone, x, y, out _, out var floor)
+                || floor.BlueprintName != "Floor" && floor.BlueprintName != "StoneFloor") return false;
+            var sourceCell = zone.GetCell(x, y - 1);
+            if (!Placed(zone, sourceCell, source)) return false;
+            var sourceState = zone.TileState.Get(x, y - 1);
+            if (sourceState != null && !sourceState.IsEmpty) return false;
+            var cell = zone.GetCell(x, y);
+            foreach (var owner in cell.Occupants)
+                if (Placed(zone, cell, owner) && VisiblePhysicalOwner(owner) && !ReferenceEquals(owner, floor)) return false;
+            return true;
+        }
+
         internal bool CanReceiveGantryWallShadow(Zone zone, int x, int y, Entity source)
         {
             if (zone?.ZoneID != GantryCompositionPlan.ZoneID || !Plain(source) || ForeignMeaning(source)
