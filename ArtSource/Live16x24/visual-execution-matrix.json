@@ -22746,67 +22746,57 @@
     }
   ],
   "current_delivery": {
-    "recorded_utc": "2026-11-15T03:14:57.092665+00:00",
-    "source_commit": "7ac615ef2147c2ff3664b8aefac7abc679a53796",
+    "recorded_utc": "2026-11-15T03:53:59.976704+00:00",
+    "source_commit": "468a88da8736de9f295c4fcbdc24adc75045a0de",
     "source_remote_verified": true,
-    "mac": "Builds/Verification/2026-11-15-graphics-7ac615ef2-current/CavesOfOoo.app",
-    "linux": "Builds/SteamDeck/2026-11-15-graphics-7ac615ef2-current/CavesOfOoo-current",
-    "archive": "Builds/SteamDeck/2026-11-15-graphics-7ac615ef2-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
-    "archive_sha256": "13c13065105f6d470ee3e808f5f8cf11d7aca4608516462eb5a9480df0db8605",
-    "archive_bytes": 162171680,
+    "mac": "Builds/Verification/2026-11-15-graphics-468a88da8-current/CavesOfOoo.app",
+    "linux": "Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-current",
+    "archive": "Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+    "archive_sha256": "6a542541f3351c6ebe250319a18b73deacd65c1cc7d3def2ec834e4e83fafd56",
+    "archive_bytes": 162172559,
     "archive_members": 320,
     "internal_checksums": 306,
-    "resource_pins": 200,
+    "resource_pins": 211,
     "build_results": {
       "mac": "0errors5warnings",
       "linux": "0errors4warnings"
     },
     "mac_actual": {
-      "recordedUtc": "2026-11-15T03:13:48.645099+00:00",
-      "source": "7ac615ef2147c2ff3664b8aefac7abc679a53796",
+      "recordedUtc": "2026-11-15T03:52:52.250203+00:00",
+      "source": "468a88da8736de9f295c4fcbdc24adc75045a0de",
       "actual_native_keyboard_play": true,
       "processes": [
-        52347,
-        52585,
-        52673,
-        53078
+        61395,
+        61813
       ],
-      "beating": {
-        "reader": "Sand40,11 full reader",
-        "travel": "19.12 to19.13 canonical and return",
-        "moves": "40,12 to41,12 and back",
-        "saved_turn": 2320,
-        "hp": 40,
+      "gantry": {
+        "fixture": "CandyResidents/CitizenCheckpoint2530",
+        "citizen": "worldbody,textfullreader59,3,native dialogueportrait and complete original text",
+        "movement": "58,3 to57,3 to57,4; afterreturn39,11 to38,11",
+        "travel": "7.8 to6.8 canonical andreturn neutral",
+        "saved_turn": 2640,
+        "hp": 22,
         "fresh_position": [
-          40,
-          12
-        ],
-        "f12": "OFF throughout Mac route"
-      },
-      "sumphold": {
-        "cargo": "new wooden crate19,19 full reader/Open empty",
-        "rest": "new bed20,6 native full reader via pile; ordinary elder Sitting over it",
-        "movement": "39,11 to20,18 then via17,10 entrance to17,6",
-        "travel": "15.6 to14.6 and return; first return attempt refused nearby enemies; moved east then ordinary map travel succeeded",
-        "saved_turn": 5890,
-        "hp": 19,
-        "fresh_position": [
-          39,
+          38,
           11
         ],
-        "f12": "ON for long furniture survey; OFF before cross-zone travel/save/reload",
-        "limits": "No player Sleep or deposit/retrieve claim"
+        "fresh_clerk": "worldbody and textfullreader39,8 after oneUp; chat refused too far, no packagedClerkdialogue claim",
+        "f12": "OFF throughout; no new blocked strikes or damage"
       },
-      "captures": "CUA observed1280x856 including56px titlebar; effective game1280x800. No durable Mac PNG/pixel equality claim.",
-      "shutdown": "Command-Q each intended process, pgrep verifies stopped; no unintended reopened process.",
-      "performance": "First Mac Beating run overlapped Linux build/packaging; no packaged performance claim.",
+      "captures": "CUA observed1280x856 including56px titlebar; effectivegame1280x800. No durableMacPNG or pixel-match claim.",
+      "shutdown": "Command-Q both intendedprocesses; pgrep stopped; no unintendedrelaunch.",
+      "performance": "First Macrun overlappedLinuxbuild/package; no packagedperformanceclaim.",
       "linux_execution": "untested",
       "deck": "deferred",
-      "log_notes": "Exception string matches are method signatures in autosave logging. ComputeBuffer disposal and premature thread finalization warnings occur on shutdown; PlayerConnection memory-leak telemetry also retained. No error CS, Load failed or memoryless matches. These warnings remain open and no clean-shutdown/performance claim is made."
+      "log_notes": "No errorCS or Loadfailed; Exception matches are autosave signatures. ComputeBuffer disposal/prematurethread and PlayerConnection memoryleak telemetry retained; no cleanshutdownclaim."
     },
-    "restoration": "Docs/Verification/GraphicsExecution/Batch7ac615/restoration.json",
-    "next": "fresh Gantry7.8 whole-scene material comparison",
-    "limits": "Linux unexecuted; Deckdeferred; R11 and wholearea/V0-V7 open"
+    "restoration": "Docs/Verification/GraphicsExecution/Batch468a88/restoration.json",
+    "linux_execution": false,
+    "deck": "deferred",
+    "R11": "open",
+    "whole_area_polish": "open",
+    "next": "Spread6.8 actual riverbankReeds attribution and approvedart/grassbacking ifconfirmed",
+    "hourly_report_utc": "2026-11-15T03:17:54Z"
   },
   "sodden_native_receipt_correction": {
     "total": 393,
@@ -25612,6 +25602,69 @@
       "evidence": "Docs/Verification/GraphicsExecution/BatchDD8028",
       "last_report_utc": "2026-11-15T01:17:24Z",
       "whole_plan_complete": false
+    },
+    {
+      "recorded_utc": "2026-11-15T03:14:57.092665+00:00",
+      "source_commit": "7ac615ef2147c2ff3664b8aefac7abc679a53796",
+      "source_remote_verified": true,
+      "mac": "Builds/Verification/2026-11-15-graphics-7ac615ef2-current/CavesOfOoo.app",
+      "linux": "Builds/SteamDeck/2026-11-15-graphics-7ac615ef2-current/CavesOfOoo-current",
+      "archive": "Builds/SteamDeck/2026-11-15-graphics-7ac615ef2-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+      "archive_sha256": "13c13065105f6d470ee3e808f5f8cf11d7aca4608516462eb5a9480df0db8605",
+      "archive_bytes": 162171680,
+      "archive_members": 320,
+      "internal_checksums": 306,
+      "resource_pins": 200,
+      "build_results": {
+        "mac": "0errors5warnings",
+        "linux": "0errors4warnings"
+      },
+      "mac_actual": {
+        "recordedUtc": "2026-11-15T03:13:48.645099+00:00",
+        "source": "7ac615ef2147c2ff3664b8aefac7abc679a53796",
+        "actual_native_keyboard_play": true,
+        "processes": [
+          52347,
+          52585,
+          52673,
+          53078
+        ],
+        "beating": {
+          "reader": "Sand40,11 full reader",
+          "travel": "19.12 to19.13 canonical and return",
+          "moves": "40,12 to41,12 and back",
+          "saved_turn": 2320,
+          "hp": 40,
+          "fresh_position": [
+            40,
+            12
+          ],
+          "f12": "OFF throughout Mac route"
+        },
+        "sumphold": {
+          "cargo": "new wooden crate19,19 full reader/Open empty",
+          "rest": "new bed20,6 native full reader via pile; ordinary elder Sitting over it",
+          "movement": "39,11 to20,18 then via17,10 entrance to17,6",
+          "travel": "15.6 to14.6 and return; first return attempt refused nearby enemies; moved east then ordinary map travel succeeded",
+          "saved_turn": 5890,
+          "hp": 19,
+          "fresh_position": [
+            39,
+            11
+          ],
+          "f12": "ON for long furniture survey; OFF before cross-zone travel/save/reload",
+          "limits": "No player Sleep or deposit/retrieve claim"
+        },
+        "captures": "CUA observed1280x856 including56px titlebar; effective game1280x800. No durable Mac PNG/pixel equality claim.",
+        "shutdown": "Command-Q each intended process, pgrep verifies stopped; no unintended reopened process.",
+        "performance": "First Mac Beating run overlapped Linux build/packaging; no packaged performance claim.",
+        "linux_execution": "untested",
+        "deck": "deferred",
+        "log_notes": "Exception string matches are method signatures in autosave logging. ComputeBuffer disposal and premature thread finalization warnings occur on shutdown; PlayerConnection memory-leak telemetry also retained. No error CS, Load failed or memoryless matches. These warnings remain open and no clean-shutdown/performance claim is made."
+      },
+      "restoration": "Docs/Verification/GraphicsExecution/Batch7ac615/restoration.json",
+      "next": "fresh Gantry7.8 whole-scene material comparison",
+      "limits": "Linux unexecuted; Deckdeferred; R11 and wholearea/V0-V7 open"
     }
   ],
   "stump_dome_shadow": {
@@ -26185,7 +26238,7 @@
   },
   "gantry_grade": {
     "recorded_utc": "2026-11-15T03:23:35.867119+00:00",
-    "status": "bounded Editor accepted; batchpending",
+    "status": "bounded Editor accepted; current Mac/Linux packaged",
     "record": "Docs/GRAPHICS-GANTRY-GRADE.md",
     "evidence": "Docs/Verification/GraphicsExecution/GantryGrade",
     "native_red_failures": 14,
@@ -26215,7 +26268,7 @@
   },
   "candy_residents": {
     "recorded_utc": "2026-11-15T03:46:08.778398+00:00",
-    "status": "bounded Editor accepted; publication/batch pending",
+    "status": "bounded Editor accepted; current Mac/Linux packaged",
     "record": "Docs/GRAPHICS-CANDY-RESIDENTS.md",
     "evidence": "Docs/Verification/GraphicsExecution/CandyResidents",
     "zone": "Overworld.7.8.0",
@@ -26234,6 +26287,7 @@
     "reload_world_changed": 188,
     "limits": "R11open; no fullarea/V0\u2013V7 completion;7ac615packages exclude",
     "next": "publish+batchgrade/residents then otherregion",
-    "hourly_report_utc": "2026-11-15T03:17:54Z"
+    "hourly_report_utc": "2026-11-15T03:17:54Z",
+    "source_revision": "468a88da8736de9f295c4fcbdc24adc75045a0de"
   }
 }

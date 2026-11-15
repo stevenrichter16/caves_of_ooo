@@ -1,0 +1,149 @@
+{
+  "source_commit": "468a88da8736de9f295c4fcbdc24adc75045a0de",
+  "runtime_source_commit": "468a88da8736de9f295c4fcbdc24adc75045a0de",
+  "built_after_utc": "2026-11-15T03:47:55.245464+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-15-graphics-468a88da8-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+  "planned_new_files": 32,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch468a88/mac-build.json",
+      "sha256": "e9bd0d11877d16480522f9fa51ac24ff10e9bc7031e01777b7817b09d34a9262",
+      "summary": {
+        "job_id": "build-a171d4d1cd",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-15-graphics-468a88da8-current/CavesOfOoo.app",
+        "started_at": "2026-11-15T03:48:06.086823Z",
+        "duration_seconds": 31.705498,
+        "completed_at": "2026-11-15T03:48:37.792321Z",
+        "total_size_mb": 548.96,
+        "errors": 0,
+        "warnings": 5
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch468a88/linux-build.json",
+      "sha256": "e81a99d7e8dd002c93d3952653329a900f03987df5933f12b3237984a886fa4b",
+      "summary": {
+        "job_id": "build-482732c603",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-15T03:48:49.081083Z",
+        "duration_seconds": 23.82603,
+        "completed_at": "2026-11-15T03:49:12.907113Z",
+        "total_size_mb": 409.81,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/GantryGrade/green-native.xml",
+        "sha256": "a18c8c89326fad7794d47af1cb3202318148a9c29e8c1d392ecd75bb75894458",
+        "passed": 78,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T03:18:51+00:00",
+        "completed_at_utc": "2026-11-15T03:18:52+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/CandyResidents/native-final.xml",
+        "sha256": "0a5f223dd682efb56fb5d1a9c69b3ac082bb5c85ceeeda9cc00f7e8aa9171878",
+        "passed": 58,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T03:41:30+00:00",
+        "completed_at_utc": "2026-11-15T03:41:35+00:00",
+        "inconclusive_cases": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained Gantry grade78 and Candy residents58 checkpoints; nonadditive; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/Batch468a88/build-input-audit.json",
+    "sha256": "0c92c7395022bb98d3b34a39d468043c3a9ec4ca687614a910c5baf025138929",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 78,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 67
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0,
+      "rootOwnedNeutralMetadata": 0
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-15T03:47:55.245464+00:00",
+      "checks": []
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 84,
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/Batch468a88/package.py",
+    "sha256": "0a5ae4be8515bbfd3a026931f93bcecc484a36a4e81655563fca60569f0c70c4",
+    "adapted_from": "Docs/Verification/GraphicsExecution/Batch7ac615/package.py",
+    "adapted_from_sha256": "dbf81286444f572bc38290777d8706630d52086c93f0b42ed5d89ac87a9df051"
+  },
+  "created_at_utc": "2026-11-15T03:50:23.221207+00:00",
+  "package_flavor": "current-flat-graphics",
+  "scope": "Published graphics through468a88da8: Gantry neutral grade and Candy Tax resident bodies. Separate Editor78/58nonadditive tests. Linux execution unverified; Deck deferred.",
+  "source_provenance": "Source/runtime revision and build boundary are root assertions. Exact output/job/time receipts and neutral input/settings bytes are checked; current runtime-byte equality is a retained root assertion; no source-to-binary reproducibility claim.",
+  "preservation_sequence": "Prebuild snapshot /private/tmp/coo-graphics-build-protection-468a88da8: current tracked snapshot,80dirty, normal saves/preferences and prior7ac615 packages protected. Final restoration separate.",
+  "canonical_executable_copy": {
+    "source_commit": "468a88da8736de9f295c4fcbdc24adc75045a0de",
+    "at_utc": "2026-11-15T03:50:23.220870+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4456,
+    "both_sha256": "26901901cc6dd63212d741b339897f072d34cb7b3f08419fe451fc8e77c79a1f",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "current_native_status": {
+    "gantry_grade": "78/78",
+    "candy_residents": "58/58",
+    "counts_added_together": false,
+    "actual": "Separate Editor routes; packaged smoke pending"
+  },
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing controller documentation is carried forward unchanged. No new Deck qualification; user deferred that work.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "performance_limits": "Separate Editor manual profiles exist, including matched Felling observations; this helper neither validates those measurements nor treats them as packaged/Linux/Deck performance acceptance.",
+  "whole_area_polish_accepted": false,
+  "development_builds": true,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}

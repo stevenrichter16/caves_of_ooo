@@ -1,3 +1,5 @@
+Current delivery: source468a88da8 Mac/Linux verified; see `Docs/Verification/GraphicsExecution/Batch468a88/README.md`. Earlier pending statements below are the retained acceptance checkpoint.
+
 # Gantry native material grade
 
 Status: bounded Editor comparison accepted; publication and later batch delivery pending. This is not full-area completion.

@@ -1,3 +1,5 @@
+Current delivery: source468a88da8 Mac/Linux verified; see `Docs/Verification/GraphicsExecution/Batch468a88/README.md`. Earlier pending statements below are the retained acceptance checkpoint.
+
 # Gantry Candy Tax resident presentation
 
 Status: bounded Editor acceptance; source publication and batch delivery pending. This is original CoO presentation, not a Qud-parity or whole-area completion claim.
