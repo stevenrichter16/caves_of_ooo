@@ -1,0 +1,29 @@
+using System.Linq;
+using CavesOfOoo.Core;
+using NUnit.Framework;
+
+namespace CavesOfOoo.Tests
+{
+    public sealed class SaltVaultApproachTests
+    {
+        [TestCase(64)] [TestCase(1729)] [TestCase(224401440)]
+        public void FreshArchiveHasARealExteriorStoneApproachWithoutDuplicatingItsFile(int seed)
+        {
+            using (var scope = new HotbarSaveFixture(false, false))
+            {
+                var m = OverworldZoneManager.CreateDetached(GrovelandsCompositionTests.Factory(), seed);
+                var z = m.GetZone(StillleafSaltVault.ZoneId);
+                var paving = z.GetAllEntities().Where(e => e.BlueprintName == "StoneFloor" && !z.GetEntityCell(e).IsInterior).ToArray();
+                Assert.That(paving.Length, Is.InRange(6, 9), "the archive should have a modest real approach on otherwise bare sand");
+                Assert.AreEqual(1, z.GetAllEntities().Count(e => e.ID == StillleafSaltVault.IndexerId));
+                var file = StillleafSaltVault.FindCabinet(z); Assert.NotNull(file);
+                Assert.True(file.GetPart<ContainerPart>().Locked);
+                Assert.AreEqual(1, file.GetPart<ContainerPart>().Contents.Count);
+                Assert.AreEqual(StillleafSaltVault.KeyId, file.GetPart<ContainerPart>().Contents[0].ID);
+                foreach (var e in paving) { var c = z.GetEntityCell(e); Assert.False(z.GenReservedCells.Contains((c.X,c.Y))); Assert.AreEqual(1,c.Occupants.Count); }
+                Assert.AreSame(z,m.GetZone(z.ZoneID));
+                Assert.AreEqual(paving.Length,z.GetAllEntities().Count(e => e.BlueprintName == "StoneFloor" && !z.GetEntityCell(e).IsInterior));
+            }
+        }
+    }
+}

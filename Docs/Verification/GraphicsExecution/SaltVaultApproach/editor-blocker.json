@@ -1,0 +1,12 @@
+{
+  "recordedUTC": "2026-11-15T13:59:15.729696+00:00",
+  "editorPID": 92152,
+  "project": "/Users/steven/caves-of-ooo",
+  "priorEditorPID": 44659,
+  "priorState": "Play false; root null; clean scene. isCompiling true persisted without a compiler process. Native RED request rejected busy compiling; no tests ran.",
+  "recovery": "Graceful quit and reopen through the observed Unity Hub project row. No process kill, cache cleanup, blind modal confirmation or normal-save change.",
+  "evidence": "Two-second native process sample shows EditorDialog::DisplayComplexDecisionDialogNative -> NSAlert runModal on the main thread. CUA exposes only the main Editor window; dialog title/content/options are unknown. MCP ping does not reach a ready session.",
+  "sampleLocalOnly": "/private/tmp/coo-unity-restart-1334.sample.txt",
+  "limits": "No inference about which dialog or which response is safe. Inspect once when state changes; do not repeatedly poll unchanged state.",
+  "next": "Expose and inspect the actual Unity dialog, resolve its visible requirement, then establish compile readiness. Review the three startup settings/package changes before tests; preserve unrelated work. Run genuine RED before integrating this draft."
+}
