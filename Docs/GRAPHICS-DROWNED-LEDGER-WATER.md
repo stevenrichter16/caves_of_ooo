@@ -1,3 +1,5 @@
+**Delivery update:** Published source5f0d24f15/currentMacLinux Batch5F0D24. ActualMacreaders/interactions/walk/travel/save/freshreloadpassed;Linuxunexecuted. See Verification/GraphicsExecution/Batch5F0D24/README.md. Earlierpending-delivery statements arehistorical.
+
 # Drowned Ledger quiet excavation water
 
 Current actual center and western-bank views showed broad solid teal water beside native boards, peat faces and ground. Reuse the existing approved quiet-water atlas, with no palette/art/layout/gameplay change. Exact17.5 + current Sodden/ExcavationCamp only, after the existing native real-pool resolver validates authored Village/name/cache/full-map/no-lair, disclosure, real water source/substrate and sole permanent water state. Preserve its owner and bank mask. Missing/malformed optional art retains original water; readers share the same resolved surface.

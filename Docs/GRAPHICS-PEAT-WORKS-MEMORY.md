@@ -1,3 +1,5 @@
+**Delivery update:** Published source5f0d24f15/currentMacLinux Batch5F0D24. ActualMacreaders/interactions/walk/travel/save/freshreloadpassed;Linuxunexecuted. See Verification/GraphicsExecution/Batch5F0D24/README.md. Earlierpending-delivery statements arehistorical.
+
 # Abandoned peat works: material continuity in explored areas
 
 The actual equipment and salvage views exposed large black ASCII fields where native ground and masonry had left sight. Exact17.7 now retains the existing static Grass, StoneFloor and StoneWall frames under one .35 memory tint. Current Sodden/nullPOI/cache/full-map/no-lair and selector ownership remain required. No hidden condition, tile state, neighbors or occupants determine the frame. Brain/Body, custom semantics and malformed owners are refused. Unexplored cells, live materials, legacy presentation, readers and other families/addresses retain their prior behavior. No new art, layout, population or game-state change.
