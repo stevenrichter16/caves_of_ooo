@@ -1,0 +1,180 @@
+{
+  "source_commit": "c53bcf434863704a6f02037639cae269a2aa31e4",
+  "runtime_source_commit": "c53bcf434863704a6f02037639cae269a2aa31e4",
+  "built_after_utc": "2026-11-15T19:50:31.315130+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-c53bcf434-current-linux-retry1/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-15-graphics-c53bcf434-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-c53bcf434-current-linux-retry1/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+  "planned_new_files": 32,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchC53BCF/mac-build.json",
+      "sha256": "60f904548b37715a48daa604c3454e5f78ed492d41f2c84c65c993478d2aea88",
+      "summary": {
+        "job_id": "build-6ce4164aa6",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-15-graphics-c53bcf434-current/CavesOfOoo.app",
+        "started_at": "2026-11-15T19:50:43.471494Z",
+        "duration_seconds": 28.160262,
+        "completed_at": "2026-11-15T19:51:11.631756Z",
+        "total_size_mb": 549,
+        "errors": 0,
+        "warnings": 4,
+        "source_commit": "c53bcf434863704a6f02037639cae269a2aa31e4"
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchC53BCF/linux-build.json",
+      "sha256": "b52b412076df30155772df55a07001140eb16367c75b8bed763b8bc019d417af",
+      "summary": {
+        "job_id": "build-bd71fecea5",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-c53bcf434-current-linux-retry1/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-15T19:52:45.775319Z",
+        "duration_seconds": 13.818121,
+        "completed_at": "2026-11-15T19:52:59.59344Z",
+        "total_size_mb": 409.85,
+        "errors": 0,
+        "warnings": 0
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/LampwellHearth/native-green-initial.xml",
+        "sha256": "579d2b04598e12d624e342b27638facecbca0d53f6e614b79ae2fe6e2ea2233d",
+        "passed": 209,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T19:19:35+00:00",
+        "completed_at_utc": "2026-11-15T19:20:12+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/LampwellHearth/native-regression.xml",
+        "sha256": "9ffd9d8580a28aa3ab275610725feca903df9c5475aa0ce6ddc79d43ac4bc41a",
+        "passed": 181,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T19:22:01+00:00",
+        "completed_at_utc": "2026-11-15T19:22:59+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/LampwellHearth/native-ambient-counters.xml",
+        "sha256": "0936aee77ce84dc9fa1df78f556895c0fcc9ddb1cdba43c3a0e49e1400d5ad7d",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T19:24:03+00:00",
+        "completed_at_utc": "2026-11-15T19:24:03+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/TineGrade/native-green.xml",
+        "sha256": "b649ea00ab55bfde987759bd6f829a3595a4d5481a1593ed9b447d250da052ea",
+        "passed": 214,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T19:42:13+00:00",
+        "completed_at_utc": "2026-11-15T19:42:18+00:00",
+        "inconclusive_cases": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Retained Lampwell392 disjoint native and Tine214 checkpoints; nonadditive; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/BatchC53BCF/build-input-audit.json",
+    "sha256": "3ad52db844b60dfc901cb878df798e0e2f22868cb2c54b7ccb3e7dc281f5e2bd",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 78,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 67
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0,
+      "rootOwnedNeutralMetadata": 0
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-15T19:50:27.591926+00:00",
+      "checks": []
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 84,
+    "preservedStartupOverlay": {
+      "files": {
+        "Packages/manifest.json": "70bcbc90efe3eb4f62e7dc314f2f618c7e9b7fa323458a2692b9932cac86315a",
+        "Packages/packages-lock.json": "4af2b287f43908facf297e32f0f24f9bfeb1e36445ff4d9c110e7286653980f0",
+        "ProjectSettings/ProjectSettings.asset": "ef1dcb4e861d7506b1caa73e977081270aed0c6074296a4ee0a9eb6aebafaf91"
+      },
+      "description": "Existing unstaged Linux SDK/toolchain/sysroot1.1.1 (HEAD1.1.0) and explicit Standalone static1/dynamic0 batching entry. Predates resumed work; preserved, included in builds, not a clean-settings or binary reproducibility claim."
+    },
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/BatchC53BCF/package.py",
+    "sha256": "ac7a19e0a45f963ffb58ad0784b2455bdfb640f6295b5f24eebd3974bd354c00",
+    "adapted_from": "Docs/Verification/GraphicsExecution/BatchD5E022/package.py",
+    "adapted_from_sha256": "43f66ded35b2aeccb337cabda9c6c749ac232cf6ec6c95aa2c8c9ea0ea141df8"
+  },
+  "created_at_utc": "2026-11-15T19:54:47.324477+00:00",
+  "package_flavor": "current-flat-graphics",
+  "scope": "Published graphics through c53bcf434: Lampwell hearth and Tine grade. Retained Lampwell392 distinct and Tine214 separate/nonadditive checkpoints; existing Linux SDK/toolchain/sysroot1.1.1 and Standalone batching overlay disclosed. Linux execution unverified; Deck deferred.",
+  "source_provenance": "Source/runtime revision and build boundary are root assertions. Exact output/job/time receipts and neutral input/settings bytes are checked; current runtime-byte equality is a retained root assertion; no source-to-binary reproducibility claim.",
+  "preservation_sequence": "Prebuild snapshot /private/tmp/coo-graphics-build-protection-c53bcf434-clean-source: current tracked snapshot,83dirty, normal saves/preferences and priord5e022bff packages protected. Final restoration separate.",
+  "canonical_executable_copy": {
+    "source_commit": "c53bcf434863704a6f02037639cae269a2aa31e4",
+    "at_utc": "2026-11-15T19:54:47.324104+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-11-15-graphics-c53bcf434-current-linux-retry1/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-11-15-graphics-c53bcf434-current-linux-retry1/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4456,
+    "both_sha256": "26901901cc6dd63212d741b339897f072d34cb7b3f08419fe451fc8e77c79a1f",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "current_native_status": {
+    "lampwell": "392 distinct across209+181+2 disjoint groups",
+    "tine": "214/214 related",
+    "counts_added_together": false,
+    "actual": "accepted Editor routes; packaged smoke pending"
+  },
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing controller documentation is carried forward unchanged. No new Deck qualification; user deferred that work.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "performance_limits": "Separate Editor manual profiles exist, including after-only Lampwell/Tine observations; this helper neither validates those measurements nor treats them as packaged/Linux/Deck performance acceptance.",
+  "whole_area_polish_accepted": false,
+  "development_builds": true,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}

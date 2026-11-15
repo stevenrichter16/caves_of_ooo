@@ -1,0 +1,89 @@
+{
+  "recorded_utc": "2026-11-15T20:01:44.658147+00:00",
+  "source_commit": "c53bcf434863704a6f02037639cae269a2aa31e4",
+  "method": "Actual ordinary CUA keyboard input and inline screenshots, exact absolute-path current Mac application. No synthetic input through game internals. Four explicit logged processes, all closed.",
+  "processes": [
+    48874,
+    49075,
+    49196,
+    49603
+  ],
+  "observed_window": [
+    1280,
+    856
+  ],
+  "game_area": [
+    1280,
+    800
+  ],
+  "titlebar_height": 56,
+  "durable_mac_png": false,
+  "pixel_equality_claim": false,
+  "lampwell": {
+    "fixture": "LampwellHearth/AfterCheckpoint",
+    "start": "6300 HP39 at40,12 depth2",
+    "route": [
+      "Left9 to31,12; c Left F1 full hearth-patch reader over rubble",
+      "Esc2 Up to31,11; c Left F1 full no-substrate hearth reader",
+      "Esc2 Down Right9 to40,12; Shiftcomma ascend2\u21921, Shiftperiod descend1\u21922",
+      "F5 turn6520 HP39 Half-Bright at40,12 Overworld.12.3.2",
+      "Quit and fresh process Continue confirms6520 HP39 same position and hearth presentation"
+    ],
+    "retained_checkpoint": "LampwellAfterSave"
+  },
+  "tine": {
+    "fixture": "TineGrade/AfterCheckpoint",
+    "start": "6250 HP40 at39,11",
+    "route": [
+      "Left8 Up5 to31,6; c Down F1 full duckboard reader",
+      "Esc2 Right to32,6; c Right F1 full water reader at33,6",
+      "Esc2 Left Down5 Left19 Up4 to house12,7; native interior observed",
+      "Down4 Right27 to39,11; Shiftcomma Left Shiftperiod to12.7 at40,12, original green grade restored",
+      "Shiftcomma Right Shiftperiod to13.7 at39,11, native white grade restored",
+      "F5 turn7070 HP40 Dark; quit and fresh process Continue confirms7070 HP40 same39,11 and palette"
+    ],
+    "retained_checkpoint": "TineAfterSave"
+  },
+  "limits": [
+    "No F12, injected movement, healing, combat, Break execution, transactions or ending action.",
+    "No Tine wet-step claimed in this Mac palette trial.",
+    "Old CUA binding refused first run2 action as inactive; exact current full-path rebinding succeeded. No unobserved action or extra gameplay process claimed.",
+    "CUA images observed inline only; no persistent Mac screenshots, paired pixel comparison or packaged performance claim.",
+    "Run1 began near accepted Linux retry completion; packaging overlapped early smoke. No isolated performance benchmark."
+  ],
+  "log_diagnostics": {
+    "mac-run1.log.gz": {
+      "exception_text": 4,
+      "load_failed": 0,
+      "error_cs": 0,
+      "compute_buffer_disposal": 1,
+      "premature_threads": 6,
+      "development_shutdown_memory_leaks": 1
+    },
+    "mac-run2.log.gz": {
+      "exception_text": 0,
+      "load_failed": 0,
+      "error_cs": 0,
+      "compute_buffer_disposal": 1,
+      "premature_threads": 6,
+      "development_shutdown_memory_leaks": 1
+    },
+    "mac-run3.log.gz": {
+      "exception_text": 8,
+      "load_failed": 0,
+      "error_cs": 0,
+      "compute_buffer_disposal": 1,
+      "premature_threads": 6,
+      "development_shutdown_memory_leaks": 1
+    },
+    "mac-run4.log.gz": {
+      "exception_text": 0,
+      "load_failed": 0,
+      "error_cs": 0,
+      "compute_buffer_disposal": 1,
+      "premature_threads": 6,
+      "development_shutdown_memory_leaks": 1
+    }
+  },
+  "exception_text_explanation": "Run1 four and run3 eight Exception matches are System.Exception method parameter names in ordinary autosave stack traces, not observed thrown exceptions. Shutdown diagnostics retained; no clean-shutdown claim."
+}

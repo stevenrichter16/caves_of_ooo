@@ -1,0 +1,13 @@
+# Lampwell hearth and Tine palette delivery
+
+Source `c53bcf434863704a6f02037639cae269a2aa31e4` is current in Mac/Linux Development builds. Mac build6ce4164aa6 passed28.160262s/549MB, zero errors/four warnings. Linux initial7a1bc67425 reported one importworker transport EOF error and four warnings; its output/log remain preserved and excluded. Separate unchanged-source retrybd71fecea5 passed13.818121s/409.85MB with zero errors/warnings and is the packaged Linux build. Linux execution remains untested; Deck work is deferred.
+
+Actual current Mac used four explicit logged processes: Lampwell two full hearth readers, ordinary walk, stairs2↔1, F5/fresh6520HP39at40,12; Tine center/waterfront/house interior, board/water full readers,13.7↔12.7 palette restoration, F5/fresh7070HP40at39,11. No F12/injection/healing/combat/Break/transaction/ending action. All four processes closed. CUA images were observed at1280×856 including56px titlebar; no durable Mac PNG, pixel equality or packaged-performance claim. All logs retain one ComputeBuffer disposal warning, six premature-thread notices and one development shutdown MemoryLeaks record each. Exception text matches in runs1/3 are method parameter names in ordinary autosave traces.
+
+Archive162175327bytes SHA256`629c624aa0de19e2fa41edf4fcdfe411147f670cc2646668639bd329d5129516`;316members/305checksums/400inputpins independently verified.316resourcepins,78neutralmetadata+6stableuntracked inputs and3existingstartup deltas are disclosed; no reproducible-binary claim. Native Lampwell209+181+2(disjoint392) and Tine214 are separate slice suites, not one combined unique total.
+
+Guarded restoration passed for59367trackedobjects and83foreigndirtypaths; normalfb61Editor selection/saves/preferences, originally absent standalone save root and priorD5 builds are preserved. Four build-generated files were restored from exact prebuild snapshots before packaging, with postbuild bytes retained; dirty ProjectSettings never restored from HEAD. Final restoration archives owned standalone sessions and restores normal preferences. Exact receipt: restoration.json. No cleanup. Unity stopped, save root null, scene clean.
+
+Next: Quillhold14.9 Copy Hall composition: establish fresh actual room/owner/chair-use baseline and a proven uncached previsit fixture, then bounded existing-chair/desk arrangement preserving door aisles, Scribe frontage/reserves, shelves and stock. Cached saved rooms must remain untouched. Do not repeat accepted roads/marble/palette. Continue graphics across areas; Deck deferred.
+
+Hourly task ACTIVE, last actual report2026-11-15T19:51:21Z. Coverage, area polish, population, shadows, delivery and performance remain separately tracked; V0–V7 is incomplete.
