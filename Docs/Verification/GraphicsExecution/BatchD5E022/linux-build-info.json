@@ -1,0 +1,157 @@
+{
+  "source_commit": "d5e022bff01ffc9386dc306cb70462119ea0f10a",
+  "runtime_source_commit": "d5e022bff01ffc9386dc306cb70462119ea0f10a",
+  "built_after_utc": "2026-11-15T18:59:59.212572+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-d5e022bff-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-15-graphics-d5e022bff-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-d5e022bff-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+  "planned_new_files": 32,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchD5E022/mac-build.json",
+      "sha256": "9a7e6d63357c67991440f6f4565a37b6de3a867cf38a4e31d1b241cff9a62739",
+      "summary": {
+        "job_id": "build-e049a3b228",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-15-graphics-d5e022bff-current/CavesOfOoo.app",
+        "started_at": "2026-11-15T19:00:06.96873Z",
+        "duration_seconds": 32.753011,
+        "completed_at": "2026-11-15T19:00:39.721741Z",
+        "total_size_mb": 549,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchD5E022/linux-build.json",
+      "sha256": "cc0662958c0e562674907b476b6b930a93368b2dc9d9e57e937274a6ffecfc14",
+      "summary": {
+        "job_id": "build-b3302ce977",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-15-graphics-d5e022bff-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-15T19:00:54.25417Z",
+        "duration_seconds": 21.290122,
+        "completed_at": "2026-11-15T19:01:15.544292Z",
+        "total_size_mb": 409.85,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/QuillholdRoad/native-green.xml",
+        "sha256": "172129dc28e377ce25237c38004bc3bef64e0fb06e9e4a7d4801e4b79fe2af9e",
+        "passed": 146,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T18:30:36+00:00",
+        "completed_at_utc": "2026-11-15T18:30:57+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/FellingCircle/green.xml",
+        "sha256": "c4ce570c28d6fe3a7daaf49304604dc2aa34965051085dcd12295f08488a6c84",
+        "passed": 248,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T18:50:40+00:00",
+        "completed_at_utc": "2026-11-15T18:51:00+00:00",
+        "inconclusive_cases": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Retained Quillhold roads146 and Felling circle248 checkpoints; nonadditive; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/BatchD5E022/build-input-audit.json",
+    "sha256": "8f2fdcbe6537f45a6c5f23505706fb36bd9929ff4d71b4a0370cb4c7555c8285",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 78,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 67
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0,
+      "rootOwnedNeutralMetadata": 0
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-15T18:59:59.212572+00:00",
+      "checks": []
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 84,
+    "preservedStartupOverlay": {
+      "files": {
+        "Packages/manifest.json": "70bcbc90efe3eb4f62e7dc314f2f618c7e9b7fa323458a2692b9932cac86315a",
+        "Packages/packages-lock.json": "4af2b287f43908facf297e32f0f24f9bfeb1e36445ff4d9c110e7286653980f0",
+        "ProjectSettings/ProjectSettings.asset": "ef1dcb4e861d7506b1caa73e977081270aed0c6074296a4ee0a9eb6aebafaf91"
+      },
+      "description": "Existing unstaged Linux SDK/toolchain/sysroot1.1.1 (HEAD1.1.0) and explicit Standalone static1/dynamic0 batching entry. Predates resumed work; preserved, included in builds, not a clean-settings or binary reproducibility claim."
+    },
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/BatchD5E022/package.py",
+    "sha256": "43f66ded35b2aeccb337cabda9c6c749ac232cf6ec6c95aa2c8c9ea0ea141df8",
+    "adapted_from": "Docs/Verification/GraphicsExecution/BatchA33B46/package.py",
+    "adapted_from_sha256": "bf6246dadd51699cba6185fba67e9dc5a6e800664972f459da390a7f14b3f6d0"
+  },
+  "created_at_utc": "2026-11-15T19:02:45.361355+00:00",
+  "package_flavor": "current-flat-graphics",
+  "scope": "Published graphics through d5e022bff: Quillhold roads and Felling circle. Retained Quillhold146 and Felling248 separate/nonadditive tests; existing Linux SDK/toolchain/sysroot1.1.1 and Standalone batching overlay disclosed. Linux execution unverified; Deck deferred.",
+  "source_provenance": "Source/runtime revision and build boundary are root assertions. Exact output/job/time receipts and neutral input/settings bytes are checked; current runtime-byte equality is a retained root assertion; no source-to-binary reproducibility claim.",
+  "preservation_sequence": "Prebuild snapshot /private/tmp/coo-graphics-build-protection-d5e022bff-source: current tracked snapshot,83dirty, normal saves/preferences and priora33b46cab packages protected. Final restoration separate.",
+  "canonical_executable_copy": {
+    "source_commit": "d5e022bff01ffc9386dc306cb70462119ea0f10a",
+    "at_utc": "2026-11-15T19:02:45.360734+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-11-15-graphics-d5e022bff-current/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-11-15-graphics-d5e022bff-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4456,
+    "both_sha256": "26901901cc6dd63212d741b339897f072d34cb7b3f08419fe451fc8e77c79a1f",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "current_native_status": {
+    "quillhold_roads": "146/146",
+    "felling_circle_and_adjacent": "248/248",
+    "counts_added_together": false,
+    "actual": "accepted Editor routes; packaged smoke pending"
+  },
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing controller documentation is carried forward unchanged. No new Deck qualification; user deferred that work.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "performance_limits": "Separate Editor manual profiles exist, including matched Felling observations; this helper neither validates those measurements nor treats them as packaged/Linux/Deck performance acceptance.",
+  "whole_area_polish_accepted": false,
+  "development_builds": true,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}
