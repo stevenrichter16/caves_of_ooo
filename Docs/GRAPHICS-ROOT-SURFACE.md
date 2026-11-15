@@ -1,3 +1,5 @@
+**Delivery update:** Published in source1b4368a44 and verified current Mac/Linux Batch1B436. Actual Mac readers/movement/travel/save/fresh reload passed; Linux remains unexecuted. See Verification/GraphicsExecution/Batch1B436/README.md. Earlier package statements below are historical.
+
 # The Root surface materials
 
 The surface approach at3.3.0 now uses its approved Stump stone, outcrop, tree and bush art. Exact current Root identity, biome, emptyprofile, cached graph, fullmap and no-lair checks protect its separate adapter. The ending chamber and interactions remain outside this scope. Canonical-looking owners carrying ending/rest special parts retain fallback.

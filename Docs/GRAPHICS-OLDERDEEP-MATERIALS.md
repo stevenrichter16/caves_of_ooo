@@ -1,3 +1,5 @@
+**Delivery update:** Published in source1b4368a44 and verified current Mac/Linux Batch1B436. Actual Mac readers/movement/travel/save/fresh reload passed; Linux remains unexecuted. See Verification/GraphicsExecution/Batch1B436/README.md. Earlier package statements below are historical.
+
 # Olderdeep interior materials
 
 Bounded Editor acceptance for Overworld.4.6.1 and4.6.2, seed704860946. Real StoneFloor/SandstoneWall and179 existing first-depth ledges reuse approved Sill4–7, Shallow0–1 and Stump10–11. Current FoundingVillageProfile allows story renames; current Grovelands/cache/map/no-lair guards remain strict. No generation, population, shadows or gameplay-rule changes.

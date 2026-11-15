@@ -1,0 +1,5 @@
+# Olderdeep and Root delivery review
+
+Reviewer build_comparison_plan: 0 P1/P2. Verified source1b4368a44, separate/nonadditive native407/325 checkpoints, 354 distinct current pins (273 resource entries plus neutral/scene overlap), snapshot58614 tracked objects and80 dirty files, originally absent standalone saves, prior AEF6 paths. Package controls and launch/restore normalized AST unchanged; pinned bases/adapted sources match. Exact actual Mac job replaced pending placeholder before packaging.
+
+Final independent full-stream archive audit:129126425 bytes, SHA2563894627323934da1e025f2506f714fb35d670e14f9910b685daf53ca3d482b74;205 members=192 files+13 directories;343638327 unpacked bytes. Full output sets/hashes/sizes/modes,191 internal checksums, safe single root/no links, gzipEOF CRC/footer,6 credits/5 licenses/starter sources verified.354 pins/source/embedded reports/audit/info/helper25af4e5f1c4223c99ea74b9670a2ec9dee1e6afc9ecd3bbb37769d9822b49c87 match. Both builds0 errors4 warnings. No extraction writes, executable/helper/Unity/Git actions by reviewer. Actual Mac/restoration are separate root gates; Linux/Deck execution/performance unknown.
