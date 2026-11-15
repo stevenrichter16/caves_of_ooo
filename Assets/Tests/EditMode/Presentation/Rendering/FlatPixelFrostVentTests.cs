@@ -11,10 +11,15 @@ using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
 namespace CavesOfOoo.Tests
 {
+    [TestFixture("Overworld.2.7.1")]
+    [TestFixture("Overworld.5.4.1")]
     public sealed class FlatPixelFrostVentTests
     {
+        readonly string zoneID;
+        public FlatPixelFrostVentTests(string zoneID) { this.zoneID=zoneID; }
         const int X=10,Y=10;
-        const string Atlas="Sprites/Live16x24/frost-vent";
+        string Atlas => zoneID == "Overworld.5.4.1"
+            ? "Sprites/Live16x24/cathedral-frost-vent" : "Sprites/Live16x24/frost-vent";
         const BindingFlags I=BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;
         const BindingFlags S=BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic;
         DensityLootTestScope content; OverworldZoneManager manager; Zone zone; FlatPixelGreyboxCatalog world;
@@ -25,7 +30,7 @@ namespace CavesOfOoo.Tests
             previousLiquids=new Dictionary<string,LiquidDefinition>(liquids);initialized=LiquidRegistry.IsInitialized;
             LiquidRegistry.InitializeFromJsonSources(Resources.LoadAll<TextAsset>("Content/Data/LiquidDefinitions").Select(t=>t.text));
             content=new DensityLootTestScope();manager=OverworldZoneManager.CreateDetached(content.Factory,65,true);
-            zone=new Zone("Overworld.2.7.1");manager.SetActiveZone(zone);
+            zone=new Zone(zoneID);manager.SetActiveZone(zone);
             for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)zone.GetCell(x,y).IsVisible=zone.GetCell(x,y).Explored=true;
             world=new FlatPixelGreyboxCatalog();
         }
@@ -36,7 +41,7 @@ namespace CavesOfOoo.Tests
         FlatPixelGreyboxCell View(){Assert.True(world.TryResolvePresentation(zone,X,Y,out var v));return v;}
         static object Read(object o,string n)=>o.GetType().GetField(n,I).GetValue(o);
         static void Write(object o,string n,object v)=>o.GetType().GetField(n,I).SetValue(o,v);
-        static bool Native(Tile t)=>t?.sprite?.texture==Resources.Load<Texture2D>(Atlas);
+        bool Native(Tile t)=>t?.sprite != null && t.sprite.texture==Resources.Load<Texture2D>(Atlas);
         void Body(){var v=View();Assert.True(Native(v.ForegroundTile),"Native frost vent required");Assert.AreEqual(Color.white,v.ForegroundColor);Assert.True(v.LocalGround);}
         bool Subject(Entity e)=>world.TryGetPresentationSubjectSprite(zone,e,X,Y,out var s,out _)&&s!=null&&s.texture==Resources.Load<Texture2D>(Atlas);
         [TestCase(-25f)][TestCase(8.870154f)] public void WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold(float temperature)

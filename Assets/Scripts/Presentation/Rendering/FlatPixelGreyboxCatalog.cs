@@ -2517,7 +2517,8 @@ namespace CavesOfOoo.Rendering
                     && (zone.ZoneID == "Overworld.12.10.0" || zone.ZoneID == "Overworld.12.11.0"));
         private FlatPixelFrostVentCatalog FrostVentArtFor(Zone zone)
         {
-            if (!FlatPixelSiteAdmission.IsGinmereDescent(zone)) return null;
+            if (!FlatPixelSiteAdmission.IsGinmereDescent(zone)
+                && !FlatPixelSiteAdmission.IsCathedralDescent(zone)) return null;
             if (_frostVentArt == null && _loadOptionalResources)
             { if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog(); _frostVentArt = new FlatPixelFrostVentCatalog(_glyphFallback); }
             return _frostVentArt;

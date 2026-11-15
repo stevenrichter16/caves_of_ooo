@@ -5,17 +5,28 @@ using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Bounded Ginmere frost source and independent cold-floor marks.
+    /// <summary>Bounded Ginmere/Cathedral frost source and independent cold-floor marks.
     /// Current tile cold is observed directly, never inferred from a hidden neighbor.</summary>
     public sealed class FlatPixelFrostVentCatalog : IDisposable
     {
         public const string ResourcePath = "Sprites/Live16x24/frost-vent";
+        public const string CathedralResourcePath = "Sprites/Live16x24/cathedral-frost-vent";
         readonly Tile[] body;
         readonly Tile cold;
+        readonly Tile[] cathedralBody;
+        readonly Tile cathedralCold;
+        readonly bool regionalPalettes;
         readonly FlatPixelFallbackCatalog selector;
         bool disposed;
         public FlatPixelFrostVentCatalog(FlatPixelFallbackCatalog borrowedSelector)
-            : this(Resources.Load<Texture2D>(ResourcePath), Resources.Load<Texture2D>(ResourcePath), borrowedSelector) { }
+            : this(Resources.Load<Texture2D>(ResourcePath), Resources.Load<Texture2D>(ResourcePath), borrowedSelector)
+        {
+            var texture = Resources.Load<Texture2D>(CathedralResourcePath);
+            if (texture != null && texture.width == 48 && texture.height == 24)
+                cathedralBody = new[] { Frame(texture, 0), Frame(texture, 1) };
+            cathedralCold = Frame(texture, 2);
+            regionalPalettes = true;
+        }
         public FlatPixelFrostVentCatalog(Texture2D body3, Texture2D cold3, FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
@@ -26,24 +37,30 @@ namespace CavesOfOoo.Rendering
         public bool TryResolve(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
-            if (disposed || body == null || !ExactSource(zone, x, y, owner)) return false;
-            tile = body[(x + y) & 1]; return true;
+            var frames = BodyFor(zone);
+            if (disposed || frames == null || !ExactSource(zone, x, y, owner)) return false;
+            tile = frames[(x + y) & 1]; return true;
         }
         public Tile CoveredBody(Zone zone, int x, int y)
         {
-            if (disposed || body == null || selector == null || !HasFloor(zone, x, y)) return null;
+            var frames = BodyFor(zone);
+            if (disposed || frames == null || selector == null || !HasFloor(zone, x, y)) return null;
             foreach (var e in zone.GetCell(x, y).Occupants)
                 if (e.BlueprintName == "FrostVent" && ExactSource(zone, x, y, e)
                     && selector.TryResolve(zone, x, y, out var selected) && !ReferenceEquals(selected.Owner, e))
-                    return body[(x + y) & 1];
+                    return frames[(x + y) & 1];
             return null;
         }
         public bool TryCold(Zone zone, int x, int y, out Tile tile)
         {
             tile = null;
-            if (disposed || cold == null || !HasFloor(zone, x, y) || (zone.TileState.Get(x, y)?.Cold ?? 0) <= 0) return false;
-            tile = cold; return true;
+            var mark = UsesCathedralPalette(zone) ? cathedralCold : cold;
+            if (disposed || mark == null || !HasFloor(zone, x, y) || (zone.TileState.Get(x, y)?.Cold ?? 0) <= 0) return false;
+            tile = mark; return true;
         }
+        // This only selects a palette; every rendered path still requires HasFloor authority.
+        bool UsesCathedralPalette(Zone zone) => regionalPalettes && zone?.ZoneID == "Overworld.5.4.1";
+        Tile[] BodyFor(Zone zone) => UsesCathedralPalette(zone) ? cathedralBody : body;
         bool ExactSource(Zone zone, int x, int y, Entity owner)
         {
             if (selector == null || !HasFloor(zone, x, y) || !Eligible(owner) || !Placed(zone, x, y, owner)
@@ -52,7 +69,8 @@ namespace CavesOfOoo.Rendering
         }
         internal static bool HasFloor(Zone zone, int x, int y)
         {
-            if (!FlatPixelSiteAdmission.IsGinmereDescent(zone)) return false;
+            if (!FlatPixelSiteAdmission.IsGinmereDescent(zone)
+                && !FlatPixelSiteAdmission.IsCathedralDescent(zone)) return false;
             var cell = zone.GetCell(x, y);
             if (cell == null || cell.ParentZone != zone || !cell.Explored || !cell.IsVisible) return false;
             var state = zone.TileState.Get(x, y);
@@ -121,7 +139,8 @@ namespace CavesOfOoo.Rendering
             return tile;
         }
         public void Dispose()
-        { if (disposed) return; disposed = true; if (body != null) foreach (var t in body) Destroy(t); Destroy(cold); }
+        { if (disposed) return; disposed = true; if (body != null) foreach (var t in body) Destroy(t); Destroy(cold);
+            if (cathedralBody != null) foreach (var t in cathedralBody) Destroy(t); Destroy(cathedralCold); }
         static void Destroy(Tile t)
         { if (t == null) return; if (Application.isPlaying) { Object.Destroy(t.sprite); Object.Destroy(t); } else { Object.DestroyImmediate(t.sprite); Object.DestroyImmediate(t); } }
     }

@@ -18760,14 +18760,16 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
       "status_axes": {
-        "coverage": "fallback",
-        "polish": "in-progress",
+        "coverage": "in-progress: bounded depth1 frost sources/marks accepted; wider coverage remains",
+        "polish": "in-progress: frost readability corrected; whole-area remains",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "editor-verified"
+        "delivery": "bounded Editor verified; currentpackage update pending"
       },
-      "prior_review_ids": [],
-      "next_action": "Batch bounded first-shelf sandstone/ledge acceptance; special/rockglyphs, sparsecomposition, wall depth and depth2 remain separately incomplete.",
+      "prior_review_ids": [
+        "CathedralFrost/receipt.json"
+      ],
+      "next_action": "Batch accepted graphics then fresh Quillhold court/road comparison; preserve Cathedral remaining scope debt.",
       "legacy_inventory_pointer": "/sinkhole_stacks/1",
       "authored_depth_scope": [
         0,
@@ -18799,6 +18801,19 @@
             "Ginmere matched baseline/reload; Cathedral after-only entry/reader/movement/save",
             "No whole-area polish, population or shadow acceptance; R11 open"
           ]
+        },
+        {
+          "id": "cathedral-frost",
+          "axis": "coverage/polish",
+          "status": "bounded Editor accepted",
+          "record": "Docs/GRAPHICS-CATHEDRAL-FROST.md",
+          "owners": [
+            "FrostVent22898",
+            "FrostVent22897",
+            "current cold-only sandstone receiver"
+          ],
+          "scope": "exact depth1 only",
+          "delivery": "pendingnextbatch"
         }
       ],
       "evidence": {
@@ -18969,14 +18984,16 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "in-progress: bounded depth1 frost sources/marks accepted; wider coverage remains",
+        "polish": "in-progress: frost readability corrected; whole-area remains",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "bounded Editor verified; currentpackage update pending"
       },
-      "prior_review_ids": [],
-      "next_action": "Batch bounded first-shelf sandstone/ledge acceptance; special/rockglyphs, sparsecomposition, wall depth and depth2 remain separately incomplete.",
+      "prior_review_ids": [
+        "CathedralFrost/receipt.json"
+      ],
+      "next_action": "Batch accepted graphics then fresh Quillhold court/road comparison; preserve Cathedral remaining scope debt.",
       "parent_id": "sinkhole/the-deepest-cathedral",
       "depth": 1,
       "required_roles": [
@@ -18987,7 +19004,22 @@
         "loot",
         "return_route"
       ],
-      "cathedral_shelves_receipt": "Docs/Verification/GraphicsExecution/CathedralInterior/receipt.json"
+      "cathedral_shelves_receipt": "Docs/Verification/GraphicsExecution/CathedralInterior/receipt.json",
+      "bounded_slices": [
+        {
+          "id": "cathedral-frost",
+          "axis": "coverage/polish",
+          "status": "bounded Editor accepted",
+          "record": "Docs/GRAPHICS-CATHEDRAL-FROST.md",
+          "owners": [
+            "FrostVent22898",
+            "FrostVent22897",
+            "current cold-only sandstone receiver"
+          ],
+          "scope": "exact depth1 only",
+          "delivery": "pendingnextbatch"
+        }
+      ]
     },
     {
       "id": "sinkhole/the-deepest-cathedral/depth/2",
@@ -29430,5 +29462,16 @@
     "review": "source/test/visual0P1/P2",
     "scope": "ExactQuiet16.1currentSodden/CatacombFolk/emptyProfile;approvedwaterreuse",
     "limits": "Whole-area/population/shadows/memorywall separate;R11open;current87efbuildspredatewater;Deckdeferred"
+  },
+  "cathedral_frost": {
+    "utc": "2026-11-15T18:02:58.504087+00:00",
+    "status": "bounded Editor accepted;publication/delivery pending",
+    "evidence": "Docs/Verification/GraphicsExecution/CathedralFrost/receipt.json",
+    "native": "189/189 final;24initialRED+9paletteRED",
+    "actual": "shelf/approach/fieldnote readers/underfoot/stairs/fresh1840HP40F12off",
+    "review": "source/art/test/visual0remainingP1/P2",
+    "art": "Cathedral-only saved native palette derivative;Ginmere unchanged",
+    "delivery": "current87ef builds exclude this and Quiet739;nextbatch",
+    "limits": "encountermiss/lightingunknowns/R11/fullareaopen;population/shadowsunchanged;Deckdeferred"
   }
 }

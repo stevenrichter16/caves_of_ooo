@@ -1,0 +1,133 @@
+{
+  "utc": "2026-11-15T18:02:58.504087+00:00",
+  "source_base": "739b3ff8010d40819738541a5d50660fae934e13",
+  "status": "bounded Editor accepted; publication and delivery pending",
+  "zone": "Overworld.5.4.1",
+  "seed": 704860946,
+  "scope": "Exact current Cathedral depth1 Grovelands/name/type/cache/fullmap/no-lair/emptyprofile authority. Unique ordinary sandstone floor and supported disclosed FrostVent/current cold only. Existing source/mark/hazard/fog/legacy rules retained.",
+  "art": "Approved frost-vent shape/alpha reused in separate Cathedral palette-only editable derivative; original Ginmere source/runtime exact.101opaque pixels changed;1152exact source pixels; reopened blend rendered all1152identical. No new concept required for small native material correction.",
+  "native_red": {
+    "id": "2",
+    "testcasecount": "71",
+    "result": "Failed(Child)",
+    "total": "71",
+    "passed": "47",
+    "failed": "24",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-11-15 17:43:20Z",
+    "end-time": "2026-11-15 17:43:25Z",
+    "duration": "5.0466477"
+  },
+  "palette_red": {
+    "id": "2",
+    "testcasecount": "52",
+    "result": "Failed(Child)",
+    "total": "52",
+    "passed": "43",
+    "failed": "9",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-11-15 17:53:20Z",
+    "end-time": "2026-11-15 17:53:24Z",
+    "duration": "4.096719"
+  },
+  "native_green": {
+    "id": "2",
+    "testcasecount": "189",
+    "result": "Passed",
+    "total": "189",
+    "passed": "189",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-11-15 17:55:46Z",
+    "end-time": "2026-11-15 17:56:07Z",
+    "duration": "21.3758637"
+  },
+  "native_transport_limit": "MCP initialization timeouts are retained as transport failures; completed timestamped native XML is authoritative. No overlapping reruns.",
+  "actual": {
+    "baseline": "Earned CathedralInterior/BeforeShelfCheckpoint1520HP40at54,9. Two disclosed vents22898/22897 at58,7/59,7.",
+    "paired": "Fresh same1520 shelf; Right4Up1 and fullreader58; Right and fullreader59; F5approach1580HP40at59,8. Actor positions differ in approach; no worldidentityclaim.",
+    "underfoot": "Up to59,7 and back; source/real cold retained beneath player,HP40",
+    "travel": "Down5Left7 to52,12; ordinary ascent5.4.0 and descent5.4.1. Right7Up4 return met PaleStalker: fistmiss, one blockedstep; final58,8HP40.",
+    "reload": "F5turn1840; freshisolatedContinue58,8HP40,F12false. Bothvents/floors/cold/temperature exact presave/reload.",
+    "boundaries": "No injection/healing/F12/destruction/transfer. Encounter disclosed; no encounterbalanceclaim."
+  },
+  "owners_presave_and_reload": [
+    {
+      "x": 58,
+      "y": 7,
+      "visible": true,
+      "explored": true,
+      "cold": 1,
+      "owners": [
+        {
+          "id": "21002",
+          "blueprint": "SandstoneFloor",
+          "temperature": null
+        },
+        {
+          "id": "22898",
+          "blueprint": "FrostVent",
+          "temperature": 1.32255864
+        }
+      ]
+    },
+    {
+      "x": 59,
+      "y": 7,
+      "visible": true,
+      "explored": true,
+      "cold": 1,
+      "owners": [
+        {
+          "id": "21003",
+          "blueprint": "SandstoneFloor",
+          "temperature": null
+        },
+        {
+          "id": "22897",
+          "blueprint": "FrostVent",
+          "temperature": 1.32255864
+        }
+      ]
+    }
+  ],
+  "visual_review": "Initial faint gray/tan cue rejected P2. Corrected coolblue rims pass shelf/approach/readers and reload independent review0remainingP1/P2. Field-note readers are not portrait evidence.",
+  "pixel_limits": "Corrected shelf versus initial135ventcellpixels max35RGB;9121outsidepixelsdarken max2RGB causeunknown. Initial versus baseline768ventpixels and10391outsidepixelsmax2RGB. Approach actors differ.",
+  "reload_comparison": {
+    "world": {
+      "changed_pixels": 3169,
+      "max_rgb": 2
+    },
+    "sidebar": {
+      "changed_pixels": 23394,
+      "max_rgb": 243
+    },
+    "hotbar": {
+      "changed_pixels": 0,
+      "max_rgb": 0
+    }
+  },
+  "reload_limit": "3169worldpixelsdarkenmax2RGB bbox520,168\u2013671,319 causeunknown;23394sidebarlogpixels;hotbaridentical.",
+  "performance": "140.2681012s after-only Editor;84787samples/marker no wrap. RendererP95 .096042ms/max213.934542ms;Mainmax2016.186625ms;GCmax929781327bytes. Includes readers/tools/travel; spikes unattributed, no packaged FPS/R11closure.",
+  "reviews": "independent source/art/test and actualvisual/reload0P1/P2; regional missingresource integration not directly exercised beyond injected-group controls",
+  "preservation": "preservation.json",
+  "coverage": "two actual FrostVent sources and independent disclosed currentcold receiver under exact depth1 authority",
+  "area_polish": "in-progress; wider room special glyphs/sparsecomposition/wall depth/regular shelves remain",
+  "population": "unchanged",
+  "shadows": "unchanged",
+  "delivery": "current87ef330b7 Mac/Linux exclude Quiet739 and this slice; batch next",
+  "hourly_report_utc": "2026-11-15T17:51:21Z",
+  "next": "Publish exact source/evidence/living records; batch current Mac/Linux and actual Mac read/walk/travel/F5freshreload; then Quillhold court/road baseline fromQuillholdMemory/AfterCheckpoint4950HP40at39,11seed224401440. Deckdeferred; fullV0\u2013V7/R11open."
+}
