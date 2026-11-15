@@ -60,6 +60,7 @@ namespace CavesOfOoo.Presentation.Rendering
         private bool _nativeMorrowfastGrade;
         private bool _nativeSumpholdGrade;
         private bool _nativeRuinGrade;
+        private bool _nativeGantryGrade;
         // Bounded material-hue pilot. The native sprites already contain the intended
         // warm earth/stone hues; the old green filter made those surfaces too similar.
         private static readonly BiomePalette NativeMarrowstyePalette = new BiomePalette(
@@ -80,6 +81,10 @@ namespace CavesOfOoo.Presentation.Rendering
         // existing Beating contrast, without a second yellow/saturation wash.
         private static readonly BiomePalette NativeRuinPalette = new BiomePalette(
             BiomeType.Beating, Color.white, 12f, 0f, 0f);
+
+        // Gantry's authored timber, paving and grass keep their material hues.
+        private static readonly BiomePalette NativeGantryPalette = new BiomePalette(
+            BiomeType.Spread, Color.white, 5f, 0f, 0f);
 
         // Reference back to gameplay state. Set by GameBootstrap.
         // CurrentZone is updated on zone-change via SetCurrentZone()
@@ -190,12 +195,18 @@ namespace CavesOfOoo.Presentation.Rendering
                 && CurrentZone?.ZoneID == SumpholdCompositionPlan.ZoneID
                 && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone)
                 && AreaCompositionScope.IsSumpholdSite(currentManager.WorldMap.GetPOI(15, 6));
+            bool nativeGantry = currentBiome == BiomeType.Spread
+                && _zoneRendererRef != null && _zoneRendererRef.FlatPixelModeActive
+                && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
+                && CurrentZone?.ZoneID == GantryCompositionPlan.ZoneID
+                && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone)
+                && AreaCompositionScope.IsGantrySite(currentManager.WorldMap.GetPOI(7, 8));
             // Admission can change without changing biome: same-biome travel,
             // legacy toggle, sprites disabled or a replacement loaded world graph.
             if (!_hasResolvedPalette || currentBiome != _activeBiome
                 || nativeMarrowstye != _nativeMarrowstyeGrade || nativeDune != _nativeDuneGrade
                 || nativeMorrowfast != _nativeMorrowfastGrade || nativeSumphold != _nativeSumpholdGrade
-                || nativeRuin != _nativeRuinGrade)
+                || nativeRuin != _nativeRuinGrade || nativeGantry != _nativeGantryGrade)
             {
                 _hasResolvedPalette = true;
                 _activeBiome = currentBiome;
@@ -204,7 +215,9 @@ namespace CavesOfOoo.Presentation.Rendering
                 _nativeMorrowfastGrade = nativeMorrowfast;
                 _nativeSumpholdGrade = nativeSumphold;
                 _nativeRuinGrade = nativeRuin;
-                _targetPalette = nativeRuin ? NativeRuinPalette
+                _nativeGantryGrade = nativeGantry;
+                _targetPalette = nativeGantry ? NativeGantryPalette
+                    : nativeRuin ? NativeRuinPalette
                     : nativeSumphold ? NativeSumpholdPalette
                     : nativeMorrowfast ? NativeMorrowfastPalette
                     : nativeMarrowstye ? NativeMarrowstyePalette

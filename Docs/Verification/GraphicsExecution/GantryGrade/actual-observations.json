@@ -1,0 +1,119 @@
+{
+  "baseline": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.7.8.0",
+        "x": 39,
+        "y": 11,
+        "hp": 22,
+        "turn": 2190,
+        "biome": "Spread",
+        "profile": "CrossroadsExchange",
+        "filter": [
+          0.85,
+          1.05,
+          0.9
+        ],
+        "contrast": 5,
+        "saturation": 12,
+        "pillars": [],
+        "logs": [
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Autosaved.",
+          "Debug: player invincibility OFF."
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "neighbor": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.6.8.0",
+        "x": 40,
+        "y": 12,
+        "hp": 22,
+        "turn": 2520,
+        "biome": "Spread",
+        "profile": "CrossroadsExchange",
+        "filter": [
+          0.85,
+          1.05,
+          0.9
+        ],
+        "contrast": 5,
+        "saturation": 12,
+        "pillars": [],
+        "logs": [
+          "The air here says sari, sari, and does not finish the word.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Autosaved."
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "returned": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.7.8.0",
+        "x": 39,
+        "y": 11,
+        "hp": 22,
+        "turn": 2560,
+        "biome": "Spread",
+        "profile": "CrossroadsExchange",
+        "filter": [
+          1,
+          1,
+          1
+        ],
+        "contrast": 5,
+        "saturation": 0,
+        "pillars": [],
+        "logs": [
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Autosaved.",
+          "Game saved."
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "reload": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.7.8.0",
+        "x": 39,
+        "y": 11,
+        "hp": 22,
+        "turn": 2560,
+        "biome": "Spread",
+        "profile": "CrossroadsExchange",
+        "filter": [
+          1,
+          1,
+          1
+        ],
+        "contrast": 5,
+        "saturation": 0,
+        "pillars": [],
+        "logs": [
+          "Autosaved.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Autosaved."
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "note": "biome/profile fields always inspect the authored Gantry7.8 cell, even during6.8 travel; zone/filter report the actual displayed state. Neighbor Spread is separately covered by native travel fixture."
+}
