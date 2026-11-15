@@ -1,0 +1,146 @@
+{
+  "recordedUTC": "2026-11-15T10:58:12.061334+00:00",
+  "sourceBase": "47441dd1bf33ad8b4603ef88338c996387b05213",
+  "status": "bounded Editor acceptance; publication/delivery pending",
+  "zone": "Overworld.5.17.0",
+  "seed": 224401440,
+  "scope": "White color filter, contrast12, saturation0, vignette0 through existing Volume-owned fade. Exact current FirstTent address, Beating, Village/authored name/TentCampFirst, native displayed renderer, current cache/full-map/no saved lair. Geometry, gameplay, art, fog rules, population and shadows unchanged.",
+  "native": {
+    "red": {
+      "job": "8671e428b9cd41cba1f43d30166045c4",
+      "total": "12",
+      "passed": "0",
+      "failed": "12",
+      "inconclusive": "0",
+      "skipped": "0",
+      "duration": "0.1510585",
+      "start-time": "2026-11-15 10:49:17Z",
+      "end-time": "2026-11-15 10:49:17Z"
+    },
+    "initial-green": {
+      "job": "0292d7ba7ad14239822d04c661a9e6dd",
+      "total": "150",
+      "passed": "149",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "duration": "1.5245735",
+      "start-time": "2026-11-15 10:50:12Z",
+      "end-time": "2026-11-15 10:50:14Z"
+    },
+    "green": {
+      "job": "4f3d6b1502c94606b706cdcc143237a7",
+      "total": "150",
+      "passed": "150",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "duration": "1.543822",
+      "start-time": "2026-11-15 10:51:34Z",
+      "end-time": "2026-11-15 10:51:36Z"
+    }
+  },
+  "test_corrections": "Two zero-discovery filters excluded (92d6042f538d436882274243dfd1c244,5baf712b776c41fa8fea28102855ed51). Fully qualified methods produced12 real RED. Initial combined149pass/1wrong test assumption: shared native ground already requires authored name, so renamed-allowed test corrected to wrong-name loss/recovery; no production broadening. Final150/150 unique cases, zero failures/skips/inconclusive.",
+  "actual": {
+    "origin": {
+      "source": "47441dd1bf33ad8b4603ef88338c996387b05213",
+      "arrival": "Batch5E147/FirstTentArrival",
+      "seed": 224401440,
+      "zone": "Overworld.5.17.0",
+      "turn": 5380,
+      "hp": 40,
+      "x": 39,
+      "y": 11,
+      "biome": "Beating",
+      "poi": {
+        "Name": "the First Tent",
+        "Type": "Village",
+        "Profile": "TentCampFirst"
+      },
+      "route": "Mac current5e147 Wellmeet fresh5280HP40, ordinary worldLeft3Down1, F5arrival5380HP40. EditorfreshContinue verified; no F12/injection/healing."
+    },
+    "views": [
+      "center5380HP40 at39,11 from actual Mac arrival",
+      "guest5720HP40 at16,6: ordinary west approach and shelter entry",
+      "salt5710HP40 at63,18: separate original arrival, east approach; SaltMaster at63,15 blocked direct route, ordinary Right/Down4/Left detour entered shelter"
+    ],
+    "pairing": "Original earned checkpoints restored only before Continue into isolated roots, never runtime teleport/heal. All after positions/HP match. Center sidebar exact; guest/salt logs differ; small independent animation/lighting differences not attributed solely to grade.",
+    "reader": "Normal c south, examine and F1 full native well reader at40,11. First direction key missed and captured waiting-for-direction; subsequent input completed normally.",
+    "interaction": "Normal draw water; observed log You drink. The well water is cool. HP40.",
+    "travel": "Ordinary world5.17\u21926.17\u21925.17; neighbor retains gold Beating palette, return neutral. One CUA noWindowsAvailable attempt has unknown input completion; rebound actual Unity and verified position before proceeding.",
+    "saveReload": "F5turn5500HP40 and fresh Continue at39,11HP40 with F12 off. No combat damage, protection or healing in this slice; inherited prior gnome-miss log retained.",
+    "comparisons": {
+      "center": {
+        "worldPixels": 639200,
+        "sidebarPixels": 0,
+        "hotbarPixels": 0,
+        "worldMaxRGB": 92,
+        "worldBBox": [
+          0,
+          0,
+          939,
+          679
+        ]
+      },
+      "guest": {
+        "worldPixels": 637184,
+        "sidebarPixels": 21330,
+        "hotbarPixels": 0,
+        "worldMaxRGB": 159,
+        "worldBBox": [
+          0,
+          0,
+          939,
+          679
+        ]
+      },
+      "salt": {
+        "worldPixels": 637184,
+        "sidebarPixels": 20508,
+        "hotbarPixels": 0,
+        "worldMaxRGB": 92,
+        "worldBBox": [
+          0,
+          0,
+          939,
+          679
+        ]
+      },
+      "reload": {
+        "worldPixels": 70,
+        "sidebarPixels": 21041,
+        "hotbarPixels": 0,
+        "worldMaxRGB": 3,
+        "worldBBox": [
+          718,
+          284,
+          725,
+          297
+        ]
+      }
+    },
+    "reload": "70 world pixels at718\u2013725/284\u2013297, maximum3RGB, hotbar unchanged. Cause unproven; independent no visible regression.",
+    "limits": "Guest host conversation, SaltMaster trade, other room interactions and all approaches not fully exercised."
+  },
+  "reviews": {
+    "source": "sumphold_grade_source_review:0P1/P2; exact current authority, restoration and shared profile isolation",
+    "visual": "sumphold_baseline_review:0visibleP1/P2; three matched views accepted, quieter material separation, open oath court retained; reload no visible regression"
+  },
+  "performance": {
+    "seconds": 149.32369,
+    "rendererP95Ms": 0.0705,
+    "rendererMaxMs": 174.26975,
+    "mainMaxMs": 19967.999333,
+    "scope": "After-only Editor Continue, captures, travel, movement, reader and drinking with tool overhead. Aggregate only; no raw-frame attribution, speedup or packaged FPS claim. Unexplained Main spike leaves R11 open."
+  },
+  "axes": {
+    "coverage": "No new art coverage; center/guest/salt baseline partial; markers/glyph and memory transitions remain",
+    "polish": "Bounded three-view palette accepted; whole-area incomplete",
+    "population": "unchanged",
+    "shadows": "unchanged",
+    "delivery": "Current5e147 Mac/Linux excludes this slice; batch with next accepted area"
+  },
+  "preservation": "80 unrelated changes, normal gameplay state and approved art exact; Play stopped/root null/scene clean. No cleanup.",
+  "hourlyReportUTC": "2026-11-15T10:19:14Z",
+  "next": "Publish exact slice, then LastCounter18.18 fresh actual center/supply/rest baseline from earnedFirstTent5500: worldRight13/Down1. Current generic settlement art exists; inspect before selecting change. Batch Mac/Linux after accepted next slice. Deck deferred, R11 and V0\u2013V7 remain open."
+}
