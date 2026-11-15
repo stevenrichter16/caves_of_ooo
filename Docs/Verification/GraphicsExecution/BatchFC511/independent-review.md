@@ -1,0 +1,5 @@
+# Independent delivery review
+
+Read-only build_comparison_plan review: 0 unresolved P1/P2. Initial copied audit scope corrected and repinned before packaging. Current audit53f068890be9968631e85bdd7eb6bcbad21f9080f3aefa7a3edfa1f66166e0e5; package21bcd98b1898dc5e5bb3edcf9c8775ff4f68ec82bfdcc04b0b23b503b1f18366. Launch/restore control flow matches prior after intended literals; base helper pins unchanged. Snapshot57994tracked/80dirty and all299currentpins verified. Native82Passed and203Passed+exact3allocation-inconclusive independently parsed, nonadditive.
+
+Archive129128817bytes SHA9dfd9927b55b23779ec534108610ff4966d3c6be5d13b76b73645685c1bb8acd.205safe members192files13dirs343617177unpackedbytes; full path/size/mode/hash correspondence,191internalchecksums,gzipEOFCRC/footer,6creditsections5licenses/starter sources correct. Embedded source/buildreports/audit/info and all299pins match. No helper/player/Unity/Git execution or mutations by reviewer. Mac play/restoration remain root evidence; Linux and Deck execution unclaimed.

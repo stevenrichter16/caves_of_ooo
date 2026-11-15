@@ -11,3 +11,5 @@ Actual matched16.5 before/after:3421worldpixelschanged,max8RGB,hotbar/sidebar0. 
 57.201sactualEditor2321×1283AppleM5profile (shorterthan60–90target,notrerun):renderer p95.068791ms/max125.352458ms;Mainp951.734917/max719.601709ms,GCmax5734299bytes. After-only,UI/probes/capturesincluded,R11open; no causalperformanceclaim.80foreigntrackedhashes/normalgameplaysaves+prefs preserved; nativeTestResults/Unitysessionevent/fourtelemetryprefkeysonlychanged. Playstopped/rootnull/sceneclean; no cleanup.
 
 Currentfc8bab2bcMac/Linux delivered d74a13f87 excludes this andStillleafshadowe0f0cfadd. Next batch both accepted slices, actualMaclaunch/readers/travel/F5freshContinue, then different-area meaningfulenvironment/composition. HourlyACTIVE,lastactual04:18:14Z. Deckdeferred; Linuxexecution/wholearea/population/broadshadows/R11/V0–V7open.
+
+Current delivery: BatchFC511 includes this slice. Actual Mac readers, movement, travel, F5 and fresh-process reload verified; Linux archive integrity independently verified, execution untested. See [batch record](Verification/GraphicsExecution/BatchFC511/README.md). Earlier package exclusions are historical. Fullarea/R11 remain open.
