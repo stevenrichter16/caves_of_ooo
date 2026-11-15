@@ -1,0 +1,174 @@
+{
+  "source_commit": "fc8bab2bce4b5a1da014d28f2a267340dae41569",
+  "runtime_source_commit": "fc8bab2bce4b5a1da014d28f2a267340dae41569",
+  "built_after_utc": "2026-11-15T04:28:21.073865+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+  "planned_new_files": 32,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchFC8BAB/mac-build.json",
+      "sha256": "3a3b00c998e87b1652c6fa446412ea0e421020ca160524bfedafa6a107a0ffed",
+      "summary": {
+        "job_id": "build-c1728b1914",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo.app",
+        "started_at": "2026-11-15T04:28:26.757896Z",
+        "duration_seconds": 39.700483999999996,
+        "completed_at": "2026-11-15T04:29:06.45838Z",
+        "total_size_mb": 346.59,
+        "errors": 0,
+        "warnings": 5
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchFC8BAB/linux-build.json",
+      "sha256": "5018d5e37beddf8b810d42d4baf6520add585ffa7388a0a6317f9f9e6718b076",
+      "summary": {
+        "job_id": "build-32e0f29953",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-15T04:29:37.865333Z",
+        "duration_seconds": 26.863591,
+        "completed_at": "2026-11-15T04:30:04.728924Z",
+        "total_size_mb": 327.06,
+        "errors": 0,
+        "warnings": 6
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/SpreadReeds/native-green.xml",
+        "sha256": "596b95f44e4e43829e0dc531290aebcda3e8c99d5efda2375a47d962fbad05fe",
+        "passed": 60,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T04:06:37+00:00",
+        "completed_at_utc": "2026-11-15T04:06:42+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/CinderholdGrade/native-green.xml",
+        "sha256": "e1914ca97b3f324814040c9ee19c01feb56ace7fd5041fb3138590b1bf81b263",
+        "passed": 103,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-15T04:21:50+00:00",
+        "completed_at_utc": "2026-11-15T04:21:52+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/SpreadReeds/native-regression.xml",
+        "sha256": "dc25ed13e3ded447367ba0e3fc27a61fad56e2023dc8d115c57d47b4d38600d8",
+        "passed": 206,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 3,
+        "started_at_utc": "2026-11-15T04:13:27+00:00",
+        "completed_at_utc": "2026-11-15T04:13:41+00:00",
+        "inconclusive_cases": [
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+            "reason": "Current-thread allocation counter did not detect the positive control."
+          },
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+            "reason": "Current-thread allocation counter did not detect the positive control."
+          },
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+            "reason": "Current-thread allocation counter did not detect the positive control."
+          }
+        ]
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained reeds60, Cinderhold103 and adjacent206plus3inconclusive checkpoints; nonadditive; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/BatchFC8BAB/build-input-audit.json",
+    "sha256": "790d16edcb50f0693a8912a13ec5ca888286083efede5578890bcf09c5b89acb",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 78,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 67
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0,
+      "rootOwnedNeutralMetadata": 0
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-15T04:28:21.073865+00:00",
+      "checks": []
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 84,
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/BatchFC8BAB/package.py",
+    "sha256": "0e062d2c2a9fec89263a12204daaafaee158d20ee661cb7c5ba44b82f3f5e178",
+    "adapted_from": "Docs/Verification/GraphicsExecution/Batch468a88/package.py",
+    "adapted_from_sha256": "0a5ae4be8515bbfd3a026931f93bcecc484a36a4e81655563fca60569f0c70c4"
+  },
+  "created_at_utc": "2026-11-15T04:31:30.775175+00:00",
+  "package_flavor": "current-flat-graphics",
+  "scope": "Published graphics throughfc8bab2bc: Spread riverbank reeds and Cinderhold neutral grade. Separate Editor60/103 and206plus3inconclusive nonadditive tests. Linux execution unverified; Deck deferred.",
+  "source_provenance": "Source/runtime revision and build boundary are root assertions. Exact output/job/time receipts and neutral input/settings bytes are checked; current runtime-byte equality is a retained root assertion; no source-to-binary reproducibility claim.",
+  "preservation_sequence": "Prebuild snapshot /private/tmp/coo-graphics-build-protection-fc8bab2bc: current tracked snapshot,80dirty, normal saves/preferences and prior468a88 packages protected. Final restoration separate.",
+  "canonical_executable_copy": {
+    "source_commit": "fc8bab2bce4b5a1da014d28f2a267340dae41569",
+    "at_utc": "2026-11-15T04:31:30.774384+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4472,
+    "both_sha256": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "current_native_status": {
+    "spread_reeds": "60/60",
+    "cinderhold_grade_and_road": "103/103",
+    "adjacent_reeds_regression": "206passed3allocation-inconclusive0failed",
+    "counts_added_together": false,
+    "actual": "Separate Editor routes accepted; packaged smoke pending"
+  },
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing controller documentation is carried forward unchanged. No new Deck qualification; user deferred that work.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "performance_limits": "Separate Editor manual profiles exist, including matched Felling observations; this helper neither validates those measurements nor treats them as packaged/Linux/Deck performance acceptance.",
+  "whole_area_polish_accepted": false,
+  "development_builds": true,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}

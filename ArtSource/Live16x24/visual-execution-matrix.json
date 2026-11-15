@@ -22808,57 +22808,72 @@
     }
   ],
   "current_delivery": {
-    "recorded_utc": "2026-11-15T03:53:59.976704+00:00",
-    "source_commit": "468a88da8736de9f295c4fcbdc24adc75045a0de",
+    "recorded_utc": "2026-11-15T04:37:22.826911+00:00",
+    "source_commit": "fc8bab2bce4b5a1da014d28f2a267340dae41569",
     "source_remote_verified": true,
-    "mac": "Builds/Verification/2026-11-15-graphics-468a88da8-current/CavesOfOoo.app",
-    "linux": "Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-current",
-    "archive": "Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
-    "archive_sha256": "6a542541f3351c6ebe250319a18b73deacd65c1cc7d3def2ec834e4e83fafd56",
-    "archive_bytes": 162172559,
-    "archive_members": 320,
-    "internal_checksums": 306,
-    "resource_pins": 211,
+    "mac": "Builds/Verification/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo.app",
+    "linux": "Builds/SteamDeck/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo-current",
+    "archive": "Builds/SteamDeck/2026-11-15-graphics-fc8bab2bc-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+    "archive_sha256": "aef8e7127607db340ec1072be0171b8699b9023932dad54ffed67bd583cf256a",
+    "archive_bytes": 129128208,
+    "archive_members": 205,
+    "internal_checksums": 191,
+    "resource_pins": 214,
+    "combined_pins": 295,
     "build_results": {
       "mac": "0errors5warnings",
-      "linux": "0errors4warnings"
+      "linux": "0errors6warnings"
     },
     "mac_actual": {
-      "recordedUtc": "2026-11-15T03:52:52.250203+00:00",
-      "source": "468a88da8736de9f295c4fcbdc24adc75045a0de",
+      "recordedUtc": "2026-11-15T04:37:22.826911+00:00",
+      "source": "fc8bab2bce4b5a1da014d28f2a267340dae41569",
       "actual_native_keyboard_play": true,
       "processes": [
-        61395,
-        61813
+        70231,
+        70704,
+        70803,
+        71266
       ],
-      "gantry": {
-        "fixture": "CandyResidents/CitizenCheckpoint2530",
-        "citizen": "worldbody,textfullreader59,3,native dialogueportrait and complete original text",
-        "movement": "58,3 to57,3 to57,4; afterreturn39,11 to38,11",
-        "travel": "7.8 to6.8 canonical andreturn neutral",
-        "saved_turn": 2640,
+      "reeds": {
+        "fixture": "SpreadReeds/AfterCheckpoint2900",
+        "reader": "original Reeds full text at40,18 from40,11; native bank visible",
+        "travel": "6.8 to7.8 Gantry native and return",
+        "saved_turn": 3000,
         "hp": 22,
+        "fresh_position": [
+          40,
+          11
+        ],
+        "time": "Dusk"
+      },
+      "cinderhold": {
+        "fixture": "CinderholdGrade/OfficeCheckpoint2020",
+        "reader": "SandstoneWall21,8 full text and30/30; native neutral office",
+        "travel": "6.6 to5.6 canonical and return neutral",
+        "saved_turn": 2120,
+        "hp": 40,
         "fresh_position": [
           38,
           11
         ],
-        "fresh_clerk": "worldbody and textfullreader39,8 after oneUp; chat refused too far, no packagedClerkdialogue claim",
-        "f12": "OFF throughout; no new blocked strikes or damage"
+        "time": "Dark",
+        "movement": "oneDown from23,7 beforetravel; oneLeft afterreturn"
       },
+      "f12": "OFF; no protected survey in packaged smoke",
       "captures": "CUA observed1280x856 including56px titlebar; effectivegame1280x800. No durableMacPNG or pixel-match claim.",
-      "shutdown": "Command-Q both intendedprocesses; pgrep stopped; no unintendedrelaunch.",
+      "shutdown": "All four Command-Q exits verified externally; no unintended relaunch.",
       "performance": "First Macrun overlappedLinuxbuild/package; no packagedperformanceclaim.",
       "linux_execution": "untested",
       "deck": "deferred",
-      "log_notes": "No errorCS or Loadfailed; Exception matches are autosave signatures. ComputeBuffer disposal/prematurethread and PlayerConnection memoryleak telemetry retained; no cleanshutdownclaim."
+      "log_notes": "Rawlogs byte-exact gz retained. Prematurethread finalization and ComputeBuffer disposal warnings retained; no clean-shutdownclaim."
     },
-    "restoration": "Docs/Verification/GraphicsExecution/Batch468a88/restoration.json",
+    "restoration": "Docs/Verification/GraphicsExecution/BatchFC8BAB/restoration.json",
     "linux_execution": false,
     "deck": "deferred",
     "R11": "open",
     "whole_area_polish": "open",
-    "next": "Spread6.8 actual riverbankReeds attribution and approvedart/grassbacking ifconfirmed",
-    "hourly_report_utc": "2026-11-15T03:17:54Z"
+    "next": "Stillleaf2.4.1 fresh52,12 baseline then bounded wall-depth/contact comparison",
+    "hourly_report_utc": "2026-11-15T04:18:14Z"
   },
   "sodden_native_receipt_correction": {
     "total": 393,
@@ -25727,6 +25742,59 @@
       "restoration": "Docs/Verification/GraphicsExecution/Batch7ac615/restoration.json",
       "next": "fresh Gantry7.8 whole-scene material comparison",
       "limits": "Linux unexecuted; Deckdeferred; R11 and wholearea/V0-V7 open"
+    },
+    {
+      "recorded_utc": "2026-11-15T03:53:59.976704+00:00",
+      "source_commit": "468a88da8736de9f295c4fcbdc24adc75045a0de",
+      "source_remote_verified": true,
+      "mac": "Builds/Verification/2026-11-15-graphics-468a88da8-current/CavesOfOoo.app",
+      "linux": "Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-current",
+      "archive": "Builds/SteamDeck/2026-11-15-graphics-468a88da8-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+      "archive_sha256": "6a542541f3351c6ebe250319a18b73deacd65c1cc7d3def2ec834e4e83fafd56",
+      "archive_bytes": 162172559,
+      "archive_members": 320,
+      "internal_checksums": 306,
+      "resource_pins": 211,
+      "build_results": {
+        "mac": "0errors5warnings",
+        "linux": "0errors4warnings"
+      },
+      "mac_actual": {
+        "recordedUtc": "2026-11-15T03:52:52.250203+00:00",
+        "source": "468a88da8736de9f295c4fcbdc24adc75045a0de",
+        "actual_native_keyboard_play": true,
+        "processes": [
+          61395,
+          61813
+        ],
+        "gantry": {
+          "fixture": "CandyResidents/CitizenCheckpoint2530",
+          "citizen": "worldbody,textfullreader59,3,native dialogueportrait and complete original text",
+          "movement": "58,3 to57,3 to57,4; afterreturn39,11 to38,11",
+          "travel": "7.8 to6.8 canonical andreturn neutral",
+          "saved_turn": 2640,
+          "hp": 22,
+          "fresh_position": [
+            38,
+            11
+          ],
+          "fresh_clerk": "worldbody and textfullreader39,8 after oneUp; chat refused too far, no packagedClerkdialogue claim",
+          "f12": "OFF throughout; no new blocked strikes or damage"
+        },
+        "captures": "CUA observed1280x856 including56px titlebar; effectivegame1280x800. No durableMacPNG or pixel-match claim.",
+        "shutdown": "Command-Q both intendedprocesses; pgrep stopped; no unintendedrelaunch.",
+        "performance": "First Macrun overlappedLinuxbuild/package; no packagedperformanceclaim.",
+        "linux_execution": "untested",
+        "deck": "deferred",
+        "log_notes": "No errorCS or Loadfailed; Exception matches are autosave signatures. ComputeBuffer disposal/prematurethread and PlayerConnection memoryleak telemetry retained; no cleanshutdownclaim."
+      },
+      "restoration": "Docs/Verification/GraphicsExecution/Batch468a88/restoration.json",
+      "linux_execution": false,
+      "deck": "deferred",
+      "R11": "open",
+      "whole_area_polish": "open",
+      "next": "Spread6.8 actual riverbankReeds attribution and approvedart/grassbacking ifconfirmed",
+      "hourly_report_utc": "2026-11-15T03:17:54Z"
     }
   ],
   "stump_dome_shadow": {
@@ -26354,7 +26422,7 @@
   },
   "spread_reeds": {
     "recorded_utc": "2026-11-15T04:16:00.250534+00:00",
-    "status": "source published; packaging pending",
+    "status": "bounded Editor accepted; current Mac/Linux packaged",
     "record": "Docs/GRAPHICS-SPREAD-REEDS.md",
     "evidence": "Docs/Verification/GraphicsExecution/SpreadReeds",
     "zone": "Overworld.6.8.0",
@@ -26379,11 +26447,12 @@
     "limits": "R11/fullarea/V0\u2013V7open; current468a88packages exclude",
     "next": "Cinderhold6.6 actual grade/material comparison then batch",
     "hourly_report_utc": "2026-11-15T04:18:14Z",
-    "source_revision": "63012cd36fbfb1daee3c52efc01fd604ffcc78dc"
+    "source_revision": "63012cd36fbfb1daee3c52efc01fd604ffcc78dc",
+    "delivery": "Docs/Verification/GraphicsExecution/BatchFC8BAB/README.md"
   },
   "cinderhold_grade": {
     "recorded_utc": "2026-11-15T04:26:53.187894+00:00",
-    "status": "bounded Editor accepted; packaging pending",
+    "status": "bounded Editor accepted; current Mac/Linux packaged",
     "record": "Docs/GRAPHICS-CINDERHOLD-GRADE.md",
     "evidence": "Docs/Verification/GraphicsExecution/CinderholdGrade",
     "zone": "Overworld.6.6.0",
@@ -26411,6 +26480,7 @@
     "reload_world_changed": 0,
     "limits": "R11/fullarea/V0\u2013V7open; current468a88builds exclude",
     "next": "publish and batch reeds+grade currentMac/Linux; then different area",
-    "hourly_report_utc": "2026-11-15T04:18:14Z"
+    "hourly_report_utc": "2026-11-15T04:18:14Z",
+    "delivery": "Docs/Verification/GraphicsExecution/BatchFC8BAB/README.md"
   }
 }
