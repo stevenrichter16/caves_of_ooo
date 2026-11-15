@@ -1,3 +1,5 @@
+**Delivery update:** Published in source623d980ab and current Mac/Linux Batch623D98. Actual Mac readers, interactions, movement, travel, save and fresh reload passed; Linux remains unexecuted. See Verification/GraphicsExecution/Batch623D98/README.md. Earlier pending-delivery statements below are historical.
+
 # First Tent palette comparison
 
 Bounded Editor acceptance 2026-11-15T10:58:12.061334+00:00, source base47441dd1b. Actual center, guest and salt shelter views had a gold cast that compressed sand, road, stone, cloth and furnishings. Use their existing native colors with white filter, contrast12 and saturation0. Keep existing current native-material authority and legacy palette elsewhere. No new art, furnishing, paving, population, shadow or gameplay changes.

@@ -1,0 +1,5 @@
+# Independent delivery review
+
+Reviewer build_comparison_plan found 0 P1/P2. Full-stream archive audit verified 129,127,037 bytes, SHA256 44268af0a20d247d89e48b7c3964df1c3f7a871220a1697767e869677042cc47; 205 members (192 files/13 directories), 343,644,012 unpacked bytes, 191 internal checksums, hashes/sizes/modes/sets, safe single root/no links, gzip EOF CRC/footer, 6 credits/5 licenses. Embedded reports, source623d980ab, audit/info, 366 current pins and helper SHA3062466ccaaad4e089f09a8d29eab6dacf9a27e2b1ace24be5e161984c1d6f09 match. Native150/96 checkpoints are separate/nonadditive. Both builds have0errors/4warnings.
+
+Wrapper control flow unchanged. Snapshot58,792 objects/80dirty and all80dirty hashes checked. Independently hashed prior5E147 archive, complete Linux204entries/Mac206entries and both receipts: unchanged from snapshot. No helper/executable/Unity/Git actions or extraction writes performed by reviewer. Actual Mac play and restoration are separate root receipts; Linux/Deck execution and packaged performance remain unverified.

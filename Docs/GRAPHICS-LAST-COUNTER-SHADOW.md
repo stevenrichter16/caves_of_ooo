@@ -1,3 +1,5 @@
+**Delivery update:** Published in source623d980ab and current Mac/Linux Batch623D98. Actual Mac readers, interactions, movement, travel, save and fresh reload passed; Linux remains unexecuted. See Verification/GraphicsExecution/Batch623D98/README.md. Earlier pending-delivery statements below are historical.
+
 # Last Counter masonry contact shade
 
 Bounded Editor comparison 2026-11-15T11:13:23.973553+00:00. The existing supply and rest buildings have native brick faces but no floor contact shade. Reuse the accepted two-pixel southward band at16% black, with the existing world layer and borrowed opaque wall tile. Exact18.18/current Beating/Village/authored name/ConcordPost/cache/full-map/no-lair; source and receiver must be disclosed, current and free of tile state. Receiver must be one real native Floor/StoneFloor with no other disclosed physical occupant. Existing options, legacy mode, repaint/clear and resource lifetime retained.
