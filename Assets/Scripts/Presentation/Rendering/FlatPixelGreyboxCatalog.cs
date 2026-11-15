@@ -124,6 +124,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelBeatingMaterialsCatalog _beatingSiteArt;
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsSiteArt;
         private FlatPixelStumpMaterialsCatalog _stumpSiteArt;
+        private FlatPixelStumpMaterialsCatalog _rootSurfaceArt;
         private FlatPixelStumpMaterialsCatalog _fellingGroundArt;
         private FlatPixelStumpMaterialsCatalog _olderdeepLedgeArt;
         private FlatPixelStumpMaterialsCatalog _cathedralLedgeArt;
@@ -2299,6 +2300,20 @@ namespace CavesOfOoo.Rendering
                 }
                 return _ginmereLedgeArt;
             }
+            if (FlatPixelSiteAdmission.IsRootSurface(zone))
+            {
+                if (_rootSurfaceArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _rootSurfaceArt = new FlatPixelStumpMaterialsCatalog(
+                        Resources.Load<Texture2D>(FlatPixelStumpMaterialsCatalog.ResourcePath),
+                        Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
+                        Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath), _glyphFallback).AdmittingRootSurface();
+                }
+                return _rootSurfaceArt;
+            }
+            // A revoked reserved mouth cannot escape through ordinary camp/site admission.
+            if (zone?.ZoneID == RootSiteBuilder.MouthZoneID) return null;
             if (FlatPixelStumpMaterialsCatalog.IsSupportedFellingZone(zone))
             {
                 if (_fellingGroundArt == null && _loadOptionalResources)
@@ -2775,6 +2790,8 @@ namespace CavesOfOoo.Rendering
             _overwritMaterialsArt?.Dispose();
             _stumpMaterialsArt?.Dispose();
             _stumpSiteArt?.Dispose();
+            _rootSurfaceArt?.Dispose();
+            _rootSurfaceArt = null;
             _fellingGroundArt?.Dispose();
             _olderdeepLedgeArt?.Dispose();
             _cathedralLedgeArt?.Dispose();

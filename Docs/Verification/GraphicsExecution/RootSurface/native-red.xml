@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="44" result="Failed(Child)" total="44" passed="1" failed="43" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:13Z" duration="4.9668551">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37501" result="Failed" site="Child" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:13Z" duration="4.966855" total="44" passed="1" failed="43" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45920" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37501" result="Failed" site="Child" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:13Z" duration="4.941265" total="44" passed="1" failed="43" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45921" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37501" result="Failed" site="Child" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:13Z" duration="4.938092" total="44" passed="1" failed="43" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45922" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37501" result="Failed" site="Child" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:13Z" duration="4.936186" total="44" passed="1" failed="43" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2249" name="FlatPixelRootSurfaceTests" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" testcasecount="44" result="Failed" site="Child" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:13Z" duration="4.928398" total="44" passed="1" failed="43" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2250" name="ActualRootSurfaceReusesMaterialsWithoutChangingItsOwners" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ActualRootSurfaceReusesMaterialsWithoutChangingItsOwners" methodname="ActualRootSurfaceReusesMaterialsWithoutChangingItsOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="13355999" result="Failed" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:08Z" duration="0.250128" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ActualRootSurfaceReusesMaterialsWithoutChangingItsOwners () [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:32
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2254" name="ActualVegetationAndCliffHaveMatchingNativeReaders" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ActualVegetationAndCliffHaveMatchingNativeReaders" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:08Z" duration="0.291374" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2251" name="ActualVegetationAndCliffHaveMatchingNativeReaders(&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ActualVegetationAndCliffHaveMatchingNativeReaders(&quot;Bush&quot;)" methodname="ActualVegetationAndCliffHaveMatchingNativeReaders" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1604247164" result="Failed" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:08Z" duration="0.097645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ActualVegetationAndCliffHaveMatchingNativeReaders (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2252" name="ActualVegetationAndCliffHaveMatchingNativeReaders(&quot;Tree&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ActualVegetationAndCliffHaveMatchingNativeReaders(&quot;Tree&quot;)" methodname="ActualVegetationAndCliffHaveMatchingNativeReaders" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1417364793" result="Failed" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:08Z" duration="0.094356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ActualVegetationAndCliffHaveMatchingNativeReaders (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2253" name="ActualVegetationAndCliffHaveMatchingNativeReaders(&quot;TepuiWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ActualVegetationAndCliffHaveMatchingNativeReaders(&quot;TepuiWall&quot;)" methodname="ActualVegetationAndCliffHaveMatchingNativeReaders" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="955695993" result="Failed" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:08Z" duration="0.096049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ActualVegetationAndCliffHaveMatchingNativeReaders (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2291" name="AtlasAndBushGroupsFailIndependently" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.AtlasAndBushGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:08Z" duration="0.196724" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2289" name="AtlasAndBushGroupsFailIndependently(False)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.AtlasAndBushGroupsFailIndependently(False)" methodname="AtlasAndBushGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="395465523" result="Failed" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:08Z" duration="0.097343" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.AtlasAndBushGroupsFailIndependently (System.Boolean missingAtlas) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2290" name="AtlasAndBushGroupsFailIndependently(True)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.AtlasAndBushGroupsFailIndependently(True)" methodname="AtlasAndBushGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="99355780" result="Failed" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:08Z" duration="0.096731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.AtlasAndBushGroupsFailIndependently (System.Boolean missingAtlas) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2255" name="BushUnderPlayerRetainsItsOwnReader" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.BushUnderPlayerRetainsItsOwnReader" methodname="BushUnderPlayerRetainsItsOwnReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="2090982209" result="Failed" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:08Z" duration="0.133558" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.BushUnderPlayerRetainsItsOwnReader () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2279" name="ChangedOrUndisclosedGroundRemainsTruthful" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:09Z" duration="0.683446" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2273" name="ChangedOrUndisclosedGroundRemainsTruthful(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful(&quot;hidden&quot;)" methodname="ChangedOrUndisclosedGroundRemainsTruthful" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1487545895" result="Failed" start-time="2026-11-15 09:27:08Z" end-time="2026-11-15 09:27:09Z" duration="0.200517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2274" name="ChangedOrUndisclosedGroundRemainsTruthful(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful(&quot;memory&quot;)" methodname="ChangedOrUndisclosedGroundRemainsTruthful" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="907730904" result="Failed" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:09Z" duration="0.096818" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2275" name="ChangedOrUndisclosedGroundRemainsTruthful(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful(&quot;color&quot;)" methodname="ChangedOrUndisclosedGroundRemainsTruthful" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1431117313" result="Failed" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:09Z" duration="0.095665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2276" name="ChangedOrUndisclosedGroundRemainsTruthful(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful(&quot;coating&quot;)" methodname="ChangedOrUndisclosedGroundRemainsTruthful" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1839605595" result="Failed" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:09Z" duration="0.096983" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2277" name="ChangedOrUndisclosedGroundRemainsTruthful(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful(&quot;duplicate&quot;)" methodname="ChangedOrUndisclosedGroundRemainsTruthful" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="744968265" result="Failed" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:09Z" duration="0.095751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2278" name="ChangedOrUndisclosedGroundRemainsTruthful(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful(&quot;solid&quot;)" methodname="ChangedOrUndisclosedGroundRemainsTruthful" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="817836867" result="Failed" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:09Z" duration="0.094373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.ChangedOrUndisclosedGroundRemainsTruthful (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2300" name="CompleteAtlasDoesNotPromoteUnrelatedOwners" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:10Z" duration="0.914059" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2292" name="CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;RootFace&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;RootFace&quot;)" methodname="CompleteAtlasDoesNotPromoteUnrelatedOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1004339461" result="Failed" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:09Z" duration="0.094842" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2293" name="CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;TheRooted&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;TheRooted&quot;)" methodname="CompleteAtlasDoesNotPromoteUnrelatedOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="555307789" result="Failed" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:09Z" duration="0.094834" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2294" name="CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;FoundingPlume&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;FoundingPlume&quot;)" methodname="CompleteAtlasDoesNotPromoteUnrelatedOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1568727431" result="Failed" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:09Z" duration="0.096182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2295" name="CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;Rock&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;Rock&quot;)" methodname="CompleteAtlasDoesNotPromoteUnrelatedOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="860334547" result="Failed" start-time="2026-11-15 09:27:09Z" end-time="2026-11-15 09:27:10Z" duration="0.095670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2296" name="CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;BrinePool&quot;)" methodname="CompleteAtlasDoesNotPromoteUnrelatedOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1996517061" result="Failed" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:10Z" duration="0.095204" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2297" name="CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;SteamVent&quot;)" methodname="CompleteAtlasDoesNotPromoteUnrelatedOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1822349593" result="Failed" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:10Z" duration="0.124915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2298" name="CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;Tepuibone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;Tepuibone&quot;)" methodname="CompleteAtlasDoesNotPromoteUnrelatedOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="706907983" result="Failed" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:10Z" duration="0.211491" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2299" name="CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;StairsDown&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners(&quot;StairsDown&quot;)" methodname="CompleteAtlasDoesNotPromoteUnrelatedOwners" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="779717919" result="Failed" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:10Z" duration="0.097129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.CompleteAtlasDoesNotPromoteUnrelatedOwners (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2272" name="EndingAndOtherAddressesCannotBorrowThisInstance" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:11Z" duration="0.578929" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2266" name="EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.03.3.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.03.3.0&quot;)" methodname="EndingAndOtherAddressesCannotBorrowThisInstance" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1341493117" result="Failed" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:10Z" duration="0.095979" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance (System.String id) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2267" name="EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.3.3.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.3.3.1&quot;)" methodname="EndingAndOtherAddressesCannotBorrowThisInstance" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="122568709" result="Failed" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:10Z" duration="0.097794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance (System.String id) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2268" name="EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.3.3.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.3.3.2&quot;)" methodname="EndingAndOtherAddressesCannotBorrowThisInstance" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1735573620" result="Failed" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:10Z" duration="0.095216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance (System.String id) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2269" name="EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.2.3.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.2.3.0&quot;)" methodname="EndingAndOtherAddressesCannotBorrowThisInstance" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1702019976" result="Failed" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:10Z" duration="0.096292" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance (System.String id) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2270" name="EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.4.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance(&quot;Overworld.4.4.0&quot;)" methodname="EndingAndOtherAddressesCannotBorrowThisInstance" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1913621002" result="Failed" start-time="2026-11-15 09:27:10Z" end-time="2026-11-15 09:27:11Z" duration="0.095574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance (System.String id) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2271" name="EndingAndOtherAddressesCannotBorrowThisInstance(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance(&quot;foreign&quot;)" methodname="EndingAndOtherAddressesCannotBorrowThisInstance" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1920975537" result="Failed" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:11Z" duration="0.094674" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:29
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.EndingAndOtherAddressesCannotBorrowThisInstance (System.String id) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2282" name="HiddenCompetingGroundIsNotDisclosed" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.HiddenCompetingGroundIsNotDisclosed" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:11Z" duration="0.192346" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2280" name="HiddenCompetingGroundIsNotDisclosed(False)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.HiddenCompetingGroundIsNotDisclosed(False)" methodname="HiddenCompetingGroundIsNotDisclosed" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="93604175" result="Failed" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:11Z" duration="0.094487" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.HiddenCompetingGroundIsNotDisclosed (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:69
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2281" name="HiddenCompetingGroundIsNotDisclosed(True)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.HiddenCompetingGroundIsNotDisclosed(True)" methodname="HiddenCompetingGroundIsNotDisclosed" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="65318969" result="Failed" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:11Z" duration="0.094625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.HiddenCompetingGroundIsNotDisclosed (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:69
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2301" name="NativeEndingChamberHasNoRootSurfaceGrant" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.NativeEndingChamberHasNoRootSurfaceGrant" methodname="NativeEndingChamberHasNoRootSurfaceGrant" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1736956753" result="Failed" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:11Z" duration="0.094203" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.NativeEndingChamberHasNoRootSurfaceGrant () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:81
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2288" name="OptionalWorldArtMissingKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.OptionalWorldArtMissingKeepsFallback" methodname="OptionalWorldArtMissingKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="322799900" result="Passed" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:11Z" duration="0.111746" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2265" name="SavedLairAuthorityWinsEvenAfterRootLabelRestored" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.SavedLairAuthorityWinsEvenAfterRootLabelRestored" methodname="SavedLairAuthorityWinsEvenAfterRootLabelRestored" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1017643756" result="Failed" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:11Z" duration="0.234484" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.SavedLairAuthorityWinsEvenAfterRootLabelRestored () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:59
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2287" name="WallStateRevokesLiveArt" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WallStateRevokesLiveArt" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:12Z" duration="0.399457" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2283" name="WallStateRevokesLiveArt(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WallStateRevokesLiveArt(&quot;hidden&quot;)" methodname="WallStateRevokesLiveArt" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="2015287715" result="Failed" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:11Z" duration="0.100217" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WallStateRevokesLiveArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2284" name="WallStateRevokesLiveArt(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WallStateRevokesLiveArt(&quot;memory&quot;)" methodname="WallStateRevokesLiveArt" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1140327042" result="Failed" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:11Z" duration="0.098794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WallStateRevokesLiveArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2285" name="WallStateRevokesLiveArt(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WallStateRevokesLiveArt(&quot;color&quot;)" methodname="WallStateRevokesLiveArt" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="314595074" result="Failed" start-time="2026-11-15 09:27:11Z" end-time="2026-11-15 09:27:12Z" duration="0.096805" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WallStateRevokesLiveArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2286" name="WallStateRevokesLiveArt(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WallStateRevokesLiveArt(&quot;material&quot;)" methodname="WallStateRevokesLiveArt" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1783783153" result="Failed" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:12Z" duration="0.096482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WallStateRevokesLiveArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2264" name="WarmCurrentAuthorityRevokesBothWorldAndReader" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:13Z" duration="0.831957" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2256" name="WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;name&quot;)" methodname="WarmCurrentAuthorityRevokesBothWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="298059320" result="Failed" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:12Z" duration="0.094164" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2257" name="WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;poi&quot;)" methodname="WarmCurrentAuthorityRevokesBothWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1128367787" result="Failed" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:12Z" duration="0.094648" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2258" name="WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;profile&quot;)" methodname="WarmCurrentAuthorityRevokesBothWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="628039383" result="Failed" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:12Z" duration="0.094635" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2259" name="WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;absent&quot;)" methodname="WarmCurrentAuthorityRevokesBothWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="192991949" result="Failed" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:12Z" duration="0.095031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2260" name="WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;graph&quot;)" methodname="WarmCurrentAuthorityRevokesBothWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="1372324093" result="Failed" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:12Z" duration="0.095001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2261" name="WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;tiles&quot;)" methodname="WarmCurrentAuthorityRevokesBothWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="945613277" result="Failed" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:12Z" duration="0.094909" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2262" name="WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;pois&quot;)" methodname="WarmCurrentAuthorityRevokesBothWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="397131482" result="Failed" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:12Z" duration="0.095432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2263" name="WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader(&quot;biome&quot;)" methodname="WarmCurrentAuthorityRevokesBothWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelRootSurfaceTests" runstate="Runnable" seed="2120695542" result="Failed" start-time="2026-11-15 09:27:12Z" end-time="2026-11-15 09:27:13Z" duration="0.164508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Root surface remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:27
+at CavesOfOoo.Tests.FlatPixelRootSurfaceTests.WarmCurrentAuthorityRevokesBothWorldAndReader (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelRootSurfaceTests.cs:52
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

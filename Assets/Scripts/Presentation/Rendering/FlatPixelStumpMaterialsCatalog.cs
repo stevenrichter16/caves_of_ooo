@@ -18,6 +18,8 @@ namespace CavesOfOoo.Rendering
         string[,] fellingWaterOwnerIds;
         public const string BlackwaterResourcePath = "Sprites/Live16x24/felling-blackwater";
         bool siteLedgesOnly;
+        internal FlatPixelStumpMaterialsCatalog AdmittingRootSurface()
+        { admits = FlatPixelSiteAdmission.IsRootSurface; return this; }
         internal FlatPixelStumpMaterialsCatalog AdmittingOlderdeepLedges()
         { admits = FlatPixelSiteAdmission.IsOlderdeepLedges; siteLedgesOnly = true; return this; }
         internal FlatPixelStumpMaterialsCatalog AdmittingCathedralLedges()
@@ -556,6 +558,8 @@ namespace CavesOfOoo.Rendering
                 || owner.BlueprintName != "TankBrocchinia" && owner.HasPart<WellPart>()
                 || owner.HasPart<RepairablePart>() || owner.HasPart<DoorPart>() || owner.HasPart<ContainerPart>()
                 || owner.HasPart<ConversationPart>() || owner.HasPart<TraderPart>()
+                || owner.HasPart<RootFacePart>() || owner.HasPart<SeventhPositionPart>()
+                || owner.HasPart<HearthPatchPart>() || owner.HasPart<FoundingPlumePart>()
                 || owner.HasPart("Restable") || owner.HasTag("Restable") || owner.HasPart<RegionalSignpostPart>()
                 || owner.HasPart<CampfirePart>() || owner.HasPart<TorchLightPart>() || owner.HasPart<LightSourcePart>()
                 || owner.HasPart<AlchemyStillPart>() || owner.HasPart<SoddenPreparationPart>() || owner.HasPart<TriggerOnStepPart>()
