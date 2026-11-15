@@ -1,3 +1,15 @@
+# Current Sumphold graphics delivery — dd8028a5e
+
+**Current graphics delivery — 2026-11-15T02:03:02.699655+00:00:** Source `dd8028a5e` (Sumphold board palette + shelter-contact shadow, retaining water/grade) is current Mac/Linux, both zero errors/four warnings. Initial one-error Mac output is preserved/excluded; accepted retry1 has zero errors. Actual Mac wall/board full readers,15.6↔14.6 travel, zoom,F5turn3900HP19Height/fresh41,15 verified. CUA screenshots observed; no saved MacPNG/pixel comparison. Archive320members/306checksums/187resource pins independently verified; Linux unexecuted, Deck deferred. Restoration57,655objects/79dirty/normal saves+preferences/prior669a verified02:01:39.838738Z; four generated settings+owned neutral metadata restored, owned test saves archived, no cleanup. Editor idle/players stopped. NEXT actual Sumphold side-room/waterfront whole-scene review, then largest evidenced material/composition gap; native service trade/chat and weak single-counter candidate already reviewed. R11/whole-area/V0–V7 remain open. Hourly graphics ACTIVE; last actual hourly2026-11-15T01:17:24Z, next after02:17:24Z. See Docs/Verification/GraphicsExecution/BatchDD8028/README.md.
+
+- [Current Mac application](../Builds/Verification/2026-11-15-graphics-dd8028a5e-current-retry1/CavesOfOoo.app).
+- [Current Linux archive](../Builds/SteamDeck/2026-11-15-graphics-dd8028a5e-current/CavesOfOoo-Linux-flat16x24-current.tar.gz).
+- [Builds, actual Mac route and preservation evidence](Verification/GraphicsExecution/BatchDD8028/README.md).
+
+The Linux archive is162170700bytes, SHA256 `a170d0508ffe48526b3fd812601b2537bb1ea2924ed75d68ac57648732d2dcd2`. Previous builds and the excluded first Mac attempt remain preserved. Sourcecommitdd8028 is distinct from the later delivery-record commit.
+
+## Previous preserved deliveries
+
 # Sumphold palette and water delivery — 669a18696
 
 Current Mac/Linux Development builds contain accepted Sumphold palette `dc9c8de76` and quiet-water polish `669a18696`. Both builds succeeded with zero errors and six warnings. Source `669a186969050be8523154694a00091a8a8e2724` was verified on origin/main before building. Prior packages remain preserved.
