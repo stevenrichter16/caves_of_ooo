@@ -161,7 +161,7 @@ namespace CavesOfOoo.Tests
             }
             Assert.AreEqual(195,walls);Assert.AreEqual(103,ridges);Assert.AreEqual(57,water);Assert.Greater(selected,200);
             foreach(var l in FellingSceneDefinition.Load().landmarks)
-            {Assert.True(world.TryResolvePresentation(zone,l.x,l.y,out var v));Assert.False(v.LocalGround);}
+            {Assert.True(world.TryResolvePresentation(zone,l.x,l.y,out var v));Assert.True(v.LocalGround);Assert.False(v.NativeForeground);Assert.NotNull(v.ForegroundTile);}
         }
         [TestCase("id")] [TestCase("tag")] [TestCase("wall")] [TestCase("solid-tag")]
         [TestCase("physics")] [TestCase("render")] [TestCase("layer")] [TestCase("variants")]

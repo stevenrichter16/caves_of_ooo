@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="21" result="Failed(Child)" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 18:48:16Z" end-time="2026-11-15 18:48:42Z" duration="26.2598927">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37965" result="Failed" site="Child" start-time="2026-11-15 18:48:16Z" end-time="2026-11-15 18:48:42Z" duration="26.259893" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46476" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37965" result="Failed" site="Child" start-time="2026-11-15 18:48:16Z" end-time="2026-11-15 18:48:42Z" duration="26.188242" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46477" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37965" result="Failed" site="Child" start-time="2026-11-15 18:48:16Z" end-time="2026-11-15 18:48:42Z" duration="26.123457" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46478" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37965" result="Failed" site="Child" start-time="2026-11-15 18:48:39Z" end-time="2026-11-15 18:48:42Z" duration="3.138107" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33417" name="FlatPixelFellingCircleGroundTests" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-11-15 18:48:40Z" end-time="2026-11-15 18:48:42Z" duration="2.306777" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33418" name="AllSevenPositionsKeepTheirExactGlyphAndReadersAboveActualStone" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.AllSevenPositionsKeepTheirExactGlyphAndReadersAboveActualStone" methodname="AllSevenPositionsKeepTheirExactGlyphAndReadersAboveActualStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1662548541" result="Failed" start-time="2026-11-15 18:48:40Z" end-time="2026-11-15 18:48:40Z" duration="0.240384" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.AllSevenPositionsKeepTheirExactGlyphAndReadersAboveActualStone () [0x0008c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33434" name="ChangedDisclosedMeaningRefusesStone" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-11-15 18:48:40Z" end-time="2026-11-15 18:48:41Z" duration="1.221060" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33422" name="ChangedDisclosedMeaningRefusesStone(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;glyph&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="108027996" result="Failed" start-time="2026-11-15 18:48:40Z" end-time="2026-11-15 18:48:40Z" duration="0.105524" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33423" name="ChangedDisclosedMeaningRefusesStone(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;color&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="698290147" result="Failed" start-time="2026-11-15 18:48:40Z" end-time="2026-11-15 18:48:40Z" duration="0.089490" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33424" name="ChangedDisclosedMeaningRefusesStone(&quot;background&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;background&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1650964240" result="Failed" start-time="2026-11-15 18:48:40Z" end-time="2026-11-15 18:48:40Z" duration="0.086179" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33425" name="ChangedDisclosedMeaningRefusesStone(&quot;detail&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;detail&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1286941219" result="Failed" start-time="2026-11-15 18:48:40Z" end-time="2026-11-15 18:48:40Z" duration="0.216740" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33426" name="ChangedDisclosedMeaningRefusesStone(&quot;tile-color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;tile-color&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1441515541" result="Failed" start-time="2026-11-15 18:48:40Z" end-time="2026-11-15 18:48:41Z" duration="0.096763" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33427" name="ChangedDisclosedMeaningRefusesStone(&quot;variants&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;variants&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="181167951" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:41Z" duration="0.088145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33428" name="ChangedDisclosedMeaningRefusesStone(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;layer&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1833242365" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:41Z" duration="0.087252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33429" name="ChangedDisclosedMeaningRefusesStone(&quot;barren&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;barren&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1366327961" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:41Z" duration="0.086159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33430" name="ChangedDisclosedMeaningRefusesStone(&quot;underfoot&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;underfoot&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1312297804" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:41Z" duration="0.087394" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33431" name="ChangedDisclosedMeaningRefusesStone(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;solid&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1395163020" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:41Z" duration="0.092194" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33432" name="ChangedDisclosedMeaningRefusesStone(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;foreign-part&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1814353277" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:41Z" duration="0.092354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33433" name="ChangedDisclosedMeaningRefusesStone(&quot;wrong-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone(&quot;wrong-floor&quot;)" methodname="ChangedDisclosedMeaningRefusesStone" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="364331736" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:41Z" duration="0.086509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.ChangedDisclosedMeaningRefusesStone (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33440" name="CoveredPositionKeepsActorAndRestoresGlyphWhenActorLeaves" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.CoveredPositionKeepsActorAndRestoresGlyphWhenActorLeaves" methodname="CoveredPositionKeepsActorAndRestoresGlyphWhenActorLeaves" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="764118149" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:41Z" duration="0.086105" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.CoveredPositionKeepsActorAndRestoresGlyphWhenActorLeaves () [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:114
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33438" name="DuplicateOnlyVetoesWhileDisclosedAndPhysicallyPlaced" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.DuplicateOnlyVetoesWhileDisclosedAndPhysicallyPlaced" methodname="DuplicateOnlyVetoesWhileDisclosedAndPhysicallyPlaced" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="703105838" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:41Z" duration="0.115046" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.DuplicateOnlyVetoesWhileDisclosedAndPhysicallyPlaced () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:96
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33441" name="MissingAtlasFogAndWrongCoordinatesNeverPromoteRitualGround" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.MissingAtlasFogAndWrongCoordinatesNeverPromoteRitualGround" methodname="MissingAtlasFogAndWrongCoordinatesNeverPromoteRitualGround" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="927282919" result="Failed" start-time="2026-11-15 18:48:41Z" end-time="2026-11-15 18:48:42Z" duration="0.165759" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.MissingAtlasFogAndWrongCoordinatesNeverPromoteRitualGround () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:121
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33421" name="RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 18:48:42Z" end-time="2026-11-15 18:48:42Z" duration="0.180767" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33419" name="RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual(False)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual(False)" methodname="RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="614626161" result="Failed" start-time="2026-11-15 18:48:42Z" end-time="2026-11-15 18:48:42Z" duration="0.090145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual (System.Boolean seventh) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33420" name="RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual(True)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual(True)" methodname="RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1672744469" result="Failed" start-time="2026-11-15 18:48:42Z" end-time="2026-11-15 18:48:42Z" duration="0.086483" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RemovingMarkerLeavesOnlyRealFloorAndNeverRecreatesRitual (System.Boolean seventh) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33437" name="RolesCannotBeSwappedEvenWhenRenderIsUnchanged" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RolesCannotBeSwappedEvenWhenRenderIsUnchanged" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 18:48:42Z" end-time="2026-11-15 18:48:42Z" duration="0.182283" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33435" name="RolesCannotBeSwappedEvenWhenRenderIsUnchanged(False)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RolesCannotBeSwappedEvenWhenRenderIsUnchanged(False)" methodname="RolesCannotBeSwappedEvenWhenRenderIsUnchanged" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="1223698451" result="Failed" start-time="2026-11-15 18:48:42Z" end-time="2026-11-15 18:48:42Z" duration="0.085577" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RolesCannotBeSwappedEvenWhenRenderIsUnchanged (System.Boolean seventh) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33436" name="RolesCannotBeSwappedEvenWhenRenderIsUnchanged(True)" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RolesCannotBeSwappedEvenWhenRenderIsUnchanged(True)" methodname="RolesCannotBeSwappedEvenWhenRenderIsUnchanged" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="865513595" result="Failed" start-time="2026-11-15 18:48:42Z" end-time="2026-11-15 18:48:42Z" duration="0.092978" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.RolesCannotBeSwappedEvenWhenRenderIsUnchanged (System.Boolean seventh) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33439" name="StateAndAuthorityRevokeAndRestoreWithoutCachedPermission" fullname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.StateAndAuthorityRevokeAndRestoreWithoutCachedPermission" methodname="StateAndAuthorityRevokeAndRestoreWithoutCachedPermission" classname="CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests" runstate="Runnable" seed="649620990" result="Failed" start-time="2026-11-15 18:48:42Z" end-time="2026-11-15 18:48:42Z" duration="0.094017" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  ritual position must retain its real stone substrate
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.Native () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:32
+at CavesOfOoo.Tests.FlatPixelFellingCircleGroundTests.StateAndAuthorityRevokeAndRestoreWithoutCachedPermission () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingCircleGroundTests.cs:106
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -30,6 +30,7 @@ namespace CavesOfOoo.Rendering
         { admits = FlatPixelSiteAdmission.IsStillleafDescent; siteLedgesOnly = true; return this; }
         string[,] fellingDryOwnerIds, fellingSolidOwnerIds;
         byte[,] fellingSolidRoles; // 1 = opaque wall; 2 = blocking, sight-permeable ridge
+        byte[,] fellingRitualRoles; // 1 = bare position; 2 = seventh position
         /// <summary>Make this instance draw its biome's ordinary sinkhole surfaces
         /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
         internal FlatPixelStumpMaterialsCatalog AdmittingSites(BiomeType biome)
@@ -48,6 +49,7 @@ namespace CavesOfOoo.Rendering
             fellingWaterOwnerIds = new string[80, 25];
             fellingSolidOwnerIds = new string[80, 25];
             fellingSolidRoles = new byte[80, 25];
+            fellingRitualRoles = new byte[80, 25];
             foreach (var spec in definition.cells)
             {
                 if (spec.water && spec.solid && !spec.opaque)
@@ -63,7 +65,9 @@ namespace CavesOfOoo.Rendering
             }
             foreach (var landmark in definition.landmarks)
             {
-                fellingDryOwnerIds[landmark.x, landmark.y] = null;
+                byte role = (byte)(landmark.kind == "bare" ? 1 : landmark.kind == "seventh" ? 2 : 0);
+                fellingRitualRoles[landmark.x, landmark.y] = role;
+                if (role == 0) fellingDryOwnerIds[landmark.x, landmark.y] = null;
                 fellingWaterOwnerIds[landmark.x, landmark.y] = null;
                 fellingSolidOwnerIds[landmark.x, landmark.y] = null;
                 fellingSolidRoles[landmark.x, landmark.y] = 0;
@@ -86,6 +90,23 @@ namespace CavesOfOoo.Rendering
             => fellingDryOwnerIds != null && x >= 0 && y >= 0 && x < 80 && y < 25
                 && fellingDryOwnerIds[x, y] != null && owner.ID == fellingDryOwnerIds[x, y]
                 && owner.HasTag(FellingSceneRuntime.TerrainTag);
+
+        // Only the actual authored marker may stand over its real dry floor.
+        // This neither paints a ritual body nor recreates a removed position.
+        bool FellingRitualOwner(Entity owner, int x, int y)
+        {
+            byte role = fellingRitualRoles == null ? (byte)0 : fellingRitualRoles[x, y];
+            bool seventh = role == 2;
+            if (role == 0 || owner.BlueprintName != (seventh ? "SeventhPosition" : "FellingBarePosition")
+                || !PlainOwner(owner, allowBarren: !seventh) || ForeignMeaning(owner, allowSeventh: seventh)
+                || !Terrain(owner, false, false) || !NoMaterialState(owner)
+                || owner.HasTag("Barren") == seventh || owner.HasTag("UnderfootInteractable") != seventh
+                || seventh && Owned<SeventhPositionPart>(owner) == null) return false;
+            var render = Owned<RenderPart>(owner);
+            return Render(render, seventh ? "'" : ".", seventh ? "&W" : "&Y", 2)
+                && string.IsNullOrEmpty(render.GlyphVariants) && string.IsNullOrEmpty(render.BackgroundColor)
+                && string.IsNullOrEmpty(render.DetailColor) && string.IsNullOrEmpty(render.TileColor);
+        }
 
         public const string ResourcePath = "Sprites/Live16x24/stump-materials";
         public const int FrameCount = 71;
@@ -273,6 +294,7 @@ namespace CavesOfOoo.Rendering
             if (materials == null || !ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
             bool fixture = false;
+            bool ritual = false;
             Entity actual = null;
             foreach (var owner in cell.Occupants)
             {
@@ -282,6 +304,11 @@ namespace CavesOfOoo.Rendering
                     if (actual != null || !OrdinaryFloor(owner)
                         || fellingAuthored && !FellingDryOwner(owner, x, y)) return false;
                     actual = owner;
+                }
+                else if (fellingAuthored && (owner.BlueprintName == "FellingBarePosition" || owner.BlueprintName == "SeventhPosition"))
+                {
+                    if (ritual || !FellingRitualOwner(owner, x, y)) return false;
+                    ritual = true;
                 }
                 // The same canonical fixtures used in Spread/Grovelands stand on
                 // real stone; this exception never admits a site or Felling view.
@@ -531,10 +558,10 @@ namespace CavesOfOoo.Rendering
                 && owner.HasTag("Solid") == solid && Owned<PhysicsPart>(owner).Solid == solid;
         static bool SolidObject(Entity owner)
             => !owner.HasTag("Terrain") && !owner.HasTag("Vegetation") && owner.HasTag("Solid") && Owned<PhysicsPart>(owner).Solid;
-        static bool PlainOwner(Entity owner)
+        static bool PlainOwner(Entity owner, bool allowBarren = false)
         {
             if (owner == null || owner.HasTag("Creature") || owner.HasTag("Player") || owner.HasTag("Item")
-                || owner.HasTag("Plantable") || owner.HasTag("Barren") || owner.HasPart<BrainPart>()
+                || owner.HasTag("Plantable") || !allowBarren && owner.HasTag("Barren") || owner.HasPart<BrainPart>()
                 || owner.GetStat("Hitpoints") != null || Owned<ExaminablePart>(owner) == null) return false;
             var render = Owned<RenderPart>(owner); var physics = Owned<PhysicsPart>(owner);
             if (render == null || !render.Visible || physics == null || physics.Takeable
@@ -551,14 +578,14 @@ namespace CavesOfOoo.Rendering
             { var effects = Owned<StatusEffectsPart>(owner); if (effects == null || effects.GetRenderColorOverride() != null) return false; }
             return true;
         }
-        static bool ForeignMeaning(Entity owner, bool allowWaterPool = false)
+        static bool ForeignMeaning(Entity owner, bool allowWaterPool = false, bool allowSeventh = false)
             => owner.HasPart<CropPart>() || owner.HasPart<FieldHarvestPart>() || owner.HasPart<CultivatedSoilPart>()
                 || owner.BlueprintName != "TepuiboneVein" && owner.HasPart<HarvestablePart>()
                 || !allowWaterPool && owner.BlueprintName != "SprayPool" && owner.HasPart<LiquidPoolPart>()
                 || owner.BlueprintName != "TankBrocchinia" && owner.HasPart<WellPart>()
                 || owner.HasPart<RepairablePart>() || owner.HasPart<DoorPart>() || owner.HasPart<ContainerPart>()
                 || owner.HasPart<ConversationPart>() || owner.HasPart<TraderPart>()
-                || owner.HasPart<RootFacePart>() || owner.HasPart<SeventhPositionPart>()
+                || owner.HasPart<RootFacePart>() || !allowSeventh && owner.HasPart<SeventhPositionPart>()
                 || owner.HasPart<HearthPatchPart>() || owner.HasPart<FoundingPlumePart>()
                 || owner.HasPart("Restable") || owner.HasTag("Restable") || owner.HasPart<RegionalSignpostPart>()
                 || owner.HasPart<CampfirePart>() || owner.HasPart<TorchLightPart>() || owner.HasPart<LightSourcePart>()

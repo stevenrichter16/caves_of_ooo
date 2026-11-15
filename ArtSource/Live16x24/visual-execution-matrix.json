@@ -29512,7 +29512,7 @@
   "quillhold_roads": {
     "recordedUtc": "2026-11-15T18:37:35.280866+00:00",
     "source_base": "6b14cd65498d5a4e6a868ce14bd4d0444a2448b9",
-    "status": "bounded Editor accepted; publication and next batched delivery pending",
+    "status": "published8b089ea0e; nextbatched deliverypending",
     "zone": "Overworld.14.9.0",
     "seed": 224401440,
     "scope": "Only canonical current Quillhold/Spread/PrimaryArchive RoadStone selects approved beating-materials32/33. Court Floor and interior StoneFloor, marble, geometry, population and shadows unchanged. Existing live dry owner, reader, selected static-memory and fallback rules preserved. No art changes.",
@@ -29632,5 +29632,159 @@
     "delivery": "Currenta33b46cab Mac/Linux accepted earlier; excludes this slice pending next batch. Linux unexecuted;Deckdeferred.",
     "hourly_report_utc": "2026-11-15T17:51:21Z",
     "next": "Publish exact files then Felling central-circle ground continuity baseline: FellingBlackwater/after-save1320HP40at20,13seed704860946,Overworld3.5.0. Six FellingBarePosition plusSeventhPosition have black backings over real dryTepuiStone. Capture bank/circle/fullreaders before any change; preserve ending interaction/glyphs/routes and acceptedwater. Batch accepted slices next."
+  },
+  "felling_circle_ground": {
+    "recordedUtc": "2026-11-15T18:57:51.026310+00:00",
+    "source_base": "8b089ea0ecba0c6caab6476840f178502ec61878",
+    "status": "bounded Editor accepted; publication and batched delivery pending",
+    "zone": "Overworld.3.5.0",
+    "seed": 704860946,
+    "scope": "Real authored TepuiStone beneath6canonicalBarePosition+1canonicalSeventhPosition only. Exact role/render/part ownership, unique visible marker, no TileState. Removed marker leaves real floor, never recreated. Glyph/readers/ritual mechanics and all other ground/shadow/geometry remain unchanged. Approved Stump0-3 atlas reused unchanged. No memory expansion.",
+    "native_red": {
+      "total": "21",
+      "passed": "0",
+      "failed": "21",
+      "skipped": "0",
+      "start-time": "2026-11-15 18:48:16Z",
+      "end-time": "2026-11-15 18:48:42Z",
+      "duration": "26.2598927",
+      "job": "7a37ba24813041c6b4b1b285c243f6a0",
+      "meaning": "21 failures at shared missing substrate positive premise, not21 distinct defects"
+    },
+    "native_green": {
+      "total": "248",
+      "passed": "248",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-11-15 18:50:40Z",
+      "end-time": "2026-11-15 18:51:00Z",
+      "duration": "20.1099066",
+      "job": "c26f0427ab814f61ac5a84f367d9e483",
+      "suites": [
+        "FlatPixelFellingCircleGroundTests",
+        "FlatPixelFellingGroundTests",
+        "FlatPixelFellingBlackwaterTests",
+        "FlatPixelStumpMaterialsTests",
+        "FellingSiteRulesTests"
+      ]
+    },
+    "native_observation": "Initial discovery-only zero-test run20a550 excluded; new script had not imported. After all refresh/type discovery genuineRED21. GREEN transport disconnected, retained authoritative nativeXML248/248, no overlapping retry.",
+    "actual": {
+      "baseline": "Earned FellingBlackwater/after-save1320HP40at20,13; matched bank20,13/circle32,13/seventh40,9 views and both fullF1readers. BeforeF5checkpoints created1560/1680; after did not repeatthese, sidebar differences disclosed.",
+      "movement": "Right6Down3Right1Down3Right5Up6, thenUp4Right8 via normal input.",
+      "seventh": "Up onto40,8 appliesConfused2;Down40,9\u21921;period\u2192expired. HP40,EndingSpine0, F12false. No ending enacted; reader action label remains reading-only.",
+      "travel": "3.5\u21925.5\u21923.5,120msRight repeated twice; corrected with2normalLeft. No single-neighbor claim.",
+      "save_reload": "F5turn1830HP40at40,12;freshisolatedContinue same.14floor/markerrecords and TileStates exact; world/hotbarpixelidentical,sidebarlogdiff.",
+      "restrictions": "No injection, heal, combat, transfer or destruction; no ending enactment."
+    },
+    "comparisons": {
+      "bank": {
+        "world": {
+          "changed": 3229,
+          "max_rgb": 148
+        },
+        "sidebar": {
+          "changed": 0,
+          "max_rgb": 0
+        },
+        "hotbar": {
+          "changed": 0,
+          "max_rgb": 0
+        }
+      },
+      "circle": {
+        "world": {
+          "changed": 3957,
+          "max_rgb": 147
+        },
+        "sidebar": {
+          "changed": 0,
+          "max_rgb": 0
+        },
+        "hotbar": {
+          "changed": 0,
+          "max_rgb": 0
+        }
+      },
+      "seventh": {
+        "world": {
+          "changed": 4074,
+          "max_rgb": 147
+        },
+        "sidebar": {
+          "changed": 14912,
+          "max_rgb": 182
+        },
+        "hotbar": {
+          "changed": 0,
+          "max_rgb": 0
+        }
+      },
+      "bare-reader": {
+        "world": {
+          "changed": 942,
+          "max_rgb": 128
+        },
+        "sidebar": {
+          "changed": 11368,
+          "max_rgb": 219
+        },
+        "hotbar": {
+          "changed": 0,
+          "max_rgb": 0
+        }
+      },
+      "seventh-reader": {
+        "world": {
+          "changed": 1305,
+          "max_rgb": 127
+        },
+        "sidebar": {
+          "changed": 8025,
+          "max_rgb": 215
+        },
+        "hotbar": {
+          "changed": 0,
+          "max_rgb": 0
+        }
+      },
+      "reload": {
+        "world": {
+          "changed": 0,
+          "max_rgb": 0
+        },
+        "sidebar": {
+          "changed": 22576,
+          "max_rgb": 243
+        },
+        "hotbar": {
+          "changed": 0,
+          "max_rgb": 0
+        }
+      }
+    },
+    "profile": "97.4073856sEditor after-only56291samples,noWrap; rendererP95.089791ms max216.445916ms;Mainmax2266.133459ms;GCmax742540817bytes. Includesinitialfixture\u2192Continue. No performance improvement/R11closure.",
+    "source_review": "0P1/P2 independent build_comparison_plan; runtime1965ef6f\u20267a348 tests47da902c\u20268849.",
+    "preservation": {
+      "utc": "2026-11-15T18:55:47.524498+00:00",
+      "foreign_count": 83,
+      "foreign_mismatch": [],
+      "normal_saves": {
+        "normal-editor": true,
+        "normal-standalone": true
+      },
+      "preference_metadata_changes": {
+        "com.DefaultCompany.2D-URP": [],
+        "unity.DefaultCompany.caves-of-ooo": [
+          "unity.player_sessionid",
+          "PT_Run",
+          "unity.player_session_count",
+          "unity_connect.session_id"
+        ]
+      }
+    },
+    "delivery": "Current acceptedMac/Linuxa33b46cab excludesQuillhold/Felling. Next batched delivery pending. Linuxunexecuted;Deckdeferred.",
+    "next": "After visual acceptance publish exact ownedfiles, batchcurrentMacLinux/actualMac thenfreshLampwell12.3.2hearthcircle baseline. OverallV0-V7incomplete.",
+    "visual_review": "0visibleP1/P2 independent: six darker cross marks distinct from floorflecks, separate subtle yellowseventh; no visible shore/wall/fog regression. Bank outside7cells627pixelsmax1RGB;circle/seventh actorpositionchanges +smallRGBvariance. Reloadworld/hotbar0,sidebar22576loglayout. No whole-area/ending acceptance claim."
   }
 }
