@@ -1562,6 +1562,13 @@ namespace CavesOfOoo.Rendering
                     foreground = timberTile; foregroundColor = new Color(.35f, .35f, .35f, 1f);
                     kind = FlatPixelGreyboxKind.Wall; native = true;
                 }
+                if (owner?.BlueprintName == QuillholdCompositionPlan.WallBlueprint && zone.ZoneID == QuillholdCompositionPlan.ZoneID
+                    && WildFaunaArt() is FlatPixelWildFaunaCatalog marbleMemory
+                    && marbleMemory.TryResolveRememberedQuillholdWall(zone, x, y, fallback, out var marbleTile))
+                {
+                    foreground = marbleTile; foregroundColor = new Color(.35f, .35f, .35f, 1f);
+                    kind = FlatPixelGreyboxKind.Wall; native = true;
+                }
                 var memory = SillEnvelopeArtFor(zone);
                 if (memory != null && memory.TryResolveRemembered(zone, x, y, owner,
                     out var memoryGround, out var memoryWall))

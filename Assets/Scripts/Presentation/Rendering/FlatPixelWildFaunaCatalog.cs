@@ -356,6 +356,43 @@ namespace CavesOfOoo.Rendering
             return tile != null;
         }
 
+        internal bool TryResolveRememberedQuillholdWall(Zone zone, int x, int y,
+            in FlatPixelGreyboxCell selected, out Tile tile)
+        {
+            tile = null;
+            var owner = selected.Owner;
+            if (disposed || !selected.Remembered || owner?.BlueprintName != QuillholdCompositionPlan.WallBlueprint
+                || zone?.ZoneID != QuillholdCompositionPlan.ZoneID
+                || !FlatPixelSettlementGroundCatalog.IsSupportedZone(zone)
+                || !AreaCompositionScope.IsQuillholdSite(WorldLocationContext.For(zone).WorldMap.GetPOI(14, 9))
+                || WorldLocationContext.For(zone).WorldMap.GetBiome(14, 9) != BiomeType.Spread) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || !cell.Explored || cell.IsVisible || cell.ParentZone != zone
+                || cell.X != x || cell.Y != y || owner.SpatialZone != zone
+                || !ReferenceEquals(zone.GetEntityCell(owner), cell) || !owner.HasTag("Wall")) return false;
+            var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
+            if (r == null || !r.Visible || r.RenderLayer != 1 || p == null || p.Takeable
+                || p.InInventory != null || p.Equipped != null || Owned<DestructiblePart>(owner) == null
+                || Owned<MaterialPart>(owner)?.MaterialID != "MemoryMarble"
+                || !string.IsNullOrEmpty(r.VisualID) || !string.IsNullOrEmpty(r.VisualVariant)
+                || !string.IsNullOrEmpty(r.GlyphVariants) || !string.IsNullOrEmpty(r.TileColor)
+                || !string.IsNullOrEmpty(r.DetailColor)) return false;
+            // Static foreign-family and part-ownership checks only; never read
+            // hidden damage, thermal, solidity, status values or nearby cells.
+            if (owner.HasPart<BrainPart>() || owner.HasPart<Body>() || owner.HasPart<GasPoolPart>()
+                || owner.HasPart<TileStateSourcePart>() || owner.HasPart<TriggerOnStepPart>()
+                || owner.HasPart<SealedLibraryBarrierPart>() || owner.HasPart<DoorPart>()
+                || owner.HasPart<LockPart>() || owner.HasPart<ContainerPart>()
+                || owner.HasPart<RepairablePart>() || owner.HasPart<CropPart>()
+                || owner.HasPart<StatusEffectsPart>() && Owned<StatusEffectsPart>(owner) == null) return false;
+            if (owner.HasPart<SpatialFootprintPart>())
+            { var f = Owned<SpatialFootprintPart>(owner); if (f == null || f.Offsets.Length != 1 || f.Offsets[0] != Vector2Int.zero) return false; }
+            if (!Props.TryGet(owner.BlueprintName, "", out var row) || r.RenderString != row.Glyph
+                || r.ColorString != row.Color || (r.BackgroundColor ?? "") != (row.Background ?? "")) return false;
+            tile = PropTile(row, 0);
+            return tile != null;
+        }
+
         public bool TryResolve(Zone zone, Entity owner, out Tile tile)
         {
             tile = null;

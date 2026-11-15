@@ -8,6 +8,7 @@ namespace CavesOfOoo.Core
     /// circulation only: no Reader channel, sealed library or expedition quest.</summary>
     public sealed class QuillholdCompositionPlan
     {
+        public const string WallBlueprint="QuillholdArchiveWall";
         public const string ZoneID="Overworld.14.9.0",ProfileID="PrimaryArchive";
         public sealed class Room
         {
@@ -77,7 +78,7 @@ namespace CavesOfOoo.Core
             {
                 bool edge=xx==x||xx==x+w-1||yy==y||yy==y+h-1;
                 bool door=facing=='E'?xx==r.DoorX&&Math.Abs(yy-r.DoorY)<=1:yy==r.DoorY&&Math.Abs(xx-r.DoorX)<=1;
-                if(edge&&!door)Put(xx,yy,"QuillholdArchiveWall");
+                if(edge&&!door)Put(xx,yy,WallBlueprint);
                 else if(!edge)interiors[xx,yy]=true;
                 if(door)approaches[xx,yy]=reserved[xx,yy]=true;
             }

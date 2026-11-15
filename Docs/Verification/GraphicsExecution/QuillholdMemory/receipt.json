@@ -1,0 +1,82 @@
+{
+  "recordedUtc": "2026-11-15T06:59:19.537923+00:00",
+  "source_base": "b14f8d55847b4d9551998cbc6705d2877cc45b67",
+  "status": "bounded Editor accepted; publication and packaging pending",
+  "zone": "Overworld.14.9.0",
+  "seed": 224401440,
+  "scope": "Current authored Spread Quillhold Village/PrimaryArchive only. Conservative fallback-selected explored archive walls borrow existing frame122 with one0.35dim. No hidden dynamic-state reads, ground/collision/shadow/reader authority changes or art edits.",
+  "native_red": {
+    "job": "3e4a7ec9d1b54c33b518af1555b19580",
+    "failed": 32,
+    "passed": 7,
+    "path": "Docs/Verification/GraphicsExecution/QuillholdMemory/native-red.xml"
+  },
+  "review_red": {
+    "job": "1780b90153944b7b867a77dfb33243c8",
+    "failed": 5,
+    "passed": 40,
+    "path": "Docs/Verification/GraphicsExecution/QuillholdMemory/native-review-red.xml"
+  },
+  "native_green": {
+    "job": "74cbfabc6e124a42bc4e4a1222822025",
+    "passed": 179,
+    "failed": 0,
+    "path": "Docs/Verification/GraphicsExecution/QuillholdMemory/native-green.xml",
+    "aggregation": "final nonadditive run"
+  },
+  "actual": {
+    "baseline": "reuse accepted palette fresh captures: QuillholdWalls/after-interior.png from BeforeInteriorCheckpoint4590; QuillholdWalls/reload.png from AfterCheckpoint4950",
+    "reader": "live wall17,15 MemoryMarble45/45 unchanged",
+    "movement": "CopyHall19,17 Up6Right20 to39,11, visible/memory transitions observed",
+    "travel": "ordinary14.9\u219213.9\u219214.9; LeftRight; no F12/injection",
+    "save_reload": "F5turn4950HP40/freshContinue39,11",
+    "selected_records": 184,
+    "records_exact_by_id": true,
+    "comparisons": {
+      "center": {
+        "world": 15256,
+        "sidebar": 0,
+        "hotbar": 0
+      },
+      "interior": {
+        "world": 17856,
+        "sidebar": 0,
+        "hotbar": 0
+      },
+      "reload": {
+        "world": 0,
+        "sidebar": 23184,
+        "hotbar": 0
+      }
+    }
+  },
+  "performance": {
+    "seconds": 56.439997,
+    "renderer_p95_ms": 0.073,
+    "renderer_max_ms": 3.034041,
+    "main_thread_max_ms": 18831.761916,
+    "scope": "short after-only Editor reader/idle observation including CUA window recovery, not representative travel or packaged benchmark; R11 open"
+  },
+  "reviews": {
+    "source": "sumphold_grade_source_review:foreign-family P2 fixed after5 genuineRED; final0P1/P2",
+    "visual": "sumphold_baseline_review:0visibleP1/P2 on matched interior/reader; center afterwalk contextual only"
+  },
+  "limits": [
+    "Initial native38run had1 nonexistent LibraryWall fixture error; corrected to LibraryMemoryMarbleWall before39caseRED. Initial receipt retained, not counted as production defect.",
+    "Review test abstract TriggerOnStepPart compile typo corrected to concrete RuneFlameTriggerPart.",
+    "CUA noWindowsAvailable interrupted reader at18,15. Readonly capture established actual cursor; rebound Unity and completed Left/Return/x/F1 at17,15. No state injection.",
+    "Initial92GREEN superseded by final179; counts not summed.",
+    "Memory is existing static policy, not historical entity-state snapshot. No current hidden structure/status values were read.",
+    "Center-after-walk is not a matched pair. Matched center uses fresh4950 checkpoints.",
+    "18.832s MainThread peak includes Editor/tool window recovery; cause not attributed. Short56.440s profile is not a gameplay performance acceptance."
+  ],
+  "preservation": "80 foreign hashes, normal gameplay saves/preferences and all art exact; test/telemetry only changed; Editor stopped/rootnull/clean",
+  "coverage": "bounded explored-memory wall continuity only",
+  "polish": "in-progress; floor/road separation, repeated courses, composition remain",
+  "population": "unchanged",
+  "shadows": "unchanged; no remembered shadows",
+  "whole_area": "incomplete",
+  "delivery": "current4233a848d Mac/Linux excludes both Quillhold slices; batch next",
+  "hourly_report_utc": "2026-11-15T06:18:44Z",
+  "next": "Publish exact files; batch Quillhold palette+memory Mac/Linux; then fresh Tine13.7 waterfront baseline from earned14.9 worldmapLeft1Up2."
+}
