@@ -167,8 +167,8 @@ namespace CavesOfOoo.Rendering
             var (wx, wy, _) = WorldMap.FromZoneID(zone.ZoneID);
             var map = WorldLocationContext.For(zone).WorldMap;
             var biome = map.GetBiome(wx, wy);
-            // Intake, Cinderhold, Tally and Quillhold packed roads read as worn stone/earth,
-            // distinct from their warm yards. Reuse approved road art; no geometry change.
+            // Intake, Cinderhold, Tally, Quillhold and Gantry roads read as worn stone/earth,
+            // distinct from adjacent yards. Reuse approved road art; no geometry change.
             bool intakeRoad = zone.ZoneID == MarrowstyeCompositionPlan.ZoneID
                 && AreaCompositionScope.IsMarrowstyeSite(map.GetPOI(wx, wy))
                 || zone.ZoneID == CinderholdCompositionPlan.ZoneID
@@ -176,7 +176,9 @@ namespace CavesOfOoo.Rendering
                 || zone.ZoneID == TallyCompositionPlan.ZoneID && biome == BiomeType.Spread
                 && AreaCompositionScope.IsTallySite(map.GetPOI(wx, wy))
                 || zone.ZoneID == QuillholdCompositionPlan.ZoneID && biome == BiomeType.Spread
-                && AreaCompositionScope.IsQuillholdSite(map.GetPOI(wx, wy));
+                && AreaCompositionScope.IsQuillholdSite(map.GetPOI(wx, wy))
+                || zone.ZoneID == GantryCompositionPlan.ZoneID && biome == BiomeType.Spread
+                && AreaCompositionScope.IsGantrySite(map.GetPOI(wx, wy));
             return MaterialFor(floor, x, y, biome, intakeRoad);
         }
 
@@ -449,7 +451,9 @@ namespace CavesOfOoo.Rendering
                     || !OrdinaryGround(owner)) return false;
                 floor = owner;
             }
-            return floor != null && MaterialFor(floor, x, y, map.GetBiome(wx, wy), intakeRoad: !gantry && !sumphold) != null;
+            var biome = map.GetBiome(wx, wy);
+            return floor != null && MaterialFor(floor, x, y, biome,
+                intakeRoad: !sumphold && (!gantry || biome == BiomeType.Spread)) != null;
         }
 
         static bool IsGroundName(string name) => name == "Grass" || name == "StoneFloor" || name == "Sand" || name == "RoadStone" || name == "Floor";

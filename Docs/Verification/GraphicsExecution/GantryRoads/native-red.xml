@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Failed(Child)" total="23" passed="6" failed="17" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:47Z" duration="1.9649088">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38137" result="Failed" site="Child" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:47Z" duration="1.964909" total="23" passed="6" failed="17" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46681" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38137" result="Failed" site="Child" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:47Z" duration="1.955587" total="23" passed="6" failed="17" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46682" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38137" result="Failed" site="Child" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:47Z" duration="1.951805" total="23" passed="6" failed="17" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46683" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38137" result="Failed" site="Child" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:47Z" duration="1.949178" total="23" passed="6" failed="17" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33776" name="FlatPixelGantryRoadTests" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:47Z" duration="1.939093" total="23" passed="6" failed="17" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="33785" name="ChangedSiteCannotUseRegionalRoad" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.427563" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33780" name="ChangedSiteCannotUseRegionalRoad(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad(&quot;profile&quot;)" methodname="ChangedSiteCannotUseRegionalRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1187127083" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.126956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:39
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33781" name="ChangedSiteCannotUseRegionalRoad(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad(&quot;name&quot;)" methodname="ChangedSiteCannotUseRegionalRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1997111440" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.060977" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:39
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33782" name="ChangedSiteCannotUseRegionalRoad(&quot;type&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad(&quot;type&quot;)" methodname="ChangedSiteCannotUseRegionalRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1463379865" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.148087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:39
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33783" name="ChangedSiteCannotUseRegionalRoad(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad(&quot;graph&quot;)" methodname="ChangedSiteCannotUseRegionalRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1380799175" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.044166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:39
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33784" name="ChangedSiteCannotUseRegionalRoad(&quot;lair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad(&quot;lair&quot;)" methodname="ChangedSiteCannotUseRegionalRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1152874405" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.044105" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ChangedSiteCannotUseRegionalRoad (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:39
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33794" name="CourtsAndInteriorsKeepTheirExistingMaterial" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.CourtsAndInteriorsKeepTheirExistingMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.137903" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33791" name="CourtsAndInteriorsKeepTheirExistingMaterial(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.CourtsAndInteriorsKeepTheirExistingMaterial(&quot;Grass&quot;)" methodname="CourtsAndInteriorsKeepTheirExistingMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1777732713" result="Passed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.047182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33792" name="CourtsAndInteriorsKeepTheirExistingMaterial(&quot;Floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.CourtsAndInteriorsKeepTheirExistingMaterial(&quot;Floor&quot;)" methodname="CourtsAndInteriorsKeepTheirExistingMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="546172620" result="Passed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.043614" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33793" name="CourtsAndInteriorsKeepTheirExistingMaterial(&quot;StoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.CourtsAndInteriorsKeepTheirExistingMaterial(&quot;StoneFloor&quot;)" methodname="CourtsAndInteriorsKeepTheirExistingMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="680301554" result="Passed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.043342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33789" name="ForeignSavedBiomeRetainsItsExistingRoad" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ForeignSavedBiomeRetainsItsExistingRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.089514" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33787" name="ForeignSavedBiomeRetainsItsExistingRoad(Grovelands)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ForeignSavedBiomeRetainsItsExistingRoad(Grovelands)" methodname="ForeignSavedBiomeRetainsItsExistingRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1238164232" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.044111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ForeignSavedBiomeRetainsItsExistingRoad (CavesOfOoo.Core.BiomeType biome) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33788" name="ForeignSavedBiomeRetainsItsExistingRoad(Sodden)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ForeignSavedBiomeRetainsItsExistingRoad(Sodden)" methodname="ForeignSavedBiomeRetainsItsExistingRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1075814301" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.043019" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ForeignSavedBiomeRetainsItsExistingRoad (CavesOfOoo.Core.BiomeType biome) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33779" name="LiveMemoryAndExactReaderAgreeWithoutStateMutation" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.LiveMemoryAndExactReaderAgreeWithoutStateMutation" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.090304" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33777" name="LiveMemoryAndExactReaderAgreeWithoutStateMutation(10)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.LiveMemoryAndExactReaderAgreeWithoutStateMutation(10)" methodname="LiveMemoryAndExactReaderAgreeWithoutStateMutation" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1175986828" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.044351" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.LiveMemoryAndExactReaderAgreeWithoutStateMutation (System.Int32 column) [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33778" name="LiveMemoryAndExactReaderAgreeWithoutStateMutation(11)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.LiveMemoryAndExactReaderAgreeWithoutStateMutation(11)" methodname="LiveMemoryAndExactReaderAgreeWithoutStateMutation" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1806082234" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.043507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.LiveMemoryAndExactReaderAgreeWithoutStateMutation (System.Int32 column) [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33786" name="MissingOptionalRoadDeclinesWithoutBorrowingAnotherMaterial" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.MissingOptionalRoadDeclinesWithoutBorrowingAnotherMaterial" methodname="MissingOptionalRoadDeclinesWithoutBorrowingAnotherMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="733471040" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.042932" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.MissingOptionalRoadDeclinesWithoutBorrowingAnotherMaterial () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33797" name="NumericAliasDoesNotBorrowGantryGravel" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.NumericAliasDoesNotBorrowGantryGravel" methodname="NumericAliasDoesNotBorrowGantryGravel" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="902157487" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:45Z" duration="0.043434" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.NumericAliasDoesNotBorrowGantryGravel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:99
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33790" name="PlayerKeepsNativeRoadAndSlipKeepsItsExistingRoad" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.PlayerKeepsNativeRoadAndSlipKeepsItsExistingRoad" methodname="PlayerKeepsNativeRoadAndSlipKeepsItsExistingRoad" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1108024052" result="Failed" start-time="2026-11-15 21:11:45Z" end-time="2026-11-15 21:11:46Z" duration="0.043604" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.PlayerKeepsNativeRoadAndSlipKeepsItsExistingRoad () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:66
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33802" name="PreviouslyAcceptedRegionalRoadsKeepTheirMaterial" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.PreviouslyAcceptedRegionalRoadsKeepTheirMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 21:11:46Z" end-time="2026-11-15 21:11:46Z" duration="0.219588" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33798" name="PreviouslyAcceptedRegionalRoadsKeepTheirMaterial(&quot;Overworld.12.12.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.PreviouslyAcceptedRegionalRoadsKeepTheirMaterial(&quot;Overworld.12.12.0&quot;)" methodname="PreviouslyAcceptedRegionalRoadsKeepTheirMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1568547335" result="Passed" start-time="2026-11-15 21:11:46Z" end-time="2026-11-15 21:11:46Z" duration="0.046230" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33799" name="PreviouslyAcceptedRegionalRoadsKeepTheirMaterial(&quot;Overworld.6.6.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.PreviouslyAcceptedRegionalRoadsKeepTheirMaterial(&quot;Overworld.6.6.0&quot;)" methodname="PreviouslyAcceptedRegionalRoadsKeepTheirMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="876920135" result="Passed" start-time="2026-11-15 21:11:46Z" end-time="2026-11-15 21:11:46Z" duration="0.042297" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33800" name="PreviouslyAcceptedRegionalRoadsKeepTheirMaterial(&quot;Overworld.12.14.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.PreviouslyAcceptedRegionalRoadsKeepTheirMaterial(&quot;Overworld.12.14.0&quot;)" methodname="PreviouslyAcceptedRegionalRoadsKeepTheirMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="640996008" result="Failed" start-time="2026-11-15 21:11:46Z" end-time="2026-11-15 21:11:46Z" duration="0.045880" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.PreviouslyAcceptedRegionalRoadsKeepTheirMaterial (System.String id) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:110
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33801" name="PreviouslyAcceptedRegionalRoadsKeepTheirMaterial(&quot;Overworld.14.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.PreviouslyAcceptedRegionalRoadsKeepTheirMaterial(&quot;Overworld.14.9.0&quot;)" methodname="PreviouslyAcceptedRegionalRoadsKeepTheirMaterial" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1334139784" result="Passed" start-time="2026-11-15 21:11:46Z" end-time="2026-11-15 21:11:46Z" duration="0.082025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="33795" name="ReskinnedRoadKeepsFallbackAndRecovers" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ReskinnedRoadKeepsFallbackAndRecovers" methodname="ReskinnedRoadKeepsFallbackAndRecovers" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1689905716" result="Failed" start-time="2026-11-15 21:11:46Z" end-time="2026-11-15 21:11:46Z" duration="0.113049" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ReskinnedRoadKeepsFallbackAndRecovers () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:86
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33805" name="ShadowReceiverUsesTheActualRoadResource" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ShadowReceiverUsesTheActualRoadResource" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 21:11:46Z" end-time="2026-11-15 21:11:47Z" duration="0.680039" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33803" name="ShadowReceiverUsesTheActualRoadResource(&quot;beatingRoad&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ShadowReceiverUsesTheActualRoadResource(&quot;beatingRoad&quot;,False)" methodname="ShadowReceiverUsesTheActualRoadResource" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1761039436" result="Failed" start-time="2026-11-15 21:11:46Z" end-time="2026-11-15 21:11:46Z" duration="0.445948" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ShadowReceiverUsesTheActualRoadResource (System.String missing, System.Boolean expectedShade) [0x000ce] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:126
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33804" name="ShadowReceiverUsesTheActualRoadResource(&quot;road&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.ShadowReceiverUsesTheActualRoadResource(&quot;road&quot;,True)" methodname="ShadowReceiverUsesTheActualRoadResource" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="1942633149" result="Failed" start-time="2026-11-15 21:11:46Z" end-time="2026-11-15 21:11:47Z" duration="0.228360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.ShadowReceiverUsesTheActualRoadResource (System.String missing, System.Boolean expectedShade) [0x000ce] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:126
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33796" name="WetRoadKeepsFallbackAndRecovers" fullname="CavesOfOoo.Tests.FlatPixelGantryRoadTests.WetRoadKeepsFallbackAndRecovers" methodname="WetRoadKeepsFallbackAndRecovers" classname="CavesOfOoo.Tests.FlatPixelGantryRoadTests" runstate="Runnable" seed="363881685" result="Failed" start-time="2026-11-15 21:11:47Z" end-time="2026-11-15 21:11:47Z" duration="0.045686" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <beating-materials (UnityEngine.Texture2D)>
+  But was:  <opening-ground (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryRoadTests.Road () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:26
+at CavesOfOoo.Tests.FlatPixelGantryRoadTests.WetRoadKeepsFallbackAndRecovers () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryRoadTests.cs:92
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
