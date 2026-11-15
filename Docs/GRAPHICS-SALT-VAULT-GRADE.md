@@ -1,3 +1,5 @@
+**Delivery update:** Source87ef330b7 current Mac/Linux, Batch87EF33. Actual Mac readers/walk/travel/save/fresh reload passed; Linux unexecuted, Deck deferred. Earlier pending statements below are historical.
+
 # Salt-Vault palette comparison
 
 The actual Salt-Vault15.15 court and archive had a duplicate gold cast merging native sand, stone, masonry and furnishings. Its bounded native grade now uses whitefilter, contrast12, saturation0. Existing art, town layout, water, population, shadows, locks, keys and quest rules are unchanged. Exact authored/current/native/Beating authority preserves legacy and neighboring presentation. PaleCuration is the faction; the authored Profile is empty.

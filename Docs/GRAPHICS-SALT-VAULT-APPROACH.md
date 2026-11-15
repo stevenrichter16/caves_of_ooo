@@ -1,3 +1,5 @@
+**Delivery update:** Source87ef330b7 current Mac/Linux, Batch87EF33. Actual Mac readers/walk/travel/save/fresh reload passed; Linux unexecuted, Deck deferred. Earlier pending statements below are historical.
+
 # Salt-Vault archive entrance
 
 The fresh archive now receives a small real stone landing and short approach, using approved StoneFloor art. Its own room and surviving doorway determine the shape. Bare canonical sand can be replaced; reserved landings, occupants, custom terrain, locks, key, residents and older cached towns remain intact. A blocked core refuses the optional improvement; a blocked stem stops immediately. No new furniture, service, stock, shadow or movement rules.
