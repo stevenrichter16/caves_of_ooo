@@ -9044,13 +9044,13 @@
       ],
       "status_axes": {
         "coverage": "not-audited",
-        "polish": "not-audited",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Correct exact-site remembered wall discontinuity, then remaining floor/road separation and purposeful composition; no whole-area acceptance.",
       "coordinates": [
         14,
         9,
@@ -9064,7 +9064,8 @@
       "related_scope_ids": [
         "settlement/quillhold",
         "area-family/second_exploration/Overworld.14.9.0"
-      ]
+      ],
+      "quillhold_marble_receipt": "Docs/Verification/GraphicsExecution/QuillholdWalls/receipt.json"
     },
     {
       "id": "surface/Overworld.15.9.0",
@@ -18196,13 +18197,13 @@
       ],
       "status_axes": {
         "coverage": "not-audited",
-        "polish": "not-audited",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Enumerate real interior/service footprints and states; walk all approaches and compare native materials/readers.",
+      "next_action": "Correct exact-site remembered wall discontinuity, then remaining floor/road separation and purposeful composition; no whole-area acceptance.",
       "faction": "Palimpsest",
       "profile": "PrimaryArchive",
       "legacy_inventory_pointer": "/settlements/7",
@@ -18218,7 +18219,8 @@
         "status": "not-enumerated",
         "records": [],
         "rule": "Use actual footprint/owner IDs; do not invent separate zone IDs for same-graph interiors."
-      }
+      },
+      "quillhold_marble_receipt": "Docs/Verification/GraphicsExecution/QuillholdWalls/receipt.json"
     },
     {
       "id": "settlement/tally",
@@ -26997,5 +26999,82 @@
     "delivery": "current0d8c55071 excludes Tally/Posy residents; batch next",
     "hourly_report_utc": "2026-11-15T06:18:44Z",
     "next": "Publish and batch with Posy residents, then different-area environmental/composition baseline; SteamDeck deferred."
+  },
+  "quillhold_marble": {
+    "recordedUtc": "2026-11-15T06:46:36.711622+00:00",
+    "source_base": "98d8da15e1df9ca244dd32f17fa790dd2ff20c20",
+    "status": "bounded Editor accepted; publication and packaging pending",
+    "zone": "Overworld.14.9.0",
+    "seed": 224401440,
+    "scope": "Already-native QuillholdArchiveWall frame122 recolored using approved library marble. Full 16x24 geometry, alpha, index and all122496 outside pixels unchanged. No runtime selector or mechanics change.",
+    "source_native": "370 RGB pixels corrected;384 editable semantic quads; saved/reopened Blender PNG and runtime crop exact",
+    "native_red": {
+      "job": "1e6d175826ae497e8d4bf7de0b43c71d",
+      "failed": 1,
+      "passed": 1,
+      "path": "Docs/Verification/GraphicsExecution/QuillholdWalls/native-red.xml"
+    },
+    "native_green": {
+      "job": "b69b3fee31a54174a971034ac5d48fad",
+      "passed": 53,
+      "failed": 0,
+      "path": "Docs/Verification/GraphicsExecution/QuillholdWalls/native-green.xml"
+    },
+    "actual": {
+      "baseline_route": "earned Marrowstye12.12 turn4210HP40, worldmapRight2Up3 to14.9 center39,11; centerF5turn4330; Left20Down6 to CopyHall19,17F5turn4590",
+      "matched_captures": [
+        "before-center.png",
+        "after-center.png",
+        "before-interior.png",
+        "after-interior.png"
+      ],
+      "reader": "wall17,15 archive marble wall, MemoryMarble45/45; before and after native portraits observed",
+      "travel": "ordinary14.9\u219213.9\u219214.9, walk LeftRight, no F12",
+      "save_reload": "F5turn4950HP40/freshContinue39,11",
+      "selected_records": 184,
+      "records_exact_by_id": true,
+      "comparison": {
+        "center": {
+          "world": 30526,
+          "sidebar": 0,
+          "hotbar": 0
+        },
+        "interior": {
+          "world": 25479,
+          "sidebar": 0,
+          "hotbar": 0
+        },
+        "reload": {
+          "world": 0,
+          "sidebar": 23184,
+          "hotbar": 0
+        }
+      }
+    },
+    "performance": {
+      "seconds": 68.86954759999999,
+      "renderer_p95_ms": 0.067666,
+      "renderer_max_ms": 116.97225,
+      "main_thread_max_ms": 2143.217209,
+      "scope": "after-only Apple M5 OSXEditor; tool/Editor scheduling included; no matched performance attribution; R11 open"
+    },
+    "reviews": {
+      "source": "sumphold_grade_source_review:0P1/P2",
+      "visual": "sumphold_baseline_review:0visibleP1/P2; bounded palette accepted"
+    },
+    "limits": [
+      "Live wall was already native; initial audit missing-live-coverage premise corrected before implementation.",
+      "Remembered Quillhold walls still glyphs; test negative uses offsite11.6 fixture, not exactsite policy evidence.",
+      "Uniform floors, repeated brick courses, teal memory segments and sparse composition remain whole-area debt.",
+      "Owner enumeration order changed across reload; all184 records equal after sorting by ID."
+    ],
+    "preservation": "80 foreign tracked hashes and normal gameplay saves/preferences exact; test/telemetry exceptions retained; no cleanup; Editor stopped/rootnull/clean",
+    "coverage": "No new live family coverage; memory gap explicit",
+    "population": "unchanged",
+    "shadows": "unchanged",
+    "whole_area": "incomplete",
+    "delivery": "current4233a848d Mac/Linux excludes this palette; batch after next accepted slice",
+    "hourly_report_utc": "2026-11-15T06:18:44Z",
+    "next": "Publish exact files, then bounded Quillhold memory continuity using approved frame with no hidden dynamic-state reads; move to different areas after acceptance."
   }
 }

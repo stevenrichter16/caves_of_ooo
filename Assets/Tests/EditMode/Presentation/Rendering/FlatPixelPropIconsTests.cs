@@ -90,6 +90,39 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(Resources.Load<Texture2D>(FlatPixelWildFaunaCatalog.PropAtlasResourcePath), portrait.texture, "the reader shows the same art");
         }
 
+        [Test] public void QuillholdArchiveWallsReadAsCloudedMarbleInWorldAndReader()
+        {
+            var town = manager.GetZone("Overworld.14.9.0"); manager.SetActiveZone(town);
+            foreach (var c in town.Cells) c.Explored = c.IsVisible = true;
+            var wall = town.GetAllEntities().First(e => e.BlueprintName == "QuillholdArchiveWall");
+            var (x, y) = town.GetEntityPosition(wall);
+            Assert.True(world.TryResolvePresentation(town, x, y, out var v));
+            Assert.AreSame(wall, v.Owner); Assert.True(v.NativeForeground);
+            Assert.AreEqual(new Rect(160, 288, 16, 24), v.ForegroundTile.sprite.rect);
+            Assert.True(world.TryGetPresentationSubjectSprite(town, wall, x, y, out var reader, out _));
+            Assert.AreSame(v.ForegroundTile.sprite.texture, reader.texture);
+            Assert.AreEqual(v.ForegroundTile.sprite.rect, reader.rect);
+            var pixels = new Texture2D(2, 2);
+            try
+            {
+                Assert.True(pixels.LoadImage(File.ReadAllBytes(Path.Combine(Application.dataPath, "Resources/Sprites/Live16x24/prop-icons.png"))));
+                var colors = pixels.GetPixels(160, 288, 16, 24).Select(c => (Color32)c).ToArray();
+                Assert.True(colors.All(c => c.a == 255), "The full-height joined wall stays opaque.");
+                Assert.AreEqual(123, colors.Count(c => c.Equals(new Color32(126, 140, 136, 255))), "Clouded marble faces reuse the approved library material.");
+                Assert.AreEqual(78, colors.Count(c => c.Equals(new Color32(78, 101, 103, 255))), "Layered shaded courses stay readable.");
+                Assert.AreEqual(15, colors.Count(c => c.Equals(new Color32(213, 224, 201, 255))), "Restrained stone highlights preserve the existing geometry.");
+            }
+            finally { Object.DestroyImmediate(pixels); }
+        }
+
+        [Test] public void QuillholdPaletteDoesNotPromoteRememberedWalls()
+        {
+            var e = Place("QuillholdArchiveWall"); Assert.True(Native(e, out _));
+            var (x, y) = zone.GetEntityPosition(e); zone.GetCell(x, y).IsVisible = false;
+            Assert.True(world.TryResolvePresentation(zone, x, y, out var v));
+            Assert.False(v.NativeForeground, "Memory policy remains separately tracked.");
+        }
+
         [Test] public void ARecolouredPropKeepsItsGlyph()
         {
             var e = Place("Bookshelf"); Assume.That(Native(e, out _));

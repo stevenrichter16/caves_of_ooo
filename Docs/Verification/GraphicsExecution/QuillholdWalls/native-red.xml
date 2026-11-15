@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 06:40:44Z" end-time="2026-11-15 06:40:44Z" duration="0.3564883">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36960" result="Failed" site="Child" start-time="2026-11-15 06:40:44Z" end-time="2026-11-15 06:40:44Z" duration="0.356488" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45263" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36960" result="Failed" site="Child" start-time="2026-11-15 06:40:44Z" end-time="2026-11-15 06:40:44Z" duration="0.341644" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45264" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36960" result="Failed" site="Child" start-time="2026-11-15 06:40:44Z" end-time="2026-11-15 06:40:44Z" duration="0.337740" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45265" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36960" result="Failed" site="Child" start-time="2026-11-15 06:40:44Z" end-time="2026-11-15 06:40:44Z" duration="0.334645" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="34615" name="FlatPixelPropIconsTests" fullname="CavesOfOoo.Tests.FlatPixelPropIconsTests" classname="CavesOfOoo.Tests.FlatPixelPropIconsTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-11-15 06:40:44Z" end-time="2026-11-15 06:40:44Z" duration="0.322043" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="34629" name="QuillholdArchiveWallsReadAsCloudedMarbleInWorldAndReader" fullname="CavesOfOoo.Tests.FlatPixelPropIconsTests.QuillholdArchiveWallsReadAsCloudedMarbleInWorldAndReader" methodname="QuillholdArchiveWallsReadAsCloudedMarbleInWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelPropIconsTests" runstate="Runnable" seed="1634660048" result="Failed" start-time="2026-11-15 06:40:44Z" end-time="2026-11-15 06:40:44Z" duration="0.222531" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Clouded marble faces reuse the approved library material.
+  Expected: 123
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPropIconsTests.QuillholdArchiveWallsReadAsCloudedMarbleInWorldAndReader () [0x00225] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPropIconsTests.cs:111
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCartGoods'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+            </test-case>
+            <test-case id="34630" name="QuillholdPaletteDoesNotPromoteRememberedWalls" fullname="CavesOfOoo.Tests.FlatPixelPropIconsTests.QuillholdPaletteDoesNotPromoteRememberedWalls" methodname="QuillholdPaletteDoesNotPromoteRememberedWalls" classname="CavesOfOoo.Tests.FlatPixelPropIconsTests" runstate="Runnable" seed="42371160" result="Passed" start-time="2026-11-15 06:40:44Z" end-time="2026-11-15 06:40:44Z" duration="0.055667" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCartGoods'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -762,6 +762,7 @@ def main():
                 tpl = frame_rows(fam); key = fam
             pal = palette(key, color[1])
             if fam.startswith("scene:") and key in SCENE_MATERIAL: pal.update(SCENE_MATERIAL[key])
+            if name == "QuillholdArchiveWall" and key == "wall": pal.update(QUILLHOLD_MARBLE)
             items.paint(sheet, tpl, pal, (k % cols) * W, (k // cols) * H, tile_edges=fam in TILE_EDGES)
             if name == "MorrowfastSceneProp" and state in DRY_HEM_BEDS:
                 apply_dry_hem_textile(sheet, tpl, (k % cols) * W, (k // cols) * H)
@@ -846,7 +847,43 @@ def update_morrowfast_beds_only():
     (out/"source-cells.json").write_text(json.dumps({'palette':palette_out,'frames':frames},indent=2)+'\n')
     print('Exported only Dry Hem bedding: frames288/289, index and non-textile pixels preserved')
 
+# Reuse approved library marble on the existing full-height masonry template.
+QUILLHOLD_MARBLE = dict(zip(("A", "a", "H"), ((126,140,136,255), (78,101,103,255), (213,224,201,255))))
+def update_quillhold_wall_only():
+    """Repaint frame122 only, retaining the exact index and every other atlas pixel."""
+    from pathlib import Path
+    import hashlib
+    out=Path(ROOT)/"ArtSource/Live16x24/quillhold-marble"
+    for rel,pin in json.loads((out/"protected-inputs.json").read_text()).items():
+        assert hashlib.sha256((Path(ROOT)/rel).read_bytes()).hexdigest()==pin,rel
+    index=json.load(open(INDEX));assert index["Columns"]==16 and index["FrameHeight"]==24
+    rows=[r for r in index["Icons"] if r["Blueprint"]=="QuillholdArchiveWall"]
+    assert rows==[{"Blueprint":"QuillholdArchiveWall","State":"","Frame":122,"Glyph":"#","Color":"&c","Background":"","Family":"wall"}]
+    old=Image.open(out/"before/prop-icons.png").convert("RGBA")
+    sheet=Image.open(ATLAS).convert("RGBA");assert sheet.size==old.size==(256,480)
+    tpl=frame_rows("wall");pal=palette("wall","c")
+    baseline=Image.new("RGBA",(16,24));items.paint(baseline,tpl,pal,0,0,tile_edges=True)
+    assert baseline.tobytes()==old.crop((160,168,176,192)).tobytes(),"Approved wall template drift"
+    pal.update(QUILLHOLD_MARBLE)
+    corrected=Image.new("RGBA",(16,24));items.paint(corrected,tpl,pal,0,0,tile_edges=True)
+    assert sheet.crop((160,168,176,192)).tobytes() in (baseline.tobytes(),corrected.tobytes()),"Unreviewed wall edits"
+    sheet.paste(corrected,(160,168));cells=[];palette_out={}
+    for y,row in enumerate(tpl):
+        line=[]
+        for x,ch in enumerate(row):
+            c=corrected.getpixel((x,y));assert c[3]==255
+            key="c"+bytes(c[:3]).hex().upper();palette_out[key]=key[1:]
+            line.append([{"A":"marble-face","a":"course-shade","H":"stone-highlight","o":"grout"}[ch],key])
+        cells.append(line)
+    changed={(x,y) for y in range(sheet.height) for x in range(sheet.width) if sheet.getpixel((x,y))!=old.getpixel((x,y))}
+    assert len(changed)==370 and all(160<=x<176 and 168<=y<192 for x,y in changed)
+    assert sheet.getchannel("A").tobytes()==old.getchannel("A").tobytes()
+    sheet.save(ATLAS)
+    (out/"source-cells.json").write_text(json.dumps({"palette":palette_out,"frames":[{"id":"archive-marble-wall","atlas_frame":122,"cells":cells}]},indent=2)+"\n")
+    print("Exported Quillhold frame122:370 RGB pixels; alpha/index/122496 other pixels exact")
+
 if __name__ == "__main__":
-    if "--morrowfast-beds-only" in sys.argv:update_morrowfast_beds_only()
+    if "--quillhold-wall-only" in sys.argv:update_quillhold_wall_only()
+    elif "--morrowfast-beds-only" in sys.argv:update_morrowfast_beds_only()
     elif "--gantry-only" in sys.argv:update_gantry_only()
     else:main()
