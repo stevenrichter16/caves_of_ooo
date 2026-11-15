@@ -13,6 +13,23 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public static class FlatPixelSiteAdmission
     {
+        // Exact current Lampwell sandstone foundation, preserving its authored village owners.
+        internal static bool IsLampwellStone(Zone zone)
+        {
+            if (zone?.ZoneID != "Overworld.12.3.1" && zone?.ZoneID != "Overworld.12.3.2") return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || !ReferenceEquals(current, zone)) return false;
+            var map = manager.WorldMap;
+            if (map?.Tiles == null || map.POIs == null
+                || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
+                || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
+            var poi = map.GetPOI(12, 3);
+            return map.GetBiome(12, 3) == BiomeType.Spread && poi != null && poi.Type == POIType.Sinkhole
+                && poi.Name == "Lampwell" && string.IsNullOrEmpty(poi.Profile)
+                && !LairStacks.HasSavedColumn(manager, "Overworld.12.3.0");
+        }
+
         // Exact authored first descent; material presentation does not enroll other depths.
         internal static bool IsGinmereDescent(Zone zone)
         {

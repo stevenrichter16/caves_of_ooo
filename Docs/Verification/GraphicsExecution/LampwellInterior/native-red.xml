@@ -1,0 +1,1321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="80" result="Failed(Child)" total="80" passed="2" failed="78" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:23Z" duration="22.3868733">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37125" result="Failed" site="Child" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:23Z" duration="22.386873" total="80" passed="2" failed="78" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45454" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37125" result="Failed" site="Child" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:23Z" duration="22.368305" total="80" passed="2" failed="78" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45455" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37125" result="Failed" site="Child" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:23Z" duration="22.365734" total="80" passed="2" failed="78" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45456" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37125" result="Failed" site="Child" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:23Z" duration="22.364058" total="80" passed="2" failed="78" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedFixture" id="1611" name="FlatPixelLampwellStoneTests" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="80" result="Failed" site="Child" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:23Z" duration="22.353765" total="80" passed="2" failed="78" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1515" name="FlatPixelLampwellStoneTests(1)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1)" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:10Z" duration="9.426098" total="40" passed="1" failed="39" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1516" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="2133423988" result="Failed" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:01Z" duration="0.350187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1552" name="AvailableOtherGroupsCannotExpandStructuralPilot" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).AvailableOtherGroupsCannotExpandStructuralPilot" methodname="AvailableOtherGroupsCannotExpandStructuralPilot" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1911551636" result="Failed" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:01Z" duration="0.314842" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.AvailableOtherGroupsCannotExpandStructuralPilot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1548" name="ChangedWallStateAndCoveredReaderRevoke" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).ChangedWallStateAndCoveredReaderRevoke" methodname="ChangedWallStateAndCoveredReaderRevoke" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1034335773" result="Failed" start-time="2026-11-15 07:33:01Z" end-time="2026-11-15 07:33:02Z" duration="0.209872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.ChangedWallStateAndCoveredReaderRevoke () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1518" name="DifferentSiteLabelRevokesBothMaterials" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).DifferentSiteLabelRevokesBothMaterials" methodname="DifferentSiteLabelRevokesBothMaterials" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1231280010" result="Failed" start-time="2026-11-15 07:33:02Z" end-time="2026-11-15 07:33:02Z" duration="0.204318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DifferentSiteLabelRevokesBothMaterials () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1562" name="DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" methodname="DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1388802676" result="Failed" start-time="2026-11-15 07:33:02Z" end-time="2026-11-15 07:33:02Z" duration="0.201907" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1538" name="LegacyNameStillAdmitsButConflictingProfileRevokes" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).LegacyNameStillAdmitsButConflictingProfileRevokes" methodname="LegacyNameStillAdmitsButConflictingProfileRevokes" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1716673686" result="Failed" start-time="2026-11-15 07:33:02Z" end-time="2026-11-15 07:33:02Z" duration="0.202259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.LegacyNameStillAdmitsButConflictingProfileRevokes () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:102
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1544" name="MissingOptionalArtKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).MissingOptionalArtKeepsFallback" methodname="MissingOptionalArtKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="341478567" result="Passed" start-time="2026-11-15 07:33:02Z" end-time="2026-11-15 07:33:02Z" duration="0.340129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1561" name="PartialWallRemainsNativeButGoneOrZeroHealthRefuses" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).PartialWallRemainsNativeButGoneOrZeroHealthRefuses" methodname="PartialWallRemainsNativeButGoneOrZeroHealthRefuses" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="155190312" result="Failed" start-time="2026-11-15 07:33:02Z" end-time="2026-11-15 07:33:03Z" duration="0.209688" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.PartialWallRemainsNativeButGoneOrZeroHealthRefuses () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1543" name="SavedLairColumnRevokesEvenWithRestoredSiteLabel" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).SavedLairColumnRevokesEvenWithRestoredSiteLabel" methodname="SavedLairColumnRevokesEvenWithRestoredSiteLabel" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="140363739" result="Failed" start-time="2026-11-15 07:33:03Z" end-time="2026-11-15 07:33:03Z" duration="0.209552" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SavedLairColumnRevokesEvenWithRestoredSiteLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1539" name="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).SpecialDescentLedgesKeepTheirOwnTerrainMeaning" methodname="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1559388659" result="Failed" start-time="2026-11-15 07:33:03Z" end-time="2026-11-15 07:33:03Z" duration="0.211573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialDescentLedgesKeepTheirOwnTerrainMeaning () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:108
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1517" name="UnderfootAndWallReadersUseTheirActualWorldIdentity" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).UnderfootAndWallReadersUseTheirActualWorldIdentity" methodname="UnderfootAndWallReadersUseTheirActualWorldIdentity" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="156165882" result="Failed" start-time="2026-11-15 07:33:03Z" end-time="2026-11-15 07:33:03Z" duration="0.209758" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.UnderfootAndWallReadersUseTheirActualWorldIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1547" name="CompetingMaterialHonorsDisclosure" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 07:33:03Z" end-time="2026-11-15 07:33:04Z" duration="0.555718" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1545" name="CompetingMaterialHonorsDisclosure(False)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).CompetingMaterialHonorsDisclosure(False)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1715813790" result="Failed" start-time="2026-11-15 07:33:03Z" end-time="2026-11-15 07:33:04Z" duration="0.205934" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:132
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1546" name="CompetingMaterialHonorsDisclosure(True)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).CompetingMaterialHonorsDisclosure(True)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="724600842" result="Failed" start-time="2026-11-15 07:33:04Z" end-time="2026-11-15 07:33:04Z" duration="0.345815" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:132
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1537" name="DisclosureAndMaterialStateKeepTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 07:33:04Z" end-time="2026-11-15 07:33:05Z" duration="0.821055" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1533" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="261551943" result="Failed" start-time="2026-11-15 07:33:04Z" end-time="2026-11-15 07:33:04Z" duration="0.211239" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1534" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1097487514" result="Failed" start-time="2026-11-15 07:33:04Z" end-time="2026-11-15 07:33:04Z" duration="0.204635" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1535" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="243567141" result="Failed" start-time="2026-11-15 07:33:04Z" end-time="2026-11-15 07:33:04Z" duration="0.201401" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1536" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="952376124" result="Failed" start-time="2026-11-15 07:33:04Z" end-time="2026-11-15 07:33:05Z" duration="0.200947" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1532" name="EqualMaterialNamesCannotExpandPilotAddress" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 07:33:05Z" end-time="2026-11-15 07:33:06Z" duration="0.963921" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1528" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.012.3.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.012.3.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="2117054516" result="Failed" start-time="2026-11-15 07:33:05Z" end-time="2026-11-15 07:33:05Z" duration="0.205659" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1529" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.12.3.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.12.3.0&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="939642992" result="Failed" start-time="2026-11-15 07:33:05Z" end-time="2026-11-15 07:33:05Z" duration="0.341303" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1530" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.12.3.3&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.12.3.3&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="60263019" result="Failed" start-time="2026-11-15 07:33:05Z" end-time="2026-11-15 07:33:05Z" duration="0.207371" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1531" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1481265818" result="Failed" start-time="2026-11-15 07:33:05Z" end-time="2026-11-15 07:33:06Z" duration="0.206570" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1542" name="HiddenOrRememberedWallCannotUseLiveSprite" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 07:33:06Z" end-time="2026-11-15 07:33:06Z" duration="0.407616" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1540" name="HiddenOrRememberedWallCannotUseLiveSprite(False)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).HiddenOrRememberedWallCannotUseLiveSprite(False)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="859891968" result="Failed" start-time="2026-11-15 07:33:06Z" end-time="2026-11-15 07:33:06Z" duration="0.201386" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:116
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1541" name="HiddenOrRememberedWallCannotUseLiveSprite(True)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).HiddenOrRememberedWallCannotUseLiveSprite(True)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="840743839" result="Failed" start-time="2026-11-15 07:33:06Z" end-time="2026-11-15 07:33:06Z" duration="0.202545" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:116
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1551" name="MissingGroupsFailIndependently" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 07:33:06Z" end-time="2026-11-15 07:33:07Z" duration="0.571806" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1549" name="MissingGroupsFailIndependently(False)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).MissingGroupsFailIndependently(False)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1115842087" result="Failed" start-time="2026-11-15 07:33:06Z" end-time="2026-11-15 07:33:06Z" duration="0.204434" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:145
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1550" name="MissingGroupsFailIndependently(True)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).MissingGroupsFailIndependently(True)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1503114966" result="Failed" start-time="2026-11-15 07:33:06Z" end-time="2026-11-15 07:33:07Z" duration="0.364843" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:145
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1560" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-15 07:33:07Z" end-time="2026-11-15 07:33:08Z" duration="1.596937" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1553" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;Rubble&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;Rubble&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1593464681" result="Failed" start-time="2026-11-15 07:33:07Z" end-time="2026-11-15 07:33:07Z" duration="0.207197" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1554" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;Stalagmite&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;Stalagmite&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="26888304" result="Failed" start-time="2026-11-15 07:33:07Z" end-time="2026-11-15 07:33:07Z" duration="0.205735" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1555" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DescentLedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DescentLedge&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1270486593" result="Failed" start-time="2026-11-15 07:33:07Z" end-time="2026-11-15 07:33:07Z" duration="0.204163" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1556" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;HearthPatch&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;HearthPatch&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="2036083403" result="Failed" start-time="2026-11-15 07:33:07Z" end-time="2026-11-15 07:33:07Z" duration="0.202198" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1557" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DroseraRing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DroseraRing&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1834958025" result="Failed" start-time="2026-11-15 07:33:07Z" end-time="2026-11-15 07:33:08Z" duration="0.204467" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1558" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;NicheHome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;NicheHome&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1636444341" result="Failed" start-time="2026-11-15 07:33:08Z" end-time="2026-11-15 07:33:08Z" duration="0.354843" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1559" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;PlaqueWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;PlaqueWall&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="732581561" result="Failed" start-time="2026-11-15 07:33:08Z" end-time="2026-11-15 07:33:08Z" duration="0.215254" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1527" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 07:33:08Z" end-time="2026-11-15 07:33:10Z" duration="1.832233" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1519" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1465280387" result="Failed" start-time="2026-11-15 07:33:08Z" end-time="2026-11-15 07:33:08Z" duration="0.205228" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1520" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1115620888" result="Failed" start-time="2026-11-15 07:33:08Z" end-time="2026-11-15 07:33:09Z" duration="0.209051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1521" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1636237454" result="Failed" start-time="2026-11-15 07:33:09Z" end-time="2026-11-15 07:33:09Z" duration="0.203454" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1522" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1962557002" result="Failed" start-time="2026-11-15 07:33:09Z" end-time="2026-11-15 07:33:09Z" duration="0.202710" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1523" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="713840726" result="Failed" start-time="2026-11-15 07:33:09Z" end-time="2026-11-15 07:33:09Z" duration="0.276631" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1524" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="975231109" result="Failed" start-time="2026-11-15 07:33:09Z" end-time="2026-11-15 07:33:10Z" duration="0.298359" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1525" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1863915509" result="Failed" start-time="2026-11-15 07:33:10Z" end-time="2026-11-15 07:33:10Z" duration="0.219089" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1526" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;foreign-profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;foreign-profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="463661981" result="Failed" start-time="2026-11-15 07:33:10Z" end-time="2026-11-15 07:33:10Z" duration="0.213983" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="1563" name="FlatPixelLampwellStoneTests(2)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2)" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-11-15 07:33:10Z" end-time="2026-11-15 07:33:23Z" duration="12.927049" total="40" passed="1" failed="39" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1564" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1764754710" result="Failed" start-time="2026-11-15 07:33:10Z" end-time="2026-11-15 07:33:10Z" duration="0.296787" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1600" name="AvailableOtherGroupsCannotExpandStructuralPilot" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).AvailableOtherGroupsCannotExpandStructuralPilot" methodname="AvailableOtherGroupsCannotExpandStructuralPilot" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="716793565" result="Failed" start-time="2026-11-15 07:33:10Z" end-time="2026-11-15 07:33:11Z" duration="0.289585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.AvailableOtherGroupsCannotExpandStructuralPilot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1596" name="ChangedWallStateAndCoveredReaderRevoke" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).ChangedWallStateAndCoveredReaderRevoke" methodname="ChangedWallStateAndCoveredReaderRevoke" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1063858612" result="Failed" start-time="2026-11-15 07:33:11Z" end-time="2026-11-15 07:33:11Z" duration="0.447078" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.ChangedWallStateAndCoveredReaderRevoke () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1566" name="DifferentSiteLabelRevokesBothMaterials" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).DifferentSiteLabelRevokesBothMaterials" methodname="DifferentSiteLabelRevokesBothMaterials" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="214129236" result="Failed" start-time="2026-11-15 07:33:11Z" end-time="2026-11-15 07:33:11Z" duration="0.284682" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DifferentSiteLabelRevokesBothMaterials () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1610" name="DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" methodname="DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="190520190" result="Failed" start-time="2026-11-15 07:33:11Z" end-time="2026-11-15 07:33:12Z" duration="0.279773" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1586" name="LegacyNameStillAdmitsButConflictingProfileRevokes" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).LegacyNameStillAdmitsButConflictingProfileRevokes" methodname="LegacyNameStillAdmitsButConflictingProfileRevokes" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="400168468" result="Failed" start-time="2026-11-15 07:33:12Z" end-time="2026-11-15 07:33:12Z" duration="0.284927" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.LegacyNameStillAdmitsButConflictingProfileRevokes () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:102
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1592" name="MissingOptionalArtKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).MissingOptionalArtKeepsFallback" methodname="MissingOptionalArtKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="447214343" result="Passed" start-time="2026-11-15 07:33:12Z" end-time="2026-11-15 07:33:12Z" duration="0.278929" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1609" name="PartialWallRemainsNativeButGoneOrZeroHealthRefuses" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).PartialWallRemainsNativeButGoneOrZeroHealthRefuses" methodname="PartialWallRemainsNativeButGoneOrZeroHealthRefuses" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="966601948" result="Failed" start-time="2026-11-15 07:33:12Z" end-time="2026-11-15 07:33:13Z" duration="0.443799" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.PartialWallRemainsNativeButGoneOrZeroHealthRefuses () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1591" name="SavedLairColumnRevokesEvenWithRestoredSiteLabel" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).SavedLairColumnRevokesEvenWithRestoredSiteLabel" methodname="SavedLairColumnRevokesEvenWithRestoredSiteLabel" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1234066066" result="Failed" start-time="2026-11-15 07:33:13Z" end-time="2026-11-15 07:33:13Z" duration="0.292380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SavedLairColumnRevokesEvenWithRestoredSiteLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1587" name="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).SpecialDescentLedgesKeepTheirOwnTerrainMeaning" methodname="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1691939200" result="Failed" start-time="2026-11-15 07:33:13Z" end-time="2026-11-15 07:33:13Z" duration="0.285451" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialDescentLedgesKeepTheirOwnTerrainMeaning () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:108
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1565" name="UnderfootAndWallReadersUseTheirActualWorldIdentity" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).UnderfootAndWallReadersUseTheirActualWorldIdentity" methodname="UnderfootAndWallReadersUseTheirActualWorldIdentity" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="796157880" result="Failed" start-time="2026-11-15 07:33:13Z" end-time="2026-11-15 07:33:14Z" duration="0.283435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.UnderfootAndWallReadersUseTheirActualWorldIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1595" name="CompetingMaterialHonorsDisclosure" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 07:33:14Z" end-time="2026-11-15 07:33:14Z" duration="0.748717" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1593" name="CompetingMaterialHonorsDisclosure(False)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).CompetingMaterialHonorsDisclosure(False)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="2115559117" result="Failed" start-time="2026-11-15 07:33:14Z" end-time="2026-11-15 07:33:14Z" duration="0.292875" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:132
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1594" name="CompetingMaterialHonorsDisclosure(True)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).CompetingMaterialHonorsDisclosure(True)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="939454722" result="Failed" start-time="2026-11-15 07:33:14Z" end-time="2026-11-15 07:33:14Z" duration="0.452069" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:132
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1585" name="DisclosureAndMaterialStateKeepTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 07:33:14Z" end-time="2026-11-15 07:33:15Z" duration="1.138056" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1581" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="2129006076" result="Failed" start-time="2026-11-15 07:33:14Z" end-time="2026-11-15 07:33:15Z" duration="0.283247" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1582" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="153116570" result="Failed" start-time="2026-11-15 07:33:15Z" end-time="2026-11-15 07:33:15Z" duration="0.283199" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1583" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1411417631" result="Failed" start-time="2026-11-15 07:33:15Z" end-time="2026-11-15 07:33:15Z" duration="0.282634" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1584" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="218528200" result="Failed" start-time="2026-11-15 07:33:15Z" end-time="2026-11-15 07:33:15Z" duration="0.285944" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1580" name="EqualMaterialNamesCannotExpandPilotAddress" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 07:33:15Z" end-time="2026-11-15 07:33:17Z" duration="1.579330" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1576" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.012.3.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.012.3.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="2012474357" result="Failed" start-time="2026-11-15 07:33:15Z" end-time="2026-11-15 07:33:16Z" duration="0.466086" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1577" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.12.3.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.12.3.0&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1914060675" result="Failed" start-time="2026-11-15 07:33:16Z" end-time="2026-11-15 07:33:16Z" duration="0.543979" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1578" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.12.3.3&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.12.3.3&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1588368577" result="Failed" start-time="2026-11-15 07:33:16Z" end-time="2026-11-15 07:33:17Z" duration="0.285262" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1579" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="2119828480" result="Failed" start-time="2026-11-15 07:33:17Z" end-time="2026-11-15 07:33:17Z" duration="0.277639" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1590" name="HiddenOrRememberedWallCannotUseLiveSprite" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 07:33:17Z" end-time="2026-11-15 07:33:18Z" duration="0.704993" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1588" name="HiddenOrRememberedWallCannotUseLiveSprite(False)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).HiddenOrRememberedWallCannotUseLiveSprite(False)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1866856132" result="Failed" start-time="2026-11-15 07:33:17Z" end-time="2026-11-15 07:33:17Z" duration="0.276291" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:116
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1589" name="HiddenOrRememberedWallCannotUseLiveSprite(True)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).HiddenOrRememberedWallCannotUseLiveSprite(True)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1614838376" result="Failed" start-time="2026-11-15 07:33:17Z" end-time="2026-11-15 07:33:18Z" duration="0.424474" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:116
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1599" name="MissingGroupsFailIndependently" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 07:33:18Z" end-time="2026-11-15 07:33:18Z" duration="0.572116" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1597" name="MissingGroupsFailIndependently(False)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).MissingGroupsFailIndependently(False)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="963092657" result="Failed" start-time="2026-11-15 07:33:18Z" end-time="2026-11-15 07:33:18Z" duration="0.288645" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:145
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1598" name="MissingGroupsFailIndependently(True)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).MissingGroupsFailIndependently(True)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="2097598905" result="Failed" start-time="2026-11-15 07:33:18Z" end-time="2026-11-15 07:33:18Z" duration="0.280897" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:145
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1608" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-15 07:33:18Z" end-time="2026-11-15 07:33:21Z" duration="2.273320" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1601" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;Rubble&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;Rubble&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="636726595" result="Failed" start-time="2026-11-15 07:33:18Z" end-time="2026-11-15 07:33:19Z" duration="0.283059" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1602" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;Stalagmite&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;Stalagmite&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="674425076" result="Failed" start-time="2026-11-15 07:33:19Z" end-time="2026-11-15 07:33:19Z" duration="0.318065" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1603" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DescentLedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DescentLedge&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="224671325" result="Failed" start-time="2026-11-15 07:33:19Z" end-time="2026-11-15 07:33:19Z" duration="0.385424" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1604" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;HearthPatch&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;HearthPatch&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="426798080" result="Failed" start-time="2026-11-15 07:33:19Z" end-time="2026-11-15 07:33:20Z" duration="0.287973" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1605" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DroseraRing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DroseraRing&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1218255558" result="Failed" start-time="2026-11-15 07:33:20Z" end-time="2026-11-15 07:33:20Z" duration="0.288022" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1606" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;NicheHome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;NicheHome&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="375592224" result="Failed" start-time="2026-11-15 07:33:20Z" end-time="2026-11-15 07:33:20Z" duration="0.278570" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1607" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;PlaqueWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;PlaqueWall&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="501745793" result="Failed" start-time="2026-11-15 07:33:20Z" end-time="2026-11-15 07:33:21Z" duration="0.428916" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1575" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 07:33:21Z" end-time="2026-11-15 07:33:23Z" duration="2.434546" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1567" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="647407204" result="Failed" start-time="2026-11-15 07:33:21Z" end-time="2026-11-15 07:33:21Z" duration="0.285504" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1568" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="622624545" result="Failed" start-time="2026-11-15 07:33:21Z" end-time="2026-11-15 07:33:21Z" duration="0.279532" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1569" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="507935878" result="Failed" start-time="2026-11-15 07:33:21Z" end-time="2026-11-15 07:33:21Z" duration="0.286036" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1570" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="955109745" result="Failed" start-time="2026-11-15 07:33:21Z" end-time="2026-11-15 07:33:22Z" duration="0.324249" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1571" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="971878968" result="Failed" start-time="2026-11-15 07:33:22Z" end-time="2026-11-15 07:33:22Z" duration="0.390538" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1572" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="2008943500" result="Failed" start-time="2026-11-15 07:33:22Z" end-time="2026-11-15 07:33:22Z" duration="0.281845" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1573" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="1996923412" result="Failed" start-time="2026-11-15 07:33:22Z" end-time="2026-11-15 07:33:23Z" duration="0.288728" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1574" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;foreign-profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;foreign-profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelLampwellStoneTests" runstate="Runnable" seed="750409547" result="Failed" start-time="2026-11-15 07:33:23Z" end-time="2026-11-15 07:33:23Z" duration="0.293854" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Lampwell sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:30
+at CavesOfOoo.Tests.FlatPixelLampwellStoneTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelLampwellStoneTests.cs:56
+]]></stack-trace>
+                  </failure>
+                  <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

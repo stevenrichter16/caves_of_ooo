@@ -134,6 +134,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelShallowCavesCatalog _stillleafDescentArt;
         private FlatPixelShallowCavesCatalog _groveSinkholeFloorArt;
         private FlatPixelShallowCavesCatalog _ginmereDescentArt;
+        private FlatPixelShallowCavesCatalog _lampwellStoneArt;
         private FlatPixelLimestoneCavesCatalog _limestoneCavesArt;
         private FlatPixelShaleCavesCatalog _shaleCavesArt;
         private FlatPixelSlateCavesCatalog _slateCavesArt;
@@ -2099,6 +2100,18 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelShallowCavesCatalog ShallowCavesArtFor(Zone zone)
         {
+            if (FlatPixelSiteAdmission.IsLampwellStone(zone))
+            {
+                if (_lampwellStoneArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _lampwellStoneArt = new FlatPixelShallowCavesCatalog(
+                        Resources.Load<Texture2D>(FlatPixelShallowCavesCatalog.ResourcePath),
+                        Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),
+                        null, null, null, null, _glyphFallback).AdmittingLampwellStone();
+                }
+                return _lampwellStoneArt;
+            }
             if (FlatPixelSiteAdmission.IsGinmereDescent(zone))
             {
                 if (_ginmereDescentArt == null && _loadOptionalResources)
@@ -2707,6 +2720,7 @@ namespace CavesOfOoo.Rendering
             _stillleafDescentArt?.Dispose();
             _groveSinkholeFloorArt?.Dispose();
             _ginmereDescentArt?.Dispose();
+            _lampwellStoneArt?.Dispose();
             _limestoneCavesArt?.Dispose();
             _shaleCavesArt?.Dispose();
             _slateCavesArt?.Dispose();
@@ -2719,6 +2733,7 @@ namespace CavesOfOoo.Rendering
             _stillleafDescentArt = null;
             _groveSinkholeFloorArt = null;
             _ginmereDescentArt = null;
+            _lampwellStoneArt = null;
             _limestoneCavesArt = null;
             _shaleCavesArt = null;
             _slateCavesArt = null;
