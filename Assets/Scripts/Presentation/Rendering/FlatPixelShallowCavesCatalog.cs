@@ -19,6 +19,9 @@ namespace CavesOfOoo.Rendering
         /// <summary>Lampwell's sandstone and canonical rock owners; backing requires a real disclosed rock.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingLampwellStone()
         { admits = FlatPixelSiteAdmission.IsLampwellStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
+        /// <summary>Spivenor's sandstone and canonical rock owners; backing requires a real disclosed rock.</summary>
+        internal FlatPixelShallowCavesCatalog AdmittingSpivenorStone()
+        { admits = FlatPixelSiteAdmission.IsSpivenorStone; allowCoveredFloorReader = true; structuralOnly = rockBackdropOnly = true; return this; }
         /// <summary>Real sandstone and low rockfall owners only; no ambient or stair borrowing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingGinmereDescent()
         { admits = FlatPixelSiteAdmission.IsGinmereDescent; allowCoveredFloorReader = true; structuralOnly = true; return this; }

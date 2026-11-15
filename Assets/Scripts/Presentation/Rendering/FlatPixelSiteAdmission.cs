@@ -30,6 +30,23 @@ namespace CavesOfOoo.Rendering
                 && !LairStacks.HasSavedColumn(manager, "Overworld.12.3.0");
         }
 
+        // Exact current Spivenor sandstone foundation, preserving its authored village owners.
+        internal static bool IsSpivenorStone(Zone zone)
+        {
+            if (zone?.ZoneID != "Overworld.16.4.1" && zone?.ZoneID != "Overworld.16.4.2") return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || !ReferenceEquals(current, zone)) return false;
+            var map = manager.WorldMap;
+            if (map?.Tiles == null || map.POIs == null
+                || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
+                || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
+            var poi = map.GetPOI(16, 4);
+            return map.GetBiome(16, 4) == BiomeType.Sodden && poi != null && poi.Type == POIType.Sinkhole
+                && poi.Name == "Spivenor" && string.IsNullOrEmpty(poi.Profile)
+                && !LairStacks.HasSavedColumn(manager, "Overworld.16.4.0");
+        }
+
         // Exact authored first descent; material presentation does not enroll other depths.
         internal static bool IsGinmereDescent(Zone zone)
         {

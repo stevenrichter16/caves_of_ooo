@@ -1,0 +1,1555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="94" result="Failed(Child)" total="94" passed="2" failed="92" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 08:22:51Z" end-time="2026-11-15 08:23:44Z" duration="52.641485">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37269" result="Failed" site="Child" start-time="2026-11-15 08:22:51Z" end-time="2026-11-15 08:23:44Z" duration="52.641485" total="94" passed="2" failed="92" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45634" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37269" result="Failed" site="Child" start-time="2026-11-15 08:22:51Z" end-time="2026-11-15 08:23:44Z" duration="52.617839" total="94" passed="2" failed="92" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45635" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37269" result="Failed" site="Child" start-time="2026-11-15 08:22:51Z" end-time="2026-11-15 08:23:44Z" duration="52.613846" total="94" passed="2" failed="92" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45636" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37269" result="Failed" site="Child" start-time="2026-11-15 08:22:51Z" end-time="2026-11-15 08:23:44Z" duration="52.610452" total="94" passed="2" failed="92" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedFixture" id="2787" name="FlatPixelSpivenorMaterialsTests" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="94" result="Failed" site="Child" start-time="2026-11-15 08:22:51Z" end-time="2026-11-15 08:23:44Z" duration="52.597365" total="94" passed="2" failed="92" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="2673" name="FlatPixelSpivenorMaterialsTests(1)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1)" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="47" result="Failed" site="Child" start-time="2026-11-15 08:22:51Z" end-time="2026-11-15 08:23:08Z" duration="17.349322" total="47" passed="1" failed="46" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2674" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="111867632" result="Failed" start-time="2026-11-15 08:22:51Z" end-time="2026-11-15 08:22:51Z" duration="0.435497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2710" name="AvailableOtherGroupsCannotExpandStructuralPilot" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).AvailableOtherGroupsCannotExpandStructuralPilot" methodname="AvailableOtherGroupsCannotExpandStructuralPilot" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="414742986" result="Failed" start-time="2026-11-15 08:22:51Z" end-time="2026-11-15 08:22:52Z" duration="0.418980" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.AvailableOtherGroupsCannotExpandStructuralPilot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2706" name="ChangedWallStateAndCoveredReaderRevoke" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).ChangedWallStateAndCoveredReaderRevoke" methodname="ChangedWallStateAndCoveredReaderRevoke" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1744143868" result="Failed" start-time="2026-11-15 08:22:52Z" end-time="2026-11-15 08:22:52Z" duration="0.249658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.ChangedWallStateAndCoveredReaderRevoke () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2676" name="DifferentSiteLabelRevokesBothMaterials" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).DifferentSiteLabelRevokesBothMaterials" methodname="DifferentSiteLabelRevokesBothMaterials" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1225611169" result="Failed" start-time="2026-11-15 08:22:52Z" end-time="2026-11-15 08:22:52Z" duration="0.250233" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DifferentSiteLabelRevokesBothMaterials () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2718" name="DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" methodname="DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1213989329" result="Failed" start-time="2026-11-15 08:22:52Z" end-time="2026-11-15 08:22:53Z" duration="0.247594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2696" name="LegacyNameStillAdmitsButConflictingProfileRevokes" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).LegacyNameStillAdmitsButConflictingProfileRevokes" methodname="LegacyNameStillAdmitsButConflictingProfileRevokes" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="316326750" result="Failed" start-time="2026-11-15 08:22:53Z" end-time="2026-11-15 08:22:53Z" duration="0.242695" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.LegacyNameStillAdmitsButConflictingProfileRevokes () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:102
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2702" name="MissingOptionalArtKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).MissingOptionalArtKeepsFallback" methodname="MissingOptionalArtKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="611352802" result="Passed" start-time="2026-11-15 08:22:53Z" end-time="2026-11-15 08:22:53Z" duration="0.245304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2717" name="PartialWallRemainsNativeButGoneOrZeroHealthRefuses" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).PartialWallRemainsNativeButGoneOrZeroHealthRefuses" methodname="PartialWallRemainsNativeButGoneOrZeroHealthRefuses" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="2142777046" result="Failed" start-time="2026-11-15 08:22:53Z" end-time="2026-11-15 08:22:54Z" duration="0.436114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.PartialWallRemainsNativeButGoneOrZeroHealthRefuses () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2701" name="SavedLairColumnRevokesEvenWithRestoredSiteLabel" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).SavedLairColumnRevokesEvenWithRestoredSiteLabel" methodname="SavedLairColumnRevokesEvenWithRestoredSiteLabel" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="625336191" result="Failed" start-time="2026-11-15 08:22:54Z" end-time="2026-11-15 08:22:54Z" duration="0.250408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SavedLairColumnRevokesEvenWithRestoredSiteLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2697" name="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).SpecialDescentLedgesKeepTheirOwnTerrainMeaning" methodname="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1521244325" result="Failed" start-time="2026-11-15 08:22:54Z" end-time="2026-11-15 08:22:54Z" duration="0.246654" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialDescentLedgesKeepTheirOwnTerrainMeaning () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:108
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2675" name="UnderfootAndWallReadersUseTheirActualWorldIdentity" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).UnderfootAndWallReadersUseTheirActualWorldIdentity" methodname="UnderfootAndWallReadersUseTheirActualWorldIdentity" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1459558556" result="Failed" start-time="2026-11-15 08:22:54Z" end-time="2026-11-15 08:22:54Z" duration="0.243114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.UnderfootAndWallReadersUseTheirActualWorldIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="2705" name="CompetingMaterialHonorsDisclosure" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:22:54Z" end-time="2026-11-15 08:22:55Z" duration="0.483877" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2703" name="CompetingMaterialHonorsDisclosure(False)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).CompetingMaterialHonorsDisclosure(False)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="2052179608" result="Failed" start-time="2026-11-15 08:22:54Z" end-time="2026-11-15 08:22:55Z" duration="0.239290" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:132
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2704" name="CompetingMaterialHonorsDisclosure(True)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).CompetingMaterialHonorsDisclosure(True)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="164359690" result="Failed" start-time="2026-11-15 08:22:55Z" end-time="2026-11-15 08:22:55Z" duration="0.239588" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:132
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2695" name="DisclosureAndMaterialStateKeepTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 08:22:55Z" end-time="2026-11-15 08:22:56Z" duration="1.182061" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2691" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1404165218" result="Failed" start-time="2026-11-15 08:22:55Z" end-time="2026-11-15 08:22:55Z" duration="0.327213" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2692" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1129884957" result="Failed" start-time="2026-11-15 08:22:55Z" end-time="2026-11-15 08:22:55Z" duration="0.355287" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2693" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1002078479" result="Failed" start-time="2026-11-15 08:22:55Z" end-time="2026-11-15 08:22:56Z" duration="0.252157" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2694" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1952662960" result="Failed" start-time="2026-11-15 08:22:56Z" end-time="2026-11-15 08:22:56Z" duration="0.243786" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2690" name="EqualMaterialNamesCannotExpandPilotAddress" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 08:22:56Z" end-time="2026-11-15 08:22:57Z" duration="1.163573" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2686" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.016.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.016.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1024567318" result="Failed" start-time="2026-11-15 08:22:56Z" end-time="2026-11-15 08:22:56Z" duration="0.242571" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2687" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.16.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.16.4.0&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1837206618" result="Failed" start-time="2026-11-15 08:22:56Z" end-time="2026-11-15 08:22:56Z" duration="0.237436" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2688" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.16.4.3&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.16.4.3&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="2060229492" result="Failed" start-time="2026-11-15 08:22:56Z" end-time="2026-11-15 08:22:57Z" duration="0.258009" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2689" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1383743442" result="Failed" start-time="2026-11-15 08:22:57Z" end-time="2026-11-15 08:22:57Z" duration="0.420571" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2721" name="FloorlessRocksKeepActualIdentityAndBoundedBacking" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.FloorlessRocksKeepActualIdentityAndBoundedBacking" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:22:57Z" end-time="2026-11-15 08:22:58Z" duration="0.496180" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2719" name="FloorlessRocksKeepActualIdentityAndBoundedBacking(&quot;Rubble&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).FloorlessRocksKeepActualIdentityAndBoundedBacking(&quot;Rubble&quot;,False)" methodname="FloorlessRocksKeepActualIdentityAndBoundedBacking" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="181563964" result="Failed" start-time="2026-11-15 08:22:57Z" end-time="2026-11-15 08:22:57Z" duration="0.246215" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.FloorlessRocksKeepActualIdentityAndBoundedBacking (System.String name, System.Boolean solid) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:195
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2720" name="FloorlessRocksKeepActualIdentityAndBoundedBacking(&quot;Stalagmite&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).FloorlessRocksKeepActualIdentityAndBoundedBacking(&quot;Stalagmite&quot;,True)" methodname="FloorlessRocksKeepActualIdentityAndBoundedBacking" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="561363581" result="Failed" start-time="2026-11-15 08:22:57Z" end-time="2026-11-15 08:22:58Z" duration="0.246787" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.FloorlessRocksKeepActualIdentityAndBoundedBacking (System.String name, System.Boolean solid) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:195
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2700" name="HiddenOrRememberedWallCannotUseLiveSprite" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:22:58Z" end-time="2026-11-15 08:22:58Z" duration="0.488638" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2698" name="HiddenOrRememberedWallCannotUseLiveSprite(False)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).HiddenOrRememberedWallCannotUseLiveSprite(False)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="50299085" result="Failed" start-time="2026-11-15 08:22:58Z" end-time="2026-11-15 08:22:58Z" duration="0.244283" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:116
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2699" name="HiddenOrRememberedWallCannotUseLiveSprite(True)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).HiddenOrRememberedWallCannotUseLiveSprite(True)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1312226424" result="Failed" start-time="2026-11-15 08:22:58Z" end-time="2026-11-15 08:22:58Z" duration="0.241618" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:116
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2729" name="InvalidRockBackingNeverMasksEnvironment" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-15 08:22:58Z" end-time="2026-11-15 08:23:03Z" duration="5.347499" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2722" name="InvalidRockBackingNeverMasksEnvironment(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).InvalidRockBackingNeverMasksEnvironment(&quot;water&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="672391447" result="Failed" start-time="2026-11-15 08:22:58Z" end-time="2026-11-15 08:22:58Z" duration="0.239171" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2723" name="InvalidRockBackingNeverMasksEnvironment(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).InvalidRockBackingNeverMasksEnvironment(&quot;charge&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="341084388" result="Failed" start-time="2026-11-15 08:22:58Z" end-time="2026-11-15 08:22:59Z" duration="0.439852" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2724" name="InvalidRockBackingNeverMasksEnvironment(&quot;background&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).InvalidRockBackingNeverMasksEnvironment(&quot;background&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="68239662" result="Failed" start-time="2026-11-15 08:22:59Z" end-time="2026-11-15 08:22:59Z" duration="0.245946" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2725" name="InvalidRockBackingNeverMasksEnvironment(&quot;hearth&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).InvalidRockBackingNeverMasksEnvironment(&quot;hearth&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1460078898" result="Failed" start-time="2026-11-15 08:22:59Z" end-time="2026-11-15 08:22:59Z" duration="0.396405" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2726" name="InvalidRockBackingNeverMasksEnvironment(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).InvalidRockBackingNeverMasksEnvironment(&quot;duplicate&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1166449699" result="Failed" start-time="2026-11-15 08:22:59Z" end-time="2026-11-15 08:23:02Z" duration="2.292110" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2727" name="InvalidRockBackingNeverMasksEnvironment(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).InvalidRockBackingNeverMasksEnvironment(&quot;memory&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1036580064" result="Failed" start-time="2026-11-15 08:23:02Z" end-time="2026-11-15 08:23:03Z" duration="1.417077" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2728" name="InvalidRockBackingNeverMasksEnvironment(&quot;malformed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).InvalidRockBackingNeverMasksEnvironment(&quot;malformed&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="809225411" result="Failed" start-time="2026-11-15 08:23:03Z" end-time="2026-11-15 08:23:03Z" duration="0.313071" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2709" name="MissingGroupsFailIndependently" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:23:03Z" end-time="2026-11-15 08:23:04Z" duration="0.767383" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2707" name="MissingGroupsFailIndependently(False)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).MissingGroupsFailIndependently(False)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="447038953" result="Failed" start-time="2026-11-15 08:23:03Z" end-time="2026-11-15 08:23:04Z" duration="0.457541" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:145
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2708" name="MissingGroupsFailIndependently(True)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).MissingGroupsFailIndependently(True)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1127445511" result="Failed" start-time="2026-11-15 08:23:04Z" end-time="2026-11-15 08:23:04Z" duration="0.306167" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:145
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2716" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-15 08:23:04Z" end-time="2026-11-15 08:23:06Z" duration="1.905302" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2711" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DescentLedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DescentLedge&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="2020031391" result="Failed" start-time="2026-11-15 08:23:04Z" end-time="2026-11-15 08:23:05Z" duration="0.457490" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2712" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;HearthPatch&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;HearthPatch&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1751081882" result="Failed" start-time="2026-11-15 08:23:05Z" end-time="2026-11-15 08:23:05Z" duration="0.309275" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2713" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DroseraRing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DroseraRing&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="229706448" result="Failed" start-time="2026-11-15 08:23:05Z" end-time="2026-11-15 08:23:06Z" duration="0.492129" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2714" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;NicheHome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;NicheHome&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1732579790" result="Failed" start-time="2026-11-15 08:23:06Z" end-time="2026-11-15 08:23:06Z" duration="0.326783" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2715" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;PlaqueWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;PlaqueWall&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="234291768" result="Failed" start-time="2026-11-15 08:23:06Z" end-time="2026-11-15 08:23:06Z" duration="0.316386" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2685" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 08:23:06Z" end-time="2026-11-15 08:23:08Z" duration="2.232226" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2677" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="91866303" result="Failed" start-time="2026-11-15 08:23:06Z" end-time="2026-11-15 08:23:07Z" duration="0.402223" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2678" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="296897667" result="Failed" start-time="2026-11-15 08:23:07Z" end-time="2026-11-15 08:23:07Z" duration="0.248505" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2679" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="542681757" result="Failed" start-time="2026-11-15 08:23:07Z" end-time="2026-11-15 08:23:07Z" duration="0.242570" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2680" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="639486295" result="Failed" start-time="2026-11-15 08:23:07Z" end-time="2026-11-15 08:23:07Z" duration="0.237141" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2681" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1520901526" result="Failed" start-time="2026-11-15 08:23:07Z" end-time="2026-11-15 08:23:08Z" duration="0.239578" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2682" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="917734646" result="Failed" start-time="2026-11-15 08:23:08Z" end-time="2026-11-15 08:23:08Z" duration="0.245586" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2683" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="539608155" result="Failed" start-time="2026-11-15 08:23:08Z" end-time="2026-11-15 08:23:08Z" duration="0.375810" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2684" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;foreign-profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(1).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;foreign-profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="966620207" result="Failed" start-time="2026-11-15 08:23:08Z" end-time="2026-11-15 08:23:08Z" duration="0.230292" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="2730" name="FlatPixelSpivenorMaterialsTests(2)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2)" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="47" result="Failed" site="Child" start-time="2026-11-15 08:23:08Z" end-time="2026-11-15 08:23:44Z" duration="35.247211" total="47" passed="1" failed="46" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2731" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="387417484" result="Failed" start-time="2026-11-15 08:23:08Z" end-time="2026-11-15 08:23:09Z" duration="0.305497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2767" name="AvailableOtherGroupsCannotExpandStructuralPilot" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).AvailableOtherGroupsCannotExpandStructuralPilot" methodname="AvailableOtherGroupsCannotExpandStructuralPilot" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1452800106" result="Failed" start-time="2026-11-15 08:23:09Z" end-time="2026-11-15 08:23:09Z" duration="0.300658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.AvailableOtherGroupsCannotExpandStructuralPilot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2763" name="ChangedWallStateAndCoveredReaderRevoke" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).ChangedWallStateAndCoveredReaderRevoke" methodname="ChangedWallStateAndCoveredReaderRevoke" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="279070872" result="Failed" start-time="2026-11-15 08:23:09Z" end-time="2026-11-15 08:23:09Z" duration="0.299048" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.ChangedWallStateAndCoveredReaderRevoke () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2733" name="DifferentSiteLabelRevokesBothMaterials" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).DifferentSiteLabelRevokesBothMaterials" methodname="DifferentSiteLabelRevokesBothMaterials" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1352387982" result="Failed" start-time="2026-11-15 08:23:09Z" end-time="2026-11-15 08:23:10Z" duration="0.469106" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DifferentSiteLabelRevokesBothMaterials () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2775" name="DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" methodname="DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1044429140" result="Failed" start-time="2026-11-15 08:23:10Z" end-time="2026-11-15 08:23:10Z" duration="0.308627" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisposedViewsReleaseOnlyOwnedSpritesAndBorrowedResourcesSurvive () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2753" name="LegacyNameStillAdmitsButConflictingProfileRevokes" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).LegacyNameStillAdmitsButConflictingProfileRevokes" methodname="LegacyNameStillAdmitsButConflictingProfileRevokes" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="126613717" result="Failed" start-time="2026-11-15 08:23:10Z" end-time="2026-11-15 08:23:10Z" duration="0.303022" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.LegacyNameStillAdmitsButConflictingProfileRevokes () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:102
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2759" name="MissingOptionalArtKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).MissingOptionalArtKeepsFallback" methodname="MissingOptionalArtKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1390620222" result="Passed" start-time="2026-11-15 08:23:10Z" end-time="2026-11-15 08:23:11Z" duration="0.298855" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2774" name="PartialWallRemainsNativeButGoneOrZeroHealthRefuses" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).PartialWallRemainsNativeButGoneOrZeroHealthRefuses" methodname="PartialWallRemainsNativeButGoneOrZeroHealthRefuses" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="936337205" result="Failed" start-time="2026-11-15 08:23:11Z" end-time="2026-11-15 08:23:11Z" duration="0.297573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.PartialWallRemainsNativeButGoneOrZeroHealthRefuses () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2758" name="SavedLairColumnRevokesEvenWithRestoredSiteLabel" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).SavedLairColumnRevokesEvenWithRestoredSiteLabel" methodname="SavedLairColumnRevokesEvenWithRestoredSiteLabel" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="18550590" result="Failed" start-time="2026-11-15 08:23:11Z" end-time="2026-11-15 08:23:11Z" duration="0.469382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SavedLairColumnRevokesEvenWithRestoredSiteLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2754" name="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).SpecialDescentLedgesKeepTheirOwnTerrainMeaning" methodname="SpecialDescentLedgesKeepTheirOwnTerrainMeaning" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1190297713" result="Failed" start-time="2026-11-15 08:23:11Z" end-time="2026-11-15 08:23:12Z" duration="0.305189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialDescentLedgesKeepTheirOwnTerrainMeaning () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:108
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2732" name="UnderfootAndWallReadersUseTheirActualWorldIdentity" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).UnderfootAndWallReadersUseTheirActualWorldIdentity" methodname="UnderfootAndWallReadersUseTheirActualWorldIdentity" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1631662350" result="Failed" start-time="2026-11-15 08:23:12Z" end-time="2026-11-15 08:23:12Z" duration="0.299443" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.UnderfootAndWallReadersUseTheirActualWorldIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="2762" name="CompetingMaterialHonorsDisclosure" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:23:12Z" end-time="2026-11-15 08:23:32Z" duration="19.945376" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2760" name="CompetingMaterialHonorsDisclosure(False)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).CompetingMaterialHonorsDisclosure(False)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1494684019" result="Failed" start-time="2026-11-15 08:23:31Z" end-time="2026-11-15 08:23:32Z" duration="0.303818" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:132
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2761" name="CompetingMaterialHonorsDisclosure(True)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).CompetingMaterialHonorsDisclosure(True)" methodname="CompetingMaterialHonorsDisclosure" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1856833432" result="Failed" start-time="2026-11-15 08:23:32Z" end-time="2026-11-15 08:23:32Z" duration="0.301496" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.CompetingMaterialHonorsDisclosure (System.Boolean hidden) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:132
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2752" name="DisclosureAndMaterialStateKeepTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 08:23:32Z" end-time="2026-11-15 08:23:33Z" duration="1.374058" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2748" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1301947085" result="Failed" start-time="2026-11-15 08:23:32Z" end-time="2026-11-15 08:23:32Z" duration="0.317903" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2749" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1774181097" result="Failed" start-time="2026-11-15 08:23:32Z" end-time="2026-11-15 08:23:33Z" duration="0.446763" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2750" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="365290336" result="Failed" start-time="2026-11-15 08:23:33Z" end-time="2026-11-15 08:23:33Z" duration="0.305825" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2751" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="932060403" result="Failed" start-time="2026-11-15 08:23:33Z" end-time="2026-11-15 08:23:33Z" duration="0.299262" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:91
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2747" name="EqualMaterialNamesCannotExpandPilotAddress" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 08:23:33Z" end-time="2026-11-15 08:23:35Z" duration="1.377277" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2743" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.016.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.016.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="247664733" result="Failed" start-time="2026-11-15 08:23:33Z" end-time="2026-11-15 08:23:34Z" duration="0.295142" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2744" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.16.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.16.4.0&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1933099260" result="Failed" start-time="2026-11-15 08:23:34Z" end-time="2026-11-15 08:23:34Z" duration="0.293051" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2745" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.16.4.3&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.16.4.3&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1825070535" result="Failed" start-time="2026-11-15 08:23:34Z" end-time="2026-11-15 08:23:34Z" duration="0.477544" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2746" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="2125677476" result="Failed" start-time="2026-11-15 08:23:34Z" end-time="2026-11-15 08:23:35Z" duration="0.308468" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:77
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2778" name="FloorlessRocksKeepActualIdentityAndBoundedBacking" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.FloorlessRocksKeepActualIdentityAndBoundedBacking" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:23:35Z" end-time="2026-11-15 08:23:35Z" duration="0.606089" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2776" name="FloorlessRocksKeepActualIdentityAndBoundedBacking(&quot;Rubble&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).FloorlessRocksKeepActualIdentityAndBoundedBacking(&quot;Rubble&quot;,False)" methodname="FloorlessRocksKeepActualIdentityAndBoundedBacking" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="595314015" result="Failed" start-time="2026-11-15 08:23:35Z" end-time="2026-11-15 08:23:35Z" duration="0.304580" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.FloorlessRocksKeepActualIdentityAndBoundedBacking (System.String name, System.Boolean solid) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:195
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2777" name="FloorlessRocksKeepActualIdentityAndBoundedBacking(&quot;Stalagmite&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).FloorlessRocksKeepActualIdentityAndBoundedBacking(&quot;Stalagmite&quot;,True)" methodname="FloorlessRocksKeepActualIdentityAndBoundedBacking" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="981211106" result="Failed" start-time="2026-11-15 08:23:35Z" end-time="2026-11-15 08:23:35Z" duration="0.298532" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.FloorlessRocksKeepActualIdentityAndBoundedBacking (System.String name, System.Boolean solid) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:195
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2757" name="HiddenOrRememberedWallCannotUseLiveSprite" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:23:35Z" end-time="2026-11-15 08:23:36Z" duration="0.609833" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2755" name="HiddenOrRememberedWallCannotUseLiveSprite(False)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).HiddenOrRememberedWallCannotUseLiveSprite(False)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="265864870" result="Failed" start-time="2026-11-15 08:23:35Z" end-time="2026-11-15 08:23:36Z" duration="0.293302" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:116
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2756" name="HiddenOrRememberedWallCannotUseLiveSprite(True)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).HiddenOrRememberedWallCannotUseLiveSprite(True)" methodname="HiddenOrRememberedWallCannotUseLiveSprite" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="457432844" result="Failed" start-time="2026-11-15 08:23:36Z" end-time="2026-11-15 08:23:36Z" duration="0.313895" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.HiddenOrRememberedWallCannotUseLiveSprite (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:116
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2786" name="InvalidRockBackingNeverMasksEnvironment" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-15 08:23:36Z" end-time="2026-11-15 08:23:38Z" duration="2.436499" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2779" name="InvalidRockBackingNeverMasksEnvironment(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).InvalidRockBackingNeverMasksEnvironment(&quot;water&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="2098745086" result="Failed" start-time="2026-11-15 08:23:36Z" end-time="2026-11-15 08:23:36Z" duration="0.458689" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2780" name="InvalidRockBackingNeverMasksEnvironment(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).InvalidRockBackingNeverMasksEnvironment(&quot;charge&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="465088098" result="Failed" start-time="2026-11-15 08:23:36Z" end-time="2026-11-15 08:23:37Z" duration="0.304667" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2781" name="InvalidRockBackingNeverMasksEnvironment(&quot;background&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).InvalidRockBackingNeverMasksEnvironment(&quot;background&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="59819890" result="Failed" start-time="2026-11-15 08:23:37Z" end-time="2026-11-15 08:23:37Z" duration="0.304817" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2782" name="InvalidRockBackingNeverMasksEnvironment(&quot;hearth&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).InvalidRockBackingNeverMasksEnvironment(&quot;hearth&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="996971930" result="Failed" start-time="2026-11-15 08:23:37Z" end-time="2026-11-15 08:23:37Z" duration="0.295680" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2783" name="InvalidRockBackingNeverMasksEnvironment(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).InvalidRockBackingNeverMasksEnvironment(&quot;duplicate&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="2115939352" result="Failed" start-time="2026-11-15 08:23:37Z" end-time="2026-11-15 08:23:38Z" duration="0.298361" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2784" name="InvalidRockBackingNeverMasksEnvironment(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).InvalidRockBackingNeverMasksEnvironment(&quot;memory&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1587550462" result="Failed" start-time="2026-11-15 08:23:38Z" end-time="2026-11-15 08:23:38Z" duration="0.337003" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2785" name="InvalidRockBackingNeverMasksEnvironment(&quot;malformed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).InvalidRockBackingNeverMasksEnvironment(&quot;malformed&quot;)" methodname="InvalidRockBackingNeverMasksEnvironment" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="113117610" result="Failed" start-time="2026-11-15 08:23:38Z" end-time="2026-11-15 08:23:38Z" duration="0.433561" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.InvalidRockBackingNeverMasksEnvironment (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:205
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2766" name="MissingGroupsFailIndependently" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 08:23:38Z" end-time="2026-11-15 08:23:39Z" duration="0.629449" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2764" name="MissingGroupsFailIndependently(False)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).MissingGroupsFailIndependently(False)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="903386399" result="Failed" start-time="2026-11-15 08:23:38Z" end-time="2026-11-15 08:23:39Z" duration="0.315781" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:145
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2765" name="MissingGroupsFailIndependently(True)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).MissingGroupsFailIndependently(True)" methodname="MissingGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="859780448" result="Failed" start-time="2026-11-15 08:23:39Z" end-time="2026-11-15 08:23:39Z" duration="0.306476" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.MissingGroupsFailIndependently (System.Boolean missingFloor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:145
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2773" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-15 08:23:39Z" end-time="2026-11-15 08:23:41Z" duration="1.687344" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2768" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DescentLedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DescentLedge&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="325779281" result="Failed" start-time="2026-11-15 08:23:39Z" end-time="2026-11-15 08:23:39Z" duration="0.301251" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2769" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;HearthPatch&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;HearthPatch&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="384789273" result="Failed" start-time="2026-11-15 08:23:39Z" end-time="2026-11-15 08:23:40Z" duration="0.294174" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2770" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DroseraRing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;DroseraRing&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="2143899821" result="Failed" start-time="2026-11-15 08:23:40Z" end-time="2026-11-15 08:23:40Z" duration="0.343056" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2771" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;NicheHome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;NicheHome&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1804779876" result="Failed" start-time="2026-11-15 08:23:40Z" end-time="2026-11-15 08:23:40Z" duration="0.444219" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2772" name="SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;PlaqueWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).SpecialOwnersNeverBorrowSandstoneBodyOrReader(&quot;PlaqueWall&quot;)" methodname="SpecialOwnersNeverBorrowSandstoneBodyOrReader" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1622315164" result="Failed" start-time="2026-11-15 08:23:40Z" end-time="2026-11-15 08:23:41Z" duration="0.300702" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.SpecialOwnersNeverBorrowSandstoneBodyOrReader (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:169
+]]></stack-trace>
+                  </failure>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="2742" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 08:23:41Z" end-time="2026-11-15 08:23:44Z" duration="2.915044" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="2734" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="438368558" result="Failed" start-time="2026-11-15 08:23:41Z" end-time="2026-11-15 08:23:41Z" duration="0.302327" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2735" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1469189448" result="Failed" start-time="2026-11-15 08:23:41Z" end-time="2026-11-15 08:23:41Z" duration="0.292262" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2736" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1179475036" result="Failed" start-time="2026-11-15 08:23:41Z" end-time="2026-11-15 08:23:42Z" duration="0.298433" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2737" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1910252863" result="Failed" start-time="2026-11-15 08:23:42Z" end-time="2026-11-15 08:23:42Z" duration="0.450062" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2738" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="1524990425" result="Failed" start-time="2026-11-15 08:23:42Z" end-time="2026-11-15 08:23:43Z" duration="0.650603" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2739" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="869211813" result="Failed" start-time="2026-11-15 08:23:43Z" end-time="2026-11-15 08:23:43Z" duration="0.307500" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2740" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;biome&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="350033162" result="Failed" start-time="2026-11-15 08:23:43Z" end-time="2026-11-15 08:23:43Z" duration="0.312046" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="2741" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;foreign-profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests(2).WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;foreign-profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests" runstate="Runnable" seed="2089750085" result="Failed" start-time="2026-11-15 08:23:43Z" end-time="2026-11-15 08:23:44Z" duration="0.296566" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  Spivenor sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                    <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:30
+at CavesOfOoo.Tests.FlatPixelSpivenorMaterialsTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSpivenorMaterialsTests.cs:56
+]]></stack-trace>
+                  </failure>
+                  <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
