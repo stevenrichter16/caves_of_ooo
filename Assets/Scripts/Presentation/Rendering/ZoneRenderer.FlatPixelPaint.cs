@@ -35,7 +35,7 @@ namespace CavesOfOoo.Rendering
                 flat.RepresentedBrine, flat.RepresentedMire, flat.RepresentedMucilage, flat.RepresentedAcid);
             Color nativeColorCue = Color.white;
             var tint = !flat.Remembered && flat.Owner != null
-                ? ResolveRenderColor(flat.Owner, flat.Owner.GetPart<RenderPart>(), x, y, out nativeColorCue)
+                ? ResolveRenderColor(flat.Owner, flat.Owner.GetPart<RenderPart>(), x, y, out nativeColorCue, flat.PreserveAuthoredNativeColor)
                 : ApplyFlatLighting(flat.ForegroundColor, x, y);
             _envSpriteRenderer.RecordFlatPaint(CurrentZone, x, y, flat, tint, nativeColorCue);
             _tilemap.SetTile(position, flat.ForegroundTile);
@@ -57,7 +57,7 @@ namespace CavesOfOoo.Rendering
         private Color ResolveRenderColor(Entity owner, RenderPart render, int x, int y)
             => ResolveRenderColor(owner, render, x, y, out _);
 
-        private Color ResolveRenderColor(Entity owner, RenderPart render, int x, int y, out Color nativeColorCue)
+        private Color ResolveRenderColor(Entity owner, RenderPart render, int x, int y, out Color nativeColorCue, bool preserveAuthoredNativeColor = false)
         {
             string colorString = AsciiWorldRenderPolicy.GetColorOrFallback(render, out string issue);
             LogRenderIssueOnce(owner, issue);
@@ -82,7 +82,7 @@ namespace CavesOfOoo.Rendering
             // actual color change or explicit transient Render cue tints it.
             // A red species can flash red without changing its glyph color;
             // ordinary unmodified glyph colors must still leave pixels neutral.
-            nativeColorCue = !explicitNativeCue && eventColorValue == authoredColor ? Color.white : eventColorValue;
+            nativeColorCue = !preserveAuthoredNativeColor && !explicitNativeCue && eventColorValue == authoredColor ? Color.white : eventColorValue;
             return ApplyFlatLighting(eventColorValue, x, y);
         }
     }

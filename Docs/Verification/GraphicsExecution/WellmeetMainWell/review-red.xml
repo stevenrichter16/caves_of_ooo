@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:56Z" duration="0.9035264">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37586" result="Failed" site="Child" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:56Z" duration="0.903526" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46021" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37586" result="Failed" site="Child" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:56Z" duration="0.868388" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46022" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37586" result="Failed" site="Child" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:56Z" duration="0.863232" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46023" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37586" result="Failed" site="Child" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:56Z" duration="0.859659" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="3399" name="FlatPixelWellmeetWellTests" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" testcasecount="65" result="Failed" site="Child" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:56Z" duration="0.842331" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="3474" name="AdditionalServicesAndEndingSemanticsCannotBorrowLining" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:56Z" duration="0.499399" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3468" name="AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.CampfirePart)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.CampfirePart)" methodname="AdditionalServicesAndEndingSemanticsCannotBorrowLining" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="1826228245" result="Failed" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:55Z" duration="0.190559" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <opening-anchors (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Refused () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:44
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining (System.Type type) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3469" name="AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.ForgePart)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.ForgePart)" methodname="AdditionalServicesAndEndingSemanticsCannotBorrowLining" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="1526052159" result="Failed" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:55Z" duration="0.044499" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <opening-anchors (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Refused () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:44
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining (System.Type type) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3470" name="AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.RootFacePart)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.RootFacePart)" methodname="AdditionalServicesAndEndingSemanticsCannotBorrowLining" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="745384404" result="Failed" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:55Z" duration="0.043324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <opening-anchors (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Refused () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:44
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining (System.Type type) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3471" name="AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.SeventhPositionPart)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.SeventhPositionPart)" methodname="AdditionalServicesAndEndingSemanticsCannotBorrowLining" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="77644901" result="Failed" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:55Z" duration="0.043653" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <opening-anchors (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Refused () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:44
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining (System.Type type) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3472" name="AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.FoundingPlumePart)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.FoundingPlumePart)" methodname="AdditionalServicesAndEndingSemanticsCannotBorrowLining" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="917188654" result="Failed" start-time="2026-11-15 10:19:55Z" end-time="2026-11-15 10:19:56Z" duration="0.055581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <opening-anchors (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Refused () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:44
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining (System.Type type) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3473" name="AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.HearthPatchPart)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining(CavesOfOoo.Core.HearthPatchPart)" methodname="AdditionalServicesAndEndingSemanticsCannotBorrowLining" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="1904199179" result="Failed" start-time="2026-11-15 10:19:56Z" end-time="2026-11-15 10:19:56Z" duration="0.102578" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <opening-anchors (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Refused () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:44
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.AdditionalServicesAndEndingSemanticsCannotBorrowLining (System.Type type) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3467" name="InvalidStackCannotDivergeBetweenWorldAndReader" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.InvalidStackCannotDivergeBetweenWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 10:19:56Z" end-time="2026-11-15 10:19:56Z" duration="0.204479" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3464" name="InvalidStackCannotDivergeBetweenWorldAndReader(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.InvalidStackCannotDivergeBetweenWorldAndReader(&quot;empty&quot;)" methodname="InvalidStackCannotDivergeBetweenWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="673269658" result="Failed" start-time="2026-11-15 10:19:56Z" end-time="2026-11-15 10:19:56Z" duration="0.109773" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <opening-anchors (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Refused () [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:45
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.InvalidStackCannotDivergeBetweenWorldAndReader (System.String fault) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:96
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3465" name="InvalidStackCannotDivergeBetweenWorldAndReader(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.InvalidStackCannotDivergeBetweenWorldAndReader(&quot;foreign&quot;)" methodname="InvalidStackCannotDivergeBetweenWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="624422333" result="Failed" start-time="2026-11-15 10:19:56Z" end-time="2026-11-15 10:19:56Z" duration="0.045286" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <opening-anchors (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Refused () [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:45
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.InvalidStackCannotDivergeBetweenWorldAndReader (System.String fault) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:96
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3466" name="InvalidStackCannotDivergeBetweenWorldAndReader(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.InvalidStackCannotDivergeBetweenWorldAndReader(&quot;duplicate&quot;)" methodname="InvalidStackCannotDivergeBetweenWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="1471027942" result="Failed" start-time="2026-11-15 10:19:56Z" end-time="2026-11-15 10:19:56Z" duration="0.044452" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <opening-anchors (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Refused () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:44
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.InvalidStackCannotDivergeBetweenWorldAndReader (System.String fault) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:96
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3463" name="UndisclosedDuplicateDoesNotChangeVisibleMainWell" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.UndisclosedDuplicateDoesNotChangeVisibleMainWell" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-15 10:19:56Z" end-time="2026-11-15 10:19:56Z" duration="0.135759" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3460" name="UndisclosedDuplicateDoesNotChangeVisibleMainWell(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.UndisclosedDuplicateDoesNotChangeVisibleMainWell(&quot;hidden&quot;)" methodname="UndisclosedDuplicateDoesNotChangeVisibleMainWell" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="2069134175" result="Failed" start-time="2026-11-15 10:19:56Z" end-time="2026-11-15 10:19:56Z" duration="0.044034" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  MainWell remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Native (System.Int32 frame) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:35
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.UndisclosedDuplicateDoesNotChangeVisibleMainWell (System.String fault) [0x00098] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3461" name="UndisclosedDuplicateDoesNotChangeVisibleMainWell(&quot;stale&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.UndisclosedDuplicateDoesNotChangeVisibleMainWell(&quot;stale&quot;)" methodname="UndisclosedDuplicateDoesNotChangeVisibleMainWell" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="1622812498" result="Failed" start-time="2026-11-15 10:19:56Z" end-time="2026-11-15 10:19:56Z" duration="0.045008" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  MainWell remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Native (System.Int32 frame) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:35
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.UndisclosedDuplicateDoesNotChangeVisibleMainWell (System.String fault) [0x00098] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3462" name="UndisclosedDuplicateDoesNotChangeVisibleMainWell(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.UndisclosedDuplicateDoesNotChangeVisibleMainWell(&quot;carried&quot;)" methodname="UndisclosedDuplicateDoesNotChangeVisibleMainWell" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="1559834888" result="Failed" start-time="2026-11-15 10:19:56Z" end-time="2026-11-15 10:19:56Z" duration="0.043701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  MainWell remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Native (System.Int32 frame) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:35
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.UndisclosedDuplicateDoesNotChangeVisibleMainWell (System.String fault) [0x00098] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:93
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

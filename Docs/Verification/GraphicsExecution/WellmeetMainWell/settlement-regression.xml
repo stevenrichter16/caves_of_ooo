@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.1399533">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37588" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.139953" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="46023" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37588" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.100687" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="46024" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37588" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.093022" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="46025" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37588" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.085606" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="17414" name="SettlementManagerTests" fullname="CavesOfOoo.Tests.SettlementManagerTests" classname="CavesOfOoo.Tests.SettlementManagerTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.062566" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="17416" name="ManualRepair_RequiresManualAndSand_ConsumesOnlySand" fullname="CavesOfOoo.Tests.SettlementManagerTests.ManualRepair_RequiresManualAndSand_ConsumesOnlySand" methodname="ManualRepair_RequiresManualAndSand_ConsumesOnlySand" classname="CavesOfOoo.Tests.SettlementManagerTests" runstate="Runnable" seed="826927905" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.040435" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17415" name="PurifySpell_SetsTemporaryStage_AndRelapsesLater" fullname="CavesOfOoo.Tests.SettlementManagerTests.PurifySpell_SetsTemporaryStage_AndRelapsesLater" methodname="PurifySpell_SetsTemporaryStage_AndRelapsesLater" classname="CavesOfOoo.Tests.SettlementManagerTests" runstate="Runnable" seed="1511210514" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.001251" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17417" name="TeachCaretaker_RequiresStableRepair_AndSetsImprovedCondition" fullname="CavesOfOoo.Tests.SettlementManagerTests.TeachCaretaker_RequiresStableRepair_AndSetsImprovedCondition" methodname="TeachCaretaker_RequiresStableRepair_AndSetsImprovedCondition" classname="CavesOfOoo.Tests.SettlementManagerTests" runstate="Runnable" seed="246474756" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.000254" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="17418" name="WellSitePartTests" fullname="CavesOfOoo.Tests.WellSitePartTests" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.008942" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="17419" name="FouledWell_FlickersToRed_OnEvery8thFrame" fullname="CavesOfOoo.Tests.WellSitePartTests.FouledWell_FlickersToRed_OnEvery8thFrame" methodname="FouledWell_FlickersToRed_OnEvery8thFrame" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" seed="1009588461" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.002562" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17426" name="GraduatedDisplayNames_ChangeWithStage" fullname="CavesOfOoo.Tests.WellSitePartTests.GraduatedDisplayNames_ChangeWithStage" methodname="GraduatedDisplayNames_ChangeWithStage" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" seed="1795586940" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.000665" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17425" name="GroundMarkerVisuals_ChangesWithStage" fullname="CavesOfOoo.Tests.WellSitePartTests.GroundMarkerVisuals_ChangesWithStage" methodname="GroundMarkerVisuals_ChangesWithStage" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" seed="1778637696" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.000572" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17427" name="OnStageChanged_EmitsAuraRequests" fullname="CavesOfOoo.Tests.WellSitePartTests.OnStageChanged_EmitsAuraRequests" methodname="OnStageChanged_EmitsAuraRequests" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" seed="1061278108" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.001433" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17423" name="ProximityMessage_DoesNotShow_WhenPlayerFarAway" fullname="CavesOfOoo.Tests.WellSitePartTests.ProximityMessage_DoesNotShow_WhenPlayerFarAway" methodname="ProximityMessage_DoesNotShow_WhenPlayerFarAway" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" seed="751432380" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.000734" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17424" name="ProximityMessage_ResetsAfterCall" fullname="CavesOfOoo.Tests.WellSitePartTests.ProximityMessage_ResetsAfterCall" methodname="ProximityMessage_ResetsAfterCall" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" seed="701517893" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.000445" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17422" name="ProximityMessage_ShowsOnceWhenPlayerAdjacent" fullname="CavesOfOoo.Tests.WellSitePartTests.ProximityMessage_ShowsOnceWhenPlayerAdjacent" methodname="ProximityMessage_ShowsOnceWhenPlayerAdjacent" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" seed="1811771033" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.000416" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17421" name="StableRepair_NoFlicker" fullname="CavesOfOoo.Tests.WellSitePartTests.StableRepair_NoFlicker" methodname="StableRepair_NoFlicker" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" seed="1958448307" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.000507" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17420" name="TemporarilyPurified_DegradesThroughColorStages" fullname="CavesOfOoo.Tests.WellSitePartTests.TemporarilyPurified_DegradesThroughColorStages" methodname="TemporarilyPurified_DegradesThroughColorStages" classname="CavesOfOoo.Tests.WellSitePartTests" runstate="Runnable" seed="386364676" result="Passed" start-time="2026-11-15 10:21:42Z" end-time="2026-11-15 10:21:42Z" duration="0.000568" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

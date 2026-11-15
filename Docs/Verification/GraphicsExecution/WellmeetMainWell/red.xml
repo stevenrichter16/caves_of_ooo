@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.3636684">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37573" result="Failed" site="Child" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.363668" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46005" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37573" result="Failed" site="Child" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.330655" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="46006" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37573" result="Failed" site="Child" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.326481" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="46007" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37573" result="Failed" site="Child" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.323110" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="3399" name="FlatPixelWellmeetWellTests" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" testcasecount="52" result="Failed" site="Child" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.314072" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="3404" name="FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.311869" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3400" name="FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders(Fouled,0)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders(Fouled,0)" methodname="FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="357009680" result="Failed" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.158597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  MainWell remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Native (System.Int32 frame) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:35
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders (CavesOfOoo.Core.RepairStage stage, System.Int32 frame) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3401" name="FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders(TemporarilyPurified,0)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders(TemporarilyPurified,0)" methodname="FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="617254871" result="Failed" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.045165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  MainWell remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Native (System.Int32 frame) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:35
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders (CavesOfOoo.Core.RepairStage stage, System.Int32 frame) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3402" name="FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders(StableRepair,1)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders(StableRepair,1)" methodname="FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="1505647492" result="Failed" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.044589" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  MainWell remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Native (System.Int32 frame) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:35
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders (CavesOfOoo.Core.RepairStage stage, System.Int32 frame) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3403" name="FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders(ImprovedWithCaretaker,1)" fullname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests.FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders(ImprovedWithCaretaker,1)" methodname="FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders" classname="CavesOfOoo.Tests.FlatPixelWellmeetWellTests" runstate="Runnable" seed="1700464933" result="Failed" start-time="2026-11-15 10:15:14Z" end-time="2026-11-15 10:15:14Z" duration="0.045400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  MainWell remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.Native (System.Int32 frame) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:35
+at CavesOfOoo.Tests.FlatPixelWellmeetWellTests.FourStagesPreserveLiningAndNativeColorAcrossWorldAndReaders (CavesOfOoo.Core.RepairStage stage, System.Int32 frame) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelWellmeetWellTests.cs:52
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

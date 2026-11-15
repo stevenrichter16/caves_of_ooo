@@ -73,6 +73,17 @@ namespace CavesOfOoo.Core
             return state?.GetSite(siteId);
         }
 
+        /// <summary>Read existing saved state without creating a village or backfilling its sites.</summary>
+        public bool TryGetExistingSite(string settlementId, string siteId, out RepairableSiteState site)
+        {
+            site = null;
+            if (string.IsNullOrEmpty(settlementId) || string.IsNullOrEmpty(siteId)
+                || !_settlements.TryGetValue(settlementId, out var state)
+                || state == null || state.SettlementId != settlementId) return false;
+            site = state.GetSite(siteId);
+            return site != null && site.SiteId == siteId;
+        }
+
         public bool AdvanceSettlement(string settlementId, int currentTurn)
         {
             PointOfInterest poi = ResolvePoi(settlementId);

@@ -258,7 +258,7 @@ namespace CavesOfOoo.Tests
             public int Renders,ServiceQueries; public string Cue;
             public override bool HandleEvent(GameEvent e){if(e.ID=="Render"){Renders++;if(Cue!=null)e.SetParameter("ColorString",Cue);}if(e.ID=="GetInventoryActions"||e.ID=="InventoryAction"||e.ID=="ObjectCreated"||e.ID==IdleQueryEvent.ID)ServiceQueries++;return true;}
         }
-        sealed class Paint : IDisposable
+        internal sealed class Paint : IDisposable
         {
             readonly HotbarSaveFixture saved;
             readonly GameObject root;
