@@ -5652,13 +5652,13 @@
       ],
       "status_axes": {
         "coverage": "fallback",
-        "polish": "in-progress",
+        "polish": "bounded-accepted",
         "population": "not-audited",
         "shadow": "observed",
-        "delivery": "packaged-verified"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Batch Cinderhold road; broader town/interior/composition/ASCII audit remains. Next largest proven other-region gap is WorldMap Beating.",
+      "next_action": "Batch current reeds+grade Mac/Linux; fulltown composition/remaining coverage and R11 separate.",
       "coordinates": [
         6,
         6,
@@ -5673,7 +5673,7 @@
         "settlement/cinderhold",
         "area-family/second_exploration/Overworld.6.6.0"
       ],
-      "observed_seed": 65,
+      "observed_seed": 704860946,
       "bounded_wall_shadow": {
         "recorded_utc": "2026-11-02T10:59:11.626452+00:00",
         "source_base": "ab5f33858e2766bd5ce9f0d7740552178e0e72c2",
@@ -5824,7 +5824,40 @@
             "Physical Linux/Deck execution and R11 remain open"
           ]
         }
-      ]
+      ],
+      "cinderhold_grade": {
+        "recorded_utc": "2026-11-15T04:26:53.187894+00:00",
+        "status": "bounded Editor accepted; packaging pending",
+        "record": "Docs/GRAPHICS-CINDERHOLD-GRADE.md",
+        "evidence": "Docs/Verification/GraphicsExecution/CinderholdGrade",
+        "zone": "Overworld.6.6.0",
+        "seed": 704860946,
+        "palette": {
+          "filter": [
+            1,
+            1,
+            1
+          ],
+          "contrast": 8,
+          "saturation": 0,
+          "vignette": 0
+        },
+        "coverage": "no new asset coverage",
+        "polish": "center and LedgerOffice grade bounded accepted",
+        "population": "unchanged",
+        "shadows": "unchanged",
+        "native_red": {
+          "failed": 14,
+          "passed": 81
+        },
+        "native_green": 103,
+        "actual": "unprotected movement; wall30/30reader;6.6\u21945.6;F5fresh2110HP40at38,11;801materialownerrecords exact",
+        "reload_world_changed": 0,
+        "limits": "R11/fullarea/V0\u2013V7open; current468a88builds exclude",
+        "next": "publish and batch reeds+grade currentMac/Linux; then different area",
+        "hourly_report_utc": "2026-11-15T04:18:14Z"
+      },
+      "observed_seed_note": "Confirmed current CinderholdRoad/AfterCheckpoint and CinderholdGrade/OfficeCheckpoint binary fields; earlier independent shadow seed evidence retained separately."
     },
     {
       "id": "surface/Overworld.7.6.0",
@@ -7685,7 +7718,7 @@
         "polish": "bounded-accepted",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "editor-verified"
+        "delivery": "source-published"
       },
       "prior_review_ids": [],
       "next_action": "Retain bounded reed/grass acceptance; separate drawpoint/peat/pipe and broader area remain; batch current packaging after next accepted graphics slice.",
@@ -26321,7 +26354,7 @@
   },
   "spread_reeds": {
     "recorded_utc": "2026-11-15T04:16:00.250534+00:00",
-    "status": "bounded Editor accepted; packaging pending",
+    "status": "source published; packaging pending",
     "record": "Docs/GRAPHICS-SPREAD-REEDS.md",
     "evidence": "Docs/Verification/GraphicsExecution/SpreadReeds",
     "zone": "Overworld.6.8.0",
@@ -26345,6 +26378,39 @@
     "exclusions": "hostile death run excluded; protected surveys not combat acceptance; east HUD55,12 vs cell56,12 unproven",
     "limits": "R11/fullarea/V0\u2013V7open; current468a88packages exclude",
     "next": "Cinderhold6.6 actual grade/material comparison then batch",
-    "hourly_report_utc": "2026-11-15T03:17:54Z"
+    "hourly_report_utc": "2026-11-15T04:18:14Z",
+    "source_revision": "63012cd36fbfb1daee3c52efc01fd604ffcc78dc"
+  },
+  "cinderhold_grade": {
+    "recorded_utc": "2026-11-15T04:26:53.187894+00:00",
+    "status": "bounded Editor accepted; packaging pending",
+    "record": "Docs/GRAPHICS-CINDERHOLD-GRADE.md",
+    "evidence": "Docs/Verification/GraphicsExecution/CinderholdGrade",
+    "zone": "Overworld.6.6.0",
+    "seed": 704860946,
+    "palette": {
+      "filter": [
+        1,
+        1,
+        1
+      ],
+      "contrast": 8,
+      "saturation": 0,
+      "vignette": 0
+    },
+    "coverage": "no new asset coverage",
+    "polish": "center and LedgerOffice grade bounded accepted",
+    "population": "unchanged",
+    "shadows": "unchanged",
+    "native_red": {
+      "failed": 14,
+      "passed": 81
+    },
+    "native_green": 103,
+    "actual": "unprotected movement; wall30/30reader;6.6\u21945.6;F5fresh2110HP40at38,11;801materialownerrecords exact",
+    "reload_world_changed": 0,
+    "limits": "R11/fullarea/V0\u2013V7open; current468a88builds exclude",
+    "next": "publish and batch reeds+grade currentMac/Linux; then different area",
+    "hourly_report_utc": "2026-11-15T04:18:14Z"
   }
 }
