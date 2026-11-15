@@ -1,3 +1,5 @@
+**Delivery update:** Published in source5e14712bd and current Mac/Linux Batch5E147. Actual Mac reader, drinking, movement, travel, save and fresh reload passed; Linux remains unexecuted. See Verification/GraphicsExecution/Batch5E147/README.md. Earlier pending-delivery statements below are historical.
+
 # Wellmeet material grade
 
 Actual GameBootstrap baseline, seed224401440, exact8.16.0: center5040 at39,11 HP40; guest5250 at21,10 HP21; salt5290 at64,11 HP40 from a separate fresh center fixture. Native dirt-gnome combat during westward acquisition caused19HP damage and is retained in the guest save. The salt route starts fresh from center; no healing/protection/state injection. F12 off. Locked guest locker and SaltMaster menus inspected without transactions. Main repairable well reader confirms fouled/cracked ring, still glyph; ordinary additional well is native.

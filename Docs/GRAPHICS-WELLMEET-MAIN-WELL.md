@@ -1,3 +1,5 @@
+**Delivery update:** Published in source5e14712bd and current Mac/Linux Batch5E147. Actual Mac reader, drinking, movement, travel, save and fresh reload passed; Linux remains unexecuted. See Verification/GraphicsExecution/Batch5E147/README.md. Earlier pending-delivery statements below are historical.
+
 # Wellmeet main well lining
 
 The main well at 40,12 now uses the approved cracked or sealed lining artwork instead of a glyph. Its existing four stage colors, contamination flash and purification fade remain visible. The adapter is restricted to the current Wellmeet settlement and matching owner/site state. Readers do not create settlement records or fire Render events. Ordinary wells retain their existing rules.
