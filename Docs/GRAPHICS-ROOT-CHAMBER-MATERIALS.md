@@ -1,3 +1,5 @@
+**Delivery update:** Published source59a4af34b/currentMacLinux Batch59A4AF. ActualMacreaders/walk/travel/save/freshreloadpassed;Linuxunexecuted. See Verification/GraphicsExecution/Batch59A4AF/README.md. Earlierpending-delivery statements arehistorical.
+
 # Root chamber sandstone and rock presentation
 
 The actual Root chamber3.3.1 was dominated by ASCII sandstone across its hollow and adjoining rooms. It now uses approved quiet sandstone floors, straight sandstone walls, and the existing rubble/stalagmite art. Exact current Root site authority bounds the adapter. A backdrop requires one disclosed canonical rock; genuine emptiness, hazards, water, memory and the red ending face retain their own presentation. TheRoot is never substituted with TheRooted. No new art, geometry, population, collision, save format or ending action.

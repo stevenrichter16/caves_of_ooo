@@ -1,3 +1,5 @@
+**Delivery update:** Published source59a4af34b/currentMacLinux Batch59A4AF. ActualMacreaders/walk/travel/save/freshreloadpassed;Linuxunexecuted. See Verification/GraphicsExecution/Batch59A4AF/README.md. Earlierpending-delivery statements arehistorical.
+
 # Peat works: preserve uncertainty beneath remembered wet ground
 
 The Cutbank review exposed a shared flaw in the recently published peat memory: fallback excludes liquid pools and selects underlying Grass. Without durable last-seen material data, promoting that Grass into a continuous native turf could imply dry footing beneath remembered mire. Remove Grass promotion categorically; retain native StoneFloor and StoneWall memory. No hidden-state/occupant veto, new cache, save format, art, mechanics or visible-material change.
