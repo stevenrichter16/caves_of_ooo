@@ -18,6 +18,8 @@ namespace CavesOfOoo.Rendering
         string[,] fellingWaterOwnerIds;
         public const string BlackwaterResourcePath = "Sprites/Live16x24/felling-blackwater";
         bool siteLedgesOnly;
+        internal FlatPixelStumpMaterialsCatalog AdmittingOlderdeepLedges()
+        { admits = FlatPixelSiteAdmission.IsOlderdeepLedges; siteLedgesOnly = true; return this; }
         internal FlatPixelStumpMaterialsCatalog AdmittingCathedralLedges()
         { admits = FlatPixelSiteAdmission.IsCathedralDescent; siteLedgesOnly = true; return this; }
         internal FlatPixelStumpMaterialsCatalog AdmittingGinmereLedges()

@@ -13,6 +13,23 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public static class FlatPixelSiteAdmission
     {
+        // Founding profile survives a story rename; only these two current interiors qualify.
+        internal static bool IsOlderdeepDescent(Zone zone)
+        {
+            if (zone?.ZoneID != "Overworld.4.6.1" && zone?.ZoneID != "Overworld.4.6.2") return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || !ReferenceEquals(current, zone)) return false;
+            var map = manager.WorldMap;
+            if (map?.Tiles == null || map.POIs == null
+                || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
+                || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
+            return map.GetBiome(4, 6) == BiomeType.Grovelands && AreaCompositionScope.IsOlderdeepSite(map.GetPOI(4, 6))
+                && !LairStacks.HasSavedColumn(manager, "Overworld.4.6.0");
+        }
+        internal static bool IsOlderdeepLedges(Zone zone)
+            => zone?.ZoneID == "Overworld.4.6.1" && IsOlderdeepDescent(zone);
+
         // First Cathedral shelf level only; current site authority is never cached.
         internal static bool IsCathedralDescent(Zone zone)
         {

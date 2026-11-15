@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 09:11:03Z" end-time="2026-11-15 09:11:04Z" duration="1.1146915">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="37453" result="Failed" site="Child" start-time="2026-11-15 09:11:03Z" end-time="2026-11-15 09:11:04Z" duration="1.114692" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="45861" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="37453" result="Failed" site="Child" start-time="2026-11-15 09:11:03Z" end-time="2026-11-15 09:11:04Z" duration="1.088123" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44659" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="45862" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37453" result="Failed" site="Child" start-time="2026-11-15 09:11:03Z" end-time="2026-11-15 09:11:04Z" duration="1.083184" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="45863" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37453" result="Failed" site="Child" start-time="2026-11-15 09:11:03Z" end-time="2026-11-15 09:11:04Z" duration="1.079687" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24955" name="OlderdeepCompositionAdversarialTests" fullname="CavesOfOoo.Tests.OlderdeepCompositionAdversarialTests" classname="CavesOfOoo.Tests.OlderdeepCompositionAdversarialTests" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-11-15 09:11:03Z" end-time="2026-11-15 09:11:04Z" duration="1.072955" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25011" name="Adversarial_RealTenderOfferingThenPlumeRestRetainsTrustAndSameCellContract" fullname="CavesOfOoo.Tests.OlderdeepCompositionAdversarialTests.Adversarial_RealTenderOfferingThenPlumeRestRetainsTrustAndSameCellContract" classname="CavesOfOoo.Tests.OlderdeepCompositionAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-15 09:11:03Z" end-time="2026-11-15 09:11:04Z" duration="1.071210" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25009" name="Adversarial_RealTenderOfferingThenPlumeRestRetainsTrustAndSameCellContract(True)" fullname="CavesOfOoo.Tests.OlderdeepCompositionAdversarialTests.Adversarial_RealTenderOfferingThenPlumeRestRetainsTrustAndSameCellContract(True)" methodname="Adversarial_RealTenderOfferingThenPlumeRestRetainsTrustAndSameCellContract" classname="CavesOfOoo.Tests.OlderdeepCompositionAdversarialTests" runstate="Runnable" seed="828384922" result="Failed" start-time="2026-11-15 09:11:03Z" end-time="2026-11-15 09:11:04Z" duration="0.675053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 70
+  But was:  10
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.OlderdeepCompositionAdversarialTests.Adversarial_RealTenderOfferingThenPlumeRestRetainsTrustAndSameCellContract (System.Boolean sameCell) [0x003c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/OlderdeepCompositionAdversarialTests.cs:149
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT3'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'BoneCacheT3'
+[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+]]></output>
+              </test-case>
+              <test-case id="25010" name="Adversarial_RealTenderOfferingThenPlumeRestRetainsTrustAndSameCellContract(False)" fullname="CavesOfOoo.Tests.OlderdeepCompositionAdversarialTests.Adversarial_RealTenderOfferingThenPlumeRestRetainsTrustAndSameCellContract(False)" methodname="Adversarial_RealTenderOfferingThenPlumeRestRetainsTrustAndSameCellContract" classname="CavesOfOoo.Tests.OlderdeepCompositionAdversarialTests" runstate="Runnable" seed="210307682" result="Passed" start-time="2026-11-15 09:11:04Z" end-time="2026-11-15 09:11:04Z" duration="0.391924" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT3'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'BoneCacheT3'
+[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

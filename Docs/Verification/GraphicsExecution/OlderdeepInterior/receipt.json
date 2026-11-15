@@ -1,0 +1,95 @@
+{
+  "recordedUTC": "2026-11-15T09:21:28.713137+00:00",
+  "sourceBase": "eac80a067e670928c269645d3eecfae866e6d3c2",
+  "status": "bounded Editor accepted; publication and delivery pending",
+  "zones": [
+    "Overworld.4.6.1",
+    "Overworld.4.6.2"
+  ],
+  "seed": 704860946,
+  "scope": "Real StoneFloor and SandstoneWall at both depths,179 existing depth1 DescentLedge. Strict current Grovelands/FoundingVillageProfile/cache/full-map/no-saved-lair authority; story rename allowed. SillEnvironment4-7,Shallow0-1,Stump10-11 reused unchanged. Separate optional catalogs; no ambient/rocks/stairs/population/shadows/generation/runtime mechanics change.",
+  "connector": "No actual SandstoneFloor in either baseline census. Synthetic connector acceptance uses Beating12-15 and independent missing/malformed resource controls; no observed connector coverage claim.",
+  "native": {
+    "red": {
+      "job": "871f9b241a0246d6ada1ba86b15caa6a",
+      "total": 122,
+      "failed": 120,
+      "passed": 2,
+      "seconds": 48.8438978,
+      "reasons": "84 missing stone materials,21 missing ledges,15 absent new API"
+    },
+    "initialGreen": {
+      "job": "6cdd9619693745d4bbc65dd22d08dde7",
+      "passed": 402,
+      "failed": 1,
+      "seconds": 103.4776176,
+      "failure": "Existing same-cell plume-rest fixture lacked PhysicsPart; expected70 tick actual10"
+    },
+    "unchangedSourceControl": {
+      "job": "076bea98ac7f47968b21fb5753e3c691",
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "source": "Four owned render files temporarily replaced with exact HEAD and then restored with hashes. SameTrue failed70vs10;False passed. native-baseline-rest-failure.xml preserved."
+    },
+    "fixtureCorrection": "Only add owned PhysicsPart to hand-built test Player, consistent with FoundingRestTests current actor requirement; retain both same-cell assertions, all production rest rules unchanged.",
+    "finalGreen": {
+      "job": "5b951226fc85432dbef6d8b535ad6c37",
+      "total": 407,
+      "passed": 407,
+      "failed": 0,
+      "seconds": 103.0631429,
+      "scope": "OlderdeepDescent1/2+Ledge,CathedralDescent+Ledge,Shallow,GinmereDescent,StillleafDescent,FoundingRest,OlderdeepComposition+Adversarial; includes four new independent missing/malformedBeating cases; one final run, not additive with prior results"
+    }
+  },
+  "actual": {
+    "baselineAcquisition": "Earned BatchAEF6 CathedralAfterSave1610HP40 seed704860946; ordinary ascent/worldmapLeft1Down2\u2192Olderdeep4.6.0,Right12 and stairs1. Originalapproach had ordinary fist misses against PaleStalker/PaleMatriarch, retained no health change; no injection/healing/F12. BeforeDescent1950HP40at41,12, BeforeCourt2170HP40at26,9, BeforeFounding2350HP40at40,12.",
+    "matched": "FreshContinue court2170 and founding2350 preserve saved positionHP40; before captures were post-F5 and logs differ, no full-frame equality claim.",
+    "readers": "StoneFloor27,9 native field notes; ledge25,9 native Object portrait; SandstoneWall26,3 Stone30/30 solid portrait/description. One accidentally opened field manual closed without changes; excluded from reader acceptance.",
+    "courtWalkLimit": "Attempted Left/Right then Down3Right14 finished30,10 rather than intended40,12,HP40. Input/actor blocking not attributed; do not claim complete court route or verified individual ledge crossing.",
+    "verifiedMovement": "Fresh founding Right to41,12, Left to40,12 then actual2\u21921\u21922stairs, every endpoint observed withF12OFF/HP40.",
+    "saveReload": "F5turn2390HP40 then freshContinue4.6.2at40,12HP40 invincibilityfalse.",
+    "owners": "2760 court records exact before/after;2792 founding records exact before/after/presave/reload. Terrain/wall/niche/plaque/ledge/anchor/cache fields only; mobile actors and Rooted excluded, no actor-state or balance claim.",
+    "comparisons": {
+      "court": {
+        "world": 461430,
+        "sidebar": 25795,
+        "hotbar": 0
+      },
+      "founding": {
+        "world": 374206,
+        "sidebar": 22787,
+        "hotbar": 0
+      },
+      "reload": {
+        "world": 16883,
+        "sidebar": 21256,
+        "hotbar": 0
+      }
+    },
+    "reloadDifference": "16883 world pixels bbox370,240\u2013569,439 RGBdelta0..+2 localized brightening; unknowncause, no pixelidentical claim."
+  },
+  "performance": {
+    "seconds": 138.0242482,
+    "rendererP95Ms": 0.06625,
+    "rendererMaxMs": 60.318542,
+    "mainMaxMs": 769.759417,
+    "scope": "after-only Editor court readers/attempted walking, including tool overhead; R11 remains open, no speedup or packaged performance claim"
+  },
+  "reviews": {
+    "source": "sumphold_grade_source_review:0P1/P2, original constructor compatibility, current authority, independent resources, competingfloor/fog/lifecycle/Rooted-plume refusal; final fixture+missingBeating deltas reviewed",
+    "visual": "sumphold_baseline_review:0 visibleP1/P2; quietfloors clarifychambers,wall edges and paleledges readable,readerscorrect. Reload0newshape/readability regression; independentlyconfirmed16883pixels0..+2RGBcentralbbox. Sparsechambers,regularledges,blackbackedspecialglyphs remain. No wholearea/courtrouteclaim."
+  },
+  "coverage": "bounded observed structural owners at two named depths",
+  "areaPolish": "in progress; sparse court/chamber, regular ledge bands, wall depth and special glyphs remain",
+  "population": "unchanged",
+  "shadows": "unchanged",
+  "delivery": "Current aef6dba79 Mac/Linux excludes this slice; batch after next accepted area",
+  "preservation": "80foreign/normalgameplay/preferences/art preserved; testtelemetry only; rootnull/cleanScene",
+  "limits": [
+    "No mouth/surface, Rooted/plume/niche/actor art acceptance; no full-area or V0\u2013V7 completion.",
+    "Profile after-only Editor; R11 spike attribution and Linuxexecution open; SteamDeck deferred."
+  ],
+  "hourlyReportUTC": "2026-11-15T09:19:08Z",
+  "next": "Publish exact owned slice, then actual Root3.3.0 surface baseline via Olderdeep mouth/worldmapLeft1Up3; tier5 short survey, no ending-chamber interactions. Batch accepted Mac/Linux slices."
+}

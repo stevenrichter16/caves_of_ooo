@@ -125,6 +125,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsSiteArt;
         private FlatPixelStumpMaterialsCatalog _stumpSiteArt;
         private FlatPixelStumpMaterialsCatalog _fellingGroundArt;
+        private FlatPixelStumpMaterialsCatalog _olderdeepLedgeArt;
         private FlatPixelStumpMaterialsCatalog _cathedralLedgeArt;
         private FlatPixelStumpMaterialsCatalog _ginmereLedgeArt;
         private FlatPixelStumpMaterialsCatalog _stillleafLedgeArt;
@@ -134,6 +135,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelShallowCavesCatalog _shallowCavesArt;
         private FlatPixelShallowCavesCatalog _stillleafDescentArt;
         private FlatPixelShallowCavesCatalog _groveSinkholeFloorArt;
+        private FlatPixelShallowCavesCatalog _olderdeepDescentArt;
         private FlatPixelShallowCavesCatalog _cathedralDescentArt;
         private FlatPixelShallowCavesCatalog _ginmereDescentArt;
         private FlatPixelShallowCavesCatalog _lampwellStoneArt;
@@ -2129,6 +2131,19 @@ namespace CavesOfOoo.Rendering
                 }
                 return _spivenorStoneArt;
             }
+            if (FlatPixelSiteAdmission.IsOlderdeepDescent(zone))
+            {
+                if (_olderdeepDescentArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _olderdeepDescentArt = new FlatPixelShallowCavesCatalog(
+                        Resources.Load<Texture2D>(FlatPixelShallowCavesCatalog.ResourcePath),
+                        Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),
+                        null, null, null, null, _glyphFallback,
+                        Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath)).AdmittingOlderdeepDescent();
+                }
+                return _olderdeepDescentArt;
+            }
             if (FlatPixelSiteAdmission.IsCathedralDescent(zone))
             {
                 if (_cathedralDescentArt == null && _loadOptionalResources)
@@ -2250,6 +2265,17 @@ namespace CavesOfOoo.Rendering
                         null, null, _glyphFallback).AdmittingStillleafLedges();
                 }
                 return _stillleafLedgeArt;
+            }
+            if (FlatPixelSiteAdmission.IsOlderdeepLedges(zone))
+            {
+                if (_olderdeepLedgeArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _olderdeepLedgeArt = new FlatPixelStumpMaterialsCatalog(
+                        Resources.Load<Texture2D>(FlatPixelStumpMaterialsCatalog.ResourcePath),
+                        null, null, _glyphFallback).AdmittingOlderdeepLedges();
+                }
+                return _olderdeepLedgeArt;
             }
             if (FlatPixelSiteAdmission.IsCathedralDescent(zone))
             {
@@ -2750,8 +2776,10 @@ namespace CavesOfOoo.Rendering
             _stumpMaterialsArt?.Dispose();
             _stumpSiteArt?.Dispose();
             _fellingGroundArt?.Dispose();
+            _olderdeepLedgeArt?.Dispose();
             _cathedralLedgeArt?.Dispose();
             _ginmereLedgeArt?.Dispose();
+            _olderdeepLedgeArt = null;
             _cathedralLedgeArt = null;
             _ginmereLedgeArt = null;
             _stillleafLedgeArt?.Dispose();
@@ -2761,6 +2789,7 @@ namespace CavesOfOoo.Rendering
             _shallowCavesArt?.Dispose();
             _stillleafDescentArt?.Dispose();
             _groveSinkholeFloorArt?.Dispose();
+            _olderdeepDescentArt?.Dispose();
             _cathedralDescentArt?.Dispose();
             _ginmereDescentArt?.Dispose();
             _lampwellStoneArt?.Dispose();
@@ -2776,6 +2805,7 @@ namespace CavesOfOoo.Rendering
             _shallowCavesArt = null;
             _stillleafDescentArt = null;
             _groveSinkholeFloorArt = null;
+            _olderdeepDescentArt = null;
             _cathedralDescentArt = null;
             _ginmereDescentArt = null;
             _lampwellStoneArt = null;

@@ -16,7 +16,11 @@ namespace CavesOfOoo.Rendering
         bool floorOnly;
         bool structuralOnly;
         bool sandstoneOnly;
+        bool allowStoneFloor;
         bool rockBackdropOnly;
+        /// <summary>Olderdeep's real stone/sandstone floors and sandstone walls only.</summary>
+        internal FlatPixelShallowCavesCatalog AdmittingOlderdeepDescent()
+        { admits = FlatPixelSiteAdmission.IsOlderdeepDescent; allowCoveredFloorReader = allowStoneFloor = structuralOnly = sandstoneOnly = true; return this; }
         /// <summary>Cathedral sandstone only; no rock, stair or ambient borrowing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingCathedralDescent()
         { admits = FlatPixelSiteAdmission.IsCathedralDescent; allowCoveredFloorReader = true; structuralOnly = sandstoneOnly = true; return this; }
@@ -40,7 +44,7 @@ namespace CavesOfOoo.Rendering
         public const int FrameCount = 2;
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] walls, floors, rubble, stalagmite, down, up;
+        readonly Tile[] walls, floors, stoneFloors, rubble, stalagmite, down, up;
         bool disposed;
         struct Address
         {
@@ -84,11 +88,17 @@ namespace CavesOfOoo.Rendering
         public FlatPixelShallowCavesCatalog(Texture2D wall2, Texture2D beating34,
             Texture2D rubble16, Texture2D stalagmite16, Texture2D anchors12,
             Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector)
+            : this(wall2, beating34, rubble16, stalagmite16, anchors12, cellar9, borrowedSelector, null) { }
+
+        public FlatPixelShallowCavesCatalog(Texture2D wall2, Texture2D beating34,
+            Texture2D rubble16, Texture2D stalagmite16, Texture2D anchors12,
+            Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector, Texture2D optionalStone9)
         {
             selector = borrowedSelector;
             if (selector == null) return;
             walls = Frames(wall2, FrameCount, Height, 0, 2, "wall");
             floors = Frames(beating34, 34, Height, 12, 4, "floor");
+            stoneFloors = Frames(optionalStone9, 9, Height, 4, 4, "stone floor");
             rubble = Frames(rubble16, 1, Width, 0, 1, "rubble");
             stalagmite = Frames(stalagmite16, 1, Width, 0, 1, "stalagmite");
             down = Frames(anchors12, 12, Height, 4, 1, "down");
@@ -112,7 +122,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveGround(Zone zone, int x, int y, out Tile tile, out Entity floor)
         {
             tile = null; floor = null;
-            if (floors == null || !ReadyCell(zone, x, y, out var cell)) return false;
+            if ((floors == null && (!allowStoneFloor || stoneFloors == null)) || !ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
             bool frostFloor = FlatPixelFrostVentCatalog.HasFloor(zone, x, y);
             if (state != null && !state.IsEmpty && !frostFloor) return false;
@@ -121,11 +131,13 @@ namespace CavesOfOoo.Rendering
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
                 if (owner.BlueprintName == "SandstoneFloor")
-                { if (actual != null || !OrdinaryFloor(owner)) return false; actual = owner; }
+                { if (actual != null || floors == null || !OrdinaryFloor(owner)) return false; actual = owner; }
+                else if (allowStoneFloor && owner.BlueprintName == "StoneFloor")
+                { if (actual != null || stoneFloors == null || !OrdinaryStoneFloor(owner)) return false; actual = owner; }
                 else if (!(frostFloor && FlatPixelFrostVentCatalog.Eligible(owner)) && CompetingGround(owner)) return false;
             }
             if (actual == null) return false;
-            floor = actual; tile = floors[VariantAt(x, y)]; return true;
+            floor = actual; tile = (actual.BlueprintName == "StoneFloor" ? stoneFloors : floors)[VariantAt(x, y)]; return true;
         }
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
@@ -222,6 +234,13 @@ namespace CavesOfOoo.Rendering
             if (!PlainOwner(owner) || ForeignMeaning(owner) || !Terrain(owner) || !NoMaterialState(owner)) return false;
             var render = Owned<RenderPart>(owner);
             return Render(render, ".", "&W", 0) && render.GlyphVariants == "...,.'`"
+                && string.IsNullOrEmpty(render.BackgroundColor);
+        }
+        static bool OrdinaryStoneFloor(Entity owner)
+        {
+            if (!PlainOwner(owner) || ForeignMeaning(owner) || !Terrain(owner) || !NoMaterialState(owner)) return false;
+            var render = Owned<RenderPart>(owner);
+            return Render(render, ".", "&y", 0) && render.GlyphVariants == "...,.'`"
                 && string.IsNullOrEmpty(render.BackgroundColor);
         }
         static bool OrdinaryForeground(Entity owner)
@@ -369,7 +388,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrames(walls); DestroyFrames(floors); DestroyFrames(rubble);
+            DestroyFrames(walls); DestroyFrames(floors); DestroyFrames(stoneFloors); DestroyFrames(rubble);
             DestroyFrames(stalagmite); DestroyFrames(down); DestroyFrames(up);
         }
         static void DestroyFrames(Tile[] tiles)

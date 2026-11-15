@@ -135,6 +135,8 @@ namespace CavesOfOoo.Tests
                 var f=GrovelandsCompositionTests.Factory();var z=SettlementRuntime.ActiveZone=new OverworldZoneManager(f,64).GetZone(OlderdeepCompositionTests.Id(2));
                 var tender=z.GetAllEntities().Single(e=>e.BlueprintName=="FoundingPlaqueTender");var tc=z.GetEntityCell(tender);
                 var player=new Entity{BlueprintName="Player"};player.SetTag("Player");player.SetTag("Creature");
+                // Native rest requires the current physical actor, as in the real Player.
+                player.AddPart(new PhysicsPart());
                 player.AddPart(new InventoryPart{MaxWeight=100});player.AddPart(new RenderPart());player.AddPart(new ExaminablePart());player.AddPart(new StatusEffectsPart());
                 player.Statistics["Hitpoints"]=new Stat{Name="Hitpoints",BaseValue=5,Min=0,Max=40};player.Statistics["Speed"]=new Stat{Name="Speed",BaseValue=100,Min=0,Max=200};
                 var near=OlderdeepCompositionTests.Neighbors(tc.X,tc.Y).First(n=>z.InBounds(n.x,n.y)&&!z.GetCell(n.x,n.y).BlocksMovement());z.AddEntity(player,near.x,near.y);
