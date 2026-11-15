@@ -22816,79 +22816,29 @@
     }
   ],
   "current_delivery": {
-    "recorded_utc": "2026-11-15T06:32:38.485769+00:00",
-    "source_commit": "4233a848d56ac098f121dab5baddf9eee82e7880",
+    "recorded_utc": "2026-11-15T07:08:27.129763+00:00",
+    "source_commit": "eede744fab4b0ef8aeb95e27df1363ae177d1734",
     "source_remote_verified": true,
-    "mac": "Builds/Verification/2026-11-15-graphics-4233a848d-current/CavesOfOoo.app",
-    "linux": "Builds/SteamDeck/2026-11-15-graphics-4233a848d-current/CavesOfOoo-current",
-    "archive": "Builds/SteamDeck/2026-11-15-graphics-4233a848d-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
-    "archive_sha256": "db7a8e06b89e9a3d06c7fc5065fdf74d8041c4395e6932003c6d67210841b1e3",
-    "archive_bytes": 129129432,
+    "mac": "Builds/Verification/2026-11-15-graphics-eede744fa-current/CavesOfOoo.app",
+    "linux": "Builds/SteamDeck/2026-11-15-graphics-eede744fa-current/CavesOfOoo-current/CavesOfOoo",
+    "archive": "Builds/SteamDeck/2026-11-15-graphics-eede744fa-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+    "archive_sha256": "a218349e35ce9688044bb7f181d6de282f5d2e7cccdedf73b39ad924c9341787",
+    "archive_bytes": 129129770,
     "archive_members": 205,
     "internal_checksums": 191,
-    "resource_pins": 245,
-    "combined_pins": 326,
+    "resource_pins": 253,
+    "combined_pins": 334,
     "build_results": {
-      "mac": "0errors4warnings",
-      "linux": "0errors4warnings"
+      "mac": "build-b21ba6a5b5;0errors4warnings;28.963929s",
+      "linux": "build-34de5f6af5;0errors4warnings;22.272175s"
     },
-    "mac_actual": {
-      "recordedUtc": "2026-11-15T06:31:24.706630+00:00",
-      "source": "4233a848d56ac098f121dab5baddf9eee82e7880",
-      "actual_native_keyboard_play": true,
-      "processes": [
-        97696,
-        98170,
-        98227,
-        98303,
-        98644
-      ],
-      "posy": {
-        "fixture": "PosyResidents/AfterCheckpoint",
-        "baker_reader": "worried baker40,10 HP20neutral/Flesh/nativecook portrait",
-        "baker_dialogue": "original MessageForHermit offer/native portrait; no quest acceptance",
-        "travel": "5.9\u21924.9\u21925.9; ordinary UpDown movement",
-        "saved_turn": 3280,
-        "hp": 40,
-        "fresh_position": [
-          39,
-          12
-        ],
-        "time": "Dusk",
-        "hermit": "separate earned HermitCheckpoint27,18: fullreader26,18 HP20neutral/Flesh/nativecivilian and originaldialogue nativeportrait; no newhermit-onlyreloadclaim"
-      },
-      "tally": {
-        "fixture": "TallyMaterials/BeforeInteriorCheckpoint",
-        "shelter": "17,6 scene observed",
-        "readers": [
-          "tent wall17,1 Cloth8/8 nativeportrait",
-          "Packed road40,11 nativeportrait"
-        ],
-        "movement": "Down5 Right22 to39,11",
-        "travel": "10.14\u21929.14\u219210.14; outsidegreen/returnneutral observed",
-        "saved_turn": 4940,
-        "hp": 40,
-        "fresh_position": [
-          39,
-          11
-        ],
-        "time": "Dawn"
-      },
-      "f12": false,
-      "captures": "CUAobserved1280x856 incl56titlebar/effective1280x800; no durableMacPNG/pixelcomparisonclaim",
-      "input_corrections": "Several batched shift-period descents left map visible; screenshotcaught and singlekeycompleted. InitialPosymapF5excluded; correctedlocal5.9F5andfreshContinue authoritative. No unloggedplayerrelaunch in thisbatch.",
-      "shutdown": "all5loggedprocesses exited confirmed bypgrep, noCUAobservationafterquit before guardedlaunch",
-      "performance": "firstMaclaunch overlappedarchive; no packagedperformanceclaim",
-      "linux_execution": "untested",
-      "deck": "deferred",
-      "log_notes": "shutdownComputeBuffer/threadfinalization diagnostics retained; no cleanshutdownclaim; rawlogsleftlocal/gzbyteexact"
-    },
-    "restoration": "Docs/Verification/GraphicsExecution/Batch4233A8/restoration.json",
-    "linux_execution": false,
-    "deck": "deferred",
+    "mac_actual": "Docs/Verification/GraphicsExecution/BatchEEDE74/actual-mac.json",
+    "restoration": "Docs/Verification/GraphicsExecution/BatchEEDE74/restoration.json",
+    "linux_execution": "unexecuted",
+    "deck": "deferred by direct user priority",
     "R11": "open",
-    "whole_area_polish": "open",
-    "next": "ActualQuillhold14.9wall/interiorbaseline, distinguishliveprop/memoryglyph",
+    "whole_area_polish": "incomplete",
+    "next": "Fresh Tine13.7 center/waterfront/interior baseline viaQuillhold14.9Left1Up2; reuseapprovedwateronlyifactualgapconfirmed.",
     "hourly_report_utc": "2026-11-15T06:18:44Z"
   },
   "sodden_native_receipt_correction": {
@@ -26019,6 +25969,82 @@
       "whole_area_polish": "open",
       "next": "Actual Posy questalias owners and approved native reuse,then otherareas",
       "hourly_report_utc": "2026-11-15T05:18:32Z"
+    },
+    {
+      "recorded_utc": "2026-11-15T06:32:38.485769+00:00",
+      "source_commit": "4233a848d56ac098f121dab5baddf9eee82e7880",
+      "source_remote_verified": true,
+      "mac": "Builds/Verification/2026-11-15-graphics-4233a848d-current/CavesOfOoo.app",
+      "linux": "Builds/SteamDeck/2026-11-15-graphics-4233a848d-current/CavesOfOoo-current",
+      "archive": "Builds/SteamDeck/2026-11-15-graphics-4233a848d-current/CavesOfOoo-Linux-flat16x24-current.tar.gz",
+      "archive_sha256": "db7a8e06b89e9a3d06c7fc5065fdf74d8041c4395e6932003c6d67210841b1e3",
+      "archive_bytes": 129129432,
+      "archive_members": 205,
+      "internal_checksums": 191,
+      "resource_pins": 245,
+      "combined_pins": 326,
+      "build_results": {
+        "mac": "0errors4warnings",
+        "linux": "0errors4warnings"
+      },
+      "mac_actual": {
+        "recordedUtc": "2026-11-15T06:31:24.706630+00:00",
+        "source": "4233a848d56ac098f121dab5baddf9eee82e7880",
+        "actual_native_keyboard_play": true,
+        "processes": [
+          97696,
+          98170,
+          98227,
+          98303,
+          98644
+        ],
+        "posy": {
+          "fixture": "PosyResidents/AfterCheckpoint",
+          "baker_reader": "worried baker40,10 HP20neutral/Flesh/nativecook portrait",
+          "baker_dialogue": "original MessageForHermit offer/native portrait; no quest acceptance",
+          "travel": "5.9\u21924.9\u21925.9; ordinary UpDown movement",
+          "saved_turn": 3280,
+          "hp": 40,
+          "fresh_position": [
+            39,
+            12
+          ],
+          "time": "Dusk",
+          "hermit": "separate earned HermitCheckpoint27,18: fullreader26,18 HP20neutral/Flesh/nativecivilian and originaldialogue nativeportrait; no newhermit-onlyreloadclaim"
+        },
+        "tally": {
+          "fixture": "TallyMaterials/BeforeInteriorCheckpoint",
+          "shelter": "17,6 scene observed",
+          "readers": [
+            "tent wall17,1 Cloth8/8 nativeportrait",
+            "Packed road40,11 nativeportrait"
+          ],
+          "movement": "Down5 Right22 to39,11",
+          "travel": "10.14\u21929.14\u219210.14; outsidegreen/returnneutral observed",
+          "saved_turn": 4940,
+          "hp": 40,
+          "fresh_position": [
+            39,
+            11
+          ],
+          "time": "Dawn"
+        },
+        "f12": false,
+        "captures": "CUAobserved1280x856 incl56titlebar/effective1280x800; no durableMacPNG/pixelcomparisonclaim",
+        "input_corrections": "Several batched shift-period descents left map visible; screenshotcaught and singlekeycompleted. InitialPosymapF5excluded; correctedlocal5.9F5andfreshContinue authoritative. No unloggedplayerrelaunch in thisbatch.",
+        "shutdown": "all5loggedprocesses exited confirmed bypgrep, noCUAobservationafterquit before guardedlaunch",
+        "performance": "firstMaclaunch overlappedarchive; no packagedperformanceclaim",
+        "linux_execution": "untested",
+        "deck": "deferred",
+        "log_notes": "shutdownComputeBuffer/threadfinalization diagnostics retained; no cleanshutdownclaim; rawlogsleftlocal/gzbyteexact"
+      },
+      "restoration": "Docs/Verification/GraphicsExecution/Batch4233A8/restoration.json",
+      "linux_execution": false,
+      "deck": "deferred",
+      "R11": "open",
+      "whole_area_polish": "open",
+      "next": "ActualQuillhold14.9wall/interiorbaseline, distinguishliveprop/memoryglyph",
+      "hourly_report_utc": "2026-11-15T06:18:44Z"
     }
   ],
   "stump_dome_shadow": {
