@@ -1,0 +1,90 @@
+{
+  "recordedUtc": "2026-11-15T18:27:00Z",
+  "sourceBase": "6b14cd65498d5a4e6a868ce14bd4d0444a2448b9",
+  "zone": "Overworld.14.9.0",
+  "seed": 224401440,
+  "center": {
+    "checkpoint": "../QuillholdMemory/AfterCheckpoint",
+    "turn": 4950,
+    "x": 39,
+    "y": 11,
+    "hp": 40
+  },
+  "approach": {
+    "checkpoint": "BeforeApproachCheckpoint",
+    "turn": 5170,
+    "x": 19,
+    "y": 13,
+    "hp": 40
+  },
+  "interior": {
+    "checkpoint": "BeforeInteriorCheckpoint",
+    "turn": 5210,
+    "x": 19,
+    "y": 17,
+    "hp": 40
+  },
+  "route": "Ordinary Left20 Down2 to approach, then Down4 into Copy Hall. No combat, healing, injection or F12. Full road, court and interior readers retained.",
+  "owners": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": [
+        {
+          "x": 40,
+          "y": 11,
+          "visible": true,
+          "explored": true,
+          "stateEmpty": true,
+          "owners": [
+            {
+              "id": "21275",
+              "blueprint": "RoadStone"
+            }
+          ]
+        },
+        {
+          "x": 39,
+          "y": 10,
+          "visible": true,
+          "explored": true,
+          "stateEmpty": true,
+          "owners": [
+            {
+              "id": "21194",
+              "blueprint": "Floor"
+            }
+          ]
+        },
+        {
+          "x": 19,
+          "y": 13,
+          "visible": true,
+          "explored": true,
+          "stateEmpty": true,
+          "owners": [
+            {
+              "id": "21414",
+              "blueprint": "RoadStone"
+            }
+          ]
+        },
+        {
+          "x": 19,
+          "y": 17,
+          "visible": false,
+          "explored": true,
+          "stateEmpty": true,
+          "owners": [
+            {
+              "id": "21778",
+              "blueprint": "StoneFloor"
+            }
+          ]
+        }
+      ],
+      "compiler": "codedom"
+    }
+  },
+  "limits": "Interior owner19,17 was hidden at the center probe; subsequent ordinary entry showed StoneFloor underfoot and full adjacent StoneFloor reader. No art or runtime changes in baseline."
+}
