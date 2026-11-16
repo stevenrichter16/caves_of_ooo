@@ -1,6 +1,6 @@
 # M1c: optional relocation of a recovered workshop
 
-Status, 2026-11-16: implementation, native RED/GREEN/countercases and actual northern crossing/off-site service/travel/fresh Continue are complete. Independent source/gameplay reviews report0 remainingP1/P2; bounded M1c is accepted, publication pending. M1a+M1b remain accepted and current Mac source c29039d88 is verified; that package does not include M1c.
+Status, 2026-11-16: implementation, native RED/GREEN/countercases and actual northern crossing/off-site service/travel/fresh Continue are complete. Independent source/gameplay reviews report0 remainingP1/P2; bounded M1c is accepted, published at8bb2b8f82. M1a+M1b remain accepted and current Mac source c29039d88 is verified; that package does not include M1c.
 
 ## Player purpose and alternatives
 
@@ -76,3 +76,5 @@ The player equipped that usable result outside the workshop menu and walked ordi
 No frame-rate, long-save, Linux or Deck qualification. The existing package remains sourcec29039d88 until a new coherent Mac delivery. Scene/root/normal-state restoration is required before publication.
 
 Final independent gameplay review supports bounded M1c acceptance with0 concreteP1/P2. Preservation receipt verifies all84 prior dirty hashes, both normal save trees and user gameplay/preferences; four Unity framework session/performance-test keys changed naturally and are disclosed, not overwritten. Unity stopped/rootnull/scene clean.
+
+Current Mac source8bb2b8f82 also passes ordinary paired crossing, off-site refit/equip,17.6↔17.7 and fresh-process Continue4677HP40. See Verification/MachineSystems/Batch8BB2B8/README.md for exact process evidence, incidental startup exclusion and preserved diagnostics.
