@@ -5367,7 +5367,12 @@
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
       "related_scope_ids": [
         "settlement/the-drowned-ledger"
-      ]
+      ],
+      "drowned_ledger_grade": {
+        "record": "Docs/GRAPHICS-DROWNED-LEDGER-GRADE.md",
+        "receipt": "Docs/Verification/GraphicsExecution/DrownedLedgerGrade/receipt.json",
+        "scope": "bounded exact-site native palette, four actual view pairs/readers/travel/reload; no newcoverage/population/shadow or wholearea acceptance"
+      }
     },
     {
       "id": "surface/Overworld.18.5.0",
@@ -18497,7 +18502,12 @@
         "records": [],
         "rule": "Use actual footprint/owner IDs; do not invent separate zone IDs for same-graph interiors."
       },
-      "actual_seed": 224401440
+      "actual_seed": 224401440,
+      "drowned_ledger_grade": {
+        "record": "Docs/GRAPHICS-DROWNED-LEDGER-GRADE.md",
+        "receipt": "Docs/Verification/GraphicsExecution/DrownedLedgerGrade/receipt.json",
+        "scope": "bounded exact-site native palette, four actual view pairs/readers/travel/reload; no newcoverage/population/shadow or wholearea acceptance"
+      }
     },
     {
       "id": "settlement/slip",
@@ -31279,5 +31289,132 @@
     "whole_area_polish": "incomplete",
     "next": "Fresh DrownedLedger17.5 palette baseline from DrownedLedgerCourts/BeforeCenterCheckpoint5110HP40seed224401440at39,11. Center,Up1 thenLeft21 alongy10 to18,10 andUp4throughactualdoor18,9 toreadingroom18,6; directReadingRoomCheckpoint5370alternative if routeblocked. Comparewhite6/0 against actualSodden(.82,.86,.80)/6/4 onlyifwholeviewbenefits; preserveapprovedwater/boards/banks,Soddenidentity,owners,memory. No acceptance yet.",
     "hourly_report_utc": "2026-11-15T23:52:07Z"
+  },
+  "drowned_ledger_grade": {
+    "recordedUTC": "2026-11-16T00:47:22.554588+00:00",
+    "status": "bounded Editor accepted; publication pending",
+    "source_base": "e89dd31958256d59cf0b035dba975374b4f1f0e0",
+    "zone": "Overworld.17.5.0",
+    "seed": 224401440,
+    "scope": "Exact current displayed native Sodden/Village/ExcavationCamp/canonical Drowned Ledger/full-map/cache/no-saved-lair authority only; white filter,contrast6,saturation0. Approved art,water,boards,banks,owners,geometry,stock,legacy and memory policy unchanged.",
+    "baseline": {
+      "checkpoint": "Docs/Verification/GraphicsExecution/DrownedLedgerCourts/BeforeCenterCheckpoint",
+      "turn": 5110,
+      "hp": 40,
+      "x": 39,
+      "y": 11
+    },
+    "native": {
+      "red": {
+        "job": "816bad9288c94cf2a8b29eed5f4ea457",
+        "total": 15,
+        "failed": 15,
+        "meaning": "All fail initial positive grade premise on unchanged production; shared-premise controls complete under GREEN."
+      },
+      "green": {
+        "job": "1dd9ac95fa7c4032b45f9358bf87e10f",
+        "total": 364,
+        "passed": 364,
+        "failed": 0,
+        "skipped": 0,
+        "start": "2026-11-16 00:40:58Z",
+        "end": "2026-11-16 00:41:07Z"
+      },
+      "scope": "Exact-site grade + travel + water presentation + composition and adversarial preservation; no test-only imagery claimed as actual play."
+    },
+    "actual": "Fresh GameBootstrap Continue;center39,11;Up1 Left21 Up4 through actualdoor18,9 to readingroom18,6; full StoneFloor reader readingonly; Down8 Left4 towest14,14; Right25 Up3center; world17.5→18.5→17.5; original neighborSodden[.82,.86,.8]/6/4 restored and returnwhite6/0 verified;F5freshContinue5850HP40at39,11F12off. No healing,protection,combat,destruction,transfer or rest.",
+    "capture_limits": "NPC positions differ in later reading/west views; excluded from palette assessment. Initial reload menu attempt remained stopped/rootnull and copied no save; later explicit fresh root succeeded.",
+    "terrain": "2470 full terrain records and TileState exact before/after. Travel preserves IDs/positions/TileState;305water temperatures15.2→22.4685,1fire490.5→145.2449,1light intensity and14cooccupancy changes. Presave/reload differ only1light intensity .72462→.70959; no other part/state difference.",
+    "pixel_comparison": {
+      "center": {
+        "world": {
+          "changed_pixels": 638618,
+          "max_channel_difference": 32
+        },
+        "sidebar": {
+          "changed_pixels": 0,
+          "max_channel_difference": 0
+        },
+        "hotbar": {
+          "changed_pixels": 0,
+          "max_channel_difference": 0
+        }
+      },
+      "reading": {
+        "world": {
+          "changed_pixels": 619768,
+          "max_channel_difference": 128
+        },
+        "sidebar": {
+          "changed_pixels": 0,
+          "max_channel_difference": 0
+        },
+        "hotbar": {
+          "changed_pixels": 0,
+          "max_channel_difference": 0
+        }
+      },
+      "reader": {
+        "world": {
+          "changed_pixels": 418356,
+          "max_channel_difference": 126
+        },
+        "sidebar": {
+          "changed_pixels": 0,
+          "max_channel_difference": 0
+        },
+        "hotbar": {
+          "changed_pixels": 0,
+          "max_channel_difference": 0
+        }
+      },
+      "west": {
+        "world": {
+          "changed_pixels": 627034,
+          "max_channel_difference": 158
+        },
+        "sidebar": {
+          "changed_pixels": 0,
+          "max_channel_difference": 0
+        },
+        "hotbar": {
+          "changed_pixels": 0,
+          "max_channel_difference": 0
+        }
+      },
+      "reload": {
+        "world": {
+          "changed_pixels": 122,
+          "max_channel_difference": 1
+        },
+        "sidebar": {
+          "changed_pixels": 20427,
+          "max_channel_difference": 243
+        },
+        "hotbar": {
+          "changed_pixels": 0,
+          "max_channel_difference": 0
+        }
+      },
+      "limitations": "Matched positions/routes; NPC positions differ in reading/west, excluded from palette assessment. Screenshots alone do not prove identical disclosure. Reload differences, if any, unattributed."
+    },
+    "performance": {
+      "seconds": 75.5806012,
+      "size": [
+        1280,
+        800
+      ],
+      "samples": 47233,
+      "renderer_p95_ms": 0.091791,
+      "renderer_max_ms": 81.858875,
+      "main_max_ms": 765.793792,
+      "scope": "after-only OSXEditor AppleM5; unwrapped samples, native input/tools and Editor scheduling included; no speedup or packagedFPS claim;R11open"
+    },
+    "reviews": "independent source and four-pair visual review:0P1/P2; modest material separation improvement, damp identity retained",
+    "preservation": "84snapshotdirty=83foreign+1ownedneutralimporter preserved;normalSaves/gameplayprefs exact except4Unitysessionmetadata;allrequired builds untouched;no cleanup;Unitystopped/rootnull/clean",
+    "delivery": "Current843fb514f Mac/Linux verified by e89dd3195 excludes this palette;batch after next accepted graphics;Linuxunexecuted/Deckdeferred",
+    "remaining": "Broad sparse ground,tinyprops,blackglyphbackings,dark remembered terrain,R11 andwholearea/V0–V7open. No new coverage,population or shadow claim.",
+    "next": "Fresh Cinderhold workshop baseline from CinderholdGrade/AfterCheckpoint2110HP40 at38,11,seed224401440. Verify ordinary Right18 to56,11 thenUp3 to56,8 entrance; capture frontage/interior and existing TinkersForge,SmithAnvil,Weaponsmith before proposing a coherent change. Preserve receiving ground, reserved service approaches, stock and cached layouts. Peat Works two-empty-crate suggestion parked as low visual value. Batch DrownedLedger plus next accepted graphics; current843 packages exclude this palette.",
+    "hourly": "ACTIVE;lastactual2026-11-15T23:52:07Z"
   }
 }

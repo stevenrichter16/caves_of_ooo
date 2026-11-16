@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Failed(Child)" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.5353364">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38429" result="Failed" site="Child" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.535336" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47017" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38429" result="Failed" site="Child" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.516701" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47018" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38429" result="Failed" site="Child" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.512147" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47019" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38429" result="Failed" site="Child" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.507750" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31222" name="BiomeColorPatcherTravelTests" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="219" result="Failed" site="Child" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.095507" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31256" name="NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.041303" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31253" name="NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes(Beating)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes(Beating)" methodname="NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="280417797" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.030892" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31254" name="NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes(Spread)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes(Spread)" methodname="NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1733593477" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31255" name="NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" methodname="NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="782139417" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003628" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31252" name="NativeDrownedLedgerGradeFollowsDisplayedReplacementAndExcludesSavedLair" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeFollowsDisplayedReplacementAndExcludesSavedLair" methodname="NativeDrownedLedgerGradeFollowsDisplayedReplacementAndExcludesSavedLair" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="59436536" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003607" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeFollowsDisplayedReplacementAndExcludesSavedLair () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:75
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31251" name="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.026862" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31244" name="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;legacy&quot;)" methodname="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="24295404" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003838" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31245" name="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;sprites-off&quot;)" methodname="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1730503661" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003630" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31246" name="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;wrong-poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;wrong-poi&quot;)" methodname="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="233696800" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003448" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31247" name="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;wrong-name&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;wrong-name&quot;)" methodname="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1191200440" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31248" name="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;wrong-profile&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;wrong-profile&quot;)" methodname="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="715652935" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003463" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31249" name="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;detached&quot;)" methodname="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1959459750" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003531" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31250" name="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;replaced-cache&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority(&quot;replaced-cache&quot;)" methodname="NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="477449019" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeLosesAndRecoversCurrentDrownedLedgerAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31243" name="NativeDrownedLedgerGradePreservesContrastAndRestoresSameBiomeTravel" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradePreservesContrastAndRestoresSameBiomeTravel" methodname="NativeDrownedLedgerGradePreservesContrastAndRestoresSameBiomeTravel" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2090579698" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003813" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradePreservesContrastAndRestoresSameBiomeTravel () [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31260" name="NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.012748" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31257" name="NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.017.5.0&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.017.5.0&quot;)" methodname="NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="534711634" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003902" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths (System.String id) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31258" name="NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.17.5.1&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.17.5.1&quot;)" methodname="NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1491229681" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003559" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths (System.String id) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31259" name="NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.17.5.00&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.17.5.00&quot;)" methodname="NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1011578338" result="Failed" start-time="2026-11-16 00:37:31Z" end-time="2026-11-16 00:37:31Z" duration="0.003523" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertDrownedLedgerGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeDrownedLedgerGradeRefusesAttachedAliasesAndDepths (System.String id) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherDrownedLedgerGradeTests.cs:107
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -69,6 +69,7 @@ namespace CavesOfOoo.Presentation.Rendering
         private bool _nativeTineGrade;
         private bool _nativePosyGrade;
         private bool _nativeLastCounterGrade;
+        private bool _nativeDrownedLedgerGrade;
         // Bounded material-hue pilot. The native sprites already contain the intended
         // warm earth/stone hues; the old green filter made those surfaces too similar.
         private static readonly BiomePalette NativeMarrowstyePalette = new BiomePalette(
@@ -132,6 +133,10 @@ namespace CavesOfOoo.Presentation.Rendering
         // colors and contact shadows, with Beating contrast retained.
         private static readonly BiomePalette NativeLastCounterPalette = new BiomePalette(
             BiomeType.Beating, Color.white, 12f, 0f, 0f);
+
+        // The Ledger's approved mud, stone and water retain their own muted hues.
+        private static readonly BiomePalette NativeDrownedLedgerPalette = new BiomePalette(
+            BiomeType.Sodden, Color.white, 6f, 0f, 0f);
 
         // Reference back to gameplay state. Set by GameBootstrap.
         // CurrentZone is updated on zone-change via SetCurrentZone()
@@ -296,6 +301,12 @@ namespace CavesOfOoo.Presentation.Rendering
                 && CurrentZone?.ZoneID == LastCounterCompositionPlan.ZoneID
                 && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone)
                 && AreaCompositionScope.IsLastCounterSite(currentManager.WorldMap.GetPOI(18, 18));
+            bool nativeDrownedLedger = currentBiome == BiomeType.Sodden
+                && _zoneRendererRef != null && _zoneRendererRef.FlatPixelModeActive
+                && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
+                && CurrentZone?.ZoneID == DrownedLedgerCompositionPlan.ZoneID
+                && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone)
+                && AreaCompositionScope.IsDrownedLedgerSite(currentManager.WorldMap.GetPOI(17, 5));
             // Admission can change without changing biome: same-biome travel,
             // legacy toggle, sprites disabled or a replacement loaded world graph.
             if (!_hasResolvedPalette || currentBiome != _activeBiome
@@ -305,7 +316,8 @@ namespace CavesOfOoo.Presentation.Rendering
                 || nativeCinderhold != _nativeCinderholdGrade || nativeTally != _nativeTallyGrade
                 || nativeWellmeet != _nativeWellmeetGrade || nativeFirstTent != _nativeFirstTentGrade
                 || nativeSaltVault != _nativeSaltVaultGrade || nativeTine != _nativeTineGrade
-                || nativePosy != _nativePosyGrade || nativeLastCounter != _nativeLastCounterGrade)
+                || nativePosy != _nativePosyGrade || nativeLastCounter != _nativeLastCounterGrade
+                || nativeDrownedLedger != _nativeDrownedLedgerGrade)
             {
                 _hasResolvedPalette = true;
                 _activeBiome = currentBiome;
@@ -323,7 +335,9 @@ namespace CavesOfOoo.Presentation.Rendering
                 _nativeTineGrade = nativeTine;
                 _nativePosyGrade = nativePosy;
                 _nativeLastCounterGrade = nativeLastCounter;
-                _targetPalette = nativeLastCounter ? NativeLastCounterPalette
+                _nativeDrownedLedgerGrade = nativeDrownedLedger;
+                _targetPalette = nativeDrownedLedger ? NativeDrownedLedgerPalette
+                    : nativeLastCounter ? NativeLastCounterPalette
                     : nativePosy ? NativePosyPalette
                     : nativeTine ? NativeTinePalette
                     : nativeSaltVault ? NativeSaltVaultPalette
