@@ -11,6 +11,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
     /// </summary>
     public sealed class TemperWeaponCommand : IInventoryCommand
     {
+        private readonly Entity _station;
         private readonly Entity _weapon;
         private readonly Entity _quench;
 
@@ -19,8 +20,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public string Name => "TemperWeapon";
 
-        public TemperWeaponCommand(Entity weapon, Entity quench)
+        public TemperWeaponCommand(Entity weapon, Entity quench, Entity station = null)
         {
+            _station = station;
             _weapon = weapon;
             _quench = quench;
         }
@@ -48,7 +50,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Tempering needs a weapon and a coating to quench it in.");
             }
 
-            if (!ForgePart.IsNearForge(context.Actor, context.Zone))
+            if (_station != null ? !ForgeWorkReceipt.Near(context.Actor, _station, context.Zone) : !ForgePart.IsNearForge(context.Actor, context.Zone))
             {
                 return InventoryValidationResult.Invalid(
                     InventoryValidationErrorCode.BlockedByRule,
@@ -60,9 +62,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            // Direct service-level tests may omit a zone; normal command validation still requires a station.
+            if ((context.Zone != null || _station != null) && !ForgeWorkReceipt.Begin(context.Actor, context.Zone, transaction, Name, _station))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The selected workshop is no longer ready.");
             TemperedWeapon = null;
             if (!WeaponTemperingService.TryTemper(
-                    context.Actor, _weapon, _quench, transaction, out Entity affected, out string reason))
+                    context.Actor, _weapon, _quench, transaction, out Entity affected, out string reason, FieldWorkRigRules.IsRig(_station ?? ForgeWorkReceipt.Resolve(context.Actor, context.Zone))))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,

@@ -43,6 +43,7 @@ namespace CavesOfOoo.Core
         private string Validate(Entity actor, Zone zone, out bool carried, out Cell sourceCell, out Cell dropCell)
         {
             carried = false; sourceCell = dropCell = null;
+            if (FieldWorkRigRules.IsRig(ParentEntity) && !FieldWorkRigRules.Available(actor, ParentEntity, zone, true)) return "rig-unavailable";
             if (actor == null || ParentEntity == null) return "missing-context";
             if (CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)) return "actor-dead";
             var inventory = actor.GetPart<InventoryPart>();
@@ -65,6 +66,8 @@ namespace CavesOfOoo.Core
 
         private bool DoHarvest(Entity actor, GameEvent e)
         {
+            // Retain this physical source even if a later callback detaches its Part.
+            var source = ParentEntity;
             var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone;
             if (Harvested) return Reject(actor, "spent");
             string reason = Validate(actor, zone, out bool carried, out var sourceCell, out var dropCell);
@@ -96,20 +99,20 @@ namespace CavesOfOoo.Core
                 restored = true;
                 foreach (var item in droppedItems) zone?.RemoveEntity(item);
                 receipt?.Restore();
-                if (removedFromZone && ParentEntity.SpatialZone == null) zone.AddEntity(ParentEntity, sourceCell.X, sourceCell.Y);
+                if (removedFromZone && source.SpatialZone == null && source.GetPart<DestructiblePart>()?.Gone != true) zone.AddEntity(source, sourceCell.X, sourceCell.Y);
                 // Zone removal releases hauling immediately. If this transfer
                 // rolls back, restore its exact grip and only the penalty that
                 // removal refunded; never take over a later replacement grip.
                 if (removedFromZone && grip != null && held != null
-                    && zone.GetEntityCell(ParentEntity) == sourceCell && zone.GetEntityCell(hauler) != null
-                    && SpatialQuery.Distance(zone, hauler, ParentEntity) <= DragSystem.GrabReach
+                    && zone.GetEntityCell(source) == sourceCell && zone.GetEntityCell(hauler) != null
+                    && SpatialQuery.Distance(zone, hauler, source) <= DragSystem.GrabReach
                     && !CombatSystem.IsDeathHandled(hauler)
                     && !(hauler.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)
-                    && ParentEntity.GetPart<DestructiblePart>()?.Gone != true
-                    && hauler.GetPart<DragPart>() == null && ParentEntity.GetPart<DraggedPart>() == null
+                    && source.GetPart<DestructiblePart>()?.Gone != true
+                    && hauler.GetPart<DragPart>() == null && source.GetPart<DraggedPart>() == null
                     && grip.ParentEntity == null && held.ParentEntity == null)
                 {
-                    hauler.AddPart(grip); ParentEntity.AddPart(held);
+                    hauler.AddPart(grip); source.AddPart(held);
                     grip.AppliedPenalty = appliedHaulPenalty;
                     if (hauler.GetStat("Speed") is Stat speed) speed.Penalty += appliedHaulPenalty;
                 }
@@ -118,8 +121,9 @@ namespace CavesOfOoo.Core
             bool Fail(string failure) { restore(); return Reject(actor, failure); }
             try
             {
-                if (!transaction.TryClaim(actor, actor, "Harvest") || !transaction.TryClaim(ParentEntity, actor, "Harvest"))
+                if (!transaction.TryClaim(actor, actor, "Harvest") || !transaction.TryClaim(source, actor, "Harvest"))
                     return Reject(actor, "in-progress");
+                if (FieldWorkRigRules.IsRig(source) && !FieldWorkRigRules.BeginChange(actor, source, zone, transaction, true)) return Reject(actor, "rig-unavailable");
                 var audio=WorldAudioWork.Harvest(actor,this,zone);
                 // Claim before factory/weight callbacks. Rollback restores this flag;
                 // success leaves it durable even if an old source reference survives.
@@ -127,7 +131,7 @@ namespace CavesOfOoo.Core
                 var rng = e.GetParameter<Random>("Random") ?? new Random();
                 bool rollPassed = YieldChance >= 100 || rng.Next(100) < YieldChance;
                 int count = rollPassed ? (YieldMax > YieldMin ? rng.Next(YieldMin, YieldMax + 1) : YieldMin) : 0;
-                string product = YieldBlueprint, sourceName = ParentEntity.GetDisplayName();
+                string product = YieldBlueprint, sourceName = source.GetDisplayName();
                 int min = YieldMin, max = YieldMax, chance = YieldChance;
                 var products = new Entity[count];
                 for (int i = 0; i < count; i++)
@@ -149,19 +153,19 @@ namespace CavesOfOoo.Core
                 bool Transfer()
                 {
                     if (carried)
-                    { if (!inventory.RemoveObject(ParentEntity)) return false; }
+                    { if (!inventory.RemoveObject(source)) return false; }
                     else
                     {
-                        var currentHeld = ParentEntity.GetPart<DraggedPart>();
+                        var currentHeld = source.GetPart<DraggedPart>();
                         var currentHauler = currentHeld?.Dragger;
                         var currentGrip = currentHauler?.GetPart<DragPart>();
-                        if (currentHeld?.ParentEntity == ParentEntity && currentGrip?.Dragged == ParentEntity
+                        if (currentHeld?.ParentEntity == source && currentGrip?.Dragged == source
                             && currentGrip.ParentEntity == currentHauler)
                         {
                             held = currentHeld; hauler = currentHauler; grip = currentGrip;
                             appliedHaulPenalty = grip.AppliedPenalty;
                         }
-                        if (!zone.RemoveEntity(ParentEntity)) return false;
+                        if (!zone.RemoveEntity(source)) return false;
                         removedFromZone = true;
                     }
                     foreach (var item in products)
@@ -186,9 +190,9 @@ namespace CavesOfOoo.Core
                 transaction.AfterCommit(() =>
                 {
                     if (dropCell != null) ZoneRenderHooks.MarkCellDirty(dropCell.X, dropCell.Y, "Harvested");
-                    GroveLaw.OnDig(actor, zone, ParentEntity);
-                    if (Diag.IsChannelEnabled("loot")) Diag.Record("loot", "Harvested", actor, ParentEntity,
-                        new { source = ParentEntity.BlueprintName, yield = product, count = packed, dropped, rollPassed });
+                    GroveLaw.OnDig(actor, zone, source);
+                    if (Diag.IsChannelEnabled("loot")) Diag.Record("loot", "Harvested", actor, source,
+                        new { source = source.BlueprintName, yield = product, count = packed, dropped, rollPassed });
                     MessageLog.Add(dropped > 0
                         ? $"You harvest {sourceName}: {packed} x {product} packed, {dropped} left on the ground."
                         : packed > 0 ? $"You harvest {sourceName}: {packed} x {product}."

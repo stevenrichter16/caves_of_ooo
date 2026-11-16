@@ -1,0 +1,64 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "a8177d3d609f40359c9fa5e1eba64228",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794803692143,
+      "finished_unix_ms": 1794803696466,
+      "last_update_unix_ms": 1794803696466,
+      "progress": {
+        "completed": 13,
+        "total": 13,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794803696401,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineFieldWorkRigTests.RefitDetailsPreviewTheRealResultWithoutWorkOrFactoryCallbacks(\"stale-owner\")",
+        "last_finished_unix_ms": 1794803696438,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelItemIconsTests.ARealMalletRefitUsesTheSameCompleteHammerInPackGroundAndReader(\"valid\")",
+            "message": "  Expected: (x:144.00, y:312.00, width:16.00, height:24.00)\n  But was:  (x:16.00, y:264.00, width:16.00, height:24.00)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineFieldWorkRigTests.MissingRigContextRefusesWithoutThrowing",
+            "message": "System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.\n  ----> System.ArgumentNullException : Value cannot be null.\nParameter name: key"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineFieldWorkRigTests.RefitDetailsPreviewTheRealResultWithoutWorkOrFactoryCallbacks(\"valid\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineFieldWorkRigTests.RefitDetailsPreviewTheRealResultWithoutWorkOrFactoryCallbacks(\"sharp\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineFieldWorkRigTests.RefitDetailsPreviewTheRealResultWithoutWorkOrFactoryCallbacks(\"temper\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineFieldWorkRigTests.RefitDetailsPreviewTheRealResultWithoutWorkOrFactoryCallbacks(\"live-component-stat\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineFieldWorkRigTests.RefitDetailsPreviewTheRealResultWithoutWorkOrFactoryCallbacks(\"missing-blueprint\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineFieldWorkRigTests.RefitDetailsPreviewTheRealResultWithoutWorkOrFactoryCallbacks(\"zero-component\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

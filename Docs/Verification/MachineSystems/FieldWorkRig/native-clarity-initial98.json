@@ -1,0 +1,40 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "5739e4d7ca6e448897c5de3d453f97f7",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794803830847,
+      "finished_unix_ms": 1794803861288,
+      "last_update_unix_ms": 1794803861288,
+      "progress": {
+        "completed": 98,
+        "total": 98,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794803861227,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs(\"\\r\")",
+        "last_finished_unix_ms": 1794803861256,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelItemIconsTests.ARealMalletRefitUsesTheSameCompleteHammerInPackGroundAndReader(\"valid\")",
+            "message": "  You must own and carry a positive unit of every selected component.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineFieldWorkRigTests.RefitDetailsPreviewTheRealResultWithoutWorkOrFactoryCallbacks(\"sharp\")",
+            "message": "  Expected: String containing \"Penetration: 0\"\n  But was:  \"Selected action (reading only): >> Craft <<  Refit one weapon sharp oak-hafted leather-bound peat-packing mallet Family: Cudgel Damage: 1d4 per penetration. Penetration: +0 Hit: +1 Strength cap: 3 Attributes: Bludgeoning Cudgel Consume: 1 peat-packing mallet head. Return: 1 steel blade. Existing permanent modifications stay. Other picked brews are not used by this refit. One successful refit takes one action. Availability and capacity are checked again when you act.  You see a field work rig. The patched working surface holds firm. Once released, this rig supports re-forging, brewed quenching, batch work and recorded-weapon reclamation.  A clay-faced work surface rests on two sound timber braces. A weathered plate reads: \"Left for whoever can use it.\" Restore its workshop services or dismantle it for two salvaged timber, permanently losing this rig. Repair clay is not recovered. It can be hauled locally; release it before working. Single weapons can still be assembled from carried components without a workshop.\"\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

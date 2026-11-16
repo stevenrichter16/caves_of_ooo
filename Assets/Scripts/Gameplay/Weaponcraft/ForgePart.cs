@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
 
@@ -34,6 +35,7 @@ namespace CavesOfOoo.Core
         {
             if (e.ID == "GetInventoryActions")
             {
+                if (FieldWorkRigRules.IsRig(ParentEntity) && !ForgeWorkReceipt.Near(e.GetParameter<Entity>("Actor"), ParentEntity, e.GetParameter<Entity>("Actor")?.SpatialZone)) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null)
                 {
@@ -95,6 +97,11 @@ namespace CavesOfOoo.Core
                     return true;
 
                 var zone = e.GetParameter<Zone>("Zone");
+                if (FieldWorkRigRules.IsRig(ParentEntity))
+                {
+                    if (!FieldWorkRigRules.Workshop(actor, ParentEntity, zone, command, e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
+                    e.Handled = true; return false;
+                }
                 e.Handled = true;
 
                 switch (command)
@@ -290,34 +297,7 @@ namespace CavesOfOoo.Core
         /// with a ForgePart. False when the zone is null or the actor
         /// isn't placed in it.
         /// </summary>
-        public static bool IsNearForge(Entity actor, Zone zone)
-        {
-            if (actor == null || zone == null)
-                return false;
-
-            (int x, int y) = zone.GetEntityPosition(actor);
-            if (x < 0 || y < 0)
-                return false;
-
-            for (int dx = -1; dx <= 1; dx++)
-            {
-                for (int dy = -1; dy <= 1; dy++)
-                {
-                    Cell cell = zone.GetCell(x + dx, y + dy);
-                    if (cell == null)
-                        continue;
-
-                    for (int i = 0; i < cell.Objects.Count; i++)
-                    {
-                        Entity obj = cell.Objects[i];
-                        if (obj != null && obj.HasPart<ForgePart>())
-                            return true;
-                    }
-                }
-            }
-
-            return false;
-        }
+        public static bool IsNearForge(Entity actor, Zone zone) => ForgeWorkReceipt.Resolve(actor, zone) != null;
 
         /// <summary>
         /// Resolve the marked components into exactly one blade + haft +

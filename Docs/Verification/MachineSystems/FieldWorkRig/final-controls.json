@@ -1,0 +1,96 @@
+{
+  "oldCached": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":{\"invincible\":false,\"zone\":\"Overworld.17.7.0\",\"x\":56,\"y\":6,\"hp\":40,\"seed\":224401440,\"cell\":[{\"bp\":\"StoneFloor\",\"id\":\"30833\"}],\"forges\":0},\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": {
+          "invincible": false,
+          "zone": "Overworld.17.7.0",
+          "x": 56,
+          "y": 6,
+          "hp": 40,
+          "seed": 224401440,
+          "cell": [
+            {
+              "bp": "StoneFloor",
+              "id": "30833"
+            }
+          ],
+          "forges": 0
+        },
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "heldRepairRefusal": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":{\"rigID\":\"14199\",\"rigCell\":\"Cell(56,5) [2 objects]\",\"repaired\":false,\"dragged\":true,\"inventory\":[{\"bp\":\"Dagger\",\"id\":\"2679\",\"count\":1},{\"bp\":\"HealingTonic\",\"id\":\"2680\",\"count\":2},{\"bp\":\"DriedMeat\",\"id\":\"2681\",\"count\":2},{\"bp\":\"CandyCarrotSeed\",\"id\":\"2683\",\"count\":4},{\"bp\":\"EmberwheatSeed\",\"id\":\"2684\",\"count\":2},{\"bp\":\"FireClay\",\"id\":\"8716\",\"count\":4},{\"bp\":\"SteelBladeComponent\",\"id\":\"13525\",\"count\":2}]},\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": {
+          "rigID": "14199",
+          "rigCell": "Cell(56,5) [2 objects]",
+          "repaired": false,
+          "dragged": true,
+          "inventory": [
+            {
+              "bp": "Dagger",
+              "id": "2679",
+              "count": 1
+            },
+            {
+              "bp": "HealingTonic",
+              "id": "2680",
+              "count": 2
+            },
+            {
+              "bp": "DriedMeat",
+              "id": "2681",
+              "count": 2
+            },
+            {
+              "bp": "CandyCarrotSeed",
+              "id": "2683",
+              "count": 4
+            },
+            {
+              "bp": "EmberwheatSeed",
+              "id": "2684",
+              "count": 2
+            },
+            {
+              "bp": "FireClay",
+              "id": "8716",
+              "count": 4
+            },
+            {
+              "bp": "SteelBladeComponent",
+              "id": "13525",
+              "count": 2
+            }
+          ]
+        },
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "notes": [
+    "Old-cache diagnostic first used a nonexistent Zone API and failed to compile; corrected read-only probe succeeded.",
+    "Initial post-haul look cursor targeted a floor; exited/reopened Look before the actual repair refusal. No repair was executed on the floor."
+  ]
+}

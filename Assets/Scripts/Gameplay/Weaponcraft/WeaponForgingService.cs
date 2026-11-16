@@ -52,7 +52,7 @@ namespace CavesOfOoo.Core
         }
 
         internal static bool TryForge(Entity crafter, EntityFactory factory, Entity blade,
-            Entity haft, Entity binding, InventoryTransaction transaction, out Entity weapon, out string reason)
+            Entity haft, Entity binding, InventoryTransaction transaction, out Entity weapon, out string reason, bool deferSuccess = false)
         {
             weapon = null; reason = string.Empty;
             var inventory = crafter?.GetPart<InventoryPart>();
@@ -87,7 +87,8 @@ namespace CavesOfOoo.Core
                 return RejectDiag(crafter, reason);
             }
             weapon = recipient;
-            MessageLog.Add(crafter.GetDisplayName() + " forges " + InventoryPart.GetUnitDisplayName(recipient) + ".");
+            string successText = crafter.GetDisplayName() + " forges " + InventoryPart.GetUnitDisplayName(recipient) + ".";
+            if (deferSuccess) transaction.AfterCommit(() => MessageLog.Add(successText)); else MessageLog.Add(successText);
             if (Diag.IsChannelEnabled(DiagCategory))
                 Diag.Record(DiagCategory, "WeaponForged", actor: crafter, target: recipient,
                     payload: new { blade = blade.BlueprintName, haft = haft.BlueprintName, binding = binding.BlueprintName });
@@ -145,7 +146,7 @@ namespace CavesOfOoo.Core
         // Results represent produced units, so several entries may name one resident stack.
         internal static bool TryForgeBatch(Entity crafter, EntityFactory factory, Entity blade,
             Entity haft, Entity binding, int requestedCount, InventoryTransaction transaction,
-            out List<Entity> producedWeapons, out int madeCount, out string reason)
+            out List<Entity> producedWeapons, out int madeCount, out string reason, bool deferSuccess = false)
         {
             producedWeapons = new List<Entity>();
             madeCount = 0;
@@ -165,7 +166,7 @@ namespace CavesOfOoo.Core
 
             for (int i = 0; i < requestedCount; i++)
             {
-                bool ok = TryForge(crafter, factory, blade, haft, binding, transaction, out Entity weapon, out string iterationReason);
+                bool ok = TryForge(crafter, factory, blade, haft, binding, transaction, out Entity weapon, out string iterationReason, deferSuccess);
                 if (!ok)
                 {
                     if (madeCount == 0)
@@ -223,7 +224,7 @@ namespace CavesOfOoo.Core
 
         internal static bool TryReforge(Entity crafter, EntityFactory factory, Entity weapon,
             Entity newComponent, InventoryTransaction transaction,
-            out Entity affectedWeapon, out Entity returnedComponent, out string reason)
+            out Entity affectedWeapon, out Entity returnedComponent, out string reason, bool deferSuccess = false)
         {
             affectedWeapon = null; returnedComponent = null; reason = string.Empty;
             var inventory = crafter?.GetPart<InventoryPart>();
@@ -277,8 +278,9 @@ namespace CavesOfOoo.Core
             }
             operation.MoveMark(weapon, recipient);
             affectedWeapon = recipient; returnedComponent = returned;
-            if (melted) MessageLog.Add("The re-forging melts away the temper.");
-            MessageLog.Add(crafter.GetDisplayName() + " re-forges " + InventoryPart.GetUnitDisplayName(recipient) + ".");
+            string successText = crafter.GetDisplayName() + " re-forges " + InventoryPart.GetUnitDisplayName(recipient) + ".";
+            void Publish() { if (melted) MessageLog.Add("The re-forging melts away the temper."); MessageLog.Add(successText); }
+            if (deferSuccess) transaction.AfterCommit(Publish); else Publish();
             if (Diag.IsChannelEnabled(DiagCategory))
                 Diag.Record(DiagCategory, "WeaponReforged", actor: crafter, target: recipient,
                     payload: new { slot, installed = newComponent.BlueprintName, displaced = displacedBlueprint });

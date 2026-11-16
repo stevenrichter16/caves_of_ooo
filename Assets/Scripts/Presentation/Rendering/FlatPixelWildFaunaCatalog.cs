@@ -175,6 +175,18 @@ namespace CavesOfOoo.Rendering
             row = null;
             return !string.IsNullOrEmpty(blueprint) && Items.TryGet(blueprint, "", out row);
         }
+        // Validate the canonical ForgedWeapon render first; only its disclosed,
+        // owned assembly chooses an existing complete hammer instead of a sword.
+        static IconRow AssemblyItemRow(Entity owner, IconRow canonical)
+        {
+            if (owner.BlueprintName != "ForgedWeapon" || !owner.HasTag("Item") || owner.HasTag("Natural")) return canonical;
+            var assembly = Owned<WeaponAssemblyPart>(owner);
+            if (assembly == null || Owned<MeleeWeaponPart>(owner) == null || assembly.BladeBlueprint != "PeatMalletHeadComponent"
+                || FiftySecondVisualAliases.HaftForm(assembly.HaftBlueprint) == null
+                || FiftySecondVisualAliases.BindingForm(assembly.BindingBlueprint) == null
+                || (owner.GetPart<StackerPart>()?.StackCount ?? 1) <= 0) return canonical;
+            return ItemRole("CounterweightMaul",out var hammer) ? hammer : canonical;
+        }
         static bool PropRole(string blueprint) => !string.IsNullOrEmpty(blueprint) && Props.AnyRow.ContainsKey(blueprint);
 
         /// <summary>Has a generated item icon (and no shared body that would take precedence).</summary>
@@ -194,7 +206,7 @@ namespace CavesOfOoo.Rendering
                 || owner.HasTag("Creature") || owner.HasTag("Player")) return false;
             if (owner.HasPart<StatusEffectsPart>())
             { var fx = Owned<StatusEffectsPart>(owner); if (fx == null || fx.GetRenderColorOverride() != null) return false; }
-            tile = ItemTile(row); return tile != null;
+            tile = ItemTile(AssemblyItemRow(owner,row)); return tile != null;
         }
 
         static readonly string[] CropStages = { "stage0", "stage1", "stage2" };
@@ -405,7 +417,7 @@ namespace CavesOfOoo.Rendering
                     || !string.IsNullOrEmpty(r.BackgroundColor) || !string.IsNullOrEmpty(r.VisualID) || !string.IsNullOrEmpty(r.VisualVariant)
                     || p == null || !p.Takeable || p.InInventory != null || p.Equipped != null || owner.HasTag("Creature") || owner.HasTag("Player")
                     || Owned<StatusEffectsPart>(owner)?.GetRenderColorOverride() != null) return false;
-                tile = ItemTile(itemRow); return tile != null;
+                tile = ItemTile(AssemblyItemRow(owner,itemRow)); return tile != null;
             }
             if (PropRole(owner.BlueprintName) && !UpperRole(owner.BlueprintName, out _))
             {

@@ -15,6 +15,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
     /// </summary>
     public sealed class ForgeWeaponCommand : IInventoryCommand
     {
+        private readonly Entity _station;
         private readonly Entity _blade;
         private readonly Entity _haft;
         private readonly Entity _binding;
@@ -32,8 +33,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
         public string Name => "ForgeWeapon";
 
         public ForgeWeaponCommand(Entity blade, Entity haft, Entity binding,
-            EntityFactory factory, int count = 1)
+            EntityFactory factory, int count = 1, Entity station = null)
         {
+            _station = station;
             _blade = blade;
             _haft = haft;
             _binding = binding;
@@ -85,7 +87,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // finished ones down. That keeps every forge already placed
             // in the world worth walking to without gating the ordinary
             // case behind furniture.
-            if (_requestedCount > 1 && !ForgePart.IsNearForge(context.Actor, context.Zone))
+            if (_station != null ? !ForgeWorkReceipt.Near(context.Actor, _station, context.Zone) : _requestedCount > 1 && !ForgePart.IsNearForge(context.Actor, context.Zone))
             {
                 return InventoryValidationResult.Invalid(
                     InventoryValidationErrorCode.BlockedByRule,
@@ -97,6 +99,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            if ((context.Zone != null || _station != null) && (_requestedCount > 1 || _station != null) && !ForgeWorkReceipt.Begin(context.Actor, context.Zone, transaction, Name, _station))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The selected workshop is no longer ready.");
             var workAudio = WorldAudioWork.Forge(context.Actor, context.Zone);
             bool any = WeaponForgingService.TryForgeBatch(
                 context.Actor,
@@ -108,7 +112,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 transaction,
                 out List<Entity> produced,
                 out int madeCount,
-                out string reason);
+                out string reason, FieldWorkRigRules.IsRig(_station ?? ForgeWorkReceipt.Resolve(context.Actor, context.Zone)));
 
             ForgedWeapons.Clear();
             if (produced != null)
@@ -122,13 +126,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
             }
 
             if (madeCount > 1)
-                MessageLog.Add(context.Actor.GetDisplayName() + " finishes a batch of " + madeCount + ".");
+                transaction.AfterCommit(() => MessageLog.Add(context.Actor.GetDisplayName() + " finishes a batch of " + madeCount + "."));
 
             if (madeCount < _requestedCount)
             {
-                MessageLog.Add(
+                transaction.AfterCommit(() => MessageLog.Add(
                     "(Requested " + _requestedCount + ", made " + madeCount
-                    + " - ran out of components.)");
+                    + " - ran out of components.)"));
             }
 
             if (madeCount > 0) transaction.AfterCommit(() => workAudio?.Publish());

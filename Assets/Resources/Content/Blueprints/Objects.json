@@ -59468,6 +59468,146 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "AbandonedFieldWorkRig",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "field work rig"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "n"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "120"
+            }
+          ]
+        },
+        {
+          "Name": "Forge",
+          "Params": []
+        },
+        {
+          "Name": "Handling",
+          "Params": [
+            {
+              "Key": "Weight",
+              "Value": "120"
+            },
+            {
+              "Key": "Carryable",
+              "Value": "false"
+            },
+            {
+              "Key": "Throwable",
+              "Value": "false"
+            },
+            {
+              "Key": "MinLiftStrength",
+              "Value": "0"
+            },
+            {
+              "Key": "BulkClass",
+              "Value": "Massive"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Masonry,Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "clay-field-work-rig"
+            }
+          ]
+        },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            {
+              "Key": "YieldBlueprint",
+              "Value": "SalvagedTimber"
+            },
+            {
+              "Key": "YieldMin",
+              "Value": "2"
+            },
+            {
+              "Key": "YieldMax",
+              "Value": "2"
+            },
+            {
+              "Key": "YieldChance",
+              "Value": "100"
+            },
+            {
+              "Key": "ActionText",
+              "Value": "dismantle: 2 timber; lose workshop"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A clay-faced work surface rests on two sound timber braces. A weathered plate reads: \"Left for whoever can use it.\" Restore its workshop services or dismantle it for two salvaged timber, permanently losing this rig. Repair clay is not recovered. It can be hauled locally; release it before working. Single weapons can still be assembled from carried components without a workshop."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Furniture",
+          "Value": ""
+        },
+        {
+          "Key": "Weaponcraft",
+          "Value": ""
+        },
+        {
+          "Key": "RecoverableWorkRig",
+          "Value": ""
+        }
+      ]
     }
   ]
 }

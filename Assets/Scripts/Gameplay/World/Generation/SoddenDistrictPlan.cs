@@ -21,17 +21,17 @@ namespace CavesOfOoo.Core
         readonly int variation;
 
         public static bool IsSupportedZone(string id)=>id==StopZoneID||id==CrossingZoneID||id==WorksZoneID;
-        public static SoddenDistrictPlan Create(string id,int seed)
+        public static SoddenDistrictPlan Create(string id,int seed,bool includeFieldWorkRig=false)
         {
             if(!IsSupportedZone(id))throw new ArgumentException("Sodden district plans require an exact circuit surface address.",nameof(id));
-            return new SoddenDistrictPlan(id,seed);
+            return new SoddenDistrictPlan(id,seed,includeFieldWorkRig);
         }
-        SoddenDistrictPlan(string id,int seed)
+        SoddenDistrictPlan(string id,int seed,bool includeFieldWorkRig)
         {
             ZoneID=id;variation=(int)(unchecked((uint)seed)%5u);
             Title=id==StopZoneID?"the dressing shelter":id==CrossingZoneID?"the cutbank crossing":"the abandoned peat works";
             for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)ground[x,y]="Grass";
-            if(id==StopZoneID)Shelter();else if(id==CrossingZoneID)Crossing();else Works();
+            if(id==StopZoneID)Shelter();else if(id==CrossingZoneID)Crossing();else { Works(); if(includeFieldWorkRig)Put(FieldWorkRigRules.Blueprint,56,5,"field-work-rig"); }
             // Adjacent chunks accept the actual arrival coordinate. Whole dry
             // edges and their inner shoulders preserve every existing transfer.
             for(int x=0;x<Zone.Width;x++){Lane(x,0,x,1);Lane(x,23,x,24);}

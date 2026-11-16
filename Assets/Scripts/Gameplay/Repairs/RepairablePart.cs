@@ -119,6 +119,7 @@ namespace CavesOfOoo.Core
         {
             var recipe=RepairRecipeRegistry.Get(RecipeId); string reason=Context(actor,zone,recipe);
             if(reason!=null)return Reject(actor,reason);
+            if(FieldWorkRigRules.IsRig(ParentEntity) && !FieldWorkRigRules.BeginChange(actor,ParentEntity,zone,tx,false))return Reject(actor,"rig-unavailable");
             var workAudio=WorldAudioWork.Repair(actor,this,zone,recipe);
             if(!tx.TryClaim(ParentEntity,actor,RepairCommand) || !tx.TryClaim(actor,actor,RepairCommand))return Reject(actor,"owner-busy");
             var inventory=actor.GetPart<InventoryPart>(); var units=new List<Entity>(); int remaining=recipe.Quantity;
@@ -191,7 +192,8 @@ namespace CavesOfOoo.Core
 
         private bool Reject(Entity actor,string reason)
         {
-            if(actor?.HasTag("Player")==true)MessageLog.Add(reason=="already-repaired"?"That repair is already complete.":Describe());
+            if(actor?.HasTag("Player")==true)MessageLog.Add(reason=="already-repaired"?"That repair is already complete."
+                : reason=="rig-unavailable" && ParentEntity?.HasPart<DraggedPart>()==true ? "Let go before repairing or using this rig." : Describe());
             Diag.Record("furniture","RepairRejected",actor,ParentEntity,new{recipeId=RecipeId,reason});return false;
         }
     }

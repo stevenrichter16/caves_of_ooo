@@ -45,7 +45,7 @@ namespace CavesOfOoo.Core
         }
 
         internal static bool TryTemper(Entity crafter, Entity weapon, Entity quench,
-            InventoryTransaction transaction, out Entity affectedWeapon, out string reason)
+            InventoryTransaction transaction, out Entity affectedWeapon, out string reason, bool deferSuccess = false)
         {
             affectedWeapon = null;
             reason = string.Empty;
@@ -132,8 +132,9 @@ namespace CavesOfOoo.Core
             }
             operation.MoveMark(weapon, recipient);
             affectedWeapon = recipient;
-            MessageLog.Add(crafter.GetDisplayName() + " quenches " + InventoryPart.GetUnitDisplayName(recipient)
-                + " - the metal drinks the coating.");
+            string successText = crafter.GetDisplayName() + " quenches " + InventoryPart.GetUnitDisplayName(recipient)
+                + " - the metal drinks the coating.";
+            if (deferSuccess) transaction.AfterCommit(() => MessageLog.Add(successText)); else MessageLog.Add(successText);
             if (Diag.IsChannelEnabled(DiagCategory))
                 Diag.Record(DiagCategory, "WeaponTempered", actor: crafter, target: recipient,
                     payload: new { quench = quench.BlueprintName, specs = joined,

@@ -13,6 +13,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
     /// </summary>
     public sealed class ReforgeWeaponCommand : IInventoryCommand
     {
+        private readonly Entity _station;
         private readonly Entity _weapon;
         private readonly Entity _newComponent;
         private readonly EntityFactory _factory;
@@ -22,8 +23,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public string Name => "ReforgeWeapon";
 
-        public ReforgeWeaponCommand(Entity weapon, Entity newComponent, EntityFactory factory)
+        public ReforgeWeaponCommand(Entity weapon, Entity newComponent, EntityFactory factory, Entity station = null)
         {
+            _station = station;
             _weapon = weapon;
             _newComponent = newComponent;
             _factory = factory;
@@ -59,7 +61,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Re-forging needs a forged weapon and one replacement component.");
             }
 
-            if (!ForgePart.IsNearForge(context.Actor, context.Zone))
+            if (_station != null ? !ForgeWorkReceipt.Near(context.Actor, _station, context.Zone) : !ForgePart.IsNearForge(context.Actor, context.Zone))
             {
                 return InventoryValidationResult.Invalid(
                     InventoryValidationErrorCode.BlockedByRule,
@@ -71,10 +73,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            // Direct service-level tests may omit a zone; normal command validation still requires a station.
+            if ((context.Zone != null || _station != null) && !ForgeWorkReceipt.Begin(context.Actor, context.Zone, transaction, Name, _station))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The selected workshop is no longer ready.");
             ReforgedWeapon = null;
             if (!WeaponForgingService.TryReforge(
                     context.Actor, _factory, _weapon, _newComponent, transaction,
-                    out Entity affected, out Entity _, out string reason))
+                    out Entity affected, out Entity _, out string reason, FieldWorkRigRules.IsRig(_station ?? ForgeWorkReceipt.Resolve(context.Actor, context.Zone))))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,

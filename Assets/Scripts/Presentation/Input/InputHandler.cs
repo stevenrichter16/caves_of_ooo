@@ -3393,6 +3393,7 @@ namespace CavesOfOoo.Rendering
             // Only committed harvesting, repair, work or watering costs a turn.
             if (action.Command == "Harvest" || action.Command == "HarvestCultivatedCrop"
                 || action.Command == RepairablePart.RepairCommand
+                || FieldWorkRigRules.IsRig(target) && FieldWorkRigRules.IsWorkshopCommand(action.Command)
                 || action.Command == TrapJammingPart.JamCommand
                 || action.Command == BotanicalInkDeskPart.PrepareCommand
                 || action.Command == SoddenPreparationPart.PrepareCommand
@@ -4657,6 +4658,7 @@ namespace CavesOfOoo.Rendering
             }
             var part = described.GetPart<ExaminablePart>();
             string text = "Selected action (reading only):\n" + (fresh.Display ?? fresh.Name ?? "") + "\n\n"
+                + (FieldWorkRigRules.IsRig(described) ? InventoryDecisionDetails.FieldRigRefit(PlayerEntity, described, CurrentZone, fresh.Command) : "")
                 + (part != null && ReferenceEquals(part.ParentEntity, described)
                     ? part.BuildWorldExamineLine(CurrentZone, context.Cell, PlayerEntity) : described.GetDisplayName());
             if (!IsCurrentExamineOwner(context.Owner, context.Cell) || !IsCurrentExamineOwner(described, context.Cell)

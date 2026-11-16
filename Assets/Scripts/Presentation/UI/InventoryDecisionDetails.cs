@@ -167,6 +167,49 @@ namespace CavesOfOoo.Rendering
             }
             return lines.Count == 0 ? null : string.Join("\n\n", lines);
         }
+        // A free snapshot of the rig's refit branch. Rebuild from the same resolved
+        // component metadata as TryReforge, without creating entities or firing hooks.
+        internal static string FieldRigRefit(Entity actor, Entity rig, Zone zone, string command)
+        {
+            if (command != "CraftKit" && command != "ReforgeWeapon") return "";
+            var marks = CraftingMarkPart.CollectMarked(actor);
+            if (command == "CraftKit" && (marks.Weapons.Count != 1 || marks.Components.Count != 1)) return "";
+            const string unavailable = "Refit preview unavailable: pick one available forged weapon and one replacement component.\n\n";
+            if (marks.Weapons.Count != 1 || marks.Components.Count != 1 || !ForgeWorkReceipt.Near(actor,rig,zone)) return unavailable;
+            var weapon = marks.Weapons[0]; var component = marks.Components[0]; var inventory = actor?.GetPart<InventoryPart>();
+            var assembly = weapon.GetPart<WeaponAssemblyPart>(); var replacement = component.GetPart<WeaponComponentPart>();
+            if (!WeaponCraftingOperation.CanTransform(inventory,weapon) || !inventory.CanConsumeOne(component)
+                || assembly?.ParentEntity != weapon || weapon.GetPart<MeleeWeaponPart>()?.ParentEntity != weapon
+                || replacement?.ParentEntity != component || weapon == component) return unavailable;
+            string displaced = assembly.GetBlueprintForSlot(replacement.Slot);
+            var planned = new WeaponAssemblyPart { BladeBlueprint=assembly.BladeBlueprint, HaftBlueprint=assembly.HaftBlueprint, BindingBlueprint=assembly.BindingBlueprint };
+            planned.SetBlueprintForSlot(replacement.Slot,component.BlueprintName);
+            var blade = RefitComponent(planned.BladeBlueprint); var haft = RefitComponent(planned.HaftBlueprint); var binding = RefitComponent(planned.BindingBlueprint);
+            var factory = ForgePart.Factory;
+            if (blade == null || haft == null || binding == null || string.IsNullOrEmpty(displaced)
+                || factory == null || !factory.Blueprints.TryGetValue(displaced,out var old)) return unavailable;
+            var preview = WeaponForgingService.PreviewForge(blade,haft,binding);
+            if (weapon.HasTag(SharpTinkerModification.ModTag))
+            { preview.PenBonus += SharpTinkerModification.PenetrationBonus; preview.DisplayName = SharpTinkerModification.Adjective + " " + preview.DisplayName; }
+            string returned = old.Parts.TryGetValue("Render",out var render) && render.TryGetValue("DisplayName",out string name) ? name : displaced;
+            return "Refit one weapon\n" + Forge(preview)
+                + "\nConsume: 1 " + InventoryPart.GetUnitDisplayName(component) + ".\nReturn: 1 " + returned + "."
+                + ((weapon.GetPart<WeaponTemperPart>()?.TemperCount ?? 0)>0 ? "\nCurrent temper is removed; its recorded maximum-HP penalty is restored, without healing current HP." : "")
+                + "\nExisting permanent modifications stay. Other picked brews are not used by this refit."
+                + "\nOne successful refit takes one action. Availability and capacity are checked again when you act.\n\n";
+        }
+        static WeaponComponentPart RefitComponent(string blueprint)
+        {
+            var factory = ForgePart.Factory;
+            if (factory == null || string.IsNullOrEmpty(blueprint) || !factory.Blueprints.TryGetValue(blueprint,out var bp)
+                || !bp.Parts.TryGetValue("WeaponComponent",out var fields)) return null;
+            string Text(string key) => fields.TryGetValue(key,out var value) ? value : "";
+            int Number(string key,int fallback=0) => int.TryParse(Text(key),System.Globalization.NumberStyles.Integer,
+                System.Globalization.CultureInfo.InvariantCulture,out int value) ? value : fallback;
+            return new WeaponComponentPart { Slot=Text("Slot"), BaseDamage=Text("BaseDamage"), PenBonus=Number("PenBonus"),
+                HitBonus=Number("HitBonus"), MaxStrengthBonus=Number("MaxStrengthBonus",-1), Attributes=Text("Attributes"),
+                OnHitEffectSpec=Text("OnHitEffectSpec"), NameFragment=Text("NameFragment") };
+        }
         public static string Forge(ForgePreview preview)
         {
             if (!preview.IsComplete) return "Forge result\n\nPick " + preview.Missing + " to finish the weapon.";

@@ -108,6 +108,33 @@ namespace CavesOfOoo.Tests
             int h = Index().FrameHeight;
             Assert.AreEqual(new Rect(row.Frame % Index().Columns * 16, (atlas.height / h - 1 - row.Frame / Index().Columns) * h, 16, h), portrait.rect);
         }
+        [TestCase("valid")] [TestCase("foreign-assembly")] [TestCase("duplicate-assembly")]
+        [TestCase("unknown-haft")] [TestCase("legacy")]
+        public void ARealMalletRefitUsesTheSameCompleteHammerInPackGroundAndReader(string condition)
+        {
+            var holder=Holder();var pack=holder.GetPart<InventoryPart>();
+            Entity Carry(string name) { var item=factory.CreateEntity(name);Assert.True(pack.AddObject(item));return pack.Objects.First(e=>e.BlueprintName==name); }
+            Assert.True(WeaponForgingService.TryForge(holder,factory,Carry("SteelBladeComponent"),Carry("OakHaftComponent"),Carry("LeatherBindingComponent"),out var weapon,out var reason),reason);
+            var head=Carry("PeatMalletHeadComponent");
+            Assert.True(WeaponForgingService.TryReforge(holder,factory,weapon,head,out _,out reason),reason);
+            var assembly=weapon.GetPart<WeaponAssemblyPart>();
+            if(condition=="foreign-assembly")assembly.ParentEntity=holder;
+            if(condition=="duplicate-assembly")weapon.AddPart(new WeaponAssemblyPart{BladeBlueprint=assembly.BladeBlueprint,HaftBlueprint=assembly.HaftBlueprint,BindingBlueprint=assembly.BindingBlueprint});
+            if(condition=="unknown-haft")assembly.HaftBlueprint="UnknownHaft";
+            if(condition=="legacy")weapon.RemovePart(assembly);
+            var row=Index().Icons.Single(r=>r.Blueprint==(condition=="valid"?"CounterweightMaul":"ForgedWeapon"));
+            void Frame(Sprite sprite) { int h=Index().FrameHeight;Assert.AreEqual(new Rect(row.Frame%Index().Columns*16,(sprite.texture.height/h-1-row.Frame/Index().Columns)*h,16,h),sprite.rect); }
+            Assert.True(ReaderIcon(holder,weapon,out var portrait));Frame(portrait);
+            Assert.True(pack.RemoveObject(weapon));var cell=zone.GetEntityCell(holder);Assert.True(zone.AddEntity(weapon,cell.X,cell.Y+1));
+            using(var wild=new FlatPixelWildFaunaCatalog()) { Assert.True(wild.TryResolve(zone,weapon,out var tile));Frame(tile.sprite); }
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,weapon,cell.X,cell.Y+1,out portrait,out _));Frame(portrait);
+            if(condition=="valid")
+            {
+                Assert.True(zone.RemoveEntity(weapon));Assert.True(pack.AddObject(weapon));
+                Assert.True(WeaponForgingService.TryReforge(holder,factory,weapon,Carry("SteelBladeComponent"),out _,out reason),reason);
+                row=Index().Icons.Single(r=>r.Blueprint=="ForgedWeapon");Assert.True(ReaderIcon(holder,weapon,out portrait));Frame(portrait);
+            }
+        }
 
         [Test] public void WornArmourShowsItsIconInTheReader()
         {

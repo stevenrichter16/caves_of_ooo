@@ -24,6 +24,7 @@ namespace CavesOfOoo.Core
             var weapon = ParentEntity; var assembly = weapon.GetPart<WeaponAssemblyPart>(); var factory = ForgePart.Factory;
             if (weapon.BlueprintName != WeaponForgingService.ForgedWeaponBlueprintName || assembly == null || factory == null
                 || !weapon.HasPart<MeleeWeaponPart>() || !ForgePart.IsNearForge(actor, zone)) return PreparationActions.Reject(actor, weapon, command, "weapon_or_station");
+            if (!ForgeWorkReceipt.Begin(actor, zone, tx, command)) return PreparationActions.Reject(actor, weapon, command, "station_changed");
             string blade = assembly.BladeBlueprint, haft = assembly.HaftBlueprint, binding = assembly.BindingBlueprint;
             // Recorded component recipes are provenance, never arbitrary inventory output names.
             if (!ComponentBlueprint(factory, blade, "Blade") || !ComponentBlueprint(factory, haft, "Haft") || !ComponentBlueprint(factory, binding, "Binding"))
