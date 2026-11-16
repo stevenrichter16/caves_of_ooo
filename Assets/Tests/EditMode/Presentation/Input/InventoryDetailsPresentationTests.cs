@@ -107,6 +107,39 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(player, item.GetPart<PhysicsPart>().Equipped);
         }
 
+        [TestCase(false)] [TestCase(true)]
+        public void TorchKeyboardF1IncludesLiveFuelForStowedAndHeldSelection(bool held)
+        {
+            var item = Select("Torch", false);
+            item.GetPart<FuelPart>().FuelMass = 12.5f;
+            if (held)
+            {
+                Assert.True(Pack.EquipToBodyPart(item, player.GetPart<Body>().GetParts().Find(part => part.Type == "Hand")));
+                UI.Open();
+                var slots = (List<InventoryScreenData.EquipmentSlot>)Field(UI, "_equipSlots");
+                int index = slots.FindIndex(slot => slot.EquippedItem == item); Assert.GreaterOrEqual(index, 0);
+                Set(UI, "_equipCursorIndex", index);
+            }
+            else item.GetPart<StackerPart>().StackCount = 3;
+            int tick = turns.TickCount, energy = turns.GetEnergy(player);
+            var devices = new InputTestFixture(); devices.Setup();
+            try
+            {
+                var keyboard = InputSystem.AddDevice<Keyboard>(); keyboard.MakeCurrent();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.F1)); InputSystem.Update();
+                Call(input, "UpdateInput"); AssertDocument(item, null);
+                string text = (string)Field(input.AnnouncementUI, "_message");
+                StringAssert.Contains("Fuel: 12.5/50 per torch", text);
+                Assert.AreEqual(1, text.Split(new[] { "Fuel:" }, StringSplitOptions.None).Length - 1);
+                StringAssert.Contains("Controlled flame: Lit", text);
+                StringAssert.Contains("unequip into your pack", text);
+                Assert.AreEqual(12.5f, item.GetPart<FuelPart>().FuelMass);
+                Assert.AreEqual(tick, turns.TickCount); Assert.AreEqual(energy, turns.GetEnergy(player));
+            }
+            finally { devices.TearDown(); }
+        }
+
         [TestCase("removed")] [TestCase("hidden")] [TestCase("empty-stack")]
         [TestCase("foreign-render")] [TestCase("foreign-examinable")]
         public void InvalidSelectedSubjectDoesNotFallBackToPlainStaleDetails(string invalidation)

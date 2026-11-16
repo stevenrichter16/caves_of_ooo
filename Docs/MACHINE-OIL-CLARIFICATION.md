@@ -1,6 +1,6 @@
 # M1d proposal: finite frog-oil clarification
 
-Status, 2026-11-16: bounded source proposal only. No production changes, native tests, actual purpose qualification or acceptance. M1c relocation is published at8bb2b8f82; its current Mac delivery is verified. Do not repeat accepted liquid handling/workshop/relocation branches.
+Status, 2026-11-16: bounded source proposal only. No processing production changes, native tests or acceptance. Actual raw-oil/grease and existing torch purchase/fuel/relight qualification is now retained; M1d0 reader acceptance is separate. M1c relocation is published at8bb2b8f82; its current Mac delivery is verified. Do not repeat accepted liquid handling/workshop/relocation branches.
 
 ## Player opportunity
 
@@ -35,3 +35,9 @@ Then independent design/source critique, native RED and countercases, smallest c
 This may accept a finite processing and waste foundation. It does not complete the fractionating still, pump, heat exchanger, energy storage, provenance/mixtures or elapsed-job policy. All twelve-machine gates remain separately open.
 
 Independent bounded design/source critique found one contract correction: a weight-neutral batch cannot require an ordinary capacity-failure demonstration in a weight-only inventory. The policy and actual/native gates above now reflect existing preparation behavior. No other P1/P2 factual contradiction found. Actual usefulness, yield, waste burden and placement remain qualification questions; do not manufacture scarcity to answer them.
+
+## Actual qualification corrections,2026-11-16
+
+See [OilQualification](Verification/MachineSystems/OilQualification/README.md) and [TorchReadout](Verification/MachineSystems/TorchReadout/README.md). Ordinary Reedfrog kill/Harvest produced one oil; spreading it and moving through the film produced an actual slip. Existing raw-oil alternative is established. Separate earned Morrowfast branch bought four torches from Orrit for35drams, equipped one and used finite fuel through movement. Full/F1 readers now disclose current fuel and controlled flame. Ordinary extinguish/fresh reload/relight from a second held torch are verified. A stowed torch is not an ignition source; decorative cooking ovens are not evidence of real thermal fire. Do not repeat the excluded snake-death errand or seek an unsupported Morrowfast hearth.
+
+Only a small fuel deficit was established while several spare torches remain. This demonstrates functionality, not compelling conversion value. Let purposeful exploration/travel create demand; do not idle away fuel or weaken current lighting. Dregs are finite accounting, not yet interesting waste gameplay; no compulsory disposal errand. Next qualify fresh Works placement and a worthwhile ordinary expedition supply decision. Actual two-input acquisition, useful LampOil refill and complete output use still gate the recipe. Current earned RelitCheckpoint2320HP40 atMorrowfast3.6:31,21 has the original46.70001-fuel torch and one49.7 spare held, two full spares stowed. Return one spare to the pack and equip the carried dagger before useful travel. No new stock/healing/teleport.

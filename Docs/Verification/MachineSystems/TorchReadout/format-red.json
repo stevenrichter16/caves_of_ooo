@@ -1,0 +1,36 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "7bb1b8a2860b42acba9e2861b2a350e5",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794816384630,
+      "finished_unix_ms": 1794816388315,
+      "last_update_unix_ms": 1794816388315,
+      "progress": {
+        "completed": 1,
+        "total": 1,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794816388212,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.AccumulatedTickNoise_DoesNotLeakIntoDisplayedFuel",
+        "last_finished_unix_ms": 1794816388290,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.AccumulatedTickNoise_DoesNotLeakIntoDisplayedFuel",
+            "message": "  Expected: String containing \"Fuel: 47/50 per torch\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nControlled flame: Lit. Fuel: 47.00001/50 per torch.\nLit held or loose torches use fuel; stowed torches retain their state.\nTo refuel: extinguish, unequip into your pack, then use lamp oil. One measure adds up to 25 fuel, capped at capacity. Relight beside a burning fire.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

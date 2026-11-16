@@ -1,0 +1,132 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "a210a27a1c034c1185b11a1abd5cd076",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794815444348,
+      "finished_unix_ms": 1794815452205,
+      "last_update_unix_ms": 1794815452205,
+      "progress": {
+        "completed": 29,
+        "total": 29,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794815452139,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.WetOwner_UsesActualSuppressionThreshold(0.36f,False)",
+        "last_finished_unix_ms": 1794815452169,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.ActualHeldTick_IsVisibleWithoutEstimatedLifetime",
+            "message": "  Expected: String containing \"Fuel: 49.7/50 per torch\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.EmptyFuel_IsDisclosedWithoutMutatingEnabledLight",
+            "message": "  Expected: String containing \"Fuel: 0/50 per torch\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.ForeignPart_DoesNotBorrowState(\"Fuel\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.ForeignPart_DoesNotBorrowState(\"Thermal\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.ForeignPart_DoesNotBorrowState(\"LightSource\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.ForeignPart_DoesNotBorrowState(\"TorchLight\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.FrozenOwner_IsDisclosed",
+            "message": "  Expected: String containing \"Controlled flame: Out (frozen)\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\nAfflicted:\n  - Frozen over - 100% iced; thaws in about 10 turns (fire thaws it faster).\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.LiveCapacityAndInvariantDecimals_AreUsed",
+            "message": "  Expected: String containing \"Fuel: 12.5/80 per torch\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.LooseWorldReader_UsesSameLiveFuel",
+            "message": "  Expected: String containing \"Fuel: 49.7/50 per torch\"\n  But was:  \"You see a torch.\n\nA wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MalformedState_ReportsUnavailableWithoutRepair(\"negative\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MalformedState_ReportsUnavailableWithoutRepair(\"overfull\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MalformedState_ReportsUnavailableWithoutRepair(\"nan\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MalformedState_ReportsUnavailableWithoutRepair(\"infinite\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MalformedState_ReportsUnavailableWithoutRepair(\"capacity\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MalformedState_ReportsUnavailableWithoutRepair(\"rate\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MalformedState_ReportsUnavailableWithoutRepair(\"temperature\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MalformedState_ReportsUnavailableWithoutRepair(\"flame\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MissingRequiredPart_DoesNotInventReading(\"Fuel\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MissingRequiredPart_DoesNotInventReading(\"Thermal\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.MissingRequiredPart_DoesNotInventReading(\"LightSource\")",
+            "message": "  Expected: String containing \"Torch reading unavailable\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.OrdinaryExtinguish_UpdatesReaderWithoutConsumingFuel",
+            "message": "  Expected: String containing \"Controlled flame: Out\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.SavedFuelAndOutState_ProduceSameReaderAfterRoundtrip",
+            "message": "  Expected: String containing \"Fuel: 49.7/50 per torch\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.StowedStack_ReportsPerTorchAndExplainsSuspendedConsumption",
+            "message": "  Expected: String containing \"Fuel: 50/50 per torch\"\n  But was:  \"You see a torch (x4). A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.TinyPositiveFuel_IsNotRoundedToZero",
+            "message": "  Expected: String containing \"Fuel: 0.0001/50 per torch\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.WetBearer_DoesNotInventWetTorch",
+            "message": "  Expected: String containing \"Controlled flame: Lit\"\n  But was:  \"You see a torch. A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame.\nEquip slots: Hand.\nTactical use: Hold a lit, dry torch and touch nearby fuel to ignite it. Costs one fuel in addition to the action. Fire can spread; an unlit or stowed torch cannot do this.\"\n"
+          }
+        ],
+        "failures_capped": true
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

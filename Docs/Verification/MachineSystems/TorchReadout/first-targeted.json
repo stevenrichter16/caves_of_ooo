@@ -1,0 +1,36 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "e7cc4e2b4a7d402e96166d91e957ca18",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794815524684,
+      "finished_unix_ms": 1794815532756,
+      "last_update_unix_ms": 1794815532756,
+      "progress": {
+        "completed": 149,
+        "total": 149,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794815532696,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineTorchReadoutTests.WetOwner_UsesActualSuppressionThreshold(0.36f,False)",
+        "last_finished_unix_ms": 1794815532718,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ExplicitEquipmentBonusesFollowTheEquipmentParser",
+            "message": "  Expected: String containing \"Strength +2, Agility -1\"\n  But was:  \"You see a dagger.\nThis equipment is sound. A short blade with a close-fitting grip. The point has been kept sharp.\nDamage: 1d4 per penetration.\nHit bonus: +0; Penetration bonus: +1.\nPenetration uses Strength modifier (cap 3).\nAttributes: Piercing.\nOn damaging hits, independent attempts (targets may resist):\n  10%: Confused - staggers unpredictably for 2 turns.\nEquip slots: Hand.\nEquip bonuses (if the stat exists): Agility -1, Strength +2.\"\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

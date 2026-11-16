@@ -67,6 +67,40 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        private static void DescribeTorch(Entity item, List<string> lines)
+        {
+            var torch = item.GetPart<TorchLightPart>();
+            if (torch == null) return;
+            var fuel = item.GetPart<FuelPart>();
+            var heat = item.GetPart<ThermalPart>();
+            var light = item.GetPart<LightSourcePart>();
+            if (torch.ParentEntity != item || fuel?.ParentEntity != item || heat?.ParentEntity != item
+                || light?.ParentEntity != item || !Finite(fuel.FuelMass) || !Finite(fuel.MaxFuel)
+                || fuel.FuelMass < 0 || fuel.MaxFuel <= 0 || fuel.FuelMass > fuel.MaxFuel
+                || !Finite(fuel.BurnRate) || fuel.BurnRate <= 0
+                || !Finite(heat.Temperature) || !Finite(heat.FlameTemperature))
+            {
+                lines.Add("Torch reading unavailable; its flame or fuel state is invalid.");
+                return;
+            }
+
+            string state = torch.ControlledFlameActive ? "Lit" : "Out";
+            if (!torch.ControlledFlameActive && light.Enabled)
+            {
+                if (fuel.FuelMass <= 0) state += " (no fuel)";
+                else if (item.HasEffect<FrozenEffect>()) state += " (frozen)";
+                else if (item.GetEffect<WetEffect>()?.Moisture > 0.35f) state += " (wet)";
+            }
+            lines.Add("Controlled flame: " + state + ". Fuel: "
+                + fuel.FuelMass.ToString("G5", CultureInfo.InvariantCulture) + "/"
+                + fuel.MaxFuel.ToString("G5", CultureInfo.InvariantCulture) + " per torch.");
+            lines.Add("Lit held or loose torches use fuel; stowed torches retain their state.");
+            lines.Add("To refuel: extinguish, unequip into your pack, then use lamp oil."
+                + " One measure adds up to 25 fuel, capped at capacity. Relight beside a burning fire.");
+        }
+
+        private static bool Finite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
+
         /// <summary>Live equipment contributions, including a body's untagged natural weapon.
         /// This formatter does not establish ownership or equip eligibility; callers must do so.</summary>
         public static bool TryDescribeEquipmentDetails(Entity item, out string details)
@@ -74,6 +108,7 @@ namespace CavesOfOoo.Core
             details = null;
             if (item == null) return false;
             var lines = new List<string>();
+            if (item.HasTag("Item")) DescribeTorch(item, lines);
             var weapon = item.GetPart<MeleeWeaponPart>();
             var armor = item.GetPart<ArmorPart>();
             if (weapon != null) DescribeWeapon(weapon, lines);

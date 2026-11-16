@@ -147,7 +147,7 @@ namespace CavesOfOoo.Tests
             var item = factory.CreateEntity("Dagger");
             item.GetPart<EquippablePart>().EquipBonuses = "Strength:2, Agility:-1, broken, Toughness:oops";
             string text = Examine(item);
-            StringAssert.Contains("Strength +2, Agility -1", text);
+            StringAssert.Contains("Agility -1, Strength +2", text);
             StringAssert.DoesNotContain("broken", text);
             StringAssert.DoesNotContain("Toughness", text);
         }

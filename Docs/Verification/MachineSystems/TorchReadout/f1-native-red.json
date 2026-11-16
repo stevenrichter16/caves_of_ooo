@@ -1,0 +1,40 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "5b174fab15d9445dbe021ba9d5e27200",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794815848687,
+      "finished_unix_ms": 1794815872909,
+      "last_update_unix_ms": 1794815872909,
+      "progress": {
+        "completed": 2,
+        "total": 2,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794815872815,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.InventoryDetailsPresentationTests.TorchKeyboardF1IncludesLiveFuelForStowedAndHeldSelection(True)",
+        "last_finished_unix_ms": 1794815872874,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.InventoryDetailsPresentationTests.TorchKeyboardF1IncludesLiveFuelForStowedAndHeldSelection(False)",
+            "message": "  Expected: String containing \"Fuel: 12.5/50 per torch\"\n  But was:  \"Equipment comparison\n\nCandidate: torch (x3)\nEquip slots: Hand.\nWeight per item: 3.\n\nAuto equip: left hand.\n  left hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\nManual equip: right hand.\n  right hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\n\nCurrent: fist\nDamage: 1d2 per penetration.\nHit bonus: +0; Penetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0.\n\nCurrent: fist\nDamage: 1d2 per penetration.\nHit bonus: +0; Penetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0.\n\nItem contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions.\n\n3 units. Weight per unit: 3. Total weight: 9.\nLift Strength: 3; yours: 18.\nYou can carry this item.\nGrip: one hand.\ntorch (x3) cannot be thrown.\nPack weight: 9; with this item: 9. Burden threshold: 270.\nDisassembly unavailable: no current owned item or tinkering access.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.InventoryDetailsPresentationTests.TorchKeyboardF1IncludesLiveFuelForStowedAndHeldSelection(True)",
+            "message": "  Expected: String containing \"Fuel: 12.5/50 per torch\"\n  But was:  \"Equipment comparison\n\nCandidate: torch\nEquip slots: Hand.\nWeight per item: 3.\n\nCurrently equipped: left hand.\n\nItem contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions.\n\n1 unit. Weight per unit: 3. Total weight: 3.\nLift Strength: 3; yours: 18.\nYou can carry this item.\nGrip: one hand.\ntorch cannot be thrown.\nPack weight: 3; with this item: 3. Burden threshold: 270.\nDisassembly unavailable: no current owned item or tinkering access.\"\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}
