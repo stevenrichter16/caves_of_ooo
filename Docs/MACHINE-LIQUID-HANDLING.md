@@ -48,3 +48,6 @@ Cold pumping remains unapproved: Peat Works17.7 has a60-unit MirePool at34,8 but
 - Preservation at03:11:31UTC: all84 prior dirty tracked files match the earlier snapshot; normal editor/standalone save trees match. Only native test/session preference keys differ (PT_Run and Unity session IDs/count); ordinary gameplay preferences remain unchanged. Unity stopped, root override null, scene clean. Existing Metal memoryless-depth messages and transient MCP websocket reconnects are distinguished from gameplay exceptions.
 
 Actual screenshots and state receipts: `Docs/Verification/MachineSystems/LiquidHandling/`. No gameplay mutation, spawned supplies, invincibility or offline substitute was used to establish this loop. Missing-marker fixture load attempts are excluded and later roots contain proper earned saves.
+
+
+Current Mac delivery — 2026-11-16: sourcec29039d88 includes M1a+M1b and passed actual packaged actions/readers plus fresh-process reload; workshop branch also passed ordinary movement and17.7↔18.7 travel. See [the bounded delivery record](Verification/MachineSystems/BatchC29039/README.md) for the excluded low-health combat attempt, preserved saves/builds, logs and exact limits.

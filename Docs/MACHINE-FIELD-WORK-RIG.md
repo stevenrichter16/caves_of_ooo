@@ -63,3 +63,6 @@ Scope/performance: existing adjacent-cell lookup remains bounded to nine cells; 
 NEXT: review and stage exact owned changes, fetch/integrate/push and verify remotely. Package current Mac for accepted M1a+M1b and verify real launch/action/travel/save/reload, preserving old packages. Future capstan/work proposals remain design only; no elapsed processing, heat or cross-zone cargo claim. Do not repeat acquisition or the successful service/reclamation branches merely to accumulate receipts.
 
 Unity stopped after archiving the isolated reclamation reload root at /private/tmp/coo-machine-rig-reclamation-reload-root. Reclamation action root is also preserved at /private/tmp/coo-machine-rig-reclamation-root. The hourly task remains ACTIVE; graphics remains cancelled and Deck deferred.
+
+
+Current Mac delivery — 2026-11-16: sourcec29039d88 includes M1a+M1b and passed actual packaged actions/readers plus fresh-process reload; workshop branch also passed ordinary movement and17.7↔18.7 travel. See [the bounded delivery record](Verification/MachineSystems/BatchC29039/README.md) for the excluded low-health combat attempt, preserved saves/builds, logs and exact limits.
