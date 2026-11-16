@@ -1,6 +1,6 @@
-# M1d proposal: finite frog-oil clarification
+# M1d: finite frog-oil clarification
 
-Status, 2026-11-16: M1d bounded Editor acceptance is complete; publication/current Mac delivery follows. Native, actual ordinary process/output use/travel/fresh reload and independent source/gameplay review pass. Actual raw-oil/grease and existing torch purchase/fuel/relight qualification is now retained; M1d0 reader acceptance is separate. M1c relocation is published at8bb2b8f82; its current Mac delivery is verified. Do not repeat accepted liquid handling/workshop/relocation branches.
+Status, 2026-11-16: M1d bounded acceptance is published at b93ad80a9 and included in the current Mac package; actual processing/output use/travel/fresh reload also passes in that package. Native, actual ordinary process/output use/travel/fresh reload and independent source/gameplay review pass. Actual raw-oil/grease and existing torch purchase/fuel/relight qualification is now retained; M1d0 reader acceptance is separate. M1c relocation is published at8bb2b8f82; its current Mac delivery is verified. Do not repeat accepted liquid handling/workshop/relocation branches.
 
 ## Player opportunity
 
@@ -62,4 +62,8 @@ Ordinary freshWorks at3420HP20:59,6 had bench14414, two harvested oils13869/1387
 
 The first actual capture exposed a presentation omission: the initial approved3DWorkingBench route did not feed the active flat renderer. Reused the existing neutral prop-icons frame161 (SoddenDressingBench), unchanged atlas/source/index, through exactcurrentWorks59,5/payload/appearance/visiblecell/SpatialZone guards shared by world/reader. Native RED proved missingflatart, and independent review added null/foreign attachment RED controls before final17GREEN. Earlier native test only established3D modelling, not flat presentation. Minor retained cosmetic: the legacy menu title displays its curly apostrophe as a question mark; fullreader is normal. No P1/P2 remains in independent source or gameplay review.
 
-[Evidence and limitations](Verification/MachineSystems/OilStraining/README.md). No timed job, heat, physical waste, fluid mixture/provenance, new machine relocation, complete fractionating still or twelve-machine completion. CurrentMac source8bb2b8f82 excludes this slice and torchreadout; batch these at this coherent milestone. Do not repeat successful acquisition/process branches.
+[Evidence and limitations](Verification/MachineSystems/OilStraining/README.md). No timed job, heat, physical waste, fluid mixture/provenance, new machine relocation, complete fractionating still or twelve-machine completion. CurrentMac sourceb93ad80a9 includes this slice and torchreadout; see delivery below. Do not repeat successful acquisition/process branches.
+
+## Current Mac delivery — 2026-11-16
+
+Published implementation b93ad80a9 is packaged at `Builds/Verification/2026-11-16-machines-b93ad80a9-current/CavesOfOoo.app`. Actual native package play processed the two earned oils, refuelled the original torch away from the bench to44.1/50, relit it, travelled17.7↔17.6, and F5/fresh-Continued3620HP20 at59,6 with Lit38.1/50 and no returned inputs/output. Delivery evidence, independent review and preservation are in [BatchB93AD8](Verification/MachineSystems/BatchB93AD8/README.md). This does not extend the processing contract or complete any of the twelve machines.
