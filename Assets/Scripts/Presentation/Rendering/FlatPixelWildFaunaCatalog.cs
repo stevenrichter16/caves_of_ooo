@@ -317,7 +317,7 @@ namespace CavesOfOoo.Rendering
 
         public static bool AppliesTo(Zone zone) => zone?.ZoneID != null && !FlatPixelGreyboxCatalog.IsAdmitted(zone);
 
-        public static bool HasKnownRole(Entity owner) => Expected(owner?.BlueprintName, out _, out _);
+        public static bool HasKnownRole(Entity owner) => owner?.BlueprintName == OilStrainingPart.Blueprint || Expected(owner?.BlueprintName, out _, out _);
         static bool Expected(string role, out string glyph, out string color)
         {
             if (UpperRole(role, out int u)) { glyph = SharedBodies[u].Glyph; color = SharedBodies[u].Color; return true; }
@@ -408,6 +408,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolve(Zone zone, Entity owner, out Tile tile)
         {
             tile = null;
+            if (owner?.BlueprintName == OilStrainingPart.Blueprint) return TryOilStrainer(zone, owner, out tile);
             if (disposed || !AppliesTo(zone) || owner == null || owner.SpatialZone != zone || !Expected(owner.BlueprintName, out var glyph, out var color)) return false;
             var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
             if (ItemRole(owner.BlueprintName, out var itemRow) && !UpperRole(owner.BlueprintName, out _))
@@ -479,6 +480,29 @@ namespace CavesOfOoo.Rendering
                     tile = Owned<ConversationPart>(owner) != null ? warden : null; break;
             }
             return tile != null;
+        }
+
+        // The cold strainer borrows the approved plain table, not a heated forge
+        // or stocked work surface. Both the live cell and subject reader use this
+        // route. No cached map retrofit or remembered-state inference.
+        bool TryOilStrainer(Zone zone, Entity owner, out Tile tile)
+        {
+            tile = null;
+            if (disposed || !loadUpper || owner.SpatialZone != zone || zone?.ZoneID != SoddenDistrictPlan.WorksZoneID
+                || !FlatPixelSoddenTravelCatalog.IsSupportedZone(zone) || !OilStrainingPart.Payload(owner)) return false;
+            var cell = zone.GetEntityCell(owner);
+            if (cell == null || cell.ParentZone != zone || cell.X != 59 || cell.Y != 5
+                || !cell.IsVisible || !cell.Explored || !ReferenceEquals(zone.GetCell(59, 5), cell)) return false;
+            int matches = 0;
+            foreach (var occupant in cell.Objects)
+                if (occupant != null && occupant.ID == owner.ID) { if (!ReferenceEquals(occupant, owner)) return false; matches++; }
+            if (matches != 1) return false;
+            var r = owner.GetPart<RenderPart>();
+            if (r.RenderString != "=" || r.ColorString != "&y" || r.RenderLayer != 4
+                || !string.IsNullOrEmpty(r.BackgroundColor) || !string.IsNullOrEmpty(r.GlyphVariants)
+                || !string.IsNullOrEmpty(r.VisualID) || !string.IsNullOrEmpty(r.VisualVariant)
+                || !Props.TryGet("SoddenDressingBench", "", out var row)) return false;
+            tile = PropTile(row, 0); return tile != null;
         }
 
         static T Owned<T>(Entity owner) where T : Part

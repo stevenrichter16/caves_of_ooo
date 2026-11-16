@@ -92,6 +92,7 @@ namespace CavesOfOoo.Core
             if(inWorld)Add(state,CellStatusReadout.GroundLine(zone,cell));
             Add(state,owner.GetPart<KitchenBatchPart>()?.Describe());
             Add(state,owner.GetPart<SoddenPreparationPart>()?.Describe());
+            Add(state,owner.GetPart<OilStrainingPart>()?.Describe());
             Add(state,owner.GetPart<RepairablePart>()?.Describe());
             Add(state,owner.GetPart<TrapJammingPart>()?.DescribeJamming());
             if(inWorld)

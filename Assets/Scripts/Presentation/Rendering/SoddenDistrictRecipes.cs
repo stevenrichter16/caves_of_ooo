@@ -12,7 +12,7 @@ namespace CavesOfOoo.Rendering
             switch (blueprint)
             {
                 case "SoddenDressingBench": case "SoddenWorksSalvage": case "SoddenWorksLocker":
-                case "SoddenRouteNotice": case "SoddenFieldDressing": return true;
+                case "SoddenRouteNotice": case "SoddenFieldDressing": case OilStrainingPart.Blueprint: return true;
                 default: return false;
             }
         }
@@ -64,6 +64,9 @@ namespace CavesOfOoo.Rendering
             if (physics.Takeable || owner.HasTag("Item")) return null;
             switch (owner.BlueprintName)
             {
+                case OilStrainingPart.Blueprint:
+                    return OilStrainingPart.Payload(owner) && Appearance(owner,"=","&y",4)
+                        ? SoddenDistrictArtLibrary.WorkingBench : null;
                 case "SoddenDressingBench":
                     var repair = owner.GetPart<RepairablePart>(); var composition = owner.GetPart<CompositionPart>();
                     var recipe = RepairRecipeRegistry.Get("timber-dressing-bench");

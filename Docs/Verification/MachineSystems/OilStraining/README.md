@@ -1,0 +1,31 @@
+# M1d: optional oil straining, bounded Editor acceptance
+
+Two naturally acquired FrogOil gourds can be cold-strained at one fresh-only Peat Works bench into one LampOil measure. This uses the normal action clock and inventory transaction. The explicit discarded residue is recipe loss, not a physical waste simulation. Ordinary torches, purchases, raw greasing and alchemy remain available. All twelve complete machines remain open.
+
+## Actual ordinary play
+
+Earned seed704860946, normal GameBootstrap, CUA input only, F12 off. No stock/healing injection, invincibility or cache deletion. The starting OilSite/BeforeEntryCheckpoint2630 had never cached Works. Reacquisition in17.6 included two viper fights, one ordinary healing tonic, HP40→20, and a reedfrog kill/Harvest yielding oils13869/13870. ReacquiredCheckpoint3100 retains these costs. Earlier OilSite/SupplyCheckpoint was not used for new content because Works was already cached.
+
+Fresh arrival3250HP20 at65,0. A held-key movement overshot to59,2 and struck the wall three times; this paid ordinary actions and is retained, not a clean shortest-route claim. Corrected movement through60,3 reached59,6 at3420. Bench14414 stands overStoneFloor14413 at59,5. Full and F1 readers disclosed2→1, one action, weight reduction, explicit loss, capped torch use and raw alternative. After cancelling the quoted menu, before-batch.json and after-cancel.json are exactly equal. Some rapid UI keys were ignored and retried after observation; an extra Escape opened Pause and was closed without payment.
+
+One normal batch3420→3430 consumed exactly13869/13870, producedLampOil16367, carried weight25→24. At59,9 the original torch was extinguished and packed. The normal LampOil action3480 consumed16367 and changed originaltorch da566d478be54efb8447b08239d44885 fuel17.3000832→42.3000832. Its existing grease alternatives remained visible in lamp-oil-actions.png. A held spare provided ordinary ignition; original torch had to be held as well. Relight3490 gave42.0000839, then movement3510 gave41.4000854. No waiting to manufacture fuel demand. RefuelCheckpoint3480 and RelitCheckpoint3510 preserve earned states.
+
+Fresh Continue3510 exactly matches after-fuel-movement.json. Flat bench after capture3520 shows approved plain table in world and fullreader; the batch action is absent with no oils. Northward travel reached17.6:60,24 at3600, returned17.7:60,0 at3610 and bench59,6 at3680. Same bench14414, zero oils, HP20. F5 and another fresh Continue3680 exactly match travel-return.json and travel-return-fuel.json. Two lit torches are held; dagger remains in the pack, two full torches stowed. All checkpoints are isolated QA saves, not normal player saves.
+
+Separate old-cache Continue of OilSite/SiteCheckpoint2890HP40 retains onlyStoneFloor11769 at59,5 and no strainer. Old-cache screenshot is a different time/state, not a pixel-matched visual comparison. Before/after bench images likewise disclose ordinary time/lighting/equipment/log changes; the paired reader images isolate the intended visual change better.
+
+## Native evidence and independent review
+
+- Final mechanics54/54: native-54-canonical-output-final.json. Combined69/69 repeats those54 plus15 initial flat cases. Final17/17 flat cases add the two reviewed stale-attachment refusals;20/20 adjacent item-icon checks pass. These overlapping receipts must not be summed.
+- Earlier389 regression:388 pass,1 existing AbandonedFieldWorkRig unmodeled-native-blueprint art failure. The failure is reproduced without new strainer content.335 passing adjacent checks outside the then53 oil tests are retained; no full389-green claim.
+- First mechanics RED21 had6 expected positive failures and15 controls. The malformed new tag(Name instead of Key) caused21 setup failures, corrected before native GREEN. A stale21 run and initialization timeout are excluded.45-test intermediate had one legacy reader failure, corrected in ExaminablePart.53/56 intermediate passes are overlapping.
+- Flat RED had the expected missing-native-art failure and11 fixture mistakes: TryGetPresentationSubjectSprite may return a glyph, so negative assertions now reject the native atlas rather than all portraits. Three controls passed. A preliminary0-test discovery run5185ac2d is excluded. Attachment2RED then17GREEN closes the independent source finding. No arbitrary output creation callbacks are supported: strict canonical-template preflight rejects them before invocation.
+- Independent source review:0 remainingP1/P2 after exact attachment guard. Independent actual gameplay/visual review:0 remainingP1/P2, including final3680 and old-cache control. Review inspected observations/images; root alone controlled Unity. Cosmetic P3 retained: curly apostrophe in the legacy menu title appears as '?'; fullreader renders it normally.
+
+## Presentation, preservation and limits
+
+The initial3D WorkingBench model registration did not serve the active flat renderer. Actual capture caught the glyph. The corrected exact-currentWorks59,5 route reuses unchanged prop-icons frame161 (SoddenDressingBench), shared by world and reader. It requires canonical payload/appearance, visible explored cell, current attachment and site authority. Atlas/index/editable sources are unchanged. The older field rig art debt remains untouched.
+
+Native operations are bounded to carried inputs/owned transaction participants; no background work or wall-clock production. Native final17 took1.378s and adjacent20 took1.668s in Unity; these are test durations, not gameplay performance. No packaged FPS or other-hardware qualification is claimed. CurrentMac8bb2b8f82 predates this slice and torchreadout; a coherent delivery batch follows publication. No Linux/Deck work.
+
+preservation.json verifies84 prior dirty files and normal save files against the earlier protection snapshot. Isolated launcher restored its owned preferences; operational Editor settings may differ. Root stopped Unity with null save override and clean scene. Private roots archived at /private/tmp/coo-oil-process-root-cd7cc6ff, coo-oil-after-root-b3b18ca5, coo-oil-oldcache-root-28b094a0 and coo-oil-final-root-23210aa3. Prior builds, sources, normal states and parked Cinderhold draft preserved; no storage deletion.

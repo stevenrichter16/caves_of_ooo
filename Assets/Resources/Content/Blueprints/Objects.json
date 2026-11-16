@@ -1902,6 +1902,79 @@
       "Tags": []
     },
     {
+      "Name": "PeatOilStrainer",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "peat-cutter’s oil strainer"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "80"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Wood"
+            }
+          ]
+        },
+        {
+          "Name": "OilStraining",
+          "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A cloth-lined wooden straining bench left in the old equipment shed. Rendered frog oil can be worked through it into a smaller measure of lamp oil. Its use is shared; it asks no fee."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
+    },
+    {
       "Name": "SoddenDressingBench",
       "Inherits": "PhysicalObject",
       "Parts": [

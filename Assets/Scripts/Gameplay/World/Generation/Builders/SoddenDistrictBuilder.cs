@@ -45,7 +45,7 @@ namespace CavesOfOoo.Core
         {
             if(zone==null||rng==null||!SoddenDistrictPlan.IsSupportedZone(zone.ZoneID)||zone.EntityCount!=0
                 ||SourceZone!=null||!SupportsContent(factory))return Reject(zone,"invalid-empty-source-or-content");
-            var plan=SoddenDistrictPlan.Create(zone.ZoneID,seed,zone.ZoneID==SoddenDistrictPlan.WorksZoneID && FieldWorkRigRules.ContentAvailable(factory));
+            var plan=SoddenDistrictPlan.Create(zone.ZoneID,seed,zone.ZoneID==SoddenDistrictPlan.WorksZoneID && FieldWorkRigRules.ContentAvailable(factory),zone.ZoneID==SoddenDistrictPlan.WorksZoneID && OilStrainingPart.ContentAvailable(factory));
             var priorReservations=new HashSet<(int x,int y)>(zone.GenReservedCells);
             var staged=new List<(Entity owner,int x,int y)>();var added=new List<Entity>();
             var created=new Dictionary<Entity,(string id,string blueprint)>();var ids=new HashSet<string>(StringComparer.Ordinal);
@@ -155,7 +155,7 @@ namespace CavesOfOoo.Core
                 ||e.GetPart<RenderPart>()?.Visible!=true||e.HasPart<SpatialFootprintPart>()||e.Parts.Any(part=>part==null||part.ParentEntity!=e))return false;
             bool actor=bp=="PeatCutter"||bp=="MawToad"||bp=="Bandfrog";
             bool solid=actor||bp=="StoneWall"||bp=="PeatBank"||bp=="DeadTree"||bp=="SoddenRouteNotice"
-                ||bp=="SoddenDressingBench"||bp=="SoddenWorksLocker"||bp==FieldWorkRigRules.Blueprint;
+                ||bp==OilStrainingPart.Blueprint||bp=="SoddenDressingBench"||bp=="SoddenWorksLocker"||bp==FieldWorkRigRules.Blueprint;
             if(p.Solid!=solid||!solid&&e.HasTag("Solid"))return false;
             if(actor)
             {
@@ -178,6 +178,7 @@ namespace CavesOfOoo.Core
             if(bp=="SumpsieveCrop")return e.GetPart<CropPart>() is CropPart c&&c.HarvestAtMaturity&&c.YieldBlueprint=="SumpsievePad"
                 &&c.YieldCount==2&&c.SeedYieldBlueprint=="SumpsieveSeed"&&c.SeedYieldCount==1;
             if(bp=="SoddenWorksLocker")return e.GetPart<ContainerPart>() is ContainerPart box&&!box.IsLocked;
+            if(bp==OilStrainingPart.Blueprint)return OilStrainingPart.Payload(e);
             if(bp==FieldWorkRigRules.Blueprint)return FieldWorkRigRules.Payload(e) && !e.GetPart<RepairablePart>().Repaired;
             if(bp=="SoddenWorksSalvage")return e.GetPart<HarvestablePart>() is HarvestablePart h&&h.YieldBlueprint=="SalvagedTimber"
                 &&h.YieldMin==4&&h.YieldMax==4&&h.YieldChance==100&&!h.Harvested;

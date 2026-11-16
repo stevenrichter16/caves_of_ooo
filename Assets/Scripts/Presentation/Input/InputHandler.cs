@@ -3461,6 +3461,7 @@ namespace CavesOfOoo.Rendering
                 || FieldWorkRigRules.IsRig(target) && FieldWorkRigRules.IsWorkshopCommand(action.Command)
                 || action.Command == TrapJammingPart.JamCommand
                 || action.Command == BotanicalInkDeskPart.PrepareCommand
+                || OilStrainingPart.IsCommand(action.Command)
                 || action.Command == SoddenPreparationPart.PrepareCommand
                 || action.Command == KitchenBatchPart.StartCommand
                 || CropWateringService.IsCommand(action.Command)
