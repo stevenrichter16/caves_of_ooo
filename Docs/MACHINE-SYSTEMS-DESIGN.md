@@ -1,6 +1,6 @@
 # Machine foundations and emergent world systems
 
-Status: initial design and source audit, 2026-11-16. Implementation is authorized by the user's direct instruction. This is original Caves of Ooo design, not a Qud parity claim. No new machine-support mechanic is implemented or gameplay-accepted by this document.
+Status: M1a direct non-water flask transfer accepted through native checks, ordinary play and independent review, 2026-11-16. Implementation is authorized by the user's direct instruction. This is original Caves of Ooo design, not a Qud parity claim. None of the twelve complete machines is accepted.
 
 The purpose is to build the world conditions, useful materials, actions and consequences that give twelve proposed machines a reason to exist. Machinery should deepen exploration, local problem solving and relationships with places. A machine is a way to act on shared world rules; a menu containing isolated recipes is insufficient. Working installations must be useful before home ownership. Construction and relocation can later let players specialize several bases without making base ownership compulsory.
 
@@ -51,26 +51,27 @@ The twelve machines are not all ready because individual foundations exist. Cont
 
 ## Dependency matrix for the twelve machines
 
-All rows are proposed. “Foundation” identifies reusable behavior, not a completed machine.
+All machines remain proposed. M1a supplies single-liquid handling only; it does not supply processing, mixture/provenance, pumping or elapsed work. See [its exact contract and evidence](MACHINE-LIQUID-HANDLING.md).
 
-| Machine | Why it would be useful | Missing support and meaningful choice | First evidence required |
-| --- | --- | --- | --- |
-| Forge and reclamation rig | Recover useful workmanship from finite damaged finds. | Physical recoverable parts/quantities and irreversible salvage choices; preserve an assembly versus obtain repair stock. Existing weapon salvage is a foundation. | Two genuinely useful competing outputs, one source consumed once, both usable outside the new rig. |
-| Fractionating still | Turn a difficult local feed into a useful liquid and retained residue. | Known feed accounting, bounded processing, fuel/work, output and waste receivers. Existing reagent still is not fractionation. | Source-to-receiver accounting, real use of the result, blocked/interrupted/reloaded jobs and waste handling. |
-| Restoration cradle | Recover the particular function of damaged equipment. | Persistent component slots, explicit compatibility, faults and tested substitution tradeoffs. | Restored apparatus performs its real action; alternate repair changes a legible capability, not merely item flavor. |
-| Assay cabinet | Spend evidence to make a practical decision. | Samples with quantity/provenance, authored questions and partial findings. | An answer changes a processing, repair or route choice; missing evidence and hidden knowledge remain unavailable. |
-| Culture vat | Grow a finite useful culture from acquired stock. | Strain identity, feedstock, bounded growth, conditions and yield allocation. | Two competing uses for one finite culture, different supported conditions, consent/ownership and persistence. |
-| Anchored capstan | Recover or reposition loads ordinary carrying cannot handle. | Valid anchors, cable/pull paths, work budget and installed-versus-loose state. | Actual obstruction, terrain and existing cargo weight affect pulling; movement and interruption remain coherent. |
-| Sump pump | Reach submerged resources or redirect a local liquid supply. | Finite source/receiver transfer, level/state thresholds, compatible fittings and outlet consequences. | A real passage or resource changes access; transferred liquid appears at a valid destination with no regeneration exploit. |
-| Thermal exchanger | Use a local source for drying, cooling or processing. | Explicit source/receiver coupling, work limits and bounded local temperature effects. | Useful cooling/heating and a second consequence share existing thermal rules; unsupported sources do not create energy. |
-| Dynamo and charging bench | Prepare finite work for portable equipment. | Authored energy source, storage loss/capacity and at least one real consumer. | Charged equipment does useful work away from the generator; finite conversion and refusal paths are verified. |
-| Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. |
-| Signal relay | Coordinate separated people and owned locations. | Connectivity, observed reports and persistent dispatch/delivery state with genuine cargo custody. | One physical delivery or report follows a real arrangement, survives interruption/reload and cannot duplicate goods. |
-| Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. |
-
+| Machine | Why it would be useful | Missing support and meaningful choice | First evidence required | Status |
+| --- | --- | --- | --- | --- |
+| Forge and reclamation rig | Recover useful workmanship from finite damaged finds. | Physical recoverable parts/quantities and irreversible salvage choices; preserve an assembly versus obtain repair stock. Existing weapon salvage is a foundation. | Two genuinely useful competing outputs, one source consumed once, both usable outside the new rig. | Proposed; machine-specific prerequisites open. |
+| Fractionating still | Turn a difficult local feed into a useful liquid and retained residue. | Known feed accounting, bounded processing, fuel/work, output and waste receivers. Existing reagent still is not fractionation. | Source-to-receiver accounting, real use of the result, blocked/interrupted/reloaded jobs and waste handling. | Proposed; M1a liquid handling reviewed separately; process prerequisites open. |
+| Restoration cradle | Recover the particular function of damaged equipment. | Persistent component slots, explicit compatibility, faults and tested substitution tradeoffs. | Restored apparatus performs its real action; alternate repair changes a legible capability, not merely item flavor. | Proposed; machine-specific prerequisites open. |
+| Assay cabinet | Spend evidence to make a practical decision. | Samples with quantity/provenance, authored questions and partial findings. | An answer changes a processing, repair or route choice; missing evidence and hidden knowledge remain unavailable. | Proposed; machine-specific prerequisites open. |
+| Culture vat | Grow a finite useful culture from acquired stock. | Strain identity, feedstock, bounded growth, conditions and yield allocation. | Two competing uses for one finite culture, different supported conditions, consent/ownership and persistence. | Proposed; M1a liquid handling reviewed separately; process prerequisites open. |
+| Anchored capstan | Recover or reposition loads ordinary carrying cannot handle. | Valid anchors, cable/pull paths, work budget and installed-versus-loose state. | Actual obstruction, terrain and existing cargo weight affect pulling; movement and interruption remain coherent. | Proposed; machine-specific prerequisites open. |
+| Sump pump | Reach submerged resources or redirect a local liquid supply. | Finite source/receiver transfer, level/state thresholds, compatible fittings and outlet consequences. | A real passage or resource changes access; transferred liquid appears at a valid destination with no regeneration exploit. | Proposed; M1a liquid handling reviewed separately; process prerequisites open. |
+| Thermal exchanger | Use a local source for drying, cooling or processing. | Explicit source/receiver coupling, work limits and bounded local temperature effects. | Useful cooling/heating and a second consequence share existing thermal rules; unsupported sources do not create energy. | Proposed; machine-specific prerequisites open. |
+| Dynamo and charging bench | Prepare finite work for portable equipment. | Authored energy source, storage loss/capacity and at least one real consumer. | Charged equipment does useful work away from the generator; finite conversion and refusal paths are verified. | Proposed; machine-specific prerequisites open. |
+| Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed; machine-specific prerequisites open. |
+| Signal relay | Coordinate separated people and owned locations. | Connectivity, observed reports and persistent dispatch/delivery state with genuine cargo custody. | One physical delivery or report follows a real arrangement, survives interruption/reload and cannot duplicate goods. | Proposed; machine-specific prerequisites open. |
+| Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. | Proposed; M1a liquid handling reviewed separately; process prerequisites open. |
 ## First playable increment
 
-Begin with a **repairable brine condenser**, a deliberately narrow first fractionating-still process. This is a proposed installation, not an assertion that it already exists in lore or content. Use a suitable established salt/working-water location after verifying its actual layout, ownership and services. Do not begin by rewriting every liquid container or installing twelve machine classes.
+The first implemented increment is **M1a safe direct non-water flask transfer**. It lets players split/consolidate finite brine, oil and other single liquids without creating ground exposure, using real carried vessels and the ordinary transaction/action/save paths. Actual play exposed and corrected hidden menu placement and missing F1 contents; this is why native tests alone are insufficient. Full details, exact receipts and limitations are in [MACHINE-LIQUID-HANDLING.md](MACHINE-LIQUID-HANDLING.md).
+
+The initial repairable brine condenser is **withheld**: Wellmeet8.16 already has wells; ordinary BrineLens5.16 travel found a well and cistern alongside brine. No useful conversion problem was demonstrated. Salt-Vault is also unqualified. Do not repeat that broad inventory or remove existing water to justify a still. The following processing contract remains a requirement for a future justified installation, not accepted content.
 
 The complete player loop is: discover a physical fault; choose whether to repair it or use an existing water-supply alternative; obtain finite compatible feed and fuel/work; prepare an appropriate receiving vessel and waste destination; commit one bounded job; obtain the actual output; use that output in an existing ordinary-world action; leave and return to the same changed installation.
 
@@ -84,7 +85,7 @@ The first cross-system demonstration should use recovered liquid through an exis
 
 ## Expansion after the first accepted loop
 
-1. Reuse the accepted finite transfer/work rules in one pump with a real source, destination and access consequence. Add a narrowly scoped mixture contract only when a second real process needs it.
+1. Build on accepted finite handling; work rules are still missing. Qualify one pump with a real source, destination and access consequence. Add a narrowly scoped mixture contract only when a second real process needs it.
 2. Give salvage and restoration a complete shared component loop. Introduce a capstan through an actual heavy recovery objective, preserving existing carrying and hauling.
 3. Extend work and heat to one exchanger and one portable charged consumer. Prove finite conversions; avoid a world-spanning power-grid rewrite.
 4. Develop sample provenance and two practical assays alongside culture and treatment. Culture becomes interesting through conditions and competing uses, not waiting for free output.
@@ -110,3 +111,11 @@ One authoritative elapsed-game-time policy must govern new work. Existing travel
 Native tests, targeted performance checks, real GameBootstrap actions/readers/travel/reload and independent source/gameplay review are required. Use isolated saves. Create appropriate presentation for changed states and retain honest hardware limits. Machine count, document length, passing helpers or an offline render do not establish completion.
 
 Initial independent source and lore/design reviews found no remaining actionable P1/P2 in this plan. Feed identity, useful conversion and interruption accounting remain explicit M0 decisions before production. This review accepts the design scope; it does not accept any machine's gameplay.
+
+## 2026-11-16 play corrections and current scope
+
+M1a uses existing12-unit flasks, not90-unit flasks:90 was natural brine-pool stock. It creates no job, output recipe, mass conversion, currency, provenance, material generation or autonomous work. Stored source11448 decreased90→78; carried12 became11+1, then0+12, then1+11; the final one was poured through ordinary contact rules. Incompatible water3 and brine11 stay separate even with receiver room. Save data uses the same vessel fields and identities.
+
+A bounded Peat Works17.7 source check found60 bog-mire at34,8, dry access to existing salvage, and a crucial rule: depleted natural pools retain their coating source. Zero collectible volume is not drained footing. A pump remains unqualified until a finite optional sump/resource objective and its depletion/destination consequences are designed and played. New authored opportunities may be appropriate; blanket terrain changes or compulsory upkeep are not.
+
+The next design task is a single recoverable wet-store or sump opportunity with explicit custody, finite source/outlet, manual12-unit bailing alternative, and a meaningful optional recovery/route outcome. Validate the proposed location and canon before implementation; if that loop remains merely fewer clicks, move to a recoverable-component/repair choice rather than inventing scarcity. No larger simulation framework is authorized by a successful transfer action.

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Passed" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 02:31:36Z" end-time="2026-11-16 02:31:37Z" duration="0.6106333">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38469" result="Passed" start-time="2026-11-16 02:31:36Z" end-time="2026-11-16 02:31:37Z" duration="0.610633" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="47066" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38469" result="Passed" start-time="2026-11-16 02:31:36Z" end-time="2026-11-16 02:31:37Z" duration="0.585890" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="47067" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38469" result="Passed" start-time="2026-11-16 02:31:36Z" end-time="2026-11-16 02:31:37Z" duration="0.580096" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="47068" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38469" result="Passed" start-time="2026-11-16 02:31:36Z" end-time="2026-11-16 02:31:37Z" duration="0.574964" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="15232" name="MachineLiquidTransferBoundaryTests" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.565382" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="15244" name="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.217317" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15242" name="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(False)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(False)" methodname="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="450900334" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.172377" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15243" name="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(True)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(True)" methodname="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="160606622" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.032398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[TransferLiquid|2|3|brine|6|12||0|12|fifty-world-tests] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'TransferLiquid|2|3|brine|6|12||0|12|fifty-world-tests' failed.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15241" name="ForgedCommandsCannotBypassTheMenu" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.345774" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15233" name="ForgedCommandsCannotBypassTheMenu(&quot;self&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;self&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="552657422" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.032190" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15234" name="ForgedCommandsCannotBypassTheMenu(&quot;skin&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;skin&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="436913017" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.048826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15235" name="ForgedCommandsCannotBypassTheMenu(&quot;stack&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;stack&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1500288715" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.122661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15236" name="ForgedCommandsCannotBypassTheMenu(&quot;dual-part&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;dual-part&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1013134324" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.023429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15237" name="ForgedCommandsCannotBypassTheMenu(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;dead&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1903813264" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.024285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15238" name="ForgedCommandsCannotBypassTheMenu(&quot;stunned&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;stunned&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="439264786" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.035323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15239" name="ForgedCommandsCannotBypassTheMenu(&quot;truncated&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;truncated&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="2020041725" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.024309" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15240" name="ForgedCommandsCannotBypassTheMenu(&quot;negative&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;negative&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1377927243" result="Passed" start-time="2026-11-16 02:31:37Z" end-time="2026-11-16 02:31:37Z" duration="0.024320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

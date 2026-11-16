@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Failed(Child)" total="30" passed="10" failed="20" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:09Z" duration="0.9768696">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38459" result="Failed" site="Child" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:09Z" duration="0.976870" total="30" passed="10" failed="20" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47053" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38459" result="Failed" site="Child" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:09Z" duration="0.951019" total="30" passed="10" failed="20" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47054" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38459" result="Failed" site="Child" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:09Z" duration="0.942863" total="30" passed="10" failed="20" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47055" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38459" result="Failed" site="Child" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:09Z" duration="0.935218" total="30" passed="10" failed="20" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="15232" name="MachineLiquidTransferTests" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:09Z" duration="0.923826" total="30" passed="10" failed="20" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="15256" name="ChangedPreviewRefusesWithoutAnyFurtherMutation" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.314638" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="15246" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-volume&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-volume&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="109208323" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.084612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15247" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-volume&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-volume&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="506008834" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.027520" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15248" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-capacity&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-capacity&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="27437258" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.026508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15249" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-capacity&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-capacity&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="657790573" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.026066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15250" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-liquid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-liquid&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="619554140" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.024785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15251" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-liquid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-liquid&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="252489070" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.025319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15252" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;foreign&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1609248008" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.024188" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15253" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;equipped&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="2104592973" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.024260" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15254" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;duplicate-id&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1595648058" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.023910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15255" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;duplicate-part&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;duplicate-part&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1344211870" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.023890" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation (System.String change) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15245" name="DifferentContentsCannotBeMixedOrRelabelled" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.DifferentContentsCannotBeMixedOrRelabelled" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.072535" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15242" name="DifferentContentsCannotBeMixedOrRelabelled(&quot;water&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.DifferentContentsCannotBeMixedOrRelabelled(&quot;water&quot;)" methodname="DifferentContentsCannotBeMixedOrRelabelled" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="788291927" result="Passed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.024885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15243" name="DifferentContentsCannotBeMixedOrRelabelled(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.DifferentContentsCannotBeMixedOrRelabelled(&quot;acid&quot;)" methodname="DifferentContentsCannotBeMixedOrRelabelled" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1840903391" result="Passed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.023426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15244" name="DifferentContentsCannotBeMixedOrRelabelled(&quot;unknown-liquid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.DifferentContentsCannotBeMixedOrRelabelled(&quot;unknown-liquid&quot;)" methodname="DifferentContentsCannotBeMixedOrRelabelled" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1361489082" result="Passed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.023470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="15239" name="EmptySourceRemainsReusableAndOneUnitOptionIsNotDuplicated" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.EmptySourceRemainsReusableAndOneUnitOptionIsNotDuplicated" methodname="EmptySourceRemainsReusableAndOneUnitOptionIsNotDuplicated" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1862593388" result="Failed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:08Z" duration="0.023758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.EmptySourceRemainsReusableAndOneUnitOptionIsNotDuplicated () [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:40
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="15241" name="ExistingWaterTransferAndWaterskinRemainTheOnlyWaterRoute" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ExistingWaterTransferAndWaterskinRemainTheOnlyWaterRoute" methodname="ExistingWaterTransferAndWaterskinRemainTheOnlyWaterRoute" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1099061778" result="Passed" start-time="2026-11-16 02:27:08Z" end-time="2026-11-16 02:27:09Z" duration="0.028700" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="15267" name="LateReceiverCapacityChangeCannotCommitAnOverfilledFlask" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.LateReceiverCapacityChangeCannotCommitAnOverfilledFlask" methodname="LateReceiverCapacityChangeCannotCommitAnOverfilledFlask" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="626218018" result="Failed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.023615" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.LateReceiverCapacityChangeCannotCommitAnOverfilledFlask () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:113
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="15263" name="MalformedVesselsNeverOfferTransfers" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.253115" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15257" name="MalformedVesselsNeverOfferTransfers(&quot;source-negative&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;source-negative&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="49191757" result="Passed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.023382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15258" name="MalformedVesselsNeverOfferTransfers(&quot;source-overfull&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;source-overfull&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1574030417" result="Passed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.023408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15259" name="MalformedVesselsNeverOfferTransfers(&quot;target-overfull&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;target-overfull&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="2096758638" result="Passed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.023130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15260" name="MalformedVesselsNeverOfferTransfers(&quot;empty-labelled&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;empty-labelled&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="2066479519" result="Passed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.025198" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15261" name="MalformedVesselsNeverOfferTransfers(&quot;unknown-source&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;unknown-source&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1295551242" result="Passed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.038494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15262" name="MalformedVesselsNeverOfferTransfers(&quot;zero-capacity&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;zero-capacity&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="217467839" result="Passed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.118433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15266" name="NormalCommandCancellationOrExceptionRollsBackBothVessels" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.NormalCommandCancellationOrExceptionRollsBackBothVessels" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.049243" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="15264" name="NormalCommandCancellationOrExceptionRollsBackBothVessels(&quot;before&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.NormalCommandCancellationOrExceptionRollsBackBothVessels(&quot;before&quot;)" methodname="NormalCommandCancellationOrExceptionRollsBackBothVessels" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="340064355" result="Failed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.024073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.NormalCommandCancellationOrExceptionRollsBackBothVessels (System.String when) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15265" name="NormalCommandCancellationOrExceptionRollsBackBothVessels(&quot;after&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.NormalCommandCancellationOrExceptionRollsBackBothVessels(&quot;after&quot;)" methodname="NormalCommandCancellationOrExceptionRollsBackBothVessels" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="2094804079" result="Failed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.024281" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.NormalCommandCancellationOrExceptionRollsBackBothVessels (System.String when) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="15238" name="OneUnitSplitKeepsAnIndependentEmptyReceiverAndSurvivesGraphReload" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OneUnitSplitKeepsAnIndependentEmptyReceiverAndSurvivesGraphReload" methodname="OneUnitSplitKeepsAnIndependentEmptyReceiverAndSurvivesGraphReload" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1128659177" result="Failed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.024954" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for TransferOneLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.OneUnitSplitKeepsAnIndependentEmptyReceiverAndSurvivesGraphReload () [0x0003d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:28
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="15237" name="OrdinaryMenuConservesLiquidWithoutGroundExposure" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.097337" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="15233" name="OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;brine&quot;)" methodname="OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1083861653" result="Failed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.024394" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure (System.String liquid) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15234" name="OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;oil&quot;)" methodname="OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="781958226" result="Failed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.023924" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure (System.String liquid) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15235" name="OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;acid&quot;)" methodname="OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1181536776" result="Failed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.024008" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure (System.String liquid) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15236" name="OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;bog-mire&quot;)" methodname="OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1760953010" result="Failed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.024194" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for TransferLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure (System.String liquid) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="15240" name="TransferredBrineStillHasItsOrdinaryGroundContactConsequences" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.TransferredBrineStillHasItsOrdinaryGroundContactConsequences" methodname="TransferredBrineStillHasItsOrdinaryGroundContactConsequences" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1637110178" result="Failed" start-time="2026-11-16 02:27:09Z" end-time="2026-11-16 02:27:09Z" duration="0.024032" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for TransferOneLiquid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineLiquidTransferTests.Transfer (CavesOfOoo.Core.Entity from, CavesOfOoo.Core.Entity to, System.Boolean one) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:10
+at CavesOfOoo.Tests.MachineLiquidTransferTests.TransferredBrineStillHasItsOrdinaryGroundContactConsequences () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferTests.cs:46
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

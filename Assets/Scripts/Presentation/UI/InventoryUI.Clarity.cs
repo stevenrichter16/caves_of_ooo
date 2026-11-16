@@ -159,7 +159,13 @@ namespace CavesOfOoo.Rendering
             if (item.HasPart<FoodPart>()) return InventoryDecisionDetails.Food(PlayerEntity, item) + "\n\n" + InventoryDecisionDetails.Handling(PlayerEntity, item);
             if (item.HasPart<EquippablePart>() && EquipmentComparisonService.TryDescribe(PlayerEntity, item, out var comparison, out _))
                 return comparison + "\n\n" + InventoryDecisionDetails.Handling(PlayerEntity, item) + "\n" + InventoryDecisionDetails.Disassembly(PlayerEntity, item);
-            if (MaterialUseDescription.TryDescribe(PlayerEntity, item, EntityFactory, out var material)) return material + "\n\n" + InventoryDecisionDetails.Handling(PlayerEntity, item);
+            if (MaterialUseDescription.TryDescribe(PlayerEntity, item, EntityFactory, out var material))
+            {
+                // F1 must retain live flask contents before the longer field-use guidance.
+                string contents = item.HasPart<LiquidVesselPart>() && ItemExamineService.TryDescribeDetails(item, out var mechanics)
+                    ? mechanics + "\n\n" : "";
+                return contents + material + "\n\n" + InventoryDecisionDetails.Handling(PlayerEntity, item);
+            }
             return InventoryDecisionDetails.Item(PlayerEntity, item);
         }
         private void BeginInventorySearch()

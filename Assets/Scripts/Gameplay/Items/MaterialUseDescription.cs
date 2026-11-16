@@ -25,6 +25,9 @@ namespace CavesOfOoo.Core
                     + " Wetness helps resist heat ignition but strengthens a later electrical charge; it does not make fire attacks harmless."
                     + " Soaking a non-burning outsider provokes it. Fire clay can smother current flames without adding wetness."
                     + " The vessel remains after use; refill it from a suitable clean-water source.";
+                if (vessel != null)
+                    text += "\n\nTransfer non-water liquid directly to an empty flask or one holding the same liquid: one unit or as much as fits."
+                        + " No liquid touches the ground. Source and receiver quantities show before and after; receiver numbers apply only to this transfer menu.";
                 return true;
             }
             if (item.BlueprintName == "FrogOil")

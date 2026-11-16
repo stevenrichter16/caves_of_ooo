@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Failed(Child)" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:45Z" duration="0.6406163">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38477" result="Failed" site="Child" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:45Z" duration="0.640616" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47076" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38477" result="Failed" site="Child" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:45Z" duration="0.613392" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47077" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38477" result="Failed" site="Child" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:45Z" duration="0.606600" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47078" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38477" result="Failed" site="Child" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:45Z" duration="0.601139" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="15232" name="MachineLiquidTransferBoundaryTests" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:45Z" duration="0.591265" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="15254" name="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:44Z" duration="0.168664" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="15252" name="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(False)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(False)" methodname="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="302997454" result="Failed" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:44Z" duration="0.137599" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Safe transfer should be visible immediately after Examine, before ground spills.
+  Expected: 1
+  But was:  19
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit (System.Boolean stale) [0x001bf] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferBoundaryTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15253" name="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(True)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(True)" methodname="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="563132698" result="Failed" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:44Z" duration="0.028145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Safe transfer should be visible immediately after Examine, before ground spills.
+  Expected: 1
+  But was:  19
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit (System.Boolean stale) [0x001bf] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferBoundaryTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15251" name="ForgedCommandsCannotBypassTheMenu" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:45Z" duration="0.207418" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15243" name="ForgedCommandsCannotBypassTheMenu(&quot;self&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;self&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1475076938" result="Passed" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:44Z" duration="0.027399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15244" name="ForgedCommandsCannotBypassTheMenu(&quot;skin&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;skin&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1445938123" result="Passed" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:44Z" duration="0.023034" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15245" name="ForgedCommandsCannotBypassTheMenu(&quot;stack&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;stack&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1554734896" result="Passed" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:44Z" duration="0.023058" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15246" name="ForgedCommandsCannotBypassTheMenu(&quot;dual-part&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;dual-part&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1355520873" result="Passed" start-time="2026-11-16 02:53:44Z" end-time="2026-11-16 02:53:45Z" duration="0.022866" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15247" name="ForgedCommandsCannotBypassTheMenu(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;dead&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1616955472" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.022662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15248" name="ForgedCommandsCannotBypassTheMenu(&quot;stunned&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;stunned&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="214024397" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.035282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15249" name="ForgedCommandsCannotBypassTheMenu(&quot;truncated&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;truncated&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1236839758" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.022746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15250" name="ForgedCommandsCannotBypassTheMenu(&quot;negative&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;negative&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1918255524" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.026287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15241" name="MalformedOptionalStackMetadataCannotTransfer" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.093807" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15237" name="MalformedOptionalStackMetadataCannotTransfer(False,False)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer(False,False)" methodname="MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="21858173" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.023003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15238" name="MalformedOptionalStackMetadataCannotTransfer(False,True)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer(False,True)" methodname="MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="701579806" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.022801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15239" name="MalformedOptionalStackMetadataCannotTransfer(True,False)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer(True,False)" methodname="MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="711592776" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.023469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15240" name="MalformedOptionalStackMetadataCannotTransfer(True,True)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer(True,True)" methodname="MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="437179976" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.023057" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15236" name="RealInventoryDecisionReaderDisclosesCurrentVesselContents" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.083958" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="15233" name="RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;brine&quot;,6)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;brine&quot;,6)" methodname="RealInventoryDecisionReaderDisclosesCurrentVesselContents" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1733459270" result="Failed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.029158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Contents: brine (6/12 volume)"
+  But was:  "liquid flask
+
+Collects and pours one kind of liquid at a time. Water can also supply crops, transfers and douse burning scenery; this flask has no drinking action.
+
+With water inside, spend one unit to drench yourself or an adjacent creature. This puts out current flames and leaves the target wet. Wetness helps resist heat ignition but strengthens a later electrical charge; it does not make fire attacks harmless. Soaking a non-burning outsider provokes it. Fire clay can smother current flames without adding wetness. The vessel remains after use; refill it from a suitable clean-water source.
+
+1 unit. Weight per unit: 1. Total weight: 1.
+Lift Strength: 2; yours: 18.
+You can carry this item.
+Grip: one hand.
+Throw range: 18 cells. Throw Strength: 3.
+Pack weight: 1; with this item: 1. Burden threshold: 270."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents (System.String liquid, System.Int32 units) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferBoundaryTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15234" name="RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;water&quot;,2)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;water&quot;,2)" methodname="RealInventoryDecisionReaderDisclosesCurrentVesselContents" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="676541202" result="Failed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.027337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Contents: water (2/12 volume)"
+  But was:  "liquid flask
+
+Collects and pours one kind of liquid at a time. Water can also supply crops, transfers and douse burning scenery; this flask has no drinking action.
+
+With water inside, spend one unit to drench yourself or an adjacent creature. This puts out current flames and leaves the target wet. Wetness helps resist heat ignition but strengthens a later electrical charge; it does not make fire attacks harmless. Soaking a non-burning outsider provokes it. Fire clay can smother current flames without adding wetness. The vessel remains after use; refill it from a suitable clean-water source.
+
+1 unit. Weight per unit: 1. Total weight: 1.
+Lift Strength: 2; yours: 18.
+You can carry this item.
+Grip: one hand.
+Throw range: 18 cells. Throw Strength: 3.
+Pack weight: 1; with this item: 1. Burden threshold: 270."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents (System.String liquid, System.Int32 units) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferBoundaryTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="15235" name="RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;&quot;,0)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;&quot;,0)" methodname="RealInventoryDecisionReaderDisclosesCurrentVesselContents" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="778294880" result="Failed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.026706" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Contents: empty (0/12 volume)"
+  But was:  "liquid flask
+
+Collects and pours one kind of liquid at a time. Water can also supply crops, transfers and douse burning scenery; this flask has no drinking action.
+
+With water inside, spend one unit to drench yourself or an adjacent creature. This puts out current flames and leaves the target wet. Wetness helps resist heat ignition but strengthens a later electrical charge; it does not make fire attacks harmless. Soaking a non-burning outsider provokes it. Fire clay can smother current flames without adding wetness. The vessel remains after use; refill it from a suitable clean-water source.
+
+1 unit. Weight per unit: 1. Total weight: 1.
+Lift Strength: 2; yours: 18.
+You can carry this item.
+Grip: one hand.
+Throw range: 18 cells. Throw Strength: 3.
+Pack weight: 1; with this item: 1. Burden threshold: 270."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents (System.String liquid, System.Int32 units) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/MachineLiquidTransferBoundaryTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="15242" name="ValidSingleStackMetadataStillAllowsTransfer" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ValidSingleStackMetadataStillAllowsTransfer" methodname="ValidSingleStackMetadataStillAllowsTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="118753477" result="Passed" start-time="2026-11-16 02:53:45Z" end-time="2026-11-16 02:53:45Z" duration="0.024474" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

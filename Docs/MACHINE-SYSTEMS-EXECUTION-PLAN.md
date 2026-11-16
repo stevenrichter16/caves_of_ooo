@@ -8,18 +8,22 @@ Read [the design and twelve-machine dependency matrix](MACHINE-SYSTEMS-DESIGN.md
 
 Initial independent source and lore audits are complete and incorporated into the design. Corrections include the alternate lore corpus, single-liquid vessels rather than mixtures, contact counters rather than drams, material categories rather than salvage quantities, hazard charge rather than batteries, existing concentration/detoxification recipes, existing hauling despite stale design prose, and existing saved kitchen batches. The supporting systems are partial; none of the proposed machines is accepted by this audit.
 
-**Next runnable action:** verify one canonical salt/working-water site and the exact APIs/content for a repairable finite brine condenser. Write its player-facing loop and accounting contract before production edits: feed identity and units, available sources, yield/residue, work source/cost, receiving/waste capacity, failure/interruption/ownership, ordinary output use, game-time policy and old-save behavior. Confirm the selected site has a real optional problem and an alternative. Obtain a bounded design/source critique, then begin native RED for the smallest complete ordinary-game action. Do not spend another run merely rewriting the general brainstorm.
+**Current slice:** M1a safe direct non-water flask transfer is accepted. Native final258/258 plus final51/51 compact-label follow-up (261 distinct checks across receipts) and ordinary acquisition, finite collection, split/consolidate, cancellation, incompatible receiver, ground/contact consequence, movement, travel and fresh Continue are verified; independent source/gameplay review found0 remainingP1/P2. See [MACHINE-LIQUID-HANDLING.md](MACHINE-LIQUID-HANDLING.md). No complete machine is accepted.
 
-The first increment is not a generic machine engine or an economy overhaul. Reuse exact repair, vessel, hauling and transaction contracts. Known-feed processing can remain opt-in. A failed premise should narrow or change the first process, with the correction recorded, rather than be hidden by broader infrastructure.
+**Next runnable action after this publication:** design one bounded optional finite sump or wet-store recovery objective. Peat Works17.7 MirePool34,8 has60 units but already has dry salvage access; natural pool depletion retains its coating source. Do not claim pumping it opens a route. Specify one real optional reward or access change, manual12-unit-flask alternative, finite valid destination, ownership and reversible outlet choice before native RED. If the loop adds only fewer bailing clicks, choose a recovered-component/repair choice instead. This is new content design; no broad source re-audit or full machine framework.
 
-Independent source and lore/design review: no actionable P1/P2 in this plan. Resolve the feed-composition/provenance transfer policy, useful conversion compared with existing alternatives, and custody of every partial product on interruption before production. These are concrete design decisions, not reasons to restart the general inventory.
+**Do not repeat:** Wellmeet/BrineLens water-scarcity qualification failed because wells/cistern already exist. The original condenser remains withheld. Ordinary wells, travel, recovery and crafting are unchanged. M1a is supervised handling with no elapsed work or new save schema; time/work policy remains required for the first processing machine.
+
+**Actual state:** earned isolated seed64; source acquired via Sill purchase22 and Wellmeet barter24→23, finite brine collected90→78 at5.16. AfterCheckpoint is11.10turn2110HP9 with water3/brine11 and poured brine1. AfterTravelCheckpoint is10.10turn2160HP9, same carried contents, F12off. These are QA saves, not normal player saves. The character survived final movement/travel after stepping off a loose waterskin; avoid repeating hazardous travel merely for evidence.
+
+**Recorded obstacles, not new-machine failures:** first sky-sari ambush killed the character after an ordinary transfer action. Later Shift+Comma first picks up a loose underfoot item (InputHandler.cs992), spending a turn before ascent; sari attacks killed that attempt. Reloaded the already saved state and stepped to an empty tile before normal ascent, which succeeded. Preserve that pre-existing keyboard issue as a separate follow-up; do not call either death a successful final run. Earlier malformed isolated-marker load attempts and one zero-test compile-overlap attempt are excluded from acceptance.
 
 ## Delivery stages
 
 | Stage | Deliverable | Exit gate | Status |
 | --- | --- | --- | --- |
-| M0 | Source/lore inventory, twelve-machine dependencies, first loop contract | Canon conflicts resolved; real APIs and a useful optional process selected | Initial audits/design complete; exact condenser contract next |
-| M1 | One repairable, finite processing installation and usable outputs | RED/GREEN/countercases; actual repair, load, process, output use, interruption, travel/reload; source and gameplay review | Planned |
+| M0 | Source/lore inventory, twelve-machine dependencies, first loop contract | Canon conflicts resolved; real APIs and a useful optional process selected | Initial audits complete; condenser withheld after actual site qualification; M1a handling implemented |
+| M1 | Safe handling prerequisite, then one justified finite processing installation and usable outputs | RED/GREEN/countercases; actual repair, load, process, output use, interruption, travel/reload; source and gameplay review | M1a handling accepted; processing open |
 | M2 | Finite liquid relocation and environmental consequence | One pump changes a real access/resource situation with a valid destination; no quantity/reset exploit | Planned |
 | M3 | Recoverable components, restoration and heavy relocation | A finite find yields a meaningful repair/salvage choice; capstan and existing cargo rules agree | Planned |
 | M4 | Work, heat and bounded stored power | One exchanger plus a portable consumer interact with ordinary environment rules and finite sources | Planned |
@@ -50,3 +54,9 @@ Cinderhold's unfinished forge presentation was stopped before actual after-play.
 Independent review found one still-open P2: the draft reader needs `zone.IsFootprintCurrent(owner)` for an optional footprint, plus a stale-index countercase. No actual after comparison, final review acceptance, publication or build includes this draft. Do not restore it incidentally while implementing machine mechanics.
 
 At handoff Unity was stopped, save-root override null, SampleScene clean and console free of errors after restoring source. The 83 foreign tracked dirty files plus one prior neutral importer change remain preserved. New design/verification records are separately owned by this task.
+
+## Delivery boundary
+
+Existing843fb514f Mac/Linux packages remain preserved and predate this program. M1a source publication does not qualify those packages. Batch a current Mac package at the first coherent machine-processing milestone, with actual launch/actions/travel/save/reload. Steam Deck remains deferred. The hourly machine task remains ACTIVE; graphics remains cancelled.
+
+Last actual itemized progress report: **2026-11-16 03:12 UTC** (minute precision). Completed handling/readers/conservation/ground effects/travel/fresh reload; publication in progress; condenser/pump purpose open; existing packages preserved and exclude M1a. This is not program completion.

@@ -5,7 +5,7 @@ namespace CavesOfOoo.Core
     /// <summary>Pure ownership and command predicates for nearby resource work.</summary>
     public static class WorldResourceActions
     {
-        public static bool IsCommand(string command) => command == "ClearCrop" || command == "GatherCrop"
+        public static bool IsCommand(string command) => LiquidTransferActions.IsCommand(command) || command == "ClearCrop" || command == "GatherCrop"
             || command == "FeedCookingFire" || command == "RelightCookingFire" || command == "PrepareFieldBed"
             || command != null && (command.StartsWith("PlantSeedAt|", StringComparison.Ordinal)
                 || command.StartsWith("TransferWater|", StringComparison.Ordinal) || command.StartsWith("PourOneLiquidVessel|", StringComparison.Ordinal)

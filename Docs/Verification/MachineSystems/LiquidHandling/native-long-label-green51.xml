@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="51" result="Passed" total="51" passed="51" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:35Z" duration="1.6932799">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38480" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:35Z" duration="1.693280" total="51" passed="51" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="47080" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38480" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:35Z" duration="1.663075" total="51" passed="51" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="47081" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38480" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:35Z" duration="1.656380" total="51" passed="51" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="47082" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38480" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:35Z" duration="1.649642" total="51" passed="51" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="15232" name="MachineLiquidTransferBoundaryTests" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.663788" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="15254" name="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.214221" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15252" name="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(False)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(False)" methodname="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="302515026" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.179515" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15253" name="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(True)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit(True)" methodname="ActualKeyboardInventoryTransferCostsOneTurnOnlyOnCommit" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1102855204" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.032004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[TransferLiquid|2|3|brine|6|12||0|12|fifty-world-tests] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'TransferLiquid|2|3|brine|6|12||0|12|fifty-world-tests' failed.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15251" name="ForgedCommandsCannotBypassTheMenu" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.206679" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15243" name="ForgedCommandsCannotBypassTheMenu(&quot;self&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;self&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="692489475" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.024031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15244" name="ForgedCommandsCannotBypassTheMenu(&quot;skin&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;skin&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="872098561" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.024132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15245" name="ForgedCommandsCannotBypassTheMenu(&quot;stack&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;stack&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1014098022" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.023456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15246" name="ForgedCommandsCannotBypassTheMenu(&quot;dual-part&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;dual-part&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1082941734" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.023694" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15247" name="ForgedCommandsCannotBypassTheMenu(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;dead&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1981056104" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.023516" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15248" name="ForgedCommandsCannotBypassTheMenu(&quot;stunned&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;stunned&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1500890854" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.036819" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15249" name="ForgedCommandsCannotBypassTheMenu(&quot;truncated&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;truncated&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="2063819331" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.023554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15250" name="ForgedCommandsCannotBypassTheMenu(&quot;negative&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ForgedCommandsCannotBypassTheMenu(&quot;negative&quot;)" methodname="ForgedCommandsCannotBypassTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1785703031" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.023141" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15241" name="MalformedOptionalStackMetadataCannotTransfer" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.093670" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15237" name="MalformedOptionalStackMetadataCannotTransfer(False,False)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer(False,False)" methodname="MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1330064586" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.023033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15238" name="MalformedOptionalStackMetadataCannotTransfer(False,True)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer(False,True)" methodname="MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="508374542" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.022899" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15239" name="MalformedOptionalStackMetadataCannotTransfer(True,False)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer(True,False)" methodname="MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1593025134" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.023236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15240" name="MalformedOptionalStackMetadataCannotTransfer(True,True)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.MalformedOptionalStackMetadataCannotTransfer(True,True)" methodname="MalformedOptionalStackMetadataCannotTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="43679346" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.022989" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15236" name="RealInventoryDecisionReaderDisclosesCurrentVesselContents" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.094861" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15233" name="RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;brine&quot;,6)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;brine&quot;,6)" methodname="RealInventoryDecisionReaderDisclosesCurrentVesselContents" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1413423986" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.033909" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15234" name="RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;water&quot;,2)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;water&quot;,2)" methodname="RealInventoryDecisionReaderDisclosesCurrentVesselContents" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1303689921" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.028781" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15235" name="RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;&quot;,0)" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.RealInventoryDecisionReaderDisclosesCurrentVesselContents(&quot;&quot;,0)" methodname="RealInventoryDecisionReaderDisclosesCurrentVesselContents" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="516825450" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.031443" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="15242" name="ValidSingleStackMetadataStillAllowsTransfer" fullname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests.ValidSingleStackMetadataStillAllowsTransfer" methodname="ValidSingleStackMetadataStillAllowsTransfer" classname="CavesOfOoo.Tests.MachineLiquidTransferBoundaryTests" runstate="Runnable" seed="1773251560" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:34Z" duration="0.040123" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="15255" name="MachineLiquidTransferTests" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:35Z" duration="0.970127" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="15283" name="ChangedPreviewRefusesWithoutAnyFurtherMutation" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:35Z" duration="0.315412" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15273" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-volume&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-volume&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="135202566" result="Passed" start-time="2026-11-16 03:09:34Z" end-time="2026-11-16 03:09:35Z" duration="0.099063" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15274" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-volume&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-volume&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1401753226" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15275" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-capacity&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-capacity&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="413286794" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.024175" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15276" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-capacity&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-capacity&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="973565792" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.024390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15277" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-liquid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;source-liquid&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="832451473" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.024115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15278" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-liquid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;target-liquid&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="518596420" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023776" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15279" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;foreign&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="156640171" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023569" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15280" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;equipped&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="2122897686" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023778" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15281" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;duplicate-id&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="949024319" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15282" name="ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;duplicate-part&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ChangedPreviewRefusesWithoutAnyFurtherMutation(&quot;duplicate-part&quot;)" methodname="ChangedPreviewRefusesWithoutAnyFurtherMutation" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1228668096" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15272" name="DifferentContentsCannotBeMixedOrRelabelled" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.DifferentContentsCannotBeMixedOrRelabelled" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.070458" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15269" name="DifferentContentsCannotBeMixedOrRelabelled(&quot;water&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.DifferentContentsCannotBeMixedOrRelabelled(&quot;water&quot;)" methodname="DifferentContentsCannotBeMixedOrRelabelled" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="460001890" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15270" name="DifferentContentsCannotBeMixedOrRelabelled(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.DifferentContentsCannotBeMixedOrRelabelled(&quot;acid&quot;)" methodname="DifferentContentsCannotBeMixedOrRelabelled" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="107780390" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.022988" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15271" name="DifferentContentsCannotBeMixedOrRelabelled(&quot;unknown-liquid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.DifferentContentsCannotBeMixedOrRelabelled(&quot;unknown-liquid&quot;)" methodname="DifferentContentsCannotBeMixedOrRelabelled" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="349085578" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023101" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="15266" name="EmptySourceRemainsReusableAndOneUnitOptionIsNotDuplicated" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.EmptySourceRemainsReusableAndOneUnitOptionIsNotDuplicated" methodname="EmptySourceRemainsReusableAndOneUnitOptionIsNotDuplicated" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="529287748" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023711" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="15268" name="ExistingWaterTransferAndWaterskinRemainTheOnlyWaterRoute" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.ExistingWaterTransferAndWaterskinRemainTheOnlyWaterRoute" methodname="ExistingWaterTransferAndWaterskinRemainTheOnlyWaterRoute" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1218512586" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023418" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="15294" name="LateReceiverCapacityChangeCannotCommitAnOverfilledFlask" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.LateReceiverCapacityChangeCannotCommitAnOverfilledFlask" methodname="LateReceiverCapacityChangeCannotCommitAnOverfilledFlask" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="660072424" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023501" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="15290" name="MalformedVesselsNeverOfferTransfers" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.138876" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15284" name="MalformedVesselsNeverOfferTransfers(&quot;source-negative&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;source-negative&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="860979121" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.022904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15285" name="MalformedVesselsNeverOfferTransfers(&quot;source-overfull&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;source-overfull&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="335059371" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023021" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15286" name="MalformedVesselsNeverOfferTransfers(&quot;target-overfull&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;target-overfull&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1935260277" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15287" name="MalformedVesselsNeverOfferTransfers(&quot;empty-labelled&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;empty-labelled&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1850377962" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15288" name="MalformedVesselsNeverOfferTransfers(&quot;unknown-source&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;unknown-source&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="2089049241" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.022786" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15289" name="MalformedVesselsNeverOfferTransfers(&quot;zero-capacity&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.MalformedVesselsNeverOfferTransfers(&quot;zero-capacity&quot;)" methodname="MalformedVesselsNeverOfferTransfers" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="2138240361" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15293" name="NormalCommandCancellationOrExceptionRollsBackBothVessels" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.NormalCommandCancellationOrExceptionRollsBackBothVessels" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.047138" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15291" name="NormalCommandCancellationOrExceptionRollsBackBothVessels(&quot;before&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.NormalCommandCancellationOrExceptionRollsBackBothVessels(&quot;before&quot;)" methodname="NormalCommandCancellationOrExceptionRollsBackBothVessels" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="863880255" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15292" name="NormalCommandCancellationOrExceptionRollsBackBothVessels(&quot;after&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.NormalCommandCancellationOrExceptionRollsBackBothVessels(&quot;after&quot;)" methodname="NormalCommandCancellationOrExceptionRollsBackBothVessels" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="442190984" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="15265" name="OneUnitSplitKeepsAnIndependentEmptyReceiverAndSurvivesGraphReload" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OneUnitSplitKeepsAnIndependentEmptyReceiverAndSurvivesGraphReload" methodname="OneUnitSplitKeepsAnIndependentEmptyReceiverAndSurvivesGraphReload" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="401707059" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.031396" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="15264" name="OrdinaryMenuConservesLiquidWithoutGroundExposure" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.188032" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15260" name="OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;brine&quot;)" methodname="OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1857058976" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.026114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15261" name="OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;oil&quot;)" methodname="OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1916155673" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.041565" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15262" name="OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;acid&quot;)" methodname="OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1683292253" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.095483" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15263" name="OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.OrdinaryMenuConservesLiquidWithoutGroundExposure(&quot;bog-mire&quot;)" methodname="OrdinaryMenuConservesLiquidWithoutGroundExposure" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="2031497247" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023835" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15259" name="RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.073041" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15256" name="RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu(&quot;veined-pulse-mycelium&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu(&quot;veined-pulse-mycelium&quot;)" methodname="RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="223580065" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.024335" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15257" name="RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu(&quot;felling-counter-resin&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu(&quot;felling-counter-resin&quot;)" methodname="RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1911329917" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.024154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="15258" name="RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu(&quot;choir-mirror-mucilage&quot;)" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu(&quot;choir-mirror-mucilage&quot;)" methodname="RegisteredLongLiquidPreviewsKeepAllQuantitiesWithinTheMenu" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1029722994" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.023845" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="15267" name="TransferredBrineStillHasItsOrdinaryGroundContactConsequences" fullname="CavesOfOoo.Tests.MachineLiquidTransferTests.TransferredBrineStillHasItsOrdinaryGroundContactConsequences" methodname="TransferredBrineStillHasItsOrdinaryGroundContactConsequences" classname="CavesOfOoo.Tests.MachineLiquidTransferTests" runstate="Runnable" seed="1661005422" result="Passed" start-time="2026-11-16 03:09:35Z" end-time="2026-11-16 03:09:35Z" duration="0.029103" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

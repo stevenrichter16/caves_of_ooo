@@ -16,6 +16,7 @@ namespace CavesOfOoo.Core
             {
                 var actor = e.GetParameter<Entity>("Actor");
                 WaterTransferActions.AddActions(actor, ParentEntity, actor?.SpatialZone, e.GetParameter<InventoryActionList>("Actions"));
+                LiquidTransferActions.AddActions(actor, ParentEntity, actor?.SpatialZone, e.GetParameter<InventoryActionList>("Actions"));
                 DouseWorldActions.AddActions(actor, ParentEntity, actor?.SpatialZone, e.GetParameter<InventoryActionList>("Actions"));
                 LiquidVesselService.AddActions(actor, ParentEntity, actor?.SpatialZone,
                     e.GetParameter<InventoryActionList>("Actions"));
@@ -23,6 +24,12 @@ namespace CavesOfOoo.Core
             }
             if (e.ID != "InventoryAction") return true;
             string command = e.GetStringParameter("Command");
+            if (LiquidTransferActions.IsCommand(command))
+            {
+                if (!LiquidTransferActions.TryAct(e.GetParameter<Entity>("Actor"), ParentEntity, e.GetParameter<Zone>("Zone"),
+                    command, e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction"))) return true;
+                e.Handled = true; return false;
+            }
             if (WaterTransferActions.IsCommand(command) || DouseWorldActions.IsCommand(command))
             {
                 var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone"); var tx = e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction");
