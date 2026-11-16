@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="54" result="Failed(Child)" total="54" passed="2" failed="52" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:09Z" duration="3.418109">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38483" result="Failed" site="Child" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:09Z" duration="3.418109" total="54" passed="2" failed="52" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47078" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38483" result="Failed" site="Child" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:09Z" duration="3.398300" total="54" passed="2" failed="52" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47079" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38483" result="Failed" site="Child" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:09Z" duration="3.394668" total="54" passed="2" failed="52" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47080" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38483" result="Failed" site="Child" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:09Z" duration="3.392403" total="54" passed="2" failed="52" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1370" name="FlatPixelCinderholdForgeTests" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" testcasecount="54" result="Failed" site="Child" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:09Z" duration="3.382113" total="54" passed="2" failed="52" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1427" name="BorrowedInjectionIsCachedDisposedAndNeverModifiesTexture" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.BorrowedInjectionIsCachedDisposedAndNeverModifiesTexture" methodname="BorrowedInjectionIsCachedDisposedAndNeverModifiesTexture" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1394411519" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.128052" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.BorrowedInjectionIsCachedDisposedAndNeverModifiesTexture () [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:172
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1399" name="ChangedMeaningKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:07Z" duration="1.366821" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1373" name="ChangedMeaningKeepsFallback(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;glyph&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1233579770" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.060671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1374" name="ChangedMeaningKeepsFallback(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;color&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="804756656" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.043295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1375" name="ChangedMeaningKeepsFallback(&quot;background&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;background&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1020295336" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.062562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1376" name="ChangedMeaningKeepsFallback(&quot;detail&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;detail&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1235392049" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.133250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1377" name="ChangedMeaningKeepsFallback(&quot;tilecolor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;tilecolor&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="53893819" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.046607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1378" name="ChangedMeaningKeepsFallback(&quot;tile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;tile&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1185389783" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.043451" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1379" name="ChangedMeaningKeepsFallback(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;visual&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1375805442" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.043665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1380" name="ChangedMeaningKeepsFallback(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;variant&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1647528440" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.043085" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1381" name="ChangedMeaningKeepsFallback(&quot;glyphVariants&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;glyphVariants&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1987811989" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.042290" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1382" name="ChangedMeaningKeepsFallback(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;layer&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1923223985" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.043599" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1383" name="ChangedMeaningKeepsFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;hidden&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1626257683" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.043458" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1384" name="ChangedMeaningKeepsFallback(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;solid&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1216859870" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.042802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1385" name="ChangedMeaningKeepsFallback(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;takeable&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="347023091" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.042932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1386" name="ChangedMeaningKeepsFallback(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;inventory&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1303475160" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.042723" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1387" name="ChangedMeaningKeepsFallback(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;equipped&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1959913892" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:06Z" duration="0.043087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1388" name="ChangedMeaningKeepsFallback(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;name&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="48473748" result="Failed" start-time="2026-11-16 01:06:06Z" end-time="2026-11-16 01:06:07Z" duration="0.043085" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1389" name="ChangedMeaningKeepsFallback(&quot;tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;tag&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="493522119" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.042996" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1390" name="ChangedMeaningKeepsFallback(&quot;extraTag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;extraTag&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="960805570" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.043056" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1391" name="ChangedMeaningKeepsFallback(&quot;nullTags&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;nullTags&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1315665992" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.042835" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1392" name="ChangedMeaningKeepsFallback(&quot;thermal&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;thermal&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1742578641" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.042827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1393" name="ChangedMeaningKeepsFallback(&quot;light&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;light&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1042753887" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.092940" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1394" name="ChangedMeaningKeepsFallback(&quot;repair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;repair&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="923317834" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.100624" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1395" name="ChangedMeaningKeepsFallback(&quot;destructible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;destructible&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="732230741" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.045973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1396" name="ChangedMeaningKeepsFallback(&quot;service&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;service&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1185479363" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.042745" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1397" name="ChangedMeaningKeepsFallback(&quot;zeroStack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;zeroStack&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="627559260" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.043612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1398" name="ChangedMeaningKeepsFallback(&quot;multiCell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback(&quot;multiCell&quot;)" methodname="ChangedMeaningKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="677900235" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.042562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ChangedMeaningKeepsFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1423" name="CoverAndCurrentReaderAgreeWithoutShowingHiddenOrMovedOwner" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.CoverAndCurrentReaderAgreeWithoutShowingHiddenOrMovedOwner" methodname="CoverAndCurrentReaderAgreeWithoutShowingHiddenOrMovedOwner" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="2138748900" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.043649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.CoverAndCurrentReaderAgreeWithoutShowingHiddenOrMovedOwner () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:137
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1426" name="ExplicitMissingAtlasDoesNotReloadResources" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ExplicitMissingAtlasDoesNotReloadResources" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.089357" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1424" name="ExplicitMissingAtlasDoesNotReloadResources(False)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ExplicitMissingAtlasDoesNotReloadResources(False)" methodname="ExplicitMissingAtlasDoesNotReloadResources" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1414923627" result="Passed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.043505" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1425" name="ExplicitMissingAtlasDoesNotReloadResources(True)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.ExplicitMissingAtlasDoesNotReloadResources(True)" methodname="ExplicitMissingAtlasDoesNotReloadResources" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1869857482" result="Passed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:07Z" duration="0.040767" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1372" name="GeneratedRealWorkshopForgeUsesApprovedBody" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.GeneratedRealWorkshopForgeUsesApprovedBody" methodname="GeneratedRealWorkshopForgeUsesApprovedBody" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1270334505" result="Failed" start-time="2026-11-16 01:06:07Z" end-time="2026-11-16 01:06:08Z" duration="0.493448" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.GeneratedRealWorkshopForgeUsesApprovedBody () [0x00129] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:70
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1408" name="OptionalPartsMustBeUniqueAndOwned" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.OptionalPartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.255709" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1405" name="OptionalPartsMustBeUniqueAndOwned(&quot;Stacker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.OptionalPartsMustBeUniqueAndOwned(&quot;Stacker&quot;)" methodname="OptionalPartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="91623751" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.049684" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.OptionalPartsMustBeUniqueAndOwned (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:110
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1406" name="OptionalPartsMustBeUniqueAndOwned(&quot;SpatialFootprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.OptionalPartsMustBeUniqueAndOwned(&quot;SpatialFootprint&quot;)" methodname="OptionalPartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="476042148" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.069631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.OptionalPartsMustBeUniqueAndOwned (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:110
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1407" name="OptionalPartsMustBeUniqueAndOwned(&quot;StatusEffects&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.OptionalPartsMustBeUniqueAndOwned(&quot;StatusEffects&quot;)" methodname="OptionalPartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1870590821" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.133419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.OptionalPartsMustBeUniqueAndOwned (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:110
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1371" name="PublicWorldAndReaderUseCachedUnlitBodyWithoutChangingServiceOrGround" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.PublicWorldAndReaderUseCachedUnlitBodyWithoutChangingServiceOrGround" methodname="PublicWorldAndReaderUseCachedUnlitBodyWithoutChangingServiceOrGround" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1119334466" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.048984" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.PublicWorldAndReaderUseCachedUnlitBodyWithoutChangingServiceOrGround () [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:59
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1404" name="RequiredPartsMustBeUniqueAndOwned" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.RequiredPartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.175116" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1400" name="RequiredPartsMustBeUniqueAndOwned(&quot;Render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.RequiredPartsMustBeUniqueAndOwned(&quot;Render&quot;)" methodname="RequiredPartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1672586251" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.044351" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.RequiredPartsMustBeUniqueAndOwned (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1401" name="RequiredPartsMustBeUniqueAndOwned(&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.RequiredPartsMustBeUniqueAndOwned(&quot;Physics&quot;)" methodname="RequiredPartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1419373245" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.042842" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.RequiredPartsMustBeUniqueAndOwned (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1402" name="RequiredPartsMustBeUniqueAndOwned(&quot;Forge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.RequiredPartsMustBeUniqueAndOwned(&quot;Forge&quot;)" methodname="RequiredPartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="501788776" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.042615" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.RequiredPartsMustBeUniqueAndOwned (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1403" name="RequiredPartsMustBeUniqueAndOwned(&quot;Examinable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.RequiredPartsMustBeUniqueAndOwned(&quot;Examinable&quot;)" methodname="RequiredPartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="947125050" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.042398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.RequiredPartsMustBeUniqueAndOwned (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1422" name="WarmAuthorityChangesWithdrawForgeArt" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:09Z" duration="0.676589" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1409" name="WarmAuthorityChangesWithdrawForgeArt(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;name&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="92097421" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.043433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1410" name="WarmAuthorityChangesWithdrawForgeArt(&quot;type&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;type&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="2080715564" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.043171" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1411" name="WarmAuthorityChangesWithdrawForgeArt(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;profile&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1981490392" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.043000" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1412" name="WarmAuthorityChangesWithdrawForgeArt(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;biome&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1098100408" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.042957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1413" name="WarmAuthorityChangesWithdrawForgeArt(&quot;cache&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;cache&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="449512930" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.044367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1414" name="WarmAuthorityChangesWithdrawForgeArt(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;map&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1434543738" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.043040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1415" name="WarmAuthorityChangesWithdrawForgeArt(&quot;shortMap&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;shortMap&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1518079351" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:08Z" duration="0.042859" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1416" name="WarmAuthorityChangesWithdrawForgeArt(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;tiles&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1203270680" result="Failed" start-time="2026-11-16 01:06:08Z" end-time="2026-11-16 01:06:09Z" duration="0.042409" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1417" name="WarmAuthorityChangesWithdrawForgeArt(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;poi&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1094779715" result="Failed" start-time="2026-11-16 01:06:09Z" end-time="2026-11-16 01:06:09Z" duration="0.043424" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1418" name="WarmAuthorityChangesWithdrawForgeArt(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;alias&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="679362450" result="Failed" start-time="2026-11-16 01:06:09Z" end-time="2026-11-16 01:06:09Z" duration="0.042799" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1419" name="WarmAuthorityChangesWithdrawForgeArt(&quot;depth&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;depth&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="2043144897" result="Failed" start-time="2026-11-16 01:06:09Z" end-time="2026-11-16 01:06:09Z" duration="0.042900" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1420" name="WarmAuthorityChangesWithdrawForgeArt(&quot;lair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;lair&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1375454852" result="Failed" start-time="2026-11-16 01:06:09Z" end-time="2026-11-16 01:06:09Z" duration="0.068796" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1421" name="WarmAuthorityChangesWithdrawForgeArt(&quot;world&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt(&quot;world&quot;)" methodname="WarmAuthorityChangesWithdrawForgeArt" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1851234881" result="Failed" start-time="2026-11-16 01:06:09Z" end-time="2026-11-16 01:06:09Z" duration="0.129156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmAuthorityChangesWithdrawForgeArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1430" name="WarmTravelPreservesEastForgeAndExistingMemory" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmTravelPreservesEastForgeAndExistingMemory" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-16 01:06:09Z" end-time="2026-11-16 01:06:09Z" duration="0.091560" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1428" name="WarmTravelPreservesEastForgeAndExistingMemory(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmTravelPreservesEastForgeAndExistingMemory(&quot;Overworld.12.10.0&quot;)" methodname="WarmTravelPreservesEastForgeAndExistingMemory" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1262814737" result="Failed" start-time="2026-11-16 01:06:09Z" end-time="2026-11-16 01:06:09Z" duration="0.043955" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmTravelPreservesEastForgeAndExistingMemory (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:182
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1429" name="WarmTravelPreservesEastForgeAndExistingMemory(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmTravelPreservesEastForgeAndExistingMemory(&quot;Overworld.12.11.0&quot;)" methodname="WarmTravelPreservesEastForgeAndExistingMemory" classname="CavesOfOoo.Tests.FlatPixelCinderholdForgeTests" runstate="Runnable" seed="1787750741" result="Failed" start-time="2026-11-16 01:06:09Z" end-time="2026-11-16 01:06:09Z" duration="0.043710" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cinderhold forge body is still a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.Native () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:41
+at CavesOfOoo.Tests.FlatPixelCinderholdForgeTests.WarmTravelPreservesEastForgeAndExistingMemory (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelCinderholdForgeTests.cs:182
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

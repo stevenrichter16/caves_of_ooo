@@ -1,3 +1,5 @@
+**Parked by user priority change — 2026-11-16T01:18:26.772989+00:00:** Graphics automation cancelled; machine-support systems now active. Exact unaccepted implementation and test draft retained in `Docs/Verification/GraphicsExecution/CinderholdWorkshop/ParkedDraft`; production restored. Native54/54 plus275adjacent retained; stale-footprint reader P2 and actual after-play still open. See `Docs/MACHINE-SYSTEMS-EXECUTION-PLAN.md`.
+
 # Cinderhold forge presentation
 
 Status: actual baseline captured; RED pending. Original CoO presentation, no Qud parity.
