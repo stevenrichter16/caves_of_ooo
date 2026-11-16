@@ -142,27 +142,34 @@ namespace CavesOfOoo.Tests
             z.RemoveEntity(water);Assert.IsTrue(cave.PlacementFilter(z,c));
         }
         [TestCase(false)] [TestCase(true)]
-        public void RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked(bool blocked)
+        public void RealAuthoredCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked(bool blocked)
         {
             var previous=TurnManager.Active;var tm=new TurnManager();FactionManager.Initialize();
             try
             {
                 var f=GrovelandsCompositionTests.Factory();var z=new OverworldZoneManager(f,64).GetZone(LastCounterCompositionTests.Id);
-                var fire=z.GetCell(17,24).Objects.Single(e=>e.BlueprintName=="Campfire");
+                var planned=LastCounterCompositionPlan.Create(LastCounterCompositionTests.Id,64).Profile.Single(p=>p.Blueprint=="Campfire");
+                var fire=z.GetCell(planned.X,planned.Y).Objects.Single(e=>e.BlueprintName=="Campfire");
+                var atFire=z.GetEntityPosition(fire);
+                Assert.AreEqual((planned.X,planned.Y),atFire);
                 foreach(var e in z.GetAllEntities().Where(e=>e.HasPart<BrainPart>()||e.HasTag("Creature")).ToArray())z.RemoveEntity(e);
-                Assert.IsTrue(z.GetCell(17,23).BlocksMovement());
-                if(blocked){z.AddEntity(f.CreateEntity("SandstoneWall"),16,24);z.AddEntity(f.CreateEntity("SandstoneWall"),18,24);}
+                var standing=new System.Collections.Generic.List<(int x,int y)>();
+                for(int dx=-1;dx<=1;dx++)for(int dy=-1;dy<=1;dy++)
+                    if((dx!=0||dy!=0)&&z.InBounds(atFire.x+dx,atFire.y+dy)&&!z.GetCell(atFire.x+dx,atFire.y+dy).BlocksMovement())standing.Add((atFire.x+dx,atFire.y+dy));
+                var initial=LastCounterCompositionTests.FloodAllCells(z);Assert.IsTrue(standing.Any(n=>initial[n.x,n.y]),"actual fire must have a reachable standing cell");
+                var approach=standing.First(n=>initial[n.x,n.y]);
+                if(blocked)foreach(var n in standing)Assert.IsTrue(z.AddEntity(f.CreateEntity("SandstoneWall"),n.x,n.y));
                 var seen=LastCounterCompositionTests.FloodAllCells(z);
-                Assert.AreEqual(!blocked,CinderholdCompositionTests.Neighbors(17,24).Any(n=>z.InBounds(n.x,n.y)&&seen[n.x,n.y]));
+                Assert.AreEqual(!blocked,standing.Any(n=>seen[n.x,n.y]));
                 var player=CinderholdCompositionTests.Player();player.AddPart(new PhysicsPart{Solid=false});player.GetStat("Hitpoints").BaseValue=10;Assert.IsTrue(z.AddEntity(player,0,12));
                 var q=new System.Collections.Generic.Queue<(int x,int y)>();var previousCell=new System.Collections.Generic.Dictionary<(int,int),(int,int)>();q.Enqueue((0,12));previousCell[(0,12)]=(0,12);
-                while(q.Count>0&&!previousCell.ContainsKey((16,24)))
+                while(q.Count>0&&!previousCell.ContainsKey(approach))
                 {var c=q.Dequeue();foreach(var n in CinderholdCompositionTests.Neighbors(c.x,c.y))if(z.InBounds(n.x,n.y)&&!previousCell.ContainsKey(n)&&!z.GetCell(n.x,n.y).BlocksMovement()){previousCell[n]=c;q.Enqueue(n);}}
-                Assert.AreEqual(!blocked,previousCell.ContainsKey((16,24)));
+                Assert.AreEqual(!blocked,previousCell.ContainsKey(approach));
                 if(blocked){Assert.AreEqual(10,player.GetStatValue("Hitpoints"));Assert.AreEqual(0,tm.TickCount);return;}
-                var path=new System.Collections.Generic.List<(int x,int y)>();for(var c=(16,24);c!=(0,12);c=previousCell[c])path.Add(c);path.Reverse();
+                var path=new System.Collections.Generic.List<(int x,int y)>();for(var c=approach;c!=(0,12);c=previousCell[c])path.Add(c);path.Reverse();
                 foreach(var step in path){var at=z.GetEntityPosition(player);Assert.IsTrue(MovementSystem.TryMoveEx(player,z,step.x-at.x,step.y-at.y).moved,"Actual native move to "+step);}
-                Assert.AreEqual((16,24),z.GetEntityPosition(player));
+                Assert.AreEqual(approach,z.GetEntityPosition(player));
                 Assert.IsTrue(WorldInteractionSystem.GatherActions(fire,player).Any(a=>a.Command=="RestAtCampfire"));
                 var action=new GameEvent("InventoryAction");action.SetParameter("Command","RestAtCampfire");action.SetParameter("Actor",player);action.SetParameter("Zone",z);fire.FireEvent(action);
                 Assert.IsTrue(action.Handled);Assert.AreEqual(40,player.GetStatValue("Hitpoints"));Assert.AreEqual(RestSystem.RestClockTurns,tm.TickCount);

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 00:12:34Z" end-time="2026-11-16 00:12:34Z" duration="0.256409">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38414" result="Failed" site="Child" start-time="2026-11-16 00:12:34Z" end-time="2026-11-16 00:12:34Z" duration="0.256409" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46999" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38414" result="Failed" site="Child" start-time="2026-11-16 00:12:34Z" end-time="2026-11-16 00:12:34Z" duration="0.238998" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47000" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38414" result="Failed" site="Child" start-time="2026-11-16 00:12:34Z" end-time="2026-11-16 00:12:34Z" duration="0.233822" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47001" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38414" result="Failed" site="Child" start-time="2026-11-16 00:12:34Z" end-time="2026-11-16 00:12:34Z" duration="0.229901" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24834" name="LastCounterCompositionAdversarialTests" fullname="CavesOfOoo.Tests.LastCounterCompositionAdversarialTests" classname="CavesOfOoo.Tests.LastCounterCompositionAdversarialTests" runstate="Runnable" testcasecount="36" result="Failed" site="Child" start-time="2026-11-16 00:12:34Z" end-time="2026-11-16 00:12:34Z" duration="0.222778" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="24878" name="RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked" fullname="CavesOfOoo.Tests.LastCounterCompositionAdversarialTests.RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked" classname="CavesOfOoo.Tests.LastCounterCompositionAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-16 00:12:34Z" end-time="2026-11-16 00:12:34Z" duration="0.221097" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24876" name="RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked(False)" fullname="CavesOfOoo.Tests.LastCounterCompositionAdversarialTests.RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked(False)" methodname="RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked" classname="CavesOfOoo.Tests.LastCounterCompositionAdversarialTests" runstate="Runnable" seed="1807449184" result="Failed" label="Error" start-time="2026-11-16 00:12:34Z" end-time="2026-11-16 00:12:34Z" duration="0.136597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.LastCounterCompositionAdversarialTests.RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked (System.Boolean blocked) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/LastCounterCompositionAdversarialTests.cs:151 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24877" name="RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked(True)" fullname="CavesOfOoo.Tests.LastCounterCompositionAdversarialTests.RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked(True)" methodname="RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked" classname="CavesOfOoo.Tests.LastCounterCompositionAdversarialTests" runstate="Runnable" seed="224208137" result="Failed" label="Error" start-time="2026-11-16 00:12:34Z" end-time="2026-11-16 00:12:34Z" duration="0.075917" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.LastCounterCompositionAdversarialTests.RealBoundaryCampfireIsReachableAndUsableUnlessItsStandingCellsAreBlocked (System.Boolean blocked) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/LastCounterCompositionAdversarialTests.cs:151 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

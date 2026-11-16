@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Failed(Child)" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 00:02:49Z" end-time="2026-11-16 00:02:50Z" duration="0.3890107">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38414" result="Failed" site="Child" start-time="2026-11-16 00:02:49Z" end-time="2026-11-16 00:02:50Z" duration="0.389011" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="46999" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38414" result="Failed" site="Child" start-time="2026-11-16 00:02:49Z" end-time="2026-11-16 00:02:50Z" duration="0.374557" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47000" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38414" result="Failed" site="Child" start-time="2026-11-16 00:02:49Z" end-time="2026-11-16 00:02:50Z" duration="0.371214" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47001" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38414" result="Failed" site="Child" start-time="2026-11-16 00:02:49Z" end-time="2026-11-16 00:02:50Z" duration="0.368017" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31222" name="BiomeColorPatcherTravelTests" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="204" result="Failed" site="Child" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.092486" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31290" name="NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.037968" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31287" name="NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes(Sodden)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes(Sodden)" methodname="NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="745254823" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.027983" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31288" name="NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes(Spread)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes(Spread)" methodname="NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="928939902" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31289" name="NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes(Grovelands)" methodname="NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2052328157" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeDoesNotReinterpretForeignSavedBiomes (CavesOfOoo.Core.BiomeType savedBiome) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31286" name="NativeLastCounterGradeFollowsDisplayedReplacementAndExcludesSavedLair" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeFollowsDisplayedReplacementAndExcludesSavedLair" methodname="NativeLastCounterGradeFollowsDisplayedReplacementAndExcludesSavedLair" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2118150546" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003721" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeFollowsDisplayedReplacementAndExcludesSavedLair () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:75
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31285" name="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.026763" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31278" name="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;legacy&quot;)" methodname="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1696769804" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31279" name="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;sprites-off&quot;)" methodname="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1942471141" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003589" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31280" name="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;wrong-poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;wrong-poi&quot;)" methodname="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="296859334" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31281" name="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;wrong-name&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;wrong-name&quot;)" methodname="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="692846490" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31282" name="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;wrong-profile&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;wrong-profile&quot;)" methodname="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="895339439" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003512" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31283" name="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;detached&quot;)" methodname="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="664876570" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31284" name="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;replaced-cache&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority(&quot;replaced-cache&quot;)" methodname="NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2015950747" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeLosesAndRecoversCurrentLastCounterAuthority (System.String loss) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31277" name="NativeLastCounterGradePreservesContrastAndRestoresSameBiomeTravel" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradePreservesContrastAndRestoresSameBiomeTravel" methodname="NativeLastCounterGradePreservesContrastAndRestoresSameBiomeTravel" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="886856530" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003562" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradePreservesContrastAndRestoresSameBiomeTravel () [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31294" name="NativeLastCounterGradeRefusesAttachedAliasesAndDepths" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeRefusesAttachedAliasesAndDepths" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.012186" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31291" name="NativeLastCounterGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.018.18.0&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.018.18.0&quot;)" methodname="NativeLastCounterGradeRefusesAttachedAliasesAndDepths" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1566713354" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003724" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeRefusesAttachedAliasesAndDepths (System.String id) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31292" name="NativeLastCounterGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.18.18.1&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.18.18.1&quot;)" methodname="NativeLastCounterGradeRefusesAttachedAliasesAndDepths" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1413260642" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeRefusesAttachedAliasesAndDepths (System.String id) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31293" name="NativeLastCounterGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.18.18.00&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeRefusesAttachedAliasesAndDepths(&quot;Overworld.18.18.00&quot;)" methodname="NativeLastCounterGradeRefusesAttachedAliasesAndDepths" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1100110813" result="Failed" start-time="2026-11-16 00:02:50Z" end-time="2026-11-16 00:02:50Z" duration="0.003414" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.AssertLastCounterGrade (CavesOfOoo.Tests.BiomeColorPatcherTravelTests+Fixture f, System.Boolean pilot, CavesOfOoo.Core.BiomeType biome) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:25
+at CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeLastCounterGradeRefusesAttachedAliasesAndDepths (System.String id) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeColorPatcherLastCounterGradeTests.cs:107
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
