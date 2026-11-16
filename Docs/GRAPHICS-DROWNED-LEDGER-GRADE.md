@@ -34,4 +34,4 @@ After:
 
 ![After](Verification/GraphicsExecution/DrownedLedgerGrade/after-center.png)
 
-Next: Fresh Cinderhold workshop baseline from CinderholdGrade/AfterCheckpoint2110HP40 at38,11,seed224401440. Verify ordinary Right18 to56,11 thenUp3 to56,8 entrance; capture frontage/interior and existing TinkersForge,SmithAnvil,Weaponsmith before proposing a coherent change. Preserve receiving ground, reserved service approaches, stock and cached layouts. Peat Works two-empty-crate suggestion parked as low visual value. Batch DrownedLedger plus next accepted graphics; current843 packages exclude this palette.
+Next: Fresh Cinderhold workshop baseline from CinderholdGrade/AfterCheckpoint2110HP40 at38,11,seed704860946. Verify ordinary Right18 to56,11 thenUp3 to56,8 entrance; capture frontage/interior and existing TinkersForge,SmithAnvil,Weaponsmith before proposing a coherent change. Preserve receiving ground, reserved service approaches, stock and cached layouts. Peat Works two-empty-crate suggestion parked as low visual value. Batch DrownedLedger plus next accepted graphics; current843 packages exclude this palette.

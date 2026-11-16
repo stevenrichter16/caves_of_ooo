@@ -1,0 +1,170 @@
+{
+  "zone": "Overworld.6.6.0",
+  "seed": 704860946,
+  "x": 56,
+  "y": 8,
+  "hp": 40,
+  "invincible": false,
+  "tileState": "{\"Entries\":[]}",
+  "rows": [
+    {
+      "id": "11052",
+      "x": 55,
+      "y": 5,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"tinker's forge\",\"RenderString\":\"n\",\"ColorString\":\"&R\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":5,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":false,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"A hearth and work surface share the same worn reach. Fitting a blade, haft and binding here makes a working weapon.\"}"
+        },
+        {
+          "type": "ForgePart",
+          "json": "{}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "9325",
+          "BlueprintName": "StoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "11054",
+      "x": 55,
+      "y": 7,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"Kesset Sedgefold, weaponsmith\",\"RenderString\":\"@\",\"ColorString\":\"&r\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":10,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":0,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Forearms like bridge cables. The ring of the forge follows them around.\\nI can repair selected damaged portable gear for eight drams while my finite materials last. Ordinary nearby chest locks cost six drams to open.\"}"
+        },
+        {
+          "type": "Body",
+          "json": "{\"DismemberedParts\":[]}"
+        },
+        {
+          "type": "ArmorPart",
+          "json": "{\"AV\":1,\"DV\":1,\"SpeedPenalty\":0}"
+        },
+        {
+          "type": "InventoryPart",
+          "json": "{\"MaxWeight\":150}"
+        },
+        {
+          "type": "BrainPart",
+          "json": "{\"SightRadius\":8,\"Wanders\":false,\"WandersRandomly\":false,\"FleeThreshold\":0.25,\"Passive\":false,\"CurrentState\":0,\"InConversation\":false,\"StartingCellX\":55,\"StartingCellY\":7,\"Staying\":true,\"LastThought\":\"\",\"ThinkOutLoud\":false}"
+        },
+        {
+          "type": "GivesRepPart",
+          "json": "{\"Value\":10}"
+        },
+        {
+          "type": "DamageFlashPart",
+          "json": "{}"
+        },
+        {
+          "type": "CorpsePart",
+          "json": "{\"CorpseChance\":100,\"CorpseBlueprint\":\"CreatureCorpse\",\"BuildCorpseChance\":100,\"HarvestBlueprint\":\"\",\"HarvestMin\":1,\"HarvestMax\":1,\"HarvestChance\":100}"
+        },
+        {
+          "type": "MaterialPart",
+          "json": "{\"MaterialID\":\"Flesh\",\"Combustibility\":0.15000000596046449,\"Conductivity\":0.0,\"Porosity\":0.0,\"Volatility\":0.0,\"Brittleness\":0.0,\"MaterialTagsRaw\":\"Organic\"}"
+        },
+        {
+          "type": "ThermalPart",
+          "json": "{\"Temperature\":25.0,\"FlameTemperature\":500.0,\"VaporTemperature\":10000.0,\"FreezeTemperature\":0.0,\"BrittleTemperature\":-100.0,\"HeatCapacity\":2.0,\"AmbientDecayRate\":0.05000000074505806,\"AmbientTemperature\":25.0}"
+        },
+        {
+          "type": "ConversationPart",
+          "json": "{\"ConversationID\":\"Shop_Weaponsmith\"}"
+        },
+        {
+          "type": "TraderPart",
+          "json": "{\"StockTable\":\"WeaponsmithStock\",\"Drams\":140}"
+        },
+        {
+          "type": "LoadoutKeeperPart",
+          "json": "{}"
+        },
+        {
+          "type": "LoadoutPart",
+          "json": "{\"Equip\":\"LeatherGloves;LeatherBoots\",\"Carry\":\"\",\"Pick\":\"\"}"
+        },
+        {
+          "type": "RegionalRequestPart",
+          "json": "{\"DefinitionId\":\"cinderhold-iron\",\"InstanceId\":\"regional:704860946:cinderhold-iron\",\"RecipientId\":\"11054\",\"Accepted\":false,\"Completed\":false}"
+        },
+        {
+          "type": "CivilianCourtesyPart",
+          "json": "{}"
+        },
+        {
+          "type": "CivilianAidPart",
+          "json": "{}"
+        },
+        {
+          "type": "CivilianEquipmentGiftPart",
+          "json": "{}"
+        },
+        {
+          "type": "ArtisanRepairServicePart",
+          "json": "{}"
+        },
+        {
+          "type": "LocksmithServicePart",
+          "json": "{}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "9508",
+          "BlueprintName": "StoneFloor"
+        }
+      ]
+    },
+    {
+      "id": "11053",
+      "x": 60,
+      "y": 5,
+      "parts": [
+        {
+          "type": "RenderPart",
+          "json": "{\"DisplayName\":\"anvil\",\"RenderString\":\"n\",\"ColorString\":\"&K\",\"BackgroundColor\":\"\",\"GlyphVariants\":\"\",\"DetailColor\":\"\",\"TileColor\":\"\",\"Tile\":\"\",\"VisualID\":\"\",\"VisualVariant\":\"\",\"VisualFacing\":0,\"RenderLayer\":1,\"Visible\":true}"
+        },
+        {
+          "type": "PhysicsPart",
+          "json": "{\"Solid\":true,\"Weight\":120,\"Takeable\":false,\"ThrowBase\":0.0,\"ThrowHeight\":-1.0,\"ThrowIntercept\":-1,\"Category\":\"\"}"
+        },
+        {
+          "type": "ExaminablePart",
+          "json": "{\"Text\":\"Not hard to move because it is heavy. Hard to move because there is nowhere to hold it.\"}"
+        },
+        {
+          "type": "HandlingPart",
+          "json": "{\"GripType\":0,\"Carryable\":false,\"Throwable\":false,\"Weight\":120,\"BulkClass\":\"Massive\",\"MinLiftStrength\":18,\"MinThrowStrength\":0,\"CarryMovePenalty\":0}"
+        }
+      ],
+      "under": [
+        {
+          "ID": "9330",
+          "BlueprintName": "StoneFloor"
+        }
+      ]
+    }
+  ]
+}
