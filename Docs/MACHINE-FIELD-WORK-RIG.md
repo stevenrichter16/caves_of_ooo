@@ -66,3 +66,5 @@ Unity stopped after archiving the isolated reclamation reload root at /private/t
 
 
 Current Mac delivery — 2026-11-16: sourcec29039d88 includes M1a+M1b and passed actual packaged actions/readers plus fresh-process reload; workshop branch also passed ordinary movement and17.7↔18.7 travel. See [the bounded delivery record](Verification/MachineSystems/BatchC29039/README.md) for the excluded low-health combat attempt, preserved saves/builds, logs and exact limits.
+
+Latest continuation — 2026-11-16: source acceptance c29039d88 and current Mac delivery 095d17cb2 are remotely verified. The earlier publication/delivery NEXT is complete. Continue with [M1c relocation](MACHINE-RIG-RELOCATION.md): the actual northern route and off-site working position are qualified, the strict plain-ground crossing contract is reviewed, and native RED/countercases are next. No relocation implementation or acceptance yet.

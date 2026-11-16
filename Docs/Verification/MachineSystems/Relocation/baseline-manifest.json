@@ -1,0 +1,60 @@
+{
+  "recorded_utc": "2026-11-16T05:32:05.034181+00:00",
+  "source_commit": "095d17cb2a9f3f4834dcc5ddf37b91ab02657a65",
+  "status": "Actual pre-change route and receiving-ground baseline; no M1c native tests, production change or acceptance.",
+  "seed": 704860946,
+  "invincibility": false,
+  "normal_input": true,
+  "first_east_route": "Maw-toad and bleeding death before border; excluded from success.",
+  "north_edge": {
+    "checkpoint_turn": 4529,
+    "hp": 40,
+    "zone": "Overworld.17.7.0",
+    "player": [
+      60,
+      0
+    ],
+    "rig_id": "14199",
+    "rig": [
+      60,
+      1
+    ]
+  },
+  "existing_crossing": "Player crosses north to17.6:60,24; grip releases and original repaired rig stays at17.7:60,1.",
+  "receiving_ground": {
+    "checkpoint_turn": 4559,
+    "hp": 40,
+    "player": [
+      60,
+      22
+    ],
+    "grass_id": "21320",
+    "ground": [
+      60,
+      23
+    ],
+    "destination_forges": 0
+  },
+  "captures": "Six actual GameBootstrap captures; machine-relocation-exit-baseline is world-camera only, other five are full Game view. No offline render or after-state.",
+  "dirty_paths_preserved": 84,
+  "dirty_paths_match_snapshot": true,
+  "archive_roots": [
+    "/private/tmp/coo-relocation-east-death-root",
+    "/private/tmp/coo-relocation-north-baseline-root"
+  ],
+  "files_sha256": {
+    "NorthEdgeCheckpoint/Quick.json": "0685f2670da842a7dfa369ee959a8de4c196be87e87a685e026f4615b1289285",
+    "NorthEdgeCheckpoint/Quick.sav.gz": "25ab087f1b90346d11274b5ee16390d91eb4681d89c7400f787d37bc53827735",
+    "ReceivingGroundCheckpoint/Quick.json": "a94d217851dbaec7f0f667652a105e8a6c6f163f42b740ac47d0caff05e2c46b",
+    "ReceivingGroundCheckpoint/Quick.sav.gz": "598bddb4bac694ee614975fd5d4f1ed83944081d9599347d9b90f811ff7c3dfb",
+    "crossing-baseline-state.json": "5fc12828392103840ef498b74390316205ba1247a19ddd3e392bcaa4214ecb5a",
+    "east-route-maw-toad-death.png": "f9cf497aecf8718fcc7e8d4d55703f98de377826509f8763f43629bb016fafe2",
+    "machine-relocation-exit-baseline.png": "4aad17ced041a0e29176310e57154b14e062b29e0b1bdea0dffa38e655f0844c",
+    "north-approach.png": "ad7ba52a2ed3e904db376d797e4379d3e8cb20a5520dfcdee38e3ed7a59d7df1",
+    "north-cross-before.png": "3acf279e6fd84b8c32e4b51d2843ac20dde02eb420a684e3ed65123ec551b851",
+    "north-edge-before.png": "ca2c7c1d728a157039fa8511133fbaf1bdcb70d6e1751276df249c333155aa8b",
+    "north-edge-state.json": "714601b74b1eed434d680f91c251f3ec6ea2efcbcaac5f517f110f5805b0f2a6",
+    "receiving-ground-reader.png": "bfe963aa3faef8d49e801014c3e8bf0f1624e916d6f97ff468eb0429cdc6ab5e",
+    "receiving-ground-state.json": "b9635999c66fb9c897659cd44558f28fce297578ff08ea0546df07592d61606c"
+  }
+}
