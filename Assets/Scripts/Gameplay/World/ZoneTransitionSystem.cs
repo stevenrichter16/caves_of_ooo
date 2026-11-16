@@ -94,6 +94,11 @@ namespace CavesOfOoo.Core
             ZoneManager zoneManager,
             WorldMap worldMap)
         {
+            // Pure placement seam, as for ordinary travel. Native player input
+            // prepares and pays the two source-zone effort rounds before Commit.
+            if (RigRelocation.IsAttempt(player))
+                return RigRelocation.Prepare(player, currentZone, direction, currentX, currentY, zoneManager)?.Commit()
+                    ?? RigRelocation.Failed();
             // Compute world direction delta
             int worldDX = 0, worldDY = 0;
             switch (direction)

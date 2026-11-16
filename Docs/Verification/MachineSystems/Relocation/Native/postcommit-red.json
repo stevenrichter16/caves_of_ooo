@@ -1,0 +1,48 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "d0e6a621b51b4aed9187e8b20ccf4705",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794810194801,
+      "finished_unix_ms": 1794810220330,
+      "last_update_unix_ms": 1794810220330,
+      "progress": {
+        "completed": 57,
+        "total": 57,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794810220274,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.UnsupportedReceivingGroundNeverSpiralsOrDisclosesAnOwner(\"missing-ground\")",
+        "last_finished_unix_ms": 1794810220296,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ALoadRemovedByFirstObserverDoesNotReceiveAGhostPlacementNotification",
+            "message": "  Expected: 1\n  But was:  2\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.CommittedResultFollowsActualActorPlacementAfterObservers(\"source\")",
+            "message": "  Expected: same as <Zone(Overworld.3.7.0) [3 entities]>\n  But was:  <Zone(Overworld.3.6.0) [3 entities]>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.CommittedResultFollowsActualActorPlacementAfterObservers(\"other\")",
+            "message": "  Expected: same as <Zone(Overworld.3.5.0) [1 entities]>\n  But was:  <Zone(Overworld.3.6.0) [3 entities]>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.CommittedResultFollowsActualActorPlacementAfterObservers(\"removed\")",
+            "message": "  Expected: same as null\n  But was:  <Zone(Overworld.3.6.0) [3 entities]>\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

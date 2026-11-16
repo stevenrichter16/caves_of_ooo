@@ -1,0 +1,36 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "65567666cbf04b919a67c381637b8576",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794809972940,
+      "finished_unix_ms": 1794809977295,
+      "last_update_unix_ms": 1794809977295,
+      "progress": {
+        "completed": 1,
+        "total": 1,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794809977141,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.FollowerObserverFailureCannotHideTheCommittedRigPair",
+        "last_finished_unix_ms": 1794809977263,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.FollowerObserverFailureCannotHideTheCommittedRigPair",
+            "message": "System.InvalidOperationException : follower arrival observer"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "3e8e3c7206c34753bb45f96e7af538f2",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794808824535,
+      "finished_unix_ms": 1794808829747,
+      "last_update_unix_ms": 1794808829747,
+      "progress": {
+        "completed": 1,
+        "total": 1,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794808828704,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ActorAndGripCountercasesCannotFallThroughToOrdinaryTransfer(\"rooted\")",
+        "last_finished_unix_ms": 1794808829106,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ActorAndGripCountercasesCannotFallThroughToOrdinaryTransfer(\"rooted\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

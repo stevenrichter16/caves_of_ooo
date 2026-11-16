@@ -1,0 +1,60 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "e4cb627d4e654a419cee86283f5a9cfe",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794809807762,
+      "finished_unix_ms": 1794809811861,
+      "last_update_unix_ms": 1794809811861,
+      "progress": {
+        "completed": 9,
+        "total": 9,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794809811813,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.SavedRigInstructionsAreCurrentWithoutRewritingSavedText(False)",
+        "last_finished_unix_ms": 1794809811836,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.BlockedActorAtRigBorderStillPaysAnOrdinaryThawWait",
+            "message": "  Expected: greater than 0\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.FollowerObserverFailureCannotHideTheCommittedRigPair",
+            "message": "  Expected: same as <Zone(Overworld.3.6.0) [4 entities]>\n  But was:  <Zone(Overworld.3.7.0) [3 entities]>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.PermissionCallbackCannotRedirectInputCustody(\"turns\",2)",
+            "message": "  Expected: 1\n  But was:  2\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.PermissionCallbackCannotRedirectInputCustody(\"turns\",3)",
+            "message": "  Expected: same as <Zone(Overworld.3.7.0) [2 entities]>\n  But was:  <Zone(Overworld.3.6.0) [4 entities]>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.PermissionCallbackCannotRedirectInputCustody(\"actor\",2)",
+            "message": "  Expected: 0\n  But was:  1\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.PermissionCallbackCannotRedirectInputCustody(\"manager\",2)",
+            "message": "  Expected: 1\n  But was:  2\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.SavedRigInstructionsAreCurrentWithoutRewritingSavedText(True)",
+            "message": "  Expected: String containing \"two hauling rounds\"\n  But was:  \"It can be hauled locally; release it before working.\"\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

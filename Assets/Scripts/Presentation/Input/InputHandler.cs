@@ -1022,6 +1022,7 @@ namespace CavesOfOoo.Rendering
         // Keeps bump combat, paid door actions, breakables and status thawing identical.
         private void ExecuteMovementStep(int dx, int dy)
         {
+                if (_rigCrossing) return;
                 var oldCell = CurrentZone.GetEntityCell(PlayerEntity);
                 int oldX = oldCell?.X ?? -1;
                 int oldY = oldCell?.Y ?? -1;
@@ -1090,6 +1091,16 @@ namespace CavesOfOoo.Rendering
                     var direction = ZoneTransitionSystem.GetTransitionDirection(oldX, oldY, dx, dy);
                     if (direction.HasValue)
                     {
+                        if (RigRelocation.IsAttempt(PlayerEntity))
+                        {
+                            // Match ordinary blocked movement: waiting advances
+                            // frozen/stunned effects. Rooted alone is still free refusal.
+                            if (PlayerEntity.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(PlayerEntity)
+                                && PlayerEntity.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true)
+                            { EndTurnAndProcess(); return; }
+                            ExecuteRigCrossing(direction.Value, oldX, oldY, dx, dy);
+                            return;
+                        }
                         var result = ZoneTransitionSystem.TransitionPlayer(
                             PlayerEntity, CurrentZone, direction.Value,
                             oldX, oldY, ZoneManager, WorldMap);
@@ -1127,11 +1138,54 @@ namespace CavesOfOoo.Rendering
 
         }
 
+        private bool _rigCrossing;
+
+        // Two ordinary rounds of effort are paid in the source zone before
+        // atomic relocation. Interruption leaves actual consequences and spent
+        // effort intact; it never leaves an unpaid transported pair to serialize.
+        private void ExecuteRigCrossing(TransitionDirection direction, int x, int y, int dx, int dy)
+        {
+            var actor = PlayerEntity; var source = CurrentZone; var turns = TurnManager;
+            var zones = ZoneManager; var world = WorldMap;
+            if (_rigCrossing || _throwDebtActor != null || System.Math.Abs(dx) + System.Math.Abs(dy) != 1)
+            { MessageLog.Add(RigRelocation.Refusal); return; }
+            bool SameContext() => this != null && isActiveAndEnabled && actor == PlayerEntity && source == CurrentZone
+                && turns == TurnManager && turns != null && zones == ZoneManager && world == WorldMap && _throwDebtActor == null;
+            bool Ready() => SameContext()
+                && actor != null && actor.SpatialZone == source && turns.CurrentActor == actor
+                && turns.IsRegistered(actor) && turns.GetEnergy(actor) >= Core.TurnManager.ActionThreshold;
+            var action = ActionResolutionGuard.TryEnterAction(actor);
+            if (action == null) { MessageLog.Add(RigRelocation.Refusal); return; }
+            _rigCrossing = true;
+            try
+            {
+                var plan = RigRelocation.Prepare(actor, source, direction, x, y, zones);
+                if (!Ready() || plan == null || !plan.CheckPermission() || !Ready()) { MessageLog.Add(RigRelocation.Refusal); return; }
+                MessageLog.Add(RigRelocation.Effort);
+                for (int round = 0; round < 2; round++)
+                {
+                    if (!Ready() || (round > 0 && (!plan.CheckPermission() || !Ready()))
+                        || !EndTurnAndProcessChecked(actor, source, turns))
+                    { MessageLog.Add("The crossing is interrupted; the effort already spent remains spent."); return; }
+                }
+                if (!Ready()) { MessageLog.Add("The crossing is interrupted."); return; }
+                var result = plan.Commit(Ready);
+                if (!result.Success) { MessageLog.Add("The crossing is interrupted; the rig has not crossed."); return; }
+                if (!SameContext() || result.NewZone == null || result.NewZone == source) return;
+                HandleZoneTransition(result, requestAutosave: actor.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(actor));
+            }
+            finally
+            {
+                action.Dispose(); _rigCrossing = false;
+                SaveGameService.FlushStableRequests();
+            }
+        }
+
         /// <summary>
         /// Handle all side effects of a zone transition:
         /// rewire TurnManager, BrainParts, ZoneRenderer, and CurrentZone.
         /// </summary>
-        private void HandleZoneTransition(ZoneTransitionResult result)
+        private void HandleZoneTransition(ZoneTransitionResult result, bool requestAutosave = true)
         {
             if (_inputState == InputState.LookMode)
                 ExitLookMode();
@@ -1210,7 +1264,7 @@ namespace CavesOfOoo.Rendering
             // transition (this method only runs for successful results —
             // both call sites gate on the transition succeeding). Death
             // is now recoverable even for a player who never learned F5.
-            if (!SaveGameService.RequestQuickSave())
+            if (requestAutosave && !SaveGameService.RequestQuickSave())
                 MessageLog.Add("Autosave failed.");
 
             // ALPHA economy-renewables SM3: traders the player sold out
@@ -1223,11 +1277,16 @@ namespace CavesOfOoo.Rendering
             Debug.Log($"[Zone] Transitioned to {result.NewZone.ZoneID}");
         }
 
-        private void EndTurnAndProcess()
+        private void EndTurnAndProcess() { EndTurnAndProcessChecked(); }
+
+        // A multi-round action must stop after a failed phase, even though the
+        // ordinary input path recovers and yields. Never retry a paid observer.
+        private bool EndTurnAndProcessChecked(Entity actionActor = null, Zone actionZone = null, TurnManager actionTurns = null)
         {
-            var paidActor=_throwDebtActor??PlayerEntity;
-            var paidZone=_throwDebtZone??CurrentZone;
-            var paidTurns=_throwDebtTurns??TurnManager;
+            bool healthy = true;
+            var paidActor=actionActor??_throwDebtActor??PlayerEntity;
+            var paidZone=actionZone??_throwDebtZone??CurrentZone;
+            var paidTurns=actionTurns??_throwDebtTurns??TurnManager;
             try
             {
             // EndTurn owns exception-safe mandatory payment. Even if an
@@ -1240,6 +1299,7 @@ namespace CavesOfOoo.Rendering
             }
             catch (System.Exception ex)
             {
+                healthy = false;
                 Debug.LogError($"[Turn] Exception during turn processing (recovered): {ex}");
                 MessageLog.Add("Something went wrong this turn — it was skipped.");
             }
@@ -1249,11 +1309,12 @@ namespace CavesOfOoo.Rendering
             }
             catch (System.Exception ex)
             {
+                healthy = false;
                 Debug.LogError($"[Turn] Exception during turn processing (recovered): {ex}");
                 MessageLog.Add("Something went wrong this turn — it was skipped.");
                 paidTurns?.ForceYieldToPlayer();
             }
-            if(paidTurns==null || paidZone==null)return;
+            if(paidTurns==null || paidZone==null)return false;
             CropTime.ReconcileZone(paidZone, paidTurns.TickCount);
             KitchenBatchPart.ReconcileZone(paidZone);
             MaterialSimSystem.TickMaterialEntities(paidZone);
@@ -1275,10 +1336,14 @@ namespace CavesOfOoo.Rendering
             }
             finally
             {
-                ActionResolutionGuard.SettlePendingAction(_throwDebtActor);
-                _throwDebtActor=null;_throwDebtZone=null;_throwDebtTurns=null;
+                if (actionActor == null)
+                {
+                    ActionResolutionGuard.SettlePendingAction(_throwDebtActor);
+                    _throwDebtActor=null;_throwDebtZone=null;_throwDebtTurns=null;
+                }
                 SaveGameService.FlushStableRequests();
             }
+            return healthy;
             // No `RequestZoneRedraw("Turn.Advance")` — the per-cell dirty
             // hooks (MovementSystem, CombatSystem) flag exactly the cells
             // that changed during the turn cycle. Player movement upgrades

@@ -318,6 +318,49 @@ namespace CavesOfOoo.Core
             return false;
         }
 
+        /// <summary>Transfer one already-qualified single-cell hauling pair.
+        /// Both memberships and indices become coherent before relocation observers
+        /// run. This deliberately bypasses removal's grip release, not its ordinary
+        /// behavior. Post-commit observer consequences are never rolled back.</summary>
+        internal bool TryTransferHaulingPairTo(Entity actor, Entity load, Zone destination, Cell actorTarget, Cell loadTarget)
+        {
+            var ac = actor == null ? null : GetEntityCell(actor);
+            var lc = load == null ? null : GetEntityCell(load);
+            if (ac == null || lc == null || actor == load || destination == null || destination == this
+                || actorTarget == null || loadTarget == null || actorTarget == loadTarget
+                || actorTarget.ParentZone != destination || loadTarget.ParentZone != destination
+                || destination.GetCell(actorTarget.X, actorTarget.Y) != actorTarget
+                || destination.GetCell(loadTarget.X, loadTarget.Y) != loadTarget
+                || actor.SpatialZone != this || load.SpatialZone != this
+                || actor.HasPart<SpatialFootprintPart>() || load.HasPart<SpatialFootprintPart>()
+                || actor.HasPart<LiquidPoolPart>() || load.HasPart<LiquidPoolPart>()
+                || destination._entityCells.ContainsKey(actor) || destination._entityCells.ContainsKey(load)) return false;
+            ac.RemoveObject(actor); lc.RemoveObject(load);
+            _entityCells.Remove(actor); _entityCells.Remove(load);
+            UnindexEntityTags(actor); UnindexEntityTags(load);
+            actorTarget.AddObject(actor); loadTarget.AddObject(load);
+            destination._entityCells[actor] = actorTarget; destination._entityCells[load] = loadTarget;
+            actor.SpatialZone = destination; load.SpatialZone = destination;
+            destination.IndexEntityTags(actor); destination.IndexEntityTags(load);
+            _entityOrderSnapshot = null; destination._entityOrderSnapshot = null;
+            NotifyEntityPartsChanged(actor); NotifyEntityPartsChanged(load);
+            destination.NotifyEntityPartsChanged(actor); destination.NotifyEntityPartsChanged(load);
+            EntityVersion += 2; destination.EntityVersion += 2;
+            foreach (var owner in new[] { actor, load })
+            {
+                var expected = owner == actor ? actorTarget : loadTarget;
+                if (owner.SpatialZone != destination || destination.GetEntityCell(owner) != expected) continue;
+                try { ThrowingRules.OnEntityRelocated(owner); }
+                catch (System.Exception ex) { Debug.LogError($"[Rig] Relocation observer failed after committed placement: {ex}"); }
+            }
+            foreach (var cell in new[] { ac, lc, actorTarget, loadTarget })
+            {
+                try { ZoneRenderHooks.MarkCellDirty(cell, "RigRelocated"); }
+                catch (System.Exception ex) { Debug.LogError($"[Rig] Post-commit dirty observer failed: {ex}"); }
+            }
+            return true;
+        }
+
         /// <summary>
         /// Tag membership index: tag -> set of entities currently in this
         /// zone with that tag. Drops <see cref="GetEntitiesWithTagNonAlloc"/>

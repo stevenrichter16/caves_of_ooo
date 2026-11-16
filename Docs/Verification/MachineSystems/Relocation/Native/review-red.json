@@ -1,0 +1,48 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "b485fd1d9f554fa68de5b4b86a28d51d",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794809383614,
+      "finished_unix_ms": 1794809387416,
+      "last_update_unix_ms": 1794809387416,
+      "progress": {
+        "completed": 4,
+        "total": 4,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794809387360,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ThrowingRenderObserverCannotHideCommittedTransfer",
+        "last_finished_unix_ms": 1794809387393,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.DestinationIdentityCannotBeRedirected(False)",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.DestinationIdentityCannotBeRedirected(True)",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.RigReaderExplainsCrossingEffortBeforeItIsAttempted",
+            "message": "  Expected: String containing \"two hauling rounds\"\n  But was:  \"A clay-faced work surface rests on two sound timber braces. A weathered plate reads: \"Left for whoever can use it.\" Restore its workshop services or dismantle it for two salvaged timber, permanently losing this rig. Repair clay is not recovered. It can be hauled locally; release it before working. Single weapons can still be assembled from carried components without a workshop.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ThrowingRenderObserverCannotHideCommittedTransfer",
+            "message": "System.InvalidOperationException : rig render observer"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

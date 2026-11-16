@@ -1,0 +1,132 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "cce1f754ff5e4b99a7cedad37bbbf9f7",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794808749059,
+      "finished_unix_ms": 1794808753164,
+      "last_update_unix_ms": 1794808753164,
+      "progress": {
+        "completed": 26,
+        "total": 26,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794808753108,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.UnsupportedReceivingGroundNeverSpiralsOrDisclosesAnOwner(\"missing-ground\")",
+        "last_finished_unix_ms": 1794808753138,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ActorAndGripCountercasesCannotFallThroughToOrdinaryTransfer(\"dead\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ActorAndGripCountercasesCannotFallThroughToOrdinaryTransfer(\"rooted\")",
+            "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ActorAndGripCountercasesCannotFallThroughToOrdinaryTransfer(\"weak\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ActorAndGripCountercasesCannotFallThroughToOrdinaryTransfer(\"wrong-inverse\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ActorAndGripCountercasesCannotFallThroughToOrdinaryTransfer(\"extra-grip\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ActorAndGripCountercasesCannotFallThroughToOrdinaryTransfer(\"wrong-offset\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.ActorAndGripCountercasesCannotFallThroughToOrdinaryTransfer(\"bad-rig\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.BeforeMoveMutationMustBeRevalidatedBeforeEitherOwnerMoves",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.BothOwnersCrossExactlyAndKeepTheOriginalGrip(North)",
+            "message": "  Expected: (40, 23)\n  But was:  (40, 24)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.BothOwnersCrossExactlyAndKeepTheOriginalGrip(South)",
+            "message": "  Expected: (40, 1)\n  But was:  (40, 0)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.BothOwnersCrossExactlyAndKeepTheOriginalGrip(East)",
+            "message": "  Expected: (1, 12)\n  But was:  (0, 12)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.BothOwnersCrossExactlyAndKeepTheOriginalGrip(West)",
+            "message": "  Expected: (78, 12)\n  But was:  (79, 12)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.FaultedRigCanRelocateWithoutBecomingRepaired",
+            "message": "  Expected: same as <Zone(Overworld.3.6.0) [3 entities]>\n  But was:  <Zone(Overworld.3.7.0) [3 entities]>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.NonemptyTileStateAtAnySweptCellRefusesWithoutMovingOrReleasing(\"source-load\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.NonemptyTileStateAtAnySweptCellRefusesWithoutMovingOrReleasing(\"source-player\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.NonemptyTileStateAtAnySweptCellRefusesWithoutMovingOrReleasing(\"receiving-edge\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.NonemptyTileStateAtAnySweptCellRefusesWithoutMovingOrReleasing(\"receiving-inward\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.RelocationObserverSeesBothOwnersInTheDestination",
+            "message": "  Expected: same as <Zone(Overworld.3.6.0) [2 entities]>\n  But was:  <Zone(Overworld.3.7.0) [3 entities]>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.RemovalAfterCoherentArrivalReleasesOnlyTheOwnedPenalty",
+            "message": "  Expected: null\n  But was:  <Zone(Overworld.3.7.0) [3 entities]>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.UnsupportedReceivingGroundNeverSpiralsOrDisclosesAnOwner(\"blocker\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.UnsupportedReceivingGroundNeverSpiralsOrDisclosesAnOwner(\"excluded\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.UnsupportedReceivingGroundNeverSpiralsOrDisclosesAnOwner(\"extra-part\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.UnsupportedReceivingGroundNeverSpiralsOrDisclosesAnOwner(\"extra-nonsolid\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.UnsupportedReceivingGroundNeverSpiralsOrDisclosesAnOwner(\"not-terrain\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineRigRelocationTests.UnsupportedReceivingGroundNeverSpiralsOrDisclosesAnOwner(\"missing-ground\")",
+            "message": "  Unsupported pair must refuse instead of dropping the rig and moving the player\n  Expected: False\n  But was:  True\n"
+          }
+        ],
+        "failures_capped": true
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}
