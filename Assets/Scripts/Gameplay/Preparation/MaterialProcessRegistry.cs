@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using CavesOfOoo.Data;
 
@@ -12,24 +13,32 @@ namespace CavesOfOoo.Core
         public string SourceBlueprint { get; }
         public string Mode { get; }
         public string WorkKind { get; }
+        public string SourceRecipeId { get; }
         public string ActionText { get; }
         public string LossText { get; }
         public int InputCount { get; }
         public IReadOnlyList<string> OutputBlueprints { get; }
         public IReadOnlyList<int> OutputCounts { get; }
+        public IReadOnlyList<string> AdditionalInputBlueprints { get; }
+        public IReadOnlyList<int> AdditionalInputCounts { get; }
         internal MaterialProcessDefinition(MaterialProcessRow row)
         {
             Id=row.Id;SourceBlueprint=row.SourceBlueprint;Mode=row.Mode;WorkKind=row.WorkKind;InputCount=row.InputCount;ActionText=row.ActionText??row.Mode.ToLowerInvariant();LossText=row.LossText??"";
+            SourceRecipeId=row.SourceRecipeId??"";
+            AdditionalInputBlueprints=Array.AsReadOnly((string[])(row.AdditionalInputBlueprints??Array.Empty<string>()).Clone());
+            AdditionalInputCounts=Array.AsReadOnly((int[])(row.AdditionalInputCounts??Array.Empty<int>()).Clone());
             OutputBlueprints=Array.AsReadOnly((string[])row.OutputBlueprints.Clone());
             OutputCounts=Array.AsReadOnly((int[])row.OutputCounts.Clone());
         }
     }
     [Serializable] internal sealed class MaterialProcessRow
     {
-        public string Id,SourceBlueprint,Mode,WorkKind,ActionText,LossText;
+        public string Id,SourceBlueprint,Mode,WorkKind,ActionText,LossText,SourceRecipeId;
         public int InputCount;
         public string[] OutputBlueprints;
         public int[] OutputCounts;
+        public string[] AdditionalInputBlueprints;
+        public int[] AdditionalInputCounts;
     }
     [Serializable] internal sealed class MaterialProcessFile { public MaterialProcessRow[] Processes; }
 
@@ -38,12 +47,19 @@ namespace CavesOfOoo.Core
     {
         const int MaximumUnits=64,MaximumOutputs=2,MaximumProcesses=64;
         static readonly Dictionary<string,MaterialProcessDefinition> Definitions=new Dictionary<string,MaterialProcessDefinition>(StringComparer.Ordinal);
+        // Revoking a recipe cannot grant permission to erase a known input's
+        // private state by splitting it before a later catalogue reload.
+        static readonly HashSet<string> KnownPayloads=new HashSet<string>(StringComparer.Ordinal);
         static bool loaded;
         public static void LoadDefaults()
         {if(loaded)return;var asset=Resources.Load<TextAsset>("Content/Data/MaterialProcesses");InitializeFromJson(asset==null?null:asset.text);}
-        public static void ResetForTests(){Definitions.Clear();loaded=false;}
+        public static void ResetForTests(){Definitions.Clear();KnownPayloads.Clear();loaded=false;}
         public static MaterialProcessDefinition Get(string id)
         {LoadDefaults();return id!=null && Definitions.TryGetValue(id,out var found)?found:null;}
+        internal static string[] ForPreparation(Entity source)
+        {LoadDefaults();return source==null?Array.Empty<string>():Definitions.Values.Where(d=>d.SourceBlueprint==source.BlueprintName && d.SourceRecipeId.Length>0).Select(d=>d.Id).ToArray();}
+        internal static bool IsPayload(Entity owner)
+        {LoadDefaults();return owner!=null && (owner.HasPart<MaterialProcessInputPart>() || KnownPayloads.Contains(owner.BlueprintName));}
         public static IReadOnlyList<string> InitializeFromJson(string json)
         {
             loaded=true;var errors=new List<string>();var staged=new Dictionary<string,MaterialProcessDefinition>(StringComparer.Ordinal);
@@ -58,7 +74,11 @@ namespace CavesOfOoo.Core
                 staged.Add(row.Id,new MaterialProcessDefinition(row));
             }
             Definitions.Clear();
-            if(errors.Count==0)foreach(var pair in staged)Definitions.Add(pair.Key,pair.Value);
+            if(errors.Count==0)foreach(var pair in staged)
+            {
+                Definitions.Add(pair.Key,pair.Value);KnownPayloads.Add(pair.Value.SourceBlueprint);
+                foreach(var input in pair.Value.AdditionalInputBlueprints)KnownPayloads.Add(input);
+            }
             return errors.AsReadOnly();
         }
         // Syntax loading is separate from factory admission. A planner must call
@@ -71,6 +91,17 @@ namespace CavesOfOoo.Core
             foreach(var definition in Definitions.Values)
             {
                 if(!Portable(factory,definition.SourceBlueprint))issues.Add(definition.Id+": invalid source "+definition.SourceBlueprint);
+                if(definition.SourceRecipeId.Length>0)
+                {
+                    var recipe=PreparationRecipeService.Recipes.FirstOrDefault(r=>r.Id==definition.SourceRecipeId);
+                    if(recipe==null || recipe.Input!=definition.SourceBlueprint
+                        || !factory.Blueprints.TryGetValue(definition.SourceBlueprint,out var bp)
+                        || bp?.Parts==null || !bp.Parts.TryGetValue("PreparationRecipe",out var parameters) || parameters==null
+                        || !parameters.TryGetValue("RecipeIds",out var raw) || raw==null || !raw.Split(',').Contains(definition.SourceRecipeId))
+                        issues.Add(definition.Id+": invalid source recipe permission");
+                }
+                foreach(var ingredient in definition.AdditionalInputBlueprints)
+                    if(!Portable(factory,ingredient))issues.Add(definition.Id+": invalid ingredient "+ingredient);
                 foreach(var output in definition.OutputBlueprints)
                     if(!Portable(factory,output))issues.Add(definition.Id+": invalid output "+output);
             }
@@ -92,9 +123,15 @@ namespace CavesOfOoo.Core
                 || row.OutputBlueprints==null || row.OutputCounts==null
                 || row.OutputBlueprints.Length<1 || row.OutputBlueprints.Length>MaximumOutputs
                 || row.OutputBlueprints.Length!=row.OutputCounts.Length)return false;
+            if(!string.IsNullOrEmpty(row.SourceRecipeId) && !Token(row.SourceRecipeId))return false;
+            var inputs=row.AdditionalInputBlueprints??Array.Empty<string>();var counts=row.AdditionalInputCounts??Array.Empty<int>();
+            if(inputs.Length!=counts.Length || inputs.Length>2)return false;
+            var ingredientNames=new HashSet<string>(StringComparer.Ordinal){row.SourceBlueprint};int total=row.InputCount;
+            for(int i=0;i<inputs.Length;i++)
+                if(!Token(inputs[i]) || !ingredientNames.Add(inputs[i]) || counts[i]<1 || counts[i]>MaximumUnits || (total+=counts[i])>MaximumUnits)return false;
             var seen=new HashSet<string>(StringComparer.Ordinal);
             for(int i=0;i<row.OutputBlueprints.Length;i++)
-                if(!Token(row.OutputBlueprints[i]) || row.OutputBlueprints[i]==row.SourceBlueprint
+                if(!Token(row.OutputBlueprints[i]) || ingredientNames.Contains(row.OutputBlueprints[i])
                     || !seen.Add(row.OutputBlueprints[i]) || row.OutputCounts[i]<1 || row.OutputCounts[i]>MaximumUnits)return false;
             return true;
         }

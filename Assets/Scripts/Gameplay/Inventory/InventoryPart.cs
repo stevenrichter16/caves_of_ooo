@@ -164,10 +164,11 @@ namespace CavesOfOoo.Core
             return !string.IsNullOrEmpty(name) ? name : item?.BlueprintName ?? item?.ID ?? "unknown";
         }
 
-        private string ConsumptionRefusalReason(Entity item)
+        private string ConsumptionRefusalReason(Entity item,bool ownsProcess=false)
         {
             if (item == null) return "missing_item";
             if (Objects == null || !Objects.Contains(item)) return "not_carried";
+            if (!ownsProcess && MaterialProcessService.IsProtected(item)) return "process_in_progress";
             return (item.GetPart<StackerPart>()?.StackCount ?? 1) > 0 ? null : "empty_stack";
         }
 
@@ -200,9 +201,16 @@ namespace CavesOfOoo.Core
         /// <summary>Spend one carried unit before granting its benefit. Refusal
         /// changes nothing; quantity changes refresh the carrier's handling penalty.
         /// Records payment or its rejection; payload success remains the caller's responsibility.</summary>
-        public bool TryConsumeOne(Entity item)
+        public bool TryConsumeOne(Entity item)=>ConsumeOne(item,false);
+
+        // Only the transaction that reserved this process ingredient may pay
+        // its declared units. Ordinary callback consumption keeps the veto.
+        internal bool TryConsumeMaterialProcessUnit(Entity item,CavesOfOoo.Core.Inventory.InventoryTransaction transaction)
+            => MaterialProcessService.OwnsConsumption(item,transaction) && ConsumeOne(item,true);
+
+        private bool ConsumeOne(Entity item,bool ownsProcess)
         {
-            string reason = ConsumptionRefusalReason(item);
+            string reason = ConsumptionRefusalReason(item,ownsProcess);
             if (reason != null)
             {
                 RecordConsumptionRefusal(ParentEntity, item, reason);

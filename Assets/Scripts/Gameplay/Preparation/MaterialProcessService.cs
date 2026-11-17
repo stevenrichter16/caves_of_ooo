@@ -12,6 +12,8 @@ namespace CavesOfOoo.Core
     {
         static readonly ConditionalWeakTable<Entity,InventoryTransaction> Custody=new ConditionalWeakTable<Entity,InventoryTransaction>();
         internal static bool IsProtected(Entity item)=>item!=null&&Custody.TryGetValue(item,out _);
+        internal static bool OwnsConsumption(Entity item,InventoryTransaction tx)
+            => item!=null && tx!=null && Custody.TryGetValue(item,out var owner) && owner==tx;
         static bool Guard(Entity item,InventoryTransaction tx)
         {
             if(Custody.TryGetValue(item,out var owner))return owner==tx;
@@ -41,6 +43,7 @@ namespace CavesOfOoo.Core
             var e=GameEvent.New(id);e.SetParameter("Actor",plan.Actor);e.SetParameter("Source",plan.Source);
             e.SetParameter("Station",plan.Definition.WorkKind=="ForgeCold"?plan.Station:null);
             e.SetParameter("Tool",plan.Definition.WorkKind=="HandCutting"?plan.Station:null);e.SetParameter("WorkProvider",plan.Station);e.SetParameter("Process",plan.Definition);
+            e.SetParameter("Inputs",Array.AsReadOnly(new[]{plan.Source}.Concat(plan.ExtraInputs.Select(i=>i.Owner)).ToArray()));
             return owner.FireEventAndRelease(e);
         }
         static int Count(Entity item)=>item.GetPart<StackerPart>()?.StackCount??1;
@@ -65,17 +68,19 @@ namespace CavesOfOoo.Core
             bool Refuse()=>PreparationActions.Reject(plan?.Actor,plan?.Source,command,"process_unavailable");
             if(tx==null || quote==null || !quote.Current())return Refuse();
             var actor=plan.Actor;var input=plan.Source;var pack=actor.GetPart<InventoryPart>();var zone=plan.Zone;
-            if(!tx.TryClaimAction(actor) || !PreparationActions.Begin(actor,input,zone,tx,command)
-                || !plan.BeginWork(tx,command) || !Guard(plan.Station,tx))return Refuse();
+            var inputs=new[]{input}.Concat(plan.ExtraInputs.Select(i=>i.Owner)).ToArray();
+            var participants=new[]{actor,plan.Station}.Concat(inputs).ToArray();
+            if(!tx.TryClaimAction(actor) || inputs.Any(i=>!PreparationActions.Begin(actor,i,zone,tx,command))
+                || !plan.BeginWork(tx,command) || !Guard(plan.Station,tx) || inputs.Any(i=>!Guard(i,tx)))return Refuse();
             var sourceTemplate=quote.SourceTemplate;var sourceState=quote.SourceState;
             if(sourceState==null)return Refuse();
             int sourceCount=Count(input),units=plan.Definition.InputCount;
-            foreach(var owner in new[]{actor,plan.Station,input})if(!Emit(owner,"BeforeMaterialProcess",plan))return Refuse();
+            foreach(var owner in participants)if(!Emit(owner,"BeforeMaterialProcess",plan))return Refuse();
             if(!quote.Current())return Refuse();
             var templates=quote.Outputs;
             if(templates.Any(t=>t==null))return Refuse();
             var products=new List<Entity>();var states=new Dictionary<Entity,MaterialProcessItemState>();
-            var ids=new HashSet<string>(new[]{actor.ID,plan.Station.ID,input.ID},StringComparer.Ordinal);
+            var ids=new HashSet<string>(participants.Select(e=>e.ID),StringComparer.Ordinal);
             for(int kind=0;kind<templates.Length;kind++)for(int n=0;n<plan.Definition.OutputCounts[kind];n++)
             {
                 if(!templates.All(t=>t.Current()) || !plan.Current() || !sourceState.Matches())return Refuse();
@@ -100,12 +105,14 @@ namespace CavesOfOoo.Core
             tx.Do(null,()=>
             {
                 if(restored)return;restored=true;
-                foreach(var owner in products.Concat(received).Concat(new[]{input}).Distinct())Detach(owner);
+                foreach(var owner in products.Concat(received).Concat(inputs).Distinct())Detach(owner);
                 receipt.Restore();
             });
             if(!receipt.Apply(()=>
             {
-                for(int n=0;n<units;n++)if(!pack.TryConsumeOne(input))return false;
+                for(int n=0;n<units;n++)if(!pack.TryConsumeMaterialProcessUnit(input,tx))return false;
+                foreach(var ingredient in plan.ExtraInputs)
+                    for(int n=0;n<ingredient.Units;n++)if(!pack.TryConsumeMaterialProcessUnit(ingredient.Owner,tx))return false;
                 foreach(var product in products)
                 {
                     if(!pack.AddCraftedUnit(product,out var recipient) || recipient==null)return false;
@@ -117,17 +124,17 @@ namespace CavesOfOoo.Core
             {
                 if(!plan.ContextCurrent() || !sourceState.Matches() || !templates.All(t=>t.Current()) || Count(input)!=Math.Max(1,sourceCount-units)
                     || (sourceCount>units?!PreparationActions.Carried(actor,input):!Loose(input)||pack.Objects.Contains(input))
-                    || pack.GetCarriedWeight()>ceiling || states.Values.Any(s=>!s.Matches()))return false;
+                    || pack.GetCarriedWeight()>ceiling || states.Values.Any(s=>!s.Matches()) || plan.ExtraInputs.Any(i=>!i.After(actor)))return false;
                 foreach(var pair in expected)if(!PreparationActions.Carried(actor,pair.Key) || Count(pair.Key)!=pair.Value)return false;
                 foreach(var product in products)
                     if(!received.Contains(product) && (!Loose(product)||Count(product)!=0||pack.Objects.Contains(product)))return false;
                 return true;
             }
             if(!Final())return Refuse();
-            foreach(var owner in products.Concat(received).Concat(new[]{input}).Distinct())if(!Guard(owner,tx))return Refuse();
+            foreach(var owner in products.Concat(received).Concat(inputs).Distinct())if(!Guard(owner,tx))return Refuse();
             tx.BeforeCommit(Final);
             PreparationActions.Complete(tx,actor,input,command,"You complete the quoted "+plan.Definition.Mode.ToLowerInvariant()+" work. The declared inputs are spent; the products are in your pack.");
-            foreach(var owner in new[]{actor,plan.Station,input})
+            foreach(var owner in participants)
             {var captured=owner;tx.AfterCommit(()=>Emit(captured,"MaterialProcessCompleted",plan));}
             return true;
         }

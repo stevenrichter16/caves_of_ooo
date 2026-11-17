@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-17 10:15:03Z" end-time="2026-11-17 10:15:04Z" duration="0.7320643">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38977" result="Failed" site="Child" start-time="2026-11-17 10:15:03Z" end-time="2026-11-17 10:15:04Z" duration="0.732064" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47692" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38977" result="Failed" site="Child" start-time="2026-11-17 10:15:03Z" end-time="2026-11-17 10:15:04Z" duration="0.516735" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47693" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38977" result="Failed" site="Child" start-time="2026-11-17 10:15:03Z" end-time="2026-11-17 10:15:04Z" duration="0.509998" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47694" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38977" result="Failed" site="Child" start-time="2026-11-17 10:15:03Z" end-time="2026-11-17 10:15:04Z" duration="0.504218" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25181" name="MachineCompositeProcessTests" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-11-17 10:15:03Z" end-time="2026-11-17 10:15:04Z" duration="0.493539" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25199" name="CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-17 10:15:03Z" end-time="2026-11-17 10:15:04Z" duration="0.490544" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25197" name="CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads(False)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads(False)" methodname="CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="735576710" result="Failed" start-time="2026-11-17 10:15:03Z" end-time="2026-11-17 10:15:04Z" duration="0.359669" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  <Entity(knotflax cord)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineCompositeProcessTests.CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads (System.Boolean additional) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25198" name="CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads(True)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads(True)" methodname="CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1456787683" result="Failed" start-time="2026-11-17 10:15:04Z" end-time="2026-11-17 10:15:04Z" duration="0.024266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  <Entity(leather binding)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineCompositeProcessTests.CatalogueRevocationNeverGrantsPermissionToLaunderKnownInputPayloads (System.Boolean additional) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:58
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

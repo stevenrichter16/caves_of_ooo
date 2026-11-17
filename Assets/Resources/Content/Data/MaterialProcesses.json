@@ -63,6 +63,28 @@
       ],
       "ActionText": "cut leather binding",
       "LossText": "torn margins discarded; usable cutting tool required"
+    },
+    {
+      "Id": "guard_lashing",
+      "SourceBlueprint": "KnotflaxCord",
+      "SourceRecipeId": "braid_binding",
+      "Mode": "Process",
+      "InputCount": 1,
+      "AdditionalInputBlueprints": [
+        "LeatherBindingComponent"
+      ],
+      "AdditionalInputCounts": [
+        1
+      ],
+      "WorkKind": "HandCutting",
+      "OutputBlueprints": [
+        "GuardLashingComponent"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "trim and tension guard lashing",
+      "LossText": "trimming discarded; gain 1 hit, lose 1 penetration versus leather; usable cutting tool required"
     }
   ]
 }

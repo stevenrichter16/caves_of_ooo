@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-17 10:09:21Z" end-time="2026-11-17 10:09:22Z" duration="1.1277194">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38967" result="Failed" site="Child" start-time="2026-11-17 10:09:21Z" end-time="2026-11-17 10:09:22Z" duration="1.127719" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47681" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38967" result="Failed" site="Child" start-time="2026-11-17 10:09:21Z" end-time="2026-11-17 10:09:22Z" duration="0.918479" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47682" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38967" result="Failed" site="Child" start-time="2026-11-17 10:09:21Z" end-time="2026-11-17 10:09:22Z" duration="0.912383" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47683" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38967" result="Failed" site="Child" start-time="2026-11-17 10:09:21Z" end-time="2026-11-17 10:09:22Z" duration="0.906666" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25181" name="MachineCompositeProcessTests" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-11-17 10:09:21Z" end-time="2026-11-17 10:09:22Z" duration="0.892867" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25220" name="BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-17 10:09:21Z" end-time="2026-11-17 10:09:22Z" duration="0.764891" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25216" name="BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive(1,False)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive(1,False)" methodname="BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="737359295" result="Failed" start-time="2026-11-17 10:09:21Z" end-time="2026-11-17 10:09:22Z" duration="0.686319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A veto/reaction may not spend an ingredient reserved by the enclosing process.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineCompositeProcessTests.BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive (System.Int32 quantity, System.Boolean veto) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25217" name="BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive(1,True)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive(1,True)" methodname="BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1645558568" result="Failed" start-time="2026-11-17 10:09:22Z" end-time="2026-11-17 10:09:22Z" duration="0.024875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A veto/reaction may not spend an ingredient reserved by the enclosing process.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineCompositeProcessTests.BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive (System.Int32 quantity, System.Boolean veto) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25218" name="BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive(2,False)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive(2,False)" methodname="BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1057313442" result="Failed" start-time="2026-11-17 10:09:22Z" end-time="2026-11-17 10:09:22Z" duration="0.024802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A veto/reaction may not spend an ingredient reserved by the enclosing process.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineCompositeProcessTests.BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive (System.Int32 quantity, System.Boolean veto) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25219" name="BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive(2,True)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive(2,True)" methodname="BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="868149356" result="Failed" start-time="2026-11-17 10:09:22Z" end-time="2026-11-17 10:09:22Z" duration="0.025246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A veto/reaction may not spend an ingredient reserved by the enclosing process.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineCompositeProcessTests.BeforeCallbackCannotConsumeAProtectedIngredientThroughTheOrdinaryPrimitive (System.Int32 quantity, System.Boolean veto) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="25221" name="MalformedCataloguePermissionCannotBreakExistingBraidOrBandageMenus" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.MalformedCataloguePermissionCannotBreakExistingBraidOrBandageMenus" methodname="MalformedCataloguePermissionCannotBreakExistingBraidOrBandageMenus" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1853601373" result="Failed" start-time="2026-11-17 10:09:22Z" end-time="2026-11-17 10:09:22Z" duration="0.024601" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: No Exception to be thrown
+  But was:  <System.NullReferenceException: Object reference not set to an instance of an object
+  at CavesOfOoo.Core.MaterialProcessRegistry.Validate (CavesOfOoo.Data.EntityFactory factory) [0x000d0] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:90 
+  at CavesOfOoo.Tests.MachineCompositeProcessTests+<>c__DisplayClass26_0.<MalformedCataloguePermissionCannotBreakExistingBraidOrBandageMenus>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:118 
+  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineCompositeProcessTests.MalformedCataloguePermissionCannotBreakExistingBraidOrBandageMenus () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:118
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

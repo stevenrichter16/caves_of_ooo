@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="28" result="Failed(Child)" total="28" passed="8" failed="20" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-17 09:57:04Z" end-time="2026-11-17 09:57:25Z" duration="20.7565685">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38955" result="Failed" site="Child" start-time="2026-11-17 09:57:04Z" end-time="2026-11-17 09:57:25Z" duration="20.756569" total="28" passed="8" failed="20" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47666" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38955" result="Failed" site="Child" start-time="2026-11-17 09:57:04Z" end-time="2026-11-17 09:57:25Z" duration="20.556519" total="28" passed="8" failed="20" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47667" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38955" result="Failed" site="Child" start-time="2026-11-17 09:57:04Z" end-time="2026-11-17 09:57:25Z" duration="20.548107" total="28" passed="8" failed="20" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47668" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38955" result="Failed" site="Child" start-time="2026-11-17 09:57:04Z" end-time="2026-11-17 09:57:25Z" duration="20.542202" total="28" passed="8" failed="20" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25181" name="MachineCompositeProcessTests" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-11-17 09:57:04Z" end-time="2026-11-17 09:57:25Z" duration="20.529695" total="28" passed="8" failed="20" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25209" name="AdditionalInputCanOwnVetoAndCommittedReactions" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.AdditionalInputCanOwnVetoAndCommittedReactions" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.397930" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25207" name="AdditionalInputCanOwnVetoAndCommittedReactions(False)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.AdditionalInputCanOwnVetoAndCommittedReactions(False)" methodname="AdditionalInputCanOwnVetoAndCommittedReactions" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="2016328030" result="Failed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.361800" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.AdditionalInputCanOwnVetoAndCommittedReactions (System.Boolean veto) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25208" name="AdditionalInputCanOwnVetoAndCommittedReactions(True)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.AdditionalInputCanOwnVetoAndCommittedReactions(True)" methodname="AdditionalInputCanOwnVetoAndCommittedReactions" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1820635359" result="Failed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.033023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.AdditionalInputCanOwnVetoAndCommittedReactions (System.Boolean veto) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="25205" name="EquivalentAdditionalStacksSelectTheLowestIdentityOnce" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.EquivalentAdditionalStacksSelectTheLowestIdentityOnce" methodname="EquivalentAdditionalStacksSelectTheLowestIdentityOnce" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="496176092" result="Failed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.031447" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.EquivalentAdditionalStacksSelectTheLowestIdentityOnce () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:74
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25184" name="ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.062823" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25182" name="ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations(&quot;plain-region-a&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations(&quot;plain-region-a&quot;)" methodname="ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="382174422" result="Failed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.031610" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations (System.String zoneId) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25183" name="ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations(&quot;plain-region-b&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations(&quot;plain-region-b&quot;)" methodname="ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="2022778985" result="Failed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.030547" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.ExistingRecipePermissionEnablesFiniteCompositeAwayFromStations (System.String zoneId) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25194" name="InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:06Z" duration="0.517654" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25190" name="InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent(&quot;remove-braid&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent(&quot;remove-braid&quot;)" methodname="InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="979405818" result="Passed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.031261" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25191" name="InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent(&quot;duplicate-recipe&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent(&quot;duplicate-recipe&quot;)" methodname="InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1506266623" result="Passed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.031136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25192" name="InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent(&quot;explicit-first&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent(&quot;explicit-first&quot;)" methodname="InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="451230722" result="Passed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:05Z" duration="0.328403" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25193" name="InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent(&quot;explicit-last&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent(&quot;explicit-last&quot;)" methodname="InstancePermissionAndAmbiguousProviderRefusalsAreOrderIndependent" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="674903027" result="Passed" start-time="2026-11-17 09:57:05Z" end-time="2026-11-17 09:57:06Z" duration="0.125875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25185" name="MenuDisclosesBothInputsAndLossWithoutSpendingThem" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.MenuDisclosesBothInputsAndLossWithoutSpendingThem" methodname="MenuDisclosesBothInputsAndLossWithoutSpendingThem" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="43041497" result="Failed" label="Error" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.025254" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.MachineCompositeProcessTests.MenuDisclosesBothInputsAndLossWithoutSpendingThem () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:37 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25189" name="MissingOrUnsupportedAdditionalStockCannotBeSpent" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.MissingOrUnsupportedAdditionalStockCannotBeSpent" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.072349" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25186" name="MissingOrUnsupportedAdditionalStockCannotBeSpent(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.MissingOrUnsupportedAdditionalStockCannotBeSpent(&quot;absent&quot;)" methodname="MissingOrUnsupportedAdditionalStockCannotBeSpent" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="12051325" result="Passed" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.024125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25187" name="MissingOrUnsupportedAdditionalStockCannotBeSpent(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.MissingOrUnsupportedAdditionalStockCannotBeSpent(&quot;foreign&quot;)" methodname="MissingOrUnsupportedAdditionalStockCannotBeSpent" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1165684162" result="Passed" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.023677" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25188" name="MissingOrUnsupportedAdditionalStockCannotBeSpent(&quot;modified&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.MissingOrUnsupportedAdditionalStockCannotBeSpent(&quot;modified&quot;)" methodname="MissingOrUnsupportedAdditionalStockCannotBeSpent" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1551550330" result="Passed" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.023917" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25210" name="MultipleAdmissibleBehavioralVariantsDoNotGetSilentlySelected" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.MultipleAdmissibleBehavioralVariantsDoNotGetSilentlySelected" methodname="MultipleAdmissibleBehavioralVariantsDoNotGetSilentlySelected" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1832525621" result="Passed" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.023665" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25217" name="NativeInventoryInputPaysOnlyOnceForACommittedComposite" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.NativeInventoryInputPaysOnlyOnceForACommittedComposite" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.375375" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25214" name="NativeInventoryInputPaysOnlyOnceForACommittedComposite(&quot;valid&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.NativeInventoryInputPaysOnlyOnceForACommittedComposite(&quot;valid&quot;)" methodname="NativeInventoryInputPaysOnlyOnceForACommittedComposite" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1600585210" result="Failed" label="Error" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.282421" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.MachineCompositeProcessTests.NativeInventoryInputPaysOnlyOnceForACommittedComposite (System.String condition) [0x0020e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:125 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25215" name="NativeInventoryInputPaysOnlyOnceForACommittedComposite(&quot;stale-extra&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.NativeInventoryInputPaysOnlyOnceForACommittedComposite(&quot;stale-extra&quot;)" methodname="NativeInventoryInputPaysOnlyOnceForACommittedComposite" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1046822037" result="Failed" label="Error" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.041822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.MachineCompositeProcessTests.NativeInventoryInputPaysOnlyOnceForACommittedComposite (System.String condition) [0x0020e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:125 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25216" name="NativeInventoryInputPaysOnlyOnceForACommittedComposite(&quot;after&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.NativeInventoryInputPaysOnlyOnceForACommittedComposite(&quot;after&quot;)" methodname="NativeInventoryInputPaysOnlyOnceForACommittedComposite" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="706414393" result="Failed" label="Error" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:06Z" duration="0.040274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.MachineCompositeProcessTests.NativeInventoryInputPaysOnlyOnceForACommittedComposite (System.String condition) [0x0020e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:125 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25204" name="PartialInputsAndOutputMergeHaveExactOuterRollback" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.PartialInputsAndOutputMergeHaveExactOuterRollback" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-17 09:57:06Z" end-time="2026-11-17 09:57:25Z" duration="18.596427" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25202" name="PartialInputsAndOutputMergeHaveExactOuterRollback(False)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.PartialInputsAndOutputMergeHaveExactOuterRollback(False)" methodname="PartialInputsAndOutputMergeHaveExactOuterRollback" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1309117758" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.024237" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.PartialInputsAndOutputMergeHaveExactOuterRollback (System.Boolean fail) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25203" name="PartialInputsAndOutputMergeHaveExactOuterRollback(True)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.PartialInputsAndOutputMergeHaveExactOuterRollback(True)" methodname="PartialInputsAndOutputMergeHaveExactOuterRollback" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="529090669" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.023027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.PartialInputsAndOutputMergeHaveExactOuterRollback (System.Boolean fail) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25213" name="ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.051003" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25211" name="ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit(False)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit(False)" methodname="ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1301402867" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.024083" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  <Entity(knotflax cord)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineCompositeProcessTests.ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit (System.Boolean additional) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25212" name="ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit(True)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit(True)" methodname="ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="458375643" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.023541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  <Entity(leather binding)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineCompositeProcessTests.ParticipatingPayloadsCannotLaunderPrivateStateThroughSplit (System.Boolean additional) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25201" name="RetainedQuoteNeverReselectsOrRevivesChangedParticipants" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.138409" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25195" name="RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;count&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;count&quot;)" methodname="RetainedQuoteNeverReselectsOrRevivesChangedParticipants" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="72455337" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.023125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants (System.String mutation) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25196" name="RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;drop&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;drop&quot;)" methodname="RetainedQuoteNeverReselectsOrRevivesChangedParticipants" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="167854445" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.022395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants (System.String mutation) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25197" name="RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;replace&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;replace&quot;)" methodname="RetainedQuoteNeverReselectsOrRevivesChangedParticipants" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="732124745" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.022414" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants (System.String mutation) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25198" name="RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;id&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;id&quot;)" methodname="RetainedQuoteNeverReselectsOrRevivesChangedParticipants" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1616335548" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.025766" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants (System.String mutation) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25199" name="RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;permission-value&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;permission-value&quot;)" methodname="RetainedQuoteNeverReselectsOrRevivesChangedParticipants" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="529325823" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.022165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants (System.String mutation) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25200" name="RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;permission-owner&quot;)" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants(&quot;permission-owner&quot;)" methodname="RetainedQuoteNeverReselectsOrRevivesChangedParticipants" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1818009263" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.021751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.RetainedQuoteNeverReselectsOrRevivesChangedParticipants (System.String mutation) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="25206" name="SavedLegacyCordAndNewQuotesWorkWithoutNewPartsOrOldTokens" fullname="CavesOfOoo.Tests.MachineCompositeProcessTests.SavedLegacyCordAndNewQuotesWorkWithoutNewPartsOrOldTokens" methodname="SavedLegacyCordAndNewQuotesWorkWithoutNewPartsOrOldTokens" classname="CavesOfOoo.Tests.MachineCompositeProcessTests" runstate="Runnable" seed="1371630939" result="Failed" start-time="2026-11-17 09:57:25Z" end-time="2026-11-17 09:57:25Z" duration="0.022152" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|guard_lashing|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineCompositeProcessTests.Cmd (CavesOfOoo.Core.Entity source) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:24
+at CavesOfOoo.Tests.MachineCompositeProcessTests.SavedLegacyCordAndNewQuotesWorkWithoutNewPartsOrOldTokens () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineCompositeProcessTests.cs:77
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

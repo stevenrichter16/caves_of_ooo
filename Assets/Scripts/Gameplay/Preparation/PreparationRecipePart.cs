@@ -9,6 +9,7 @@ namespace CavesOfOoo.Core
         public string RecipeIds = "";
         public override bool HandleEvent(GameEvent e)
         {
+            if(!ParentEntity.HasPart<MaterialProcessInputPart>() && !MaterialProcessActions.Handle(ParentEntity,e,MaterialProcessRegistry.ForPreparation(ParentEntity)))return false;
             var actor = e.GetParameter<Entity>("Actor"); var zone = PreparationActions.ZoneFor(e, actor);
             if (e.ID == "GetInventoryActions")
             {

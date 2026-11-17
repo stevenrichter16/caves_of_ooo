@@ -14,33 +14,45 @@ namespace CavesOfOoo.Core
             && ParentEntity?.GetPart<MaterialProcessInputPart>() == this
             && ParentEntity.BlueprintName == definition.SourceBlueprint
             && Array.IndexOf((ProcessIds ?? "").Split(','), definition.Id) >= 0;
-        [NonSerialized] readonly Dictionary<string,MaterialProcessService.Quote> quotes=new Dictionary<string,MaterialProcessService.Quote>();
         public const string CommandPrefix="MaterialProcess|";
         public static bool IsCommand(string command)=>command?.StartsWith(CommandPrefix,StringComparison.Ordinal)==true;
-        public override bool HandleEvent(GameEvent e)
+        public override bool HandleEvent(GameEvent e)=>MaterialProcessActions.Handle(ParentEntity,e,(ProcessIds??" ").Split(','));
+    }
+    // One cache per actual owner, never a persisted entity-ID lookup. Both
+    // permission adapters use the same gather/dispatch and transaction surface.
+    internal static class MaterialProcessActions
+    {
+        sealed class Menu { internal readonly Dictionary<string,MaterialProcessService.Quote> Quotes=new Dictionary<string,MaterialProcessService.Quote>(); }
+        static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Entity,Menu> Menus=new System.Runtime.CompilerServices.ConditionalWeakTable<Entity,Menu>();
+        static string Label(CavesOfOoo.Data.EntityFactory factory,string bp)
+            => factory.Blueprints[bp].Parts.TryGetValue("Render",out var p) && p.TryGetValue("DisplayName",out var label)?label:bp;
+        internal static bool Handle(Entity owner,GameEvent e,IEnumerable<string> ids)
         {
+            if(owner==null)return true;
             var actor=e.GetParameter<Entity>("Actor");var zone=PreparationActions.ZoneFor(e,actor);
             if(e.ID=="GetInventoryActions")
             {
-                quotes.Clear();
-                foreach(var id in (ProcessIds??"").Split(',').Distinct())
+                if(e.GetParameter<Entity>("MaterialProcessGatherOwner")==owner)return true;
+                e.SetParameter("MaterialProcessGatherOwner",owner);var menu=Menus.GetValue(owner,_=>new Menu());menu.Quotes.Clear();
+                foreach(var id in ids.Distinct())
                 {
-                    var plan=MaterialProcessPlan.TryCreate(actor,ParentEntity,id,zone,ForgePart.Factory);
-                    var quote=MaterialProcessService.TryQuote(plan);if(quote==null)continue;
-                    string token=Guid.NewGuid().ToString("N");quotes[token]=quote;
-                    string outputs=string.Join(" + ",plan.Definition.OutputBlueprints.Select((bp,i)=>plan.Definition.OutputCounts[i]+" "+(ForgePart.Factory.Blueprints[bp].Parts["Render"].TryGetValue("DisplayName",out var label)?label:bp)));
-                    e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,
-                        plan.Definition.ActionText+": "+plan.Definition.InputCount+" -> "+outputs+(plan.Definition.LossText.Length>0?"; "+plan.Definition.LossText:"")+" (1 action, pack)",
-                        CommandPrefix+id+"|"+Uri.EscapeDataString(plan.StationId)+"|"+token,'\0',19);
+                    var plan=MaterialProcessPlan.TryCreate(actor,owner,id,zone,ForgePart.Factory);
+                    var quoted=MaterialProcessService.TryQuote(plan);if(quoted==null)continue;
+                    string token=Guid.NewGuid().ToString("N");menu.Quotes[token]=quoted;
+                    var d=plan.Definition;
+                    string outputs=string.Join(" + ",d.OutputBlueprints.Select((bp,i)=>d.OutputCounts[i]+" "+Label(plan.Factory,bp)));
+                    string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));
+                    e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
+                        MaterialProcessInputPart.CommandPrefix+id+"|"+Uri.EscapeDataString(plan.StationId)+"|"+token,'\0',19);
                 }
                 return true;
             }
             string command=e.GetStringParameter("Command");
-            if(e.ID!="InventoryAction" || !IsCommand(command))return true;
+            if(e.ID!="InventoryAction" || !MaterialProcessInputPart.IsCommand(command))return true;
             if(e.GetParameter<bool>("MaterialProcessAttempted"))return true;e.SetParameter("MaterialProcessAttempted",true);
-            var fields=command.Split('|');if(fields.Length!=4 || !quotes.TryGetValue(fields[3],out var selectedQuote))return true;
-            quotes.Remove(fields[3]);var selected=selectedQuote.Plan;
-            if(selected.Actor!=actor || selected.Source!=ParentEntity || selected.Zone!=zone || selected.Definition.Id!=fields[1]
+            var fields=command.Split('|');if(fields.Length!=4 || !Menus.TryGetValue(owner,out var current) || !current.Quotes.TryGetValue(fields[3],out var selectedQuote))return true;
+            current.Quotes.Remove(fields[3]);var selected=selectedQuote.Plan;
+            if(selected.Actor!=actor || selected.Source!=owner || selected.Zone!=zone || selected.Definition.Id!=fields[1]
                 || Uri.EscapeDataString(selected.StationId)!=fields[2]
                 || !MaterialProcessService.TryExecute(selectedQuote,e.GetParameter<InventoryTransaction>("InventoryTransaction"),command))return true;
             e.Handled=true;return false;

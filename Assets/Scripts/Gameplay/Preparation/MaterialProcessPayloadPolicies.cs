@@ -41,12 +41,12 @@ namespace CavesOfOoo.Core
         internal static IMaterialProcessPartPolicy Get(Type type)=>Policies.TryGetValue(type,out var policy)?policy:null;
 
         internal static bool CanSplitProcessingInput(Entity owner)
-            => !owner.HasPart<MaterialProcessInputPart>() || owner.Statistics?.Count==0
+            => !MaterialProcessRegistry.IsPayload(owner) || owner.Statistics?.Count==0
                 && owner.Parts.All(p=>p!=null && Get(p.GetType()) is ScalarPolicy);
         internal static bool CanMergeProcessingInputs(Entity first,Entity second)
         {
-            if(!first.HasPart<MaterialProcessInputPart>() && !second.HasPart<MaterialProcessInputPart>())return true;
-            if(!first.HasPart<MaterialProcessInputPart>() || !second.HasPart<MaterialProcessInputPart>()
+            if(!MaterialProcessRegistry.IsPayload(first) && !MaterialProcessRegistry.IsPayload(second))return true;
+            if(!MaterialProcessRegistry.IsPayload(first) || !MaterialProcessRegistry.IsPayload(second)
                 || !CanSplitProcessingInput(first) || !CanSplitProcessingInput(second) || first.Parts.Count!=second.Parts.Count)return false;
             bool Same<K,V>(IDictionary<K,V> a,IDictionary<K,V> b)=>a!=null&&b!=null&&a.Count==b.Count&&a.All(p=>b.TryGetValue(p.Key,out var v)&&EqualityComparer<V>.Default.Equals(p.Value,v));
             if(!Same(first.Tags,second.Tags)||!Same(first.Properties,second.Properties)||!Same(first.IntProperties,second.IntProperties))return false;
