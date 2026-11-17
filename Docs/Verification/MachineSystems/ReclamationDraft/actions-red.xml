@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Failed(Child)" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-17 04:45:17Z" end-time="2026-11-17 04:45:18Z" duration="1.7881779">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38833" result="Failed" site="Child" start-time="2026-11-17 04:45:17Z" end-time="2026-11-17 04:45:18Z" duration="1.788178" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47512" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38833" result="Failed" site="Child" start-time="2026-11-17 04:45:17Z" end-time="2026-11-17 04:45:18Z" duration="1.528011" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47513" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38833" result="Failed" site="Child" start-time="2026-11-17 04:45:17Z" end-time="2026-11-17 04:45:18Z" duration="1.394556" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47514" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38833" result="Failed" site="Child" start-time="2026-11-17 04:45:17Z" end-time="2026-11-17 04:45:18Z" duration="1.294122" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25251" name="MachineMaterialProcessActionTests" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-11-17 04:45:17Z" end-time="2026-11-17 04:45:18Z" duration="1.192907" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="25271" name="CallbackCannotSplitAProtectedMergeRecipientThenKeepARefundedUnit" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.CallbackCannotSplitAProtectedMergeRecipientThenKeepARefundedUnit" methodname="CallbackCannotSplitAProtectedMergeRecipientThenKeepARefundedUnit" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="632254845" result="Failed" start-time="2026-11-17 04:45:17Z" end-time="2026-11-17 04:45:18Z" duration="0.242197" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.CallbackCannotSplitAProtectedMergeRecipientThenKeepARefundedUnit () [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:93
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="25277" name="CompletionEffectsNeverFireForRolledBackWork" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.CompletionEffectsNeverFireForRolledBackWork" methodname="CompletionEffectsNeverFireForRolledBackWork" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="872279370" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.023753" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.CompletionEffectsNeverFireForRolledBackWork () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:119
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="25255" name="DestructiveBranchCreatesFiniteStockAndExistingPackComponentOutsideTheForge" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.DestructiveBranchCreatesFiniteStockAndExistingPackComponentOutsideTheForge" methodname="DestructiveBranchCreatesFiniteStockAndExistingPackComponentOutsideTheForge" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1812067880" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.023359" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.DestructiveBranchCreatesFiniteStockAndExistingPackComponentOutsideTheForge () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:45
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25259" name="MergedOutputConservesRecipientOnSuccessAndRollback" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MergedOutputConservesRecipientOnSuccessAndRollback" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.054379" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25257" name="MergedOutputConservesRecipientOnSuccessAndRollback(False)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MergedOutputConservesRecipientOnSuccessAndRollback(False)" methodname="MergedOutputConservesRecipientOnSuccessAndRollback" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="2002883954" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.023535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.MergedOutputConservesRecipientOnSuccessAndRollback (System.Boolean fail) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25258" name="MergedOutputConservesRecipientOnSuccessAndRollback(True)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MergedOutputConservesRecipientOnSuccessAndRollback(True)" methodname="MergedOutputConservesRecipientOnSuccessAndRollback" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1727795867" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.022468" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.MergedOutputConservesRecipientOnSuccessAndRollback (System.Boolean fail) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="25272" name="NestedProcessCannotSpendAnotherSourceWithinTheSameAction" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.NestedProcessCannotSpendAnotherSourceWithinTheSameAction" methodname="NestedProcessCannotSpendAnotherSourceWithinTheSameAction" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1524429921" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.023388" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.NestedProcessCannotSpendAnotherSourceWithinTheSameAction () [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:100
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25270" name="OuterMutationRollsBackOnlyTheParticipatingGoods" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.259640" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25260" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;source-ground&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;source-ground&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1306555756" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.023640" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25261" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-ground&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-ground&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1863943582" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.022509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25262" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-container&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-container&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1765073740" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.022906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25263" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-count&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-count&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="290607352" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.022715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25264" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-part&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-part&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="456297822" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.022872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25265" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-weight&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-weight&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="405700465" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.023058" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25266" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;actor-move&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;actor-move&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="606385887" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.023448" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25267" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;forge-move&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;forge-move&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1566968216" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.023167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25268" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;forge-blueprint&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;forge-blueprint&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1504217991" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.022614" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25269" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;recipe-reload&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;recipe-reload&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1643319129" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.022284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods (System.String mutation) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="25256" name="PartialSourceStackConsumesExactlyOneAndRetainsItsOtherOptions" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.PartialSourceStackConsumesExactlyOneAndRetainsItsOtherOptions" methodname="PartialSourceStackConsumesExactlyOneAndRetainsItsOtherOptions" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="180876790" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.022100" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.PartialSourceStackConsumesExactlyOneAndRetainsItsOtherOptions () [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:53
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25276" name="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.115719" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25274" name="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess(False)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess(False)" methodname="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1691842835" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.028719" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess (System.Boolean veto) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:115
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25275" name="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess(True)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess(True)" methodname="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="830749703" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.039470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess (System.Boolean veto) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:115
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25254" name="SameRecoveryContractWorksOutsideItsAuthoredSite" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.SameRecoveryContractWorksOutsideItsAuthoredSite" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.194295" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25252" name="SameRecoveryContractWorksOutsideItsAuthoredSite(&quot;ordinary-random-zone&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.SameRecoveryContractWorksOutsideItsAuthoredSite(&quot;ordinary-random-zone&quot;)" methodname="SameRecoveryContractWorksOutsideItsAuthoredSite" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="632965778" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.075422" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|dismantle|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.SameRecoveryContractWorksOutsideItsAuthoredSite (System.String zoneId) [0x000aa] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:39
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25253" name="SameRecoveryContractWorksOutsideItsAuthoredSite(&quot;another-unrelated-place&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.SameRecoveryContractWorksOutsideItsAuthoredSite(&quot;another-unrelated-place&quot;)" methodname="SameRecoveryContractWorksOutsideItsAuthoredSite" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="138521817" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.086426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for MaterialProcess|dismantle|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.SameRecoveryContractWorksOutsideItsAuthoredSite (System.String zoneId) [0x000aa] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:39
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="25273" name="SavedSourceAndProductsRetainTheirFiniteProcessPermissions" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.SavedSourceAndProductsRetainTheirFiniteProcessPermissions" methodname="SavedSourceAndProductsRetainTheirFiniteProcessPermissions" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1010801606" result="Failed" start-time="2026-11-17 04:45:18Z" end-time="2026-11-17 04:45:18Z" duration="0.031590" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.Cmd (CavesOfOoo.Core.Entity item, System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:33
+at CavesOfOoo.Tests.MachineMaterialProcessActionTests.SavedSourceAndProductsRetainTheirFiniteProcessPermissions () [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:107
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,96 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "8cfbc200b4f0459a868678b93e29318a",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794887825488,
+      "finished_unix_ms": 1794887830511,
+      "last_update_unix_ms": 1794887830511,
+      "progress": {
+        "completed": 40,
+        "total": 40,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794887830479,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.ScopedPilotRejectsMoreThanTwoOutputKinds",
+        "last_finished_unix_ms": 1794887830479,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"actor-move\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"source-id\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"source-weight\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"source-part\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"source-drop\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"recipe-reload\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"forge-move\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"forge-replaced\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"authorization\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(\"factory-replaced\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.MissingProductInvalidatesPreviewBeforeAnyCreation",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.OrdinaryMetalItemDoesNotGainAnImplicitRecoveryManifest",
+            "message": "  A preview must resolve and retain exact source, recipe and physical station.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.PurePlanQuotesExactSourceWithoutCreatingOrSpendingAnything",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.UnavailableStationProducesNoPlan(\"none\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.UnavailableStationProducesNoPlan(\"far\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessPlanTests.UnavailableStationProducesNoPlan(\"hidden\")",
+            "message": "  Only explicitly opted-in input Parts may expose material processes.\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

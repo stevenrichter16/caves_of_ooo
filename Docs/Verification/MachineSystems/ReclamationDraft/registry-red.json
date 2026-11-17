@@ -1,0 +1,96 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "d3d91f0e16e344759eae45bdba6c1e86",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794887077109,
+      "finished_unix_ms": 1794887101108,
+      "last_update_unix_ms": 1794887101108,
+      "progress": {
+        "completed": 16,
+        "total": 16,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794887101081,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(\"{\\\"Processes\\\":[]}\")",
+        "last_finished_unix_ms": 1794887101081,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.BoundedProcessCatalogueAcceptsExplicitFiniteRecovery",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.DuplicateIdFailsAtomically",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(\"\\\"InputCount\\\":1\",\"\\\"InputCount\\\":0\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(\"\\\"InputCount\\\":1\",\"\\\"InputCount\\\":65\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(\"\\\"Reclaim\\\"\",\"\\\"Invent\\\"\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(\"\\\"ForgeCold\\\"\",\"\\\"UniversalMachine\\\"\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(\"\\\"recover-iron\\\"\",\"\\\"../recover\\\"\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(\"\\\"RecoveredIronBlank\\\",\\\"SalvagedTimber\\\"\",\"\\\"RecoveredIronBlank\\\",\\\"RecoveredIronBlank\\\"\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(\"\\\"OutputCounts\\\":[1,1]\",\"\\\"OutputCounts\\\":[0,1]\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(\"\\\"OutputCounts\\\":[1,1]\",\"\\\"OutputCounts\\\":[1]\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(\"\\\"OutputBlueprints\\\":[\\\"RecoveredIronBlank\\\",\\\"SalvagedTimber\\\"]\",\"\\\"OutputBlueprints\\\":[\\\"ReleasedExtractionTool\\\",\\\"SalvagedTimber\\\"]\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(null)",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(\"\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(\"{\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(\"{}\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(\"{\\\"Processes\\\":[]}\")",
+            "message": "  M3a needs a validated finite process catalogue before production actions.\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

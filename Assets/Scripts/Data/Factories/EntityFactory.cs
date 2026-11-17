@@ -245,6 +245,11 @@ namespace CavesOfOoo.Data
             return entity;
         }
 
+        /// <summary>Read-only admission for processing policies. No constructor or
+        /// Initialize callback runs while inspecting a registered Part type.</summary>
+        public bool TryGetRegisteredPartType(string name, out Type type)
+            => _partTypes.TryGetValue(name, out type) || _partTypes.TryGetValue(name + "Part", out type);
+
         private Part CreatePart(string typeName)
         {
             // Try direct name match

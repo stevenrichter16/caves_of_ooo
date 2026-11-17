@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="50" result="Failed(Child)" total="50" passed="43" failed="7" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-17 04:01:50Z" end-time="2026-11-17 04:01:51Z" duration="1.2619806">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38811" result="Failed" site="Child" start-time="2026-11-17 04:01:50Z" end-time="2026-11-17 04:01:51Z" duration="1.261981" total="50" passed="43" failed="7" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47485" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38811" result="Failed" site="Child" start-time="2026-11-17 04:01:50Z" end-time="2026-11-17 04:01:51Z" duration="1.130671" total="50" passed="43" failed="7" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47486" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38811" result="Failed" site="Child" start-time="2026-11-17 04:01:50Z" end-time="2026-11-17 04:01:51Z" duration="1.124394" total="50" passed="43" failed="7" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47487" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38811" result="Failed" site="Child" start-time="2026-11-17 04:01:50Z" end-time="2026-11-17 04:01:51Z" duration="1.120645" total="50" passed="43" failed="7" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25296" name="MachineMaterialProcessBlueprintTests" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-11-17 04:01:50Z" end-time="2026-11-17 04:01:51Z" duration="0.501258" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="25297" name="ExistingPortableBlueprintsPassContentValidation" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.ExistingPortableBlueprintsPassContentValidation" methodname="ExistingPortableBlueprintsPassContentValidation" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="290226880" result="Passed" start-time="2026-11-17 04:01:50Z" end-time="2026-11-17 04:01:51Z" duration="0.169005" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25309" name="MalformedOrActuallySolidBlueprintsFailClosed" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.148208" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25303" name="MalformedOrActuallySolidBlueprintsFailClosed(&quot;blueprints&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed(&quot;blueprints&quot;)" methodname="MalformedOrActuallySolidBlueprintsFailClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="737610365" result="Failed" label="Error" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.025106" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.
+  ----> System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.Validate (CavesOfOoo.Data.EntityFactory factory) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:71 
+  at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed (System.String defect) [0x000eb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:93 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 
+--NullReferenceException
+  at CavesOfOoo.Core.MaterialProcessRegistry.Portable (CavesOfOoo.Data.EntityFactory factory, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:74 
+  at CavesOfOoo.Core.MaterialProcessRegistry.Validate (CavesOfOoo.Data.EntityFactory factory) [0x0004c] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:66 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25304" name="MalformedOrActuallySolidBlueprintsFailClosed(&quot;tags&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed(&quot;tags&quot;)" methodname="MalformedOrActuallySolidBlueprintsFailClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="1533193749" result="Failed" label="Error" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023181" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.
+  ----> System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.Validate (CavesOfOoo.Data.EntityFactory factory) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:71 
+  at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed (System.String defect) [0x000eb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:93 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 
+--NullReferenceException
+  at CavesOfOoo.Core.MaterialProcessRegistry.Portable (CavesOfOoo.Data.EntityFactory factory, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:74 
+  at CavesOfOoo.Core.MaterialProcessRegistry.Validate (CavesOfOoo.Data.EntityFactory factory) [0x0008c] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:68 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25305" name="MalformedOrActuallySolidBlueprintsFailClosed(&quot;parts&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed(&quot;parts&quot;)" methodname="MalformedOrActuallySolidBlueprintsFailClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="964710720" result="Failed" label="Error" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.022479" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.
+  ----> System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.Validate (CavesOfOoo.Data.EntityFactory factory) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:71 
+  at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed (System.String defect) [0x000eb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:93 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 
+--NullReferenceException
+  at CavesOfOoo.Core.MaterialProcessRegistry.Portable (CavesOfOoo.Data.EntityFactory factory, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:74 
+  at CavesOfOoo.Core.MaterialProcessRegistry.Validate (CavesOfOoo.Data.EntityFactory factory) [0x0008c] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:68 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25306" name="MalformedOrActuallySolidBlueprintsFailClosed(&quot;physics&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed(&quot;physics&quot;)" methodname="MalformedOrActuallySolidBlueprintsFailClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="264800655" result="Failed" label="Error" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.022265" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.
+  ----> System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.Validate (CavesOfOoo.Data.EntityFactory factory) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:71 
+  at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed (System.String defect) [0x000eb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:93 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 
+--NullReferenceException
+  at CavesOfOoo.Core.MaterialProcessRegistry.<Portable>g__True|7_0 (System.String key, CavesOfOoo.Core.MaterialProcessRegistry+<>c__DisplayClass7_0& ) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:77 
+  at CavesOfOoo.Core.MaterialProcessRegistry.Portable (CavesOfOoo.Data.EntityFactory factory, System.String name) [0x00076] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:78 
+  at CavesOfOoo.Core.MaterialProcessRegistry.Validate (CavesOfOoo.Data.EntityFactory factory) [0x0008c] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Preparation/MaterialProcessRegistry.cs:68 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25307" name="MalformedOrActuallySolidBlueprintsFailClosed(&quot;solid-tag-false&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed(&quot;solid-tag-false&quot;)" methodname="MalformedOrActuallySolidBlueprintsFailClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="1069062973" result="Failed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.029718" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed (System.String defect) [0x000eb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25308" name="MalformedOrActuallySolidBlueprintsFailClosed(&quot;solid-tag-omitted&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed(&quot;solid-tag-omitted&quot;)" methodname="MalformedOrActuallySolidBlueprintsFailClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="1576836284" result="Failed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MalformedOrActuallySolidBlueprintsFailClosed (System.String defect) [0x000eb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessRegistryTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="25310" name="MissingFactoryAndMalformedCatalogueFailClosed" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingFactoryAndMalformedCatalogueFailClosed" methodname="MissingFactoryAndMalformedCatalogueFailClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="1684043514" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023873" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25302" name="MissingOrNonPortableContentCannotAuthorizeAProcess" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingOrNonPortableContentCannotAuthorizeAProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.093704" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25298" name="MissingOrNonPortableContentCannotAuthorizeAProcess(&quot;Dagger&quot;,&quot;MissingSource&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingOrNonPortableContentCannotAuthorizeAProcess(&quot;Dagger&quot;,&quot;MissingSource&quot;)" methodname="MissingOrNonPortableContentCannotAuthorizeAProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="1171337210" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023311" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25299" name="MissingOrNonPortableContentCannotAuthorizeAProcess(&quot;IronSpikeComponent&quot;,&quot;MissingProduct&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingOrNonPortableContentCannotAuthorizeAProcess(&quot;IronSpikeComponent&quot;,&quot;MissingProduct&quot;)" methodname="MissingOrNonPortableContentCannotAuthorizeAProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="930306700" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.022974" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25300" name="MissingOrNonPortableContentCannotAuthorizeAProcess(&quot;IronSpikeComponent&quot;,&quot;TinkersForge&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingOrNonPortableContentCannotAuthorizeAProcess(&quot;IronSpikeComponent&quot;,&quot;TinkersForge&quot;)" methodname="MissingOrNonPortableContentCannotAuthorizeAProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="1637073159" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25301" name="MissingOrNonPortableContentCannotAuthorizeAProcess(&quot;Dagger&quot;,&quot;Player&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingOrNonPortableContentCannotAuthorizeAProcess(&quot;Dagger&quot;,&quot;Player&quot;)" methodname="MissingOrNonPortableContentCannotAuthorizeAProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests" runstate="Runnable" seed="1722120266" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023596" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="25251" name="MachineMaterialProcessPlanTests" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.533261" total="17" passed="16" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25269" name="CapturedPreviewCannotAuthorizeChangedParticipants" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.264586" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25258" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;actor-move&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;actor-move&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="453476144" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.027392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25259" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;source-id&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;source-id&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="1231892488" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.022605" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25260" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;source-weight&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;source-weight&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="1979402392" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.022984" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25261" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;source-part&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;source-part&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="581013589" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25262" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;source-drop&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;source-drop&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="1815854646" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.024548" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25263" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;recipe-reload&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;recipe-reload&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="2115351834" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023815" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25264" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;forge-move&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;forge-move&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="1899269142" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023999" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25265" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;forge-replaced&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;forge-replaced&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="2137528536" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023286" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25266" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;forge-blueprint&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;forge-blueprint&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="1323694769" result="Failed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023488" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants (System.String mutation) [0x001b0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessPlanTests.cs:69
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25267" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;authorization&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;authorization&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="788705535" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.022575" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25268" name="CapturedPreviewCannotAuthorizeChangedParticipants(&quot;factory-replaced&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.CapturedPreviewCannotAuthorizeChangedParticipants(&quot;factory-replaced&quot;)" methodname="CapturedPreviewCannotAuthorizeChangedParticipants" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="1711609728" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.025826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25270" name="MissingProductInvalidatesPreviewBeforeAnyCreation" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.MissingProductInvalidatesPreviewBeforeAnyCreation" methodname="MissingProductInvalidatesPreviewBeforeAnyCreation" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="288995676" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.025100" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25253" name="OrdinaryMetalItemDoesNotGainAnImplicitRecoveryManifest" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.OrdinaryMetalItemDoesNotGainAnImplicitRecoveryManifest" methodname="OrdinaryMetalItemDoesNotGainAnImplicitRecoveryManifest" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="1823879523" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.035707" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25252" name="PurePlanQuotesExactSourceWithoutCreatingOrSpendingAnything" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.PurePlanQuotesExactSourceWithoutCreatingOrSpendingAnything" methodname="PurePlanQuotesExactSourceWithoutCreatingOrSpendingAnything" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="1279666933" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.064769" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25257" name="UnavailableStationProducesNoPlan" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.UnavailableStationProducesNoPlan" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.141764" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25254" name="UnavailableStationProducesNoPlan(&quot;none&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.UnavailableStationProducesNoPlan(&quot;none&quot;)" methodname="UnavailableStationProducesNoPlan" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="462106541" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.094051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25255" name="UnavailableStationProducesNoPlan(&quot;far&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.UnavailableStationProducesNoPlan(&quot;far&quot;)" methodname="UnavailableStationProducesNoPlan" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="818713283" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25256" name="UnavailableStationProducesNoPlan(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests.UnavailableStationProducesNoPlan(&quot;hidden&quot;)" methodname="UnavailableStationProducesNoPlan" classname="CavesOfOoo.Tests.MachineMaterialProcessPlanTests" runstate="Runnable" seed="913677044" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.023125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="25271" name="MachineMaterialProcessRegistryTests" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.070758" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25272" name="BoundedProcessCatalogueAcceptsExplicitFiniteRecovery" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.BoundedProcessCatalogueAcceptsExplicitFiniteRecovery" methodname="BoundedProcessCatalogueAcceptsExplicitFiniteRecovery" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="725547425" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25295" name="DuplicateIdFailsAtomically" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.DuplicateIdFailsAtomically" methodname="DuplicateIdFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="733521645" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000067" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25294" name="ExcessiveOutputQuantityFailsClosed" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.ExcessiveOutputQuantityFailsClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000534" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25292" name="ExcessiveOutputQuantityFailsClosed(&quot;[65,1]&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.ExcessiveOutputQuantityFailsClosed(&quot;[65,1]&quot;)" methodname="ExcessiveOutputQuantityFailsClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1584800996" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25293" name="ExcessiveOutputQuantityFailsClosed(&quot;[1,65]&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.ExcessiveOutputQuantityFailsClosed(&quot;[1,65]&quot;)" methodname="ExcessiveOutputQuantityFailsClosed" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1460231315" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000098" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25288" name="InvalidProcessFailsAtomically" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000861" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25279" name="InvalidProcessFailsAtomically(&quot;\&quot;InputCount\&quot;:1&quot;,&quot;\&quot;InputCount\&quot;:0&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(&quot;\&quot;InputCount\&quot;:1&quot;,&quot;\&quot;InputCount\&quot;:0&quot;)" methodname="InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="597157033" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25280" name="InvalidProcessFailsAtomically(&quot;\&quot;InputCount\&quot;:1&quot;,&quot;\&quot;InputCount\&quot;:65&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(&quot;\&quot;InputCount\&quot;:1&quot;,&quot;\&quot;InputCount\&quot;:65&quot;)" methodname="InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1821791529" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25281" name="InvalidProcessFailsAtomically(&quot;\&quot;Reclaim\&quot;&quot;,&quot;\&quot;Invent\&quot;&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(&quot;\&quot;Reclaim\&quot;&quot;,&quot;\&quot;Invent\&quot;&quot;)" methodname="InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1975003816" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25282" name="InvalidProcessFailsAtomically(&quot;\&quot;ForgeCold\&quot;&quot;,&quot;\&quot;UniversalMachine\&quot;&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(&quot;\&quot;ForgeCold\&quot;&quot;,&quot;\&quot;UniversalMachine\&quot;&quot;)" methodname="InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1739981025" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25283" name="InvalidProcessFailsAtomically(&quot;\&quot;recover-iron\&quot;&quot;,&quot;\&quot;../recover\&quot;&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(&quot;\&quot;recover-iron\&quot;&quot;,&quot;\&quot;../recover\&quot;&quot;)" methodname="InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1610690716" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000048" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25284" name="InvalidProcessFailsAtomically(&quot;\&quot;RecoveredIronBlank\&quot;,\&quot;SalvagedTimber\&quot;&quot;,&quot;\&quot;RecoveredIronBlank\&quot;,\&quot;RecoveredIronBlank\&quot;&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(&quot;\&quot;RecoveredIronBlank\&quot;,\&quot;SalvagedTimber\&quot;&quot;,&quot;\&quot;RecoveredIronBlank\&quot;,\&quot;RecoveredIronBlank\&quot;&quot;)" methodname="InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1738011525" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25285" name="InvalidProcessFailsAtomically(&quot;\&quot;OutputCounts\&quot;:[1,1]&quot;,&quot;\&quot;OutputCounts\&quot;:[0,1]&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(&quot;\&quot;OutputCounts\&quot;:[1,1]&quot;,&quot;\&quot;OutputCounts\&quot;:[0,1]&quot;)" methodname="InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1265379359" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000036" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25286" name="InvalidProcessFailsAtomically(&quot;\&quot;OutputCounts\&quot;:[1,1]&quot;,&quot;\&quot;OutputCounts\&quot;:[1]&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(&quot;\&quot;OutputCounts\&quot;:[1,1]&quot;,&quot;\&quot;OutputCounts\&quot;:[1]&quot;)" methodname="InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1583790567" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25287" name="InvalidProcessFailsAtomically(&quot;\&quot;OutputBlueprints\&quot;:[\&quot;RecoveredIronBlank\&quot;,\&quot;SalvagedTimber\&quot;]&quot;,&quot;\&quot;OutputBlueprints\&quot;:[\&quot;ReleasedExtractionTool\&quot;,\&quot;SalvagedTimber\&quot;]&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.InvalidProcessFailsAtomically(&quot;\&quot;OutputBlueprints\&quot;:[\&quot;RecoveredIronBlank\&quot;,\&quot;SalvagedTimber\&quot;]&quot;,&quot;\&quot;OutputBlueprints\&quot;:[\&quot;ReleasedExtractionTool\&quot;,\&quot;SalvagedTimber\&quot;]&quot;)" methodname="InvalidProcessFailsAtomically" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="101810447" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25278" name="MalformedCatalogueClearsEarlierDefinitions" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000589" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25273" name="MalformedCatalogueClearsEarlierDefinitions(null)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(null)" methodname="MalformedCatalogueClearsEarlierDefinitions" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1548043000" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25274" name="MalformedCatalogueClearsEarlierDefinitions(&quot;&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(&quot;&quot;)" methodname="MalformedCatalogueClearsEarlierDefinitions" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1722844810" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000038" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25275" name="MalformedCatalogueClearsEarlierDefinitions(&quot;{&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(&quot;{&quot;)" methodname="MalformedCatalogueClearsEarlierDefinitions" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1342137489" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000076" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25276" name="MalformedCatalogueClearsEarlierDefinitions(&quot;{}&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(&quot;{}&quot;)" methodname="MalformedCatalogueClearsEarlierDefinitions" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1468176883" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000038" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25277" name="MalformedCatalogueClearsEarlierDefinitions(&quot;{\&quot;Processes\&quot;:[]}&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.MalformedCatalogueClearsEarlierDefinitions(&quot;{\&quot;Processes\&quot;:[]}&quot;)" methodname="MalformedCatalogueClearsEarlierDefinitions" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="290062891" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25291" name="NullRowInvalidatesTheWholeCatalogue" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.NullRowInvalidatesTheWholeCatalogue" methodname="NullRowInvalidatesTheWholeCatalogue" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="2085786306" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000118" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25290" name="PublishedOutputsCannotBeMutatedByPreviewCallers" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.PublishedOutputsCannotBeMutatedByPreviewCallers" methodname="PublishedOutputsCannotBeMutatedByPreviewCallers" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="1679321494" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.066861" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25289" name="ScopedPilotRejectsMoreThanTwoOutputKinds" fullname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.ScopedPilotRejectsMoreThanTwoOutputKinds" methodname="ScopedPilotRejectsMoreThanTwoOutputKinds" classname="CavesOfOoo.Tests.MachineMaterialProcessRegistryTests" runstate="Runnable" seed="583601176" result="Passed" start-time="2026-11-17 04:01:51Z" end-time="2026-11-17 04:01:51Z" duration="0.000090" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

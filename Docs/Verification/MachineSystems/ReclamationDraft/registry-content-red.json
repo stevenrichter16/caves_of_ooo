@@ -1,0 +1,60 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "d9e6520b329149bb8a4bf3d2db81a86a",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1794887408277,
+      "finished_unix_ms": 1794887412607,
+      "last_update_unix_ms": 1794887412607,
+      "progress": {
+        "completed": 24,
+        "total": 24,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1794887412576,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.ScopedPilotRejectsMoreThanTwoOutputKinds",
+        "last_finished_unix_ms": 1794887412576,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.ExistingPortableBlueprintsPassContentValidation",
+            "message": "  Syntax-only rows cannot authorize missing or non-portable content.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingFactoryAndMalformedCatalogueFailClosed",
+            "message": "  Syntax-only rows cannot authorize missing or non-portable content.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingOrNonPortableContentCannotAuthorizeAProcess(\"Dagger\",\"MissingSource\")",
+            "message": "  Syntax-only rows cannot authorize missing or non-portable content.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingOrNonPortableContentCannotAuthorizeAProcess(\"IronSpikeComponent\",\"MissingProduct\")",
+            "message": "  Syntax-only rows cannot authorize missing or non-portable content.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingOrNonPortableContentCannotAuthorizeAProcess(\"IronSpikeComponent\",\"TinkersForge\")",
+            "message": "  Syntax-only rows cannot authorize missing or non-portable content.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessBlueprintTests.MissingOrNonPortableContentCannotAuthorizeAProcess(\"Dagger\",\"Player\")",
+            "message": "  Syntax-only rows cannot authorize missing or non-portable content.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MachineMaterialProcessRegistryTests.ScopedPilotRejectsMoreThanTwoOutputKinds",
+            "message": "  Expected: greater than 0\n  But was:  0\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

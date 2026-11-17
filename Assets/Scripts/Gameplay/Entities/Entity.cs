@@ -432,6 +432,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity CloneForStack()
         {
+            if (MaterialProcessService.IsProtected(this) || !MaterialProcessPayloadPolicies.CanSplitProcessingInput(this))
+                throw new InvalidOperationException("This processing instance cannot be cloned without losing its behavior.");
             var torch = GetPart<TorchLightPart>();
             if (torch != null && !torch.CanSplitSafely())
                 throw new InvalidOperationException("Cannot clone a torch with unsupported effect state.");

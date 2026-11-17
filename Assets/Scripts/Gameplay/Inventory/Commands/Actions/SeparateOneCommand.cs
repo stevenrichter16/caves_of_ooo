@@ -30,6 +30,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 || inventory.EquippedItems.ContainsValue(_source) || inventory.FindEquippedBodyPart(_source) != null
                 || (physics != null && (physics.InInventory != context.Actor || physics.Equipped != null)))
                 return InventoryValidationResult.Invalid(InventoryValidationErrorCode.NotOwned, "Separate one requires an item carried in your pack.");
+            if (MaterialProcessService.IsProtected(_source) || !MaterialProcessPayloadPolicies.CanSplitProcessingInput(_source))
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,"This instance cannot be separated without losing its behavior.");
             if ((_source.GetPart<StackerPart>()?.StackCount ?? 1) <= 1)
                 return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, "You need at least two items in the stack.");
             return InventoryValidationResult.Valid();

@@ -22,6 +22,74 @@ namespace CavesOfOoo.Tests
         const BindingFlags Members = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
         [TestCase(false)] [TestCase(true)]
+        public void SelectedLongActionKeepsItsProductsLossAndPaymentVisibleBeforeSelection(bool flat)
+        {
+            using (var r = new Rig(flat))
+            {
+                var item = r.Carry("DriedMeat"); r.Open(); r.Select(item);
+                var display = InventoryScreenData.Build(r.Player).Categories.SelectMany(c => c.Items).Single(i => i.Item == item);
+                const string quote = "Reclaim: 1 -> 1 recovered iron blank + 1 salvaged timber; shaped workmanship and old fastening lost (1 action, pack)";
+                display.Actions = new List<InventoryAction> { new InventoryAction("preview", quote, "preview_only") };
+                Call(r.UI, "OpenItemActionPopup", display);
+                var popup = Get(r.UI, "_itemActionPopup"); var actions = (IList)Get(popup, "Actions");
+                int selected = Enumerable.Range(0, actions.Count).Single(i => (string)Get(actions[i], "Command") == "preview_only");
+                Set(popup, "CursorIndex", selected); Call(r.UI, "Render"); RequireView(r);
+                var full = VisibleLabels(r).Where(t => Normal(t.Content).Contains(Normal(quote))).ToList();
+                Assert.That(full, Has.Count.EqualTo(1), "The player must see the complete retained quote before committing, rather than a clipped row alone.");
+                AssertTextFits(full[0]);
+                Assert.False(r.UI.ConsumePendingEverydayTurn()); Assert.True(r.Pack.Contains(item));
+            }
+        }
+
+        [Test]
+        public void ActionPreviewKeepsShortRowsStableAndScrollsToTheRealLaterChoice()
+        {
+            using (var r = new Rig())
+            {
+                var item = r.Carry("DriedMeat"); r.Open(); r.Select(item);
+                var display = InventoryScreenData.Build(r.Player).Categories.SelectMany(c => c.Items).Single(i => i.Item == item);
+                display.Actions = Enumerable.Range(0, 11).Select(i => new InventoryAction("p" + i,
+                    i == 0 ? new string('x', 70) : i == 10 ? new string('z', 400) : "choice " + i, "preview_" + i)).ToList();
+                Call(r.UI, "OpenItemActionPopup", display);
+                var popup = Get(r.UI, "_itemActionPopup"); var actions = (IList)Get(popup, "Actions");
+                Action<int> select = index => { Set(popup, "CursorIndex", Enumerable.Range(0, actions.Count).Single(i => (string)Get(actions[i], "Command") == "preview_" + index)); Call(r.UI, "Render"); RequireView(r); };
+                select(0);
+                var boundary = VisibleLabels(r).Single(t => t.Content == new string('x', 70));
+                AssertTextFits(boundary); // The letter prefix makes this otherwise short label clip.
+                float previewHeight = boundary.rectTransform.rect.height;
+                select(1);
+                Assert.False(VisibleLabels(r).Any(t => t.Content == new string('x', 70)), "Changing the selection must clear the old preview.");
+                var shortPreview = VisibleLabels(r).Single(t => t.Content == "choice 1");
+                Assert.AreEqual(previewHeight, shortPreview.rectTransform.rect.height);
+                select(10);
+                var overflow = VisibleLabels(r).Single(t => t.Content.Contains('\n') && t.Content.StartsWith("zzz"));
+                Assert.That(overflow.Content, Does.EndWith("..."), "Preview overflow must be announced, not silently clipped or claimed complete.");
+                AssertTextFits(overflow);
+                var hits = (IEnumerable)Get(r.UI, "_ledgerHits");
+                Assert.True(hits.Cast<object>().Any(h => Get(h, "Kind").ToString() == "PopupRow" && (int)Get(h, "Index") == (int)Get(popup, "CursorIndex")), "The scrolled row must still target its original action index.");
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
+        [Test]
+        public void KeyboardPrefixAloneCanRequireAnActionPreview()
+        {
+            using (var r = new Rig())
+            {
+                var item = r.Carry("DriedMeat"); r.Open(); r.Select(item);
+                var display = InventoryScreenData.Build(r.Player).Categories.SelectMany(c => c.Items).Single(i => i.Item == item);
+                string text = new string('x', 70);
+                display.Actions = new List<InventoryAction> { new InventoryAction("boundary", text, "boundary_only") };
+                Call(r.UI, "OpenItemActionPopup", display);
+                var popup = Get(r.UI, "_itemActionPopup"); var actions = (IList)Get(popup, "Actions");
+                Set(popup, "CursorIndex", Enumerable.Range(0, actions.Count).Single(i => (string)Get(actions[i], "Command") == "boundary_only"));
+                Call(r.UI, "Render"); RequireView(r);
+                var preview = VisibleLabels(r).Single(t => t.Content == text);
+                AssertTextFits(preview); Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
         public void OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld(bool flat)
         {
             using (var r = new Rig(flat))

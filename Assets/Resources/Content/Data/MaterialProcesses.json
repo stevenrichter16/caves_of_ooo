@@ -1,0 +1,53 @@
+{
+  "Processes": [
+    {
+      "Id": "dismantle",
+      "SourceBlueprint": "ReleasedExtractionTool",
+      "Mode": "Dismantle",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "OutputBlueprints": [
+        "CinderhookAxeHeadComponent",
+        "FieldHaftComponent"
+      ],
+      "OutputCounts": [
+        1,
+        1
+      ],
+      "ActionText": "dismantle tool",
+      "LossText": "old fastening spent"
+    },
+    {
+      "Id": "reclaim",
+      "SourceBlueprint": "ReleasedExtractionTool",
+      "Mode": "Reclaim",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "OutputBlueprints": [
+        "RecoveredIronBlank",
+        "SalvagedTimber"
+      ],
+      "OutputCounts": [
+        1,
+        1
+      ],
+      "ActionText": "reclaim iron and timber",
+      "LossText": "shaped workmanship and old fastening lost"
+    },
+    {
+      "Id": "point",
+      "SourceBlueprint": "RecoveredIronBlank",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "OutputBlueprints": [
+        "IronSpikeComponent"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "dress iron point",
+      "LossText": ""
+    }
+  ]
+}

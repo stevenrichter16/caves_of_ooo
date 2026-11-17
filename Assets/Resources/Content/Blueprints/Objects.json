@@ -59708,6 +59708,183 @@
           "Value": ""
         }
       ]
+    },
+    {
+      "Name": "ReleasedExtractionTool",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "released extraction tool"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "/"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&R"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "StackCount",
+              "Value": "1"
+            },
+            {
+              "Key": "MaxStack",
+              "Value": "20"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "46"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "The binding and mount have failed; the cinderhook head and short haft are sound. Written off and released for salvage; no outstanding claim. At a ready forge, dismantling keeps the head and field haft. Reclamation sacrifices their shaped workmanship for one iron blank and one timber. Either choice spends the old fastening. You can carry or sell the find instead."
+            }
+          ]
+        },
+        {
+          "Name": "MaterialProcessInput",
+          "Params": [
+            {
+              "Key": "ProcessIds",
+              "Value": "dismantle,reclaim"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RecoveredIronBlank",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "recovered iron blank"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "StackCount",
+              "Value": "1"
+            },
+            {
+              "Key": "MaxStack",
+              "Value": "20"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Iron"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "One sound iron work blank cut from a released extraction tool. A ready forge can cold-dress it into one piercing iron point. This is iron, not steel; it cannot replace a steel blade in repairs. Its declared unit is a work blank, not an ore grade or a liquid measure."
+            }
+          ]
+        },
+        {
+          "Name": "MaterialProcessInput",
+          "Params": [
+            {
+              "Key": "ProcessIds",
+              "Value": "point"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

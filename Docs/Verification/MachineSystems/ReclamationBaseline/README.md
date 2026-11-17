@@ -1,0 +1,5 @@
+# M3a actual proposal baseline
+
+Main93f1114cb;2026-11-17UTC. Earnedseed704860946, normalGameBootstrap isolatedlauncher. Copied acceptedContainedOilActual/FreshTrayCheckpoint2670HP40 byte-exact; no oil branch/actions repeated. NativeCUAContinue, Right4/Down1 reaches62,7 at2720HP40; ordinaryLookDown/Return discloses62,8 as stonefloor only. Read-only probe confirms soleStoneFloor12078 visible/explored. Proposed candidate relativework.X+12/work.Y+6, all-layout/reservation checks stillpending. No newfind/process exists; this is not afterplay or usefulness acceptance.
+
+F5 SiteCheckpoint2720HP40 is cached no-retrofit control. Reuse ContainedOilBaseline/BeforeEntryCheckpoint2390 for future fresh generation acceptance. EntireQAroot archived `/private/tmp/coo-reclamation-baseline-root-399e6198`; stopped/rootnull/cleanscene. No goods/health/position/world injection or normal save edits. Actual screenshots workshop-before/site-reader-before. This checkpoint predates the later uncommitted read-only registry/plan scaffold. No process/action/new content is present in this baseline.

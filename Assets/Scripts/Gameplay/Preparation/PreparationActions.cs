@@ -9,7 +9,7 @@ namespace CavesOfOoo.Core
     /// <summary>Ordinary finite preparation actions. No skill grants, bits, or hidden stock.</summary>
     public static class PreparationActions
     {
-        public static bool IsCommand(string command) => command == "SalvageForgedWeapon" || command == "HarvestCropSeeds"
+        public static bool IsCommand(string command) => MaterialProcessInputPart.IsCommand(command) || command == "SalvageForgedWeapon" || command == "HarvestCropSeeds"
             || command != null && (command.StartsWith("PrepareRecipe|", StringComparison.Ordinal)
                 || command.StartsWith("RefuelTorch|", StringComparison.Ordinal) || command.StartsWith("InfuseMineral|", StringComparison.Ordinal)
                 || command.StartsWith("CompostCrop|", StringComparison.Ordinal) || command.StartsWith("TransplantCrop|", StringComparison.Ordinal));

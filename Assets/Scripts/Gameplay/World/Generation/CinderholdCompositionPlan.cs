@@ -34,12 +34,12 @@ namespace CavesOfOoo.Core
         private static readonly (int x,int y)[] Directions={(0,-1),(-1,0),(1,0),(0,1)};
 
         public static bool IsSupportedZone(string id)=>id==ZoneID;
-        public static CinderholdCompositionPlan Create(string id,int seed,bool includeRecoveryTray=false)
+        public static CinderholdCompositionPlan Create(string id,int seed,bool includeRecoveryTray=false,bool includeReclamation=false)
         {
             if(!IsSupportedZone(id))throw new ArgumentException("The exact Cinderhold surface address is required.",nameof(id));
-            return new CinderholdCompositionPlan(seed,includeRecoveryTray);
+            return new CinderholdCompositionPlan(seed,includeRecoveryTray,includeReclamation);
         }
-        private CinderholdCompositionPlan(int seed,bool includeRecoveryTray)
+        private CinderholdCompositionPlan(int seed,bool includeRecoveryTray,bool includeReclamation)
         {
             Rooms=rooms.AsReadOnly();Profile=profile.AsReadOnly();
             var rng=new Random(FormationSelector.StableIndex(ZoneID+":"+seed,int.MaxValue));
@@ -56,6 +56,7 @@ namespace CavesOfOoo.Core
             AddProfile("SmithAnvil",work.X+10,work.Y+3);
             AddProfile("Weaponsmith",work.X+5,work.Y+5);
             if(includeRecoveryTray)AddProfile(CinderholdOilRecovery.Blueprint,work.X+8,work.Y+3);
+            if(includeReclamation)AddProfile(CinderholdReclamation.Blueprint,work.X+12,work.Y+6);
 
             // Reserve the later native well and four ground markers without
             // inventing a second well or placing its solid owner during base.

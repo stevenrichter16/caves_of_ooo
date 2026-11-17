@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="29" result="Failed(Child)" total="29" passed="24" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-17 04:55:49Z" end-time="2026-11-17 04:55:52Z" duration="2.1772374">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38845" result="Failed" site="Child" start-time="2026-11-17 04:55:49Z" end-time="2026-11-17 04:55:52Z" duration="2.177237" total="29" passed="24" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47528" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38845" result="Failed" site="Child" start-time="2026-11-17 04:55:50Z" end-time="2026-11-17 04:55:52Z" duration="1.917723" total="29" passed="24" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47529" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38845" result="Failed" site="Child" start-time="2026-11-17 04:55:50Z" end-time="2026-11-17 04:55:52Z" duration="1.783415" total="29" passed="24" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47530" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38845" result="Failed" site="Child" start-time="2026-11-17 04:55:50Z" end-time="2026-11-17 04:55:52Z" duration="1.582784" total="29" passed="24" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25251" name="MachineMaterialProcessActionTests" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-11-17 04:55:50Z" end-time="2026-11-17 04:55:52Z" duration="1.481034" total="29" passed="24" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="25278" name="BeforeProcessCannotChangeTheQuotedProductTemplate" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.BeforeProcessCannotChangeTheQuotedProductTemplate" methodname="BeforeProcessCannotChangeTheQuotedProductTemplate" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="86484442" result="Failed" start-time="2026-11-17 04:55:50Z" end-time="2026-11-17 04:55:51Z" duration="0.260591" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineMaterialProcessActionTests.BeforeProcessCannotChangeTheQuotedProductTemplate () [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:125
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25281" name="BlueprintAndProductCannotChangeTheirMetadataTogether" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.BlueprintAndProductCannotChangeTheirMetadataTogether" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.088135" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25279" name="BlueprintAndProductCannotChangeTheirMetadataTogether(&quot;properties&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.BlueprintAndProductCannotChangeTheirMetadataTogether(&quot;properties&quot;)" methodname="BlueprintAndProductCannotChangeTheirMetadataTogether" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="971969565" result="Failed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.026181" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineMaterialProcessActionTests.BlueprintAndProductCannotChangeTheirMetadataTogether (System.String mutation) [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25280" name="BlueprintAndProductCannotChangeTheirMetadataTogether(&quot;statistics&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.BlueprintAndProductCannotChangeTheirMetadataTogether(&quot;statistics&quot;)" methodname="BlueprintAndProductCannotChangeTheirMetadataTogether" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1340085575" result="Failed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.025192" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineMaterialProcessActionTests.BlueprintAndProductCannotChangeTheirMetadataTogether (System.String mutation) [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="25271" name="CallbackCannotSplitAProtectedMergeRecipientThenKeepARefundedUnit" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.CallbackCannotSplitAProtectedMergeRecipientThenKeepARefundedUnit" methodname="CallbackCannotSplitAProtectedMergeRecipientThenKeepARefundedUnit" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="588357703" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.027973" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25286" name="CompletionEffectsNeverFireForRolledBackWork" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.CompletionEffectsNeverFireForRolledBackWork" methodname="CompletionEffectsNeverFireForRolledBackWork" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="563391400" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.024138" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25255" name="DestructiveBranchCreatesFiniteStockAndExistingPackComponentOutsideTheForge" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.DestructiveBranchCreatesFiniteStockAndExistingPackComponentOutsideTheForge" methodname="DestructiveBranchCreatesFiniteStockAndExistingPackComponentOutsideTheForge" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1748941329" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.025917" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25277" name="MenuSelectionCannotExecuteAChangedQuote" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MenuSelectionCannotExecuteAChangedQuote" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.143389" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25274" name="MenuSelectionCannotExecuteAChangedQuote(&quot;recipe&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MenuSelectionCannotExecuteAChangedQuote(&quot;recipe&quot;)" methodname="MenuSelectionCannotExecuteAChangedQuote" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="554139885" result="Failed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.024547" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineMaterialProcessActionTests.MenuSelectionCannotExecuteAChangedQuote (System.String mutation) [0x00080] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25275" name="MenuSelectionCannotExecuteAChangedQuote(&quot;quantity&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MenuSelectionCannotExecuteAChangedQuote(&quot;quantity&quot;)" methodname="MenuSelectionCannotExecuteAChangedQuote" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="2054647352" result="Failed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.023454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MachineMaterialProcessActionTests.MenuSelectionCannotExecuteAChangedQuote (System.String mutation) [0x00080] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MachineMaterialProcessActionTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25276" name="MenuSelectionCannotExecuteAChangedQuote(&quot;factory&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MenuSelectionCannotExecuteAChangedQuote(&quot;factory&quot;)" methodname="MenuSelectionCannotExecuteAChangedQuote" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1139994446" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.025603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25259" name="MergedOutputConservesRecipientOnSuccessAndRollback" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MergedOutputConservesRecipientOnSuccessAndRollback" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.072606" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25257" name="MergedOutputConservesRecipientOnSuccessAndRollback(False)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MergedOutputConservesRecipientOnSuccessAndRollback(False)" methodname="MergedOutputConservesRecipientOnSuccessAndRollback" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1650773845" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.023725" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25258" name="MergedOutputConservesRecipientOnSuccessAndRollback(True)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.MergedOutputConservesRecipientOnSuccessAndRollback(True)" methodname="MergedOutputConservesRecipientOnSuccessAndRollback" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="768426319" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.022648" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25272" name="NestedProcessCannotSpendAnotherSourceWithinTheSameAction" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.NestedProcessCannotSpendAnotherSourceWithinTheSameAction" methodname="NestedProcessCannotSpendAnotherSourceWithinTheSameAction" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="2058475299" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.027276" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25282" name="OrdinaryNonPlayerActorUsesTheSameRules" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OrdinaryNonPlayerActorUsesTheSameRules" methodname="OrdinaryNonPlayerActorUsesTheSameRules" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1152117707" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.023188" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25270" name="OuterMutationRollsBackOnlyTheParticipatingGoods" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.350923" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25260" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;source-ground&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;source-ground&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1230959074" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.024271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25261" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-ground&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-ground&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="2026175552" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.023625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25262" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-container&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-container&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="937440819" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.024116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25263" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-count&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-count&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="661756946" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.024226" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25264" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-part&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-part&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="682041644" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.027284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25265" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-weight&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;output-weight&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1659877821" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.024878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25266" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;actor-move&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;actor-move&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="273164090" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.025369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25267" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;forge-move&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;forge-move&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="533997278" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.024903" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25268" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;forge-blueprint&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;forge-blueprint&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1500401098" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.024502" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25269" name="OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;recipe-reload&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.OuterMutationRollsBackOnlyTheParticipatingGoods(&quot;recipe-reload&quot;)" methodname="OuterMutationRollsBackOnlyTheParticipatingGoods" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="728418554" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.024023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25256" name="PartialSourceStackConsumesExactlyOneAndRetainsItsOtherOptions" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.PartialSourceStackConsumesExactlyOneAndRetainsItsOtherOptions" methodname="PartialSourceStackConsumesExactlyOneAndRetainsItsOtherOptions" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="222111539" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:51Z" duration="0.026273" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25285" name="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:52Z" duration="0.074328" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25283" name="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess(False)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess(False)" methodname="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1629315894" result="Passed" start-time="2026-11-17 04:55:51Z" end-time="2026-11-17 04:55:52Z" duration="0.024128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25284" name="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess(True)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess(True)" methodname="PerInstanceMachineBehaviorCanVetoOrObserveCommittedProcess" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="132675789" result="Passed" start-time="2026-11-17 04:55:52Z" end-time="2026-11-17 04:55:52Z" duration="0.023368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25254" name="SameRecoveryContractWorksOutsideItsAuthoredSite" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.SameRecoveryContractWorksOutsideItsAuthoredSite" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-17 04:55:52Z" end-time="2026-11-17 04:55:52Z" duration="0.098784" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25252" name="SameRecoveryContractWorksOutsideItsAuthoredSite(&quot;ordinary-random-zone&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.SameRecoveryContractWorksOutsideItsAuthoredSite(&quot;ordinary-random-zone&quot;)" methodname="SameRecoveryContractWorksOutsideItsAuthoredSite" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="1685276779" result="Passed" start-time="2026-11-17 04:55:52Z" end-time="2026-11-17 04:55:52Z" duration="0.024210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25253" name="SameRecoveryContractWorksOutsideItsAuthoredSite(&quot;another-unrelated-place&quot;)" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.SameRecoveryContractWorksOutsideItsAuthoredSite(&quot;another-unrelated-place&quot;)" methodname="SameRecoveryContractWorksOutsideItsAuthoredSite" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="311160688" result="Passed" start-time="2026-11-17 04:55:52Z" end-time="2026-11-17 04:55:52Z" duration="0.023252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25273" name="SavedSourceAndProductsRetainTheirFiniteProcessPermissions" fullname="CavesOfOoo.Tests.MachineMaterialProcessActionTests.SavedSourceAndProductsRetainTheirFiniteProcessPermissions" methodname="SavedSourceAndProductsRetainTheirFiniteProcessPermissions" classname="CavesOfOoo.Tests.MachineMaterialProcessActionTests" runstate="Runnable" seed="862732352" result="Passed" start-time="2026-11-17 04:55:52Z" end-time="2026-11-17 04:55:52Z" duration="0.035563" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

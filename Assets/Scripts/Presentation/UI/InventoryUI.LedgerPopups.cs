@@ -143,21 +143,34 @@ namespace CavesOfOoo.Rendering
             LBox(new Rect(x + 24, y + 122, width - 48, 1), LBorder);
             if (_displaceConfirm == null)
             {
-                const int capacity = 9;
+                Func<int, string> rowLabel = i =>
+                {
+                    int shortcut = _equipPopup != null ? i - (_equipPopup.HasRemoveOption ? 1 : 0) : i;
+                    string prefix = NativeGamepadInput.IsConnected || _ledgerCommandsOpen || shortcut < 0 || shortcut > 25 ? "" : ((char)('a' + shortcut)) + ") ";
+                    return prefix + label(i);
+                };
+                // Keep the row layout stable as selection moves. Any clipped row
+                // reserves a preview for the selected label, including its costs.
+                bool hasPreview = false;
+                for (int i = 0; i < count; i++)
+                    if (SkillScreenText.Wrap(rowLabel(i), 72).Count > 1) { hasPreview = true; break; }
+                int capacity = hasPreview ? 6 : 9;
                 int start = Mathf.Clamp(cursor - capacity + 1, 0, Mathf.Max(0, count - capacity));
                 for (int i = start; i < Mathf.Min(count, start + capacity); i++)
                 {
                     var rect = new Rect(x + 16, y + 134 + (i - start) * 34, width - 32, 32);
                     bool selected = i == cursor;
                     if (selected) { LBox(rect, LSelected); LBox(new Rect(rect.x, rect.y, 3, rect.height), LGold); }
-                    // Equip remove row is not part of its letter-indexed item array.
-                    int shortcut = _equipPopup != null ? i - (_equipPopup.HasRemoveOption ? 1 : 0) : i;
-                    string prefix = NativeGamepadInput.IsConnected || _ledgerCommandsOpen || shortcut < 0 || shortcut > 25 ? "" : ((char)('a' + shortcut)) + ") ";
-                    LLabel(new Rect(rect.x + 10, rect.y + 6, rect.width - 20, 22), SkillScreenText.Fit(prefix + label(i), 72, 1), selected ? LGold : LInk);
+                    LLabel(new Rect(rect.x + 10, rect.y + 6, rect.width - 20, 22), SkillScreenText.Fit(rowLabel(i), 72, 1), selected ? LGold : LInk);
                     LHit(rect, LedgerHitKind.PopupRow, i);
                 }
                 if (count == 0) LLabel(new Rect(x + 24, y + 148, width - 48, 72), SkillScreenText.Fit(_modTargetPopup?.EmptyReason ?? "No available choices.", 73, 3), LMuted);
-                if (count > capacity) LLabel(new Rect(x + 24, y + 448, width - 48, 22), (start + 1) + "-" + Mathf.Min(count, start + capacity) + " / " + count + " choices - scroll to continue", LMuted, 18);
+                if (count > capacity) LLabel(new Rect(x + 24, y + (hasPreview ? 340 : 448), width - 48, 22), (start + 1) + "-" + Mathf.Min(count, start + capacity) + " / " + count + " choices - scroll to continue", LMuted, 18);
+                if (hasPreview && cursor >= 0 && cursor < count)
+                {
+                    LBox(new Rect(x + 24, y + 368, width - 48, 1), LBorder);
+                    LLabel(new Rect(x + 24, y + 382, width - 48, 92), SkillScreenText.Fit(label(cursor), 73, 4), LInk);
+                }
             }
             LedgerChoiceButton(new Rect(x + 24, y + 492, 162, 40), NativeGamepadInput.IsConnected ? "B  Back" : "Esc  Back", LedgerHitKind.Cancel, false);
             bool candidateDetails = _grimoirePicker != null && count > 0;
