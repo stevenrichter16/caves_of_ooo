@@ -104,7 +104,7 @@ namespace CavesOfOoo.Tests
         public void BlockedOrMalformedLastLateOwnerCannotPartiallyPopulateTheProfile(bool malformed)
         {
             var f=CinderholdCompositionTests.Factory();var z=new Zone(Id);var b=new CinderholdCompositionBuilder(64);Assert.IsTrue(b.BuildZone(z,f,new Random(1)));
-            var p=b.Plan.Profile.Last();if(malformed)f.Blueprints[p.Blueprint].Parts["Physics"]["Takeable"]="true";else Assert.IsTrue(z.AddEntity(f.CreateEntity("SandstoneWall"),p.X,p.Y));
+            var p=b.Plan.Profile.Single(owner=>owner.Blueprint=="Weaponsmith");if(malformed)f.Blueprints[p.Blueprint].Parts["Physics"]["Takeable"]="true";else Assert.IsTrue(z.AddEntity(f.CreateEntity("SandstoneWall"),p.X,p.Y));
             var before=z.GetAllEntities().ToArray();Assert.IsFalse(new CinderholdProfileBuilder(b).BuildZone(z,f,new Random(1)));CollectionAssert.AreEquivalent(before,z.GetAllEntities());
         }
 

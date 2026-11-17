@@ -1,0 +1,5 @@
+# Independent M2a review
+
+2026-11-17. Reviewer /root/sumphold_grade_source_review: whole-slice source/gameplay0 remainingP1/P2 for bounded contained-oil recovery. Reviewed transaction guards, rollback, stack protection, access/payment paths, fresh-only placement, rendering and both actual branches. Viewed clean recovery/pour/contact, clean reload, old-cache and manual equipment images. Exact IDs/turns are root-probe/checkpoint evidence, not independently legible in screenshots. Native receipts overlap. Earlier findings reproduced and fixed: foreign merge rollback duplication, split/remove-one callback duplication, post-head creation missing-container validation, stale recovery quote, role/art admission and rollback custody. No test execution delegated.
+
+Record corrections requested: update historical pending prose, clarify left-hand torch displaced while right-hand torch remains equipped. Corrected before staging. Acceptance excludes pumping/processing/full machine program/current Mac delivery.

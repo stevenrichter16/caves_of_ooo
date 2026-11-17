@@ -33,6 +33,15 @@ namespace CavesOfOoo.Core
             {
                 foreach (var source in zone.GetReadOnlyEntities())
                 {
+                    var contained = source.GetPart<ContainedLiquidSourcePart>();
+                    if (contained != null)
+                    {
+                        if (!contained.CanFill(actor, zone, part)) continue;
+                        var atContained = zone.GetEntityPosition(source);
+                        actions.AddAction("FillLiquid", "fill with " + LiquidName(contained.LiquidId) + " from tray (" + atContained.x + "," + atContained.y + ")",
+                            FillPrefix + Encode(source.ID) + "|" + Encode(contained.LiquidId), '\0', 19);
+                        continue;
+                    }
                     var pool = source.GetPart<LiquidPoolPart>();
                     if (ValidSource(zone, actor, source, pool, part) != null) continue;
                     string name = LiquidRegistry.Get(pool.LiquidId).DisplayName ?? pool.LiquidId;
@@ -88,6 +97,8 @@ namespace CavesOfOoo.Core
             var matches = zone.GetReadOnlyEntities().Where(e => e.ID == id).ToArray();
             if (matches.Length != 1) return Reject(actor, vessel, command, "source-gone-or-ambiguous");
             var source = matches[0]; var pool = source.GetPart<LiquidPoolPart>();
+            var contained = source.GetPart<ContainedLiquidSourcePart>();
+            if (contained != null) return FillContained(actor, vessel, part, zone, source, contained, expectedLiquid, command, transaction, own);
             string invalid = ValidSource(zone, actor, source, pool, part);
             if (invalid != null) return Reject(actor, vessel, command, invalid);
             if (pool.LiquidId != expectedLiquid) return Reject(actor, vessel, command, "source-liquid-changed");
@@ -109,6 +120,37 @@ namespace CavesOfOoo.Core
                 new { source = source.ID, liquidId, amount, remaining = oldPool - amount }));
             transaction.AfterCommit(() => MessageLog.Add("You fill the flask with " + LiquidName(liquidId) + ". (" + (before + amount) + "/" + part.Capacity + ")"));
             if (own) transaction.Commit();
+            return true;
+        }
+
+        static bool FillContained(Entity actor, Entity vessel, LiquidVesselPart part, Zone zone, Entity source,
+            ContainedLiquidSourcePart contained, string expectedLiquid, string command, InventoryTransaction tx, bool own)
+        {
+            if (contained.LiquidId != expectedLiquid || !contained.CanFill(actor, zone, part)) return Reject(actor, vessel, command, "contained-source-unavailable");
+            if (!tx.TryClaim(source, actor, command)) return Reject(actor, vessel, command, "source-in-use");
+            var pack = actor.GetPart<InventoryPart>(); var actorCell = zone.GetEntityCell(actor); var sourceCell = zone.GetEntityCell(source);
+            var sourceParts = source.Parts.ToArray(); var vesselParts = vessel.Parts.ToArray();
+            string actorId = actor.ID, sourceId = source.ID, vesselId = vessel.ID, beforeId = part.LiquidId;
+            int before = part.Volume, oldSource = contained.Volume, capacity = part.Capacity, sourceCapacity = contained.Capacity;
+            int amount = Math.Min(capacity - before, oldSource);
+            tx.Do(null, () => { part.Volume = before; part.LiquidId = beforeId; contained.Volume = oldSource; });
+            tx.Do(null, () => ContainedLiquidSourcePart.DetachUnexpectedCustody(vessel, actor));
+            part.Volume += amount; part.LiquidId = expectedLiquid; contained.Volume -= amount;
+            tx.BeforeCommit(() => Validate(actor, vessel, zone, out var current) == null && current == part
+                && contained.ParentEntity == source && contained.Context(actor, zone) && actor.GetPart<InventoryPart>() == pack
+                && actor.ID == actorId && source.ID == sourceId && vessel.ID == vesselId
+                && zone.GetEntityCell(actor) == actorCell && zone.GetEntityCell(source) == sourceCell
+                && source.Parts.SequenceEqual(sourceParts) && vessel.Parts.SequenceEqual(vesselParts)
+                && source.Parts.All(p => p.ParentEntity == source) && vessel.Parts.All(p => p.ParentEntity == vessel)
+                && part.Capacity == capacity && part.Volume == before + amount && part.LiquidId == expectedLiquid
+                && contained.Capacity == sourceCapacity && contained.Volume == oldSource - amount && contained.LiquidId == expectedLiquid);
+            tx.AfterCommit(() =>
+            {
+                ZoneRenderHooks.MarkCellDirty(sourceCell, "LiquidVessel.ContainedSourceChanged");
+                Diag.Record("liquid", "ContainedSourceDrawn", actor, vessel, new { source = sourceId, liquidId = expectedLiquid, amount, remaining = oldSource - amount });
+                MessageLog.Add("You draw " + amount + " " + LiquidName(expectedLiquid) + " into the flask. (" + (before + amount) + "/" + capacity + ")");
+            });
+            if (own) tx.Commit();
             return true;
         }
 

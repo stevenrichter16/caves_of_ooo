@@ -27,6 +27,8 @@ namespace CavesOfOoo.Core
         /// Generation may still stock a locked container through AddItem.</summary>
         public bool IsLocked => Locked || ParentEntity?.GetPart<LockPart>()?.IsLocked == true;
 
+        public bool AllowsCleanAccess => ParentEntity?.GetPart<ContainedLiquidSourcePart>()?.AllowsCleanAccess ?? true;
+
         /// <summary>Max items allowed. -1 = unlimited.</summary>
         public int MaxItems = -1;
 
@@ -112,7 +114,7 @@ namespace CavesOfOoo.Core
                         if (ParentEntity?.GetPart<LockPart>()?.IsLocked != true)
                             actions.AddAction("Unlock", "unlock", "Unlock", 'u', 10);
                     }
-                    else
+                    else if (AllowsCleanAccess)
                         actions.AddAction("Open", "open", "OpenContainer", 'o', 30);
                 }
                 return true;
@@ -126,6 +128,7 @@ namespace CavesOfOoo.Core
                     var actor = e.GetParameter<Entity>("Actor");
                     if (actor == null) return true;
 
+                    if (!AllowsCleanAccess) return true;
                     if (IsLocked)
                     {
                         MessageLog.Add($"The {ParentEntity.GetDisplayName()} is locked.");

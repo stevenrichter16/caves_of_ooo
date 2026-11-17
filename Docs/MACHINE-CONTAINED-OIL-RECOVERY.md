@@ -1,6 +1,6 @@
 # M2a proposal: contained liquid and recoverable equipment
 
-Status2026-11-16: design/source critique and actual fresh Cinderhold placement baseline complete. No production changes, native RED or accepted new mechanics yet. M1a–M1d and current Mac sourceb93ad80a9 remain accepted; do not repeat those branches. This proposal establishes contained-source handling, not a completed sump pump or a reason to make ordinary flask use inconvenient.
+Status2026-11-17: M2a bounded contained-oil recovery accepted in Editor after native56/56, actual clean/manual/headcraft/contact/travel/fresh reload and old-cache controls, and independent source/gameplay0 remainingP1/P2. Publication and current Mac delivery are next. All twelve full-machine gates remain open.
 
 ## Optional recovery choice
 
@@ -40,7 +40,7 @@ Fresh entry2400HP40 at39,11, ordinary workshop walk to58,6 at2640. Look and full
 
 Existing before images are actual GameBootstrap views, not an after mockup. Approved matching tray/body art must be identified before the fixture is integrated; new art requires the normal imagegen/native-source workflow. The parked Cinderhold forge art draft stays parked.
 
-## Next runnable gates
+## Original acceptance gates (completed; retained contract)
 
 1. Resolve receiver acquisition through ordinary existing stock and the head's useful refit supplies; baseline inventory currently has no flask. Source audit identifies local WellKeeperStock's guaranteed12-unit LiquidFlask if the actual WellKeeper is present; VillagePopulationBuilder places that keeper with the main well. Smith has no flask, factor has no Trader, and random Villager TradeGoods is not a fallback. Morrowfast Sella Kettle at47,20 has authored flask stock. Actual NPC location, stock, price and purchase remain unverified here;15drams cannot be assumed enough. The earlier Sill22-dram/Wellmeet23-dram purchases are retained alternatives, not a local price promise. OakHaft and LeatherBinding each have basevalue8 and real smith stock; actual combined price depends on current trade conditions. Do not inject supplies. Actual tray-choice value remains provisional.
 2. Native RED:12→6→0 through available-capacity limits, full12-unit draw, partial/full/incompatible receiver; actor/source/receiver callback replacement/removal/re-entry; rollback and one action; Open/TakeAll/direct-command/deposit bypasses; unchanged natural pools, ground films and solid impacts; one saved head owner; exposure veto/merge/failed-transfer controls.
@@ -50,3 +50,19 @@ Existing before images are actual GameBootstrap views, not an after mockup. Appr
 All12 complete machines remain open. This slice cannot claim pumping, replenishable storage, treatment, mixture separation, full provenance or machinery construction/relocation.
 
 Independent final bounded document/source review:0 remainingP1/P2 contradictions after the contained-source architecture and12-unit correction. The design/source gate is cleared for nativeRED/implementation; mechanics and gameplay acceptance remain open. Acquisition, usefulness and all actual after-play gates above remain pending.
+
+## Historical draft continuation — 2026-11-17 01:08 UTC
+
+The scheduled handoff previously said no production/native changes; that is now obsolete. Root implemented a separate ContainedLiquidSourcePart, a LiquidVesselService adapter, central Take/Put/Open gates, reader text and ordinary paid world recovery routing. The tray blueprint, generation placement and flat-art routing are still absent. Approved reused body: east-kitchen sealed-clay-pan frame5, rectangle(80,0,16,24), without kitchen/repair behavior.
+
+Native receipts under Verification/MachineSystems/ContainedOilDraft: initial16/16RED, first implementation14/16passed, then35/40passed. Canonical Cinderhook heads have Stacker count1; the source initially rejected those. The later five failures comprised four production assertions (merge recipient admission, receiver world/carried alias, two foreign-container rollback cases) and one test-fixture error (ApplyEffect instead of BeforeApplyEffect veto). Root corrected these on November17; no GREEN claim yet. Follow-up job3f579c4242fb428da9072f81dd9a3b6d timed out initializing with zero completed tests; Editor log showed delayed RunStarted callbacks. Inspect current native test ownership before rerunning. Content/flat RED joba3b51bad65f946d482bdfff021d0e149:6 expected missing-tray failures plus1 optional-content control pass. These receipts overlap and must not be summed.
+
+Independent implementation review was requested but the reviewer returned a usage-limit error. No source/gameplay acceptance is claimed. NEXT: verify the corrected40 source checks, extend stale-selection/action-cost/participant controls, integrate the optional fresh-only tray, then ordinary clean/manual branches, useful head work, outside oil, travel/reload and independent reviews. The last source/layout design and art review remain usable; no need to restart them. Main remainsfad7b92db and current accepted Mac remainsb93ad80a9. All new M2a work remains uncommitted.
+
+## Latest continuation — 2026-11-17 02:24 UTC
+
+The earlier01:08 continuation is historical. Optional fresh tray blueprint/profile/strict world+reader routing now implemented, approved east-kitchen frame5 reused without kitchen behavior. Full52 targeted passed;398 shared inventory/flask regressions passed; reviewer reproduced foreign merge and callback split duplication, fixed with scoped custody protection,316 follow-up passed. These overlap; do not sum. Final56 run pending. No production edits since split guard passed.
+
+Actual clean/manual/headcraft/contact/travel/fresh reload and old-cache control are now complete; see [actual record](Verification/MachineSystems/ContainedOilActual/README.md). Manual originalhead13536 became equipped axe13666 via normal paid supplies/packhaft/forge, freshContinue2810HP40. Clean ordinary Sella flask23 via grimoire10+13drams, full12draw and originalhead recovered without exposure. Away oil12 groundpool13665 caused normal coating/slip, travel/freshContinue3870HP40 retains exactemptytray/emptyflask/head1/oilpool12. Cached originaltown2640 stays withouttray. Cinderhold has0actualWellKeeper: conditional service-stock source did not establish local acquisition. No fake scarcity or added free supplies.
+
+Final independent whole-slice source/gameplay review:0 remainingP1/P2. Final56/56native passed6.536s. NEXT exact records/staging/commit/push and current Mac delivery. Root Unity stopped/rootnull/clean after cachedcontrol. Preserve all prior changes/normal states/builds. Full pump/heat/processing/machine roster remains open.

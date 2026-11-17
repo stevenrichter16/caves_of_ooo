@@ -78,6 +78,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public int MergeFrom(Entity other)
         {
+            if (ContainedLiquidSourcePart.IsRecoveryCustodyProtected(other)
+                || ContainedLiquidSourcePart.IsRecoveryCustodyProtected(ParentEntity)) return 0;
             var otherStacker = other.GetPart<StackerPart>();
             if (otherStacker == null) return 0;
 
@@ -100,6 +102,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity SplitStack(int count)
         {
+            if (ContainedLiquidSourcePart.IsRecoveryCustodyProtected(ParentEntity)) return null;
             if (count <= 0 || count >= StackCount) return null;
             var torch = ParentEntity.GetPart<TorchLightPart>();
             if (torch != null && !torch.CanSplitSafely()) { torch.ReportSplitRefusal(); return null; }
@@ -120,6 +123,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity RemoveOne()
         {
+            if (ContainedLiquidSourcePart.IsRecoveryCustodyProtected(ParentEntity)) return null;
             if (StackCount <= 1) return ParentEntity;
             var torch = ParentEntity.GetPart<TorchLightPart>();
             if (torch != null && !torch.CanSplitSafely()) { torch.ReportSplitRefusal(); return null; }

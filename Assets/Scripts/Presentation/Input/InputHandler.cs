@@ -3462,6 +3462,7 @@ namespace CavesOfOoo.Rendering
                 || action.Command == TrapJammingPart.JamCommand
                 || action.Command == BotanicalInkDeskPart.PrepareCommand
                 || OilStrainingPart.IsCommand(action.Command)
+                || ContainedLiquidSourcePart.IsRecovery(action.Command)
                 || action.Command == SoddenPreparationPart.PrepareCommand
                 || action.Command == KitchenBatchPart.StartCommand
                 || CropWateringService.IsCommand(action.Command)
@@ -3536,7 +3537,7 @@ namespace CavesOfOoo.Rendering
             if (action.Command == "OpenContainer")
             {
                 var containerPart = target.GetPart<ContainerPart>();
-                if (containerPart != null && !containerPart.IsLocked && containerPart.Contents.Count > 0)
+                if (containerPart != null && !containerPart.IsLocked && containerPart.AllowsCleanAccess && containerPart.Contents.Count > 0)
                 {
                     OpenContainerLoot(target, containerPart);
                     return;

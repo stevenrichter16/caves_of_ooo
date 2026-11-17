@@ -1,6 +1,33 @@
 {
   "Objects": [
     {
+      "Name": "CinderholdOilRecoveryTray",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "released maintenance-oil tray" },
+          { "Key": "RenderString", "Value": "u" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "4" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Weight", "Value": "40" },
+          { "Key": "Solid", "Value": "true" },
+          { "Key": "Takeable", "Value": "false" }
+        ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Text", "Value": "A shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply." }
+        ] },
+        { "Name": "Composition", "Params": [ { "Key": "MaterialsRaw", "Value": "Clay" } ] },
+        { "Name": "Container", "Params": [ { "Key": "MaxItems", "Value": "1" } ] },
+        { "Name": "ContainedLiquidSource", "Params": [
+          { "Key": "LiquidId", "Value": "oil" },
+          { "Key": "Volume", "Value": "12" },
+          { "Key": "Capacity", "Value": "12" }
+        ] }
+      ],
+      "Tags": [ { "Key": "Furniture", "Value": "" } ]
+    },
+    {
       "Name": "TrinketItem",
       "Inherits": "Item",
       "Parts": [

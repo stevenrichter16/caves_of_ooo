@@ -17,6 +17,9 @@ namespace CavesOfOoo.Rendering
     {
         readonly Tile magpie, viper, scorpion, cultist, rotling, cactus, hearth, warden;
         bool disposed;
+        Tile recoveryPan;
+        int? recoverySeed;
+        int recoveryX,recoveryY;
 
         /// <summary>P5 (Docs/UPPER-TIER-BESTIARY.md §3.5): the upper-tier creatures that were
         /// still glyphs, drawn with their shared 16x16 environment bodies; the new species use
@@ -317,7 +320,7 @@ namespace CavesOfOoo.Rendering
 
         public static bool AppliesTo(Zone zone) => zone?.ZoneID != null && !FlatPixelGreyboxCatalog.IsAdmitted(zone);
 
-        public static bool HasKnownRole(Entity owner) => owner?.BlueprintName == OilStrainingPart.Blueprint || Expected(owner?.BlueprintName, out _, out _);
+        public static bool HasKnownRole(Entity owner) => owner?.BlueprintName == CinderholdOilRecovery.Blueprint || owner?.BlueprintName == OilStrainingPart.Blueprint || Expected(owner?.BlueprintName, out _, out _);
         static bool Expected(string role, out string glyph, out string color)
         {
             if (UpperRole(role, out int u)) { glyph = SharedBodies[u].Glyph; color = SharedBodies[u].Color; return true; }
@@ -409,6 +412,7 @@ namespace CavesOfOoo.Rendering
         {
             tile = null;
             if (owner?.BlueprintName == OilStrainingPart.Blueprint) return TryOilStrainer(zone, owner, out tile);
+            if (owner?.BlueprintName == CinderholdOilRecovery.Blueprint) return TryRecoveryPan(zone, owner, out tile);
             if (disposed || !AppliesTo(zone) || owner == null || owner.SpatialZone != zone || !Expected(owner.BlueprintName, out var glyph, out var color)) return false;
             var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
             if (ItemRole(owner.BlueprintName, out var itemRow) && !UpperRole(owner.BlueprintName, out _))
@@ -505,6 +509,26 @@ namespace CavesOfOoo.Rendering
             tile = PropTile(row, 0); return tile != null;
         }
 
+        bool TryRecoveryPan(Zone zone,Entity owner,out Tile tile)
+        {
+            tile=null;
+            if(disposed || !loadUpper || !FlatPixelSettlementGroundCatalog.IsSupportedZone(zone) || zone?.ZoneID!=CinderholdCompositionPlan.ZoneID || owner.SpatialZone!=zone || !CinderholdOilRecovery.Payload(owner))return false;
+            var manager=WorldLocationContext.For(zone);
+            if(manager==null || !manager.CachedZones.TryGetValue(zone.ZoneID,out var current) || current!=zone
+                || !AreaCompositionScope.IsCinderholdSite(manager.WorldMap?.GetPOI(6,6)) || manager.WorldMap.GetBiome(6,6)!=BiomeType.Grovelands)return false;
+            if(recoverySeed!=manager.WorldSeed)
+            {
+                var room=CinderholdCompositionPlan.Create(zone.ZoneID,manager.WorldSeed).Rooms[1];
+                recoveryX=room.X+8;recoveryY=room.Y+3;recoverySeed=manager.WorldSeed;
+            }
+            var cell=zone.GetEntityCell(owner);
+            if(cell==null || cell!=zone.GetCell(recoveryX,recoveryY) || !cell.IsVisible || !cell.Explored)return false;
+            int count=0;foreach(var entity in cell.Objects)if(entity.ID==owner.ID){if(entity!=owner)return false;count++;}
+            if(count!=1)return false;
+            if(recoveryPan==null)recoveryPan=Build(Resources.Load<Texture2D>("Sprites/Live16x24/east-kitchen"),288,24,80,"sealed recovery pan");
+            tile=recoveryPan;return tile!=null;
+        }
+
         static T Owned<T>(Entity owner) where T : Part
         {
             T found = null;
@@ -524,6 +548,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
+            if(recoveryPan!=null){DestroyOwned(recoveryPan.sprite);DestroyOwned(recoveryPan);recoveryPan=null;}
             foreach (var t in new[] { magpie, viper, scorpion, cultist, rotling, cactus, hearth, warden })
             { if (t == null) continue; DestroyOwned(t.sprite); DestroyOwned(t); }
             foreach (var t in upper.Values) { if (t == null) continue; DestroyOwned(t.sprite); DestroyOwned(t); }

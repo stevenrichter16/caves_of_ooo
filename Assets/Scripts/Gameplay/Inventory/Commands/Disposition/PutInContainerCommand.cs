@@ -50,6 +50,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Item is null.");
             }
 
+            if (_container.HasPart<ContainedLiquidSourcePart>())
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, "This recovery tray does not accept deposits.");
+
             if (!context.Inventory.Contains(_item))
             {
                 return InventoryValidationResult.Invalid(
@@ -62,6 +65,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            if (_container.HasPart<ContainedLiquidSourcePart>())
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "This recovery tray does not accept deposits.");
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
             if (!transaction.TryClaim(_item, context.Actor, Name))

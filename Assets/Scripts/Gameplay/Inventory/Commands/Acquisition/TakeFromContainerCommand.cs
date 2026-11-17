@@ -4,6 +4,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
     {
         private readonly Entity _container;
         private readonly Entity _item;
+        private readonly ContainedLiquidSourcePart.RecoveryPermission _wetRecovery;
 
         public string Name => "TakeFromContainer";
 
@@ -12,6 +13,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             _container = container;
             _item = item;
         }
+
+        internal TakeFromContainerCommand(Entity container, Entity item, ContainedLiquidSourcePart.RecoveryPermission permission)
+            : this(container, item) { _wetRecovery = permission; }
 
         public InventoryValidationResult Validate(InventoryContext context)
         {
@@ -50,6 +54,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Item is null.");
             }
 
+            var contained = _container.GetPart<ContainedLiquidSourcePart>();
+            if (contained != null && !contained.CanTake(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone,
+                _wetRecovery, _wetRecovery?.Transaction))
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
+                    "Drain the tray first, or explicitly recover through the liquid.");
+
             var physics = _item.GetPart<PhysicsPart>();
             if (physics == null || !physics.Takeable)
             {
@@ -82,6 +92,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
+            System.Action containedCleanup = null, containedGuard = null;
+            var contained = _container.GetPart<ContainedLiquidSourcePart>();
+            if (contained != null && !contained.PrepareTake(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone, transaction, _wetRecovery, out containedCleanup, out containedGuard))
+                return Refuse(context, "contained_recovery_refused", "Drain the tray first, or explicitly recover through the liquid.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
             if (containerPart == null || inventory == null)
@@ -161,6 +175,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // PickupCommand so world-object quest Parts react to acquisition
             // from a container/corpse, not just the ground. Gold is already spent
             // and its purse credit is still deferred during these callbacks.
+            if (contained != null)
+                transaction.Do(null, containedCleanup);
+            containedGuard?.Invoke();
             var taken = GameEvent.New("Taken");
             taken.SetParameter("Actor", (object)context.Actor);
             taken.SetParameter("Item", (object)_item);

@@ -22,11 +22,11 @@ namespace CavesOfOoo.Core
             if(zone==null||factory?.Blueprints==null||rng==null)return Reject(zone,"missing-dependency");
             if(!CinderholdCompositionPlan.IsSupportedZone(zone.ZoneID))return Reject(zone,"outside-cinderhold");
             if(zone.EntityCount!=0||(RealizedZone!=null&&!ReferenceEquals(RealizedZone,zone)))return Reject(zone,"nonempty-or-foreign-reuse");
-            var p=CinderholdCompositionPlan.Create(zone.ZoneID,seed);
+            var p=CinderholdCompositionPlan.Create(zone.ZoneID,seed,CinderholdOilRecovery.CreateFresh(factory)!=null);
             var required=new HashSet<string>();
             for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
             {required.Add(p.GroundAt(x,y));if(p.ObjectAt(x,y)!=null)required.Add(p.ObjectAt(x,y));}
-            foreach(var owner in p.Profile)required.Add(owner.Blueprint);
+            foreach(var owner in p.Profile)if(owner.Blueprint!=CinderholdOilRecovery.Blueprint)required.Add(owner.Blueprint);
             foreach(var bp in required)if(!Valid(Create(factory,bp),bp))return Reject(zone,"invalid-required-native:"+bp);
             if(!StockDependenciesValid(factory))return Reject(zone,"invalid-profile-stock");
 
@@ -173,6 +173,15 @@ namespace CavesOfOoo.Core
             var staged=new List<(Entity e,int x,int y)>();
             foreach(var p in terrain.Plan.Profile)
             {
+                if(p.Blueprint==CinderholdOilRecovery.Blueprint)
+                {
+                    var tray=CinderholdOilRecovery.CreateFresh(factory);var cell=zone.GetCell(p.X,p.Y);
+                    // Optional dependencies can disappear between plan and profile.
+                    // Omit this salvage, never reject or clear the existing town.
+                    if(tray!=null && cell!=null && !cell.BlocksMovement() && cell.Objects.All(e=>e.BlueprintName=="StoneFloor"))
+                        { tray.Properties["SettlementId"]=zone.ZoneID; staged.Add((tray,p.X,p.Y)); }
+                    continue;
+                }
                 var c=zone.GetCell(p.X,p.Y);if(c==null||c.BlocksMovement())return Reject(zone,"blocked-profile-cell");
                 foreach(var current in c.Objects)
                     if(current.HasPart<StairsDownPart>()||current.HasPart<StairsUpPart>()||current.HasPart<LiquidPoolPart>()||current.BlueprintName==p.Blueprint)return Reject(zone,"occupied-profile-cell");

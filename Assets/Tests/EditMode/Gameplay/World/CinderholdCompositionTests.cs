@@ -85,7 +85,7 @@ namespace CavesOfOoo.Tests
             LoadLoot();try
             {
                 var f=Factory();var z=new Zone(Id);var b=new CinderholdCompositionBuilder(64);Assert.IsTrue(b.BuildZone(z,f,new Random(1)));
-                var expected=new[]{"ConcordFactor","CinderholdNoticeBoard","Chest","Campfire","TinkersForge","SmithAnvil","Weaponsmith"};
+                var expected=new[]{"ConcordFactor","CinderholdNoticeBoard","Chest","Campfire","TinkersForge","SmithAnvil","Weaponsmith","CinderholdOilRecoveryTray"};
                 CollectionAssert.AreEquivalent(expected,b.Plan.Profile.Select(p=>p.Blueprint));
                 foreach(var bp in expected)Assert.IsFalse(z.GetAllEntities().Any(e=>e.BlueprintName==bp));
                 var late=new CinderholdProfileBuilder(b);Assert.AreEqual(3860,late.Priority);Assert.IsTrue(late.BuildZone(z,f,new Random(2)));

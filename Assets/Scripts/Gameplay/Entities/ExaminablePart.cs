@@ -135,6 +135,8 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(dressing)) baseLine += "\n" + dressing;
             var oilStraining = ParentEntity?.GetPart<OilStrainingPart>()?.Describe();
             if (!string.IsNullOrEmpty(oilStraining)) baseLine += "\n" + oilStraining;
+            var contained = ParentEntity?.GetPart<ContainedLiquidSourcePart>()?.Describe();
+            if (!string.IsNullOrEmpty(contained)) baseLine += "\n" + contained;
             var repair = ParentEntity?.GetPart<RepairablePart>()?.Describe();
             if (!string.IsNullOrEmpty(repair)) baseLine += "\n" + repair;
             var trap = ParentEntity?.GetPart<TrapJammingPart>()?.DescribeJamming();
