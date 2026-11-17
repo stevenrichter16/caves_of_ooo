@@ -92,7 +92,7 @@ Next foundation qualification constraint: `LiquidPoolPart.Volume` currently driv
 
 Independent delivery/next-slice review —2026-11-17 02:38UTC:0P1/P2 package/source/helper/inputpins/normalstate. Next concrete qualification: use an ordinary low-Strength character against the existing120-weight work rig, via normal starter/menu/save acquisition, without stat editing. Inspect `DragRules` and `FieldWorkRigRules` actual limits first. Compare restore-in-place, reclaim2braces, and moving the intact service. If ordinary hauling fails for this build and moving it serves a real off-site purpose, a bounded anchored capstan may have a justified role. Preserve existing hauling and load weights; no cargo enlargement or compulsory relocation. Obtain actual baseline/readers/refusal before proposing mechanics. This is an unimplemented next-slice hypothesis, not accepted capstan behavior.
 
-## Qualification correction —2026-11-17 02:45UTC
+## Qualification correction —2026-11-17 02:43UTC
 
 The proposed low-Strength120-weight-rig experiment is withdrawn after source verification. All seven shipped starter presets have Strength16+; ordinary haul budget isStrength×8, so even the lowest128budget exceeds120. RigMinLiftStrength0 adds no refusal. Do not manufacture a weaker character, impairment, or heavier rig to justify a capstan. Independent bounded review agrees.
 
