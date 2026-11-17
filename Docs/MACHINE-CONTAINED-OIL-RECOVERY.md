@@ -1,6 +1,6 @@
 # M2a proposal: contained liquid and recoverable equipment
 
-Status2026-11-17: M2a bounded contained-oil recovery accepted in Editor after native56/56, actual clean/manual/headcraft/contact/travel/fresh reload and old-cache controls, and independent source/gameplay0 remainingP1/P2. Publication and current Mac delivery are next. All twelve full-machine gates remain open.
+Status2026-11-17: M2a bounded contained-oil recovery accepted in Editor after native56/56, actual clean/manual/headcraft/contact/travel/fresh reload and old-cache controls, and independent source/gameplay0 remainingP1/P2. Publishedc43631ad6; current Mac action/travel/reload complete, independentdeliveryreview0concreteP1/P2;186packagepins/fixtures/restorationverified. All twelve full-machine gates remain open.
 
 ## Optional recovery choice
 
