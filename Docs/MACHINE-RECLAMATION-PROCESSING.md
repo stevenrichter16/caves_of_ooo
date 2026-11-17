@@ -2,15 +2,15 @@
 
 # Reclamation and regional component processing
 
-Status: M3a implementation is uncommitted and UNACCEPTED. Definitions, retained quotes, instance policies/events, transactional actions and optional fresh content are implemented; actual ordinary-play acceptance and current delivery remain pending. This is the active machine priority; capstan and culture work are parked. Accepted contained-oil and current Mac remain unchanged.
+Status: M3a is accepted and published at `1237eae9f`; current Mac delivery is recorded in `9dd99383a`. The finite process registry, retained quotes, Part policies/events, transactional actions and optional fresh find passed native checks, ordinary play and independent review. Reclamation and regional processing remain the active priority. Capstan and culture implementation are parked. The regional raw-material chain and all twelve complete-machine gates remain open.
 
 Standing user constraint: this slice must add reusable recovery/processing choices to an interactive world. Its demonstration find must not become a required one-tool puzzle or a progression key. Preserve carrying, keeping, selling, ordinary crafting and existing acquisition alternatives where supported. Explicit finite source manifests authorize outputs; they do not justify arbitrary refusal of otherwise supported world interactions. Demonstrate genuinely useful competing outcomes, including ordinary alternatives, before acceptance. Apply the open-interaction acceptance criteria in MACHINE-SYSTEMS-DESIGN.md.
 
 ## Player problem and smallest useful loop
 
-A discarded extraction tool offers a choice between keeping its specialized workmanship and recovering flexible iron stock. The existing Cinderhook head is a hard-hitting, inaccurate cutting axe component (1d8, -2 hit). The existing iron spike is a lower-damage piercing point (1d4, +1 penetration). These are different equipment choices, not a new linear quality ladder. The current smith and ordinary pack crafting remain alternatives. Reclamation is a substantial value sacrifice: canonical head+fieldhaft basevalue45 versus spike+timber11. Actual piercing use, convenience and actual trade prices must justify it. One spike cannot complete existing two-spike repairs; do not claim machine repair from one find.
+A discarded extraction tool offers a choice between keeping its specialized workmanship and recovering flexible iron stock. The existing Cinderhook head is a hard-hitting, inaccurate cutting axe component (1d8, -2 hit). The existing iron spike is a lower-damage piercing point (1d4, +1 penetration). These are different equipment choices, not a new linear quality ladder. The current smith and ordinary pack crafting remain alternatives. Reclamation is a substantial value sacrifice: canonical head+fieldhaft basevalue45 versus spike+timber11. Actual play demonstrated piercing combat, a preserved cutting-axe alternative, and trade quotes of 16 drams intact, 15 for head plus haft, and 3 for point plus haft at the same tinker. This establishes a bounded choice, not general economic balance. One spike cannot complete existing two-spike repairs; do not claim machine repair from one find.
 
-Proposed finite conversions, quantities provisional until native/economic review:
+Accepted finite conversions:
 
 | Operation | Consumed source | Physical outputs | Work |
 | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ Proposed finite conversions, quantities provisional until native/economic review
 
 The damage is the failed binding or mounting of this authored find; its head and short haft are sound. Dismantling does not silently repair either component; reclamation sacrifices the haft’s shaped form for timber. No additional repair-back-to-original-weapon branch is promised in this pilot. Existing timber-to-field-haft and cord-to-binding recipes complete either choice through ordinary assembly. Reclaimed stock has potential uses through the registered conversions only, not arbitrary material substitution.
 
-Initial stock represents one explicitly specified iron work blank, weight3. IronSpikeComponent also weighs3. Proposed source weight5 gives an inventory-weight budget for head/blank3, useful wood1 and spent fastening1; both recovery modes return4 and disclose the lost fastening. Equal inventory weights are not proof of exact physical mass conservation. Material identity and declared recipe units are separate from weight. Prices must not create a buy/reclaim/process/resell profit loop; compare actual vendor offers before acceptance. The discarded tool and iron blank are new authored content, not established canon or current finds.
+The iron blank weighs 3, matching IronSpikeComponent. The released source weighs 5; both recovery modes return 4 in carried weight and disclose the spent fastening. Equal inventory weights are not proof of exact physical mass conservation. Material identity and declared recipe units are separate from weight. Actual vendor quotes preserve selling the intact find as an alternative; no buy/process/resell profit loop was demonstrated. The discarded tool and blank are new authored content admitted in this slice, with no claim to broader metallurgical canon.
 
 ## Source corrections and boundaries
 

@@ -1,0 +1,11 @@
+# Cured leather feed qualification baseline
+
+Main9dd99383a/currentMac1237eae9f;2026-11-17UTC. This is qualification only, no new material/process implementation or acceptance.
+
+Reused earned ReclamationActual/BeforeProcessCheckpoint2770HP40, seed704860946 atCinderhold6.6:56,6, in isolated normalGameBootstrap root9be3812f96a142cd8734b81d54dc3668. Continue and read-only visible-owner/custody probes only, no gameplay actions injected. Fresh live visible traders include IstrenFennit13585 Tinker66,6; Weaponsmith is not visible at this checkpoint. Do not repeat the previous fruitless wandering search or infer absence from the whole zone. Source-authored smith shelf position55,7 is not evidence its NPC remains there during actual play.
+
+Existing accepted actual trade already qualifies a finished-binding alternative: same Istren stock contains one binding quoted23drams; ordinary barter book10+13drams acquired it,2remain. Both M3aEditor branches and currentMac used it in existing component assembly; resulting+1Hit weapon demonstrated actual combat/reload. Reuse that evidence; no duplicate acquisition performed here. Separate source verification confirms leather-equipment-stitch recipe and portable LeatherArmor/FilterHood/AcidworkerApron/ColdwardCloak opt-in, requiring actualBrokenEffect and carriedunequipped eligibility. This particular player's pack has no BrokenEffect or eligible damagedleather. Do not manufacture damage for qualification. No actual leatherrepair is claimed.
+
+Candidate must add a named finite already-cured harness-leather offcut and explicit conversion/provenance. No existing hide source was found. CorpsePart currently supplies one Harvestable output consuming the corpse; do not invent a meat-versus-hide dilemma or pretend freshhide is tanned leather. Oak/straightgrain provenance also absent; genericSalvagedTimber cannot become oak automatically. Tepuibone/timber/cord shaping already ships.
+
+workshop-before.png is actual current viewport. Complete isolatedroot archived /private/tmp/coo-leather-feed-baseline-9be3812f before stop; original input checkpoint referenced rather than duplicated. This baseline qualifies current finished-supply cost and demonstrated weaponconsumer; no offcut supplier has been observed because that content does not yet exist.
