@@ -136,6 +136,43 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        [TestCase("valid")] [TestCase("foreign-assembly")] [TestCase("duplicate-assembly")]
+        [TestCase("unknown-haft")] [TestCase("unknown-binding")] [TestCase("legacy")] [TestCase("steel-control")]
+        public void ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(string condition)
+        {
+            var holder=Holder();var pack=holder.GetPart<InventoryPart>();
+            Entity Carry(string name){var item=factory.CreateEntity(name);Assert.True(pack.AddObject(item));return pack.Objects.First(e=>e.BlueprintName==name);}
+            Assert.True(WeaponForgingService.TryForge(holder,factory,Carry(condition=="steel-control"?"SteelBladeComponent":"CinderhookAxeHeadComponent"),Carry("FieldHaftComponent"),Carry("LeatherBindingComponent"),out var weapon,out var reason),reason);
+            var assembly=weapon.GetPart<WeaponAssemblyPart>();
+            if(condition=="foreign-assembly")assembly.ParentEntity=holder;
+            if(condition=="duplicate-assembly")weapon.AddPart(new WeaponAssemblyPart{BladeBlueprint=assembly.BladeBlueprint,HaftBlueprint=assembly.HaftBlueprint,BindingBlueprint=assembly.BindingBlueprint});
+            if(condition=="unknown-haft")assembly.HaftBlueprint="UnknownHaft";
+            if(condition=="unknown-binding")assembly.BindingBlueprint="UnknownBinding";
+            if(condition=="legacy")weapon.RemovePart(assembly);
+            var row=Index().Icons.Single(r=>r.Blueprint=="ForgedWeapon");
+            void Frame(Sprite sprite)
+            {
+                if(condition=="valid"){Assert.AreSame(Resources.Load<Texture2D>(FlatPixelIncidentalEquipmentCatalog.HatchetResourcePath),sprite.texture);Assert.AreEqual(new Rect(0,0,16,24),sprite.rect);}
+                else{int h=Index().FrameHeight;Assert.AreSame(Resources.Load<Texture2D>(FlatPixelWildFaunaCatalog.ItemAtlasResourcePath),sprite.texture);Assert.AreEqual(new Rect(row.Frame%Index().Columns*16,(sprite.texture.height/h-1-row.Frame/Index().Columns)*h,16,h),sprite.rect);}
+            }
+            var heldCell=zone.GetEntityCell(holder);Assert.True(world.TryGetPresentationSubjectSprite(zone,weapon,heldCell.X,heldCell.Y,out var portrait,out _));Frame(portrait);
+            Assert.True(pack.RemoveObject(weapon));var cell=zone.GetEntityCell(holder);Assert.True(zone.AddEntity(weapon,cell.X,cell.Y+1));
+            using(var wild=new FlatPixelWildFaunaCatalog()){Assert.True(wild.TryResolve(zone,weapon,out var tile));Frame(tile.sprite);}
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,weapon,cell.X,cell.Y+1,out portrait,out _));Frame(portrait);
+        }
+
+        [Test] public void InjectedNullArtNeverBorrowsACompleteAxeImplicitly()
+        {
+            var holder=Holder();var pack=holder.GetPart<InventoryPart>();
+            Entity Carry(string name){var item=factory.CreateEntity(name);Assert.True(pack.AddObject(item));return pack.Objects.First(e=>e.BlueprintName==name);}
+            Assert.True(WeaponForgingService.TryForge(holder,factory,Carry("CinderhookAxeHeadComponent"),Carry("FieldHaftComponent"),Carry("LeatherBindingComponent"),out var weapon,out var reason),reason);
+            using(var wild=new FlatPixelWildFaunaCatalog(null,null,null,null,null))
+            {
+                Assert.False(wild.TryResolvePortableItem(weapon,out _));
+                Assert.True(pack.RemoveObject(weapon));var cell=zone.GetEntityCell(holder);Assert.True(zone.AddEntity(weapon,cell.X,cell.Y+1));Assert.False(wild.TryResolve(zone,weapon,out _));
+            }
+        }
+
         [Test] public void WornArmourShowsItsIconInTheReader()
         {
             var holder = Holder(); var mail = factory.CreateEntity("ChainMail");

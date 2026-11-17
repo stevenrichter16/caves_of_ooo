@@ -2917,6 +2917,15 @@
               "Value": "true"
             }
           ]
+        },
+        {
+          "Name": "CuttingTool",
+          "Params": [
+            {
+              "Key": "FlexibleStock",
+              "Value": "true"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -12354,6 +12363,14 @@
             {
               "Key": "Drams",
               "Value": "140"
+            },
+            {
+              "Key": "OpeningStockBlueprint",
+              "Value": "CuredLeatherOffcut"
+            },
+            {
+              "Key": "OpeningStockUnits",
+              "Value": "2"
             }
           ]
         },
@@ -59879,6 +59896,92 @@
             {
               "Key": "ProcessIds",
               "Value": "point"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "CuredLeatherOffcut",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cured harness-leather offcut"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "StackCount",
+              "Value": "1"
+            },
+            {
+              "Key": "MaxStack",
+              "Value": "20"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A sound piece of already-cured harness leather, bordered by narrow torn margins. One usable strip can be cut into a replacement binding with an accessible working cutting tool; the margins are discarded. This is prepared workshop stock, not a fresh hide. You can keep or sell it, or buy a finished binding instead."
+            }
+          ]
+        },
+        {
+          "Name": "MaterialProcessInput",
+          "Params": [
+            {
+              "Key": "ProcessIds",
+              "Value": "cut_binding"
             }
           ]
         }

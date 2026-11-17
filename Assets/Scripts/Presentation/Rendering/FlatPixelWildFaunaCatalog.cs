@@ -190,6 +190,33 @@ namespace CavesOfOoo.Rendering
                 || (owner.GetPart<StackerPart>()?.StackCount ?? 1) <= 0) return canonical;
             return ItemRole("CounterweightMaul",out var hammer) ? hammer : canonical;
         }
+        Tile assemblyAxe;
+        // Canonical render admission stays in the shared callers. This neutral
+        // complete axe is borrowed approved art, never a component-only guess.
+        Tile AssemblyItemTile(Entity owner,IconRow canonical)
+        {
+            var assembly=Owned<WeaponAssemblyPart>(owner);
+            if(loadUpper && owner.BlueprintName=="ForgedWeapon" && owner.HasTag("Item") && !owner.HasTag("Natural")
+                && assembly!=null && Owned<MeleeWeaponPart>(owner)!=null && assembly.BladeBlueprint=="CinderhookAxeHeadComponent"
+                && FiftySecondVisualAliases.HaftForm(assembly.HaftBlueprint)!=null
+                && FiftySecondVisualAliases.BindingForm(assembly.BindingBlueprint)!=null
+                && (owner.GetPart<StackerPart>()?.StackCount??1)>0)
+            {
+                if(assemblyAxe==null)
+                {
+                    var texture=Resources.Load<Texture2D>(FlatPixelIncidentalEquipmentCatalog.HatchetResourcePath);
+                    if(texture!=null && texture.width==16 && texture.height==24)
+                    {
+                        var sprite=Sprite.Create(texture,new Rect(0,0,16,24),new Vector2(.5f,.5f),16,0,SpriteMeshType.FullRect);
+                        sprite.name="Cinderhook complete axe";sprite.hideFlags=HideFlags.HideAndDontSave;
+                        assemblyAxe=ScriptableObject.CreateInstance<Tile>();assemblyAxe.hideFlags=HideFlags.HideAndDontSave;
+                        assemblyAxe.sprite=sprite;assemblyAxe.flags=TileFlags.None;assemblyAxe.colliderType=Tile.ColliderType.None;
+                    }
+                }
+                if(assemblyAxe!=null)return assemblyAxe;
+            }
+            return ItemTile(AssemblyItemRow(owner,canonical));
+        }
         static bool PropRole(string blueprint) => !string.IsNullOrEmpty(blueprint) && Props.AnyRow.ContainsKey(blueprint);
 
         /// <summary>Has a generated item icon (and no shared body that would take precedence).</summary>
@@ -209,7 +236,7 @@ namespace CavesOfOoo.Rendering
                 || owner.HasTag("Creature") || owner.HasTag("Player")) return false;
             if (owner.HasPart<StatusEffectsPart>())
             { var fx = Owned<StatusEffectsPart>(owner); if (fx == null || fx.GetRenderColorOverride() != null) return false; }
-            tile = ItemTile(AssemblyItemRow(owner,row)); return tile != null;
+            tile = AssemblyItemTile(owner,row); return tile != null;
         }
 
         static readonly string[] CropStages = { "stage0", "stage1", "stage2" };
@@ -422,7 +449,7 @@ namespace CavesOfOoo.Rendering
                     || !string.IsNullOrEmpty(r.BackgroundColor) || !string.IsNullOrEmpty(r.VisualID) || !string.IsNullOrEmpty(r.VisualVariant)
                     || p == null || !p.Takeable || p.InInventory != null || p.Equipped != null || owner.HasTag("Creature") || owner.HasTag("Player")
                     || Owned<StatusEffectsPart>(owner)?.GetRenderColorOverride() != null) return false;
-                tile = ItemTile(AssemblyItemRow(owner,itemRow)); return tile != null;
+                tile = AssemblyItemTile(owner,itemRow); return tile != null;
             }
             if (PropRole(owner.BlueprintName) && !UpperRole(owner.BlueprintName, out _))
             {
@@ -548,6 +575,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
+            if(assemblyAxe!=null){DestroyOwned(assemblyAxe.sprite);DestroyOwned(assemblyAxe);assemblyAxe=null;}
             if(recoveryPan!=null){DestroyOwned(recoveryPan.sprite);DestroyOwned(recoveryPan);recoveryPan=null;}
             foreach (var t in new[] { magpie, viper, scorpion, cultist, rotling, cactus, hearth, warden })
             { if (t == null) continue; DestroyOwned(t.sprite); DestroyOwned(t); }

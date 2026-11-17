@@ -55,6 +55,7 @@ namespace CavesOfOoo.Core
             if (otherStacker == null) return false;
             if (string.IsNullOrEmpty(ParentEntity.BlueprintName)) return false;
             if (ParentEntity.BlueprintName != other.BlueprintName) return false;
+            if (!CuttingToolPart.CompatibleStackState(ParentEntity,other)) return false;
             if (!MaterialProcessPayloadPolicies.CanMergeProcessingInputs(ParentEntity, other)) return false;
             if (!ConnectedClayProvenance.CanMerge(ParentEntity, other)) return false;
 
@@ -80,6 +81,7 @@ namespace CavesOfOoo.Core
         public int MergeFrom(Entity other)
         {
             if (other == null || !MaterialProcessPayloadPolicies.CanMergeProcessingInputs(ParentEntity, other)) return 0;
+            if (!CuttingToolPart.CompatibleStackState(ParentEntity,other)) return 0;
             if (MaterialProcessService.IsProtected(other) || MaterialProcessService.IsProtected(ParentEntity)
                 || ContainedLiquidSourcePart.IsRecoveryCustodyProtected(other)
                 || ContainedLiquidSourcePart.IsRecoveryCustodyProtected(ParentEntity)) return 0;
@@ -105,7 +107,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity SplitStack(int count)
         {
-            if (!MaterialProcessPayloadPolicies.CanSplitProcessingInput(ParentEntity)) return null;
+            if (!MaterialProcessPayloadPolicies.CanSplitProcessingInput(ParentEntity) || !CuttingToolPart.CanSplitInstance(ParentEntity)) return null;
             if (MaterialProcessService.IsProtected(ParentEntity) || ContainedLiquidSourcePart.IsRecoveryCustodyProtected(ParentEntity)) return null;
             if (count <= 0 || count >= StackCount) return null;
             var torch = ParentEntity.GetPart<TorchLightPart>();
@@ -127,7 +129,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity RemoveOne()
         {
-            if (StackCount > 1 && !MaterialProcessPayloadPolicies.CanSplitProcessingInput(ParentEntity)) return null;
+            if (StackCount > 1 && (!MaterialProcessPayloadPolicies.CanSplitProcessingInput(ParentEntity) || !CuttingToolPart.CanSplitInstance(ParentEntity))) return null;
             if (MaterialProcessService.IsProtected(ParentEntity) || ContainedLiquidSourcePart.IsRecoveryCustodyProtected(ParentEntity)) return null;
             if (StackCount <= 1) return ParentEntity;
             var torch = ParentEntity.GetPart<TorchLightPart>();

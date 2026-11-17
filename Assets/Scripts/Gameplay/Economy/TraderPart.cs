@@ -44,6 +44,12 @@ namespace CavesOfOoo.Core
         /// a purse would never restock either.</summary>
         public int Drams = 40;
 
+        /// <summary>Optional finite opening allocation, independent of renewable
+        /// StockTable rolls. Loading an old trader never applies a new packet.</summary>
+        public string OpeningStockBlueprint = "";
+        public int OpeningStockUnits;
+        public bool OpeningStockSupplied;
+
         /// <summary>Injected by GameBootstrap; null = graceful no-op
         /// (the CorpsePart.Factory convention).</summary>
         public static EntityFactory Factory;
@@ -59,8 +65,39 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "ObjectCreated")
-                Apply();
+            { Apply(); ApplyOpeningStock(); }
             return true;
+        }
+
+        private void ApplyOpeningStock()
+        {
+            if(OpeningStockSupplied || string.IsNullOrEmpty(OpeningStockBlueprint))return;
+            // Fence before any creation/weight callbacks, including failure. This
+            // is one opening opportunity, not a missing-stock retry on every visit.
+            OpeningStockSupplied=true;
+            if(OpeningStockUnits<1 || OpeningStockUnits>64 || Factory==null)return;
+            var pack=ParentEntity?.GetPart<InventoryPart>();if(pack?.ParentEntity!=ParentEntity)return;
+            var template=MaterialProcessTemplate.Capture(Factory,OpeningStockBlueprint,true);if(template==null)return;
+            var products=new System.Collections.Generic.List<Entity>();
+            CavesOfOoo.Core.Inventory.InventoryTransferSnapshot receipt=null;
+            try
+            {
+                for(int n=0;n<OpeningStockUnits;n++)
+                {
+                    if(!template.Current())return;
+                    var item=Factory.CreateEntity(OpeningStockBlueprint);
+                    if(!PreparationActions.Fresh(item,OpeningStockBlueprint) || template.Snapshot(item)==null)return;
+                    products.Add(item);
+                }
+                receipt=CavesOfOoo.Core.Inventory.InventoryTransferSnapshot.Capture(pack,products.ToArray());
+                if(!receipt.Apply(()=>
+                {
+                    foreach(var item in products)
+                        if(!pack.AddCraftedUnit(item,out var owner) || owner==null || template.Snapshot(owner)==null)return false;
+                    return template.Current() && (pack.MaxWeight<0 || pack.GetCarriedWeight()<=pack.MaxWeight);
+                }))receipt.Restore();
+            }
+            catch(System.Exception){receipt?.Restore();}
         }
 
         private void Apply()

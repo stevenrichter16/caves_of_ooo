@@ -23,11 +23,13 @@ namespace CavesOfOoo.Core
         readonly Part[] sourceParts, stationParts;
         readonly Cell actorCell, stationCell;
         readonly int count, weight, maximumStack;
+        readonly MaterialCuttingWorkReceipt cutting;
 
         MaterialProcessPlan(Entity actor, Entity source, Entity station, Zone zone,
-            EntityFactory factory, MaterialProcessDefinition definition)
+            EntityFactory factory, MaterialProcessDefinition definition, MaterialCuttingWorkReceipt cutting=null)
         {
             Actor=actor; Source=source; Station=station; Zone=zone; Factory=factory; Definition=definition;
+            this.cutting=cutting;
             SourceId=source.ID; StationId=station.ID; actorId=actor.ID; stationBlueprint=station.BlueprintName;
             pack=actor.GetPart<InventoryPart>(); physics=source.GetPart<PhysicsPart>(); stack=source.GetPart<StackerPart>();
             permission=source.GetPart<MaterialProcessInputPart>(); authorization=permission.ProcessIds;
@@ -42,9 +44,10 @@ namespace CavesOfOoo.Core
                 || MaterialProcessRegistry.Validate(factory).Count!=0 || !PreparationActions.CurrentActor(actor,zone)
                 || !PreparationActions.Carried(actor,source) || !Permission(source,definition)
                 || (source.GetPart<StackerPart>()?.StackCount??1)<definition.InputCount)return null;
-            var station=ForgeWorkReceipt.Resolve(actor,zone);
-            if(!VisibleStation(actor,station,zone))return null;
-            var plan=new MaterialProcessPlan(actor,source,station,zone,factory,definition);
+            var cutting=definition.WorkKind=="HandCutting"?MaterialCuttingWorkReceipt.Resolve(actor,source,zone):null;
+            var station=definition.WorkKind=="HandCutting"?cutting?.Tool:ForgeWorkReceipt.Resolve(actor,zone);
+            if(station==null || cutting==null && !VisibleStation(actor,station,zone))return null;
+            var plan=new MaterialProcessPlan(actor,source,station,zone,factory,definition,cutting);
             return plan.Current()?plan:null;
         }
         static bool Permission(Entity source,MaterialProcessDefinition definition)
@@ -58,7 +61,10 @@ namespace CavesOfOoo.Core
                 && PreparationActions.CurrentActor(Actor,Zone) && Actor.ID==actorId && Actor.GetPart<InventoryPart>()==pack
                 && !CombatSystem.IsDeathHandled(Actor) && (Actor.GetStat("Hitpoints")==null || Actor.GetStatValue("Hitpoints")>0)
                 && Zone.GetEntityCell(Actor)==actorCell && Zone.GetEntityCell(Station)==stationCell
-                && Station.ID==StationId && Station.BlueprintName==stationBlueprint && Station.Parts.SequenceEqual(stationParts) && VisibleStation(Actor,Station,Zone);
+                && Station.ID==StationId && Station.BlueprintName==stationBlueprint && Station.Parts.SequenceEqual(stationParts)
+                && (cutting!=null?cutting.Current():VisibleStation(Actor,Station,Zone));
+        internal bool BeginWork(CavesOfOoo.Core.Inventory.InventoryTransaction tx,string command)
+            => cutting!=null?cutting.Begin(tx,command):ForgeWorkReceipt.Begin(Actor,Zone,tx,command,Station);
         public bool Current()
             => ContextCurrent() && Source.ID==SourceId && Source.BlueprintName==Definition.SourceBlueprint
                 && Source.Parts.SequenceEqual(sourceParts) && Source.GetPart<PhysicsPart>()==physics

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Failed(Child)" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-17 08:37:03Z" end-time="2026-11-17 08:37:04Z" duration="1.0512976">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="38926" result="Failed" site="Child" start-time="2026-11-17 08:37:03Z" end-time="2026-11-17 08:37:04Z" duration="1.051298" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="47628" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="38926" result="Failed" site="Child" start-time="2026-11-17 08:37:03Z" end-time="2026-11-17 08:37:04Z" duration="0.875316" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92152" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="47629" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38926" result="Failed" site="Child" start-time="2026-11-17 08:37:03Z" end-time="2026-11-17 08:37:04Z" duration="0.871761" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="47630" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38926" result="Failed" site="Child" start-time="2026-11-17 08:37:03Z" end-time="2026-11-17 08:37:04Z" duration="0.869643" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="35308" name="FlatPixelItemIconsTests" fullname="CavesOfOoo.Tests.FlatPixelItemIconsTests" classname="CavesOfOoo.Tests.FlatPixelItemIconsTests" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-11-17 08:37:03Z" end-time="2026-11-17 08:37:04Z" duration="0.861050" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="35333" name="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader" fullname="CavesOfOoo.Tests.FlatPixelItemIconsTests.ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader" classname="CavesOfOoo.Tests.FlatPixelItemIconsTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-17 08:37:04Z" end-time="2026-11-17 08:37:04Z" duration="0.816355" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35326" name="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;valid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelItemIconsTests.ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;valid&quot;)" methodname="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader" classname="CavesOfOoo.Tests.FlatPixelItemIconsTests" runstate="Runnable" seed="866795825" result="Failed" start-time="2026-11-17 08:37:04Z" end-time="2026-11-17 08:37:04Z" duration="0.468143" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (x:128.00, y:384.00, width:16.00, height:24.00)
+  But was:  (x:16.00, y:264.00, width:16.00, height:24.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelItemIconsTests+<>c__DisplayClass18_0.<ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader>g__Frame|2 (UnityEngine.Sprite sprite) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelItemIconsTests.cs:153
+at CavesOfOoo.Tests.FlatPixelItemIconsTests.ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader (System.String condition) [0x00161] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelItemIconsTests.cs:154
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCartGoods'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="35327" name="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;foreign-assembly&quot;)" fullname="CavesOfOoo.Tests.FlatPixelItemIconsTests.ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;foreign-assembly&quot;)" methodname="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader" classname="CavesOfOoo.Tests.FlatPixelItemIconsTests" runstate="Runnable" seed="460351229" result="Passed" start-time="2026-11-17 08:37:04Z" end-time="2026-11-17 08:37:04Z" duration="0.045821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCartGoods'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="35328" name="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;duplicate-assembly&quot;)" fullname="CavesOfOoo.Tests.FlatPixelItemIconsTests.ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;duplicate-assembly&quot;)" methodname="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader" classname="CavesOfOoo.Tests.FlatPixelItemIconsTests" runstate="Runnable" seed="1144625623" result="Passed" start-time="2026-11-17 08:37:04Z" end-time="2026-11-17 08:37:04Z" duration="0.041935" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCartGoods'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="35329" name="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;unknown-haft&quot;)" fullname="CavesOfOoo.Tests.FlatPixelItemIconsTests.ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;unknown-haft&quot;)" methodname="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader" classname="CavesOfOoo.Tests.FlatPixelItemIconsTests" runstate="Runnable" seed="1444053461" result="Passed" start-time="2026-11-17 08:37:04Z" end-time="2026-11-17 08:37:04Z" duration="0.042246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCartGoods'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="35330" name="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;unknown-binding&quot;)" fullname="CavesOfOoo.Tests.FlatPixelItemIconsTests.ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;unknown-binding&quot;)" methodname="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader" classname="CavesOfOoo.Tests.FlatPixelItemIconsTests" runstate="Runnable" seed="1734865394" result="Passed" start-time="2026-11-17 08:37:04Z" end-time="2026-11-17 08:37:04Z" duration="0.043673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCartGoods'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="35331" name="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.FlatPixelItemIconsTests.ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;legacy&quot;)" methodname="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader" classname="CavesOfOoo.Tests.FlatPixelItemIconsTests" runstate="Runnable" seed="1031995842" result="Passed" start-time="2026-11-17 08:37:04Z" end-time="2026-11-17 08:37:04Z" duration="0.042548" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCartGoods'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="35332" name="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;steel-control&quot;)" fullname="CavesOfOoo.Tests.FlatPixelItemIconsTests.ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader(&quot;steel-control&quot;)" methodname="ACanonicalCinderhookAssemblyShowsACompleteAxeAcrossPackGroundAndReader" classname="CavesOfOoo.Tests.FlatPixelItemIconsTests" runstate="Runnable" seed="1401008041" result="Passed" start-time="2026-11-17 08:37:04Z" end-time="2026-11-17 08:37:04Z" duration="0.041746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCartGoods'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

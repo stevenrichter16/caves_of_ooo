@@ -39,7 +39,8 @@ namespace CavesOfOoo.Core
         static bool Emit(Entity owner,string id,MaterialProcessPlan plan)
         {
             var e=GameEvent.New(id);e.SetParameter("Actor",plan.Actor);e.SetParameter("Source",plan.Source);
-            e.SetParameter("Station",plan.Station);e.SetParameter("Process",plan.Definition);
+            e.SetParameter("Station",plan.Definition.WorkKind=="ForgeCold"?plan.Station:null);
+            e.SetParameter("Tool",plan.Definition.WorkKind=="HandCutting"?plan.Station:null);e.SetParameter("WorkProvider",plan.Station);e.SetParameter("Process",plan.Definition);
             return owner.FireEventAndRelease(e);
         }
         static int Count(Entity item)=>item.GetPart<StackerPart>()?.StackCount??1;
@@ -65,7 +66,7 @@ namespace CavesOfOoo.Core
             if(tx==null || quote==null || !quote.Current())return Refuse();
             var actor=plan.Actor;var input=plan.Source;var pack=actor.GetPart<InventoryPart>();var zone=plan.Zone;
             if(!tx.TryClaimAction(actor) || !PreparationActions.Begin(actor,input,zone,tx,command)
-                || !ForgeWorkReceipt.Begin(actor,zone,tx,command,plan.Station))return Refuse();
+                || !plan.BeginWork(tx,command) || !Guard(plan.Station,tx))return Refuse();
             var sourceTemplate=quote.SourceTemplate;var sourceState=quote.SourceState;
             if(sourceState==null)return Refuse();
             int sourceCount=Count(input),units=plan.Definition.InputCount;
