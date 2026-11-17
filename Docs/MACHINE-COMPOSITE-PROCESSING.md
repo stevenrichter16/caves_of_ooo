@@ -1,6 +1,6 @@
 # Composite processing: finite multi-input workmanship
 
-2026-11-17 10:29UTC. M3c bounded Editor acceptance is complete: final327/327 native checks, ordinary acquisition/processing/refit/travel/fresh Continue and independent source/gameplay/visual0remainingP1/P2. Publication/current Mac remain pending. Historical qualification below explains the real input route and tradeoff; it is superseded by the locked contract here.
+2026-11-17 10:29UTC. M3c bounded Editor acceptance is complete: final327/327 native checks, ordinary acquisition/processing/refit/travel/fresh Continue and independent source/gameplay/visual0remainingP1/P2. Publishedc600701d0/remotelyverified; same-source currentMac actualprocess/refit/travel/F5/fresh4410HP40 passed, independent finaldeliveryreview0P1/P2; currentMac accepted. Historical qualification below explains the real input route and tradeoff; it is superseded by the locked contract here.
 
 ## Implemented contract and acceptance evidence
 
@@ -56,3 +56,11 @@ Minimal proposed input-admission refinement: primary1KnotflaxCord already has sa
 
 
 Independent actual gameplay/visual review accepts the bounded slice with0remainingP1/P2; see CompositeProcessingActual/gameplay-visual-review.md. Numeric custody is root-observed; images do not independently prove postload weapon identity. Current next gate: exact owned publication and current Mac process/refit/travel/fresh-process Continue. Full twelve-machine gates, raw ore/heat/tanning/jobs, arbitrary effect propagation, general modifier contributions and NPC planning remain open.
+
+
+## Publication and Mac milestone —2026-11-17 10:37UTC
+
+Accepted sourcec600701d00b8f921c43be0ae199be0edb26dba8e pushed/remotelyverified. CurrentMac BatchC600701 built31.395005s/0errors4warnings; actualprocess/refit/equip/worldmap/reentry/F5 thenfreshprocessContinue4410HP40at57,6/4drams31weight passed. Both exactplayersclosed. Editor4420 includes a separate bindingpickupcontrol not repeated in package.678inputpins/186packagefiles; normalstates/all84priorchanges/priorMac+inheritedLinux snapshot entries restored10:36:20UTC. Final independent deliveryreview0P1/P2; currentMac accepted. Do not repeatnative/prerequisiteacquisition/actualacceptedbranches.
+
+
+Independent currentMac delivery review0P1/P2 completed10:39UTC; BatchC600701 records package/input/checkpoint/log/preservation gates separately from root-observed actualplay. CurrentMac and this bounded M3c foundation are accepted. All full-machine gates remain open.

@@ -209,3 +209,11 @@ NEXT independent gameplay/visual review, exact records/source commit/push/remote
 
 
 Acceptance update10:32UTC: independent gameplay/visual review accepts the demonstrated bounded M3c slice,0remainingP1/P2; separate source review same. Review receipts distinguish root read-only custody observations from screenshots and preserve limits. M3c Editor/native acceptance complete; exact publication/current Mac next. No full-machine acceptance.
+
+
+## Continuation —2026-11-17 10:37UTC: published M3c/current Mac final review
+
+Mainc600701d0 pushed/remotelyverified; M3c327/327native and independent source/gameplay/visual0P1/P2 accepted. Exactowned41paths include livingrecords/tests/evidence. CurrentMac same source actualprocess→existingrefit/equip→walk/worldmap/reentry/F5→freshprocessContinue4410HP40at57,6/4drams31weight passed; both38683/38867closed. Package186files,678effectiveinputpins/twooperationalMCPlogs only; no clean-tree claim. Snapshot/restorer60612tracked/84preexistingdirty/normalstates/priorMac4dcb+inheritedLinuxexact10:36:20UTC; ownedSave tree archived, no deletion. Independent finaldeliveryreview0P1/P2; currentMac accepted. NEXT finalreview/recordscommit/push, then strongest independently source-qualified regionalfeed/recoveryproblem actualbaseline. No newruntime qualified. Full12machine/heat/ore/tanning/jobs/generalmodifiers/arbitraryeffectpropagation/NPCplanning open; do not reimplementshippedtimber/cord/tepuibone. Unitystopped/rootnull/clean/tests idle; graphicscancelled,capstan/culturesparked,Deckdeferred,hourlyACTIVE. Lastactualrequestedhourlyreport10:08:16UTC.
+
+
+Delivery acceptance10:39UTC: independent BatchC600701/delivery-review.md verifies all186packagefiles/678effectiveinputpins, checkpointgzip/fixtureprovenance/freshprocess consistency, exact dirtyProjectSettingsdelta, all60612trackedobjects/84preexistingchanges and normalstates/priorMac+inheritedLinuxsnapshotentries.0remainingP1/P2. CurrentMac sourcec600701d0 accepted; records commit/push next. Do not repeat accepted process/refit/travel/reload or unchanged tests. Next qualification stays source/lore/problem/actualbaseline before any new runtime.
