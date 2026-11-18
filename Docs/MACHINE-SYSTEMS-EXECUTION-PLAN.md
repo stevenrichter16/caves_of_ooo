@@ -217,3 +217,10 @@ Mainc600701d0 pushed/remotelyverified; M3c327/327native and independent source/g
 
 
 Delivery acceptance10:39UTC: independent BatchC600701/delivery-review.md verifies all186packagefiles/678effectiveinputpins, checkpointgzip/fixtureprovenance/freshprocess consistency, exact dirtyProjectSettingsdelta, all60612trackedobjects/84preexistingchanges and normalstates/priorMac+inheritedLinuxsnapshotentries.0remainingP1/P2. CurrentMac sourcec600701d0 accepted; records commit/push next. Do not repeat accepted process/refit/travel/reload or unchanged tests. Next qualification stays source/lore/problem/actualbaseline before any new runtime.
+
+
+## Handoff publication correction
+
+M3c implementationc600701d0 and currentMac delivery420f82367 are accepted, pushed and remotely verified. Do not repeat accepted processing/refit/travel/reload/tests or delivery. Next is ordinary qualification of the proposal in Docs/Verification/MachineSystems/SpurgrassBaseline/source-selection.md:2SpurgrassSpine+1KnotflaxCord→existingSerratedEdgeComponent. This is source selection only, not a shipped recipe or actual acquisition. Real harvest/stacking/throw-recovery/consumer and finished-stock comparisons must establish purpose; explicit work permission and canonical weapon-payload/equipped-input/save policies require independent design critique before RED. No new runtime changes. All twelve complete-machine gates remain open; graphics cancelled, capstan/cultures parked, Deck deferred. Preserve84preexistingtrackedchanges/normalstates/art/parkedgraphics/allbuilds; sole Unity/Git owner coordinates with ACTIVE hourly task.
+
+Last observed Unity stopped/rootnull/clean. A later bounded agent run hit a usage limit; subsequent heartbeat arrivals do not establish implementation progress. Inspect current ownership/state before continuing. The saved hourly prompt has been corrected to the completed-delivery state and proposed qualification.
