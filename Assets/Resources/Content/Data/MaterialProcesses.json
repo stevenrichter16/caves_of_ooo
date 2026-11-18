@@ -85,6 +85,28 @@
       ],
       "ActionText": "trim and tension guard lashing",
       "LossText": "trimming discarded; gain 1 hit, lose 1 penetration versus leather; usable cutting tool required"
+    },
+    {
+      "Id": "serrated_kit",
+      "SourceBlueprint": "KnotflaxCord",
+      "SourceRecipeId": "braid_binding",
+      "Mode": "Process",
+      "InputCount": 1,
+      "AdditionalInputBlueprints": [
+        "SpurgrassSpine"
+      ],
+      "AdditionalInputCounts": [
+        2
+      ],
+      "WorkKind": "HandCutting",
+      "OutputBlueprints": [
+        "SerratedEdgeComponent"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "lash serrated edge kit",
+      "LossText": "cord trimmed to length, points lashed on; usable cutting tool required"
     }
   ]
 }

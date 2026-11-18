@@ -25,6 +25,11 @@ namespace CavesOfOoo.Core
     /// create no external inventory, currency or world side effects.</summary>
     public interface IMaterialProcessCreationPartPolicy : IMaterialProcessPartPolicy
     { bool AllowsCreation { get; } }
+    /// <summary>Marks a Part that gameplay attaches to ANY item and never removes (a throw receipt, an effects list).
+    /// While inert it carries no recipe-relevant state, so it must not make a declared input unsplittable, unmergeable
+    /// or ambiguous. A live one (an outstanding recovery claim, an active effect) is treated as private state and refuses.
+    /// Assembly-internal and built-in only: adding another bookkeeping Part means editing this file, on purpose.</summary>
+    internal interface IMaterialProcessTrackingPolicy { bool Inert(Part part); }
     public static class MaterialProcessPayloadPolicies
     {
         static readonly Dictionary<Type,IMaterialProcessPartPolicy> Policies=new Dictionary<Type,IMaterialProcessPartPolicy>();
@@ -32,27 +37,53 @@ namespace CavesOfOoo.Core
         {
             foreach(var type in new[]{typeof(RenderPart),typeof(PhysicsPart),typeof(ExaminablePart),typeof(CommercePart),
                 typeof(StackerPart),typeof(WeaponComponentPart),typeof(MaterialPart),typeof(CompositionPart),
-                typeof(PreparationRecipePart),typeof(MaterialProcessInputPart)})Policies[type]=new ScalarPolicy(type);
+                typeof(PreparationRecipePart),typeof(MaterialProcessInputPart),typeof(MeleeWeaponPart),typeof(HandlingPart)})Policies[type]=new ScalarPolicy(type);
+            // Compared by inertness only, never by Revision: consuming the last unit of a stack invalidates its throw
+            // receipt (bumping Revision), which must not make the commit that caused it refuse.
+            Policies[typeof(ThrownRecoveryPart)]=new TrackingPolicy<ThrownRecoveryPart>(t=>string.IsNullOrEmpty(t.ThrowerId) && string.IsNullOrEmpty(t.ItemId)
+                && string.IsNullOrEmpty(t.Blueprint) && string.IsNullOrEmpty(t.ZoneId) && t.Serial==0);
+            Policies[typeof(StatusEffectsPart)]=new TrackingPolicy<StatusEffectsPart>(t=>t.EffectCount==0);
         }
         public static void Register(Type partType,IMaterialProcessPartPolicy policy)
-        {if(partType==null || !typeof(Part).IsAssignableFrom(partType) || policy==null)throw new ArgumentException("A Part and explicit policy are required.");Policies[partType]=policy;}
+        {
+            if(partType==null || !typeof(Part).IsAssignableFrom(partType) || policy==null)throw new ArgumentException("A Part and explicit policy are required.");
+            if(Policies.TryGetValue(partType,out var existing) && existing is IMaterialProcessTrackingPolicy)throw new ArgumentException("A built-in bookkeeping Part cannot be given another policy.");
+            Policies[partType]=policy;
+        }
         public static bool Unregister(Type type,IMaterialProcessPartPolicy expected)
         {return type!=null && Policies.TryGetValue(type,out var current) && current==expected && Policies.Remove(type);}
         internal static IMaterialProcessPartPolicy Get(Type type)=>Policies.TryGetValue(type,out var policy)?policy:null;
 
+        internal static bool IsInertTracking(Part part)=>part!=null && Get(part.GetType()) is IMaterialProcessTrackingPolicy tracking && tracking.Inert(part);
         internal static bool CanSplitProcessingInput(Entity owner)
             => !MaterialProcessRegistry.IsPayload(owner) || owner.Statistics?.Count==0
-                && owner.Parts.All(p=>p!=null && Get(p.GetType()) is ScalarPolicy);
+                && owner.Parts.All(p=>p!=null && (Get(p.GetType()) is ScalarPolicy || IsInertTracking(p)));
         internal static bool CanMergeProcessingInputs(Entity first,Entity second)
         {
             if(!MaterialProcessRegistry.IsPayload(first) && !MaterialProcessRegistry.IsPayload(second))return true;
             if(!MaterialProcessRegistry.IsPayload(first) || !MaterialProcessRegistry.IsPayload(second)
-                || !CanSplitProcessingInput(first) || !CanSplitProcessingInput(second) || first.Parts.Count!=second.Parts.Count)return false;
+                || !CanSplitProcessingInput(first) || !CanSplitProcessingInput(second))return false;
+            // Inert bookkeeping Parts are not payload: compare what is left, in order.
+            var left=first.Parts.Where(p=>!IsInertTracking(p)).ToArray();var right=second.Parts.Where(p=>!IsInertTracking(p)).ToArray();
+            if(left.Length!=right.Length)return false;
             bool Same<K,V>(IDictionary<K,V> a,IDictionary<K,V> b)=>a!=null&&b!=null&&a.Count==b.Count&&a.All(p=>b.TryGetValue(p.Key,out var v)&&EqualityComparer<V>.Default.Equals(p.Value,v));
             if(!Same(first.Tags,second.Tags)||!Same(first.Properties,second.Properties)||!Same(first.IntProperties,second.IntProperties))return false;
-            for(int i=0;i<first.Parts.Count;i++)
-            {var left=first.Parts[i];var right=second.Parts[i];var policy=Get(left.GetType());if(left.GetType()!=right.GetType()||!policy.Matches(right,policy.Capture(left)))return false;}
+            for(int i=0;i<left.Length;i++)
+            {var policy=Get(left[i].GetType());if(left[i].GetType()!=right[i].GetType()||!policy.Matches(right[i],policy.Capture(left[i])))return false;}
             return true;
+        }
+
+        /// <summary>Policy for a built-in bookkeeping Part. Never a valid authored template; never a creation payload.</summary>
+        sealed class TrackingPolicy<T>:IMaterialProcessInstancePartPolicy,IMaterialProcessTrackingPolicy where T:Part
+        {
+            readonly Func<T,bool> inert;
+            internal TrackingPolicy(Func<T,bool> inert){this.inert=inert;}
+            public bool ValidTemplate(IReadOnlyDictionary<string,string> parameters)=>false;
+            public bool MatchesTemplate(Part part,IReadOnlyDictionary<string,string> parameters)=>false;
+            public bool Inert(Part part)=>part is T typed && inert(typed);
+            public bool AllowsInstance(Part part)=>Inert(part);
+            public object Capture(Part part)=>Inert(part);
+            public bool Matches(Part part,object state)=>part is T && state is bool saved && saved==Inert(part);
         }
 
         // A bounded adapter for the existing simple data Parts. This is not a
@@ -171,7 +202,7 @@ namespace CavesOfOoo.Core
             var expectedTags=new Dictionary<string,string>(tags);
             foreach(var material in owner.Parts.OfType<MaterialPart>())foreach(var tag in material.MaterialTags)expectedTags[tag]="";
             if(!Same(owner.Tags,expectedTags))return false;
-            foreach(var extra in owner.Parts.Where(p=>!parameters.ContainsKey(p.Name)))
+            foreach(var extra in owner.Parts.Where(p=>!parameters.ContainsKey(p.Name) && !MaterialProcessPayloadPolicies.IsInertTracking(p)))
                 if(!allowInstances || MaterialProcessPayloadPolicies.Get(extra.GetType()) is not IMaterialProcessInstancePartPolicy policy || !policy.AllowsInstance(extra))return false;
             foreach(var row in parameters)
             {
