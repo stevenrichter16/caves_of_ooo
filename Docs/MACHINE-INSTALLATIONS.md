@@ -102,4 +102,6 @@ session is to put machines in every town and village. The recorded resolution:
 
 ## Evidence
 
+Editor actual play (2026-11-18): Gantry, Tine, Slip and the Last Counter each show the forge beside the interact menu; see `Verification/MachineSystems/InstallationsActual/observations.json`.
+
 Native: S1 18 (17 + 1 environment-guarded generator), S2 24 retention cases (11 fail on HEAD production), S6 56 (registry, census, pipeline priorities), S7 placement cases, MinRadius and shipped-row sweeps; installation suites pass together. The full EditMode comparison and the actual-play checks are recorded in the execution plan continuation.

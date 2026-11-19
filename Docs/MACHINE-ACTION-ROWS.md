@@ -40,8 +40,17 @@ Behaviour:
 Adjacent suites run unchanged (1,107 cases across machine, inventory ledger, examine ledger, world and pack menu, alchemy still, audit and retention suites): 1,106 pass; the one failure,
 `GameAuditSplitIdentityAdversarialTests.OuterFailureRestoresExactSourceWithoutLeavingReachableClone("throw", true)`, fails identically on HEAD (it is in the recorded baseline).
 
+## First consumer: the field work rig says why
+
+A rig that is not ready lists no craft rows, so standing beside a fouled rig showed repair, haul and dismantle rows and nothing about the workshop. `ForgePart` now adds one disabled row, "work at the rig", for an actor within one cell
+whenever `StationReadiness.Evaluate` fails, with a one-sentence reason per readiness code (`faulted`: "The rig is not sound. Repair it before working at it."; `hauled`; `harvested`; `destroyed`; anything else a generic sentence).
+It sorts at priority 5, after every usable row and before Examine, so the menu opens on a usable row. A ready rig, a rig out of reach and an ordinary forge add no such row (counter-cases in `MachineRigDisabledRowTests`, 12 cases; the existing rig suite
+still passes). Editor play at the Peat Works rig confirmed the dimmed row, and that Enter on it logs the reason, spends no turn and keeps the menu open (`Verification/MachineSystems/InstallationsActual/rig-disabled-row-*.png`); that play had the row at
+priority 100, which started the cursor on it, so it was moved to 5 and covered natively.
+The reason sentences are plain mechanical messages in the style of the rig's existing refusals ("The rig must be sound, released and within reach."); they name no world noun.
+
 ## Limits
 
-- No shipped row is changed by this slice; the field-work rig's "fouled, repair first" disabled row (S4's adapter) and the process rows' reasons (S12) are separate slices that use this mechanism.
+- The process rows' reasons (S12) are a separate slice that uses this mechanism.
 - Rounds (multi-action costs) wait for a second consumer; only `Free` and `OneAction` exist.
 - The world menu has no detail line for a disabled row yet beyond the log message; the pack menu says "(unavailable)" in its label.

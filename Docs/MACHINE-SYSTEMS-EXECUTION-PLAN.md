@@ -252,3 +252,12 @@ twelve per-machine V1 dossiers, a settlement placement plan, and three independe
   a local problem ahead of the apparatus), so "a machine in every town" is a ratchet (Pending may only fall), not a claim. Tally and Wellmeet forges are held back on recorded gates; the three surface-village forges are convenience rows placed on the
   owner's standing instruction and can be deleted as data before release.
 
+### Update — 2026-11-18 (later): S3 declared action time and disabled rows, and the rig explains itself
+
+- S3 is committed and pushed (`f0e99eb08`): [MACHINE-ACTION-ROWS.md](MACHINE-ACTION-ROWS.md). First consumer: a fouled, dragged, dismantled or wrecked field work rig lists a dimmed "work at the rig" row with the reason; played in the Editor
+  at the Peat Works. PB0a (a well-keeper renewal also unloads a village) is covered by two retention tests with no production change (starting village and Wellmeet only).
+- Last Counter forge played in the Editor (fresh world, forge at 34,10 beside the Envoy, interact menu opens).
+- Test status: all four commits were verified with targeted and adjacent suites; the one adjacent failure in S3's set and eight in the forge/rig/hauling set fail identically on the HEAD baseline. The full-suite comparison (3.4 hours) is still running
+  in the verification clone against the S1-S7 tree and will be recorded when it finishes.
+- Next: S12 (multi-stack claims and reasoned process rows, critique-gated), S9 (stations on one receipt, probe table first), S19 (installable state for home/base), then opportunity-first content (the dossiers' honest V1s).
+

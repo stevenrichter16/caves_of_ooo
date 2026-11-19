@@ -37,6 +37,6 @@ Stations are found by what a Part provides, not by its concrete type (`Assets/Sc
 
 ## Limits and next
 
-- The rig's disabled row ("the rig is fouled and needs repair first") needs the disabled-row mechanism (spec S3) and is not done here; the rig still shows no rows when it is not ready.
+- The rig's disabled row is done on top of the S3 mechanism (see [MACHINE-ACTION-ROWS.md](MACHINE-ACTION-ROWS.md)): beside a rig that is not ready, "work at the rig" is listed dimmed with the reason.
 - `MineralPreparationPart` and `BrewReagentsCommand` still use the weaker presence check; moving every station user onto the receipt is slice S9, whose first step is a probe table (some of its named users already use the receipt).
 - A `StationPart` for new benches and a "works here" reader line come with the work-kind table (S13).

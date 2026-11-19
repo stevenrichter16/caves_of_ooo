@@ -44,11 +44,38 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static EntityFactory Factory;
 
+        /// <summary>Stable readiness code to the one sentence a player reads on the disabled "work at the rig" row. Unknown codes fall back to a generic sentence.</summary>
+        public static string RigUnavailableReason(string code)
+        {
+            switch (code)
+            {
+                case StationReadiness.Faulted: return "The rig is not sound. Repair it before working at it.";
+                case StationReadiness.Hauled: return "The rig cannot be worked while it is being dragged.";
+                case StationReadiness.Harvested: return "The rig has been taken apart.";
+                case StationReadiness.Destroyed: return "The rig is wrecked.";
+                default: return "The rig cannot be worked right now.";
+            }
+        }
+
+        void AddRigUnavailableRow(InventoryActionList actions, Entity actor)
+        {
+            var zone = actor?.SpatialZone;
+            if (actions == null || actor == null || zone == null || SpatialQuery.Distance(zone, actor, ParentEntity) > 1) return;
+            if (StationReadiness.Evaluate(ParentEntity, zone, "forge", out string code)) return; // ready: nothing to explain
+            // Low priority on purpose: the menu opens on its first row, which should be something usable (repair, haul), not the explanation.
+            actions.AddDisabled("RigUnavailable", "work at the rig", code ?? "unavailable", RigUnavailableReason(code), '\0', 5);
+        }
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions")
             {
-                if (FieldWorkRigRules.IsRig(ParentEntity) && !ForgeWorkReceipt.Near(e.GetParameter<Entity>("Actor"), ParentEntity, e.GetParameter<Entity>("Actor")?.SpatialZone)) return true;
+                if (FieldWorkRigRules.IsRig(ParentEntity) && !ForgeWorkReceipt.Near(e.GetParameter<Entity>("Actor"), ParentEntity, e.GetParameter<Entity>("Actor")?.SpatialZone))
+                {
+                    // A rig that is not ready lists no craft rows. Someone standing beside it is told why instead of seeing nothing (spec S3/S4).
+                    AddRigUnavailableRow(e.GetParameter<InventoryActionList>("Actions"), e.GetParameter<Entity>("Actor"));
+                    return true;
+                }
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null)
                 {
