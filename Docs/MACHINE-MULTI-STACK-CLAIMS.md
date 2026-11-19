@@ -24,7 +24,13 @@ are spent first among equal stacks; one spine total, a live recovery claim, an e
 original place; a stack removed between quote and commit refuses and spends nothing; a new lower-ID stack after the quote is not a take; and a differential sweep over every stack-count vector (three stacks, 0 to 3 units each) matches the legacy oracle or pools. The existing spurgrass, composite,
 leather, reclamation and process suites pass unchanged.
 
+## S12a: why a row is not offered
+
+`MaterialProcessMisses.Explain` adds ONE dimmed row (priority 4, below a real process row's 19, no quote, no token, never dispatched) when a carried, permitted source is a near-miss: exactly one requirement group fails. Codes: `short` (source or an extra input, with
+how many you have), `stacks-incompatible` (enough units that cannot be used together), `no-tool` (hand-cutting work with no usable tool), `no-station` (forge work with no forge or rig at all within reach). Never shown for a ground or shop source, when two or more groups fail,
+or when an unready rig or forge is within reach (its own menu already says why). `MachineProcessMissTests` (8) pin each reason and each counter; the 735-case machine, process, action-row and inventory suites pass.
+
 ## Limits
 
-No disabled-row reasons yet (S12a: `short`, `stacks-incompatible`, `no-tool`, `tool-unusable`, `no-station`, low priority, near-misses only); the menu label does not say a pooled quote spends from several stacks; the rollback snapshot still does not restore a recovery mark's `Revision`
+`no-tool` does not separate a missing tool from a broken one; the menu label does not say a pooled quote spends from several stacks; the rollback snapshot still does not restore a recovery mark's `Revision`
 (as in legacy); actual play of throw-one-recover-one is not done.

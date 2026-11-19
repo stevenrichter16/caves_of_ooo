@@ -37,7 +37,14 @@ namespace CavesOfOoo.Core
                 foreach(var id in ids.Distinct())
                 {
                     var plan=MaterialProcessPlan.TryCreate(actor,owner,id,zone,ForgePart.Factory);
-                    var quoted=MaterialProcessService.TryQuote(plan);if(quoted==null)continue;
+                    var quoted=MaterialProcessService.TryQuote(plan);
+                    if(quoted==null)
+                    {
+                        // Not runnable now: explain a near-miss with one disabled row (no quote, no token, never dispatched).
+                        if(plan==null&&MaterialProcessMisses.Explain(actor,owner,id,zone,ForgePart.Factory) is MaterialProcessMisses.Miss miss)
+                            e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id,MaterialProcessRegistry.Get(id).ActionText,miss.Code,miss.Reason,'\0',MaterialProcessMisses.RowPriority);
+                        continue;
+                    }
                     string token=Guid.NewGuid().ToString("N");menu.Quotes[token]=quoted;
                     var d=plan.Definition;
                     string outputs=string.Join(" + ",d.OutputBlueprints.Select((bp,i)=>d.OutputCounts[i]+" "+Label(plan.Factory,bp)));
