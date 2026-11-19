@@ -270,3 +270,17 @@ twelve per-machine V1 dossiers, a settlement placement plan, and three independe
 - **Owner decisions to confirm or reverse:** the Gantry, Tine and Slip convenience forges (data rows); the camp box as the first kit and its glyph-only art; mechanical placeholder strings pending voice review; lifting family-owned zones for set-down (11 of 22 zones near the start are refused).
 - **Next:** S12a disabled-row reasons; S9 stations on one receipt (probe table first); lifting family-owned zones after the consumer audit (PB1a); the rig as a held fixture (PB5, with the S19 relocation stamp); a second honest machine per the dossiers. The full-suite comparison against the HEAD baseline (3.4 hours) was still running when this was written.
 
+### Update — 2026-11-18 (late): kits, readers and what makes a camp worth having
+
+Built and pushed since the previous update: the rig is stamped `Relocated` on a committed crossing (S19); set-down is admitted in Spread exploration-family zones after an independent audit (opening yard kept refused); three more kits made by composing existing parts, each carried-inert and a
+station only while set down: the **camp hearth** (finite cooking fire with feed, relight, dry gear, cook; lights the night only while burning; keeps its fuel through take up), the **camp bench** (a portable cold forge the shipped process rows find with no scanner edit) and the **camp still** (the
+alchemy station made portable); an **arrival note** ("You keep here: ..."); **"works here"** lines on every forge, bench and rig; and the S9 probe table ([MACHINE-STATION-USERS.md](MACHINE-STATION-USERS.md)). Kits are sold by the Quartermaster (box 35%), Provisioner (hearth 35%), Tinker (bench 25%) and Apothecary (still 20%).
+
+Why this is the engagement answer so far: a camp is now a set of machines the player assembles from real shops and finite materials where the work is (stash, fire, cold bench, still), each legible (reader lines, "why not" rows), each with a consequence (weight, price, fuel, fire beside a wooden box, a flame that must be carried
+from a village fire), and none of them conjures a resource.
+
+Played in the Editor: the camp box end to end, and the hearth's set down, standing menu and feed (the flame requirement found in play). The bench and still are native-only.
+
+Open owner decisions: the Gantry, Tine and Slip convenience forges; glyph-only art for all four kits; voice review of placeholder strings; a portable bed (D-H1); rest at a lit hearth (a balance decision: the shipped coals opt out of rest, and resting by a finite fire would need a fuel cost); a world-map marker for kept places.
+Next candidates: S9 (stations on one receipt, probe table done), hearth-and-still synergy only if the owner wants brewing to depend on heat, the hostile-reach and fire audit (PB1a item 3), found kits in waysites (changes fresh generation, needs pinned-test care), and the full-suite comparison recorded below when it finishes.
+
