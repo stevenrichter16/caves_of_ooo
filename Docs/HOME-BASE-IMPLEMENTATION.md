@@ -78,17 +78,23 @@ install events (`BeforeInstall`/`Installed`/`BeforeUninstall`/`Uninstalled`), `P
 The point of the set-down mechanism is that a machine can be *composed* and then made portable. Three kits ship that need no new rules (the camp still, below, follows the bench):
 
 - **Camp hearth** (`CampHearth`, 14 lb, 45 drams, a 35% line in `ProvisionerStock`): `Campfire` (finite cooking) + `Thermal` + `Fuel`, sold cold and empty. Set down, the shipped fire verbs work on it unchanged: feed it salvaged timber (one timber, up to ten fuel), relight it from a flame (a lit equipped torch or
-  a hot neighbour), dry wet gear at it, cook at it. It is a small fire that goes out when its fuel does, it keeps the fuel you fed through take up, and its heat is a real hazard: a set-down spot beside heat is refused, and a wooden box beside a lit fire is something the player now has to think about.
+  a hot neighbour), dry wet gear at it, cook at it. It is a small fire that goes out when its fuel does, it keeps the fuel you fed through take up, and it is an iron pan (an outside fire cannot ignite it) and a lit hearth only sets a temperature, it does not start fires; a spot with heat on it is refused for any set-down.
 - **Camp bench** (`CampBench`, 22 lb, 120 drams, a 25% line in `TinkerStock`): a `ForgePart` and nothing else, so it is a cold station (the shipped dismantle, reclaim and point rows and the craft picker find it through the station contract with no edit to the scanners). Carried, it is a kit and no station (its craft rows are hidden and the `Loose`
   install state vetoes readiness); set down, it is a forge you chose to put where the work is; taken up, it stops being one. The price and weight make carrying it a decision, and it conjures nothing: the components, the finite finds and the recipes are unchanged.
 
 - **Camp still** (`CampStill`, 18 lb, 110 drams, a 20% line in `ApothecaryStock`): an `AlchemyStillPart` and nothing else. Carried, it offers no brew rows (the same carried-kit guard as the bench) and is no station; set down, `IsNearStill` finds it and the shipped brew rows, set-aside reagent toggles and batch brew work unchanged; taken up, it stops being one. Brewing at camp removes the town gate on the still, not the reagents, the mishap rules or the recipes.
 
-The hearth also lights its surroundings (radius 6) only while it is actually burning: `HearthGlowPart` reads the owner's Campfire, Thermal and Fuel once per turn and switches the existing `LightSource` on when it is hot enough to cook and has fuel, off when it is not, so a fed hearth lights the night and a spent one goes dark. A carried hearth keeps its state.
+The hearth also lights its surroundings (radius 6) only while it is actually burning: `HearthGlowPart` reads the owner's Campfire, Thermal and Fuel once per turn and switches the existing `LightSource` on when it is hot enough to cook and has fuel, off when it is not, so a fed hearth lights the night and a spent one goes dark. A carried hearth keeps its state. It also spends fuel while burning (0.25 a turn, so one timber is forty turns of fire): the audit found that the shipped relight spends none, which would make one feed a permanent fire for anyone with a flame, so the burn lives in the hearth's own Part and the shipped coals are untouched.
 
 Editor play of the hearth (`HeldFixturesActual/observations.json`): the eight set-down rows, the standing menu with the shipped 'feed coals' verb, and a feed that reads 'The fuel still needs flame.' Ember Spit did not light it; relighting needs a carried flame, which makes carrying fire from a village a small, real errand.
 
 Not done: a bedroll (D-H1 is a balance decision), art for either kit (glyph only), actual Editor play of the hearth and the bench (native only).
+
+### Fire and hostile-reach audit (PB1a item 3), read-only
+
+A separate audit read the fire, AI and unload code. Findings: a lit hearth cannot ignite anything (it sets a temperature, not a burning effect; only outside fire spreads, and an ordinary ignition hurts a box by about 6 of its 14 HP, never destroying it; contents are never burned and spill if it is destroyed); grass does not burn (bushes, hedges and trees do, one cell per
+few turns); no AI attacks, loots, paths through or pushes a set-down box, and companions do not touch containers; there is no weather and no cache eviction, and the only `UnloadZone` caller is the village relapse, so a wild-zone fixture cannot be deleted by absence. Actions taken: the hearth became an iron pan (no `Combustibility`) so a nearby fire cannot turn it into a long-burning heater, it spends
+fuel while burning, and two wrong claims in this record were corrected. Remaining, accepted: a hostile fire spell can burn a box down and a hoarder can take the spill in the player's presence; the 200-turn soak and fire bench were not run.
 
 ## Limits and next
 

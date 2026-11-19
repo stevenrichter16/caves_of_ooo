@@ -79,7 +79,7 @@ namespace CavesOfOoo.Tests
             Assert.That(with, Is.InRange(runs * 25 / 100, runs * 45 / 100));
         }
 
-        [Test] public void AHotHearthBesideASpotIsAHazardForASecondKit_FireIsARealConsequence()
+        [Test] public void ASpotWithHeatOnItIsRefusedForASecondKit_ThePlacementRuleNotAClaimThatTheHearthWritesHeat()
         {
             var h = SetDown(); var thermal = h.GetPart<ThermalPart>(); wild.TileState.AddHeat(AX + 1, AY, 10); // a lit hearth heats its own tile
             var box = Carry("CampBox"); var rows = Actions(box).Where(a => a.Name == "SetDownFixture").ToArray();
@@ -101,6 +101,32 @@ namespace CavesOfOoo.Tests
         [Test] public void ACarriedHearthKeepsItsStateAndNeverGlowsInAPack()
         {
             var h = Carry("CampHearth"); h.GetPart<FuelPart>().FuelMass = 10; h.GetPart<ThermalPart>().Temperature = 400; Turn(h); Assert.False(h.GetPart<LightSourcePart>().Enabled);
+        }
+
+        // ── fuel is spent while it burns (audit finding: the shipped relight spends none) ──
+
+        [Test] public void ABurningHearthSpendsItsFuelAndGoesDarkWhenItIsGone()
+        {
+            var h = SetDown(); var fuel = h.GetPart<FuelPart>(); var light = h.GetPart<LightSourcePart>(); fuel.FuelMass = 10; h.GetPart<ThermalPart>().Temperature = 450;
+            int turns = 0; while (fuel.FuelMass > 0 && turns < 200) { Turn(h); turns++; h.GetPart<ThermalPart>().Temperature = 450; }
+            Assert.AreEqual(0f, fuel.FuelMass, 0.001f); Assert.AreEqual(40, turns, "one timber (10 fuel) at 0.25 a turn is forty turns of fire"); Turn(h); Assert.False(light.Enabled);
+        }
+
+        [Test] public void AColdOrCarriedHearthSpendsNoFuel_Counter()
+        {
+            var h = SetDown(); h.GetPart<FuelPart>().FuelMass = 10; for (int i = 0; i < 20; i++) Turn(h); Assert.AreEqual(10f, h.GetPart<FuelPart>().FuelMass, 0.001f, "an unlit hearth keeps its fuel");
+            var carried = Carry("CampHearth"); carried.GetPart<FuelPart>().FuelMass = 10; carried.GetPart<ThermalPart>().Temperature = 450; for (int i = 0; i < 20; i++) Turn(carried); Assert.AreEqual(10f, carried.GetPart<FuelPart>().FuelMass, 0.001f);
+        }
+
+        [Test] public void FuelNeverGoesNegativeAndSpentFuelCannotBeRelit()
+        {
+            var h = SetDown(); var fuel = h.GetPart<FuelPart>(); fuel.FuelMass = 0.1f; h.GetPart<ThermalPart>().Temperature = 450; Turn(h); Assert.AreEqual(0f, fuel.FuelMass, 0.001f);
+            Assert.False(Actions(h).Any(a => a.Command == "RelightCookingFire"), "relighting needs fuel, and there is none");
+        }
+
+        [Test] public void TheHearthIsAnIronPanAnOutsideFireCannotIgnite()
+        {
+            var h = Factory.CreateEntity("CampHearth"); var m = h.GetPart<MaterialPart>(); Assert.NotNull(m); Assert.AreEqual(0f, m.Combustibility, 0.0001f); Assert.AreEqual(0.25f, h.GetPart<FuelPart>().BurnRate, 0.0001f);
         }
     }
 }
