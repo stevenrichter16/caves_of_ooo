@@ -73,6 +73,21 @@ namespace CavesOfOoo.Tests
             Assert.True(destination.GetEntitiesWithTag("RecoverableWorkRig").Contains(rig));
         }
 
+        [TestCase(TransitionDirection.East)] [TestCase(TransitionDirection.North)]
+        public void ACommittedCrossingStampsTheRigRelocatedOnceAndKeepsItWorkable(TransitionDirection d)
+        {
+            Prepare(d); Assert.False(rig.HasPart<InstallationMarkerPart>(), "an uncrossed rig carries no marker");
+            Assert.True(Cross(d).Success); var marker = rig.GetPart<InstallationMarkerPart>();
+            Assert.NotNull(marker); Assert.AreEqual("Relocated", marker.Origin); Assert.AreEqual("relocated:" + rig.ID, marker.InstallationId); Assert.True(InstallationMarkerPart.Retains(rig));
+            Assert.AreEqual(1, rig.Parts.Count(p => p is InstallationMarkerPart)); Assert.True((bool)typeof(ForgePart).Assembly.GetType("CavesOfOoo.Core.FieldWorkRigRules").GetMethod("Payload", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).Invoke(null, new object[] { rig, false }), "the validator tolerates the extra Part");
+        }
+
+        [Test] public void ARefusedCrossingStampsNothing_Counter()
+        {
+            Prepare(); destination.TileState.AddHeat(bx, by, 1);
+            AssertRefusedUnchanged(); Assert.False(rig.HasPart<InstallationMarkerPart>());
+        }
+
         [TestCase("source-load")] [TestCase("source-player")]
         [TestCase("receiving-edge")] [TestCase("receiving-inward")]
         public void NonemptyTileStateAtAnySweptCellRefusesWithoutMovingOrReleasing(string cell)

@@ -122,6 +122,9 @@ namespace CavesOfOoo.Core
             // No external callback occurs between this last check and coherent publication.
             committed = true;
             if (!Source.TryTransferHaulingPairTo(Actor, Rig, Destination, receivingActor, receivingRig)) return Failed();
+            // A committed crossing makes the rig the player's relocated machine: the marker keeps its zone from being regenerated out from under it and lists it with the
+            // things the player keeps standing (Docs/MACHINE-INSTALLATIONS.md, spec S19). Stamped once; an authored or earlier marker is left alone.
+            if (Rig.GetPart<InstallationMarkerPart>() == null) Rig.AddPart(new InstallationMarkerPart { InstallationId = "relocated:" + Rig.ID, Origin = "Relocated" });
             Noise.Mark(Actor);
             var partyArrival = CurrentActorCell();
             if (partyArrival?.ParentZone == Destination && Actor.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(Actor))
