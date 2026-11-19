@@ -44,18 +44,31 @@ namespace CavesOfOoo.Tests
             Assert.GreaterOrEqual(b.GetPart<CommercePart>().Value, 100, "a real purchase, not a trinket"); Assert.GreaterOrEqual(b.GetPart<PhysicsPart>().Weight, 15, "heavy enough to be a choice to carry");
         }
 
-        [Test] public void EveryShippedKitIsInertWhileCarried_ANewRowOnACarriedKitMustBeReviewed()
+        [Test] public void EveryShippedKitIsInertUnlessSetDown_ANewRowOnAKitMustBeReviewed()
         {
-            // A packable machine in a pack is a kit, not a station. The guard lives in each machine's own menu (forge, still) and the rest follow from the Loose state, so a new
-            // composed kit could silently offer its work rows while carried. This pin makes that a failing test: a carried kit may only be set down, examined, opened or broken.
-            var allowed = new[] { "SetDownFixture", "Examine", "Open", "Break" };
+            // A packable machine that is not set down (carried, dropped or taken up) is a kit, not a station. The guard lives in the kit rule (PackableFixturePart.IsInertKit) and in
+            // each machine's own menu, so a new composed kit could silently offer work. This pin makes that a failing test: a kit may only be set down, examined, opened or broken;
+            // the rows on the items around it must not change because it is carried; and dropped it must provide no station of any kind it declares.
+            var allowed = new[] { "SetDownFixture/SetDown", "Examine/Examine", "Open/OpenContainer", "Break/Break" };
+            string Rows(Entity e) => string.Join(",", Actions(e).Select(a => a.Name + "/" + a.Command.Split('|')[0]).OrderBy(x => x, StringComparer.Ordinal));
             Assert.IsNotEmpty(PackableFixtureRegistry.All);
             foreach (var def in PackableFixtureRegistry.All.Where(d => d.Class == PackableFixtureDefinition.Carried))
             {
-                var kit = Carry(def.Blueprint); Carry("SalvagedTimber"); Carry("MendleafSprig"); Carry("IronSpikeComponent"); // bait: fuel, a reagent, a component
-                var names = Actions(kit).Select(a => a.Name).Distinct().ToArray();
-                CollectionAssert.IsSubsetOf(names, allowed, def.Kind + " offers a work row while carried: guard it like the forge and still, or review and allow it here");
-                Assert.True(names.Contains("SetDownFixture"), def.Kind + " can still be set down");
+                var bait = new[] { Carry("SalvagedTimber"), Carry("MendleafSprig"), Carry("IronSpikeComponent"), Carry("Dagger") }; var before = bait.Select(Rows).ToArray();
+                var kit = Carry(def.Blueprint);
+                var pairs = Actions(kit).Select(a => a.Name + "/" + a.Command.Split('|')[0]).Distinct().ToArray();
+                CollectionAssert.IsSubsetOf(pairs, allowed, def.Kind + " offers a work row while carried: guard it like the forge and still, or review and allow it here");
+                Assert.True(pairs.Contains("SetDownFixture/SetDown"), def.Kind + " can still be set down");
+                CollectionAssert.AreEqual(before, bait.Select(Rows).ToArray(), def.Kind + " carried must not change the rows on the items around it (a carried kit is no station)");
+
+                var drop = InventorySystem.ExecuteCommand(new CavesOfOoo.Core.Inventory.Commands.DropCommand(kit), Actor, Zone); Assert.True(drop.Success);
+                foreach (var capability in kit.Parts.OfType<IStationCapability>())
+                    foreach (string kind in capability.Kinds)
+                    {
+                        Assert.False(StationQuery.NearPresence(Actor, Zone, kind), def.Kind + " dropped must not provide '" + kind + "'");
+                        Assert.False(StationReadiness.Evaluate(kit, Zone, kind, out _), def.Kind + " dropped must not be ready for '" + kind + "'");
+                    }
+                Assert.False(ForgePart.IsNearForge(Actor, Zone), def.Kind + " dropped is no forge");
             }
         }
 

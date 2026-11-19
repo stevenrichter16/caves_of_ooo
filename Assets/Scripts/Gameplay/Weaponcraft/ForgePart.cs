@@ -90,8 +90,8 @@ namespace CavesOfOoo.Core
                     AddRigUnavailableRow(e.GetParameter<InventoryActionList>("Actions"), e.GetParameter<Entity>("Actor"));
                     return true;
                 }
-                // A bench carried in a pack is a kit, not a station: its fire-and-anvil rows belong to the set-down bench.
-                if (ParentEntity.GetPart<PhysicsPart>()?.InInventory != null) return true;
+                // A bench that is carried, dropped or taken up is a kit, not a station: its fire-and-anvil rows belong to the set-down bench.
+                if (ParentEntity.GetPart<PhysicsPart>()?.InInventory != null || PackableFixturePart.IsInertKit(ParentEntity)) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null)
                 {

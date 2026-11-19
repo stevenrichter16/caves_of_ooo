@@ -38,8 +38,8 @@ namespace CavesOfOoo.Core
         {
             if (e.ID == "GetInventoryActions")
             {
-                // A still carried in a pack is a kit, not a station: its brew rows belong to the set-down still.
-                if (ParentEntity.GetPart<PhysicsPart>()?.InInventory != null) return true;
+                // A still that is carried, dropped or taken up is a kit, not a station: its brew rows belong to the set-down still.
+                if (ParentEntity.GetPart<PhysicsPart>()?.InInventory != null || PackableFixturePart.IsInertKit(ParentEntity)) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null)
                 {

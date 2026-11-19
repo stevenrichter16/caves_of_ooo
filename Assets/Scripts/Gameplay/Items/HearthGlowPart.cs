@@ -17,6 +17,7 @@ namespace CavesOfOoo.Core
 
         public override bool HandleEvent(GameEvent e)
         {
+            if (e.ID == InstallEvents.Uninstalled) { PutOut(); return true; }
             if (e.ID != "EndTurn") return true;
             var owner = ParentEntity; var zone = owner?.SpatialZone; var light = owner?.GetPart<LightSourcePart>();
             if (zone == null || light == null) return true;   // a carried hearth is a cold kit and keeps its state
@@ -26,9 +27,21 @@ namespace CavesOfOoo.Core
             bool burning = Burning();
             if (light.Enabled == burning) return true;
             light.Enabled = burning;
-            var cell = zone.GetEntityCell(owner);
-            if (cell != null && ReferenceEquals(zone.GetCell(cell.X, cell.Y), cell)) ZoneRenderHooks.MarkCellDirty(cell, "Hearth.Glow");
+            // The light map caches on entity and equipment versions, and the incremental render skips it, so a toggle must say so (as the torch does) or the light would not
+            // show, or go out, until something else moved.
+            EquipmentChangeBus.NotifyChanged(null); ZoneRenderHooks.MarkFullDirty("Hearth.Glow");
             return true;
+        }
+
+        /// <summary>
+        /// Taking a burning hearth up puts its fire out: a carried pan keeps its fuel but not its flame, so the next set-down needs a flame again. Without this a single
+        /// flame would make a fire you could carry lit for ever, since a carried item takes no turns and would never cool.
+        /// </summary>
+        void PutOut()
+        {
+            var owner = ParentEntity; var heat = owner?.GetPart<ThermalPart>(); var light = owner?.GetPart<LightSourcePart>();
+            if (heat != null && WorldResourceActions.Finite(heat.AmbientTemperature)) heat.Temperature = heat.AmbientTemperature;
+            if (light != null && light.Enabled) { light.Enabled = false; EquipmentChangeBus.NotifyChanged(null); ZoneRenderHooks.MarkFullDirty("Hearth.Glow"); }
         }
     }
 }

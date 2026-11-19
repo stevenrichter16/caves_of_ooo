@@ -35,7 +35,7 @@ removal needs the owner's approval. Custom-serialised Parts are covered by name 
 Problem (verified by `RelapseRegeneratesUnmarkedVillage_Control`): a village whose settlement repair relapses is unloaded and
 regenerated from the seed on the next visit, which resets any finite machine state in it. `InstallationMarkerPart { InstallationId,
 Origin, Revision, RetainZone }` plus `InstallationMarkerPart.Retain(manager, zoneID)` close that for everything that carries a retaining
-marker, any non-`Generated` origin (player-installed or relocated), and three shipped finite fixtures that cannot take a Part because
+marker with `RetainZone` (every player set-down sets it) or `Origin="Relocated"`, and three shipped finite fixtures that cannot take a Part because
 their validators pin the Part list (`PeatOilStrainer`, `AbandonedFieldWorkRig` wherever it is hauled, `CinderholdOilRecoveryTray`).
 Policy: retention is per installation kind. A stateless forge regenerates identically (so a retained village is not required and the
 town keeps refreshing its build-time stock rolls); a state-bearing kind sets `RetainZone`. Consequence disclosed: a retained village no

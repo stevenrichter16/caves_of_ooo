@@ -49,9 +49,17 @@ namespace CavesOfOoo.Core
                     Entity obj = cell.Objects[i]; if (obj == null) continue;
                     var parts = obj.Parts;
                     for (int p = 0; p < parts.Count; p++)
-                        if (parts[p] is IStationCapability capability && capability.Readiness == ReadinessMode.PresenceOnly && HasKind(capability, kind)) return true;
+                        if (parts[p] is IStationCapability capability && capability.Readiness == ReadinessMode.PresenceOnly && HasKind(capability, kind) && !GuardBlocks(obj, zone)) return true;
                 }
             }
+            return false;
+        }
+
+        /// <summary>Presence-only stations still honour a readiness guard (a kit that is not set down is no station). An object with no guard is unaffected, so every authored station behaves as before.</summary>
+        static bool GuardBlocks(Entity owner, Zone zone)
+        {
+            var parts = owner.Parts;
+            for (int i = 0; i < parts.Count; i++) if (parts[i] is IStationReadinessGuard guard && guard.TryBlock(owner, zone, out _)) return true;
             return false;
         }
 

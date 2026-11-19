@@ -120,9 +120,23 @@ namespace CavesOfOoo.Core
     /// The only Part home/base owns (design 5.2): the definition key and the one timestamp readers need. Primitives and strings only. It hosts the verbs:
     /// a carried kit offers "set down" in the pack menu, a standing fixture offers "take up" and "hand over" in the world menu.
     /// </summary>
-    public sealed class PackableFixturePart : Part, IDescribeState
+    public sealed class PackableFixturePart : Part, IDescribeState, IStationReadinessGuard
     {
         public string Kind = "";
+
+        /// <summary>
+        /// A carried-class kit that is not set down is inert: carried, dropped, or taken up it is no station and offers no work rows. Only the set-down state (and a handed-over
+        /// fixture, which stays installed) makes it a station. A kind that no longer resolves is not treated as a kit, so old data cannot brick an object.
+        /// </summary>
+        public static bool IsInertKit(Entity owner)
+        {
+            var part = owner?.GetPart<PackableFixturePart>(); if (part == null) return false;
+            var def = PackableFixtureRegistry.Get(part.Kind); if (def == null || def.Class != PackableFixtureDefinition.Carried) return false;
+            return owner.GetPart<InstallablePart>()?.State != InstallablePart.Installed;
+        }
+
+        public bool TryBlock(Entity station, Zone zone, out string code)
+        { code = IsInertKit(station) ? "loose" : null; return code != null; }
         /// <summary>The turn tick of the set-down; -1 while carried.</summary>
         public int SetTick = -1;
 
