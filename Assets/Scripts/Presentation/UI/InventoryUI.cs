@@ -1262,7 +1262,7 @@ namespace CavesOfOoo.Rendering
             // Container interaction seam: put selected item in a specific nearby container.
             if (CurrentZone != null)
             {
-                var containersAtFeet = InventorySystem.GetContainersAtFeet(PlayerEntity, CurrentZone);
+                var containersAtFeet = InventorySystem.GetDepositContainers(PlayerEntity, CurrentZone);
                 for (int i = 0; i < containersAtFeet.Count; i++)
                 {
                     var container = containersAtFeet[i];

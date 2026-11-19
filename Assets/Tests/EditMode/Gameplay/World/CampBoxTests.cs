@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using CavesOfOoo.Rendering;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
@@ -114,6 +116,43 @@ namespace CavesOfOoo.Tests
         {
             var box = Carry("CampBox"); Assert.True(Act(box, SetDownRow(box))); Assert.AreEqual(1, PlacementCheck.CountInZone(wild));
             wild.RemoveEntity(box); Assert.AreEqual(0, PlacementCheck.CountInZone(wild), "the hold is the marker, so it dies with the object; there is no ledger to correct");
+        }
+        // ── deposit: a solid set-down box cannot be stood on, so the player's own boxes accept deposits from the adjacent cell ──
+
+        [Test] public void AHeldBoxWithinOneCellIsADepositContainer_AndOtherContainersKeepTheAtFeetRule()
+        {
+            var box = Carry("CampBox"); Assert.True(Act(box, SetDownRow(box)));
+            CollectionAssert.Contains(InventorySystem.GetDepositContainers(Actor, wild), box);
+            var chest = Place("Chest", AX - 1, AY); CollectionAssert.DoesNotContain(InventorySystem.GetDepositContainers(Actor, wild), chest, "an ordinary adjacent chest is still not a deposit target");
+            Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, AX - 3, AY)); CollectionAssert.DoesNotContain(InventorySystem.GetDepositContainers(Actor, wild), box, "two cells away");
+        }
+
+        [Test] public void AHandedOverOrAuthoredBoxIsNotAnExtendedDepositTarget_Counter()
+        {
+            var box = Carry("CampBox"); Assert.True(Act(box, SetDownRow(box))); box.GetPart<InstallationMarkerPart>().Origin = "Generated";
+            CollectionAssert.DoesNotContain(InventorySystem.GetDepositContainers(Actor, wild), box);
+            box.GetPart<InstallationMarkerPart>().Origin = "Player"; CollectionAssert.Contains(InventorySystem.GetDepositContainers(Actor, wild), box);
+            Assert.True(Act(box, "HandOver|" + Tail(box))); CollectionAssert.DoesNotContain(InventorySystem.GetDepositContainers(Actor, wild), box, "handing it over ends the player's reach");
+        }
+
+        [Test] public void ThePackMenuOffersPutInForAnAdjacentHeldBoxAndTheItemEndsUpInsideAndSurvivesTakeUp()
+        {
+            var box = Carry("CampBox"); Assert.True(Act(box, SetDownRow(box))); var dagger = Carry("Dagger");
+            using (var ui = new HotbarSaveFixture(true, false))
+            {
+                manager.SetActiveZone(wild); var turns = new TurnManager();
+                turns.RestoreSavedState(17, true, Actor, new List<TurnManager.SavedTurnEntry> { new TurnManager.SavedTurnEntry { Entity = Actor, Energy = TurnManager.ActionThreshold } });
+                ui.BindOld(GameSessionState.Capture("camp-box", "deposit", manager, turns, Actor));
+                const BindingFlags hidden = BindingFlags.Instance | BindingFlags.NonPublic;
+                var inv = ui.Root.AddComponent<InventoryUI>(); inv.PlayerEntity = Actor; inv.CurrentZone = wild; inv.EntityFactory = Factory; ui.Input.InventoryUI = inv; inv.Open();
+                var display = InventoryScreenData.Build(Actor).Categories.SelectMany(c => c.Items).Single(i => i.Item == dagger);
+                typeof(InventoryUI).GetMethod("OpenItemActionPopup", hidden).Invoke(inv, new object[] { display });
+                var popup = typeof(InventoryUI).GetField("_itemActionPopup", hidden).GetValue(inv); var list = (System.Collections.IList)popup.GetType().GetField("Actions").GetValue(popup);
+                var labels = Enumerable.Range(0, list.Count).Select(i => (string)list[i].GetType().GetField("Label").GetValue(list[i])).ToArray();
+                CollectionAssert.Contains(labels, "Put in camp box");
+            }
+            Assert.True(InventorySystem.PutInContainer(Actor, box, dagger)); CollectionAssert.Contains(box.GetPart<ContainerPart>().Contents, dagger); Assert.False(Pack.Objects.Contains(dagger));
+            Assert.True(Act(box, "TakeUp|" + Tail(box))); CollectionAssert.Contains(box.GetPart<ContainerPart>().Contents, dagger);
         }
     }
 }

@@ -57,6 +57,14 @@ install events (`BeforeInstall`/`Installed`/`BeforeUninstall`/`Uninstalled`), `P
 - `HeldFixtureReader.Enumerate(manager)` derives the list on demand: markers whose origin is Player or Relocated, single-link clustered within 8 cells per zone, ordered by zone then position, oldest set-down tick kept. It never generates or loads a zone and never mutates; `Summarize` gives the one-line form.
   A source pin allows no other production consumer. A 300-zone cache lists in well under 250 ms. No journal surface is hooked yet.
 
+### Found by Editor play (PB4 partial): deposit and where kits can go
+
+- **A solid set-down box could not be filled.** The pack menu offers "Put in <container>" only for a container at the player's feet, and a solid box cannot be stood on, so ordinary play gave no way to put anything in it. `InventorySystem.GetDepositContainers` now adds
+  a container the player keeps standing within one cell (a held fixture only; every other adjacent container keeps its at-feet rule), and the pack menu uses it. Native tests cover the reach, the counters (an ordinary chest, two cells away, a handed-over or authored box) and the
+  round trip through take up with the contents. Played: the dagger went in (box weight 12 to 16, pack 12 to 8) and came back inside the box on take up.
+- **Most nearby ground is refused.** In a 5x5 window around the start, 3 zones classify as wild, 11 as family-owned and 6 as protected. Lifting family-owned (PB1a audit item 2) is the biggest lever for where the kit is usable; it is not done and needs the consumer audit.
+- **Evidence:** `Docs/Verification/MachineSystems/HeldFixturesActual/` (screenshots, `observations.json`, the F5 checkpoint that was Continued in a fresh launch). The box was granted for the play; the sale path is native-tested only.
+
 ## Limits and next
 
 - Family-owned zones stay refused until the exploration-family consumer audit (PB1a); `column-pending` until PB7. No kit, verbs or readers exist yet.

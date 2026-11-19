@@ -102,7 +102,7 @@ namespace CavesOfOoo.Core
         static string SetDownCommand(Zone zone, Cell origin, int x, int y, Entity kit)
             => SetDownPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + N(x) + "|" + N(y) + "|" + kit.ID;
 
-        static bool IsPlayerHeld(Entity e)
+        internal static bool IsPlayerHeld(Entity e)
         {
             var marker = e.GetPart<InstallationMarkerPart>();
             return marker != null && marker.Origin == PlayerOrigin && e.GetPart<InstallablePart>()?.State == InstallablePart.Installed;
