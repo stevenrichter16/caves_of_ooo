@@ -88,10 +88,34 @@ namespace CavesOfOoo.Tests
             foreach (var (x, y, id) in Cells())
             {
                 var c = HeldPlaceZones.Classify(manager, id);
-                if (c != HeldPlaceZoneClass.WildSurface) { Assert.NotNull(HeldPlaceZones.RefusalCode(c), id); continue; }
+                if (c != HeldPlaceZoneClass.WildSurface && c != HeldPlaceZoneClass.FamilyOwned) { Assert.NotNull(HeldPlaceZones.RefusalCode(c), id); continue; }
+                if (c == HeldPlaceZoneClass.FamilyOwned) { Assert.Null(HeldPlaceZones.RefusalCode(c), "the family refusal is lifted"); continue; }
                 Assert.Null(HeldPlaceZones.RefusalCode(c)); Assert.True(WaysitePlan.IsEligible(manager, id), id);
                 Assert.Null(manager.WorldMap.GetPOI(x, y), id); CollectionAssert.Contains(HeldPlaceZones.AllowedBiomes, manager.WorldMap.GetBiome(x, y), id);
             }
+        }
+
+        [TestCase(64)] [TestCase(65)] [TestCase(704860946)]
+        public void FamilyOwnedZonesAreAdmittedExceptTheProtectedExtrasAndEveryOtherRefusalIsUnchanged(int seed)
+        {
+            var manager = Manager(seed); int family = 0;
+            foreach (var (x, y, id) in Cells())
+            {
+                var c = HeldPlaceZones.Classify(manager, id); string refusal = HeldPlaceZones.RefusalCode(c);
+                bool expectAdmitted = manager.WorldMap.GetPOI(x, y) == null && WaysitePlan.IsEligibleIgnoringFamily(manager, id)
+                    && Array.IndexOf(OverworldZoneManager.AuthoredWildernessZoneIDs, id) < 0 && Array.IndexOf(HeldPlaceZones.ProtectedExtras, id) < 0 && id != MultiCellPilotRuntime.ZoneID
+                    && Array.IndexOf(HeldPlaceZones.AllowedBiomes, manager.WorldMap.GetBiome(x, y)) >= 0;
+                Assert.AreEqual(expectAdmitted, refusal == null, id + " " + c);
+                if (c == HeldPlaceZoneClass.FamilyOwned) { family++; Assert.Null(refusal); }
+            }
+            Assert.Greater(family, 0, "the sweep saw family-owned zones"); TestContext.WriteLine($"seed {seed}: family-owned zones admitted {family}");
+        }
+
+        [Test] public void TheOpeningAddressesAndTheYardStayRefused()
+        {
+            var manager = Manager();
+            foreach (string id in new[] { "Overworld.11.8.0", "Overworld.11.9.0", "Overworld.12.10.0", "Overworld.12.11.0", "Overworld.11.11.0" })
+                Assert.NotNull(HeldPlaceZones.RefusalCode(HeldPlaceZones.Classify(manager, id)), id);
         }
 
         [Test] public void NoAdmittedZoneIsEverGrovelandsOrOverwritAndThoseAreRefusedAsBiome()

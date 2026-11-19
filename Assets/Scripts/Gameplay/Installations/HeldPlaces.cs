@@ -31,6 +31,12 @@ namespace CavesOfOoo.Core
         /// <summary>Surface biomes that may take a set-down fixture. Grovelands is excluded by Choir law (everything there is somebody); the Overwrit by canon.</summary>
         public static readonly BiomeType[] AllowedBiomes = { BiomeType.Spread, BiomeType.Sodden, BiomeType.Beating, BiomeType.Stump };
 
+        /// <summary>
+        /// Zones refused on top of <c>WaysitePlan</c>'s exclusions. 11.11.0 is the opening trapper's-store yard (opening-only extras and a yard-duty guard) and is the one opening worksite
+        /// that list misses (independent family audit, Docs/HOME-BASE-IMPLEMENTATION.md). Data, not logic: add an address here to protect a place.
+        /// </summary>
+        public static readonly string[] ProtectedExtras = { "Overworld.11.11.0" };
+
         public static HeldPlaceZoneClass Classify(OverworldZoneManager manager, string zoneId)
         {
             if (manager == null || string.IsNullOrEmpty(zoneId) || !zoneId.StartsWith("Overworld.", StringComparison.Ordinal)) return HeldPlaceZoneClass.Unsupported;
@@ -41,6 +47,7 @@ namespace CavesOfOoo.Core
             if (manager.WorldMap?.GetPOI(x, y) != null) return HeldPlaceZoneClass.PoiZone;
             if (!WaysitePlan.IsEligibleIgnoringFamily(manager, zoneId)
                 || Array.IndexOf(OverworldZoneManager.AuthoredWildernessZoneIDs, zoneId) >= 0
+                || Array.IndexOf(ProtectedExtras, zoneId) >= 0
                 || zoneId == MultiCellPilotRuntime.ZoneID) return HeldPlaceZoneClass.ProtectedGround;
             if (manager.WorldMap == null || Array.IndexOf(AllowedBiomes, manager.WorldMap.GetBiome(x, y)) < 0) return HeldPlaceZoneClass.DisallowedBiome;
             if (WaysitePlan.IsFamilyOwned(manager, zoneId)) return HeldPlaceZoneClass.FamilyOwned;
@@ -56,7 +63,9 @@ namespace CavesOfOoo.Core
                 case HeldPlaceZoneClass.PoiZone: return PlacementCheck.PoiZone;
                 case HeldPlaceZoneClass.ProtectedGround: return PlacementCheck.ProtectedGround;
                 case HeldPlaceZoneClass.DisallowedBiome: return PlacementCheck.Biome;
-                case HeldPlaceZoneClass.FamilyOwned: return PlacementCheck.FamilyOwned;
+                // Lifted after an independent audit of every family consumer: each is generation-only or bound to references saved at generation, and every selector honours the
+                // Owned tag a set-down fixture carries. The class stays so tests and readers can still tell a family zone; only the refusal is gone.
+                case HeldPlaceZoneClass.FamilyOwned: return null;
                 case HeldPlaceZoneClass.Column: return PlacementCheck.ColumnPending;
                 default: return PlacementCheck.UnsupportedZone;
             }
