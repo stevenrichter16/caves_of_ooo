@@ -29,3 +29,11 @@ line in both readers, and the source pin. The adjacent reader, examine, announce
 
 Player-visible marker lines ("set here to be used") and a truthful "works here" line are not added: every authored string needs a voice card and the blind gate, and the forge's shipped description overstates its use
 (single weapons assemble anywhere from the pack). Those are separate owner decisions.
+
+## Update: "works here" for forges and benches
+
+`ForgePart` is now an `IDescribeState` provider (both scopes, order 90): its Examine says "Cold work here: dismantle tool (from a released extraction tool); dress iron point (from a recovered iron blank); reclaim iron and timber (from a released extraction tool). Carry the find in your
+pack and stand beside it." The text is built from the shipped `ForgeCold` process rows (`MaterialProcessRegistry.ForWorkKind`), so a new row appears with no edit, a hand-cutting row never appears at a forge, and no loaded rows means no line. It answers the long-standing gap that a player who had never carried a find could not learn what a forge was
+for (forge dossier F4), and the same Part gives the camp bench and the field work rig the same line. It makes no claim about weapon assembly (a single weapon assembles anywhere from the pack), which was the overstated sentence in the shipped description. `StationReaderTests` (4) pin it; the generic collector tests now use a neutral
+subject because a forge describes itself.
+

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
@@ -20,7 +21,7 @@ namespace CavesOfOoo.Core
     /// count problems reject legibly here; everything else (gating,
     /// atomicity, stat math) lives in the commands and services.
     /// </summary>
-    public class ForgePart : Part, IStationCapability, IStationReadinessGuard
+    public class ForgePart : Part, IStationCapability, IStationReadinessGuard, IDescribeState
     {
         public override string Name => "Forge";
 
@@ -64,6 +65,19 @@ namespace CavesOfOoo.Core
             if (StationReadiness.Evaluate(ParentEntity, zone, "forge", out string code)) return; // ready: nothing to explain
             // Low priority on purpose: the menu opens on its first row, which should be something usable (repair, haul), not the explanation.
             actions.AddDisabled("RigUnavailable", "work at the rig", code ?? "unavailable", RigUnavailableReason(code), '\0', 5);
+        }
+
+        // ── reader contract (Docs/MACHINE-READERS.md): what this bench is for, from the shipped process data, so a player learns it before carrying a find ──
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 90;
+        public string DescribeState(DescribeContext context) => ColdWorkLine(Factory);
+
+        /// <summary>One line naming each cold-work process a forge or bench supports and what it needs in the pack, or null when none are loaded. Data-driven: a new row appears here with no edit.</summary>
+        public static string ColdWorkLine(EntityFactory factory)
+        {
+            var rows = MaterialProcessRegistry.ForWorkKind("ForgeCold"); if (rows.Count == 0) return null;
+            string Label(string bp) => factory != null && factory.Blueprints.TryGetValue(bp, out var b) && b.Parts.TryGetValue("Render", out var p) && p.TryGetValue("DisplayName", out var n) ? n : bp;
+            return "Cold work here: " + string.Join("; ", rows.Select(d => d.ActionText + " (from a " + Label(d.SourceBlueprint) + ")")) + ". Carry the find in your pack and stand beside it.";
         }
 
         public override bool HandleEvent(GameEvent e)

@@ -27,7 +27,8 @@ namespace CavesOfOoo.Tests
         }
         Line Add(Entity owner, string id, string text, int order = 50, ReaderScope scopeValue = ReaderScope.Both) { var l = new Line { Id = id, Text = text, OrderValue = order, ScopeValue = scopeValue }; owner.AddPart(l); return l; }
         List<string> Collect(Entity owner, bool full) { var into = new List<string>(); StateReader.Collect(owner, full, zone, zone.GetEntityCell(owner), viewer, into); return into; }
-        Entity Subject(string blueprint = "TinkersForge") { var e = scope.Factory.CreateEntity(blueprint); Assert.True(zone.AddEntity(e, 11, 10)); Seen(e); return e; }
+        Entity Subject(string blueprint = "Crate")  // a neutral object: a forge now describes its own cold work, which these generic collector tests must not depend on
+         { var e = scope.Factory.CreateEntity(blueprint); Assert.True(zone.AddEntity(e, 11, 10)); Seen(e); return e; }
         void Seen(Entity e) { var c = zone.GetEntityCell(e); c.IsVisible = true; c.Explored = true; }
 
         // ── the collector ──

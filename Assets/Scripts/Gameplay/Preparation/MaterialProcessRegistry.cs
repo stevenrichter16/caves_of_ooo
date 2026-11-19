@@ -54,6 +54,9 @@ namespace CavesOfOoo.Core
         public static void LoadDefaults()
         {if(loaded)return;var asset=Resources.Load<TextAsset>("Content/Data/MaterialProcesses");InitializeFromJson(asset==null?null:asset.text);}
         public static void ResetForTests(){Definitions.Clear();KnownPayloads.Clear();loaded=false;}
+        /// <summary>The loaded definitions of one work kind, in id order (readers and menus that describe what a station or tool can do).</summary>
+        public static System.Collections.Generic.IReadOnlyList<MaterialProcessDefinition> ForWorkKind(string kind)
+        {LoadDefaults();return Definitions.Values.Where(d=>d.WorkKind==kind).OrderBy(d=>d.Id,StringComparer.Ordinal).ToArray();}
         public static MaterialProcessDefinition Get(string id)
         {LoadDefaults();return id!=null && Definitions.TryGetValue(id,out var found)?found:null;}
         internal static string[] ForPreparation(Entity source)
