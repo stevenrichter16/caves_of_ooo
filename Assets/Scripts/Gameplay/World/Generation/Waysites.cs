@@ -34,6 +34,11 @@ namespace CavesOfOoo.Core
         /// owns its zone too: its composer reads the ordinary owners as its source and its finalizer
         /// checks them, and the zone already has its own thing to do.</summary>
         public static bool IsEligible(OverworldZoneManager manager, string zoneId)
+            => IsEligibleIgnoringFamily(manager, zoneId) && !IsFamilyOwned(manager, zoneId);
+
+        /// <summary>Everything <see cref="IsEligible"/> checks except the exploration-family ownership (extracted for the held-place classifier,
+        /// Docs/HOME-BASE-DESIGN.md PB1; <see cref="IsEligible"/> is exactly this conjoined with <see cref="IsFamilyOwned"/>, pinned by a seed sweep).</summary>
+        public static bool IsEligibleIgnoringFamily(OverworldZoneManager manager, string zoneId)
         {
             if (manager == null || string.IsNullOrEmpty(zoneId) || !zoneId.StartsWith("Overworld.", StringComparison.Ordinal)) return false;
             var (x, y, z) = WorldMap.FromZoneID(zoneId);
@@ -44,10 +49,13 @@ namespace CavesOfOoo.Core
                 || zoneId == OverworldZoneManager.AbandonedCounterZoneA || zoneId == OverworldZoneManager.AbandonedCounterZoneB) return false;
             foreach (var d in RegionalSituations.Definitions)
                 if (d.SourceZoneId == zoneId || d.RecipientZoneId == zoneId) return false;
-            if (manager.Exploration != null && manager.Exploration.TryGetPlacement(manager, zoneId, out var entry)
-                && entry.Family != SpreadExplorationFamily.None) return false;
             return true;
         }
+
+        /// <summary>True when a Spread exploration family owns the zone: its composer and finalizer read the ordinary owners.</summary>
+        public static bool IsFamilyOwned(OverworldZoneManager manager, string zoneId)
+            => manager != null && !string.IsNullOrEmpty(zoneId) && manager.Exploration != null
+                && manager.Exploration.TryGetPlacement(manager, zoneId, out var entry) && entry.Family != SpreadExplorationFamily.None;
 
         /// <summary>FNV-1a over the salted key, then an avalanche (as SpreadWildernessSituationPlan
         /// does: two salted low-bit selectors otherwise correlate).</summary>
