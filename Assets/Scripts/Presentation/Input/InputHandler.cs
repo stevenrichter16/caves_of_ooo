@@ -3147,6 +3147,14 @@ namespace CavesOfOoo.Rendering
             // themselves for their own popup.
             ExitCenteredPopupOverlayViewToGameplay();
 
+            // Defensive: the menu never selects a disabled row, but a caller that does must still get the reason and nothing else.
+            if (action.IsDisabled)
+            {
+                WorldActionMenuUI.ReportDisabled(action);
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
             if (action.Command == LoadoutKeeperPart.Command)
             {
                 if (!LoadoutKeeperPart.CanServe(PlayerEntity, target, out string loadoutReason))
@@ -3203,6 +3211,21 @@ namespace CavesOfOoo.Rendering
                 && !DestructionSystem.IsWithinStrikeReach(PlayerEntity, target, CurrentZone))
             {
                 MessageLog.Add($"{target.GetDisplayName()} is out of reach.");
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
+            // Declared time (spec S3): a row that states its own turn cost runs in the shared command transaction and bypasses the
+            // legacy command chains below, so a new command needs no edit to them. Unspecified rows fall through unchanged.
+            if (action.Time != ActionTime.Unspecified && !action.IsDisabled && !string.IsNullOrEmpty(action.Command))
+            {
+                var declared = InventorySystem.ExecuteCommand(
+                    new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);
+                if (declared.Success)
+                {
+                    if (action.Time == ActionTime.OneAction) EndTurnAndProcess();
+                    RequestZoneRedraw("World.DeclaredAction");
+                }
                 _inputState = _worldActionMenuReturnState;
                 return;
             }

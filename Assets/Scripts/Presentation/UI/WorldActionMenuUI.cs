@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -263,7 +264,7 @@ namespace CavesOfOoo.Rendering
                 var key = MenuShortcutMap.Key(_shortcuts[i]);
                 if (key != KeyCode.None && InputHelper.GetKeyDown(key))
                 {
-                    SelectedActivationKey = key;
+                    if (!(_actions[i] != null && _actions[i].IsDisabled)) SelectedActivationKey = key;
                     SelectAction(i);
                     return;
                 }
@@ -275,9 +276,23 @@ namespace CavesOfOoo.Rendering
         private void SelectAction(int index)
         {
             if (index < 0 || index >= _actions.Count) return;
+            // A disabled row says why and nothing else: no selection, no turn, no transaction, and the menu stays open.
+            if (_actions[index] != null && _actions[index].IsDisabled)
+            {
+                ReportDisabled(_actions[index]);
+                return;
+            }
             _selectionMade = true;
             _selectedAction = _actions[index];
             Close();
+        }
+
+        /// <summary>Logs a disabled row's reason and records the refusal (spec S3). Shared by Enter, click, hotkey and controller selection.</summary>
+        public static void ReportDisabled(InventoryAction action)
+        {
+            if (action == null) return;
+            MessageLog.Add(action.DisabledReason);
+            Diag.Record("event", "ActionDisabled", payload: new { code = action.DisabledCode, command = action.Command, name = action.Name });
         }
 
         private void Cancel()
@@ -470,8 +485,9 @@ namespace CavesOfOoo.Rendering
                     int maxLabelLen = _popupW - 7;
                     if (label.Length > maxLabelLen)
                         label = label.Substring(0, maxLabelLen - 1) + "~";
+                    // A disabled row is listed, but dim even when highlighted.
                     DrawText(5, rowY, label,
-                        selected ? QudColorParser.White : QudColorParser.Gray);
+                        action.IsDisabled ? QudColorParser.DarkGray : selected ? QudColorParser.White : QudColorParser.Gray);
                 }
 
                 if (_scrollOffset > 0)

@@ -3,6 +3,20 @@ using System.Collections.Generic;
 namespace CavesOfOoo.Core
 {
     /// <summary>
+    /// What a row declares about its turn cost (machine architecture spec C4 / S3). <see cref="Unspecified"/> leaves the decision to the
+    /// legacy command chains in the world menu and the pack menu, so every shipped row keeps charging exactly what it charged before; a
+    /// producer that declares a time bypasses both chains and needs no edit to either.
+    /// </summary>
+    public enum ActionTime : sbyte
+    {
+        Unspecified = -1,
+        /// <summary>Runs in the command transaction and spends no turn.</summary>
+        Free = 0,
+        /// <summary>Runs in the command transaction and spends one action only when it commits.</summary>
+        OneAction = 1
+    }
+
+    /// <summary>
     /// Describes a single action that can be performed on an inventory item.
     /// Mirrors Qud's InventoryAction: parts on the item declare actions via
     /// GetInventoryActions event, and the selected action fires an InventoryAction
@@ -30,6 +44,21 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool FireOnActor;
 
+        /// <summary>Declared turn cost; <see cref="ActionTime.Unspecified"/> means the legacy chains decide.</summary>
+        public ActionTime Time = ActionTime.Unspecified;
+
+        /// <summary>Stable token naming why the row is unavailable (for example "faulted"); empty when enabled.</summary>
+        public string DisabledCode = "";
+
+        /// <summary>One sentence shown instead of acting. A non-blank reason makes the row disabled.</summary>
+        public string DisabledReason = "";
+
+        /// <summary>A disabled row is listed dimmed; selecting it logs the reason, spends no turn, opens no transaction and keeps the menu open. It wins over <see cref="Time"/>.</summary>
+        public bool IsDisabled => !string.IsNullOrWhiteSpace(DisabledReason);
+
+        /// <summary>Command given to disabled rows so no consumer ever reads a null command; it is never dispatched.</summary>
+        public const string DisabledCommandPrefix = "Disabled:";
+
         public InventoryAction() { }
 
         public InventoryAction(string name, string display, string command,
@@ -52,10 +81,27 @@ namespace CavesOfOoo.Core
     {
         public List<InventoryAction> Actions = new List<InventoryAction>();
 
-        public void AddAction(string name, string display, string command,
-            char key = '\0', int priority = 0, bool fireOnActor = false)
+        public InventoryAction AddAction(string name, string display, string command,
+            char key = '\0', int priority = 0, bool fireOnActor = false, ActionTime time = ActionTime.Unspecified)
         {
-            Actions.Add(new InventoryAction(name, display, command, key, priority, fireOnActor));
+            var action = new InventoryAction(name, display, command, key, priority, fireOnActor) { Time = time };
+            Actions.Add(action);
+            return action;
+        }
+
+        /// <summary>
+        /// Lists a row that cannot be used now, with a stable code and one sentence of why. It has no dispatchable command: selecting it only
+        /// reports the reason. A blank reason would make an enabled, dead row, so it is replaced by a generic sentence rather than dropped.
+        /// </summary>
+        public InventoryAction AddDisabled(string name, string display, string code, string reason,
+            char key = '\0', int priority = 0)
+        {
+            code = string.IsNullOrWhiteSpace(code) ? "unavailable" : code.Trim();
+            if (string.IsNullOrWhiteSpace(reason)) reason = "That cannot be done right now.";
+            var action = new InventoryAction(name, display, InventoryAction.DisabledCommandPrefix + code, key, priority)
+            { DisabledCode = code, DisabledReason = reason.Trim() };
+            Actions.Add(action);
+            return action;
         }
 
         /// <summary>

@@ -271,6 +271,13 @@ namespace CavesOfOoo.Rendering
             public string Label;
             public string Command;
             public Entity Container;
+            // Declared by the producing row (spec S3). A struct defaults to ActionTime 0 (Free), so a separate flag says whether Time was
+            // declared at all; undeclared rows keep the legacy charge chain.
+            public bool TimeDeclared;
+            public ActionTime Time;
+            public string DisabledCode;
+            public string DisabledReason;
+            public bool IsDisabled => !string.IsNullOrWhiteSpace(DisabledReason);
         }
 
         public void Open()
@@ -1216,7 +1223,13 @@ namespace CavesOfOoo.Rendering
                     if (a.Command == "Throw") continue; // handled below via lowercase "throw"
                     if ((materialGuidance || tonicGuidance || equipmentGuidance)
                         && a.Command == "Examine") continue;
-                    actions.Add(new ItemAction { Label = a.Display, Command = a.Command });
+                    actions.Add(new ItemAction
+                    {
+                        // Both pack renderers draw only the label, so a disabled row says so in its text as well as being dimmed.
+                        Label = a.IsDisabled ? a.Display + " (unavailable)" : a.Display, Command = a.Command,
+                        TimeDeclared = a.Time != ActionTime.Unspecified, Time = a.Time,
+                        DisabledCode = a.DisabledCode, DisabledReason = a.DisabledReason
+                    });
                 }
             }
 
@@ -1375,6 +1388,16 @@ namespace CavesOfOoo.Rendering
             ClearActionStatus();
             var action = _itemActionPopup.Actions[index];
             var item = _itemActionPopup.Item;
+            // A disabled row only says why: no transaction, no turn, and the popup stays open on the same row.
+            if (action.IsDisabled)
+            {
+                SetActionFailure(action.DisabledReason);
+                MessageLog.Add(action.DisabledReason);
+                Diag.Record("event", "ActionDisabled", actor: PlayerEntity, target: item,
+                    payload: new { code = action.DisabledCode, command = action.Command, name = action.Label });
+                Render();
+                return;
+            }
             var consumption = SelfConsumptionTurnProof.Capture(PlayerEntity, item, action.Command);
             bool completed;
             switch (action.Command)
@@ -1508,19 +1531,9 @@ namespace CavesOfOoo.Rendering
                     return;
                 default: completed = TryPerformActionViaCommand(item, action.Command); break;
             }
-            if (completed && (action.Command == "FillWaterskin"
-                || action.Command == "DrinkWaterskin" || action.Command == "Cook"
-                || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"
-                || action.Command == "Harvest"
-                || consumption.ShouldSpendTurn(completed)
-                || (action.Command == SoddenDressingPart.ApplyCommand && item.HasPart<SoddenDressingPart>())
-                || action.Command == GrimoireChargePart.ReinkCommand
-                || action.Command == BotanicalProcessingPart.Command
-                || LiquidVesselService.IsLiquidCommand(action.Command)
-                || WorldResourceActions.IsCommand(action.Command)
-                || CombatUtilityActions.IsCommand(action.Command)
-                || PreparationActions.IsCommand(action.Command)
-                || SecondExplorationActions.IsCommand(action.Command)))
+            // Declared time (spec S3): the row's own word replaces the legacy chain below, which stays for undeclared rows.
+            // The chain is evaluated only for a committed command, exactly as before.
+            if (completed && (action.TimeDeclared ? action.Time == ActionTime.OneAction : LegacyPackActionSpendsTurn(action, item, consumption, completed)))
             {
                 _pendingEverydayTurn = true;
                 _closingActivationKey = activationKey;
@@ -1532,6 +1545,24 @@ namespace CavesOfOoo.Rendering
             Rebuild();
             ClampCursor();
             Render();
+        }
+
+        /// <summary>The pre-S3 pack-menu charge decision, unchanged: the commands that spend one turn when they commit.</summary>
+        private static bool LegacyPackActionSpendsTurn(ItemAction action, Entity item, SelfConsumptionTurnProof consumption, bool completed)
+        {
+            return (action.Command == "FillWaterskin"
+                || action.Command == "DrinkWaterskin" || action.Command == "Cook"
+                || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"
+                || action.Command == "Harvest"
+                || consumption.ShouldSpendTurn(completed)
+                || (action.Command == SoddenDressingPart.ApplyCommand && item.HasPart<SoddenDressingPart>())
+                || action.Command == GrimoireChargePart.ReinkCommand
+                || action.Command == BotanicalProcessingPart.Command
+                || LiquidVesselService.IsLiquidCommand(action.Command)
+                || WorldResourceActions.IsCommand(action.Command)
+                || CombatUtilityActions.IsCommand(action.Command)
+                || PreparationActions.IsCommand(action.Command)
+                || SecondExplorationActions.IsCommand(action.Command));
         }
 
         /// <summary>
@@ -3065,7 +3096,8 @@ namespace CavesOfOoo.Rendering
                     int maxLen = POPUP_W - 7;
                     if (label.Length > maxLen)
                         label = label.Substring(0, maxLen - 1) + "~";
-                    Color labelColor = selected ? QudColorParser.White : QudColorParser.Gray;
+                    Color labelColor = _itemActionPopup.Actions[i].IsDisabled ? QudColorParser.DarkGray
+                        : selected ? QudColorParser.White : QudColorParser.Gray;
                     DrawText(popupX + 5, rowY, label, labelColor);
                 }
             }
