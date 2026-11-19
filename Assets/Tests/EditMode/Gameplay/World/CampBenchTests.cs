@@ -44,6 +44,21 @@ namespace CavesOfOoo.Tests
             Assert.GreaterOrEqual(b.GetPart<CommercePart>().Value, 100, "a real purchase, not a trinket"); Assert.GreaterOrEqual(b.GetPart<PhysicsPart>().Weight, 15, "heavy enough to be a choice to carry");
         }
 
+        [Test] public void EveryShippedKitIsInertWhileCarried_ANewRowOnACarriedKitMustBeReviewed()
+        {
+            // A packable machine in a pack is a kit, not a station. The guard lives in each machine's own menu (forge, still) and the rest follow from the Loose state, so a new
+            // composed kit could silently offer its work rows while carried. This pin makes that a failing test: a carried kit may only be set down, examined, opened or broken.
+            var allowed = new[] { "SetDownFixture", "Examine", "Open", "Break" };
+            Assert.IsNotEmpty(PackableFixtureRegistry.All);
+            foreach (var def in PackableFixtureRegistry.All.Where(d => d.Class == PackableFixtureDefinition.Carried))
+            {
+                var kit = Carry(def.Blueprint); Carry("SalvagedTimber"); Carry("MendleafSprig"); Carry("IronSpikeComponent"); // bait: fuel, a reagent, a component
+                var names = Actions(kit).Select(a => a.Name).Distinct().ToArray();
+                CollectionAssert.IsSubsetOf(names, allowed, def.Kind + " offers a work row while carried: guard it like the forge and still, or review and allow it here");
+                Assert.True(names.Contains("SetDownFixture"), def.Kind + " can still be set down");
+            }
+        }
+
         [Test] public void ACarriedBenchIsNoStationAndOffersNoCraftRows()
         {
             var bench = Carry("CampBench"); Assert.False(ForgePart.IsNearForge(Actor, Zone)); Assert.False(Actions(bench).Any(a => a.Command == "CraftKit" || a.Command == "ForgeWeapon"));
