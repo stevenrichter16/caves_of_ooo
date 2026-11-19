@@ -71,5 +71,22 @@
    "the four-line cap and the rest line in actual play (native tests only)",
    "a below-ground zone (not placeable in v1)"
   ]
+ },
+ "review_fix_play": {
+  "date": "2026-11-19",
+  "source": "HEAD dec16b2a2 (Editor Play, Claude), fresh world, real keys; the camp hearth was granted and its fuel and temperature were set with execute_code to make it burn (the relight needs a carried flame, which this play did not stage)",
+  "disclosures": [
+   "The wait key is '.', not 'S': the first turn was passed with S, which moved the player south, so that step does not isolate the light toggle and no light halo is claimed on screen (surface light is dim by day and creatures were moving in the zone).",
+   "The hearth glyph is dark; no screenshot claims a visible light."
+  ],
+  "observations": {
+   "burning_spends_fuel_and_lights": "After set down, fuel 10 and 450 degrees, one real turn: fuel 9.75, light enabled; after a few more turns 9.5 fuel, 433 degrees, light enabled.",
+   "take_up_puts_the_fire_out": "Taking the burning hearth up through its world menu (a) take up): before fuel 9.5, 433 degrees, light on; in the pack fuel 9.5, 25 degrees (its ambient), light off (hearth-take-up-pack.png)."
+  },
+  "not_observed": [
+   "the light halo on screen",
+   "a dropped bench or still in actual play (native tests only)",
+   "relight by a carried flame"
+  ]
  }
 }
