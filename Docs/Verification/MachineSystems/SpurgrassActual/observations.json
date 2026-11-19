@@ -1,0 +1,32 @@
+{
+  "source": "9316f93308eac5f2974ed810b88a0ea4c852cf9b",
+  "seed": 704860946,
+  "driver": "Unity MCP execute_code queueing Input System key events (Claude, 2026-11-18); real GameBootstrap Play via the isolated launcher in the main editor; no F12, no state edits, no injected gameplay events",
+  "input_fixture": "CompositeProcessingActual/GatheredCordCheckpoint (turn 3920, Overworld.2.6.0 at 60,11, HP40, Dagger, KnotflaxCord x2)",
+  "route": [
+    "worldmap ascend (Shift+Comma); cursor to 38,22 by verified single taps; descend (Shift+Period) -> Overworld.8.19.0 at 40,12",
+    "walk Up8 Left25 to 15,4 (coordinates of the ripe plant taken from the earlier disclosed ordinary-play baseline, partial-observations.json; not a hidden-owner probe by this run)",
+    "interact left: menu offers harvest / gather into pack / harvest seeds-only / examine; chose harvest",
+    "step onto 14,4: Pick up (3 items): spurgrass spine, spurgrass spine, spurgrass seed; Tab take all"
+  ],
+  "observations": {
+    "stacking": "pack shows SpurgrassSpine x2 as ONE stack (#18328) after the real pickup",
+    "throw_recover": "item action Throw on the stack, aimed two cells right: pack SpurgrassSpine x1 (#18328) and a separate SpurgrassSpine x1 on the ground at 16,4; walked there, G + Enter pickup: pack SpurgrassSpine x2 (#18328) again (merge works with the live recovery mark present)",
+    "menu_row": "cord item actions list 'b) lash serrated edge kit: 1 knotflax cord + 2 spurgrass spine -> 1,...' (narrow menu truncates the rest); no station nearby",
+    "process": "pressed b: cord 2 -> 1, spines 2 -> 0, SerratedEdgeComponent x1 (#18330) in pack, Dagger kept; log 'You complete the Quoted Process work. The declared inputs are spent; the products are in your pack.'",
+    "consumer": "travelled back to Cinderhold (6.6.0) at 56,6 beside TinkersForge 55,5. Pressing 'forge: head+haft; lose binding/mods' on the leather-bound axe was an UNINTENDED reclaim (binding spent, head and haft returned); then Crafting/FORGE with cinderhook axe head + rough field haft + serrated edge kit previewed 'field-hafted serrated cinderhook axe: Damage 1d8, Penetration +1, Hit -2, 20% Bleeding 1d2 a turn (save 15)' and forged it (#18333). Compared with the leather-bound axe it replaced (Hit -1, Pen +0) and the earlier GuardLashing (Hit 0, Pen -1) in the M3c record",
+    "equip_travel_save_reload": "equipped (left hand); ascended to the world map and re-entered Cinderhold at 56,6; F5 'Game saved.' turn 15550 HP40; stopped Play, restaged that save into a fresh launcher root and Continued: equipped serrated cinderhook axe Hit -2 Pen +1, pack unchanged (cord 1, seed 1)"
+  },
+  "disclosures": [
+    "Several early key sequences were misrouted: Enter in the world cast Ember Spit and four Down taps walked the character into a brine pool (Parched x2, drenched); the character walked back out, HP stayed 40/40. An unintended Escape opened the Pause menu; nothing was selected.",
+    "While steering on the world map, repeated arrow presses struck the map's boundary wall until 'wall is destroyed' at the bottom and top edges and the character stood outside the map region; destructible world-map border walls look like a separate bug (not fixed or investigated here).",
+    "The reclaim of the original axe was a menu misread by this run; it costs the leather binding in this save only.",
+    "No combat with the kit was run, so the 20% Bleeding proc is shown by the reader text only. A brittle hound was present on the zone but never engaged.",
+    "The full process preview was not read in-game (menu text truncates); the row's inputs and arrow were seen, the process result log was seen.",
+    "The recovery used the ordinary pickup (G). The Recovery skill path, which does not merge (independent review P2), was not exercised.",
+    "Not exercised: cached-save control for this recipe (a recipe has no placement), Linux/Deck, packaged Mac build."
+  ],
+  "f12": false,
+  "state_edits": false,
+  "fixture": "AfterTravelCheckpoint (Quick.sav.gz + Quick.json, turn 15550, Overworld.6.6.0, HP40)"
+}

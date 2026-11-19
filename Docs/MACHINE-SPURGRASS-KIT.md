@@ -3,7 +3,7 @@
 2026-11-17. Follows the accepted M3c composite foundation (`c600701d0`) and the read-only source selection in
 `Verification/MachineSystems/SpurgrassBaseline/source-selection.md`.
 
-**Status: native RED→GREEN complete; independent design critique incorporated; actual play and Mac package still open.**
+**Status: native RED→GREEN complete; independent design critique incorporated; Editor actual play complete (2026-11-18); Mac package and independent gameplay review still open.**
 Execution ownership of Unity and Git moved to this Claude session on 2026-11-17 20:30 CST. The Codex
 `caves-of-ooo-machine-foundations` heartbeat is still ACTIVE, but its runs hit a usage limit (3–7 s polls; weekly window
 resets about 2026-11-22). Pause it or hand it back before it resumes real work; this document and the execution plan are the handover.
@@ -111,5 +111,17 @@ reflection-signature mismatches). The other five (3 `ComposableBladeTests`, 1 `G
 `SpreadBiomeCoverageTests` seed) did not reproduce when run with the change in isolation (69/69 across those fixtures plus the kit),
 so they are order- or timing-dependent in the full run; that is an honest limit, not a proven pre-existing failure.
 
-Not yet done: actual play (acquisition by ordinary harvest, stacking, throw/recover, the process, refit, travel, F5, fresh
-Continue), a Mac package, and an independent source/gameplay review. The recipe is therefore **native-accepted only**.
+Actual Editor play (2026-11-18, real GameBootstrap Play driven through the Unity MCP; record and screenshots in
+`Verification/MachineSystems/SpurgrassActual/`): ordinary harvest of the ripe Beating 8.19 spurgrass gave two spines and a seed;
+the real pickup merged the spines into one stack of two; throwing one and picking it up again merged it back; the cord's item menu
+offered "lash serrated edge kit: 1 knotflax cord + 2 spurgrass spine -> ..." with no station nearby; the process spent the cord
+and both spines and produced one serrated edge kit while the dagger stayed in the pack; at the Cinderhold forge the kit was
+forged with the recovered head and haft into a field-hafted serrated cinderhook axe (Damage 1d8, Penetration +1, Hit -2, 20%
+Bleeding 1d2 a turn, save 15), equipped, carried across a world-map ascend and re-entry, saved with F5 and restored by a fresh
+Continue with the same equipped weapon and pack. Disclosed in the record: misrouted early key presses (an Ember Spit cast and a walk
+into a brine pool), an unintended reclaim of the old axe at the forge (this save only), no combat run so the Bleeding proc is
+shown by reader text only, the narrow item menu truncates the recipe line, and the Recovery-skill path (P2 above) was not
+exercised. Destructible world-map border walls were noticed while steering and are a separate, uninvestigated problem.
+
+Not yet done: a Mac package at this source and an independent gameplay/visual review of the evidence. The recipe is
+**native- and Editor-play-accepted**; the exact acceptance gates beyond that stay open.
