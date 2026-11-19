@@ -293,6 +293,14 @@ namespace CavesOfOoo.Editor.Scenarios
             => ScenarioRunner.Launch<QuestWorldPartsBench>();
 
         // =========================================================
+        // Home (set-down kits)
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/Home/Camp Kits (box, hearth, bench, still + supplies)", priority = 400)]
+        private static void Launch_CampKits()
+            => ScenarioRunner.Launch<CampKitsShowcase>();
+
+        // =========================================================
         // UI (skill tree, etc.)
         // =========================================================
 

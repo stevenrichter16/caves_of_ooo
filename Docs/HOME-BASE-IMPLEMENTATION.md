@@ -97,6 +97,10 @@ A separate audit read the fire, AI and unload code. Findings: a lit hearth canno
 few turns); no AI attacks, loots, paths through or pushes a set-down box, and companions do not touch containers; there is no weather and no cache eviction, and the only `UnloadZone` caller is the village relapse, so a wild-zone fixture cannot be deleted by absence. Actions taken: the hearth became an iron pan (no `Combustibility`) so a nearby fire cannot turn it into a long-burning heater, it spends
 fuel while burning, and two wrong claims in this record were corrected. Remaining, accepted: a hostile fire spell can burn a box down and a hoarder can take the spill in the player's presence; the 200-turn soak and fire bench were not run.
 
+### Trying the kits by hand (2026-11-19)
+
+`Caves Of Ooo > Scenarios > Home > Camp Kits` (`CampKitsShowcase`) gives the four kits, 6 timber, a torch, raw meat, a dagger, an iron spike, oak haft and leather binding for the bench, and 2 mendleaf and 1 fire moss for the still, and places a real campfire two cells east of the player to light the torch at. It grants items and a fire only; every verb after that is the ordinary one. The opening zone (`Overworld.11.10.0`) is protected ground and refuses set-down, so travel by the world map first (`Overworld.10.11.0` is wild; 9.10, 9.11, 10.9 and 11.12 are family-owned and admitted). `CampKitShowcaseTests` pins the loadout against the real content (every blueprint exists, all four kits are registered packable kinds, the load fits a Strength-16 pack, each kit has what it needs). Played once in the Editor: the menu item put the full loadout in the pack (weight 107) and the campfire at 42,12; no kit verb was played from it.
+
 ## Limits and next
 
 - `column-pending` (underground ordinary columns) stays refused until PB7. Family-owned (exploration) zones are admitted since the PB1a audit; the opening yard and the other protected addresses stay refused.
