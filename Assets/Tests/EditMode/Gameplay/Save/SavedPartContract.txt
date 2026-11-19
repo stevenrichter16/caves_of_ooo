@@ -1,0 +1,1604 @@
+# parts=386
+Part CavesOfOoo.Core.AIAmbushPart | reflected
+  #hooks:OnBeforeSave
+  AmbushSaveStateVersion:System.Int32
+  DormantPushed:System.Boolean
+  SleepParticleInterval:System.Int32
+  WakeOnDamage:System.Boolean
+  WakeOnHostileInSight:System.Boolean
+Part CavesOfOoo.Core.AIBromeliadRetreatPart | reflected
+  ApproachRadius:System.Int32
+  CoverRadius:System.Int32
+Part CavesOfOoo.Core.AIFleeToShrinePart | reflected
+  FleeThreshold:System.Single
+  MaxTurns:System.Int32
+Part CavesOfOoo.Core.AIGuardPart | reflected
+Part CavesOfOoo.Core.AIHoarderPart | reflected
+  Chance:System.Int32
+  TargetTag:System.String
+Part CavesOfOoo.Core.AILayRunePart | reflected
+  Chance:System.Int32
+  MaxRunesPerZone:System.Int32
+  RuneBlueprints:System.String
+  SearchRadius:System.Int32
+Part CavesOfOoo.Core.AIPetterPart | reflected
+  Chance:System.Int32
+Part CavesOfOoo.Core.AIRetrieverPart | reflected
+  AlliesOnly:System.Boolean
+  NoticeRadius:System.Int32
+Part CavesOfOoo.Core.AISelfPreservationPart | reflected
+  RetreatThreshold:System.Single
+  SafeThreshold:System.Single
+Part CavesOfOoo.Core.AIUndertakerPart | reflected
+  Chance:System.Int32
+Part CavesOfOoo.Core.AIWellVisitorPart | reflected
+  Chance:System.Int32
+Part CavesOfOoo.Core.ActivatedAbilitiesPart | custom
+Part CavesOfOoo.Core.AlchemyStillPart | reflected
+Part CavesOfOoo.Core.Anatomy.SeveredLimbPart | reflected
+  Category:System.Int32
+  PartDisplayName:System.String
+  PartType:System.String
+  WasMortal:System.Boolean
+Part CavesOfOoo.Core.ArmorPart | reflected
+  AV:System.Int32
+  DV:System.Int32
+  SpeedPenalty:System.Int32
+Part CavesOfOoo.Core.ArtisanRepairServicePart | reflected
+Part CavesOfOoo.Core.BearTrapTriggerPart | reflected
+  BleedDice:System.String
+  BleedSaveTarget:System.Int32
+  ConsumeOnTrigger:System.Boolean
+  Damage:System.Int32
+  StunDuration:System.Int32
+  TriggerFaction:System.String
+Part CavesOfOoo.Core.BedPart | reflected
+  Occupied:System.Boolean
+  Owner:System.String
+Part CavesOfOoo.Core.BiomeCropPatchPart | reflected
+  CropBlueprint:System.String
+  SiteKey:System.String
+Part CavesOfOoo.Core.BitLockerPart | custom
+Part CavesOfOoo.Core.BloomOnCreatePart | reflected
+  Applied:System.Boolean
+Part CavesOfOoo.Core.Body | custom
+Part CavesOfOoo.Core.BotanicalInkDeskPart | reflected
+  Configured:System.Boolean
+  DeskID:System.String
+  DeskX:System.Int32
+  DeskY:System.Int32
+  Worker:CavesOfOoo.Core.Entity
+  WorkerID:System.String
+  ZoneID:System.String
+Part CavesOfOoo.Core.BotanicalProcessingPart | reflected
+  ActionText:System.String
+  OutputBlueprint:System.String
+  OutputCount:System.Int32
+Part CavesOfOoo.Core.BrainPart | custom
+Part CavesOfOoo.Core.BrewItemPart | reflected
+  EffectsRaw:System.String
+  Form:System.String
+Part CavesOfOoo.Core.BrewKnowledgePart | reflected
+Part CavesOfOoo.Core.BurialPart | reflected
+Part CavesOfOoo.Core.BurnOffGasPart | reflected
+  Chance:System.Int32
+  DamagePer:System.Int32
+  DamageTaken:System.Int32
+  DamageTriggerTypes:System.String
+  GasDensity:System.Int32
+  GasId:System.String
+  GasLevel:System.Int32
+  Number:System.String
+Part CavesOfOoo.Core.CampfirePart | reflected
+  AllowRest:System.Boolean
+  FiniteCooking:System.Boolean
+Part CavesOfOoo.Core.CausticFilmPart | reflected
+  Corrosion:System.Single
+  Creator:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.CausticSkinPart | reflected
+  PoisonChance:System.Int32
+  PoisonDuration:System.Int32
+  ReflectDamage:System.Int32
+Part CavesOfOoo.Core.ChairPart | reflected
+  Occupant:CavesOfOoo.Core.Entity
+  Occupied:System.Boolean
+  Owner:System.String
+Part CavesOfOoo.Core.CivilianAidPart | reflected
+Part CavesOfOoo.Core.CivilianCourtesyPart | reflected
+Part CavesOfOoo.Core.CivilianEquipmentGiftPart | reflected
+Part CavesOfOoo.Core.ClothClaimantPart | reflected
+  Honored:System.Boolean
+  Pursuers:System.String
+Part CavesOfOoo.Core.CollectorBarterPart | reflected
+Part CavesOfOoo.Core.ColonyPart | reflected
+  Call:System.String
+  LastAlarmTick:System.Int32
+  Radius:System.Int32
+Part CavesOfOoo.Core.CombatTacticsPart | reflected
+  AbilityChance:System.Int32
+  AssistAllies:System.Boolean
+  AssistRadius:System.Int32
+  PreferElementalSetup:System.Boolean
+  PreferredRange:System.Int32
+  RepositionForShot:System.Boolean
+  SkillClasses:System.String
+Part CavesOfOoo.Core.CommercePart | reflected
+  Value:System.Int32
+Part CavesOfOoo.Core.CommittedMeleePart | reflected
+  AttackName:System.String
+  CommittedZoneId:System.String
+  DamagePercent:System.Int32
+  DirectionX:System.Int32
+  DirectionY:System.Int32
+  OriginX:System.Int32
+  OriginY:System.Int32
+  OriginalTarget:CavesOfOoo.Core.Entity
+  Reach:System.Int32
+  RecoveryFresh:System.Boolean
+  Stage:CavesOfOoo.Core.CommittedMeleePart+AttackStage
+  Stage#enum:Idle=0,Recovery=2,Windup=1
+Part CavesOfOoo.Core.CompositionPart | reflected
+  MaterialsRaw:System.String
+Part CavesOfOoo.Core.ConnectedClayOriginPart | reflected
+  OwnerID:System.String
+  Units:System.Int32
+  WorldKey:System.String
+Part CavesOfOoo.Core.ConnectedSpreadProgressPart | reflected
+  Awards:System.Int32
+  ClayUnits:System.Int32
+  PlayerID:System.String
+  WorldKey:System.String
+Part CavesOfOoo.Core.ConnectedSpreadSourcePart | reflected
+  Blueprint:System.String
+  Kinds:System.Int32
+  OwnerID:System.String
+  WorldKey:System.String
+Part CavesOfOoo.Core.ContainedLiquidSourcePart | reflected
+  Capacity:System.Int32
+  LiquidId:System.String
+  Volume:System.Int32
+Part CavesOfOoo.Core.ContainerLoadPart | reflected
+Part CavesOfOoo.Core.ContainerPart | reflected
+  Contents:System.Collections.Generic.List`1[CavesOfOoo.Core.Entity]
+  Locked:System.Boolean
+  MaxItems:System.Int32
+  Preposition:System.String
+Part CavesOfOoo.Core.ConversationPart | reflected
+  ConversationID:System.String
+Part CavesOfOoo.Core.CookIntroductionKnowledgePart | reflected
+  Learner:CavesOfOoo.Core.Entity
+  Pan:CavesOfOoo.Core.Entity
+  PanID:System.String
+  RepairCauseID:System.String
+  SiteID:System.String
+  Speaker:CavesOfOoo.Core.Entity
+  SpeakerID:System.String
+  WorldKey:System.String
+Part CavesOfOoo.Core.CookIntroductionPart | reflected
+  Configured:System.Boolean
+  CookID:System.String
+  Pan:CavesOfOoo.Core.Entity
+  PanID:System.String
+  PanX:System.Int32
+  PanY:System.Int32
+  WorldKey:System.String
+  WorldSeed:System.Int32
+  ZoneID:System.String
+Part CavesOfOoo.Core.CookablePart | reflected
+  Into:System.String
+Part CavesOfOoo.Core.CordSnarePart | reflected
+  Spent:System.Boolean
+Part CavesOfOoo.Core.CorpsePart | reflected
+  BuildCorpseChance:System.Int32
+  CorpseBlueprint:System.String
+  CorpseChance:System.Int32
+  HarvestBlueprint:System.String
+  HarvestChance:System.Int32
+  HarvestMax:System.Int32
+  HarvestMin:System.Int32
+  TestRng:System.Random
+Part CavesOfOoo.Core.CraftingMarkPart | reflected
+Part CavesOfOoo.Core.CropPart | reflected
+  Composted:System.Boolean
+  GrowthStage:System.Int32
+  GrowthTimingVersion:System.Int32
+  GrowthWetTickRemainder:System.Int32
+  HarvestAtMaturity:System.Boolean
+  LastGrowthWorldTick:System.Int32
+  MoistureTicks:System.Int32
+  SeedYieldBlueprint:System.String
+  SeedYieldCount:System.Int32
+  StageColorsRaw:System.String
+  StageGlyphsRaw:System.String
+  TicksInStage:System.Int32
+  TicksPerStage:System.Int32
+  YieldBlueprint:System.String
+  YieldCount:System.Int32
+Part CavesOfOoo.Core.CropSystemPart | reflected
+Part CavesOfOoo.Core.CultivatedSoilPart | reflected
+Part CavesOfOoo.Core.CurationIntakePart | reflected
+  Certified:System.Boolean
+  Configured:System.Boolean
+  Counterfoil:CavesOfOoo.Core.Entity
+  CounterfoilID:System.String
+  Filer:CavesOfOoo.Core.Entity
+  FilerID:System.String
+  FirstBay:CavesOfOoo.Core.Entity
+  FirstBayID:System.String
+  FirstBayX:System.Int32
+  FirstBayY:System.Int32
+  FirstBody:CavesOfOoo.Core.Entity
+  FirstBodyID:System.String
+  IndexID:System.String
+  IndexX:System.Int32
+  IndexY:System.Int32
+  Indexer:CavesOfOoo.Core.Entity
+  IndexerID:System.String
+  SecondBay:CavesOfOoo.Core.Entity
+  SecondBayID:System.String
+  SecondBayX:System.Int32
+  SecondBayY:System.Int32
+  SecondBody:CavesOfOoo.Core.Entity
+  SecondBodyID:System.String
+  ZoneID:System.String
+Part CavesOfOoo.Core.CurationReceivingBayPart | reflected
+  CaseNumber:System.Int32
+  Index:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.CurationReceivingBodyPart | reflected
+  CaseNumber:System.Int32
+  Index:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.CureTonicPart | reflected
+  CureEffect:System.String
+Part CavesOfOoo.Core.CuttingToolPart | reflected
+  FlexibleStock:System.Boolean
+Part CavesOfOoo.Core.DamageFlashPart | reflected
+Part CavesOfOoo.Core.DestructiblePart | reflected
+  Gone:System.Boolean
+  HP:System.Int32
+  Hardness:System.Int32
+  Indestructible:System.Boolean
+  MaxHP:System.Int32
+  WreckageBlueprint:System.String
+Part CavesOfOoo.Core.DoorPart | reflected
+  IsOpen:System.Boolean
+  OwnerId:System.String
+  QuarterTurns:System.Int32
+Part CavesOfOoo.Core.DragPart | reflected
+  AppliedPenalty:System.Int32
+  Dragged:CavesOfOoo.Core.Entity
+  HaulerGripX:System.Int32
+  HaulerGripY:System.Int32
+  LoadGripX:System.Int32
+  LoadGripY:System.Int32
+  SpeedPenalty:System.Int32
+Part CavesOfOoo.Core.DraggedPart | reflected
+  Dragger:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.EnhancementChoirIron | reflected
+  BonusDamage:System.Int32
+  Tier:System.Int32
+Part CavesOfOoo.Core.EnhancementEngraved | reflected
+  AppliedBonus:System.Boolean
+  Faction:System.String
+  RepDelta:System.Int32
+  Tier:System.Int32
+Part CavesOfOoo.Core.EnhancementGlowQuartz | reflected
+  AppliedBonus:System.Boolean
+  RadiusBonus:System.Int32
+  Tier:System.Int32
+Part CavesOfOoo.Core.EnhancementLacquered | reflected
+  AppliedBonus:System.Boolean
+  AvBonus:System.Int32
+  Tier:System.Int32
+Part CavesOfOoo.Core.EnhancementPaleSalt | reflected
+  BonusDamage:System.Int32
+  Tier:System.Int32
+Part CavesOfOoo.Core.EnhancementSerrated | reflected
+  ChancePercent:System.Int32
+  DamageDice:System.String
+  SaveTarget:System.Int32
+  Tier:System.Int32
+Part CavesOfOoo.Core.EquippablePart | reflected
+  AppliedEquipBonuses:System.String
+  AppliedEquipSkillBonuses:System.String
+  EquipBonuses:System.String
+  EquipSkillBonuses:System.String
+  Slot:System.String
+  UsesSlots:System.String
+Part CavesOfOoo.Core.ExaminablePart | reflected
+  Text:System.String
+Part CavesOfOoo.Core.FellingScenePropPart | reflected
+  ClearLabel:System.String
+  ComponentId:System.String
+  Mutable:System.Boolean
+Part CavesOfOoo.Core.FellingSceneStatePart | reflected
+  DressingRevision:System.Int32
+  PopulationRevision:System.Int32
+  PreserveMissingSeventh:System.Boolean
+  RemovedIds:System.String
+  Revision:System.Int32
+Part CavesOfOoo.Core.FieldHarvestPart | reflected
+  Harvested:System.Boolean
+  YieldBlueprint:System.String
+  YieldCount:System.Int32
+Part CavesOfOoo.Core.FieldMealPart | reflected
+Part CavesOfOoo.Core.FieldMedicinePart | reflected
+  CureBlueprints:System.String
+  TonicBlueprint:System.String
+  UseAtOrBelowPercent:System.Int32
+Part CavesOfOoo.Core.FiniteLiquidFilmPart | reflected
+  RemainingRounds:System.Int32
+  SourceActorId:System.String
+  ThrowSerial:System.String
+Part CavesOfOoo.Core.FireTrapTriggerPart | reflected
+  BurnIntensity:System.Single
+  ConsumeOnTrigger:System.Boolean
+  Damage:System.Int32
+  TriggerFaction:System.String
+Part CavesOfOoo.Core.FlowerCharmPart | reflected
+  BaseDuration:System.Int32
+  MinDuration:System.Int32
+  Rooted:System.Boolean
+  WiltPerBleedUnit:System.Int32
+Part CavesOfOoo.Core.FoodPart | reflected
+  Cooking:System.String
+  Healing:System.String
+  MealBonus:System.Int32
+  MealDuration:System.Int32
+  MealStat:System.String
+  Message:System.String
+Part CavesOfOoo.Core.ForgePart | reflected
+Part CavesOfOoo.Core.FoundingPlumePart | reflected
+Part CavesOfOoo.Core.FuelPart | reflected
+  BurnRate:System.Single
+  ExhaustProduct:System.String
+  FuelMass:System.Single
+  HeatOutput:System.Single
+  MaxFuel:System.Single
+Part CavesOfOoo.Core.GasBloomSporesPart | reflected
+Part CavesOfOoo.Core.GasConfusionPart | reflected
+Part CavesOfOoo.Core.GasCryoPart | reflected
+Part CavesOfOoo.Core.GasFungalSporesPart | reflected
+Part CavesOfOoo.Core.GasGrenadePart | reflected
+  Density:System.Int32
+  GasId:System.String
+  Level:System.Int32
+  SightCloud:System.String
+  SightCloudTurns:System.Int32
+Part CavesOfOoo.Core.GasImmunityPart | reflected
+  GasType:System.String
+Part CavesOfOoo.Core.GasMaskPart | reflected
+  Power:System.Int32
+Part CavesOfOoo.Core.GasPlasmaPart | reflected
+Part CavesOfOoo.Core.GasPoisonPart | reflected
+Part CavesOfOoo.Core.GasPoolPart | reflected
+  ColorString:System.String
+  Creator:CavesOfOoo.Core.Entity
+  GasId:System.String
+  GasType:System.String
+  Level:System.Int32
+  Seeping:System.Boolean
+  Stable:System.Boolean
+  _density:System.Int32
+Part CavesOfOoo.Core.GasSleepPart | reflected
+Part CavesOfOoo.Core.GasStunPart | reflected
+Part CavesOfOoo.Core.GasSystemPart | reflected
+Part CavesOfOoo.Core.GivesRepPart | reflected
+  Value:System.Int32
+Part CavesOfOoo.Core.GlowmawAmbushPart | reflected
+  HasDropped:System.Boolean
+  TriggerRadius:System.Int32
+Part CavesOfOoo.Core.GrantsRepAsFollowerPart | reflected
+  AppliedBonus:System.Boolean
+  Faction:System.String
+  Value:System.Int32
+Part CavesOfOoo.Core.GrapplePart | reflected
+  Chance:System.Int32
+  Drag:System.Boolean
+  DrownDamage:System.Int32
+  SqueezeDamage:System.Int32
+  WaterRadius:System.Int32
+Part CavesOfOoo.Core.GrazerPenPart | reflected
+  Gate:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.GreatdewSnarePart | reflected
+  ConsumeOnTrigger:System.Boolean
+  Corrosion:System.Single
+  GrabChance:System.Int32
+  HoldTurns:System.Int32
+  TriggerFaction:System.String
+Part CavesOfOoo.Core.GrimoireChargePart | reflected
+  Charges:System.Int32
+  ChargesPerVial:System.Int32
+  MaxCharges:System.Int32
+Part CavesOfOoo.Core.GrimoirePart | reflected
+  AlreadyKnownMessage:System.String
+  KnowledgeProperty:System.String
+  LearnMessage:System.String
+  SkillClassName:System.String
+Part CavesOfOoo.Core.GuestLockerPart | reflected
+  ClaimedBy:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.HandlingPart | reflected
+  BulkClass:System.String
+  CarryMovePenalty:System.Int32
+  Carryable:System.Boolean
+  GripType:CavesOfOoo.Core.GripType
+  GripType#enum:OneHand=0,TwoHand=1
+  MinLiftStrength:System.Int32
+  MinThrowStrength:System.Int32
+  Throwable:System.Boolean
+  Weight:System.Int32
+Part CavesOfOoo.Core.HarvestablePart | reflected
+  ActionText:System.String
+  Harvested:System.Boolean
+  YieldBlueprint:System.String
+  YieldChance:System.Int32
+  YieldMax:System.Int32
+  YieldMin:System.Int32
+Part CavesOfOoo.Core.HearthPatchPart | reflected
+  WarRep:System.Int32
+Part CavesOfOoo.Core.HouseDramaPart | reflected
+  DramaID:System.String
+  NpcId:System.String
+  NpcRole:System.String
+Part CavesOfOoo.Core.HuntsBySoundPart | reflected
+  Window:System.Int32
+Part CavesOfOoo.Core.InkVialPart | reflected
+  InkAmount:System.Int32
+Part CavesOfOoo.Core.InstallationMarkerPart | reflected
+  InstallationId:System.String
+  Origin:System.String
+  RetainZone:System.Boolean
+  Revision:System.Int32
+Part CavesOfOoo.Core.InventoryPart | custom
+Part CavesOfOoo.Core.KeyPart | reflected
+  KeyId:System.String
+Part CavesOfOoo.Core.KitchenBatchPart | reflected
+  BlockedReason:System.String
+  Commissioner:CavesOfOoo.Core.Entity
+  CommissionerID:System.String
+  Configured:System.Boolean
+  DueTick:System.Int32
+  Escrow:CavesOfOoo.Core.Entity
+  EscrowID:System.String
+  EscrowX:System.Int32
+  EscrowY:System.Int32
+  InputCounts:System.Collections.Generic.List`1[System.Int32]
+  InputIDs:System.Collections.Generic.List`1[System.String]
+  Inputs:System.Collections.Generic.List`1[CavesOfOoo.Core.Entity]
+  JobOrdinal:System.Int32
+  Output:CavesOfOoo.Core.Entity
+  OutputID:System.String
+  Pickup:CavesOfOoo.Core.Entity
+  PickupID:System.String
+  PickupX:System.Int32
+  PickupY:System.Int32
+  StartTick:System.Int32
+  State:System.String
+  StationID:System.String
+  StationX:System.Int32
+  StationY:System.Int32
+  Worker:CavesOfOoo.Core.Entity
+  WorkerID:System.String
+  ZoneID:System.String
+Part CavesOfOoo.Core.KnowledgePart | custom
+Part CavesOfOoo.Core.LairStackLedgerPart | custom
+Part CavesOfOoo.Core.LanternSitePart | reflected
+  SettlementId:System.String
+  SiteId:System.String
+Part CavesOfOoo.Core.LegendaryIdentityPart | reflected
+  EnhancementName:System.String
+  Epithet:System.String
+  PersonalName:System.String
+  RewardID:System.String
+  SurfaceID:System.String
+  TemplateID:System.String
+  Version:System.Int32
+Part CavesOfOoo.Core.LifespanPart | reflected
+  ExpiryCoating:System.String
+  ExpiryCoatingTurns:System.Int32
+  TurnsRemaining:System.Int32
+Part CavesOfOoo.Core.LifestealPart | reflected
+  HealPercent:System.Int32
+Part CavesOfOoo.Core.LightSourceFlickerPart | reflected
+  IntensityWobble:System.Single
+  Speed:System.Single
+Part CavesOfOoo.Core.LightSourcePart | reflected
+  Enabled:System.Boolean
+  Intensity:System.Single
+  LightColor:System.String
+  Radius:System.Int32
+Part CavesOfOoo.Core.LiquidPoolPart | reflected
+  LiquidId:System.String
+  Volume:System.Int32
+Part CavesOfOoo.Core.LiquidVesselPart | reflected
+  Capacity:System.Int32
+  LiquidId:System.String
+  Volume:System.Int32
+Part CavesOfOoo.Core.LoadoutKeeperPart | reflected
+Part CavesOfOoo.Core.LoadoutPart | reflected
+  Carry:System.String
+  Equip:System.String
+  Pick:System.String
+Part CavesOfOoo.Core.LoanShelfPart | reflected
+Part CavesOfOoo.Core.LocalGatheringClaimPart | reflected
+  Configured:System.Boolean
+  FirstSoil:CavesOfOoo.Core.Entity
+  FirstSoilID:System.String
+  FirstX:System.Int32
+  FirstY:System.Int32
+  KeeperID:System.String
+  Permissions:System.Collections.Generic.List`1[CavesOfOoo.Core.ReserveAccessRecord]
+  Permissions[].BreachOrdinal:System.Int32
+  Permissions[].LastBreach:System.String
+  Permissions[].Player:CavesOfOoo.Core.Entity
+  Permissions[].State:CavesOfOoo.Core.ReserveAccessState
+  Permissions[].State#enum:Granted=1,Suspended=2,Unknown=0
+  SecondSoil:CavesOfOoo.Core.Entity
+  SecondSoilID:System.String
+  SecondX:System.Int32
+  SecondY:System.Int32
+  Tray:CavesOfOoo.Core.Entity
+  TrayID:System.String
+  TrayX:System.Int32
+  TrayY:System.Int32
+  WorldKey:System.String
+  WorldSeed:System.Int32
+  ZoneID:System.String
+Part CavesOfOoo.Core.LocalPassagePermitPart | reflected
+  PermitHolder:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.LocalPassageTokenPart | reflected
+  Entered:System.Boolean
+  Guard:CavesOfOoo.Core.Entity
+  Spent:System.Boolean
+Part CavesOfOoo.Core.LocalPeopleLedgerPart | custom
+Part CavesOfOoo.Core.LockPart | reflected
+  IsLocked:System.Boolean
+  KeyId:System.String
+Part CavesOfOoo.Core.LocksmithServicePart | reflected
+Part CavesOfOoo.Core.MaterialPart | reflected
+  Brittleness:System.Single
+  Combustibility:System.Single
+  Conductivity:System.Single
+  MaterialID:System.String
+  MaterialTags:System.Collections.Generic.HashSet`1[System.String]
+  MaterialTagsRaw:System.String
+  Porosity:System.Single
+  Volatility:System.Single
+Part CavesOfOoo.Core.MaterialProcessInputPart | reflected
+  ProcessIds:System.String
+Part CavesOfOoo.Core.MeleeTraumaProfilePart | reflected
+  AllowIncidentalDismemberment:System.Boolean
+Part CavesOfOoo.Core.MeleeWeaponPart | reflected
+  Attributes:System.String
+  BaseDamage:System.String
+  EmitGasOnHitRaw:System.String
+  HitBonus:System.Int32
+  MaxStrengthBonus:System.Int32
+  OnHitEffectsRaw:System.String
+  PenBonus:System.Int32
+  Stat:System.String
+Part CavesOfOoo.Core.MineralPreparationPart | reflected
+Part CavesOfOoo.Core.MorrowfastDoorPart | reflected
+  ComponentId:System.String
+  IsOpen:System.Boolean
+Part CavesOfOoo.Core.MorrowfastFaunaPart | reflected
+  ComponentId:System.String
+Part CavesOfOoo.Core.MorrowfastPropPart | reflected
+  ComponentId:System.String
+Part CavesOfOoo.Core.MorrowfastQuestPropPart | reflected
+  ComponentId:System.String
+Part CavesOfOoo.Core.MorrowfastResidentPart | reflected
+  LastBellTurn:System.Int32
+  ResidentId:System.String
+Part CavesOfOoo.Core.MorrowfastSceneStatePart | reflected
+  LiftedRoofIds:System.String
+  OpenDoorIds:System.String
+  RemovedIds:System.String
+  Revision:System.Int32
+Part CavesOfOoo.Core.MultiCellPilotPropPart | reflected
+  ModelId:System.String
+  OwnerId:System.String
+  Role:System.String
+Part CavesOfOoo.Core.MultiCellPilotStatePart | reflected
+  Revision:System.Int32
+  SkippedOwnerIds:System.String
+Part CavesOfOoo.Core.NarrativeStatePart | custom
+Part CavesOfOoo.Core.OilStrainingPart | reflected
+Part CavesOfOoo.Core.OvenSitePart | reflected
+  SettlementId:System.String
+  SiteId:System.String
+Part CavesOfOoo.Core.PackHunterPart | reflected
+  FlankBonus:System.Int32
+Part CavesOfOoo.Core.PebbleSundewThresholdPart | reflected
+  ConsumeOnTrigger:System.Boolean
+  TriggerFaction:System.String
+Part CavesOfOoo.Core.PhysicsPart | reflected
+  Category:System.String
+  Equipped:CavesOfOoo.Core.Entity
+  InInventory:CavesOfOoo.Core.Entity
+  Solid:System.Boolean
+  Takeable:System.Boolean
+  ThrowBase:System.Single
+  ThrowHeight:System.Single
+  ThrowIntercept:System.Int32
+  Weight:System.Int32
+Part CavesOfOoo.Core.PlayerLoadoutsPart | reflected
+  InitialPreparations:System.Int32
+  LastAppliedID:System.String
+  PreparedA:System.String
+  PreparedB:System.String
+  Saved:System.Collections.Generic.List`1[CavesOfOoo.Core.SavedEquipmentLoadout]
+  Saved[].ID:System.String
+  Saved[].Items:System.Collections.Generic.List`1[CavesOfOoo.Core.SavedLoadoutItem]
+  Saved[].Items[].BodyPartIDs:System.Collections.Generic.List`1[System.Int32]
+  Saved[].Items[].BodyPartTypes:System.Collections.Generic.List`1[System.String]
+  Saved[].Items[].ItemID:System.String
+  Saved[].Items[].ItemName:System.String
+  Saved[].Name:System.String
+  Saved[].Slots:System.Collections.Generic.List`1[CavesOfOoo.Core.SavedLoadoutSlot]
+  Saved[].Slots[].BodyPartID:System.Int32
+  Saved[].Slots[].Name:System.String
+  Saved[].Slots[].Type:System.String
+Part CavesOfOoo.Core.PreparationRecipePart | reflected
+  RecipeIds:System.String
+Part CavesOfOoo.Core.PressurePlateTriggerPart | reflected
+  ConsumeOnTrigger:System.Boolean
+  Damage:System.Int32
+  DamageAttribute:System.String
+  TriggerFaction:System.String
+Part CavesOfOoo.Core.PricklebrowNestPart | reflected
+  ConsumeOnTrigger:System.Boolean
+  TriggerFaction:System.String
+  Triggered:System.Boolean
+Part CavesOfOoo.Core.ReadableDocumentPart | reflected
+  DocumentId:System.String
+Part CavesOfOoo.Core.ReagentPart | reflected
+  FlavorText:System.String
+  PropertiesRaw:System.String
+Part CavesOfOoo.Core.ReclaimClothPart | reflected
+Part CavesOfOoo.Core.RecoverableLampPart | reflected
+  Recovered:System.Boolean
+Part CavesOfOoo.Core.RegionalCargoPart | reflected
+Part CavesOfOoo.Core.RegionalHabitatPart | reflected
+  Disturbed:System.Boolean
+  InitialHP:System.Int32
+  InstanceId:System.String
+  OriginalX:System.Int32
+  OriginalY:System.Int32
+Part CavesOfOoo.Core.RegionalRequestPart | reflected
+  Accepted:System.Boolean
+  Completed:System.Boolean
+  DefinitionId:System.String
+  InstanceId:System.String
+  RecipientId:System.String
+Part CavesOfOoo.Core.RegionalSignpostPart | reflected
+Part CavesOfOoo.Core.RenderPart | reflected
+  BackgroundColor:System.String
+  ColorString:System.String
+  DetailColor:System.String
+  DisplayName:System.String
+  GlyphVariants:System.String
+  RenderLayer:System.Int32
+  RenderString:System.String
+  Tile:System.String
+  TileColor:System.String
+  Visible:System.Boolean
+  VisualFacing:CavesOfOoo.Core.EntityVisualFacing
+  VisualFacing#enum:East=2,North=3,South=0,West=1
+  VisualID:System.String
+  VisualVariant:System.String
+Part CavesOfOoo.Core.RentalDeskPart | reflected
+Part CavesOfOoo.Core.RentalPart | reflected
+  InkPaid:System.Int32
+  LessorBlueprintName:System.String
+Part CavesOfOoo.Core.RepairablePart | reflected
+  PortableEquipment:System.Boolean
+  RecipeId:System.String
+  RepairCauseID:System.String
+  RepairWorldKey:System.String
+  Repaired:System.Boolean
+  RepairedBy:CavesOfOoo.Core.Entity
+  RepairedZoneID:System.String
+Part CavesOfOoo.Core.ReserveYieldPart | reflected
+  AlreadyWitnessedPlayer:CavesOfOoo.Core.Entity
+  Keeper:CavesOfOoo.Core.Entity
+  KeeperID:System.String
+  Released:System.Boolean
+  Soil:CavesOfOoo.Core.Entity
+  SourceX:System.Int32
+  SourceY:System.Int32
+  WorldKey:System.String
+Part CavesOfOoo.Core.RiposteAllowancePart | reflected
+  Spent:System.Boolean
+Part CavesOfOoo.Core.RootFacePart | reflected
+Part CavesOfOoo.Core.RopeShortcutPart | reflected
+  Down:System.Boolean
+  Installed:System.Boolean
+  OtherX:System.Int32
+  OtherY:System.Int32
+  OtherZoneID:System.String
+  X:System.Int32
+  Y:System.Int32
+  ZoneID:System.String
+Part CavesOfOoo.Core.RuneFlameTriggerPart | reflected
+  ConsumeOnTrigger:System.Boolean
+  Damage:System.Int32
+  SmolderDuration:System.Int32
+  TriggerFaction:System.String
+Part CavesOfOoo.Core.RuneFrostTriggerPart | reflected
+  Cold:System.Single
+  ConsumeOnTrigger:System.Boolean
+  Damage:System.Int32
+  TriggerFaction:System.String
+Part CavesOfOoo.Core.RunePoisonTriggerPart | reflected
+  ConsumeOnTrigger:System.Boolean
+  Damage:System.Int32
+  PoisonDice:System.String
+  PoisonDuration:System.Int32
+  TriggerFaction:System.String
+Part CavesOfOoo.Core.SanctuaryPart | reflected
+Part CavesOfOoo.Core.SchematicPart | reflected
+  AlreadyKnownMessage:System.String
+  ConsumeOnStudy:System.Boolean
+  LearnMessage:System.String
+  RecipeID:System.String
+Part CavesOfOoo.Core.ScribeCopyServicePart | reflected
+Part CavesOfOoo.Core.SealedLibraryBarrierPart | reflected
+Part CavesOfOoo.Core.SeedPart | reflected
+  CropBlueprint:System.String
+  RequireCultivatedSoil:System.Boolean
+Part CavesOfOoo.Core.SeventhPositionPart | reflected
+Part CavesOfOoo.Core.SoddenDressingPart | reflected
+Part CavesOfOoo.Core.SoddenPreparationPart | reflected
+  Configured:System.Boolean
+  StationID:System.String
+  StationX:System.Int32
+  StationY:System.Int32
+  Worker:CavesOfOoo.Core.Entity
+  WorkerID:System.String
+  ZoneID:System.String
+Part CavesOfOoo.Core.SpatialFootprintPart | reflected
+  #hooks:OnBeforeSave
+  CellsRaw:System.String
+Part CavesOfOoo.Core.SpikeTrapTriggerPart | reflected
+  ConsumeOnTrigger:System.Boolean
+  Damage:System.Int32
+  TriggerFaction:System.String
+Part CavesOfOoo.Core.SpreadCollectorPart | reflected
+  Actions:System.Int32
+  Configured:System.Boolean
+  Home:CavesOfOoo.Core.Entity
+  HomeBlueprint:System.String
+  HomeX:System.Int32
+  HomeY:System.Int32
+  Phase:CavesOfOoo.Core.SpreadCollectorPhase
+  Phase#enum:Carrying=1,Deposited=2,Seeking=0,Stopped=3
+  Quantity:System.Int32
+  Target:CavesOfOoo.Core.Entity
+  TargetBlueprint:System.String
+  TargetX:System.Int32
+  TargetY:System.Int32
+  ZoneID:System.String
+Part CavesOfOoo.Core.SpreadGrazerPart | reflected
+  ApproachAttempts:System.Int32
+  Configured:System.Boolean
+  Fed:System.Boolean
+  FlightRemaining:System.Int32
+  Food:CavesOfOoo.Core.Entity
+  FoodX:System.Int32
+  FoodY:System.Int32
+  HuntZoneID:System.String
+  Hunter:CavesOfOoo.Core.Entity
+  ReservedRow:CavesOfOoo.Core.Entity
+  ReservedX:System.Int32
+  ReservedY:System.Int32
+  ThreatX:System.Int32
+  ThreatY:System.Int32
+  ZoneID:System.String
+Part CavesOfOoo.Core.SpreadPredatorPart | reflected
+  Configured:System.Boolean
+  Corpse:CavesOfOoo.Core.Entity
+  CorpseID:System.String
+  CorpseX:System.Int32
+  CorpseY:System.Int32
+  FeedProgress:System.Int32
+  HasLastSeen:System.Boolean
+  HomeX:System.Int32
+  HomeY:System.Int32
+  LastSeenX:System.Int32
+  LastSeenY:System.Int32
+  MeatApproachRemaining:System.Int32
+  MeatDiversionAttempted:System.Boolean
+  MeatDiversionEnabled:System.Boolean
+  MeatDiversionPhase:CavesOfOoo.Core.SpreadMeatDiversionPhase
+  MeatDiversionPhase#enum:Aborted=4,Approaching=1,Consumed=3,Feeding=2,None=0
+  MeatDiversionTarget:CavesOfOoo.Core.Entity
+  MeatDiversionTargetID:System.String
+  MeatDiversionX:System.Int32
+  MeatDiversionY:System.Int32
+  MeatFeedProgress:System.Int32
+  Phase:CavesOfOoo.Core.SpreadHuntPhase
+  Phase#enum:Aborted=5,Escaped=3,Exhausted=4,Fed=8,Feeding=7,PreyGone=6,Pursuing=1,Searching=2,Watching=0
+  Prey:CavesOfOoo.Core.Entity
+  PreyID:System.String
+  PursuitRemaining:System.Int32
+  SearchRemaining:System.Int32
+  ZoneID:System.String
+Part CavesOfOoo.Core.SpreadTerritoryPart | reflected
+  Bottom:System.Int32
+  Configured:System.Boolean
+  GraceRemaining:System.Int32
+  GraceTurns:System.Int32
+  HomeX:System.Int32
+  HomeY:System.Int32
+  Left:System.Int32
+  Post:CavesOfOoo.Core.Entity
+  PostX:System.Int32
+  PostY:System.Int32
+  ReturnAttempts:System.Int32
+  Right:System.Int32
+  Top:System.Int32
+  WarningTarget:CavesOfOoo.Core.Entity
+  ZoneID:System.String
+Part CavesOfOoo.Core.StackerPart | reflected
+  MaxStack:System.Int32
+  StackCount:System.Int32
+Part CavesOfOoo.Core.StairsDownPart | reflected
+Part CavesOfOoo.Core.StairsUpPart | reflected
+Part CavesOfOoo.Core.StatusEffectsPart | custom
+Part CavesOfOoo.Core.StatusTonicPart | reflected
+  EffectDamageDice:System.String
+  EffectDuration:System.Int32
+  EffectMagnitude:System.Single
+  EffectName:System.String
+Part CavesOfOoo.Core.StillleafFilePart | reflected
+Part CavesOfOoo.Core.StillleafRegisterPart | reflected
+Part CavesOfOoo.Core.StillleafResidentPart | reflected
+  ResidentId:System.String
+Part CavesOfOoo.Core.StoopPart | reflected
+  Cooldown:System.Int32
+  CooldownTurns:System.Int32
+  Countdown:System.Int32
+  DamagePercent:System.Int32
+  MarkX:System.Int32
+  MarkY:System.Int32
+  MarkZone:System.String
+  Quarry:CavesOfOoo.Core.Entity
+  Range:System.Int32
+  ShadowTurns:System.Int32
+Part CavesOfOoo.Core.TabooKillPart | reflected
+  Faction:System.String
+  Line:System.String
+  Penalty:System.Int32
+Part CavesOfOoo.Core.TacticalSupplyPart | reflected
+  SelfDousing:System.Boolean
+Part CavesOfOoo.Core.ThermalPart | reflected
+  AmbientDecayRate:System.Single
+  AmbientTemperature:System.Single
+  BrittleTemperature:System.Single
+  FlameTemperature:System.Single
+  FreezeTemperature:System.Single
+  HeatCapacity:System.Single
+  Temperature:System.Single
+  VaporTemperature:System.Single
+Part CavesOfOoo.Core.ThrowingStatePart | reflected
+  DrivingCooldown:System.Int32
+  HasPreparation:System.Boolean
+  MeasuredCooldown:System.Int32
+  MovementRevision:System.Int32
+  PreparationClosingTurn:System.Boolean
+  PreparationSerial:System.Int32
+  PreparedBlueprint:System.String
+  PreparedQuantity:System.Int32
+  PreparedRevision:System.Int32
+  PreparedSource:CavesOfOoo.Core.Entity
+  PreparedSourcePlace:System.String
+  PreparedTarget:CavesOfOoo.Core.Entity
+  PreparedX:System.Int32
+  PreparedY:System.Int32
+  PreparedZone:System.String
+  RecoveryCooldown:System.Int32
+  ThrowSerial:System.Int32
+Part CavesOfOoo.Core.ThrownRecoveryPart | reflected
+  Blueprint:System.String
+  ItemId:System.String
+  Revision:System.Int32
+  Serial:System.Int32
+  ThrowerId:System.String
+  X:System.Int32
+  Y:System.Int32
+  ZoneId:System.String
+Part CavesOfOoo.Core.TileStateSourcePart | reflected
+  Charge:System.Int32
+  Coating:System.String
+  CoatingTurns:System.Int32
+  Cold:System.Int32
+  Heat:System.Int32
+  RadiatesEnergy:System.Boolean
+  Residue:System.String
+  ResidueTurns:System.Int32
+Part CavesOfOoo.Core.TinkerItemPart | reflected
+  BuildCost:System.String
+  BuildTier:System.Int32
+  CanBuild:System.Boolean
+  CanDisassemble:System.Boolean
+  Ingredient:System.String
+  NumberMade:System.Int32
+  RepairCost:System.String
+  SubstituteBlueprint:System.String
+Part CavesOfOoo.Core.TonicPart | reflected
+  Drink:System.Boolean
+  Duration:System.Int32
+  Effect:System.String
+  Healing:System.String
+  Message:System.String
+  StatBoost:System.String
+Part CavesOfOoo.Core.TorchLightPart | reflected
+  LightTemperature:System.Single
+Part CavesOfOoo.Core.TorchRefuelPart | reflected
+Part CavesOfOoo.Core.TraderPart | reflected
+  Drams:System.Int32
+  OpeningStockBlueprint:System.String
+  OpeningStockSupplied:System.Boolean
+  OpeningStockUnits:System.Int32
+  StockTable:System.String
+Part CavesOfOoo.Core.TrapJammingPart | reflected
+  Jammed:System.Boolean
+Part CavesOfOoo.Core.TrapSalvagePart | reflected
+Part CavesOfOoo.Core.TripWireTriggerPart | reflected
+  ConsumeOnTrigger:System.Boolean
+  Damage:System.Int32
+  DamageAttribute:System.String
+  TriggerFaction:System.String
+  WireGroupId:System.String
+Part CavesOfOoo.Core.WantsMineralPart | reflected
+  Faction:System.String
+  Minerals:System.String
+  RepReward:System.Int32
+Part CavesOfOoo.Core.WaterPassagePart | reflected
+  IndicatorSpawned:System.Boolean
+Part CavesOfOoo.Core.WaterskinPart | reflected
+  Capacity:System.Int32
+  Charges:System.Int32
+Part CavesOfOoo.Core.WeaponAssemblyPart | reflected
+  BindingBlueprint:System.String
+  BladeBlueprint:System.String
+  HaftBlueprint:System.String
+Part CavesOfOoo.Core.WeaponComponentPart | reflected
+  Attributes:System.String
+  BaseDamage:System.String
+  HitBonus:System.Int32
+  MaxStrengthBonus:System.Int32
+  NameFragment:System.String
+  OnHitEffectSpec:System.String
+  PenBonus:System.Int32
+  Slot:System.String
+Part CavesOfOoo.Core.WeaponRecoveryPart | reflected
+  RecoveryWeapon:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.WeaponSalvagePart | reflected
+Part CavesOfOoo.Core.WeaponTemperPart | reflected
+  AppliedSpecsRaw:System.String
+  HpPenaltyTotal:System.Int32
+  TemperCount:System.Int32
+Part CavesOfOoo.Core.WellPart | reflected
+  Stock:System.Int32
+Part CavesOfOoo.Core.WellSitePart | reflected
+  SettlementId:System.String
+  SiteId:System.String
+Part CavesOfOoo.Core.WorksiteGuardPart | reflected
+  HomeX:System.Int32
+  HomeY:System.Int32
+  PursuitRadius:System.Int32
+  Returning:System.Boolean
+  ZoneID:System.String
+Part CavesOfOoo.Core.WorldMapCellPart | reflected
+  WorldX:System.Int32
+  WorldY:System.Int32
+Part CavesOfOoo.Core.WorldMapPart | reflected
+  LastZoneIDOnSurface:System.String
+  LastZoneX:System.Int32
+  LastZoneY:System.Int32
+Part CavesOfOoo.Core.WorldMapTravelCostPart | reflected
+  WorldMapStepTurns:System.Int32
+Part CavesOfOoo.Scenarios.Custom.AcidicDaggerDemoProbePart | reflected
+Part CavesOfOoo.Scenarios.Custom.DensityCombatSchedulerBench+TurnObserver | reflected
+  Actions:System.Int32
+  Ends:System.Int32
+Part CavesOfOoo.Scenarios.Custom.DirectedMeleeNativePlayer+TurnProbe | reflected
+  Ends:System.Int32
+Part CavesOfOoo.Scenarios.Custom.ElementalDemoProbePart | reflected
+Part CavesOfOoo.Scenarios.Custom.FieldMedicineNativePlayer+ActionProbe | reflected
+  Begins:System.Int32
+  Ends:System.Int32
+Part CavesOfOoo.Scenarios.Custom.FirstHourReadabilityNativePlayer+DemoAction | reflected
+  Executed:System.Int32
+Part CavesOfOoo.Scenarios.Custom.FlamingSwordDemoProbePart | reflected
+Part CavesOfOoo.Scenarios.Custom.GameAuditContentVetoPart | reflected
+  Before:System.Int32
+Part CavesOfOoo.Scenarios.Custom.GameAuditEquipmentVetoPart | reflected
+  AfterCount:System.Int32
+  BeforeCount:System.Int32
+  LastPartID:System.Int32
+  ObservedCleared:System.Boolean
+  VetoDismember:System.Boolean
+Part CavesOfOoo.Scenarios.Custom.GameAuditLoadoutModSeedPart | reflected
+  CreatedCount:System.Int32
+  Duelist:System.Boolean
+  Glow:System.Boolean
+Part CavesOfOoo.Scenarios.Custom.GameAuditLoadoutProbePart | reflected
+  AfterEquipCount:System.Int32
+  AfterUnequipCount:System.Int32
+  BeforeEquipCount:System.Int32
+  CreatedCount:System.Int32
+  InitialEquipment:CavesOfOoo.Core.Entity
+  PreEquipBoots:System.Boolean
+  VetoEquip:System.Boolean
+Part CavesOfOoo.Scenarios.Custom.GameAuditMortalProbePart | reflected
+  After:System.Int32
+  Before:System.Int32
+  BeforeHp:System.Int32
+  BleedSource:CavesOfOoo.Core.Entity
+  Bleeds:System.Int32
+  DamageTarget:CavesOfOoo.Core.Entity
+  DealtAmount:System.Int32
+  DealtCount:System.Int32
+  DeathX:System.Int32
+  DeathY:System.Int32
+  Died:System.Int32
+  DiedBase:System.Int32
+  DiedMarked:System.Boolean
+  DiedValue:System.Int32
+  HpAfterDamage:System.Int32
+  Killer:CavesOfOoo.Core.Entity
+  ResidentAtDied:System.Boolean
+  Selected:CavesOfOoo.Core.Anatomy.BodyPart
+  Selected.Category:System.Int32
+  Selected.DefaultBehaviorBlueprint:System.String
+  Selected.DependsOn:System.String
+  Selected.Description:System.String
+  Selected.DescriptionPrefix:System.String
+  Selected.Flags:System.Int32
+  Selected.Manager:System.String
+  Selected.Mobility:System.Int32
+  Selected.Name:System.String
+  Selected.Parts:System.Collections.Generic.List`1[CavesOfOoo.Core.Anatomy.BodyPart]
+  Selected.Position:System.Int32
+  Selected.RequiresLaterality:System.Int32
+  Selected.RequiresType:System.String
+  Selected.SupportsDependent:System.String
+  Selected.TargetWeight:System.Int32
+  Selected.Type:System.String
+  Selected.VariantType:System.String
+  Selected._Laterality:System.Int32
+  Target:CavesOfOoo.Core.Entity
+  Veto:System.Boolean
+Part CavesOfOoo.Scenarios.Custom.ItemEnhancementDemoProbePart | reflected
+Part CavesOfOoo.Scenarios.Custom.LiquidDemoProbePart | reflected
+Part CavesOfOoo.Scenarios.Custom.OnHitEventProbePart | reflected
+Part CavesOfOoo.Scenarios.Custom.QuestSystemBench+QuestEventProbe | reflected
+Part CavesOfOoo.Scenarios.Custom.RecruitEventProbePart | reflected
+Part CavesOfOoo.Scenarios.Custom.ShowcaseIndestructiblePart | reflected
+Part CavesOfOoo.Scenarios.Custom.ShowcaseStoneSkinPart | reflected
+Part CavesOfOoo.Scenarios.Custom.SpellTestProbePart | reflected
+  CoatLabel:System.String
+Part CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+FrozenVeto | reflected
+Part CavesOfOoo.Scenarios.Custom.ThunderHammerDemoProbePart | reflected
+Part CavesOfOoo.Skills.AcrobaticsDodgePower | reflected
+  ActivatedAbilityID:System.Guid
+  AppliedDodgeBonus:System.String
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.AcrobaticsSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Acrobatics_EvasiveRoll | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Acrobatics_Tumble | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Acrobatics_Vault | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.AxeSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Axe_Berserk | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Axe_Cleave | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Axe_Decapitate | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Axe_Dismember | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Axe_Expertise | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Axe_HookAndDrag | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Axe_RendArmor | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Axe_Whirlwind | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.CorrosionSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Corrosion_AcidRetort | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Corrosion_AcidSpray | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Corrosion_CausticDraw | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Corrosion_CausticTrail | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Corrosion_Etch | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.CryomancySkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_BrittleStrike | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_ChillDraft | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_ColdSnap | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_FrostRetort | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_Frostbind | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_GlacialWall | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_Hibernate | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_IceLance | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_RimeGrip | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cryomancy_RimeNova | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.CudgelSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_Backswing | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_Bludgeon | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_ChargingStrike | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_Conk | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_Disarm | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_Expertise | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_GroundPound | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_Hammer | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_ShatteringBlows | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Cudgel_Slam | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.GalvanismSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Galvanism_ArcBolt | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Galvanism_BacklashCoil | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Galvanism_GroundStrike | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Galvanism_GroundSurge | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Galvanism_Overload | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Galvanism_RailSpike | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Galvanism_ShockRetort | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Galvanism_Thunderclap | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.HospitalitySkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Hospitality_ExtendCloth | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.HydromancySkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Hydromancy_ConjureRain | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Hydromancy_ConjureWater | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Hydromancy_DrenchLob | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Hydromancy_DryingBreeze | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Hydromancy_JetBlast | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Hydromancy_Quench | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Hydromancy_Undertow | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.LongBladesSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.LongBlades_Deflect | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.LongBlades_EnGarde | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.LongBlades_Expertise | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.LongBlades_FollowThrough | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.LongBlades_Lacerate | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.LongBlades_Lunge | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.LongBlades_Riposte | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.PersuasionSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Persuasion_Dismiss | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Persuasion_Recruit | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.PyromancySkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_Backdraft | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_Charsplit | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_Cinder | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_Conflagration | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_EmberSpit | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_EmberVein | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_FlameJet | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_FlamingHands | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_HeartFlame | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_Hearthwarm | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_Kindle | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_KindleFlame | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_Oilmark | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_Pyroclasm | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Pyromancy_ScorchRetort | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.RitesSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_BloodletterLedger | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_Fulmination | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_HangingBolt | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_HollowCoin | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_RenderedSteam | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_ScaldingVeil | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_ShatteredRime | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_StillHeart | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_StormAnvil | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_SunderingWord | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Rites_VerdigrisBloom | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBladesSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Backstab | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Bloodletter | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Disengage | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Expertise | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Flurry | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Hobble | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Jab | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Puncture | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Rejoinder | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ShortBlades_Shank | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.SkillsPart | reflected
+  DetachedSkills:System.Collections.Generic.List`1[CavesOfOoo.Skills.DetachedSkillAbilityState]
+  DetachedSkills[].AbilityID:System.Guid
+  DetachedSkills[].Cooldown:System.Int32
+  DetachedSkills[].SkillClass:System.String
+  DetachedSkills[].Slot:System.Int32
+Part CavesOfOoo.Skills.SpellcraftSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Spellcraft_ArcaneSurge | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Spellcraft_Calm | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Spellcraft_Empower | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Spellcraft_LeyTap | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Spellcraft_WardGleam | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.ThrowingSkill | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Throwing_DrivingThrow | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Throwing_FocusedSplash | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Throwing_MeasuredThrow | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Skills.Throwing_RecoveringStep | reflected
+  ActivatedAbilityID:System.Guid
+  BonusRank:System.Int32
+  Rank:System.Int32
+Part CavesOfOoo.Storylets.AddFactWhenSlain | reflected
+  Amount:System.Int32
+  Fact:System.String
+Part CavesOfOoo.Storylets.CompleteObjectiveOnTaken | reflected
+  Objective:System.String
+  Quest:System.String
+Part CavesOfOoo.Storylets.FinishObjectiveWhenSlain | reflected
+  Objective:System.String
+  Quest:System.String
+Part CavesOfOoo.Storylets.QuestBeaconPart | reflected
+  AvailableColor:System.String
+  Quest:System.String
+Part CavesOfOoo.Storylets.QuestMarkerTriggerPart | reflected
+  ConsumeOnTrigger:System.Boolean
+  Fact:System.String
+  TriggerFaction:System.String
+  Value:System.Int32
+Part CavesOfOoo.Storylets.QuestStarter | reflected
+  Activated:System.Boolean
+  IfQuestCompleted:System.String
+  Quest:System.String
+Part CavesOfOoo.Storylets.SetFactWhenSlain | reflected
+  Fact:System.String
+  Value:System.Int32
+Part CavesOfOoo.Storylets.StoryletPart | custom

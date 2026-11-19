@@ -1162,6 +1162,7 @@ namespace CavesOfOoo.Core
 
             if(sumphold)pipeline.AddBuilder(new SumpholdFurnishingBuilder(this,yard));
             if(quillhold)pipeline.AddBuilder(new QuillholdCopyHallBuilder(this,quillholdBase));
+            if(InstallationRegistry.For(poi.Name).Count>0)pipeline.AddBuilder(new InstallationPostBuilder(this,poi,zoneID));
             return pipeline;
         }
 
@@ -1243,7 +1244,8 @@ namespace CavesOfOoo.Core
             && !SoddenDistrict.Retain(zoneID)
             && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
             && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID)
-            && !BiomeCropPlacement.Retain(this,zoneID) && !SecondExplorationSites.Retain(this,zoneID);
+            && !BiomeCropPlacement.Retain(this,zoneID) && !SecondExplorationSites.Retain(this,zoneID)
+            && !InstallationMarkerPart.Retain(this,zoneID);
 
         protected override void OnZoneAttached(Zone zone)
         {

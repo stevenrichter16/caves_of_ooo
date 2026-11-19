@@ -1,0 +1,168 @@
+{
+  "Version": 1,
+  "ForbiddenFactions": [
+    "RotChoir",
+    "CatacombFolk"
+  ],
+  "Installations": [
+    {
+      "Id": "gantry-forecourt-forge",
+      "Place": "Gantry",
+      "Blueprint": "TinkersForge",
+      "Retention": "None",
+      "Near": [
+        "Well"
+      ],
+      "Radius": 9,
+      "MaxProbe": 48,
+      "Ground": [
+        "Grass",
+        "StoneFloor",
+        "Floor"
+      ],
+      "Revision": 1,
+      "Purpose": "A communal working forge near the well, usable for the same forge verbs (batch forging, re-forge, temper, mineral infusion, cold-work processes on released goods) as the Sill and Cinderhold forges, so the town has a place to work.",
+      "Alternative": "A single weapon can be assembled from the pack anywhere; carried components, the Sill and Cinderhold forges and buying assembled weapons remain, and nothing requires this forge.",
+      "Basis": "Convenience, not a gap: surface villagers own and run forges (faction row, mw/lore.md section 5). Placed on the owner's standing instruction to put machines in every town; the placement plan and its critique prefer test-only rows for towns without a local problem, recorded in Docs/MACHINE-INSTALLATIONS.md. Delete the row to revert before release.",
+      "MinRadius": 2
+    },
+    {
+      "Id": "tine-forecourt-forge",
+      "Place": "Tine",
+      "Blueprint": "TinkersForge",
+      "Retention": "None",
+      "Near": [
+        "Well"
+      ],
+      "Radius": 9,
+      "MaxProbe": 48,
+      "Ground": [
+        "Grass",
+        "StoneFloor",
+        "Floor"
+      ],
+      "Revision": 1,
+      "Purpose": "A communal working forge near the well, usable for the same forge verbs (batch forging, re-forge, temper, mineral infusion, cold-work processes on released goods) as the Sill and Cinderhold forges, so the town has a place to work.",
+      "Alternative": "A single weapon can be assembled from the pack anywhere; carried components, the Sill and Cinderhold forges and buying assembled weapons remain, and nothing requires this forge.",
+      "Basis": "Convenience, not a gap: surface villagers own and run forges (faction row, mw/lore.md section 5). Placed on the owner's standing instruction to put machines in every town; the placement plan and its critique prefer test-only rows for towns without a local problem, recorded in Docs/MACHINE-INSTALLATIONS.md. Delete the row to revert before release.",
+      "MinRadius": 2
+    },
+    {
+      "Id": "slip-forecourt-forge",
+      "Place": "Slip",
+      "Blueprint": "TinkersForge",
+      "Retention": "None",
+      "Near": [
+        "Well"
+      ],
+      "Radius": 9,
+      "MaxProbe": 48,
+      "Ground": [
+        "Grass",
+        "StoneFloor",
+        "Floor"
+      ],
+      "Revision": 1,
+      "Purpose": "A communal working forge near the well, usable for the same forge verbs (batch forging, re-forge, temper, mineral infusion, cold-work processes on released goods) as the Sill and Cinderhold forges, so the town has a place to work.",
+      "Alternative": "A single weapon can be assembled from the pack anywhere; carried components, the Sill and Cinderhold forges and buying assembled weapons remain, and nothing requires this forge.",
+      "Basis": "Convenience, not a gap: surface villagers own and run forges (faction row, mw/lore.md section 5). Placed on the owner's standing instruction to put machines in every town; the placement plan and its critique prefer test-only rows for towns without a local problem, recorded in Docs/MACHINE-INSTALLATIONS.md. Delete the row to revert before release.",
+      "MinRadius": 2
+    },
+    {
+      "Id": "last-counter-supply-forecourt-forge",
+      "Place": "the Last Counter",
+      "Blueprint": "TinkersForge",
+      "Retention": "None",
+      "Near": [
+        "SaccharineEnvoy",
+        "Well"
+      ],
+      "Radius": 9,
+      "MinRadius": 2,
+      "MaxProbe": 48,
+      "Ground": [
+        "Floor",
+        "StoneFloor",
+        "Sand"
+      ],
+      "Revision": 1,
+      "Purpose": "A forge at the supply forecourt so the kit the post issues can be fitted where it is handed out.",
+      "Alternative": "Assembling the kit in the pack, processing away from a station, the Peat Works rig, the Cinderhold forge and buying finished goods remain; nothing requires this forge.",
+      "Basis": "Placement plan W1-A: the supply post issues a finite weapon-component kit in a chest whose own sign says to bring the kit to a forge, and the zone has none. Docs/MACHINE-INSTALLATIONS.md."
+    }
+  ],
+  "Exemptions": [
+    {
+      "Place": "the First Tent",
+      "Reason": "monument to a choice; no machine installed",
+      "Source": "Lore/Factions/07_TentRight.md:119"
+    },
+    {
+      "Place": "the Quiet's Door",
+      "Reason": "refuses contact; installed machines by outsiders are forbidden",
+      "Source": "catacomb_village_design.md:409-416 (mw lore.md section 6)"
+    },
+    {
+      "Place": "Overworld.4.6.2",
+      "Reason": "founding village: no open flame and no machine at the plume or wall; fire kinds exempt",
+      "Source": "mw lore.md section 6 (Olderdeep)"
+    },
+    {
+      "Place": "Overworld.12.3.2",
+      "Reason": "catacomb hub: open-flame work is an obscenity; fire kinds exempt, cold-work kinds need an attach point and a separate owner decision",
+      "Source": "mw lore.md sections 4 and 6 (Lampwell)"
+    },
+    {
+      "Place": "Overworld.16.4.2",
+      "Reason": "Spore-Wedded: no thermal or powered kinds; fire kinds exempt, cold-work kinds need an attach point and a separate owner decision",
+      "Source": "mw lore.md section 6 (Spivenor)"
+    }
+  ],
+  "Pending": [
+    {
+      "Place": "Morrowfast",
+      "Owner": "scene-runtime hook",
+      "Note": "scene-authored zone; returns before the shared village pipeline, so it needs its own hook (MorrowfastSceneRuntime)"
+    },
+    {
+      "Place": "Sumphold",
+      "Owner": "S8 fan-out",
+      "Note": "forge candidate; needs lore sign-off per row"
+    },
+    {
+      "Place": "Posy",
+      "Owner": "S8 fan-out",
+      "Note": "still candidate (pigment); Bower-Folk limits apply"
+    },
+    {
+      "Place": "Quillhold",
+      "Owner": "S8 fan-out",
+      "Note": "still candidate (ink works); Recension limits apply"
+    },
+    {
+      "Place": "Marrowstye",
+      "Owner": "S11 terms-bearing placements",
+      "Note": "needs service terms; Pale Curation craft is never automated"
+    },
+    {
+      "Place": "the Salt-Vault",
+      "Owner": "S11 terms-bearing placements",
+      "Note": "needs Curation terms; nothing near the Salted"
+    },
+    {
+      "Place": "the Drowned Ledger",
+      "Owner": "new-kind owner",
+      "Note": "no fitting existing kind; a pump or decay machine is forbidden by canon"
+    },
+    {
+      "Place": "Tally",
+      "Owner": "S24 plan-reserved frontage",
+      "Note": "the verified window is a RoadStone apron the generic builder never uses; needs a window-membership probe over 24 seeds, and a rented loaner can be picked for temper (characterise first)"
+    },
+    {
+      "Place": "Wellmeet",
+      "Owner": "portable lent rig after S19",
+      "Note": "a fixed forge conflicts with Tent-Right canon (the well and the salt-work are the fixed points; everything else moves); water is never sold"
+    }
+  ]
+}

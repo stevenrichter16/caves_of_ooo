@@ -238,3 +238,17 @@ Evidence: `MachineSpurgrassKitTests` 42/42 (then strengthened after independent 
 
 The user directed: flesh out the modular machine/object architecture, then add machines to every town and village so players can find and use them, then design the home/base system. The user's own twelve-machine pitch is stored verbatim in [MACHINE-ROSTER-VISION.md](MACHINE-ROSTER-VISION.md). This supersedes the one-qualification-at-a-time cadence for placement work; the per-increment workflow above (RED first, actual play, independent review) still governs every shipped behavior. Design inputs are produced by read-only research workflows whose reports live in the session scratchpad and are summarized into living docs as they are accepted.
 
+
+## Continuation —2026-11-18: machine architecture slices S1, S2, S6, S7, S4, S5 (Claude)
+
+The user's direction (a modular machine/object architecture, machines in every town, then home/base) was worked through read-only research workflows (survey, three-way architecture design with synthesis,
+twelve per-machine V1 dossiers, a settlement placement plan, and three independent critiques; reports are in the session scratchpad and are summarised into the living docs below) and then implemented in the spec's order:
+
+- S1 saved-Part golden, S2 marker and relapse retention, S6 registry and census, S7 generic placement with Editor actual play: [MACHINE-INSTALLATIONS.md](MACHINE-INSTALLATIONS.md). Forges now stand in Gantry, Tine, Slip and the Last Counter;
+  census Installed 4, Present 2, Exempt 5, Pending 9. Editor actual play (fresh world, three towns, F5 and fresh Continue, cached-save control) is recorded in `Verification/MachineSystems/InstallationsActual/`.
+- S4 station contract with oracle parity: [MACHINE-STATIONS.md](MACHINE-STATIONS.md). S5 reader contract: [MACHINE-READERS.md](MACHINE-READERS.md).
+- The home/base design is a separate read-only design (concept: set-down places on a portable-base foundation; prerequisite slice: retention addenda) in the session scratchpad; it is not implemented.
+- Honest finding for the owner: the dossiers and the independent critiques agree that, apart from the forge, none of the twelve machines has an honest purpose in the shipped world yet (they need a finite find, a resident supplier or
+  a local problem ahead of the apparatus), so "a machine in every town" is a ratchet (Pending may only fall), not a claim. Tally and Wellmeet forges are held back on recorded gates; the three surface-village forges are convenience rows placed on the
+  owner's standing instruction and can be deleted as data before release.
+
