@@ -104,6 +104,53 @@ namespace CavesOfOoo.Core
             if (note != null) MessageLog.Add(note);
         }
 
+        /// <summary>
+        /// Where the player keeps things, as steps from the world-map cell they stand on: one line per zone, nearest first, at most <paramref name="maxLines"/> lines and then a
+        /// count of the rest. It answers "where did I leave my camp" at the moment the player opens the map, when it is useful. Derived from the cached zones on each call; nothing is
+        /// stored and nothing is shown that the player did not set down themselves. Placeholder wording pending voice review.
+        /// </summary>
+        public static List<string> MapNotes(OverworldZoneManager manager, int fromX, int fromY, int maxLines = 4)
+        {
+            var lines = new List<string>(); if (manager == null || maxLines < 1) return lines;
+            var byZone = new Dictionary<string, (int dx, int dy, int z, SortedDictionary<string, int> names)>(StringComparer.Ordinal);
+            foreach (var place in Enumerate(manager))
+            {
+                var (x, y, z) = WorldMap.FromZoneID(place.ZoneId); if (x < 0 || y < 0 || z < 0) continue;
+                if (!byZone.TryGetValue(place.ZoneId, out var entry)) entry = (x - fromX, y - fromY, z, new SortedDictionary<string, int>(StringComparer.Ordinal));
+                foreach (var fixture in place.Fixtures) { string name = fixture.GetDisplayName(); entry.names[name] = entry.names.TryGetValue(name, out int n) ? n + 1 : 1; }
+                byZone[place.ZoneId] = entry;
+            }
+            if (byZone.Count == 0) return lines;
+            var order = new List<string>(byZone.Keys);
+            order.Sort((a, b) =>
+            {
+                int da = Math.Max(Math.Abs(byZone[a].dx), Math.Abs(byZone[a].dy)), db = Math.Max(Math.Abs(byZone[b].dx), Math.Abs(byZone[b].dy));
+                return da != db ? da.CompareTo(db) : string.CompareOrdinal(a, b);
+            });
+            for (int i = 0; i < order.Count && i < maxLines; i++)
+            {
+                var entry = byZone[order[i]]; var things = new List<string>();
+                foreach (var pair in entry.names) things.Add(pair.Value == 1 ? pair.Key : pair.Key + " (x" + pair.Value + ")");
+                lines.Add("You keep " + string.Join(", ", things) + ": " + Offset(entry.dx, entry.dy) + (entry.z != 0 ? ", below ground." : "."));
+            }
+            int rest = order.Count - maxLines;
+            if (rest > 0) lines.Add("You keep things in " + rest + " more " + (rest == 1 ? "place." : "places."));
+            return lines;
+        }
+
+        static string Offset(int dx, int dy)
+        {
+            if (dx == 0 && dy == 0) return "this place";
+            var parts = new List<string>();
+            if (dx != 0) parts.Add(Math.Abs(dx) + (dx > 0 ? " east" : " west"));
+            if (dy != 0) parts.Add(Math.Abs(dy) + (dy > 0 ? " south" : " north"));
+            return string.Join(", ", parts) + " of here";
+        }
+
+        /// <summary>Called when the player opens the world map from the surface cell (wx, wy): says where they keep things, as steps from where they now stand.</summary>
+        public static void OnMapOpened(OverworldZoneManager manager, int wx, int wy)
+        { foreach (var line in MapNotes(manager, wx, wy)) MessageLog.Add(line); }
+
         /// <summary>A one-line summary of the derived list, for a log line or a journal-style surface. Empty when the player keeps nothing standing.</summary>
         public static string Summarize(IReadOnlyList<HeldPlace> places)
         {

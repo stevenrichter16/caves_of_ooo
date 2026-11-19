@@ -164,6 +164,92 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(30, places.Count); Assert.Less(watch.ElapsedMilliseconds, 250, "an open-the-list cost, not a per-frame cost");
         }
 
+        // ── map notes: where did I leave my camp ──
+
+        Zone KeptZone(int x, int y, int z, string blueprint = "CampBox", int count = 1)
+        {
+            string id = WorldMap.ToZoneID(x, y, z); var zone = new Zone(id);
+            for (int i = 0; i < count; i++)
+            {
+                var f = Factory.CreateEntity(blueprint); f.AddPart(new InstallationMarkerPart { Origin = "Player" }); f.AddPart(new PackableFixturePart { Kind = "camp-box", SetTick = 1 });
+                Assert.True(zone.AddEntity(f, 10 + i * 12, 10)); // 12 apart: two clusters in one zone
+            }
+            var all = new Dictionary<string, Zone>(manager.CachedZones) { [id] = zone };
+            manager.ReplaceLoadedState(all, wildId, new Dictionary<string, List<ZoneConnection>>());
+            return zone;
+        }
+
+        [Test] public void NothingKeptMeansNoMapNotes_AndNullsAndAZeroCapAreSafe()
+        {
+            Assert.IsEmpty(HeldFixtureReader.MapNotes(manager, 10, 10)); Assert.IsEmpty(HeldFixtureReader.MapNotes(null, 10, 10));
+            KeptZone(10, 10, 0); Assert.IsEmpty(HeldFixtureReader.MapNotes(manager, 10, 10, 0)); Assert.DoesNotThrow(() => HeldFixtureReader.OnMapOpened(null, 1, 1));
+            MessageLog.Clear(); var empty = OverworldZoneManager.CreateDetached(Factory, 64, true); HeldFixtureReader.OnMapOpened(empty, 5, 5); Assert.IsEmpty(MessageLog.GetRecent(5));
+        }
+
+        [Test] public void ThingsKeptInTheZoneYouOpenTheMapFromAreThisPlace()
+        {
+            KeptZone(10, 10, 0); CollectionAssert.AreEqual(new[] { "You keep camp box: this place." }, HeldFixtureReader.MapNotes(manager, 10, 10));
+        }
+
+        [Test] public void OffsetsAreStepsFromTheCellYouStandOnNearestFirstWithEastWestSouthNorth()
+        {
+            KeptZone(8, 14, 0); KeptZone(13, 9, 0); KeptZone(10, 12, 0); KeptZone(10, 10, 0);
+            CollectionAssert.AreEqual(new[]
+            {
+                "You keep camp box: this place.",
+                "You keep camp box: 2 south of here.",
+                "You keep camp box: 3 east, 1 north of here.",
+                "You keep camp box: 2 west, 4 south of here.",
+            }, HeldFixtureReader.MapNotes(manager, 10, 10));
+        }
+
+        [Test] public void ASurfaceAndABelowGroundZoneAtTheSameCellAreDistinguishedAndOrderedBySurfaceFirst()
+        {
+            KeptZone(10, 10, 1); KeptZone(10, 10, 0);
+            CollectionAssert.AreEqual(new[] { "You keep camp box: this place.", "You keep camp box: this place, below ground." }, HeldFixtureReader.MapNotes(manager, 10, 10));
+        }
+
+        [Test] public void MoreThanTheCapIsCountedNotListed()
+        {
+            for (int i = 1; i <= 6; i++) KeptZone(10 + i, 10, 0);
+            var notes = HeldFixtureReader.MapNotes(manager, 10, 10); Assert.AreEqual(5, notes.Count); StringAssert.Contains("1 east", notes[0]); StringAssert.Contains("4 east", notes[3]);
+            Assert.AreEqual("You keep things in 2 more places.", notes[4]);
+            Assert.AreEqual("You keep things in 1 more place.", HeldFixtureReader.MapNotes(manager, 10, 10, 5)[5]);
+            Assert.AreEqual(6, HeldFixtureReader.MapNotes(manager, 10, 10, 6).Count, "a cap at least the size of the list shows everything and no rest line");
+        }
+
+        [Test] public void TwoClustersInOneZoneAreOneLineWithCounts()
+        {
+            KeptZone(12, 10, 0, "CampBox", 2); var notes = HeldFixtureReader.MapNotes(manager, 10, 10);
+            CollectionAssert.AreEqual(new[] { "You keep camp box (x2): 2 east of here." }, notes);
+        }
+
+        [Test] public void DifferentKindsInOneZoneAreListedTogetherByName()
+        {
+            var zone = KeptZone(11, 10, 0); var bench = Factory.CreateEntity("CampBench"); bench.AddPart(new InstallationMarkerPart { Origin = "Player" }); Assert.True(zone.AddEntity(bench, 12, 10));
+            CollectionAssert.AreEqual(new[] { "You keep camp bench, camp box: 1 east of here." }, HeldFixtureReader.MapNotes(manager, 10, 10));
+        }
+
+        [Test] public void CarriedHandedOverAndAuthoredThingsAreNeverListed_Counter()
+        {
+            Carry("CampBox"); var box = SetDownAt(AX, AY); Assert.True(Act(box, "HandOver|" + Tail(box)));
+            var forge = Place("TinkersForge", 30, 8); forge.AddPart(new InstallationMarkerPart { Origin = "Generated", RetainZone = true });
+            var (wx, wy, _) = WorldMap.FromZoneID(wildId); Assert.IsEmpty(HeldFixtureReader.MapNotes(manager, wx, wy));
+        }
+
+        [Test] public void OpeningTheMapWritesTheLinesFromTheCellYouAscendedFrom()
+        {
+            SetDownAt(AX, AY); var (wx, wy, _) = WorldMap.FromZoneID(wildId); MessageLog.Clear();
+            var result = WorldMapTraversal.Ascend(Actor, wild, manager); Assert.True(result.Success, "the map opens in this fixture");
+            Assert.AreEqual("You keep camp box: this place.", MessageLog.GetLast());
+        }
+
+        [Test] public void OpeningTheMapWithNothingKeptSaysNothingExtra_Counter()
+        {
+            MessageLog.Clear(); var result = WorldMapTraversal.Ascend(Actor, wild, manager); Assert.True(result.Success);
+            Assert.False(MessageLog.GetRecent(10).Any(l => l.StartsWith("You keep")));
+        }
+
         // ── arrival note ──
 
         [Test] public void NothingKeptMeansNoArrivalNote_AndANullZoneIsSafe()

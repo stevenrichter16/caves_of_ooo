@@ -93,6 +93,7 @@ namespace CavesOfOoo.Core
             {
                 oz.WorldMap.MarkVisited(wx, wy);
                 new WorldMapZoneBuilder(oz.WorldMap).RefreshAppearance(worldMap);
+                HeldFixtureReader.OnMapOpened(oz, wx, wy);
             }
 
             if (Diag.IsChannelEnabled("worldmap"))
