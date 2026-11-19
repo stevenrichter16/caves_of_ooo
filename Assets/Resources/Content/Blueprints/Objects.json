@@ -60129,6 +60129,228 @@
           "Value": "1"
         }
       ]
+    },
+    {
+      "Name": "CampHearth",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "camp hearth"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "*"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&K"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "14"
+            }
+          ]
+        },
+        {
+          "Name": "Campfire",
+          "Params": [
+            {
+              "Key": "FiniteCooking",
+              "Value": "true"
+            },
+            {
+              "Key": "AllowRest",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "25"
+            },
+            {
+              "Key": "AmbientTemperature",
+              "Value": "25"
+            },
+            {
+              "Key": "FlameTemperature",
+              "Value": "300"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "0.8"
+            },
+            {
+              "Key": "AmbientDecayRate",
+              "Value": "0.02"
+            }
+          ]
+        },
+        {
+          "Name": "Fuel",
+          "Params": [
+            {
+              "Key": "FuelMass",
+              "Value": "0"
+            },
+            {
+              "Key": "MaxFuel",
+              "Value": "30"
+            },
+            {
+              "Key": "BurnRate",
+              "Value": "0.5"
+            },
+            {
+              "Key": "HeatOutput",
+              "Value": "1"
+            },
+            {
+              "Key": "ExhaustProduct",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "45"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A shallow iron pan on a wire stand, made to be set down and lit. It burns timber you feed it, cooks food and dries wet gear, and the small fire goes out when the fuel does."
+            }
+          ]
+        },
+        {
+          "Name": "PackableFixture",
+          "Params": [
+            {
+              "Key": "Kind",
+              "Value": "camp-hearth"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Item",
+          "Value": "true"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "CampBench",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "camp bench"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "n"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "22"
+            }
+          ]
+        },
+        {
+          "Name": "Forge"
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "120"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A folding bench with a clamp, a small anvil plate and a rack for tongs, made to be set down and worked at. It is a cold bench: it holds the work, and the fire is not part of it."
+            }
+          ]
+        },
+        {
+          "Name": "PackableFixture",
+          "Params": [
+            {
+              "Key": "Kind",
+              "Value": "camp-bench"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Item",
+          "Value": "true"
+        },
+        {
+          "Key": "Tier",
+          "Value": "2"
+        }
+      ]
     }
   ]
 }

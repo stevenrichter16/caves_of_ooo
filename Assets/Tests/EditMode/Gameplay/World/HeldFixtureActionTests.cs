@@ -420,9 +420,9 @@ namespace CavesOfOoo.Tests
             Assert.IsEmpty(PackableFixtureRegistry.InitializeFromJson("{}"));
         }
 
-        [Test] public void TheShippedFileLoadsAndShipsExactlyTheCampBoxKit()
+        [Test] public void TheShippedFileLoadsAndShipsExactlyTheShippedKits()
         {
-            PackableFixtureRegistry.ResetForTests(); CollectionAssert.AreEquivalent(new[] { "camp-box" }, PackableFixtureRegistry.All.Select(d => d.Kind).ToArray(), "PB2b ships one kit; a second needs its own slice and review");
+            PackableFixtureRegistry.ResetForTests(); CollectionAssert.AreEquivalent(new[] { "camp-box", "camp-hearth", "camp-bench" }, PackableFixtureRegistry.All.Select(d => d.Kind).ToArray(), "each shipped kit is deliberate; a new one needs its own slice and review");
             Assert.Null(PackableFixtureRegistry.Get("not-a-kit")); Assert.Null(PackableFixtureRegistry.Get(null));
         }
     }

@@ -12,6 +12,7 @@ Living record for the slices of [HOME-BASE-DESIGN.md](HOME-BASE-DESIGN.md) that 
 | PB2a | Same-entity set down, take up and hand over on the install state (spec S19), with the fixture definitions and the install events; no kit ships | `HeldFixtureActionTests`, `HeldFixtureAdversarialTests`, `PackableFixtureRegistryTests` |
 | PB2b | The camp box: a takeable, solid-when-set-down container kit with `ContainerLoad`, one `PackableFixtures.json` row and a 35% line in `QuartermasterStock` | `CampBoxTests` (content, real verbs, weight, save, stock line) |
 | PB3 | Reader line in both Examines, the derived list (`HeldFixtureReader.Enumerate`/`Summarize`), explicit hand-over label | `HeldFixtureReaderTests` (reader, list, source pin, 300-zone profile) |
+| Kits 2 and 3 | The camp hearth (a finite cooking fire) and the camp bench (a portable cold forge), both made of existing parts | `CampHearthTests`, `CampBenchTests` |
 
 ### PB1 decisions
 
@@ -70,6 +71,17 @@ install events (`BeforeInstall`/`Installed`/`BeforeUninstall`/`Uninstalled`), `P
 - **Accepted limits from the audit:** a box set on a vacated territory, guard or predator home cell can make that actor idle (bounded budgets, no loop); a collector with a box on its path loses its optional barter; a wooden box near live coals or a flame can burn and spill its contents (the hostile-reach audit, PB1a item 3,
   is not done); the 40-turn fire bench and 200-turn per-family AI soak the audit proposed were not run.
 - **Evidence:** `Docs/Verification/MachineSystems/HeldFixturesActual/` (screenshots, `observations.json`, the F5 checkpoint that was Continued in a fresh launch). The box was granted for the play; the sale path is native-tested only.
+
+### More kits, no new engine: the hearth and the bench
+
+The point of the set-down mechanism is that a machine can be *composed* and then made portable. Two kits ship that need no new rules:
+
+- **Camp hearth** (`CampHearth`, 14 lb, 45 drams, a 35% line in `ProvisionerStock`): `Campfire` (finite cooking) + `Thermal` + `Fuel`, sold cold and empty. Set down, the shipped fire verbs work on it unchanged: feed it salvaged timber (one timber, up to ten fuel), relight it from a flame (a lit equipped torch or
+  a hot neighbour), dry wet gear at it, cook at it. It is a small fire that goes out when its fuel does, it keeps the fuel you fed through take up, and its heat is a real hazard: a set-down spot beside heat is refused, and a wooden box beside a lit fire is something the player now has to think about.
+- **Camp bench** (`CampBench`, 22 lb, 120 drams, a 25% line in `TinkerStock`): a `ForgePart` and nothing else, so it is a cold station (the shipped dismantle, reclaim and point rows and the craft picker find it through the station contract with no edit to the scanners). Carried, it is a kit and no station (its craft rows are hidden and the `Loose`
+  install state vetoes readiness); set down, it is a forge you chose to put where the work is; taken up, it stops being one. The price and weight make carrying it a decision, and it conjures nothing: the components, the finite finds and the recipes are unchanged.
+
+Not done: light from a lit hearth, a bedroll (D-H1 is a balance decision), art for either kit (glyph only), actual Editor play of the hearth and the bench (native only).
 
 ## Limits and next
 
