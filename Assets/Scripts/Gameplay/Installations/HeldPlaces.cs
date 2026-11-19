@@ -99,34 +99,51 @@ namespace CavesOfOoo.Core
         public const int ZoneCap = 8, WorldCap = 32;
 
         public static PlacementResult Evaluate(OverworldZoneManager manager, Zone zone, int x, int y, PlacementSpec spec, Entity fixture = null)
+            => new PlacementBatch(manager, zone).Evaluate(x, y, spec, fixture);
+
+        /// <summary>
+        /// The per-spot rules for one zone with the zone-wide answers (class, caps) computed once, so a menu that checks eight neighbouring cells scans the world once, not eight times.
+        /// </summary>
+        public sealed class PlacementBatch
         {
-            var result = new PlacementResult();
-            if (zone == null || !zone.InBounds(x, y)) { result.Reasons.Add(Ground); return result; }
+            readonly Zone zone; readonly string zoneCode; readonly int zoneCount; readonly int worldCount;
+            public PlacementBatch(OverworldZoneManager manager, Zone zone)
+            {
+                this.zone = zone;
+                if (zone == null) return;
+                zoneCode = HeldPlaceZones.RefusalCode(HeldPlaceZones.Classify(manager, zone.ZoneID));
+                zoneCount = CountInZone(zone); worldCount = manager != null ? CountInWorld(manager) : 0;
+            }
 
-            // 1. zone class
-            string zoneCode = HeldPlaceZones.RefusalCode(HeldPlaceZones.Classify(manager, zone.ZoneID));
-            if (zoneCode != null) result.Reasons.Add(zoneCode);
+            public PlacementResult Evaluate(int x, int y, PlacementSpec spec, Entity fixture = null)
+            {
+                var result = new PlacementResult();
+                if (zone == null || !zone.InBounds(x, y)) { result.Reasons.Add(Ground); return result; }
 
-            var cell = zone.GetCell(x, y);
-            // 2. ground
-            if (!GroundIsOpen(zone, cell)) result.Reasons.Add(Ground);
-            // 3. occupancy: terrain only (the fixture's own entity never counts)
-            if (Occupied(cell, fixture)) result.Reasons.Add(CellOccupied);
-            // 4. open neighbours
-            if (!NeighboursOpen(zone, x, y, spec.Solid)) result.Reasons.Add(OpenNeighbours);
-            // 5. edge margin
-            if (x < EdgeCells || y < EdgeCells || x > Zone.Width - 1 - EdgeCells || y > Zone.Height - 1 - EdgeCells) result.Reasons.Add(EdgeMargin);
-            // 6. stairs, doors, wells
-            if (NearStairsDoorsWell(zone, x, y)) result.Reasons.Add(StairsDoors);
-            // 7. protected-near is dormant: no protection capability exists at HEAD, so it is neither checked nor claimed (ProtectedNearChecked stays false)
-            // 8. caps, counted by scan over saved entities
-            if (CountInZone(zone) >= ZoneCap) result.Reasons.Add(CapZone);
-            if (manager != null && CountInWorld(manager) >= WorldCap) result.Reasons.Add(CapWorld);
-            // 9. fixture state
-            if (fixture != null && !StateOk(fixture)) result.Reasons.Add(State);
-            // 10. class specific (fail closed on an unknown class)
-            if (!ClassOk(cell, spec.GroundClass)) result.Reasons.Add(ClassSpecific);
-            return result;
+                // 1. zone class
+                if (zoneCode != null) result.Reasons.Add(zoneCode);
+
+                var cell = zone.GetCell(x, y);
+                // 2. ground
+                if (!GroundIsOpen(zone, cell)) result.Reasons.Add(Ground);
+                // 3. occupancy: terrain only (the fixture's own entity never counts)
+                if (Occupied(cell, fixture)) result.Reasons.Add(CellOccupied);
+                // 4. open neighbours
+                if (!NeighboursOpen(zone, x, y, spec.Solid)) result.Reasons.Add(OpenNeighbours);
+                // 5. edge margin
+                if (x < EdgeCells || y < EdgeCells || x > Zone.Width - 1 - EdgeCells || y > Zone.Height - 1 - EdgeCells) result.Reasons.Add(EdgeMargin);
+                // 6. stairs, doors, wells
+                if (NearStairsDoorsWell(zone, x, y)) result.Reasons.Add(StairsDoors);
+                // 7. protected-near is dormant: no protection capability exists at HEAD, so it is neither checked nor claimed (ProtectedNearChecked stays false)
+                // 8. caps, counted by scan over saved entities
+                if (zoneCount >= ZoneCap) result.Reasons.Add(CapZone);
+                if (worldCount >= WorldCap) result.Reasons.Add(CapWorld);
+                // 9. fixture state
+                if (fixture != null && !StateOk(fixture)) result.Reasons.Add(State);
+                // 10. class specific (fail closed on an unknown class)
+                if (!ClassOk(cell, spec.GroundClass)) result.Reasons.Add(ClassSpecific);
+                return result;
+            }
         }
 
         /// <summary>The tile and occupant hazards a fixture must never be set down on or beside (the same style as the predator's safe-cell test).</summary>
@@ -146,17 +163,36 @@ namespace CavesOfOoo.Core
 
         static bool IsTerrain(Entity e) => e != null && e.HasTag("Terrain");
 
-        /// <summary>A walkable, hazard-free cell with at least one terrain object, none of them the public route.</summary>
+        /// <summary>
+        /// The structure-only form of <see cref="Cell.BlocksMovement"/>: a creature standing beside the spot (the person setting it down, a passer-by) is
+        /// transient and never plugs an opening, so it is ignored; walls, solid furniture, closed doors and archive barriers still block.
+        /// </summary>
+        static bool BlocksWithoutCreatures(Cell cell)
+        {
+            if (MorrowfastSceneRuntime.BlockingOwner(cell) != null) return true;
+            for (int i = 0; i < cell.Occupants.Count; i++)
+            {
+                var o = cell.Occupants[i];
+                if (o == null || o.HasTag("Creature")) continue;
+                if (o.HasTag("Solid")) return true;
+                var physics = o.GetPart<PhysicsPart>();
+                if (physics != null && physics.Solid) return true;
+                if (o.GetPart<DoorPart>()?.IsClosed == true || o.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return true;
+            }
+            return false;
+        }
+
+        /// <summary>Open ground: a hazard-free cell with at least one terrain object, none of them solid or the public route. Other occupants are the occupancy rule's business.</summary>
         static bool GroundIsOpen(Zone zone, Cell cell)
         {
-            if (cell == null || cell.BlocksMovement() || Hazard(zone, cell)) return false;
+            if (cell == null || Hazard(zone, cell)) return false;
             bool terrain = false;
             for (int i = 0; i < cell.Objects.Count; i++)
             {
                 var e = cell.Objects[i];
                 if (!IsTerrain(e)) continue;
                 terrain = true;
-                if (Array.IndexOf(RouteGround, e.BlueprintName) >= 0) return false;
+                if (Array.IndexOf(RouteGround, e.BlueprintName) >= 0 || e.HasTag("Solid") || e.GetPart<PhysicsPart>()?.Solid == true) return false;
             }
             return terrain;
         }
@@ -183,7 +219,7 @@ namespace CavesOfOoo.Core
                     int nx = x + dx, ny = y + dy;
                     if (!zone.InBounds(nx, ny)) return false;
                     var n = zone.GetCell(nx, ny);
-                    if (n.BlocksMovement() || Hazard(zone, n)) return false;
+                    if (BlocksWithoutCreatures(n) || Hazard(zone, n)) return false;
                 }
             return true;
         }
@@ -210,6 +246,7 @@ namespace CavesOfOoo.Core
             if (fixture.GetPart<DestructiblePart>() is DestructiblePart d && (d.Gone || d.HP <= 0)) return false;
             if (fixture.GetPart<PhysicsPart>()?.Equipped != null) return false;
             if (fixture.HasPart<DraggedPart>()) return false;
+            if ((fixture.GetPart<StackerPart>()?.StackCount ?? 1) != 1) return false;   // a stack is not one fixture
             return true;
         }
 

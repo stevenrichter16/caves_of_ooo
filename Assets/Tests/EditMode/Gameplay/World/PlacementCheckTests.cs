@@ -65,9 +65,10 @@ namespace CavesOfOoo.Tests
         }
         [TestCase("Grass")] [TestCase("Floor")] [TestCase("StoneFloor")]
         public void TheRigsVerifiedGroundSetPasses(string ground) => DoesNotRefuse(Check(Field(ground: ground)), PlacementCheck.Ground);
-        [Test] public void AWallOrASolidOccupantIsNotGround()
+        [Test] public void ASolidTerrainObjectIsNotGround_AndAWallOnTheCellIsAnOccupantNotGround()
         {
-            var z = Field(); Assert.True(z.AddEntity(New("SandstoneWall"), X, Y)); Refuses(Check(z), PlacementCheck.Ground);
+            var z = Field(); var solid = New("Grass"); solid.SetTag("Solid"); Assert.True(z.AddEntity(solid, X, Y)); Refuses(Check(z), PlacementCheck.Ground);
+            var walled = Field(); Assert.True(walled.AddEntity(New("SandstoneWall"), X, Y)); var r = Check(walled); Refuses(r, PlacementCheck.CellOccupied); DoesNotRefuse(r, PlacementCheck.Ground);
         }
         [Test] public void APoolOrAStepTriggerOrAFlameIsNotGround()
         {
