@@ -1,7 +1,7 @@
 # Home/base implementation record
 
 Living record for the slices of [HOME-BASE-DESIGN.md](HOME-BASE-DESIGN.md) that are built. Direction (2026-11-17): design and architecture first; implementation follows the machine contracts
-(`MACHINE-INSTALLATIONS.md` marker and retention, `MACHINE-STATIONS.md`, `MACHINE-ACTION-ROWS.md`). Nothing here is player-visible until a kit exists (PB2b); a player who declines has no new save footprint.
+(`MACHINE-INSTALLATIONS.md` marker and retention, `MACHINE-STATIONS.md`, `MACHINE-ACTION-ROWS.md`). Since PB2b a kit ships (the camp box, sold by a Quartermaster), so the verbs are player-visible; a player who never buys or sets one down has no new save footprint.
 
 ## Built
 
@@ -10,6 +10,8 @@ Living record for the slices of [HOME-BASE-DESIGN.md](HOME-BASE-DESIGN.md) that 
 | PB0a | A well-keeper's renewal also unloads an inactive village; the marker conjunct already keeps a marked one | `InstallationRetentionTests.WellKeeperRenewal*` (control + marked) |
 | PB1 | `WaysitePlan.IsEligibleIgnoringFamily` and `IsFamilyOwned` extracted (`IsEligible` is their conjunction); `HeldPlaceZones.Classify` (7 classes, refusal codes) and `PlacementCheck.Evaluate` (10 ordered rules, caps by scan) | `HeldPlaceZoneClassTests`, `PlacementCheckTests` (63) with waysite and density suites (223) |
 | PB2a | Same-entity set down, take up and hand over on the install state (spec S19), with the fixture definitions and the install events; no kit ships | `HeldFixtureActionTests`, `HeldFixtureAdversarialTests`, `PackableFixtureRegistryTests` |
+| PB2b | The camp box: a takeable, solid-when-set-down container kit with `ContainerLoad`, one `PackableFixtures.json` row and a 35% line in `QuartermasterStock` | `CampBoxTests` (content, real verbs, weight, save, stock line) |
+| PB3 | Reader line in both Examines, the derived list (`HeldFixtureReader.Enumerate`/`Summarize`), explicit hand-over label | `HeldFixtureReaderTests` (reader, list, source pin, 300-zone profile) |
 
 ### PB1 decisions
 
@@ -39,8 +41,24 @@ install events (`BeforeInstall`/`Installed`/`BeforeUninstall`/`Uninstalled`), `P
   not one fixture; command coordinates are range-checked in 64-bit; the eight-direction menu scan computes the zone class and caps once (`PlacementCheck.PlacementBatch`); the validator flags a container kit without `ContainerLoad` because its contents would weigh nothing.
 - **Weight honesty.** A box whose blueprint lacks `ContainerLoadPart` launders its contents' weight (pinned as a documented gap and flagged by validator code P13). The camp box (PB2b) must carry the part.
 
+### PB2b: the camp box
+
+- **Item.** `CampBox` (glyph `=`, no art ships with it: recorded as sprite-coverage debt, not a claim): takeable, weight 12, a 12-item container with `ContainerLoad` so its contents weigh with it, destructible like a chest, value 40 drams. Set down, the definition makes it solid on open ground.
+  Its description states only what it does; every string here is a placeholder pending voice review.
+- **Sourcing.** A 35% line at the end of `QuartermasterStock` (appended, so the earlier entries roll as before). The Quartermaster is the Concord idiom (standardised, packable, priced), and the existing purse, `Tender` and `Ledger` paths apply: no new sink. Already-generated shopkeepers pick the line
+  up only as `TraderRestockSystem` restocks a low shelf from their saved table name: a trickle, with no per-character grant and nothing given free at load (design D-H3). `TraderPart.Rng` is unseeded in production, so the extra entry changes no seeded generation.
+- **Not done.** Found-in-the-world copies, a made kit, a second kit kind and the camp box's art.
+
+### PB3: readers and the derived list
+
+- `PackableFixturePart` implements `IDescribeState` (both scopes): a carried kit says it can be set down and what that means; a standing, player-held fixture says "You set this down" and offers take up and hand over; a handed-over fixture says nothing extra; an unresolved kind says it cannot tell how it was meant to be moved. No line promises
+  safety or protection (pinned by a word list). The quick and full readers agree for this Part.
+- The hand-over row's label states its own consequence ("you can no longer take it up") because there is no confirmation step; it still declares one action.
+- `HeldFixtureReader.Enumerate(manager)` derives the list on demand: markers whose origin is Player or Relocated, single-link clustered within 8 cells per zone, ordered by zone then position, oldest set-down tick kept. It never generates or loads a zone and never mutates; `Summarize` gives the one-line form.
+  A source pin allows no other production consumer. A 300-zone cache lists in well under 250 ms. No journal surface is hooked yet.
+
 ## Limits and next
 
 - Family-owned zones stay refused until the exploration-family consumer audit (PB1a); `column-pending` until PB7. No kit, verbs or readers exist yet.
-- Not done in this slice: the rig's `Origin="Relocated"` stamp on a committed crossing (the rig is retained by the legacy list already), the hand-over confirmation line (PB3), the readers and the derived list (PB3), a kit blueprint and its stock line (PB2b), and the live retention bench (PB4).
-- Next: the camp box (PB2b), readers and derived list (PB3), then the live retention bench and actual play (PB4).
+- Not done: the rig's `Origin="Relocated"` stamp on a committed crossing (the rig is retained by the legacy list already), a journal surface for the list, a hand-over confirmation modal (the label carries it), a made or found kit, the camp box's art, and the live retention bench and actual play (PB4).
+- Next: PB4, actual Editor play of buy-or-grant, set down, fill, leave, return, save, reload, take up and hand over, then the retention bench.

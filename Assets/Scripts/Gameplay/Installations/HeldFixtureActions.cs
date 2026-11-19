@@ -75,7 +75,8 @@ namespace CavesOfOoo.Core
             if (origin == null || Math.Abs(cell.X - origin.X) > 1 || Math.Abs(cell.Y - origin.Y) > 1) return;
             string tail = Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + fixture.ID;
             actions.AddAction("TakeUpFixture", "take up", TakeUpPrefix + tail, '\0', 22, false, ActionTime.OneAction);
-            actions.AddAction("HandOverFixture", "hand over", HandOverPrefix + tail, '\0', 3, false, ActionTime.OneAction);
+            // The label states the consequence plainly, since there is no confirmation step: the hold ends, the object stays, and it can no longer be taken up.
+            actions.AddAction("HandOverFixture", "hand over (you can no longer take it up)", HandOverPrefix + tail, '\0', 3, false, ActionTime.OneAction);
         }
 
         static void AddSetDownRows(Entity actor, Entity kit, Zone zone, PackableFixturePart part, InventoryActionList actions)

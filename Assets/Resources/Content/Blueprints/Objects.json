@@ -59988,6 +59988,147 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "CampBox",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "camp box"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "ContainerLoad"
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "14"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "14"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.4"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "400"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.5"
+            },
+            {
+              "Key": "AmbientDecayRate",
+              "Value": "0.04"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "40"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A small lidded box with a rope handle, made to be set down and left. What is put in it stays in it."
+            }
+          ]
+        },
+        {
+          "Name": "PackableFixture",
+          "Params": [
+            {
+              "Key": "Kind",
+              "Value": "camp-box"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Item",
+          "Value": "true"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
     }
   ]
 }

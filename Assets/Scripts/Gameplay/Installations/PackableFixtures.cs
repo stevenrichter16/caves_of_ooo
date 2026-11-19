@@ -120,11 +120,16 @@ namespace CavesOfOoo.Core
     /// The only Part home/base owns (design 5.2): the definition key and the one timestamp readers need. Primitives and strings only. It hosts the verbs:
     /// a carried kit offers "set down" in the pack menu, a standing fixture offers "take up" and "hand over" in the world menu.
     /// </summary>
-    public sealed class PackableFixturePart : Part
+    public sealed class PackableFixturePart : Part, IDescribeState
     {
         public string Kind = "";
         /// <summary>The turn tick of the set-down; -1 while carried.</summary>
         public int SetTick = -1;
+
+        // ── reader contract (Docs/MACHINE-READERS.md): one state line in both the quick and the full Examine ──
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 80;
+        public string DescribeState(DescribeContext context) => HeldFixtureReader.Describe(ParentEntity, this);
 
         public override bool HandleEvent(GameEvent e)
         {
