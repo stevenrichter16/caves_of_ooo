@@ -60363,6 +60363,87 @@
           "Value": "2"
         }
       ]
+    },
+    {
+      "Name": "CampStill",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "camp still"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "&"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "18"
+            }
+          ]
+        },
+        {
+          "Name": "AlchemyStill"
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "110"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A copper pot, a coiled condenser and a receiving jar that pack into one frame, made to be set down and worked. It separates a mixture one patient drop at a time, wherever you set it."
+            }
+          ]
+        },
+        {
+          "Name": "PackableFixture",
+          "Params": [
+            {
+              "Key": "Kind",
+              "Value": "camp-still"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Item",
+          "Value": "true"
+        },
+        {
+          "Key": "Tier",
+          "Value": "2"
+        }
+      ]
     }
   ]
 }

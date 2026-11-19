@@ -73,14 +73,16 @@ install events (`BeforeInstall`/`Installed`/`BeforeUninstall`/`Uninstalled`), `P
   is not done); the 40-turn fire bench and 200-turn per-family AI soak the audit proposed were not run.
 - **Evidence:** `Docs/Verification/MachineSystems/HeldFixturesActual/` (screenshots, `observations.json`, the F5 checkpoint that was Continued in a fresh launch). The box was granted for the play; the sale path is native-tested only.
 
-### More kits, no new engine: the hearth and the bench
+### More kits, no new engine: the hearth, the bench and the still
 
-The point of the set-down mechanism is that a machine can be *composed* and then made portable. Two kits ship that need no new rules:
+The point of the set-down mechanism is that a machine can be *composed* and then made portable. Three kits ship that need no new rules (the camp still, below, follows the bench):
 
 - **Camp hearth** (`CampHearth`, 14 lb, 45 drams, a 35% line in `ProvisionerStock`): `Campfire` (finite cooking) + `Thermal` + `Fuel`, sold cold and empty. Set down, the shipped fire verbs work on it unchanged: feed it salvaged timber (one timber, up to ten fuel), relight it from a flame (a lit equipped torch or
   a hot neighbour), dry wet gear at it, cook at it. It is a small fire that goes out when its fuel does, it keeps the fuel you fed through take up, and its heat is a real hazard: a set-down spot beside heat is refused, and a wooden box beside a lit fire is something the player now has to think about.
 - **Camp bench** (`CampBench`, 22 lb, 120 drams, a 25% line in `TinkerStock`): a `ForgePart` and nothing else, so it is a cold station (the shipped dismantle, reclaim and point rows and the craft picker find it through the station contract with no edit to the scanners). Carried, it is a kit and no station (its craft rows are hidden and the `Loose`
   install state vetoes readiness); set down, it is a forge you chose to put where the work is; taken up, it stops being one. The price and weight make carrying it a decision, and it conjures nothing: the components, the finite finds and the recipes are unchanged.
+
+- **Camp still** (`CampStill`, 18 lb, 110 drams, a 20% line in `ApothecaryStock`): an `AlchemyStillPart` and nothing else. Carried, it offers no brew rows (the same carried-kit guard as the bench) and is no station; set down, `IsNearStill` finds it and the shipped brew rows, set-aside reagent toggles and batch brew work unchanged; taken up, it stops being one. Brewing at camp removes the town gate on the still, not the reagents, the mishap rules or the recipes.
 
 The hearth also lights its surroundings (radius 6) only while it is actually burning: `HearthGlowPart` reads the owner's Campfire, Thermal and Fuel once per turn and switches the existing `LightSource` on when it is hot enough to cook and has fuel, off when it is not, so a fed hearth lights the night and a spent one goes dark. A carried hearth keeps its state.
 

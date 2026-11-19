@@ -71,5 +71,22 @@ namespace CavesOfOoo.Tests
             int with = 0, runs = 600; for (int seed = 0; seed < runs; seed++) if (LootTableRegistry.Roll("TinkerStock", new System.Random(seed)).Contains("CampBench")) with++;
             Assert.That(with, Is.InRange(runs * 15 / 100, runs * 35 / 100)); Assert.True(LootTableRegistry.Roll("TinkerStock", new System.Random(1)).Contains("IronSpikeComponent") || true);
         }
+
+        // ── the camp still: the same composition for the alchemy station ──
+
+        [Test] public void TheCampStillIsACarriedKitThatBecomesTheBrewingStationOnlyWhileSetDown()
+        {
+            Assert.IsEmpty(PackableFixtureRegistry.Validate(Factory)); var still = Carry("CampStill");
+            Assert.False(AlchemyStillPart.IsNearStill(Actor, Zone)); Assert.False(Actions(still).Any(a => a.Command == "BrewMix"), "a carried still offers no brew rows");
+            Assert.True(Act(still, SetDownRow(still))); Assert.True(AlchemyStillPart.IsNearStill(Actor, Zone)); Assert.True(Actions(still).Any(a => a.Command == "BrewMix"));
+            Assert.True(Act(still, "TakeUp|" + Tail(still))); Assert.False(AlchemyStillPart.IsNearStill(Actor, Zone));
+        }
+
+        [Test] public void TheApothecarySellsTheStillAtItsChance()
+        {
+            LootTableRegistry.Initialize(File.ReadAllText(Path.Combine(Application.dataPath, "Resources/Content/Data/Loot/LootTables.json")));
+            int with = 0, runs = 600; for (int seed = 0; seed < runs; seed++) if (LootTableRegistry.Roll("ApothecaryStock", new System.Random(seed)).Contains("CampStill")) with++;
+            Assert.That(with, Is.InRange(runs * 10 / 100, runs * 30 / 100));
+        }
     }
 }
