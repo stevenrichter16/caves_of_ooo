@@ -136,7 +136,7 @@ namespace CavesOfOoo.Tests
 
         /// <summary>The shipped wave-1 rows, over 24 seeds each: every placement is a legal one and the town is otherwise untouched; the count that
         /// place at all is pinned so a plan change that stops a row fitting is noticed.</summary>
-        [TestCase("the Last Counter", "last-counter-supply-forecourt-forge", 12)] [TestCase("Gantry", "gantry-forecourt-forge", 20)] [TestCase("Tine", "tine-forecourt-forge", 20)] [TestCase("Slip", "slip-forecourt-forge", 20)]
+        [TestCase("Gantry", "gantry-forecourt-forge", 20)] [TestCase("Tine", "tine-forecourt-forge", 20)] [TestCase("Slip", "slip-forecourt-forge", 20)]
         public void ShippedRowsPlaceLegallyAcrossSeeds(string town, string id, int atLeast)
         {
             InstallationRegistry.ResetForTests(); InstallationRegistry.LoadDefaults(); Assert.NotNull(InstallationRegistry.For(town).FirstOrDefault(r => r.Id == id));

@@ -9,7 +9,7 @@ namespace CavesOfOoo.Tests
     public sealed class InstallationCoverageCensusTests
     {
         /// <summary>Committed ratchet. Lower it when a place leaves Pending; raising it is a deliberate owner decision.</summary>
-        const int PendingBaseline = 9;
+        const int PendingBaseline = 10;
 
         [SetUp] public void Setup() { InstallationRegistry.ResetForTests(); InstallationRegistry.LoadDefaults(); }
         [TearDown] public void Cleanup() => InstallationRegistry.ResetForTests();
@@ -26,9 +26,9 @@ namespace CavesOfOoo.Tests
         [Test] public void TheCensusMatchesTheDocumentedBaseline()
         {
             var report = InstallationRegistry.Coverage();
-            Assert.AreEqual(2, report.Count("Present")); Assert.AreEqual(5, report.Count("Exempt")); Assert.AreEqual(4, report.Count("Installed"));
-            Assert.AreEqual(9, report.Count("Pending"));
-            foreach (var place in new[] { "Gantry", "Tine", "Slip", "the Last Counter" }) Assert.AreEqual("Installed", report.KindOf(place), place);
+            Assert.AreEqual(2, report.Count("Present")); Assert.AreEqual(5, report.Count("Exempt")); Assert.AreEqual(3, report.Count("Installed"));
+            Assert.AreEqual(10, report.Count("Pending"));
+            foreach (var place in new[] { "Gantry", "Tine", "Slip" }) Assert.AreEqual("Installed", report.KindOf(place), place);
             foreach (var place in new[] { "Tally", "Wellmeet" }) Assert.AreEqual("Pending", report.KindOf(place), place + " waits on its recorded gate");
         }
 
@@ -75,7 +75,7 @@ namespace CavesOfOoo.Tests
         {
             using (var scope = new HaulingContentScope())
             {
-                Assert.AreEqual(4, InstallationRegistry.All.Count);
+                Assert.AreEqual(3, InstallationRegistry.All.Count);
                 Assert.IsEmpty(InstallationRegistry.Validate(scope.Factory), "every shipped row passes blueprint admission");
                 foreach (var spec in InstallationRegistry.All) { Assert.False(spec.Retain, spec.Id + ": a forge carries no state"); StringAssert.Contains("nothing requires", spec.Alternative); }
             }

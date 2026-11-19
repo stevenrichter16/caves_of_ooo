@@ -15,7 +15,7 @@ instruction to proceed without intervention; each is recorded so it can be rever
 | S1 | Removing, renaming, moving or retyping a saved Part or field is a failing test | `Assets/Tests/EditMode/Gameplay/Save/SavedPartContract*.cs`, `SavedPartContract.txt` (385 Parts) |
 | S2 | A cached village that holds a retaining marker or a pinned legacy finite fixture is not unloaded for regeneration after a settlement repair relapse | `InstallationMarkerPart`, one conjunct in `OverworldZoneManager.CanUnloadZone` |
 | S6 | Validated installation specs, 14 error codes, and an every-town census with a ratchet | `InstallationRegistry`, `Resources/Content/Data/Installations.json` |
-| S7 | A generic, optional, deterministic, fresh-only post-builder (priority 4650) and the first three placements: a working forge in Gantry, Tine, Slip and the Last Counter | `InstallationPostBuilder`, one line in `CreateVillagePipeline`, three data rows |
+| S7 | A generic, optional, deterministic, fresh-only post-builder (priority 4650) and the first three placements: a working forge in Gantry, Tine and Slip (a fourth row, the Last Counter, was pulled to Pending, see Decision 1) | `InstallationPostBuilder`, one line in `CreateVillagePipeline`, three data rows |
 
 ## S1: the saved-Part contract
 
@@ -51,8 +51,8 @@ starting village and Wellmeet track a main well, so only they can reach it. `Wel
 (a place with an owner). Per-row dropping: one bad optional row never cancels the others (unlike the process catalogue). Error codes
 E01 to E14 each have a test and a valid-neighbour control. The census classifies the 17 authored places and the three catacomb villages
 as exactly one of Installed, Present (Sill and Cinderhold already hold a forge), Exempt (with a source) or Pending (with an owner), and a ratchet
-test lets Pending only decrease. Current census: Installed 4 (Gantry, Tine, Slip, the Last Counter), Present 2, Exempt 5 (the First Tent, the Quiet's Door,
-Olderdeep, Lampwell, Spivenor), Pending 9. "A machine in every town" is complete when Pending is 0.
+test lets Pending only decrease. Current census: Installed 3 (Gantry, Tine, Slip), Present 2, Exempt 5 (the First Tent, the Quiet's Door,
+Olderdeep, Lampwell, Spivenor), Pending 10 (the Last Counter joined Pending, below). "A machine in every town" is complete when Pending is 0.
 
 ## S7: generic placement
 
@@ -79,11 +79,16 @@ An independent critique of the placement plan (session reports `critique-canon-p
 purpose-qualified rows only, because a placed machine is permanent in every save that visited its town. Against that, the owner's standing instruction in this
 session is to put machines in every town and village. The recorded resolution:
 
-1. **Shipped rows: Gantry, Tine and Slip (communal convenience forges, owner instruction) and the Last Counter (the one row with a local problem: its supply post issues a
-   finite weapon-component kit and the zone has no forge).** The Gantry, Tine and Slip rows say so in their `Basis` ("convenience, not a gap") and are plain data: delete a row
+1. **Shipped rows: Gantry, Tine and Slip (communal convenience forges, owner instruction).** The rows say so in their `Basis` ("convenience, not a gap") and are plain data: delete a row
    to revert it before release. They are also the three-pipeline test matrix (a composed crossroads pipeline with preferred service cells, a composed lakeside pipeline with wet
    neighbours and the fastest relapse, and the plain `VillageBuilder` pipeline). This is a Claude decision under the instruction to proceed without intervention, not an owner
    answer, and is flagged for the owner to confirm or reverse.
+   **The Last Counter row was shipped, then pulled (2026-11-18).** It was the one row with a local problem (its supply post issues a finite weapon-component kit and the zone has no
+   forge), and Editor play showed it working. The full EditMode comparison then found `ThresholdCampsRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel`
+   failing in zone `Overworld.18.18.0` on seeds 64, 1729 and 729490642: the placed `TinkersForge` is an unmodeled native blueprint in the 3D spawn-ring voxel-kit library
+   (`LastCounterVoxelKitLibrary` has no `TinkersForge` family). That ratchet is a correct guard, so the row now sits in `Pending` with the library gap as its owner, and its full
+   text is preserved in the `Pending` note. Restoring it needs a forge family in that library, which is a 3D-art task outside this program; the placement code, retention and
+   save paths are unaffected.
 2. **Tally and Wellmeet are Pending, not placed.** Tally's verified window is a `RoadStone` apron the generic builder never uses (needs a window-membership probe over 24 seeds
    and S24 plan-reserved frontage, plus a characterisation of rented loaners in the forge picker). Wellmeet is a Tent-Right camp: "the well and the salt-work are the fixed
    points; everything else moves", so a fixed smithy conflicts with canon; its owner is a portable lent rig after the installable-state slice (S19). Water is never sold.
@@ -91,7 +96,7 @@ session is to put machines in every town and village. The recorded resolution:
 4. The forge's shipped description ("Fitting a blade, haft and binding here makes a working weapon") overstates what a forge is for, since a single weapon can be assembled anywhere
    from the pack; correcting that shipped text, and a truthful "works here" reader line, are separate small owner decisions (spec slices S5 and S13a), not done here.
 5. **Honest census.** With the dossiers' purpose audits, most places have no honest machine opportunity yet (they need a finite find, a resident supplier or a local problem ahead of
-   the apparatus). Installed 4, Present 2, Exempt 5, Pending 9 is the real state; "every town" is the ratchet, not a claim.
+   the apparatus). Installed 3, Present 2, Exempt 5, Pending 10 is the real state; "every town" is the ratchet, not a claim.
 
 ### Limits (stated, not hidden)
 
@@ -102,6 +107,6 @@ session is to put machines in every town and village. The recorded resolution:
 
 ## Evidence
 
-Editor actual play (2026-11-18): Gantry, Tine, Slip and the Last Counter each show the forge beside the interact menu; see `Verification/MachineSystems/InstallationsActual/observations.json`.
+Editor actual play (2026-11-18): Gantry, Tine, Slip and (before its row was pulled) the Last Counter each showed the forge beside the interact menu; see `Verification/MachineSystems/InstallationsActual/observations.json`.
 
 Native: S1 18 (17 + 1 environment-guarded generator), S2 24 retention cases (11 fail on HEAD production), S6 56 (registry, census, pipeline priorities), S7 placement cases, MinRadius and shipped-row sweeps; installation suites pass together. The full EditMode comparison and the actual-play checks are recorded in the execution plan continuation.

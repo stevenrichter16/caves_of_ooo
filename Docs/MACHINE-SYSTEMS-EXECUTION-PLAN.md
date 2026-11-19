@@ -244,7 +244,7 @@ The user directed: flesh out the modular machine/object architecture, then add m
 The user's direction (a modular machine/object architecture, machines in every town, then home/base) was worked through read-only research workflows (survey, three-way architecture design with synthesis,
 twelve per-machine V1 dossiers, a settlement placement plan, and three independent critiques; reports are in the session scratchpad and are summarised into the living docs below) and then implemented in the spec's order:
 
-- S1 saved-Part golden, S2 marker and relapse retention, S6 registry and census, S7 generic placement with Editor actual play: [MACHINE-INSTALLATIONS.md](MACHINE-INSTALLATIONS.md). Forges now stand in Gantry, Tine, Slip and the Last Counter;
+- S1 saved-Part golden, S2 marker and relapse retention, S6 registry and census, S7 generic placement with Editor actual play: [MACHINE-INSTALLATIONS.md](MACHINE-INSTALLATIONS.md). Forges now stand in Gantry, Tine and Slip (the Last Counter row was pulled to Pending on 2026-11-18, see the update at the end);
   census Installed 4, Present 2, Exempt 5, Pending 9. Editor actual play (fresh world, three towns, F5 and fresh Continue, cached-save control) is recorded in `Verification/MachineSystems/InstallationsActual/`.
 - S4 station contract with oracle parity: [MACHINE-STATIONS.md](MACHINE-STATIONS.md). S5 reader contract: [MACHINE-READERS.md](MACHINE-READERS.md).
 - The home/base design is a separate read-only design (concept: set-down places on a portable-base foundation; prerequisite slice: retention addenda) in the session scratchpad; it is not implemented.
@@ -284,3 +284,9 @@ Played in the Editor: the camp box end to end, and the hearth's set down, standi
 Open owner decisions: the Gantry, Tine and Slip convenience forges; glyph-only art for all four kits; voice review of placeholder strings; a portable bed (D-H1); rest at a lit hearth (a balance decision: the shipped coals opt out of rest, and resting by a finite fire would need a fuel cost); a world-map marker for kept places.
 Next candidates: S9 (stations on one receipt, probe table done), hearth-and-still synergy only if the owner wants brewing to depend on heat, the hostile-reach and fire audit (PB1a item 3), found kits in waysites (changes fresh generation, needs pinned-test care), and the full-suite comparison recorded below when it finishes.
 
+### Update — 2026-11-18 (night): full-suite comparison and the Last Counter row
+
+- Full EditMode run against the HEAD tree: 39181 tests, 96 failed against a baseline of 90. Of the six differences, three were timeouts under contention (`SpreadBiomeCoverageTests.EveryActualSurfaceAndCommittedLairHasNativeGeometry` seeds 1 and 1729, and a `ThrowingPayloadComparisonTests` W7 case); all 37 tests in those two classes pass when rerun alone.
+- The other three were real: `ThresholdCampsRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel` failed on seeds 64, 1729 and 729490642 because the Last Counter forge is an unmodeled native blueprint in the 3D spawn-ring library (`LastCounterVoxelKitLibrary` has no `TinkersForge` family). The forge row for the Last Counter is therefore Pending, not Installed (census Installed 3, Present 2, Exempt 5, Pending 10). Gantry, Tine and Slip are unaffected. Detail in [MACHINE-INSTALLATIONS.md](MACHINE-INSTALLATIONS.md) Decision 1.
+- Verified after the change: installation, pipeline-priority, threshold-camps-rendering and saved-Part-contract suites, 194 tests, 193 pass, 0 fail, 1 not run.
+- Lesson recorded: a new native blueprint placed by the world generator needs a check against the 3D spawn-ring coverage ratchet, not only the installation suites.

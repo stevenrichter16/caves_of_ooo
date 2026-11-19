@@ -67,28 +67,6 @@
       "Alternative": "A single weapon can be assembled from the pack anywhere; carried components, the Sill and Cinderhold forges and buying assembled weapons remain, and nothing requires this forge.",
       "Basis": "Convenience, not a gap: surface villagers own and run forges (faction row, mw/lore.md section 5). Placed on the owner's standing instruction to put machines in every town; the placement plan and its critique prefer test-only rows for towns without a local problem, recorded in Docs/MACHINE-INSTALLATIONS.md. Delete the row to revert before release.",
       "MinRadius": 2
-    },
-    {
-      "Id": "last-counter-supply-forecourt-forge",
-      "Place": "the Last Counter",
-      "Blueprint": "TinkersForge",
-      "Retention": "None",
-      "Near": [
-        "SaccharineEnvoy",
-        "Well"
-      ],
-      "Radius": 9,
-      "MinRadius": 2,
-      "MaxProbe": 48,
-      "Ground": [
-        "Floor",
-        "StoneFloor",
-        "Sand"
-      ],
-      "Revision": 1,
-      "Purpose": "A forge at the supply forecourt so the kit the post issues can be fitted where it is handed out.",
-      "Alternative": "Assembling the kit in the pack, processing away from a station, the Peat Works rig, the Cinderhold forge and buying finished goods remain; nothing requires this forge.",
-      "Basis": "Placement plan W1-A: the supply post issues a finite weapon-component kit in a chest whose own sign says to bring the kit to a forge, and the zone has none. Docs/MACHINE-INSTALLATIONS.md."
     }
   ],
   "Exemptions": [
@@ -163,6 +141,11 @@
       "Place": "Wellmeet",
       "Owner": "portable lent rig after S19",
       "Note": "a fixed forge conflicts with Tent-Right canon (the well and the salt-work are the fixed points; everything else moves); water is never sold"
+    },
+    {
+      "Place": "the Last Counter",
+      "Owner": "3D voxel-kit forge family",
+      "Note": "The one row with a local problem (the supply post issues a weapon-component kit and the zone has no forge). Placed and played in Editor, then pulled: the 3D spawn-ring presentation library covers every visible owner in this zone (ThresholdCampsRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel) and LastCounterVoxelKitLibrary has no TinkersForge family, so a forge there breaks that coverage ratchet. Restore the row (kept in Docs/MACHINE-INSTALLATIONS.md) when the family exists."
     }
   ]
 }
