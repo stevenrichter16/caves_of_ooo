@@ -86,8 +86,8 @@ session is to put machines in every town and village. The recorded resolution:
    **The Last Counter row was shipped, then pulled (2026-11-18).** It was the one row with a local problem (its supply post issues a finite weapon-component kit and the zone has no
    forge), and Editor play showed it working. The full EditMode comparison then found `ThresholdCampsRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel`
    failing in zone `Overworld.18.18.0` on seeds 64, 1729 and 729490642: the placed `TinkersForge` is an unmodeled native blueprint in the 3D spawn-ring voxel-kit library
-   (`LastCounterVoxelKitLibrary` has no `TinkersForge` family). That ratchet is a correct guard, so the row now sits in `Pending` with the library gap as its owner, and its full
-   text is preserved in the `Pending` note. Restoring it needs a forge family in that library, which is a 3D-art task outside this program; the placement code, retention and
+   (`LastCounterVoxelKitLibrary` has no `TinkersForge` family). That ratchet is a correct guard, so the row now sits in `Pending` with the library gap as its owner, and the row is
+   recoverable from git history (last present at commit `4595107e3`, id `last-counter-supply-forecourt-forge`). Restoring it needs a forge family in that library, which is a 3D-art task outside this program; the placement code, retention and
    save paths are unaffected.
 2. **Tally and Wellmeet are Pending, not placed.** Tally's verified window is a `RoadStone` apron the generic builder never uses (needs a window-membership probe over 24 seeds
    and S24 plan-reserved frontage, plus a characterisation of rented loaners in the forge picker). Wellmeet is a Tent-Right camp: "the well and the salt-work are the fixed
