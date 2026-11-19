@@ -43,7 +43,7 @@ namespace CavesOfOoo.Core
             var e=GameEvent.New(id);e.SetParameter("Actor",plan.Actor);e.SetParameter("Source",plan.Source);
             e.SetParameter("Station",plan.Definition.WorkKind=="ForgeCold"?plan.Station:null);
             e.SetParameter("Tool",plan.Definition.WorkKind=="HandCutting"?plan.Station:null);e.SetParameter("WorkProvider",plan.Station);e.SetParameter("Process",plan.Definition);
-            e.SetParameter("Inputs",Array.AsReadOnly(new[]{plan.Source}.Concat(plan.ExtraInputs.Select(i=>i.Owner)).ToArray()));
+            e.SetParameter("Inputs",Array.AsReadOnly(new[]{plan.Source}.Concat(plan.ExtraInputs.SelectMany(i=>i.Takes.Select(t=>t.Owner))).ToArray()));
             return owner.FireEventAndRelease(e);
         }
         static int Count(Entity item)=>item.GetPart<StackerPart>()?.StackCount??1;
@@ -68,7 +68,7 @@ namespace CavesOfOoo.Core
             bool Refuse()=>PreparationActions.Reject(plan?.Actor,plan?.Source,command,"process_unavailable");
             if(tx==null || quote==null || !quote.Current())return Refuse();
             var actor=plan.Actor;var input=plan.Source;var pack=actor.GetPart<InventoryPart>();var zone=plan.Zone;
-            var inputs=new[]{input}.Concat(plan.ExtraInputs.Select(i=>i.Owner)).ToArray();
+            var inputs=new[]{input}.Concat(plan.ExtraInputs.SelectMany(i=>i.Takes.Select(t=>t.Owner))).ToArray();
             var participants=new[]{actor,plan.Station}.Concat(inputs).ToArray();
             if(!tx.TryClaimAction(actor) || inputs.Any(i=>!PreparationActions.Begin(actor,i,zone,tx,command))
                 || !plan.BeginWork(tx,command) || !Guard(plan.Station,tx) || inputs.Any(i=>!Guard(i,tx)))return Refuse();
@@ -102,17 +102,21 @@ namespace CavesOfOoo.Core
             int ceiling=pack.MaxWeight<0?int.MaxValue:Math.Max(pack.MaxWeight,pack.GetCarriedWeight());
             var expected=residents.ToDictionary(e=>e,Count);var received=new HashSet<Entity>();
             var receipt=InventoryTransferSnapshot.Capture(pack,products.ToArray());bool restored=false;
+            // Only inputs this transaction actually consumed from are detached on undo: Restore re-inserts exactly the changed entries, so detaching an untouched input
+            // (reachable once an ingredient can span several stacks and a later take refuses) would lose the player's stack.
+            var consumed=new HashSet<Entity>();
             tx.Do(null,()=>
             {
                 if(restored)return;restored=true;
-                foreach(var owner in products.Concat(received).Concat(inputs).Distinct())Detach(owner);
+                foreach(var owner in products.Concat(received).Concat(consumed).Distinct())Detach(owner);
                 receipt.Restore();
             });
             if(!receipt.Apply(()=>
             {
-                for(int n=0;n<units;n++)if(!pack.TryConsumeMaterialProcessUnit(input,tx))return false;
+                for(int n=0;n<units;n++){if(!pack.TryConsumeMaterialProcessUnit(input,tx))return false;consumed.Add(input);}
                 foreach(var ingredient in plan.ExtraInputs)
-                    for(int n=0;n<ingredient.Units;n++)if(!pack.TryConsumeMaterialProcessUnit(ingredient.Owner,tx))return false;
+                    foreach(var take in ingredient.Takes)
+                        for(int n=0;n<take.Units;n++){if(!pack.TryConsumeMaterialProcessUnit(take.Owner,tx))return false;consumed.Add(take.Owner);}
                 foreach(var product in products)
                 {
                     if(!pack.AddCraftedUnit(product,out var recipient) || recipient==null)return false;

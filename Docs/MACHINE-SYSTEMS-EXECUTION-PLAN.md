@@ -261,3 +261,12 @@ twelve per-machine V1 dossiers, a settlement placement plan, and three independe
   in the verification clone against the S1-S7 tree and will be recorded when it finishes.
 - Next: S12 (multi-stack claims and reasoned process rows, critique-gated), S9 (stations on one receipt, probe table first), S19 (installable state for home/base), then opportunity-first content (the dossiers' honest V1s).
 
+### Update — 2026-11-18 (evening): home/base PB0a to PB3, S12b and where things stand
+
+- **Home/base (built, pushed):** PB0a retention coverage, PB1 zone classifier and pure placement check, PB2a same-entity set down / take up / hand over on the install state (S19), PB2b the camp box (35% Quartermaster line, glyph only), PB3 reader line and derived list.
+  Played in the Editor with real keys: set down, reader, F5 and a fresh Continue, deposit, take up with contents, hand over (`Verification/MachineSystems/HeldFixturesActual`). Play found that a solid box could not be filled; an adjacent-deposit change fixed it. Record: [HOME-BASE-IMPLEMENTATION.md](HOME-BASE-IMPLEMENTATION.md).
+- **S12b (built, this commit):** extras-only multi-stack pooling after an independent critique, with its rollback fix: [MACHINE-MULTI-STACK-CLAIMS.md](MACHINE-MULTI-STACK-CLAIMS.md), [critique](MachineDesign/critique-s12-multistack.md). The spurgrass kit row no longer vanishes when the spines are two stacks.
+- **Design reports** are in the repo: [MACHINE-ARCHITECTURE-SPEC.md](MACHINE-ARCHITECTURE-SPEC.md), [HOME-BASE-DESIGN.md](HOME-BASE-DESIGN.md), `MachineDesign/`.
+- **Owner decisions to confirm or reverse:** the Gantry, Tine and Slip convenience forges (data rows); the camp box as the first kit and its glyph-only art; mechanical placeholder strings pending voice review; lifting family-owned zones for set-down (11 of 22 zones near the start are refused).
+- **Next:** S12a disabled-row reasons; S9 stations on one receipt (probe table first); lifting family-owned zones after the consumer audit (PB1a); the rig as a held fixture (PB5, with the S19 relocation stamp); a second honest machine per the dossiers. The full-suite comparison against the HEAD baseline (3.4 hours) was still running when this was written.
+
