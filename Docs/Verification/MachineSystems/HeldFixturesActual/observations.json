@@ -55,5 +55,21 @@
    "the camp bench cold rows other than the craft picker (dismantle, reclaim, point)",
    "Linux, Steam Deck, packaged builds"
   ]
+ },
+ "map_note_play": {
+  "date": "2026-11-19",
+  "source": "HEAD 79292d587 (Editor Play, Claude), fresh world, real keys; the camp box was granted to the pack with execute_code",
+  "disclosures": [
+   "Two early Enter presses chose the box's first row 'open' (the box menu lists open before set down), logged 'The camp box is empty.' twice; no state changed.",
+   "No F5 or Continue in this play; the map note is a derived message and nothing is saved."
+  ],
+  "observations": {
+   "this_place": "After setting the box down east in Overworld.10.11.0 and pressing < to open the world map, the log read 'You keep camp box: this place.' (map-note-this-place.png)",
+   "offset": "After moving on the map to 8.12 (2 west, 1 south of the camp), descending, and opening the map again, the log read 'You keep camp box: 2 east, 1 north of here.' (map-note-offset.png), which matches the real offset from the player's map cell."
+  },
+  "not_observed": [
+   "the four-line cap and the rest line in actual play (native tests only)",
+   "a below-ground zone (not placeable in v1)"
+  ]
  }
 }
