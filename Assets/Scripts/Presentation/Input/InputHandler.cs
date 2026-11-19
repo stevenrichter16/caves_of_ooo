@@ -1213,6 +1213,8 @@ namespace CavesOfOoo.Rendering
             UrquPressure.OnZoneEntered(PlayerEntity, result.NewZone);
             // C3a: what open concerns stand in this place (a document to read).
             CavesOfOoo.Concerns.ConcernWorld.OnZoneEntered(PlayerEntity, result.NewZone);
+            // Home/base: a plain line for whatever the player keeps standing here.
+            HeldFixtureReader.OnZoneEntered(result.NewZone);
 
             // Register new zone's creatures in TurnManager
             var newCreatures = result.NewZone.GetEntitiesWithTag("Creature");

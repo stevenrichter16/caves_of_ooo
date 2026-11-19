@@ -55,6 +55,7 @@ install events (`BeforeInstall`/`Installed`/`BeforeUninstall`/`Uninstalled`), `P
 - `PackableFixturePart` implements `IDescribeState` (both scopes): a carried kit says it can be set down and what that means; a standing, player-held fixture says "You set this down" and offers take up and hand over; a handed-over fixture says nothing extra; an unresolved kind says it cannot tell how it was meant to be moved. No line promises
   safety or protection (pinned by a word list). The quick and full readers agree for this Part.
 - The hand-over row's label states its own consequence ("you can no longer take it up") because there is no confirmation step; it still declares one action.
+- **Arrival note.** Travelling into a zone where the player keeps something standing logs one plain line ("You keep here: camp box, camp hearth (x2)."); `HeldFixtureReader.ArrivalNote` derives it from the live zone each time and excludes authored and handed-over things. It runs on travel (the one `OnZoneEntered` call site), not on load.
 - `HeldFixtureReader.Enumerate(manager)` derives the list on demand: markers whose origin is Player or Relocated, single-link clustered within 8 cells per zone, ordered by zone then position, oldest set-down tick kept. It never generates or loads a zone and never mutates; `Summarize` gives the one-line form.
   A source pin allows no other production consumer. A 300-zone cache lists in well under 250 ms. No journal surface is hooked yet.
 

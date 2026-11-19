@@ -78,6 +78,32 @@ namespace CavesOfOoo.Core
             return places;
         }
 
+        /// <summary>
+        /// What the player keeps standing in this zone, as one plain line for the moment they arrive ("You keep here: camp box, camp hearth (x2)."), or null when nothing is.
+        /// Derived from the live zone each time; nothing is stored.
+        /// </summary>
+        public static string ArrivalNote(Zone zone)
+        {
+            if (zone == null) return null;
+            var counts = new SortedDictionary<string, int>(StringComparer.Ordinal); var owners = zone.GetReadOnlyEntitiesWithPart<InstallationMarkerPart>();
+            for (int i = 0; i < owners.Count; i++)
+            {
+                var marker = owners[i].GetPart<InstallationMarkerPart>();
+                if (marker == null || (marker.Origin != "Player" && marker.Origin != "Relocated")) continue;
+                string name = owners[i].GetDisplayName(); counts[name] = counts.TryGetValue(name, out int n) ? n + 1 : 1;
+            }
+            if (counts.Count == 0) return null;
+            var parts = new List<string>(); foreach (var pair in counts) parts.Add(pair.Value == 1 ? pair.Key : pair.Key + " (x" + pair.Value + ")");
+            return "You keep here: " + string.Join(", ", parts) + ".";
+        }
+
+        /// <summary>Called once when the player arrives in a zone (travel, not load): says what they keep standing there.</summary>
+        public static void OnZoneEntered(Zone zone)
+        {
+            string note = ArrivalNote(zone);
+            if (note != null) MessageLog.Add(note);
+        }
+
         /// <summary>A one-line summary of the derived list, for a log line or a journal-style surface. Empty when the player keeps nothing standing.</summary>
         public static string Summarize(IReadOnlyList<HeldPlace> places)
         {

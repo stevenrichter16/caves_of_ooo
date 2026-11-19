@@ -163,5 +163,24 @@ namespace CavesOfOoo.Tests
             var watch = System.Diagnostics.Stopwatch.StartNew(); var places = HeldFixtureReader.Enumerate(manager); watch.Stop();
             Assert.AreEqual(30, places.Count); Assert.Less(watch.ElapsedMilliseconds, 250, "an open-the-list cost, not a per-frame cost");
         }
+
+        // ── arrival note ──
+
+        [Test] public void NothingKeptMeansNoArrivalNote_AndANullZoneIsSafe()
+        {
+            Assert.IsNull(HeldFixtureReader.ArrivalNote(wild)); Assert.IsNull(HeldFixtureReader.ArrivalNote(null)); Assert.DoesNotThrow(() => HeldFixtureReader.OnZoneEntered(null)); Assert.IsEmpty(MessageLog.GetRecent(5));
+        }
+
+        [Test] public void TheArrivalNoteNamesWhatYouKeepAndCountsRepeats()
+        {
+            SetDownAt(10, 6); SetDownAt(40, 6); Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, 60, 14)); var hearth = Carry("CampBox"); Assert.True(Act(hearth, Row(hearth)));
+            Assert.AreEqual("You keep here: camp box (x3).", HeldFixtureReader.ArrivalNote(wild)); HeldFixtureReader.OnZoneEntered(wild); StringAssert.Contains("camp box (x3)", MessageLog.GetLast());
+        }
+
+        [Test] public void AuthoredAndHandedOverThingsAreNotInTheArrivalNote_Counter()
+        {
+            var forge = Place("TinkersForge", 30, 8); forge.AddPart(new InstallationMarkerPart { Origin = "Generated", RetainZone = true });
+            var box = SetDownAt(AX, AY); Assert.True(Act(box, "HandOver|" + Tail(box))); Assert.IsNull(HeldFixtureReader.ArrivalNote(wild));
+        }
     }
 }
