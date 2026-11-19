@@ -20,9 +20,22 @@ namespace CavesOfOoo.Core
     /// count problems reject legibly here; everything else (gating,
     /// atomicity, stat math) lives in the commands and services.
     /// </summary>
-    public class ForgePart : Part
+    public class ForgePart : Part, IStationCapability, IStationReadinessGuard
     {
         public override string Name => "Forge";
+
+        // ── station capability (Docs/MACHINE-STATIONS.md): found by capability, not by this concrete type ──
+        static readonly string[] StationKinds = { "forge", "cold-work" };
+        public System.Collections.Generic.IReadOnlyList<string> Kinds => StationKinds;
+        public int Reach => 1;
+        public ReadinessMode Readiness => ReadinessMode.Strict;
+        /// <summary>The field work rig is only a working station while its exact payload holds (moved here from ForgeWorkReceipt.Ready).</summary>
+        public bool TryBlock(Entity station, Zone zone, out string code)
+        {
+            code = null;
+            if (FieldWorkRigRules.IsRig(station) && !FieldWorkRigRules.Payload(station)) { code = "rig-payload"; return true; }
+            return false;
+        }
 
         /// <summary>
         /// EntityFactory for weapon/component creation. Wired at bootstrap

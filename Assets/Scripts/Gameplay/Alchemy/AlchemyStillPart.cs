@@ -17,9 +17,15 @@ namespace CavesOfOoo.Core
     /// gating, mishap damage, batching) stay in the command; this handler
     /// only collects the selection and reports selection problems legibly.
     /// </summary>
-    public class AlchemyStillPart : Part
+    public class AlchemyStillPart : Part, IStationCapability
     {
         public override string Name => "AlchemyStill";
+
+        // ── station capability (Docs/MACHINE-STATIONS.md): the still keeps its older presence-only rule ──
+        static readonly string[] StationKinds = { "still" };
+        public System.Collections.Generic.IReadOnlyList<string> Kinds => StationKinds;
+        public int Reach => 1;
+        public ReadinessMode Readiness => ReadinessMode.PresenceOnly;
 
         /// <summary>
         /// EntityFactory for brew output creation. Wired at bootstrap
@@ -101,33 +107,6 @@ namespace CavesOfOoo.Core
         /// with an AlchemyStillPart. False when the zone is null or the
         /// actor isn't placed in it.
         /// </summary>
-        public static bool IsNearStill(Entity actor, Zone zone)
-        {
-            if (actor == null || zone == null)
-                return false;
-
-            (int x, int y) = zone.GetEntityPosition(actor);
-            if (x < 0 || y < 0)
-                return false;
-
-            for (int dx = -1; dx <= 1; dx++)
-            {
-                for (int dy = -1; dy <= 1; dy++)
-                {
-                    Cell cell = zone.GetCell(x + dx, y + dy);
-                    if (cell == null)
-                        continue;
-
-                    for (int i = 0; i < cell.Objects.Count; i++)
-                    {
-                        Entity obj = cell.Objects[i];
-                        if (obj != null && obj.HasPart<AlchemyStillPart>())
-                            return true;
-                    }
-                }
-            }
-
-            return false;
-        }
+        public static bool IsNearStill(Entity actor, Zone zone) => StationQuery.NearPresence(actor, zone, "still");
     }
 }
