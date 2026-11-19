@@ -83,6 +83,8 @@ The point of the set-down mechanism is that a machine can be *composed* and then
 
 The hearth also lights its surroundings (radius 6) only while it is actually burning: `HearthGlowPart` reads the owner's Campfire, Thermal and Fuel once per turn and switches the existing `LightSource` on when it is hot enough to cook and has fuel, off when it is not, so a fed hearth lights the night and a spent one goes dark. A carried hearth keeps its state.
 
+Editor play of the hearth (`HeldFixturesActual/observations.json`): the eight set-down rows, the standing menu with the shipped 'feed coals' verb, and a feed that reads 'The fuel still needs flame.' Ember Spit did not light it; relighting needs a carried flame, which makes carrying fire from a village a small, real errand.
+
 Not done: a bedroll (D-H1 is a balance decision), art for either kit (glyph only), actual Editor play of the hearth and the bench (native only).
 
 ## Limits and next

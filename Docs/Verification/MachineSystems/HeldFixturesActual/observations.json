@@ -1,24 +1,32 @@
 {
-  "source": "working tree after PB3 plus the adjacent-deposit change (Editor Play, 2026-11-18, Claude)",
-  "driver": "Unity MCP Input System key events from a worker thread through the isolated launcher in the main editor; real GameBootstrap Play, fresh world, world-map travel from Overworld.11.10.0 to the wild zone Overworld.10.11.0",
-  "disclosures": [
-    "The camp box was GRANTED to the pack with execute_code (the Quartermaster sale path is covered by native tests; no Quartermaster stock was rolled in play). All verbs after that used real keys and the ordinary menus.",
-    "F12 was not used. The first F5 happened in a session that the editor then recompiled under (source edits made during Play); that session was stopped and the checkpoint was Continued in a fresh launch.",
-    "Input stopped reaching the game once while the Game view lost focus (Application.isFocused false); focusing the Game view restored it. Not a game defect.",
-    "A viper and a magpie fought nearby in the zone for the whole session; the player was never attacked and HP stayed 40.",
-    "The box draws as its glyph (no art ships with it)."
-  ],
-  "observations": {
-    "arrival_zone_choice": "The classifier showed most zones near the start are family-owned or protected (a 5x5 window around 11.10: 3 wild, 11 family-owned, 6 protected, 2 POI). The nearest wild zone was 10.11, reached by the world map.",
-    "refusal_on_road": "At the arrival cell 40,12 (RoadStone) the pack menu listed 'set down (unavailable)' and selecting it logged 'The ground here will not hold it.' (setdown-disabled-on-road.png)",
-    "set_down": "On grass at 40,9 the pack menu listed eight 'set down <direction>' rows (setdown-rows-on-grass.png); set down north: 'You set camp box down.', pack weight 24 to 12, CampBox#2707 at 40,8 solid=True takeable=False Owned marker Player/RetainZone Installed tick 100 (after-setdown.png)",
-    "world_menu_and_reader": "Interact north: open, take up, break, hand over (you can no longer take it up), examine (standing-box-menu.png). Examine CURRENT STATE: 'You set this down. It stays here, with whatever is in it. You can take it up again, or hand it over and leave it for good.' (standing-box-reader.png)",
-    "walk_away_and_save": "Walked 12 cells east and back, F5 at turn 350; the box stayed at 40,8 with its marker.",
-    "fresh_continue": "AfterSaveCheckpoint restaged into a new launcher root and Continued: CampBox#2707 at 40,8 solid, marker Player, SetTick 100, same entity ID.",
-    "deposit": "A solid box cannot be stood on and the pack menu only offered 'Put in' for a container at the player's feet, so the first attempt offered nothing. After the adjacent-deposit change the dagger's actions listed 'Put in camp box' and it went in: Dagger#2701 inside, box weight 16 (12 + 4), pack weight 12 to 8 (put-in-camp-box-row.png)",
-    "take_up": "World menu take up with the dagger inside: CampBox#2707 in the pack, contents=1, weight 16, takeable, not solid, marker released, none left in the zone.",
-    "hand_over": "Set down east to 41,9 then hand over: marker released, Owned tag cleared, still standing solid with contents=1 (standing-box-menu-before-handover.png)."
-  },
-  "not_exercised": ["a Quartermaster purchase", "rest or a long clock jump away from the box", "a relapsing village (set-down is refused in villages; native retention tests cover marker retention there)", "Linux and Steam Deck", "packaged performance"],
-  "f12": false
+ "source": "working tree after PB3 plus the adjacent-deposit change (Editor Play, 2026-11-18, Claude)",
+ "driver": "Unity MCP Input System key events from a worker thread through the isolated launcher in the main editor; real GameBootstrap Play, fresh world, world-map travel from Overworld.11.10.0 to the wild zone Overworld.10.11.0",
+ "disclosures": [
+  "The camp box was GRANTED to the pack with execute_code (the Quartermaster sale path is covered by native tests; no Quartermaster stock was rolled in play). All verbs after that used real keys and the ordinary menus.",
+  "F12 was not used. The first F5 happened in a session that the editor then recompiled under (source edits made during Play); that session was stopped and the checkpoint was Continued in a fresh launch.",
+  "Input stopped reaching the game once while the Game view lost focus (Application.isFocused false); focusing the Game view restored it. Not a game defect.",
+  "A viper and a magpie fought nearby in the zone for the whole session; the player was never attacked and HP stayed 40.",
+  "The box draws as its glyph (no art ships with it).",
+  "The hearth play also needed the Game view focused again (Application.isFocused false) and a new-game prompt answered with N because the launcher root held an earlier save."
+ ],
+ "observations": {
+  "arrival_zone_choice": "The classifier showed most zones near the start are family-owned or protected (a 5x5 window around 11.10: 3 wild, 11 family-owned, 6 protected, 2 POI). The nearest wild zone was 10.11, reached by the world map.",
+  "refusal_on_road": "At the arrival cell 40,12 (RoadStone) the pack menu listed 'set down (unavailable)' and selecting it logged 'The ground here will not hold it.' (setdown-disabled-on-road.png)",
+  "set_down": "On grass at 40,9 the pack menu listed eight 'set down <direction>' rows (setdown-rows-on-grass.png); set down north: 'You set camp box down.', pack weight 24 to 12, CampBox#2707 at 40,8 solid=True takeable=False Owned marker Player/RetainZone Installed tick 100 (after-setdown.png)",
+  "world_menu_and_reader": "Interact north: open, take up, break, hand over (you can no longer take it up), examine (standing-box-menu.png). Examine CURRENT STATE: 'You set this down. It stays here, with whatever is in it. You can take it up again, or hand it over and leave it for good.' (standing-box-reader.png)",
+  "walk_away_and_save": "Walked 12 cells east and back, F5 at turn 350; the box stayed at 40,8 with its marker.",
+  "fresh_continue": "AfterSaveCheckpoint restaged into a new launcher root and Continued: CampBox#2707 at 40,8 solid, marker Player, SetTick 100, same entity ID.",
+  "deposit": "A solid box cannot be stood on and the pack menu only offered 'Put in' for a container at the player's feet, so the first attempt offered nothing. After the adjacent-deposit change the dagger's actions listed 'Put in camp box' and it went in: Dagger#2701 inside, box weight 16 (12 + 4), pack weight 12 to 8 (put-in-camp-box-row.png)",
+  "take_up": "World menu take up with the dagger inside: CampBox#2707 in the pack, contents=1, weight 16, takeable, not solid, marker released, none left in the zone.",
+  "hand_over": "Set down east to 41,9 then hand over: marker released, Owned tag cleared, still standing solid with contents=1 (standing-box-menu-before-handover.png).",
+  "camp_hearth_play": "Second Editor play (fresh world, same method; CampHearth, CampBench, 2 SalvagedTimber and a RecoveredIronBlank were GRANTED with execute_code). In the wild zone 10.11 the pack menu listed eight 'set down <direction>' rows for the hearth (camp-hearth-setdown-rows.png); set down east: 'You set camp hearth down.' The standing hearth's world menu listed take up, 'feed coals (1 salvaged timber, up to 10 fuel)', hand over, examine (camp-hearth-standing-menu.png). Feed: 'You feed one salvaged timber to the coals. The fuel still needs flame.' fuel 0 to 10, temperature 25, light off. Casting Ember Spit at it ('Your ember drops camp hearth!') did NOT light it (temperature stayed 25, tile heat 0): relighting needs an existing flame (a lit equipped torch or a hot neighbour), as the shipped coals do, so the first flame must be carried from a village fire. The bench was not played; its process rows are native-tested through the real station contract."
+ },
+ "not_exercised": [
+  "a Quartermaster purchase",
+  "rest or a long clock jump away from the box",
+  "a relapsing village (set-down is refused in villages; native retention tests cover marker retention there)",
+  "Linux and Steam Deck",
+  "packaged performance"
+ ],
+ "f12": false
 }
