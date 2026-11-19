@@ -12,8 +12,13 @@ namespace CavesOfOoo.Core
 
     /// <summary>One optional kitchen commission on exact saved owners. Ingredients
     /// remain physical escrow until completion; time never creates another job.</summary>
-    public sealed class KitchenBatchPart : Part
+    public sealed class KitchenBatchPart : Part, IDescribeState
     {
+        // ── reader contract (Docs/MACHINE-READERS.md) ──
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 20;
+        public string DescribeState(DescribeContext context) => Describe();
+
         public override string Name => "KitchenBatch";
         public const string StartCommand = "StartKitchenBatch", KitchenZoneID = "Overworld.12.11.0";
         public const int PreparationTicks = 120, Fee = 2;

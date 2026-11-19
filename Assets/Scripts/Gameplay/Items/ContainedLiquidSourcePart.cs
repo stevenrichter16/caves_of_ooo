@@ -8,8 +8,13 @@ namespace CavesOfOoo.Core
 {
     /// <summary>A finite source inside a solid container. This is deliberately
     /// not a ground pool: no floor projection, automatic contact or regeneration.</summary>
-    public sealed class ContainedLiquidSourcePart : Part
+    public sealed class ContainedLiquidSourcePart : Part, IDescribeState
     {
+        // ── reader contract (Docs/MACHINE-READERS.md) ──
+        public ReaderScope Scope => ReaderScope.Quick;
+        public int Order => 50;
+        public string DescribeState(DescribeContext context) => Describe();
+
         static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Entity, object> RecoveryCustody = new System.Runtime.CompilerServices.ConditionalWeakTable<Entity, object>();
         internal static bool IsRecoveryCustodyProtected(Entity item) => item != null && RecoveryCustody.TryGetValue(item, out _);
         // Normal destination merging completes before callbacks. Until its outer

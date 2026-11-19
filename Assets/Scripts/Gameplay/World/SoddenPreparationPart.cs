@@ -7,8 +7,13 @@ namespace CavesOfOoo.Core
 {
     /// <summary>One repaired, staffed southern Sodden bench. Each preparation
     /// consumes actual carried ingredients and pays its saved worker atomically.</summary>
-    public sealed class SoddenPreparationPart : Part
+    public sealed class SoddenPreparationPart : Part, IDescribeState
     {
+        // ── reader contract (Docs/MACHINE-READERS.md) ──
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 30;
+        public string DescribeState(DescribeContext context) => Describe();
+
         public override string Name => "SoddenPreparation";
         public const string PrepareCommand = "PrepareSoddenDressing";
         public const string StopZoneID = "Overworld.15.7.0";

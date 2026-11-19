@@ -8,8 +8,13 @@ namespace CavesOfOoo.Core
     /// <summary>Opt-in intervention on four mechanical floor traps. One carried
     /// salvaged timber permanently jams this exact mechanism. The saved owner and
     /// its original trigger stay in place; there is no rearm or recoverable timber.</summary>
-    public sealed class TrapJammingPart : Part
+    public sealed class TrapJammingPart : Part, IDescribeState
     {
+        // ── reader contract (Docs/MACHINE-READERS.md) ──
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 70;
+        public string DescribeState(DescribeContext context) => DescribeJamming();
+
         public override string Name => "TrapJamming";
         public const string JamCommand = "JamTrap";
         public const string TimberBlueprint = "SalvagedTimber";

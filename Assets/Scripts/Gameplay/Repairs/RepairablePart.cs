@@ -9,8 +9,13 @@ namespace CavesOfOoo.Core
     /// <summary>One authored structural fault. Repair spends carried materials and
     /// saves a restored-function flag in the same command receipt. It does not heal
     /// combat HP, resurrect destroyed structures, or change settlement quest stages.</summary>
-    public sealed class RepairablePart : Part
+    public sealed class RepairablePart : Part, IDescribeState
     {
+        // ── reader contract (Docs/MACHINE-READERS.md) ──
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 60;
+        public string DescribeState(DescribeContext context) => Describe();
+
         public override string Name => "Repairable";
         public const string RepairCommand="RepairObject";
         public string RecipeId="";

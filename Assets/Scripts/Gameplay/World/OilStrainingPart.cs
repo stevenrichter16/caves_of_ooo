@@ -7,8 +7,13 @@ namespace CavesOfOoo.Core
 {
     /// <summary>A supervised, finite preparation at a physical bench. Quantities
     /// are authored item measures, not liquid drams or a thermal simulation.</summary>
-    public sealed class OilStrainingPart : Part
+    public sealed class OilStrainingPart : Part, IDescribeState
     {
+        // ── reader contract (Docs/MACHINE-READERS.md) ──
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 40;
+        public string DescribeState(DescribeContext context) => Describe();
+
         public override string Name => "OilStraining";
         public const string Blueprint="PeatOilStrainer", CommandPrefix="StrainFrogOil|";
         public static bool IsCommand(string command)=>command?.StartsWith(CommandPrefix,StringComparison.Ordinal)==true;

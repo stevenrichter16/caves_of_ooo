@@ -6,8 +6,13 @@ namespace CavesOfOoo.Core
 {
     /// <summary>Opt-in thin exposure on an ordinary LiquidPool. Volume is its one matter
     /// counter, never collectible drams. Primitive fields round-trip with the entity.</summary>
-    public sealed class FiniteLiquidFilmPart : Part
+    public sealed class FiniteLiquidFilmPart : Part, IDescribeState
     {
+        // ── reader contract (Docs/MACHINE-READERS.md) ──
+        public ReaderScope Scope => ReaderScope.Quick;
+        public int Order => 10;
+        public string DescribeState(DescribeContext context) => Describe();
+
         public override string Name => "FiniteLiquidFilm";
         public const int LifetimeRounds = 6;
         public int RemainingRounds = LifetimeRounds;

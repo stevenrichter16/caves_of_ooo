@@ -127,20 +127,10 @@ namespace CavesOfOoo.Core
             string baseLine = $"You see {article}{name}.";
             if (!string.IsNullOrEmpty(intent)) baseLine += "\n" + intent;
             if (!string.IsNullOrEmpty(threat)) baseLine += "\n" + threat;
-            var film = ParentEntity?.GetPart<FiniteLiquidFilmPart>()?.Describe();
-            if (!string.IsNullOrEmpty(film)) baseLine += "\n" + film;
-            var batch = ParentEntity?.GetPart<KitchenBatchPart>()?.Describe();
-            if (!string.IsNullOrEmpty(batch)) baseLine += "\n" + batch;
-            var dressing = ParentEntity?.GetPart<SoddenPreparationPart>()?.Describe();
-            if (!string.IsNullOrEmpty(dressing)) baseLine += "\n" + dressing;
-            var oilStraining = ParentEntity?.GetPart<OilStrainingPart>()?.Describe();
-            if (!string.IsNullOrEmpty(oilStraining)) baseLine += "\n" + oilStraining;
-            var contained = ParentEntity?.GetPart<ContainedLiquidSourcePart>()?.Describe();
-            if (!string.IsNullOrEmpty(contained)) baseLine += "\n" + contained;
-            var repair = ParentEntity?.GetPart<RepairablePart>()?.Describe();
-            if (!string.IsNullOrEmpty(repair)) baseLine += "\n" + repair;
-            var trap = ParentEntity?.GetPart<TrapJammingPart>()?.DescribeJamming();
-            if (!string.IsNullOrEmpty(trap)) baseLine += "\n" + trap;
+            // The state lines come from one collector (film, kitchen, dressing, oil, contained liquid, repair, trap, and any Part added later).
+            var stateLines = new System.Collections.Generic.List<string>();
+            StateReader.Collect(ParentEntity, false, ParentEntity?.SpatialZone, null, null, stateLines);
+            for (int i = 0; i < stateLines.Count; i++) baseLine += "\n" + stateLines[i];
             if (ParentEntity?.HasPart<CultivatedSoilPart>() == true)
                 baseLine += "\nTilled growing bed. Plant a carried seed here when the bed is empty. Conjure Rain waters planted crops; watered crops keep growing while you travel and rest, but dry soil stops growth.";
             if (statusFirst)

@@ -90,11 +90,7 @@ namespace CavesOfOoo.Core
             if(effects!=null)for(int i=0;i<effects.Count;i++)
                 if(effects[i]!=null&&effects[i].Owner==owner&&effects[i].Duration!=0)Add(state,EffectDescriber.Describe(effects[i]));
             if(inWorld)Add(state,CellStatusReadout.GroundLine(zone,cell));
-            Add(state,owner.GetPart<KitchenBatchPart>()?.Describe());
-            Add(state,owner.GetPart<SoddenPreparationPart>()?.Describe());
-            Add(state,owner.GetPart<OilStrainingPart>()?.Describe());
-            Add(state,owner.GetPart<RepairablePart>()?.Describe());
-            Add(state,owner.GetPart<TrapJammingPart>()?.DescribeJamming());
+            StateReader.Collect(owner,true,zone,cell,viewer,state);   // kitchen, dressing, oil, repair, trap, and any Part added later
             if(inWorld)
             {
                 Add(state,owner.GetPart<CampfirePart>()?.DescribeFiniteCooking(zone,cell));
