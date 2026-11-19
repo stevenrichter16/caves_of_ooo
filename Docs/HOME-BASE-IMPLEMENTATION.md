@@ -88,7 +88,7 @@ The hearth also lights its surroundings (radius 6) only while it is actually bur
 
 Editor play of the hearth (`HeldFixturesActual/observations.json`): the eight set-down rows, the standing menu with the shipped 'feed coals' verb, and a feed that reads 'The fuel still needs flame.' Ember Spit did not light it; relighting needs a carried flame, which makes carrying fire from a village a small, real errand.
 
-Not done: a bedroll (D-H1 is a balance decision), art for either kit (glyph only), actual Editor play of the hearth and the bench (native only).
+Not done: a bedroll (D-H1 is a balance decision), art for either kit (glyph only), save and reload of the bench and still in actual play (Editor play of the box, hearth, bench and still is recorded in `HeldFixturesActual/observations.json`; the bench and still were played on 2026-11-19 without an F5 or Continue).
 
 ### Fire and hostile-reach audit (PB1a item 3), read-only
 

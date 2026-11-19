@@ -28,5 +28,32 @@
   "Linux and Steam Deck",
   "packaged performance"
  ],
- "f12": false
+ "f12": false,
+ "bench_and_still_play": {
+  "date": "2026-11-19",
+  "source": "HEAD f13ec64cd working tree (Editor Play, Claude), fresh world, world-map travel from Overworld.11.10.0 to the wild zone Overworld.10.11.0, same real-key driver as the hearth play",
+  "disclosures": [
+   "CampBench, CampStill, IronSpikeComponent, OakHaftComponent, LeatherBindingComponent, 2 MendleafSprig and FireMoss were GRANTED to the pack with execute_code; the trader sale paths are native-tested (no stock was rolled in play). All verbs after that were real keys and the ordinary menus.",
+   "A first launch was lost: the Editor recompiled scripts during Play (a domain reload after a source touch made minutes earlier) and the game state was wiped. That session was stopped, the Editor was left to settle idle, and the play was repeated from the start; none of the first launch is claimed.",
+   "No F5 or fresh Continue was done in this play: persistence across save and reload is claimed only for the camp box (earlier play) and by native tests for the bench and still.",
+   "A viper and a magpie fought nearby for the whole session; HP stayed 40.",
+   "The bench and still draw as glyphs (no art ships with them)."
+  ],
+  "observations": {
+   "bench_carried": "The pack menu for the carried camp bench lists eight 'set down <direction>' rows and examine; no craft rows (camp-bench-carried-actions.png).",
+   "bench_set_down_station": "Set down east at 41,9: 'You set camp bench down.' Its world menu then lists the full forge picker (Heads / blades, Hafts, Bindings, Quenches, Weapon) with the carried iron spike, oak haft and leather binding, plus take up and hand over (camp-bench-standing-picker.png).",
+   "bench_craft": "Marking the three parts and choosing >> Craft << logged 'You forge oak-hafted leather-bound iron spike.' The three parts left the pack and ForgedWeapon#6841 arrived (pack weight 42 to 39) (camp-bench-crafted.png).",
+   "bench_after_craft": "The same bench now offers the new weapon under re-forge / temper and a take up row (camp-bench-after-craft-picker.png). The entity chooser appeared first this time (camp bench / grass) because the pack changed the underfoot list; a positional letter pressed there is not the take-up row, which is a lasting menu detail, not a defect.",
+   "bench_take_up": "Take up logged 'You take up camp bench.' CampBench#2706 returned to the pack and no bench remained at 41,9.",
+   "still_carried": "The carried camp still lists set down rows and examine only: no brew rows (camp-still-carried-actions.png).",
+   "still_set_down_station": "Set down east: its world menu lists take up, brew the mix and brew a full batch (dimmed until reagents are set aside), the two reagent toggles (mendleaf sprig x2, fire-moss), hand over and examine (camp-still-standing-menu.png).",
+   "still_brew": "Setting aside mendleaf and fire-moss and choosing brew the mix logged 'Discovery: Vitality distilled - knits wounds closed. Toxins spoil it.' and 'You brew mending flask.' BrewedTonic#6842 arrived; fire-moss was spent and one mendleaf sprig of two remained (camp-still-brewed.png)."
+  },
+  "not_observed": [
+   "save, reload and continue for the bench and still",
+   "a still brew that mishaps",
+   "the camp bench cold rows other than the craft picker (dismantle, reclaim, point)",
+   "Linux, Steam Deck, packaged builds"
+  ]
+ }
 }
