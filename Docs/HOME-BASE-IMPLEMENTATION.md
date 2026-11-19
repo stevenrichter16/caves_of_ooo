@@ -81,7 +81,9 @@ The point of the set-down mechanism is that a machine can be *composed* and then
 - **Camp bench** (`CampBench`, 22 lb, 120 drams, a 25% line in `TinkerStock`): a `ForgePart` and nothing else, so it is a cold station (the shipped dismantle, reclaim and point rows and the craft picker find it through the station contract with no edit to the scanners). Carried, it is a kit and no station (its craft rows are hidden and the `Loose`
   install state vetoes readiness); set down, it is a forge you chose to put where the work is; taken up, it stops being one. The price and weight make carrying it a decision, and it conjures nothing: the components, the finite finds and the recipes are unchanged.
 
-Not done: light from a lit hearth, a bedroll (D-H1 is a balance decision), art for either kit (glyph only), actual Editor play of the hearth and the bench (native only).
+The hearth also lights its surroundings (radius 6) only while it is actually burning: `HearthGlowPart` reads the owner's Campfire, Thermal and Fuel once per turn and switches the existing `LightSource` on when it is hot enough to cook and has fuel, off when it is not, so a fed hearth lights the night and a spent one goes dark. A carried hearth keeps its state.
+
+Not done: a bedroll (D-H1 is a balance decision), art for either kit (glyph only), actual Editor play of the hearth and the bench (native only).
 
 ## Limits and next
 

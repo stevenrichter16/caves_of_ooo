@@ -86,5 +86,21 @@ namespace CavesOfOoo.Tests
             Assert.False(rows.Any(a => !a.IsDisabled && a.Display.Contains("east")), "a box cannot be set down onto or beside heat");
             Assert.NotNull(thermal);
         }
+
+        // ── light: the fire lights the night only while it burns ──
+
+        void Turn(Entity e) { var ev = GameEvent.New("EndTurn"); e.FireEvent(ev); ev.Release(); }
+
+        [Test] public void ALitHearthGlowsAndASpentOrColdOneDoesNot()
+        {
+            var h = SetDown(); var light = h.GetPart<LightSourcePart>(); Assert.False(light.Enabled, "sold dark"); Turn(h); Assert.False(light.Enabled);
+            h.GetPart<FuelPart>().FuelMass = 10; h.GetPart<ThermalPart>().Temperature = 400; Turn(h); Assert.True(light.Enabled, "hot with fuel");
+            h.GetPart<FuelPart>().FuelMass = 0; Turn(h); Assert.False(light.Enabled, "fuel gone"); h.GetPart<FuelPart>().FuelMass = 10; h.GetPart<ThermalPart>().Temperature = 25; Turn(h); Assert.False(light.Enabled, "cold");
+        }
+
+        [Test] public void ACarriedHearthKeepsItsStateAndNeverGlowsInAPack()
+        {
+            var h = Carry("CampHearth"); h.GetPart<FuelPart>().FuelMass = 10; h.GetPart<ThermalPart>().Temperature = 400; Turn(h); Assert.False(h.GetPart<LightSourcePart>().Enabled);
+        }
     }
 }
