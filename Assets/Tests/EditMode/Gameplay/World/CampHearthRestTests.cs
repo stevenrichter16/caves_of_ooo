@@ -110,6 +110,13 @@ namespace CavesOfOoo.Tests
             Actor.GetStat("Hitpoints").BaseValue = 3; Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(3, Hp);
         }
 
+        [Test] public void TheWorldMenuTheUiBuildsOffersTheHearthRestRows()
+        {
+            var h = Hearth(30); var rows = WorldInteractionSystem.GatherActions(h, Actor);
+            Assert.True(rows.Any(a => a.Name == "HearthRest" && !a.IsDisabled && a.Time == ActionTime.Free), "the world menu runs it as a free, declared-time row"); Assert.True(rows.Any(a => a.Name == "HearthRestBand"));
+            Assert.False(rows.Any(a => a.Command == "RestAtCampfire"), "the ordinary free rest is still not offered");
+        }
+
         [Test] public void TheRestPartRoundTripsAsAnEmptyPartAndSurvivesTheHearthSave()
         {
             var h = Hearth(21); var copy = PartRoundTripHelper.RoundTripEntityViaTokenGraph(h); Assert.NotNull(copy.GetPart<HearthRestPart>()); Assert.AreEqual(21f, copy.GetPart<FuelPart>().FuelMass, 0.001f);

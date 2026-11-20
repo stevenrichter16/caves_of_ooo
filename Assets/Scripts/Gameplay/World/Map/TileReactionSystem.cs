@@ -296,6 +296,8 @@ namespace CavesOfOoo.Core
                 if (coating == null) continue;
                 if (!string.IsNullOrEmpty(r.InputResidue) && !state.HasResidue(x, y, r.InputResidue)) continue;
                 if ((LiquidRegistry.Get(coating)?.Combustibility ?? 0) <= 0) continue;
+                // The real write adds one heat and then cancels opposed energy, so cold already on the cell eats the spark: net heat must still reach the reaction's minimum.
+                if (System.Math.Max(0, state.Heat(x, y) + 1 - state.Cold(x, y)) < r.MinEnergy) continue;
                 return true;
             }
             return false;

@@ -91,22 +91,31 @@ namespace CavesOfOoo.Core
             var zone = actor?.SpatialZone;
             if (actions == null || zone == null || !WorldResourceActions.Carried(actor, ParentEntity, false)) return;
             var origin = zone.GetEntityCell(actor);
-            if (origin != null && Usable(actor, ParentEntity))
+            if (origin != null && WorldResourceActions.ActorCurrent(actor, zone) && !Usable(actor, ParentEntity) && Catchable(zone, origin))
+                actions.AddDisabled("StrikeSpark", "strike a spark", "striker_unusable", Strikes <= 0 ? "The flint is worn smooth." : "The flint will not spark while it is wet or frozen.", '\0', 16);
+            if (origin != null && WorldResourceActions.ActorCurrent(actor, zone) && Usable(actor, ParentEntity))
             {
                 foreach (var d in Directions)
                 {
                     int x = origin.X + d.x, y = origin.Y + d.y;
                     if (zone.GetCell(x, y) == null || !TileReactionSystem.HeatWouldIgnite(zone, x, y)) continue;
                     // A slick you are standing in burns toward you: say so on the row, before the strike is spent.
-                    string warning = TileReactionSystem.HeatWouldIgnite(zone, origin.X, origin.Y) ? " (you are standing in it)" : "";
+                    string warning = TileReactionSystem.HeatWouldIgnite(zone, origin.X, origin.Y) ? " (underfoot)" : "";
                     actions.AddAction("StrikeSpark", "strike a spark " + d.label + warning, SparkCommand(zone, origin, x, y), '\0', 16, false, ActionTime.OneAction);
                 }
             }
             if (Strikes >= MaxStrikes) return;
             if (Spike(actor) != null)
-                actions.AddAction("KnapStriker", "knap a new edge (1 iron spike, " + KnapStrikes + " strikes)", KnapPrefix + ParentEntity.ID, '\0', 15, false, ActionTime.OneAction);
+                actions.AddAction("KnapStriker", "knap an edge (1 spike, +" + Math.Min(KnapStrikes, MaxStrikes - Math.Max(0, Strikes)) + " strikes)", KnapPrefix + ParentEntity.ID, '\0', 15, false, ActionTime.OneAction);
             else
-                actions.AddDisabled("KnapStriker", "knap a new edge", "no-spike", "Knapping a new edge needs an iron spike.", '\0', 15);
+                actions.AddDisabled("KnapStriker", "knap an edge", "no-spike", "Knapping a new edge needs an iron spike.", '\0', 15);
+        }
+
+        /// <summary>Some adjacent cell would catch a spark, so a refusal row is worth showing.</summary>
+        static bool Catchable(Zone zone, Cell origin)
+        {
+            foreach (var d in Directions) if (zone.GetCell(origin.X + d.x, origin.Y + d.y) != null && TileReactionSystem.HeatWouldIgnite(zone, origin.X + d.x, origin.Y + d.y)) return true;
+            return false;
         }
 
         string SparkCommand(Zone zone, Cell origin, int x, int y)
@@ -133,7 +142,7 @@ namespace CavesOfOoo.Core
             bool own = transaction == null; transaction ??= new InventoryTransaction();
             try
             {
-                if (!transaction.TryClaim(actor, actor, command) || !transaction.TryClaim(ParentEntity, actor, command)) return Reject(actor, "in_progress", "The flint is already in use.");
+                if (!transaction.TryClaim(actor, actor, command) || !transaction.TryClaim(ParentEntity, actor, command) || !transaction.TryClaimAction(actor)) return Reject(actor, "in_progress", "The flint is already in use.");
                 int before = Strikes; var owner = ParentEntity;
                 transaction.Do(() => Strikes = before - 1, () => Strikes = before);
                 // The world write happens once, after the action commits: tile heat cannot be taken back, so an outer failure must never leave a fire with the strike returned.

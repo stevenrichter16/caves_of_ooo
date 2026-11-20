@@ -116,7 +116,7 @@ namespace CavesOfOoo.Tests
         [Test] public void ARowWarnsWhenYouAreStandingInTheSlickYouAreAboutToLight()
         {
             var s = Striker(); Zone.TileState.WriteCoating(11, 10, Oil, 5); Assert.AreEqual("strike a spark east", Actions(s).Single(a => a.Name == "StrikeSpark").Display);
-            Zone.TileState.WriteCoating(10, 10, Oil, 5); Assert.AreEqual("strike a spark east (you are standing in it)", Actions(s).Single(a => a.Name == "StrikeSpark" && a.Display.Contains("east")).Display);
+            Zone.TileState.WriteCoating(10, 10, Oil, 5); Assert.AreEqual("strike a spark east (underfoot)", Actions(s).Single(a => a.Name == "StrikeSpark" && a.Display.Contains("east")).Display);
         }
 
         [Test] public void ASparkLightsAnOilSlickThroughTheSharedReactionAndSpendsOneStrike()
@@ -139,9 +139,23 @@ namespace CavesOfOoo.Tests
             Assert.False(Act(s, row)); Assert.AreEqual(20, Strikes(s)); Assert.True(Zone.TileState.HasCoating(11, 10, Oil));
         }
 
-        [Test] public void AWetStrikerOffersNoSparkRow_Counter()
+        [Test] public void AWetStrikerOffersNoUsableSparkRowButSaysWhy()
         {
             var s = Striker(); Zone.TileState.WriteCoating(11, 10, Oil, 5); Assert.True(s.ApplyEffect(new WetEffect(1f))); Assert.False(Actions(s).Any(a => a.Name == "StrikeSpark" && !a.IsDisabled));
+            var why = Actions(s).Single(a => a.Name == "StrikeSpark"); Assert.True(why.IsDisabled); StringAssert.Contains("wet", why.DisabledReason);
+            s.GetEffect<WetEffect>().Moisture = 0f; s.RemoveEffect<WetEffect>(); s.GetPart<FlintStrikerPart>().Strikes = 0; StringAssert.Contains("worn", Actions(s).Single(a => a.Name == "StrikeSpark").DisabledReason);
+        }
+
+        [Test] public void AnUnusableStrikerShowsNoRefusalRowWhereNothingWouldCatch_Counter()
+        {
+            var s = Striker(0); Assert.False(Actions(s).Any(a => a.Name == "StrikeSpark"));
+        }
+
+        [Test] public void ColdAlreadyOnAnOilCellEatsTheSparkSoNoRowInvitesAWastedStrike()
+        {
+            var s = Striker(); Zone.TileState.WriteCoating(11, 10, Oil, 5); Zone.TileState.AddCold(11, 10, 1);
+            Assert.False(TileReactionSystem.HeatWouldIgnite(Zone, 11, 10), "heat 1 meets cold 1 and both cancel"); Assert.False(Actions(s).Any(a => a.Name == "StrikeSpark" && !a.IsDisabled));
+            Zone.TileState.AddHeat(11, 10, 1); Assert.True(TileReactionSystem.HeatWouldIgnite(Zone, 11, 10), "with heat already there the spark clears the cold");
         }
 
         // ── knapping: the way to renew it uses a spent part, not a free refill ──
@@ -149,7 +163,7 @@ namespace CavesOfOoo.Tests
         [Test] public void KnappingRestoresStrikesAtOneIronSpikeAndOnlyWhenWorn()
         {
             var s = Striker(5); Assert.False(Actions(s).Any(a => a.Name == "KnapStriker" && !a.IsDisabled), "no spike, no row");
-            Carry("IronSpikeComponent"); var row = Actions(s).Single(a => a.Name == "KnapStriker"); StringAssert.Contains("iron spike", row.Display);
+            Carry("IronSpikeComponent"); var row = Actions(s).Single(a => a.Name == "KnapStriker"); StringAssert.Contains("spike", row.Display); StringAssert.Contains("+10", row.Display);
             Assert.True(Act(s, row.Command)); Assert.AreEqual(15, Strikes(s), "ten strikes for one spike"); Assert.AreEqual(0, Count("IronSpikeComponent"));
             Carry("IronSpikeComponent"); Assert.True(Act(s, Actions(s).Single(a => a.Name == "KnapStriker").Command)); Assert.AreEqual(20, Strikes(s), "never above the maximum");
             Carry("IronSpikeComponent"); Assert.False(Actions(s).Any(a => a.Name == "KnapStriker" && !a.IsDisabled), "a full striker offers no knapping"); Assert.AreEqual(1, Count("IronSpikeComponent"));
