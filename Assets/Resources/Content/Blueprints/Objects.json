@@ -5657,6 +5657,49 @@
       ]
     },
     {
+      "Name": "SoundingRod",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "sounding rod" },
+            { "Key": "RenderString", "Value": "/" },
+            { "Key": "ColorString", "Value": "&c" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "true" },
+            { "Key": "Weight", "Value": "4" }
+          ]
+        },
+        { "Name": "SoundingRod", "Params": [] },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Iron" },
+            { "Key": "Combustibility", "Value": "0" },
+            { "Key": "MaterialTagsRaw", "Value": "Metal" }
+          ]
+        },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "22" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "An iron-shod ash rod with a striking collar. Driven into the floor of a deep cave and struck, the stone answers about ground you have not seen: open ground, a way through, dense rock, each only as a bearing and a distance. The strike rings, and things that hunt by sound hear it." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Item", "Value": "true" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
       "Name": "MinePump",
       "Inherits": "PhysicalObject",
       "Parts": [
