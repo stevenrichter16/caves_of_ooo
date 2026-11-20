@@ -392,6 +392,10 @@ namespace CavesOfOoo.Rendering
                 lines[0] = target.GetDisplayName() + " - afflicted:";
             }
 
+            // A fire or torch always says its fuel and what that is in turns (not on a pile summary, whose lines are not about one thing).
+            string fuelLine = cell != null && WorldInteractionSystem.IsPileCell(cell) ? null : CellStatusReadout.FuelLine(target);
+            if (fuelLine != null) lines.Insert(0, fuelLine);
+
             if (zone != null && cell != null)
             {
                 string ground = CellStatusReadout.GroundLine(zone, cell);

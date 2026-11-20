@@ -302,6 +302,10 @@ namespace CavesOfOoo.Core
                         PickTargetCommandPrefix + e.ID, '\0', 0));
         }
 
+        /// <summary>Adds the "light it" row for a cell beside the actor where a spark would catch (an oil slick), run by the torch or flint striker the actor carries, so lighting never
+        /// needs a trip through the pack menu. Nothing is added for any other cell.</summary>
+        public static void AppendIgnitionActions(List<InventoryAction> rows, Cell cell, Entity actor) => FireStarting.AddCellRows(rows, cell, actor);
+
         public static List<InventoryAction> BuildTargetPickerActions(Cell cell)
             => BuildTargetPickerActions(cell, null);
 

@@ -5,7 +5,7 @@ namespace CavesOfOoo.Core
     /// BurningEffect fires "ConsumeFuel" each turn to burn fuel
     /// and determine heat output.
     /// </summary>
-    public class FuelPart : Part
+    public class FuelPart : Part, IDescribeState
     {
         public override string Name => "Fuel";
 
@@ -17,6 +17,11 @@ namespace CavesOfOoo.Core
         public string ExhaustProduct = "";
 
         public bool IsExhausted => FuelMass <= 0f;
+
+        // Every fuel-bearing thing says how much it has and how many turns that is, in both examine readers.
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 30;
+        public string DescribeState(DescribeContext context) => CellStatusReadout.FuelLine(ParentEntity);
 
         public override bool HandleEvent(GameEvent e)
         {

@@ -102,7 +102,9 @@ namespace CavesOfOoo.Core
 
         private bool HandleRender(GameEvent e)
         {
-            if (FiniteCooking) return true;
+            // A finite fire is drawn as its own art (the coals) and keeps no flicker, except the camp hearth: it burns in fire colors only while it is actually burning, so a lit
+            // hearth looks lit and a cold one stays dark.
+            if (FiniteCooking && !(ParentEntity?.GetPart<HearthGlowPart>()?.Burning() ?? false)) return true;
             _renderFrameCounter++;
             e.SetParameter("ColorString", _renderFrameCounter % 6 == 0 ? "&Y" : "&R");
             return true;

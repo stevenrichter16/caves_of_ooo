@@ -44,6 +44,12 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool FireOnActor;
 
+        /// <summary>
+        /// A carried item that performs this row instead of the menu's target. A world menu opened on a cell with nothing to carry the row (an oil slick is a tile coating) names the
+        /// striker or torch in the actor's hands here, and runs the same command the pack menu would. Null for every ordinary row.
+        /// </summary>
+        public Entity Via;
+
         /// <summary>Declared turn cost; <see cref="ActionTime.Unspecified"/> means the legacy chains decide.</summary>
         public ActionTime Time = ActionTime.Unspecified;
 

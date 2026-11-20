@@ -53,6 +53,12 @@ namespace CavesOfOoo.Core
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
+                if (command != null && command.StartsWith(FireStarting.TorchCellPrefix, StringComparison.Ordinal))
+                {
+                    if (TryLightCell(e.GetParameter<Entity>("Actor"), e.GetParameter<Zone>("Zone"), command, e.GetParameter<InventoryTransaction>("InventoryTransaction")))
+                    { e.Handled = true; return false; }
+                    return true;
+                }
                 if (command == LightCommand || command == ExtinguishCommand)
                 {
                     if (TryAct(e.GetParameter<Entity>("Actor"), e.GetParameter<Zone>("Zone"), command,
@@ -139,6 +145,28 @@ namespace CavesOfOoo.Core
                 transaction.AfterCommit(() => Diag.Record("event", lighting ? "TorchLit" : "TorchExtinguished", actor, ParentEntity,
                     new { fuel = fuel.FuelMass }));
                 transaction.AfterCommit(() => MessageLog.Add(lighting ? "You light the torch." : "You extinguish the torch."));
+                if (own) transaction.Commit();
+                return true;
+            }
+            finally { if (own) transaction.Rollback(); }
+        }
+
+        /// <summary>Touches this held, burning torch to an adjacent cell that would catch (an oil slick). Free of any strike; the flame is not spent.</summary>
+        private bool TryLightCell(Entity actor, Zone zone, string command, InventoryTransaction transaction)
+        {
+            if (zone == null || actor == null || !WorldResourceActions.ActorCurrent(actor, zone) || CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)
+                || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true) return Reject(actor, "actor_dead", "You cannot light anything right now.");
+            if (!FireStarting.ParseCell(command, out string zoneId, out int ox, out int oy, out int x, out int y, out string toolId)) return Reject(actor, "malformed_selection", "That is not something you can light.");
+            var origin = zone.GetEntityCell(actor);
+            if (zoneId != zone.ZoneID || toolId != ParentEntity.ID || origin == null || origin.X != ox || origin.Y != oy || ParentEntity.GetPart<PhysicsPart>()?.Equipped != actor) return Reject(actor, "stale_selection", "You have moved since you chose that.");
+            if (!ControlledFlameActive) return Reject(actor, "not_lit", "The torch is not burning.");
+            if (!FireStarting.Ignitable(actor, zone, x, y)) return Reject(actor, "nothing_to_catch", "That would catch on nothing.");
+            bool own = transaction == null; transaction ??= new InventoryTransaction();
+            try
+            {
+                if (!transaction.TryClaim(actor, actor, command) || !transaction.TryClaim(ParentEntity, actor, command) || !transaction.TryClaimAction(actor)) return Reject(actor, "in_progress", "That torch is already being used.");
+                var owner = ParentEntity;
+                FireStarting.QueueIgnite(actor, zone, x, y, transaction, owner, "You touch the torch to it.", "Torch", "TorchLitCell", () => new { x, y });
                 if (own) transaction.Commit();
                 return true;
             }

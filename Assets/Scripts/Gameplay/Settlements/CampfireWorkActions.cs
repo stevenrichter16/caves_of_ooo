@@ -33,9 +33,14 @@ namespace CavesOfOoo.Core
             if (!Fuel(fire, out var fuel)) return;
             if (fuel.FuelMass < fuel.MaxFuel && Timber(actor) != null)
                 actions.AddAction("FeedCookingFire", "feed coals (1 salvaged timber, up to 10 fuel)", "FeedCookingFire", '\0', 18);
-            if (fuel.FuelMass > 0 && fire.ParentEntity.GetPart<ThermalPart>().Temperature < 450 && IgnitionSources.Find(actor, zone, fire.ParentEntity) is Entity flame)
+            var flame = IgnitionSources.Find(actor, zone, fire.ParentEntity);
+            if (fuel.FuelMass > 0 && fire.ParentEntity.GetPart<ThermalPart>().Temperature < 450 && flame != null)
                 // A flint striker pays a strike for every relight, including one that only tops up a fire that is still burning, so the row says so.
                 actions.AddAction("RelightCookingFire", "relight coals from flame" + (flame.HasPart<FlintStrikerPart>() ? " (1 strike)" : ""), "RelightCookingFire", '\0', 18);
+            else if (!Hot(fire))
+                // A fire that is out says what stops it from being lit instead of offering nothing.
+                actions.AddDisabled("RelightCookingFire", "relight coals from flame", fuel.FuelMass <= 0 ? "no_fuel" : "no_flame",
+                    fuel.FuelMass <= 0 ? "The coals have no fuel. Feed them first." : "You have no flame to light it from: a burning fire beside you, a lit torch in hand, or a flint striker.", '\0', 18);
         }
         internal static bool TryAct(Entity actor, CampfirePart fire, Zone zone, string command, InventoryTransaction tx)
         {
@@ -88,7 +93,7 @@ namespace CavesOfOoo.Core
                         if (!tx.TryClaim(source, actor, command)) return false;
                         if (!IgnitionSources.Consume(actor, source, tx, "coals")) return WorldResourceActions.Reject(actor, owner, command, "fuel_or_ignition_unavailable");
                         float before = heat.Temperature; tx.Do(() => heat.Temperature = 450, () => heat.Temperature = before);
-                        tx.AfterCommit(() => { ZoneRenderHooks.MarkCellDirty(zone.GetEntityCell(owner), "CookingRelit"); MessageLog.Add("You relight the cooking coals from the flame."); });
+                        tx.AfterCommit(() => { owner.GetPart<HearthGlowPart>()?.SyncLight(); ZoneRenderHooks.MarkCellDirty(zone.GetEntityCell(owner), "CookingRelit"); MessageLog.Add("You relight the cooking coals from the flame."); });
                     }
                 }
                 if (own) tx.Commit(); return true;

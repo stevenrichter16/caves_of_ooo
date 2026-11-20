@@ -68,6 +68,8 @@ namespace CavesOfOoo.Core
             // menu reads the same readout, so a frozen viper can no longer
             // show its status in one surface and not the other).
             CellStatusReadout.AppendAfflictionLines(primary, details);
+            string fuelDetail = CellStatusReadout.FuelLine(primary);
+            if (fuelDetail != null) details.Add(fuelDetail);
 
             string contents = BuildContentsLine(visibleObjects);
             if (!string.IsNullOrEmpty(contents))

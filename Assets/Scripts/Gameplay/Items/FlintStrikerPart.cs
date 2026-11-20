@@ -101,7 +101,7 @@ namespace CavesOfOoo.Core
                     if (zone.GetCell(x, y) == null || !TileReactionSystem.HeatWouldIgnite(zone, x, y)) continue;
                     // A slick you are standing in burns toward you: say so on the row, before the strike is spent.
                     string warning = TileReactionSystem.HeatWouldIgnite(zone, origin.X, origin.Y) ? " (underfoot)" : "";
-                    actions.AddAction("StrikeSpark", "strike a spark " + d.label + warning, SparkCommand(zone, origin, x, y), '\0', 16, false, ActionTime.OneAction);
+                    actions.AddAction("StrikeSpark", "strike a spark " + d.label + warning, SparkCommand(zone, origin, x, y, ParentEntity), '\0', 16, false, ActionTime.OneAction);
                 }
             }
             if (Strikes >= MaxStrikes) return;
@@ -118,8 +118,7 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        string SparkCommand(Zone zone, Cell origin, int x, int y)
-            => SparkPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + N(x) + "|" + N(y) + "|" + ParentEntity.ID;
+        internal static string SparkCommand(Zone zone, Cell origin, int x, int y, Entity striker) => FireStarting.CellCommand(SparkPrefix, zone, origin, x, y, striker);
 
         static string N(int value) => value.ToString(CultureInfo.InvariantCulture);
         static bool Int(string text, out int value) => int.TryParse(text, NumberStyles.Integer, CultureInfo.InvariantCulture, out value);
@@ -145,14 +144,8 @@ namespace CavesOfOoo.Core
                 if (!transaction.TryClaim(actor, actor, command) || !transaction.TryClaim(ParentEntity, actor, command) || !transaction.TryClaimAction(actor)) return Reject(actor, "in_progress", "The flint is already in use.");
                 int before = Strikes; var owner = ParentEntity;
                 transaction.Do(() => Strikes = before - 1, () => Strikes = before);
-                // The world write happens once, after the action commits: tile heat cannot be taken back, so an outer failure must never leave a fire with the strike returned.
-                transaction.AfterCommit(() =>
-                {
-                    MessageLog.Add("You strike a spark.");
-                    ZoneTileStateSystem.ApplyFireToTile(zone, x, y, actor, "FlintStriker");
-                    ZoneTileStateSystem.ResolveAfterAbility(zone, actor);
-                    Diag.Record("event", "StrikerSpark", actor, owner, new { x, y, remaining = Strikes });
-                });
+                // The world write happens once, after the action commits: tile heat cannot be undone, so an outer failure must never leave a fire with the strike returned.
+                FireStarting.QueueIgnite(actor, zone, x, y, transaction, owner, "You strike a spark.", "FlintStriker", "StrikerSpark", () => new { x, y, remaining = Strikes });
                 if (own) transaction.Commit();
                 return true;
             }

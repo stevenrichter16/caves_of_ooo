@@ -69,17 +69,7 @@ namespace CavesOfOoo.Core
 
         static Night Plan(FuelPart fuel, ThermalPart heat, int ticks)
         {
-            int fuelTicks = FuelTicks(fuel), life = 0; float t = heat.Temperature;
-            for (int i = 1; i <= ticks && life < fuelTicks; i++)
-            {
-                if (t != heat.AmbientTemperature)
-                {
-                    t -= (t - heat.AmbientTemperature) * heat.AmbientDecayRate;
-                    if (Math.Abs(t - heat.AmbientTemperature) < 0.5f) t = heat.AmbientTemperature;
-                }
-                if (t < CookingService.MinimumFiniteCookingTemperature) break;
-                life = i;
-            }
+            int fuelTicks = FuelTicks(fuel), life = Math.Min(ticks, HearthGlowPart.HeatTurns(heat));
             int burn = Math.Min(ticks, Math.Min(life, fuelTicks));
             return new Night(burn, FuelFor(fuel, burn), burn < ticks);
         }

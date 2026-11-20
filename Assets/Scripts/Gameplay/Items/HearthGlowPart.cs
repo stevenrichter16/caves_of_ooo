@@ -15,6 +15,26 @@ namespace CavesOfOoo.Core
                 && heat.Temperature >= CookingService.MinimumFiniteCookingTemperature && fuel.FuelMass > 0;
         }
 
+        /// <summary>How many turns a fire at its current temperature stays at or above cooking heat, by the thermal part's own per-turn decay (with its snap to ambient). A fire that is
+        /// already below cooking heat has none. The lifetime of one lighting, whatever fuel is left.</summary>
+        internal static int HeatTurns(ThermalPart heat)
+        {
+            if (heat == null || !WorldResourceActions.Finite(heat.Temperature)) return 0;
+            float t = heat.Temperature; int turns = 0;
+            if (t < CookingService.MinimumFiniteCookingTemperature) return 0;
+            for (int i = 1; i <= 2000; i++)
+            {
+                if (t != heat.AmbientTemperature)
+                {
+                    t -= (t - heat.AmbientTemperature) * heat.AmbientDecayRate;
+                    if (System.Math.Abs(t - heat.AmbientTemperature) < 0.5f) t = heat.AmbientTemperature;
+                }
+                if (t < CookingService.MinimumFiniteCookingTemperature) break;
+                turns = i;
+            }
+            return turns;
+        }
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == InstallEvents.Uninstalled) { PutOut(); return true; }

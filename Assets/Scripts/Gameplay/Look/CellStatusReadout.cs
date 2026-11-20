@@ -34,6 +34,29 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// What a fire or torch always says about its fuel: how much is left and how many turns that is at its burn rate, whether it is burning or is out ("once you light it").
+        /// A finite cooking fire (the camp hearth, the coals) also says how long its heat lasts: a lighting cools below cooking heat before a full load of fuel is gone, so the fire
+        /// needs a flame again after that many turns whatever fuel is left. Null for anything without fuel.
+        /// </summary>
+        public static string FuelLine(Entity entity)
+        {
+            var fuel = entity?.GetPart<FuelPart>();
+            if (fuel == null || fuel.ParentEntity != entity || float.IsNaN(fuel.FuelMass) || float.IsInfinity(fuel.FuelMass) || fuel.FuelMass < 0f) return null;
+            if (fuel.FuelMass < 0.5f) return "Fuel: none left.";
+            int left = (int)System.Math.Floor(fuel.FuelMass);
+            if (float.IsNaN(fuel.BurnRate) || float.IsInfinity(fuel.BurnRate) || fuel.BurnRate <= 0f) return "Fuel: " + left + " left.";
+            int turns = (int)System.Math.Min(int.MaxValue / 2, System.Math.Floor(fuel.FuelMass / (double)fuel.BurnRate + 1e-6));
+            var camp = entity.GetPart<CampfirePart>(); var heat = entity.GetPart<ThermalPart>();
+            bool finite = camp != null && camp.FiniteCooking && heat != null;
+            bool burning = finite ? CampfireWorkActions.Hot(camp) : heat != null && heat.IsAflame;
+            string line = "Fuel: " + left + " left, about " + turns + " turns";
+            if (!burning) return line + " once you light it.";
+            if (!finite) return line + " of burning.";
+            int more = System.Math.Min(turns, HearthGlowPart.HeatTurns(heat));
+            return line + ". Burning for about " + more + " more turns" + (more < turns ? " before it needs a flame again." : ".");
+        }
+
+        /// <summary>
         /// Compact name list for titles and messages: "water, embers".
         /// Same visibility rules as <see cref="GroundLine"/>, no counts.
         /// </summary>

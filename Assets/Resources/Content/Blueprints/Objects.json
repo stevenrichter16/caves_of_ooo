@@ -60336,10 +60336,23 @@
         {
           "Name": "LightSource",
           "Params": [
-            {"Key": "Radius", "Value": "6"},
+            {"Key": "Radius", "Value": "8"},
             {"Key": "LightColor", "Value": "&W"},
-            {"Key": "Intensity", "Value": "0.7"},
+            {"Key": "Intensity", "Value": "0.8"},
             {"Key": "Enabled", "Value": "false"}
+          ]
+        },
+        {
+          "Name": "LightSourceFlicker",
+          "Params": [
+            {
+              "Key": "IntensityWobble",
+              "Value": "0.30"
+            },
+            {
+              "Key": "Speed",
+              "Value": "1.5"
+            }
           ]
         },
         {

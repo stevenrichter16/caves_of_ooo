@@ -74,6 +74,14 @@ Rules the inventions below follow: attach to an existing rule or loop; add a pat
 
 **Honest limits.** Voice review of the strings; no Editor play; flasks only (no standing tank); the fire's fuel is spent per batch rather than per elapsed time, as for rest.
 
+## 3d. Lighting, fuel and glow from the menus (2026-11-19, from play)
+
+Asked after playing the kits: lighting should not need the pack, a fire should always say its fuel in turns, and a lit fire should look lit.
+
+- **Light from the C menu.** `FireStarting.AddCellRows` adds a "light it" row to the interact menu (and look-mode menu) of a cell beside you where one point of heat would ignite a combustible coating (an oil slick, which is a tile coating with no object to hang a row on): "light it with the torch" when you hold a burning torch (free, preferred) or "light it with the flint striker (1 strike)"; a wet or worn striker shows a disabled row that says why. The row names the carried item that performs it (`InventoryAction.Via`), so the world menu runs the same command the pack menu runs. Fires and ground torches already lit from their own menus through `IgnitionSources`; an out fire now shows a disabled relight row saying what stops it (no fuel, or no flame: a burning fire beside you, a lit torch, or a striker).
+- **Fuel and turns, always.** `CellStatusReadout.FuelLine` feeds the C menu's status block, look mode and (as an `IDescribeState` on `FuelPart`) both examine readers: "Fuel: 20 left, about 80 turns once you light it." A burning finite fire (the hearth) also says how long its heat lasts, because a lighting cools below cooking heat before a full load of fuel is gone: "Burning for about 60 more turns before it needs a flame again."
+- **Glow.** The hearth's light is a campfire's (radius 8, intensity 0.8, with its flicker), it turns on the moment a relight commits instead of at the next turn's end, and a burning hearth is drawn in fire colors while an unlit one stays dark. Not verified in the Editor: I could not play it.
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).

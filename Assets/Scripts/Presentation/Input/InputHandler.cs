@@ -3036,6 +3036,7 @@ namespace CavesOfOoo.Rendering
             // for the player's carried items (M3-L3 live-playtest finding).
             var actions = WorldInteractionSystem.GatherActions(target, PlayerEntity);
             WorldInteractionSystem.AppendUnderfootActions(actions, cell, PlayerEntity, target);
+            WorldInteractionSystem.AppendIgnitionActions(actions, cell, PlayerEntity);
             if (actions.Count == 0)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
@@ -3222,7 +3223,7 @@ namespace CavesOfOoo.Rendering
             if (action.Time != ActionTime.Unspecified && !action.IsDisabled && !string.IsNullOrEmpty(action.Command))
             {
                 var declared = InventorySystem.ExecuteCommand(
-                    new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);
+                    new PerformInventoryActionCommand(action.Via ?? target, action.Command), PlayerEntity, CurrentZone);
                 if (declared.Success)
                 {
                     if (action.Time == ActionTime.OneAction) EndTurnAndProcess();
