@@ -37,6 +37,10 @@ namespace CavesOfOoo.Core
                 || command.StartsWith(NameCampPrefix, StringComparison.Ordinal));
 
         /// <summary>The plain sentence for a refusal code. Mechanical on purpose: it never attributes intent to the ground, and every string still needs the voice review.</summary>
+        /// <summary>The refusal sentence for a kit: the generic one, except that a shore-ground kit refused on the ground class says what it needs (open ground right beside water it can fish).</summary>
+        public static string Reason(string code, PackableFixtureDefinition kit)
+            => code == PlacementCheck.ClassSpecific && kit?.GroundClass == PlacementCheck.ShoreGround ? "It needs open ground right beside water it can fish: a wide pool of falling water, such as a cascade basin." : Reason(code);
+
         public static string Reason(string code)
         {
             switch (code)
@@ -172,7 +176,7 @@ namespace CavesOfOoo.Core
                 actions.AddAction("SetDownFixture", "set down " + d.label + Hint(part.Kind, zone, x, y), SetDownCommand(zone, origin, x, y, kit), '\0', 17, false, ActionTime.OneAction);
             }
             // Nothing legal here: say why in one disabled row instead of eight, or none.
-            if (legal == 0) { actions.AddDisabled("SetDownFixture", "set down", firstReason ?? "unavailable", Reason(firstReason), '\0', 17); return; }
+            if (legal == 0) { actions.AddDisabled("SetDownFixture", "set down", firstReason ?? "unavailable", Reason(firstReason, def), '\0', 17); return; }
             int kits = CarriedKits(actor).Count;
             if (kits >= 2) actions.AddActionWithHint("MakeCamp", "make camp here (" + kits + " kits)", MakeCampPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + kit.ID,
                 "Sets down every kit you carry at once: fire first, still beside it.", '\0', 18, false, ActionTime.OneAction);
@@ -478,7 +482,7 @@ namespace CavesOfOoo.Core
         static bool Reject(Entity actor, Entity fixture, string command, string reason)
         {
             Diag.Record("furniture", "FixtureRefused", actor, fixture, new { command = (command ?? "").Split('|')[0], reason });
-            MessageLog.Add(Reason(reason));
+            MessageLog.Add(Reason(reason, PackableFixtureRegistry.Get(fixture?.GetPart<PackableFixturePart>()?.Kind)));
             return false;
         }
     }

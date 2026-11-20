@@ -308,6 +308,22 @@ namespace CavesOfOoo.Tests
             Assert.False(PackableFixturePart.IsInertKit(kit), "and it stands, fishing");
         }
 
+        [Test] public void AwayFromFishableWaterTheSetDownRowSaysWhatTheTrapNeeds_NotJustThatTheGroundIsWrong()
+        {
+            wild.RemoveEntity(Actor); Assert.True(wild.AddEntity(Actor, 5, 5)); var kit = Carry("CampFishTrap");
+            var row = Actions(kit).Single(a => a.Name == "SetDownFixture"); Assert.True(row.IsDisabled); Assert.AreEqual(PlacementCheck.ClassSpecific, row.DisabledCode);
+            StringAssert.Contains("beside water", row.DisabledReason); StringAssert.Contains("cascade basin", row.DisabledReason);
+        }
+
+        [Test] public void OtherKitsKeepTheGenericRefusalWording_Counter()
+        {
+            Assert.AreEqual("That cannot be set on this kind of ground.", HeldFixtureActions.Reason(PlacementCheck.ClassSpecific), "the code-only wording is unchanged for everything that has no better thing to say");
+            var awning = PackableFixtureRegistry.Get("camp-awning"); var trap = PackableFixtureRegistry.Get("camp-fishtrap");
+            Assert.AreEqual(HeldFixtureActions.Reason(PlacementCheck.ClassSpecific), HeldFixtureActions.Reason(PlacementCheck.ClassSpecific, awning));
+            Assert.AreNotEqual(HeldFixtureActions.Reason(PlacementCheck.ClassSpecific), HeldFixtureActions.Reason(PlacementCheck.ClassSpecific, trap));
+            Assert.AreEqual(HeldFixtureActions.Reason(PlacementCheck.Ground), HeldFixtureActions.Reason(PlacementCheck.Ground, trap), "only the ground-class refusal is specialised");
+        }
+
         static string BandAt(int tick) => WorldClock.BandName(WorldClock.GetBand(tick), 0);
     }
 }

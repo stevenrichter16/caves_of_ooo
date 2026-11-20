@@ -60,7 +60,7 @@ namespace CavesOfOoo.Rendering
             if (!HeldFixtureActions.CanMoveTo(_moveActor, _moveFixture, _moveZone, x, y, out string code))
             {
                 // Red: say why, and stay so another cell can be chosen.
-                MessageLog.Add(HeldFixtureActions.Reason(code));
+                MessageLog.Add(HeldFixtureActions.Reason(code, PackableFixtureRegistry.Get(_moveFixture?.GetPart<PackableFixturePart>()?.Kind)));
                 return;
             }
             var fixture = _moveFixture; var zone = _moveZone; var command = HeldFixtureActions.MoveCommand(zone, fixture, x, y);
