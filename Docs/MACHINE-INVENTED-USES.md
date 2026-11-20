@@ -52,9 +52,19 @@ Rules the inventions below follow: attach to an existing rule or loop; add a pat
 
 **Honest limits.** Voice and art: the description is a mechanical placeholder and the item is a glyph (`/`). No tinder or dry-fuel model exists, so the striker lights only things the game already treats as ignitable. Only heat is built; the charge rod is design.
 
+## 3b. The second build: rest beside the hearth
+
+**The gap.** A rest is an instant full heal plus a 60-tick clock jump, free at any waysite campfire. The camp hearth was kept from resting ("the shipped coals opt out of rest"; "rest at a lit hearth" was listed as an open balance decision) because nothing simulates a zone-bound fire through a clock jump: a finite fire would keep its fuel through a night.
+
+**The invention.** `HearthRestPart` on the hearth: the fire burns, while you sleep, what it would have burned in those ticks: ticks times its own burn rate, rounded up (60 ticks at the hearth's 0.25 is 15 fuel, about a timber and a half). The row says so ("rest (the fire burns about 15 fuel)"). It is refused up front, with the numbers in the reason, when the fire is out or has less than that, and nothing changes on a refusal. "Rest until the next time of day" is offered only when the fire could last it: from tick 0 the next band is 300 ticks away, 75 fuel, more than the hearth's 30, so it is only offered in the last stretch before a band. Heal, bleeding cure, clock advance and the hostile-within-eight rule are the shared `RestSystem`; fuel is charged only after it has admitted the rest, and returns with the transaction.
+
+**Why it flows.** It uses the hearth's own numbers and no new constant; supplies the cost the owner asked a rest-at-fire to have (finite timber you carry or stash in the camp box); keeps every other fire's rest exactly as it was (a separate Part with its own commands, so the free waysite rest and the coals' opt-out are untouched); and answers the documented limit by charging the fuel instead of pretending the fire was simulated. A camp becomes a place you can sleep, at the price of the timber you brought.
+
+**Honest limits.** A night is a full heal for about 15 fuel: a real, bounded lever that the owner should be able to retune by changing the hearth's `BurnRate`, `MaxFuel` or the timber's fuel. Other fuel burners (a torch in the pack) still do not burn through a rest. No Editor play yet.
+
 ## 4. Order
 
-1. Flint striker (this commit).
+1. Flint striker (built), rest beside the hearth (built).
 2. The Cinderhold pump as a site-owned object (cheapest, gives the reclamation chain a visible destination).
 3. Carriage (the Last Counter has no forge and the contract text is written).
 4. Sounding (a real question the map cannot answer).

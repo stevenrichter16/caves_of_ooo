@@ -42,7 +42,7 @@ namespace CavesOfOoo.Core
         {
             var clock = TurnManager.Active;
             int tick = clock?.TickCount ?? -1;
-            int advance = WorldClock.BandLengthTicks - Math.Max(0, tick) % WorldClock.BandLengthTicks;
+            int advance = NextBandAdvance(tick);
             if (actor == null || zone?.GetEntityCell(actor) == null || clock == null || tick < 0
                 || (long)tick + advance > int.MaxValue)
             {
@@ -54,6 +54,9 @@ namespace CavesOfOoo.Core
             }
             return TryRestFor(actor, zone, site, advance, out blockReason, transaction);
         }
+
+        /// <summary>Ticks from now to the next 300-tick boundary, a full band when already on one. The single formula behind "rest until the next time of day".</summary>
+        internal static int NextBandAdvance(int tick) => WorldClock.BandLengthTicks - Math.Max(0, tick) % WorldClock.BandLengthTicks;
 
         private static bool TryRestFor(Entity actor, Zone zone, string site, int clockAdvance, out string blockReason, InventoryTransaction transaction)
         {

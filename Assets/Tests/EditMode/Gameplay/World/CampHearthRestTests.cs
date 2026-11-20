@@ -1,0 +1,118 @@
+using System;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
+using NUnit.Framework;
+
+namespace CavesOfOoo.Tests
+{
+    /// <summary>
+    /// Resting beside the camp hearth (Docs/MACHINE-INVENTED-USES.md, "a camp you can sleep at"). The hearth is a finite fire; until now nothing simulated a fire through the clock jump of a
+    /// rest, so it was kept from resting at all. This pins the honest accounting: while you sleep the fire burns what it would have burned in those ticks (ticks x its own burn rate),
+    /// refused up front when it could not last, with the same heal, bleeding cure and hostile rule every other fire gives. It is a separate Part on the hearth, so no other campfire's rest
+    /// rule changes.
+    /// </summary>
+    public sealed class CampHearthRestTests : FiftyWorldFixture
+    {
+        [SetUp] public void SetupRest() { Diag.ResetAll(); MessageLog.Clear(); Actor.GetStat("Hitpoints").BaseValue = 3; }
+
+        Entity Hearth(float fuel = 30f, bool lit = true, bool standing = true)
+        {
+            var h = Place("CampHearth", 11, 10); h.GetPart<PhysicsPart>().Takeable = !standing; h.GetPart<FuelPart>().FuelMass = fuel; h.GetPart<ThermalPart>().Temperature = lit ? 450 : 25; return h;
+        }
+        float Fuel(Entity h) => h.GetPart<FuelPart>().FuelMass;
+        int Hp => Actor.GetStatValue("Hitpoints");
+        InventoryAction Row(Entity h, string name) => Actions(h).SingleOrDefault(a => a.Name == name);
+        void Enemy(int x = 18)
+        {
+            var enemy = new Entity { ID = "hearth-rest-hostile" }; enemy.AddPart(new PhysicsPart()); enemy.AddPart(new BrainPart()); enemy.GetPart<BrainPart>().SetPersonallyHostile(Actor, false); Assert.True(Zone.AddEntity(enemy, x, 10));
+        }
+
+        [Test] public void TheShippedHearthCarriesTheRestPartAndStillOptsOutOfTheOrdinaryCampfireRest()
+        {
+            var h = Factory.CreateEntity("CampHearth"); Assert.NotNull(h.GetPart<HearthRestPart>()); Assert.False(h.GetPart<CampfirePart>().AllowRest, "the ordinary free campfire rest stays off; this is its own, paid rest");
+            StringAssert.Contains("rest", h.GetPart<ExaminablePart>().Description.ToLowerInvariant());
+        }
+
+        [Test] public void ALitHearthRestsFullyAndBurnsTheFuelItWouldBurnInTheTimeYouSlept()
+        {
+            var h = Hearth(30); Assert.True(Act(h, "RestAtHearth"), string.Join("|", MessageLog.GetRecent(3)));
+            Assert.AreEqual(Actor.GetStat("Hitpoints").Max, Hp); Assert.AreEqual(60, Clock.TickCount); Assert.AreEqual(15f, Fuel(h), 0.001f, "60 ticks at 0.25 a tick");
+            Assert.AreEqual(1, DiagQuery.Apply(new DiagQuery.Filter { Category = "furniture", Kind = "HearthRested", Limit = 5 }).Records.Count);
+        }
+
+        [Test] public void TheRowStatesTheFuelTheRestWillBurn()
+        {
+            var h = Hearth(30); var row = Row(h, "HearthRest"); Assert.NotNull(row); Assert.False(row.IsDisabled); StringAssert.Contains("15 fuel", row.Display); Assert.AreEqual("RestAtHearth", row.Command);
+        }
+
+        [Test] public void AColdHearthRefusesAndTheRowSaysToLightIt_NothingChanges()
+        {
+            var h = Hearth(30, lit: false); var row = Row(h, "HearthRest"); Assert.True(row.IsDisabled); StringAssert.Contains("out", row.DisabledReason.ToLowerInvariant());
+            Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(3, Hp); Assert.AreEqual(0, Clock.TickCount); Assert.AreEqual(30f, Fuel(h), 0.001f);
+        }
+
+        [Test] public void ShortFuelRefusesBeforeAnythingChangesAndTheReasonNamesTheNumbers()
+        {
+            var h = Hearth(10); var row = Row(h, "HearthRest"); Assert.True(row.IsDisabled); StringAssert.Contains("15", row.DisabledReason); StringAssert.Contains("10", row.DisabledReason);
+            Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(3, Hp); Assert.AreEqual(0, Clock.TickCount); Assert.AreEqual(10f, Fuel(h), 0.001f);
+        }
+
+        [Test] public void ExactlyEnoughFuelRestsAndTheFireBurnsOutInTheNight()
+        {
+            var h = Hearth(15); Assert.True(Act(h, "RestAtHearth")); Assert.AreEqual(0f, Fuel(h), 0.001f); Assert.AreEqual(60, Clock.TickCount);
+        }
+
+        [Test] public void RestUntilTheNextBandIsOfferedOnlyWhenTheFireCouldLastIt()
+        {
+            var h = Hearth(30); var band = Row(h, "HearthRestBand"); Assert.True(band.IsDisabled, "from tick 0 the next band is 300 ticks away: 75 fuel, more than the hearth can hold");
+            Assert.False(Act(h, "RestUntilNextBandAtHearth")); Assert.AreEqual(0, Clock.TickCount); Assert.AreEqual(30f, Fuel(h), 0.001f);
+            Clock.AdvanceClock(240); band = Row(h, "HearthRestBand"); Assert.False(band.IsDisabled, "60 ticks to the band is 15 fuel"); StringAssert.Contains("15 fuel", band.Display);
+            Assert.True(Act(h, "RestUntilNextBandAtHearth")); Assert.AreEqual(300, Clock.TickCount); Assert.AreEqual(15f, Fuel(h), 0.001f); Assert.AreEqual(Actor.GetStat("Hitpoints").Max, Hp);
+        }
+
+        [Test] public void AHostileWithinEightCellsRefusesAndTheFuelIsKept()
+        {
+            var h = Hearth(30); Enemy(); Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(3, Hp); Assert.AreEqual(0, Clock.TickCount); Assert.AreEqual(30f, Fuel(h), 0.001f);
+        }
+
+        [Test] public void AnOuterFailureGivesTheFuelBackAndNothingElseHappened()
+        {
+            var h = Hearth(30); FailAfter(); Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(30f, Fuel(h), 0.001f); Assert.AreEqual(3, Hp); Assert.AreEqual(0, Clock.TickCount);
+        }
+
+        [Test] public void ADeadActorCannotRestAndBurnsNothing()
+        {
+            var h = Hearth(30); Actor.GetStat("Hitpoints").BaseValue = 0; Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(30f, Fuel(h), 0.001f); Assert.AreEqual(0, Clock.TickCount);
+        }
+
+        [Test] public void ACarriedHearthOffersNoRest_Counter()
+        {
+            var h = Carry("CampHearth"); h.GetPart<FuelPart>().FuelMass = 30; h.GetPart<ThermalPart>().Temperature = 450;
+            Assert.IsNull(Row(h, "HearthRest")); Assert.IsNull(Row(h, "HearthRestBand")); Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(30f, Fuel(h), 0.001f); Assert.AreEqual(0, Clock.TickCount);
+        }
+
+        [Test] public void OtherFiresKeepTheirOwnRestRules_Counter()
+        {
+            var coals = Place("SpreadCookingCoals", 11, 10); Assert.IsNull(Row(coals, "HearthRest"), "the shipped cooking coals never gain a rest");
+            var camp = Place("Campfire", 9, 10); float fuel = camp.GetPart<FuelPart>()?.FuelMass ?? 0; Assert.True(Act(camp, "RestAtCampfire"), "an ordinary waysite fire still rests for free"); Assert.AreEqual(60, Clock.TickCount);
+            Assert.AreEqual(fuel, camp.GetPart<FuelPart>()?.FuelMass ?? 0, 0.001f, "and burns nothing for it");
+        }
+
+        [Test] public void ARestAtAFireThatIsNotAFiniteStandingHearthIsRefused_Forged()
+        {
+            var h = Hearth(30); h.GetPart<CampfirePart>().FiniteCooking = false; Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(30f, Fuel(h), 0.001f); Assert.AreEqual(0, Clock.TickCount);
+        }
+
+        [Test] public void TheRestBurnsFromTheFuelInTheSameStepAsTheHeal_NotATimerThatCouldBeSkipped()
+        {
+            var h = Hearth(30); Assert.True(Act(h, "RestAtHearth")); Assert.True(Act(h, "RestAtHearth"), "15 fuel left is enough for a second night"); Assert.AreEqual(0f, Fuel(h), 0.001f); Assert.AreEqual(120, Clock.TickCount);
+            Actor.GetStat("Hitpoints").BaseValue = 3; Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(3, Hp);
+        }
+
+        [Test] public void TheRestPartRoundTripsAsAnEmptyPartAndSurvivesTheHearthSave()
+        {
+            var h = Hearth(21); var copy = PartRoundTripHelper.RoundTripEntityViaTokenGraph(h); Assert.NotNull(copy.GetPart<HearthRestPart>()); Assert.AreEqual(21f, copy.GetPart<FuelPart>().FuelMass, 0.001f);
+        }
+    }
+}

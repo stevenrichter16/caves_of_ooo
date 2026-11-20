@@ -53,6 +53,7 @@ namespace CavesOfOoo.Tests
             Assert.True(Has("IronSpikeComponent") && Has("OakHaftComponent") && Has("LeatherBindingComponent"), "a craftable set for the bench");
             Assert.True(Has("MendleafSprig", 2) && Has("FireMoss"), "reagents for the still");
             Assert.True(Has("Dagger"), "something to put in the box");
+            Assert.True(Has("FlintStriker"), "a flame where none burns (the spark path)");
         }
     }
 }

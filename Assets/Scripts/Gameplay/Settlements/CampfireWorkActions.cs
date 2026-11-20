@@ -7,19 +7,19 @@ namespace CavesOfOoo.Core
     {
         const string DryPrefix = "DryGear|";
         internal static bool IsCommand(string command) => command == "FeedCookingFire" || command == "RelightCookingFire" || command?.StartsWith(DryPrefix, StringComparison.Ordinal) == true;
-        static bool Source(Entity actor, CampfirePart fire, Zone zone)
+        internal static bool Source(Entity actor, CampfirePart fire, Zone zone)
         {
             var owner = fire?.ParentEntity; var heat = owner?.GetPart<ThermalPart>();
             return WorldResourceActions.Nearby(actor, owner, zone) && owner.GetPart<CampfirePart>() == fire && !owner.GetPart<PhysicsPart>().Takeable
                 && !owner.HasTag("Creature") && heat?.ParentEntity == owner && WorldResourceActions.Finite(heat.Temperature);
         }
-        static bool Fuel(CampfirePart fire, out FuelPart fuel)
+        internal static bool Fuel(CampfirePart fire, out FuelPart fuel)
         {
             fuel = fire.ParentEntity.GetPart<FuelPart>();
             return fire.FiniteCooking && fuel?.ParentEntity == fire.ParentEntity && WorldResourceActions.Finite(fuel.FuelMass)
                 && WorldResourceActions.Finite(fuel.MaxFuel) && fuel.FuelMass >= 0 && fuel.MaxFuel > 0 && fuel.FuelMass <= fuel.MaxFuel;
         }
-        static bool Hot(CampfirePart fire) => fire.ParentEntity.GetPart<ThermalPart>().Temperature >= CookingService.MinimumFiniteCookingTemperature
+        internal static bool Hot(CampfirePart fire) => fire.ParentEntity.GetPart<ThermalPart>().Temperature >= CookingService.MinimumFiniteCookingTemperature
             && (!fire.FiniteCooking || Fuel(fire, out var fuel) && fuel.FuelMass > 0);
         static Entity Timber(Entity actor) => actor.GetPart<InventoryPart>()?.Objects.FirstOrDefault(e => e.BlueprintName == "SalvagedTimber" && WorldResourceActions.Carried(actor, e, false));
         static bool Gear(Entity actor, Entity gear) => WorldResourceActions.Carried(actor, gear) && gear.GetEffect<WetEffect>() is WetEffect wet

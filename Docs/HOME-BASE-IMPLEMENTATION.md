@@ -106,6 +106,7 @@ fuel while burning, and two wrong claims in this record were corrected. Remainin
 - `column-pending` (underground ordinary columns) stays refused until PB7. Family-owned (exploration) zones are admitted since the PB1a audit; the opening yard and the other protected addresses stay refused.
 - Not done: a journal surface for the list (the map note and the arrival note are the only surfaces), a hand-over confirmation modal (the label carries it), a made or found kit, art for any kit (glyphs only), a portable bed (D-H1), a break-camp verb, the live retention bench for a long clock jump, and save and reload of the bench and still in actual play.
 - Honest limits that are not defects of the kits: nothing in this build simulates absence or rest for a zone-bound fire. A lit hearth you walk away from, or sleep beside through a single clock advance, spends no fuel while you are gone (the same as every shipped fire), because fuel burns once per turn of the active zone. The 200-turn soak and fire bench were not run.
+- Rest at a lit hearth is built (2026-11-19, [MACHINE-INVENTED-USES.md](MACHINE-INVENTED-USES.md) 3b): the hearth burns ticks times its burn rate of fuel for the time you sleep, refused up front when it could not last. The portable bed stays withheld.
 - Next: found kits only if the owner wants them; the world-map note is the answer to "where did I leave my camp".
 
 ### Independent review (2026-11-19)
