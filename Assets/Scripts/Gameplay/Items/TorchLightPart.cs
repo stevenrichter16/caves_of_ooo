@@ -114,7 +114,7 @@ namespace CavesOfOoo.Core
                 if (ParentEntity.GetEffect<WetEffect>()?.Moisture > 0.35f)
                     return Reject(actor, "wet", "The torch is too wet to light.");
                 source = FindFire(actor, zone);
-                if (source == null) return Reject(actor, "no_fire", "Stand beside a burning fire to light the torch.");
+                if (source == null) return Reject(actor, "no_fire", "Stand beside a burning fire to light the torch." + (FlintStrikerPart.WornHint(actor) ?? ""));
             }
             bool own = transaction == null;
             transaction ??= new InventoryTransaction();

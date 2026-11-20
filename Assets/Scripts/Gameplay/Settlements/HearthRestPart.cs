@@ -94,17 +94,25 @@ namespace CavesOfOoo.Core
         {
             var fire = ParentEntity?.GetPart<CampfirePart>();
             if (actions == null || fire == null || !CampfireWorkActions.Source(actor, fire, zone) || !CampfireWorkActions.Fuel(fire, out var fuel)) return;
-            AddRow(actions, fire, fuel, "HearthRest", "rest", RestCommand, 'r', 20, RestSystem.RestClockTurns);
+            AddRow(actions, actor, fire, fuel, "HearthRest", "rest", RestCommand, 'r', 20, RestSystem.RestClockTurns);
             var clock = TurnManager.Active;
             if (clock != null && clock.TickCount >= 0)
-                AddRow(actions, fire, fuel, "HearthRestBand", "rest until the next time of day", BandCommand, 's', 19, RestSystem.NextBandAdvance(clock.TickCount));
+            {
+                int advance = RestSystem.NextBandAdvance(clock.TickCount);
+                // The row names the time of day you wake in, as the sidebar names it, instead of "the next time of day".
+                string wake = WorldClock.BandName(WorldClock.GetBand(clock.TickCount + advance), WorldMap.GetDepth(zone?.ZoneID));
+                AddRow(actions, actor, fire, fuel, "HearthRestBand", "rest until " + wake, BandCommand, 's', 19, advance);
+            }
         }
 
-        static void AddRow(InventoryActionList actions, CampfirePart fire, FuelPart fuel, string name, string label, string command, char key, int priority, int ticks)
+        static void AddRow(InventoryActionList actions, Entity actor, CampfirePart fire, FuelPart fuel, string name, string label, string command, char key, int priority, int ticks)
         {
             var refusal = Refusal(fire, fuel, fire.ParentEntity.GetPart<ThermalPart>(), ticks, out var night);
-            if (refusal == null) actions.AddAction(name, label + " (the fire burns about " + night.Fuel + " fuel" + (night.BurnsOut ? ", then goes out" : "") + ")", command, key, priority, false, ActionTime.Free);
-            else actions.AddDisabled(name, label, refusal.Value.code, refusal.Value.text, key, priority);
+            if (refusal != null) { actions.AddDisabled(name, label, refusal.Value.code, refusal.Value.text, key, priority); return; }
+            // What it will do, before you choose it: the HP it restores, and the fuel it burns (and that the fire will be out in the morning).
+            var hp = actor?.GetStat("Hitpoints"); int heals = hp == null ? 0 : Math.Max(0, hp.Max - hp.Value);
+            string preview = (heals > 0 ? "heals " + heals + ", " : "") + "the fire burns about " + night.Fuel + " fuel" + (night.BurnsOut ? ", then goes out" : "");
+            actions.AddAction(name, label + " (" + preview + ")", command, key, priority, false, ActionTime.Free);
         }
 
         // ── the rest ──

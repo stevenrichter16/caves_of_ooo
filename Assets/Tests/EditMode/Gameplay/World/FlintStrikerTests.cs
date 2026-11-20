@@ -99,7 +99,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void TheRelightRowSaysWhenItWillSpendAStrikeAndNotWhenAFireIsUsed()
         {
-            var coals = ColdCoals(); var s = Striker(); StringAssert.Contains("(1 strike)", Actions(coals).Single(a => a.Command == "RelightCookingFire").Display);
+            var coals = ColdCoals(); var s = Striker(); StringAssert.Contains("(1 strike, 20 left)", Actions(coals).Single(a => a.Command == "RelightCookingFire").Display);
             Pack.RemoveObject(s); Place("Campfire", 9, 10); Assert.False(Actions(coals).Single(a => a.Command == "RelightCookingFire").Display.Contains("strike"), "a real fire costs nothing");
         }
 

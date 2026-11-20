@@ -503,6 +503,9 @@ namespace CavesOfOoo.Core
             else
                 name = BlueprintName ?? ID ?? "unknown";
 
+            // A flint striker shows its strikes wherever it is named (pack list, menus, messages).
+            if (BlueprintName == FlintStrikerPart.Blueprint && GetPart<FlintStrikerPart>() is FlintStrikerPart striker && striker.ParentEntity == this) name += " [" + striker.Strikes + "]";
+
             var stacker = GetPart<StackerPart>();
             if (stacker != null && stacker.StackCount > 1)
                 name += $" (x{stacker.StackCount})";

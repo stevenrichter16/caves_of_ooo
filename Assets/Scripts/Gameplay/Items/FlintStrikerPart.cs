@@ -21,6 +21,8 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "FlintStriker";
 
+        public const string Blueprint = "FlintStriker";
+
         public int Strikes = 20;
         public int MaxStrikes = 20;
 
@@ -35,6 +37,16 @@ namespace CavesOfOoo.Core
         };
 
         // ── what the shared ignition lookup asks ──
+
+        /// <summary>When a carried striker is worn smooth, a sentence saying to knap it (with the spike carried, or that it needs one); null when none is worn. Appended to the refusals
+        /// where a flame was wanted, so the way out is stated where the problem is felt.</summary>
+        internal static string WornHint(Entity actor)
+        {
+            var pack = actor?.GetPart<InventoryPart>(); if (pack == null) return null;
+            bool worn = pack.Objects.Any(o => o?.GetPart<FlintStrikerPart>() is FlintStrikerPart p && p.Strikes <= 0);
+            if (!worn) return null;
+            return Spike(actor) != null ? " Your flint is worn smooth: knap it with an iron spike." : " Your flint is worn smooth; knapping it needs an iron spike.";
+        }
 
         /// <summary>A striker that can make a flame for this actor right now: carried by them, a strike left, and neither wet nor frozen.</summary>
         internal static bool Usable(Entity actor, Entity item)

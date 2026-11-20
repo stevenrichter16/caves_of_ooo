@@ -60,6 +60,17 @@ namespace CavesOfOoo.Core
             });
         }
 
+        /// <summary>" - next to the camp box" when one of your camp kits stands beside the cell, so the fire is not lit next to your things unawares. Empty otherwise.</summary>
+        static string Warning(Zone zone, Cell cell)
+        {
+            for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++)
+            {
+                var around = zone.GetCell(cell.X + dx, cell.Y + dy); if (around == null) continue;
+                foreach (var e in around.Objects) if (e != null && e.HasPart<PackableFixturePart>()) return " - next to the " + e.GetDisplayName();
+            }
+            return "";
+        }
+
         /// <summary>Adds the "light it" row for <paramref name="cell"/> to a world menu's rows.</summary>
         internal static void AddCellRows(List<InventoryAction> rows, Cell cell, Entity actor)
         {
@@ -67,9 +78,10 @@ namespace CavesOfOoo.Core
             if (rows == null || zone == null || actor == null || !WorldResourceActions.ActorCurrent(actor, zone) || !Ignitable(actor, zone, cell.X, cell.Y)) return;
             var origin = zone.GetEntityCell(actor);
             var torch = HeldLitTorch(actor);
+            string warning = Warning(zone, cell);
             if (torch != null)
             {
-                rows.Add(new InventoryAction("LightCell", "light it with the torch", CellCommand(TorchCellPrefix, zone, origin, cell.X, cell.Y, torch), '\0', 40) { Time = ActionTime.OneAction, Via = torch });
+                rows.Add(new InventoryAction("LightCell", "light it with the torch" + warning, CellCommand(TorchCellPrefix, zone, origin, cell.X, cell.Y, torch), '\0', 40) { Time = ActionTime.OneAction, Via = torch });
                 return;
             }
             Entity best = null, any = null;
@@ -81,7 +93,7 @@ namespace CavesOfOoo.Core
                 if (best == null || part.Strikes < best.GetPart<FlintStrikerPart>().Strikes) best = item;
             }
             if (best != null)
-                rows.Add(new InventoryAction("LightCell", "light it with the flint striker (1 strike)", FlintStrikerPart.SparkCommand(zone, origin, cell.X, cell.Y, best), '\0', 40) { Time = ActionTime.OneAction, Via = best });
+                rows.Add(new InventoryAction("LightCell", "light it with the flint striker (1 strike, " + best.GetPart<FlintStrikerPart>().Strikes + " left)" + warning, FlintStrikerPart.SparkCommand(zone, origin, cell.X, cell.Y, best), '\0', 40) { Time = ActionTime.OneAction, Via = best });
             else if (any != null)
                 rows.Add(new InventoryAction("LightCell", "light it with the flint striker", InventoryAction.DisabledCommandPrefix + "striker_unusable", '\0', 40)
                 { DisabledCode = "striker_unusable", DisabledReason = any.GetPart<FlintStrikerPart>().Strikes <= 0 ? "The flint is worn smooth." : "The flint will not spark while it is wet or frozen." });
