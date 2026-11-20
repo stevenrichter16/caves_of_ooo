@@ -106,6 +106,13 @@ namespace CavesOfOoo.Core
             var intact = SpreadGenerationReceipt.CaptureFinalState(zone, originals);
             string tiles = zone.TileState.ToSaveString(); var reserves = new HashSet<(int, int)>(zone.GenReservedCells); int before = zone.EntityCount;
             entity.AddPart(new InstallationMarkerPart { InstallationId = spec.Id, Origin = "Generated", Revision = spec.Revision, RetainZone = spec.Retain });
+            if (!string.IsNullOrEmpty(spec.Site))
+            {
+                // A site object is the body of one repair site: it must be able to say which, and says it from here on from its own saved fields.
+                var site = entity.GetPart<PlaceSiteObjectPart>();
+                if (site == null) { Omit(spec, "no-site-part"); return; }
+                site.Place = spec.Place; site.SiteId = spec.Site;
+            }
             entity.Properties["SettlementId"] = zoneID;
             bool added = false, committed = false;
             try

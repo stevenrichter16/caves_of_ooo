@@ -5657,6 +5657,46 @@
       ]
     },
     {
+      "Name": "MinePump",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "mine pump" },
+            { "Key": "RenderString", "Value": "P" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "true" }
+          ]
+        },
+        {
+          "Name": "PlaceSiteObject",
+          "Params": [
+            { "Key": "BrokenWord", "Value": "sheared" },
+            { "Key": "PatchedWord", "Value": "patched" },
+            { "Key": "MendedWord", "Value": "running" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A hand pump on an iron collar over the mine shaft, worked by a long oak rod. The lower level lives or drowns by it." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" },
+        { "Key": "SiteObject", "Value": "" }
+      ]
+    },
+    {
       "Name": "ReagentItem",
       "Inherits": "Item",
       "Parts": [

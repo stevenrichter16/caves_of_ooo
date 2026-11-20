@@ -75,9 +75,9 @@ namespace CavesOfOoo.Tests
         {
             using (var scope = new HaulingContentScope())
             {
-                Assert.AreEqual(3, InstallationRegistry.All.Count);
+                Assert.AreEqual(4, InstallationRegistry.All.Count, "three forges and the Cinderhold pump (a site object)");
                 Assert.IsEmpty(InstallationRegistry.Validate(scope.Factory), "every shipped row passes blueprint admission");
-                foreach (var spec in InstallationRegistry.All) { Assert.False(spec.Retain, spec.Id + ": a forge carries no state"); StringAssert.Contains("nothing requires", spec.Alternative); }
+                foreach (var spec in InstallationRegistry.All) { Assert.AreEqual(!string.IsNullOrEmpty(spec.Site), spec.Retain, spec.Id + ": a forge carries no state; a site object carries its place and site"); StringAssert.Contains("nothing requires", spec.Alternative); }
             }
         }
 

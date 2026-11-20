@@ -67,6 +67,28 @@
       "Alternative": "A single weapon can be assembled from the pack anywhere; carried components, the Sill and Cinderhold forges and buying assembled weapons remain, and nothing requires this forge.",
       "Basis": "Convenience, not a gap: surface villagers own and run forges (faction row, mw/lore.md section 5). Placed on the owner's standing instruction to put machines in every town; the placement plan and its critique prefer test-only rows for towns without a local problem, recorded in Docs/MACHINE-INSTALLATIONS.md. Delete the row to revert before release.",
       "MinRadius": 2
+    },
+    {
+      "Id": "cinderhold-mine-pump",
+      "Place": "Cinderhold",
+      "Blueprint": "MinePump",
+      "Site": "Pump",
+      "Retention": "Zone",
+      "Near": [
+        "Well"
+      ],
+      "Radius": 9,
+      "MinRadius": 2,
+      "MaxProbe": 48,
+      "Ground": [
+        "Grass",
+        "StoneFloor",
+        "Floor"
+      ],
+      "Revision": 1,
+      "Purpose": "The body of Cinderhold's mine pump (the Pump repair site): examine it for what became of it, and mend or patch it from its own menu with the same materials, rules and result the elder's conversation offers.",
+      "Alternative": "The elder's conversation still offers to repair the pump, the field and clay-seal approaches of The Drowned Level remain, and nothing requires this object.",
+      "Basis": "Docs/PLACE-WORK-AND-PROGRESSION.md C3c: data sites are repaired in conversation 'because places have no generated object for a weir or a pump yet'. This is that object, placed fresh-only beside the well; the site state is not stored in it."
     }
   ],
   "Exemptions": [

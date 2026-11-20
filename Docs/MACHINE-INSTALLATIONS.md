@@ -49,7 +49,7 @@ starting village and Wellmeet track a main well, so only they can reach it. `Wel
 
 `Installations.json` holds `Installations` rows (specs), `Exemptions` (a place that never receives a machine, with a source) and `Pending`
 (a place with an owner). Per-row dropping: one bad optional row never cancels the others (unlike the process catalogue). Error codes
-E01 to E14 each have a test and a valid-neighbour control. The census classifies the 17 authored places and the three catacomb villages
+E01 to E15 each have a test and a valid-neighbour control (E15: a row's `Site` is not a repair site of its place). A row with a `Site` places the town's own working object, the body of one repair site (the Cinderhold mine pump); it is stateful so it needs Retention Zone, it is not a row of the every-town census, and the placement sets the part's `Place` and `SiteId`. The census classifies the 17 authored places and the three catacomb villages
 as exactly one of Installed, Present (Sill and Cinderhold already hold a forge), Exempt (with a source) or Pending (with an owner), and a ratchet
 test lets Pending only decrease. Current census: Installed 3 (Gantry, Tine, Slip), Present 2, Exempt 5 (the First Tent, the Quiet's Door,
 Olderdeep, Lampwell, Spivenor), Pending 10 (the Last Counter joined Pending, below). "A machine in every town" is complete when Pending is 0.

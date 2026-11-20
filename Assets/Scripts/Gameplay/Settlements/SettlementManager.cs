@@ -371,15 +371,20 @@ namespace CavesOfOoo.Core
             SettlementState state = GetOrCreateSettlement(settlementId, poi);
             RepairableSiteState site = state?.GetSite(siteId);
             if (site == null) return "unknown_site";
-            if (site.Stage >= RepairStage.StableRepair) { MessageLog.Add("The " + data.Name + " is already properly repaired."); return "already_repaired"; }
+            // One rule for "could this repair be made": the same check a world object for the site reads (PlaceSiteRepairs). Only the messages differ.
+            string refusal = PlaceSiteRepairs.Check(data, site, lasting, player);
+            if (refusal != null)
+            {
+                switch (refusal)
+                {
+                    case PlaceSiteRepairs.AlreadyRepaired: MessageLog.Add("The " + data.Name + " is already properly repaired."); break;
+                    case PlaceSiteRepairs.AlreadyPatched: MessageLog.Add("The " + data.Name + " is patched already."); break;
+                    case PlaceSiteRepairs.MissingMaterials: MessageLog.Add("You don't have what the " + data.Name + " needs."); break;
+                    case PlaceSiteRepairs.MissingTool: MessageLog.Add("You need a tool for that."); break;
+                }
+                return refusal;
+            }
             var fix = lasting ? data.Lasting : data.Patch;
-            if (!lasting && !data.HasPatch) return "no_patch";
-            if (!lasting && site.Stage == RepairStage.TemporarilyPurified) { MessageLog.Add("The " + data.Name + " is patched already."); return "already_patched"; }
-            foreach (var m in fix.Materials)
-                if (CavesOfOoo.Concerns.ConcernItems.CountCarried(player, m.Blueprint) < m.Count)
-                { MessageLog.Add("You don't have what the " + data.Name + " needs."); return "missing_materials"; }
-            if (!string.IsNullOrEmpty(fix.Tool) && CavesOfOoo.Concerns.ConcernItems.CountCarried(player, fix.Tool) < 1)
-            { MessageLog.Add("You need a tool for that."); return "missing_tool"; }
             foreach (var m in fix.Materials)
                 CavesOfOoo.Concerns.ConcernItems.TakeCarried(player, m.Blueprint, m.Count);
 

@@ -206,7 +206,8 @@ namespace CavesOfOoo.Tests
         [Test] public void RegistryLoadsTheShippedRowsExemptionsAndPending()
         {
             InstallationRegistry.LoadDefaults();
-            CollectionAssert.AreEquivalent(new[] { "gantry-forecourt-forge", "tine-forecourt-forge", "slip-forecourt-forge" }, InstallationRegistry.All.Select(s => s.Id), "three forge rows ship; the Last Counter row is pulled until its 3D kit has a forge family");
+            CollectionAssert.AreEquivalent(new[] { "gantry-forecourt-forge", "tine-forecourt-forge", "slip-forecourt-forge" }, InstallationRegistry.All.Where(s => string.IsNullOrEmpty(s.Site)).Select(s => s.Id), "three forge rows ship; the Last Counter row is pulled until its 3D kit has a forge family");
+            CollectionAssert.AreEquivalent(new[] { "cinderhold-mine-pump" }, InstallationRegistry.All.Where(s => !string.IsNullOrEmpty(s.Site)).Select(s => s.Id), "and one site object: the Cinderhold pump, the body of a repair site");
             CollectionAssert.AreEquivalent(new[] { "RotChoir", "CatacombFolk" }, InstallationRegistry.ForbiddenFactions);
             Assert.NotNull(InstallationRegistry.ExemptionFor("the First Tent")); Assert.NotNull(InstallationRegistry.PendingFor("Sumphold")); Assert.NotNull(InstallationRegistry.PendingFor("Tally")); Assert.Null(InstallationRegistry.PendingFor("Gantry"));
         }
