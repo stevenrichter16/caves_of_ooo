@@ -312,6 +312,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_CampMachines()
             => ScenarioRunner.LaunchWild<CampMachinesShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Home/Concord Carriage (goods, drams and a parcel waiting at Cinderhold)", priority = 404)]
+        private static void Launch_ConcordCarriage()
+            => ScenarioRunner.Launch<ConcordCarriageShowcase>();
+
         // =========================================================
         // UI (skill tree, etc.)
         // =========================================================

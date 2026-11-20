@@ -301,6 +301,11 @@ namespace CavesOfOoo.Core
             RegisterRequired(ConcordAccount.RepayAction, (speaker, listener, arg) =>
                 int.TryParse(arg, out int amount) ? ConcordAccount.Repay(speaker, listener, amount, WorldClock.CurrentTick) : "invalid_argument");
 
+            // The Concord's carriage (Docs/MACHINE-INVENTED-USES.md): send a parcel to the other post, collect what has arrived. Arguments are zone ids and item ids.
+            RegisterRequired(ConcordCarriage.OpenAction, ConcordCarriage.Open);
+            RegisterRequired(ConcordCarriage.SendAction, ConcordCarriage.Send);
+            RegisterRequired(ConcordCarriage.CollectAction, ConcordCarriage.Collect);
+
             // C2: place concerns in conversation (CavesOfOoo.Concerns.ConcernConversation).
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.OpenAction, CavesOfOoo.Concerns.ConcernConversation.Open);
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.AcceptAction, CavesOfOoo.Concerns.ConcernConversation.Accept);

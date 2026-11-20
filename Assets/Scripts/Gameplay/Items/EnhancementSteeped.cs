@@ -12,12 +12,16 @@ namespace CavesOfOoo.Core
     {
         public const int DefaultAmount = 35, DefaultTurns = 100;
 
+        /// <summary>"acid" (the steeping, the default and every earlier save) or "fire" (the clay-wash, Docs/MACHINE-INVENTED-USES.md 3l). Set by the trough that applies it.</summary>
+        public string Kind = SteepedAcidEffect.AcidKind;
+        public bool IsFire => Kind == SteepedAcidEffect.FireKind;
+
         public int Amount = DefaultAmount;
         public int TurnsTotal = DefaultTurns;
         public int TurnsLeft = DefaultTurns;
 
         public override string Name => "EnhancementSteeped";
-        public override string GetDisplayName() => "steeped";
+        public override string GetDisplayName() => IsFire ? "clay-washed" : "steeped";
 
         public override bool Applicable(Entity item)
             => item != null && item.GetPart<ArmorPart>() != null && !item.HasTag("Creature") && GarmentMaterial(item);
@@ -30,14 +34,15 @@ namespace CavesOfOoo.Core
         }
 
         public override string GetEffectDescription()
-            => "Steeped against acid: +" + Amount + " acid resistance while worn, " + TurnsLeft + " more turns of wear" + (TurnsLeft < TurnsTotal ? " (of " + TurnsTotal + ")" : "") + ". Acid still does at least 1 damage per hit until your resistance reaches 100.";
+            => (IsFire ? "Clay-washed against fire: +" + Amount + " heat resistance while worn, " : "Steeped against acid: +" + Amount + " acid resistance while worn, ") + TurnsLeft + " more turns of wear" + (TurnsLeft < TurnsTotal ? " (of " + TurnsTotal + ")" : "")
+               + (IsFire ? ". Fire still does at least 1 damage per hit until your resistance reaches 100." : ". Acid still does at least 1 damage per hit until your resistance reaches 100.");
 
         public override void OnEquipped(Entity actor, Entity item)
         {
             if (actor == null || item == null) return;
             if (TurnsLeft <= 0) { ItemEnhancing.Remove(item, "EnhancementSteeped"); return; }
             if (FindEffect(actor, item.ID) != null) return;   // already worn: a second dispatch is a no-op
-            actor.ApplyEffect(new SteepedAcidEffect(Amount, TurnsLeft, item.ID));
+            actor.ApplyEffect(new SteepedAcidEffect(Amount, TurnsLeft, item.ID, Kind));
         }
 
         public override void OnUnequipped(Entity actor, Entity item)

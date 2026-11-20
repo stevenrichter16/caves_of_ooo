@@ -105,6 +105,16 @@ namespace CavesOfOoo.Core
         /// Split off count items into a new entity.
         /// Returns the split-off entity, or null if can't split.
         /// </summary>
+        /// <summary>Whether this stack could be divided now at all (any count): the state guards <see cref="SplitStack"/> applies, without changing anything or announcing a refusal. Menus use it so they
+        /// never offer a partial amount of a stack that would refuse to split.</summary>
+        public bool CanSplit()
+        {
+            if (!MaterialProcessPayloadPolicies.CanSplitProcessingInput(ParentEntity) || !CuttingToolPart.CanSplitInstance(ParentEntity)) return false;
+            if (MaterialProcessService.IsProtected(ParentEntity) || ContainedLiquidSourcePart.IsRecoveryCustodyProtected(ParentEntity)) return false;
+            var torch = ParentEntity.GetPart<TorchLightPart>();
+            return torch == null || torch.CanSplitSafely();
+        }
+
         public Entity SplitStack(int count)
         {
             if (!MaterialProcessPayloadPolicies.CanSplitProcessingInput(ParentEntity) || !CuttingToolPart.CanSplitInstance(ParentEntity)) return null;

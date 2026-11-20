@@ -153,5 +153,25 @@ namespace CavesOfOoo.Tests
             var flasks = Pack.Objects.Where(o => o.BlueprintName == "LiquidFlask").Select(o => o.GetPart<LiquidVesselPart>()).ToArray(); Assert.AreEqual(2, flasks.Length); Assert.True(flasks.All(f => f.LiquidId == CampMachinesShowcase.MireLiquid && f.Volume == CampMachinesShowcase.MireUnits));
             Assert.AreEqual(LiquidSettlingPart.Feed, CampMachinesShowcase.MireLiquid, "the liquid the still settles and bakes");
         }
+
+        // ── the Concord carriage fixture ──
+
+        [Test] public void TheCarriageScenarioGivesDramsGoodsAndOneParcelAlreadyWaitingAtCinderhold()
+        {
+            foreach (var (blueprint, count) in ConcordCarriageShowcase.Loadout) { Assert.NotNull(Factory.CreateEntity(blueprint), blueprint); Assert.Greater(count, 0, blueprint); }
+            Assert.NotNull(Factory.CreateEntity(ConcordCarriageShowcase.WaitingBlueprint), "the waiting parcel is a real blueprint");
+            Pack.MaxWeight = 400; var ctx = Context(out var turns); new ConcordCarriageShowcase().Apply(ctx);
+            Assert.AreEqual(ConcordCarriageShowcase.Drams, TradeSystem.GetDrams(Actor));
+            foreach (var (blueprint, count) in ConcordCarriageShowcase.Loadout) Assert.GreaterOrEqual(Pack.Objects.Where(o => o.BlueprintName == blueprint).Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1), count, blueprint);
+            var cart = Actor.GetPart<ConcordCarriagePart>(); Assert.NotNull(cart); Assert.AreEqual(1, cart.Count);
+            string cinderhold = WorldMap.ToZoneID(6, 6, 0), counter = WorldMap.ToZoneID(18, 18, 0);
+            Assert.AreEqual(cinderhold, cart.To[0]); Assert.AreEqual(counter, cart.From[0]); Assert.AreEqual(ConcordCarriageShowcase.WaitingBlueprint, cart.Goods[0].BlueprintName);
+            Assert.AreEqual(1, ConcordCarriage.ReadyHere(Actor, cinderhold, turns.TickCount), "it is ready to collect at Cinderhold at once");
+            Assert.AreEqual(0, ConcordCarriage.ReadyHere(Actor, counter, turns.TickCount), "counter: nothing is waiting at the Last Counter");
+            Assert.True(ConcordCarriage.Eligible(Actor, Factory.CreateEntity("ConcordFactor")).Count > 0, "the goods include things the cart will take");
+            Assert.True(Pack.Objects.Any(o => o.BlueprintName == "BlastcapSpore"), "and a spore it will refuse, to see clause five");
+            foreach (var e in Pack.Objects.ToArray()) Pack.RemoveObject(e);
+            Actor.RemovePart(cart);
+        }
     }
 }

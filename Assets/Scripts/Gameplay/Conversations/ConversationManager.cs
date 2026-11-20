@@ -17,12 +17,13 @@ namespace CavesOfOoo.Core
         public static bool IsActive => CurrentConversation != null;
 
         /// <summary>Per-speaker presentation; shared authored nodes remain immutable.</summary>
-        public static string CurrentText => ConcordAccount.AppendText(RegionalGuidance.AppendText(SpreadDiscoveryReports.AppendText(FirstHourGuidance.Describe(Speaker, Listener,
+        public static string CurrentText => ConcordCarriage.AppendText(ConcordAccount.AppendText(RegionalGuidance.AppendText(SpreadDiscoveryReports.AppendText(FirstHourGuidance.Describe(Speaker, Listener,
             CurrentConversation?.ID, CurrentNode?.ID,
             WorldTravellers.DescribeConversation(Speaker, Listener,
             CurrentConversation?.ID, CurrentNode?.ID,
             LocalPeople.DescribeConversation(Speaker, Listener,
                 CurrentConversation?.ID, CurrentNode?.ID, CurrentNode?.Text ?? ""))))),
+            Speaker, Listener, CurrentNode?.ID, WorldClock.CurrentTick),
             Speaker, Listener, CurrentNode?.ID, WorldClock.CurrentTick);
 
         /// <summary>
@@ -229,6 +230,8 @@ namespace CavesOfOoo.Core
             SpreadDiscoveryReports.AppendChoices(_visibleChoices);
             // EC7: a Concord post-keeper's greeting offers credit (a Factor) and settlement (any post).
             ConcordAccount.AppendChoices(_visibleChoices, Speaker, Listener, CurrentNode.ID);
+            // The carriage at a post that runs one: collect what has arrived, send a parcel to the other post.
+            ConcordCarriage.AppendChoices(_visibleChoices, Speaker, Listener, CurrentNode.ID);
 
             // Auto-inject "[Let's trade.]" only when the speaker can
             // ACTUALLY trade. This used to fire for any speaker with an
