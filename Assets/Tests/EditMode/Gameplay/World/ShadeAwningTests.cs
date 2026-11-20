@@ -117,6 +117,16 @@ namespace CavesOfOoo.Tests
 
         string Read(Entity e) { var l = new List<string>(); StateReader.Collect(e, true, wild, wild.GetEntityCell(e), Actor, l); return string.Join(" ", l); }
 
+        [Test] public void TheFullReaderTellsAViewerStandingInItsShadeSoAndOnlyThen_Counter()
+        {
+            var awning = Stand(wild, AX + 1, AY);                    // the actor stands beside it: inside the ring
+            StringAssert.Contains("You are standing in it", Read(awning));
+            wild.RemoveEntity(Actor); Assert.True(wild.AddEntity(Actor, AX - 3, AY)); StringAssert.DoesNotContain("You are standing in it", Read(awning), "three cells off is outside the ring");
+            var wide = Stand(wild, 10, 5, radius: 2); wild.RemoveEntity(Actor); Assert.True(wild.AddEntity(Actor, 12, 7));
+            StringAssert.Contains("You are standing in it", Read(wide), "a wider awning reaches two cells");
+            wide.GetPart<InstallablePart>().State = InstallablePart.Loose; StringAssert.DoesNotContain("You are standing in it", Read(wide), "taken up it shades no one, so it says nothing of the sort");
+        }
+
         [Test] public void TheKitIsRegisteredStockedAndShadeIsASavedCapability()
         {
             var def = PackableFixtureRegistry.Get("camp-awning"); Assert.NotNull(def); Assert.AreEqual(PlacementCheck.OpenGround, def.GroundClass); Assert.False(def.Solid);

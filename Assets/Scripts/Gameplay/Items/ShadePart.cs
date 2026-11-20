@@ -44,7 +44,15 @@ namespace CavesOfOoo.Core
 
         public string DescribeState(DescribeContext context)
             => Shading
-                ? "It shades the ground " + (Math.Min(Radius, MaxRadius) == 1 ? "under it and the cells around it" : "within " + Math.Min(Radius, MaxRadius) + " cells of it") + " from the glare, for whoever stands there."
+                ? "It shades the ground " + (Math.Min(Radius, MaxRadius) == 1 ? "under it and the cells around it" : "within " + Math.Min(Radius, MaxRadius) + " cells of it") + " from the glare, for whoever stands there." + (Shades(context) ? " You are standing in it." : "")
                 : "Cloth on collapsible poles. Set down on open ground, it shades the cells around it from the glare. Carried, it shades nothing.";
+
+        /// <summary>Whether the viewer (only the full reader passes one) stands within this one's reach: a plain geometric fact about where they are, so a reader can say the shade is theirs.</summary>
+        bool Shades(DescribeContext context)
+        {
+            var zone = context.Zone ?? ParentEntity?.SpatialZone; if (context.Viewer == null || zone == null || ParentEntity == null) return false;
+            var me = zone.GetEntityCell(ParentEntity); var you = zone.GetEntityCell(context.Viewer); if (me == null || you == null) return false;
+            return Math.Max(Math.Abs(me.X - you.X), Math.Abs(me.Y - you.Y)) <= Math.Min(Radius, MaxRadius);
+        }
     }
 }
