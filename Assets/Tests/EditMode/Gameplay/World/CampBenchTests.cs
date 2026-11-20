@@ -57,8 +57,10 @@ namespace CavesOfOoo.Tests
                 var bait = new[] { Carry("SalvagedTimber"), Carry("MendleafSprig"), Carry("IronSpikeComponent"), Carry("Dagger") }; var before = bait.Select(Rows).ToArray();
                 var kit = Carry(def.Blueprint);
                 var pairs = Actions(kit).Select(a => a.Name + "/" + a.Command.Split('|')[0]).Distinct().ToArray();
-                CollectionAssert.IsSubsetOf(pairs, allowed, def.Kind + " offers a work row while carried: guard it like the forge and still, or review and allow it here");
-                Assert.True(pairs.Contains("SetDownFixture/SetDown"), def.Kind + " can still be set down");
+                // A kit with its own ground class (the fish trap wants a shore) shows its set-down row disabled with the class-specific code where that ground is not near: still only a set-down row.
+                bool shore = def.GroundClass == PlacementCheck.ShoreGround; var allowedHere = shore ? allowed.Concat(new[] { "SetDownFixture/Disabled:" + PlacementCheck.ClassSpecific }).ToArray() : allowed;
+                CollectionAssert.IsSubsetOf(pairs, allowedHere, def.Kind + " offers a work row while carried: guard it like the forge and still, or review and allow it here");
+                Assert.True(pairs.Contains("SetDownFixture/SetDown") || (shore && pairs.Contains("SetDownFixture/Disabled:" + PlacementCheck.ClassSpecific)), def.Kind + " can still be set down (or says why not here, for a kit with its own ground)");
                 CollectionAssert.AreEqual(before, bait.Select(Rows).ToArray(), def.Kind + " carried must not change the rows on the items around it (a carried kit is no station)");
 
                 var drop = InventorySystem.ExecuteCommand(new CavesOfOoo.Core.Inventory.Commands.DropCommand(kit), Actor, Zone); Assert.True(drop.Success);
