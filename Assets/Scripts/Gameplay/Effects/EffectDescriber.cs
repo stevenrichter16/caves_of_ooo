@@ -30,6 +30,8 @@ namespace CavesOfOoo.Core
                         : "Broken: damaged condition.";
                 case PreparedMealEffect meal:
                     return "Prepared meal - " + meal.Describe();
+                case SteepedAcidEffect steeped:
+                    return (steeped.Kind == SteepedAcidEffect.FireKind ? "Clay-washed against fire - " : "Steeped against acid - ") + steeped.Describe();
                 case LeyTapEffect ley:
                     return "Ley Tap - 1 damaging cast: +" + ley.BonusDamage
                         + " damage per target; " + ley.Duration + " of your turns left.";

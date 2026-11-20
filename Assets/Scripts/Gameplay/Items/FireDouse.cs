@@ -18,7 +18,9 @@ namespace CavesOfOoo.Core
         public static bool Douses(string liquidId)
         {
             var def = LiquidRegistry.IsInitialized ? LiquidRegistry.Get(liquidId) : null;
-            return def != null && def.Combustibility <= 0;
+            if (def == null || def.Combustibility > 0) return false;
+            // Water and the liquids that behave as water on the ground (bog mire, brine). A liquid that does not burn but is not water-like (lava, acid) is not a way to put a fire out.
+            return def.Id == "water" || def.GroundReactionFamily == "water";
         }
 
         /// <summary>The player's own lit hearth standing in the cell, if any.</summary>
@@ -29,8 +31,10 @@ namespace CavesOfOoo.Core
             {
                 if (e == null || e.HasTag("Creature") || !HeldFixtureActions.IsPlayerHeld(e)) continue;
                 var fire = e.GetPart<CampfirePart>(); var heat = e.GetPart<ThermalPart>();
-                if (fire == null || !fire.FiniteCooking || heat == null || e.GetPart<HearthGlowPart>() == null) continue;
-                if (WorldResourceActions.Finite(heat.Temperature) && heat.Temperature >= CookingService.MinimumFiniteCookingTemperature) return e;
+                var glow = e.GetPart<HearthGlowPart>();
+                if (fire == null || !fire.FiniteCooking || heat == null || glow == null) continue;
+                // Lit is what the hearth itself calls burning: hot enough to cook with fuel left. A spent hearth with coals still hot is already dark and is not "put out".
+                if (glow.Burning()) return e;
             }
             return null;
         }

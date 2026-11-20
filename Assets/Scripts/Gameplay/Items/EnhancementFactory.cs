@@ -123,6 +123,8 @@ namespace CavesOfOoo.Core
                 enhancementType = null;
                 return false;
             }
+            // A lookup is a production entry point too: a freshly loaded save that holds an enhancement removes or expires it before anything has applied one, so the lazy scan must run here.
+            EnsureInitialized();
             return _byClassName.TryGetValue(className, out enhancementType);
         }
 
@@ -135,6 +137,7 @@ namespace CavesOfOoo.Core
                 enhancementType = null;
                 return false;
             }
+            EnsureInitialized();
             return _byDisplayName.TryGetValue(displayName, out enhancementType);
         }
 

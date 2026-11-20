@@ -518,6 +518,45 @@ namespace CavesOfOoo.Tests
             Assert.AreNotEqual(SteepTroughPart.Clay, SteepTroughPart.Resin, "counter: the two reagents are different things");
         }
 
+        // ── review fixes (independent read of the clay-wash) ──
+
+        /// <summary>A save loads a garment that already holds a steeping before anything in the process has applied an enhancement, so the registry's lazy scan must run on a lookup, or Remove silently does nothing.</summary>
+        [Test] public void RemovingATreatmentWorksInAProcessWhereNothingHasAppliedOneYet()
+        {
+            var garment = Carry("LeatherArmor"); Assert.True(ItemEnhancing.Apply(garment, "EnhancementSteeped"));
+            var type = typeof(EnhancementFactory); const System.Reflection.BindingFlags F = System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic;
+            try
+            {
+                type.GetField("_initialized", F).SetValue(null, false);
+                ((System.Collections.IDictionary)type.GetField("_byClassName", F).GetValue(null)).Clear(); ((System.Collections.IDictionary)type.GetField("_byDisplayName", F).GetValue(null)).Clear();
+                Assert.True(ItemEnhancing.Remove(garment, "EnhancementSteeped"), "a fresh process still finds the treatment type by name"); Assert.Null(Steeped(garment));
+            }
+            finally { EnhancementFactory.EnsureInitialized(); }
+            Assert.False(ItemEnhancing.Remove(garment, "EnhancementSteeped"), "counter: nothing left to remove");
+        }
+
+        [Test] public void TheStatusReadoutNamesTheTreatmentAndItsKindNotTheTypeName()
+        {
+            var acid = new SteepedAcidEffect(35, 70, "g"); var fire = new SteepedAcidEffect(35, 40, "g2", "fire");
+            string a = EffectDescriber.Describe(acid), f = EffectDescriber.Describe(fire);
+            StringAssert.Contains("Steeped against acid", a); StringAssert.Contains("acid resistance", a); StringAssert.Contains("70", a);
+            StringAssert.Contains("Clay-washed against fire", f); StringAssert.Contains("heat resistance", f); StringAssert.DoesNotContain("SteepedAcid", f);
+        }
+
+        [Test] public void EveryCarriedGarmentCanBeClayWashed_NotJustTheFirstFew()
+        {
+            var trough = Standing("CampTrough", "east"); foreach (var bp in new[] { "LeatherArmor", "FilterHood", "KilnfeltApron", "AcidworkerApron", "ColdwardCloak" }) Carry(bp); GiveClay(2);
+            var rows = WashRows(trough); Assert.AreEqual(5, rows.Length, string.Join(" / ", rows.Select(r => r.Display))); Assert.True(rows.All(r => !r.IsDisabled));
+        }
+
+        [Test] public void AClayWashThatRunsOutSaysSoInItsOwnWords_AndASteepingDoesNotBorrowThem()
+        {
+            var washed = Carry("LeatherArmor"); Assert.True(ItemEnhancing.Apply(washed, "EnhancementSteeped")); Steeped(washed).Kind = "fire"; Steeped(washed).TurnsLeft = 1;
+            Assert.True(InventorySystem.Equip(Actor, washed)); Actor.GetEffect<SteepedAcidEffect>().JustApplied = false; MessageLog.Clear();
+            for (int i = 0; i < 3; i++) { var end = GameEvent.New("EndTurn"); Actor.FireEvent(end); }
+            string said = string.Join(" ", MessageLog.GetRecent(6)); StringAssert.Contains("clay-wash", said); StringAssert.DoesNotContain("The steeping", said);
+        }
+
         [Test] public void AMalformedTreatmentCommandIsRefusedAndTakesNothing()
         {
             var trough = Standing("CampTrough", "east"); var garment = Carry("LeatherArmor"); GiveClay(2); GiveReagents(1, 0);

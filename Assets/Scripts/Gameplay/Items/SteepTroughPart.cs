@@ -21,7 +21,7 @@ namespace CavesOfOoo.Core
         public override string Name => "SteepTrough";
 
         public const string Resin = "PitchpodResin", Clay = "FireClay", Prefix = "SteepGarment|", FireSuffix = "|fire";
-        public const int MaxRows = 6, MaxFireRows = 3, FireClayCost = 2;
+        public const int MaxRows = 6, FireClayCost = 2;
 
         public static bool IsCommand(string command) => command != null && command.StartsWith(Prefix, StringComparison.Ordinal);
 
@@ -114,9 +114,9 @@ namespace CavesOfOoo.Core
                 if (refusal == null) actions.AddActionWithHint("Steep", label, Prefix + garment.ID, hint, i == 0 ? 's' : '\0', 20 - i, false, ActionTime.OneAction);
                 else actions.AddDisabled("Steep", label, refusal, why, i == 0 ? 's' : '\0', 20 - i);
             }
-            // The clay-wash is offered once you carry any fire clay at all (a chain you have started), for the first few garments, and says what it lacks.
+            // The clay-wash is offered once you carry any fire clay at all (a chain you have started), for the same garments as the steeping, and says what it lacks.
             if (Count(actor, Clay) < 1) return;
-            for (int i = 0; i < garments.Count && i < MaxFireRows; i++)
+            for (int i = 0; i < garments.Count && i < MaxRows; i++)
             {
                 var garment = garments[i]; var prior = SteepOf(garment); string refusal = Refusal(actor, garment, SteepedAcidEffect.FireKind, out string why);
                 string label = "clay-wash " + garment.GetDisplayName() + (prior != null ? " (replaces " + prior.TurnsLeft + (prior.IsFire ? " turns)" : " turns of steeping)") : "");

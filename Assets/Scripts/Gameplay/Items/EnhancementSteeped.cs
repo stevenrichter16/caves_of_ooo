@@ -1,3 +1,4 @@
+using System.Linq;
 using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
@@ -67,9 +68,10 @@ namespace CavesOfOoo.Core
             foreach (var pair in inventory.EquippedItems)
             {
                 var garment = pair.Value; if (garment == null || garment.ID != garmentId) continue;
+                string kind = garment.Parts.OfType<EnhancementSteeped>().FirstOrDefault()?.Kind ?? SteepedAcidEffect.AcidKind;
                 ItemEnhancing.Remove(garment, "EnhancementSteeped");
-                MessageLog.Add("The steeping on your " + garment.GetDisplayName() + " has worn off.");
-                if (Diag.IsChannelEnabled("effect")) Diag.Record("effect", "SteepingExpired", target: wearer, payload: new { garment = garment.BlueprintName });
+                MessageLog.Add("The " + (kind == SteepedAcidEffect.FireKind ? "clay-wash" : "steeping") + " on your " + garment.GetDisplayName() + " has worn off.");
+                if (Diag.IsChannelEnabled("effect")) Diag.Record("effect", "SteepingExpired", target: wearer, payload: new { garment = garment.BlueprintName, kind });
                 return;
             }
         }

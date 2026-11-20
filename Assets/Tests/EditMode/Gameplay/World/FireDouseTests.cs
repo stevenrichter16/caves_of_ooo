@@ -95,6 +95,19 @@ namespace CavesOfOoo.Tests
             var oil = Flask("oil", 12); Assert.IsEmpty(Actions(oil).FirstOrDefault(a => a.Name == "PourLiquid" && a.Display.Contains(" east ("))?.Hint ?? "", "oil would not douse, so its row (if the world offers one) is silent");
         }
 
+        [Test] public void OnlyWaterAndLiquidsThatActAsWaterDouse_NotEveryLiquidThatDoesNotBurn()
+        {
+            foreach (var wet in new[] { "water", "bog-mire", "brine" }) Assert.True(FireDouse.Douses(wet), wet);
+            foreach (var other in new[] { "acid", "lava", "gel", "carapace-ichor", "oil", "pitch", "honey" }) Assert.False(FireDouse.Douses(other), other + " is not a way to put a fire out");
+        }
+
+        [Test] public void ASpentHearthWithCoalsStillHotIsAlreadyDarkAndIsNotPutOut_Counter()
+        {
+            var coals = LitHearthEast(300f, 0f); Assert.False(LightOn(coals), "fixture: no fuel, so no flame"); var flask = Flask("water", 12); MessageLog.Clear(); float before = Temp(coals);
+            Assert.IsEmpty(Row(flask, "PourOneLiquid").Hint ?? "", "its row makes no promise about a fire that is already dark");
+            Assert.True(Act(flask, Row(flask, "PourLiquid").Command)); Assert.AreEqual(before, Temp(coals), 0.001f); StringAssert.DoesNotContain("goes out", string.Join(" ", MessageLog.GetRecent(5)));
+        }
+
         [Test] public void ADousedHearthCanBeRelitFromAFlameAndStillHasItsFuel()
         {
             var hearth = LitHearthEast(); var flask = Flask("water", 12); Assert.True(Act(flask, Row(flask, "PourLiquid").Command)); Assert.False(LightOn(hearth));
