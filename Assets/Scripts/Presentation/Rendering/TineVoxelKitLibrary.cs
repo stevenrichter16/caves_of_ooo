@@ -120,6 +120,8 @@ namespace CavesOfOoo.Rendering
                 case "SandstoneWall": return "wall";
                 case "WaterPuddle": return "water";
                 case "Duckboard": return "pier";
+                // The weir body (a place-site object, Docs/MACHINE-INVENTED-USES.md 3i) borrows the shipped timber pier body; there is no weir art, and no new art is being made.
+                case "FishingWeir": return "pier";
                 case "RoadStone": return "path";
                 default: return null;
             }

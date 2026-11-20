@@ -129,6 +129,8 @@ namespace CavesOfOoo.Rendering
                 case "CinderholdNoticeBoard": return "notice";
                 case "TinkersForge": return "forge";
                 case "SmithAnvil": return "anvil";
+                // The mine pump (a place-site object, 3f) borrows the shipped anvil body, a small iron fixture; there is no pump art.
+                case "MinePump": return "anvil";
                 case "Weaponsmith": return "smith";
                 case "MarketStall": return "stall";
                 case "RoadStone": return "path";

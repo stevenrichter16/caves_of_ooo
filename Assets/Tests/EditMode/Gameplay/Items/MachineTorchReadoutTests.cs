@@ -102,8 +102,11 @@ namespace CavesOfOoo.Tests
         [Test] public void OtherFuelOwners_DoNotGainTorchInstructions()
         {
             var item = factory.CreateEntity("Dagger"); item.AddPart(new FuelPart());
-            StringAssert.DoesNotContain("Fuel:", item.GetPart<ExaminablePart>().BuildExamineLine());
-            StringAssert.DoesNotContain("lamp oil", item.GetPart<ExaminablePart>().BuildExamineLine());
+            string line = item.GetPart<ExaminablePart>().BuildExamineLine();
+            // Since 63f11fb9d every fuel-bearing thing states its fuel (Fuel: n left, about t turns once you light it), so the line itself is expected; what a non-torch must never gain is the
+            // torch's own reading and instructions.
+            StringAssert.Contains("Fuel:", line, "every fuel owner says how much it has");
+            StringAssert.DoesNotContain("lamp oil", line); StringAssert.DoesNotContain("Controlled flame", line); StringAssert.DoesNotContain("Torch reading", line);
         }
         [Test] public void ControlledOut_PreservesSeparateDestructiveFireAffliction()
         {

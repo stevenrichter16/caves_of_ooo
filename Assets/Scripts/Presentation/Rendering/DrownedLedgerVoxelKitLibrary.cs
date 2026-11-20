@@ -120,6 +120,8 @@ namespace CavesOfOoo.Rendering
             {
                 case "PreFellingBody": return "preserved";
                 case "SurveyStake": return "stake";
+                // The survey line (a place-site object, Docs/MACHINE-INVENTED-USES.md 3i) borrows the shipped survey-stake body.
+                case "SurveyLine": return "stake";
                 case "ReadingTable": return "table";
                 case "RecensionScribe": return "scribe";
                 case "CurationSorter": return "sorter";
