@@ -56,7 +56,9 @@ namespace CavesOfOoo.Core
    if(!string.IsNullOrWhiteSpace(sceneZoneId))return sceneZoneId;
    return scenarioPending&&wildRequested?WildStartZoneId(manager,wildBiome,wildDepth)??"":"";
   }
-  public static bool TryPlace(OverworldZoneManager manager,Entity actor,string configured,out Zone placedZone)
+  /// <summary>Whether a fresh start in <paramref name="zone"/> gets the farm-plot guarantee. The seeder turns the cells around the player into grass, which belongs on the surface: a scenario that starts one floor down (the sounding rod's) would otherwise lose its own cave floor under its feet. A zone that is not a world depth keeps the old behaviour.</summary>
+ public static bool WantsFarmPlotAt(Zone zone)=>zone!=null&&WorldMap.GetDepth(zone.ZoneID)<=0;
+ public static bool TryPlace(OverworldZoneManager manager,Entity actor,string configured,out Zone placedZone)
   {
    placedZone=null;
    if(manager==null||actor==null||actor.SpatialZone!=null||CombatSystem.IsDeathHandled(actor)||actor.GetStat("Hitpoints") is Stat hp&&hp.Value<=0||actor.GetPart<PhysicsPart>()?.InInventory!=null||actor.GetPart<PhysicsPart>()?.Equipped!=null)return Reject(manager,actor,"invalid-fresh-actor");

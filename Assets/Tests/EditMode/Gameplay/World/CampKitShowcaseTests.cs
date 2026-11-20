@@ -121,14 +121,14 @@ namespace CavesOfOoo.Tests
         [Test] public void ApplyingAScenarioClearsTheWildStartRequestSoItCannotLeakIntoALaterGame()
         {
             var handle = typeof(ScenarioRunner).GetMethod("HandleAfterBootstrap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static); Assert.NotNull(handle);
-            bool oldFlag = ScenarioRunner.PendingWildStart; var oldType = ScenarioRunner.PendingScenario; Pack.MaxWeight = 400;
+            bool oldFlag = ScenarioRunner.PendingWildStart; var oldType = ScenarioRunner.PendingScenario; var oldLast = ScenarioRunner.LastLaunched; Pack.MaxWeight = 400;
             try
             {
                 ScenarioRunner.PendingScenario = typeof(CampKitsWildShowcase); ScenarioRunner.PendingWildStart = true;
                 handle.Invoke(null, new object[] { Zone, Factory, Actor, new TurnManager() });
                 Assert.IsNull(ScenarioRunner.PendingScenario); Assert.False(ScenarioRunner.PendingWildStart, "one-shot, like the scenario itself");
             }
-            finally { ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; }
+            finally { ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; ScenarioRunner.LastLaunched = oldLast; }
         }
 
         // ── the awning's fixture: a wild start in the Beating at the Height hours ──
@@ -157,14 +157,14 @@ namespace CavesOfOoo.Tests
         [Test] public void TheWildBiomeRequestIsOneShotLikeTheWildStartItself()
         {
             var handle = typeof(ScenarioRunner).GetMethod("HandleAfterBootstrap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-            var oldBiome = ScenarioRunner.PendingWildBiome; var oldFlag = ScenarioRunner.PendingWildStart; var oldType = ScenarioRunner.PendingScenario; Pack.MaxWeight = 400;
+            var oldLast = ScenarioRunner.LastLaunched; var oldBiome = ScenarioRunner.PendingWildBiome; var oldFlag = ScenarioRunner.PendingWildStart; var oldType = ScenarioRunner.PendingScenario; Pack.MaxWeight = 400;
             try
             {
                 ScenarioRunner.PendingScenario = typeof(CampAwningShowcase); ScenarioRunner.PendingWildStart = true; ScenarioRunner.PendingWildBiome = BiomeType.Beating;
                 handle.Invoke(null, new object[] { Zone, Factory, Actor, new TurnManager() });
                 Assert.AreEqual(BiomeType.Spread, ScenarioRunner.PendingWildBiome, "a later scenario that asks for a wild start gets the Spread unless it asks otherwise");
             }
-            finally { ScenarioRunner.PendingWildBiome = oldBiome; ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; }
+            finally { ScenarioRunner.PendingWildBiome = oldBiome; ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; ScenarioRunner.LastLaunched = oldLast; }
         }
 
         [Test] public void TheAwningScenarioStartsAtTheHeightBandBareheadedWithTheAwningAndNothingMoreThanItNeeds()
@@ -212,7 +212,7 @@ namespace CavesOfOoo.Tests
         [Test] public void TheWildDepthRequestIsOneShotAndTheRodScenarioGivesTheRod()
         {
             var handle = typeof(ScenarioRunner).GetMethod("HandleAfterBootstrap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-            int oldDepth = ScenarioRunner.PendingWildDepth; var oldFlag = ScenarioRunner.PendingWildStart; var oldType = ScenarioRunner.PendingScenario; Pack.MaxWeight = 400;
+            var oldLast = ScenarioRunner.LastLaunched; int oldDepth = ScenarioRunner.PendingWildDepth; var oldFlag = ScenarioRunner.PendingWildStart; var oldType = ScenarioRunner.PendingScenario; Pack.MaxWeight = 400;
             try
             {
                 ScenarioRunner.PendingScenario = typeof(SoundingRodShowcase); ScenarioRunner.PendingWildStart = true; ScenarioRunner.PendingWildDepth = 1;
@@ -220,7 +220,35 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(0, ScenarioRunner.PendingWildDepth, "a later scenario starts on the surface unless it asks otherwise");
                 foreach (var (blueprint, count) in SoundingRodShowcase.Loadout) Assert.GreaterOrEqual(Pack.Objects.Count(o => o.BlueprintName == blueprint), count, blueprint);
             }
-            finally { ScenarioRunner.PendingWildDepth = oldDepth; ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; }
+            finally { ScenarioRunner.PendingWildDepth = oldDepth; ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; ScenarioRunner.LastLaunched = oldLast; }
+        }
+
+        // ── a start that did not happen as asked says so, and a cave start is not turned into a field ──
+
+        [Test] public void AFreshCaveStartKeepsItsFloorSoNoFarmPlotIsSeededUnderground_AndTheSurfaceStillGetsOne_Counter()
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true); string id = FreshGameStart.WildStartZoneId(manager, BiomeType.Spread, 1); var cave = manager.GetZone(id);
+            Assert.False(FreshGameStart.WantsFarmPlotAt(cave), "the seeder would turn the player's own cave floor to grass, and the rod would then refuse it");
+            Assert.True(FreshGameStart.WantsFarmPlotAt(manager.GetZone(WorldMap.ToZoneID(WorldMap.FromZoneID(id).x, WorldMap.FromZoneID(id).y, 0))), "an ordinary surface start is unchanged");
+            Assert.False(FreshGameStart.WantsFarmPlotAt(null)); Assert.True(FreshGameStart.WantsFarmPlotAt(new Zone("SomeTestZone")), "a zone that is not a world depth keeps the old behaviour");
+        }
+
+        [Test] public void TheRodScenarioSaysSoWhenTheStartWasNotUnderground_AndStaysQuietWhenItWas_Counter()
+        {
+            Pack.MaxWeight = 400; var surface = Context(out _); MessageLog.Clear(); new SoundingRodShowcase().Apply(surface);
+            StringAssert.Contains("did not start you underground", string.Join("|", MessageLog.GetRecent(8)));
+            var caveZone = new Zone("Overworld.10.10.1"); Zone.RemoveEntity(Actor); Assert.True(caveZone.AddEntity(Actor, 10, 10)); Zone = caveZone;
+            MessageLog.Clear(); new SoundingRodShowcase().Apply(new ScenarioContext(caveZone, Factory, Actor, new TurnManager()));
+            StringAssert.DoesNotContain("did not start you underground", string.Join("|", MessageLog.GetRecent(8)));
+        }
+
+        [Test] public void TheAwningScenarioSaysSoWhenTheStartWasNotInTheBeating_AndStaysQuietWhenItWas_Counter()
+        {
+            Pack.MaxWeight = 400; var spread = Context(out _); MessageLog.Clear(); new CampAwningShowcase().Apply(spread);
+            StringAssert.Contains("did not start you in the Beating", string.Join("|", MessageLog.GetRecent(8)));
+            var beating = new Zone("Overworld.16.16.0"); Zone.RemoveEntity(Actor); Assert.True(beating.AddEntity(Actor, 10, 10)); Zone = beating;
+            MessageLog.Clear(); new CampAwningShowcase().Apply(new ScenarioContext(beating, Factory, Actor, new TurnManager()));
+            StringAssert.DoesNotContain("did not start you in the Beating", string.Join("|", MessageLog.GetRecent(8)));
         }
 
         // ── the newer machines' fixture ──

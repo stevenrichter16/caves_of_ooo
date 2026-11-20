@@ -394,7 +394,7 @@ namespace CavesOfOoo
                         Debug.LogError("[Bootstrap] FAILED: No safe connected fresh-game start is available");
                         return false;
                     }
-                    EnsureFarmPlotAtSpawn();
+                    if (FreshGameStart.WantsFarmPlotAt(_zone)) EnsureFarmPlotAtSpawn();
                     if (DevMode.Enabled)
                     {
                         SpawnDebugWeaponNearPlayer();
