@@ -1,0 +1,24 @@
+using CavesOfOoo.Core;
+
+namespace CavesOfOoo.Scenarios.Custom
+{
+    /// <summary>
+    /// Hand-play fixture for the sounding rod and its survey log (Docs/MACHINE-INVENTED-USES.md 3g): the fresh game starts one floor down, in an ordinary cave under wild Spread ground
+    /// (requested through <c>ScenarioRunner.LaunchWild(BiomeType.Spread, 1)</c>), where the rod can sound, with the rod in the pack. It grants one item only: every verb afterwards is the ordinary one.
+    /// </summary>
+    [Scenario(
+        name: "Sounding Rod (an ordinary cave)",
+        category: "Home",
+        description: "Starts one floor down in an ordinary cave with a sounding rod: sound the ground, read what it names, walk to check it, then read the survey log.")]
+    public class SoundingRodShowcase : IScenario
+    {
+        public static readonly (string Blueprint, int Count)[] Loadout = { ("SoundingRod", 1) };
+
+        public void Apply(ScenarioContext ctx)
+        {
+            foreach (var (blueprint, count) in Loadout) ctx.Player.GiveItem(blueprint, count);
+            ctx.Log("[Sounding] You are in an ordinary cave one floor below wild ground, with a sounding rod in your pack.");
+            ctx.Log("[Sounding] 1. Open the pack, choose the rod's 'sound the ground (carries about N paces)': the strike is loud, and it names open ground, a way up or down and dense stone you have not seen, as a bearing and a distance. 2. Walk toward what it named and see whether it is so (nothing it reports is a promise about what is there beyond the bearing and the distance). 3. Sound again somewhere else, then choose 'read the survey log': it reprints your last eight soundings with where you stood. 4. Climb the stairs and try the rod on the surface: the ground there is too loose to carry a sounding.");
+        }
+    }
+}

@@ -28,9 +28,10 @@ namespace CavesOfOoo.Core
   /// <summary>
   /// The surface zone of <paramref name="biome"/> (the Spread by default) nearest the usual start (11,10) that the held-place rules call wild ground, or null when there is none: where a
   /// hand-test of the camp kits can set things down at once instead of walking away from the opening, or a biome's own rule (the Beating's glare) can be tried where it applies. Asked only by
-  /// a scenario that requests a wild start; an ordinary fresh game never calls it.
+  /// a scenario that requests a wild start; an ordinary fresh game never calls it. With <paramref name="depth"/> above zero the answer is the ordinary cave <paramref name="depth"/> floors
+  /// below that same wild ground, so a tool that works only underground (the sounding rod) can be tried at once.
   /// </summary>
-  public static string WildStartZoneId(OverworldZoneManager manager,BiomeType biome=BiomeType.Spread)
+  public static string WildStartZoneId(OverworldZoneManager manager,BiomeType biome=BiomeType.Spread,int depth=0)
   {
    var map=manager?.WorldMap;if(map==null)return null;
    string best=null;int bestDistance=int.MaxValue;
@@ -38,16 +39,22 @@ namespace CavesOfOoo.Core
    {
     if(map.GetBiome(x,y)!=biome)continue;
     string id=WorldMap.ToZoneID(x,y,0);if(HeldPlaceZones.Classify(manager,id)!=HeldPlaceZoneClass.WildSurface)continue;
+    if(depth>0)
+    {
+     // One floor (or more) down the same column, and only an ordinary cave: not a bespoke cellar, a site or a village's undercroft.
+     id=WorldMap.ToZoneID(x,y,depth);if(id==SoundingRodPart.GleanersCellarZone)continue;
+     if(!UndergroundLayoutPlan.Select(manager.WorldSeed,id,biome,map.GetPOI(x,y),manager.Factory).IsOrdinaryColumn)continue;
+    }
     int distance=Math.Abs(x-11)+Math.Abs(y-10);
     if(distance<bestDistance){best=id;bestDistance=distance;}
    }
    return best;
   }
   /// <summary>The fresh-start destination to use: the scene's own setting if it has one, else wild ground when a pending scenario asked for it, else empty (the ordinary Spread policy).</summary>
-  public static string ResolveStartZone(string sceneZoneId,bool scenarioPending,bool wildRequested,OverworldZoneManager manager,BiomeType wildBiome=BiomeType.Spread)
+  public static string ResolveStartZone(string sceneZoneId,bool scenarioPending,bool wildRequested,OverworldZoneManager manager,BiomeType wildBiome=BiomeType.Spread,int wildDepth=0)
   {
    if(!string.IsNullOrWhiteSpace(sceneZoneId))return sceneZoneId;
-   return scenarioPending&&wildRequested?WildStartZoneId(manager,wildBiome)??"":"";
+   return scenarioPending&&wildRequested?WildStartZoneId(manager,wildBiome,wildDepth)??"":"";
   }
   public static bool TryPlace(OverworldZoneManager manager,Entity actor,string configured,out Zone placedZone)
   {

@@ -184,6 +184,45 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(DayBand.Height, WorldClock.GetBand(turns2.TickCount)); Assert.GreaterOrEqual(turns2.TickCount, WorldClock.DayLengthTicks, "past Height today: tomorrow's");
         }
 
+        // ── the sounding rod's fixture: a wild start one floor down, under ground the rod accepts ──
+
+        [Test] public void ADepthOneWildStartIsAnOrdinaryCaveTheFreshGamePlacesTheActorInAndTheRodCanSound()
+        {
+            foreach (int seed in new[] { 64, 65, 7, 1234 })
+            {
+                var manager = OverworldZoneManager.CreateDetached(Factory, seed, true); string id = FreshGameStart.WildStartZoneId(manager, BiomeType.Spread, 1);
+                Assert.NotNull(id, "seed " + seed); var (x, y, depth) = WorldMap.FromZoneID(id); Assert.AreEqual(1, depth, "one floor down");
+                Assert.AreEqual(HeldPlaceZoneClass.WildSurface, HeldPlaceZones.Classify(manager, WorldMap.ToZoneID(x, y, 0)), "under ordinary wild ground, as the camp kits want");
+                Assert.AreNotEqual(SoundingRodPart.GleanersCellarZone, id);
+                var fresh = Factory.CreateEntity("Player"); var brain = fresh.GetPart<BrainPart>(); if (brain != null) fresh.RemovePart(brain);
+                Assert.True(FreshGameStart.TryPlace(manager, fresh, id, out var placed), "seed " + seed + ": the fresh game finds a safe cell in the cave"); Assert.AreEqual(id, placed.ZoneID);
+                Assert.IsNull(SoundingRodPart.Refusal(fresh, placed, out var why, out _), "seed " + seed + ": the rod can sound here: " + why);
+                Assert.AreEqual(FreshGameStart.WildStartZoneId(manager, BiomeType.Spread, 0), WorldMap.ToZoneID(x, y, 0), "the surface request and the cave request name the same column");
+            }
+        }
+
+        [Test] public void TheDepthIsCarriedThroughTheResolverAndIgnoredWithoutAWildStart_Counter()
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            Assert.AreEqual(FreshGameStart.WildStartZoneId(manager, BiomeType.Spread, 1), FreshGameStart.ResolveStartZone("", true, true, manager, BiomeType.Spread, 1));
+            Assert.AreNotEqual(FreshGameStart.ResolveStartZone("", true, true, manager, BiomeType.Spread, 1), FreshGameStart.ResolveStartZone("", true, true, manager), "the cave and the surface are different zones");
+            Assert.AreEqual("", FreshGameStart.ResolveStartZone("", true, false, manager, BiomeType.Spread, 1), "a depth without a wild-start request changes nothing");
+        }
+
+        [Test] public void TheWildDepthRequestIsOneShotAndTheRodScenarioGivesTheRod()
+        {
+            var handle = typeof(ScenarioRunner).GetMethod("HandleAfterBootstrap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            int oldDepth = ScenarioRunner.PendingWildDepth; var oldFlag = ScenarioRunner.PendingWildStart; var oldType = ScenarioRunner.PendingScenario; Pack.MaxWeight = 400;
+            try
+            {
+                ScenarioRunner.PendingScenario = typeof(SoundingRodShowcase); ScenarioRunner.PendingWildStart = true; ScenarioRunner.PendingWildDepth = 1;
+                handle.Invoke(null, new object[] { Zone, Factory, Actor, new TurnManager() });
+                Assert.AreEqual(0, ScenarioRunner.PendingWildDepth, "a later scenario starts on the surface unless it asks otherwise");
+                foreach (var (blueprint, count) in SoundingRodShowcase.Loadout) Assert.GreaterOrEqual(Pack.Objects.Count(o => o.BlueprintName == blueprint), count, blueprint);
+            }
+            finally { ScenarioRunner.PendingWildDepth = oldDepth; ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; }
+        }
+
         // ── the newer machines' fixture ──
 
         [Test] public void EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds()

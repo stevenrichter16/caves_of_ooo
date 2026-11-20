@@ -1428,7 +1428,7 @@ namespace CavesOfOoo
             _zoneManager = new OverworldZoneManager(_factory, NativeAuditBootstrapSettings.ResolveSeed());
             _zone = null;
             // The scene's own destination wins. Otherwise a pending scenario may ask for ordinary wild ground (nothing asks in a normal game, so the default policy is untouched).
-            _freshStartZoneId = FreshGameStart.ResolveStartZone(FreshGameZoneID, CavesOfOoo.Scenarios.ScenarioRunner.PendingScenario != null, CavesOfOoo.Scenarios.ScenarioRunner.PendingWildStart, _zoneManager, CavesOfOoo.Scenarios.ScenarioRunner.PendingWildBiome);
+            _freshStartZoneId = FreshGameStart.ResolveStartZone(FreshGameZoneID, CavesOfOoo.Scenarios.ScenarioRunner.PendingScenario != null, CavesOfOoo.Scenarios.ScenarioRunner.PendingWildStart, _zoneManager, CavesOfOoo.Scenarios.ScenarioRunner.PendingWildBiome, CavesOfOoo.Scenarios.ScenarioRunner.PendingWildDepth);
             foreach (string id in FreshGameStart.CandidateZoneIds(_zoneManager, _freshStartZoneId))
             {
                 var candidate = _zoneManager.GetZone(id);
