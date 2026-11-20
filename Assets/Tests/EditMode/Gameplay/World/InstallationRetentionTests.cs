@@ -22,8 +22,10 @@ namespace CavesOfOoo.Tests
         {
             scope = new HaulingContentScope(); scope.Seed(64); turn = 10; Diag.ResetAll();
             PlaceSiteCatalog.LoadFromJson(File.ReadAllText(Path.Combine(Application.dataPath, "Resources/Content/Data/PlaceSites.json")));
+            // These tests install their own markers into otherwise unmarked towns; the shipped rows (Tine's weir is a retained site object) must not make the control town retain.
+            InstallationRegistry.ResetForTests(); Assert.IsEmpty(InstallationRegistry.InitializeFromJson("{\"Version\":1,\"Installations\":[]}"));
         }
-        [TearDown] public void Cleanup() { PlaceSiteCatalog.Reset(); scope.Dispose(); }
+        [TearDown] public void Cleanup() { PlaceSiteCatalog.Reset(); InstallationRegistry.ResetForTests(); scope.Dispose(); }
 
         OverworldZoneManager NewManager()
         {

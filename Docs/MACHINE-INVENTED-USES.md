@@ -21,7 +21,7 @@ Rules the inventions below follow: attach to an existing rule or loop; add a pat
 | # | Machine | Gap it fills | Invented use | Why it flows | Status |
 |---|---|---|---|---|---|
 | 9 | Dynamo and charging bench | Charge exists as a tile energy with real reactions, but only skills write it; a non-caster cannot make fire where no flame burns. | **Spark and surge.** Portable, finite stored work that puts one bounded, previewed energy into one cell: heat first (a flint striker), charge later (a coiled-cord rod discharged into standing water or a conductor). Renewed by spending parts, not free. | Rule 1 and 2. The striker is one more answer to `IgnitionSources` and writes heat through the routine fire abilities use, so oil and occupants behave as for any fire ability. | **Built (this commit): flint striker.** Charge rod [I]: needs a lore read of the everyday scale of binding-work (`Lore/History/09_Magic.md`) and a Sumphold East Cut consumer. |
-| 8 | Thermal exchanger | Heat is a tile energy with reactions, but no machine aims it; fire clay (a repair material for Sill and Cinderhold) has no maker. | **Firing.** The camp hearth, fuelled, fires raw clay into fire clay, spending fuel per batch; later a directed plume (choose the side, preview what melts, steams or ignites) and a vent tap on a wild steam vent. | A kiln is what fire clay implies. Clay becomes a third source for three existing repair approaches without minting drams, because the deposit and the fuel are finite. | Design. Needs a finite raw-clay find (new gatherable) [I]. |
+| 8 | Thermal exchanger | Heat is a tile energy with reactions, but no machine aims it; fire clay (a repair material for Sill and Cinderhold) has no maker. | **Firing.** The camp hearth, fuelled, fires raw clay into fire clay, spending fuel per batch; later a directed plume (choose the side, preview what melts, steams or ignites) and a vent tap on a wild steam vent. | A kiln is what fire clay implies. Clay becomes a third source for three existing repair approaches without minting drams, because the deposit and the fuel are finite. | **Built (3j):** baked from bog-mire at the still instead of a new clay deposit; directed heat and the vent tap remain design. |
 | 7 | Sump pump | Cinderhold's "Drowned Level" has data (a Pump site, a PumpRunning condition) and no physical pump. | **The pump is the town's heart.** A site-owned pump object at Cinderhold whose states (sheared rod, clay-plugged, running) the concern drives and the reader names; mending it with the reclamation chain's spikes, haft and binding is the purpose of that chain. A second, portable sump comes after it. | The pattern exists (Wellmeet's main well). The approaches and conditions already exist, so the object is the only missing piece. | **Built (3f).** |
 | 2 | Fractionating still | Ward oil is bought upstairs and otherwise needs sari venom the catacomb folk cannot fetch; lamp oil is already sold at three stock tables and strained at one shed, so it is not the gap. | **Rendering ward.** A still that renders `VenomGland` into ward oil, fractions chosen by input, finite by the source. Needs a new process kind: the camp still's alchemy is property-driven (`BrewRules.json` turns reagent properties into effect flasks) and produces no item such as ward oil, and `MaterialProcesses.json` only knows `ForgeCold` and `HandCutting` stations [V]. | The Quiet's Door text says ward is made from sari venom; `VenomGland` exists as an item. [V] The player's still becomes the catacomb folk's craft for the player's use. | Design. Needs a lore read of ward (Dim, Rooted) [I]. |
 | 10 | Survey resonator | Hidden sinkhole mouths are deliberately indistinguishable on the map. | **Sounding.** A tool struck on the overworld that reports "hollow" or "solid" for neighbouring map cells, never which hollow, never classifying the sound. | The world is a tepui of hollows; it answers a real question (where to look) and leaves the discovery to exploration. Lore: the sound is recorded, never systematized. | **Built (3g).** |
@@ -142,13 +142,35 @@ What the object adds is the world's side. It is placed fresh-only beside Cinderh
 
 **Honest limits.** Not played in the Editor. The numbers (35, 100 turns) are the dossier's proposal. No new art (a glyph). The reagents are bought or found; nothing makes pitchpod resin or fire clay yet (the firing build, which fires clay, would make the second). Wording is placeholder pending voice review.
 
+## 3i. The seventh build: a body for every repair site (2026-11-20)
+
+The pump's part (3f) is generic, so three more data-defined repair sites got bodies in the same turn, each with its own blueprint, words and placement row: **Tine's fishing weir** (gapped / patched / holding), **Gantry's guest pole** (torn / patched / hung; it has no patch, so no patch row) and **the Drowned Ledger's survey line** (out of line / patched / straight). Each reads its site's own authored text, shows what the repair needs against what you carry, mends or patches through the same all-or-nothing call the elder's conversation uses, and takes the materials only at commit. They sit beside the town's well (non-solid), are placed fresh-only by the installation builder (a row with a `Site`, kept out of the every-town census) and are kept with the town because the part is stateful.
+
+**Wellmeet's pan scales are not built.** Their chunk is one of the fully voxel-modelled native chunks, where every visible owner must have a 3D model (a test pins it), so the body waits for art; the data site is exempt by name in the coverage test and the repair still works through conversation.
+
+A test now ties the two data files together: every repair site in `PlaceSites.json` must have a body row unless it is on the named exemption list, and no body row may name a site that does not exist, so a new data site cannot be forgotten and a typo cannot ship.
+
+**Honest limits.** Not played in the Editor; glyphs only; wording is placeholder pending voice review; towns already generated and cached keep what they have. The Concord-contract way of repairing (`ContractPlaceRepair`) is unchanged and still reaches only through conversation.
+
+## 3j. The eighth build: baking clay at the still (2026-11-20)
+
+**The gap.** Fire clay has one source in the shipped world: the Morrowfast mender's four. Yet the pump's patch asks two, the Cinderhold "seal" approach four, three repairs list it as a material, and the steeping trough one per garment. A thermal machine's pitch ("fire clay has no maker") had no raw material: there is no clay deposit to dig.
+
+**The invention.** The Sodden's bog-mire, the difficult local feed the still already settles into water or oil, is silt and acid water: boil the water off and what is left bakes into clay. At a set-down or communal still beside a lit fire, a flask holding eight or more mire offers **"bake N mire to 1 fire clay"**: eight mire and ten of the fire's fuel make one fire clay (a flask holds twelve, so at most one per flask; the rest stays as mire). It competes with settling for the same finite feed, and the output never exceeds it (one clay per eight mire; test-pinned).
+
+**Why it is not a money tap.** Fire clay is worth 1 dram. It is a repair and quest material, so its value is what it opens (a pump patched, a seal plugged, a garment steeped), not what it sells for; and the fuel and the carrying of mire are the real costs.
+
+**Quality of life.** The row names the amount and the product ("bake 12 mire to 1 fire clay") and says in its hint what the fire spends; a missing fire or too little fuel shows it disabled with the reason ("burns 10 and the fullest has 9"); the still's reader offers the bake next to the settle; an interrupted action gives back the mire, the fuel and the clay; a second clay merges into the first stack; no room for the clay refuses before anything is spent.
+
+**Honest limits.** Not played in the Editor. The ratio (8 mire, 10 fuel) is a proposal. The product is the existing fire clay (no new item, no art). It needs the camp's hands (the content factory wired at bootstrap).
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).
-2. The Cinderhold pump as a site-owned object (built, 3f); the same part for the Tine weir, Wellmeet scales and the other data sites next.
+2. The Cinderhold pump as a site-owned object (built, 3f); the same part for the Tine weir, Gantry guest pole and Ledger survey line (built, 3i); the Wellmeet scales wait for a 3D model.
 3. Carriage (the contract text is written; only Cinderhold and the Last Counter keep a ledger today, so it waits on a keeper at Tally).
 4. Sounding (built, 3g).
-5. Firing (needs a finite clay deposit; gives three repair approaches a third source, and the steeping trough its fire clay).
+5. Firing (built as baking clay at the still, 3j: it gives the repair approaches and the steeping trough a second source of fire clay).
 6. Charge rod, rendering, colony jar, reading a find, each after its lore read. (The steeping trough is built, 3h.)
 
 Each ships RED-first with counter-checks, an adversarial file, actual play and a fresh-eyed review, as the home kits did.

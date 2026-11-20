@@ -21,7 +21,7 @@ namespace CavesOfOoo.Tests
         [SetUp] public void SetupPump()
         {
             PlaceSiteCatalog.LoadFromJson(File.ReadAllText(Path.Combine(Application.dataPath, "Resources/Content/Data/PlaceSites.json")));
-            var poi = new PointOfInterest(POIType.Village, "Cinderhold"); new SettlementManager(() => turn, id => id == CinderholdZone ? poi : null);
+            new SettlementManager(() => turn, id => PlaceSiteCatalog.PlaceAt(id) is string name ? new PointOfInterest(POIType.Village, name) : null);
             MessageLog.Clear(); Diag.ResetAll();
         }
         [TearDown] public void TearDownPump() { SettlementManager.ResetCurrent(); PlaceSiteCatalog.Reset(); }
@@ -213,6 +213,51 @@ namespace CavesOfOoo.Tests
         {
             var pump = PumpAt(RepairStage.StableRepair); Link(pump); GiveLasting(); Assert.False(Act(pump, "PlaceSiteRepair|Lasting")); Assert.False(Act(pump, "PlaceSiteRepair|Patch"));
             Assert.AreEqual(2, Count("IronSpikeComponent")); Assert.AreEqual(1, Count("LeatherBindingComponent")); StringAssert.Contains("already properly repaired", string.Join("|", MessageLog.GetRecent(3)));
+        }
+
+        // ── every data-defined repair site has a body ──
+
+        public static readonly object[] Bodies =
+        {
+            new object[] { "Cinderhold", "Pump", "MinePump", "cinderhold-mine-pump", true },
+            new object[] { "Tine", "Weir", "FishingWeir", "tine-fishing-weir", true },
+            new object[] { "Gantry", "GuestPole", "GuestPole", "gantry-guest-pole", false },
+            new object[] { "the Drowned Ledger", "SurveyLine", "SurveyLine", "ledger-survey-line", true },
+        };
+
+        [Test] public void EveryDataSiteHasABodyRow_ThePlaceSiteCatalogAndTheInstallationRowsAgree()
+        {
+            InstallationRegistry.ResetForTests(); InstallationRegistry.LoadDefaults();
+            // Wellmeet's pan scales wait for a 3D model: its chunk is one of the fully voxel-modelled native chunks, where an unmodelled owner is a test failure, so the body needs art first.
+            var exempt = new[] { "Wellmeet:Scales" };
+            foreach (var site in PlaceSiteCatalog.All) Assert.AreEqual(!exempt.Contains(site.Place + ":" + site.Id), InstallationRegistry.All.Any(r => r.Place == site.Place && r.Site == site.Id), site.Place + ":" + site.Id);
+            Assert.AreEqual(PlaceSiteCatalog.All.Count - exempt.Length, InstallationRegistry.All.Count(r => !string.IsNullOrEmpty(r.Site)), "and no row without a site"); InstallationRegistry.ResetForTests();
+        }
+
+        [TestCaseSource(nameof(Bodies))]
+        public void EachBodyReadsItsSiteAndMendsItWithTheSitesOwnMaterials(string place, string siteId, string blueprint, string rowId, bool hasPatch)
+        {
+            Pack.MaxWeight = 1000; var data = PlaceSiteCatalog.Get(place, siteId); string zoneId = PlaceSites.ZoneIdOf(place); Assert.NotNull(data, place); Assert.NotNull(zoneId, place);
+            var body = Place(blueprint, 11, 10); var part = body.GetPart<PlaceSiteObjectPart>(); Assert.NotNull(part, blueprint + " carries the site part"); part.Place = place; part.SiteId = siteId; var site = PlaceSites.Site(place, siteId);
+            if (blueprint != "MinePump") Assert.False(body.GetPart<PhysicsPart>().Solid, "stands on bare ground without blocking a route"); StringAssert.Contains(data.Broken, Examine(body)); Assert.AreEqual("The " + data.Name + " is " + part.BrokenWord + ".", Menu(body)[0]);
+            Assert.True(Row(body, "PlaceSiteMend").IsDisabled); Assert.AreEqual(hasPatch, Row(body, "PlaceSitePatch") != null, "a patch row only where the site has a patch");
+            foreach (var m in data.Lasting.Materials) Give(m.Blueprint, m.Count); if (!string.IsNullOrEmpty(data.Lasting.Tool)) Carry(data.Lasting.Tool);
+            var mend = Row(body, "PlaceSiteMend"); Assert.False(mend.IsDisabled, mend.DisabledReason); Assert.True(Act(body, mend.Command), string.Join("|", MessageLog.GetRecent(3)));
+            Assert.AreEqual(RepairStage.StableRepair, site.Stage); foreach (var m in data.Lasting.Materials) Assert.AreEqual(0, Count(m.Blueprint), m.Blueprint + " used up");
+            if (!string.IsNullOrEmpty(data.Lasting.Tool)) Assert.AreEqual(1, Count(data.Lasting.Tool), "the tool is kept"); Look(body); StringAssert.Contains("(" + part.MendedWord + ")", body.GetPart<RenderPart>().DisplayName);
+        }
+
+        [TestCaseSource(nameof(Bodies))]
+        public void EachBodyIsPlacedOnceInAFreshTownAtEverySeed(string place, string siteId, string blueprint, string rowId, bool hasPatch)
+        {
+            foreach (int seed in new[] { 64, 704860946, 1729 })
+                using (var scope = new HaulingContentScope())
+                {
+                    scope.Seed(seed); InstallationRegistry.ResetForTests(); InstallationRegistry.LoadDefaults(); var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true);
+                    var zone = manager.GetZone(ZoneOf(place)); var bodies = zone.GetReadOnlyEntities().Where(e => e.BlueprintName == blueprint).ToList(); Assert.AreEqual(1, bodies.Count, place + " seed " + seed + ": " + string.Join(",", Diag.Snapshot(80).Where(r => r.Kind == "InstallationOmitted").Select(r => r.PayloadJson)));
+                    var part = bodies[0].GetPart<PlaceSiteObjectPart>(); Assert.AreEqual(place, part.Place); Assert.AreEqual(siteId, part.SiteId); Assert.AreEqual(rowId, bodies[0].GetPart<InstallationMarkerPart>().InstallationId); Assert.True(bodies[0].GetPart<InstallationMarkerPart>().RetainZone);
+                }
+            InstallationRegistry.ResetForTests();
         }
     }
 }

@@ -5657,6 +5657,126 @@
       ]
     },
     {
+      "Name": "FishingWeir",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "fishing weir" },
+            { "Key": "RenderString", "Value": "w" },
+            { "Key": "ColorString", "Value": "&c" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "PlaceSiteObject",
+          "Params": [
+            { "Key": "BrokenWord", "Value": "gapped" },
+            { "Key": "PatchedWord", "Value": "patched" },
+            { "Key": "MendedWord", "Value": "holding" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A line of oak stakes driven across the shallows with a gap woven in for the fish to be driven toward. The perch run along it, or round it when it fails." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" },
+        { "Key": "SiteObject", "Value": "" }
+      ]
+    },
+    {
+      "Name": "GuestPole",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "guest pole" },
+            { "Key": "RenderString", "Value": "!" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "PlaceSiteObject",
+          "Params": [
+            { "Key": "BrokenWord", "Value": "torn" },
+            { "Key": "PatchedWord", "Value": "patched" },
+            { "Key": "MendedWord", "Value": "hung" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A tall pole with a cloth pegged out from it, a guest's shade. The hospitality of a camp is whatever hangs from it." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" },
+        { "Key": "SiteObject", "Value": "" }
+      ]
+    },
+    {
+      "Name": "SurveyLine",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "survey line" },
+            { "Key": "RenderString", "Value": "|" },
+            { "Key": "ColorString", "Value": "&g" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "PlaceSiteObject",
+          "Params": [
+            { "Key": "BrokenWord", "Value": "out of line" },
+            { "Key": "PatchedWord", "Value": "patched" },
+            { "Key": "MendedWord", "Value": "straight" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A row of numbered stakes with a cord run stake to stake across the peat, the excavation's one fixed idea of where things are." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" },
+        { "Key": "SiteObject", "Value": "" }
+      ]
+    },
+    {
       "Name": "CampTrough",
       "Inherits": "PhysicalObject",
       "Parts": [

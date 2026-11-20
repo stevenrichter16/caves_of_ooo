@@ -89,6 +89,72 @@
       "Purpose": "The body of Cinderhold's mine pump (the Pump repair site): examine it for what became of it, and mend or patch it from its own menu with the same materials, rules and result the elder's conversation offers.",
       "Alternative": "The elder's conversation still offers to repair the pump, the field and clay-seal approaches of The Drowned Level remain, and nothing requires this object.",
       "Basis": "Docs/PLACE-WORK-AND-PROGRESSION.md C3c: data sites are repaired in conversation 'because places have no generated object for a weir or a pump yet'. This is that object, placed fresh-only beside the well; the site state is not stored in it."
+    },
+    {
+      "Id": "tine-fishing-weir",
+      "Place": "Tine",
+      "Blueprint": "FishingWeir",
+      "Site": "Weir",
+      "Retention": "Zone",
+      "Near": [
+        "Well"
+      ],
+      "Radius": 9,
+      "MinRadius": 2,
+      "MaxProbe": 48,
+      "Ground": [
+        "Grass",
+        "StoneFloor",
+        "Floor"
+      ],
+      "Revision": 1,
+      "Purpose": "The body of Tine's fishing weir (the Weir repair site): examine it for what became of it and mend or patch it from its own menu, with the same materials, rules and result the elder's conversation offers.",
+      "Alternative": "The conversation that owns the concern still offers the repair, the concern's other approaches remain, and nothing requires this object.",
+      "Basis": "Docs/PLACE-WORK-AND-PROGRESSION.md C3c: data sites are repaired in conversation 'because places have no generated object for a weir or a pump yet'. Placed fresh-only by the installation builder, like the Cinderhold pump; the site state is not stored in it."
+    },
+    {
+      "Id": "gantry-guest-pole",
+      "Place": "Gantry",
+      "Blueprint": "GuestPole",
+      "Site": "GuestPole",
+      "Retention": "Zone",
+      "Near": [
+        "Well"
+      ],
+      "Radius": 9,
+      "MinRadius": 2,
+      "MaxProbe": 48,
+      "Ground": [
+        "Grass",
+        "StoneFloor",
+        "Floor"
+      ],
+      "Revision": 1,
+      "Purpose": "The body of Gantry's guest pole (the GuestPole repair site): examine it for the torn cloth and hang a new one from its own menu, with the same materials, rules and result the host's conversation offers.",
+      "Alternative": "The conversation that owns the concern still offers the repair, the concern's other approaches remain, and nothing requires this object.",
+      "Basis": "Docs/PLACE-WORK-AND-PROGRESSION.md C3c: data sites are repaired in conversation 'because places have no generated object for a weir or a pump yet'. Placed fresh-only by the installation builder, like the Cinderhold pump; the site state is not stored in it."
+    },
+    {
+      "Id": "ledger-survey-line",
+      "Place": "the Drowned Ledger",
+      "Blueprint": "SurveyLine",
+      "Site": "SurveyLine",
+      "Retention": "Zone",
+      "Near": [
+        "Well"
+      ],
+      "Radius": 9,
+      "MinRadius": 2,
+      "MaxProbe": 48,
+      "Ground": [
+        "Grass",
+        "StoneFloor",
+        "Floor"
+      ],
+      "Revision": 1,
+      "Purpose": "The body of the Drowned Ledger's survey line (the SurveyLine repair site): examine it for how the stakes lean and re-run it from its own menu, with the same materials, rules and result the sorter's conversation offers.",
+      "Alternative": "The conversation that owns the concern still offers the repair, the concern's other approaches remain, and nothing requires this object.",
+      "Basis": "Docs/PLACE-WORK-AND-PROGRESSION.md C3c: data sites are repaired in conversation 'because places have no generated object for a weir or a pump yet'. Placed fresh-only by the installation builder, like the Cinderhold pump; the site state is not stored in it."
     }
   ],
   "Exemptions": [

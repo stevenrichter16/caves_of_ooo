@@ -165,5 +165,65 @@ namespace CavesOfOoo.Tests
             Assert.True(Act(still, rows.First(r => r.Command.Contains("|" + a.ID + "|")).Command)); Assert.True(Act(still, Rows(still).First(r => !r.IsDisabled && r.Command.Contains("|water|") && r.Command.Contains("|" + b.ID + "|")).Command));
             Assert.AreEqual(15f, Fuel(fire), 0.001f); Assert.AreEqual(3, Vessel(a).Volume); Assert.AreEqual(2, Vessel(b).Volume);
         }
+
+        // ── baking clay (Docs/MACHINE-INVENTED-USES.md 3j) ──
+
+        InventoryAction[] Bakes(Entity still) => Actions(still).Where(a => a.Name == "BakeClay").ToArray();
+        int Clay() => Pack.Objects.Where(o => o.BlueprintName == "FireClay").Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1);
+        [SetUp] public void WireTheCampsHands() { AlchemyStillPart.Factory = Factory; }
+        [TearDown] public void UnwireTheCampsHands() { AlchemyStillPart.Factory = null; }
+
+        [Test] public void AFlaskWithEightOrMoreMireOffersABakeRowAndLessDoesNot_Counter()
+        {
+            var still = Still(); Fire(); Flask(12, "bog-mire"); var row = Bakes(still).Single(); Assert.False(row.IsDisabled); Assert.AreEqual("bake 12 mire to 1 fire clay", row.Display); Assert.AreEqual(ActionTime.OneAction, row.Time); StringAssert.Contains("fire clay", row.Hint);
+            var small = Flask(7, "bog-mire"); Assert.AreEqual(1, Bakes(still).Length, "seven is not enough for a clay; its settle rows are unaffected"); Assert.True(Rows(still).Any(a => a.Display.Contains("7 mire")));
+        }
+
+        [Test] public void BakingTurnsEightMireAndTenFuelIntoOneFireClayAndKeepsTheRestAsMire()
+        {
+            var still = Still(); var fire = Fire(9, 25f); var flask = Flask(12, "bog-mire"); Assert.True(Act(still, Bakes(still).Single().Command), string.Join("|", MessageLog.GetRecent(3)));
+            Assert.AreEqual(1, Clay()); Assert.AreEqual(4, Vessel(flask).Volume); Assert.AreEqual("bog-mire", Vessel(flask).LiquidId); Assert.AreEqual(15f, Fuel(fire), 0.001f, "ten fuel from the fire that was lit");
+            Assert.LessOrEqual(1 * LiquidSettlingPart.ClayRatio, 12, "the clay never exceeds the feed"); StringAssert.Contains("4 mire stays", string.Join("|", MessageLog.GetRecent(3)));
+        }
+
+        [Test] public void EightExactlyEmptiesTheFlask()
+        {
+            var still = Still(); Fire(); var flask = Flask(8, "bog-mire"); Assert.True(Act(still, Bakes(still).Single().Command)); Assert.AreEqual(0, Vessel(flask).Volume); Assert.AreEqual("", Vessel(flask).LiquidId); Assert.AreEqual(1, Clay());
+        }
+
+        [Test] public void WithoutALitFireOrEnoughFuelTheRowIsDisabledAndSaysWhy_AndNothingIsBaked()
+        {
+            var still = Still(); var flask = Flask(12, "bog-mire"); var none = Bakes(still).Single(); Assert.True(none.IsDisabled); StringAssert.Contains("lit fire", none.DisabledReason); Assert.False(Act(still, "BakeClay|" + flask.ID + "|12")); Assert.AreEqual(0, Clay()); Assert.AreEqual(12, Vessel(flask).Volume);
+            Fire(9, 9f); var low = Bakes(still).Single(); Assert.True(low.IsDisabled); Assert.AreEqual("fuel_short", low.DisabledCode); StringAssert.Contains("burns 10", low.DisabledReason); Assert.AreEqual(0, Clay());
+        }
+
+        [Test] public void AnInterruptedBakeGivesBackTheMireTheFuelAndTheClay()
+        {
+            var still = Still(); var fire = Fire(9, 25f); var flask = Flask(12, "bog-mire"); string command = Bakes(still).Single().Command; FailAfter();
+            Assert.False(Act(still, command)); Assert.AreEqual(0, Clay()); Assert.AreEqual(12, Vessel(flask).Volume); Assert.AreEqual(25f, Fuel(fire), 0.001f);
+        }
+
+        [Test] public void ForgedStaleAndOverloadedBakesAreRefusedAndChangeNothing()
+        {
+            var still = Still(); var fire = Fire(9, 25f); var flask = Flask(12, "bog-mire");
+            foreach (var bad in new[] { "BakeClay|", "BakeClay|nobody|12", "BakeClay|" + flask.ID + "|11", "BakeClay|" + flask.ID + "|x", "BakeClay|" + flask.ID }) Assert.False(Act(still, bad), bad);
+            Pack.MaxWeight = Pack.GetCarriedWeight(); Assert.False(Act(still, "BakeClay|" + flask.ID + "|12"), "no room for the clay"); Assert.AreEqual(0, Clay()); Assert.AreEqual(12, Vessel(flask).Volume); Assert.AreEqual(25f, Fuel(fire), 0.001f);
+        }
+
+        [Test] public void WithoutTheCampsHandsThereIsNoBakeRow_Counter()
+        {
+            AlchemyStillPart.Factory = null; var still = Still(); Fire(); Flask(12, "bog-mire"); Assert.IsEmpty(Bakes(still)); Assert.NotNull(Rows(still).FirstOrDefault());
+        }
+
+        [Test] public void BakedClayIsRealFireClayTheRepairsAndConcernsCount()
+        {
+            var still = Still(); Fire(9, 25f); Flask(12, "bog-mire"); Flask(12, "bog-mire"); foreach (var row in Bakes(still)) Assert.True(Act(still, row.Command), row.Display + ": " + string.Join("|", MessageLog.GetRecent(4)));
+            Assert.AreEqual(2, CavesOfOoo.Concerns.ConcernItems.CountCarried(Actor, "FireClay"), "two flasks, two clay, the two the pump patch asks for");
+        }
+
+        [Test] public void TheReaderOffersTheBakeToo()
+        {
+            var still = Still(); Fire(); Flask(12, "bog-mire"); var lines = new System.Collections.Generic.List<string>(); StateReader.Collect(still, false, Zone, Zone.GetEntityCell(still), Actor, lines); StringAssert.Contains("bake 8 of it into fire clay", string.Join(" ", lines));
+        }
     }
 }
