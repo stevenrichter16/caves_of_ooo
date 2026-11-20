@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Data;
 
@@ -26,6 +27,12 @@ namespace CavesOfOoo.Core
         /// <summary>The last answer and the tick it was heard (-1 for never). Saved with the rod.</summary>
         public string LastReading = "";
         public int LastTick = -1;
+
+        /// <summary>The survey log: the last <see cref="LogSize"/> soundings, oldest first, each "tick|where you stood|what the stone said". It records only what the rod told you and where you were
+        /// standing (never where the hollows are beyond what was said), so it is a notebook, not a map. Saved with the rod; absent in an older save (empty).</summary>
+        public List<string> Log = new List<string>();
+        public const int LogSize = 8;
+        public const string LogVerb = "ReadSurveyLog";
 
         // ── how far the stone carries, by what the floor is made of (the shipped depth table) ──
 
@@ -179,6 +186,7 @@ namespace CavesOfOoo.Core
                 int age = LastTick >= 0 ? WorldClock.CurrentTick - LastTick : -1;
                 parts.Add("Last sounding" + (age >= 0 ? " (" + Ago(age) + ")" : "") + ": " + LastReading);
             }
+            if (Log.Count > 1) parts.Add(Log.Count + " soundings are in its log.");
             return parts.Count == 0 ? null : string.Join(" ", parts);
         }
 
@@ -194,6 +202,10 @@ namespace CavesOfOoo.Core
                 var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone;
                 if (Sound(actor, zone, e.GetParameter<InventoryTransaction>("InventoryTransaction"))) { e.Handled = true; return false; }
             }
+            if (e.ID == "InventoryAction" && e.GetStringParameter("Command") == LogVerb)
+            {
+                if (ReadLog(e.GetParameter<Entity>("Actor"))) { e.Handled = true; return false; }
+            }
             return true;
         }
 
@@ -202,6 +214,9 @@ namespace CavesOfOoo.Core
         void AddRow(Entity actor, Zone zone, InventoryActionList actions)
         {
             if (actions == null || !Carried(actor)) return;   // a dropped rod only offers pickup: no "installed" or origin ambiguity
+            // The log is a notebook: it reads anywhere, takes no time, and changes nothing.
+            if (Log.Count > 0) actions.AddActionWithHint("SurveyLog", "read the survey log (" + Log.Count + (Log.Count == 1 ? " sounding)" : " soundings)"), LogVerb, "Reads back what the rod told you, oldest first, and where you stood. It changes nothing and takes no time.", 'l', 19, false, ActionTime.Free);
+            else actions.AddDisabled("SurveyLog", "read the survey log", "empty", "You have not sounded anything with this rod yet.", 'l', 19);
             string code = Refusal(actor, zone, out string why, out int reach);
             const string hint = "Drives the rod into the floor and strikes it. It hears open ground, ways up or down and dense stone you have not seen, as a bearing and a distance. The strike is loud.";
             if (code == null) actions.AddActionWithHint("SoundGround", "sound the ground (carries about " + reach + " paces)", Command, hint, 's', 20, false, ActionTime.OneAction);
@@ -218,9 +233,14 @@ namespace CavesOfOoo.Core
             {
                 if (!tx.TryClaim(ParentEntity, actor, Command)) return Block(actor, "in-progress", "The rod is already in use.");
                 string reading = leads.Count == 0 ? "the stone answers, and there is nothing in reach that you have not already seen." : string.Join(" ", leads.ConvertAll(l => l.Sentence));
-                string beforeReading = LastReading; int beforeTick = LastTick; int noise = actor.GetIntProperty(Noise.Property, int.MinValue);
-                tx.Do(() => { Noise.Mark(actor); LastReading = reading; LastTick = WorldClock.CurrentTick; },
-                      () => { LastReading = beforeReading; LastTick = beforeTick; if (noise == int.MinValue) actor.IntProperties.Remove(Noise.Property); else actor.IntProperties[Noise.Property] = noise; });
+                string beforeReading = LastReading; int beforeTick = LastTick; int noise = actor.GetIntProperty(Noise.Property, int.MinValue); var beforeLog = new List<string>(Log);
+                var (zx, zy, depth) = WorldMap.FromZoneID(zone.ZoneID); string where = "map (" + zx + "," + zy + ") depth " + depth + ", at (" + origin.X + "," + origin.Y + ")";
+                tx.Do(() =>
+                {
+                    Noise.Mark(actor); LastReading = reading; LastTick = WorldClock.CurrentTick;
+                    Log.Add(LastTick + "|" + where + "|" + reading); if (Log.Count > LogSize) Log.RemoveRange(0, Log.Count - LogSize);
+                },
+                () => { LastReading = beforeReading; LastTick = beforeTick; Log = beforeLog; if (noise == int.MinValue) actor.IntProperties.Remove(Noise.Property); else actor.IntProperties[Noise.Property] = noise; });
                 tx.AfterCommit(() =>
                 {
                     MessageLog.Add("You drive the rod into the floor and strike it. The stone rings.");
@@ -231,6 +251,21 @@ namespace CavesOfOoo.Core
                 return true;
             }
             finally { if (own) tx.Rollback(); }
+        }
+
+        /// <summary>Prints the log to the message log, oldest first. Read-only.</summary>
+        bool ReadLog(Entity actor)
+        {
+            if (!Carried(actor)) return Block(actor, "not-carried", "You are not holding the rod.");
+            if (Log.Count == 0) return Block(actor, "empty", "You have not sounded anything with this rod yet.");
+            MessageLog.Add("The rod's survey log, oldest first:");
+            foreach (var entry in Log)
+            {
+                var bits = entry.Split(new[] { '|' }, 3);
+                if (bits.Length != 3 || !int.TryParse(bits[0], out int tick)) continue;
+                MessageLog.Add("- " + Ago(Math.Max(0, WorldClock.CurrentTick - tick)) + ", " + bits[1] + ": " + bits[2]);
+            }
+            return true;
         }
 
         bool Block(Entity actor, string code, string message)

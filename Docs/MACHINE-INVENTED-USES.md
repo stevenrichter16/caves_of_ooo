@@ -128,6 +128,8 @@ What the object adds is the world's side. It is placed fresh-only beside Cinderh
 
 **Honest limits.** Not played in the Editor. The ground table's numbers are proposals, tunable. Only one tool (the pitch's "recognizable signature" needs a buried-feature layer the world lacks). Wording is placeholder pending voice review. A Tinker already generated and cached has no rod; an unvisited town gets it on first visit.
 
+**Survey log (2026-11-20).** The rod now keeps a notebook: the last eight soundings, each with the tick, where you stood (map cell, depth, position in the cave) and what the stone said, saved with the rod (an older rod loads with none). A free row, "read the survey log (N soundings)", prints them oldest first with how long ago; it is disabled with a reason before the first sounding, works anywhere, takes no time and changes nothing. It records only what the stone told you and where you were, so it is a notebook and not a map; a sounding that rolls back is never logged.
+
 ## 3h. The sixth build: the steeping trough (2026-11-20)
 
 **The gap.** Acid is the one hazard near the start that is both dangerous and under-served: a Marlback Soursprayer's spray is a damage-over-time that costs about 37 HP unresisted and about 18 with a +35 resistance, and the only counters were buying a particular apron or eating a particular meal. The bath dossier ([MachineDesign/machine-bath.md](MachineDesign/machine-bath.md)) found the honest V1: a small, optional, gear-only preparation that makes a garment turn acid for a while, and nothing more (the roster's other half, shedding spores, has no state to act on).

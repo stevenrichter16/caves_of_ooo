@@ -117,6 +117,51 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(WorldClock.CurrentTick, rod.GetPart<SoundingRodPart>().LastTick);
         }
 
+        // ── the survey log (a notebook of what the stone told you) ──
+
+        string LogRow() => Actions(rod).Single(a => a.Name == "SurveyLog").Command;
+
+        [Test] public void TheLogRowIsDisabledUntilTheFirstSoundingAndThenReadsFreeAnywhere()
+        {
+            var row = Actions(rod).Single(a => a.Name == "SurveyLog"); Assert.True(row.IsDisabled); Assert.AreEqual("empty", row.DisabledCode); StringAssert.Contains("not sounded", row.DisabledReason);
+            Hollow(50, 10, 56, 14); Assert.True(Act(rod, SoundRow()));
+            row = Actions(rod).Single(a => a.Name == "SurveyLog"); Assert.False(row.IsDisabled); Assert.AreEqual(ActionTime.Free, row.Time); StringAssert.Contains("1 sounding)", row.Display); StringAssert.Contains("takes no time", row.Hint);
+        }
+
+        [Test] public void EachSoundingIsLoggedWithWhereYouStoodAndTheLogKeepsTheLastEight()
+        {
+            Hollow(50, 10, 56, 14); var part = rod.GetPart<SoundingRodPart>();
+            for (int i = 0; i < SoundingRodPart.LogSize + 3; i++) { new TurnManager().AdvanceClock(10); Assert.True(Act(rod, SoundRow())); }
+            Assert.AreEqual(SoundingRodPart.LogSize, part.Log.Count, "the oldest three fell off");
+            var last = part.Log[part.Log.Count - 1].Split('|'); Assert.AreEqual(3, last.Length); Assert.AreEqual(part.LastTick, int.Parse(last[0])); StringAssert.Contains("depth 3", last[1]); StringAssert.Contains("at (40,12)", last[1]); StringAssert.Contains(part.LastReading, last[2]);
+            var ticks = part.Log.Select(l => int.Parse(l.Split('|')[0])).ToList(); CollectionAssert.AreEqual(ticks.OrderBy(t => t).ToList(), ticks, "oldest first");
+        }
+
+        [Test] public void ReadingTheLogPrintsItOldestFirstAndChangesNothing()
+        {
+            Hollow(50, 10, 56, 14); Assert.True(Act(rod, SoundRow())); new TurnManager().AdvanceClock(WorldClock.DayLengthTicks * 2); Assert.True(Act(rod, SoundRow()));
+            var part = rod.GetPart<SoundingRodPart>(); var snapshot = new List<string>(part.Log); int tick = part.LastTick; int items = Pack.Objects.Count; MessageLog.Clear();
+            Assert.True(Act(rod, LogRow()));
+            var said = MessageLog.GetRecent(8); Assert.True(said.Any(m => m.Contains("survey log")), string.Join(" | ", said));
+            int first = said.ToList().FindIndex(m => m.Contains("days ago")), second = said.ToList().FindIndex(m => m.Contains("just now")); Assert.Greater(first, -1); Assert.Greater(second, first, "older first, newest last");
+            Assert.True(said.Any(m => m.Contains("map (5,5) depth 3") && m.Contains("Open ground lies")), "where you stood and what it said");
+            CollectionAssert.AreEqual(snapshot, part.Log, "reading adds nothing"); Assert.AreEqual(tick, part.LastTick); Assert.AreEqual(items, Pack.Objects.Count);
+        }
+
+        [Test] public void ARolledBackSoundingLeavesTheLogAsItWas_AndAnOlderRodWithoutALogLoadsEmpty()
+        {
+            Hollow(50, 10, 56, 14); Assert.True(Act(rod, SoundRow())); var part = rod.GetPart<SoundingRodPart>(); var before = new List<string>(part.Log); string command = SoundRow(); FailAfter();
+            Assert.False(Act(rod, command)); CollectionAssert.AreEqual(before, part.Log, "the failed strike was never logged");
+            Assert.IsEmpty(new SoundingRodPart().Log, "a rod saved before the log existed starts with none");
+        }
+
+        [Test] public void TheLogRoundTripsThroughASave()
+        {
+            Hollow(50, 10, 56, 14); Assert.True(Act(rod, SoundRow())); var part = rod.GetPart<SoundingRodPart>();
+            var copy = PartRoundTripHelper.RoundTripEntityViaTokenGraph(rod).GetPart<SoundingRodPart>();
+            CollectionAssert.AreEqual(part.Log, copy.Log); Assert.AreEqual(part.LastReading, copy.LastReading);
+        }
+
         [Test] public void AnOuterFailureUndoesTheReadingAndTheNoise()
         {
             Hollow(50, 10, 56, 14); string command = SoundRow(); FailAfter(); Assert.False(Act(rod, command));
