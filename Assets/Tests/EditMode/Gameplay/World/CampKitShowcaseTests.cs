@@ -54,6 +54,10 @@ namespace CavesOfOoo.Tests
             Assert.True(Has("MendleafSprig", 2) && Has("FireMoss"), "reagents for the still");
             Assert.True(Has("Dagger"), "something to put in the box");
             Assert.True(Has("FlintStriker"), "a flame where none burns (the spark path)");
+            Assert.True(Has("IronSpikeComponent", 2), "one spike for the bench craft and one to knap the striker");
+            Assert.True(Has("LiquidFlask"), "a flask to fill with mire for the still");
+            Assert.AreEqual(LiquidSettlingPart.Feed, CampKitsShowcase.MireLiquid, "the flask is filled with the liquid the still settles");
+            Assert.AreEqual(0, CampKitsShowcase.MireUnits % LiquidSettlingPart.Ratio, "a whole number of batches, no dregs");
         }
     }
 }
