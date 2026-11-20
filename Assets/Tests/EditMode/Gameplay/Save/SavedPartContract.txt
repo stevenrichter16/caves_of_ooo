@@ -1,4 +1,4 @@
-# parts=386
+# parts=387
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -334,6 +334,9 @@ Part CavesOfOoo.Core.FireTrapTriggerPart | reflected
   ConsumeOnTrigger:System.Boolean
   Damage:System.Int32
   TriggerFaction:System.String
+Part CavesOfOoo.Core.FlintStrikerPart | reflected
+  MaxStrikes:System.Int32
+  Strikes:System.Int32
 Part CavesOfOoo.Core.FlowerCharmPart | reflected
   BaseDuration:System.Int32
   MinDuration:System.Int32

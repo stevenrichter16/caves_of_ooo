@@ -85,6 +85,7 @@ namespace CavesOfOoo.Core
                         var heat = owner.GetPart<ThermalPart>(); var source = IgnitionSources.Find(actor, zone, owner);
                         if (fuel.FuelMass <= 0 || heat.Temperature >= 450 || source == null) return WorldResourceActions.Reject(actor, owner, command, "fuel_or_ignition_unavailable");
                         if (!tx.TryClaim(source, actor, command)) return false;
+                        if (!IgnitionSources.Consume(actor, source, tx, "coals")) return WorldResourceActions.Reject(actor, owner, command, "fuel_or_ignition_unavailable");
                         float before = heat.Temperature; tx.Do(() => heat.Temperature = 450, () => heat.Temperature = before);
                         tx.AfterCommit(() => { ZoneRenderHooks.MarkCellDirty(zone.GetEntityCell(owner), "CookingRelit"); MessageLog.Add("You relight the cooking coals from the flame."); });
                     }

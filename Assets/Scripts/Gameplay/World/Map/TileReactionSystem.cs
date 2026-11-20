@@ -276,6 +276,31 @@ namespace CavesOfOoo.Core
             return fired;
         }
 
+        /// <summary>
+        /// Read-only: would one point of heat written at this cell light something? True only where a heat reaction's coating input is already present and that coating is
+        /// combustible (oil), so a puddle that merely steams or ice that merely melts does not count. It writes nothing, fires no event and records no diag; it exists so a tool
+        /// can offer a spark only where the shared reactions would catch (Docs/MACHINE-INVENTED-USES.md).
+        /// </summary>
+        public static bool HeatWouldIgnite(Zone zone, int x, int y)
+        {
+            if (zone == null || !IsInitialized) return false;
+            var state = zone.TileState;
+            if (state == null || state.Get(x, y) == null) return false;
+            for (int i = 0; i < _reactions.Count; i++)
+            {
+                var r = _reactions[i];
+                if (r.InputEnergy != "heat" || string.IsNullOrEmpty(r.InputCoating)) continue;
+                if (r.RequiresConductor && !TilePropagationSystem.IsConductive(zone, x, y)) continue;
+                if (!string.IsNullOrEmpty(r.ForbidCoating) && FindInputCoating(state, x, y, r.ForbidCoating) != null) continue;
+                var coating = FindInputCoating(state, x, y, r.InputCoating);
+                if (coating == null) continue;
+                if (!string.IsNullOrEmpty(r.InputResidue) && !state.HasResidue(x, y, r.InputResidue)) continue;
+                if ((LiquidRegistry.Get(coating)?.Combustibility ?? 0) <= 0) continue;
+                return true;
+            }
+            return false;
+        }
+
         private static long GuardKey(int reactionIndex, int x, int y)
             => ((long)reactionIndex << 32) | (uint)(y * Zone.Width + x);
 

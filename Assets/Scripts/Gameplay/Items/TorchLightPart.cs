@@ -117,6 +117,7 @@ namespace CavesOfOoo.Core
                 if (!transaction.TryClaim(actor, actor, command) || !transaction.TryClaim(ParentEntity, actor, command)
                     || (source != null && !transaction.TryClaim(source, actor, command)))
                     return Reject(actor, "in_progress", "That torch is already being used.");
+                if (source != null && !IgnitionSources.Consume(actor, source, transaction, "torch")) return Reject(actor, "no_fire", "Stand beside a burning fire to light the torch.");
                 bool wasEnabled = light.Enabled;
                 float oldTemperature = thermal.Temperature;
                 var effects = ParentEntity.GetPart<StatusEffectsPart>();

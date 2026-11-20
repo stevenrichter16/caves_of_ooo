@@ -19,7 +19,26 @@ namespace CavesOfOoo.Core
                     || (source.GetPart<StackerPart>()?.StackCount ?? 1) != 1) continue;
                 if (Hot(source)) return source;
             }
-            return null;
+            // No flame in reach: a carried flint striker can make one. Real fires always win above, so a strike is never spent while a fire burns beside the actor. The most worn
+            // usable striker is spent first (ties by ID), so a pack of them is used up in a stable order.
+            Entity striker = null; int least = int.MaxValue;
+            foreach (var item in pack.Objects)
+            {
+                if (item == exclude || !FlintStrikerPart.Usable(actor, item)) continue;
+                int strikes = item.GetPart<FlintStrikerPart>().Strikes;
+                if (strikes < least || (strikes == least && striker != null && string.CompareOrdinal(item.ID, striker.ID) < 0)) { striker = item; least = strikes; }
+            }
+            return striker;
+        }
+
+        /// <summary>
+        /// Pays for the ignition source <see cref="Find"/> returned, inside the caller's transaction after the caller has claimed it. A burning fire costs nothing; a flint striker
+        /// spends one strike, undone with the transaction. False means the source can no longer ignite and the caller must refuse.
+        /// </summary>
+        internal static bool Consume(Entity actor, Entity source, CavesOfOoo.Core.Inventory.InventoryTransaction tx, string use)
+        {
+            var striker = source?.GetPart<FlintStrikerPart>();
+            return striker == null || striker.Spend(actor, tx, use);
         }
         static bool Hot(Entity source)
         {
