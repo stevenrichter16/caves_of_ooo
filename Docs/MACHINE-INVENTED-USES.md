@@ -62,9 +62,21 @@ Rules the inventions below follow: attach to an existing rule or loop; add a pat
 
 **Honest limits.** A night is a full heal for about 15 fuel: a real, bounded lever that the owner should be able to retune by changing the hearth's `BurnRate`, `MaxFuel` or the timber's fuel. Other fuel burners (a torch in the pack) still do not burn through a rest. No Editor play yet.
 
+## 3c. The third build: settling at the still
+
+**The gap.** The still gate asks for "a difficult local feed into a useful liquid", with feed accounting, bounded processing, fuel and an output; the camp still only brews reagents into effect flasks. The Sodden's bog-mire is exactly a difficult local feed: acid, viscous, drawn into flasks by the shipped transfers, and good for nothing else. [V]
+
+**The invention.** At a standing still (communal or set-down), a flask of bog-mire settles to **clean water or oil, four units to one**, chosen at the still, over a lit fire within two cells that spends **5 of its own fuel** per batch. The two outputs compete for one finite feed; the dregs are spent; output times four never exceeds the feed (a 11-unit flask is two batches of four and 3 dregs). Rows say the numbers ("settle 12 mire to 3 water") and refuse up front, with the numbers, when there is no fire, when no fire can spare 5 fuel, or when the flask holds fewer than 4. A carried still is a kit and offers nothing.
+
+**Why it flows.** It is the roster's own picture ("a swamp workshop and a desert workshop could use the same machine for very different purposes"): the Sodden gets water or oil out of mire, other places get nothing from it. Fire is coupled, not assumed: the hearth, or any burning fire with fuel, pays for the work, so the still and the hearth become one workshop. The oil is real: it burns by the shared reactions when poured and sparked with a flint striker (the same chain the Peat Works already uses for rendering). It is the rendering the peat-cutters already do, made portable.
+
+**Deliberately not done.** Brine is not settled: a free salt source would inflate the money the Beating's salt economy rests on (EC5). Water has no thirst consumer today (irrigation and flasks only), so the water branch is modest; oil is the branch with the fire loop.
+
+**Honest limits.** Voice review of the strings; no Editor play; flasks only (no standing tank); the fire's fuel is spent per batch rather than per elapsed time, as for rest.
+
 ## 4. Order
 
-1. Flint striker (built), rest beside the hearth (built).
+1. Flint striker (built), rest beside the hearth (built), settling at the still (built).
 2. The Cinderhold pump as a site-owned object (cheapest, gives the reclamation chain a visible destination).
 3. Carriage (the Last Counter has no forge and the contract text is written).
 4. Sounding (a real question the map cannot answer).
