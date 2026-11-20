@@ -224,6 +224,8 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 
 **Quality of life.** The take row names the count and is disabled with the reason when empty ("Nothing in it yet. It catches at most one fish every half day." / "The pond is fished out for now. It fills slowly, one fish a day." / "It is not beside a pond big enough to fish."); a full pack takes as many as fit and says the rest stay; an interrupted take changes nothing, including the pond.
 
+**When to come back (2026-11-20).** The reader and the empty take row name when the next fish is due in the time of day the sidebar shows ("The next fish is due around Dusk."; "due soon" in the last two hours of a catch), never a tick count. A full trap says "It is full: it catches no more until you empty it." and a fished-out pond promises nothing (the water's own look says why). Pure projection from the same state the catch already uses; reading changes nothing. Five tests pin it, four mutants (no "soon", full still promising, fished-out still promising, row without timing) each fail a test.
+
 **Honest limits.** Not played in the Editor. The rates (a half-day catch, a day to refill, capacity 4 to 8, a cap of four) are proposals. Fishable water is rare by the game's own design; the Tine lake is a `WaterPuddle` inside a town where kits cannot be set down. The trap has no bait and no skill.
 
 ## 3o. The thirteenth build: shade as a capability, and the awning (2026-11-20)

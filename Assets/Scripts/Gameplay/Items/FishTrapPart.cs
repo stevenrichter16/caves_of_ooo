@@ -16,7 +16,7 @@ namespace CavesOfOoo.Core
         public override string Name => "FishTrap";
 
         public const string Command = "TakeTrapFish", FishBlueprint = "LakePerch";
-        public const int MaxHeld = 4, CatchTicks = WorldClock.DayLengthTicks / 2;
+        public const int MaxHeld = 4, CatchTicks = WorldClock.DayLengthTicks / 2, SoonTicks = 120;
 
         /// <summary>Fish in the trap; the tick it was last brought up to date (-1 never); and the part of a catch period already elapsed.</summary>
         public int Held, LastTick = -1, Progress;
@@ -80,7 +80,18 @@ namespace CavesOfOoo.Core
             if (!p.Pond) return "It is not beside a pond big enough to fish. It catches nothing here; move it to the shore of a lake or a wide river.";
             // A pond nobody has fished has no stock record yet and is full.
             string look = p.StockLeft < 0 ? FishStockPart.Look(1, 1) : FishStockPart.Look(p.StockLeft, p.Capacity);
-            return "Holds " + p.Held + " fish (it takes " + MaxHeld + "). The water beside it looks " + look + ".";
+            string next = p.Held >= MaxHeld ? " It is full: it catches no more until you empty it." : NextFish(zone, now, p, " The next fish is ");
+            return "Holds " + p.Held + " fish (it takes " + MaxHeld + "). The water beside it looks " + look + "." + next;
+        }
+
+        /// <summary>When the next fish is due, in the time of day the sidebar shows and never a tick count: "due soon" when about to come, else "due around Dusk". Empty when nothing more is coming
+        /// (full trap, or a pond fished out for now: the water's own look already says that).</summary>
+        string NextFish(Zone zone, int now, Projection p, string lead)
+        {
+            if (!p.Pond || p.Held >= MaxHeld || p.StockLeft == 0) return "";
+            int remaining = CatchTicks - p.Progress; if (remaining < 0) remaining = 0;
+            if (remaining <= SoonTicks) return lead + "due soon.";
+            return lead + "due around " + WorldClock.BandName(WorldClock.GetBand(now + remaining), WorldMap.GetDepth(zone?.ZoneID)) + ".";
         }
 
         // ── the verb ──
@@ -105,7 +116,7 @@ namespace CavesOfOoo.Core
             const string hint = "Empties the trap into your pack. It catches again while it stands, up to four at a time, from the pond's own supply.";
             if (p.Held > 0) actions.AddActionWithHint("TakeTrapFish", "take the fish (" + p.Held + ")", Command, hint, 't', 20, false, ActionTime.OneAction);
             else if (!p.Pond) actions.AddDisabled("TakeTrapFish", "take the fish", "no-pond", "It is not beside a pond big enough to fish. Move it to the shore of fishable water, a cascade basin.", 't', 20);
-            else actions.AddDisabled("TakeTrapFish", "take the fish", "empty", p.StockLeft == 0 ? "The pond is fished out for now. It fills slowly, one fish a day." : "Nothing in it yet. It catches at most one fish every half day.", 't', 20);
+            else actions.AddDisabled("TakeTrapFish", "take the fish", "empty", p.StockLeft == 0 ? "The pond is fished out for now. It fills slowly, one fish a day." : "Nothing in it yet. It catches at most one fish every half day." + NextFish(zone, WorldClock.CurrentTick, p, " The next is "), 't', 20);
         }
 
         bool Take(Entity actor, Zone zone, InventoryTransaction tx)

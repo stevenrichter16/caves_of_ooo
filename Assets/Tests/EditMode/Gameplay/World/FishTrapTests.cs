@@ -258,5 +258,43 @@ namespace CavesOfOoo.Tests
             Days(2); Act(trap, TakeRow(trap).Command); Stock().Available = 0; line = Read(trap);
             StringAssert.Contains("fished out for now", line); Assert.False(System.Text.RegularExpressions.Regex.IsMatch(line, @"\b\d+ of \d+\b"), "no pond arithmetic is shown");
         }
+
+        // ── when to come back (quality of life) ──
+
+        [Test] public void TheReaderSaysWhenTheNextFishIsDue_InTheNameOfTheTimeOfDayNeverATickCount()
+        {
+            var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east"); int t0 = WorldClock.CurrentTick;
+            string line = Read(trap); StringAssert.Contains("next fish is due around " + BandAt(t0 + FishTrapPart.CatchTicks), line);
+            Assert.False(System.Text.RegularExpressions.Regex.IsMatch(line, @"\b\d{3,}\b"), "no tick counts: " + line);
+            Days(0.5); line = Read(trap);   // one is in; the clock for the next starts from the catch, a half day on
+            StringAssert.Contains("Holds 1 fish", line); StringAssert.Contains("next fish is due around " + BandAt(WorldClock.CurrentTick + FishTrapPart.CatchTicks), line);
+            Assert.AreEqual(0, Part(trap).Held, "reading changes nothing");
+        }
+
+        [Test] public void WhenTheNextFishIsAboutToComeTheReaderSaysSoInsteadOfNamingTheBand()
+        {
+            var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east"); Days(0.45);   // 540 of the 600 ticks gone
+            string line = Read(trap); StringAssert.Contains("due soon", line); StringAssert.DoesNotContain("due around", line);
+        }
+
+        [Test] public void AFullTrapSaysItIsFullAndPromisesNoFurtherFish_Counter()
+        {
+            var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east"); Days(2.5); string line = Read(trap);
+            StringAssert.Contains("Holds 4 fish", line); StringAssert.Contains("It is full: it catches no more until you empty it", line); StringAssert.DoesNotContain("due", line);
+        }
+
+        [Test] public void AFishedOutPondPromisesNoNextFish_Counter()
+        {
+            var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east"); Days(1.1); Act(trap, TakeRow(trap).Command); Stock().Available = 0; string line = Read(trap);
+            StringAssert.Contains("fished out for now", line); StringAssert.DoesNotContain("due", line);
+        }
+
+        [Test] public void TheDisabledTakeRowOfAnEmptyTrapSaysWhenToComeBack()
+        {
+            var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east"); var row = TakeRow(trap);
+            Assert.AreEqual("empty", row.DisabledCode); StringAssert.Contains("half day", row.DisabledReason); StringAssert.Contains("due around " + BandAt(WorldClock.CurrentTick + FishTrapPart.CatchTicks), row.DisabledReason);
+        }
+
+        static string BandAt(int tick) => WorldClock.BandName(WorldClock.GetBand(tick), 0);
     }
 }
