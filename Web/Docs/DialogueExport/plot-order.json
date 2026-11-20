@@ -1,0 +1,1396 @@
+{
+  "source_commit": "e5a782a2e8d91354798b917e3aceed36b4c5f42f",
+  "ordering_policy": "Editorial reading order grounded in current implemented content. Optional regional arcs and repeatable dialogue are not asserted to be mandatory or globally chronological. Alternatives remain branches; all four endings have exact authored epilogues.",
+  "schema_note": "conversations[].nodes=[\"*\"] means all JSON nodes except exclude_nodes. Specific lists select those nodes only. Show source-order choices with conditional labels; preserve links to nodes in other chapters. Narrative extras are keyed by narrative_extra_ids in supplemental-narrative.json. Entries may repeat a conversation ID with disjoint node lists to interleave speakers chronologically. Entry title/summary identify the scene. Render entry.runtime_indices_before, then selected JSON nodes, then entry.runtime_indices_after, then entry.narrative_extra_ids_after. Runtime indices are zero-based in runtime-dialogue.json; mapped indices must not be printed again in a generic runtime section. Chapter-level narrative_extra_ids render before entries unless narrative_extras_position says otherwise. alternative_group=world_ending means mutually exclusive branches, never a sequential timeline.",
+  "chapters": [
+    {
+      "id": "01",
+      "title": "Arrival in the Spread",
+      "kind": "opening",
+      "summary": "The current fresh game begins in a Spread clearing, normally east of Sill. The clearing warden gives a geographic lead; field residents explain ordinary survival and useful places. This precedes the Sill omen.",
+      "conversations": [
+        {
+          "id": "Warden_1",
+          "source": "Assets/Resources/Content/Conversations/Wardens.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "SpreadSeedKeeper_1",
+          "source": "Assets/Resources/Content/Conversations/SpreadFieldResidents.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "SpreadWaysideCook_1",
+          "source": "Assets/Resources/Content/Conversations/SpreadFieldResidents.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Docs/SPREAD-FIRST-HOUR-PLAN.md:62",
+        "Docs/SPREAD-FIRST-HOUR-PLAN.md:79",
+        "Assets/Scripts/Gameplay/Conversations/FirstHourGuidance.cs:21"
+      ],
+      "notes": [
+        "The preferred fresh-start glade is Overworld.11.10.0, with map-valid fallbacks. Sill 10.10 is the old starter-town constant, not an unconditional current player spawn.",
+        "Warden_1 has a glade-specific runtime override. Its village wording is a location variant, not a later plot event.",
+        "The older western-field→Morrowfast opening in September 17 documents is historical, not the current fresh-start authority."
+      ]
+    },
+    {
+      "id": "02",
+      "title": "Sill: the sound from a story",
+      "kind": "main_context",
+      "summary": "Arrival in Sill triggers the one-shot sari omen. The elder, scribe and residents frame the world before the faction accounts. Knowledge-gated return topics remain later branches within these conversations.",
+      "conversations": [
+        {
+          "id": "Elder_1",
+          "source": "Assets/Resources/Content/Conversations/Villagers.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Elder_Well_1",
+          "source": "Assets/Resources/Content/Conversations/Villagers.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Scribe_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Villager_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [
+        "sill_omen"
+      ],
+      "source_refs": [
+        "Assets/Resources/Content/Data/Storylets/SillHearsIt.json",
+        "Assets/Resources/Content/Data/Storylets/UrquSigns.json"
+      ],
+      "notes": [
+        "The omen is triggered by entering Overworld.10.10.0, not by a fixed spoken exchange.",
+        "Elder_1 topics gated by HeardFactionSummary/KnowsThreeEndings are return visits after faction discovery, not lines spoken on first arrival."
+      ]
+    },
+    {
+      "id": "03",
+      "title": "Sill: ordinary work and preparation",
+      "kind": "optional_early",
+      "summary": "Ellun’s Old Tell and Hallun’s Witness-Book are the two starter-town stories. The well, oven, lantern and services provide optional repairs and preparation. Within each quest read offer→accept→work→report, with refusal and repeat branches beside their corresponding moment.",
+      "conversations": [
+        {
+          "id": "BMO_Quest",
+          "source": "Assets/Resources/Content/Conversations/BMO_Quest.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "RootBeerGuy_Quest",
+          "source": "Assets/Resources/Content/Conversations/RootBeerGuy_Quest.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "WellKeeper_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Farmer_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Warden_Lantern_1",
+          "source": "Assets/Resources/Content/Conversations/Wardens.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Quartermaster_1",
+          "source": "Assets/Resources/Content/Conversations/Quartermaster.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Merchant_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Tinker_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Innkeeper_1",
+          "source": "Assets/Resources/Content/Conversations/Innkeeper.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:188",
+        "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:908",
+        "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:959"
+      ],
+      "notes": [
+        "BMO_Quest and RootBeerGuy_Quest have current-marker runtime guidance overrides. Frozen legacy IDs do not imply Adventure Time character names in player prose.",
+        "None of these quests is a mandatory prerequisite to an ending."
+      ]
+    },
+    {
+      "id": "04",
+      "title": "Morrowfast: hospitality and promises",
+      "kind": "optional_regional",
+      "summary": "On reaching Morrowfast, the watch opens the arch freely. Hesta’s return notch leads to Edden and back; Nemm’s bell leads to the rope shop and bell; Farra’s dry-goods expedition leads west and back. Supper, lodging, trade and the clerk’s consent are independent branches.",
+      "conversations": [
+        {
+          "id": "Morrowfast_Hesta",
+          "source": "Assets/Resources/Content/Conversations/Morrowfast.json",
+          "nodes": [
+            "*"
+          ],
+          "title": "The northern arch: Hesta’s open return notch",
+          "summary": "Optional offer. The arch is open whether the player accepts or declines.",
+          "runtime_indices_after": [
+            380,
+            381
+          ]
+        },
+        {
+          "id": "Morrowfast_Edden",
+          "source": "Assets/Resources/Content/Conversations/Morrowfast.json",
+          "nodes": [
+            "*"
+          ],
+          "title": "Edden’s account → return to Hesta",
+          "summary": "First receive Edden’s limited consent. The following Hesta report completes this local branch; release is its alternative.",
+          "runtime_indices_after": [
+            382,
+            383,
+            384
+          ]
+        },
+        {
+          "id": "Morrowfast_Farra",
+          "source": "Assets/Resources/Content/Conversations/Morrowfast.json",
+          "nodes": [
+            "Start",
+            "DryGoods"
+          ],
+          "title": "Farra’s cloth: offer → western field → return",
+          "summary": "Optional dry-goods journey. Read the basket and parcel at the field, then the return response. The reward’s fire clay leads naturally to Nemm’s quiet-bell option; release remains an alternative.",
+          "runtime_indices_after": [
+            412,
+            411,
+            409,
+            410,
+            416,
+            414,
+            415,
+            413
+          ]
+        },
+        {
+          "id": "Morrowfast_Nemm",
+          "source": "Assets/Resources/Content/Conversations/Morrowfast.json",
+          "nodes": [
+            "*"
+          ],
+          "title": "Nemm: the bell work",
+          "summary": "Accept or release the bell errand; Orrit and the reserve cord follow.",
+          "runtime_indices_after": [
+            385,
+            387
+          ]
+        },
+        {
+          "id": "Morrowfast_Orrit",
+          "source": "Assets/Resources/Content/Conversations/Morrowfast.json",
+          "nodes": [
+            "*"
+          ],
+          "title": "Orrit and the reserve cord → work at the arch → report to Nemm",
+          "summary": "Inspect the cord, choose quiet or bare clapper, optionally ring it, and report. Quiet/bare/ringing variants below are alternatives determined by the chosen state.",
+          "runtime_indices_after": [
+            402,
+            393,
+            403,
+            394,
+            395,
+            404,
+            396,
+            401,
+            405,
+            397,
+            398,
+            386
+          ]
+        },
+        {
+          "id": "Morrowfast_Farra",
+          "source": "Assets/Resources/Content/Conversations/Morrowfast.json",
+          "nodes": [
+            "Supper",
+            "Bower"
+          ],
+          "title": "Farra: making room for supper",
+          "summary": "A separate optional act: accept, move the stool, then report or release.",
+          "runtime_indices_after": [
+            388,
+            406,
+            399,
+            400,
+            389,
+            390
+          ]
+        },
+        {
+          "id": "Morrowfast_Pell",
+          "source": "Assets/Resources/Content/Conversations/Morrowfast.json",
+          "nodes": [
+            "*"
+          ],
+          "title": "Pell: the guest beds",
+          "summary": "Hospitality remains available independently of favors.",
+          "runtime_indices_after": [
+            407,
+            408
+          ]
+        },
+        {
+          "id": "Morrowfast_Sella",
+          "source": "Assets/Resources/Content/Conversations/Morrowfast.json",
+          "nodes": [
+            "*"
+          ],
+          "title": "Sella: the second bowl and growing beds"
+        },
+        {
+          "id": "Morrowfast_Vennit",
+          "source": "Assets/Resources/Content/Conversations/Morrowfast.json",
+          "nodes": [
+            "*"
+          ],
+          "title": "Vennit: accounts, directions and consent",
+          "summary": "Recording and later withdrawal are separate choices.",
+          "runtime_indices_after": [
+            391,
+            392
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/MorrowfastQuests.cs:74",
+        "Assets/Scripts/Gameplay/World/MorrowfastExpedition.cs:15"
+      ],
+      "notes": [
+        "Read Morrowfast_Hesta.Notch→Morrowfast_Edden.Account→Hesta report response as one local sequence.",
+        "Farra has two independent acts: MorrowfastDryGoods and MorrowfastSupper. Regional merchant supply requests are separate again.",
+        "Morrowfast was the older authored opening and remains a supported regional journey after the current Spread start.",
+        "Runtime dialogue indices are deliberately attached to their scene, including Hesta’s completion after Edden and Nemm’s completion after Orrit/arch work; suppress those records from any generic appendix to avoid duplication."
+      ]
+    },
+    {
+      "id": "05",
+      "title": "The settlements: six local stories",
+      "kind": "optional_regional",
+      "summary": "These independent stories have unique canonical homes. Their placement here supplies a readable regional interval, not a compulsory travel itinerary.",
+      "conversations": [
+        {
+          "id": "GantryRegistrar_1",
+          "source": "Assets/Resources/Content/Conversations/Gantry.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "CandyTax_Quest",
+          "source": "Assets/Resources/Content/Conversations/CandyTax_Quest.json",
+          "nodes": [
+            "Start",
+            "Accepted",
+            "Collecting"
+          ],
+          "title": "Gantry: the outstanding accounts — offer and collection"
+        },
+        {
+          "id": "CandyCitizen",
+          "source": "Assets/Resources/Content/Conversations/CandyCitizen.json",
+          "nodes": [
+            "*"
+          ],
+          "title": "Gantry: the citizens",
+          "summary": "Collect the accounts from the citizens before the clerk’s completion response."
+        },
+        {
+          "id": "CandyTax_Quest",
+          "source": "Assets/Resources/Content/Conversations/CandyTax_Quest.json",
+          "nodes": [
+            "Thanks",
+            "Done",
+            "Refused",
+            "FailedAftermath"
+          ],
+          "title": "Gantry: report to the clerk, or refuse",
+          "summary": "Thanks/Done are the completion branch; Refused/FailedAftermath are the alternative spoken refusal branch, not events after successful collection."
+        },
+        {
+          "id": "Crunchy_Quest",
+          "source": "Assets/Resources/Content/Conversations/Crunchy_Quest.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Strongman_Quest",
+          "source": "Assets/Resources/Content/Conversations/Strongman_Quest.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Baker_Quest",
+          "source": "Assets/Resources/Content/Conversations/Baker_Quest.json",
+          "nodes": [
+            "Start",
+            "Accepted",
+            "Waiting"
+          ],
+          "title": "Posy: the baker’s message — offer and departure"
+        },
+        {
+          "id": "Hermit_Quest",
+          "source": "Assets/Resources/Content/Conversations/Hermit_Quest.json",
+          "nodes": [
+            "*"
+          ],
+          "title": "Posy: deliver the warning to the hermit",
+          "summary": "Received follows delivery of the baker’s words; Passing is the unrelated-visit alternative."
+        },
+        {
+          "id": "Baker_Quest",
+          "source": "Assets/Resources/Content/Conversations/Baker_Quest.json",
+          "nodes": [
+            "Thanks",
+            "Done",
+            "Released"
+          ],
+          "title": "Posy: return to the baker, or end the promise aloud",
+          "summary": "Thanks/Done follow delivery to the hermit; Released is the alternative if the player abandons the undertaken errand aloud."
+        },
+        {
+          "id": "Pilgrim_Quest",
+          "source": "Assets/Resources/Content/Conversations/Pilgrim_Quest.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Warren_Quest",
+          "source": "Assets/Resources/Content/Conversations/Warren_Quest.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Docs/CANONICAL-VILLAGE-QUESTS.md:9"
+      ],
+      "notes": [
+        "Gantry 7.8: Three Outstanding Accounts, CandyTax_Quest→CandyCitizen debtors→clerk report.",
+        "Tine 13.7: The Name-Token, Crunchy_Quest. Sumphold 15.6: The Mill-Stone, Strongman_Quest.",
+        "Posy 5.9: A Message for the Hermit, Baker_Quest→Hermit_Quest→Baker_Quest report.",
+        "Quillhold 14.9: The Hidden Shrine, Pilgrim_Quest. Wellmeet 8.16: The Warren Beneath, Warren_Quest.",
+        "The player may visit these in any order or never accept them."
+      ]
+    },
+    {
+      "id": "06",
+      "title": "The faction world and the Three Dispositions",
+      "kind": "main_context",
+      "summary": "The factions give incompatible accounts of memory, preservation, hunger and the Thinning. The Recension echo names Gathered, Kept and Renewed. Cross-faction and elder follow-up topics require prior knowledge, so read first introductions before return questions.",
+      "conversations": [
+        {
+          "id": "ChoirTendril_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "*"
+          ],
+          "exclude_nodes": [
+            "After1",
+            "After2",
+            "After3",
+            "After4",
+            "Thread",
+            "GatherReleased"
+          ]
+        },
+        {
+          "id": "PalimpsestEcho_1",
+          "source": "Assets/Resources/Content/Conversations/Palimpsest.json",
+          "nodes": [
+            "*"
+          ],
+          "exclude_nodes": [
+            "After1",
+            "After2",
+            "After3",
+            "After4"
+          ]
+        },
+        {
+          "id": "SaccharineEnvoy_1",
+          "source": "Assets/Resources/Content/Conversations/Factions.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "PaleCurator_1",
+          "source": "Assets/Resources/Content/Conversations/Factions.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "GlassblownDrifter_1",
+          "source": "Assets/Resources/Content/Conversations/Factions.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Assets/Resources/Content/Conversations/Palimpsest.json:1",
+        "Lore/History/06_Plot.md:170"
+      ],
+      "notes": [
+        "There is no single required order among first faction meetings. This chapter is an editorial thematic order.",
+        "PalimpsestEcho_1.ThreeEndings sets KnowsThreeEndings; Elder_1’s corresponding questions belong after that discovery.",
+        "The Choir cutting offer and the two stone offers are moved to ending preparation; After1–After4 are moved to their matching epilogues.",
+        "Lore/History/06_Plot.md is a historical design spine and contains superseded claims: do not reproduce its true/best-ending hierarchy or infer its unwritten scenes."
+      ]
+    },
+    {
+      "id": "07",
+      "title": "What the factions ask of ordinary people",
+      "kind": "optional_regional",
+      "summary": "Contracts, burial carriage, hospitality and the Choir’s residents put the faction positions into local acts. The Drowned Ledger body-carriage request leads to Marrowstye intake; the Concord pruning writ leads to a Choir tendril and a report back.",
+      "conversations": [
+        {
+          "id": "ConcordFactor_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "SoddenSella_1",
+          "source": "Assets/Resources/Content/Conversations/SoddenSella.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "PeatCutter_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "RecensionScribe_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "CurationSorter_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "FilerClerk_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "CurationIntakeFiler_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "CurationJuniorIndexer_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "SaltMaster_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "TentRightHost_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "ClothClaimant_1",
+          "source": "Assets/Resources/Content/Conversations/FriendlyNPCs.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Mogu_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Grib_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Nam_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Sien_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Sopp_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "EncasedElder_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Assets/Resources/Content/Data/Storylets/BogBodyCourier.json",
+        "Assets/Resources/Content/Data/Storylets/PruningContract.json"
+      ],
+      "notes": [
+        "The named Choir residents and encasement branches are optional, not a sequential mandatory rite.",
+        "Hospitality and the First Tent oath support the practice-path theme, but the implemented ending does not require an oath item or the completion of these conversations.",
+        "Carriage order: CurationSorter_1 at the Drowned Ledger→carry sealed body→FilerClerk_1 intake at Marrowstye."
+      ]
+    },
+    {
+      "id": "08",
+      "title": "What Stillleaf kept",
+      "kind": "main_chain",
+      "summary": "The shipped middle-game chain: Hollin in Quillhold gives the keeper’s last words; Teodra Halm at the Salt-Vault indexes the file and negotiates the key; the player descends through Stillleaf to the sealed register and keeper’s slate; then chooses custody and reports the outcome.",
+      "conversations": [
+        {
+          "id": "StillleafSearcher_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "Start",
+            "Library",
+            "Contract",
+            "Accepted"
+          ],
+          "title": "1. Quillhold — Hollin’s search",
+          "summary": "The Searcher explains the need and supplies the keeper’s last words. Accepting and releasing are alternative actions.",
+          "runtime_indices_after": [
+            422,
+            423
+          ]
+        },
+        {
+          "id": "StillleafIndexer_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "Start",
+            "Index",
+            "File",
+            "Request",
+            "Released",
+            "Refused"
+          ],
+          "title": "2. The Salt-Vault — the keeper’s file and key",
+          "summary": "Recite the last words, then agree, bargain or refuse. Agree/bargain release the file; refusal leaves the key with the keeper.",
+          "runtime_indices_after": [
+            424,
+            425,
+            426,
+            427
+          ],
+          "narrative_extra_ids_after": [
+            "stillleaf_register"
+          ]
+        },
+        {
+          "id": "StillleafSearcher_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "Delivered"
+          ],
+          "title": "3A. Custody alternative — deliver the register to Quillhold",
+          "summary": "After the Stillleaf descent and the keeper’s slate: this is one possible custody outcome. It excludes 3B and 3C.",
+          "runtime_indices_after": [
+            431,
+            428,
+            429,
+            430
+          ]
+        },
+        {
+          "id": "StillleafIndexer_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "Filed"
+          ],
+          "title": "3B. Custody alternative — file the register unread at the Salt-Vault",
+          "summary": "An alternative to delivery or resealing. The next world-action passage describes alternative 3C, resealing the register in place.",
+          "runtime_indices_after": [
+            434,
+            432,
+            433
+          ],
+          "narrative_extra_ids_after": [
+            "stillleaf_reseal"
+          ]
+        },
+        {
+          "id": "StillleafSearcher_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "Reported"
+          ],
+          "title": "4. Tell Hollin what happened",
+          "summary": "After a custody decision or destruction/loss, report the actual outcome. The following responses are conditional alternatives: filed, resealed, or destroyed.",
+          "runtime_indices_after": [
+            439,
+            440,
+            435
+          ]
+        },
+        {
+          "id": "StillleafIndexer_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "Noted"
+          ],
+          "title": "5. Tell Halm what happened",
+          "summary": "After a custody decision or destruction/loss, report the actual outcome. Responses vary with the custody decision, the earlier promise, and whether the salt file was broken.",
+          "runtime_indices_after": [
+            441,
+            437,
+            442,
+            443,
+            444,
+            438,
+            436
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Docs/MIDGAME-STILLLEAF-ARCHIVE.md:16",
+        "Assets/Scripts/Gameplay/World/StillleafArchiveContent.cs:29",
+        "Assets/Scripts/Gameplay/World/StillleafCustody.cs:139"
+      ],
+      "notes": [
+        "Scene order is explicit in entries: Hollin offer/accept→Halm file/key→read register/slate→one of custody alternatives 3A/3B/3C→report the actual outcome. The register is entry.narrative_extra_ids_after the key scene; the reseal action is after the 3B alternative and before reporting.",
+        "Three intended custody outcomes are mutually exclusive: deliver to Quillhold, file unread at the Salt-Vault, or reseal in place. Destroyed/lost-register reporting is a supported exceptional fourth outcome.",
+        "The chain supports refusal, theft, lost participants and out-of-order discovery. The register/slate is readable world narration, not spoken by a living NPC.",
+        "The chain is an implemented main narrative example, not a universal ending gate."
+      ]
+    },
+    {
+      "id": "09",
+      "title": "The two Houses",
+      "kind": "optional_drama",
+      "summary": "House Vex and House Thresker have separate branching family dramas. Read each household’s introductions and evidence before confrontation and resolution; their outcomes are independent of the four world endings.",
+      "conversations": [
+        {
+          "id": "Drama_Vex_DiminishedHead",
+          "source": "Assets/Resources/Content/Conversations/HouseVex.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Drama_Vex_RisingInheritor",
+          "source": "Assets/Resources/Content/Conversations/HouseVex.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Drama_Vex_NamedAntagonist",
+          "source": "Assets/Resources/Content/Conversations/HouseVex.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Drama_Vex_SilencedHelper",
+          "source": "Assets/Resources/Content/Conversations/HouseVex.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Drama_Thresker_DiminishedHead",
+          "source": "Assets/Resources/Content/Conversations/HouseThresker.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Drama_Thresker_RisingInheritor",
+          "source": "Assets/Resources/Content/Conversations/HouseThresker.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Drama_Thresker_NamedAntagonist",
+          "source": "Assets/Resources/Content/Conversations/HouseThresker.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Drama_Thresker_SilencedHelper",
+          "source": "Assets/Resources/Content/Conversations/HouseThresker.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Assets/Resources/Content/Data/HouseDramas/HouseVex.json",
+        "Assets/Resources/Content/Data/HouseDramas/HouseThresker.json"
+      ],
+      "notes": [
+        "Do not imply that all mutually exclusive House resolution nodes happen in the same campaign.",
+        "Vex final outcomes are ResolvedRebuild, ResolvedCompromise or ResolvedSever. Other NPC reactions depend on discoveries and actions."
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Below the plateau: the old world within reach",
+      "kind": "main_context",
+      "summary": "The catacomb and founding-village voices introduce the wall, the Rooted and the places beneath. These are contextual encounters on an inward journey, not a written audience in which the player obtains a god’s permission.",
+      "conversations": [
+        {
+          "id": "CatacombWarden_1",
+          "source": "Assets/Resources/Content/Conversations/Catacomb.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "PlaqueTender_1",
+          "source": "Assets/Resources/Content/Conversations/Catacomb.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "FoundingListener_1",
+          "source": "Assets/Resources/Content/Conversations/FoundingVillage.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "FoundingPlaqueTender_1",
+          "source": "Assets/Resources/Content/Conversations/FoundingVillage.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [
+        "rooted_description"
+      ],
+      "source_refs": [
+        "Assets/Resources/Content/Conversations/FoundingVillage.json",
+        "Docs/ENDING-ROUTES.md:54"
+      ],
+      "notes": [
+        "Dohren’s proposed double-convince gate, the deep Cathedral/Selen name scene and Reader–Salted reconciliation are not built in the shipped ending routes. No dialogue should be invented for them."
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Choosing what the world will keep",
+      "kind": "ending_preparation",
+      "summary": "These offers prepare alternatives. Gathered takes a Choir cutting; Kept takes three name-holding stones. Either commitment can be ended aloud. Taking both is possible, but only one world ending can be enacted.",
+      "conversations": [
+        {
+          "id": "ChoirTendril_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "Thread",
+            "GatherReleased"
+          ],
+          "note": "Reached from AboutChoir/FirstRoot/FindFirstRoot; Thread follows the request for a thread to carry down."
+        },
+        {
+          "id": "StillleafSearcher_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "Stone",
+            "KeepReleased"
+          ]
+        },
+        {
+          "id": "StillleafIndexer_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "MuteStone",
+            "KeepReleased"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Assets/Resources/Content/Data/Storylets/EndingRoutes.json",
+        "Assets/Scripts/Gameplay/World/EndingRoutes.cs:22"
+      ],
+      "notes": [
+        "Gathered: ChoirTendril_1.Thread gives ChoirCutting and starts GatherTheWorld.",
+        "Kept: Hollin’s Stone gives MemoryMarble; Halm’s MuteStone gives MuteStone; tepuibone is loose at the Root cleft. The two givers may be visited in either order.",
+        "The stone/cutting offers do not require completing Stillleaf, uncovering every faction account or reconciling any gods.",
+        "Only the practice-path Renewal requires a clean closure-ledger. Open optional acts do not block the other three endings."
+      ]
+    },
+    {
+      "id": "12",
+      "title": "At the seventh interval and the Root",
+      "kind": "ending_threshold",
+      "summary": "Two Renewal choices are enacted at the Felling-Site’s empty seventh position. Gathered and Kept are enacted beside the taproot’s face beneath the Root, two map cells north. All four share one irreversible ending state; the following chapters are alternatives.",
+      "conversations": [],
+      "narrative_extra_ids": [
+        "seventh_description",
+        "root_description",
+        "ending_menu_vessel",
+        "ending_menu_practice",
+        "ending_ledger_open",
+        "ending_menu_gathered",
+        "ending_menu_kept",
+        "ending_missing_stones",
+        "ending_no_cutting"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/EndingSpine.cs:41",
+        "Assets/Scripts/Gameplay/World/EndingRoutes.cs:44"
+      ],
+      "notes": [
+        "The closure-ledger counts only acts undertaken: carried through and spoken refusal both close the obligation; silent abandonment stays open. There is no completion ratio and no requirement to accept all optional work.",
+        "The practice gate lists open acts and where to end them. Declining an unaccepted optional quest is not an invisible obligation.",
+        "Do not combine the four endings into a single timeline."
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Renewed: the vessel",
+      "kind": "alternative_ending",
+      "summary": "ALTERNATIVE ENDING — choose only this branch or one of the other three. The bearer accepts the Strike at the seventh interval. Naming holds as long as the bearer keeps choosing; the epilogue acknowledges the far-generation crack.",
+      "conversations": [
+        {
+          "id": "ChoirTendril_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "After1"
+          ],
+          "title": "After this ending: ChoirTendril_1",
+          "summary": "Optional return-visit response; only Ending:=:1."
+        },
+        {
+          "id": "PalimpsestEcho_1",
+          "source": "Assets/Resources/Content/Conversations/Palimpsest.json",
+          "nodes": [
+            "After1"
+          ],
+          "title": "After this ending: PalimpsestEcho_1",
+          "summary": "Optional return-visit response; only Ending:=:1."
+        },
+        {
+          "id": "StillleafSearcher_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "After1"
+          ],
+          "title": "After this ending: StillleafSearcher_1",
+          "summary": "Optional return-visit response; only Ending:=:1."
+        },
+        {
+          "id": "StillleafIndexer_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "After1"
+          ],
+          "title": "After this ending: StillleafIndexer_1",
+          "summary": "Optional return-visit response; only Ending:=:1."
+        }
+      ],
+      "narrative_extra_ids": [
+        "ending_vessel"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/EndingSpine.cs"
+      ],
+      "notes": [
+        "First read the epilogue, then these four optional return-visit responses. All require Ending:=:1.",
+        "The epilogue is narration delivered as an announcement; the After1 nodes are spoken NPC aftermath."
+      ],
+      "alternative_group": "world_ending",
+      "ending_value": 1,
+      "exclusive_with": [
+        "14",
+        "15",
+        "16"
+      ],
+      "narrative_extras_position": "before_conversations"
+    },
+    {
+      "id": "14",
+      "title": "Renewed: the practice",
+      "kind": "alternative_ending",
+      "summary": "ALTERNATIVE ENDING — choose only this branch or one of the other three. With every undertaken act carried through or refused aloud, the player refuses the Strike and names the world. The Six begin to age; the work continues; the Root dissolves into the binding.",
+      "conversations": [
+        {
+          "id": "ChoirTendril_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "After2"
+          ],
+          "title": "After this ending: ChoirTendril_1",
+          "summary": "Optional return-visit response; only Ending:=:2."
+        },
+        {
+          "id": "PalimpsestEcho_1",
+          "source": "Assets/Resources/Content/Conversations/Palimpsest.json",
+          "nodes": [
+            "After2"
+          ],
+          "title": "After this ending: PalimpsestEcho_1",
+          "summary": "Optional return-visit response; only Ending:=:2."
+        },
+        {
+          "id": "StillleafSearcher_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "After2"
+          ],
+          "title": "After this ending: StillleafSearcher_1",
+          "summary": "Optional return-visit response; only Ending:=:2."
+        },
+        {
+          "id": "StillleafIndexer_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "After2"
+          ],
+          "title": "After this ending: StillleafIndexer_1",
+          "summary": "Optional return-visit response; only Ending:=:2."
+        }
+      ],
+      "narrative_extra_ids": [
+        "ending_practice"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/EndingSpine.cs"
+      ],
+      "notes": [
+        "First read the epilogue, then these four optional return-visit responses. All require Ending:=:2.",
+        "The epilogue is narration delivered as an announcement; the After2 nodes are spoken NPC aftermath."
+      ],
+      "alternative_group": "world_ending",
+      "ending_value": 2,
+      "exclusive_with": [
+        "13",
+        "15",
+        "16"
+      ],
+      "narrative_extras_position": "before_conversations"
+    },
+    {
+      "id": "15",
+      "title": "Gathered",
+      "kind": "alternative_ending",
+      "summary": "ALTERNATIVE ENDING — choose only this branch or one of the other three. The carried Choir cutting reaches the Root. Every thread is kept and every individual self is lost.",
+      "conversations": [
+        {
+          "id": "ChoirTendril_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "After3"
+          ],
+          "title": "After this ending: ChoirTendril_1",
+          "summary": "Optional return-visit response; only Ending:=:3."
+        },
+        {
+          "id": "PalimpsestEcho_1",
+          "source": "Assets/Resources/Content/Conversations/Palimpsest.json",
+          "nodes": [
+            "After3"
+          ],
+          "title": "After this ending: PalimpsestEcho_1",
+          "summary": "Optional return-visit response; only Ending:=:3."
+        },
+        {
+          "id": "StillleafSearcher_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "After3"
+          ],
+          "title": "After this ending: StillleafSearcher_1",
+          "summary": "Optional return-visit response; only Ending:=:3."
+        },
+        {
+          "id": "StillleafIndexer_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "After3"
+          ],
+          "title": "After this ending: StillleafIndexer_1",
+          "summary": "Optional return-visit response; only Ending:=:3."
+        }
+      ],
+      "narrative_extra_ids": [
+        "ending_gathered"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/EndingRoutes.cs"
+      ],
+      "notes": [
+        "First read the epilogue, then these four optional return-visit responses. All require Ending:=:3.",
+        "The epilogue is narration delivered as an announcement; the After3 nodes are spoken NPC aftermath."
+      ],
+      "alternative_group": "world_ending",
+      "ending_value": 3,
+      "exclusive_with": [
+        "13",
+        "14",
+        "16"
+      ],
+      "narrative_extras_position": "before_conversations"
+    },
+    {
+      "id": "16",
+      "title": "Kept",
+      "kind": "alternative_ending",
+      "summary": "ALTERNATIVE ENDING — choose only this branch or one of the other three. The three stones seal the Root. The Thinning halts, nothing heals, and the Six remain themselves.",
+      "conversations": [
+        {
+          "id": "ChoirTendril_1",
+          "source": "Assets/Resources/Content/Conversations/RotChoir.json",
+          "nodes": [
+            "After4"
+          ],
+          "title": "After this ending: ChoirTendril_1",
+          "summary": "Optional return-visit response; only Ending:=:4."
+        },
+        {
+          "id": "PalimpsestEcho_1",
+          "source": "Assets/Resources/Content/Conversations/Palimpsest.json",
+          "nodes": [
+            "After4"
+          ],
+          "title": "After this ending: PalimpsestEcho_1",
+          "summary": "Optional return-visit response; only Ending:=:4."
+        },
+        {
+          "id": "StillleafSearcher_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "After4"
+          ],
+          "title": "After this ending: StillleafSearcher_1",
+          "summary": "Optional return-visit response; only Ending:=:4."
+        },
+        {
+          "id": "StillleafIndexer_1",
+          "source": "Assets/Resources/Content/Conversations/StillleafArchive.json",
+          "nodes": [
+            "After4"
+          ],
+          "title": "After this ending: StillleafIndexer_1",
+          "summary": "Optional return-visit response; only Ending:=:4."
+        }
+      ],
+      "narrative_extra_ids": [
+        "ending_kept"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/EndingRoutes.cs"
+      ],
+      "notes": [
+        "First read the epilogue, then these four optional return-visit responses. All require Ending:=:4.",
+        "The epilogue is narration delivered as an announcement; the After4 nodes are spoken NPC aftermath."
+      ],
+      "alternative_group": "world_ending",
+      "ending_value": 4,
+      "exclusive_with": [
+        "13",
+        "14",
+        "15"
+      ],
+      "narrative_extras_position": "before_conversations"
+    },
+    {
+      "id": "17",
+      "title": "Ambient voices and services",
+      "kind": "ambient_appendix",
+      "summary": "Repeatable trade, advice and hermit rumors have no fixed position in the plot. They may be encountered before or between the chapters above.",
+      "conversations": [
+        {
+          "id": "Shop_Weaponsmith",
+          "source": "Assets/Resources/Content/Conversations/Shopkeepers.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Shop_Armorer",
+          "source": "Assets/Resources/Content/Conversations/Shopkeepers.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Shop_Apothecary",
+          "source": "Assets/Resources/Content/Conversations/Shopkeepers.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Shop_Arcanist",
+          "source": "Assets/Resources/Content/Conversations/Shopkeepers.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Shop_Provisioner",
+          "source": "Assets/Resources/Content/Conversations/Shopkeepers.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Hermit_Mosskeeper",
+          "source": "Assets/Resources/Content/Conversations/Hermits.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Hermit_Saltwalker",
+          "source": "Assets/Resources/Content/Conversations/Hermits.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Hermit_Herbalist",
+          "source": "Assets/Resources/Content/Conversations/Hermits.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Hermit_Lamplighter",
+          "source": "Assets/Resources/Content/Conversations/Hermits.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [],
+      "notes": [
+        "Back/Start/End links are navigation loops, not new chronological scenes."
+      ]
+    },
+    {
+      "id": "18",
+      "title": "Additional authored scenarios and placement-unconfirmed dialogue",
+      "kind": "supplementary_unplaced",
+      "summary": "These authored conversations are included for completeness, without claiming they form a normal-world plot chapter. The bakery story has an explicit playable scenario; Ondis has a blueprint conversation, but no normal-world placement was verified in this source audit.",
+      "conversations": [
+        {
+          "id": "CinnamonBun_Quest",
+          "source": "Assets/Resources/Content/Conversations/CinnamonBun_Quest.json",
+          "nodes": [
+            "*"
+          ]
+        },
+        {
+          "id": "Marceline_Quest",
+          "source": "Assets/Resources/Content/Conversations/Marceline_Quest.json",
+          "nodes": [
+            "*"
+          ]
+        }
+      ],
+      "narrative_extra_ids": [],
+      "source_refs": [
+        "Assets/Scripts/Scenarios/Custom/QuestCinnamonBunPlayable.cs:44",
+        "Assets/Resources/Content/Blueprints/Objects.json:12924"
+      ],
+      "notes": [
+        "CinnamonBun_Quest: The Baker’s Keepsake, Rullok; explicit scenario-supported dialogue.",
+        "Marceline_Quest: The Iron Key, Ondis; legacy ID remains in a valid blueprint. Normal-world placement unconfirmed, not asserted absent.",
+        "EnchiridionQuest/The Sealed Hand is a storylet definition without a matching authored conversation in the 80-conversation corpus. Do not invent a guardian scene."
+      ]
+    }
+  ],
+  "coverage": {
+    "conversations": 80,
+    "nodes": 672,
+    "conversation_ids_in_manifest": 80,
+    "uncovered_nodes": {},
+    "nodes_exactly_once": 672,
+    "duplicate_nodes": {},
+    "staged_runtime_records": 60,
+    "staged_runtime_indices": [
+      380,
+      381,
+      382,
+      383,
+      384,
+      385,
+      386,
+      387,
+      388,
+      389,
+      390,
+      391,
+      392,
+      393,
+      394,
+      395,
+      396,
+      397,
+      398,
+      399,
+      400,
+      401,
+      402,
+      403,
+      404,
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      428,
+      429,
+      430,
+      431,
+      432,
+      433,
+      434,
+      435,
+      436,
+      437,
+      438,
+      439,
+      440,
+      441,
+      442,
+      443,
+      444
+    ]
+  },
+  "global_notes": [
+    "The current fresh opening, current runtime state gates and actual JSON/C# text outrank dated design prose.",
+    "The broad lore acts are myth→faction world→approach, but the implemented game offers no single enforced dialogue path.",
+    "All four endings are implemented; there is no missing written world ending. Several elaborate lore scenes leading to endings are not implemented.",
+    "After-ending nodes must be read after their matching epilogue. They are not interchangeable, and no ending is canonical-preferred.",
+    "Never replace modern in-world names with frozen internal IDs: BMO is Ellun, RootBeerGuy is Hallun, Marceline is Ondis, and Palimpsest is the Recension in player-facing names."
+  ]
+}

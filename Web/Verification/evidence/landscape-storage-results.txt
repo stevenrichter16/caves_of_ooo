@@ -1,0 +1,42 @@
+
+> caves-of-ooo-standalone-web@0.1.0 test:storage
+> node --test Verification/storage*.test.cjs
+
+✔ failed first transaction leaves no discoverable campaign and retry remains possible (12.125555ms)
+✔ a concurrent caller cannot interleave another slot during an active commit (5.2879ms)
+✔ the payload returned by commit cannot mutate the retained backup generation (1.884541ms)
+✔ hydration consumers cannot mutate the next checkpoint backup generation (1.827896ms)
+✔ a conflicting session cannot bypass its lock by calling hydrate again (3.618629ms)
+✔ a database upgrade invalidates this store instead of reopening it as writable (0.933072ms)
+✔ backup roundtrip keeps real compressed bytes and retains the destination checkpoint as previous (17.654392ms)
+✔ a late invalid backup record prevents every checkpoint write (6.575987ms)
+✔ backup validation rejects build, path, metadata, duplicate-key, and encoding ambiguities without mutation (4.650947ms)
+✔ backup import verifies gzip integrity and the decoded game header (7.580214ms)
+✔ backup import rejects a small gzip bomb exceeding the total decompressed budget (748.602391ms)
+✔ backup decompression budget applies across records before any import writes (576.661546ms)
+✔ export is read-only and does not refresh a stale gameplay session revision (2.953802ms)
+✔ a fresh unhydrated instance can export persisted checkpoints without starting gameplay (0.845181ms)
+✔ raw recovery export preserves unrecoverable bytes without changing storage or enabling gameplay (1.693346ms)
+✔ failed Restore retains the live store revision owner and closes only the candidate reader (42.240607ms)
+✔ successful Restore publishes the candidate store and closes the previous connection (4.485191ms)
+✔ pagehide during a pending action requests a checkpoint after the action settles (7.625021ms)
+✔ a failed save retains dirty state and the last acknowledged checkpoint (4.947034ms)
+✔ export after storage failure captures current gameplay directly without committing (4.543428ms)
+✔ import cannot replace durable records when a later full simulation graph is rejected (3.722663ms)
+✔ Continue restores the last played campaign despite another checkpoint having a future timestamp (4.303092ms)
+✔ explicit Continue identity overrides the last-game preference (5.985884ms)
+✔ opening is distinct from hydration; commits require successful hydration (11.736418ms)
+✔ a fresh browser discovers the complete payload/metadata pair and previous generation (4.123857ms)
+✔ transaction abort after a successful put does not acknowledge or replace the checkpoint (4.08566ms)
+✔ two tabs cannot silently overwrite one another; conflict stays latched (6.838571ms)
+✔ corrupt newest generation recovers previous and retains it on the next commit (3.086951ms)
+✔ unrecoverable or unsafe records fail hydration instead of becoming a fresh game (2.536126ms)
+✔ caller mutation after submission cannot alter the stored bytes (1.689702ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1468.711908

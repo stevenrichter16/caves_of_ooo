@@ -1,0 +1,192 @@
+{
+  "total": 37,
+  "passed": 37,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "canonical start uses real content, build and scheduler",
+      "status": "passed",
+      "durationMs": 922
+    },
+    {
+      "name": "look is free and does not change the player's state",
+      "status": "passed",
+      "durationMs": 78
+    },
+    {
+      "name": "a stale input revision cannot spend a turn or move",
+      "status": "passed",
+      "durationMs": 17
+    },
+    {
+      "name": "oversized movement cannot bypass the one-step contract",
+      "status": "passed",
+      "durationMs": 32
+    },
+    {
+      "name": "a valid step moves through the real turn pipeline",
+      "status": "passed",
+      "durationMs": 95
+    },
+    {
+      "name": "an indestructible adjacent wall blocks without spending a turn",
+      "status": "passed",
+      "durationMs": 45
+    },
+    {
+      "name": "wait advances the actual game scheduler",
+      "status": "passed",
+      "durationMs": 39
+    },
+    {
+      "name": "item commands reject remote and nonexistent ownership",
+      "status": "passed",
+      "durationMs": 79
+    },
+    {
+      "name": "a valid owned item command still executes",
+      "status": "passed",
+      "durationMs": 37
+    },
+    {
+      "name": "save and load restore exact position, tick, HP and inventory",
+      "status": "passed",
+      "durationMs": 251
+    },
+    {
+      "name": "malformed saves leave the active session intact",
+      "status": "passed",
+      "durationMs": 420
+    },
+    {
+      "name": "damage changes current HP without shrinking maximum HP",
+      "status": "passed",
+      "durationMs": 426
+    },
+    {
+      "name": "a valid checkpoint recovers an interrupted, faulted turn",
+      "status": "passed",
+      "durationMs": 721
+    },
+    {
+      "name": "the real opening stairs enter the cellar and return",
+      "status": "passed",
+      "durationMs": 775
+    },
+    {
+      "name": "starting build duelist applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 331
+    },
+    {
+      "name": "starting build breaker applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 267
+    },
+    {
+      "name": "starting build stormcaller applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 266
+    },
+    {
+      "name": "starting build bombardier applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 234
+    },
+    {
+      "name": "starting build warden applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 238
+    },
+    {
+      "name": "starting build hurler applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 249
+    },
+    {
+      "name": "starting build classic applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 217
+    },
+    {
+      "name": "a grouped pickup transfers selected items with one paid turn",
+      "status": "passed",
+      "durationMs": 266
+    },
+    {
+      "name": "ordinary throws preview freely, validate, then pay once",
+      "status": "passed",
+      "durationMs": 255
+    },
+    {
+      "name": "a changed throw target cannot consume an item or turn",
+      "status": "passed",
+      "durationMs": 214
+    },
+    {
+      "name": "Measured Throw preserves its distinct preparation and launch turns",
+      "status": "passed",
+      "durationMs": 846
+    },
+    {
+      "name": "cellar supplies repair the actual opening well and persist",
+      "status": "passed",
+      "durationMs": 1441
+    },
+    {
+      "name": "crafting previews and brews use native ownership and free menu timing",
+      "status": "passed",
+      "durationMs": 302
+    },
+    {
+      "name": "world travel exposes actual coordinates while reading the map stays free",
+      "status": "passed",
+      "durationMs": 253
+    },
+    {
+      "name": "surface to world map and back pays one turn each and retains the exact square",
+      "status": "passed",
+      "durationMs": 305
+    },
+    {
+      "name": "one world-map step pays the native surcharge and reaches persistent Sill",
+      "status": "passed",
+      "durationMs": 777
+    },
+    {
+      "name": "stairs away from an entrance use native world-map vertical fallback",
+      "status": "passed",
+      "durationMs": 312
+    },
+    {
+      "name": "underground travel cannot skip local stairs or spend a refused turn",
+      "status": "passed",
+      "durationMs": 468
+    },
+    {
+      "name": "stale and inapplicable travel cannot change location or spend a turn",
+      "status": "passed",
+      "durationMs": 362
+    },
+    {
+      "name": "all four world-map borders refuse movement without damage or a turn",
+      "status": "passed",
+      "durationMs": 744
+    },
+    {
+      "name": "saving on the world map preserves coordinates and the return location",
+      "status": "passed",
+      "durationMs": 673
+    },
+    {
+      "name": "world-map cells are bounded and expose native live names and visited flags",
+      "status": "passed",
+      "durationMs": 323
+    },
+    {
+      "name": "unvisited sinkhole names remain hidden until native discovery",
+      "status": "passed",
+      "durationMs": 468
+    }
+  ]
+}

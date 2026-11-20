@@ -1,0 +1,292 @@
+{
+  "total": 54,
+  "passed": 39,
+  "failed": 15,
+  "cases": [
+    {
+      "name": "canonical start uses real content, build and scheduler",
+      "status": "passed",
+      "durationMs": 3708
+    },
+    {
+      "name": "look is free and does not change the player's state",
+      "status": "passed",
+      "durationMs": 284
+    },
+    {
+      "name": "a stale input revision cannot spend a turn or move",
+      "status": "passed",
+      "durationMs": 27
+    },
+    {
+      "name": "oversized movement cannot bypass the one-step contract",
+      "status": "passed",
+      "durationMs": 58
+    },
+    {
+      "name": "a valid step moves through the real turn pipeline",
+      "status": "passed",
+      "durationMs": 117
+    },
+    {
+      "name": "an indestructible adjacent wall blocks without spending a turn",
+      "status": "passed",
+      "durationMs": 67
+    },
+    {
+      "name": "wait advances the actual game scheduler",
+      "status": "passed",
+      "durationMs": 49
+    },
+    {
+      "name": "item commands reject remote and nonexistent ownership",
+      "status": "passed",
+      "durationMs": 106
+    },
+    {
+      "name": "a valid owned item command still executes",
+      "status": "passed",
+      "durationMs": 82
+    },
+    {
+      "name": "save and load restore exact position, tick, HP and inventory",
+      "status": "passed",
+      "durationMs": 570
+    },
+    {
+      "name": "malformed saves leave the active session intact",
+      "status": "passed",
+      "durationMs": 944
+    },
+    {
+      "name": "damage changes current HP without shrinking maximum HP",
+      "status": "passed",
+      "durationMs": 857
+    },
+    {
+      "name": "a valid checkpoint recovers an interrupted, faulted turn",
+      "status": "passed",
+      "durationMs": 1204
+    },
+    {
+      "name": "the real opening stairs enter the cellar and return",
+      "status": "passed",
+      "durationMs": 1452
+    },
+    {
+      "name": "starting build duelist applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 546
+    },
+    {
+      "name": "starting build breaker applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 536
+    },
+    {
+      "name": "starting build stormcaller applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 693
+    },
+    {
+      "name": "starting build bombardier applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 519
+    },
+    {
+      "name": "starting build warden applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 334
+    },
+    {
+      "name": "starting build hurler applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 531
+    },
+    {
+      "name": "starting build classic applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 669
+    },
+    {
+      "name": "a grouped pickup transfers selected items with one paid turn",
+      "status": "passed",
+      "durationMs": 708
+    },
+    {
+      "name": "ordinary throws preview freely, validate, then pay once",
+      "status": "passed",
+      "durationMs": 595
+    },
+    {
+      "name": "a changed throw target cannot consume an item or turn",
+      "status": "passed",
+      "durationMs": 431
+    },
+    {
+      "name": "Measured Throw preserves its distinct preparation and launch turns",
+      "status": "passed",
+      "durationMs": 1394
+    },
+    {
+      "name": "cellar supplies repair the actual opening well and persist",
+      "status": "passed",
+      "durationMs": 2347
+    },
+    {
+      "name": "crafting previews and brews use native ownership and free menu timing",
+      "status": "passed",
+      "durationMs": 522
+    },
+    {
+      "name": "world travel exposes actual coordinates while reading the map stays free",
+      "status": "passed",
+      "durationMs": 529
+    },
+    {
+      "name": "surface to world map and back pays one turn each and retains the exact square",
+      "status": "passed",
+      "durationMs": 503
+    },
+    {
+      "name": "one world-map step pays the native surcharge and reaches persistent Sill",
+      "status": "passed",
+      "durationMs": 1604
+    },
+    {
+      "name": "stairs away from an entrance use native world-map vertical fallback",
+      "status": "passed",
+      "durationMs": 492
+    },
+    {
+      "name": "underground travel cannot skip local stairs or spend a refused turn",
+      "status": "passed",
+      "durationMs": 1112
+    },
+    {
+      "name": "stale and inapplicable travel cannot change location or spend a turn",
+      "status": "passed",
+      "durationMs": 469
+    },
+    {
+      "name": "all four world-map borders refuse movement without damage or a turn",
+      "status": "passed",
+      "durationMs": 1166
+    },
+    {
+      "name": "saving on the world map preserves coordinates and the return location",
+      "status": "passed",
+      "durationMs": 1757
+    },
+    {
+      "name": "world-map cells are bounded and expose native live names and visited flags",
+      "status": "passed",
+      "durationMs": 567
+    },
+    {
+      "name": "unvisited sinkhole names remain hidden until native discovery",
+      "status": "passed",
+      "durationMs": 943
+    },
+    {
+      "name": "ability details expose native cooldown and remain a free read",
+      "status": "failed",
+      "durationMs": 391,
+      "error": "System.Exception: Reading a cooling ability: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.AbilityControlDetails() in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 62\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "ability slots include0and9 and replacement unbinds without swapping",
+      "status": "failed",
+      "durationMs": 541,
+      "error": "System.Exception: Assigning a boundary shortcut: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.AbilityControlBindings() in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 84\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "ability management rejects unknown ownership stale views and invalid slots freely",
+      "status": "passed",
+      "durationMs": 487
+    },
+    {
+      "name": "a deliberately empty ability hotbar survives complete save and load",
+      "status": "failed",
+      "durationMs": 688,
+      "error": "System.Exception: The native loader rebinds an explicitly present empty ten-slot hotbar.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.AbilityControlEmptySave() in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 122\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "equipment choice explicitly equips the offhand and preserves native fallback",
+      "status": "failed",
+      "durationMs": 420,
+      "error": "System.Exception: Choosing an equipment target: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.ChooseEquipment(Entity item) in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 136\n   at Program.EquipmentControlOffhand() in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 154\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "two-handed equipment review identifies both claims and displaced items",
+      "status": "failed",
+      "durationMs": 380,
+      "error": "System.Exception: Choosing an equipment target: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.ChooseEquipment(Entity item) in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 136\n   at Program.EquipmentControlTwoHanded() in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 174\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "equipment confirmation rejects invalid limbs and changed anatomy ownership or displacement",
+      "status": "failed",
+      "durationMs": 372,
+      "error": "System.Exception: Choosing an equipment target: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.ChooseEquipment(Entity item) in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 136\n   at Program.EquipmentControlInvalidated() in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 199\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "equipment review tokens are one-use cancelled and revision checked",
+      "status": "failed",
+      "durationMs": 318,
+      "error": "System.Exception: Choosing an equipment target: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.ChooseEquipment(Entity item) in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 136\n   at Program.EquipmentControlTokens() in /workspace/coo-controls-baseline/Verification/ActionControlsContracts.cs:line 220\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "ability previews and cancellation preserve resources, turns and FX",
+      "status": "failed",
+      "durationMs": 404,
+      "error": "System.Exception: Previewing an owned ability: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.AbilityPreviewIsReadOnly() in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 37\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "directional targeting requires a unit heading and omits TargetCell",
+      "status": "failed",
+      "durationMs": 527,
+      "error": "System.InvalidOperationException: Sequence contains no matching element\n   at System.Linq.ThrowHelper.ThrowNoMatchException()\n   at System.Linq.Enumerable.Last[TSource](IEnumerable`1 source, Func`2 predicate)\n   at Program.CheckControlDiagnostic(Entity player, String action, String kind) in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 290\n   at Program.DirectionalAbilityContract() in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 71\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "directional abilities reject headings outside every local-map edge",
+      "status": "passed",
+      "durationMs": 669
+    },
+    {
+      "name": "adjacent targeting rejects self and sends the exact selected cell",
+      "status": "failed",
+      "durationMs": 339,
+      "error": "System.Exception: Selecting the adjacent target: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.AdjacentAbilityContract() in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 105\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "self-centered activation ignores coordinates and omits TargetCell",
+      "status": "failed",
+      "durationMs": 257,
+      "error": "System.Exception: Previewing a self-centered ability: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.SelfAbilityContract() in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 145\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "ability confirmations reject stale, cancelled and reused tokens",
+      "status": "failed",
+      "durationMs": 297,
+      "error": "System.Exception: Creating the stale token control: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.AbilityTokenContract() in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 161\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "Vault requires explicit consent before attacking a neutral target",
+      "status": "failed",
+      "durationMs": 467,
+      "error": "System.Exception: Direct neutral Vault without review changed x: 40 -> 41\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.SamePlayerState(JsonObject before, JsonObject after, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 529\n   at Program.RejectedTargeting(JsonObject before, JsonObject after, String action) in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 285\n   at Program.NeutralVaultContract() in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 187\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "Vault confirmation rechecks target, landing, source and ownership",
+      "status": "failed",
+      "durationMs": 542,
+      "error": "System.Exception: Creating a plan before target changes: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.ChangedVaultContract() in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 214\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    },
+    {
+      "name": "rite readings stay free on cooldown and conceal hidden candidates",
+      "status": "failed",
+      "durationMs": 461,
+      "error": "System.Exception: Reading an owned rite while it is cooling down: That action is not available.\n   at Program.Check(Boolean condition, String message) in /workspace/coo-controls-baseline/Verification/Program.cs:line 531\n   at Program.RequireSuccess(JsonObject state, String action) in /workspace/coo-controls-baseline/Verification/Program.cs:line 499\n   at Program.RiteReadingContract() in /workspace/coo-controls-baseline/Verification/TargetingContracts.cs:line 258\n   at Program.Run(String name, Action test) in /workspace/coo-controls-baseline/Verification/Program.cs:line 535"
+    }
+  ]
+}
