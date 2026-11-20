@@ -1,4 +1,4 @@
-# parts=397
+# parts=399
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -347,6 +347,14 @@ Part CavesOfOoo.Core.FireTrapTriggerPart | reflected
   ConsumeOnTrigger:System.Boolean
   Damage:System.Int32
   TriggerFaction:System.String
+Part CavesOfOoo.Core.FishStockPart | reflected
+  Available:System.Int32
+  Capacity:System.Int32
+  LastTick:System.Int32
+Part CavesOfOoo.Core.FishTrapPart | reflected
+  Held:System.Int32
+  LastTick:System.Int32
+  Progress:System.Int32
 Part CavesOfOoo.Core.FlintStrikerPart | reflected
   MaxStrikes:System.Int32
   Strikes:System.Int32
@@ -791,6 +799,7 @@ Part CavesOfOoo.Core.SoddenPreparationPart | reflected
 Part CavesOfOoo.Core.SoundingRodPart | reflected
   LastReading:System.String
   LastTick:System.Int32
+  Log:System.Collections.Generic.List`1[System.String]
 Part CavesOfOoo.Core.SpatialFootprintPart | reflected
   #hooks:OnBeforeSave
   CellsRaw:System.String

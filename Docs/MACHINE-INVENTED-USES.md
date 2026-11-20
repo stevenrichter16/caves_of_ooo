@@ -208,6 +208,22 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 
 **Honest limits.** Not played in the Editor. 40 degrees a unit is a proposal. Only fixtures you set down are doused; the ordinary wild campfire and a town's hearth are not touched. It does not make steam or put out other burning things (a burning creature already has its own rules).
 
+## 3n. The twelfth build: the camp fish trap (2026-11-20)
+
+**What it is.** A wicker weir kit (`CampFishTrap`, kind `camp-fishtrap`, stocked by the Tinker) that you set down on the shore of a pond. While it stands it catches one fish every half day, at most four at a time, and "take the fish (N)" empties it into your pack as real `LakePerch` (the food item that already exists). It costs nothing to run. This is the portable twin of the Tine weir the owner's town repairs (3i), and the first machine here whose supply is a place-bound natural resource shared between instances.
+
+**Where.** A fishable pond is a connected stretch (eight-way) of at least twelve fresh-water pool cells you could draw from (so not frozen, not a poured puddle) whose blueprint carries the tag `FishWater`. Today only the Stump's cascade basins carry it: the `SprayPool` description already says "things live in it that live nowhere drier". `WaterPuddle` (a shallow spread), `PeatBog`, mire and brine do not, and the Spread's streams are not pools at all, so a probe of the 201 wild surface zones found fishable water in 11 of them (33 ponds). That is the world's honest water, not a limit I chose; a future lake opts in by carrying the tag, and a cascade basin generated before the tag existed is recognised by its blueprint name. A trap beside two separate ponds fishes the larger and never merges them.
+
+**The shared supply.** Each pond has a stock on its anchor cell (the structural pool owner with the lowest y, x; identity ignores water volume and ice, so drawing a flask from the anchor or a frost freezing it never moves the stock or splits one pond into two): a capacity of four to eight fixed by where it is, starting full and refilling one fish a day. Every trap on that water draws from that one number, so a second trap or a third does not multiply the catch: three traps over five days still cannot take more than the capacity (a test pins it). The reader says only how the water looks ("full of fish", "thin", "fished out for now"), never a count.
+
+**Time.** Reconciled when you read or empty the trap, never by a timer on a zone you are not in; reading changes nothing (the row and the reader show a projection). Taking the trap up (or moving it, or packing up the camp) brings it up to date first, so the fish it caught while it stood are in it, and drawn from the pond, before its clock stops; it keeps them, catches nothing while carried, and fishes again from where it left off when set down. A pond whose water is gone says so ("not beside a pond big enough to fish") and catches nothing.
+
+**Placement.** A new ground class, `ShoreGround`: open ground whose neighbouring water is a fishable pond. Every other kit still treats a pool beside the cell as a hazard (a test asserts the unchanged refusal). The set-down verb therefore offers only the shore cells, and the camp note adds "fish trap holds N by now" (a read-only projection, since a zone you are not in is not simulated).
+
+**Quality of life.** The take row names the count and is disabled with the reason when empty ("Nothing in it yet. It catches at most one fish every half day." / "The pond is fished out for now. It fills slowly, one fish a day." / "It is not beside a pond big enough to fish."); a full pack takes as many as fit and says the rest stay; an interrupted take changes nothing, including the pond.
+
+**Honest limits.** Not played in the Editor. The rates (a half-day catch, a day to refill, capacity 4 to 8, a cap of four) are proposals. Fishable water is rare by the game's own design; the Tine lake is a `WaterPuddle` inside a town where kits cannot be set down. The trap has no bait and no skill.
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).
@@ -224,7 +240,6 @@ Each ships RED-first with counter-checks, an adversarial file, actual play and a
 Written so the next pass does not repeat the reading. Each line says what blocks it and what would unblock it.
 
 - **A ledger keeper at Tally** (would give the cart a third post). The installation framework refuses creatures by design (`InstallationRegistry.AdmissionIssue`), Tally's composition validator rejects creatures, and service residents come from `VillagePopulationBuilder`'s role list. It needs either a Tally-only role in that builder or a separate post-builder with its own admission rules, plus the Tally population tests.
-- **A portable fish trap** (a second, portable weir). Placement (`PlacementCheck.Hazard`) treats every liquid pool as a hazard on and beside a set-down cell, so a shore kit needs its own ground class that requires a water neighbour; it also needs a pond identity (a flood fill of water pool cells), a shared saved stock on the pond so two traps draw from one place-bound supply, and reconcile-on-visit. Sound design, large surface.
 - **A drying rack.** `DriedMeat` already exists and equals cooked meat in healing; a rack would add no capability.
 - **Charge rod, colony jar, rendering ward.** Lore-gated: the binding-work scale for a charge, the Rooted's dream as the bio-light (protected), and ward-song and sari ward-fluid as Urqu defense (protected). Not invented around.
 - **Carriage to wilderness Concord waystations.** The contract names only posts and ends its guarantee at the Last Counter; waystations are random roadside huts, not posts.

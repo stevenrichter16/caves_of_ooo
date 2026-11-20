@@ -5773,6 +5773,42 @@
       ]
     },
     {
+      "Name": "CampFishTrap",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "fish trap" },
+            { "Key": "RenderString", "Value": "u" },
+            { "Key": "ColorString", "Value": "&c" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "true" },
+            { "Key": "Weight", "Value": "14" }
+          ]
+        },
+        { "Name": "FishTrap", "Params": [] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "55" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A wicker weir, a funnel of split willow on a frame, made to be set down on the shore of a pond. It catches while it stands, a few fish at a time, from whatever the water holds, and it needs nothing. It is a trap for fish: it is not made for people, and it keeps nothing but what it catches." }
+          ]
+        },
+        { "Name": "PackableFixture", "Params": [ { "Key": "Kind", "Value": "camp-fishtrap" } ] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Item", "Value": "true" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "SoundingRod",
       "Inherits": "PhysicalObject",
       "Parts": [
@@ -37671,7 +37707,9 @@
         }
       ],
       "Stats": [],
-      "Tags": []
+      "Tags": [
+        { "Key": "FishWater", "Value": "" }
+      ]
     },
     {
       "Name": "RopeAnchor",

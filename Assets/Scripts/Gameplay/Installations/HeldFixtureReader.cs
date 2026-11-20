@@ -134,6 +134,11 @@ namespace CavesOfOoo.Core
                     if (lit) parts.Add("hearth lit, " + amount + " fuel");
                     else if (amount > 0) parts.Add("hearth cold, " + amount + " fuel");
                 }
+                else if (kind == CampKinds.FishTrap && e.GetPart<FishTrapPart>() is FishTrapPart trap)
+                {
+                    // Nothing reconciles a zone you are not in, so the note projects the trap to now (read-only): what you would find.
+                    int fish = trap.HeldNow(e.SpatialZone, WorldClock.CurrentTick); if (fish > 0) parts.Add("fish trap holds " + fish + " by now");
+                }
                 else if (kind == CampKinds.Box && e.GetPart<ContainerPart>() is ContainerPart box)
                 {
                     int things = 0; foreach (var item in box.Contents) things += item.GetPart<StackerPart>()?.StackCount ?? 1;

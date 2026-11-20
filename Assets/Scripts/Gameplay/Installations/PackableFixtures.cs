@@ -88,7 +88,7 @@ namespace CavesOfOoo.Core
                 if (row.Class != PackableFixtureDefinition.Carried && row.Class != PackableFixtureDefinition.Hauled) { errors.Add("P03 " + row.Kind + ": unknown Class '" + row.Class + "'"); continue; }
                 if (row.Rounds < 0) { errors.Add("P04 " + row.Kind + ": negative Rounds"); continue; }
                 string ground = string.IsNullOrEmpty(row.GroundClass) ? PlacementCheck.OpenGround : row.GroundClass;
-                if (ground != PlacementCheck.OpenGround && ground != PlacementCheck.BareGround) { errors.Add("P05 " + row.Kind + ": unknown GroundClass '" + ground + "'"); continue; }
+                if (ground != PlacementCheck.OpenGround && ground != PlacementCheck.BareGround && ground != PlacementCheck.ShoreGround) { errors.Add("P05 " + row.Kind + ": unknown GroundClass '" + ground + "'"); continue; }
                 if (string.IsNullOrWhiteSpace(row.Blueprint)) { errors.Add("P06 " + row.Kind + ": missing Blueprint"); continue; }
                 Kinds[row.Kind] = new PackableFixtureDefinition(row);
             }
@@ -119,7 +119,7 @@ namespace CavesOfOoo.Core
     /// <summary>The kinds the camp verbs know by name ("make camp" lays them out in this order, the readers say what a hearth or box holds). Data in PackableFixtures.json; named once here.</summary>
     public static class CampKinds
     {
-        public const string Hearth = "camp-hearth", Still = "camp-still", Bench = "camp-bench", Box = "camp-box";
+        public const string Hearth = "camp-hearth", Still = "camp-still", Bench = "camp-bench", Box = "camp-box", FishTrap = "camp-fishtrap";
     }
 
     /// <summary>

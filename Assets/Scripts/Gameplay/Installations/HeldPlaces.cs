@@ -100,7 +100,7 @@ namespace CavesOfOoo.Core
             OpenNeighbours = "open-neighbours", EdgeMargin = "edge-margin", StairsDoors = "stairs-doors", CapZone = "cap-zone", CapWorld = "cap-world",
             State = "state", ClassSpecific = "class-specific";
 
-        public const string OpenGround = "OpenGround", BareGround = "BareGround";
+        public const string OpenGround = "OpenGround", BareGround = "BareGround", ShoreGround = "ShoreGround";
         /// <summary>Terrain that is the public route and never takes a fixture.</summary>
         static readonly string[] RouteGround = { "RoadStone" };
         public const int EdgeCells = 3, DoorStairReach = 2;
@@ -138,7 +138,7 @@ namespace CavesOfOoo.Core
                 // 3. occupancy: terrain only (the fixture's own entity never counts)
                 if (Occupied(cell, fixture)) result.Reasons.Add(CellOccupied);
                 // 4. open neighbours
-                if (!NeighboursOpen(zone, x, y, spec.Solid, fixture)) result.Reasons.Add(OpenNeighbours);
+                if (!NeighboursOpen(zone, x, y, spec.Solid, fixture, spec.GroundClass == ShoreGround)) result.Reasons.Add(OpenNeighbours);
                 // 5. edge margin
                 if (x < EdgeCells || y < EdgeCells || x > Zone.Width - 1 - EdgeCells || y > Zone.Height - 1 - EdgeCells) result.Reasons.Add(EdgeMargin);
                 // 6. stairs, doors, wells
@@ -150,7 +150,7 @@ namespace CavesOfOoo.Core
                 // 9. fixture state
                 if (fixture != null && !StateOk(fixture)) result.Reasons.Add(State);
                 // 10. class specific (fail closed on an unknown class)
-                if (!ClassOk(cell, spec.GroundClass)) result.Reasons.Add(ClassSpecific);
+                if (!ClassOk(zone, cell, spec.GroundClass)) result.Reasons.Add(ClassSpecific);
                 return result;
             }
         }
@@ -218,7 +218,7 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        static bool NeighboursOpen(Zone zone, int x, int y, bool solid, Entity self = null)
+        static bool NeighboursOpen(Zone zone, int x, int y, bool solid, Entity self = null, bool shore = false)
         {
             for (int dx = -1; dx <= 1; dx++)
                 for (int dy = -1; dy <= 1; dy++)
@@ -229,6 +229,8 @@ namespace CavesOfOoo.Core
                     int nx = x + dx, ny = y + dy;
                     if (!zone.InBounds(nx, ny)) return false;
                     var n = zone.GetCell(nx, ny);
+                    // A shore kit stands beside fresh water on purpose: a drawable pool cell next to it is the point, not a hazard.
+                    if (shore && FishPond.PoolAt(zone, nx, ny) != null) continue;
                     if (BlocksWithoutCreatures(n, self) || Hazard(zone, n, self)) return false;
                 }
             return true;
@@ -260,9 +262,11 @@ namespace CavesOfOoo.Core
             return true;
         }
 
-        static bool ClassOk(Cell cell, string groundClass)
+        static bool ClassOk(Zone zone, Cell cell, string groundClass)
         {
             if (groundClass == OpenGround) return true;
+            // Shore ground: open ground whose neighbouring water is a pond big enough to fish (FishPond), so a kit that fishes is never set down where it could catch nothing.
+            if (groundClass == ShoreGround) return FishPond.TryFind(zone, cell.X, cell.Y, out _);
             if (groundClass == BareGround)
             {
                 for (int i = 0; i < cell.Objects.Count; i++) if (IsTerrain(cell.Objects[i]) && cell.Objects[i].HasTag("Vegetation")) return false;
