@@ -27,7 +27,7 @@ namespace CavesOfOoo.Tests
         InventoryAction[] Bakes(Entity still) => Actions(still).Where(a => a.Name == "BakeClay").ToArray();
         string Row(Entity still, string target) => Rows(still).Single(a => !a.IsDisabled && a.Command.StartsWith("SettleLiquid|" + target + "|", StringComparison.Ordinal)).Command;
         int Clay() => Pack.Objects.Where(o => o.BlueprintName == "FireClay").Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1);
-        string Read(Entity e) { var l = new List<string>(); StateReader.Collect(e, false, Zone, Zone.GetEntityCell(e), Actor, l); return string.Join(" ", l); }
+        string Read(Entity e) { var l = new List<string>(); StateReader.Collect(e, true, Zone, Zone.GetEntityCell(e), Actor, l); return string.Join(" ", l); }   // Full: the quick reader passes no viewer, so a describer that needs one is read here
 
         [Test] public void AVentBesideTheStillSettlesMireWithNoFireAndSpendsNoFuel()
         {
@@ -82,13 +82,21 @@ namespace CavesOfOoo.Tests
             var still = Still(); Vent(); Flask(12, "bog-mire"); string text = Read(still); StringAssert.Contains("settle your mire", text); StringAssert.Contains("vent", text.ToLowerInvariant()); StringAssert.DoesNotContain("fuel", text.ToLowerInvariant());
         }
 
-        [Test] public void TheVentItselfSaysWhatItIsGoodForOnlyToSomeoneWhoCouldUseIt()
+        [Test] public void TheVentSaysWhatItIsGoodForOnlyWhereAStillCouldStandAndToSomeoneWhoCouldUseIt()
         {
-            var vent = Vent(20); Assert.False(Read(vent).Contains("steady heat"), "an empty-handed viewer is told nothing new");
-            var kit = Carry("CampStill"); StringAssert.Contains("steady heat", Read(vent)); StringAssert.Contains("no fuel", Read(vent)); Pack.RemoveObject(kit);
-            Assert.False(Read(vent).Contains("steady heat"), "no kit, no mire: nothing"); var flask = Flask(12, "bog-mire"); StringAssert.Contains("settles bog-mire", Read(vent)); Pack.RemoveObject(flask);
-            var water = Flask(12, "water"); Assert.False(Read(vent).Contains("steady heat"), "a flask of something else does not count"); Pack.RemoveObject(water);
-            var grass = Place("Grass", 22, 10); grass.AddPart(new TileStateSourcePart { Heat = 0, Coating = "water" }); Flask(12, "bog-mire"); Assert.False(Read(grass).Contains("steady heat"), "a terrain with no steady heat says nothing");
+            // this fixture zone takes no set-down kit, so only a standing still within reach makes the line true
+            var vent = Vent(20); var flask = Flask(12, "bog-mire");
+            Assert.False(Read(vent).Contains("steady heat"), "no still near and a zone that takes no kit: the line would promise a use that is not there");
+            var far = Still(24); Assert.False(Read(vent).Contains("steady heat"), "a still four cells away is out of reach"); Zone.RemoveEntity(far);
+            var near = Still(22); string text = Read(vent); StringAssert.Contains("steady heat", text); StringAssert.Contains("no fuel", text); StringAssert.Contains("not hot enough to bake", text);
+            Pack.RemoveObject(flask); Assert.False(Read(vent).Contains("steady heat"), "empty-handed: nothing"); var water = Flask(12, "water"); Assert.False(Read(vent).Contains("steady heat"), "a flask of something else does not count"); Pack.RemoveObject(water);
+            var grass = Place("Grass", 21, 11); grass.AddPart(new TileStateSourcePart { Heat = 0, Coating = "water" }); Flask(12, "bog-mire"); Assert.False(Read(grass).Contains("steady heat"), "a terrain with no steady heat says nothing"); Assert.NotNull(near);
+        }
+
+        [Test] public void ACarriedOrWornThingIsNeverASourceEvenIfItDeclaresHeat_Counter()
+        {
+            var vent = Factory.CreateEntity("SteamVent"); Assert.True(NaturalHeat.IsSource(vent), "a loose vent entity declares steady heat"); Assert.True(Pack.AddObject(vent));
+            Assert.False(NaturalHeat.IsSource(vent), "carried, it is a thing in a pack and no heat source");
         }
 
         [Test] public void ACarriedStillOffersNothingNearAVent_Counter()
@@ -108,11 +116,10 @@ namespace CavesOfOoo.Tests
             Assert.True(Act(still, Row(still, "water"))); Assert.AreEqual(20f, Fuel(fire), 0.001f, "a fuel-burning fire is a fire however it seeds heat: it is never a free source"); Assert.AreEqual("water", Vessel(flask).LiquidId);
         }
 
-        [Test] public void ACreatureOrACarriedThingDeclaringHeatIsNeverASource_Counter()
+        [Test] public void ACreatureDeclaringHeatIsNeverASource_Counter()
         {
             var still = Still(); var flask = Flask(12, "bog-mire");
-            var stand = Place("Magpie", 10, 11); stand.AddPart(new TileStateSourcePart { Heat = 1 }); Assert.True(Rows(still).All(a => a.IsDisabled), "a creature that seeds heat is not terrain");
-            Assert.NotNull(flask);
+            var stand = Place("Magpie", 10, 11); stand.AddPart(new TileStateSourcePart { Heat = 1 }); Assert.True(Rows(still).All(a => a.IsDisabled), "a creature that seeds heat is not terrain"); Assert.AreEqual(12, Vessel(flask).Volume);
         }
     }
 
@@ -139,15 +146,31 @@ namespace CavesOfOoo.Tests
         static string Dir(InventoryAction a) => a.Display.StartsWith("set down ", StringComparison.Ordinal) ? a.Display.Substring(9).Split(' ')[0] : "";
         void StandAt(int x) { if (wild.GetEntityCell(Actor) != null) wild.RemoveEntity(Actor); Assert.True(wild.AddEntity(Actor, x, Row)); }
 
-        [Test] public void AStillSetDownTwoCellsFromAVentSettlesOnItsHeatAndOneCellFromItCannotBeSetDown()
+        string Read(Entity e) { var l = new List<string>(); StateReader.Collect(e, true, wild, wild.GetEntityCell(e), Actor, l); return string.Join(" ", l); }
+        Entity Vent() => wild.GetReadOnlyEntities().Single(e => e.BlueprintName == "SteamVent");
+
+        [Test] public void InOpenWildGroundTheVentSaysItsUseToACarrierOfMireOrAStillKitAndToNoOneElse()
+        {
+            StandAt(27); var vent = Vent(); Assert.False(Read(vent).Contains("steady heat"), "empty-handed");
+            var kit = Carry("CampStill"); StringAssert.Contains("steady heat", Read(vent), "a still kit, in a zone that takes it"); Pack.RemoveObject(kit);
+            var water = Flask(12, "water"); Assert.False(Read(vent).Contains("steady heat"), "a flask of water"); Pack.RemoveObject(water);
+            Flask(12, "bog-mire"); StringAssert.Contains("settles bog-mire", Read(vent), "mire, in a zone that takes a kit");
+        }
+
+        [Test] public void TheCellBesideTheVentIsRefusedBecauseOfTheVent_AndTheSameCellIsOpenWithoutIt()
+        {
+            StandAt(28); var kit = Carry("CampStill"); Assert.False(SetDownRows(kit).Any(r => Dir(r) == "east"), "the cell beside the vent (29) is a hazard; nothing else is near it: " + string.Join(" / ", Actions(kit).Select(a => a.Display + (a.IsDisabled ? " [" + a.DisabledCode + "]" : ""))));
+            wild.RemoveEntity(Vent()); wild.TileState.Clear(VentX, Row); Assert.True(SetDownRows(kit).Any(r => Dir(r) == "east"), "the same cell, with the vent gone, takes the kit: the vent was the only reason it was refused");
+        }
+
+        [Test] public void AStillSetDownTwoCellsFromAVentSettlesOnItsHeat()
         {
             StandAt(27); var kit = Carry("CampStill"); var row = SetDownRows(kit).FirstOrDefault(r => Dir(r) == "east");
             Assert.NotNull(row, "two cells from the vent is open ground: " + string.Join(" / ", Actions(kit).Select(a => a.Display + (a.IsDisabled ? " [" + a.DisabledCode + "]" : ""))));
             Assert.True(Act(kit, row.Command), string.Join("|", MessageLog.GetRecent(3)));
             var flask = Flask(12, "bog-mire"); var settle = Actions(kit).First(a => a.Name == "SettleLiquid" && !a.IsDisabled && a.Command.Contains("|water|")); StringAssert.Contains("vent", settle.Hint.ToLowerInvariant());
             Assert.True(Act(kit, settle.Command), string.Join("|", MessageLog.GetRecent(3))); Assert.AreEqual("water", flask.GetPart<LiquidVesselPart>().LiquidId); Assert.AreEqual(3, flask.GetPart<LiquidVesselPart>().Volume);
-            // counter: the cell right beside the vent is a hazard, so nothing can be set down there; the vent is for standing beside, not for building on
-            StandAt(28); var second = Carry("CampStill"); Assert.False(SetDownRows(second).Any(r => Dir(r) == "east"), "the cell beside the vent is refused");
+            // the refusal beside the vent, with a control that it is the vent, is TheCellBesideTheVentIsRefusedBecauseOfTheVent_AndTheSameCellIsOpenWithoutIt
         }
     }
 }

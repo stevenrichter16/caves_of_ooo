@@ -17,6 +17,23 @@ namespace CavesOfOoo.Core
             return source != null && source.Heat > 0 && source.Cold <= 0;
         }
 
+        /// <summary>True when a still could stand within <paramref name="reach"/> cells of <paramref name="at"/>: one already stands there, or the zone takes a set-down kit (open wild ground
+        /// in the Spread, Sodden, Beating and Stump; not the Grovelands, towns or any other depth).</summary>
+        public static bool StillCanStandNear(Zone zone, Cell at, int reach)
+        {
+            if (zone == null || at == null) return false;
+            if (HeldPlaceZones.RefusalCode(HeldPlaceZones.Classify(WorldLocationContext.For(zone), zone.ZoneID)) == null) return true;
+            for (int y = at.Y - reach; y <= at.Y + reach; y++)
+                for (int x = at.X - reach; x <= at.X + reach; x++)
+                {
+                    if (!zone.InBounds(x, y)) continue;
+                    var cell = zone.GetCell(x, y); if (cell == null) continue;
+                    for (int i = 0; i < cell.Objects.Count; i++)
+                    { var e = cell.Objects[i]; if (e != null && e.HasPart<LiquidSettlingPart>() && !PackableFixturePart.IsInertKit(e)) return true; }
+                }
+            return false;
+        }
+
         /// <summary>The nearest steady heat source within <paramref name="reach"/> cells (Chebyshev) of <paramref name="at"/>, ties by ID, or null.</summary>
         public static Entity Find(Zone zone, Cell at, int reach)
         {

@@ -39,21 +39,26 @@ namespace CavesOfOoo.Core
         public override string Name => "TileStateSource";
 
         // "What can I do here?": a steady heat is worth knowing about to someone who carries what could use it (Docs/MACHINE-INVENTED-USES.md, 3p). Shown only to a viewer who carries
-        // bog-mire or a camp still kit, so an ordinary vent is described as before to everyone else.
+        // bog-mire or a camp still kit, and only where a still could actually stand within reach: a standing still is already there, or the zone takes a set-down kit (a vent in the
+        // Grovelands or underground would otherwise promise a use the zone refuses). An ordinary vent is described as before to everyone else. The viewer reaches a describer only through
+        // the Full reader, so this is Both and the tests read it through Full.
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 40;
         public string DescribeState(DescribeContext context)
         {
             var viewer = context?.Viewer; if (viewer == null || !NaturalHeat.IsSource(ParentEntity)) return null;
             var pack = viewer.GetPart<InventoryPart>(); if (pack == null) return null;
+            bool carries = false;
             foreach (var o in pack.Objects)
             {
                 if (o == null) continue;
                 var vessel = o.GetPart<LiquidVesselPart>();
-                if ((vessel != null && vessel.LiquidId == LiquidSettlingPart.Feed && vessel.Volume > 0) || o.GetPart<PackableFixturePart>()?.Kind == CampKinds.Still)
-                    return "A steady heat: a still within " + LiquidSettlingPart.FireReach + " cells settles bog-mire on it with no fuel. It is not hot enough to bake clay.";
+                if ((vessel != null && vessel.LiquidId == LiquidSettlingPart.Feed && vessel.Volume > 0) || o.GetPart<PackableFixturePart>()?.Kind == CampKinds.Still) { carries = true; break; }
             }
-            return null;
+            if (!carries) return null;
+            var zone = context.Zone ?? ParentEntity.SpatialZone; var cell = zone?.GetEntityCell(ParentEntity); if (zone == null || cell == null) return null;
+            if (!NaturalHeat.StillCanStandNear(zone, cell, LiquidSettlingPart.FireReach)) return null;
+            return "A steady heat: a still within " + LiquidSettlingPart.FireReach + " cells settles bog-mire on it with no fuel. It is not hot enough to bake clay.";
         }
 
         /// <summary>Liquid coating to keep on the cell — "water",
