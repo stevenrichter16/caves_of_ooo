@@ -5697,6 +5697,46 @@
       ]
     },
     {
+      "Name": "PanScales",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "pan scales" },
+            { "Key": "RenderString", "Value": "s" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "PlaceSiteObject",
+          "Params": [
+            { "Key": "BrokenWord", "Value": "low" },
+            { "Key": "PatchedWord", "Value": "propped" },
+            { "Key": "MendedWord", "Value": "level" }, { "Key": "Plural", "Value": "true" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A salt pan hung from one end of a beam, a stone counterweight at the other, and a post between them. Salt is weighed here against a stone that does not change; when the beam rides level, the weight is the weight." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" },
+        { "Key": "SiteObject", "Value": "" }
+      ]
+    },
+    {
       "Name": "SurveyLine",
       "Inherits": "PhysicalObject",
       "Parts": [

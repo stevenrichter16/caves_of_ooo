@@ -152,6 +152,8 @@ namespace CavesOfOoo.Rendering
                 case "Shrine": return "shrine";
                 case "WatchLantern": return "lantern";
                 case "WeaponRack": return "rack";
+                // The pan scales (a place-site object, Docs/MACHINE-INVENTED-USES.md 3i) borrow the shipped timber rack body: a beam on a frame. There is no scales art.
+                case "PanScales": return "rack";
                 case "Elder": return "adult";
                 case "Innkeeper": return "adult";
                 case "Merchant": return "adult";

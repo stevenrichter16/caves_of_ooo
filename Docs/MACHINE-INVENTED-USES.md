@@ -144,11 +144,13 @@ What the object adds is the world's side. It is placed fresh-only beside Cinderh
 
 **Honest limits.** Not played in the Editor. The numbers (35, 100 turns) are the dossier's proposal. No new art (a glyph). The reagents are bought or found; nothing makes pitchpod resin or fire clay yet (the firing build, which fires clay, would make the second). Wording is placeholder pending voice review.
 
-## 3i. The seventh build: a body for every repair site (2026-11-20)
+## 3i. The seventh build: a body for every repair site but one (2026-11-20)
 
 The pump's part (3f) is generic, so two more data-defined repair sites got bodies in the same turn, each with its own blueprint, words and placement row: **Tine's fishing weir** (gapped / patched / holding) and **the Drowned Ledger's survey line** (out of line / patched / straight). Both stand beside the well, not at the water (the installation placement is anchored on the well). Each reads its site's own authored text, shows what the repair needs against what you carry, mends or patches through the same all-or-nothing call the elder's conversation uses, and takes the materials only at commit. They sit beside the town's well (non-solid), are placed fresh-only by the installation builder (a row with a `Site`, kept out of the every-town census) and are kept with the town because the part is stateful.
 
-**Two sites have no body, on purpose.** Wellmeet's pan scales: their chunk is one of the fully voxel-modelled native chunks, where every visible owner must have a 3D model (a test pins it), so the body waits for art. Gantry's guest pole: the town already has a composition-owned `GuestClothPole`, shared with the Wellmeet and First Tent camps and validated by their builders, so linking it needs those rules reviewed first and a second pole would be wrong. Both are exempt by name in the coverage test and still repair through conversation.
+**Wellmeet's pan scales** (low / propped / level) followed once the 3D rule was met without new art: Wellmeet's chunk is fully voxel-modelled, so every visible native owner needs a model, and the town's kit already has a rack that stands for a weighing beam (`PanScales` aliases it). The scales are the one body whose name is plural, so the part carries a `Plural` flag and says "the pan scales are low", not "is". Wellmeet is a Beating camp: its ground is sand (stone floor in shade, road stone on the approaches), so its row lists `Sand` where the other towns list grass. It stands beside the well like the rest.
+
+**One site has no body, on purpose.** Gantry's guest pole: the town already has a composition-owned `GuestClothPole`, shared with the Wellmeet and First Tent camps and validated by their builders, so linking it needs those rules reviewed first and a second pole would be wrong. It is exempt by name in the coverage test and still repairs through conversation.
 
 A test now ties the two data files together: every repair site in `PlaceSites.json` must have a body row unless it is on the named exemption list, and no body row may name a site that does not exist, so a new data site cannot be forgotten and a typo cannot ship.
 
@@ -239,7 +241,7 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).
-2. The Cinderhold pump as a site-owned object (built, 3f); the same part for the Tine weir and Ledger survey line (built, 3i); the Wellmeet scales wait for a 3D model and the Gantry pole for a review of its composition rules.
+2. The Cinderhold pump as a site-owned object (built, 3f); the same part for the Tine weir, Ledger survey line and Wellmeet pan scales (built, 3i); the Gantry pole waits for a review of its composition rules.
 3. Carriage (built, 3k, between the two posts that keep a ledger today; Tally joins when it keeps one).
 4. Sounding (built, 3g).
 5. Firing (built as baking clay at the still, 3j: it gives the repair approaches and the steeping trough a second source of fire clay).

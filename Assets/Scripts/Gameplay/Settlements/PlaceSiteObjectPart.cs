@@ -22,6 +22,8 @@ namespace CavesOfOoo.Core
         public string Place = "", SiteId = "";
         /// <summary>How the object's state is worded: set in the blueprint ("sheared", "running" for a pump), plain words by default.</summary>
         public string BrokenWord = "broken", PatchedWord = "patched", MendedWord = "mended";
+        /// <summary>True when the thing is named in the plural ("pan scales"), so its state reads "are" and not "is". Set in the blueprint; saved; false in an older save.</summary>
+        public bool Plural;
 
         public const string RepairPrefix = "PlaceSiteRepair|", LastingToken = "Lasting", PatchToken = "Patch";
         const int StatusWidth = 44;
@@ -81,7 +83,7 @@ namespace CavesOfOoo.Core
         {
             var data = Data; var site = Site; if (data == null || site == null || context.Viewer == null) return;
             string left = Remaining(site);
-            lines.Add("The " + data.Name + " is " + StateWord(site) + (left == "" ? "." : " (" + left + ")."));
+            lines.Add("The " + data.Name + (Plural ? " are " : " is ") + StateWord(site) + (left == "" ? "." : " (" + left + ")."));
             if (site.Stage >= RepairStage.StableRepair) return;
             AddFix(lines, "Mend for good: ", data.Lasting, context.Viewer);
             if (data.HasPatch && site.Stage == RepairStage.Fouled) AddFix(lines, "Patch (" + data.Patch.RelapseTurns + " turns): ", data.Patch, context.Viewer);

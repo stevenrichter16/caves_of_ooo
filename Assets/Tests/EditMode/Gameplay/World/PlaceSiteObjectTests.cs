@@ -202,13 +202,14 @@ namespace CavesOfOoo.Tests
             new object[] { "Cinderhold", "Pump", "MinePump", "cinderhold-mine-pump", true },
             new object[] { "Tine", "Weir", "FishingWeir", "tine-fishing-weir", true },
             new object[] { "the Drowned Ledger", "SurveyLine", "SurveyLine", "ledger-survey-line", true },
+            new object[] { "Wellmeet", "Scales", "PanScales", "wellmeet-pan-scales", true },
         };
 
         [Test] public void EveryDataSiteHasABodyRow_ThePlaceSiteCatalogAndTheInstallationRowsAgree()
         {
             InstallationRegistry.ResetForTests(); InstallationRegistry.LoadDefaults();
-            // Wellmeet's pan scales wait for a 3D model (its chunk is fully voxel-modelled, where an unmodelled owner is a test failure). Gantry's guest pole is the composition-owned GuestClothPole, shared with the Wellmeet and First Tent camps and validated by their builders, so linking it needs those rules reviewed first.
-            var exempt = new[] { "Wellmeet:Scales", "Gantry:GuestPole" };
+            // Gantry's guest pole is the composition-owned GuestClothPole, shared with the Wellmeet and First Tent camps and already the body of that site's concern, so it has no row of its own (a duplicate would put two poles in one town). The pan scales borrow the Wellmeet kit's rack model.
+            var exempt = new[] { "Gantry:GuestPole" };
             foreach (var site in PlaceSiteCatalog.All) Assert.AreEqual(!exempt.Contains(site.Place + ":" + site.Id), InstallationRegistry.All.Any(r => r.Place == site.Place && r.Site == site.Id), site.Place + ":" + site.Id);
             Assert.AreEqual(PlaceSiteCatalog.All.Count - exempt.Length, InstallationRegistry.All.Count(r => !string.IsNullOrEmpty(r.Site)), "and no row without a site"); InstallationRegistry.ResetForTests();
         }
@@ -218,7 +219,7 @@ namespace CavesOfOoo.Tests
         {
             Pack.MaxWeight = 1000; var data = PlaceSiteCatalog.Get(place, siteId); string zoneId = PlaceSites.ZoneIdOf(place); Assert.NotNull(data, place); Assert.NotNull(zoneId, place);
             var body = Place(blueprint, 11, 10); var part = body.GetPart<PlaceSiteObjectPart>(); Assert.NotNull(part, blueprint + " carries the site part"); part.Place = place; part.SiteId = siteId; var site = PlaceSites.Site(place, siteId);
-            if (blueprint != "MinePump") Assert.False(body.GetPart<PhysicsPart>().Solid, "stands on bare ground without blocking a route"); StringAssert.Contains(data.Broken, Examine(body)); Assert.AreEqual("The " + data.Name + " is " + part.BrokenWord + ".", Menu(body)[0]);
+            if (blueprint != "MinePump") Assert.False(body.GetPart<PhysicsPart>().Solid, "stands on bare ground without blocking a route"); StringAssert.Contains(data.Broken, Examine(body)); Assert.AreEqual("The " + data.Name + (part.Plural ? " are " : " is ") + part.BrokenWord + ".", Menu(body)[0]);
             Assert.True(Row(body, "PlaceSiteMend").IsDisabled); Assert.AreEqual(hasPatch, Row(body, "PlaceSitePatch") != null, "a patch row only where the site has a patch");
             foreach (var m in data.Lasting.Materials) Give(m.Blueprint, m.Count); if (!string.IsNullOrEmpty(data.Lasting.Tool)) Carry(data.Lasting.Tool);
             var mend = Row(body, "PlaceSiteMend"); Assert.False(mend.IsDisabled, mend.DisabledReason); Assert.True(Act(body, mend.Command), string.Join("|", MessageLog.GetRecent(3)));
