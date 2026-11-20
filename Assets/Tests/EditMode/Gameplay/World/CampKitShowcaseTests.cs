@@ -154,6 +154,13 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(LiquidSettlingPart.Feed, CampMachinesShowcase.MireLiquid, "the liquid the still settles and bakes");
         }
 
+        [Test] public void TheMachinesScenarioPutsASteamVentSixCellsEastSoTheStillCanSettleWithoutAFire()
+        {
+            Pack.MaxWeight = 400; var ctx = Context(out _); var me = Zone.GetEntityPosition(Actor); new CampMachinesShowcase().Apply(ctx);
+            var vent = Zone.GetReadOnlyEntities().SingleOrDefault(e => e.BlueprintName == "SteamVent"); Assert.NotNull(vent, "the vent is spawned"); var at = Zone.GetEntityPosition(vent);
+            Assert.AreEqual(me.x + CampMachinesShowcase.VentOffset, at.x); Assert.AreEqual(me.y, at.y); Assert.True(NaturalHeat.IsSource(vent), "and it is a real heat source for the still");
+        }
+
         // ── the Concord carriage fixture ──
 
         [Test] public void TheCarriageScenarioGivesDramsGoodsAndOneParcelAlreadyWaitingAtCinderhold()

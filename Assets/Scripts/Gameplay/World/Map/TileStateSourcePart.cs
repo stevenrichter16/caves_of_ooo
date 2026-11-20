@@ -34,9 +34,27 @@ namespace CavesOfOoo.Core
     /// it re-wets as it thaws, boil it away with fire and it comes
     /// back, because the pool is still physically there.</para>
     /// </summary>
-    public class TileStateSourcePart : Part
+    public class TileStateSourcePart : Part, IDescribeState
     {
         public override string Name => "TileStateSource";
+
+        // "What can I do here?": a steady heat is worth knowing about to someone who carries what could use it (Docs/MACHINE-INVENTED-USES.md, 3p). Shown only to a viewer who carries
+        // bog-mire or a camp still kit, so an ordinary vent is described as before to everyone else.
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 40;
+        public string DescribeState(DescribeContext context)
+        {
+            var viewer = context?.Viewer; if (viewer == null || !NaturalHeat.IsSource(ParentEntity)) return null;
+            var pack = viewer.GetPart<InventoryPart>(); if (pack == null) return null;
+            foreach (var o in pack.Objects)
+            {
+                if (o == null) continue;
+                var vessel = o.GetPart<LiquidVesselPart>();
+                if ((vessel != null && vessel.LiquidId == LiquidSettlingPart.Feed && vessel.Volume > 0) || o.GetPart<PackableFixturePart>()?.Kind == CampKinds.Still)
+                    return "A steady heat: a still within " + LiquidSettlingPart.FireReach + " cells settles bog-mire on it with no fuel. It is not hot enough to bake clay.";
+            }
+            return null;
+        }
 
         /// <summary>Liquid coating to keep on the cell — "water",
         /// "oil", "brine". Empty for none.</summary>

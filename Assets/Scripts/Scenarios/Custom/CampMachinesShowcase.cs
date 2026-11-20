@@ -28,14 +28,19 @@ namespace CavesOfOoo.Scenarios.Custom
 
         public const string MireLiquid = CampKitsShowcase.MireLiquid;
         public const int MireUnits = 12;
+        /// <summary>Cells east of the player where the scenario puts a steam vent.</summary>
+        public const int VentOffset = 6;
 
         public void Apply(ScenarioContext ctx)
         {
             foreach (var (blueprint, count) in Loadout) ctx.Player.GiveItem(blueprint, count);
             foreach (var vessel in (ctx.PlayerEntity?.GetPart<InventoryPart>()?.Objects ?? new System.Collections.Generic.List<Entity>()).Where(o => o != null && o.BlueprintName == "LiquidFlask").Select(o => o.GetPart<LiquidVesselPart>()).Where(v => v != null))
             { vessel.LiquidId = MireLiquid; vessel.Volume = MireUnits; }
+            // A steam vent six cells east: steady heat for the still (Docs/MACHINE-INVENTED-USES.md, 3p). Walk three cells east and set the still down east: it lands two cells from the vent.
+            ctx.Spawn("SteamVent").AtPlayerOffset(VentOffset, 0);
             ctx.Log("[Machines] You start on wild ground with a steeping trough, a hearth and a still, two flasks of bog-mire, two garments, pitchpod resin, a sounding rod and the parts Cinderhold's pump asks for.");
             ctx.Log("[Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each flask (each uses 8 mire and 10 fuel; settle some mire instead to compare).");
+            ctx.Log("[Machines] 3b. A steam vent steams six cells east of you. Walk three cells east, set the still down east (it lands two cells from the vent: the cell right beside a vent is refused), and press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.");
             ctx.Log("[Machines] 4. Set down the trough (pack, 'set down'), press C toward it and choose 'steep leather armor': it takes 1 pitchpod resin and 1 fire clay. Examine the armor to read the steeping, wear it, and check your acid resistance; take it off and the turns that remain are kept. Then try 'clay-wash' on the apron: 2 fire clay, +35 heat resistance for 100 turns of wear (bake more clay at the still beside a lit fire). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.");
             ctx.Log("[Machines] 4c. The fish trap needs water to fish: a wide pool of falling water (a cascade basin in the Stump, north-west of the world map). Beside one, pack, the trap, 'set down' toward the shore; it offers no cell anywhere else. Wait half a day, then 'take the fish'. A second trap on the same pool shares its supply.");
             ctx.Log("[Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.");

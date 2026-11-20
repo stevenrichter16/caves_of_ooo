@@ -1,6 +1,6 @@
 # Hand-testing the camp and machine work
 
-Nothing in this list has been played in the Editor yet: every machine below was verified by EditMode tests, mutation checks and independent read-only reviews, not by a person at the keyboard. This is the order to try them in, what each step should show, and what to tell me if it does not. Evidence and design notes for each live in [MACHINE-INVENTED-USES.md](MACHINE-INVENTED-USES.md) (sections 3a-3m) and [HOME-BASE-IMPLEMENTATION.md](HOME-BASE-IMPLEMENTATION.md).
+Nothing in this list has been played in the Editor yet: every machine below was verified by EditMode tests, mutation checks and independent read-only reviews, not by a person at the keyboard. This is the order to try them in, what each step should show, and what to tell me if it does not. Evidence and design notes for each live in [MACHINE-INVENTED-USES.md](MACHINE-INVENTED-USES.md) (sections 3a-3p) and [HOME-BASE-IMPLEMENTATION.md](HOME-BASE-IMPLEMENTATION.md).
 
 Scenarios are under **Caves Of Ooo > Scenarios > Home** in the Editor menu bar (start from the menu, not by pressing Play first). Press **C** toward a thing to open its menu; highlight a row to read the small text under the list.
 
@@ -18,6 +18,7 @@ You start on ordinary wild ground with the box, hearth, bench and still, timber,
 
 You start on wild ground with the trough kit, hearth, still, two flasks of bog mire, garments, resin, three fire clay, a sounding rod and the parts Cinderhold's pump asks for.
 
+- **Steam vent heat** (3p). A steam vent steams six cells east of you. Walk three cells east, set the still down east: it lands two cells from the vent (the cell right beside it is refused). **C** toward the still with a mire flask: the settle rows are enabled with no fire anywhere, and the small text says "The vent's steady heat pays; no fuel." Settle one: the message says "on the vent's heat" and no fuel moves. The bake row says the vent is not hot enough. Examine the vent while carrying mire or the still kit: it tells you what it is good for.
 - **Steeping trough** (3h). Set it down, **C** toward it: **steep leather armor** (1 resin + 1 clay). Examine the armor: it reads the treatment. Wear it: acid resistance +35 for 100 turns of wear; take it off and the turns that remain are kept.
 - **Clay-wash** (3l). Same trough: **clay-wash kilnfelt apron** (2 clay). Wear it: heat resistance +35. A garment holds one treatment or the other; a new one replaces it and the row says which.
 - **Baking clay** (3j). **C** toward the still beside a lit hearth: **bake 8 of the 12 mire to 1 fire clay** (spends 10 fuel). That is where more clay comes from.
