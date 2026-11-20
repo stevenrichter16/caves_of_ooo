@@ -58,12 +58,16 @@ namespace CavesOfOoo.Core
                 int x = origin.x + direction.Item1, y = origin.y + direction.Item2;
                 if (ValidDestination(zone, actor, part.LiquidId, x, y, out _) != null) continue;
                 string name = LiquidRegistry.Get(part.LiquidId).DisplayName ?? part.LiquidId;
-                actions.AddAction("PourLiquid", "pour " + name + " " + direction.Item3 + " (" + part.Volume + ")",
+                // Over your own lit hearth the row says what the pour would do to the fire (the rule is FireDouse's).
+                string pourHint = FireDouse.Hint(zone, x, y, part.LiquidId, part.Volume), oneHint = FireDouse.Hint(zone, x, y, part.LiquidId, 1);
+                var pour = actions.AddAction("PourLiquid", "pour " + name + " " + direction.Item3 + " (" + part.Volume + ")",
                     PourPrefix + Encode(part.LiquidId) + "|" + part.Volume.ToString(CultureInfo.InvariantCulture)
                     + "|" + Encode(zone.ZoneID) + "|" + x.ToString(CultureInfo.InvariantCulture) + "|" + y.ToString(CultureInfo.InvariantCulture), '\0', 18);
-                actions.AddAction("PourOneLiquid", "pour one " + name + " " + direction.Item3,
+                var one = actions.AddAction("PourOneLiquid", "pour one " + name + " " + direction.Item3,
                     OnePrefix + Encode(part.LiquidId) + "|" + part.Volume.ToString(CultureInfo.InvariantCulture)
                     + "|" + Encode(zone.ZoneID) + "|" + x.ToString(CultureInfo.InvariantCulture) + "|" + y.ToString(CultureInfo.InvariantCulture), '\0', 17);
+                if (pourHint != null && pour != null) pour.Hint = pourHint;
+                if (oneHint != null && one != null) one.Hint = oneHint;
             }
         }
 
@@ -250,7 +254,7 @@ namespace CavesOfOoo.Core
                     &&part.LiquidId==(before==amount?"":"water")&&recipient.GetPart<LiquidPoolPart>()==pool
                     &&pool.ParentEntity==recipient&&pool.Volume==oldPool+amount&&pool.LiquidId=="water"):null;
             transaction.AfterCommit(()=>audio?.Publish());
-            transaction.AfterCommit(() => ApplyContact(zone, actor, recipient, x, y, liquidId));
+            transaction.AfterCommit(() => ApplyContact(zone, actor, recipient, x, y, liquidId, amount));
             transaction.AfterCommit(() => Diag.Record("liquid", "VesselPoured", actor, vessel,
                 new { destination = recipient.ID, liquidId, amount, x, y }));
             transaction.AfterCommit(() => MessageLog.Add("You pour " + amount + " of " + LiquidName(liquidId) + " onto the ground."));
@@ -258,7 +262,7 @@ namespace CavesOfOoo.Core
             return true;
         }
 
-        static void ApplyContact(Zone zone, Entity actor, Entity pool, int x, int y, string liquidId)
+        static void ApplyContact(Zone zone, Entity actor, Entity pool, int x, int y, string liquidId, int amount)
         {
             if (zone.GetEntityCell(pool) == null) return;
             foreach (var target in zone.GetOccupants(x, y).Where(e => e.HasTag("Creature")).ToArray())
@@ -269,6 +273,7 @@ namespace CavesOfOoo.Core
             }
             ZoneTileStateSystem.WriteCoating(zone, x, y, liquidId, PouredCoatingTurns, actor, "PourLiquidVessel");
             ZoneTileStateSystem.ResolveAfterAbility(zone, actor);
+            FireDouse.Apply(zone, actor, x, y, liquidId, amount);   // water on your own lit hearth cools it
         }
 
         static string Validate(Entity actor, Entity vessel, Zone zone, out LiquidVesselPart part)

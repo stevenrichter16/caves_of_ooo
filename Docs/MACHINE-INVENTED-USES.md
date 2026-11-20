@@ -192,6 +192,18 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 
 **Honest limits.** Not played in the Editor. Amount (35), turns (100) and cost (2 clay) are proposals. It does not make a wearer fireproof (a hit still does at least 1 damage), and it does not touch the Beating glare.
 
+## 3m. The eleventh build: water puts your hearth out (2026-11-20)
+
+**The gap.** Pouring water onto your own lit hearth wrote the water to the ground and left the fire burning (a probe showed the hearth at the same temperature, the same fuel, and the log line "You pour 6 of water onto the ground."). That is the plainest common-sense interaction there is with no supported path.
+
+**The rule.** `FireDouse` runs after a pour commits (the same place the puddle's contact effects run). If the cell holds a lit hearth that *you set down* (a Player-origin, installed fixture; a town's hearth is not yours to put out) and the liquid is one that does not burn (`Combustibility <= 0`: water, bog mire, brine), the hearth takes a cold dose through the existing `ApplyHeat` event, 40 degrees per unit poured, scaled by its heat capacity. The fire's own thermal rules do the rest: it crosses below cooking heat (150) and goes dark (the glow syncs at once), or it only burns lower. A fire at 450 needs about eight units, so a full flask puts it out and one splash only cools it; a fiercer fire takes more. The timber is not burned by being doused: the hearth keeps its fuel and can be lit again from a flame by the ordinary verbs. Oil and pitch never douse.
+
+**Why it is not "banking".** The owner excluded "banking the fire" (managing embers) from the camp list. This does not manage anything: it is the one physical consequence a player already expects when water meets fire, applied through the dose the frost abilities use, and it spends the water.
+
+**Quality of life.** The pour rows over your lit hearth carry a hint ("Puts out your hearth. It keeps its fuel." or "Cools your hearth; it burns lower."); other cells' rows are unchanged; the message says which happened; a diag record (`furniture/HearthDoused`) carries before and after.
+
+**Honest limits.** Not played in the Editor. 40 degrees a unit is a proposal. Only fixtures you set down are doused; the ordinary wild campfire and a town's hearth are not touched. It does not make steam or put out other burning things (a burning creature already has its own rules).
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).
@@ -202,3 +214,15 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 6. Charge rod, rendering, colony jar, reading a find, each after its lore read. (The steeping trough is built, 3h.)
 
 Each ships RED-first with counter-checks, an adversarial file, actual play and a fresh-eyed review, as the home kits did.
+
+## 5. Considered and not built (2026-11-20)
+
+Written so the next pass does not repeat the reading. Each line says what blocks it and what would unblock it.
+
+- **A ledger keeper at Tally** (would give the cart a third post). The installation framework refuses creatures by design (`InstallationRegistry.AdmissionIssue`), Tally's composition validator rejects creatures, and service residents come from `VillagePopulationBuilder`'s role list. It needs either a Tally-only role in that builder or a separate post-builder with its own admission rules, plus the Tally population tests.
+- **A portable fish trap** (a second, portable weir). Placement (`PlacementCheck.Hazard`) treats every liquid pool as a hazard on and beside a set-down cell, so a shore kit needs its own ground class that requires a water neighbour; it also needs a pond identity (a flood fill of water pool cells), a shared saved stock on the pond so two traps draw from one place-bound supply, and reconcile-on-visit. Sound design, large surface.
+- **A drying rack.** `DriedMeat` already exists and equals cooked meat in healing; a rack would add no capability.
+- **Charge rod, colony jar, rendering ward.** Lore-gated: the binding-work scale for a charge, the Rooted's dream as the bio-light (protected), and ward-song and sari ward-fluid as Urqu defense (protected). Not invented around.
+- **Carriage to wilderness Concord waystations.** The contract names only posts and ends its guarantee at the Last Counter; waystations are random roadside huts, not posts.
+- **A letter of credit** (drams moved between posts). Drams weigh nothing and nothing takes them, so there is no reason to move them.
+
