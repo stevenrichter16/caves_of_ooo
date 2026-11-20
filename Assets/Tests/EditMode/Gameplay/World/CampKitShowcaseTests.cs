@@ -130,5 +130,28 @@ namespace CavesOfOoo.Tests
             }
             finally { ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; }
         }
+
+        // ── the newer machines' fixture ──
+
+        [Test] public void EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds()
+        {
+            foreach (var (blueprint, count) in CampMachinesShowcase.Loadout) { Assert.NotNull(Factory.CreateEntity(blueprint), blueprint); Assert.Greater(count, 0, blueprint); }
+            int weight = CampMachinesShowcase.Loadout.Sum(l => (Factory.CreateEntity(l.Blueprint).GetPart<PhysicsPart>()?.Weight ?? 0) * l.Count); Assert.LessOrEqual(weight, 240, "Strength 16 carries 240");
+            bool Has(string bp, int n = 1) => CampMachinesShowcase.Loadout.Any(l => l.Blueprint == bp && l.Count >= n);
+            Assert.True(Has("CampTrough") && Has("LeatherArmor") && Has("PitchpodResin", 2) && Has("FireClay"), "steeping"); Assert.True(Has("SoundingRod"), "sounding");
+            Assert.True(Has("CampHearth") && Has("CampStill") && Has("LiquidFlask", 2) && Has("SalvagedTimber", 4) && Has("FlintStriker"), "baking clay");
+            var data = PlaceSiteCatalog.Get("Cinderhold", "Pump") ?? Load(); foreach (var m in data.Lasting.Materials) Assert.True(Has(m.Blueprint, m.Count), "the pump's " + m.Blueprint);
+            Assert.AreEqual(0, CampMachinesShowcase.MireUnits % 1); Assert.GreaterOrEqual(CampMachinesShowcase.MireUnits, LiquidSettlingPart.ClayRatio, "each flask can bake a clay");
+        }
+
+        static PlaceSiteData Load() { PlaceSiteCatalog.LoadFromJson(System.IO.File.ReadAllText(System.IO.Path.Combine(Application.dataPath, "Resources/Content/Data/PlaceSites.json"))); return PlaceSiteCatalog.Get("Cinderhold", "Pump"); }
+
+        [Test] public void TheMachinesScenarioFillsBothFlasksWithMireAndGivesEverythingItNames()
+        {
+            Pack.MaxWeight = 400; var ctx = Context(out _); new CampMachinesShowcase().Apply(ctx);
+            foreach (var (blueprint, count) in CampMachinesShowcase.Loadout) Assert.GreaterOrEqual(Pack.Objects.Where(o => o.BlueprintName == blueprint).Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1), count, blueprint);
+            var flasks = Pack.Objects.Where(o => o.BlueprintName == "LiquidFlask").Select(o => o.GetPart<LiquidVesselPart>()).ToArray(); Assert.AreEqual(2, flasks.Length); Assert.True(flasks.All(f => f.LiquidId == CampMachinesShowcase.MireLiquid && f.Volume == CampMachinesShowcase.MireUnits));
+            Assert.AreEqual(LiquidSettlingPart.Feed, CampMachinesShowcase.MireLiquid, "the liquid the still settles and bakes");
+        }
     }
 }

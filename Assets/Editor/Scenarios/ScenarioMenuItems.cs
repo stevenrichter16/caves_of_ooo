@@ -308,6 +308,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_CampKitsWildNight()
             => ScenarioRunner.LaunchWild<CampKitsWildNightShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Home/Camp Machines - wild ground (trough, rod, clay baking, pump parts)", priority = 403)]
+        private static void Launch_CampMachines()
+            => ScenarioRunner.LaunchWild<CampMachinesShowcase>();
+
         // =========================================================
         // UI (skill tree, etc.)
         // =========================================================
