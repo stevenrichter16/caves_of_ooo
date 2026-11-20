@@ -36,7 +36,7 @@ namespace CavesOfOoo.Editor.Scenarios
                 Debug.LogWarning("[Scenario] No previously-launched scenario to re-run. Launch one first from the Scenarios menu.");
                 return;
             }
-            ScenarioRunner.Launch(ScenarioRunner.LastLaunched);
+            ScenarioRunner.Launch(ScenarioRunner.LastLaunched, ScenarioRunner.LastWildStart);
         }
 
         [MenuItem("Caves Of Ooo/Scenarios/↻ Re-run Last Scenario %#r", validate = true)]
@@ -299,6 +299,14 @@ namespace CavesOfOoo.Editor.Scenarios
         [MenuItem("Caves Of Ooo/Scenarios/Home/Camp Kits (box, hearth, bench, still + supplies)", priority = 400)]
         private static void Launch_CampKits()
             => ScenarioRunner.Launch<CampKitsShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Home/Camp Kits - wild ground (start where kits can be set down)", priority = 401)]
+        private static void Launch_CampKitsWild()
+            => ScenarioRunner.LaunchWild<CampKitsWildShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Home/Camp Kits - wild ground, night, hurt (make camp and rest)", priority = 402)]
+        private static void Launch_CampKitsWildNight()
+            => ScenarioRunner.LaunchWild<CampKitsWildNightShowcase>();
 
         // =========================================================
         // UI (skill tree, etc.)

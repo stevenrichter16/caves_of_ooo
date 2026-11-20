@@ -39,7 +39,8 @@ namespace CavesOfOoo.Scenarios.Custom
         public const string SlickLiquid = "oil";
         public const int SlickTurns = 300;
 
-        public void Apply(ScenarioContext ctx)
+        /// <summary>Gives the loadout, fills the flask with mire, and lays down the campfire and the oil slick. Shared by the opening-zone scenario and the two wild-ground ones.</summary>
+        public static void Supply(ScenarioContext ctx)
         {
             foreach (var (blueprint, count) in Loadout) ctx.Player.GiveItem(blueprint, count);
             var vessel = ctx.PlayerEntity?.GetPart<InventoryPart>()?.Objects.FirstOrDefault(o => o != null && o.BlueprintName == "LiquidFlask")?.GetPart<LiquidVesselPart>();
@@ -47,10 +48,61 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.World.PlaceObject(FireBlueprint).AtPlayerOffset(2, 0);
             var at = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
             if (at.x >= 0) ctx.Zone.TileState.WriteCoating(at.x - 2, at.y, SlickLiquid, SlickTurns); // an oil slick two cells west: stand beside it and "strike a spark"
-            ctx.Log("[CampKits] Four kits, 6 timber, a torch, a flint striker, 2 iron spikes, craft parts, reagents, raw meat, a dagger and a flask of bog-mire are in your pack. A campfire is two cells east and an oil slick two cells west.");
+        }
+
+        public void Apply(ScenarioContext ctx)
+        {
+            Supply(ctx);
+            ctx.Log("[CampKits] Four kits, 6 timber, a torch, a flint striker, 2 iron spikes, craft parts, reagents, raw meat, a dagger and a flask of bog-mire are in your pack. A campfire is two cells east and an oil slick two cells west. Highlight any menu row to read what it does.");
             ctx.Log("[CampKits] 1. Flint: a real fire in reach is always used first, so stay here (the campfire is two cells away, out of reach). Equip the torch, extinguish it if it is burning, then choose 'light torch at nearby fire': it strikes the flint instead. 2. Stand beside the oil slick (one step west), press C and the direction of the slick, and choose 'light it with the flint striker' (a lit torch in hand lights it free). The striker's own pack menu offers 'strike a spark' too.");
-            ctx.Log("[CampKits] 3. This opening zone refuses set-down. Open the world map with < and travel to ordinary wild ground (Overworld.10.11.0, one west and one south, is one), then use 'set down' on the hearth, the still and the bench. 4. Hearth: press C toward it, feed 2 timber, relight it from the striker (its glow and flicker come on at once, and its menu always shows its fuel and turns), then rest beside it (it burns about 15 fuel for the night). 5. Still: with the hearth lit within two cells, settle the mire flask to water or oil.");
-            ctx.Log("[CampKits] Bench: mark the spike, haft and binding in its picker and craft. The box takes your dagger. Open the world map afterwards to see where you keep things.");
+            ctx.Log("[CampKits] 3. This opening zone refuses set-down. Open the world map with < and travel to ordinary wild ground (or use the 'wild ground' variants of this scenario, which start there), then open the pack, pick a kit and choose 'make camp here' to lay out every kit at once, or 'set down' one at a time. 4. Hearth: press C toward it; 'stoke' feeds the timber and lights it in one action. Its menu always shows its fuel and turns, and its glow comes on at once. Then rest beside it. 5. Still: with the hearth lit within two cells, settle the mire to water or oil. 6. On any standing kit: 'move', 'pack up camp' and 'name this camp'.");
+            ctx.Log("[CampKits] Bench: mark the spike, haft and binding in its picker and craft. The box takes your dagger. Open the world map afterwards to see where you keep things and what each camp holds.");
+        }
+    }
+
+    /// <summary>
+    /// The same fixture, but the fresh game starts on ordinary wild ground (the nearest Spread zone the camp-kit rules accept) so every set-down verb works at once. Launch it from the
+    /// Home menu: the start is requested through <c>ScenarioRunner.LaunchWild</c>; run any other way it behaves as the opening-zone scenario.
+    /// </summary>
+    [Scenario(
+        name: "Camp Kits (wild ground)",
+        category: "Home",
+        description: "Starts on ordinary wild ground with the camp kits, timber, a striker and mire, so make camp, stoke, rest, move, pack up and name can be tried without leaving the start.")]
+    public class CampKitsWildShowcase : IScenario
+    {
+        public void Apply(ScenarioContext ctx)
+        {
+            CampKitsShowcase.Supply(ctx);
+            ctx.Log("[CampKits wild] You start on ordinary wild ground: set-down works here. Everything for a camp is in your pack.");
+            ctx.Log("[CampKits wild] 1. Open the pack (i), select a camp kit and choose 'make camp here (4 kits)': the hearth goes down first, the still beside it, the bench and box clear of the flames. 2. Press C toward the hearth and highlight 'stoke': the small text says what it does. Choose it: it feeds the timber and lights the fire from the striker in one action. 3. Press C toward the still and read what your mire would settle to; settle it. 4. Press C on any kit and choose 'name this camp' (press it again to change the name). 5. Open the world map: the note names the camp, where it is and what it holds as you left it. 6. 'move' shifts one kit a cell; 'pack up camp' takes everything within four cells back.");
+        }
+    }
+
+    /// <summary>The wild-ground fixture at night and hurt: the reason to make a camp. The clock starts at the beginning of the Dark band and the player at two fifths health.</summary>
+    [Scenario(
+        name: "Camp Kits (wild ground, night, hurt)",
+        category: "Home",
+        description: "Wild ground, the start of the Dark band, two fifths health: make camp, stoke the hearth and rest until dawn.")]
+    public class CampKitsWildNightShowcase : IScenario
+    {
+        public const float HealthFraction = 0.4f;
+
+        /// <summary>The tick the scenario moves the clock to: the first tick of the Dark band, or the current tick when it is already Dark (the clock never runs backwards, so a game past this day's Dark goes to the next day's).</summary>
+        public static int DarkStart(int tick)
+        {
+            if (WorldClock.GetBand(tick) == DayBand.Dark) return tick;
+            int dayStart = tick - tick % WorldClock.DayLengthTicks;
+            int target = dayStart + (int)DayBand.Dark * WorldClock.BandLengthTicks;
+            return target >= tick ? target : target + WorldClock.DayLengthTicks;
+        }
+
+        public void Apply(ScenarioContext ctx)
+        {
+            CampKitsShowcase.Supply(ctx);
+            ctx.Player.SetHpFraction(HealthFraction);
+            if (ctx.Turns != null) ctx.Turns.AdvanceClock(DarkStart(ctx.Turns.TickCount) - ctx.Turns.TickCount);
+            ctx.Log("[CampKits night] It is night and you are hurt. A camp is the way through it.");
+            ctx.Log("[CampKits night] 1. Open the pack, pick a camp kit and choose 'make camp here (4 kits)'. 2. Press C toward the hearth and choose 'stoke' (highlight it first to read what it does): it feeds the timber and lights it. 3. Press C on the hearth again: 'rest until Dawn' shows what the night heals and how much fuel it burns; choose it. 4. Wake at dawn: the fire has burned its fuel and your health is restored. 5. Try 'pack up camp' to leave, then the world map to see what you left.");
         }
     }
 }

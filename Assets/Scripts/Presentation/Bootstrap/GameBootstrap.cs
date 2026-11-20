@@ -23,6 +23,8 @@ namespace CavesOfOoo
 
         [Tooltip("Fresh games: leave empty for a safe generated Spread start, or set an explicit scenario destination. Continue uses the saved location.")]
         public string FreshGameZoneID = "";
+        /// <summary>The fresh-start destination actually used: the scene's setting, a pending scenario's wild start, or empty for the ordinary Spread policy. Set when the starting zone is generated.</summary>
+        private string _freshStartZoneId;
         [Min(0.1f)] public float GameplayZoomMultiplier = 1f;
 
         /// <summary>
@@ -1425,7 +1427,9 @@ namespace CavesOfOoo
         {
             _zoneManager = new OverworldZoneManager(_factory, NativeAuditBootstrapSettings.ResolveSeed());
             _zone = null;
-            foreach (string id in FreshGameStart.CandidateZoneIds(_zoneManager, FreshGameZoneID))
+            // The scene's own destination wins. Otherwise a pending scenario may ask for ordinary wild ground (nothing asks in a normal game, so the default policy is untouched).
+            _freshStartZoneId = FreshGameStart.ResolveStartZone(FreshGameZoneID, CavesOfOoo.Scenarios.ScenarioRunner.PendingScenario != null, CavesOfOoo.Scenarios.ScenarioRunner.PendingWildStart, _zoneManager);
+            foreach (string id in FreshGameStart.CandidateZoneIds(_zoneManager, _freshStartZoneId))
             {
                 var candidate = _zoneManager.GetZone(id);
                 if (candidate == null || !string.Equals(candidate.ZoneID, id, StringComparison.Ordinal))
@@ -1459,7 +1463,7 @@ namespace CavesOfOoo
         /// </summary>
         private bool PlacePlayerInOpenCell()
         {
-            if (!FreshGameStart.TryPlace(_zoneManager, _player, FreshGameZoneID, out var placedZone))
+            if (!FreshGameStart.TryPlace(_zoneManager, _player, _freshStartZoneId ?? FreshGameZoneID, out var placedZone))
                 return false;
             _zone = placedZone;
             _zoneManager.SetActiveZone(_zone);

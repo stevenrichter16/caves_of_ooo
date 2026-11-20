@@ -29,6 +29,16 @@ namespace CavesOfOoo.Scenarios
         public static Type PendingScenario;
 
         /// <summary>
+        /// One-shot, like <see cref="PendingScenario"/>: the pending scenario asks the fresh game to start on ordinary wild ground (the nearest Spread zone the camp-kit rules
+        /// accept) instead of the opening, so a hand-test can set a camp down without first walking out of the protected start. Cleared when the scenario is applied. A continued
+        /// save never reads it.
+        /// </summary>
+        public static bool PendingWildStart;
+
+        /// <summary>Whether the last launched scenario asked for a wild start, so Re-run Last repeats it.</summary>
+        public static bool LastWildStart;
+
+        /// <summary>
         /// The most recently-applied scenario type. Survives across Play mode exits
         /// so <c>Re-run Last</c> can re-launch it without re-navigating the menu.
         /// Null until the first successful launch in the current Editor session.
@@ -44,8 +54,12 @@ namespace CavesOfOoo.Scenarios
         public static void Launch<T>() where T : IScenario, new()
             => Launch(typeof(T));
 
+        /// <summary>Launch a scenario that starts the fresh game on ordinary wild ground (see <see cref="PendingWildStart"/>).</summary>
+        public static void LaunchWild<T>() where T : IScenario, new()
+            => Launch(typeof(T), wildStart: true);
+
         /// <summary>Non-generic Launch — used by the Re-run Last shortcut.</summary>
-        public static void Launch(Type scenarioType)
+        public static void Launch(Type scenarioType, bool wildStart = false)
         {
             if (scenarioType == null)
             {
@@ -59,6 +73,8 @@ namespace CavesOfOoo.Scenarios
             }
 
             PendingScenario = scenarioType;
+            PendingWildStart = wildStart;
+            LastWildStart = wildStart;
 
 #if UNITY_EDITOR
             // Enter Play mode if not already playing. If already playing, the user
@@ -97,6 +113,7 @@ namespace CavesOfOoo.Scenarios
 
             var pending = PendingScenario;
             PendingScenario = null; // clear immediately so a throw can't loop
+            PendingWildStart = false;
 
             IScenario instance;
             try

@@ -94,6 +94,8 @@ Asked after playing the kits: sixteen small things that make the camp easier to 
 - **What you left.** The arrival and map notes end with "As you left it: hearth lit, 12 fuel, box holds 3." Quiet when there is nothing to say (an empty box, a bare hearth), so the old wording is exact for those.
 - **What can I do here?** Examining a fire says what its rows would offer you now ("Here you can: feed it (3 timber), light it, dry 1 wet thing."), a hearth says what a night costs ("You could rest here: it burns about 15 fuel."), and a still says what your mire would settle to or what it is missing. Each Part describes its own affordance, so a new kit that carries those Parts gets the line without new code.
 
+- **Try it without the walk.** The Home scenario menu has two new entries that start the fresh game on ordinary wild ground (the nearest Spread zone the camp-kit rules accept, found from the world map at start): "Camp Kits - wild ground", and "wild ground, night, hurt" (the clock at the start of the Dark band, health at two fifths) for the "I need a camp" case. The request is one-shot (`ScenarioRunner.PendingWildStart`) and a continued save never reads it; the scene's own start setting still wins.
+
 **Honest limits.** No Editor play of any of this: the menu's hint block is exercised through its state (rows reserved, highlighted hint) and not through a rendered frame. "As you left it" is a read of the stored zone, which is not simulated while you are away. A camp name is a label, not a place the game knows about.
 
 ## 4. Order
