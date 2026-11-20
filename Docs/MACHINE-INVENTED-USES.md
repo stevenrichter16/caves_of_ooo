@@ -238,6 +238,8 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 
 **Quality of life.** The reader says what it does standing ("It shades the ground under it and the cells around it from the glare, for whoever stands there.") and when carried ("Carried, it shades nothing."); the camp note and the take-up, move and name verbs are the kits' own.
 
+**A way to try it (2026-11-20).** The glare only burns in the Beating's Height band, which a hand-tester would otherwise have to walk to and wait for. The Home menu now has **Camp Awning - the Beating at noon**: a wild start that asks for the Beating instead of the Spread (`ScenarioRunner.LaunchWild<T>(BiomeType)` and `FreshGameStart.WildStartZoneId(manager, biome)`; the biome defaults to the Spread everywhere else, is one-shot like the wild-start flag, and Re-run Last repeats it) with the clock moved to the start of the Height band (never backwards) and the awning in the pack. Tests: the Beating start is real wild ground at four seeds with the Spread default unchanged, the biome is carried through the start resolver and ignored when no wild start was asked for, the request clears when a scenario is applied, the scenario lands at Height (already Height: unchanged; past it: tomorrow's). Four mutants caught.
+
 **Honest limits.** Not played in the Editor. Player-only, like the glare itself (natives are adapted). The awning does not stop a Parched stack you already have (water does). It does not shade creatures, shelter from rain or keep anything out but the sun; the radius and weight are proposals.
 
 ## 3p. The fourteenth build: heat the world gives for nothing (2026-11-20)

@@ -1,3 +1,4 @@
+using CavesOfOoo.Core;
 using CavesOfOoo.Scenarios;
 using CavesOfOoo.Scenarios.Custom;
 using UnityEditor;
@@ -36,7 +37,7 @@ namespace CavesOfOoo.Editor.Scenarios
                 Debug.LogWarning("[Scenario] No previously-launched scenario to re-run. Launch one first from the Scenarios menu.");
                 return;
             }
-            ScenarioRunner.Launch(ScenarioRunner.LastLaunched, ScenarioRunner.LastWildStart);
+            ScenarioRunner.Launch(ScenarioRunner.LastLaunched, ScenarioRunner.LastWildStart, ScenarioRunner.LastWildBiome);
         }
 
         [MenuItem("Caves Of Ooo/Scenarios/↻ Re-run Last Scenario %#r", validate = true)]
@@ -311,6 +312,10 @@ namespace CavesOfOoo.Editor.Scenarios
         [MenuItem("Caves Of Ooo/Scenarios/Home/Camp Machines - wild ground (trough, rod, clay baking, pump parts)", priority = 403)]
         private static void Launch_CampMachines()
             => ScenarioRunner.LaunchWild<CampMachinesShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Home/Camp Awning - the Beating at noon (start bareheaded in the glare)", priority = 405)]
+        private static void Launch_CampAwning()
+            => ScenarioRunner.LaunchWild<CampAwningShowcase>(BiomeType.Beating);
 
         [MenuItem("Caves Of Ooo/Scenarios/Home/Concord Carriage (goods, drams and a parcel waiting at Cinderhold)", priority = 404)]
         private static void Launch_ConcordCarriage()

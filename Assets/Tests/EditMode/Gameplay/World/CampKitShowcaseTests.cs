@@ -131,6 +131,59 @@ namespace CavesOfOoo.Tests
             finally { ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; }
         }
 
+        // ── the awning's fixture: a wild start in the Beating at the Height hours ──
+
+        [Test] public void AWildStartCanBeAskedForTheBeatingAndStillDefaultsToTheSpread_Counter()
+        {
+            foreach (int seed in new[] { 64, 65, 7, 1234 })
+            {
+                var manager = OverworldZoneManager.CreateDetached(Factory, seed, true); string id = FreshGameStart.WildStartZoneId(manager, BiomeType.Beating);
+                Assert.NotNull(id, "seed " + seed + ": there is wild ground in the Beating"); Assert.AreEqual(HeldPlaceZoneClass.WildSurface, HeldPlaceZones.Classify(manager, id));
+                var (x, y, _) = WorldMap.FromZoneID(id); Assert.AreEqual(BiomeType.Beating, manager.WorldMap.GetBiome(x, y)); Assert.AreEqual(0, WorldMap.FromZoneID(id).z, "the surface");
+                var spread = FreshGameStart.WildStartZoneId(manager); var (sx, sy, _) = WorldMap.FromZoneID(spread);
+                Assert.AreEqual(BiomeType.Spread, manager.WorldMap.GetBiome(sx, sy), "the default is unchanged"); Assert.AreEqual(spread, FreshGameStart.WildStartZoneId(manager, BiomeType.Spread));
+            }
+        }
+
+        [Test] public void ResolvingTheStartZoneCarriesTheAskedBiomeAndIgnoresItWhenNoWildStartWasAsked_Counter()
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            Assert.AreEqual(FreshGameStart.WildStartZoneId(manager, BiomeType.Beating), FreshGameStart.ResolveStartZone("", true, true, manager, BiomeType.Beating));
+            Assert.AreEqual(FreshGameStart.WildStartZoneId(manager), FreshGameStart.ResolveStartZone("", true, true, manager), "no biome asked: the Spread, as before");
+            Assert.AreEqual("", FreshGameStart.ResolveStartZone("", true, false, manager, BiomeType.Beating), "a biome without a wild-start request changes nothing");
+            Assert.AreEqual("Overworld.3.3.0", FreshGameStart.ResolveStartZone("Overworld.3.3.0", true, true, manager, BiomeType.Beating), "the scene's own destination still wins");
+        }
+
+        [Test] public void TheWildBiomeRequestIsOneShotLikeTheWildStartItself()
+        {
+            var handle = typeof(ScenarioRunner).GetMethod("HandleAfterBootstrap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            var oldBiome = ScenarioRunner.PendingWildBiome; var oldFlag = ScenarioRunner.PendingWildStart; var oldType = ScenarioRunner.PendingScenario; Pack.MaxWeight = 400;
+            try
+            {
+                ScenarioRunner.PendingScenario = typeof(CampAwningShowcase); ScenarioRunner.PendingWildStart = true; ScenarioRunner.PendingWildBiome = BiomeType.Beating;
+                handle.Invoke(null, new object[] { Zone, Factory, Actor, new TurnManager() });
+                Assert.AreEqual(BiomeType.Spread, ScenarioRunner.PendingWildBiome, "a later scenario that asks for a wild start gets the Spread unless it asks otherwise");
+            }
+            finally { ScenarioRunner.PendingWildBiome = oldBiome; ScenarioRunner.PendingWildStart = oldFlag; ScenarioRunner.PendingScenario = oldType; }
+        }
+
+        [Test] public void TheAwningScenarioStartsAtTheHeightBandBareheadedWithTheAwningAndNothingMoreThanItNeeds()
+        {
+            Pack.MaxWeight = 400; var ctx = Context(out var turns); new CampAwningShowcase().Apply(ctx);
+            Assert.AreEqual(DayBand.Height, WorldClock.GetBand(turns.TickCount), "the glare only burns in the Height band");
+            Assert.NotNull(Pack.Objects.SingleOrDefault(o => o.BlueprintName == "CampAwning"), "the awning is in the pack");
+            Assert.False(BeatingGlareSystem.HasHeadCover(Actor), "nothing on the head: the glare would parch you");
+            foreach (var (blueprint, count) in CampAwningShowcase.Loadout) Assert.GreaterOrEqual(Pack.Objects.Where(o => o.BlueprintName == blueprint).Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1), count, blueprint);
+        }
+
+        [Test] public void TheAwningScenarioKeepsTheClockWhereItIsWhenItIsAlreadyHeightAndNeverRunsItBackwards_Counter()
+        {
+            Pack.MaxWeight = 400; var ctx = Context(out var turns); turns.AdvanceClock(WorldClock.DayLengthTicks + (int)DayBand.Height * WorldClock.BandLengthTicks + 50);
+            int before = turns.TickCount; new CampAwningShowcase().Apply(ctx); Assert.AreEqual(before, turns.TickCount, "already Height: no change");
+            var late = Context(out var turns2); turns2.AdvanceClock((int)DayBand.Dusk * WorldClock.BandLengthTicks + 10); new CampAwningShowcase().Apply(late);
+            Assert.AreEqual(DayBand.Height, WorldClock.GetBand(turns2.TickCount)); Assert.GreaterOrEqual(turns2.TickCount, WorldClock.DayLengthTicks, "past Height today: tomorrow's");
+        }
+
         // ── the newer machines' fixture ──
 
         [Test] public void EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds()

@@ -38,6 +38,12 @@ namespace CavesOfOoo.Scenarios
         /// <summary>Whether the last launched scenario asked for a wild start, so Re-run Last repeats it.</summary>
         public static bool LastWildStart;
 
+        /// <summary>The biome a wild start asks for (default the Spread, as it always was); set with <see cref="PendingWildStart"/>, one-shot, so a hand-test of a biome's own rule (the Beating's glare) can start there.</summary>
+        public static BiomeType PendingWildBiome = BiomeType.Spread;
+
+        /// <summary>The biome of the last launched scenario's wild start, so Re-run Last repeats it.</summary>
+        public static BiomeType LastWildBiome = BiomeType.Spread;
+
         /// <summary>
         /// The most recently-applied scenario type. Survives across Play mode exits
         /// so <c>Re-run Last</c> can re-launch it without re-navigating the menu.
@@ -55,11 +61,11 @@ namespace CavesOfOoo.Scenarios
             => Launch(typeof(T));
 
         /// <summary>Launch a scenario that starts the fresh game on ordinary wild ground (see <see cref="PendingWildStart"/>).</summary>
-        public static void LaunchWild<T>() where T : IScenario, new()
-            => Launch(typeof(T), wildStart: true);
+        public static void LaunchWild<T>(BiomeType biome = BiomeType.Spread) where T : IScenario, new()
+            => Launch(typeof(T), wildStart: true, wildBiome: biome);
 
         /// <summary>Non-generic Launch — used by the Re-run Last shortcut.</summary>
-        public static void Launch(Type scenarioType, bool wildStart = false)
+        public static void Launch(Type scenarioType, bool wildStart = false, BiomeType wildBiome = BiomeType.Spread)
         {
             if (scenarioType == null)
             {
@@ -75,6 +81,8 @@ namespace CavesOfOoo.Scenarios
             PendingScenario = scenarioType;
             PendingWildStart = wildStart;
             LastWildStart = wildStart;
+            PendingWildBiome = wildBiome;
+            LastWildBiome = wildBiome;
 
 #if UNITY_EDITOR
             // Enter Play mode if not already playing. If already playing, the user
@@ -114,6 +122,7 @@ namespace CavesOfOoo.Scenarios
             var pending = PendingScenario;
             PendingScenario = null; // clear immediately so a throw can't loop
             PendingWildStart = false;
+            PendingWildBiome = BiomeType.Spread;
 
             IScenario instance;
             try
