@@ -151,7 +151,7 @@ namespace CavesOfOoo.Tests
             Assert.False(Pack.Objects.Contains(hearth)); Assert.AreEqual(1, Held().Count);
         }
 
-        [Test] public void TheColoursTellTheTruth_EveryRedCellIsRefusedWithNoChange_EveryGreenCellMoves()
+        [Test] public void TheColoursTellTheTruth_EveryRedCellIsRefusedWithNoChange_AndTheFirstGreenCellEachRoundMoves()
         {
             var hearth = Standing("CampHearth", "east"); Standing("CampStill", "northeast");
             for (int round = 0; round < 4; round++)
@@ -478,15 +478,14 @@ namespace CavesOfOoo.Tests
             Assert.True(InventorySystem.Equip(Actor, garment)); var effect = Actor.GetEffect<SteepedAcidEffect>(); effect.JustApplied = false;
             var status = Actor.GetPart<StatusEffectsPart>(); for (int i = 0; i < 3; i++) { var end = GameEvent.New("EndTurn"); Actor.FireEvent(end); }
             Assert.Null(Actor.GetEffect<SteepedAcidEffect>()); Assert.AreEqual(baseline, Actor.GetStatValue("AcidResistance")); Assert.Null(Steeped(garment), "the treatment is gone from the garment"); Assert.True(MessageLog.GetRecent(6).Any(m => m.Contains("has worn off")));
-            Assert.True(Pack.Objects.Contains(garment) || InventorySystem.UnequipItem(Actor, garment) || true);
         }
 
         [Test] public void TwoSteepedGarmentsWornTogetherEachGiveTheirOwn_AndSteepingNeverStacksPastTheCap()
         {
             var body = Carry("LeatherArmor"); var hood = Carry("FilterHood"); foreach (var g in new[] { body, hood }) Assert.True(ItemEnhancing.Apply(g, "EnhancementSteeped")); int baseline = Actor.GetStatValue("AcidResistance");
             Assert.True(InventorySystem.Equip(Actor, body)); Assert.True(InventorySystem.Equip(Actor, hood)); Assert.AreEqual(2, Actor.GetPart<StatusEffectsPart>().GetAllEffects().Count(e => e is SteepedAcidEffect));
-            Assert.Greater(Actor.GetStatValue("AcidResistance"), baseline + 35 - 1, "at least the first, and the second adds its own");
-            Assert.True(InventorySystem.UnequipItem(Actor, body)); Assert.AreEqual(1, Actor.GetPart<StatusEffectsPart>().GetAllEffects().Count(e => e is SteepedAcidEffect)); Assert.True(InventorySystem.UnequipItem(Actor, hood)); Assert.AreEqual(baseline, Actor.GetStatValue("AcidResistance"));
+            Assert.AreEqual(baseline + 70, Actor.GetStatValue("AcidResistance"), "each garment lands its own +35");
+            Assert.True(InventorySystem.UnequipItem(Actor, body)); Assert.AreEqual(baseline + 35, Actor.GetStatValue("AcidResistance"), "only the hood's now"); Assert.AreEqual(1, Actor.GetPart<StatusEffectsPart>().GetAllEffects().Count(e => e is SteepedAcidEffect)); Assert.True(InventorySystem.UnequipItem(Actor, hood)); Assert.AreEqual(baseline, Actor.GetStatValue("AcidResistance"));
         }
 
         [Test] public void TheTreatmentTravelsWithTheGarmentAndSavesWithIt()
@@ -500,6 +499,23 @@ namespace CavesOfOoo.Tests
             var trough = Standing("CampTrough", "east"); var lines = new List<string>(); StateReader.Collect(trough, false, Zone, Zone.GetEntityCell(trough), Actor, lines);
             StringAssert.Contains("Nothing you carry fits", string.Join(" ", lines)); Carry("LeatherArmor"); GiveReagents(); lines.Clear(); StateReader.Collect(trough, false, Zone, Zone.GetEntityCell(trough), Actor, lines);
             StringAssert.Contains("1 garment you carry could be steeped", string.Join(" ", lines)); StringAssert.Contains("1 pitchpod resin and 1 fire clay", string.Join(" ", lines));
+        }
+
+        [Test] public void TheGarmentsReaderIsRightWhileItIsWorn_AndAnEffectThatEndsAnotherWayNeverRefillsIt()
+        {
+            var garment = Carry("LeatherArmor"); Assert.True(ItemEnhancing.Apply(garment, "EnhancementSteeped")); Assert.True(InventorySystem.Equip(Actor, garment)); var effect = Actor.GetEffect<SteepedAcidEffect>(); effect.JustApplied = false;
+            for (int i = 0; i < 12; i++) { var end = GameEvent.New("EndTurn"); Actor.FireEvent(end); }
+            Assert.AreEqual(88, Steeped(garment).TurnsLeft, "worn: the reader counts down with the wearer"); StringAssert.Contains("88 more turns", Steeped(garment).GetEffectDescription());
+            Actor.GetPart<StatusEffectsPart>().RemoveEffect(effect);   // dispelled, not taken off
+            Assert.True(InventorySystem.UnequipItem(Actor, garment)); Assert.True(InventorySystem.Equip(Actor, garment)); Assert.AreEqual(88, Actor.GetEffect<SteepedAcidEffect>().Duration, "put back on, it resumes from what was left, not from a full count");
+        }
+
+        [Test] public void AGarmentWornAtSaveTimeLoadsWithItsResistanceAndItsTurnsAndNeverGainsOrLosesAny()
+        {
+            var garment = Carry("LeatherArmor"); Assert.True(ItemEnhancing.Apply(garment, "EnhancementSteeped")); Assert.True(InventorySystem.Equip(Actor, garment)); Actor.GetEffect<SteepedAcidEffect>().JustApplied = false;
+            for (int i = 0; i < 5; i++) { var end = GameEvent.New("EndTurn"); Actor.FireEvent(end); }
+            int resist = Actor.GetStatValue("AcidResistance"); var copy = PartRoundTripHelper.RoundTripEntityViaTokenGraph(Actor); var effect = copy.GetEffect<SteepedAcidEffect>();
+            Assert.NotNull(effect, "the effect is saved"); Assert.AreEqual(95, effect.Duration); Assert.AreEqual(35, effect.AppliedBonus); Assert.AreEqual(resist, copy.GetStatValue("AcidResistance"), "the saved boost is not applied twice on load");
         }
     }
 }

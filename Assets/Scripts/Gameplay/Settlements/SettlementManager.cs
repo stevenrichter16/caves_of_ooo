@@ -406,6 +406,18 @@ namespace CavesOfOoo.Core
             return null;
         }
 
+        /// <summary>A copy of a site's state, for an undo (an interrupted action that repaired it). Null when the site is unknown.</summary>
+        public RepairableSiteState SnapshotSite(string settlementId, string siteId) => GetSite(settlementId, siteId)?.Clone();
+
+        /// <summary>Puts a <see cref="SnapshotSite"/> copy back and tells the listeners, so a repair that an outer step then undid leaves the site, and what shows it, as it was.</summary>
+        public void RestoreSite(string settlementId, RepairableSiteState snapshot)
+        {
+            var site = snapshot == null ? null : GetSite(settlementId, snapshot.SiteId); if (site == null) return;
+            site.Stage = snapshot.Stage; site.Severity = snapshot.Severity; site.ProblemType = snapshot.ProblemType; site.ResolvedByMethod = snapshot.ResolvedByMethod;
+            site.ResolvedAtTurn = snapshot.ResolvedAtTurn; site.RelapseAtTurn = snapshot.RelapseAtTurn; site.OutcomeTier = snapshot.OutcomeTier;
+            RaiseSiteChanged(settlementId, site);
+        }
+
         /// <summary>C1: the settlement condition left by a Concord-contracted repair of a site.</summary>
         public static string ContractCondition(string siteId) => "ConcordContract." + siteId;
 

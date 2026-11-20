@@ -26,8 +26,18 @@ namespace CavesOfOoo.Core
         public const string RepairPrefix = "PlaceSiteRepair|", LastingToken = "Lasting", PatchToken = "Patch";
         const int StatusWidth = 44;
 
-        PlaceSiteData Data => PlaceSiteCatalog.Get(Place, SiteId);
-        RepairableSiteState Site => PlaceSites.Site(Place, SiteId);
+        // Looked up once per object (not saved): the catalog row and the place's zone id do not change; the state is read live each time.
+        PlaceSiteData _data; string _zoneId, _dataKey;
+        PlaceSiteData Data
+        {
+            get
+            {
+                string key = Place + "|" + SiteId;
+                if (_data == null || _dataKey != key) { _data = PlaceSiteCatalog.Get(Place, SiteId); _zoneId = PlaceSites.ZoneIdOf(Place); _dataKey = key; }
+                return _data;
+            }
+        }
+        RepairableSiteState Site => Data == null || _zoneId == null || SettlementManager.Current == null ? null : SettlementManager.Current.GetSite(_zoneId, SiteId);
 
         public static bool IsCommand(string command) => command != null && command.StartsWith(RepairPrefix, StringComparison.Ordinal);
 
@@ -108,23 +118,7 @@ namespace CavesOfOoo.Core
                 return true;
             }
             if (e.ID == "Render") { Look(); return true; }
-            if (e.ID == "EndTurn") { Note(); return true; }
             return true;
-        }
-
-        bool _noted;   // not saved: once per visit, like the well's proximity line
-
-        /// <summary>The first time the player stands beside it in a visit, the pump says what it is doing (placeholder wording pending voice review).</summary>
-        void Note()
-        {
-            if (_noted) return;
-            var zone = ParentEntity?.SpatialZone; var site = Site; var at = zone?.GetEntityCell(ParentEntity); if (zone == null || site == null || at == null) return;
-            Entity player = null; var all = zone.GetAllEntities(); for (int i = 0; i < all.Count; i++) if (all[i].HasTag("Player")) { player = all[i]; break; }
-            var near = player == null ? null : zone.GetEntityCell(player); if (near == null || Math.Abs(near.X - at.X) > 1 || Math.Abs(near.Y - at.Y) > 1) return;
-            _noted = true;
-            MessageLog.Add(site.Stage >= RepairStage.StableRepair ? "The pump thuds on, steady, and the shaft below stays dry."
-                : site.Stage == RepairStage.TemporarilyPurified ? "The patched pump coughs and keeps working, for now."
-                : "The pump's rod hangs slack. Below it, water slaps against stone.");
         }
 
         /// <summary>The object's own name and colour follow its state each time it is drawn (cheap: two string reads), the way the well's do.</summary>
@@ -170,9 +164,14 @@ namespace CavesOfOoo.Core
             try
             {
                 if (!tx.TryClaim(actor, actor, command) || !tx.TryClaim(owner, actor, command)) return Reject(actor, "in_progress", "That is already being worked on.");
-                string zoneId = PlaceSites.ZoneIdOf(Place);
-                // Nothing is taken until the whole action commits: an outer step that fails leaves the materials in the pack and the site as it was.
-                tx.AfterCommit(() => SettlementManager.Current?.RepairPlaceSite(zoneId, SiteId, lasting, actor));
+                var manager = SettlementManager.Current; var pack = actor.GetPart<InventoryPart>(); if (manager == null || pack == null || _zoneId == null) return Reject(actor, "invalid_context", "You cannot work on that right now.");
+                // The same call the elder's conversation makes does the work, inside this action: the pack and the site are captured first, so an outer step that fails (or the repair itself
+                // refusing) puts the materials and the site back exactly. The announcement it shows is the only thing not taken back.
+                var siteBefore = manager.SnapshotSite(_zoneId, SiteId); var receipt = InventoryTransferSnapshot.Capture(pack); string zoneId = _zoneId, siteId = SiteId;
+                tx.Do(null, () => { receipt.Restore(); manager.RestoreSite(zoneId, siteBefore); });
+                string result = null;
+                if (!receipt.Apply(() => (result = manager.RepairPlaceSite(zoneId, siteId, lasting, actor)) == null) || !receipt.ClaimChanges(tx, actor, command))
+                { CavesOfOoo.Diagnostics.Diag.Record("furniture", "SiteRepairRefused", actor: actor, target: owner, payload: new { place = Place, site = SiteId, code = result ?? "payment_refused" }); return false; }
                 if (own) tx.Commit();
                 return true;
             }

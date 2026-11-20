@@ -68,14 +68,15 @@ namespace CavesOfOoo.Core
             if (origin == null) { message = "You cannot sound the ground from here."; return "no-place"; }
             var (zx, zy, depth) = WorldMap.FromZoneID(zone.ZoneID);
             if (depth <= 0) { message = "The ground up here is too loose to carry a sounding."; return "surface"; }
-            if (!OrdinaryColumn(zone, zx, zy, depth)) { message = "The stone here answers wrong. You leave it be."; return "not-ordinary"; }
+            // The same words as for ground the rod cannot bite into, so a refusal never marks a floor as special (the dossier's rule).
+            if (!OrdinaryColumn(zone, zx, zy, depth)) { message = "There is no solid floor here for the rod to bite into."; return "not-ordinary"; }
             string floor = FloorUnder(origin); reach = Reach(floor);
             if (reach <= 0) { message = "There is no solid floor here for the rod to bite into."; return "ground-uncoupled"; }
             return null;
         }
 
         /// <summary>Whether the floor is an ordinary cave column: the layout plan's own predicate where the zone's world is known, minus the bespoke columns it cannot see.</summary>
-        static bool OrdinaryColumn(Zone zone, int x, int y, int depth)
+        internal static bool OrdinaryColumn(Zone zone, int x, int y, int depth)
         {
             if (zone.ZoneID == GleanersCellarZone) return false;   // a bespoke cellar the plan would call ordinary (dossier correction C3)
             var manager = WorldLocationContext.For(zone);

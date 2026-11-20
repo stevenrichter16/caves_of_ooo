@@ -175,7 +175,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void AFlaskWithEightOrMoreMireOffersABakeRowAndLessDoesNot_Counter()
         {
-            var still = Still(); Fire(); Flask(12, "bog-mire"); var row = Bakes(still).Single(); Assert.False(row.IsDisabled); Assert.AreEqual("bake 12 mire to 1 fire clay", row.Display); Assert.AreEqual(ActionTime.OneAction, row.Time); StringAssert.Contains("fire clay", row.Hint);
+            var still = Still(); Fire(); Flask(12, "bog-mire"); var row = Bakes(still).Single(); Assert.False(row.IsDisabled); Assert.AreEqual("bake 8 of the 12 mire to 1 fire clay", row.Display, "it says it takes eight, not the whole flask"); Assert.AreEqual(ActionTime.OneAction, row.Time); StringAssert.Contains("fire clay", row.Hint);
             var small = Flask(7, "bog-mire"); Assert.AreEqual(1, Bakes(still).Length, "seven is not enough for a clay; its settle rows are unaffected"); Assert.True(Rows(still).Any(a => a.Display.Contains("7 mire")));
         }
 
@@ -183,7 +183,7 @@ namespace CavesOfOoo.Tests
         {
             var still = Still(); var fire = Fire(9, 25f); var flask = Flask(12, "bog-mire"); Assert.True(Act(still, Bakes(still).Single().Command), string.Join("|", MessageLog.GetRecent(3)));
             Assert.AreEqual(1, Clay()); Assert.AreEqual(4, Vessel(flask).Volume); Assert.AreEqual("bog-mire", Vessel(flask).LiquidId); Assert.AreEqual(15f, Fuel(fire), 0.001f, "ten fuel from the fire that was lit");
-            Assert.LessOrEqual(1 * LiquidSettlingPart.ClayRatio, 12, "the clay never exceeds the feed"); StringAssert.Contains("4 mire stays", string.Join("|", MessageLog.GetRecent(3)));
+            Assert.AreEqual(12, Vessel(flask).Volume + LiquidSettlingPart.ClayRatio * Clay(), "the feed is conserved: what is left plus what the clay took is what was there"); StringAssert.Contains("4 mire stays", string.Join("|", MessageLog.GetRecent(3)));
         }
 
         [Test] public void EightExactlyEmptiesTheFlask()

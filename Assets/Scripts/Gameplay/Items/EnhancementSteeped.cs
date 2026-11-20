@@ -30,7 +30,7 @@ namespace CavesOfOoo.Core
         }
 
         public override string GetEffectDescription()
-            => "Steeped against acid: +" + Amount + " acid resistance while worn, " + TurnsLeft + " more turns of wear" + (TurnsLeft < TurnsTotal ? " (of " + TurnsTotal + ")" : "") + ". Acid still does at least 1 damage per hit.";
+            => "Steeped against acid: +" + Amount + " acid resistance while worn, " + TurnsLeft + " more turns of wear" + (TurnsLeft < TurnsTotal ? " (of " + TurnsTotal + ")" : "") + ". Acid still does at least 1 damage per hit until your resistance reaches 100.";
 
         public override void OnEquipped(Entity actor, Entity item)
         {

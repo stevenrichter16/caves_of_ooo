@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -50,6 +52,15 @@ namespace CavesOfOoo.Core
             AppliedBonus = 0;
             // Ran out (not taken off): the garment is plain again.
             if (Duration == 0 && target != null) EnhancementSteeped.Expire(target, GarmentId);
+        }
+
+        /// <summary>Counts down on the wearer's own turn (the base rule) and keeps the garment's remaining turns in step, so its reader is right while it is worn and a re-equip after any other end of the effect never refills it.</summary>
+        public override void OnTurnEnd(Entity target)
+        {
+            base.OnTurnEnd(target);
+            var inventory = target?.GetPart<InventoryPart>(); if (inventory?.EquippedItems == null) return;
+            foreach (var pair in inventory.EquippedItems)
+                if (pair.Value != null && pair.Value.ID == GarmentId) { var enhancement = pair.Value.Parts.OfType<EnhancementSteeped>().FirstOrDefault(); if (enhancement != null) enhancement.TurnsLeft = System.Math.Max(0, Duration); return; }
         }
 
         public string Describe() => "+" + Amount + " acid resistance; " + Duration + " of your turns left in this garment.";

@@ -354,6 +354,31 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        [Test] public void ThePickerClosesItselfWhenTheActorChangesOrEscapeIsPressed_AndNeverLeavesTheKitHalfMoved()
+        {
+            var kit = SetDown(); var at = wild.GetEntityCell(kit);
+            using (var ui = new HotbarSaveFixture(true, false))
+            {
+                manager.SetActiveZone(wild); var turns = new TurnManager(); turns.RestoreSavedState(17, true, Actor, new List<TurnManager.SavedTurnEntry> { new TurnManager.SavedTurnEntry { Entity = Actor, Energy = TurnManager.ActionThreshold } });
+                ui.BindOld(GameSessionState.Capture("held-fixture", "picker", manager, turns, Actor)); const BindingFlags hidden = BindingFlags.Instance | BindingFlags.NonPublic;
+                var cursor = (WorldCursorState)typeof(InputHandler).GetField("_worldCursorState", hidden).GetValue(ui.Input); var begin = typeof(InputHandler).GetMethod("BeginMoveTargeting", hidden); var handle = typeof(InputHandler).GetMethod("HandleMoveTargeting", hidden);
+                // another actor takes over (death, a possession, a reload): the picker closes without moving anything
+                begin.Invoke(ui.Input, new object[] { kit }); typeof(InputHandler).GetField("_moveActor", hidden).SetValue(ui.Input, Factory.CreateEntity("Villager")); handle.Invoke(ui.Input, null);
+                Assert.False(cursor.Active); Assert.AreEqual(at.X, wild.GetEntityCell(kit).X); Assert.AreEqual(at.Y, wild.GetEntityCell(kit).Y);
+                // Escape leaves it where it is
+                begin.Invoke(ui.Input, new object[] { kit }); Assert.True(cursor.Active); var scope = new UnityEngine.InputSystem.InputTestFixture(); scope.Setup();
+                try
+                {
+                    var keyboard = UnityEngine.InputSystem.InputSystem.AddDevice<UnityEngine.InputSystem.Keyboard>(); keyboard.MakeCurrent();
+                    UnityEngine.InputSystem.InputSystem.QueueStateEvent(keyboard, new UnityEngine.InputSystem.LowLevel.KeyboardState()); UnityEngine.InputSystem.InputSystem.Update(); InputHelper.GetKey(UnityEngine.KeyCode.None);
+                    UnityEngine.InputSystem.InputSystem.QueueStateEvent(keyboard, new UnityEngine.InputSystem.LowLevel.KeyboardState(UnityEngine.InputSystem.Key.Escape)); UnityEngine.InputSystem.InputSystem.Update(); InputHelper.GetKey(UnityEngine.KeyCode.None);
+                    handle.Invoke(ui.Input, null);
+                }
+                finally { scope.TearDown(); }
+                Assert.False(cursor.Active, "Escape closes the picker"); Assert.AreEqual(at.X, wild.GetEntityCell(kit).X); Assert.True(HeldFixtureActions.IsPlayerHeld(kit)); Assert.AreEqual(17, turns.TickCount, "and costs nothing");
+            }
+        }
+
         // ── save, state and station ──
 
         [Test] public void BothPartsPassTheSavedPartHygieneAndRoundTripTheirFields()

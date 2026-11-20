@@ -162,7 +162,7 @@ namespace CavesOfOoo.Core
             {
                 var flask = flasks[n]; var vessel = flask.GetPart<LiquidVesselPart>(); if (vessel.Volume < ClayRatio) continue;
                 if (!looked) { fire = FindFire(zone, out fullest, ClayFuel); looked = true; }
-                string tag = flasks.Length > 1 ? " #" + (n + 1) : "", label = "bake " + vessel.Volume + " mire to 1 fire clay" + tag;
+                string tag = flasks.Length > 1 ? " #" + (n + 1) : "", label = "bake " + ClayRatio + (vessel.Volume > ClayRatio ? " of the " + vessel.Volume : "") + " mire to 1 fire clay" + tag;
                 if (fire == null)
                 {
                     actions.AddDisabled("BakeClay", label, fullest < 0 ? "no_fire" : "fuel_short", fullest < 0 ? "Baking clay needs a lit fire beside the still." : "No fire here can spare the fuel: baking burns " + ClayFuel + " and the fullest has " + (int)Math.Floor(fullest) + ".", '\0', 8);

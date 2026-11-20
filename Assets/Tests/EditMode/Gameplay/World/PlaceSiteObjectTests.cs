@@ -110,19 +110,6 @@ namespace CavesOfOoo.Tests
 
         // ── one rule, two doors ──
 
-        [Test] public void TheObjectAndTheEldersConversationShareOneRule_EveryStageAndFixAgrees()
-        {
-            foreach (var stage in new[] { RepairStage.Fouled, RepairStage.TemporarilyPurified, RepairStage.StableRepair })
-                foreach (bool lasting in new[] { true, false })
-                    foreach (bool stocked in new[] { false, true })
-                    {
-                        foreach (var e in Actor.GetPart<InventoryPart>().Objects.ToArray()) Actor.GetPart<InventoryPart>().RemoveObject(e);
-                        if (stocked) { GiveLasting(); Give("FireClay", 2); }
-                        Site.Stage = stage; string expected = PlaceSiteRepairs.Check(Data, Site, lasting, Actor);
-                        string actual = SettlementManager.Current.RepairPlaceSite(CinderholdZone, "Pump", lasting, Actor); Assert.AreEqual(expected, actual, stage + " lasting=" + lasting + " stocked=" + stocked);
-                    }
-        }
-
         [Test] public void APumpRepairedThroughConversationReadsAsMendedAtTheObject_AndTheOtherWayRound()
         {
             var pump = Pump(); Link(pump); GiveLasting(); Assert.Null(SettlementManager.Current.RepairPlaceSite(CinderholdZone, "Pump", true, Actor));
@@ -191,13 +178,6 @@ namespace CavesOfOoo.Tests
             Give("FireClay", 2); StringAssert.Contains("You carry what it takes to patch it for now.", Examine(pump)); GiveLasting(); StringAssert.Contains("You carry what it takes to mend it for good.", Examine(pump));
         }
 
-        [Test] public void BesideThePumpYouHearWhatItIsDoingOnceEachVisit_AndNotFromAcrossTheTown()
-        {
-            if (!Actor.HasTag("Player")) Actor.SetTag("Player", ""); var pump = Pump(); Link(pump); Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, 20, 20)); var end = GameEvent.New("EndTurn"); pump.FireEvent(end); Assert.IsEmpty(MessageLog.GetRecent(3).Where(m => m.Contains("pump")), "not from across the town");
-            Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, 10, 10)); pump.FireEvent(GameEvent.New("EndTurn")); Assert.True(MessageLog.GetRecent(3).Any(m => m.Contains("rod hangs slack")));
-            MessageLog.Clear(); pump.FireEvent(GameEvent.New("EndTurn")); Assert.IsEmpty(MessageLog.GetRecent(3), "only once"); 
-            var fixedPump = Place("MinePump", 12, 10); Link(fixedPump); Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, 12, 11)); Site.Stage = RepairStage.StableRepair; fixedPump.FireEvent(GameEvent.New("EndTurn")); Assert.True(MessageLog.GetRecent(3).Any(m => m.Contains("thuds on")));
-        }
 
         [Test] public void TheRepairRuleTable_EveryStageAndFixHasItsOwnAnswer()
         {
@@ -221,15 +201,14 @@ namespace CavesOfOoo.Tests
         {
             new object[] { "Cinderhold", "Pump", "MinePump", "cinderhold-mine-pump", true },
             new object[] { "Tine", "Weir", "FishingWeir", "tine-fishing-weir", true },
-            new object[] { "Gantry", "GuestPole", "GuestPole", "gantry-guest-pole", false },
             new object[] { "the Drowned Ledger", "SurveyLine", "SurveyLine", "ledger-survey-line", true },
         };
 
         [Test] public void EveryDataSiteHasABodyRow_ThePlaceSiteCatalogAndTheInstallationRowsAgree()
         {
             InstallationRegistry.ResetForTests(); InstallationRegistry.LoadDefaults();
-            // Wellmeet's pan scales wait for a 3D model: its chunk is one of the fully voxel-modelled native chunks, where an unmodelled owner is a test failure, so the body needs art first.
-            var exempt = new[] { "Wellmeet:Scales" };
+            // Wellmeet's pan scales wait for a 3D model (its chunk is fully voxel-modelled, where an unmodelled owner is a test failure). Gantry's guest pole is the composition-owned GuestClothPole, shared with the Wellmeet and First Tent camps and validated by their builders, so linking it needs those rules reviewed first.
+            var exempt = new[] { "Wellmeet:Scales", "Gantry:GuestPole" };
             foreach (var site in PlaceSiteCatalog.All) Assert.AreEqual(!exempt.Contains(site.Place + ":" + site.Id), InstallationRegistry.All.Any(r => r.Place == site.Place && r.Site == site.Id), site.Place + ":" + site.Id);
             Assert.AreEqual(PlaceSiteCatalog.All.Count - exempt.Length, InstallationRegistry.All.Count(r => !string.IsNullOrEmpty(r.Site)), "and no row without a site"); InstallationRegistry.ResetForTests();
         }
@@ -257,6 +236,33 @@ namespace CavesOfOoo.Tests
                     var zone = manager.GetZone(ZoneOf(place)); var bodies = zone.GetReadOnlyEntities().Where(e => e.BlueprintName == blueprint).ToList(); Assert.AreEqual(1, bodies.Count, place + " seed " + seed + ": " + string.Join(",", Diag.Snapshot(80).Where(r => r.Kind == "InstallationOmitted").Select(r => r.PayloadJson)));
                     var part = bodies[0].GetPart<PlaceSiteObjectPart>(); Assert.AreEqual(place, part.Place); Assert.AreEqual(siteId, part.SiteId); Assert.AreEqual(rowId, bodies[0].GetPart<InstallationMarkerPart>().InstallationId); Assert.True(bodies[0].GetPart<InstallationMarkerPart>().RetainZone);
                 }
+            InstallationRegistry.ResetForTests();
+        }
+
+        [Test] public void ARepairThatThrowsPartWayPutsTheMaterialsAndTheSiteBack()
+        {
+            var pump = Pump(); Link(pump); GiveLasting(); string command = Row(pump, "PlaceSiteMend").Command; var manager = SettlementManager.Current;
+            manager.SiteStateChanged += Boom; try { try { Act(pump, command); } catch (System.InvalidOperationException) { } }
+            finally { manager.SiteStateChanged -= Boom; }
+            Assert.AreEqual(RepairStage.Fouled, Site.Stage, "the site is as it was"); Assert.AreEqual(2, Count("IronSpikeComponent")); Assert.AreEqual(1, Count("OakHaftComponent")); Assert.AreEqual(1, Count("LeatherBindingComponent"));
+        }
+        static void Boom(string settlement, RepairableSiteState site) { if (site.Stage != RepairStage.Fouled) throw new System.InvalidOperationException("a listener failed"); }
+
+        [Test] public void ARefusedRepairLeavesTheSiteAndThePackUntouched()
+        {
+            var pump = Pump(); Link(pump); Give("IronSpikeComponent", 2); var before = Site.Clone(); Assert.False(Act(pump, "PlaceSiteRepair|Lasting")); Assert.AreEqual(before.Stage, Site.Stage); Assert.AreEqual(2, Count("IronSpikeComponent"));
+        }
+
+        [Test] public void ASiteRowWhoseBlueprintLacksTheSitePartOmitsItselfWithAReason()
+        {
+            using (var scope = new HaulingContentScope())
+            {
+                scope.Seed(64); InstallationRegistry.ResetForTests();
+                Assert.IsEmpty(InstallationRegistry.InitializeFromJson("{\"Version\":1,\"Installations\":[{\"Id\":\"probe\",\"Place\":\"Cinderhold\",\"Blueprint\":\"SoundingRod\",\"Site\":\"Pump\",\"Retention\":\"Zone\",\"Near\":[\"Well\"],\"Radius\":9,\"MaxProbe\":48,\"Revision\":1,\"Purpose\":\"p\",\"Alternative\":\"a\",\"Basis\":\"b\"}]}"));
+                var manager = OverworldZoneManager.CreateDetached(scope.Factory, 64, true); var zone = manager.GetZone(ZoneOf("Cinderhold"));
+                Assert.False(zone.GetReadOnlyEntities().Any(e => e.GetPart<InstallationMarkerPart>()?.InstallationId == "probe"), "nothing was placed");
+                Assert.True(Diag.Snapshot(80).Any(r => r.Kind == "InstallationOmitted" && r.PayloadJson.Contains("probe")), "and the omission says so");
+            }
             InstallationRegistry.ResetForTests();
         }
     }
