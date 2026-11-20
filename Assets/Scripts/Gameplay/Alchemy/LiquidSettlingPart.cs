@@ -14,12 +14,15 @@ namespace CavesOfOoo.Core
     /// <para>Fire is coupled, not assumed: the batch burns <see cref="FuelPerBatch"/> from a burning fire within <see cref="FireReach"/> of the still that can spare it, and refuses up front
     /// with the numbers otherwise.</para>
     /// </summary>
-    public sealed class LiquidSettlingPart : Part
+    public sealed class LiquidSettlingPart : Part, IDescribeState
     {
         public override string Name => "LiquidSettling";
 
         public const string Command = "SettleLiquid|", AllCommand = "SettleAll|", Feed = "bog-mire", Water = "water", Oil = "oil";
         public const int Ratio = 4, FuelPerBatch = 5, FireReach = 2;
+
+        /// <summary>The small text under a settle row: what it turns the mire into, at what rate, and what the fire pays.</summary>
+        static string SettleHint(string output) => "Settles bog-mire into clean " + output + ", " + Ratio + " mire to 1. Each flask spends " + FuelPerBatch + " of the lit fire's fuel; the dregs are lost.";
         const float WetLimit = 0.35f;
 
         public override bool HandleEvent(GameEvent e)
@@ -92,6 +95,23 @@ namespace CavesOfOoo.Core
 
         bool Standing => ParentEntity?.GetPart<PhysicsPart>()?.InInventory == null && !PackableFixturePart.IsInertKit(ParentEntity);
 
+        // "What can I do here?": what the mire you carry would settle to at this still, or what it is missing, in both examine readers.
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 50;
+        public string DescribeState(DescribeContext context)
+        {
+            var actor = context.Viewer; var zone = context.Zone ?? ParentEntity?.SpatialZone;
+            if (actor == null || zone == null || !Standing || zone.GetEntityCell(ParentEntity) == null) return null;
+            int mire = 0; var pack = actor.GetPart<InventoryPart>(); if (pack == null) return null;
+            foreach (var o in pack.Objects) if (o?.GetPart<LiquidVesselPart>() is LiquidVesselPart v && v.LiquidId == Feed && WorldResourceActions.Carried(actor, o)) mire += v.Volume;
+            if (mire < Ratio) return null;
+            var fire = FindFire(zone, out float fullest);
+            if (fire == null) return "You carry " + mire + " mire. Settling it needs a lit fire within " + FireReach + " cells that can spare " + FuelPerBatch + " fuel.";
+            var settleable = SettleableFlasks(actor); int batches = Math.Min(settleable.Length, Math.Max(1, Capacity(zone))); int yield = 0;
+            for (int i = 0; i < batches && i < settleable.Length; i++) yield += settleable[i].GetPart<LiquidVesselPart>().Volume / Ratio;
+            return "Here you can settle your mire: " + yield + " clean water or oil from " + batches + (batches == 1 ? " flask." : " flasks.");
+        }
+
         // ── rows ──
 
         void AddRows(Entity actor, Zone zone, InventoryActionList actions)
@@ -113,8 +133,8 @@ namespace CavesOfOoo.Core
                 }
                 if (code != null) { actions.AddDisabled("SettleLiquid", "settle " + vessel.Volume + " mire" + tag, code, reason, '\0', 12); continue; }
                 int yield = vessel.Volume / Ratio;
-                actions.AddAction("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " water" + tag, CommandFor(Water, flask, vessel), '\0', 12, false, ActionTime.OneAction);
-                actions.AddAction("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " oil" + tag, CommandFor(Oil, flask, vessel), '\0', 11, false, ActionTime.OneAction);
+                actions.AddActionWithHint("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " water" + tag, CommandFor(Water, flask, vessel), SettleHint("water"), '\0', 12, false, ActionTime.OneAction);
+                actions.AddActionWithHint("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " oil" + tag, CommandFor(Oil, flask, vessel), SettleHint("oil"), '\0', 11, false, ActionTime.OneAction);
             }
             // Two or more flasks: one row for all of them, saying how many the fires could pay for and what comes out.
             var settleable = SettleableFlasks(actor);
@@ -123,8 +143,8 @@ namespace CavesOfOoo.Core
                 int batches = Math.Min(settleable.Length, Capacity(zone)); if (batches < 1) return;
                 int yield = 0; for (int i = 0; i < batches; i++) yield += settleable[i].GetPart<LiquidVesselPart>().Volume / Ratio;
                 string scope = batches == settleable.Length ? "all " + batches + " flasks" : batches + " of " + settleable.Length + " flasks";
-                actions.AddAction("SettleAll", "settle " + scope + " to " + yield + " water", AllCommand + Water, '\0', 10, false, ActionTime.OneAction);
-                actions.AddAction("SettleAll", "settle " + scope + " to " + yield + " oil", AllCommand + Oil, '\0', 9, false, ActionTime.OneAction);
+                actions.AddActionWithHint("SettleAll", "settle " + scope + " to " + yield + " water", AllCommand + Water, SettleHint("water"), '\0', 10, false, ActionTime.OneAction);
+                actions.AddActionWithHint("SettleAll", "settle " + scope + " to " + yield + " oil", AllCommand + Oil, SettleHint("oil"), '\0', 9, false, ActionTime.OneAction);
             }
         }
 

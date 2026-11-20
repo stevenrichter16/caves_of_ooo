@@ -6,9 +6,14 @@ namespace CavesOfOoo.Core
     /// - Proximity ambient message (one-shot per zone visit)
     /// Ember particles are handled by CampfireEmberRenderer (world-space, not grid-locked).
     /// </summary>
-    public class CampfirePart : Part
+    public class CampfirePart : Part, IDescribeState
     {
         public override string Name => "Campfire";
+
+        // "What can I do here?": what the fire's rows would offer whoever is looking, in both examine readers.
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 40;
+        public string DescribeState(DescribeContext context) => FiniteCooking ? CampfireWorkActions.Affordance(context.Viewer, this, context.Zone ?? ParentEntity?.SpatialZone) : null;
 
         /// <summary>New finite cooking sources opt in explicitly. Existing authored
         /// stations and older saves retain their established cooking/rest policy.</summary>

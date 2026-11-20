@@ -50,6 +50,12 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity Via;
 
+        /// <summary>
+        /// A short plain sentence saying what the row does, shown as small text in the menu while the row is highlighted (a stoke "feeds the fire and lights it"). Empty for rows whose
+        /// label already says everything. Presentation only: it is never read by any rule, so it cannot change what a row does.
+        /// </summary>
+        public string Hint = "";
+
         /// <summary>Declared turn cost; <see cref="ActionTime.Unspecified"/> means the legacy chains decide.</summary>
         public ActionTime Time = ActionTime.Unspecified;
 
@@ -92,6 +98,15 @@ namespace CavesOfOoo.Core
         {
             var action = new InventoryAction(name, display, command, key, priority, fireOnActor) { Time = time };
             Actions.Add(action);
+            return action;
+        }
+
+        /// <summary>The same as <see cref="AddAction"/>, with the one-line description the menu shows while the row is highlighted.</summary>
+        public InventoryAction AddActionWithHint(string name, string display, string command, string hint,
+            char key = '\0', int priority = 0, bool fireOnActor = false, ActionTime time = ActionTime.Unspecified)
+        {
+            var action = AddAction(name, display, command, key, priority, fireOnActor, time);
+            action.Hint = hint ?? "";
             return action;
         }
 

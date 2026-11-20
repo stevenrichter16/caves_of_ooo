@@ -140,6 +140,13 @@ namespace CavesOfOoo.Core
         /// <summary>The turn tick of the set-down; -1 while carried.</summary>
         public int SetTick = -1;
 
+        /// <summary>
+        /// The name the player gave the camp this fixture stands in ("Home", "Lookout"), or empty. It is only a label for the readers and notes: no rule reads it. "Name this camp"
+        /// writes the same name onto every fixture of the camp (the same cluster the arrival note and map notes use), so the camp keeps its name if one piece is taken up and set
+        /// down elsewhere within reach. Additive saved field: a save without it loads as unnamed.
+        /// </summary>
+        public string CampName = "";
+
         // ── reader contract (Docs/MACHINE-READERS.md): one state line in both the quick and the full Examine ──
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 80;

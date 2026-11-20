@@ -82,6 +82,20 @@ Asked after playing the kits: lighting should not need the pack, a fire should a
 - **Fuel and turns, always.** `CellStatusReadout.FuelLine` feeds the C menu's status block, look mode and (as an `IDescribeState` on `FuelPart`) both examine readers: "Fuel: 20 left, about 80 turns once you light it." A burning finite fire (the hearth) also says how long its heat lasts, because a lighting cools below cooking heat before a full load of fuel is gone: "Burning for about 60 more turns before it needs a flame again."
 - **Glow.** The hearth's light is a campfire's (radius 8, intensity 0.8, with its flicker), it turns on the moment a relight commits instead of at the next turn's end, and a burning hearth is drawn in fire colors while an unlit one stays dark. Not verified in the Editor: I could not play it.
 
+## 3e. Quality of life for the camp (2026-11-19, from play)
+
+Asked after playing the kits: sixteen small things that make the camp easier to run without changing what any of it costs or does. Two were set aside on purpose (stations drawing straight from the camp box, and banking a fire).
+
+- **One press does the chore.** `feed to full` adds as many timber as fit; `stoke` feeds and lights in one action (one strike if a striker lights it); `settle all` runs every settleable flask; the hearth rows have hotkeys (f, u, l, t). Each is one transaction, so any refusal anywhere gives the timber, strikes and fuel back.
+- **Say what it does.** Every row of the camp family carries a one-line `Hint` (`InventoryAction.Hint`, presentation only: no rule reads it). The world menu reserves up to three small lines under its list and shows the highlighted row's hint ("Stoke: adds all the timber the fire will take, then lights it from a flame you carry, in one action."); the pack menu shows it on its detail line. A menu with no hints keeps its old shape. Rest rows name the time of day you wake in ("rest until Dusk") and what the rest heals and burns.
+- **Strikes shown wherever the striker shows.** The name reads "flint striker [17]", relight and light rows say "(1 strike, 17 left)", and a worn flint says "knap an edge" where a flame was wanted. A light row beside a camp kit names it ("next to the camp box"), so an oil slick is not lit by accident.
+- **Kit verbs.** `make camp here (N kits)` lays out every carried kit in one action (fire first, the still within reach of it, the bench, the box away from the flames; a kit with no legal cell stays in the pack and the message says so). `pack up camp (N things)` takes up everything of yours within 4 cells, all or nothing. `move <direction>` relocates one kit one cell, keeping its ID, fuel and contents (a burning fire goes out, as in taking it up). "Where it fits" hints appear on set-down rows ("(by your fire)").
+- **A camp has a name.** `name this camp` cycles Home, Peat edge, Dig site, Lookout, Cache, Workshop, Field camp, Waystop, then clears. The name is stored on every kit of the camp (the same eight-cell cluster the notes already use) and shown in the arrival and map notes; nothing reads it. Free, undone with the rest of the transaction.
+- **What you left.** The arrival and map notes end with "As you left it: hearth lit, 12 fuel, box holds 3." Quiet when there is nothing to say (an empty box, a bare hearth), so the old wording is exact for those.
+- **What can I do here?** Examining a fire says what its rows would offer you now ("Here you can: feed it (3 timber), light it, dry 1 wet thing."), a hearth says what a night costs ("You could rest here: it burns about 15 fuel."), and a still says what your mire would settle to or what it is missing. Each Part describes its own affordance, so a new kit that carries those Parts gets the line without new code.
+
+**Honest limits.** No Editor play of any of this: the menu's hint block is exercised through its state (rows reserved, highlighted hint) and not through a rendered frame. "As you left it" is a read of the stored zone, which is not simulated while you are away. A camp name is a label, not a place the game knows about.
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).

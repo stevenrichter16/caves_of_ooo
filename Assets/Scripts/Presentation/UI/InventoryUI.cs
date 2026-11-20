@@ -277,6 +277,8 @@ namespace CavesOfOoo.Rendering
             public ActionTime Time;
             public string DisabledCode;
             public string DisabledReason;
+            /// <summary>One line saying what the row does, shown on the detail line while the row is highlighted. Empty for most rows.</summary>
+            public string Hint;
             public bool IsDisabled => !string.IsNullOrWhiteSpace(DisabledReason);
         }
 
@@ -1228,7 +1230,7 @@ namespace CavesOfOoo.Rendering
                         // Both pack renderers draw only the label, so a disabled row says so in its text as well as being dimmed.
                         Label = a.IsDisabled ? a.Display + " (unavailable)" : a.Display, Command = a.Command,
                         TimeDeclared = a.Time != ActionTime.Unspecified, Time = a.Time,
-                        DisabledCode = a.DisabledCode, DisabledReason = a.DisabledReason
+                        DisabledCode = a.DisabledCode, DisabledReason = a.DisabledReason, Hint = a.Hint
                     });
                 }
             }
@@ -2810,6 +2812,12 @@ namespace CavesOfOoo.Rendering
                             detail += ": (empty)";
                         DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
                     }
+                }
+                else if (_itemActionPopup.CursorIndex < _itemActionPopup.Actions.Count
+                    && !string.IsNullOrWhiteSpace(_itemActionPopup.Actions[_itemActionPopup.CursorIndex].Hint))
+                {
+                    // A row that says what it does (knap an edge, strike a spark) shows that instead of the item's stat line.
+                    DrawText(1, H - 1, _itemActionPopup.Actions[_itemActionPopup.CursorIndex].Hint, QudColorParser.BrightCyan);
                 }
                 else if (_itemActionPopup.CursorIndex < _itemActionPopup.Actions.Count)
                 {

@@ -57,6 +57,36 @@ namespace CavesOfOoo.Rendering
         /// so the four can never disagree.</summary>
         private int StatusBlockRows => _statusLines.Count > 0 ? _statusLines.Count + 1 : 0;
         private int ContentY => 3 + StatusBlockRows;
+        /// <summary>Most lines of small description text the menu reserves under its rows.</summary>
+        public const int MaxHintRows = 3;
+        private int _hintRows;
+        /// <summary>Lines reserved for the highlighted row's description (zero when no row has one, so every other menu keeps its shape), plus the divider above them.</summary>
+        private int HintBlockRows => _hintRows > 0 ? _hintRows + 1 : 0;
+        /// <summary>How many description lines the menu reserves for these rows at this popup width: the most any one of them needs, at most <see cref="MaxHintRows"/>.</summary>
+        public static int HintRowsFor(IEnumerable<InventoryAction> actions, int popupWidth)
+        {
+            int most = 0;
+            if (actions != null) foreach (var a in actions) if (a != null && !string.IsNullOrWhiteSpace(a.Hint)) most = Mathf.Max(most, WrapHint(a.Hint, popupWidth - 4, MaxHintRows).Count);
+            return most;
+        }
+        /// <summary>Wraps a hint at word boundaries into at most <paramref name="maxLines"/> lines of at most <paramref name="width"/> characters; text past the last line ends in "~".</summary>
+        public static List<string> WrapHint(string text, int width, int maxLines)
+        {
+            var lines = new List<string>(); if (string.IsNullOrWhiteSpace(text) || width < 4 || maxLines < 1) return lines;
+            var line = new System.Text.StringBuilder(); bool cut = false;
+            foreach (string raw in text.Split(' '))
+            {
+                string word = raw; if (word.Length == 0) continue;
+                while (word.Length > width) { if (line.Length > 0) { lines.Add(line.ToString()); line.Clear(); } lines.Add(word.Substring(0, width)); word = word.Substring(width); if (lines.Count >= maxLines) { cut = true; break; } }
+                if (cut || lines.Count >= maxLines) { cut = true; break; }
+                if (line.Length > 0 && line.Length + 1 + word.Length > width) { lines.Add(line.ToString()); line.Clear(); if (lines.Count >= maxLines) { cut = true; break; } }
+                if (line.Length > 0) line.Append(' '); line.Append(word);
+            }
+            if (!cut && line.Length > 0) lines.Add(line.ToString());
+            if (lines.Count > maxLines) { lines.RemoveRange(maxLines, lines.Count - maxLines); cut = true; }
+            if (cut && lines.Count > 0) { string last = lines[lines.Count - 1]; lines[lines.Count - 1] = (last.Length >= width ? last.Substring(0, width - 1) : last) + "~"; }
+            return lines;
+        }
         private const int MAX_STATUS_ROWS = 6;
         private bool _cellIsPile;
         private readonly List<InventoryAction> _actions = new List<InventoryAction>();
@@ -100,6 +130,11 @@ namespace CavesOfOoo.Rendering
         /// <summary>True only for the whole-pile summary menu. An individual
         /// target may share a pile cell without inheriting summary actions.</summary>
         public bool SelectedCellIsPile => _cellIsPile;
+
+        /// <summary>Lines of small description text the open menu reserves under its rows (zero when none of its rows has one).</summary>
+        public int HintRows => _hintRows;
+        /// <summary>What the highlighted row says it does, or an empty string.</summary>
+        public string HighlightedHint => HighlightedAction?.Hint ?? "";
 
         public InventoryAction HighlightedAction => _isOpen && _cursorIndex >= 0 && _cursorIndex < _actions.Count ? _actions[_cursorIndex] : null;
         public bool IsTargetPicker => _actions.Count > 0 && _actions.TrueForAll(a => a != null &&
@@ -156,6 +191,7 @@ namespace CavesOfOoo.Rendering
                 _popupW = Mathf.Max(_popupW, Mathf.Min(label.Length, MAX_POPUP_W - 7) + 7);
             }
 
+            _hintRows = HintRowsFor(_actions, _popupW);
             _cursorIndex = 0;
             _scrollOffset = 0;
             ReadPointer(out _lastMousePosition, out _);
@@ -424,11 +460,11 @@ namespace CavesOfOoo.Rendering
 
             int totalRows = _actions.Count;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
-            int borderH = visibleCount + 4 + StatusBlockRows;
+            int borderH = visibleCount + 4 + StatusBlockRows + HintBlockRows;
 
             ClearRegion(0, 0, _popupW, _popupH);
             DrawBgFill(0, 0, _popupW, _popupH);
-            DrawPopupBorder(0, 0, _popupW, borderH, _statusLines.Count, visibleCount);
+            DrawPopupBorder(0, 0, _popupW, borderH, _statusLines.Count, visibleCount, HintBlockRows);
 
 
             // Generic choices supply their own title; world menus describe the cell.
@@ -499,6 +535,12 @@ namespace CavesOfOoo.Rendering
                 if (_scrollOffset + visibleCount < totalRows)
                     DrawChar(_popupW - 2, contentY + visibleCount - 1, 'v', QudColorParser.Gray);
             }
+            // The highlighted row says what it does, in small text under the list.
+            if (_hintRows > 0 && HighlightedAction != null)
+            {
+                var described = WrapHint(HighlightedAction.Hint, _popupW - 4, _hintRows);
+                for (int hi = 0; hi < described.Count; hi++) DrawText(2, contentY + visibleCount + 1 + hi, described[hi], QudColorParser.Gray);
+            }
             string footer = controller
                 ? (_titleOverride != null ? "[A]select [B]back" : "[A]select [B]back [LT+RT]details")
                 : (_titleOverride != null ? "[Enter]ok [Esc]back" : "[F1]details [Enter]ok [Esc]back");
@@ -514,7 +556,7 @@ namespace CavesOfOoo.Rendering
         {
             int totalRows = _actions.Count;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
-            _popupH = visibleCount + 5 + StatusBlockRows;
+            _popupH = visibleCount + 5 + StatusBlockRows + HintBlockRows;
             _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(_popupW);
             _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
         }
@@ -628,7 +670,7 @@ namespace CavesOfOoo.Rendering
             _bgDrawn = false;
         }
 
-        private void DrawPopupBorder(int x, int y, int w, int h, int statusRows, int contentRows)
+        private void DrawPopupBorder(int x, int y, int w, int h, int statusRows, int contentRows, int hintBlockRows = 0)
         {
             DrawChar(x, y, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
             for (int i = 1; i < w - 1; i++)
@@ -663,6 +705,21 @@ namespace CavesOfOoo.Rendering
             {
                 DrawChar(x, rowY, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
                 DrawChar(x + w - 1, rowY, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+            }
+
+            if (hintBlockRows > 0)
+            {
+                // A divider, then the lines the highlighted row's description is written on.
+                DrawChar(x, rowY, CP437TilesetGenerator.BoxTeeLeft, QudColorParser.Gray);
+                for (int i = 1; i < w - 1; i++)
+                    DrawChar(x + i, rowY, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+                DrawChar(x + w - 1, rowY, CP437TilesetGenerator.BoxTeeRight, QudColorParser.Gray);
+                rowY++;
+                for (int r = 1; r < hintBlockRows; r++, rowY++)
+                {
+                    DrawChar(x, rowY, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+                    DrawChar(x + w - 1, rowY, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+                }
             }
 
             int botY = rowY;

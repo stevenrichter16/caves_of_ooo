@@ -3,6 +3,7 @@ using System.Linq;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Rendering;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -129,6 +130,58 @@ namespace CavesOfOoo.Tests
         {
             var h = Hearth(10); Striker(5); var row = Row(h, "RelightCookingFire"); Assert.False(row.IsDisabled, "a usable striker relights"); var plain = Hearth(10); Zone.RemoveEntity(plain);
             Pack.RemoveObject(Pack.Objects.First(o => o.BlueprintName == "FlintStriker")); StringAssert.DoesNotContain("knap", Row(h, "RelightCookingFire").DisabledReason.ToLowerInvariant());
+        }
+
+        // ── small text saying what the highlighted row does ──
+
+        [Test] public void TheStokeRowSaysWhatItDoes_AndTheStrikeItCosts()
+        {
+            var h = Hearth(0); Timber(2); var s = Striker(); var stoke = Row(h, "StokeCookingFire");
+            StringAssert.Contains("adds all the timber", stoke.Hint.ToLowerInvariant()); StringAssert.Contains("lights it", stoke.Hint); StringAssert.Contains("one strike", stoke.Hint);
+            Pack.RemoveObject(s); Zone.RemoveEntity(h); var torchHearth = Hearth(0); var torch = Carry("Torch"); Assert.True(InventorySystem.Equip(Actor, torch));
+            StringAssert.DoesNotContain("strike", Row(torchHearth, "StokeCookingFire").Hint, "a torch costs no strike, so the hint does not mention one");
+        }
+
+        [Test] public void TheOtherFireRowsAndTheRestRowsDescribeThemselvesToo()
+        {
+            var h = Hearth(5); Timber(3); Striker(); foreach (var name in new[] { "FeedCookingFire", "FeedCookingFireFull", "RelightCookingFire" }) Assert.IsNotEmpty(Row(h, name).Hint, name);
+            var lit = Hearth(30, 450); Zone.RemoveEntity(h); foreach (var name in new[] { "HearthRest", "HearthRestBand" }) Assert.IsNotEmpty(Row(lit, name).Hint, name);
+            StringAssert.Contains("next time of day", Row(lit, "HearthRestBand").Hint);
+        }
+
+        [Test] public void ARowWithNothingToAddHasNoHint_Counter()
+        {
+            var gear = Carry("Dagger"); Assert.True(gear.ApplyEffect(new WetEffect(1f))); var lit = Hearth(10, 450);
+            var dry = Actions(lit).SingleOrDefault(a => a.Name == "DryGear"); Assert.NotNull(dry); Assert.IsEmpty(dry.Hint, "a row the label already explains stays bare");
+        }
+
+        [Test] public void HintsWrapAtWordBoundariesWithinTheWidthAndEndWithATildeWhenCut()
+        {
+            var lines = WorldActionMenuUI.WrapHint("Adds all the timber the fire will take, then lights it from a flame you carry, in one action.", 30, 3);
+            CollectionAssert.AreEqual(new[] { "Adds all the timber the fire", "will take, then lights it from", "a flame you carry, in one~" }, lines); Assert.True(lines.All(l => l.Length <= 30), string.Join(" / ", lines));
+            var fits = WorldActionMenuUI.WrapHint("Adds one timber.", 30, 3); Assert.AreEqual(1, fits.Count); Assert.AreEqual("Adds one timber.", fits[0], "short text is not cut or marked");
+        }
+
+        [Test] public void WrappingToleratesEmptyBlankAndLongUnbrokenText_Adversarial()
+        {
+            Assert.IsEmpty(WorldActionMenuUI.WrapHint(null, 30, 3)); Assert.IsEmpty(WorldActionMenuUI.WrapHint("   ", 30, 3)); Assert.IsEmpty(WorldActionMenuUI.WrapHint("text", 2, 3)); Assert.IsEmpty(WorldActionMenuUI.WrapHint("text", 30, 0));
+            var longWord = WorldActionMenuUI.WrapHint(new string('x', 200), 20, 3); Assert.AreEqual(3, longWord.Count); Assert.True(longWord.All(l => l.Length <= 20)); Assert.True(longWord[2].EndsWith("~"));
+            var exact = WorldActionMenuUI.WrapHint("aaaa bbbb", 9, 1); Assert.AreEqual("aaaa bbbb", exact.Single());
+        }
+
+        [Test] public void TheMenuReservesHintRowsOnlyWhenARowHasAHint_AndShowsTheHighlightedRowsHint()
+        {
+            var bare = new System.Collections.Generic.List<InventoryAction> { new InventoryAction("A", "alpha", "A"), new InventoryAction("B", "beta", "B") };
+            Assert.AreEqual(0, WorldActionMenuUI.HintRowsFor(bare, 48), "no hints: the menu keeps its old shape");
+            var h = Hearth(0); Timber(2); Striker(); var rows = Actions(h); var stoke = rows.Single(a => a.Name == "StokeCookingFire");
+            Assert.AreEqual(3, WorldActionMenuUI.HintRowsFor(rows, 48), "the stoke hint needs the full three lines at the narrowest menu");
+            var go = new GameObject("menu"); try
+            {
+                var menu = go.AddComponent<WorldActionMenuUI>(); menu.Open(Actor, h, Zone.GetEntityCell(h), rows.ToList(), Zone);
+                Assert.AreEqual(3, menu.HintRows); menu.RestoreHighlight(stoke); Assert.AreEqual(stoke.Command, menu.HighlightedAction.Command); StringAssert.Contains("lights it", menu.HighlightedHint);
+                var bareRow = rows.First(a => string.IsNullOrEmpty(a.Hint)); menu.RestoreHighlight(bareRow); Assert.AreEqual("", menu.HighlightedHint);
+            }
+            finally { Object.DestroyImmediate(go); }
         }
 
         // ── warn before lighting a slick beside your camp ──

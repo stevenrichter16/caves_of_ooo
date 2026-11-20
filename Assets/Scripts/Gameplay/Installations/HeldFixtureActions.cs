@@ -14,7 +14,11 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class HeldFixtureActions
     {
-        const string SetDownPrefix = "SetDown|", TakeUpPrefix = "TakeUp|", HandOverPrefix = "HandOver|";
+        const string SetDownPrefix = "SetDown|", TakeUpPrefix = "TakeUp|", HandOverPrefix = "HandOver|", MakeCampPrefix = "MakeCamp|", PackUpPrefix = "PackUp|", MovePrefix = "MoveFixture|", NameCampPrefix = "NameCamp|";
+        /// <summary>How far from the actor "pack up camp" reaches for the things you keep (Chebyshev). Ordinary take-up still needs you beside the one thing.</summary>
+        public const int PackUpReach = 4;
+        /// <summary>The order "make camp" places kits in: the fire first, then what must be beside it, then the rest; unknown kinds last.</summary>
+        static readonly string[] CampOrder = { "camp-hearth", "camp-still", "camp-bench", "camp-box" };
         public const string OwnedTag = "Owned", PlayerOrigin = "Player";
         static readonly (int x, int y, string label)[] Directions =
         {
@@ -24,7 +28,9 @@ namespace CavesOfOoo.Core
 
         public static bool IsCommand(string command) => command != null
             && (command.StartsWith(SetDownPrefix, StringComparison.Ordinal) || command.StartsWith(TakeUpPrefix, StringComparison.Ordinal)
-                || command.StartsWith(HandOverPrefix, StringComparison.Ordinal));
+                || command.StartsWith(HandOverPrefix, StringComparison.Ordinal) || command.StartsWith(MakeCampPrefix, StringComparison.Ordinal)
+                || command.StartsWith(PackUpPrefix, StringComparison.Ordinal) || command.StartsWith(MovePrefix, StringComparison.Ordinal)
+                || command.StartsWith(NameCampPrefix, StringComparison.Ordinal));
 
         /// <summary>The plain sentence for a refusal code. Mechanical on purpose: it never attributes intent to the ground, and every string still needs the voice review.</summary>
         public static string Reason(string code)
@@ -77,6 +83,44 @@ namespace CavesOfOoo.Core
             actions.AddAction("TakeUpFixture", "take up", TakeUpPrefix + tail, '\0', 22, false, ActionTime.OneAction);
             // The label states the consequence plainly, since there is no confirmation step: the hold ends, the object stays, and it can no longer be taken up.
             actions.AddAction("HandOverFixture", "hand over (you can no longer take it up)", HandOverPrefix + tail, '\0', 3, false, ActionTime.OneAction);
+            int near = HeldWithin(zone, origin, PackUpReach).Count;
+            if (near >= 2) actions.AddActionWithHint("PackUpCamp", "pack up camp (" + near + " things)", PackUpPrefix + tail, "Takes up every kit of yours within " + PackUpReach + " cells in one action. All or nothing; a burning fire goes out.", '\0', 21, false, ActionTime.OneAction);
+            AddMoveRows(actor, fixture, zone, part, cell, actions);
+            string next = HeldFixtureReader.NextCampName(HeldFixtureReader.CampNameOf(HeldFixtureReader.ClusterOf(zone, fixture)));
+            actions.AddActionWithHint("NameCamp", next == "" ? "clear this camp's name" : "name this camp: " + next, NameCampPrefix + tail,
+                "Gives every kit of this camp one name, shown in the notes of where you keep things. Choose again for the next name. It changes nothing else.", '\0', 1, false, ActionTime.Free);
+        }
+
+        /// <summary>Every fixture the player holds in the zone within <paramref name="reach"/> of the actor's cell, in a stable order.</summary>
+        static List<Entity> HeldWithin(Zone zone, Cell origin, int reach)
+        {
+            var found = new List<Entity>(); if (zone == null || origin == null) return found;
+            var owners = zone.GetReadOnlyEntitiesWithPart<PackableFixturePart>();
+            for (int i = 0; i < owners.Count; i++)
+            {
+                var e = owners[i]; var at = zone.GetEntityCell(e);
+                if (at == null || !IsPlayerHeld(e) || Math.Max(Math.Abs(at.X - origin.X), Math.Abs(at.Y - origin.Y)) > reach) continue;
+                var def = PackableFixtureRegistry.Get(e.GetPart<PackableFixturePart>().Kind); if (def == null || def.Class != PackableFixtureDefinition.Carried) continue;
+                found.Add(e);
+            }
+            found.Sort((a, b) => string.CompareOrdinal(a.ID, b.ID)); return found;
+        }
+
+        /// <summary>A placement that fails only on the world and zone caps is fine for a move: taking the kit up frees the slot it is about to take again.</summary>
+        static bool OkForMove(PlacementResult r) => r.Ok || r.Reasons.All(reason => reason == PlacementCheck.CapZone || reason == PlacementCheck.CapWorld);
+
+        static readonly (int x, int y, string label)[] Orthogonal = { (0, -1, "north"), (1, 0, "east"), (0, 1, "south"), (-1, 0, "west") };
+
+        static void AddMoveRows(Entity actor, Entity fixture, Zone zone, PackableFixturePart part, Cell cell, InventoryActionList actions)
+        {
+            var def = PackableFixtureRegistry.Get(part.Kind); if (def == null || def.Class != PackableFixtureDefinition.Carried) return;
+            var batch = new PlacementCheck.PlacementBatch(WorldLocationContext.For(zone), zone);
+            foreach (var d in Orthogonal)
+            {
+                int x = cell.X + d.x, y = cell.Y + d.y;
+                if (!OkForMove(batch.Evaluate(x, y, def.Spec, fixture))) continue;
+                actions.AddActionWithHint("MoveFixture", "move " + d.label, MovePrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + fixture.ID + "|" + N(x) + "|" + N(y), "Picks the kit up and sets it one cell over, in one action. It keeps its fuel and contents; a burning fire goes out.", '\0', 2, false, ActionTime.OneAction);
+            }
         }
 
         static void AddSetDownRows(Entity actor, Entity kit, Zone zone, PackableFixturePart part, InventoryActionList actions)
@@ -93,16 +137,55 @@ namespace CavesOfOoo.Core
                 var result = batch.Evaluate(x, y, def.Spec, kit);
                 if (!result.Ok) { if (firstReason == null) firstReason = result.First; continue; }
                 legal++;
-                actions.AddAction("SetDownFixture", "set down " + d.label, SetDownCommand(zone, origin, x, y, kit), '\0', 17, false, ActionTime.OneAction);
+                actions.AddAction("SetDownFixture", "set down " + d.label + Hint(part.Kind, zone, x, y), SetDownCommand(zone, origin, x, y, kit), '\0', 17, false, ActionTime.OneAction);
             }
             // Nothing legal here: say why in one disabled row instead of eight, or none.
-            if (legal == 0) actions.AddDisabled("SetDownFixture", "set down", firstReason ?? "unavailable", Reason(firstReason), '\0', 17);
+            if (legal == 0) { actions.AddDisabled("SetDownFixture", "set down", firstReason ?? "unavailable", Reason(firstReason), '\0', 17); return; }
+            int kits = CarriedKits(actor).Count;
+            if (kits >= 2) actions.AddActionWithHint("MakeCamp", "make camp here (" + kits + " kits)", MakeCampPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + kit.ID,
+                "Sets down every kit you carry around you in one action: the fire first, the still beside it, the box away from the flames.", '\0', 18, false, ActionTime.OneAction);
+        }
+
+        /// <summary>Where the kit would stand relative to what you already keep: a still wants a fire within reach (its settling is coupled to one), a hearth is by a still, so a cell says so.</summary>
+        static string Hint(string kind, Zone zone, int x, int y)
+        {
+            if (kind != "camp-still" && kind != "camp-hearth") return "";
+            bool hearth = false, fire = false, still = false;
+            var owners = zone.GetReadOnlyEntitiesWithPart<PackableFixturePart>();
+            for (int i = 0; i < owners.Count; i++)
+            {
+                var e = owners[i]; var at = zone.GetEntityCell(e);
+                if (at == null || !IsPlayerHeld(e) || Math.Max(Math.Abs(at.X - x), Math.Abs(at.Y - y)) > LiquidSettlingPart.FireReach) continue;
+                string other = e.GetPart<PackableFixturePart>().Kind;
+                if (other == "camp-hearth") { hearth = true; if (e.GetPart<HearthGlowPart>()?.Burning() == true) fire = true; }
+                else if (other == "camp-still") still = true;
+            }
+            if (kind == "camp-still") return fire ? " (by your fire)" : hearth ? " (by your hearth)" : "";
+            return still ? " (by your still)" : "";
+        }
+
+        /// <summary>The loose, set-down-able kits the actor carries, in the order "make camp" places them.</summary>
+        static List<Entity> CarriedKits(Entity actor)
+        {
+            var kits = new List<Entity>(); var pack = actor?.GetPart<InventoryPart>(); if (pack == null) return kits;
+            foreach (var e in pack.Objects)
+            {
+                var p = e?.GetPart<PackableFixturePart>(); if (p == null) continue;
+                var def = PackableFixtureRegistry.Get(p.Kind); if (def == null || def.Class != PackableFixtureDefinition.Carried) continue;
+                var installable = e.GetPart<InstallablePart>(); if (installable != null && !installable.IsLoose) continue;
+                if ((e.GetPart<StackerPart>()?.StackCount ?? 1) != 1) continue;
+                kits.Add(e);
+            }
+            int Rank(Entity e) { int i = Array.IndexOf(CampOrder, e.GetPart<PackableFixturePart>().Kind); return i < 0 ? CampOrder.Length : i; }
+            kits.Sort((a, b) => Rank(a) != Rank(b) ? Rank(a).CompareTo(Rank(b)) : string.CompareOrdinal(a.ID, b.ID));
+            return kits;
         }
 
         static string SetDownCommand(Zone zone, Cell origin, int x, int y, Entity kit)
             => SetDownPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + N(x) + "|" + N(y) + "|" + kit.ID;
 
-        internal static bool IsPlayerHeld(Entity e)
+        /// <summary>True for a camp kit the player set down and still holds (installed, origin Player), as opposed to a fixture in the world.</summary>
+        public static bool IsPlayerHeld(Entity e)
         {
             var marker = e.GetPart<InstallationMarkerPart>();
             return marker != null && marker.Origin == PlayerOrigin && e.GetPart<InstallablePart>()?.State == InstallablePart.Installed;
@@ -115,10 +198,14 @@ namespace CavesOfOoo.Core
             if (tx == null) return Reject(actor, fixture, command, "missing-transaction");
             if (command.StartsWith(SetDownPrefix, StringComparison.Ordinal)) return SetDown(actor, fixture, part, zone, command, tx);
             if (command.StartsWith(TakeUpPrefix, StringComparison.Ordinal)) return TakeUp(actor, fixture, part, zone, command, tx);
+            if (command.StartsWith(MakeCampPrefix, StringComparison.Ordinal)) return MakeCamp(actor, fixture, zone, command, tx);
+            if (command.StartsWith(PackUpPrefix, StringComparison.Ordinal)) return PackUp(actor, fixture, zone, command, tx);
+            if (command.StartsWith(MovePrefix, StringComparison.Ordinal)) return Move(actor, fixture, part, zone, command, tx);
+            if (command.StartsWith(NameCampPrefix, StringComparison.Ordinal)) return NameCamp(actor, fixture, zone, command, tx);
             return HandOver(actor, fixture, part, zone, command, tx);
         }
 
-        static bool SetDown(Entity actor, Entity kit, PackableFixturePart part, Zone zone, string command, InventoryTransaction tx)
+        static bool SetDown(Entity actor, Entity kit, PackableFixturePart part, Zone zone, string command, InventoryTransaction tx, int reach = 1)
         {
             string[] f = command.Split('|');
             if (zone == null || !WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true) return Reject(actor, kit, command, "actor-unavailable");
@@ -126,7 +213,7 @@ namespace CavesOfOoo.Core
             var origin = zone.GetEntityCell(actor); var pack = actor.GetPart<InventoryPart>();
             if (Uri.UnescapeDataString(f[1]) != zone.ZoneID || f[6] != kit.ID || origin == null || origin.X != ox || origin.Y != oy
                 || pack == null || !pack.Objects.Contains(kit)) return Reject(actor, kit, command, "stale-selection");
-            if (Math.Abs((long)x - origin.X) > 1 || Math.Abs((long)y - origin.Y) > 1 || (x == origin.X && y == origin.Y)) return Reject(actor, kit, command, PlacementCheck.CellOccupied);
+            if (Math.Abs((long)x - origin.X) > reach || Math.Abs((long)y - origin.Y) > reach || (x == origin.X && y == origin.Y)) return Reject(actor, kit, command, PlacementCheck.CellOccupied);
             var def = PackableFixtureRegistry.Get(part.Kind);
             if (def == null || def.Class != PackableFixtureDefinition.Carried) return Reject(actor, kit, command, "unknown-kind");
             var installable = kit.GetPart<InstallablePart>();
@@ -182,13 +269,13 @@ namespace CavesOfOoo.Core
             return true;
         }
 
-        static bool TakeUp(Entity actor, Entity fixture, PackableFixturePart part, Zone zone, string command, InventoryTransaction tx)
+        static bool TakeUp(Entity actor, Entity fixture, PackableFixturePart part, Zone zone, string command, InventoryTransaction tx, int reach = 1)
         {
             string[] f = command.Split('|');
             if (zone == null || !WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true) return Reject(actor, fixture, command, "actor-unavailable");
             var cell = zone.GetEntityCell(fixture); var origin = zone.GetEntityCell(actor); var pack = actor.GetPart<InventoryPart>();
             if (f.Length != 3 || Uri.UnescapeDataString(f[1]) != zone.ZoneID || f[2] != fixture.ID || cell == null || origin == null || pack == null
-                || fixture.SpatialZone != zone || !IsPlayerHeld(fixture) || Math.Abs(cell.X - origin.X) > 1 || Math.Abs(cell.Y - origin.Y) > 1) return Reject(actor, fixture, command, "stale-selection");
+                || fixture.SpatialZone != zone || !IsPlayerHeld(fixture) || Math.Abs(cell.X - origin.X) > reach || Math.Abs(cell.Y - origin.Y) > reach) return Reject(actor, fixture, command, "stale-selection");
             var def = PackableFixtureRegistry.Get(part.Kind);
             if (def == null || def.Class != PackableFixtureDefinition.Carried) return Reject(actor, fixture, command, "unknown-kind");
             if (!InstallEvents.Allow(InstallEvents.BeforeUninstall, actor, fixture, zone, cell.X, cell.Y, PlayerOrigin)) return Reject(actor, fixture, command, "vetoed");
@@ -255,6 +342,92 @@ namespace CavesOfOoo.Core
                 Diag.Record("furniture", "HandedOver", actor, fixture, new { kind = part.Kind, zone = zone.ZoneID, x, y, spoken = true, contents = Contents(fixture) });
                 MessageLog.Add("You let go of " + fixture.GetDisplayName() + ". It stays where it is.");
             });
+            return true;
+        }
+
+        // ── composites: every one is a single transaction, so any refusal anywhere gives everything back ──
+
+        /// <summary>
+        /// Lay out every carried kit in one action: the fire first, then the still within its reach, the bench, and the box not beside the fire. Each kit takes the first legal cell of its
+        /// preference order (checked against what is already standing, including the kits just set down), kits with no legal cell stay in the pack, and any set-down that is refused
+        /// after being chosen fails the whole command.
+        /// </summary>
+        static bool MakeCamp(Entity actor, Entity trigger, Zone zone, string command, InventoryTransaction tx)
+        {
+            string[] f = command.Split('|');
+            if (zone == null || !WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true) return Reject(actor, trigger, command, "actor-unavailable");
+            var origin = zone.GetEntityCell(actor);
+            if (f.Length != 5 || !Int(f[2], out int ox) || !Int(f[3], out int oy) || Uri.UnescapeDataString(f[1]) != zone.ZoneID || f[4] != trigger.ID || origin == null || origin.X != ox || origin.Y != oy)
+                return Reject(actor, trigger, command, "stale-selection");
+            var kits = CarriedKits(actor); if (!kits.Contains(trigger) || kits.Count < 2) return Reject(actor, trigger, command, "stale-selection");
+            int hearthX = int.MinValue, hearthY = int.MinValue; int placed = 0; var names = new List<string>();
+            foreach (var near in HeldWithin(zone, origin, PackUpReach))
+                if (near.GetPart<PackableFixturePart>().Kind == "camp-hearth") { var at = zone.GetEntityCell(near); hearthX = at.X; hearthY = at.Y; break; }
+            foreach (var kit in kits)
+            {
+                var part = kit.GetPart<PackableFixturePart>(); var def = PackableFixtureRegistry.Get(part.Kind); var batch = new PlacementCheck.PlacementBatch(WorldLocationContext.For(zone), zone);
+                int bx = int.MinValue, by = int.MinValue; bool preferred = false;
+                foreach (var d in Directions)
+                {
+                    int x = origin.X + d.x, y = origin.Y + d.y;
+                    if (!batch.Evaluate(x, y, def.Spec, kit).Ok) continue;
+                    bool known = hearthX != int.MinValue; int dist = known ? Math.Max(Math.Abs(x - hearthX), Math.Abs(y - hearthY)) : 0;
+                    bool wants = part.Kind == "camp-still" ? !known || dist <= LiquidSettlingPart.FireReach : part.Kind == "camp-box" ? !known || dist >= 2 : true;
+                    if (bx == int.MinValue || (wants && !preferred)) { bx = x; by = y; preferred = wants; }
+                    if (wants) break;
+                }
+                if (bx == int.MinValue) continue;   // no legal cell for this kit: it stays in the pack
+                if (!SetDown(actor, kit, part, zone, SetDownCommand(zone, origin, bx, by, kit), tx)) return false;
+                if (part.Kind == "camp-hearth") { hearthX = bx; hearthY = by; }
+                placed++; names.Add(kit.GetDisplayName());
+            }
+            if (placed == 0) return Reject(actor, trigger, command, PlacementCheck.OpenNeighbours);
+            int total = placed, carried = kits.Count;
+            tx.AfterCommit(() => MessageLog.Add(total == carried ? "You make camp." : "You make camp; " + (carried - total) + " could not be set down here."));
+            return true;
+        }
+
+        /// <summary>Take up everything the player holds within <see cref="PackUpReach"/> in one action. All or nothing: if the whole camp cannot be carried, nothing is taken.</summary>
+        static bool PackUp(Entity actor, Entity trigger, Zone zone, string command, InventoryTransaction tx)
+        {
+            string[] f = command.Split('|');
+            if (zone == null || !WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true) return Reject(actor, trigger, command, "actor-unavailable");
+            var origin = zone.GetEntityCell(actor); var cell = zone.GetEntityCell(trigger);
+            if (f.Length != 3 || Uri.UnescapeDataString(f[1]) != zone.ZoneID || f[2] != trigger.ID || origin == null || cell == null || !IsPlayerHeld(trigger)
+                || Math.Abs(cell.X - origin.X) > 1 || Math.Abs(cell.Y - origin.Y) > 1) return Reject(actor, trigger, command, "stale-selection");
+            var camp = HeldWithin(zone, origin, PackUpReach); if (camp.Count < 2) return Reject(actor, trigger, command, "stale-selection");
+            foreach (var fixture in camp)
+                if (!TakeUp(actor, fixture, fixture.GetPart<PackableFixturePart>(), zone, TakeUpPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + fixture.ID, tx, PackUpReach)) return false;
+            int n = camp.Count; tx.AfterCommit(() => MessageLog.Add("You pack up camp (" + n + " things)."));
+            return true;
+        }
+
+        /// <summary>Move one standing fixture one cell: the same take-up and set-down as the ordinary verbs, in one action, so it keeps its ID, contents, fuel and escrow.</summary>
+        static bool Move(Entity actor, Entity fixture, PackableFixturePart part, Zone zone, string command, InventoryTransaction tx)
+        {
+            string[] f = command.Split('|');
+            if (zone == null || !WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true) return Reject(actor, fixture, command, "actor-unavailable");
+            var origin = zone.GetEntityCell(actor); var cell = zone.GetEntityCell(fixture);
+            if (f.Length != 5 || !Int(f[3], out int x) || !Int(f[4], out int y) || Uri.UnescapeDataString(f[1]) != zone.ZoneID || f[2] != fixture.ID || origin == null || cell == null || !IsPlayerHeld(fixture)
+                || Math.Max(Math.Abs(x - cell.X), Math.Abs(y - cell.Y)) != 1 || (x != cell.X && y != cell.Y)) return Reject(actor, fixture, command, "stale-selection");
+            if (!TakeUp(actor, fixture, part, zone, TakeUpPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + fixture.ID, tx)) return false;
+            if (!SetDown(actor, fixture, part, zone, SetDownCommand(zone, origin, x, y, fixture), tx, 2)) return false;
+            return true;
+        }
+
+        /// <summary>Gives the whole camp (every held fixture within <see cref="HeldFixtureReader.ClusterRadius"/>, single-link) the next name in the list, or clears it after the last. Free, and undone with the rest of the transaction.</summary>
+        static bool NameCamp(Entity actor, Entity trigger, Zone zone, string command, InventoryTransaction tx)
+        {
+            string[] f = command.Split('|');
+            if (zone == null || !WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true) return Reject(actor, trigger, command, "actor-unavailable");
+            var origin = zone.GetEntityCell(actor); var cell = zone.GetEntityCell(trigger);
+            if (f.Length != 3 || Uri.UnescapeDataString(f[1]) != zone.ZoneID || f[2] != trigger.ID || origin == null || cell == null || !IsPlayerHeld(trigger)
+                || Math.Abs(cell.X - origin.X) > 1 || Math.Abs(cell.Y - origin.Y) > 1) return Reject(actor, trigger, command, "stale-selection");
+            var camp = HeldFixtureReader.ClusterOf(zone, trigger); string name = HeldFixtureReader.NextCampName(HeldFixtureReader.CampNameOf(camp));
+            var parts = new List<PackableFixturePart>(); var before = new List<string>();
+            foreach (var fixture in camp) { var p = fixture.GetPart<PackableFixturePart>(); if (p == null) continue; parts.Add(p); before.Add(p.CampName ?? ""); }
+            tx.Do(() => { foreach (var p in parts) p.CampName = name; }, () => { for (int i = 0; i < parts.Count; i++) parts[i].CampName = before[i]; });
+            tx.AfterCommit(() => MessageLog.Add(name == "" ? "This camp has no name now." : "You call this camp " + name + "."));
             return true;
         }
 

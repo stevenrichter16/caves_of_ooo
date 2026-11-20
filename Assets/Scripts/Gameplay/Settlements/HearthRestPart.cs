@@ -11,9 +11,20 @@ namespace CavesOfOoo.Core
     /// The heal, bleeding cure, clock advance and the hostile-within-eight rule are the shared <see cref="RestSystem"/>; only the paid fuel is new.
     /// <para>It is its own Part with its own commands, so the ordinary campfire rest (<c>AllowRest</c>, free) and every other finite fire keep exactly the rules they have.</para>
     /// </summary>
-    public sealed class HearthRestPart : Part
+    public sealed class HearthRestPart : Part, IDescribeState
     {
         public override string Name => "HearthRest";
+
+        // "What can I do here?" for the rest: what a night here would cost, only when it could be taken now.
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 45;
+        public string DescribeState(DescribeContext context)
+        {
+            var fire = ParentEntity?.GetPart<CampfirePart>(); var zone = context.Zone ?? ParentEntity?.SpatialZone;
+            if (fire == null || context.Viewer == null || zone == null || !CampfireWorkActions.Source(context.Viewer, fire, zone) || !CampfireWorkActions.Fuel(fire, out var fuel)) return null;
+            if (Refusal(fire, fuel, ParentEntity.GetPart<ThermalPart>(), RestSystem.RestClockTurns, out var night) != null) return null;
+            return "You could rest here: it burns about " + night.Fuel + " fuel" + (night.BurnsOut ? " and then goes out." : ".");
+        }
 
         public const string RestCommand = "RestAtHearth", BandCommand = "RestUntilNextBandAtHearth", Site = "hearth";
 
@@ -112,7 +123,10 @@ namespace CavesOfOoo.Core
             // What it will do, before you choose it: the HP it restores, and the fuel it burns (and that the fire will be out in the morning).
             var hp = actor?.GetStat("Hitpoints"); int heals = hp == null ? 0 : Math.Max(0, hp.Max - hp.Value);
             string preview = (heals > 0 ? "heals " + heals + ", " : "") + "the fire burns about " + night.Fuel + " fuel" + (night.BurnsOut ? ", then goes out" : "");
-            actions.AddAction(name, label + " (" + preview + ")", command, key, priority, false, ActionTime.Free);
+            string hint = command == BandCommand
+                ? "Sleep through to the next time of day. You heal and bleeding stops; the fire burns what it can and goes out if the fuel or heat runs short."
+                : "Sleep beside the fire for a night. You heal and bleeding stops; the fire burns fuel while you sleep.";
+            actions.AddActionWithHint(name, label + " (" + preview + ")", command, hint, key, priority, false, ActionTime.Free);
         }
 
         // ── the rest ──

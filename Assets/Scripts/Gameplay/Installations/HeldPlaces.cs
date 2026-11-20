@@ -138,7 +138,7 @@ namespace CavesOfOoo.Core
                 // 3. occupancy: terrain only (the fixture's own entity never counts)
                 if (Occupied(cell, fixture)) result.Reasons.Add(CellOccupied);
                 // 4. open neighbours
-                if (!NeighboursOpen(zone, x, y, spec.Solid)) result.Reasons.Add(OpenNeighbours);
+                if (!NeighboursOpen(zone, x, y, spec.Solid, fixture)) result.Reasons.Add(OpenNeighbours);
                 // 5. edge margin
                 if (x < EdgeCells || y < EdgeCells || x > Zone.Width - 1 - EdgeCells || y > Zone.Height - 1 - EdgeCells) result.Reasons.Add(EdgeMargin);
                 // 6. stairs, doors, wells
@@ -156,7 +156,7 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>The tile and occupant hazards a fixture must never be set down on or beside (the same style as the predator's safe-cell test).</summary>
-        public static bool Hazard(Zone zone, Cell cell)
+        public static bool Hazard(Zone zone, Cell cell, Entity self = null)
         {
             if (zone == null || cell == null) return true;
             var tile = zone.TileState.Get(cell.X, cell.Y);
@@ -164,6 +164,7 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < cell.Objects.Count; i++)
             {
                 var owner = cell.Objects[i];
+                if (owner == self) continue;   // a fixture being moved never counts as a hazard (or a blocker) to its own new cell
                 if (owner.HasPart<TriggerOnStepPart>() || owner.HasPart<LiquidPoolPart>() || owner.HasPart<GasPoolPart>()
                     || owner.HasEffect<BurningEffect>() || owner.GetPart<ThermalPart>()?.IsAflame == true) return true;
             }
@@ -176,13 +177,13 @@ namespace CavesOfOoo.Core
         /// The structure-only form of <see cref="Cell.BlocksMovement"/>: a creature standing beside the spot (the person setting it down, a passer-by) is
         /// transient and never plugs an opening, so it is ignored; walls, solid furniture, closed doors and archive barriers still block.
         /// </summary>
-        static bool BlocksWithoutCreatures(Cell cell)
+        static bool BlocksWithoutCreatures(Cell cell, Entity self = null)
         {
             if (MorrowfastSceneRuntime.BlockingOwner(cell) != null) return true;
             for (int i = 0; i < cell.Occupants.Count; i++)
             {
                 var o = cell.Occupants[i];
-                if (o == null || o.HasTag("Creature")) continue;
+                if (o == null || o == self || o.HasTag("Creature")) continue;
                 if (o.HasTag("Solid")) return true;
                 var physics = o.GetPart<PhysicsPart>();
                 if (physics != null && physics.Solid) return true;
@@ -217,7 +218,7 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        static bool NeighboursOpen(Zone zone, int x, int y, bool solid)
+        static bool NeighboursOpen(Zone zone, int x, int y, bool solid, Entity self = null)
         {
             for (int dx = -1; dx <= 1; dx++)
                 for (int dy = -1; dy <= 1; dy++)
@@ -228,7 +229,7 @@ namespace CavesOfOoo.Core
                     int nx = x + dx, ny = y + dy;
                     if (!zone.InBounds(nx, ny)) return false;
                     var n = zone.GetCell(nx, ny);
-                    if (BlocksWithoutCreatures(n) || Hazard(zone, n)) return false;
+                    if (BlocksWithoutCreatures(n, self) || Hazard(zone, n, self)) return false;
                 }
             return true;
         }

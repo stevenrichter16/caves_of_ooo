@@ -101,6 +101,10 @@ fuel while burning, and two wrong claims in this record were corrected. Remainin
 
 `Caves Of Ooo > Scenarios > Home > Camp Kits` (`CampKitsShowcase`) gives the four kits, 6 timber, a torch, raw meat, a dagger, an iron spike, oak haft and leather binding for the bench, and 2 mendleaf and 1 fire moss for the still, and places a real campfire two cells east of the player to light the torch at. It grants items and a fire only; every verb after that is the ordinary one. The opening zone (`Overworld.11.10.0`) is protected ground and refuses set-down, so travel by the world map first (`Overworld.10.11.0` is wild; 9.10, 9.11, 10.9 and 11.12 are family-owned and admitted). `CampKitShowcaseTests` pins the loadout against the real content (every blueprint exists, all four kits are registered packable kinds, the load fits a Strength-16 pack, each kit has what it needs). Played once in the Editor: the menu item put the full loadout in the pack (weight 107) and the campfire at 42,12; no kit verb was played from it.
 
+### Camp quality of life (2026-11-19)
+
+Sixteen small conveniences, documented in [MACHINE-INVENTED-USES.md](MACHINE-INVENTED-USES.md) 3e. The pieces that touch this system: `HeldFixtureActions` gained `make camp`, `pack up camp`, `move` and `name this camp` (each one transaction; `SetDown` and `TakeUp` take a reach, so a composite can act beyond the adjacent cell while the ordinary verbs keep reach 1), `PlacementCheck` and `HeldPlaces.Hazard` can be asked about a fixture that is being moved (it is not a hazard or a blocker to its own new cell), `PackableFixturePart.CampName` is one additive saved string, and `HeldFixtureReader` now builds its clusters from `ClustersIn(zone)` so the arrival note, the map note and `name this camp` agree on what one camp is. Tests: `CampKitVerbsTests` (32 cases, five mutations caught), `CampFireQolTests`.
+
 ## Limits and next
 
 - `column-pending` (underground ordinary columns) stays refused until PB7. Family-owned (exploration) zones are admitted since the PB1a audit; the opening yard and the other protected addresses stay refused.

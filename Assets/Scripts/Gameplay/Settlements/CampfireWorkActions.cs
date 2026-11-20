@@ -32,6 +32,25 @@ namespace CavesOfOoo.Core
         static Entity Timber(Entity actor) => actor.GetPart<InventoryPart>()?.Objects.FirstOrDefault(e => e.BlueprintName == "SalvagedTimber" && WorldResourceActions.Carried(actor, e, false));
         static bool Gear(Entity actor, Entity gear) => WorldResourceActions.Carried(actor, gear) && gear.GetEffect<WetEffect>() is WetEffect wet
             && WorldResourceActions.Finite(wet.Moisture) && wet.Moisture > 0 && !(gear.GetEffect<FrozenEffect>()?.Cold > 0);
+        /// <summary>
+        /// "What can I do here?": one plain line of what the rows of this fire would offer the viewer right now (feed it, light it, dry wet gear), or null when it would offer nothing.
+        /// It is a read of the same conditions the rows use, never a promise; the rows themselves are the authority.
+        /// </summary>
+        internal static string Affordance(Entity actor, CampfirePart fire, Zone zone)
+        {
+            if (actor == null || fire == null || zone == null || !Source(actor, fire, zone) || !Fuel(fire, out var fuel)) return null;
+            var parts = new System.Collections.Generic.List<string>();
+            int feedN = FeedCount(fuel, TimberCarried(actor)); if (feedN >= 1) parts.Add("feed it (" + feedN + " timber)");
+            float temperature = fire.ParentEntity.GetPart<ThermalPart>().Temperature;
+            if (fuel.FuelMass > 0 && temperature < 450 && IgnitionSources.Find(actor, zone, fire.ParentEntity) != null) parts.Add("light it");
+            if (Hot(fire) && actor.GetPart<InventoryPart>() is InventoryPart pack)
+            {
+                int wet = 0; foreach (var gear in pack.Objects) if (Gear(actor, gear)) wet++;
+                if (wet > 0) parts.Add("dry " + wet + " wet " + (wet == 1 ? "thing" : "things"));
+            }
+            return parts.Count == 0 ? null : "Here you can: " + string.Join(", ", parts) + ".";
+        }
+
         internal static void AddActions(Entity actor, CampfirePart fire, Zone zone, InventoryActionList actions)
         {
             if (actions == null || !Source(actor, fire, zone)) return;
@@ -41,21 +60,22 @@ namespace CavesOfOoo.Core
             if (!Fuel(fire, out var fuel)) return;
             int feedN = FeedCount(fuel, TimberCarried(actor));
             if (feedN >= 1)
-                actions.AddAction("FeedCookingFire", "feed coals (1 salvaged timber, up to 10 fuel)", "FeedCookingFire", 'f', 18);
+                actions.AddActionWithHint("FeedCookingFire", "feed coals (1 salvaged timber, up to 10 fuel)", "FeedCookingFire", "Adds one timber to the fire. Cold coals still need a flame to light.", 'f', 18);
             if (feedN >= 2)
-                actions.AddAction("FeedCookingFireFull", "feed coals to full (" + feedN + " timber, +" + (int)Math.Min(fuel.MaxFuel - fuel.FuelMass, 10 * feedN) + " fuel)", FeedFullCommand, 'u', 18);
+                actions.AddActionWithHint("FeedCookingFireFull", "feed coals to full (" + feedN + " timber, +" + (int)Math.Min(fuel.MaxFuel - fuel.FuelMass, 10 * feedN) + " fuel)", FeedFullCommand, "Adds timber until the fire is full, all in one action. It does not light it.", 'u', 18);
             var flame = IgnitionSources.Find(actor, zone, fire.ParentEntity);
             float temperature = fire.ParentEntity.GetPart<ThermalPart>().Temperature;
             // A flint striker pays a strike for every relight, including one that only tops up a fire that is still burning, so the row says so and how many are left.
             string strike = flame?.GetPart<FlintStrikerPart>() is FlintStrikerPart striker ? " (1 strike, " + striker.Strikes + " left)" : "";
             if (fuel.FuelMass > 0 && temperature < 450 && flame != null)
-                actions.AddAction("RelightCookingFire", "relight coals from flame" + strike, "RelightCookingFire", 'l', 18);
+                actions.AddActionWithHint("RelightCookingFire", "relight coals from flame" + strike, "RelightCookingFire", "Lights the coals from a flame you carry or stand beside." + (strike.Length > 0 ? " The striker spends one strike." : ""), 'l', 18);
             else if (!Hot(fire))
                 // A fire that is out says what stops it from being lit instead of offering nothing.
                 actions.AddDisabled("RelightCookingFire", "relight coals from flame", fuel.FuelMass <= 0 ? "no_fuel" : "no_flame",
                     fuel.FuelMass <= 0 ? "The coals have no fuel. Feed them first." : "You have no flame to light it from: a burning fire beside you, a lit torch in hand, or a flint striker." + (FlintStrikerPart.WornHint(actor) ?? ""), '\0', 18);
             if (feedN >= 1 && flame != null && temperature < 450)
-                actions.AddAction("StokeCookingFire", "stoke: feed " + feedN + " timber and light it" + strike, StokeCommand, 't', 18);
+                actions.AddActionWithHint("StokeCookingFire", "stoke: feed " + feedN + " timber and light it" + strike, StokeCommand,
+                    "Stoke: adds all the timber the fire will take, then lights it from a flame you carry, in one action." + (strike.Length > 0 ? " The striker spends one strike." : ""), 't', 18);
         }
         /// <summary>
         /// Feed to full, or stoke (feed to full, then light it from a flame in reach), as one action in the caller's transaction: every timber, the fuel, the strike and the heat
