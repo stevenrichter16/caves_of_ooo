@@ -17,7 +17,7 @@ namespace CavesOfOoo.Core
     /// gating, mishap damage, batching) stay in the command; this handler
     /// only collects the selection and reports selection problems legibly.
     /// </summary>
-    public class AlchemyStillPart : Part, IStationCapability
+    public class AlchemyStillPart : Part, IStationCapability, IMenuStatus
     {
         public override string Name => "AlchemyStill";
 
@@ -34,6 +34,13 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static EntityFactory Factory;
 
+        /// <summary>The still's menu says what the mix is and what it would make, as much as the pack's Crafting panel does (see <see cref="BrewMenuReadout"/>). A carried or taken-up still is a kit and says nothing.</summary>
+        public void AppendMenuStatus(DescribeContext context, System.Collections.Generic.List<string> lines)
+        {
+            if (ParentEntity?.GetPart<PhysicsPart>()?.InInventory != null || PackableFixturePart.IsInertKit(ParentEntity)) return;
+            lines.AddRange(BrewMenuReadout.Lines(context.Viewer));
+        }
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions")
@@ -43,8 +50,12 @@ namespace CavesOfOoo.Core
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null)
                 {
-                    actions.AddAction("Brew", "brew the mix", "BrewMix", 'b', 20);
-                    actions.AddAction("BrewBatch", "brew a full batch", "BrewMixBatch", 'B', 19);
+                    var picks = CraftingMarkPart.CollectMarked(e.GetParameter<Entity>("Actor")).Reagents;
+                    int batch = picks.Count > 0 ? BrewingService.GetMaxBatchCount(picks) : 0;
+                    actions.AddActionWithHint("Brew", "brew the mix", "BrewMix",
+                        picks.Count == 0 ? "Brews one of the mix and uses up the picked reagents. Pick reagents below first." : "Brews one of the mix shown above and uses up the picked reagents.", 'b', 20);
+                    actions.AddActionWithHint("BrewBatch", batch > 1 ? "brew a full batch (up to " + batch + ")" : "brew a full batch", "BrewMixBatch",
+                        batch > 1 ? "Brews as many as the picked reagents allow, up to " + batch + ", in one go." : "Brews as many as the picked reagents allow, in one go.", 'B', 19);
 
                     // Actor-aware picker rows (live-playtest finding): build
                     // the mix right in this menu - one toggle per carried

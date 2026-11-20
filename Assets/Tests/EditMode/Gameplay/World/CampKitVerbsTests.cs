@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
 using CavesOfOoo.Diagnostics;
 using NUnit.Framework;
 
@@ -70,7 +71,7 @@ namespace CavesOfOoo.Tests
             Assert.True(AlchemyStillPart.IsNearStill(Actor, Zone)); Assert.NotNull(still.GetPart<InstallationMarkerPart>());
         }
 
-        [Test] public void MakeCampIsOfferedOnEveryCarriedKitsMenuOnlyWithTwoOrMoreKinds_AndNotInRefusedGround()
+        [Test] public void MakeCampIsOfferedOnEveryCarriedKitsMenuOnlyWithTwoOrMoreKits()
         {
             var hearth = Carry("CampHearth"); Assert.False(Actions(hearth).Any(a => a.Name == "MakeCamp"), "one kit: just set it down"); var box = Carry("CampBox");
             Assert.True(Actions(hearth).Any(a => a.Name == "MakeCamp")); Assert.True(Actions(box).Any(a => a.Name == "MakeCamp"));
@@ -93,7 +94,7 @@ namespace CavesOfOoo.Tests
         [Test] public void TheKitVerbsSayWhatTheyDoInSmallText()
         {
             var hearth = Standing("CampHearth", "east"); var box = Standing("CampBox", "north"); var rows = World(box);
-            StringAssert.Contains("every kit of yours", rows.Single(a => a.Name == "PackUpCamp").Hint); StringAssert.Contains("fuel and contents", rows.First(a => a.Name == "MoveFixture").Hint);
+            StringAssert.Contains("every kit of yours", rows.Single(a => a.Name == "PackUpCamp").Hint); StringAssert.Contains("goes out", rows.Single(a => a.Name == "MoveFixture").Hint);
             var still = Carry("CampStill"); Carry("CampBench"); StringAssert.Contains("every kit you carry", Actions(still).Single(a => a.Name == "MakeCamp").Hint);
             Assert.IsEmpty(Actions(still).First(a => a.Name == "SetDownFixture").Hint, "a plain set-down needs no explanation");
         }
@@ -128,40 +129,98 @@ namespace CavesOfOoo.Tests
             Assert.False(Act(box, command)); Assert.AreEqual(2, Held().Count); Assert.False(Pack.Objects.Any(o => o.HasPart<PackableFixturePart>()));
         }
 
-        // ── move a kit one cell ──
+        // ── move: one row, a cell picker, and a check that the colours tell the truth ──
 
-        [Test] public void AStandingKitOffersMovesToTheOpenCellsBesideItAndMovingKeepsItsIdAndFuel()
+        string MoveTo(Entity fixture, int dx, int dy) { var at = Zone.GetEntityCell(fixture); return HeldFixtureActions.MoveCommand(wild, fixture, at.X + dx, at.Y + dy); }
+        bool Fits(Entity fixture, int x, int y) => HeldFixtureActions.CanMoveTo(Actor, fixture, wild, x, y, out _);
+        string Why(Entity fixture, int x, int y) { HeldFixtureActions.CanMoveTo(Actor, fixture, wild, x, y, out string code); return code; }
+
+        [Test] public void AStandingKitOffersOneMoveRowThatOpensThePicker_NotARowPerDirection()
         {
-            var hearth = Standing("CampHearth", "east"); hearth.GetPart<FuelPart>().FuelMass = 12; var rows = World(hearth).Where(a => a.Name == "MoveFixture").ToArray(); Assert.True(rows.Length >= 3);
-            var before = Zone.GetEntityCell(hearth); var north = rows.Single(r => r.Display == "move north"); Assert.AreEqual(ActionTime.OneAction, north.Time);
-            Assert.True(Act(hearth, north.Command), string.Join("|", MessageLog.GetRecent(4))); var after = Zone.GetEntityCell(hearth); Assert.AreEqual(before.X, after.X); Assert.AreEqual(before.Y - 1, after.Y);
-            Assert.True(HeldFixtureActions.IsPlayerHeld(hearth)); Assert.AreEqual(12f, hearth.GetPart<FuelPart>().FuelMass, 0.001f); Assert.False(Pack.Objects.Contains(hearth)); Assert.AreEqual(1, Held().Count);
+            var hearth = Standing("CampHearth", "east"); var rows = World(hearth).Where(a => a.Name == "MoveFixture").ToArray();
+            Assert.AreEqual(1, rows.Length); Assert.AreEqual("move", rows[0].Display); StringAssert.StartsWith(HeldFixtureActions.PickMovePrefix, rows[0].Command); StringAssert.Contains("green", rows[0].Hint); StringAssert.Contains("red", rows[0].Hint);
+            Assert.False(HeldFixtureActions.IsCommand(rows[0].Command), "the row is for the picker; only the chosen cell becomes a command the kit runs");
         }
 
-        [Test] public void ASolidKitCanMoveOneCellEvenThoughItsOwnOldCellWasBesideTheNewOne()
+        [Test] public void MovingToAnyCellWithinReachKeepsTheKitsIdAndFuel_DiagonalsAndTwoCellsIncluded()
         {
-            var box = Standing("CampBox", "east"); var rows = World(box).Where(a => a.Name == "MoveFixture").ToArray(); Assert.True(rows.Any(r => r.Display == "move north"), "the box's own old cell does not count against it");
-            var before = Zone.GetEntityCell(box); Assert.True(Act(box, rows.Single(r => r.Display == "move north").Command)); Assert.AreEqual(before.Y - 1, Zone.GetEntityCell(box).Y); Assert.True(box.GetPart<PhysicsPart>().Solid);
+            var hearth = Standing("CampHearth", "east"); hearth.GetPart<FuelPart>().FuelMass = 12; string id = hearth.ID; var at = Zone.GetEntityCell(hearth);
+            int tx = AX + 2, ty = AY - 2; Assert.True(Fits(hearth, tx, ty), "a diagonal two cells from the player");
+            Assert.True(Act(hearth, HeldFixtureActions.MoveCommand(wild, hearth, tx, ty)), string.Join("|", MessageLog.GetRecent(4))); var now = Zone.GetEntityCell(hearth);
+            Assert.AreEqual(tx, now.X); Assert.AreEqual(ty, now.Y); Assert.AreEqual(id, hearth.ID); Assert.True(HeldFixtureActions.IsPlayerHeld(hearth)); Assert.AreEqual(12f, hearth.GetPart<FuelPart>().FuelMass, 0.001f);
+            Assert.False(Pack.Objects.Contains(hearth)); Assert.AreEqual(1, Held().Count);
         }
 
-        [Test] public void NoMoveRowForAnOccupiedOrRefusedCell_AndNoneForAKitYouHaveHandedOver_Counters()
+        [Test] public void TheColoursTellTheTruth_EveryRedCellIsRefusedWithNoChange_EveryGreenCellMoves()
         {
-            var hearth = Standing("CampHearth", "east"); var still = Standing("CampStill", "north"); var rows = World(hearth).Where(a => a.Name == "MoveFixture").ToArray();
-            var sc = Zone.GetEntityCell(still); var hc = Zone.GetEntityCell(hearth); Assert.False(rows.Any(r => r.Display == "move north" && sc.X == hc.X && sc.Y == hc.Y - 1), "the still stands there");
+            var hearth = Standing("CampHearth", "east"); Standing("CampStill", "northeast");
+            for (int round = 0; round < 4; round++)
+            {
+                var at = Zone.GetEntityCell(hearth); int greens = 0, reds = 0; (int x, int y)? firstGreen = null;
+                for (int x = AX - 4; x <= AX + 4; x++) for (int y = AY - 4; y <= AY + 4; y++)
+                {
+                    if (Fits(hearth, x, y)) { greens++; if (firstGreen == null && Math.Abs(x - AX) <= 1 && Math.Abs(y - AY) <= 1) firstGreen = (x, y); continue; }   // stay within reach so the next round can lift it again
+                    reds++; var before = Zone.GetEntityCell(hearth); Assert.False(Act(hearth, HeldFixtureActions.MoveCommand(wild, hearth, x, y)), "red cell " + x + "," + y + " (" + Why(hearth, x, y) + ") must be refused");
+                    Assert.AreSame(before, Zone.GetEntityCell(hearth)); Assert.AreEqual(2, Held().Count, "a refused move changes nothing"); Assert.True(HeldFixtureActions.IsPlayerHeld(hearth));
+                }
+                Assert.Greater(greens, 0, "round " + round); Assert.Greater(reds, 0, "round " + round);
+                Assert.NotNull(firstGreen, "a green cell beside the player"); Assert.True(Act(hearth, HeldFixtureActions.MoveCommand(wild, hearth, firstGreen.Value.x, firstGreen.Value.y)), "green cell " + firstGreen); Assert.AreEqual(2, Held().Count);
+            }
+        }
+
+        [Test] public void EachRedCellHasTheRightReason()
+        {
+            var hearth = Standing("CampHearth", "east"); var still = Standing("CampStill", "northeast"); var sc = Zone.GetEntityCell(still);
+            Assert.AreEqual("same-cell", Why(hearth, AX + 1, AY)); Assert.AreEqual("out-of-reach", Why(hearth, AX + 3, AY)); Assert.AreEqual("out-of-reach", Why(hearth, AX - 3, AY - 3));
+            Assert.False(Fits(hearth, sc.X, sc.Y), "another kit's cell"); Assert.False(Fits(hearth, AX, AY), "your own cell"); Assert.False(Fits(hearth, -1, 5), "off the map"); Assert.AreEqual("out-of-reach", Why(hearth, -1, 5));
+            Pack.MaxWeight = Pack.GetCarriedWeight() + InventoryPart.GetItemWeight(hearth) - 1; Assert.AreEqual("overweight-load", Why(hearth, AX + 1, AY + 1), "a kit you could not lift cannot be moved");
+            var row = World(hearth).Single(a => a.Name == "MoveFixture"); Assert.True(row.IsDisabled); StringAssert.Contains("cannot carry", row.DisabledReason);
+            Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, AX + 6, AY + 6)); Assert.AreEqual("stale-selection", Why(hearth, AX + 6, AY + 7), "not beside the kit");
+        }
+
+        [Test] public void ASolidKitCanMoveEvenThoughItsOwnOldCellWasBesideTheNewOne()
+        {
+            var box = Standing("CampBox", "east"); var at = Zone.GetEntityCell(box); Assert.True(Fits(box, at.X, at.Y - 1), "the box's own old cell does not count against it");
+            Assert.True(Act(box, MoveTo(box, 0, -1))); Assert.AreEqual(at.Y - 1, Zone.GetEntityCell(box).Y); Assert.True(box.GetPart<PhysicsPart>().Solid);
+        }
+
+        [Test] public void NoMoveToAnOccupiedCellTheActorsCellOrBeyondReach_AndNoRowForAKitYouHaveHandedOver_Counters()
+        {
+            var hearth = Standing("CampHearth", "east"); var still = Standing("CampStill", "northeast"); var sc = Zone.GetEntityCell(still);
+            Assert.False(Fits(hearth, sc.X, sc.Y)); Assert.False(Act(hearth, HeldFixtureActions.MoveCommand(wild, hearth, sc.X, sc.Y)), "the still stands there"); Assert.False(Act(hearth, HeldFixtureActions.MoveCommand(wild, hearth, AX, AY)), "that is you");
+            Assert.False(Act(hearth, HeldFixtureActions.MoveCommand(wild, hearth, AX + 3, AY)), "three cells away");
             Assert.True(Act(hearth, "HandOver|" + Uri.EscapeDataString(wildId) + "|" + hearth.ID)); Assert.False(World(hearth).Any(a => a.Name == "MoveFixture"));
         }
 
         [Test] public void MovingGivesTheKitBackToItsOldCellWhenAnOuterStepFails()
         {
-            var hearth = Standing("CampHearth", "east"); string command = World(hearth).Where(a => a.Name == "MoveFixture").Single(r => r.Display == "move south").Command; var before = Zone.GetEntityCell(hearth); FailAfter();
+            var hearth = Standing("CampHearth", "east"); string command = MoveTo(hearth, 0, 1); var before = Zone.GetEntityCell(hearth); FailAfter();
             Assert.False(Act(hearth, command)); var after = Zone.GetEntityCell(hearth); Assert.AreEqual(before.X, after.X); Assert.AreEqual(before.Y, after.Y); Assert.True(HeldFixtureActions.IsPlayerHeld(hearth)); Assert.False(Pack.Objects.Contains(hearth));
         }
 
-        [Test] public void AForgedMoveCommandIsRefused_Counter()
+        [Test] public void AForgedMoveCommandIsRefused_IncludingCoordinatesThatWouldOverflow()
         {
-            var hearth = Standing("CampHearth", "east"); string good = World(hearth).First(a => a.Name == "MoveFixture").Command; string[] f = good.Split('|');
-            foreach (var bad in new[] { "MoveFixture|", "MoveFixture|x|" + hearth.ID + "|1|1", string.Join("|", f.Take(4).Concat(new[] { "zzz" })), string.Join("|", f.Take(3).Concat(new[] { "70", "20" })) }) Assert.False(Act(hearth, bad), bad);
-            Assert.True(HeldFixtureActions.IsPlayerHeld(hearth)); Assert.AreEqual(1, Held().Count);
+            var hearth = Standing("CampHearth", "east"); string good = MoveTo(hearth, 0, 1); string[] f = good.Split('|');
+            var at = Zone.GetEntityCell(hearth);
+            foreach (var bad in new[] { "MoveFixture|", "MoveFixture|x|" + hearth.ID + "|1|1", string.Join("|", f.Take(4).Concat(new[] { "zzz" })), string.Join("|", f.Take(3).Concat(new[] { "70", "20" })),
+                string.Join("|", f.Take(3).Concat(new[] { (at.X + int.MinValue).ToString(), "12" })), string.Join("|", f.Take(3).Concat(new[] { "12", int.MaxValue.ToString() })), string.Join("|", f.Take(2).Concat(new[] { "nobody", f[3], f[4] })) })
+                Assert.False(Act(hearth, bad), bad);
+            Assert.True(HeldFixtureActions.IsPlayerHeld(hearth)); Assert.AreEqual(1, Held().Count); Assert.True(Act(hearth, good), "the real one still works");
+        }
+
+        [Test] public void AMoveVetoedAtTheSetDownHalfPutsTheKitBackAndKeepsItsName()
+        {
+            var hearth = Standing("CampHearth", "east"); Assert.True(Act(hearth, World(hearth).Single(a => a.Name == "NameCamp").Command)); var before = Zone.GetEntityCell(hearth);
+            hearth.AddPart(new Veto { Event = "BeforeInstall" }); Assert.False(Act(hearth, MoveTo(hearth, 0, 1)));
+            Assert.AreSame(before, Zone.GetEntityCell(hearth)); Assert.True(HeldFixtureActions.IsPlayerHeld(hearth)); Assert.AreEqual("Home", hearth.GetPart<PackableFixturePart>().CampName); Assert.False(Pack.Objects.Contains(hearth));
+        }
+
+        [Test] public void AMovedKitKeepsItsCampsName_ButATakenUpOneLeavesItBehind()
+        {
+            var hearth = Standing("CampHearth", "east"); var box = Standing("CampBox", "north"); Assert.True(Act(hearth, World(hearth).Single(a => a.Name == "NameCamp").Command));
+            Assert.True(Act(hearth, MoveTo(hearth, 0, 1))); Assert.AreEqual("Home", hearth.GetPart<PackableFixturePart>().CampName); Assert.AreEqual("Home", box.GetPart<PackableFixturePart>().CampName);
+            Assert.True(Act(hearth, "TakeUp|" + Uri.EscapeDataString(wildId) + "|" + hearth.ID)); Assert.AreEqual("", hearth.GetPart<PackableFixturePart>().CampName, "a kit you took away is no longer part of that camp");
+            Assert.AreEqual("Home", box.GetPart<PackableFixturePart>().CampName);
         }
 
         // ── the paths the rules reach: a burning kit moving, the zone cap, a veto partway through ──
@@ -174,9 +233,8 @@ namespace CavesOfOoo.Tests
         [Test] public void ALitHearthCanBeMovedAndKeepsItsFuelButItsFlameGoesOut_AsTakingItUpDoes()
         {
             var hearth = Standing("CampHearth", "east"); Light(hearth);
-            var rows = World(hearth).Where(a => a.Name == "MoveFixture").ToArray(); Assert.True(rows.Length >= 2, "a burning hearth is offered cells to move to");
-            StringAssert.Contains("goes out", rows.First().Hint);
-            var before = Zone.GetEntityCell(hearth); Assert.True(Act(hearth, rows.First().Command), string.Join("|", MessageLog.GetRecent(4))); Assert.False(Zone.GetEntityCell(hearth) == before);
+            StringAssert.Contains("goes out", World(hearth).Single(a => a.Name == "MoveFixture").Hint);
+            var before = Zone.GetEntityCell(hearth); Assert.True(Act(hearth, MoveTo(hearth, 0, 1)), string.Join("|", MessageLog.GetRecent(4))); Assert.False(Zone.GetEntityCell(hearth) == before);
             Assert.AreEqual(10f, hearth.GetPart<FuelPart>().FuelMass, 0.001f, "it keeps its fuel"); Assert.AreEqual(hearth.GetPart<ThermalPart>().AmbientTemperature, hearth.GetPart<ThermalPart>().Temperature, 0.001f, "the flame goes out, as in taking it up");
         }
 
@@ -239,10 +297,10 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("", CampNameOn(hearth));
         }
 
-        [Test] public void ACampNameSurvivesASaveAndAnOldSaveLoadsUnnamed()
+        [Test] public void ACampNameSurvivesASave_AndAFreshKitHasNone()
         {
             var hearth = Standing("CampHearth", "east"); Assert.True(Act(hearth, NameRow(hearth).Command)); var copy = PartRoundTripHelper.RoundTripEntityViaTokenGraph(hearth);
-            Assert.AreEqual("Home", copy.GetPart<PackableFixturePart>().CampName); Assert.AreEqual("", Factory.CreateEntity("CampHearth").GetPart<PackableFixturePart>().CampName, "a fresh kit, like an old save, has no name");
+            Assert.AreEqual("Home", copy.GetPart<PackableFixturePart>().CampName); Assert.AreEqual("", Factory.CreateEntity("CampHearth").GetPart<PackableFixturePart>().CampName, "a fresh kit has no name; a public string absent from a saved part loads as this default");
         }
 
         [Test] public void TheNameAppearsInTheArrivalNoteAndTheMapNote_AndAnUnnamedCampReadsAsBefore()
@@ -296,6 +354,42 @@ namespace CavesOfOoo.Tests
             Flask(12, "bog-mire"); StringAssert.Contains("needs a lit fire within 2 cells", Lines(still).Single(l => l.Contains("mire")));
             var hearth = Carry("CampHearth"); var rows = SetDownRows(hearth); Assert.True(Act(hearth, rows.First(r => r.Display.Contains("(by your still)")).Command)); var fire = Held().Single(e => e.GetPart<PackableFixturePart>().Kind == "camp-hearth"); Light(fire);
             StringAssert.Contains("3 clean water or oil from 1 flask", Lines(still).Single(l => l.Contains("mire")));
+        }
+
+        // ── hints fit the menus they are shown in; make camp beside an existing fire; the border colours ──
+
+        [Test] public void EveryShippedHintFitsTheMenuItAppearsIn_WorldMenuWrappedWithoutACut_PackMenuOneLine()
+        {
+            var hearth = Standing("CampHearth", "east"); var still = Standing("CampStill", "west"); var box = Standing("CampBox", "north");
+            for (int i = 0; i < 3; i++) Carry("SalvagedTimber"); var striker = Carry("FlintStriker"); Carry("IronSpikeComponent"); Flask(12, "bog-mire"); Flask(12, "bog-mire"); Carry("MendleafSprig");
+            var seen = new List<InventoryAction>();
+            foreach (var temp in new[] { 25f, 450f }) { hearth.GetPart<FuelPart>().FuelMass = 12; hearth.GetPart<ThermalPart>().Temperature = temp; seen.AddRange(World(hearth)); seen.AddRange(World(still)); seen.AddRange(World(box)); }
+            seen.AddRange(World(Place("AlchemyStill", 15, 10))); striker.GetPart<FlintStrikerPart>().Strikes = 5;
+            var pack = new List<InventoryAction>(); pack.AddRange(Actions(striker)); var carriedHearth = Carry("CampHearth"); Carry("CampBox"); pack.AddRange(Actions(carriedHearth));
+            var withHints = seen.Where(a => !string.IsNullOrEmpty(a.Hint)).ToList(); Assert.Greater(withHints.Count, 8, "the rows under test: " + string.Join(", ", seen.Select(a => a.Name).Distinct()));
+            foreach (var row in withHints) { var lines = WorldActionMenuUI.WrapHint(row.Hint, 44, WorldActionMenuUI.MaxHintRows); Assert.False(lines[lines.Count - 1].EndsWith("~"), row.Name + " is cut at the narrowest world menu: " + row.Hint); }
+            var packHints = pack.Where(a => !string.IsNullOrEmpty(a.Hint)).ToList(); Assert.True(packHints.Any(a => a.Name == "KnapStriker") && packHints.Any(a => a.Name == "MakeCamp"), "the pack rows under test: " + string.Join(", ", pack.Select(a => a.Name)));
+            foreach (var row in packHints) Assert.LessOrEqual(row.Hint.Length, 78, row.Name + " does not fit the pack menu's detail line: " + row.Hint);
+        }
+
+        [Test] public void MakeCampBesideAnExistingHearthKeepsTheStillWithinItsReach()
+        {
+            var hearth = Standing("CampHearth", "east"); var still = Carry("CampStill"); Carry("CampBench"); var row = Actions(still).Single(a => a.Name == "MakeCamp");
+            Assert.True(Act(still, row.Command), string.Join("|", MessageLog.GetRecent(4))); Assert.AreEqual(3, Held().Count); Assert.LessOrEqual(Dist(Zone, still, hearth), LiquidSettlingPart.FireReach, "the new still is placed by the fire that was already standing");
+        }
+
+        [Test] public void AMakeCampThatCannotPlaceAnythingSaysWhyInsteadOfAGenericRefusal()
+        {
+            var hearth = Carry("CampHearth"); Carry("CampStill"); string command = Actions(hearth).Single(a => a.Name == "MakeCamp").Command;
+            for (int x = AX - 1; x <= AX + 1; x++) for (int y = AY - 1; y <= AY + 1; y++) if (x != AX || y != AY) Place("StoneWall", x, y);
+            Assert.False(Act(hearth, command)); Assert.AreEqual(0, Held().Count); Assert.IsNotEmpty(MessageLog.GetRecent(2));
+        }
+
+        [Test] public void ThePlacementBorderIsGreenWhereItFitsAndRedWhereItDoesNot()
+        {
+            Assert.AreEqual(QudColorParser.BrightGreen, WorldCursorRenderer.PlaceColor(true)); Assert.AreEqual(QudColorParser.BrightRed, WorldCursorRenderer.PlaceColor(false)); Assert.AreNotEqual(WorldCursorRenderer.PlaceColor(true), WorldCursorRenderer.PlaceColor(false));
+            var state = new WorldCursorState(); state.Activate(WorldCursorMode.PlaceTarget, Zone, 5, 5, 5, 5, 2, true); Assert.False(state.PlaceValid, "a fresh picker is red until a cell is checked"); state.SetPlaceValid(true); Assert.True(state.PlaceValid);
+            state.Activate(WorldCursorMode.PlaceTarget, Zone, 5, 5, 5, 5, 2, true); Assert.False(state.PlaceValid, "activating resets it");
         }
     }
 }

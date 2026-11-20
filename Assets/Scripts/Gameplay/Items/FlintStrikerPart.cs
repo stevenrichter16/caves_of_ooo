@@ -113,12 +113,12 @@ namespace CavesOfOoo.Core
                     if (zone.GetCell(x, y) == null || !TileReactionSystem.HeatWouldIgnite(zone, x, y)) continue;
                     // A slick you are standing in burns toward you: say so on the row, before the strike is spent.
                     string warning = TileReactionSystem.HeatWouldIgnite(zone, origin.X, origin.Y) ? " (underfoot)" : "";
-                    actions.AddActionWithHint("StrikeSpark", "strike a spark " + d.label + warning, SparkCommand(zone, origin, x, y, ParentEntity), "Throws a spark into that cell for 1 strike. It lights anything there that burns: oil, dry brush, a fire.", '\0', 16, false, ActionTime.OneAction);
+                    actions.AddActionWithHint("StrikeSpark", "strike a spark " + d.label + warning, SparkCommand(zone, origin, x, y, ParentEntity), "Spends 1 strike to throw a spark into that cell; it lights what burns.", '\0', 16, false, ActionTime.OneAction);
                 }
             }
             if (Strikes >= MaxStrikes) return;
             if (Spike(actor) != null)
-                actions.AddActionWithHint("KnapStriker", "knap an edge (1 spike, +" + Math.Min(KnapStrikes, MaxStrikes - Math.Max(0, Strikes)) + " strikes)", KnapPrefix + ParentEntity.ID, "Chips a fresh edge on the flint with an iron spike, which is used up. Restores strikes.", '\0', 15, false, ActionTime.OneAction);
+                actions.AddActionWithHint("KnapStriker", "knap an edge (1 spike, +" + Math.Min(KnapStrikes, MaxStrikes - Math.Max(0, Strikes)) + " strikes)", KnapPrefix + ParentEntity.ID, "Chips a fresh edge with an iron spike (used up). Restores strikes.", '\0', 15, false, ActionTime.OneAction);
             else
                 actions.AddDisabled("KnapStriker", "knap an edge", "no-spike", "Knapping a new edge needs an iron spike.", '\0', 15);
         }

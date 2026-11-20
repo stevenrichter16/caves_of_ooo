@@ -173,7 +173,7 @@ namespace CavesOfOoo.Rendering
             _titleOverride = string.IsNullOrWhiteSpace(title) ? null : title;
             _statusLines.Clear();
             if (_titleOverride == null)
-                _statusLines.AddRange(BuildStatusLinesFor(target, cell, zone));
+                _statusLines.AddRange(BuildStatusLinesFor(target, cell, zone, actor));
             // Physical occupancy cannot distinguish a pile summary from the
             // selected owner's menu after the player chooses an exact target.
             _cellIsPile = _titleOverride == null && isPileSummary;
@@ -415,7 +415,7 @@ namespace CavesOfOoo.Rendering
         /// "...and N more" tail — Examine carries the full
         /// list.</para>
         /// </summary>
-        public static List<string> BuildStatusLinesFor(Entity target, Cell cell, Zone zone)
+        public static List<string> BuildStatusLinesFor(Entity target, Cell cell, Zone zone, Entity viewer = null)
         {
             var lines = new List<string>();
             CellStatusReadout.AppendAfflictionLines(target, lines);
@@ -431,6 +431,13 @@ namespace CavesOfOoo.Rendering
             // A fire or torch always says its fuel and what that is in turns (not on a pile summary, whose lines are not about one thing).
             string fuelLine = cell != null && WorldInteractionSystem.IsPileCell(cell) ? null : CellStatusReadout.FuelLine(target);
             if (fuelLine != null) lines.Insert(0, fuelLine);
+
+            // A station says the live state of what the menu is for (a still's mix and what it would make). Not on a pile summary, and only for a viewer who can act.
+            if (viewer != null && target != null && !(cell != null && WorldInteractionSystem.IsPileCell(cell)))
+            {
+                var station = new List<string>(); StateReader.CollectMenuStatus(target, zone, cell, viewer, station);
+                lines.InsertRange(fuelLine != null ? 1 : 0, station);
+            }
 
             if (zone != null && cell != null)
             {

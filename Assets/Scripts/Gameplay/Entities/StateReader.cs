@@ -23,9 +23,37 @@ namespace CavesOfOoo.Core
         string DescribeState(DescribeContext context);
     }
 
+    /// <summary>
+    /// Implemented by a Part that adds lines to the status block at the top of its interact (C) menu, where a station can show the live state of the thing the menu is for (a still's
+    /// mix and what it would make). Read each time the menu opens, so a menu that reopens after a toggle shows the new state. Not used for pile cells.
+    /// </summary>
+    public interface IMenuStatus
+    {
+        void AppendMenuStatus(DescribeContext context, List<string> lines);
+    }
+
     /// <summary>One collector for the quick and full readers. Isolated: a throwing describer is skipped and recorded, never allowed to hide the others.</summary>
     public static class StateReader
     {
+        /// <summary>Gathers the menu status lines of every <see cref="IMenuStatus"/> Part of <paramref name="owner"/>. A throwing Part is skipped and recorded, as in <see cref="Collect"/>.</summary>
+        public static void CollectMenuStatus(Entity owner, Zone zone, Cell cell, Entity viewer, List<string> into)
+        {
+            if (owner == null || into == null || viewer == null) return;
+            var parts = owner.Parts; var context = new DescribeContext { Owner = owner, Zone = zone, Cell = cell, Viewer = viewer, Full = false };
+            for (int i = 0; i < parts.Count; i++)
+            {
+                if (!(parts[i] is IMenuStatus status)) continue;
+                var lines = new List<string>();
+                try { status.AppendMenuStatus(context, lines); }
+                catch (Exception error)
+                {
+                    if (Diag.IsChannelEnabled("event")) Diag.Record("event", "MenuStatusFailed", target: owner, payload: new { part = parts[i].GetType().Name, error = error.GetType().Name });
+                    continue;
+                }
+                foreach (var line in lines) if (!string.IsNullOrWhiteSpace(line) && !into.Contains(line)) into.Add(line);
+            }
+        }
+
         public static void Collect(Entity owner, bool full, Zone zone, Cell cell, Entity viewer, List<string> into)
         {
             if (owner == null || into == null) return;

@@ -305,6 +305,55 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        // ── the move picker, driven through the real input handler ──
+
+        [Test] public void ThePickerStartsOnTheKitColoursTheCursorByTheSameCheckTheMoveRunsAndConfirmingMovesItForOneAction()
+        {
+            var kit = SetDown(); var at = wild.GetEntityCell(kit);
+            using (var ui = new HotbarSaveFixture(true, false))
+            {
+                manager.SetActiveZone(wild);
+                var turns = new TurnManager(); turns.RestoreSavedState(17, true, Actor, new List<TurnManager.SavedTurnEntry> { new TurnManager.SavedTurnEntry { Entity = Actor, Energy = TurnManager.ActionThreshold } });
+                ui.BindOld(GameSessionState.Capture("held-fixture", "picker", manager, turns, Actor));
+                const BindingFlags hidden = BindingFlags.Instance | BindingFlags.NonPublic;
+                var cursor = (WorldCursorState)typeof(InputHandler).GetField("_worldCursorState", hidden).GetValue(ui.Input);
+                Assert.True((bool)typeof(InputHandler).GetMethod("BeginMoveTargeting", hidden).Invoke(ui.Input, new object[] { kit }));
+                Assert.True(cursor.Active); Assert.AreEqual(WorldCursorMode.PlaceTarget, cursor.Mode); Assert.AreEqual(at.X, cursor.X); Assert.AreEqual(at.Y, cursor.Y); Assert.AreEqual(HeldFixtureActions.MoveReach, cursor.MaxRange);
+                Assert.False(cursor.PlaceValid, "the kit's own cell is red: it is already there");
+                var refresh = typeof(InputHandler).GetMethod("RefreshMoveValidity", hidden); var moveCursor = typeof(InputHandler).GetMethod("MoveThrowCursor", hidden);
+                // every cell the cursor can reach is coloured exactly as the move's own check says
+                for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++)
+                {
+                    int x = AX + dx, y = AY + dy; cursor.SetPosition(x, y); refresh.Invoke(ui.Input, null);
+                    Assert.AreEqual(HeldFixtureActions.CanMoveTo(Actor, kit, wild, x, y, out _), cursor.PlaceValid, x + "," + y);
+                }
+                // a keyboard step moves the cursor and recolours it
+                cursor.SetPosition(AX, AY - 1); moveCursor.Invoke(ui.Input, new object[] { 0, 1 }); Assert.AreEqual(AY, cursor.Y, "one step down, inside the range"); refresh.Invoke(ui.Input, null); Assert.False(cursor.PlaceValid, "the player's own cell is red");
+                moveCursor.Invoke(ui.Input, new object[] { 0, 5 }); Assert.AreEqual(AY, cursor.Y, "a step that would leave the range is ignored");
+                // red: confirming says why and keeps the picker open, spending nothing
+                var confirm = typeof(InputHandler).GetMethod("ConfirmMoveTarget", hidden); int before = turns.TickCount; MessageLog.Clear();
+                cursor.SetPosition(AX, AY); refresh.Invoke(ui.Input, null); confirm.Invoke(ui.Input, null);
+                Assert.True(cursor.Active, "still choosing"); Assert.AreEqual(before, turns.TickCount); Assert.AreEqual(at.X, wild.GetEntityCell(kit).X); Assert.IsNotEmpty(MessageLog.GetRecent(2));
+                // green: confirming moves it as one action and leaves the picker
+                cursor.SetPosition(AX, AY - 1); refresh.Invoke(ui.Input, null); Assert.True(cursor.PlaceValid); confirm.Invoke(ui.Input, null);
+                Assert.False(cursor.Active); Assert.AreEqual(AX, wild.GetEntityCell(kit).X); Assert.AreEqual(AY - 1, wild.GetEntityCell(kit).Y); Assert.True(HeldFixtureActions.IsPlayerHeld(kit)); Assert.Greater(turns.TickCount, before, "a move costs an action");
+            }
+        }
+
+        [Test] public void LeavingThePickerChangesNothing()
+        {
+            var kit = SetDown(); var at = wild.GetEntityCell(kit);
+            using (var ui = new HotbarSaveFixture(true, false))
+            {
+                manager.SetActiveZone(wild); var turns = new TurnManager(); turns.RestoreSavedState(17, true, Actor, new List<TurnManager.SavedTurnEntry> { new TurnManager.SavedTurnEntry { Entity = Actor, Energy = TurnManager.ActionThreshold } });
+                ui.BindOld(GameSessionState.Capture("held-fixture", "picker", manager, turns, Actor)); const BindingFlags hidden = BindingFlags.Instance | BindingFlags.NonPublic;
+                var cursor = (WorldCursorState)typeof(InputHandler).GetField("_worldCursorState", hidden).GetValue(ui.Input); typeof(InputHandler).GetMethod("BeginMoveTargeting", hidden).Invoke(ui.Input, new object[] { kit });
+                typeof(InputHandler).GetMethod("ExitMoveTargeting", hidden).Invoke(ui.Input, null);
+                Assert.False(cursor.Active); Assert.AreEqual(at.X, wild.GetEntityCell(kit).X); Assert.AreEqual(17, turns.TickCount); Assert.True(HeldFixtureActions.IsPlayerHeld(kit));
+                Assert.False((bool)typeof(InputHandler).GetMethod("BeginMoveTargeting", hidden).Invoke(ui.Input, new object[] { Kit(carry: false) }), "a kit that is not standing cannot be picked");
+            }
+        }
+
         // ── save, state and station ──
 
         [Test] public void BothPartsPassTheSavedPartHygieneAndRoundTripTheirFields()

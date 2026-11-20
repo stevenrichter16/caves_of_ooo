@@ -91,7 +91,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void ABandRestNeedsTheSameNightAsANormalOne_FuelAndHeat()
         {
-            var low = Hearth(30); low.GetPart<ThermalPart>().Temperature = 300; var band = Row(low, "HearthRestBand"); Assert.True(band.IsDisabled); Assert.AreEqual("fire_low", band.DisabledCode); StringAssert.Contains("Relight", band.DisabledReason);
+            var low = Hearth(30); low.GetPart<ThermalPart>().Temperature = 300; var band = Row(low, "HearthRestBand"); Assert.True(band.IsDisabled); Assert.AreEqual("fire_low", band.DisabledCode); StringAssert.Contains("light it again", band.DisabledReason);
             Assert.False(Act(low, "RestUntilNextBandAtHearth")); Assert.AreEqual(0, Clock.TickCount); low.GetPart<ThermalPart>().Temperature = 450; Assert.False(Row(low, "HearthRestBand").IsDisabled, "relighting is what fixes it");
             Zone.RemoveEntity(low); var thin = Hearth(10); band = Row(thin, "HearthRestBand"); Assert.True(band.IsDisabled); Assert.AreEqual("fuel_short", band.DisabledCode);
             StringAssert.Contains("15", band.DisabledReason); StringAssert.Contains("10", band.DisabledReason);
@@ -133,14 +133,14 @@ namespace CavesOfOoo.Tests
         [Test] public void OneLightingIsAboutOneNight_TheSecondNeedsAFlameAgain()
         {
             var h = Hearth(30); Assert.True(Act(h, "RestAtHearth")); Assert.AreEqual(15f, Fuel(h), 0.001f);
-            var row = Row(h, "HearthRest"); Assert.True(row.IsDisabled, "the fire has cooled to the edge of cooking heat; another 60 ticks would let it die"); StringAssert.Contains("Relight", row.DisabledReason);
+            var row = Row(h, "HearthRest"); Assert.True(row.IsDisabled, "the fire has cooled to the edge of cooking heat; another 60 ticks would let it die"); StringAssert.Contains("light it again", row.DisabledReason);
             Actor.GetStat("Hitpoints").BaseValue = 3; Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(3, Hp); Assert.AreEqual(60, Clock.TickCount); Assert.AreEqual(15f, Fuel(h), 0.001f);
             h.GetPart<ThermalPart>().Temperature = 450; Assert.True(Act(h, "RestAtHearth"), "relit from a flame (or the flint striker) it sleeps a second night"); Assert.AreEqual(0f, Fuel(h), 0.001f); Assert.AreEqual(120, Clock.TickCount);
         }
 
         [Test] public void AFireTooLowToLastTheNightRefusesAndSaysToRelight()
         {
-            var h = Hearth(30); h.GetPart<ThermalPart>().Temperature = 300; var row = Row(h, "HearthRest"); Assert.True(row.IsDisabled); StringAssert.Contains("Relight", row.DisabledReason);
+            var h = Hearth(30); h.GetPart<ThermalPart>().Temperature = 300; var row = Row(h, "HearthRest"); Assert.True(row.IsDisabled); StringAssert.Contains("light it again", row.DisabledReason);
             Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(30f, Fuel(h), 0.001f); Assert.AreEqual(300f, h.GetPart<ThermalPart>().Temperature, 0.001f); Assert.AreEqual(0, Clock.TickCount);
         }
 

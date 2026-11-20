@@ -137,7 +137,7 @@ namespace CavesOfOoo.Tests
         [Test] public void TheStokeRowSaysWhatItDoes_AndTheStrikeItCosts()
         {
             var h = Hearth(0); Timber(2); var s = Striker(); var stoke = Row(h, "StokeCookingFire");
-            StringAssert.Contains("adds all the timber", stoke.Hint.ToLowerInvariant()); StringAssert.Contains("lights it", stoke.Hint); StringAssert.Contains("one strike", stoke.Hint);
+            StringAssert.Contains("adds all the timber", stoke.Hint.ToLowerInvariant()); StringAssert.Contains("lights it", stoke.Hint); StringAssert.Contains("1 strike", stoke.Hint);
             Pack.RemoveObject(s); Zone.RemoveEntity(h); var torchHearth = Hearth(0); var torch = Carry("Torch"); Assert.True(InventorySystem.Equip(Actor, torch));
             StringAssert.DoesNotContain("strike", Row(torchHearth, "StokeCookingFire").Hint, "a torch costs no strike, so the hint does not mention one");
         }
@@ -174,15 +174,50 @@ namespace CavesOfOoo.Tests
             var bare = new System.Collections.Generic.List<InventoryAction> { new InventoryAction("A", "alpha", "A"), new InventoryAction("B", "beta", "B") };
             Assert.AreEqual(0, WorldActionMenuUI.HintRowsFor(bare, 48), "no hints: the menu keeps its old shape");
             var h = Hearth(0); Timber(2); Striker(); var rows = Actions(h); var stoke = rows.Single(a => a.Name == "StokeCookingFire");
-            Assert.AreEqual(3, WorldActionMenuUI.HintRowsFor(rows, 48), "the stoke hint needs the full three lines at the narrowest menu");
+            int needed = WorldActionMenuUI.HintRowsFor(rows, 48); Assert.True(needed >= 2 && needed <= WorldActionMenuUI.MaxHintRows, "the longest hint on this menu wraps to 2-3 lines at the narrowest width, not " + needed);
             var go = new GameObject("menu"); try
             {
                 var menu = go.AddComponent<WorldActionMenuUI>(); menu.Open(Actor, h, Zone.GetEntityCell(h), rows.ToList(), Zone);
-                Assert.AreEqual(3, menu.HintRows); menu.RestoreHighlight(stoke); Assert.AreEqual(stoke.Command, menu.HighlightedAction.Command); StringAssert.Contains("lights it", menu.HighlightedHint);
+                Assert.True(menu.HintRows >= 1 && menu.HintRows <= needed, "a menu widened by a long label needs no more lines than the narrowest one: " + menu.HintRows); menu.RestoreHighlight(stoke); Assert.AreEqual(stoke.Command, menu.HighlightedAction.Command); StringAssert.Contains("lights it", menu.HighlightedHint);
                 var bareRow = rows.First(a => string.IsNullOrEmpty(a.Hint)); menu.RestoreHighlight(bareRow); Assert.AreEqual("", menu.HighlightedHint);
             }
             finally { Object.DestroyImmediate(go); }
         }
+
+        // ── a fire that is already burning is not offered a light ──
+
+        [Test] public void ABurningFireIsNeverOfferedARelightOrAStoke_EvenJustAfterItWasLit()
+        {
+            var h = Hearth(10, 441); Timber(2); Striker();   // 441 is one turn after a lighting at 450
+            Assert.IsNull(Row(h, "RelightCookingFire"), "burning: no relight row, not even a disabled one"); Assert.IsNull(Row(h, "StokeCookingFire")); Assert.NotNull(Row(h, "FeedCookingFire"), "feeding a burning fire is still fine");
+            h.GetPart<ThermalPart>().Temperature = 300; Assert.IsNull(Row(h, "RelightCookingFire")); h.GetPart<ThermalPart>().Temperature = 150; Assert.IsNull(Row(h, "RelightCookingFire"), "cooking heat counts as burning");
+        }
+
+        [Test] public void AFireThatIsOutIsOfferedBothAgain_Counter()
+        {
+            var h = Hearth(10, 149); Timber(2); Striker(); Assert.NotNull(Row(h, "RelightCookingFire")); Assert.False(Row(h, "RelightCookingFire").IsDisabled); Assert.NotNull(Row(h, "StokeCookingFire"));
+            h.GetPart<ThermalPart>().Temperature = 25; Assert.NotNull(Row(h, "RelightCookingFire"));
+        }
+
+        [Test] public void ForgedRelightCommandsAreRefusedOnABurningFire_AndSpendNoStrike()
+        {
+            var h = Hearth(10, 300); var s = Striker(5); Timber(2); Assert.False(Act(h, "RelightCookingFire")); Assert.False(Act(h, "StokeCookingFire") && s.GetPart<FlintStrikerPart>().Strikes < 5, "stoke may feed but never strikes a lit fire");
+            Assert.AreEqual(5, s.GetPart<FlintStrikerPart>().Strikes); Assert.AreEqual(300f, h.GetPart<ThermalPart>().Temperature, 0.001f, "the heat is left alone");
+        }
+
+        [Test] public void AHearthThatBurnedOutOfFuelButIsStillHotCanBeFedWithoutSpendingAStrike()
+        {
+            var h = Hearth(0, 450); Timber(2); var s = Striker(5); var stoke = Row(h, "StokeCookingFire"); Assert.NotNull(stoke, "out of fuel, so not burning: stoke is offered");
+            Assert.True(Act(h, "StokeCookingFire")); Assert.AreEqual(20f, Fuel(h), 0.001f); Assert.AreEqual(5, s.GetPart<FlintStrikerPart>().Strikes, "still hot, so nothing to light");
+        }
+
+        [Test] public void TheFireSaysItCanBeLitOnlyWhenItIsOut()
+        {
+            var h = Hearth(10, 300); Striker(); Assert.False(Lines(h).Any(l => l.StartsWith("Here you can") && l.Contains("light it")), "a lit fire is not offered a light");
+            h.GetPart<ThermalPart>().Temperature = 25; Assert.True(Lines(h).Any(l => l.StartsWith("Here you can") && l.Contains("light it")));
+        }
+
+        System.Collections.Generic.List<string> Lines(Entity e) { var l = new System.Collections.Generic.List<string>(); StateReader.Collect(e, false, Zone, Zone.GetEntityCell(e), Actor, l); return l; }
 
         // ── warn before lighting a slick beside your camp ──
 

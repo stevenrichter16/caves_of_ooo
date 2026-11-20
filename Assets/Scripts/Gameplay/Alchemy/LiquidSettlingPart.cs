@@ -22,7 +22,7 @@ namespace CavesOfOoo.Core
         public const int Ratio = 4, FuelPerBatch = 5, FireReach = 2;
 
         /// <summary>The small text under a settle row: what it turns the mire into, at what rate, and what the fire pays.</summary>
-        static string SettleHint(string output) => "Settles bog-mire into clean " + output + ", " + Ratio + " mire to 1. Each flask spends " + FuelPerBatch + " of the lit fire's fuel; the dregs are lost.";
+        static string SettleHint(string output) => "Settles bog-mire into clean " + output + ", " + Ratio + " mire to 1. The lit fire spends " + FuelPerBatch + " fuel per flask.";
         const float WetLimit = 0.35f;
 
         public override bool HandleEvent(GameEvent e)

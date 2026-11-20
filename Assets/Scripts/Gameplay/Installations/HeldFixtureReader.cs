@@ -123,18 +123,18 @@ namespace CavesOfOoo.Core
         public static string Status(IEnumerable<Entity> fixtures)
         {
             var parts = new List<string>(); if (fixtures == null) return "";
-            var list = new List<Entity>(fixtures); list.Sort((a, b) => string.CompareOrdinal(a.ID, b.ID));
+            var list = new List<Entity>(fixtures); list.RemoveAll(e => e == null); list.Sort((a, b) => string.CompareOrdinal(a.ID, b.ID));
             foreach (var e in list)
             {
                 string kind = e.GetPart<PackableFixturePart>()?.Kind;
-                if (kind == "camp-hearth" && e.GetPart<FuelPart>() is FuelPart fuel && e.GetPart<ThermalPart>() is ThermalPart heat)
+                if (kind == CampKinds.Hearth && e.GetPart<FuelPart>() is FuelPart fuel && e.GetPart<ThermalPart>() is ThermalPart heat)
                 {
                     bool lit = heat.Temperature >= CookingService.MinimumFiniteCookingTemperature && fuel.FuelMass > 0;
                     int amount = (int)Math.Floor(fuel.FuelMass);
                     if (lit) parts.Add("hearth lit, " + amount + " fuel");
                     else if (amount > 0) parts.Add("hearth cold, " + amount + " fuel");
                 }
-                else if (kind == "camp-box" && e.GetPart<ContainerPart>() is ContainerPart box)
+                else if (kind == CampKinds.Box && e.GetPart<ContainerPart>() is ContainerPart box)
                 {
                     int things = 0; foreach (var item in box.Contents) things += item.GetPart<StackerPart>()?.StackCount ?? 1;
                     if (things > 0) parts.Add("box holds " + things);

@@ -10,6 +10,8 @@ namespace CavesOfOoo.Core
         AbilityTarget,
         TalkTarget,
         InspectTarget,
-        ThrowTarget
+        ThrowTarget,
+        /// <summary>Choosing a cell to put something in (moving a set-down kit): the outline is green where it fits and red where it does not.</summary>
+        PlaceTarget
     }
 }

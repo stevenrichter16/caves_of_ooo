@@ -15,6 +15,9 @@ namespace CavesOfOoo.Core
         public int AnchorY { get; private set; }
         public int? MaxRange { get; private set; }
         public bool FollowMouse { get; private set; }
+        /// <summary>For <see cref="WorldCursorMode.PlaceTarget"/>: whether the thing being placed fits in the cursor's cell. Set by the picker each time the cursor moves; the renderer only reads it.</summary>
+        public bool PlaceValid { get; private set; }
+        public void SetPlaceValid(bool valid) { PlaceValid = valid; }
         public bool ThrowGroundAim { get; private set; }
         public bool ThrowFocused { get; private set; }
         public ThrowPreview ThrowPreview { get; private set; }
@@ -32,7 +35,7 @@ namespace CavesOfOoo.Core
             bool followMouse = true)
         {
             Active = true;
-            ThrowGroundAim=false;ThrowFocused=false;ThrowPreview=null;
+            ThrowGroundAim=false;ThrowFocused=false;ThrowPreview=null;PlaceValid=false;
             Mode = mode;
             Zone = zone;
             X = x;

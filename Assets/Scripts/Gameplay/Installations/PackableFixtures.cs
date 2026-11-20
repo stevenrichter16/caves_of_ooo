@@ -120,6 +120,12 @@ namespace CavesOfOoo.Core
     /// The only Part home/base owns (design 5.2): the definition key and the one timestamp readers need. Primitives and strings only. It hosts the verbs:
     /// a carried kit offers "set down" in the pack menu, a standing fixture offers "take up" and "hand over" in the world menu.
     /// </summary>
+    /// <summary>The kinds the camp verbs know by name ("make camp" lays them out in this order, the readers say what a hearth or box holds). Data in PackableFixtures.json; named once here.</summary>
+    public static class CampKinds
+    {
+        public const string Hearth = "camp-hearth", Still = "camp-still", Bench = "camp-bench", Box = "camp-box";
+    }
+
     public sealed class PackableFixturePart : Part, IDescribeState, IStationReadinessGuard
     {
         public string Kind = "";

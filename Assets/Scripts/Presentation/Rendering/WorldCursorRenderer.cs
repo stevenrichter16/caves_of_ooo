@@ -89,6 +89,14 @@ namespace CavesOfOoo.Rendering
                 DrawThrowPreview(state,player);return;
             }
             HideThrowPreview();
+            if(state.Mode==WorldCursorMode.PlaceTarget)
+            {
+                _vaultActor=null;_landingRenderer.enabled=false;LandingCell=new Vector2Int(-1,-1);
+                _lineRenderer.widthMultiplier = 0.12f;
+                CurrentCell=new Vector2Int(state.X,state.Y);CurrentColor=PlaceColor(state.PlaceValid);
+                DrawOutline(_lineRenderer,state.X,state.Y,CurrentColor);
+                return;
+            }
             if(state.Mode==WorldCursorMode.AbilityTarget)
             {
                 _lineRenderer.widthMultiplier = 0.12f;
@@ -155,6 +163,9 @@ namespace CavesOfOoo.Rendering
             if (_lineRenderer != null)
                 _lineRenderer.enabled = false;
         }
+
+        /// <summary>The border colour of a placement cell: green where the thing fits, red where it does not.</summary>
+        public static Color PlaceColor(bool fits) => fits ? QudColorParser.BrightGreen : QudColorParser.BrightRed;
 
         public static Color GetCursorColor(Cell cell, Entity player)
         {

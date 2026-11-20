@@ -439,7 +439,7 @@ namespace CavesOfOoo.Rendering
 
         private void RefreshControllerDirectionCue()
         {
-            if (IsVaultTargeting)
+            if (IsVaultTargeting || IsMoveTargeting)
             {
                 _controllerDirectionCue.Deactivate();
                 _controllerOwnsCue = false;
@@ -464,7 +464,7 @@ namespace CavesOfOoo.Rendering
             if (_controllerOwnsCue)
             {
                 _controllerDirectionCue.Deactivate();
-                if (_inputState != InputState.LookMode && _inputState != InputState.ThrowTargeting && !IsVaultTargeting) ZoneRenderer?.ClearWorldCursor();
+                if (_inputState != InputState.LookMode && _inputState != InputState.ThrowTargeting && !IsVaultTargeting && !IsMoveTargeting) ZoneRenderer?.ClearWorldCursor();
                 _controllerOwnsCue = false;
             }
         }

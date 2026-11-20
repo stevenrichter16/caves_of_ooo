@@ -2817,7 +2817,7 @@ namespace CavesOfOoo.Rendering
                     && !string.IsNullOrWhiteSpace(_itemActionPopup.Actions[_itemActionPopup.CursorIndex].Hint))
                 {
                     // A row that says what it does (knap an edge, strike a spark) shows that instead of the item's stat line.
-                    DrawText(1, H - 1, _itemActionPopup.Actions[_itemActionPopup.CursorIndex].Hint, QudColorParser.BrightCyan);
+                    DrawText(1, H - 1, Truncate(_itemActionPopup.Actions[_itemActionPopup.CursorIndex].Hint, 78), QudColorParser.BrightCyan);
                 }
                 else if (_itemActionPopup.CursorIndex < _itemActionPopup.Actions.Count)
                 {

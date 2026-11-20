@@ -1464,7 +1464,14 @@ namespace CavesOfOoo
         private bool PlacePlayerInOpenCell()
         {
             if (!FreshGameStart.TryPlace(_zoneManager, _player, _freshStartZoneId ?? FreshGameZoneID, out var placedZone))
-                return false;
+            {
+                // A scenario's wild start that cannot place the player falls back to the ordinary start instead of failing the whole launch.
+                if (string.IsNullOrWhiteSpace(FreshGameZoneID) && !string.IsNullOrWhiteSpace(_freshStartZoneId)
+                    && FreshGameStart.TryPlace(_zoneManager, _player, "", out placedZone))
+                    Debug.LogWarning("[Bootstrap] The scenario's wild start zone could not place the player; started at the ordinary Spread start instead.");
+                else
+                    return false;
+            }
             _zone = placedZone;
             _zoneManager.SetActiveZone(_zone);
             return true;

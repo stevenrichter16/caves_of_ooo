@@ -3218,6 +3218,13 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // The single "move" row of a set-down kit: choose the cell on the map first (green fits, red does not); the move itself is a declared-time command run on confirm.
+            if (action.Command.StartsWith(HeldFixtureActions.PickMovePrefix, StringComparison.Ordinal))
+            {
+                if (!BeginMoveTargeting(target)) _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
             // Declared time (spec S3): a row that states its own turn cost runs in the shared command transaction and bypasses the
             // legacy command chains below, so a new command needs no edit to them. Unspecified rows fall through unchanged.
             if (action.Time != ActionTime.Unspecified && !action.IsDisabled && !string.IsNullOrEmpty(action.Command))
@@ -4026,6 +4033,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void HandleAwaitingDirection()
         {
+            if(IsMoveTargeting){HandleMoveTargeting();return;}
             if(_pendingAbility?.Command=="CommandVault"){HandleVaultTargeting();return;}
             // Cancel on Escape
             if (InputHelper.GetKeyDown(KeyCode.Escape))
@@ -4273,7 +4281,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool GetDirectionKeyDown(out int dx, out int dy)
         {
-            bool cursor = _inputState == InputState.LookMode || _inputState == InputState.ThrowTargeting || IsVaultTargeting;
+            bool cursor = _inputState == InputState.LookMode || _inputState == InputState.ThrowTargeting || IsVaultTargeting || IsMoveTargeting;
             if (cursor && NativeGamepadInput.TryDirection(true, out dx, out dy)) return true;
             if (!cursor && NativeGamepadInput.GetKeyDown(KeyCode.Return)
                 && NativeGamepadInput.TrySelectedDirection(out dx, out dy)) return true;

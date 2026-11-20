@@ -41,8 +41,7 @@ namespace CavesOfOoo.Core
             if (actor == null || fire == null || zone == null || !Source(actor, fire, zone) || !Fuel(fire, out var fuel)) return null;
             var parts = new System.Collections.Generic.List<string>();
             int feedN = FeedCount(fuel, TimberCarried(actor)); if (feedN >= 1) parts.Add("feed it (" + feedN + " timber)");
-            float temperature = fire.ParentEntity.GetPart<ThermalPart>().Temperature;
-            if (fuel.FuelMass > 0 && temperature < 450 && IgnitionSources.Find(actor, zone, fire.ParentEntity) != null) parts.Add("light it");
+            if (fuel.FuelMass > 0 && !Hot(fire) && IgnitionSources.Find(actor, zone, fire.ParentEntity) != null) parts.Add("light it");
             if (Hot(fire) && actor.GetPart<InventoryPart>() is InventoryPart pack)
             {
                 int wet = 0; foreach (var gear in pack.Objects) if (Gear(actor, gear)) wet++;
@@ -64,18 +63,19 @@ namespace CavesOfOoo.Core
             if (feedN >= 2)
                 actions.AddActionWithHint("FeedCookingFireFull", "feed coals to full (" + feedN + " timber, +" + (int)Math.Min(fuel.MaxFuel - fuel.FuelMass, 10 * feedN) + " fuel)", FeedFullCommand, "Adds timber until the fire is full, all in one action. It does not light it.", 'u', 18);
             var flame = IgnitionSources.Find(actor, zone, fire.ParentEntity);
-            float temperature = fire.ParentEntity.GetPart<ThermalPart>().Temperature;
-            // A flint striker pays a strike for every relight, including one that only tops up a fire that is still burning, so the row says so and how many are left.
+            // A fire that is already burning is not relit: the light rows appear only for a fire that is out (cold, or out of fuel), so nothing offers to spend a strike on a flame.
+            bool burning = Hot(fire);
+            // A flint striker pays a strike for every lighting, so the row says so and how many are left.
             string strike = flame?.GetPart<FlintStrikerPart>() is FlintStrikerPart striker ? " (1 strike, " + striker.Strikes + " left)" : "";
-            if (fuel.FuelMass > 0 && temperature < 450 && flame != null)
-                actions.AddActionWithHint("RelightCookingFire", "relight coals from flame" + strike, "RelightCookingFire", "Lights the coals from a flame you carry or stand beside." + (strike.Length > 0 ? " The striker spends one strike." : ""), 'l', 18);
-            else if (!Hot(fire))
+            if (!burning && fuel.FuelMass > 0 && flame != null)
+                actions.AddActionWithHint("RelightCookingFire", "relight coals from flame" + strike, "RelightCookingFire", "Lights the coals from a flame you carry or stand beside." + (strike.Length > 0 ? " Spends 1 strike." : ""), 'l', 18);
+            else if (!burning)
                 // A fire that is out says what stops it from being lit instead of offering nothing.
                 actions.AddDisabled("RelightCookingFire", "relight coals from flame", fuel.FuelMass <= 0 ? "no_fuel" : "no_flame",
                     fuel.FuelMass <= 0 ? "The coals have no fuel. Feed them first." : "You have no flame to light it from: a burning fire beside you, a lit torch in hand, or a flint striker." + (FlintStrikerPart.WornHint(actor) ?? ""), '\0', 18);
-            if (feedN >= 1 && flame != null && temperature < 450)
+            if (feedN >= 1 && flame != null && !burning)
                 actions.AddActionWithHint("StokeCookingFire", "stoke: feed " + feedN + " timber and light it" + strike, StokeCommand,
-                    "Stoke: adds all the timber the fire will take, then lights it from a flame you carry, in one action." + (strike.Length > 0 ? " The striker spends one strike." : ""), 't', 18);
+                    "Adds all the timber the fire will take, then lights it from a flame you carry." + (strike.Length > 0 ? " Spends 1 strike." : ""), 't', 18);
         }
         /// <summary>
         /// Feed to full, or stoke (feed to full, then light it from a flame in reach), as one action in the caller's transaction: every timber, the fuel, the strike and the heat
@@ -106,7 +106,7 @@ namespace CavesOfOoo.Core
                 fuel.FuelMass = Math.Min(fuel.MaxFuel, fuelBefore + 10 * fed);
             }
             bool lit = false;
-            if (stoke && fuel.FuelMass > 0 && heat.Temperature < 450)
+            if (stoke && fuel.FuelMass > 0 && heat.Temperature < CookingService.MinimumFiniteCookingTemperature)
             {
                 if (!tx.TryClaim(flame, actor, command)) return false;
                 if (!IgnitionSources.Consume(actor, flame, tx, "coals")) return WorldResourceActions.Reject(actor, owner, command, "fuel_or_ignition_unavailable");
@@ -173,7 +173,8 @@ namespace CavesOfOoo.Core
                     else
                     {
                         var heat = owner.GetPart<ThermalPart>(); var source = IgnitionSources.Find(actor, zone, owner);
-                        if (fuel.FuelMass <= 0 || heat.Temperature >= 450 || source == null) return WorldResourceActions.Reject(actor, owner, command, "fuel_or_ignition_unavailable");
+                        if (heat.Temperature >= CookingService.MinimumFiniteCookingTemperature && fuel.FuelMass > 0) return WorldResourceActions.Reject(actor, owner, command, "already_burning");
+                        if (fuel.FuelMass <= 0 || source == null) return WorldResourceActions.Reject(actor, owner, command, "fuel_or_ignition_unavailable");
                         if (!tx.TryClaim(source, actor, command)) return false;
                         if (!IgnitionSources.Consume(actor, source, tx, "coals")) return WorldResourceActions.Reject(actor, owner, command, "fuel_or_ignition_unavailable");
                         float before = heat.Temperature; tx.Do(() => heat.Temperature = 450, () => heat.Temperature = before);

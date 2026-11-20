@@ -96,7 +96,7 @@ namespace CavesOfOoo.Core
             if (night.BurnTicks >= minimum) return null;
             if (FuelTicks(fuel) < minimum)
                 return ("fuel_short", "The fire would not last the night: it needs about " + FuelFor(fuel, minimum) + " fuel and there are " + (int)Math.Floor(fuel.FuelMass) + ".");
-            return ("fire_low", "The fire is too low to keep through the night. Relight it from a flame first.");
+            return ("fire_low", "The fire is burning too low to keep through the night. When it dies down, light it again from a flame.");
         }
 
         // ── rows ──
@@ -124,7 +124,7 @@ namespace CavesOfOoo.Core
             var hp = actor?.GetStat("Hitpoints"); int heals = hp == null ? 0 : Math.Max(0, hp.Max - hp.Value);
             string preview = (heals > 0 ? "heals " + heals + ", " : "") + "the fire burns about " + night.Fuel + " fuel" + (night.BurnsOut ? ", then goes out" : "");
             string hint = command == BandCommand
-                ? "Sleep through to the next time of day. You heal and bleeding stops; the fire burns what it can and goes out if the fuel or heat runs short."
+                ? "Sleeps to the next time of day. You heal; the fire burns what it can and may go out."
                 : "Sleep beside the fire for a night. You heal and bleeding stops; the fire burns fuel while you sleep.";
             actions.AddActionWithHint(name, label + " (" + preview + ")", command, hint, key, priority, false, ActionTime.Free);
         }
