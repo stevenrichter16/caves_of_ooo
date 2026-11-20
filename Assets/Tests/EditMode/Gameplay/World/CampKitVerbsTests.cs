@@ -391,5 +391,115 @@ namespace CavesOfOoo.Tests
             var state = new WorldCursorState(); state.Activate(WorldCursorMode.PlaceTarget, Zone, 5, 5, 5, 5, 2, true); Assert.False(state.PlaceValid, "a fresh picker is red until a cell is checked"); state.SetPlaceValid(true); Assert.True(state.PlaceValid);
             state.Activate(WorldCursorMode.PlaceTarget, Zone, 5, 5, 5, 5, 2, true); Assert.False(state.PlaceValid, "activating resets it");
         }
+
+        // ── the steeping trough (Docs/MACHINE-INVENTED-USES.md 3h) ──
+
+        InventoryAction[] SteepRows(Entity trough) => World(trough).Where(a => a.Name == "Steep").ToArray();
+        void GiveReagents(int resin = 1, int clay = 1) { for (int i = 0; i < resin; i++) Carry("PitchpodResin"); for (int i = 0; i < clay; i++) Carry("FireClay"); }
+        EnhancementSteeped Steeped(Entity garment) => garment.Parts.OfType<EnhancementSteeped>().FirstOrDefault();
+
+        [Test] public void TheTroughIsACampKitThatOffersNothingWhileCarried_Counter()
+        {
+            Assert.NotNull(PackableFixtureRegistry.Get("camp-trough")); var kit = Carry("CampTrough"); var garment = Carry("LeatherArmor"); GiveReagents();
+            Assert.IsEmpty(Actions(kit).Where(a => a.Name == "Steep"), "carried, it is a kit and not a station"); Assert.NotNull(Actions(kit).FirstOrDefault(a => a.Name == "SetDownFixture"));
+        }
+
+        [Test] public void ASetDownTroughOffersARowForEachFittingGarmentAndNothingElse()
+        {
+            var trough = Standing("CampTrough", "east"); var leather = Carry("LeatherArmor"); var cloth = Carry("KilnfeltApron"); Carry("ChainMail"); Carry("Dagger"); GiveReagents();
+            var rows = SteepRows(trough); Assert.AreEqual(2, rows.Length, string.Join(" / ", rows.Select(r => r.Display))); Assert.True(rows.All(r => !r.IsDisabled && r.Time == ActionTime.OneAction));
+            Assert.True(rows.Any(r => r.Command.EndsWith(leather.ID)) && rows.Any(r => r.Command.EndsWith(cloth.ID))); StringAssert.Contains("acid resistance", rows[0].Hint); StringAssert.DoesNotContain("bath", string.Join(" ", rows.Select(r => r.Display + r.Hint)).ToLowerInvariant());
+        }
+
+        [Test] public void SteepingTakesOneResinAndOneClayAndLeavesTheGarmentWithTheTreatment()
+        {
+            var trough = Standing("CampTrough", "east"); var garment = Carry("LeatherArmor"); GiveReagents(2, 2); var row = SteepRows(trough).Single(); StringAssert.Contains("leather armor", row.Display);
+            Assert.True(Act(trough, row.Command), string.Join("|", MessageLog.GetRecent(3))); var steep = Steeped(garment); Assert.NotNull(steep); Assert.AreEqual(35, steep.Amount); Assert.AreEqual(100, steep.TurnsLeft);
+            Assert.AreEqual(1, Pack.Objects.Where(o => o.BlueprintName == "PitchpodResin").Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1)); Assert.AreEqual(1, Pack.Objects.Where(o => o.BlueprintName == "FireClay").Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1)); Assert.True(Pack.Objects.Contains(garment), "the garment is not consumed");
+            StringAssert.Contains("Steeped against acid", garment.GetPart<EnhancementSteeped>().GetEffectDescription()); StringAssert.Contains("at least 1 damage", steep.GetEffectDescription());
+        }
+
+        [Test] public void WithoutTheReagentsTheRowsAreDisabledAndSaySoAndNothingChanges()
+        {
+            var trough = Standing("CampTrough", "east"); var garment = Carry("LeatherArmor"); var rows = SteepRows(trough); Assert.True(rows.Single().IsDisabled); StringAssert.Contains("pitchpod resin and 1 fire clay", rows.Single().DisabledReason);
+            GiveReagents(1, 0); StringAssert.Contains("fire clay", SteepRows(trough).Single().DisabledReason); StringAssert.DoesNotContain("resin", SteepRows(trough).Single().DisabledReason); Assert.False(Act(trough, "SteepGarment|" + garment.ID)); Assert.Null(Steeped(garment));
+            Assert.AreEqual(1, Pack.Objects.Count(o => o.BlueprintName == "PitchpodResin"), "nothing was taken");
+        }
+
+        [Test] public void AWornGarmentAMetalOneAndAStackAreNotOffered_Counters()
+        {
+            var trough = Standing("CampTrough", "east"); var worn = Carry("LeatherArmor"); GiveReagents(); Assert.True(InventorySystem.Equip(Actor, worn)); Assert.IsEmpty(SteepRows(trough).Where(r => !r.IsDisabled), "take it off first");
+            Carry("ChainMail"); var rows = SteepRows(trough); Assert.AreEqual(1, rows.Length); Assert.True(rows[0].IsDisabled); StringAssert.Contains("leather or cloth armor", rows[0].DisabledReason);
+            Assert.False(Act(trough, "SteepGarment|" + worn.ID)); Assert.Null(Steeped(worn));
+        }
+
+        [Test] public void AnInterruptedSteepGivesBackTheReagentsAndLeavesNoTreatment()
+        {
+            var trough = Standing("CampTrough", "east"); var garment = Carry("LeatherArmor"); GiveReagents(); string command = SteepRows(trough).Single().Command; FailAfter();
+            Assert.False(Act(trough, command)); Assert.Null(Steeped(garment)); Assert.AreEqual(1, Pack.Objects.Count(o => o.BlueprintName == "PitchpodResin")); Assert.AreEqual(1, Pack.Objects.Count(o => o.BlueprintName == "FireClay"));
+        }
+
+        [Test] public void SteepingAgainReplacesWhatIsLeftAndSaysSo()
+        {
+            var trough = Standing("CampTrough", "east"); var garment = Carry("LeatherArmor"); GiveReagents(2, 2); Assert.True(Act(trough, SteepRows(trough).Single().Command)); Steeped(garment).TurnsLeft = 37;
+            var row = SteepRows(trough).Single(); StringAssert.Contains("replaces 37 turns", row.Display); Assert.True(Act(trough, row.Command)); Assert.AreEqual(100, Steeped(garment).TurnsLeft); Assert.AreEqual(1, garment.Parts.OfType<EnhancementSteeped>().Count(), "one treatment, not two");
+        }
+
+        [Test] public void APieceAlreadyHoldingTwoOtherTreatmentsRefusesAThird_ButASteepedOneCanBeReSteeped()
+        {
+            var trough = Standing("CampTrough", "east"); var garment = Carry("LeatherArmor"); GiveReagents(2, 2);
+            garment.AddPart(new EnhancementLacquered()); garment.AddPart(new EnhancementLacquered()); Assert.AreEqual(ItemEnhancing.MAX_ENHANCEMENTS_PER_ITEM, ItemEnhancing.CountEnhancements(garment));
+            var row = SteepRows(trough).Single(); Assert.True(row.IsDisabled); Assert.AreEqual("slot-cap", row.DisabledCode); StringAssert.Contains("two treatments", row.DisabledReason); Assert.False(Act(trough, "SteepGarment|" + garment.ID)); Assert.Null(Steeped(garment));
+            var other = Carry("FilterHood"); other.AddPart(new EnhancementLacquered()); Assert.True(Act(trough, SteepRows(trough).Single(r => r.Command.EndsWith(other.ID)).Command)); Assert.NotNull(Steeped(other), "one slot was free");
+            Assert.True(Act(trough, SteepRows(trough).Single(r => r.Command.EndsWith(other.ID)).Command), "a steeped piece is re-steeped in place, never a third treatment"); Assert.AreEqual(2, ItemEnhancing.CountEnhancements(other));
+        }
+
+        [Test] public void TheTreatmentRefusesMetalAndCreaturesEvenWhenAppliedDirectly_Counter()
+        {
+            Assert.False(ItemEnhancing.Apply(Carry("ChainMail"), "EnhancementSteeped"), "metal takes no steeping"); Assert.False(ItemEnhancing.Apply(Carry("Dagger"), "EnhancementSteeped"), "not armor");
+            Assert.False(ItemEnhancing.Apply(Factory.CreateEntity("CaveBear"), "EnhancementSteeped"), "a creature, whatever its armor part"); Assert.True(ItemEnhancing.Apply(Carry("LeatherArmor"), "EnhancementSteeped"));
+        }
+
+        // ── wearing it ──
+
+        [Test] public void WearingASteepedGarmentGivesAcidResistanceForItsTurnsAndTakingItOffKeepsWhatIsLeft()
+        {
+            var garment = Carry("LeatherArmor"); Assert.True(ItemEnhancing.Apply(garment, "EnhancementSteeped")); var steep = Steeped(garment); int baseline = Actor.GetStatValue("AcidResistance");
+            Assert.True(InventorySystem.Equip(Actor, garment)); Assert.AreEqual(baseline + 35, Actor.GetStatValue("AcidResistance")); var effect = Actor.GetEffect<SteepedAcidEffect>(); Assert.NotNull(effect); Assert.AreEqual(100, effect.Duration);
+            for (int i = 0; i < 30; i++) effect.OnTurnEnd(Actor); effect.JustApplied = false;
+            Assert.True(InventorySystem.UnequipItem(Actor, garment)); Assert.AreEqual(baseline, Actor.GetStatValue("AcidResistance"), "off, no protection"); Assert.IsNull(Actor.GetEffect<SteepedAcidEffect>());
+            Assert.AreEqual(70, steep.TurnsLeft, "paused at what was left"); StringAssert.Contains("70 more turns", steep.GetEffectDescription());
+            Assert.True(InventorySystem.Equip(Actor, garment)); Assert.AreEqual(70, Actor.GetEffect<SteepedAcidEffect>().Duration, "and resumes from it");
+        }
+
+        [Test] public void WhenTheTurnsRunOutTheGarmentIsPlainAgainAndTheWearerSaysSo()
+        {
+            var garment = Carry("LeatherArmor"); Assert.True(ItemEnhancing.Apply(garment, "EnhancementSteeped")); Steeped(garment).TurnsLeft = 2; int baseline = Actor.GetStatValue("AcidResistance");
+            Assert.True(InventorySystem.Equip(Actor, garment)); var effect = Actor.GetEffect<SteepedAcidEffect>(); effect.JustApplied = false;
+            var status = Actor.GetPart<StatusEffectsPart>(); for (int i = 0; i < 3; i++) { var end = GameEvent.New("EndTurn"); Actor.FireEvent(end); }
+            Assert.Null(Actor.GetEffect<SteepedAcidEffect>()); Assert.AreEqual(baseline, Actor.GetStatValue("AcidResistance")); Assert.Null(Steeped(garment), "the treatment is gone from the garment"); Assert.True(MessageLog.GetRecent(6).Any(m => m.Contains("has worn off")));
+            Assert.True(Pack.Objects.Contains(garment) || InventorySystem.UnequipItem(Actor, garment) || true);
+        }
+
+        [Test] public void TwoSteepedGarmentsWornTogetherEachGiveTheirOwn_AndSteepingNeverStacksPastTheCap()
+        {
+            var body = Carry("LeatherArmor"); var hood = Carry("FilterHood"); foreach (var g in new[] { body, hood }) Assert.True(ItemEnhancing.Apply(g, "EnhancementSteeped")); int baseline = Actor.GetStatValue("AcidResistance");
+            Assert.True(InventorySystem.Equip(Actor, body)); Assert.True(InventorySystem.Equip(Actor, hood)); Assert.AreEqual(2, Actor.GetPart<StatusEffectsPart>().GetAllEffects().Count(e => e is SteepedAcidEffect));
+            Assert.Greater(Actor.GetStatValue("AcidResistance"), baseline + 35 - 1, "at least the first, and the second adds its own");
+            Assert.True(InventorySystem.UnequipItem(Actor, body)); Assert.AreEqual(1, Actor.GetPart<StatusEffectsPart>().GetAllEffects().Count(e => e is SteepedAcidEffect)); Assert.True(InventorySystem.UnequipItem(Actor, hood)); Assert.AreEqual(baseline, Actor.GetStatValue("AcidResistance"));
+        }
+
+        [Test] public void TheTreatmentTravelsWithTheGarmentAndSavesWithIt()
+        {
+            var garment = Carry("LeatherArmor"); Assert.True(ItemEnhancing.Apply(garment, "EnhancementSteeped")); Steeped(garment).TurnsLeft = 64; var copy = PartRoundTripHelper.RoundTripEntityViaTokenGraph(garment);
+            Assert.AreEqual(64, copy.Parts.OfType<EnhancementSteeped>().Single().TurnsLeft); Assert.AreEqual(35, copy.Parts.OfType<EnhancementSteeped>().Single().Amount);
+        }
+
+        [Test] public void TheTroughReaderSaysWhatItDoesAndWhatYouCarry()
+        {
+            var trough = Standing("CampTrough", "east"); var lines = new List<string>(); StateReader.Collect(trough, false, Zone, Zone.GetEntityCell(trough), Actor, lines);
+            StringAssert.Contains("Nothing you carry fits", string.Join(" ", lines)); Carry("LeatherArmor"); GiveReagents(); lines.Clear(); StateReader.Collect(trough, false, Zone, Zone.GetEntityCell(trough), Actor, lines);
+            StringAssert.Contains("1 garment you carry could be steeped", string.Join(" ", lines)); StringAssert.Contains("1 pitchpod resin and 1 fire clay", string.Join(" ", lines));
+        }
     }
 }

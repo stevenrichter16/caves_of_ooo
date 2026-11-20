@@ -5657,6 +5657,42 @@
       ]
     },
     {
+      "Name": "CampTrough",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "steeping trough" },
+            { "Key": "RenderString", "Value": "U" },
+            { "Key": "ColorString", "Value": "&c" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "true" },
+            { "Key": "Weight", "Value": "24" }
+          ]
+        },
+        { "Name": "SteepTrough", "Params": [] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "90" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A long timber trough, tarred inside, with a lidded pot of clay slip at one end, made to be set down and used. Leather and cloth armor can be steeped here. It is not made for people, and it keeps nothing." }
+          ]
+        },
+        { "Name": "PackableFixture", "Params": [ { "Key": "Kind", "Value": "camp-trough" } ] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Item", "Value": "true" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "SoundingRod",
       "Inherits": "PhysicalObject",
       "Parts": [

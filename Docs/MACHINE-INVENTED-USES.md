@@ -28,7 +28,7 @@ Rules the inventions below follow: attach to an existing rule or loop; add a pat
 | 11 | Signal relay | A Concord caravan carries goods only as far as the Last Counter by contract; scattered camps cannot move goods. | **Carriage.** Entrust a carried stack to a Concord keeper for a fee through the ledger; collect it at another post after days; beyond the Last Counter the receipt says only "departed". | `Lore/Codex/06_ConcordCarriageContract.md` already writes the clauses. Arrival is reconciled when the player reaches the post, never by a timer on an unloaded zone. | Design. |
 | 4 | Assay cabinet | Items explain themselves freely; there is no unknown to read. | **Reading a find.** At a scribes' desk, spend a measure of Ink and a sample to learn what a component can be recovered into or what a fluid does. | The Recension reads; Ink is the scribes' finite resource. [I] | Design; weakest of the set. |
 | 5 | Culture vat | No living stock exists that is not a seed. | **A tended colony jar** for the catacomb folk's living light and ward, started from a cutting the folk give a trusted guest. | Their culture is a living light kept in jars. Needs the Quiet's Door standing (`Liked`) and a lore read. | Design. [I] |
-| 12 | Treatment bath | Acid spray from the Marlback Soursprayer is the one under-served hazard near the start. | A **steeping trough** (gear only, never a body; the word "bath" stays out of player text because Curation and the Bower use it for bodies) that gives a garment a finite acid-proofing. | See the bath dossier. | Design; narrow. |
+| 12 | Treatment bath | Acid spray from the Marlback Soursprayer is the one under-served hazard near the start. | A **steeping trough** (gear only, never a body; the word "bath" stays out of player text because Curation and the Bower use it for bodies) that gives a garment a finite acid-proofing. | See the bath dossier. | **Built (3h).** |
 | 3 | Restoration cradle | The field rig already refits with parts. | Merge into the rig: the rig **is** the cradle. | Avoids a second apparatus. | Design. |
 | 6 | Anchored capstan | No heavy objective qualifies. | Park until a heavy reclamation find is worth more intact at a workshop. | Dossier gate G0. | Parked. |
 | 1 | Forge and reclamation rig | Already purposeful. | Portable cold bench (built). | | Done. |
@@ -128,13 +128,27 @@ What the object adds is the world's side. It is placed fresh-only beside Cinderh
 
 **Honest limits.** Not played in the Editor. The ground table's numbers are proposals, tunable. Only one tool (the pitch's "recognizable signature" needs a buried-feature layer the world lacks). Wording is placeholder pending voice review. A Tinker already generated and cached has no rod; an unvisited town gets it on first visit.
 
+## 3h. The sixth build: the steeping trough (2026-11-20)
+
+**The gap.** Acid is the one hazard near the start that is both dangerous and under-served: a Marlback Soursprayer's spray is a damage-over-time that costs about 37 HP unresisted and about 18 with a +35 resistance, and the only counters were buying a particular apron or eating a particular meal. The bath dossier ([MachineDesign/machine-bath.md](MachineDesign/machine-bath.md)) found the honest V1: a small, optional, gear-only preparation that makes a garment turn acid for a while, and nothing more (the roster's other half, shedding spores, has no state to act on).
+
+**The invention.** The steeping trough, a camp kit like the bench and still (set it down, steep, pick it up; a Tinker may stock one, 20%). Beside it, a carried, unworn, unstacked garment of leather or cloth can be steeped with **one pitchpod resin and one fire clay**: it then gives **+35 acid resistance for 100 turns of wear** (`EnhancementSteeped`). The reagents are used up whether or not acid is ever met; there is no refund and no byproduct; the garment is not consumed; steeping again replaces what is left (the row says "replaces 37 turns"); a piece that already holds two treatments refuses a third.
+
+**How the wear works.** The treatment lives on the garment and travels with it (carried, sold, dropped, saved). Putting the garment on gives the wearer a `SteepedAcidEffect` for the turns that remain; the effect counts down on the wearer's own turns (so world-map travel does not wear it); taking the garment off keeps what is left (paused, not lost); when the turns run out the garment is plain again and the wearer is told. Two steeped garments worn together each give their own. Acid still does at least 1 damage per hit; the reader says so.
+
+**Gear only, and the word.** The trough offers rows for garments by Part allow-list (armor, organic or cloth material, takeable, not a creature), so a person, body or specimen can never qualify; its word is "steep". "Bath" belongs to the Curation and the Bower and never appears in what the player reads.
+
+**Quality of life.** Each row names the garment and what it replaces; its hint states the reagents, the effect and that wear pauses when the garment is taken off; with a reagent missing the row is disabled and says which; with nothing to steep one disabled row says what fits; the trough's reader says how many garments you carry could be steeped and what reagents you carry; the garment's reader says how many turns of wear remain.
+
+**Honest limits.** Not played in the Editor. The numbers (35, 100 turns) are the dossier's proposal. No new art (a glyph). The reagents are bought or found; nothing makes pitchpod resin or fire clay yet (the firing build, which fires clay, would make the second). Wording is placeholder pending voice review.
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).
 2. The Cinderhold pump as a site-owned object (built, 3f); the same part for the Tine weir, Wellmeet scales and the other data sites next.
 3. Carriage (the contract text is written; only Cinderhold and the Last Counter keep a ledger today, so it waits on a keeper at Tally).
 4. Sounding (built, 3g).
-5. Firing (needs a finite clay deposit; gives three repair approaches a third source).
-6. Charge rod, rendering, colony jar, steeping trough, reading a find, each after its lore read.
+5. Firing (needs a finite clay deposit; gives three repair approaches a third source, and the steeping trough its fire clay).
+6. Charge rod, rendering, colony jar, reading a find, each after its lore read. (The steeping trough is built, 3h.)
 
 Each ships RED-first with counter-checks, an adversarial file, actual play and a fresh-eyed review, as the home kits did.
