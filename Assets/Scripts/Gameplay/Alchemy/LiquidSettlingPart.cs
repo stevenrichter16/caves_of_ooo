@@ -43,12 +43,17 @@ namespace CavesOfOoo.Core
 
         // ── the fire coupling ──
 
+        /// <summary>
+        /// A burning fire with fuel. A finite cooking fire (the camp hearth, the coals) is lit by its own rule, hot enough to cook with fuel left (about 60 turns after a lighting),
+        /// not by the flame temperature, so the hearth that is visibly burning is the one that pays; any other fire must be aflame.
+        /// </summary>
         static bool Burning(Entity fire, Entity still)
         {
             var heat = fire?.GetPart<ThermalPart>(); var fuel = fire?.GetPart<FuelPart>();
-            return fire != still && heat != null && fuel != null && WorldResourceActions.Finite(heat.Temperature) && heat.IsAflame
-                && WorldResourceActions.Finite(fuel.FuelMass) && fuel.FuelMass > 0
-                && !(fire.GetEffect<FrozenEffect>()?.Cold > 0) && !(fire.GetEffect<WetEffect>()?.Moisture > WetLimit);
+            if (fire == still || heat == null || fuel == null || !WorldResourceActions.Finite(heat.Temperature) || !WorldResourceActions.Finite(fuel.FuelMass) || fuel.FuelMass <= 0) return false;
+            var camp = fire.GetPart<CampfirePart>();
+            bool lit = camp != null && camp.FiniteCooking ? CampfireWorkActions.Hot(camp) : heat.IsAflame;
+            return lit && !(fire.GetEffect<FrozenEffect>()?.Cold > 0) && !(fire.GetEffect<WetEffect>()?.Moisture > WetLimit);
         }
 
         /// <summary>The nearest burning fire that can spare a batch (ties by ID), or null with the fullest burning fire's fuel in <paramref name="fullest"/> (-1 when none burns).</summary>
@@ -76,11 +81,12 @@ namespace CavesOfOoo.Core
         {
             if (actions == null || actor == null || zone == null || !Standing || !WorldResourceActions.ActorCurrent(actor, zone) || zone.GetEntityCell(ParentEntity) == null) return;
             var pack = actor.GetPart<InventoryPart>(); if (pack == null) return;
+            var flasks = pack.Objects.Where(o => o?.GetPart<LiquidVesselPart>() is LiquidVesselPart v && v.LiquidId == Feed && v.Volume > 0 && WorldResourceActions.Carried(actor, o)).ToArray();
+            if (flasks.Length == 0) return;   // the zone scan for a fire is only worth doing for a player who carries mire
             var fire = FindFire(zone, out float fullest);
-            foreach (var flask in pack.Objects.ToArray())
+            for (int n = 0; n < flasks.Length; n++)
             {
-                var vessel = flask?.GetPart<LiquidVesselPart>();
-                if (vessel == null || vessel.LiquidId != Feed || vessel.Volume <= 0 || !WorldResourceActions.Carried(actor, flask)) continue;
+                var flask = flasks[n]; var vessel = flask.GetPart<LiquidVesselPart>(); string tag = flasks.Length > 1 ? " #" + (n + 1) : "";
                 string code = null, reason = null;
                 if (vessel.Volume < Ratio) { code = "too_little"; reason = "Settling needs at least " + Ratio + " units of mire."; }
                 else if (fire == null)
@@ -88,10 +94,10 @@ namespace CavesOfOoo.Core
                     code = fullest < 0 ? "no_fire" : "fuel_short";
                     reason = fullest < 0 ? "Settling needs a lit fire beside the still." : "No fire here can spare the fuel: a batch burns " + FuelPerBatch + " and the fullest has " + (int)Math.Floor(fullest) + ".";
                 }
-                if (code != null) { actions.AddDisabled("SettleLiquid", "settle " + vessel.Volume + " mire", code, reason, '\0', 12); continue; }
+                if (code != null) { actions.AddDisabled("SettleLiquid", "settle " + vessel.Volume + " mire" + tag, code, reason, '\0', 12); continue; }
                 int yield = vessel.Volume / Ratio;
-                actions.AddAction("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " water", CommandFor(Water, flask, vessel), '\0', 12, false, ActionTime.OneAction);
-                actions.AddAction("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " oil", CommandFor(Oil, flask, vessel), '\0', 11, false, ActionTime.OneAction);
+                actions.AddAction("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " water" + tag, CommandFor(Water, flask, vessel), '\0', 12, false, ActionTime.OneAction);
+                actions.AddAction("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " oil" + tag, CommandFor(Oil, flask, vessel), '\0', 11, false, ActionTime.OneAction);
             }
         }
 

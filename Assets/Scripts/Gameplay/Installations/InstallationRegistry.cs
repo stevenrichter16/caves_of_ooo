@@ -191,7 +191,7 @@ namespace CavesOfOoo.Core
         /// <summary>The only Part types known to carry no finite state. Admission is an allowlist: any other Part (or one that cannot be resolved) is treated as
         /// stateful and forces <c>Retention: Zone</c>, so a new Part can never enter placement unclassified. Growing this list is a deliberate, reviewed change.</summary>
         static readonly Type[] Stateless =
-            { typeof(RenderPart), typeof(PhysicsPart), typeof(ExaminablePart), typeof(ForgePart), typeof(AlchemyStillPart), typeof(InstallationMarkerPart) };
+            { typeof(RenderPart), typeof(PhysicsPart), typeof(ExaminablePart), typeof(ForgePart), typeof(AlchemyStillPart), typeof(LiquidSettlingPart), typeof(InstallationMarkerPart) };
 
         /// <summary>Blueprint-level admission of one spec (E07 state-bearing with Retention None; E14 not a placeable machine). Creates nothing.
         /// Null means admissible; otherwise the issue text, prefixed with its code.</summary>

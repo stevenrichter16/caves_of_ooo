@@ -18,7 +18,7 @@ namespace CavesOfOoo.Tests
 
         Entity Hearth(float fuel = 30f, bool lit = true, bool standing = true)
         {
-            var h = Place("CampHearth", 11, 10); h.GetPart<PhysicsPart>().Takeable = !standing; h.GetPart<FuelPart>().FuelMass = fuel; h.GetPart<ThermalPart>().Temperature = lit ? 450 : 25; return h;
+            var h = Place("CampHearth", 11, 10); h.GetPart<PhysicsPart>().Takeable = !standing; h.GetPart<FuelPart>().FuelMass = fuel; h.GetPart<ThermalPart>().Temperature = lit ? 450 : 25; h.GetPart<LightSourcePart>().Enabled = lit && fuel > 0; return h;
         }
         float Fuel(Entity h) => h.GetPart<FuelPart>().FuelMass;
         int Hp => Actor.GetStatValue("Hitpoints");
@@ -37,7 +37,7 @@ namespace CavesOfOoo.Tests
         [Test] public void ALitHearthRestsFullyAndBurnsTheFuelItWouldBurnInTheTimeYouSlept()
         {
             var h = Hearth(30); Assert.True(Act(h, "RestAtHearth"), string.Join("|", MessageLog.GetRecent(3)));
-            Assert.AreEqual(Actor.GetStat("Hitpoints").Max, Hp); Assert.AreEqual(60, Clock.TickCount); Assert.AreEqual(15f, Fuel(h), 0.001f, "60 ticks at 0.25 a tick");
+            Assert.AreEqual(Actor.GetStat("Hitpoints").Max, Hp); Assert.AreEqual(60, Clock.TickCount); Assert.AreEqual(15f, Fuel(h), 0.001f, "60 ticks at 0.25 a tick"); Assert.That(h.GetPart<ThermalPart>().Temperature, Is.InRange(150f, 153f), "the fire cooled by the night it burned"); Assert.True(h.GetPart<LightSourcePart>().Enabled, "still burning with fuel left");
             Assert.AreEqual(1, DiagQuery.Apply(new DiagQuery.Filter { Category = "furniture", Kind = "HearthRested", Limit = 5 }).Records.Count);
         }
 
@@ -60,7 +60,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void ExactlyEnoughFuelRestsAndTheFireBurnsOutInTheNight()
         {
-            var h = Hearth(15); Assert.True(Act(h, "RestAtHearth")); Assert.AreEqual(0f, Fuel(h), 0.001f); Assert.AreEqual(60, Clock.TickCount);
+            var h = Hearth(15); Assert.True(Act(h, "RestAtHearth")); Assert.AreEqual(0f, Fuel(h), 0.001f); Assert.AreEqual(60, Clock.TickCount); Assert.AreEqual(h.GetPart<ThermalPart>().AmbientTemperature, h.GetPart<ThermalPart>().Temperature, 0.001f, "burnt out is cold"); Assert.False(h.GetPart<LightSourcePart>().Enabled, "and dark without waiting for the next turn");
         }
 
         [Test] public void RestUntilTheNextBandIsOfferedOnlyWhenTheFireCouldLastIt()
@@ -104,10 +104,23 @@ namespace CavesOfOoo.Tests
             var h = Hearth(30); h.GetPart<CampfirePart>().FiniteCooking = false; Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(30f, Fuel(h), 0.001f); Assert.AreEqual(0, Clock.TickCount);
         }
 
-        [Test] public void TheRestBurnsFromTheFuelInTheSameStepAsTheHeal_NotATimerThatCouldBeSkipped()
+        [Test] public void OneLightingIsAboutOneNight_TheSecondNeedsAFlameAgain()
         {
-            var h = Hearth(30); Assert.True(Act(h, "RestAtHearth")); Assert.True(Act(h, "RestAtHearth"), "15 fuel left is enough for a second night"); Assert.AreEqual(0f, Fuel(h), 0.001f); Assert.AreEqual(120, Clock.TickCount);
-            Actor.GetStat("Hitpoints").BaseValue = 3; Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(3, Hp);
+            var h = Hearth(30); Assert.True(Act(h, "RestAtHearth")); Assert.AreEqual(15f, Fuel(h), 0.001f);
+            var row = Row(h, "HearthRest"); Assert.True(row.IsDisabled, "the fire has cooled to the edge of cooking heat; another 60 ticks would let it die"); StringAssert.Contains("Relight", row.DisabledReason);
+            Actor.GetStat("Hitpoints").BaseValue = 3; Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(3, Hp); Assert.AreEqual(60, Clock.TickCount); Assert.AreEqual(15f, Fuel(h), 0.001f);
+            h.GetPart<ThermalPart>().Temperature = 450; Assert.True(Act(h, "RestAtHearth"), "relit from a flame (or the flint striker) it sleeps a second night"); Assert.AreEqual(0f, Fuel(h), 0.001f); Assert.AreEqual(120, Clock.TickCount);
+        }
+
+        [Test] public void AFireTooLowToLastTheNightRefusesAndSaysToRelight()
+        {
+            var h = Hearth(30); h.GetPart<ThermalPart>().Temperature = 300; var row = Row(h, "HearthRest"); Assert.True(row.IsDisabled); StringAssert.Contains("Relight", row.DisabledReason);
+            Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(30f, Fuel(h), 0.001f); Assert.AreEqual(300f, h.GetPart<ThermalPart>().Temperature, 0.001f); Assert.AreEqual(0, Clock.TickCount);
+        }
+
+        [Test] public void AnEmptyHearthSaysToFeedItNotThatItIsOut()
+        {
+            var h = Hearth(0, lit: true); var row = Row(h, "HearthRest"); Assert.True(row.IsDisabled); StringAssert.Contains("Feed", row.DisabledReason); Assert.AreEqual("no_fuel", row.DisabledCode);
         }
 
         [Test] public void TheWorldMenuTheUiBuildsOffersTheHearthRestRows()

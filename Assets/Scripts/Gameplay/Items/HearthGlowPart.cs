@@ -24,13 +24,20 @@ namespace CavesOfOoo.Core
             // A burning hearth spends its fuel a turn at a time, so a timber is a bounded stretch of fire and the fire goes out when the fuel does. (Relighting a finite
             // fire needs fuel but, in the shipped relight, spends none; without this a single feed would be a permanent fire with any flame to relight it.)
             if (Burning()) { var fuel = owner.GetPart<FuelPart>(); fuel.FuelMass = System.Math.Max(0f, fuel.FuelMass - System.Math.Max(0f, fuel.BurnRate)); }
+            SyncLight();
+            return true;
+        }
+
+        /// <summary>Switches the light to match whether the fire is burning, telling the light map when it changes. Also used by a rest that spends the night's fuel.</summary>
+        internal void SyncLight()
+        {
+            var light = ParentEntity?.GetPart<LightSourcePart>(); if (light == null) return;
             bool burning = Burning();
-            if (light.Enabled == burning) return true;
+            if (light.Enabled == burning) return;
             light.Enabled = burning;
             // The light map caches on entity and equipment versions, and the incremental render skips it, so a toggle must say so (as the torch does) or the light would not
             // show, or go out, until something else moved.
             EquipmentChangeBus.NotifyChanged(null); ZoneRenderHooks.MarkFullDirty("Hearth.Glow");
-            return true;
         }
 
         /// <summary>

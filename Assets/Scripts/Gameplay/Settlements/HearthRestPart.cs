@@ -44,13 +44,30 @@ namespace CavesOfOoo.Core
         static int Need(FuelPart fuel, int ticks)
             => !WorldResourceActions.Finite(fuel.BurnRate) || fuel.BurnRate <= 0 ? -1 : (int)Math.Ceiling(ticks * (double)fuel.BurnRate);
 
-        /// <summary>Null when the fire could last the rest; otherwise the refusal code and the sentence naming the numbers.</summary>
-        static (string code, string text)? Refusal(CampfirePart fire, FuelPart fuel, int need)
+        /// <summary>The fire's temperature after the given ticks, by the same per-turn decay the thermal part applies (with its snap to ambient).</summary>
+        static float Cooled(ThermalPart heat, int ticks)
         {
-            if (need < 0) return ("invalid_fire", "That fire cannot be rested beside.");
+            float t = heat.Temperature;
+            for (int i = 0; i < ticks; i++)
+            {
+                if (t == heat.AmbientTemperature) break;
+                t -= (t - heat.AmbientTemperature) * heat.AmbientDecayRate;
+                if (Math.Abs(t - heat.AmbientTemperature) < 0.5f) t = heat.AmbientTemperature;
+            }
+            return t;
+        }
+
+        /// <summary>Null when the fire could last the whole rest; otherwise the refusal code and the sentence naming the numbers. The fire must have fuel for the ticks and must not cool
+        /// below cooking heat before they end, so one lighting is about one night and the next night needs a flame again.</summary>
+        static (string code, string text)? Refusal(CampfirePart fire, FuelPart fuel, ThermalPart heat, int need, int ticks)
+        {
+            if (need < 0 || heat == null) return ("invalid_fire", "That fire cannot be rested beside.");
+            if (fuel.FuelMass <= 0) return ("no_fuel", "The fire has no fuel. Feed it and light it before you settle down.");
             if (!CampfireWorkActions.Hot(fire)) return ("fire_out", "The fire is out. Light it before you settle down.");
             if (fuel.FuelMass < need)
                 return ("fuel_short", "The fire would not last the rest: it would burn about " + need + " fuel and there are " + (int)Math.Floor(fuel.FuelMass) + ".");
+            if (Cooled(heat, ticks) < CookingService.MinimumFiniteCookingTemperature)
+                return ("fire_low", "The fire would die down before morning. Relight it from a flame first.");
             return null;
         }
 
@@ -68,7 +85,8 @@ namespace CavesOfOoo.Core
 
         static void AddRow(InventoryActionList actions, CampfirePart fire, FuelPart fuel, string name, string label, string command, char key, int priority, int ticks)
         {
-            int need = Need(fuel, ticks); var refusal = Refusal(fire, fuel, need);
+            var heat = fire.ParentEntity.GetPart<ThermalPart>();
+            int need = Need(fuel, ticks); var refusal = Refusal(fire, fuel, heat, need, ticks);
             if (refusal == null) actions.AddAction(name, label + " (the fire burns about " + need + " fuel)", command, key, priority, false, ActionTime.Free);
             else actions.AddDisabled(name, label, refusal.Value.code, refusal.Value.text, key, priority);
         }
@@ -80,8 +98,9 @@ namespace CavesOfOoo.Core
             var fire = ParentEntity?.GetPart<CampfirePart>(); var clock = TurnManager.Active;
             if (actor == null || zone == null || fire == null || clock == null || clock.TickCount < 0 || !CampfireWorkActions.Source(actor, fire, zone) || !CampfireWorkActions.Fuel(fire, out var fuel))
                 return Block(actor, "invalid_rest_context", "You cannot settle down here right now.");
-            int need = Need(fuel, command == BandCommand ? RestSystem.NextBandAdvance(clock.TickCount) : RestSystem.RestClockTurns);
-            var refusal = Refusal(fire, fuel, need);
+            int ticks = command == BandCommand ? RestSystem.NextBandAdvance(clock.TickCount) : RestSystem.RestClockTurns;
+            var heat = ParentEntity.GetPart<ThermalPart>(); int need = Need(fuel, ticks);
+            var refusal = Refusal(fire, fuel, heat, need, ticks);
             if (refusal != null) return Block(actor, refusal.Value.code, refusal.Value.text);
             bool own = tx == null; tx ??= new InventoryTransaction();
             try
@@ -90,9 +109,11 @@ namespace CavesOfOoo.Core
                 // The shared rest decides first (hostiles, a dead actor, the clock) and queues every benefit for commit; fuel is charged only once it has been admitted.
                 bool admitted = command == BandCommand ? RestSystem.TryRestUntilNextBandWithTransaction(actor, zone, Site, out _, tx) : RestSystem.TryRestWithTransaction(actor, zone, Site, out _, tx);
                 if (!admitted) return false;
-                float before = fuel.FuelMass; var owner = ParentEntity; int ticks = command == BandCommand ? RestSystem.NextBandAdvance(clock.TickCount) : RestSystem.RestClockTurns;
-                tx.Do(() => fuel.FuelMass = Math.Max(0f, before - need), () => fuel.FuelMass = before);
-                tx.AfterCommit(() => Diag.Record("furniture", "HearthRested", actor, owner, new { fuel = need, remaining = fuel.FuelMass, ticks }));
+                float before = fuel.FuelMass, heatBefore = heat.Temperature; var owner = ParentEntity;
+                float after = Math.Max(0f, before - need);
+                // The night passes: the fuel is spent and the fire cools as it would have turn by turn; a fire that has burnt out is cold.
+                tx.Do(() => { fuel.FuelMass = after; heat.Temperature = after <= 0f ? heat.AmbientTemperature : Cooled(heat, ticks); }, () => { fuel.FuelMass = before; heat.Temperature = heatBefore; });
+                tx.AfterCommit(() => { owner.GetPart<HearthGlowPart>()?.SyncLight(); Diag.Record("furniture", "HearthRested", actor, owner, new { fuel = need, remaining = fuel.FuelMass, ticks }); });
                 if (own) tx.Commit();
                 return true;
             }

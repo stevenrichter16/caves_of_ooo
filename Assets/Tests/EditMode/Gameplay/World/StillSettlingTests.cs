@@ -67,6 +67,20 @@ namespace CavesOfOoo.Tests
             Assert.False(Act(still, "SettleLiquid|water|" + flask.ID + "|12")); Assert.AreEqual(3f, Fuel(fire), 0.001f); Assert.AreEqual(12, Vessel(flask).Volume);
         }
 
+        [Test] public void ALitCampHearthPaysEvenWhenItIsHotToCookButNotAsHotAsAFlame()
+        {
+            var still = Still(); var hearth = Place("CampHearth", 9, 10); hearth.GetPart<PhysicsPart>().Takeable = false; hearth.GetPart<FuelPart>().FuelMass = 20; hearth.GetPart<ThermalPart>().Temperature = 200;
+            Assert.False(hearth.GetPart<ThermalPart>().IsAflame, "200 is below the 300 flame temperature, yet the hearth is burning by its own rule"); var flask = Flask(12, "bog-mire");
+            Assert.True(Act(still, Row(still, "oil"))); Assert.AreEqual(15f, Fuel(hearth), 0.001f); Assert.AreEqual("oil", Vessel(flask).LiquidId);
+            hearth.GetPart<ThermalPart>().Temperature = 100; var flask2 = Flask(12, "bog-mire"); Assert.True(Rows(still).All(a => a.IsDisabled), "below cooking heat it is out"); Assert.NotNull(flask2);
+        }
+
+        [Test] public void SeveralMireFlasksGetDistinguishableRows()
+        {
+            var still = Still(); Fire(); Flask(12, "bog-mire"); Flask(12, "bog-mire"); var water = Rows(still).Where(a => a.Command.Contains("|water|")).Select(a => a.Display).ToArray();
+            Assert.AreEqual(2, water.Length); Assert.AreEqual(2, water.Distinct().Count(), string.Join(" / ", water));
+        }
+
         [Test] public void FewerThanFourUnitsOffersOnlyARefusal()
         {
             var still = Still(); Fire(); Flask(3, "bog-mire"); var rows = Rows(still); Assert.True(rows.All(a => a.IsDisabled)); StringAssert.Contains("4", rows[0].DisabledReason);
