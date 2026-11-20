@@ -1,4 +1,4 @@
-# parts=389
+# parts=397
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -139,6 +139,13 @@ Part CavesOfOoo.Core.CommittedMeleePart | reflected
   Stage#enum:Idle=0,Recovery=2,Windup=1
 Part CavesOfOoo.Core.CompositionPart | reflected
   MaterialsRaw:System.String
+Part CavesOfOoo.Core.ConcordCarriagePart | reflected
+  Fee:System.Collections.Generic.List`1[System.Int32]
+  From:System.Collections.Generic.List`1[System.String]
+  Goods:System.Collections.Generic.List`1[CavesOfOoo.Core.Entity]
+  ReadyTick:System.Collections.Generic.List`1[System.Int32]
+  SentTick:System.Collections.Generic.List`1[System.Int32]
+  To:System.Collections.Generic.List`1[System.String]
 Part CavesOfOoo.Core.ConnectedClayOriginPart | reflected
   OwnerID:System.String
   Units:System.Int32
@@ -297,6 +304,12 @@ Part CavesOfOoo.Core.EnhancementSerrated | reflected
   DamageDice:System.String
   SaveTarget:System.Int32
   Tier:System.Int32
+Part CavesOfOoo.Core.EnhancementSteeped | reflected
+  Amount:System.Int32
+  Kind:System.String
+  Tier:System.Int32
+  TurnsLeft:System.Int32
+  TurnsTotal:System.Int32
 Part CavesOfOoo.Core.EquippablePart | reflected
   AppliedEquipBonuses:System.String
   AppliedEquipSkillBonuses:System.String
@@ -436,6 +449,7 @@ Part CavesOfOoo.Core.HarvestablePart | reflected
   YieldChance:System.Int32
   YieldMax:System.Int32
   YieldMin:System.Int32
+Part CavesOfOoo.Core.HearthGlowPart | reflected
 Part CavesOfOoo.Core.HearthPatchPart | reflected
   WarRep:System.Int32
 Part CavesOfOoo.Core.HearthRestPart | reflected
@@ -447,6 +461,9 @@ Part CavesOfOoo.Core.HuntsBySoundPart | reflected
   Window:System.Int32
 Part CavesOfOoo.Core.InkVialPart | reflected
   InkAmount:System.Int32
+Part CavesOfOoo.Core.InstallablePart | reflected
+  Mode:System.String
+  State:System.String
 Part CavesOfOoo.Core.InstallationMarkerPart | reflected
   InstallationId:System.String
   Origin:System.String
@@ -613,6 +630,10 @@ Part CavesOfOoo.Core.OvenSitePart | reflected
   SiteId:System.String
 Part CavesOfOoo.Core.PackHunterPart | reflected
   FlankBonus:System.Int32
+Part CavesOfOoo.Core.PackableFixturePart | reflected
+  CampName:System.String
+  Kind:System.String
+  SetTick:System.Int32
 Part CavesOfOoo.Core.PebbleSundewThresholdPart | reflected
   ConsumeOnTrigger:System.Boolean
   TriggerFaction:System.String
@@ -626,6 +647,12 @@ Part CavesOfOoo.Core.PhysicsPart | reflected
   ThrowHeight:System.Single
   ThrowIntercept:System.Int32
   Weight:System.Int32
+Part CavesOfOoo.Core.PlaceSiteObjectPart | reflected
+  BrokenWord:System.String
+  MendedWord:System.String
+  PatchedWord:System.String
+  Place:System.String
+  SiteId:System.String
 Part CavesOfOoo.Core.PlayerLoadoutsPart | reflected
   InitialPreparations:System.Int32
   LastAppliedID:System.String
@@ -761,6 +788,9 @@ Part CavesOfOoo.Core.SoddenPreparationPart | reflected
   Worker:CavesOfOoo.Core.Entity
   WorkerID:System.String
   ZoneID:System.String
+Part CavesOfOoo.Core.SoundingRodPart | reflected
+  LastReading:System.String
+  LastTick:System.Int32
 Part CavesOfOoo.Core.SpatialFootprintPart | reflected
   #hooks:OnBeforeSave
   CellsRaw:System.String
@@ -855,6 +885,7 @@ Part CavesOfOoo.Core.StatusTonicPart | reflected
   EffectDuration:System.Int32
   EffectMagnitude:System.Single
   EffectName:System.String
+Part CavesOfOoo.Core.SteepTroughPart | reflected
 Part CavesOfOoo.Core.StillleafFilePart | reflected
 Part CavesOfOoo.Core.StillleafRegisterPart | reflected
 Part CavesOfOoo.Core.StillleafResidentPart | reflected

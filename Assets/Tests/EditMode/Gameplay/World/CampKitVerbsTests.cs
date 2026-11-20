@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Core;
@@ -505,6 +506,16 @@ namespace CavesOfOoo.Tests
             Assert.Less(wornLoss, bareLoss, "fire hurts less in the clay-wash"); Assert.AreEqual(13, wornLoss, "20 * (100 - 35) / 100");
             Actor.GetStat("Hitpoints").BaseValue = before;
             Assert.True(InventorySystem.UnequipItem(Actor, washed)); Assert.AreEqual(heat, Actor.GetStatValue("HeatResistance"), "off, the shift is exactly reverted"); Assert.AreEqual("HeatResistance", effect.AppliedStat);
+        }
+
+        /// <summary>Three machines name the same material in three places. If one is renamed the chain mire, still, trough, garment silently breaks, so pin them together against the real content.</summary>
+        [Test] public void TheClayTheStillBakesIsTheClayTheTroughTakesAndTheRepairsAskFor()
+        {
+            Assert.AreEqual(LiquidSettlingPart.ClayBlueprint, SteepTroughPart.Clay, "the still's product is the trough's reagent");
+            Assert.NotNull(Factory.CreateEntity(SteepTroughPart.Clay), "and it is a real blueprint"); Assert.NotNull(Factory.CreateEntity(SteepTroughPart.Resin));
+            Assert.AreEqual("bog-mire", LiquidSettlingPart.Feed, "the liquid the still bakes from is the bog-mire the scenario fills flasks with");
+            Assert.True(File.ReadAllText(System.IO.Path.Combine(UnityEngine.Application.dataPath, "Resources/Content/Data/Repairs/Tier1Repairs.json")).Contains("\"MaterialBlueprint\": \"" + SteepTroughPart.Clay + "\""), "the repair data asks for the same clay");
+            Assert.AreNotEqual(SteepTroughPart.Clay, SteepTroughPart.Resin, "counter: the two reagents are different things");
         }
 
         [Test] public void AMalformedTreatmentCommandIsRefusedAndTakesNothing()
