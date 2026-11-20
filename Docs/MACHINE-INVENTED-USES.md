@@ -224,6 +224,18 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 
 **Honest limits.** Not played in the Editor. The rates (a half-day catch, a day to refill, capacity 4 to 8, a cap of four) are proposals. Fishable water is rare by the game's own design; the Tine lake is a `WaterPuddle` inside a town where kits cannot be set down. The trap has no bait and no skill.
 
+## 3o. The thirteenth build: shade as a capability, and the awning (2026-11-20)
+
+**The rule it joins.** The Beating's glare (`BeatingGlareSystem`, W2.3) asks one question of a traveller's cell in the Height hours: is there shade? Ten consecutive exposed turns parch you a stack; a roof (an interior cell) or anything worn on the head resets the count. Nothing a traveller could *set down* answered it.
+
+**What it is.** `ShadePart` is the capability: a thing that stands in the world and carries it shades its own cell and the cells within `Radius` (default 1, at most 2), for anyone standing there, while it stands (set down and installed; a carried, dropped or taken-up kit shades nothing). The glare system asks `ShadePart.Covers(zone, cell)` beside its head-cover check, so the rule is one line in one place and any future canopy, cloth or tree carries the same Part and gets the same behaviour. The `CampAwning` kit (kind `camp-awning`, Tinker stock) is its first user: waxed cloth on collapsible poles, 16 weight, set down on open ground like the other kits.
+
+**Why it is not a pause button.** The existing rule stands: shade resets the count; it does not freeze it. Leaving the shade starts the ten turns again. A hat, a roof and the awning are three alternatives answering the same question, each with a different cost (a head slot, a building, a carried 16 weight and a turn to set down).
+
+**Quality of life.** The reader says what it does standing ("It shades the ground under it and the cells around it from the glare, for whoever stands there.") and when carried ("Carried, it shades nothing."); the camp note and the take-up, move and name verbs are the kits' own.
+
+**Honest limits.** Not played in the Editor. Player-only, like the glare itself (natives are adapted). The awning does not stop a Parched stack you already have (water does). It does not shade creatures, shelter from rain or keep anything out but the sun; the radius and weight are proposals.
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).

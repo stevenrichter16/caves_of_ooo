@@ -5809,6 +5809,42 @@
       ]
     },
     {
+      "Name": "CampAwning",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "shade awning" },
+            { "Key": "RenderString", "Value": "^" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "true" },
+            { "Key": "Weight", "Value": "16" }
+          ]
+        },
+        { "Name": "Shade", "Params": [ { "Key": "Radius", "Value": "1" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "70" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Waxed cloth on a frame of collapsible poles, made to be set down and left standing. It throws a patch of shade around itself: under it, and in the ring of cells about it, the glare does not reach. It is a shelter for the traveller, not a roof, and it keeps nothing out but the sun." }
+          ]
+        },
+        { "Name": "PackableFixture", "Params": [ { "Key": "Kind", "Value": "camp-awning" } ] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Item", "Value": "true" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "SoundingRod",
       "Inherits": "PhysicalObject",
       "Parts": [

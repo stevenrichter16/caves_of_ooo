@@ -56,6 +56,8 @@ namespace CavesOfOoo.Core
             var cell = zone.GetEntityCell(player);
             if (cell == null || cell.IsInterior) { _exposure = 0; return; }
             if (HasHeadCover(player)) { _exposure = 0; return; }
+            // Shade that stands in the world (an awning set down beside you) is relief as well, by the same rule as a roof or a hat.
+            if (ShadePart.Covers(zone, cell)) { _exposure = 0; return; }
 
             _exposure++;
             if (_exposure < ExposureTurnsPerStack) return;
