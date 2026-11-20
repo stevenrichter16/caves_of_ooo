@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "LiquidSettling";
 
-        public const string Command = "SettleLiquid|", Feed = "bog-mire", Water = "water", Oil = "oil";
+        public const string Command = "SettleLiquid|", AllCommand = "SettleAll|", Feed = "bog-mire", Water = "water", Oil = "oil";
         public const int Ratio = 4, FuelPerBatch = 5, FireReach = 2;
         const float WetLimit = 0.35f;
 
@@ -33,10 +33,10 @@ namespace CavesOfOoo.Core
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
-                if (command == null || !command.StartsWith(Command, StringComparison.Ordinal)) return true;
-                var actor = e.GetParameter<Entity>("Actor");
-                if (TrySettle(actor, e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? SettlementRuntime.ActiveZone, command, e.GetParameter<InventoryTransaction>("InventoryTransaction")))
-                { e.Handled = true; return false; }
+                bool one = command != null && command.StartsWith(Command, StringComparison.Ordinal), all = command != null && command.StartsWith(AllCommand, StringComparison.Ordinal);
+                if (!one && !all) return true;
+                var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? SettlementRuntime.ActiveZone; var tx = e.GetParameter<InventoryTransaction>("InventoryTransaction");
+                if (all ? TrySettleAll(actor, zone, command, tx) : TrySettle(actor, zone, command, tx)) { e.Handled = true; return false; }
             }
             return true;
         }
@@ -73,6 +73,23 @@ namespace CavesOfOoo.Core
             return best;
         }
 
+        /// <summary>Batches the burning fires within reach could pay for between them (each fire spares whole batches of <see cref="FuelPerBatch"/>).</summary>
+        int Capacity(Zone zone)
+        {
+            int batches = 0; var cell = zone?.GetEntityCell(ParentEntity); if (cell == null) return 0;
+            foreach (var other in zone.GetReadOnlyEntities())
+            {
+                if (!Burning(other, ParentEntity) || !WorldResourceActions.Ground(other, zone)) continue;
+                var at = zone.GetEntityCell(other); if (at == null || Math.Max(Math.Abs(at.X - cell.X), Math.Abs(at.Y - cell.Y)) > FireReach) continue;
+                batches += (int)Math.Floor(other.GetPart<FuelPart>().FuelMass / FuelPerBatch);
+            }
+            return batches;
+        }
+
+        Entity[] SettleableFlasks(Entity actor)
+            => actor?.GetPart<InventoryPart>()?.Objects.Where(o => o?.GetPart<LiquidVesselPart>() is LiquidVesselPart v && v.LiquidId == Feed && v.Volume >= Ratio && WorldResourceActions.Carried(actor, o))
+                .OrderBy(o => o.ID, StringComparer.Ordinal).ToArray() ?? new Entity[0];
+
         bool Standing => ParentEntity?.GetPart<PhysicsPart>()?.InInventory == null && !PackableFixturePart.IsInertKit(ParentEntity);
 
         // ── rows ──
@@ -98,6 +115,16 @@ namespace CavesOfOoo.Core
                 int yield = vessel.Volume / Ratio;
                 actions.AddAction("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " water" + tag, CommandFor(Water, flask, vessel), '\0', 12, false, ActionTime.OneAction);
                 actions.AddAction("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " oil" + tag, CommandFor(Oil, flask, vessel), '\0', 11, false, ActionTime.OneAction);
+            }
+            // Two or more flasks: one row for all of them, saying how many the fires could pay for and what comes out.
+            var settleable = SettleableFlasks(actor);
+            if (settleable.Length >= 2 && fire != null)
+            {
+                int batches = Math.Min(settleable.Length, Capacity(zone)); if (batches < 1) return;
+                int yield = 0; for (int i = 0; i < batches; i++) yield += settleable[i].GetPart<LiquidVesselPart>().Volume / Ratio;
+                string scope = batches == settleable.Length ? "all " + batches + " flasks" : batches + " of " + settleable.Length + " flasks";
+                actions.AddAction("SettleAll", "settle " + scope + " to " + yield + " water", AllCommand + Water, '\0', 10, false, ActionTime.OneAction);
+                actions.AddAction("SettleAll", "settle " + scope + " to " + yield + " oil", AllCommand + Oil, '\0', 9, false, ActionTime.OneAction);
             }
         }
 
@@ -140,6 +167,42 @@ namespace CavesOfOoo.Core
                 return true;
             }
             finally { if (own) tx.Rollback(); }
+        }
+
+        /// <summary>Settles every carried flask of mire in turn (by flask ID), each batch paying its own fuel from a fire that can spare it, until the fires cannot pay for another. One
+        /// transaction: every flask and every fire's fuel returns together on any failure. It does nothing and says why when not even one batch can be paid for.</summary>
+        bool TrySettleAll(Entity actor, Zone zone, string command, InventoryTransaction transaction)
+        {
+            string[] f = command.Split('|');
+            if (f.Length != 2 || (f[1] != Water && f[1] != Oil)) return Reject(actor, "malformed_selection", "That is not a batch you can settle.");
+            if (zone == null || actor == null || !WorldResourceActions.ActorCurrent(actor, zone) || CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)
+                || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true || !Standing || zone.GetEntityCell(ParentEntity) == null || SpatialQuery.Distance(zone, actor, ParentEntity) > 1)
+                return Reject(actor, "actor_unavailable", "You cannot work the still right now.");
+            var flasks = SettleableFlasks(actor);
+            if (flasks.Length == 0) return Reject(actor, "stale_selection", "You carry no mire to settle.");
+            bool own = transaction == null; transaction ??= new InventoryTransaction();
+            try
+            {
+                if (!transaction.TryClaim(actor, actor, command) || !transaction.TryClaim(ParentEntity, actor, command)) return Reject(actor, "in_progress", "The still is already being worked.");
+                string target = f[1]; int batches = 0, produced = 0; var owner = ParentEntity;
+                foreach (var flask in flasks)
+                {
+                    var fire = FindFire(zone, out _); if (fire == null) break;
+                    if (!transaction.TryClaim(flask, actor, command) || !transaction.TryClaim(fire, actor, command)) return Reject(actor, "in_progress", "The still is already being worked.");
+                    var vessel = flask.GetPart<LiquidVesselPart>(); var fuel = fire.GetPart<FuelPart>(); float fuelBefore = fuel.FuelMass; int volume = vessel.Volume, yield = volume / Ratio;
+                    transaction.Do(() => { vessel.LiquidId = target; vessel.Volume = yield; fuel.FuelMass = fuelBefore - FuelPerBatch; }, () => { vessel.LiquidId = Feed; vessel.Volume = volume; fuel.FuelMass = fuelBefore; });
+                    transaction.AfterCommit(() => Diag.Record("liquid", "Settled", actor, owner, new { from = Feed, to = target, units = volume, yield, fuel = FuelPerBatch }));
+                    batches++; produced += yield;
+                }
+                if (batches == 0)
+                    return FindFire(zone, out float fullest) == null && fullest < 0 ? Reject(actor, "no_fire", "Settling needs a lit fire beside the still.")
+                        : Reject(actor, "fuel_short", "No fire here can spare the fuel: a batch burns " + FuelPerBatch + ".");
+                int done = batches, total = flasks.Length, made = produced;
+                transaction.AfterCommit(() => MessageLog.Add("You settle " + done + (done == total ? " flasks" : " of " + total + " flasks") + " of mire over the fire: " + made + " " + target + ". The dregs stay in the pot."));
+                if (own) transaction.Commit();
+                return true;
+            }
+            finally { if (own) transaction.Rollback(); }
         }
 
         bool Reject(Entity actor, string reason, string message)

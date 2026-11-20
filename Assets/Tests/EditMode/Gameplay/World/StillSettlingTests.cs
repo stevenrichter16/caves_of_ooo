@@ -81,6 +81,42 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(2, water.Length); Assert.AreEqual(2, water.Distinct().Count(), string.Join(" / ", water));
         }
 
+        // ── settle all ──
+
+        InventoryAction[] AllRows(Entity still) => Actions(still).Where(a => a.Name == "SettleAll").ToArray();
+
+        [Test] public void SettleAllIsOfferedForTwoOrMoreFlasksAndSaysWhatItWillYield()
+        {
+            var still = Still(); Fire(); Flask(12, "bog-mire"); Assert.IsEmpty(AllRows(still), "one flask: the ordinary rows are enough"); Flask(8, "bog-mire");
+            var rows = AllRows(still); Assert.AreEqual(2, rows.Length); var water = rows.Single(r => r.Command == "SettleAll|water"); StringAssert.Contains("2 flasks", water.Display); StringAssert.Contains("5 water", water.Display, "3 from the 12 and 2 from the 8");
+            Assert.AreEqual(ActionTime.OneAction, water.Time);
+        }
+
+        [Test] public void SettleAllSettlesEveryFlaskAndEachBatchPaysItsOwnFuel()
+        {
+            var still = Still(); var fire = Fire(9, 25f); var a = Flask(12, "bog-mire"); var b = Flask(8, "bog-mire");
+            Assert.True(Act(still, "SettleAll|oil"), string.Join("|", MessageLog.GetRecent(3))); Assert.AreEqual("oil", Vessel(a).LiquidId); Assert.AreEqual(3, Vessel(a).Volume); Assert.AreEqual("oil", Vessel(b).LiquidId); Assert.AreEqual(2, Vessel(b).Volume);
+            Assert.AreEqual(15f, Fuel(fire), 0.001f, "two batches, five fuel each"); Assert.AreEqual(2, DiagQuery.Apply(new DiagQuery.Filter { Category = "liquid", Kind = "Settled", Limit = 9 }).Records.Count);
+        }
+
+        [Test] public void SettleAllDoesAsManyFlasksAsTheFireCanSpareAndSaysSoBeforeHand()
+        {
+            var still = Still(); var fire = Fire(9, 7f); var a = Flask(12, "bog-mire"); var b = Flask(8, "bog-mire"); var row = AllRows(still).Single(r => r.Command == "SettleAll|water"); StringAssert.Contains("1 of 2 flasks", row.Display);
+            Assert.True(Act(still, "SettleAll|water")); Assert.AreEqual(2f, Fuel(fire), 0.001f); Assert.AreEqual("water", Vessel(a).LiquidId); Assert.AreEqual("bog-mire", Vessel(b).LiquidId, "the second flask waits for more fuel"); Assert.AreEqual(8, Vessel(b).Volume);
+        }
+
+        [Test] public void SettleAllWithoutAFireOrWithAForgedTargetIsRefusedAndChangesNothing_Counters()
+        {
+            var still = Still(); var a = Flask(12, "bog-mire"); Flask(8, "bog-mire"); Assert.IsEmpty(AllRows(still), "no fire, no settle-all row (the per-flask rows say why)"); Assert.False(Act(still, "SettleAll|water"));
+            var fire = Fire(); Assert.False(Act(still, "SettleAll|gold")); Assert.False(Act(still, "SettleAll|")); Assert.AreEqual(12, Vessel(a).Volume); Assert.AreEqual(25f, Fuel(fire), 0.001f);
+        }
+
+        [Test] public void SettleAllGivesEverythingBackWhenAnOuterStepFails()
+        {
+            var still = Still(); var fire = Fire(); var a = Flask(12, "bog-mire"); var b = Flask(8, "bog-mire"); FailAfter(); Assert.False(Act(still, "SettleAll|water"));
+            Assert.AreEqual("bog-mire", Vessel(a).LiquidId); Assert.AreEqual(12, Vessel(a).Volume); Assert.AreEqual(8, Vessel(b).Volume); Assert.AreEqual(25f, Fuel(fire), 0.001f);
+        }
+
         [Test] public void FewerThanFourUnitsOffersOnlyARefusal()
         {
             var still = Still(); Fire(); Flask(3, "bog-mire"); var rows = Rows(still); Assert.True(rows.All(a => a.IsDisabled)); StringAssert.Contains("4", rows[0].DisabledReason);
