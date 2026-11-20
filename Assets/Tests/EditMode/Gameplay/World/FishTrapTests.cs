@@ -295,6 +295,19 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("empty", row.DisabledCode); StringAssert.Contains("half day", row.DisabledReason); StringAssert.Contains("due around " + BandAt(WorldClock.CurrentTick + FishTrapPart.CatchTicks), row.DisabledReason);
         }
 
+        [Test] public void TheMachinesScenariosPondTakesTheTrapTwoCellsWestOfTheStartThroughTheRealVerb()
+        {
+            foreach (var cell in wild.GetReadOnlyEntities().Where(e => e.BlueprintName == "SprayPool").ToList()) wild.RemoveEntity(cell);   // the fixture's own pond: use only the scenario's
+            Assert.False(FishPond.TryFind(wild, AX - 3, AY, out _), "counter: with no pond the shore is not a shore");
+            new CavesOfOoo.Scenarios.Custom.CampMachinesShowcase().Apply(new CavesOfOoo.Scenarios.ScenarioContext(wild, Factory, Actor, Clock));
+            wild.RemoveEntity(Actor); Assert.True(wild.AddEntity(Actor, AX - 2, AY));
+            var kit = Pack.Objects.First(o => o.BlueprintName == "CampFishTrap");
+            Assert.True(SetDownRows(kit).Any(r => Dir(r) == "west"), string.Join(" / ", Actions(kit).Select(a => a.Display + (a.IsDisabled ? " [" + a.DisabledCode + "]" : ""))));
+            Assert.True(Act(kit, SetDownRows(kit).First(r => Dir(r) == "west").Command), string.Join("|", MessageLog.GetRecent(3)));
+            var at = wild.GetEntityPosition(kit); Assert.AreEqual(AX - 3, at.x, "it lands on the shore cell, one short of the water"); Assert.AreEqual(AY, at.y);
+            Assert.False(PackableFixturePart.IsInertKit(kit), "and it stands, fishing");
+        }
+
         static string BandAt(int tick) => WorldClock.BandName(WorldClock.GetBand(tick), 0);
     }
 }

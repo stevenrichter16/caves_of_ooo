@@ -161,6 +161,17 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(me.x + CampMachinesShowcase.VentOffset, at.x); Assert.AreEqual(me.y, at.y); Assert.True(NaturalHeat.IsSource(vent), "and it is a real heat source for the still");
         }
 
+        [Test] public void TheMachinesScenarioDigsAFishablePondWestSoTheTrapCanBeTriedWithoutATrip()
+        {
+            Pack.MaxWeight = 400; var ctx = Context(out _); var me = Zone.GetEntityPosition(Actor);
+            int shoreX = me.x - (CampMachinesShowcase.PondEdge - 1);
+            Assert.False(FishPond.TryFind(Zone, shoreX, me.y, out _), "counter: before the scenario there is no pond beside that cell");
+            new CampMachinesShowcase().Apply(ctx);
+            Assert.True(FishPond.TryFind(Zone, shoreX, me.y, out var anchor), "the cell on the pond's near shore is beside a pond a trap can fish");
+            Assert.GreaterOrEqual(FishPond.Component(Zone, shoreX - 1, me.y).Count, FishPond.MinCells, "and it is big enough");
+            Assert.AreEqual(CampMachinesShowcase.PondWidth * CampMachinesShowcase.PondHeight, Zone.GetReadOnlyEntities().Count(e => e.BlueprintName == FishPond.LegacyBlueprint));
+        }
+
         // ── the Concord carriage fixture ──
 
         [Test] public void TheCarriageScenarioGivesDramsGoodsAndOneParcelAlreadyWaitingAtCinderhold()
