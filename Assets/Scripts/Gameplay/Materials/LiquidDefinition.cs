@@ -182,6 +182,23 @@ namespace CavesOfOoo.Core
         /// Wired by <c>LiquidCoveredEffect.AllowAction</c>
         /// (held-breath-lacquer).</summary>
         public bool BlockAction;
+
+        /// <summary>The numbers at which a liquid is said to burn readily, carry a charge, or damp fire in a reader: the data's own scale (oil and pitch 90, sap 70; water and brine 100, iron-gall ink 60; water 40, mire 50).</summary>
+        public const int BurnsReadilyAt = 70, CarriesChargeAt = 50, DampsFireAt = 30;
+
+        /// <summary>What this liquid is good or bad for, in one plain sentence ("It burns readily and makes ground slippery."), derived from its own numbers and flags and never showing one; empty when there is nothing to say.</summary>
+        public string DescribeTraits()
+        {
+            var traits = new List<string>(5);
+            if (Combustibility >= BurnsReadilyAt) traits.Add("burns readily");
+            if (Conductivity >= CarriesChargeAt) traits.Add("carries a charge");
+            if (FireDampen >= DampsFireAt) traits.Add("damps fire");
+            if (Slippery) traits.Add("makes ground slippery");
+            if (Sticky) traits.Add("clings");
+            if (traits.Count == 0) return "";
+            string last = traits[traits.Count - 1];
+            return "It " + (traits.Count == 1 ? last : string.Join(", ", traits.GetRange(0, traits.Count - 1)) + " and " + last) + ".";
+        }
     }
 
     [Serializable]

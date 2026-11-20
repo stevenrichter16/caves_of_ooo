@@ -72,6 +72,8 @@ Rules the inventions below follow: attach to an existing rule or loop; add a pat
 
 **Deliberately not done.** Brine is not settled: a free salt source would inflate the money the Beating's salt economy rests on (EC5). Water has no thirst consumer today (irrigation and flasks only), so the water branch is modest; oil is the branch with the fire loop.
 
+**What the oil is for, said plainly (2026-11-20).** Nothing told a player that the oil they settled burns, that water carries a charge or that mire damps fire: the numbers were in the liquid data and in no reader. Examining a flask now adds one plain sentence derived from the liquid's own numbers and flags ("It burns readily and makes ground slippery."; "It carries a charge and damps fire."; "It damps fire." for mire, which is why pouring it on your hearth puts it out), at the data's own thresholds (combustibility 70, conductivity 50, fire damping 30, plus the slippery and sticky flags), never a number, nothing on an empty flask or a liquid with nothing to say. Nine tests, two mutants caught; the examine-layout and flask suites around it still pass.
+
 **Honest limits.** Voice review of the strings; no Editor play; flasks only (no standing tank); the fire's fuel is spent per batch rather than per elapsed time, as for rest.
 
 ## 3d. Lighting, fuel and glow from the menus (2026-11-19, from play)

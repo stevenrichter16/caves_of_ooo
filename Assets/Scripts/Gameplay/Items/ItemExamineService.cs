@@ -50,6 +50,7 @@ namespace CavesOfOoo.Core
                         : LiquidRegistry.Get(vessel.LiquidId).DisplayName ?? vessel.LiquidId;
                     lines.Add("Contents: " + contents + " (" + vessel.Volume.ToString(CultureInfo.InvariantCulture)
                         + "/" + vessel.Capacity.ToString(CultureInfo.InvariantCulture) + " volume).");
+                    if (vessel.Volume > 0) { string traits = LiquidRegistry.Get(vessel.LiquidId).DescribeTraits(); if (traits.Length > 0) lines.Add(traits); }
                     lines.Add("Fill from a nearby unmixed pool; pour onto nearby ground.");
                 }
                 else lines.Add("Liquid contents are invalid; fill and pour are unavailable.");
