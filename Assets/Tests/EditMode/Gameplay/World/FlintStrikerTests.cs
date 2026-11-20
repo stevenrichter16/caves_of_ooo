@@ -97,6 +97,12 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(450, coals.GetPart<ThermalPart>().Temperature); Assert.AreEqual(10, coals.GetPart<FuelPart>().FuelMass, "relighting spends a strike, not the fuel"); Assert.AreEqual(19, Strikes(s));
         }
 
+        [Test] public void TheRelightRowSaysWhenItWillSpendAStrikeAndNotWhenAFireIsUsed()
+        {
+            var coals = ColdCoals(); var s = Striker(); StringAssert.Contains("(1 strike)", Actions(coals).Single(a => a.Command == "RelightCookingFire").Display);
+            Pack.RemoveObject(s); Place("Campfire", 9, 10); Assert.False(Actions(coals).Single(a => a.Command == "RelightCookingFire").Display.Contains("strike"), "a real fire costs nothing");
+        }
+
         [Test] public void AStrikeSpentInALightingThatLaterFailsIsGivenBack()
         {
             var torch = DarkTorch(); var s = Striker(); FailAfter(); Assert.False(Act(torch, "LightTorch")); Assert.AreEqual(20, Strikes(s), "an outer failure rolls the strike back"); Assert.False(torch.GetPart<ThermalPart>().IsAflame);

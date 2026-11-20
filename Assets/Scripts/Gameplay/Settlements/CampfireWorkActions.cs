@@ -33,8 +33,9 @@ namespace CavesOfOoo.Core
             if (!Fuel(fire, out var fuel)) return;
             if (fuel.FuelMass < fuel.MaxFuel && Timber(actor) != null)
                 actions.AddAction("FeedCookingFire", "feed coals (1 salvaged timber, up to 10 fuel)", "FeedCookingFire", '\0', 18);
-            if (fuel.FuelMass > 0 && fire.ParentEntity.GetPart<ThermalPart>().Temperature < 450 && IgnitionSources.Find(actor, zone, fire.ParentEntity) != null)
-                actions.AddAction("RelightCookingFire", "relight coals from flame", "RelightCookingFire", '\0', 18);
+            if (fuel.FuelMass > 0 && fire.ParentEntity.GetPart<ThermalPart>().Temperature < 450 && IgnitionSources.Find(actor, zone, fire.ParentEntity) is Entity flame)
+                // A flint striker pays a strike for every relight, including one that only tops up a fire that is still burning, so the row says so.
+                actions.AddAction("RelightCookingFire", "relight coals from flame" + (flame.HasPart<FlintStrikerPart>() ? " (1 strike)" : ""), "RelightCookingFire", '\0', 18);
         }
         internal static bool TryAct(Entity actor, CampfirePart fire, Zone zone, string command, InventoryTransaction tx)
         {

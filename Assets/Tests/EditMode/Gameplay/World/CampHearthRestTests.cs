@@ -63,12 +63,38 @@ namespace CavesOfOoo.Tests
             var h = Hearth(15); Assert.True(Act(h, "RestAtHearth")); Assert.AreEqual(0f, Fuel(h), 0.001f); Assert.AreEqual(60, Clock.TickCount); Assert.AreEqual(h.GetPart<ThermalPart>().AmbientTemperature, h.GetPart<ThermalPart>().Temperature, 0.001f, "burnt out is cold"); Assert.False(h.GetPart<LightSourcePart>().Enabled, "and dark without waiting for the next turn");
         }
 
-        [Test] public void RestUntilTheNextBandIsOfferedOnlyWhenTheFireCouldLastIt()
+        [Test] public void RestUntilTheNextBandIsAvailableAtEveryClockPositionForALitFedFire_TheReportedDeadZone()
         {
-            var h = Hearth(30); var band = Row(h, "HearthRestBand"); Assert.True(band.IsDisabled, "from tick 0 the next band is 300 ticks away: 75 fuel, more than the hearth can hold");
-            Assert.False(Act(h, "RestUntilNextBandAtHearth")); Assert.AreEqual(0, Clock.TickCount); Assert.AreEqual(30f, Fuel(h), 0.001f);
-            Clock.AdvanceClock(240); band = Row(h, "HearthRestBand"); Assert.False(band.IsDisabled, "60 ticks to the band is 15 fuel"); StringAssert.Contains("15 fuel", band.Display);
-            Assert.True(Act(h, "RestUntilNextBandAtHearth")); Assert.AreEqual(300, Clock.TickCount); Assert.AreEqual(15f, Fuel(h), 0.001f); Assert.AreEqual(Actor.GetStat("Hitpoints").Max, Hp);
+            // Reported from play: the row was disabled for most of each 300-tick band (fuel short for a night longer than the hearth can hold, then "relight first" at full heat) and
+            // only came on in the last 60 ticks, so one more action seemed to switch it on. A lit hearth with a night's fuel can always sleep to morning.
+            var h = Hearth(30); for (int tick = 0; tick < 300; tick += 7)
+            {
+                h.GetPart<FuelPart>().FuelMass = 30; h.GetPart<ThermalPart>().Temperature = 450; var band = Row(h, "HearthRestBand");
+                Assert.False(band.IsDisabled, "tick " + tick + ": " + band.DisabledReason); Clock.AdvanceClock(7);
+            }
+        }
+
+        [Test] public void ALongNightBurnsTheFireOutAndTheRowSaysSo()
+        {
+            var h = Hearth(30); var band = Row(h, "HearthRestBand"); StringAssert.Contains("15 fuel", band.Display); StringAssert.Contains("goes out", band.Display);
+            Assert.True(Act(h, "RestUntilNextBandAtHearth"), string.Join("|", MessageLog.GetRecent(3))); Assert.AreEqual(300, Clock.TickCount); Assert.AreEqual(Actor.GetStat("Hitpoints").Max, Hp);
+            Assert.AreEqual(15f, Fuel(h), 0.001f, "it burned for its 60 ticks of life, not for the 300 of the night"); Assert.AreEqual(h.GetPart<ThermalPart>().AmbientTemperature, h.GetPart<ThermalPart>().Temperature, 0.001f, "and is cold in the morning");
+            Assert.False(h.GetPart<LightSourcePart>().Enabled);
+        }
+
+        [Test] public void ALateBandRestKeepsTheFireBurningAndChargesOnlyWhatItSlept()
+        {
+            var h = Hearth(30); Clock.AdvanceClock(270); var band = Row(h, "HearthRestBand"); StringAssert.Contains("8 fuel", band.Display); StringAssert.DoesNotContain("goes out", band.Display);
+            Assert.True(Act(h, "RestUntilNextBandAtHearth")); Assert.AreEqual(300, Clock.TickCount); Assert.AreEqual(22f, Fuel(h), 0.001f, "30 ticks at a quarter a tick, rounded up"); Assert.True(h.GetPart<LightSourcePart>().Enabled);
+            Assert.Greater(h.GetPart<ThermalPart>().Temperature, 200f, "still burning when morning comes");
+        }
+
+        [Test] public void ABandRestNeedsTheSameNightAsANormalOne_FuelAndHeat()
+        {
+            var low = Hearth(30); low.GetPart<ThermalPart>().Temperature = 300; var band = Row(low, "HearthRestBand"); Assert.True(band.IsDisabled); Assert.AreEqual("fire_low", band.DisabledCode); StringAssert.Contains("Relight", band.DisabledReason);
+            Assert.False(Act(low, "RestUntilNextBandAtHearth")); Assert.AreEqual(0, Clock.TickCount); low.GetPart<ThermalPart>().Temperature = 450; Assert.False(Row(low, "HearthRestBand").IsDisabled, "relighting is what fixes it");
+            Zone.RemoveEntity(low); var thin = Hearth(10); band = Row(thin, "HearthRestBand"); Assert.True(band.IsDisabled); Assert.AreEqual("fuel_short", band.DisabledCode);
+            StringAssert.Contains("15", band.DisabledReason); StringAssert.Contains("10", band.DisabledReason);
         }
 
         [Test] public void AHostileWithinEightCellsRefusesAndTheFuelIsKept()
