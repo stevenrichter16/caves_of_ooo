@@ -55,7 +55,6 @@ namespace CavesOfOoo.Core
                     if (proofing != null)
                         lines.Add("Coat a garment from it: one unit gives +" + ProofingRules.CoatAmount + " " + proofing.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, and blunts " + proofing.Status
                             + ". A trough proofs one for good with " + ProofingRules.PermanentUnits + " units and " + ProofingRules.PermanentClay + " fire clay.");
-                    lines.Add("Fill from a nearby unmixed pool; pour onto nearby ground.");
                 }
                 else lines.Add("Liquid contents are invalid; fill and pour are unavailable.");
             }

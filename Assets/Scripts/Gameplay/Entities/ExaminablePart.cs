@@ -114,13 +114,13 @@ namespace CavesOfOoo.Core
             string description = BuildDescription(true, CellStatusReadout.GroundLine(zone, cell),
                 ParentEntity?.GetPart<CampfirePart>()?.DescribeFiniteCooking(zone, cell),
                 ParentEntity?.GetPart<CropPart>()?.DescribeGrowth(zone, cell),
-                CombatIntentReadout.ActorLine(ParentEntity, zone), CombatIntentReadout.ThreatLine(zone, cell));
+                CombatIntentReadout.ActorLine(ParentEntity, zone), CombatIntentReadout.ThreatLine(zone, cell), zone, cell, viewer);
             string warning = LocalGatheringClaims.WarningFor(viewer, ParentEntity, zone);
             return string.IsNullOrEmpty(warning) ? description : warning + "\n\n" + description;
         }
 
         private string BuildDescription(bool statusFirst, string ground, string cooking = null, string growth = null,
-            string intent = null, string threat = null)
+            string intent = null, string threat = null, Zone zone = null, Cell cell = null, Entity viewer = null)
         {
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
@@ -140,9 +140,13 @@ namespace CavesOfOoo.Core
                 if (!string.IsNullOrEmpty(cooking)) baseLine += "\n" + cooking;
                 if (!string.IsNullOrEmpty(growth)) baseLine += "\n" + growth;
             }
+            // How to use it, what it needs and whether it can be used right now (machines and tools): ahead of the flavor, which is only what the thing is.
+            var useLines = new System.Collections.Generic.List<string>();
+            UseGuides.Collect(ParentEntity, zone, cell, viewer, useLines);
+            for (int i = 0; i < useLines.Count; i++) baseLine += "\n" + useLines[i];
             string flavor = GetDescriptionText();
             if (!string.IsNullOrWhiteSpace(flavor))
-                baseLine += (statusFirst ? "\n\n" : " ") + flavor.Trim();
+                baseLine += (statusFirst || useLines.Count > 0 ? "\n\n" : " ") + flavor.Trim();
 
             var carriedReward = ParentEntity?.GetPart<LegendaryIdentityPart>()?.DescribeCarriedReward();
             if (!string.IsNullOrWhiteSpace(carriedReward))

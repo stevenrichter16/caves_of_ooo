@@ -4,7 +4,7 @@ namespace CavesOfOoo.Core
 {
     /// <summary>A reusable, water-only vessel. Units are individual drinks.
     /// Public fields persist through the existing part save stream.</summary>
-    public sealed class WaterskinPart : Part, IToolMenuState
+    public sealed class WaterskinPart : Part, IToolMenuState, IDescribeUse, IDescribeUseRows
     {
         public override string Name => "Waterskin";
         public int Capacity = 3;
@@ -12,6 +12,32 @@ namespace CavesOfOoo.Core
 
         /// <summary>What a menu says to tell two skins apart: "2/3".</summary>
         public string ToolMenuState() => Charges + "/" + Capacity;
+
+        public int Order => 10;
+
+        /// <summary>The pack menu always lists drink and fill; describing states whether each would work (a skin that is empty cannot be drunk from, a full one or one with no fresh water beside you cannot be filled).</summary>
+        public void AddUseRows(Entity actor, Zone zone, InventoryActionList rows)
+        {
+            if (rows == null || actor == null || actor.GetPart<InventoryPart>()?.Objects.Contains(ParentEntity) != true) return;
+            zone = zone ?? actor.SpatialZone;
+            WaterTransferActions.AddActions(actor, ParentEntity, zone, rows); DouseWorldActions.AddActions(actor, ParentEntity, zone, rows);
+            string drink = "drink water (" + Charges + "/" + Capacity + ")";
+            if (Charges > 0) rows.AddAction("DrinkWater", drink, "DrinkWaterskin"); else rows.AddDisabled("DrinkWater", drink, "empty", "The waterskin is empty.");
+            if (Charges >= Capacity) rows.AddDisabled("FillWater", "fill from nearby fresh water", "full", "The waterskin is full.");
+            else if (WaterVesselService.FreshSourceBeside(actor, zone) == null) rows.AddDisabled("FillWater", "fill from nearby fresh water", "no-water", "There is no fresh water beside you.");
+            else rows.AddAction("FillWater", "fill from nearby fresh water", "FillWaterskin");
+        }
+
+        /// <summary>How to use it (the owner, 2026-11-21): drink, fill, douse. The "right now" line is built from the rows the pack menu shows for it.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("Choose drink water from the pack (a drink relieves one layer of parch). To fill it, stand beside a well, cistern or standing fresh water, press C on the water and choose fill the waterskin.");
+            guide.How.Add("To put a fire out, press C on the burning thing and choose douse.");
+            guide.Needs.Add("fresh water within reach to fill it: a well, a cistern or a pool of fresh water");
+            guide.Needs.Add("a charge in it to drink or douse");
+            guide.Limits.Add("It holds " + Capacity + " drinks and holds " + Charges + " now. It carries water only.");
+            if (context.Viewer != null && !UseGuides.CarriedBy(context.Viewer, ParentEntity)) guide.WhyNot = UseGuides.PickUpFirst;
+        }
 
         public override bool HandleEvent(GameEvent e)
         {

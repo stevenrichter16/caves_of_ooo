@@ -13,7 +13,7 @@ namespace CavesOfOoo.Core
     /// the load only marks the cell and the trap is spent: so the trap is the way to make a pool, a slick or a spill do something to the next thing that crosses it. Loaded once, laid once, spent when sprung.
     /// <para>The kit holds its load as one string and is not a stack, so differently loaded kits never merge.</para>
     /// </summary>
-    public sealed class SpringTrapKitPart : Part, IDescribeState
+    public sealed class SpringTrapKitPart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "SpringTrapKit";
 
@@ -37,10 +37,20 @@ namespace CavesOfOoo.Core
 
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 30;
-        public string DescribeState(DescribeContext context)
-            => Loaded.Length == 0
-                ? "A sprung frame, not yet loaded. Load it with fire moss, frost lichen or spark root, lay it on a cell, and the next thing to step there sets it off: the load goes into the ground, and whatever lies there reacts. Oil ignites, water freezes or carries a shock. It is spent when it springs."
-                : "Loaded with " + WordFor(Kind) + ". Lay it on a cell beside you; the next thing to step there sets it off.";
+
+        /// <summary>How to use it, what it needs and costs, from the live rules (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s own rows.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("From the pack choose load the spring trap and pick what to load it with. Then press C on an open cell beside you and choose lay the trap there (or choose it from the pack).");
+            guide.How.Add("Whoever next steps on the cell springs it: the load goes into the ground and whatever lies there reacts. Oil under fire moss burns, water under frost lichen freezes, water or brine under spark root shocks; bare ground is only marked.");
+            if (Loaded.Length == 0) guide.Needs.Add("one fire moss, frost lichen or spark root in your pack, to load it with");
+            else guide.Needs.Add("an empty, passable cell beside you to lay it on, ideally one with oil or water on it (it is loaded with " + WordFor(Kind) + ")");
+            guide.Limits.Add("Loading spends the cartridge and springing spends the trap. It does not know who laid it: you spring it too. Fire is not laid on the Choir's ground.");
+            var actor = context.Viewer; if (actor == null) return;
+            guide.WhyNot = !UseGuides.CarriedBy(actor, ParentEntity) ? UseGuides.PickUpFirst : actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true ? "you cannot act just now" : "no cell beside you is free to lay it on";
+        }
+
+        public string DescribeState(DescribeContext context) => Loaded.Length == 0 ? "Not loaded." : "Loaded with " + WordFor(Kind) + ".";
 
         public override bool HandleEvent(GameEvent e)
         {

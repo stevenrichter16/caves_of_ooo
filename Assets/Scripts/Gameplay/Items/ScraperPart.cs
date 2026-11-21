@@ -15,7 +15,7 @@ namespace CavesOfOoo.Core
     /// <para>It is used where the source is: press C beside the vent, pool or ice and the source's own menu offers "scrape ..." (<see cref="AddCellRows"/>), run by the scraper in the pack, so the pack is never opened. The row names
     /// the exact source it was drawn for, so a scrape comes from the one the player chose, not from whichever happens to be nearest. The pack menu keeps its own row for the nearest source within two cells.</para>
     /// </summary>
-    public sealed class ScraperPart : Part, IDescribeState
+    public sealed class ScraperPart : Part, IDescribeUse
     {
         public override string Name => "Scraper";
         public const string Command = "ScrapeSource";
@@ -25,10 +25,20 @@ namespace CavesOfOoo.Core
 
         const string Hint = "Takes one grain at once from the place's own supply, the one a settling tray at the same place draws on. It rings through the stone: eyeless hunters will hear it.";
 
-        public ReaderScope Scope => ReaderScope.Both;
         public int Order => 30;
-        public string DescribeState(DescribeContext context)
-            => "A flat iron blade. Beside a steam vent or ash bed, a frost vent or ice sheet, or a pool of brine, acid or mire, open the source's own interact (C) menu and choose scrape (or use it from the pack): it takes one grain of what the place gives off, from the same supply a settling tray draws on. Every scrape is loud: eyeless hunters hear it.";
+
+        /// <summary>How to use it, what it needs and what it costs, from the live constants (the owner, 2026-11-21); the "right now" line is built from <see cref="AddRow"/>'s own row.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("Stand beside a source, open its interact (C) menu and choose scrape; the pack's scrape row also works on the nearest source within " + ProofingSources.Reach + " cells.");
+            guide.Needs.Add("a source within one step of you: a steam vent or ash bed (heat), a frost vent or ice sheet (cold), or a pool of brine, acid or mire");
+            guide.Needs.Add("the scraper in your pack");
+            guide.Limits.Add("One grain a scrape, from the source's own supply (" + SourceStockPart.MinCapacity + " to " + SourceStockPart.MaxCapacity + " grains, one more each day), the same supply a settling tray there draws on.");
+            guide.Limits.Add("Every scrape rings through the stone: eyeless hunters hear it. What you scrape cannot be sold.");
+            var actor = context.Viewer; if (actor == null) return;
+            guide.WhyNot = !UseGuides.CarriedBy(actor, ParentEntity) ? UseGuides.PickUpFirst : actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true ? "you cannot act just now"
+                : "no steam vent, ash bed, frost vent, ice sheet or pool of brine, acid or mire is within " + ProofingSources.Reach + " cells of you";
+        }
 
         public override bool HandleEvent(GameEvent e)
         {

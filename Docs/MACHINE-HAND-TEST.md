@@ -71,6 +71,17 @@ In the workshop scenario (or from a Tinker). Press **C** on the trap kit in your
 
 In Posy's square, near the sorting frame. A stranger finds one greyed row that points at the frame. Set found things in the frame until the Bower-Folk's regard is 8 or more (four points at the frame, or the elder's concern, are enough); then press **C** at the bench: "lacquer <garment> to tier 1 (1 pitchpod resin)", more tiers as regard grows, "set the Bower sign on <piece> (1 glow-quartz)". Lacquer a worn garment: its armor rises at once. Wear a signed piece: the regard rises by five (and the top lacquer tier opens at 38); take it off: it falls by five.
 
+## 2h. Examine anything: the how-to block
+
+Every machine and tool now says how to use it. Examine it (the pack's examine row, or look at a standing machine) and read, before the flavor text: **How to use**, **Needs**, **Cost and limits**, and **Right now**. Try, in the workshop scenario:
+
+- The scraper in your pack with no source near: "Right now: no steam vent, ash bed ... is within 2 cells of you". Step beside a vent and examine again: "Right now you can: scrape vent scale from the steam vent". Scrape it dry: "Right now you cannot: scrape ... (The steam vent is spent for now ...)".
+- A camp kit in the pack: how to set it down, the ground it needs, the caps, and the cells that would take it (or the one reason none will). Set it down and examine it: how to take it up, move it and hand it over, plus what the kit itself does.
+- The hearth (feed, stoke, light, cook, rest), the still (brew, settle, bake with the rates), the trough (what it needs, and "Nothing you carry fits: armor or clothing" until you carry some), the tray and the fish trap (what they need and how much they give), the awning (its reach and what the glare does), the flint striker (its strikes), the sounding rod ("Right now you cannot" on the surface), hush strips and the spring trap (what loading and laying do).
+- The Sorters' frame, the Setters' bench, the proving post and the mine pump (the pump says what it takes to mend and what you carry).
+
+Check that each "Right now" line matches the menu rows you then open (it is built from them), that the numbers match what happens, that nothing reads like a wall, and that nothing important is missing. The wording is mine and placeholder: tell me which lines are unclear. Every block, in every state a player meets it in, is written out in [MACHINE-USE-TEXTS.md](MACHINE-USE-TEXTS.md) so it can be read in one sitting.
+
 ## 3. The Concord's carriage: "Concord Carriage"
 
 You start with 60 drams, timber, a dagger, fire clay, a flask, a spore, and **one parcel already waiting at Cinderhold** (two iron spikes, "sent" from the Last Counter).

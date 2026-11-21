@@ -13,7 +13,7 @@ namespace CavesOfOoo.Core
     /// <para>The price is noise: the strike rings through the stone (<see cref="Noise.Mark"/>), which is how eyeless sound-hunters find you. It consumes nothing and is read-only on the world.
     /// How far the stone carries depends on what it is (soft sandstone drinks the pulse; quartzite carries it), which is the depth table the game already has.</para>
     /// </summary>
-    public sealed class SoundingRodPart : Part, IDescribeState
+    public sealed class SoundingRodPart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "SoundingRod";
 
@@ -188,6 +188,18 @@ namespace CavesOfOoo.Core
             }
             if (Log.Count > 1) parts.Add(Log.Count + " soundings are in its log.");
             return parts.Count == 0 ? null : string.Join(" ", parts);
+        }
+
+        /// <summary>How to use it, what it needs and what it costs, from the live constants (the owner, 2026-11-21). The rod always shows its sound row (disabled with the reason when it cannot sound), so the "right now" line says why.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            int low = int.MaxValue, high = 0; foreach (var (_, reach) in Ground) { low = Math.Min(low, reach); high = Math.Max(high, reach); }
+            guide.How.Add("Press C on your own cell and choose sound the ground (or choose it from the pack). The stone answers with a bearing and a distance for open ground, a way up or down, or dense stone you have not seen.");
+            guide.How.Add("Choose read the survey log to read back your last " + LogSize + " soundings.");
+            guide.Needs.Add("an ordinary cave floor below the surface, in stone that carries a sounding (" + low + " to " + high + " paces, by the floor)");
+            guide.Needs.Add("the rod in your pack");
+            guide.Limits.Add("The strike rings through the stone: eyeless hunters hear it. It names only terrain, never creatures or things, and nothing nearer than " + MinPaces + " paces. It uses nothing up.");
+            if (context.Viewer != null && !UseGuides.CarriedBy(context.Viewer, ParentEntity)) guide.WhyNot = UseGuides.PickUpFirst;
         }
 
         static string Ago(int ticks) => ticks < 60 ? "just now" : ticks < WorldClock.DayLengthTicks / 4 ? "a little while ago" : ticks < WorldClock.DayLengthTicks ? "today" : ticks / WorldClock.DayLengthTicks + (ticks / WorldClock.DayLengthTicks == 1 ? " day ago" : " days ago");

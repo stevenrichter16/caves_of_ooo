@@ -11,7 +11,7 @@ namespace CavesOfOoo.Core
     /// pond gives it nothing. Time is reconciled when you read it or empty it, never by a timer on a zone that is not loaded; reading it changes nothing.
     /// <para>Carried it is a kit (no rows, no catching); the clock starts at the set-down. Fish it holds stay in it when it is taken up.</para>
     /// </summary>
-    public sealed class FishTrapPart : Part, IDescribeState
+    public sealed class FishTrapPart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "FishTrap";
 
@@ -75,13 +75,23 @@ namespace CavesOfOoo.Core
         public string DescribeState(DescribeContext context)
         {
             var zone = context.Zone ?? ParentEntity?.SpatialZone;
-            if (!Standing(zone)) return "A wicker weir for the shore of a pond. Set it down on open ground beside fresh water that holds fish (a cascade basin), and it catches while you are about your business." + (Held > 0 ? " It holds " + Held + " fish, and you can take them once it is set down beside a pond." : "");
+            if (!Standing(zone)) return Held > 0 ? "It holds " + Held + " fish, and you can take them once it is set down beside a pond." : null;
             int now = WorldClock.CurrentTick; var p = Project(zone, now);
-            if (!p.Pond) return "It is not beside a pond big enough to fish. It catches nothing here; move it to the shore of a lake or a wide river.";
+            if (!p.Pond) return "It is not beside water it can fish, so it catches nothing here.";
             // A pond nobody has fished has no stock record yet and is full.
             string look = p.StockLeft < 0 ? FishStockPart.Look(1, 1) : FishStockPart.Look(p.StockLeft, p.Capacity);
             string next = p.Held >= MaxHeld ? " It is full: it catches no more until you empty it." : NextFish(zone, now, p, " The next fish is ");
             return "Holds " + p.Held + " fish (it takes " + MaxHeld + "). The water beside it looks " + look + "." + next;
+        }
+
+        /// <summary>How to use the trap, what it needs and what it gives, from the live constants (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s rows.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            bool standing = !PackableFixturePart.IsInertKit(ParentEntity) && ParentEntity?.SpatialZone != null;
+            guide.How.Add(standing ? "Wait while it fills, then press C beside it and choose take the fish." : "Set it down on the shore of a pond, wait, then press C beside it and choose take the fish.");
+            if (standing) guide.Needs.Add("a pond beside it big enough to fish: a wide pool of falling water, such as a cascade basin");   // a carried kit's ground text already says it
+            guide.Limits.Add("It catches about one fish every half day, up to " + MaxHeld + " at a time, from the pond's own supply, which every trap on that water shares; it uses nothing up. A fished-out pond gives one fish a day again.");
+            guide.WhyNot = "you are not beside it";
         }
 
         /// <summary>When the next fish is due, in the time of day the sidebar shows and never a tick count: "due soon" when about to come, else "due around Dusk". Empty when nothing more is coming

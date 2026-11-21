@@ -112,6 +112,9 @@ namespace CavesOfOoo.Core
         /// <summary>Command given to disabled rows so no consumer ever reads a null command; it is never dispatched.</summary>
         public const string DisabledCommandPrefix = "Disabled:";
 
+        /// <summary>The command of an inert row: a section header or a "none carried" placeholder in a picker menu. It is shown but does nothing, so a summary of what the thing offers leaves it out.</summary>
+        public const string InertCommand = "CraftNoop";
+
         public InventoryAction() { }
 
         public InventoryAction(string name, string display, string command,

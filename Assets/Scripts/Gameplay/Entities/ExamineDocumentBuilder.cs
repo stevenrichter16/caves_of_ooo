@@ -97,6 +97,7 @@ namespace CavesOfOoo.Core
                 Add(state,owner.GetPart<CropPart>()?.DescribeGrowth(zone,cell));
             }
             Add(sections,"Current state",string.Join("\n",state));
+            Add(sections,UseGuides.Heading,UseGuides.SectionText(owner,zone,cell,viewer));   // machines and tools: how to use it, what it needs, whether it can be used now
 
             var examine=owner.GetPart<ExaminablePart>();
             string flavor=examine?.GetDescriptionText();

@@ -14,7 +14,7 @@ namespace CavesOfOoo.Core
     /// <para>Fire is coupled, not assumed: the batch burns <see cref="FuelPerBatch"/> from a burning fire within <see cref="FireReach"/> of the still that can spare it, and refuses up front
     /// with the numbers otherwise.</para>
     /// </summary>
-    public sealed class LiquidSettlingPart : Part, IDescribeState
+    public sealed class LiquidSettlingPart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "LiquidSettling";
 
@@ -120,6 +120,17 @@ namespace CavesOfOoo.Core
             var settleable = SettleableFlasks(actor); int batches = vent ? settleable.Length : Math.Min(settleable.Length, Math.Max(1, Capacity(zone))); int yield = 0;
             for (int i = 0; i < batches && i < settleable.Length; i++) yield += settleable[i].GetPart<LiquidVesselPart>().Volume / Ratio;
             return "Here you can settle your mire: " + yield + " clean water or oil from " + batches + (batches == 1 ? " flask" : " flasks") + (vent ? ", on the vent's heat." : ".") + (AlchemyStillPart.Factory != null && settleable.Any(o => o.GetPart<LiquidVesselPart>().Volume >= ClayRatio) ? " Or bake " + ClayRatio + " of it into fire clay." : "");
+        }
+
+        /// <summary>How to settle and bake mire at the still (the owner, 2026-11-21), from the live constants. The "right now" line is built from <see cref="AddRows"/>'s rows (disabled with the reason when the fire is short).</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            if (!Standing) return;
+            guide.How.Add("With a flask of bog-mire in your pack, press C beside it and choose settle (to clean water or to oil), or bake to boil mire down to fire clay.");
+            guide.Needs.Add("to settle: a flask with at least " + Ratio + " units of bog-mire, and either a burning fire within " + FireReach + " cells that can spare " + FuelPerBatch + " fuel a flask or a steam vent or ash bed within " + FireReach + " cells");
+            guide.Needs.Add("to bake clay: a flask with at least " + ClayRatio + " units, and a burning fire within " + FireReach + " cells that can spare " + ClayFuel + " fuel (a vent is not hot enough)");
+            guide.Limits.Add("Settling gives 1 water or oil for every " + Ratio + " mire and baking 1 fire clay for every " + ClayRatio + "; the dregs are spent and nothing is made from nothing. Brine is not settled.");
+            guide.WhyNot = "you carry no bog-mire";
         }
 
         // ── rows ──

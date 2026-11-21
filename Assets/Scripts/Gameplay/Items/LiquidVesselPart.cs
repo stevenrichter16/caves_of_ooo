@@ -3,7 +3,7 @@ namespace CavesOfOoo.Core
     /// <summary>A reusable single-liquid vessel. Volume uses the same units as
     /// LiquidPoolPart; its identity and capacity persist through the normal save
     /// stream. Unlike the clean-water waterskin it has no drinking action.</summary>
-    public sealed class LiquidVesselPart : Part, IToolMenuState
+    public sealed class LiquidVesselPart : Part, IToolMenuState, IDescribeUse
     {
         public override string Name => "LiquidVessel";
         public int Capacity = 12;
@@ -12,6 +12,17 @@ namespace CavesOfOoo.Core
 
         /// <summary>What a menu says to tell two flasks apart: "empty" or "11/12 water".</summary>
         public string ToolMenuState() => Volume <= 0 ? "empty" : Volume + "/" + Capacity + " " + ((LiquidRegistry.IsInitialized ? LiquidRegistry.Get(LiquidId)?.DisplayName : null) ?? LiquidId);
+
+        public int Order => 10;
+
+        /// <summary>How to use a flask (the owner, 2026-11-21). The "right now" line is built from the rows the pack menu shows for it (fill, pour, douse, coat).</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("To fill it, stand beside a pool, well or other liquid, press C on it and choose fill (or choose fill from the pack). To pour, press C on your own cell or a cell beside you and choose pour or pour one.");
+            guide.Needs.Add("an unmixed liquid within reach to fill it: it takes one kind at a time");
+            guide.Limits.Add("It holds up to " + Capacity + " units" + (Volume > 0 ? " and holds " + Volume + " now" : "") + ". What you pour acts on the ground it lands on: oil burns and slicks, water carries a charge and damps fire.");
+            if (context.Viewer != null && !UseGuides.CarriedBy(context.Viewer, ParentEntity)) guide.WhyNot = UseGuides.PickUpFirst;
+        }
 
         public override bool HandleEvent(GameEvent e)
         {

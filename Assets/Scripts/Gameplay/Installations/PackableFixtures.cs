@@ -126,7 +126,7 @@ namespace CavesOfOoo.Core
     /// The only Part home/base owns (design 5.2): the definition key and the one timestamp readers need. Primitives and strings only. It hosts the verbs:
     /// a carried kit offers "set down" in the pack menu, a standing fixture offers "take up" and "hand over" in the world menu.
     /// </summary>
-    public sealed class PackableFixturePart : Part, IDescribeState, IStationReadinessGuard
+    public sealed class PackableFixturePart : Part, IDescribeState, IStationReadinessGuard, IDescribeUse
     {
         public string Kind = "";
 
@@ -157,6 +157,43 @@ namespace CavesOfOoo.Core
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 80;
         public string DescribeState(DescribeContext context) => HeldFixtureReader.Describe(ParentEntity, this);
+
+        /// <summary>A kit being carried explains how to set it down first; a standing one explains what it does first and how to move it last.</summary>
+        int IDescribeUse.Order => HeldFixtureActions.IsPlayerHeld(ParentEntity) ? 100 : 0;
+
+        /// <summary>
+        /// The kit's own how-to (the owner, 2026-11-21): how to set it down, what ground it needs, and how to take it up, move it or hand it over. What the kit does once it stands is its own Parts' guide. The "right
+        /// now" line is built from <see cref="HeldFixtureActions.AddActions"/>'s rows, so it names the cells that would take it or the one reason none will.
+        /// </summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            var def = PackableFixtureRegistry.Get(Kind); if (def == null || def.Class != PackableFixtureDefinition.Carried) return;
+            var installable = ParentEntity?.GetPart<InstallablePart>();
+            bool installed = installable != null && installable.State == InstallablePart.Installed;
+            if (installed && !HeldFixtureActions.IsPlayerHeld(ParentEntity)) return;   // a fixture of the world, or one you handed over: it cannot be taken up, and its own Parts say what it does
+            if (!installed)
+            {
+                guide.How.Add("Press C on an open cell beside you and choose set down, or choose set down from the pack. With two or more kits, make camp here sets down every kit you carry that has room.");
+                guide.Needs.Add(GroundNeeds(def));
+                guide.Limits.Add("It does its work only where it is set down. You can keep " + PlacementCheck.ZoneCap + " things standing in one area and " + PlacementCheck.WorldCap + " in the world.");
+                if (ParentEntity?.SpatialZone != null) guide.WhyNot = "it lies on the ground: pick it up first";
+                return;
+            }
+            guide.How.Add("To take it up, move it, name this camp or hand it over, press C beside it. Pack up camp takes up every kit of yours within " + HeldFixtureActions.PackUpReach + " cells in one action.");
+            if (ParentEntity.GetPart<ContainerPart>() is ContainerPart box) guide.How.Add("Open it from its menu to put things in or take them out" + (box.MaxItems >= 0 ? " (it takes up to " + box.MaxItems + " separate things; a stack counts as one)." : "."));
+            guide.Limits.Add("Taking it up keeps its contents and fuel. Handing it over leaves it standing, and you can no longer take it up.");
+            guide.WhyNot = "you are not beside it";
+        }
+
+        /// <summary>What the ground must be, from the placement rules' own constants.</summary>
+        static string GroundNeeds(PackableFixtureDefinition def)
+        {
+            string country = string.Join(", ", HeldPlaceZones.AllowedBiomes.Select(b => "the " + b)); int comma = country.LastIndexOf(", ", StringComparison.Ordinal); if (comma >= 0) country = country.Substring(0, comma) + " or" + country.Substring(comma + 1);
+            string common = "a cell with nothing on it but ground, and nothing solid or hazardous on " + (def.Solid ? "any of the eight cells around it" : "the four cells beside it") + "; not a road; not within " + PlacementCheck.DoorStairReach + " cells of a door, stair or well; at least " + PlacementCheck.EdgeCells + " cells from the edge of the area; in " + country + "; not in a village or other protected ground, and not underground";
+            if (def.GroundClass == PlacementCheck.ShoreGround) return "ground right beside water it can fish (a wide pool of falling water, such as a cascade basin): " + common;
+            if (def.GroundClass == PlacementCheck.BareGround) return "bare ground with nothing growing on it: " + common;
+            return "open ground: " + common;
+        }
 
         public override bool HandleEvent(GameEvent e)
         {

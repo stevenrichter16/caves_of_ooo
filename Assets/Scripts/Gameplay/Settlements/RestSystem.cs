@@ -148,6 +148,9 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        /// <summary>The hostile creature that would stop a rest right now, or null: the same scan the rest itself makes. For describing a rest row truthfully.</summary>
+        internal static Entity HostileNear(Entity actor, Zone zone) => FindNearbyHostile(actor, zone);
+
         private static Entity FindNearbyHostile(Entity actor, Zone zone)
         {
             if (zone == null) return null;

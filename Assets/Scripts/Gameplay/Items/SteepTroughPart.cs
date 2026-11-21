@@ -14,7 +14,7 @@ namespace CavesOfOoo.Core
     /// <para>Gear only: armor that is not a creature, so a person, body or specimen can never qualify. Its word is "proof"; "bath" belongs to the Curation and the Bower and never appears in what the player reads.
     /// A garment holds one lasting proofing, and it takes one of the garment's two treatment slots. While carried it is a kit, not a station.</para>
     /// </summary>
-    public sealed class SteepTroughPart : Part, IDescribeState
+    public sealed class SteepTroughPart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "SteepTrough";
 
@@ -85,15 +85,26 @@ namespace CavesOfOoo.Core
         public string DescribeState(DescribeContext context)
         {
             if (!Standing) return null;
-            string cost = ProofingRules.PermanentUnits + " units of an element's proofing and " + ProofingRules.PermanentClay + " fire clay";
-            string recipes = "Proofs a garment against heat, cold, shock or acid for good (+" + ProofingRules.PermanentAmount + " resistance, never wears out) for " + cost + ". A coat from a flask of proofing does the short-term work and needs no trough.";
-            var viewer = context.Viewer; if (viewer == null) return recipes;
+            string recipes = "";
+            var viewer = context.Viewer; if (viewer == null) return null;
             var have = new List<string>(); foreach (var element in ProofingRegistry.All) { int units = UnitsCarried(viewer, element); if (units > 0) have.Add(units + " " + element.Liquid); }
             int clay = ClayCarried(viewer); int garments = Eligible(viewer).Count;
             string seen = ElementalThreats.Summary(context.Zone ?? ParentEntity?.SpatialZone, viewer);
             int proofed = Holdings(viewer).Count(o => Fits(viewer, o) && ProofedOf(o) != null);
-            if (proofed > 0) recipes += " " + proofed + (proofed == 1 ? " garment you hold has" : " garments you hold have") + " a lasting proofing: unpicking one frees its slot and returns nothing.";
-            return recipes + " You carry " + (have.Count == 0 ? "no proofing" : string.Join(", ", have)) + " and " + clay + " fire clay; " + garments + (garments == 1 ? " garment" : " garments") + " could be proofed." + (seen.Length > 0 ? " " + seen : "");
+            if (proofed > 0) recipes += proofed + (proofed == 1 ? " garment you hold has" : " garments you hold have") + " a lasting proofing: unpicking one frees its slot and returns nothing. ";
+            return recipes + "You carry " + (have.Count == 0 ? "no proofing" : string.Join(", ", have)) + " and " + clay + " fire clay; " + garments + (garments == 1 ? " garment" : " garments") + " could be proofed." + (seen.Length > 0 ? " " + seen : "");
+        }
+
+        /// <summary>How to use the trough, what it needs and costs, from the live constants (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s rows (refused ones say why).</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            if (!Standing) { guide.How.Add("Once it is set down, press C beside it to proof a garment for good."); return; }
+            guide.How.Add("Press C beside it and choose proof <garment> against <element> for good. To undo one, choose unpick the <element> proofing.");
+            guide.Needs.Add("a garment you hold (armor or clothing) with a free treatment slot");
+            guide.Needs.Add(ProofingRules.PermanentUnits + " units of one element's proofing in your flasks (press a reagent into a flask first)");
+            guide.Needs.Add(ProofingRules.PermanentClay + " fire clay");
+            guide.Limits.Add("+" + ProofingRules.PermanentAmount + " resistance to that element for as long as the garment lasts; a garment keeps one lasting proofing. Unpicking frees the slot and returns nothing. A coat from a flask of proofing does the short-term work and needs no trough.");
+            guide.WhyNot = "you are not beside it";
         }
 
         // ── rows ──

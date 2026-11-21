@@ -13,7 +13,7 @@ namespace CavesOfOoo.Core
     /// What is set in is the frame's for good (nothing is taken back out: damaging an installation is the Bower-Folk's primary crime). Each point is a small, one-time, non-tradable regard from the Bower-Folk
     /// (<see cref="PlayerReputation"/>), bounded by the six places, so it can be earned once and never farmed, and it mints no money.
     /// </summary>
-    public sealed class SortingFramePart : Part, IDescribeState
+    public sealed class SortingFramePart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "SortingFrame";
 
@@ -84,6 +84,16 @@ namespace CavesOfOoo.Core
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 20;
 
+        /// <summary>How to use the frame, what it takes and what it gives, from the live constants (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s rows (refused pieces say why).</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("Press C beside it and choose a piece you carry to set in; each row names the place it would go in and whether it is striking or dim.");
+            guide.Needs.Add("a found thing with a real colour (red, yellow, green, cyan, blue or magenta; grey, white and black are worth nothing) worth at most " + CheapLimit + " drams");
+            guide.Needs.Add("a place of that colour that is empty or holds a dimmer piece");
+            guide.Limits.Add("What you set in stays in the frame for good. The Bower-Folk's regard rises " + RegardPerPoint + " for each point (a bright piece is two, a dim one is one), and " + WholeRegard + " more once when every place is bright.");
+            guide.WhyNot = "you are not beside it";
+        }
+
         public string DescribeState(DescribeContext context)
         {
             var wanted = new List<string>(); var dim = new List<string>(); var placed = new List<string>();
@@ -92,7 +102,7 @@ namespace CavesOfOoo.Core
                 int p = PowerAt(h);
                 if (p == 0) wanted.Add(Hues[h]); else { placed.Add(Hues[h] + (p >= 2 ? " (striking)" : " (dim)")); if (p == 1) dim.Add(Hues[h]); }
             }
-            var sb = new StringBuilder("A frame of six places for found things, one for each colour. The Sorters keep it. It takes a thing that is only itself: bright is worth more than dim, grey, white and black are worth nothing, and nothing worth much in drams is taken. What is set in stays.");
+            var sb = new StringBuilder("A frame of six places, one for each colour.");
             if (wanted.Count == 6) sb.Append(" It is empty: it wants ").Append(string.Join(", ", wanted)).Append('.');
             else if (Whole()) sb.Append(" Every place holds a striking piece. It is whole.");
             else

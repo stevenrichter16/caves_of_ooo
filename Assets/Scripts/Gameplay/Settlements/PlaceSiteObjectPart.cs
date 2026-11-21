@@ -14,7 +14,7 @@ namespace CavesOfOoo.Core
     /// what you carry of it, offers "mend for good" and "patch for now" when they could be made and says what is missing when they could not; and a repair is one action that takes the
     /// materials only at commit, so a refused or interrupted action takes nothing.</para>
     /// </summary>
-    public sealed class PlaceSiteObjectPart : Part, IDescribeState, IMenuStatus
+    public sealed class PlaceSiteObjectPart : Part, IDescribeState, IMenuStatus, IDescribeUse
     {
         public override string Name => "PlaceSiteObject";
 
@@ -67,6 +67,18 @@ namespace CavesOfOoo.Core
             if (site.Stage >= RepairStage.StableRepair) return "Mended, and working.";
             if (site.Stage == RepairStage.TemporarilyPurified) { string left = Remaining(site); return "Patched for now" + (left == "" ? "." : ": it holds " + left + ", then fails.") + (context.Full ? " " + Advice(data, site, context.Viewer) : ""); }
             return data.Broken + (context.Full ? " " + Advice(data, site, context.Viewer) : "");
+        }
+
+        /// <summary>How to mend it and what that takes, from the site's own repair data (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s rows, and a refused repair names what is missing.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            var data = Data; var site = Site; if (data == null || site == null) return;
+            if (site.Stage >= RepairStage.StableRepair) { guide.Limits.Add("It is mended and working; there is nothing more to do to it."); return; }
+            guide.How.Add("Stand beside it, press C and choose mend the " + data.Name + " for good" + (data.HasPatch && site.Stage == RepairStage.Fouled ? ", or patch it for now" : "") + ". The menu lists each material with how many you carry.");
+            guide.Needs.Add("to mend it for good: " + PlaceSiteRepairs.NeedsPlain(data.Lasting));
+            if (data.HasPatch && site.Stage == RepairStage.Fouled) guide.Needs.Add("to patch it for now: " + PlaceSiteRepairs.NeedsPlain(data.Patch));
+            guide.Limits.Add("Mending uses up the materials and keeps any tool, and the repair lasts." + (data.HasPatch && site.Stage == RepairStage.Fouled ? " A patch holds about " + data.Patch.RelapseTurns + " turns, then fails." : ""));
+            guide.WhyNot = "you are not beside it";
         }
 
         /// <summary>What the viewer could do about it, from what they carry: the full reader's last sentence.</summary>

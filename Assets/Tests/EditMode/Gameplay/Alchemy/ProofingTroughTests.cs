@@ -198,7 +198,9 @@ namespace CavesOfOoo.Tests
         [Test] public void TheReadersNameWhatTheTroughDoesAndWhatYouCarry()
         {
             var trough = StandingTrough(); Flask(2, "cold-proofing"); Clay(1); var l = new System.Collections.Generic.List<string>(); StateReader.Collect(trough, true, Zone, Zone.GetEntityCell(trough), Actor, l); string text = string.Join(" ", l);
-            StringAssert.Contains("for good", text); StringAssert.Contains("4", text); StringAssert.Contains("fire clay", text); StringAssert.Contains("2 cold", text.Replace("cold-proofing", "cold")); StringAssert.Contains("1 fire clay", text);
+            StringAssert.Contains("fire clay", text); StringAssert.Contains("2 cold", text.Replace("cold-proofing", "cold")); StringAssert.Contains("1 fire clay", text);
+            var guide = new System.Collections.Generic.List<string>(); UseGuides.Collect(trough, Zone, Zone.GetEntityCell(trough), Actor, guide); string how = string.Join(" ", guide);
+            StringAssert.Contains("for good", how); StringAssert.Contains(ProofingRules.PermanentUnits + " units", how); StringAssert.Contains(ProofingRules.PermanentClay + " fire clay", how, "what it costs is in the how-to block, from the rule's own numbers");
             var garment = Carry("LeatherArmor"); var f2 = Flask(4, "heat-proofing"); Clay(1); Assert.True(Act(trough, RowFor(trough, garment, "heat"))); StringAssert.Contains("Proofed against heat for good", Proofed(garment).GetEffectDescription()); StringAssert.Contains("+25", Proofed(garment).GetEffectDescription());
         }
 

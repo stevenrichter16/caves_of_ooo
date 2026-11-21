@@ -21,7 +21,7 @@ namespace CavesOfOoo.Core
     /// count problems reject legibly here; everything else (gating,
     /// atomicity, stat math) lives in the commands and services.
     /// </summary>
-    public class ForgePart : Part, IStationCapability, IStationReadinessGuard, IDescribeState
+    public class ForgePart : Part, IStationCapability, IStationReadinessGuard, IDescribeState, IDescribeUse, IDescribeUseRows
     {
         public override string Name => "Forge";
 
@@ -71,6 +71,29 @@ namespace CavesOfOoo.Core
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 90;
         public string DescribeState(DescribeContext context) => ColdWorkLine(Factory);
+
+        /// <summary>How to use a forge or bench (the owner, 2026-11-21). The field rig explains itself at its own rows, and a carried bench is a kit, so neither gets this block. The "right now" line is built from the menu's own pick and craft rows.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            if (FieldWorkRigRules.IsRig(ParentEntity)) return;
+            if (ParentEntity?.GetPart<PhysicsPart>()?.InInventory != null || PackableFixturePart.IsInertKit(ParentEntity)) { guide.How.Add("Once it is set down, press C beside it to forge, re-forge or temper weapons from the parts you carry."); return; }
+            guide.How.Add("Press C beside it and pick what to work with from your pack with the pick rows, then choose Craft. A blade, a haft and a binding forge a weapon (pick one quench as well to temper it at once); one weapon and one replacement part re-forge it; one weapon and one quench temper it.");
+            guide.Needs.Add("a blade, a haft and a binding to forge; or a weapon you carry and one replacement part to re-forge it; or a weapon and a brew with an effect to quench it in");
+            guide.Limits.Add("Crafting uses up the picked parts." + (ParentEntity.HasPart<PackableFixturePart>() ? " A bench holds the work; the fire is not part of it." : ""));
+            guide.WhyNot = "you are not beside it";
+        }
+
+        /// <summary>The Craft row is always in the menu but only works with a valid pick (the same three cases <see cref="HandleCraftKit"/> tells apart), so describing states it that way and says what is missing.</summary>
+        public void AddUseRows(Entity actor, Zone zone, InventoryActionList rows)
+        {
+            if (rows == null || actor == null || FieldWorkRigRules.IsRig(ParentEntity) || ParentEntity?.GetPart<PhysicsPart>()?.InInventory != null || PackableFixturePart.IsInertKit(ParentEntity)) return;
+            var marked = CraftingMarkPart.CollectMarked(actor); bool blade = false, haft = false, binding = false;
+            foreach (var component in marked.Components) { string slot = component?.GetPart<WeaponComponentPart>()?.Slot; blade |= slot == "Blade"; haft |= slot == "Haft"; binding |= slot == "Binding"; }
+            if (blade && haft && binding) rows.AddAction("Craft", marked.Coatings.Count == 1 ? "Craft: forge a weapon and temper it" : "Craft: forge a weapon", "CraftKit");
+            else if (marked.Weapons.Count == 1 && marked.Components.Count == 1) rows.AddAction("Craft", "Craft: re-forge the picked weapon", "CraftKit");
+            else if (marked.Weapons.Count == 1 && marked.Coatings.Count == 1) rows.AddAction("Craft", "Craft: temper the picked weapon", "CraftKit");
+            else rows.AddDisabled("Craft", "Craft", "nothing-picked", "Pick a blade, a haft and a binding, or one weapon and one part, or one weapon and one quench, from your pack first.");
+        }
 
         /// <summary>One line naming each cold-work process a forge or bench supports and what it needs in the pack, or null when none are loaded. Data-driven: a new row appears here with no edit.</summary>
         public static string ColdWorkLine(EntityFactory factory)

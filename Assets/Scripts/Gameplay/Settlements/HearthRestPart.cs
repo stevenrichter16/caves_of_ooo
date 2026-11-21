@@ -11,7 +11,7 @@ namespace CavesOfOoo.Core
     /// The heal, bleeding cure, clock advance and the hostile-within-eight rule are the shared <see cref="RestSystem"/>; only the paid fuel is new.
     /// <para>It is its own Part with its own commands, so the ordinary campfire rest (<c>AllowRest</c>, free) and every other finite fire keep exactly the rules they have.</para>
     /// </summary>
-    public sealed class HearthRestPart : Part, IDescribeState
+    public sealed class HearthRestPart : Part, IDescribeState, IDescribeUse, IDescribeUseRows
     {
         public override string Name => "HearthRest";
 
@@ -24,6 +24,29 @@ namespace CavesOfOoo.Core
             if (fire == null || context.Viewer == null || zone == null || !CampfireWorkActions.Source(context.Viewer, fire, zone) || !CampfireWorkActions.Fuel(fire, out var fuel)) return null;
             if (Refusal(fire, fuel, ParentEntity.GetPart<ThermalPart>(), RestSystem.RestClockTurns, out var night) != null) return null;
             return "You could rest here: it burns about " + night.Fuel + " fuel" + (night.BurnsOut ? " and then goes out." : ".");
+        }
+
+        /// <summary>How to rest by the fire and what it costs (the owner, 2026-11-21). The rest rows are always shown beside a finite fire, disabled with the reason when the fire cannot keep the night, so the "right now" line says why.</summary>
+        /// <summary>The rest rows are listed whenever the fire could keep a night, but any rest is refused with a hostile creature near, so describing says so.</summary>
+        public void AddUseRows(Entity actor, Zone zone, InventoryActionList rows)
+        {
+            if (rows == null || actor == null) return;
+            zone = zone ?? actor.SpatialZone ?? SettlementRuntime.ActiveZone;
+            var offered = new InventoryActionList(); AddRows(actor, zone, offered); var hostile = RestSystem.HostileNear(actor, zone);
+            foreach (var row in offered.Actions)
+            {
+                if (hostile != null && !row.IsDisabled) rows.AddDisabled(row.Name, row.Display, "hostile-near", "A hostile creature is within " + RestSystem.HostileScanRadius + " cells.");
+                else rows.Actions.Add(row);
+            }
+        }
+
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            if (PackableFixturePart.IsInertKit(ParentEntity) || ParentEntity?.GetPart<PhysicsPart>()?.InInventory != null) return;   // a carried hearth explains setting down; the fire's own guide names resting
+            var fuel = ParentEntity?.GetPart<FuelPart>();
+            guide.How.Add("Press C beside it and choose rest, or rest until a time of day: the fire keeps burning while you sleep, and the row says how much fuel the night takes.");
+            guide.Needs.Add("to rest by it: no hostile creature within " + RestSystem.HostileScanRadius + " cells, as for any rest, and a lit fire with fuel enough for the night" + (fuel != null && UsableRate(fuel) ? " (it burns about " + fuel.BurnRate.ToString("G3", System.Globalization.CultureInfo.InvariantCulture) + " fuel for every turn you rest)" : ""));
+            guide.Limits.Add("The fuel the night burns is spent. If the fire could not last a normal rest the row is greyed and says what would fix it.");
         }
 
         public const string RestCommand = "RestAtHearth", BandCommand = "RestUntilNextBandAtHearth", Site = "hearth";

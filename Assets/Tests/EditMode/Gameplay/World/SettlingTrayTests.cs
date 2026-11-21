@@ -208,9 +208,11 @@ namespace CavesOfOoo.Tests
             Assert.False(Pack.Objects.Contains(tray), "the tray went down"); var at = wild.GetEntityPosition(tray); Assert.AreEqual(2, Math.Max(Math.Abs(at.x - SX), Math.Abs(at.y - SY))); Assert.False(PackableFixturePart.IsInertKit(tray));
         }
 
+        string Guide(Entity e, Entity who = null) { var g = new System.Collections.Generic.List<string>(); UseGuides.Collect(e, null, null, who ?? Actor, g); return string.Join(" ", g); }
+
         [Test] public void ACarriedTrayIsAKitThatOffersNothingAndSaysWhatItIs_Counter()
         {
-            var kit = Carry("CampSettlingTray"); Assert.IsEmpty(Actions(kit).Where(a => a.Name == "GatherTray")); StringAssert.Contains("Set it down", Read(kit)); StringAssert.Contains("steam vent", Read(kit));
+            var kit = Carry("CampSettlingTray"); Assert.IsEmpty(Actions(kit).Where(a => a.Name == "GatherTray")); StringAssert.Contains("Set it down", Guide(kit)); StringAssert.Contains("steam vent", Guide(kit));
             Assert.AreEqual(0, kit.GetPart<SettlingTrayPart>().Reconcile(wild, WorldClock.CurrentTick), "a kit never catches");
         }
 

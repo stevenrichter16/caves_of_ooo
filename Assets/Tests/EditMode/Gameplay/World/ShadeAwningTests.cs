@@ -112,7 +112,8 @@ namespace CavesOfOoo.Tests
             var cell = wild.GetEntityCell(kit); Assert.True(HeldFixtureActions.IsPlayerHeld(kit)); Assert.True(ShadePart.Covers(wild, wild.GetCell(cell.X + 1, cell.Y)), "the ring around it is shaded once it stands");
             StringAssert.Contains("shades the ground under it", Read(kit));
             var take = WorldInteractionSystem.GatherActions(kit, Actor).Single(a => a.Name == "TakeUpFixture"); Assert.True(Act(kit, take.Command)); Assert.False(ShadePart.Covers(wild, wild.GetCell(cell.X, cell.Y)), "taken up it shades nothing");
-            StringAssert.Contains("Carried, it shades nothing", Read(kit));
+            StringAssert.DoesNotContain("shades the ground", Read(kit), "taken up, the state line is gone");
+            var g = new List<string>(); UseGuides.Collect(kit, null, null, Actor, g); StringAssert.Contains("Carried or taken up, it shades nothing", string.Join(" ", g));
         }
 
         string Read(Entity e) { var l = new List<string>(); StateReader.Collect(e, true, wild, wild.GetEntityCell(e), Actor, l); return string.Join(" ", l); }

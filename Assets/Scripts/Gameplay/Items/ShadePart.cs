@@ -8,7 +8,7 @@ namespace CavesOfOoo.Core
     /// <see cref="Radius"/> of it (at most <see cref="MaxRadius"/>), for anyone who stands there, while it stands. A kit that is carried, dropped or taken up shades nothing. Any future awning, canopy
     /// or cloth carries the same Part and gets the same rule, with no edit to the glare system.
     /// </summary>
-    public sealed class ShadePart : Part, IDescribeState
+    public sealed class ShadePart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "Shade";
         public const int MaxRadius = 2;
@@ -45,7 +45,16 @@ namespace CavesOfOoo.Core
         public string DescribeState(DescribeContext context)
             => Shading
                 ? "It shades the ground " + (Math.Min(Radius, MaxRadius) == 1 ? "under it and the cells around it" : "within " + Math.Min(Radius, MaxRadius) + " cells of it") + " from the glare, for whoever stands there." + (Shades(context) ? " You are standing in it." : "")
-                : "Cloth on collapsible poles. Set down on open ground, it shades the cells around it from the glare. Carried, it shades nothing.";
+                : null;
+
+        /// <summary>How the shade works and what it is for, from the live constants (the owner, 2026-11-21). It offers no verbs of its own: the kit rows carry the "right now" line.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            int reach = Math.Min(Radius, MaxRadius);
+            bool standing = !PackableFixturePart.IsInertKit(ParentEntity) && ParentEntity?.SpatialZone != null;
+            guide.How.Add((standing ? "Stand under it: it shades" : "Set it down and stand under it: it shades") + " its own cell and the cells within " + reach + " of it.");
+            guide.Limits.Add("It only matters where the sun does: in the Beating at the Height of the day, bareheaded in the open you gain a stack of Parched every " + BeatingGlareSystem.ExposureTurnsPerStack + " turns, and under shade the count does not run. A hat or a roof does the same. Carried or taken up, it shades nothing.");
+        }
 
         /// <summary>Whether the viewer (only the full reader passes one) stands within this one's reach: a plain geometric fact about where they are, so a reader can say the shade is theirs.</summary>
         bool Shades(DescribeContext context)

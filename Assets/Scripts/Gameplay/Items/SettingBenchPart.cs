@@ -13,7 +13,7 @@ namespace CavesOfOoo.Core
     /// the higher the tier they will work (<see cref="MinRegard"/>, then a tier more for every <see cref="RegardPerTier"/>). A garment takes two treatments at most, once each of these, shared with the trough's lasting proofing.
     /// The cost is the finite resin or quartz; nothing is made from nothing and nothing is sold.
     /// </summary>
-    public sealed class SettingBenchPart : Part, IDescribeState
+    public sealed class SettingBenchPart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "SettingBench";
 
@@ -27,12 +27,22 @@ namespace CavesOfOoo.Core
 
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 20;
+        /// <summary>How to use the bench, what it needs and gives, from the live constants (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s rows (refused work says why).</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("Press C beside it and choose lacquer <garment> to tier N, or set the Bower sign on <piece>.");
+            guide.Needs.Add("the Bower-Folk's regard of " + MinRegard + " or more (set found things in the Sorters' frame by the well to earn it); the tier you may lacquer to rises by one for every " + RegardPerTier + " more, up to " + MaxTier);
+            guide.Needs.Add("one pitchpod resin for each tier of lacquer, or one glow quartz for a sign");
+            guide.Limits.Add("Each tier of lacquer is one point of armor on a garment you wear or carry. A signed piece raises the Bower-Folk's regard while you wear it and lowers it again when you take it off.");
+            guide.WhyNot = "you are not beside it";
+        }
+
         public string DescribeState(DescribeContext context)
         {
             int regard = PlayerReputation.Get(Faction), cap = TierCap(regard);
             string known = cap == 0 ? " It will not work your things yet: the Sorters have not seen your eye (the frame by the well is where they look)."
                 : cap >= MaxTier ? " The Sorters know your eye well: it will lacquer to the highest tier." : " The Sorters have seen your eye: it will lacquer to tier " + cap + ", and higher as they come to know it better.";
-            return "A bench of pale wood where the Setters work. It lacquers a garment (one pitchpod resin to a tier, each tier a point of armor) and sets the Bower-Folk's sign on a thing you wear or carry (one glow-quartz; while it is worn the Bower-Folk think better of you)." + known;
+            return known.TrimStart();
         }
 
         // ── what you hold ──

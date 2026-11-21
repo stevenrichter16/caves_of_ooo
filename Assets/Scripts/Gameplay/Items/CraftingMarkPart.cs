@@ -106,6 +106,9 @@ namespace CavesOfOoo.Core
         /// coatings). Rows sort below the station's verb rows via
         /// <paramref name="basePriority"/> (descending from there).
         /// </summary>
+        /// <summary>The heading the pick rows share, for summaries.</summary>
+        public const string PickHeading = "pick things from your pack";
+
         public static void AddToggleRows(InventoryActionList actions, Entity actor,
             System.Predicate<Entity> eligible, int basePriority)
         {
@@ -129,8 +132,9 @@ namespace CavesOfOoo.Core
                     : "[ ] " + item.GetDisplayName() + " - add";
                 if ((item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
                     display += " (empty; remove pick)";
+                // The pick rows are one kind of work; the heading lets a summary of what the thing offers say "pick things from your pack (4)" (the menu itself lists them as ever).
                 actions.AddAction("CraftToggle", display,
-                    ToggleCommandPrefix + item.ID, '\0', priority--);
+                    ToggleCommandPrefix + item.ID, '\0', priority--).InGroup(PickHeading);
             }
         }
 

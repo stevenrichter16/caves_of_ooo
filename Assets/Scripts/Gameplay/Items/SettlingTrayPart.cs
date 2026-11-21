@@ -12,7 +12,7 @@ namespace CavesOfOoo.Core
     /// into the same pan until it is emptied. Time is reconciled when it is read, emptied or taken up, never by a timer on a zone that is not loaded; reading it changes nothing.
     /// <para>Carried it is a kit (no rows, no catching); the clock starts at the set-down. What it holds stays in it when it is taken up.</para>
     /// </summary>
-    public sealed class SettlingTrayPart : Part, IDescribeState
+    public sealed class SettlingTrayPart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "SettlingTray";
 
@@ -101,14 +101,25 @@ namespace CavesOfOoo.Core
             var zone = context.Zone ?? ParentEntity?.SpatialZone;
             var held = ProofingRegistry.ById(Element);
             string heldNote = Held > 0 ? " It holds " + Held + " " + ReagentName(held) + "." : "";
-            if (!Standing(zone)) return "A shallow pan on a stand, for the edge of something that gives off its element: a steam vent, a frost vent, a pool of brine or acid. Set it down on open ground within two cells of one, and it settles out a little of what that source gives off while you are about your business." + heldNote + (Held > 0 ? " You can take it once it is set down." : "");
+            if (!Standing(zone)) return Held > 0 ? heldNote.TrimStart() : null;
             int now = WorldClock.CurrentTick; var p = Project(zone, now);
-            if (!p.Source) return "There is nothing near enough to settle from. Set it within two cells of a steam vent or ash bed, a frost vent or ice sheet, or a pool of brine, acid or mire." + heldNote;
+            if (!p.Source) return "There is nothing near enough to settle from." + heldNote;
             string name = ReagentName(p.Kind), source = p.Near.GetDisplayName();
             if (p.Mixed) return "It holds " + Held + " " + ReagentName(held) + ", and the " + source + " beside it gives off something else. It settles nothing more until you empty it.";
             string look = SourceStockPart.Look(p.StockLeft, p.Capacity);
             string next = p.Held >= MaxHeld ? " It is full: it settles no more until you empty it." : NextCatch(now, p, " The next is ");
             return "Settling " + name + " from the " + source + ". Holds " + p.Held + " (it takes " + MaxHeld + "). The source looks " + look + "." + next;
+        }
+
+        /// <summary>How to use the tray, what it needs and what it gives, from the live constants (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s rows.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            bool standing = !PackableFixturePart.IsInertKit(ParentEntity) && ParentEntity?.SpatialZone != null;
+            guide.How.Add(standing ? "Wait while it settles, then press C beside it and choose gather."
+                : "Set it down within " + ProofingSources.Reach + " cells of a source (the set-down row names what each cell would catch), wait, then press C beside it and choose gather.");
+            guide.Needs.Add("a source within " + ProofingSources.Reach + " cells: a steam vent or ash bed (vent scale), a frost vent or ice sheet (rime flake), a pool of brine (brine crust), acid or mire (acid crust); one element to a tray");
+            guide.Limits.Add("It settles one reagent about every half day, up to " + MaxHeld + " at a time, from the source's own supply (" + SourceStockPart.MinCapacity + " to " + SourceStockPart.MaxCapacity + " grains, one more each day), shared with the scraper and every other tray there. The catch cannot be sold.");
+            guide.WhyNot = "you are not beside it";
         }
 
         /// <summary>When the next catch is due, in the time of day the sidebar shows and never a tick count; empty when nothing more is coming (full pan or a spent source: the look already says that).</summary>

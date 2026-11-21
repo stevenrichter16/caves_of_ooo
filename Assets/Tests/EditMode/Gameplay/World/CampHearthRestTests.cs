@@ -31,7 +31,8 @@ namespace CavesOfOoo.Tests
         [Test] public void TheShippedHearthCarriesTheRestPartAndStillOptsOutOfTheOrdinaryCampfireRest()
         {
             var h = Factory.CreateEntity("CampHearth"); Assert.NotNull(h.GetPart<HearthRestPart>()); Assert.False(h.GetPart<CampfirePart>().AllowRest, "the ordinary free campfire rest stays off; this is its own, paid rest");
-            StringAssert.Contains("rest", h.GetPart<ExaminablePart>().Description.ToLowerInvariant());
+            var g = new System.Collections.Generic.List<string>(); UseGuides.Collect(h, null, null, null, g);
+            StringAssert.Contains("rest", string.Join(" ", g).ToLowerInvariant(), "resting beside the hearth is explained in its how-to block, not in the flavor text");
         }
 
         [Test] public void ALitHearthRestsFullyAndBurnsTheFuelItWouldBurnInTheTimeYouSlept()
@@ -100,6 +101,16 @@ namespace CavesOfOoo.Tests
         [Test] public void AHostileWithinEightCellsRefusesAndTheFuelIsKept()
         {
             var h = Hearth(30); Enemy(); Assert.False(Act(h, "RestAtHearth")); Assert.AreEqual(3, Hp); Assert.AreEqual(0, Clock.TickCount); Assert.AreEqual(30f, Fuel(h), 0.001f);
+        }
+
+        [Test] public void ADescribedRestSaysWhenAHostileIsNear_AndOtherwiseOffersIt_Counter()
+        {
+            var h = Hearth(30); var rest = h.GetPart<HearthRestPart>(); var rows = new InventoryActionList(); rest.AddUseRows(Actor, Zone, rows);
+            Assert.That(rows.Actions.Any(r => r.Name == "HearthRest" && !r.IsDisabled), "with no hostile near the rest is offered");
+            Enemy(); rows = new InventoryActionList(); rest.AddUseRows(Actor, Zone, rows);
+            var rest1 = rows.Actions.Where(r => r.Name == "HearthRest").ToList(); Assert.That(rest1, Is.Not.Empty); Assert.That(rest1.All(r => r.IsDisabled && r.DisabledCode == "hostile-near"), "a hostile within " + RestSystem.HostileScanRadius + " cells refuses every rest");
+            StringAssert.Contains(RestSystem.HostileScanRadius + " cells", rest1[0].DisabledReason);
+            Assert.False(Act(h, "RestAtHearth"), "and the real rest agrees");
         }
 
         [Test] public void AnOuterFailureGivesTheFuelBackAndNothingElseHappened()

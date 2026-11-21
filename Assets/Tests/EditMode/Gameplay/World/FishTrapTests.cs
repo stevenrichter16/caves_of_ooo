@@ -104,8 +104,11 @@ namespace CavesOfOoo.Tests
 
         [Test] public void ACarriedTrapIsAKitThatOffersNothingAndSaysWhatItIs_Counter()
         {
-            var kit = Carry("CampFishTrap"); Assert.IsEmpty(Actions(kit).Where(a => a.Name == "TakeTrapFish")); StringAssert.Contains("Set it down", Read(kit));
+            var kit = Carry("CampFishTrap"); Assert.IsEmpty(Actions(kit).Where(a => a.Name == "TakeTrapFish")); StringAssert.Contains("set down", Guide(kit));
         }
+
+        string Guide(Entity e, Entity who = null) { var g = new System.Collections.Generic.List<string>(); UseGuides.Collect(e, null, null, who ?? Actor, g); return string.Join(" ", g); }
+
 
         [Test] public void ItCatchesOneFishEveryHalfDayUpToFourAndReadingChangesNothing()
         {

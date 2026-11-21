@@ -6,7 +6,7 @@ namespace CavesOfOoo.Core
     /// - Proximity ambient message (one-shot per zone visit)
     /// Ember particles are handled by CampfireEmberRenderer (world-space, not grid-locked).
     /// </summary>
-    public class CampfirePart : Part, IDescribeState
+    public class CampfirePart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "Campfire";
 
@@ -14,6 +14,24 @@ namespace CavesOfOoo.Core
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 40;
         public string DescribeState(DescribeContext context) => FiniteCooking ? CampfireWorkActions.Affordance(context.Viewer, this, context.Zone ?? ParentEntity?.SpatialZone) : null;
+
+        /// <summary>How to tend the camp hearth (the owner, 2026-11-21). Only a finite cooking fire explains itself; the village's old campfires keep their own rows. The "right now" line is built from the same rows.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            if (!FiniteCooking) return;
+            var fuel = ParentEntity?.GetPart<FuelPart>();
+            bool standing = !PackableFixturePart.IsInertKit(ParentEntity) && ParentEntity?.GetPart<PhysicsPart>()?.InInventory == null;
+            if (!standing) guide.How.Add("Once it is set down, press C beside it to feed it, light it, cook on it, dry wet gear and rest.");
+            else
+            {
+                guide.How.Add("Press C beside it. Feed coals with salvaged timber (or feed to full); light it with relight coals, or stoke to feed and light in one action. Once it burns, dry wet gear on it.");
+                guide.How.Add("Cook raw food by choosing cook this stack beside a fire from the food in your pack.");
+            }
+            guide.Needs.Add("to feed it: salvaged timber (each timber is 10 fuel" + (fuel != null && fuel.MaxFuel > 0 ? "; it holds up to " + fuel.MaxFuel.ToString("G5", System.Globalization.CultureInfo.InvariantCulture) : "") + ")");
+            guide.Needs.Add("to light it: a flame to light it from (a burning fire beside you, a lit torch in your hand, or a flint striker)");
+            guide.Limits.Add("It burns its fuel while it is lit and goes out when the fuel does. Taking it up puts it out.");
+            guide.WhyNot = "you are not beside it";
+        }
 
         /// <summary>New finite cooking sources opt in explicitly. Existing authored
         /// stations and older saves retain their established cooking/rest policy.</summary>

@@ -10,12 +10,15 @@ namespace CavesOfOoo.Core
     /// on an empty, passable cell beside you (one device to a cell); the cost is the thing itself, paid inside the action and given back whole if the action fails. What the device then does is the device's own Part
     /// (<see cref="HushStripPart"/>, a spring trap's trigger), so any later laid thing is one blueprint and one Part, with no edit here. Modelled on the cord snare's laying (<see cref="CordSnareActions"/>), without its one-off checks.
     /// </summary>
-    public sealed class LayableDevicePart : Part, IDescribeState
+    public sealed class LayableDevicePart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "LayableDevice";
 
         /// <summary>The device blueprint this item becomes, and what the player calls it ("hush strip").</summary>
         public string Device = "", Label = "device";
+
+        /// <summary>What the device does once laid, in one sentence of the thing's own words; shown in the item's "how to use" block so the player knows what laying it is for.</summary>
+        public string Effect = "";
 
         public const string Prefix = "LayDevice|";
         static readonly (int x, int y, string label)[] Directions =
@@ -28,6 +31,16 @@ namespace CavesOfOoo.Core
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 30;
         public string DescribeState(DescribeContext context) => "Laid on the ground beside you, one " + Label + " to a cell.";
+
+        /// <summary>How to use it, from the live rules (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s own rows.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("Press C on an open cell beside you and choose lay " + Label + " (or choose it from the pack)." + (Recoverable() ? " Press C beside a laid one and choose take up to carry it again." : ""));
+            guide.Needs.Add("an empty, passable cell beside you, with no creature, solid thing or other laid device on it");
+            guide.Limits.Add("One " + Label + " to a cell, one from the stack each time." + (Recoverable() ? "" : " Once laid it is spent.") + (string.IsNullOrEmpty(Effect) ? "" : " " + Effect));
+            var actor = context.Viewer; if (actor == null) return;
+            guide.WhyNot = !UseGuides.CarriedBy(actor, ParentEntity) ? UseGuides.PickUpFirst : actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true ? "you cannot act just now" : "no cell beside you is free to lay one on";
+        }
 
         // ── rows ──
 
@@ -127,7 +140,7 @@ namespace CavesOfOoo.Core
     /// What a laid device is (the Part every <see cref="LayableDevicePart"/> device carries): its own label, and, when it can be picked up again, the item it goes back to. A device with no item is spent for good.
     /// Taking one up is one action from beside it; the item is made fresh and the device leaves the world together, or neither happens.
     /// </summary>
-    public sealed class LaidDevicePart : Part, IDescribeState
+    public sealed class LaidDevicePart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "LaidDevice";
         public string ItemBlueprint = "", Label = "device";
@@ -136,6 +149,15 @@ namespace CavesOfOoo.Core
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 30;
         public string DescribeState(DescribeContext context) => string.IsNullOrEmpty(ItemBlueprint) ? "Laid for good: it cannot be taken up again." : "Laid on the ground. You can take it up from beside it.";
+
+        /// <summary>How to take it up, or why you cannot (the owner, 2026-11-21). The "right now" line is built from the take-up row.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            if (string.IsNullOrEmpty(ItemBlueprint)) { guide.Limits.Add("Once laid it stays: it cannot be taken up again."); return; }
+            guide.How.Add("Stand beside it, press C on it and choose take up the " + Label + "; it comes back to your pack to lay elsewhere.");
+            guide.Needs.Add("you beside it, with room in your pack");
+            guide.WhyNot = "you are not beside it";
+        }
 
         public override bool HandleEvent(GameEvent e)
         {

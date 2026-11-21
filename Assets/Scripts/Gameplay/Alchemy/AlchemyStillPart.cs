@@ -17,7 +17,7 @@ namespace CavesOfOoo.Core
     /// gating, mishap damage, batching) stay in the command; this handler
     /// only collects the selection and reports selection problems legibly.
     /// </summary>
-    public class AlchemyStillPart : Part, IStationCapability, IMenuStatus
+    public class AlchemyStillPart : Part, IStationCapability, IMenuStatus, IDescribeUse, IDescribeUseRows
     {
         public override string Name => "AlchemyStill";
 
@@ -33,6 +33,29 @@ namespace CavesOfOoo.Core
         /// to a message instead of crashing mid-event.
         /// </summary>
         public static EntityFactory Factory;
+
+        public int Order => 10;
+
+        /// <summary>How to brew at the still (the owner, 2026-11-21). The "right now" line is built from the same brew and pick rows the menu shows.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            if (ParentEntity?.GetPart<PhysicsPart>()?.InInventory != null || PackableFixturePart.IsInertKit(ParentEntity)) { guide.How.Add("Once it is set down, press C beside it to brew from the reagents you carry, settle bog-mire or bake it into fire clay."); return; }
+            guide.How.Add("Press C beside it, pick reagents from your pack with the pick rows (the menu shows the mix and what it would make), then choose brew the mix, or brew a full batch.");
+            guide.Needs.Add("to brew: reagents in your pack that make something together");
+            guide.Limits.Add("Brewing uses up the picked reagents.");
+            guide.WhyNot = "you are not beside it";
+        }
+
+        /// <summary>The brew rows are always in the menu but only work with reagents picked, so describing states them that way (and says what to do first).</summary>
+        public void AddUseRows(Entity actor, Zone zone, InventoryActionList rows)
+        {
+            if (rows == null || actor == null || ParentEntity?.GetPart<PhysicsPart>()?.InInventory != null || PackableFixturePart.IsInertKit(ParentEntity)) return;
+            var picks = CraftingMarkPart.CollectMarked(actor).Reagents;
+            if (picks.Count == 0) { rows.AddDisabled("Brew", "brew the mix", "no-picks", "Pick the reagents to brew from your pack first."); return; }
+            int batch = BrewingService.GetMaxBatchCount(picks);
+            rows.AddAction("Brew", "brew the mix", "BrewMix");
+            rows.AddAction("BrewBatch", batch > 1 ? "brew a full batch (up to " + batch + ")" : "brew a full batch", "BrewMixBatch");
+        }
 
         /// <summary>The still's menu says what the mix is and what it would make, as much as the pack's Crafting panel does (see <see cref="BrewMenuReadout"/>). A carried or taken-up still is a kit and says nothing.</summary>
         public void AppendMenuStatus(DescribeContext context, System.Collections.Generic.List<string> lines)

@@ -204,8 +204,9 @@ namespace CavesOfOoo.Tests
 
         [Test] public void TheReaderSaysWhatItDoesAndThatItIsLoud()
         {
-            var scraper = Carry("Scraper"); var l = new List<string>(); StateReader.Collect(scraper, true, Zone, null, Actor, l); string text = string.Join(" ", l);
-            StringAssert.Contains("the same supply a settling tray draws on", text); StringAssert.Contains("loud", text); StringAssert.Contains("(C)", text, "the reader says the source's own interact menu is the way in");
+            var scraper = Carry("Scraper"); var l = new List<string>(); UseGuides.Collect(scraper, null, null, Actor, l); string text = string.Join(" ", l);
+            StringAssert.Contains("the same supply a settling tray there draws on", text); StringAssert.Contains("rings through the stone", text); StringAssert.Contains("(C)", text, "the reader says the source's own interact menu is the way in");
+            var state = new List<string>(); StateReader.Collect(scraper, true, Zone, null, Actor, state); Assert.IsEmpty(state, "the scraper has no state of its own: its how-to is in the use block");
         }
 
         [Test] public void TheScraperIsRegisteredStockedAndSavedWithoutFields()

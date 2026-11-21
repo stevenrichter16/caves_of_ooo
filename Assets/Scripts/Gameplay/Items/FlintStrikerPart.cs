@@ -17,7 +17,7 @@ namespace CavesOfOoo.Core
     /// </list>
     /// Strikes are finite and are renewed only by spending an iron spike (<see cref="KnapStrikes"/> strikes per spike). Wet or frozen, it will not spark.
     /// </summary>
-    public sealed class FlintStrikerPart : Part, IDescribeState
+    public sealed class FlintStrikerPart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "FlintStriker";
 
@@ -75,6 +75,19 @@ namespace CavesOfOoo.Core
         {
             if (Strikes <= 0) return "The flint is worn smooth. Knapping a new edge needs an iron spike.";
             return Strikes + (Strikes == 1 ? " strike left." : " strikes left.");
+        }
+
+        /// <summary>How to use it, what it needs and costs, from the live constants (the owner, 2026-11-21). The "right now" line is built from <see cref="AddActions"/>'s own rows.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("Press C on a cell beside you that is coated with oil or another liquid that burns and choose light it with the flint striker (or choose strike a spark from the pack).");
+            guide.How.Add("It also lights a torch or a camp hearth when no fire is near: use their light row and the striker gives the flame.");
+            guide.How.Add("When the flint is worn, choose knap an edge with an iron spike in your pack.");
+            guide.Needs.Add("a strike left (" + Math.Max(0, Strikes) + " of " + MaxStrikes + ")");
+            guide.Needs.Add("a dry flint (it will not spark wet or frozen)");
+            guide.Needs.Add("a cell beside you coated with oil or another liquid that burns");
+            guide.Limits.Add("Each spark spends one strike; an iron spike knapped against it brings back " + KnapStrikes + ". A burning fire in reach is always used first and costs nothing.");
+            guide.WhyNot = !UseGuides.CarriedBy(context.Viewer, ParentEntity) ? UseGuides.PickUpFirst : "no cell beside you is coated with oil or another liquid that burns";   // shown only when no row is: a worn flint always has its knap row
         }
 
         // ── rows and verbs ──

@@ -132,6 +132,9 @@ namespace CavesOfOoo.Core
 
         private static int IndexOf(StatusEffectsPart effects, Effect target)
         { var all = effects.GetAllEffects(); for (int i = 0; i < all.Count; i++) if (ReferenceEquals(all[i], target)) return i; return -1; }
+        /// <summary>The fresh water the plain fill would draw from right now, or null. For describing the fill row truthfully.</summary>
+        internal static Entity FreshSourceBeside(Entity actor, Zone zone) => FindSource(actor, zone);
+
         private static Entity FindSource(Entity actor, Zone zone)
         {
             if (zone?.GetEntityCell(actor) == null) return null;

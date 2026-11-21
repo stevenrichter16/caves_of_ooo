@@ -10,7 +10,7 @@ namespace CavesOfOoo.Core
     /// cells away, hostile to you and in the turn order like any creature (each one stamped, so only what the post called is sent away); you can send them all away, and mend yourself (full health,
     /// harmful statuses cleared, helpful ones such as a coat kept) between trials. It is stateless: what it called is read off the zone, so it needs nothing saved and adds nothing to the ordinary game.
     /// </summary>
-    public sealed class ProvingGroundPart : Part, IDescribeState
+    public sealed class ProvingGroundPart : Part, IDescribeState, IDescribeUse
     {
         public override string Name => "ProvingGround";
 
@@ -33,7 +33,16 @@ namespace CavesOfOoo.Core
         public string DescribeState(DescribeContext context)
         {
             var zone = context.Zone ?? ParentEntity?.SpatialZone; int called = CalledIn(zone).Count;
-            return "Stand beside it to call an enemy that burns, freezes, shocks or corrodes, send them away, or mend yourself. " + (called == 0 ? "None are called." : called + " called.");
+            return called == 0 ? "None are called." : called + " called.";
+        }
+
+        /// <summary>How to use the post (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s rows.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("Press C beside it and choose call a foe (one that burns, freezes, shocks or corrodes), send away everything called, or mend yourself.");
+            guide.Needs.Add("clear ground near you for a foe to stand on");
+            guide.Limits.Add("Up to " + MaxCalled + " foes at a time; what it calls is hostile to you and fights for real. Mending restores your health and clears harmful statuses; a coat or a lasting proofing stays.");
+            guide.WhyNot = "you are not beside it";
         }
 
         public override bool HandleEvent(GameEvent e)

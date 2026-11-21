@@ -142,7 +142,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void TheReaderSaysWhatItNeedsThenWhatItIsLoadedWith()
         {
-            var kit = Carry("SpringTrap"); var l = new List<string>(); StateReader.Collect(kit, true, Zone, null, Actor, l); StringAssert.Contains("fire moss, frost lichen or spark root", string.Join(" ", l));
+            var kit = Carry("SpringTrap"); var l = new List<string>(); UseGuides.Collect(kit, null, null, Actor, l); StringAssert.Contains("fire moss, frost lichen or spark root", string.Join(" ", l)); l.Clear(); StateReader.Collect(kit, true, Zone, null, Actor, l); StringAssert.Contains("Not loaded", string.Join(" ", l));
             Carry("FrostLichen"); Assert.True(Act(kit, LoadRows(kit).Single().Command)); l.Clear(); StateReader.Collect(kit, true, Zone, null, Actor, l); StringAssert.Contains("Loaded with frost lichen", string.Join(" ", l));
         }
 
