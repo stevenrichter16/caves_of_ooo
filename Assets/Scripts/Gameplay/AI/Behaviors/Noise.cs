@@ -16,6 +16,13 @@ namespace CavesOfOoo.Core
             if (actor != null) actor.IntProperties[Property] = WorldClock.CurrentTick;
         }
 
+        /// <summary>A step that landed on <paramref name="landed"/>: heard, unless the cell holds a <see cref="HushStripPart"/> (felt laid underfoot). Blows and casts still call <see cref="Mark"/> directly.</summary>
+        public static void MarkStep(Entity actor, Cell landed)
+        {
+            if (landed != null && landed.HasObjectWithPart<HushStripPart>()) return;
+            Mark(actor);
+        }
+
         /// <summary>Made noise within the last <paramref name="window"/> ticks.</summary>
         public static bool Recent(Entity actor, int window)
         {

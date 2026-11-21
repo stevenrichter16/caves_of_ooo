@@ -44,6 +44,10 @@ You start on wild ground as a sturdy test character with every machine, every re
 
 Start a fresh game (or use a scenario that generates Posy, map 5,9) and walk to the well in Posy's square. The frame stands a few cells from it (a pale tall frame, glyph `]` in magenta). Press **C** beside it: every carried thing with a real colour is a row naming the place it would go in and whether it is striking or dim; greys, whites and blacks are not offered; a costly thing is a greyed row that says it is worth too much. Set a bright, cheap thing in: it is spent, the message says which place, and the Bower-Folk's regard rises a little (the sidebar or a faction screen). A dim piece can be bettered once by a bright one; after that the place refuses. Fill all six places with bright pieces: "The frame is whole" and a last small regard; it never pays again. Examine the frame: it says what is placed, what is wanted, and what a bright piece would better, and shows no number.
 
+## 2d. Hush strips and the pale stalkers
+
+Hush strips are in the Tinker's stock (a bundle of four to eight, a 25% roll) and in the workshop scenario's pack. Carry them below ground, where the pale stalkers are (tier 3 and below; the eyeless ones that hunt by sound). Press **C** on the strips in your pack: one row for each open neighbouring cell ("lay hush strip east"). Lay a lane toward a stair, standing still between; step along it with the stalker in earshot: it should not turn toward you while you are on the felt, and should the moment you step off the end. Strike something from a strip: that is heard. Press **C** beside a strip: "take up the hush strip" returns the same item.
+
 ## 3. The Concord's carriage: "Concord Carriage"
 
 You start with 60 drams, timber, a dagger, fire clay, a flask, a spore, and **one parcel already waiting at Cinderhold** (two iron spikes, "sent" from the Last Counter).

@@ -1,4 +1,4 @@
-# parts=405
+# parts=408
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -473,6 +473,7 @@ Part CavesOfOoo.Core.HouseDramaPart | reflected
   NpcRole:System.String
 Part CavesOfOoo.Core.HuntsBySoundPart | reflected
   Window:System.Int32
+Part CavesOfOoo.Core.HushStripPart | reflected
 Part CavesOfOoo.Core.InkVialPart | reflected
   InkAmount:System.Int32
 Part CavesOfOoo.Core.InstallablePart | reflected
@@ -515,10 +516,16 @@ Part CavesOfOoo.Core.KitchenBatchPart | reflected
   WorkerID:System.String
   ZoneID:System.String
 Part CavesOfOoo.Core.KnowledgePart | custom
+Part CavesOfOoo.Core.LaidDevicePart | reflected
+  ItemBlueprint:System.String
+  Label:System.String
 Part CavesOfOoo.Core.LairStackLedgerPart | custom
 Part CavesOfOoo.Core.LanternSitePart | reflected
   SettlementId:System.String
   SiteId:System.String
+Part CavesOfOoo.Core.LayableDevicePart | reflected
+  Device:System.String
+  Label:System.String
 Part CavesOfOoo.Core.LegendaryIdentityPart | reflected
   EnhancementName:System.String
   Epithet:System.String

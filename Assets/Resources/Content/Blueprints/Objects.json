@@ -6028,6 +6028,58 @@
       "Tags": [ { "Key": "Furniture", "Value": "" } ]
     },
     {
+      "Name": "HushStrip",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "hush strip" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&K" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "4" } ] },
+        { "Name": "LayableDevice", "Params": [ { "Key": "Device", "Value": "HushStripLaid" }, { "Key": "Label", "Value": "hush strip" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A strip of thick felt sewn to a cord backing, made to be laid flat on the ground. Nothing that walks on it is heard. Cave-dwellers who live beside things that hunt by sound keep a few; they are laid one to a cell and taken up again, and a lane of them is only as long as the strips you carry." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Item", "Value": "true" }, { "Key": "Tier", "Value": "2" } ]
+    },
+    {
+      "Name": "HushStripLaid",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "hush strip" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&K" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        { "Name": "HushStrip", "Params": [] },
+        { "Name": "LaidDevice", "Params": [ { "Key": "ItemBlueprint", "Value": "HushStrip" }, { "Key": "Label", "Value": "hush strip" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A strip of felt laid flat on the ground. Footfalls on it are not heard." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "SoundingRod",
       "Inherits": "PhysicalObject",
       "Parts": [
