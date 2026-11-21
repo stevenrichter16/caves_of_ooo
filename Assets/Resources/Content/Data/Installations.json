@@ -124,7 +124,11 @@
       "Radius": 9,
       "MinRadius": 2,
       "MaxProbe": 48,
-      "Ground": ["Sand", "StoneFloor", "Floor"],
+      "Ground": [
+        "Sand",
+        "StoneFloor",
+        "Floor"
+      ],
       "Revision": 1,
       "Purpose": "The body of Wellmeet's pan scales (the Scales repair site): examine it for what became of it and mend or patch it from its own menu, with the same materials, rules and result the elder's conversation offers.",
       "Alternative": "The conversation that owns the concern still offers the repair, the concern's other approaches remain, and nothing requires this object.",
@@ -151,6 +155,28 @@
       "Purpose": "The body of the Drowned Ledger's survey line (the SurveyLine repair site): examine it for how the stakes lean and re-run it from its own menu, with the same materials, rules and result the sorter's conversation offers.",
       "Alternative": "The conversation that owns the concern still offers the repair, the concern's other approaches remain, and nothing requires this object.",
       "Basis": "Docs/PLACE-WORK-AND-PROGRESSION.md C3c: data sites are repaired in conversation 'because places have no generated object for a weir or a pump yet'. Placed fresh-only by the installation builder, like the Cinderhold pump; the site state is not stored in it."
+    },
+    {
+      "Id": "posy-sorting-frame",
+      "Place": "Posy",
+      "Blueprint": "SortingFrame",
+      "Kind": "Works",
+      "Retention": "Zone",
+      "Near": [
+        "Well"
+      ],
+      "Radius": 9,
+      "MinRadius": 2,
+      "MaxProbe": 48,
+      "Ground": [
+        "Grass",
+        "StoneFloor",
+        "Floor"
+      ],
+      "Revision": 1,
+      "Purpose": "The Sorters' frame in Posy: six places, one for each colour, that take found things chosen by the eye (a bright thing counts for more, a plain one for nothing, a costly one is refused) in return for a small, one-time, non-tradable regard from the Bower-Folk.",
+      "Alternative": "The elder's concern still offers its own approaches, the Bower-Folk's regard has no other source today, and nothing requires this object.",
+      "Basis": "Lore/Factions/05_BowerFolk.md section VII: reputation keyed to aesthetic value, not economic value; gained by contributing to installations; the Sorter's foundational craft. Docs/MACHINE-INVENTED-USES.md 3s. Placed fresh-only beside the well; the frame's state is its own."
     }
   ],
   "Exemptions": [

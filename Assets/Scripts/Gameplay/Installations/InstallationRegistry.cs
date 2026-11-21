@@ -12,7 +12,7 @@ namespace CavesOfOoo.Core
 
     [Serializable] internal sealed class InstallationRow
     {
-        public string Id, Place, Blueprint, Retention, Purpose, Alternative, Basis, Absolute, Rng, Terms, Site;
+        public string Id, Place, Blueprint, Retention, Purpose, Alternative, Basis, Absolute, Rng, Terms, Site, Kind;
         public string[] Near, Ground;
         public int Radius, MaxProbe, Revision, MinRadius;
         public bool Required;
@@ -49,6 +49,8 @@ namespace CavesOfOoo.Core
         public string Basis { get; }
         /// <summary>For a world object that is the body of one of the place's repair sites (PlaceSites.json): the site id. Empty for an ordinary machine. A site object is the town's own, so it is not a row of the every-town census.</summary>
         public string Site { get; }
+        /// <summary>"Works" for a place's own working fixture that is neither a forge nor the body of a repair site (a Sorters' frame, say): fresh-only and stateful like a site object, and likewise not a row of the every-town forge census. Empty for a forge.</summary>
+        public string Kind { get; }
 
         internal InstallationSpec(InstallationRow row)
         {
@@ -56,7 +58,7 @@ namespace CavesOfOoo.Core
             var near = (row.Near ?? new string[0]).Where(n => n != "Well").ToList(); near.Add("Well"); Near = near.AsReadOnly();
             Radius = row.Radius; MinRadius = row.MinRadius > 0 ? row.MinRadius : 2; MaxProbe = row.MaxProbe; Revision = row.Revision;
             Ground = (row.Ground == null || row.Ground.Length == 0 ? InstallationRegistry.DefaultGround : row.Ground).ToList().AsReadOnly();
-            Purpose = row.Purpose; Alternative = row.Alternative; Basis = row.Basis; Site = row.Site ?? "";
+            Purpose = row.Purpose; Alternative = row.Alternative; Basis = row.Basis; Site = row.Site ?? ""; Kind = row.Kind ?? "";
         }
     }
 
@@ -89,6 +91,7 @@ namespace CavesOfOoo.Core
     public static class InstallationRegistry
     {
         public const int MaximumRows = 64;
+        public const string WorksKind = "Works";
         public static readonly string[] DefaultGround = { "Grass", "StoneFloor", "Floor" };
         /// <summary>Places whose existing stations are pinned by a test (the start town and Cinderhold generate a forge already).</summary>
         public static readonly string[] PresentPlaces = { "Sill", "Cinderhold" };
@@ -187,6 +190,8 @@ namespace CavesOfOoo.Core
             if (!Text(row.Purpose) || !Text(row.Alternative) || !Text(row.Basis)) return "E09";
             if (row.Required || !string.IsNullOrEmpty(row.Absolute) || !string.IsNullOrEmpty(row.Rng)) return "E10";
             if (!string.IsNullOrEmpty(row.Terms)) return "E11";
+            // A works fixture is its own kind: never also a repair-site body, and the only kind besides the default forge.
+            if (!string.IsNullOrEmpty(row.Kind) && (row.Kind != WorksKind || !string.IsNullOrEmpty(row.Site))) return "E16";
             // A site object names a repair site of its own place that exists, and (being the town's, with state in the settlement manager) needs no census row but must be retained like any stateful part.
             if (!string.IsNullOrEmpty(row.Site) && (!Token(row.Site) || PlaceSiteCatalog.Get(row.Place, row.Site) == null)) return "E15";
             return null;
@@ -234,7 +239,7 @@ namespace CavesOfOoo.Core
             foreach (var place in universe)
             {
                 var classes = new List<CoverageEntry>();
-                var specs = Specs.Where(s => s.Place == place && string.IsNullOrEmpty(s.Site)).ToList();   // a site object is the town's own, not a machine installed in it
+                var specs = Specs.Where(s => s.Place == place && string.IsNullOrEmpty(s.Site) && string.IsNullOrEmpty(s.Kind)).ToList();   // a site object or a works fixture is the town's own, not a forge installed in it
                 var exempt = Exemptions.FirstOrDefault(e => e.Place == place);
                 var pending = PendingRows.FirstOrDefault(p => p.Place == place);
                 if (exempt != null) classes.Add(new CoverageEntry { Place = place, Kind = "Exempt", Detail = exempt.Reason + " [" + exempt.Source + "]" });

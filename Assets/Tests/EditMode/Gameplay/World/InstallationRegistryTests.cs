@@ -206,8 +206,9 @@ namespace CavesOfOoo.Tests
         [Test] public void RegistryLoadsTheShippedRowsExemptionsAndPending()
         {
             InstallationRegistry.LoadDefaults();
-            CollectionAssert.AreEquivalent(new[] { "gantry-forecourt-forge", "tine-forecourt-forge", "slip-forecourt-forge" }, InstallationRegistry.All.Where(s => string.IsNullOrEmpty(s.Site)).Select(s => s.Id), "three forge rows ship; the Last Counter row is pulled until its 3D kit has a forge family");
+            CollectionAssert.AreEquivalent(new[] { "gantry-forecourt-forge", "tine-forecourt-forge", "slip-forecourt-forge" }, InstallationRegistry.All.Where(s => string.IsNullOrEmpty(s.Site) && string.IsNullOrEmpty(s.Kind)).Select(s => s.Id), "three forge rows ship; the Last Counter row is pulled until its 3D kit has a forge family");
             CollectionAssert.AreEquivalent(new[] { "cinderhold-mine-pump", "tine-fishing-weir", "ledger-survey-line", "wellmeet-pan-scales" }, InstallationRegistry.All.Where(s => !string.IsNullOrEmpty(s.Site)).Select(s => s.Id), "and one site object per data-defined repair site: the town's own bodies of its working structures");
+            CollectionAssert.AreEquivalent(new[] { "posy-sorting-frame" }, InstallationRegistry.All.Where(s => s.Kind == InstallationRegistry.WorksKind).Select(s => s.Id), "and one works fixture, the Sorters' frame, which is neither a forge nor a repair-site body");
             CollectionAssert.AreEquivalent(new[] { "RotChoir", "CatacombFolk" }, InstallationRegistry.ForbiddenFactions);
             Assert.NotNull(InstallationRegistry.ExemptionFor("the First Tent")); Assert.NotNull(InstallationRegistry.PendingFor("Sumphold")); Assert.NotNull(InstallationRegistry.PendingFor("Tally")); Assert.Null(InstallationRegistry.PendingFor("Gantry"));
         }

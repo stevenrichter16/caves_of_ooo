@@ -6000,6 +6000,34 @@
       "Tags": [ { "Key": "NoTrade", "Value": "" } ]
     },
     {
+      "Name": "SortingFrame",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "sorting frame" },
+            { "Key": "RenderString", "Value": "]" },
+            { "Key": "ColorString", "Value": "&M" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [ { "Key": "Solid", "Value": "false" } ]
+        },
+        { "Name": "SortingFrame", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A tall frame of pale wood divided into six places, each stained for one colour. The Sorters keep it, and what is set in it stays: found things, chosen for what they are and not for what they would fetch. The Bower-Folk go by the eye. Some places hold something, some wait." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Furniture", "Value": "" } ]
+    },
+    {
       "Name": "SoundingRod",
       "Inherits": "PhysicalObject",
       "Parts": [

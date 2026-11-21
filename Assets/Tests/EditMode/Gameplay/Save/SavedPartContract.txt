@@ -1,4 +1,4 @@
-# parts=404
+# parts=405
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -810,6 +810,10 @@ Part CavesOfOoo.Core.SoddenPreparationPart | reflected
   Worker:CavesOfOoo.Core.Entity
   WorkerID:System.String
   ZoneID:System.String
+Part CavesOfOoo.Core.SortingFramePart | reflected
+  PaidPoints:System.Int32
+  Places:System.String
+  WholePaid:System.Boolean
 Part CavesOfOoo.Core.SoundingRodPart | reflected
   LastReading:System.String
   LastTick:System.Int32
