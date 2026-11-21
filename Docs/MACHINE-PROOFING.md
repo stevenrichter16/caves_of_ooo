@@ -52,6 +52,8 @@ The trough stops doing temporary treatments. It gives a garment one lasting proo
 | shock | spark root (3), glimmer brine (2), prismreed pith (1) | spark root, glimmer brine | prismreed crop | Marlback Stormbinder carries spark root |
 | acid | glimmer brine (2), sourmantle fold (1) | glimmer brine | sourmantle crop | Marlback Soursprayer carries glimmer brine |
 
+The bottle itself is a plain `LiquidFlask`: a Provisioner's and a Well Keeper's stock each hold one, the Morrowfast merchant sells them and two loot tables carry one, and a flask holds 12 units (a full flask is twelve coats). The Tinker stocks the trough (20%), not flasks (changing a stock table moves every later draw of that zone's generation, so it is left alone).
+
 The traders' stock is the renewable source (the alpha economy pass made brew reagents a trade good so they do not run out), the crops are the home source, and three of the four casters drop the reagent that turns their own element: beating one hands you the next fight's proofing. Cold has no caster who carries its reagent, which fits that cold harm is the rarest of the four.
 
 ## 4. What the player reads
