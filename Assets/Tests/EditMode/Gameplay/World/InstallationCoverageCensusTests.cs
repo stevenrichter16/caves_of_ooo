@@ -75,7 +75,7 @@ namespace CavesOfOoo.Tests
         {
             using (var scope = new HaulingContentScope())
             {
-                Assert.AreEqual(8, InstallationRegistry.All.Count, "three forges, four site objects (the pump, the weir, the survey line and the pan scales) and one works fixture (the Sorters' frame)");
+                Assert.AreEqual(9, InstallationRegistry.All.Count, "three forges, four site objects (the pump, the weir, the survey line and the pan scales) and two works fixtures (the Sorters' frame and the Setters' bench)");
                 Assert.AreEqual(3, InstallationRegistry.All.Count(s => string.IsNullOrEmpty(s.Site) && string.IsNullOrEmpty(s.Kind)), "forges");
                 Assert.IsEmpty(InstallationRegistry.Validate(scope.Factory), "every shipped row passes blueprint admission");
                 foreach (var spec in InstallationRegistry.All) { Assert.AreEqual(!string.IsNullOrEmpty(spec.Site) || !string.IsNullOrEmpty(spec.Kind), spec.Retain, spec.Id + ": a forge carries no state; a site object carries its place and site; a works fixture carries its own state"); StringAssert.Contains("nothing requires", spec.Alternative); }

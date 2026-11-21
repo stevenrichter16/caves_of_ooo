@@ -56,6 +56,10 @@ You start the workshop scenario with one (a Tinker stocks it too). Stand within 
 
 In the workshop scenario (or from a Tinker). Press **C** on the trap kit in your pack: "load the spring trap with fire moss" (or frost lichen, spark root). Pour a flask of oil (or water) on a cell beside you, then press **C** on the loaded kit and choose where to lay it. Step onto the cell: oil plus fire moss goes up (fire damage and a smoke cloud that blocks sight); water plus spark root shocks; water plus frost lichen freezes the water and you. A trap on bare ground only marks the cell. In a Grovelands zone a fire-loaded kit refuses to be laid.
 
+## 2g. The Setters' bench at Posy
+
+In Posy's square, near the sorting frame. A stranger finds one greyed row that points at the frame. Set found things in the frame until the Bower-Folk's regard is 8 or more (four points at the frame, or the elder's concern, are enough); then press **C** at the bench: "lacquer <garment> to tier 1 (1 pitchpod resin)", more tiers as regard grows, "set the Bower sign on <piece> (1 glow-quartz)". Lacquer a worn garment: its armor rises at once. Wear a signed piece: the regard rises by five (and the top lacquer tier opens at 38); take it off: it falls by five.
+
 ## 3. The Concord's carriage: "Concord Carriage"
 
 You start with 60 drams, timber, a dagger, fire clay, a flask, a spore, and **one parcel already waiting at Cinderhold** (two iron spikes, "sent" from the Last Counter).

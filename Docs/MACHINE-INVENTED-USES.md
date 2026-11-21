@@ -356,6 +356,20 @@ One machine and one bottle for all four resistances, driven by the reagent's own
 
 **Tests.** `SpringTrapTests` (rows per cartridge carried and a disabled row when none, load spends one and sets the kind and cannot load twice, an interrupted loading, stale loads, laying spends the kit and leaves an armed device, an interrupted laying, an unarmed trap does nothing and stays, a fire moss trap on oil burns the stepper and is spent, with nothing there it only marks the cell, frost on water freezes it and whoever stands there, spark on water shocks, it springs on its layer too, the Choir's ground refuses a fire trap and not a cold one, the save and the no-stacking of loaded kits, the reader, the Tinker stock). Mutation results are in the commit message.
 
+## 3w. The twenty-first build: the Setters' bench at Posy (2026-11-21)
+
+**The gap.** The item enhancements `Lacquered` (+armor) and `Engraved` (faction regard while worn) are real, tested, saved Parts, and nothing in the game gives one to a player: `FoundEquipmentEnhancements` omits Engraved, lairs hand out the others, and no machine, vendor or recipe applies them. And the Sorters' frame (3s) pays the Bower-Folk's regard into a ledger nothing yet reads.
+
+**The machine.** A **bench** beside Posy's well where the Setters work. For someone whose eye the Sorters have seen (the regard the frame earns), it **lacquers** a garment (one pitchpod resin for each tier, a point of armor for each tier, up to tier four) and **sets the Bower's sign** on a thing you wear or carry (one glow-quartz; while it is worn the Bower-Folk think better of you by five). The highest tier it works rises with regard: none below 8, tier one at 8, and one more for each ten after, so a full frame (28) and the elder's concern (8) reach tier three, and the top tier needs the sign on your back (+5): the loop is *earn the Sorters' regard at the frame, spend it at the bench, wear what the bench gave you*. Lacquer takes one of a garment's two treatment slots (shared with the trough's lasting proofing and a coat), a garment takes one lacquer, and nothing can be taken out.
+
+**Why it flows and what it costs.** It gives two existing, tested enhancements their first source and the frame's regard its first reader, with no new subsystem. The costs are finite and already real: pitchpod resin is a crop (and the elder's concern asks for two of it, so a player chooses between finishing the composition and a point of armor), glow-quartz is a mineral you dig. It mints nothing: the result is not for sale and enhancements do not change prices. It works on worn garments at once, splits one garment off a stack (as the trough does), and every step is one atomic action that gives the resin, the stack and the treatment back on any failure.
+
+**Voice.** The Bower-Folk's words "finish" and "bath" belong to their Finishers and Cleaners and never appear here; the work is "lacquer" and "set". The bench never speaks for the Bower and never offers anything to do with a body.
+
+**Honest limits.** Not played in the Editor. The tier ladder (8, then every ten), one resin a tier, one quartz and the +5 are proposals; Posy generated before this keeps no bench; glyph only; wording placeholder. Lacquer applies to armor only (as the enhancement does); the sign applies to anything that is worn or wielded.
+
+**Tests.** `SettingBenchTests` (the ladder table, a stranger and the frame hint, tier cost and armor worn at once, a tier above the regard refused even if forced, short resin with the numbers, one lacquer and two treatments at most, armor only for lacquer, the sign's cost, its regard only while worn and exactly reverted, the sign worn raising the next tier, no quartz, one of a stack treated, an interrupted work, far, the readers, the shipped row placing one bench beside the frame, the save) and the installation census updated. Mutation results are in the commit message.
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).

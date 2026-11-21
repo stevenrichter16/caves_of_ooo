@@ -6158,6 +6158,31 @@
       "Tags": [ { "Key": "Trap", "Value": "" } ]
     },
     {
+      "Name": "SettingBench",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "setters' bench" },
+            { "Key": "RenderString", "Value": "}" },
+            { "Key": "ColorString", "Value": "&M" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        { "Name": "SettingBench", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A low bench of pale wood with a rack of small brushes and a pot kept warm on a flat stone. The Setters work here: they lacquer what is worn and set the sign of the Bower on what is carried, but only for someone whose eye they have seen." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Furniture", "Value": "" } ]
+    },
+    {
       "Name": "SoundingRod",
       "Inherits": "PhysicalObject",
       "Parts": [
