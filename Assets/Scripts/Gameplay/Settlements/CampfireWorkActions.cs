@@ -55,27 +55,27 @@ namespace CavesOfOoo.Core
             if (actions == null || !Source(actor, fire, zone)) return;
             if (Hot(fire) && actor.GetPart<InventoryPart>() is InventoryPart pack)
                 foreach (var gear in pack.Objects) if (Gear(actor, gear))
-                    actions.AddAction("DryGear", "dry " + gear.GetDisplayName() + " (one quarter)", DryPrefix + Uri.EscapeDataString(gear.ID), '\0', 17);
+                    actions.AddAction("DryGear", "dry " + gear.GetDisplayName() + " (one quarter)", DryPrefix + Uri.EscapeDataString(gear.ID), '\0', 17, time: ActionTime.OneAction);
             if (!Fuel(fire, out var fuel)) return;
             int feedN = FeedCount(fuel, TimberCarried(actor));
             if (feedN >= 1)
-                actions.AddActionWithHint("FeedCookingFire", "feed coals (1 salvaged timber, up to 10 fuel)", "FeedCookingFire", "Adds one timber to the fire. Cold coals still need a flame to light.", 'f', 18);
+                actions.AddActionWithHint("FeedCookingFire", "feed coals (1 salvaged timber, up to 10 fuel)", "FeedCookingFire", "Adds one timber to the fire. Cold coals still need a flame to light.", 'f', 18, time: ActionTime.OneAction);
             if (feedN >= 2)
-                actions.AddActionWithHint("FeedCookingFireFull", "feed coals to full (" + feedN + " timber, +" + (int)Math.Min(fuel.MaxFuel - fuel.FuelMass, 10 * feedN) + " fuel)", FeedFullCommand, "Adds timber until the fire is full, all in one action. It does not light it.", 'u', 18);
+                actions.AddActionWithHint("FeedCookingFireFull", "feed coals to full (" + feedN + " timber, +" + (int)Math.Min(fuel.MaxFuel - fuel.FuelMass, 10 * feedN) + " fuel)", FeedFullCommand, "Adds timber until the fire is full, all in one action. It does not light it.", 'u', 18, time: ActionTime.OneAction);
             var flame = IgnitionSources.Find(actor, zone, fire.ParentEntity);
             // A fire that is already burning is not relit: the light rows appear only for a fire that is out (cold, or out of fuel), so nothing offers to spend a strike on a flame.
             bool burning = Hot(fire);
             // A flint striker pays a strike for every lighting, so the row says so and how many are left.
             string strike = flame?.GetPart<FlintStrikerPart>() is FlintStrikerPart striker ? " (1 strike, " + striker.Strikes + " left)" : "";
             if (!burning && fuel.FuelMass > 0 && flame != null)
-                actions.AddActionWithHint("RelightCookingFire", "relight coals from flame" + strike, "RelightCookingFire", "Lights the coals from a flame you carry or stand beside." + (strike.Length > 0 ? " Spends 1 strike." : ""), 'l', 18);
+                actions.AddActionWithHint("RelightCookingFire", "relight coals from flame" + strike, "RelightCookingFire", "Lights the coals from a flame you carry or stand beside." + (strike.Length > 0 ? " Spends 1 strike." : ""), 'l', 18, time: ActionTime.OneAction);
             else if (!burning)
                 // A fire that is out says what stops it from being lit instead of offering nothing.
                 actions.AddDisabled("RelightCookingFire", "relight coals from flame", fuel.FuelMass <= 0 ? "no_fuel" : "no_flame",
                     fuel.FuelMass <= 0 ? "The coals have no fuel. Feed them first." : "You have no flame to light it from: a burning fire beside you, a lit torch in hand, or a flint striker." + (FlintStrikerPart.WornHint(actor) ?? ""), '\0', 18);
             if (feedN >= 1 && flame != null && !burning)
                 actions.AddActionWithHint("StokeCookingFire", "stoke: feed " + feedN + " timber and light it" + strike, StokeCommand,
-                    "Adds all the timber the fire will take, then lights it from a flame you carry." + (strike.Length > 0 ? " Spends 1 strike." : ""), 't', 18);
+                    "Adds all the timber the fire will take, then lights it from a flame you carry." + (strike.Length > 0 ? " Spends 1 strike." : ""), 't', 18, time: ActionTime.OneAction);
         }
         /// <summary>
         /// Feed to full, or stoke (feed to full, then light it from a flame in reach), as one action in the caller's transaction: every timber, the fuel, the strike and the heat

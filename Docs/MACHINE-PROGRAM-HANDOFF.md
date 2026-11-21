@@ -1,9 +1,25 @@
 # Machine, camp and world-tool program: handoff for the next agent
 
+**Newer handoff:** read [Codex's November 21 handoff](CODEX-MACHINE-HANDOFF-2026-11-21.md)
+first for verified corrections, native play, the still-running regression gate,
+the unfixed scenario-capacity finding and the inventory redesign plan.
+
 Written 2026-11-21 (America/Chicago) at the end of a five-day run (2026-11-16 to 2026-11-21). State when first written: `main` at `a36edd91f` (this doc and the verification scripts; code at `d4a31ec11`); the descriptions pass (section 10.1) is `e89a81af6`, pushed to `main`. Check `git log` for the real head.
 Read section 0 first. Everything else is reference. This file is the entry point; the living records it links to hold the detail, and the memory note `machine-program-state.md` (in the Claude project memory) holds the same facts in diary form.
 
 ## 0. Read this first
+
+**Codex handback update — November 21:** the user explicitly transferred repo,
+Unity and Git control to Codex and authorized fixing the connected-source stock
+bug, assessing the inherited full regression and actually playing new systems.
+The current continuation is in
+[MACHINE-SYSTEMS-EXECUTION-PLAN.md](MACHINE-SYSTEMS-EXECUTION-PLAN.md#active-handback-continuation--november-21-2026).
+Read the [native camp/workshop receipt](Verification/MachineSystems/CampPlay20261121/README.md)
+for the now-played subset and timing defects found/corrected; the original
+"never played" inventory below describes the handoff state, not the later review.
+Fullrun_h and the remaining acceptance/delivery gates are still being assessed.
+The separate [inventory density redesign](INVENTORY-DENSITY-REDESIGN-PLAN.md) is a
+new user-requested plan, not an implemented UI change.
 
 **What this program is.** The owner wants the game's twelve proposed machines (forge/reclamation rig, fractionating still, restoration cradle, assay cabinet, culture vat, anchored capstan, sump pump, thermal exchanger, dynamo, survey resonator, signal relay, treatment bath: [MACHINE-ROSTER-VISION.md](MACHINE-ROSTER-VISION.md)) and a home/base layer to exist as real, useful, fun parts of the world, built from composable Parts and shared rules instead of one-off scripts ([SYSTEMS-DESIGN-PRINCIPLES.md](SYSTEMS-DESIGN-PRINCIPLES.md)). Since 2026-11-19 the owner has told me to invent a use for any machine that has none, to put machines wherever in the world is most engaging (not only at camp), and to keep going without asking. Since 2026-11-21 they also want tools usable from the interact menu of what they act on, grouped so the menu is not a wall, and descriptions that tell the player how to use each thing.
 

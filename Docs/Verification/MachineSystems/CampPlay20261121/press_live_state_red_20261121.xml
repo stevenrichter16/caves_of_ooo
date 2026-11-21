@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-21 22:27:44Z" end-time="2026-11-21 22:27:45Z" duration="1.0434208">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40398" result="Passed" start-time="2026-11-21 22:27:44Z" end-time="2026-11-21 22:27:45Z" duration="1.043421" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="49242" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40398" result="Passed" start-time="2026-11-21 22:27:44Z" end-time="2026-11-21 22:27:45Z" duration="1.029426" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="84502" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="49243" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40398" result="Passed" start-time="2026-11-21 22:27:44Z" end-time="2026-11-21 22:27:45Z" duration="0.994901" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="49244" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40398" result="Passed" start-time="2026-11-21 22:27:44Z" end-time="2026-11-21 22:27:45Z" duration="0.992978" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="31937" name="ActionTimeDeclarationTests" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" testcasecount="56" result="Passed" start-time="2026-11-21 22:27:45Z" end-time="2026-11-21 22:27:45Z" duration="0.559290" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="31981" name="RealProofingPressChargesOnlyForCommittedBottles" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealProofingPressChargesOnlyForCommittedBottles" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-21 22:27:45Z" end-time="2026-11-21 22:27:45Z" duration="0.551480" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31976" name="RealProofingPressChargesOnlyForCommittedBottles(&quot;success&quot;,1)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealProofingPressChargesOnlyForCommittedBottles(&quot;success&quot;,1)" methodname="RealProofingPressChargesOnlyForCommittedBottles" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1005367957" result="Passed" start-time="2026-11-21 22:27:45Z" end-time="2026-11-21 22:27:45Z" duration="0.265053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31977" name="RealProofingPressChargesOnlyForCommittedBottles(&quot;success&quot;,3)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealProofingPressChargesOnlyForCommittedBottles(&quot;success&quot;,3)" methodname="RealProofingPressChargesOnlyForCommittedBottles" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1935551811" result="Passed" start-time="2026-11-21 22:27:45Z" end-time="2026-11-21 22:27:45Z" duration="0.098859" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31978" name="RealProofingPressChargesOnlyForCommittedBottles(&quot;stale&quot;,1)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealProofingPressChargesOnlyForCommittedBottles(&quot;stale&quot;,1)" methodname="RealProofingPressChargesOnlyForCommittedBottles" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="807011604" result="Passed" start-time="2026-11-21 22:27:45Z" end-time="2026-11-21 22:27:45Z" duration="0.052090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[PressProofing|cold|5] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'PressProofing|cold|5' failed.
+]]></output>
+              </test-case>
+              <test-case id="31979" name="RealProofingPressChargesOnlyForCommittedBottles(&quot;veto&quot;,1)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealProofingPressChargesOnlyForCommittedBottles(&quot;veto&quot;,1)" methodname="RealProofingPressChargesOnlyForCommittedBottles" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="377034121" result="Passed" start-time="2026-11-21 22:27:45Z" end-time="2026-11-21 22:27:45Z" duration="0.062856" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[PressProofing|cold|5] command failed. Code=Exception, Validation=None, Message=world receipt rollback probe
+]]></output>
+              </test-case>
+              <test-case id="31980" name="RealProofingPressChargesOnlyForCommittedBottles(&quot;undeclared&quot;,1)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealProofingPressChargesOnlyForCommittedBottles(&quot;undeclared&quot;,1)" methodname="RealProofingPressChargesOnlyForCommittedBottles" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="13243256" result="Passed" start-time="2026-11-21 22:27:45Z" end-time="2026-11-21 22:27:45Z" duration="0.064456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

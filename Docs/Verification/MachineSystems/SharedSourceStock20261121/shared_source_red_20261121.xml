@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-21 21:28:23Z" end-time="2026-11-21 21:28:24Z" duration="1.5081162">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40380" result="Failed" site="Child" start-time="2026-11-21 21:28:23Z" end-time="2026-11-21 21:28:24Z" duration="1.508116" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49219" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40380" result="Failed" site="Child" start-time="2026-11-21 21:28:23Z" end-time="2026-11-21 21:28:24Z" duration="1.266194" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="34330" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49220" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40380" result="Failed" site="Child" start-time="2026-11-21 21:28:23Z" end-time="2026-11-21 21:28:24Z" duration="1.024185" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49221" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40380" result="Failed" site="Child" start-time="2026-11-21 21:28:24Z" end-time="2026-11-21 21:28:24Z" duration="0.782528" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28062" name="SettlingTrayTests" fullname="CavesOfOoo.Tests.SettlingTrayTests" classname="CavesOfOoo.Tests.SettlingTrayTests" runstate="Runnable" testcasecount="65" result="Failed" site="Child" start-time="2026-11-21 21:28:24Z" end-time="2026-11-21 21:28:24Z" duration="0.418849" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28110" name="LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying" fullname="CavesOfOoo.Tests.SettlingTrayTests.LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying" classname="CavesOfOoo.Tests.SettlingTrayTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-21 21:28:24Z" end-time="2026-11-21 21:28:24Z" duration="0.412620" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28106" name="LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying(20,20)" fullname="CavesOfOoo.Tests.SettlingTrayTests.LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying(20,20)" methodname="LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying" classname="CavesOfOoo.Tests.SettlingTrayTests" runstate="Runnable" seed="1994022179" result="Passed" start-time="2026-11-21 21:28:24Z" end-time="2026-11-21 21:28:24Z" duration="0.186896" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28107" name="LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying(21,20)" fullname="CavesOfOoo.Tests.SettlingTrayTests.LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying(21,20)" methodname="LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying" classname="CavesOfOoo.Tests.SettlingTrayTests" runstate="Runnable" seed="1650749072" result="Failed" start-time="2026-11-21 21:28:24Z" end-time="2026-11-21 21:28:24Z" duration="0.059210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  one connected source must have the same holder from every edge
+  Expected: same as <Entity(brine pool)>
+  But was:  <Entity(brine pool)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SettlingTrayTests.LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying (System.Int32 width, System.Int32 height) [0x000c8] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/SettlingTrayTests.cs:331
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28108" name="LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying(50,20)" fullname="CavesOfOoo.Tests.SettlingTrayTests.LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying(50,20)" methodname="LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying" classname="CavesOfOoo.Tests.SettlingTrayTests" runstate="Runnable" seed="761105104" result="Failed" start-time="2026-11-21 21:28:24Z" end-time="2026-11-21 21:28:24Z" duration="0.075752" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  one connected source must have the same holder from every edge
+  Expected: same as <Entity(brine pool)>
+  But was:  <Entity(brine pool)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SettlingTrayTests.LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying (System.Int32 width, System.Int32 height) [0x000c8] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/SettlingTrayTests.cs:331
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28109" name="LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying(80,25)" fullname="CavesOfOoo.Tests.SettlingTrayTests.LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying(80,25)" methodname="LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying" classname="CavesOfOoo.Tests.SettlingTrayTests" runstate="Runnable" seed="860223035" result="Failed" start-time="2026-11-21 21:28:24Z" end-time="2026-11-21 21:28:24Z" duration="0.085504" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  one connected source must have the same holder from every edge
+  Expected: same as <Entity(brine pool)>
+  But was:  <Entity(brine pool)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SettlingTrayTests.LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying (System.Int32 width, System.Int32 height) [0x000c8] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/SettlingTrayTests.cs:331
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -36,18 +36,21 @@ namespace CavesOfOoo.Core
             return null;
         }
 
-        /// <summary>The most cells of one source considered when finding where its stock lives.</summary>
-        public const int MaxComponent = 400;
+        /// <summary>Visit the whole connected source within the bounded native zone.
+        /// A smaller, origin-relative prefix can elect different stock holders at
+        /// opposite edges of one pool and create independent resource budgets.</summary>
+        public const int MaxComponent = Zone.Width * Zone.Height;
 
         /// <summary>
         /// Where the stock of the source <paramref name="source"/> lives. Hazards grow in blobs of one entity a cell, and a blob is one source: the stock is kept on the lowest (y, x) cell of the eight-way connected stretch of cells
-        /// that are sources of the same element, as a pond's is on its anchor. So trays at different edges of one pool share one supply, a tray moved along the shore finds the same stock, and drawing a cell dry does not move it.
+        /// that are sources of the same element, as a pond's is on its anchor. Existing stock holders take precedence so a saved source first drawn under the old partial-search rule keeps its budget.
+        /// Multiple legacy holders elect the lowest (y, x, ID), never sum their budgets; the others remain dormant while connected. Lookup does not migrate or mutate saved state.
         /// </summary>
         public static Entity StockHolder(Zone zone, Entity source, ProofingElement element)
         {
             var start = zone?.GetEntityCell(source); if (start == null || element == null) return source;
             var seen = new HashSet<(int, int)> { (start.X, start.Y) }; var queue = new Queue<(int x, int y)>(); queue.Enqueue((start.X, start.Y));
-            Entity best = null; (int y, int x) bestAt = (int.MaxValue, int.MaxValue); int visited = 0;
+            Entity best = null, stocked = null; (int y, int x) bestAt = (int.MaxValue, int.MaxValue), stockedAt = (int.MaxValue, int.MaxValue); int visited = 0;
             while (queue.Count > 0 && visited < MaxComponent)
             {
                 var c = queue.Dequeue(); var cell = zone.GetCell(c.x, c.y); if (cell == null) continue;
@@ -55,7 +58,13 @@ namespace CavesOfOoo.Core
                 for (int i = 0; i < cell.Objects.Count; i++)
                 {
                     var e = cell.Objects[i]; var kind = KindOf(e, false);
-                    if (kind != null && string.Equals(kind.Id, element.Id, StringComparison.OrdinalIgnoreCase) && (here == null || string.CompareOrdinal(e.ID, here.ID) < 0)) here = e;
+                    if (kind == null || !string.Equals(kind.Id, element.Id, StringComparison.OrdinalIgnoreCase)) continue;
+                    if (here == null || string.CompareOrdinal(e.ID, here.ID) < 0) here = e;
+                    var stock = e.GetPart<SourceStockPart>();
+                    if (stock != null && stock.ParentEntity == e
+                        && ((c.y, c.x).CompareTo(stockedAt) < 0
+                            || (c.y, c.x) == stockedAt && (stocked == null || string.CompareOrdinal(e.ID, stocked.ID) < 0)))
+                    { stocked = e; stockedAt = (c.y, c.x); }
                 }
                 if (here == null) continue;
                 visited++;
@@ -67,7 +76,7 @@ namespace CavesOfOoo.Core
                         if ((dx != 0 || dy != 0) && zone.InBounds(nx, ny) && seen.Add((nx, ny))) queue.Enqueue((nx, ny));
                     }
             }
-            return best ?? source;
+            return stocked ?? best ?? source;
         }
 
         /// <summary>The nearest source within <see cref="Reach"/> cells of <paramref name="at"/> (ties by ID), with the element it is a source of; null when there is none.</summary>

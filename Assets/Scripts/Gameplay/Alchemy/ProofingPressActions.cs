@@ -77,7 +77,7 @@ namespace CavesOfOoo.Core
                     actions.AddActionWithHint("PressProofing", "press into " + flask.GetDisplayName() + " (" + liquid.DisplayName + ", " + CoatsText(units) + "; " + vessel.Volume + "→" + (vessel.Volume + units) + "/" + vessel.Capacity + ")",
                         Prefix + element.Id + "|" + Uri.EscapeDataString(flask.ID),
                         "Spends one " + reagent.GetDisplayName() + ". Each coat later proofs one garment against " + element.Label + ": +" + ProofingRules.CoatAmount + " " + element.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, and it blunts " + element.Status + ". No fire or workbench needed." + seenNote,
-                        '\0', 15);
+                        '\0', 15, time: ActionTime.OneAction);
                 }
             }
         }

@@ -125,6 +125,80 @@ namespace CavesOfOoo.Tests
 
         // ── world menu: declared time ──
 
+        Entity WorkHearth(string command)
+        {
+            var hearth = Place("CampHearth", 11, 10);
+            hearth.GetPart<PhysicsPart>().Takeable = false;
+            hearth.GetPart<FuelPart>().FuelMass = 5;
+            hearth.GetPart<ThermalPart>().Temperature = command == "DryGear" ? 450 : 25;
+            Carry("SalvagedTimber"); Carry("SalvagedTimber"); Carry("SalvagedTimber");
+            Carry("FlintStriker");
+            if (command == "DryGear") Carry("Dagger").ApplyEffect(new WetEffect { Moisture = 100 });
+            return hearth;
+        }
+
+        [TestCase("FeedCookingFire")] [TestCase("FeedCookingFireFull")]
+        [TestCase("RelightCookingFire")] [TestCase("StokeCookingFire")] [TestCase("DryGear")]
+        public void RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(string command)
+        {
+            var hearth = WorkHearth(command);
+            int beforeTimber = Pack.Objects.Where(e => e.BlueprintName == "SalvagedTimber")
+                .Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1);
+            var striker = Pack.Objects.Single(e => e.BlueprintName == "FlintStriker").GetPart<FlintStrikerPart>();
+            int strikes = striker.Strikes;
+            int spent = WorldMenu(hearth, (menu, input, turns) =>
+            {
+                var row = Rows(menu).Single(r => r.Name == command);
+                Assert.AreEqual(ActionTime.OneAction, row.Time, "real work rows own their turn cost");
+                return row;
+            });
+            Assert.AreEqual(10, spent, "a real menu commit advances exactly one ordinary action");
+            int timber = Pack.Objects.Where(e => e.BlueprintName == "SalvagedTimber")
+                .Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1);
+            Assert.AreEqual(beforeTimber - (command == "FeedCookingFire" ? 1
+                : command == "FeedCookingFireFull" || command == "StokeCookingFire" ? 3 : 0), timber);
+            Assert.AreEqual(strikes - (command == "RelightCookingFire" || command == "StokeCookingFire" ? 1 : 0), striker.Strikes);
+            if (command == "StokeCookingFire" || command == "RelightCookingFire")
+                Assert.True(hearth.GetPart<LightSourcePart>().Enabled, "the work actually lit the hearth");
+        }
+
+        [TestCase("FeedCookingFireFull", false)] [TestCase("StokeCookingFire", false)]
+        [TestCase("FeedCookingFireFull", true)] [TestCase("StokeCookingFire", true)]
+        public void RealHearthWorkRefusalOrOuterFailureSpendsNothing(string command, bool veto)
+        {
+            var hearth = WorkHearth(command);
+            var striker = Pack.Objects.Single(e => e.BlueprintName == "FlintStriker").GetPart<FlintStrikerPart>();
+            int strikes = striker.Strikes;
+            int spent = WorldMenu(hearth, (menu, input, turns) =>
+            {
+                var row = Rows(menu).Single(r => r.Name == command);
+                if (veto) FailAfter();
+                else foreach (var item in Pack.Objects.Where(e => e.BlueprintName == "SalvagedTimber"
+                    || command == "StokeCookingFire" && e.BlueprintName == "FlintStriker").ToArray()) Pack.RemoveObject(item);
+                return row;
+            });
+            Assert.AreEqual(0, spent);
+            Assert.AreEqual(5, hearth.GetPart<FuelPart>().FuelMass);
+            Assert.AreEqual(25, hearth.GetPart<ThermalPart>().Temperature);
+            Assert.AreEqual(strikes, striker.Strikes);
+            Assert.AreEqual(veto ? 3 : 0, Pack.Objects.Where(e => e.BlueprintName == "SalvagedTimber")
+                .Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
+        }
+
+        [TestCase("FeedCookingFireFull")] [TestCase("StokeCookingFire")]
+        public void UndeclaredNewHearthWorkStillCommitsButLosesItsTurn_Control(string command)
+        {
+            var hearth = WorkHearth(command);
+            int spent = WorldMenu(hearth, (menu, input, turns) =>
+            {
+                var row = Rows(menu).Single(r => r.Name == command);
+                row.Time = ActionTime.Unspecified;
+                return row;
+            });
+            Assert.AreEqual(0, spent, "reproduces the live timing bug through the real fallback");
+            Assert.Greater(hearth.GetPart<FuelPart>().FuelMass, 5, "the resource mutation still happened");
+        }
+
         [Test] public void DeclaredOneActionRowRunsInTransactionAndChargesOneTurn()
         {
             var bench = Probe("OneAction");
@@ -271,7 +345,8 @@ namespace CavesOfOoo.Tests
 
         static object Field(object o, string name) => o.GetType().GetField(name).GetValue(o);
 
-        int PressEnterOnProbeRow(Entity item, out string label, out bool popupStillOpen, out IList actionsSeen)
+        int PressEnterOnProbeRow(Entity item, out string label, out bool popupStillOpen, out IList actionsSeen,
+            string prefix = "probe the thing", Action<object> configure = null)
         {
             var scope = new InputTestFixture(); scope.Setup();
             try
@@ -280,8 +355,9 @@ namespace CavesOfOoo.Tests
                 var p = PackMenu(item);
                 try
                 {
-                    int index = Enumerable.Range(0, p.actions.Count).Single(i => ((string)Field(p.actions[i], "Label")).StartsWith("probe the thing"));
+                    int index = Enumerable.Range(0, p.actions.Count).Single(i => ((string)Field(p.actions[i], "Label")).StartsWith(prefix));
                     label = (string)Field(p.actions[index], "Label"); actionsSeen = p.actions;
+                    if (configure != null) { var action = p.actions[index]; configure(action); p.actions[index] = action; }
                     p.type.GetField("CursorIndex").SetValue(p.popup, index);
                     InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update(); InputHelper.GetKey(KeyCode.None);
                     InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Enter)); InputSystem.Update(); InputHelper.GetKey(KeyCode.None);
@@ -294,6 +370,31 @@ namespace CavesOfOoo.Tests
                 finally { p.ui.Dispose(); }
             }
             finally { scope.TearDown(); }
+        }
+
+        [TestCase("success", 1)] [TestCase("success", 3)]
+        [TestCase("stale", 1)] [TestCase("veto", 1)] [TestCase("undeclared", 1)]
+        public void RealProofingPressChargesOnlyForCommittedBottles(string mode, int presses)
+        {
+            var reagent = Carry("FrostLichen"); Carry("FrostLichen"); Carry("FrostLichen");
+            var flask = Flask(0); var vessel = flask.GetPart<LiquidVesselPart>();
+            int spent = 0;
+            for (int i = 0; i < presses; i++)
+                spent += PressEnterOnProbeRow(reagent, out _, out _, out _, "press into liquid flask", action =>
+                {
+                    if (mode == "stale") { vessel.LiquidId = "bog-mire"; vessel.Volume = 1; }
+                    if (mode == "veto") FailAfter();
+                    if (mode == "undeclared") action.GetType().GetField("TimeDeclared").SetValue(action, false);
+                });
+            Assert.Contains(flask, Pack.Objects, "the result must be on the currently carried flask");
+            vessel = flask.GetPart<LiquidVesselPart>();
+            Assert.AreSame(flask, vessel.ParentEntity, "read the current owned Part, not a payment snapshot's detached reference");
+            bool committed = mode == "success" || mode == "undeclared";
+            Assert.AreEqual(mode == "success" ? presses * 10 : 0, spent);
+            Assert.AreEqual(committed ? presses * 2 : mode == "stale" ? 1 : 0, vessel.Volume);
+            Assert.AreEqual(committed ? "cold-proofing" : mode == "stale" ? "bog-mire" : "", vessel.LiquidId);
+            Assert.AreEqual(3 - (committed ? presses : 0), Pack.Objects.Where(e => e.BlueprintName == "FrostLichen")
+                .Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
         }
 
         [Test] public void PackMenuCopiesDeclaredFieldsToItemAction()

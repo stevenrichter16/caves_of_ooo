@@ -8,6 +8,34 @@
 
 # Machine foundations execution plan
 
+## Active handback continuation — November 21, 2026
+
+The user explicitly handed repository, Unity and Git control to Codex and asked
+for the shared-source correction, regression assessment and native machine/camp
+play without further permission questions. This supersedes the older Claude
+ownership hold below. [The current handoff](MACHINE-PROGRAM-HANDOFF.md) is the
+entry point for the November 18–21 additions.
+
+The shared source now traverses the bounded full 80×25 zone and retains a saved
+stock owner before electing a new one. Native six-case RED, 184-case GREEN,
+two killed mutants and independent source review are recorded in
+[the stock receipt](Verification/MachineSystems/SharedSourceStock20261121/README.md).
+Topology changes that expose separate legacy budgets remain outside this fix.
+
+Actual GameBootstrap camp/workshop play verified camp placement, finite fuel,
+night rest, mire separation, same-ID box custody, cancellation, world-map notes,
+travel/Continue and pack-up; coating plus lasting proofing combined with gear to
+prevent an ordinary frost-tonic freeze. Play found missing turn declarations on
+the newer hearth work and proofing press, now corrected through the shared action
+contract. [Native play and timing receipts](Verification/MachineSystems/CampPlay20261121/README.md)
+record exact limits and remaining gates. The inherited fullrun_h comparison and
+further machine gameplay remain in progress; no complete-machine acceptance or
+new Mac delivery is claimed here.
+
+The user additionally requested an [inventory density redesign plan](INVENTORY-DENSITY-REDESIGN-PLAN.md).
+It proposes full-height columns and compact details over existing commands;
+implementation and native readability qualification remain future work.
+
 Current continuation — 2026-11-16: the user explicitly cancelled the graphics scheduled task and authorized an hourly task to design, refine and build the world systems needed by the twelve-machine roster. The replacement `caves-of-ooo-machine-foundations` is ACTIVE every hour in the existing chat. `overnight-clearing-art-pipeline` was deleted and its configuration is absent. Machine-support work is implementation-authorized; the old design-only restriction no longer applies to this program. Broader traversal proposals and full settlement-management systems remain outside scope except for a reviewed direct dependency.
 
 Read [the design and twelve-machine dependency matrix](MACHINE-SYSTEMS-DESIGN.md) and `CLAUDE.md`, then inspect Git/Unity ownership. Root owns Unity and Git. Follow the current runnable step without restarting completed inventories. Use bounded independent agents for source, lore and review. Preserve unrelated work, normal saves/preferences, approved editable art and every required build. Steam Deck work remains deferred. No storage reclamation is authorized.

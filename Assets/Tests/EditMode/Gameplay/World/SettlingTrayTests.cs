@@ -309,6 +309,62 @@ namespace CavesOfOoo.Tests
             var cells = new Entity[3, 3]; for (int i = 0; i < 3; i++) for (int j = 0; j < 3; j++) cells[i, j] = Source(blueprint, x0 + i, y0 + j, rich: false); return cells;
         }
 
+        [TestCase(20, 20)]
+        [TestCase(21, 20)]
+        [TestCase(50, 20)]
+        [TestCase(Zone.Width, Zone.Height)]
+        public void LargeConnectedSourceKeepsOneStockFromEveryCornerAndAfterDrying(int width, int height)
+        {
+            var pool = new Entity[width, height];
+            for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
+                    pool[x, y] = Source("BrinePool", x, y, rich: false);
+            var element = ProofingRegistry.ById("electric");
+            var anchor = pool[0, 0];
+            var stock = SourceStockPart.For(wild, anchor, WorldClock.CurrentTick);
+            stock.Available = 0;
+            anchor.GetPart<LiquidPoolPart>().Volume = 0;
+
+            foreach (var source in new[] { pool[0, height - 1], pool[width - 1, 0], pool[width - 1, height - 1] })
+            {
+                var holder = ProofingSources.StockHolder(wild, source, element);
+                Assert.AreSame(anchor, holder, "one connected source must have the same holder from every edge");
+                var resolved = SourceStockPart.For(wild, holder, WorldClock.CurrentTick);
+                Assert.AreSame(stock, resolved);
+                Assert.AreEqual(0, resolved.Available, "approaching another edge must not create fresh stock");
+            }
+            Assert.AreEqual(1, pool.Cast<Entity>().Count(e => e.HasPart<SourceStockPart>()));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void LargeSourceRetainsSavedLegacyBudgetInsteadOfRefillingAtNewAnchor(bool duplicateLegacyBudget)
+        {
+            var pool = new Entity[50, 20];
+            for (int x = 0; x < 50; x++)
+                for (int y = 0; y < 20; y++)
+                    pool[x, y] = Source("BrinePool", x, y, rich: false);
+            var legacy = pool[30, 0];
+            var savedStock = SourceStockPart.For(wild, legacy, WorldClock.CurrentTick);
+            savedStock.Capacity = 4; savedStock.Available = 0; savedStock.LastTick = WorldClock.CurrentTick;
+            var restored = PartRoundTripHelper.RoundTripEntityViaTokenGraph(legacy);
+            wild.RemoveEntity(legacy); Assert.True(wild.AddEntity(restored, 30, 0)); pool[30, 0] = restored;
+            var stock = restored.GetPart<SourceStockPart>();
+            if (duplicateLegacyBudget) SourceStockPart.For(wild, pool[40, 0], WorldClock.CurrentTick);
+
+            foreach (var source in new[] { pool[0, 0], pool[0, 19], pool[49, 19] })
+            {
+                var holder = ProofingSources.StockHolder(wild, source, ProofingRegistry.ById("electric"));
+                Assert.AreSame(restored, holder, "keep the first existing legacy budget in coordinate order");
+                Assert.AreSame(stock, SourceStockPart.For(wild, holder, WorldClock.CurrentTick));
+            }
+            Assert.AreEqual(4, stock.Capacity);
+            Assert.AreEqual(0, stock.Available);
+            Assert.AreEqual(WorldClock.CurrentTick, stock.LastTick);
+            Assert.IsNull(pool[0, 0].GetPart<SourceStockPart>(), "an upgrade must not mint a new budget");
+            Assert.AreEqual(duplicateLegacyBudget ? 2 : 1, pool.Cast<Entity>().Count(e => e.HasPart<SourceStockPart>()));
+        }
+
         [Test] public void TraysAtDifferentEdgesOfOneMultiCellPoolShareOneStock()
         {
             var pool = Pool3x3(); var west = SetTray(AX, 11, "east");   // (28,11): two cells from the pool's west edge

@@ -78,6 +78,20 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+November 21 reassessment: Codex now owns the explicitly handed-back repository
+and Unity session. Recent camp/station/tool/proofing implementations add useful
+partial foundations; they do not close any of the twelve complete-machine gates
+below. Native camp travel/Continue preserved custody and fuel, and trough plus
+flask preparation combined with ordinary gear to prevent freezing. Shared-source
+budget and action-time corrections are documented in the
+[stock](Verification/MachineSystems/SharedSourceStock20261121/README.md) and
+[native play](Verification/MachineSystems/CampPlay20261121/README.md) receipts.
+The fractionating-still/treatment-bath dependencies benefit from these bounded
+processing/proofing checks; finite-source collection, remaining actual play,
+regional purpose, full regression assessment and current delivery remain gates.
+Capstan and culture work remain parked. Preserve all twelve roster entries and
+distinguish these earned slices from the broader machine proposals.
+
 All complete machines remain proposed. M1c adds accepted canonical-rig adjacent surface relocation over four exact plain cells, two source-effort rounds, coherent custody and actual off-site service/travel/reload; no general cargo or capstan. Current Mac sourcec43631ad6 includes M1c, M1d0 readability, M1d straining and accepted M2a contained recovery. M1b demonstrates a bounded recoverable workshop service, local hauling, repair, refitting and finite reclamation connected to ordinary crafting; bounded acceptance, publication and current Mac delivery are complete. It does not complete a reclamation forge, restoration cradle or capstan. See [current M1b evidence](MACHINE-FIELD-WORK-RIG.md). M1a supplies single-liquid handling only; it does not supply processing, mixture/provenance, pumping or elapsed work. See [its exact contract and evidence](MACHINE-LIQUID-HANDLING.md).
 
 | Machine | Why it would be useful | Missing support and meaningful choice | First evidence required | Status |

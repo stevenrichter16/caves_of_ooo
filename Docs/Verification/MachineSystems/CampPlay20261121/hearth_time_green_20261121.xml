@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="114" result="Passed" total="114" passed="114" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-21 22:02:07Z" end-time="2026-11-21 22:02:12Z" duration="4.768614">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40393" result="Passed" start-time="2026-11-21 22:02:07Z" end-time="2026-11-21 22:02:12Z" duration="4.768614" total="114" passed="114" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="49236" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40393" result="Passed" start-time="2026-11-21 22:02:07Z" end-time="2026-11-21 22:02:12Z" duration="4.764119" total="114" passed="114" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="63234" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="49237" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40393" result="Passed" start-time="2026-11-21 22:02:07Z" end-time="2026-11-21 22:02:12Z" duration="4.763001" total="114" passed="114" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="49238" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40393" result="Passed" start-time="2026-11-21 22:02:07Z" end-time="2026-11-21 22:02:12Z" duration="4.761929" total="114" passed="114" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="31937" name="ActionTimeDeclarationTests" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" testcasecount="51" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:10Z" duration="2.380012" total="51" passed="51" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="31974" name="ActionDisabledDiagIsRecordedWithCodeCommandAndName" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.ActionDisabledDiagIsRecordedWithCodeCommandAndName" methodname="ActionDisabledDiagIsRecordedWithCodeCommandAndName" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="497155825" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:08Z" duration="0.135367" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31938" name="AddActionDefaultsToUnspecifiedAndReturnsTheRow" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.AddActionDefaultsToUnspecifiedAndReturnsTheRow" methodname="AddActionDefaultsToUnspecifiedAndReturnsTheRow" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1434735548" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:08Z" duration="0.076737" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31944" name="AddDisabledNeverLeavesANullCommandOrABlankReason" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.AddDisabledNeverLeavesANullCommandOrABlankReason" methodname="AddDisabledNeverLeavesANullCommandOrABlankReason" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1449409176" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:08Z" duration="0.026591" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31946" name="ADisabledAndAnEnabledRowCanShareAHotkeyWithoutTheDisabledOneStealingIt" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.ADisabledAndAnEnabledRowCanShareAHotkeyWithoutTheDisabledOneStealingIt" methodname="ADisabledAndAnEnabledRowCanShareAHotkeyWithoutTheDisabledOneStealingIt" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="692736133" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:08Z" duration="0.040207" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31969" name="AnEnabledNeighbourStillSelectsNormally_Control" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.AnEnabledNeighbourStillSelectsNormally_Control" methodname="AnEnabledNeighbourStillSelectsNormally_Control" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1650634315" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:08Z" duration="0.040600" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31979" name="DeclaredFreePackRowChargesNothing" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DeclaredFreePackRowChargesNothing" methodname="DeclaredFreePackRowChargesNothing" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="103733330" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:08Z" duration="0.169488" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="31963" name="DeclaredFreeRowChargesNothingEvenWhenALegacyChainWouldCharge" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DeclaredFreeRowChargesNothingEvenWhenALegacyChainWouldCharge" methodname="DeclaredFreeRowChargesNothingEvenWhenALegacyChainWouldCharge" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1167420964" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:08Z" duration="0.041561" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31978" name="DeclaredOneActionPackRowChargesOneTurn" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DeclaredOneActionPackRowChargesOneTurn" methodname="DeclaredOneActionPackRowChargesOneTurn" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="2006269810" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:08Z" duration="0.054181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31961" name="DeclaredOneActionRowRunsInTransactionAndChargesOneTurn" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DeclaredOneActionRowRunsInTransactionAndChargesOneTurn" methodname="DeclaredOneActionRowRunsInTransactionAndChargesOneTurn" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="807586420" result="Passed" start-time="2026-11-21 22:02:08Z" end-time="2026-11-21 22:02:09Z" duration="0.040280" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31966" name="DeclaredRowStillObeysTheReachGate" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DeclaredRowStillObeysTheReachGate" methodname="DeclaredRowStillObeysTheReachGate" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1275302014" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.043741" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31965" name="DeclaredRowThatDoesNotCommitChargesNothing" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DeclaredRowThatDoesNotCommitChargesNothing" methodname="DeclaredRowThatDoesNotCommitChargesNothing" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="891195896" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.039166" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31967" name="DeclaredRowWithAnEmptyCommandFallsThroughToTheLegacyPathInsteadOfDispatching" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DeclaredRowWithAnEmptyCommandFallsThroughToTheLegacyPathInsteadOfDispatching" methodname="DeclaredRowWithAnEmptyCommandFallsThroughToTheLegacyPathInsteadOfDispatching" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1007081901" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.043127" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31970" name="DisabledHotkeyBehavesLikeEnter" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DisabledHotkeyBehavesLikeEnter" methodname="DisabledHotkeyBehavesLikeEnter" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="655616768" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.088912" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31982" name="DisabledPackRowIsDimmedByLabelAndDoesNothing" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DisabledPackRowIsDimmedByLabelAndDoesNothing" methodname="DisabledPackRowIsDimmedByLabelAndDoesNothing" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="2138911464" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.046934" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31968" name="DisabledRowIsListedAndSelectionLogsReasonWithoutExecuting" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DisabledRowIsListedAndSelectionLogsReasonWithoutExecuting" methodname="DisabledRowIsListedAndSelectionLogsReasonWithoutExecuting" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1221661657" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.040306" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31971" name="DisabledRowReachedByExecuteStillOnlyReports" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DisabledRowReachedByExecuteStillOnlyReports" methodname="DisabledRowReachedByExecuteStillOnlyReports" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="442423869" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.039621" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31973" name="DisabledRowWithFireOnActorIsStillOnlyAReport" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DisabledRowWithFireOnActorIsStillOnlyAReport" methodname="DisabledRowWithFireOnActorIsStillOnlyAReport" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1676949169" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.040210" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31972" name="DisabledWinsOverDeclaredTime" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DisabledWinsOverDeclaredTime" methodname="DisabledWinsOverDeclaredTime" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1795812265" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.042389" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31983" name="DisabledWinsOverDeclaredTimeInThePackMenuToo" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DisabledWinsOverDeclaredTimeInThePackMenuToo" methodname="DisabledWinsOverDeclaredTimeInThePackMenuToo" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="941704441" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.043462" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31945" name="DuplicateDisabledNamesAreBothListedAndSortStaysStable" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.DuplicateDisabledNamesAreBothListedAndSortStaysStable" methodname="DuplicateDisabledNamesAreBothListedAndSortStaysStable" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="2094456713" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.025694" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31964" name="LegacyChainStillChargesAnUndeclaredHarvestRow_Control" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyChainStillChargesAnUndeclaredHarvestRow_Control" methodname="LegacyChainStillChargesAnUndeclaredHarvestRow_Control" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1825349989" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.041463" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31993" name="LegacyPackChargeTableIsUnchanged" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.279106" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31984" name="LegacyPackChargeTableIsUnchanged(&quot;FillWaterskin&quot;,True)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged(&quot;FillWaterskin&quot;,True)" methodname="LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="458894112" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.028073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31985" name="LegacyPackChargeTableIsUnchanged(&quot;DrinkWaterskin&quot;,True)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged(&quot;DrinkWaterskin&quot;,True)" methodname="LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1645175446" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.025393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31986" name="LegacyPackChargeTableIsUnchanged(&quot;Cook&quot;,True)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged(&quot;Cook&quot;,True)" methodname="LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1971757810" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.024503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31987" name="LegacyPackChargeTableIsUnchanged(&quot;LightTorch&quot;,True)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged(&quot;LightTorch&quot;,True)" methodname="LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="858654021" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.024914" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31988" name="LegacyPackChargeTableIsUnchanged(&quot;ExtinguishTorch&quot;,True)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged(&quot;ExtinguishTorch&quot;,True)" methodname="LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="741787731" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.070452" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31989" name="LegacyPackChargeTableIsUnchanged(&quot;Harvest&quot;,True)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged(&quot;Harvest&quot;,True)" methodname="LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="367662202" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.025346" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31990" name="LegacyPackChargeTableIsUnchanged(&quot;Examine&quot;,False)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged(&quot;Examine&quot;,False)" methodname="LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1430258136" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.025278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31991" name="LegacyPackChargeTableIsUnchanged(&quot;Take&quot;,False)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged(&quot;Take&quot;,False)" methodname="LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="409811306" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.025301" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31992" name="LegacyPackChargeTableIsUnchanged(&quot;ProbeDeclared&quot;,False)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.LegacyPackChargeTableIsUnchanged(&quot;ProbeDeclared&quot;,False)" methodname="LegacyPackChargeTableIsUnchanged" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1105398638" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.025627" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31975" name="NoDiagWhenNothingIsDisabled" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.NoDiagWhenNothingIsDisabled" methodname="NoDiagWhenNothingIsDisabled" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="312510229" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.042192" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31943" name="OnlyANonBlankReasonDisablesARow" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.OnlyANonBlankReasonDisablesARow" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.102228" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31939" name="OnlyANonBlankReasonDisablesARow(&quot;&quot;,False)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.OnlyANonBlankReasonDisablesARow(&quot;&quot;,False)" methodname="OnlyANonBlankReasonDisablesARow" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="995711307" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.026100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31940" name="OnlyANonBlankReasonDisablesARow(&quot;   &quot;,False)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.OnlyANonBlankReasonDisablesARow(&quot;   &quot;,False)" methodname="OnlyANonBlankReasonDisablesARow" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="187395995" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.025125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31941" name="OnlyANonBlankReasonDisablesARow(null,False)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.OnlyANonBlankReasonDisablesARow(null,False)" methodname="OnlyANonBlankReasonDisablesARow" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="939522957" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.024666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31942" name="OnlyANonBlankReasonDisablesARow(&quot;The forge is fouled.&quot;,True)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.OnlyANonBlankReasonDisablesARow(&quot;The forge is fouled.&quot;,True)" methodname="OnlyANonBlankReasonDisablesARow" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="675311722" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:09Z" duration="0.025383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31976" name="PackMenuCopiesDeclaredFieldsToItemAction" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.PackMenuCopiesDeclaredFieldsToItemAction" methodname="PackMenuCopiesDeclaredFieldsToItemAction" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1340694389" result="Passed" start-time="2026-11-21 22:02:09Z" end-time="2026-11-21 22:02:10Z" duration="0.052567" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31977" name="PackMenuUndeclaredRowIsNotMistakenForFreeBecauseAStructDefaultsToZero" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.PackMenuUndeclaredRowIsNotMistakenForFreeBecauseAStructDefaultsToZero" methodname="PackMenuUndeclaredRowIsNotMistakenForFreeBecauseAStructDefaultsToZero" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1651950954" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.045770" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31957" name="RealHearthWorkRefusalOrOuterFailureSpendsNothing" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRefusalOrOuterFailureSpendsNothing" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.250381" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31953" name="RealHearthWorkRefusalOrOuterFailureSpendsNothing(&quot;FeedCookingFireFull&quot;,False)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRefusalOrOuterFailureSpendsNothing(&quot;FeedCookingFireFull&quot;,False)" methodname="RealHearthWorkRefusalOrOuterFailureSpendsNothing" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="368711262" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.053191" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31954" name="RealHearthWorkRefusalOrOuterFailureSpendsNothing(&quot;StokeCookingFire&quot;,False)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRefusalOrOuterFailureSpendsNothing(&quot;StokeCookingFire&quot;,False)" methodname="RealHearthWorkRefusalOrOuterFailureSpendsNothing" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="435404158" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.063969" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31955" name="RealHearthWorkRefusalOrOuterFailureSpendsNothing(&quot;FeedCookingFireFull&quot;,True)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRefusalOrOuterFailureSpendsNothing(&quot;FeedCookingFireFull&quot;,True)" methodname="RealHearthWorkRefusalOrOuterFailureSpendsNothing" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1131795236" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.090507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31956" name="RealHearthWorkRefusalOrOuterFailureSpendsNothing(&quot;StokeCookingFire&quot;,True)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRefusalOrOuterFailureSpendsNothing(&quot;StokeCookingFire&quot;,True)" methodname="RealHearthWorkRefusalOrOuterFailureSpendsNothing" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="880644577" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.041220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31952" name="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRowDeclaresAndSpendsExactlyOneAction" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.212237" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31947" name="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;FeedCookingFire&quot;)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;FeedCookingFire&quot;)" methodname="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1719029080" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.044701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31948" name="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;FeedCookingFireFull&quot;)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;FeedCookingFireFull&quot;)" methodname="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1162032086" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.039327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31949" name="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;RelightCookingFire&quot;)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;RelightCookingFire&quot;)" methodname="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1242726171" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.041325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31950" name="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;StokeCookingFire&quot;)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;StokeCookingFire&quot;)" methodname="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1305349512" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.041338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31951" name="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;DryGear&quot;)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.RealHearthWorkRowDeclaresAndSpendsExactlyOneAction(&quot;DryGear&quot;)" methodname="RealHearthWorkRowDeclaresAndSpendsExactlyOneAction" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1548224952" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.044541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=6 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="31980" name="UndeclaredHarvestPackRowStillChargesLikeBefore_Control" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.UndeclaredHarvestPackRowStillChargesLikeBefore_Control" methodname="UndeclaredHarvestPackRowStillChargesLikeBefore_Control" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="464598158" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.046675" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31960" name="UndeclaredNewHearthWorkStillCommitsButLosesItsTurn_Control" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.UndeclaredNewHearthWorkStillCommitsButLosesItsTurn_Control" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.082332" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31958" name="UndeclaredNewHearthWorkStillCommitsButLosesItsTurn_Control(&quot;FeedCookingFireFull&quot;)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.UndeclaredNewHearthWorkStillCommitsButLosesItsTurn_Control(&quot;FeedCookingFireFull&quot;)" methodname="UndeclaredNewHearthWorkStillCommitsButLosesItsTurn_Control" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1206133672" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.041545" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31959" name="UndeclaredNewHearthWorkStillCommitsButLosesItsTurn_Control(&quot;StokeCookingFire&quot;)" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.UndeclaredNewHearthWorkStillCommitsButLosesItsTurn_Control(&quot;StokeCookingFire&quot;)" methodname="UndeclaredNewHearthWorkStillCommitsButLosesItsTurn_Control" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1835942849" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.039729" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="31962" name="UndeclaredRowWithTheSameCommandRunsButChargesNothing_Control" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.UndeclaredRowWithTheSameCommandRunsButChargesNothing_Control" methodname="UndeclaredRowWithTheSameCommandRunsButChargesNothing_Control" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="310005901" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.040397" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=13 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="31981" name="UndeclaredUnknownPackRowChargesNothing_Control" fullname="CavesOfOoo.Tests.ActionTimeDeclarationTests.UndeclaredUnknownPackRowChargesNothing_Control" methodname="UndeclaredUnknownPackRowChargesNothing_Control" classname="CavesOfOoo.Tests.ActionTimeDeclarationTests" runstate="Runnable" seed="1312367329" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.049600" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="18305" name="CampfirePartTests" fullname="CavesOfOoo.Tests.CampfirePartTests" classname="CavesOfOoo.Tests.CampfirePartTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.004786" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="18306" name="CampfireFlickers_BetweenRedAndYellow" fullname="CavesOfOoo.Tests.CampfirePartTests.CampfireFlickers_BetweenRedAndYellow" methodname="CampfireFlickers_BetweenRedAndYellow" classname="CavesOfOoo.Tests.CampfirePartTests" runstate="Runnable" seed="2090916456" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.001114" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="18308" name="ProximityMessage_DoesNotShow_WhenPlayerFarAway" fullname="CavesOfOoo.Tests.CampfirePartTests.ProximityMessage_DoesNotShow_WhenPlayerFarAway" methodname="ProximityMessage_DoesNotShow_WhenPlayerFarAway" classname="CavesOfOoo.Tests.CampfirePartTests" runstate="Runnable" seed="113380461" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.000886" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="18307" name="ProximityMessage_ShowsOnceWhenPlayerAdjacent" fullname="CavesOfOoo.Tests.CampfirePartTests.ProximityMessage_ShowsOnceWhenPlayerAdjacent" methodname="ProximityMessage_ShowsOnceWhenPlayerAdjacent" classname="CavesOfOoo.Tests.CampfirePartTests" runstate="Runnable" seed="476450974" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.000765" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="18309" name="ResetProximityMessage_AllowsMessageAgain" fullname="CavesOfOoo.Tests.CampfirePartTests.ResetProximityMessage_AllowsMessageAgain" methodname="ResetProximityMessage_AllowsMessageAgain" classname="CavesOfOoo.Tests.CampfirePartTests" runstate="Runnable" seed="718964192" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.001005" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="21216" name="CampFireQolTests" fullname="CavesOfOoo.Tests.CampFireQolTests" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:11Z" duration="0.891381" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="21241" name="ABurningFireIsNeverOfferedARelightOrAStoke_EvenJustAfterItWasLit" fullname="CavesOfOoo.Tests.CampFireQolTests.ABurningFireIsNeverOfferedARelightOrAStoke_EvenJustAfterItWasLit" methodname="ABurningFireIsNeverOfferedARelightOrAStoke_EvenJustAfterItWasLit" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1704749036" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.063642" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21242" name="AFireThatIsOutIsOfferedBothAgain_Counter" fullname="CavesOfOoo.Tests.CampFireQolTests.AFireThatIsOutIsOfferedBothAgain_Counter" methodname="AFireThatIsOutIsOfferedBothAgain_Counter" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1659062812" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.025441" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21244" name="AHearthThatBurnedOutOfFuelButIsStillHotCanBeFedWithoutSpendingAStrike" fullname="CavesOfOoo.Tests.CampFireQolTests.AHearthThatBurnedOutOfFuelButIsStillHotCanBeFedWithoutSpendingAStrike" methodname="AHearthThatBurnedOutOfFuelButIsStillHotCanBeFedWithoutSpendingAStrike" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1273379974" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.028456" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21237" name="ARowWithNothingToAddHasNoHint_Counter" fullname="CavesOfOoo.Tests.CampFireQolTests.ARowWithNothingToAddHasNoHint_Counter" methodname="ARowWithNothingToAddHasNoHint_Counter" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1137854372" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.026324" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21233" name="AWornFlintSaysToKnapItWhereAFlameWasWanted" fullname="CavesOfOoo.Tests.CampFireQolTests.AWornFlintSaysToKnapItWhereAFlameWasWanted" methodname="AWornFlintSaysToKnapItWhereAFlameWasWanted" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="808689950" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.030388" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21232" name="EveryBurningFireBesideYouOffersToLightTheTorch_NotJustTheFirstTheCommandWouldUse" fullname="CavesOfOoo.Tests.CampFireQolTests.EveryBurningFireBesideYouOffersToLightTheTorch_NotJustTheFirstTheCommandWouldUse" methodname="EveryBurningFireBesideYouOffersToLightTheTorch_NotJustTheFirstTheCommandWouldUse" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1410590165" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:10Z" duration="0.030982" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21218" name="FeedToFullFeedsAsManyTimberAsFitInOneAction_AndTheRowSaysHowMany" fullname="CavesOfOoo.Tests.CampFireQolTests.FeedToFullFeedsAsManyTimberAsFitInOneAction_AndTheRowSaysHowMany" methodname="FeedToFullFeedsAsManyTimberAsFitInOneAction_AndTheRowSaysHowMany" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="386774544" result="Passed" start-time="2026-11-21 22:02:10Z" end-time="2026-11-21 22:02:11Z" duration="0.027492" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21221" name="FeedToFullGivesTheTimberBackWhenAnOuterStepFails" fullname="CavesOfOoo.Tests.CampFireQolTests.FeedToFullGivesTheTimberBackWhenAnOuterStepFails" methodname="FeedToFullGivesTheTimberBackWhenAnOuterStepFails" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1832573060" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.026519" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21220" name="FeedToFullIsNotOfferedForASingleTimberOrAFullFire_Counters" fullname="CavesOfOoo.Tests.CampFireQolTests.FeedToFullIsNotOfferedForASingleTimberOrAFullFire_Counters" methodname="FeedToFullIsNotOfferedForASingleTimberOrAFullFire_Counters" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="467524260" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.027623" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21219" name="FeedToFullTakesExactlyWhatFitsWhenItFitsWhole" fullname="CavesOfOoo.Tests.CampFireQolTests.FeedToFullTakesExactlyWhatFitsWhenItFitsWhole" methodname="FeedToFullTakesExactlyWhatFitsWhenItFitsWhole" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1080036596" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.027749" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21222" name="FeedToFullWithoutTimberOrWithAFullFireIsRefused_Forged" fullname="CavesOfOoo.Tests.CampFireQolTests.FeedToFullWithoutTimberOrWithAFullFireIsRefused_Forged" methodname="FeedToFullWithoutTimberOrWithAFullFireIsRefused_Forged" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="164547130" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.027537" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21243" name="ForgedRelightCommandsAreRefusedOnABurningFire_AndSpendNoStrike" fullname="CavesOfOoo.Tests.CampFireQolTests.ForgedRelightCommandsAreRefusedOnABurningFire_AndSpendNoStrike" methodname="ForgedRelightCommandsAreRefusedOnABurningFire_AndSpendNoStrike" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="753936855" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.026422" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21238" name="HintsWrapAtWordBoundariesWithinTheWidthAndEndWithATildeWhenCut" fullname="CavesOfOoo.Tests.CampFireQolTests.HintsWrapAtWordBoundariesWithinTheWidthAndEndWithATildeWhenCut" methodname="HintsWrapAtWordBoundariesWithinTheWidthAndEndWithATildeWhenCut" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1151094922" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.025453" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21234" name="NoKnapHintWithoutAWornStriker_Counter" fullname="CavesOfOoo.Tests.CampFireQolTests.NoKnapHintWithoutAWornStriker_Counter" methodname="NoKnapHintWithoutAWornStriker_Counter" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1407774640" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.024567" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21226" name="RestRowsNameTheTimeOfDayYouWakeIn" fullname="CavesOfOoo.Tests.CampFireQolTests.RestRowsNameTheTimeOfDayYouWakeIn" methodname="RestRowsNameTheTimeOfDayYouWakeIn" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1014056397" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.025673" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21227" name="RestRowsSayWhatTheRestWillHeal_AndSayNothingAtFullHealth" fullname="CavesOfOoo.Tests.CampFireQolTests.RestRowsSayWhatTheRestWillHeal_AndSayNothingAtFullHealth" methodname="RestRowsSayWhatTheRestWillHeal_AndSayNothingAtFullHealth" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1409911049" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.049424" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21223" name="StokeFeedsAndLightsAColdEmptyHearthInOneActionAndLightsItAtOnce" fullname="CavesOfOoo.Tests.CampFireQolTests.StokeFeedsAndLightsAColdEmptyHearthInOneActionAndLightsItAtOnce" methodname="StokeFeedsAndLightsAColdEmptyHearthInOneActionAndLightsItAtOnce" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="642526796" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.049050" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21225" name="StokeGivesEverythingBackWhenAnOuterStepFails" fullname="CavesOfOoo.Tests.CampFireQolTests.StokeGivesEverythingBackWhenAnOuterStepFails" methodname="StokeGivesEverythingBackWhenAnOuterStepFails" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1317270545" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.026908" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21224" name="StokeIsOnlyOfferedWhenThereIsBothTimberToFeedAndAFlameToLightWith_Counters" fullname="CavesOfOoo.Tests.CampFireQolTests.StokeIsOnlyOfferedWhenThereIsBothTimberToFeedAndAFlameToLightWith_Counters" methodname="StokeIsOnlyOfferedWhenThereIsBothTimberToFeedAndAFlameToLightWith_Counters" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="184304139" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.025174" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21245" name="TheFireSaysItCanBeLitOnlyWhenItIsOut" fullname="CavesOfOoo.Tests.CampFireQolTests.TheFireSaysItCanBeLitOnlyWhenItIsOut" methodname="TheFireSaysItCanBeLitOnlyWhenItIsOut" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1584103595" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.028119" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21231" name="TheFiresOwnMenuOffersToLightTheTorchInHandAtIt_RunByTheTorch_AndNoOtherCellDoes" fullname="CavesOfOoo.Tests.CampFireQolTests.TheFiresOwnMenuOffersToLightTheTorchInHandAtIt_RunByTheTorch_AndNoOtherCellDoes" methodname="TheFiresOwnMenuOffersToLightTheTorchInHandAtIt_RunByTheTorch_AndNoOtherCellDoes" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="992432943" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.028193" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21217" name="TheHearthRowsCarryHotkeys" fullname="CavesOfOoo.Tests.CampFireQolTests.TheHearthRowsCarryHotkeys" methodname="TheHearthRowsCarryHotkeys" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="59890083" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.025832" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21246" name="TheLightRowWarnsWhenACampKitStandsBesideTheSlick" fullname="CavesOfOoo.Tests.CampFireQolTests.TheLightRowWarnsWhenACampKitStandsBesideTheSlick" methodname="TheLightRowWarnsWhenACampKitStandsBesideTheSlick" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="154695802" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.028967" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21230" name="TheLiveCMenuCompositionStillCarriesTheLightItRow" fullname="CavesOfOoo.Tests.CampFireQolTests.TheLiveCMenuCompositionStillCarriesTheLightItRow" methodname="TheLiveCMenuCompositionStillCarriesTheLightItRow" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1205965779" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.024849" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21240" name="TheMenuReservesHintRowsOnlyWhenARowHasAHint_AndShowsTheHighlightedRowsHint" fullname="CavesOfOoo.Tests.CampFireQolTests.TheMenuReservesHintRowsOnlyWhenARowHasAHint_AndShowsTheHighlightedRowsHint" methodname="TheMenuReservesHintRowsOnlyWhenARowHasAHint_AndShowsTheHighlightedRowsHint" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1198426348" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.026768" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="21236" name="TheOtherFireRowsAndTheRestRowsDescribeThemselvesToo" fullname="CavesOfOoo.Tests.CampFireQolTests.TheOtherFireRowsAndTheRestRowsDescribeThemselvesToo" methodname="TheOtherFireRowsAndTheRestRowsDescribeThemselvesToo" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="141053417" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.025550" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21229" name="TheRelightAndCellRowsSayHowManyStrikesAreLeft" fullname="CavesOfOoo.Tests.CampFireQolTests.TheRelightAndCellRowsSayHowManyStrikesAreLeft" methodname="TheRelightAndCellRowsSayHowManyStrikesAreLeft" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="2012762225" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.024957" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21235" name="TheStokeRowSaysWhatItDoes_AndTheStrikeItCosts" fullname="CavesOfOoo.Tests.CampFireQolTests.TheStokeRowSaysWhatItDoes_AndTheStrikeItCosts" methodname="TheStokeRowSaysWhatItDoes_AndTheStrikeItCosts" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="1749805501" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.026386" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21228" name="TheStrikerNameShowsItsStrikesAndNothingElseGainsASuffix" fullname="CavesOfOoo.Tests.CampFireQolTests.TheStrikerNameShowsItsStrikesAndNothingElseGainsASuffix" methodname="TheStrikerNameShowsItsStrikesAndNothingElseGainsASuffix" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="557434796" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.026193" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21239" name="WrappingToleratesEmptyBlankAndLongUnbrokenText_Adversarial" fullname="CavesOfOoo.Tests.CampFireQolTests.WrappingToleratesEmptyBlankAndLongUnbrokenText_Adversarial" methodname="WrappingToleratesEmptyBlankAndLongUnbrokenText_Adversarial" classname="CavesOfOoo.Tests.CampFireQolTests" runstate="Runnable" seed="989991344" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.025606" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="31736" name="WorldToolRowsTests" fullname="CavesOfOoo.Tests.WorldToolRowsTests" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:12Z" duration="0.863024" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="31756" name="ADisabledRowCountsTowardAGroupAndIsListedInIt" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ADisabledRowCountsTowardAGroupAndIsListedInIt" methodname="ADisabledRowCountsTowardAGroupAndIsListedInIt" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1155233287" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.027345" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31741" name="ADisabledRowKeepsItsReason_AndIsNeverGivenSomethingToRun" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ADisabledRowKeepsItsReason_AndIsNeverGivenSomethingToRun" methodname="ADisabledRowKeepsItsReason_AndIsNeverGivenSomethingToRun" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="494302865" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.049604" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31758" name="AnItemNotCarriedOffersNothing_Counter" fullname="CavesOfOoo.Tests.WorldToolRowsTests.AnItemNotCarriedOffersNothing_Counter" methodname="AnItemNotCarriedOffersNothing_Counter" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1710515129" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.057740" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31759" name="ARowAnItemAnswersForTheWorldCellEventIsOfferedOnThatCellOnly" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ARowAnItemAnswersForTheWorldCellEventIsOfferedOnThatCellOnly" methodname="ARowAnItemAnswersForTheWorldCellEventIsOfferedOnThatCellOnly" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="441761877" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.026487" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31761" name="ARowMeantToFireOnTheActorIsNotOfferedBecauseTheCarryingItemCouldNotRunIt_Counter" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ARowMeantToFireOnTheActorIsNotOfferedBecauseTheCarryingItemCouldNotRunIt_Counter" methodname="ARowMeantToFireOnTheActorIsNotOfferedBecauseTheCarryingItemCouldNotRunIt_Counter" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="347870279" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.026192" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31760" name="ARowTaggedWithABigThingIsOfferedOnEveryCellItOccupies_AndOnNoOther" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ARowTaggedWithABigThingIsOfferedOnEveryCellItOccupies_AndOnNoOther" methodname="ARowTaggedWithABigThingIsOfferedOnEveryCellItOccupies_AndOnNoOther" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="162979612" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.028068" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31738" name="ARowTheItemNeverTaggedIsNotOffered_Counter" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ARowTheItemNeverTaggedIsNotOffered_Counter" methodname="ARowTheItemNeverTaggedIsNotOffered_Counter" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1890188724" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.027079" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31745" name="ASharedRowIsOneChoiceWhicheverItemOffersIt_AndNamesNoItem" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ASharedRowIsOneChoiceWhicheverItemOffersIt_AndNamesNoItem" methodname="ASharedRowIsOneChoiceWhicheverItemOffersIt_AndNamesNoItem" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1230002299" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.029068" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31737" name="ATaggedRowIsOfferedOnTheTaggedCellAndOnNoOtherCell" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ATaggedRowIsOfferedOnTheTaggedCellAndOnNoOtherCell" methodname="ATaggedRowIsOfferedOnTheTaggedCellAndOnNoOtherCell" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1955168725" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.025901" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31765" name="BuildingTheMenuChangesNothing_NoPackChangeNoDiagNoMessage" fullname="CavesOfOoo.Tests.WorldToolRowsTests.BuildingTheMenuChangesNothing_NoPackChangeNoDiagNoMessage" methodname="BuildingTheMenuChangesNothing_NoPackChangeNoDiagNoMessage" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="702697031" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:11Z" duration="0.026843" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31757" name="GroupCommandsRoundTripTheirHeading_AndNothingElseIsAGroupCommand_Counter" fullname="CavesOfOoo.Tests.WorldToolRowsTests.GroupCommandsRoundTripTheirHeading_AndNothingElseIsAGroupCommand_Counter" methodname="GroupCommandsRoundTripTheirHeading_AndNothingElseIsAGroupCommand_Counter" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="991771632" result="Passed" start-time="2026-11-21 22:02:11Z" end-time="2026-11-21 22:02:12Z" duration="0.026023" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31740" name="HotkeysAreNotCarriedIntoTheCellMenu_SoTheyCannotClashWithItsOwn" fullname="CavesOfOoo.Tests.WorldToolRowsTests.HotkeysAreNotCarriedIntoTheCellMenu_SoTheyCannotClashWithItsOwn" methodname="HotkeysAreNotCarriedIntoTheCellMenu_SoTheyCannotClashWithItsOwn" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1338835124" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.026370" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31754" name="IdenticalItemsCollapseBeforeTheyAreCounted_SoFourOfOneThingDoNotMakeAGroup" fullname="CavesOfOoo.Tests.WorldToolRowsTests.IdenticalItemsCollapseBeforeTheyAreCounted_SoFourOfOneThingDoNotMakeAGroup" methodname="IdenticalItemsCollapseBeforeTheyAreCounted_SoFourOfOneThingDoNotMakeAGroup" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="2051354722" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.026642" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31744" name="IdenticalItemsOfferingTheSameRowCollapseToOne_ButItemsThatReadDifferentlyStay" fullname="CavesOfOoo.Tests.WorldToolRowsTests.IdenticalItemsOfferingTheSameRowCollapseToOne_ButItemsThatReadDifferentlyStay" methodname="IdenticalItemsOfferingTheSameRowCollapseToOne_ButItemsThatReadDifferentlyStay" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1773127913" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.025748" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31746" name="ItemsOfTheSameNameThatHoldDifferentlyAreToldApartByWhatTheyHold_AndThoseThatHoldTheSameCollapse" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ItemsOfTheSameNameThatHoldDifferentlyAreToldApartByWhatTheyHold_AndThoseThatHoldTheSameCollapse" methodname="ItemsOfTheSameNameThatHoldDifferentlyAreToldApartByWhatTheyHold_AndThoseThatHoldTheSameCollapse" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="393859580" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.026075" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31749" name="ItemsThatHoldTheSameAreNotGivenAStateSuffix_Counter" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ItemsThatHoldTheSameAreNotGivenAStateSuffix_Counter" methodname="ItemsThatHoldTheSameAreNotGivenAStateSuffix_Counter" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="199255302" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.025515" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31762" name="NothingIsOfferedToAnActorWhoCannotActNow_Counter" fullname="CavesOfOoo.Tests.WorldToolRowsTests.NothingIsOfferedToAnActorWhoCannotActNow_Counter" methodname="NothingIsOfferedToAnActorWhoCannotActNow_Counter" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="687814660" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.025415" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31748" name="OfTwoRowsThatReadAlikeTheOneYouCanUseIsKept_NotTheOneWithTheLowerId" fullname="CavesOfOoo.Tests.WorldToolRowsTests.OfTwoRowsThatReadAlikeTheOneYouCanUseIsKept_NotTheOneWithTheLowerId" methodname="OfTwoRowsThatReadAlikeTheOneYouCanUseIsKept_NotTheOneWithTheLowerId" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="778251395" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.033924" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31752" name="RowsWithNoHeadingAreNeverGrouped_HoweverManyThereAre_Counter" fullname="CavesOfOoo.Tests.WorldToolRowsTests.RowsWithNoHeadingAreNeverGrouped_HoweverManyThereAre_Counter" methodname="RowsWithNoHeadingAreNeverGrouped_HoweverManyThereAre_Counter" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="641882080" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.066551" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31747" name="StacksOfDifferentSizeAreToldApart_AndTheRowOfTheOtherStackIsNotLost" fullname="CavesOfOoo.Tests.WorldToolRowsTests.StacksOfDifferentSizeAreToldApart_AndTheRowOfTheOtherStackIsNotLost" methodname="StacksOfDifferentSizeAreToldApart_AndTheRowOfTheOtherStackIsNotLost" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="2059808553" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.026292" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31755" name="TheGroupRowSitsAmongTheToolRowsAtThePriorityOfItsBestRow_AndTheFirstRowIsStillNeverATool" fullname="CavesOfOoo.Tests.WorldToolRowsTests.TheGroupRowSitsAmongTheToolRowsAtThePriorityOfItsBestRow_AndTheFirstRowIsStillNeverATool" methodname="TheGroupRowSitsAmongTheToolRowsAtThePriorityOfItsBestRow_AndTheFirstRowIsStillNeverATool" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1831060156" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.026911" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31742" name="TheItemIsNamedWhenTheLabelDoesNotName_AndNotWhenItAlreadyDoes" fullname="CavesOfOoo.Tests.WorldToolRowsTests.TheItemIsNamedWhenTheLabelDoesNotName_AndNotWhenItAlreadyDoes" methodname="TheItemIsNamedWhenTheLabelDoesNotName_AndNotWhenItAlreadyDoes" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1799605659" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.025388" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31764" name="ThePileSummaryOfACellCarriesItsToolRowsToo" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ThePileSummaryOfACellCarriesItsToolRowsToo" methodname="ThePileSummaryOfACellCarriesItsToolRowsToo" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1674413076" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.025429" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31739" name="TheRowIsRunByTheCarryingItem_AndCostsOneActionUnlessItDeclaresOtherwise" fullname="CavesOfOoo.Tests.WorldToolRowsTests.TheRowIsRunByTheCarryingItem_AndCostsOneActionUnlessItDeclaresOtherwise" methodname="TheRowIsRunByTheCarryingItem_AndCostsOneActionUnlessItDeclaresOtherwise" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="300597897" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.026238" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31751" name="ThreeRowsUnderAHeadingBecomeOneRowThatSaysHowManyAndOpensThem" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ThreeRowsUnderAHeadingBecomeOneRowThatSaysHowManyAndOpensThem" methodname="ThreeRowsUnderAHeadingBecomeOneRowThatSaysHowManyAndOpensThem" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="793603894" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.025749" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31763" name="ToolRowsComeAfterTheTargetsOwnRows_SoTheFirstRowIsNeverATool_AndAreSortedByPriority" fullname="CavesOfOoo.Tests.WorldToolRowsTests.ToolRowsComeAfterTheTargetsOwnRows_SoTheFirstRowIsNeverATool_AndAreSortedByPriority" methodname="ToolRowsComeAfterTheTargetsOwnRows_SoTheFirstRowIsNeverATool_AndAreSortedByPriority" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="667759326" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.023981" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31743" name="TwoDifferentItemsOfferingTheSameLabelAreToldApartByName" fullname="CavesOfOoo.Tests.WorldToolRowsTests.TwoDifferentItemsOfferingTheSameLabelAreToldApartByName" methodname="TwoDifferentItemsOfferingTheSameLabelAreToldApartByName" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="1523514406" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.023923" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31753" name="TwoHeadingsGroupSeparately_AndOnlyTheCrowdedOneCollapses" fullname="CavesOfOoo.Tests.WorldToolRowsTests.TwoHeadingsGroupSeparately_AndOnlyTheCrowdedOneCollapses" methodname="TwoHeadingsGroupSeparately_AndOnlyTheCrowdedOneCollapses" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="723979087" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.023893" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31750" name="TwoRowsUnderAHeadingStayWhereTheyAre_Counter" fullname="CavesOfOoo.Tests.WorldToolRowsTests.TwoRowsUnderAHeadingStayWhereTheyAre_Counter" methodname="TwoRowsUnderAHeadingStayWhereTheyAre_Counter" classname="CavesOfOoo.Tests.WorldToolRowsTests" runstate="Runnable" seed="2136666052" result="Passed" start-time="2026-11-21 22:02:12Z" end-time="2026-11-21 22:02:12Z" duration="0.023749" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
