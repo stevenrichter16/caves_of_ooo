@@ -130,19 +130,20 @@ namespace CavesOfOoo.Core
                     + ProofingRules.PermanentUnits + " units of one element and " + ProofingRules.PermanentClay + " fire clay.", 'p', 20);
                 return;
             }
-            int shown = 0;
-            for (int i = 0; i < garments.Count && shown < MaxRows; i++)
-                foreach (var element in elements)
-                {
-                    if (shown >= MaxRows) break;
-                    var garment = garments[i]; string refusal = Refusal(actor, garment, element, out string why);
-                    string label = "proof " + garment.GetDisplayName() + (Worn(actor, garment) ? " (worn)" : "") + " against " + element.Label + " for good (" + ProofingRules.PermanentUnits + " " + element.Liquid + " + " + ProofingRules.PermanentClay + " fire clay)";
-                    string hint = "+" + ProofingRules.PermanentAmount + " " + element.Label + " resistance for as long as it lasts, and it blunts " + element.Status + ". Uses " + ProofingRules.PermanentUnits + " units of " + element.Liquid + " from your flasks and " + ProofingRules.PermanentClay + " fire clay. A garment keeps one lasting proofing." + ProofingPressActions.ResistanceNote(actor, garment, element, ProofingRules.PermanentAmount, false);
-                    string command = Prefix + Uri.EscapeDataString(garment.ID) + "|" + element.Id; char key = shown == 0 ? 'p' : '\0'; int priority = 20 - Math.Min(shown, 15);
-                    if (refusal == null) actions.AddActionWithHint("ProofGarment", label, command, hint, key, priority, false, ActionTime.OneAction);
-                    else actions.AddDisabled("ProofGarment", label, refusal, why, key, priority);
-                    shown++;
-                }
+            // Every garment x element, the ones you could use first (what you wear before what you carry), then the refused ones; the overflow is counted, not hidden.
+            var rows = new List<(Entity garment, ProofingElement element, string refusal, string why)>();
+            foreach (var garment in garments) foreach (var element in elements) { string refusal = Refusal(actor, garment, element, out string why); rows.Add((garment, element, refusal, why)); }
+            rows = rows.Select((r, index) => (r, index)).OrderBy(x => x.r.refusal != null).ThenBy(x => !Worn(actor, x.r.garment)).ThenBy(x => x.index).Select(x => x.r).ToList();
+            for (int shown = 0; shown < rows.Count && shown < MaxRows; shown++)
+            {
+                var (garment, element, refusal, why) = rows[shown];
+                string label = "proof " + garment.GetDisplayName() + (Worn(actor, garment) ? " (worn)" : "") + " against " + element.Label + " for good (" + ProofingRules.PermanentUnits + " " + element.Liquid + " + " + ProofingRules.PermanentClay + " fire clay)";
+                string hint = "+" + ProofingRules.PermanentAmount + " " + element.Label + " resistance for as long as it lasts, and it blunts " + element.Status + ". Uses " + ProofingRules.PermanentUnits + " units of " + element.Liquid + " from your flasks and " + ProofingRules.PermanentClay + " fire clay. A garment keeps one lasting proofing." + ProofingPressActions.ResistanceNote(actor, garment, element, ProofingRules.PermanentAmount, false);
+                string command = Prefix + Uri.EscapeDataString(garment.ID) + "|" + element.Id; char key = shown == 0 ? 'p' : '\0'; int priority = 20 - Math.Min(shown, 15);
+                if (refusal == null) actions.AddActionWithHint("ProofGarment", label, command, hint, key, priority, false, ActionTime.OneAction);
+                else actions.AddDisabled("ProofGarment", label, refusal, why, key, priority);
+            }
+            if (rows.Count > MaxRows) actions.AddDisabled("ProofGarment", "proof a garment for good (" + (rows.Count - MaxRows) + " more not shown)", "more", (rows.Count - MaxRows) + " more choices are not shown: set some garments aside to see them.", '\0', 4);
         }
 
         // ── the proofing: one action; the units, the clay and the garment's new state come back together on any failure ──

@@ -8,7 +8,7 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// What elemental harm the viewer has actually seen in a zone (Docs/MACHINE-PROOFING.md): the proofing trough, the press rows and the coat rows use it to say which element the place in front of you has
     /// shown you, so a player who knows what they are about to meet is pointed at the right proofing. It reads only what the viewer has seen: a creature only while its cell is in view (creatures move), terrain
-    /// and pools once their cell has been seen. It reads three honest facts and no names: a creature's elemental skills (Pyromancy, Cryomancy, Galvanism, Corrosion), a terrain's declared steady heat, cold or
+    /// once its cell has been seen and a pool only while it is in view (its volume changes). It reads three honest facts and no names: a creature's elemental skills (Pyromancy, Cryomancy, Galvanism, Corrosion), a terrain's declared steady heat, cold or
     /// charge, and the kind of damage a liquid pool does. A new creature or hazard that declares one of those joins it with no list to edit.
     /// </summary>
     public static class ElementalThreats
@@ -55,19 +55,19 @@ namespace CavesOfOoo.Core
                 var source = e.GetPart<TileStateSourcePart>();
                 if (source != null) { if (source.Heat > 0) Add(seen, "heat", name); if (source.Cold > 0) Add(seen, "cold", name); if (source.Charge > 0) Add(seen, "electric", name); }
                 var pool = e.GetPart<LiquidPoolPart>();
-                if (pool != null && pool.Volume > 0 && LiquidRegistry.IsInitialized) Add(seen, ElementOfDamage(LiquidRegistry.Get(pool.LiquidId)?.PerTurnDamage?.Type), name);
+                if (pool != null && cell.IsVisible && pool.Volume > 0 && LiquidRegistry.IsInitialized) Add(seen, ElementOfDamage(LiquidRegistry.Get(pool.LiquidId)?.PerTurnDamage?.Type), name);
             }
             foreach (var list in seen.Values) list.Sort(StringComparer.Ordinal);
             return seen;
         }
 
-        /// <summary>"You have seen heat (steam vent), acid (Marlback soursprayer) nearby." or empty when nothing elemental has been seen.</summary>
+        /// <summary>"You have seen heat (steam vent), acid (Marlback soursprayer) in this place." or empty when nothing elemental has been seen.</summary>
         public static string Summary(Zone zone, Entity viewer)
         {
             var seen = Seen(zone, viewer); if (seen.Count == 0) return "";
             var parts = new List<string>();
             foreach (var element in ProofingRegistry.All) if (seen.TryGetValue(element.Id, out var names)) parts.Add(element.Label + " (" + string.Join(", ", names) + ")");
-            return parts.Count == 0 ? "" : "You have seen " + string.Join(", ", parts) + " nearby.";
+            return parts.Count == 0 ? "" : "You have seen " + string.Join(", ", parts) + " in this place.";
         }
 
         /// <summary>The names of what has been seen for one element, joined, or empty.</summary>

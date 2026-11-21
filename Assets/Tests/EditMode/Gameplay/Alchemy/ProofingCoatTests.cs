@@ -72,6 +72,19 @@ namespace CavesOfOoo.Tests
             Assert.True(Act(flask, Row(flask, garment))); Assert.AreEqual(ProofingRules.CoatMaxTurns, Coat(garment).TurnsLeft, "250 + 100 is held to 300"); Assert.AreEqual(ProofingRules.CoatMaxTurns, Coat(garment).TurnsTotal);
         }
 
+        [Test] public void TheTopUpRowSaysHowManyTurnsItReallyAddsWhenTheCapIsNear()
+        {
+            var flask = Flask(3, "cold-proofing"); var garment = Carry("LeatherArmor"); Assert.True(Act(flask, Row(flask, garment))); Coat(garment).TurnsLeft = 250; Coat(garment).TurnsTotal = 300;
+            StringAssert.Contains("adds 50 turns to 250", CoatRows(flask).Single().Display); Coat(garment).TurnsLeft = 100; StringAssert.Contains("adds 100 turns to 100", CoatRows(flask).Single().Display);
+        }
+
+        [Test] public void ATopUpOfAWornCoatWhoseEffectWasStrippedPutsTheEffectBack()
+        {
+            var flask = Flask(3, "cold-proofing"); var garment = Carry("LeatherArmor"); Assert.True(InventorySystem.Equip(Actor, garment)); Assert.True(Act(flask, Row(flask, garment))); Assert.AreEqual(35, Stat("ColdResistance"));
+            Actor.GetPart<StatusEffectsPart>().RemoveEffect(Actor.GetEffect<SteepedAcidEffect>()); Assert.AreEqual(0, Stat("ColdResistance"), "fixture: dispelled while the garment stays worn");
+            Assert.True(Act(flask, Row(flask, garment))); Assert.AreEqual(35, Stat("ColdResistance"), "the top-up does not pay for a coat that gives nothing"); Assert.AreEqual(200, Actor.GetEffect<SteepedAcidEffect>().Duration);
+        }
+
         [Test] public void AnotherElementReplacesTheCoatAndSaysSo()
         {
             var cold = Flask(2, "cold-proofing"); var heat = Flask(2, "heat-proofing"); var garment = Carry("LeatherArmor"); Assert.True(InventorySystem.Equip(Actor, garment)); Assert.True(Act(cold, Row(cold, garment)));
@@ -124,8 +137,19 @@ namespace CavesOfOoo.Tests
             var flask = Flask(4, "cold-proofing"); var cloak = Carry("ColdwardCloak"); var body = Carry("LeatherArmor");
             StringAssert.Contains("Your cold resistance: 0 → 35 once worn", CoatRows(flask).First(r => r.Display.Contains("leather")).Hint, "unworn: what it would be once you put it on");
             Assert.True(InventorySystem.Equip(Actor, cloak)); StringAssert.Contains("Your cold resistance: 50 → 85", CoatRows(flask).First(r => r.Display.Contains("(worn)")).Hint);
-            Assert.True(InventorySystem.Equip(Actor, body)); Assert.True(Act(flask, Row(flask, body))); string hint = CoatRows(flask).First(r => r.Display.Contains("coldward")).Hint; StringAssert.Contains("Your cold resistance: 85 → 120 (immune to freezing)", hint);
+            Assert.True(InventorySystem.Equip(Actor, body)); Assert.True(Act(flask, Row(flask, body))); string hint = CoatRows(flask).First(r => r.Display.Contains("coldward")).Hint; StringAssert.Contains("Your cold resistance: 85 → 100 (immune to freezing)", hint);
             StringAssert.Contains("adds turns", CoatRows(flask).First(r => r.Display.Contains("leather")).Hint); StringAssert.DoesNotContain("→", CoatRows(flask).First(r => r.Display.Contains("leather")).Hint, "a top-up of a coat you already count changes only the turns");
+        }
+
+        [Test] public void EveryGarmentYouHoldIsOfferedUpToACapOfTwelve_WornFirst_AndTheRestAreCountedNotHidden()
+        {
+            var flask = Flask(4, "cold-proofing"); var names = new[] { "LeatherArmor", "ChainMail", "FilterHood", "KilnfeltApron", "ColdwardCloak", "IronshodBoots", "GroundwireScreen", "AcidworkerApron" };
+            var held = new System.Collections.Generic.List<Entity>(); foreach (var n in names) held.Add(Carry(n));
+            Assert.AreEqual(8, CoatRows(flask).Count(r => !r.IsDisabled), "eight garments, eight rows (the old cap of six hid two)");
+            foreach (var n in new[] { "Buckler", "IronHelmet", "LeatherBoots", "LeatherGloves", "LeatherCap", "WardedCloak", "PlateArmor" }) held.Add(Carry(n));   // distinct blueprints: armor of one kind would stack into one entry
+            Assert.True(InventorySystem.Equip(Actor, held[0]), "equip: " + string.Join("|", MessageLog.GetRecent(3))); var rows = CoatRows(flask);
+            Assert.AreEqual(13, rows.Length, "twelve garments and one row saying how many more"); Assert.True(rows[0].Display.Contains("(worn)"), "what you wear is listed first: " + string.Join(" / ", rows.Select(r => r.Display)));
+            var more = rows.Single(r => r.IsDisabled && r.DisabledCode == "more"); StringAssert.Contains("3 more", more.DisabledReason);   // fifteen held, twelve shown
         }
 
         [Test] public void TheCoatsReaderSaysWhatItDoesAndWhatItAlsoBlunts()

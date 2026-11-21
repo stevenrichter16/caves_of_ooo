@@ -45,6 +45,13 @@ namespace CavesOfOoo.Tests
             CollectionAssert.IsEmpty(Names("acid"), "creatures move: only while in view"); CollectionAssert.Contains(Names("heat"), "steam vent");
         }
 
+        [Test] public void APoolIsReportedOnlyWhileItsCellIsInView_ButAVentOnceSeen_Counter()
+        {
+            Pool(5, "bog-mire", 18, 10); Zone.GetCell(18, 10).IsVisible = false; Zone.GetCell(18, 10).Explored = true;
+            CollectionAssert.IsEmpty(Names("acid"), "a pool you only remember may have drained or filled since");
+            Zone.GetCell(18, 10).IsVisible = true; Assert.AreEqual(1, Names("acid").Count);
+        }
+
         [Test] public void YouAndWhatYouCarryAreNeverTheThreat_Counter()
         {
             var cell = Zone.GetCell(Zone.GetEntityPosition(Actor).x, Zone.GetEntityPosition(Actor).y); cell.IsVisible = true; cell.Explored = true;

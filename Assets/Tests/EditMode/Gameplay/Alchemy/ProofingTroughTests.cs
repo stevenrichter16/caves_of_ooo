@@ -149,10 +149,29 @@ namespace CavesOfOoo.Tests
             var trough = StandingTrough(); string Read() { var l = new System.Collections.Generic.List<string>(); StateReader.Collect(trough, true, Zone, Zone.GetEntityCell(trough), Actor, l); return string.Join(" ", l); }
             StringAssert.DoesNotContain("You have seen", Read());
             var vent = Place("SteamVent", 20, 10); Zone.GetCell(20, 10).IsVisible = true; Zone.GetCell(20, 10).Explored = true;
-            StringAssert.Contains("You have seen heat (steam vent) nearby.", Read());
+            StringAssert.Contains("You have seen heat (steam vent) in this place.", Read());
             var moss = Carry("FireMoss"); Flask(0); StringAssert.Contains("steam vent", Actions(moss).First(a => a.Name == "PressProofing").Hint);
             var coatFlask = Flask(2, "heat-proofing"); Carry("LeatherArmor"); StringAssert.Contains("steam vent", Actions(coatFlask).First(a => a.Name == "CoatGarment" && !a.IsDisabled).Hint);
             var cold = Flask(2, "cold-proofing"); StringAssert.DoesNotContain("You have seen", Actions(cold).First(a => a.Name == "CoatGarment" && !a.IsDisabled).Hint, "no cold has been seen");
+        }
+
+        [Test] public void EveryProofableRowIsShownBeforeAnyRefusedOne_AndTheOverflowIsCounted()
+        {
+            var trough = StandingTrough(); Flask(8, "cold-proofing"); Flask(8, "heat-proofing"); Clay(8);
+            var names = new[] { "AcidworkerApron", "ChainMail", "ColdwardCloak", "FilterHood", "GroundwireScreen", "IronshodBoots", "KilnfeltApron", "LeatherArmor" };
+            foreach (var n in names) Carry(n); foreach (var done in Pack.Objects.Where(o => o.BlueprintName == "AcidworkerApron" || o.BlueprintName == "ChainMail").ToList()) { Assert.True(ItemEnhancing.Apply(done, "EnhancementProofed")); }
+            var rows = Rows(trough); Assert.AreEqual(13, rows.Length, "twelve rows and one saying how many more (8 garments x 2 elements is 16)");
+            int firstRefused = Array.FindIndex(rows, r => r.IsDisabled); Assert.Greater(firstRefused, 0); Assert.True(rows.Skip(firstRefused).All(r => r.IsDisabled), "every row you could use comes before any you could not");
+            Assert.AreEqual(12, rows.Count(r => !r.IsDisabled), "all twelve enabled rows (six garments x two elements) are shown"); var more = rows.Last(); Assert.AreEqual("more", more.DisabledCode); StringAssert.Contains("4 more", more.DisabledReason);
+        }
+
+        [Test] public void AProofedGarmentWornAtSaveTimeLoadsWithItsBonusOnceAndRevertsExactly()
+        {
+            var trough = StandingTrough(); var garment = Carry("LeatherArmor"); Flask(4, "cold-proofing"); Clay(2); Assert.True(Act(trough, RowFor(trough, garment, "cold"))); Assert.True(InventorySystem.Equip(Actor, garment));
+            int resist = Stat("ColdResistance"); Assert.AreEqual(25, resist); var copy = PartRoundTripHelper.RoundTripEntityViaTokenGraph(Actor);
+            Assert.AreEqual(resist, copy.GetStatValue("ColdResistance"), "the saved boost is not applied twice on load");
+            var worn = copy.GetPart<InventoryPart>().EquippedItems.Values.Single(o => o.BlueprintName == "LeatherArmor"); var p = worn.GetPart<EnhancementProofed>(); Assert.NotNull(p); Assert.True(p.AppliedBonus);
+            Assert.True(InventorySystem.UnequipItem(copy, worn)); Assert.AreEqual(0, copy.GetStatValue("ColdResistance"), "taken off after a load, exactly the proofing goes");
         }
 
         [Test] public void TheReadersNameWhatTheTroughDoesAndWhatYouCarry()

@@ -29,17 +29,17 @@ namespace CavesOfOoo.Core
             return vessel;
         }
 
-        /// <summary>" You have seen heat nearby (steam vent)." when the viewer has seen that element's harm in this zone, else empty.</summary>
+        /// <summary>" You have seen heat here (steam vent)." when the viewer has seen that element's harm in this place, else empty.</summary>
         internal static string SeenNote(Zone zone, Entity actor, ProofingElement element)
         {
-            string seen = ElementalThreats.ForElement(zone, actor, element.Id); return seen.Length == 0 ? "" : " You have seen " + element.Label + " nearby (" + seen + ").";
+            string seen = ElementalThreats.ForElement(zone, actor, element.Id); return seen.Length == 0 ? "" : " You have seen " + element.Label + " here (" + seen + ").";
         }
 
         /// <summary>" Your cold resistance: 50 → 85." for a garment that would add <paramref name="amount"/> of the element's resistance (" once worn" for a garment you are not wearing; "(immune to freezing)" at 100 or more), or empty when it would add nothing to what you already count.</summary>
         internal static string ResistanceNote(Entity actor, Entity garment, ProofingElement element, int amount, bool alreadyCounted)
         {
             if (alreadyCounted || amount <= 0) return "";
-            int now = actor?.GetStatValue(element.Stat, 0) ?? 0, after = now + amount;
+            int now = Math.Min(100, actor?.GetStatValue(element.Stat, 0) ?? 0), after = Math.Min(100, now + amount);   // a resistance of 100 is already immunity: the readout does not run past it
             bool worn = actor?.GetPart<InventoryPart>()?.EquippedItems?.ContainsValue(garment) == true;
             return " Your " + element.Label + " resistance: " + now + " → " + after + (worn ? "" : " once worn") + (after >= 100 ? " (immune to " + element.Status + ")" : "") + ".";
         }
@@ -70,12 +70,13 @@ namespace CavesOfOoo.Core
                     continue;
                 }
                 candidates.Sort((a, b) => b.vessel.Volume.CompareTo(a.vessel.Volume));
+                string seenNote = SeenNote(zone, actor, element);   // one scan of the zone per element, not one per flask row
                 for (int i = 0; i < candidates.Count && i < MaxFlasksPerElement; i++)
                 {
                     var (flask, vessel) = candidates[i];
                     actions.AddActionWithHint("PressProofing", "press into " + flask.GetDisplayName() + " (" + liquid.DisplayName + ", " + CoatsText(units) + "; " + vessel.Volume + "→" + (vessel.Volume + units) + "/" + vessel.Capacity + ")",
                         Prefix + element.Id + "|" + Uri.EscapeDataString(flask.ID),
-                        "Spends one " + reagent.GetDisplayName() + ". Each coat later proofs one garment against " + element.Label + ": +" + ProofingRules.CoatAmount + " " + element.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, and it blunts " + element.Status + ". No fire or workbench needed." + SeenNote(zone, actor, element),
+                        "Spends one " + reagent.GetDisplayName() + ". Each coat later proofs one garment against " + element.Label + ": +" + ProofingRules.CoatAmount + " " + element.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, and it blunts " + element.Status + ". No fire or workbench needed." + seenNote,
                         '\0', 15);
                 }
             }

@@ -15,7 +15,7 @@ namespace CavesOfOoo.Core
     internal static class ProofingCoatActions
     {
         const string Prefix = "CoatGarment|";
-        const int MaxRows = 6;
+        const int MaxRows = 12;
 
         internal static bool IsCommand(string command) => command != null && command.StartsWith(Prefix, StringComparison.Ordinal);
 
@@ -63,19 +63,21 @@ namespace CavesOfOoo.Core
             if (actions == null || actor == null || !WorldResourceActions.ActorCurrent(actor, zone)) return;
             var element = Element(actor, flask, out var vessel); if (element == null) return;
             var garments = Holdings(actor).Where(o => o != flask && Held(actor, o)).ToList();
-            garments.Sort((a, b) => string.CompareOrdinal(a.GetDisplayName(), b.GetDisplayName()) is int c && c != 0 ? c : string.CompareOrdinal(a.ID, b.ID));
+            // What you wear first (the pieces you are about to rely on), then by name; past the cap the menu says how many are not shown instead of hiding them.
+            garments.Sort((a, b) => Worn(actor, a) != Worn(actor, b) ? (Worn(actor, a) ? -1 : 1) : string.CompareOrdinal(a.GetDisplayName(), b.GetDisplayName()) is int c && c != 0 ? c : string.CompareOrdinal(a.ID, b.ID));
             if (garments.Count == 0) { actions.AddDisabled("CoatGarment", "coat a garment", "no-garment", "Nothing you carry fits: armor or clothing.", '\0', 16); return; }
             string hint = "Spends one unit of " + element.Label + "-proofing. +" + ProofingRules.CoatAmount + " " + element.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, paused when taken off, and it blunts " + element.Status + ". Another coat of the same adds turns." + ProofingPressActions.SeenNote(zone, actor, element);
             for (int i = 0; i < garments.Count && i < MaxRows; i++)
             {
                 var garment = garments[i]; var coat = CoatOf(garment); string refusal = Refusal(garment, element, out string why);
-                string note = coat == null ? "" : ProofingRegistry.Canonical(coat.Kind) == element.Id ? " (adds " + ProofingRules.CoatTurns + " turns to " + coat.TurnsLeft + ")" : " (replaces " + coat.TurnsLeft + " turns of " + coat.Label + " coat)";
+                string note = coat == null ? "" : ProofingRegistry.Canonical(coat.Kind) == element.Id ? " (adds " + Math.Min(ProofingRules.CoatTurns, ProofingRules.CoatMaxTurns - coat.TurnsLeft) + " turns to " + coat.TurnsLeft + ")" : " (replaces " + coat.TurnsLeft + " turns of " + coat.Label + " coat)";
                 string label = "coat " + garment.GetDisplayName() + (Worn(actor, garment) ? " (worn)" : "") + note;
                 bool counted = coat != null && ProofingRegistry.Canonical(coat.Kind) == element.Id;   // a top-up of a coat you already count changes only the turns
                 string rowHint = hint + ProofingPressActions.ResistanceNote(actor, garment, element, ProofingRules.CoatAmount, counted);
                 if (refusal == null) actions.AddActionWithHint("CoatGarment", label, Prefix + Uri.EscapeDataString(garment.ID), rowHint, '\0', 16 - i, false, ActionTime.OneAction);
                 else actions.AddDisabled("CoatGarment", label, refusal, why, '\0', 16 - i);
             }
+            if (garments.Count > MaxRows) actions.AddDisabled("CoatGarment", "coat a garment (" + (garments.Count - MaxRows) + " more not shown)", "more", (garments.Count - MaxRows) + " more garments are not shown: set some aside to see them.", '\0', 3);
         }
 
         internal static bool TryAct(Entity actor, Entity flask, Zone zone, string command, InventoryTransaction tx)
@@ -94,6 +96,7 @@ namespace CavesOfOoo.Core
                 bool worn = Worn(actor, garment); int volumeBefore = vessel.Volume; string liquidBefore = vessel.LiquidId; string garmentName = garment.GetDisplayName();
                 var prior = CoatOf(garment); bool hadPrior = prior != null; string priorKind = prior?.Kind; int priorLeft = prior?.TurnsLeft ?? 0, priorTotal = prior?.TurnsTotal ?? 0, priorAmount = prior?.Amount ?? 0;
                 bool extend = hadPrior && ProofingRegistry.Canonical(priorKind) == element.Id; int newLeft = 0;
+                bool hadLive = worn && EnhancementSteeped.FindEffect(actor, garment.ID) != null;
 
                 void Restore()
                 {
@@ -114,7 +117,7 @@ namespace CavesOfOoo.Core
                     {
                         newLeft = Math.Min(ProofingRules.CoatMaxTurns, priorLeft + ProofingRules.CoatTurns);
                         prior.TurnsLeft = newLeft; prior.TurnsTotal = Math.Max(prior.TurnsTotal, newLeft);
-                        var live = worn ? EnhancementSteeped.FindEffect(actor, garment.ID) : null; if (live != null) live.Duration = newLeft;
+                        var live = worn ? EnhancementSteeped.FindEffect(actor, garment.ID) : null; if (live != null) live.Duration = newLeft; else if (worn) prior.OnEquipped(actor, garment);   // a worn coat whose effect was dispelled gets it back
                         return;
                     }
                     if (hadPrior) ItemEnhancing.Remove(garment, "EnhancementSteeped", worn ? actor : null);
@@ -129,7 +132,8 @@ namespace CavesOfOoo.Core
                     if (extend)
                     {
                         prior.TurnsLeft = priorLeft; prior.TurnsTotal = priorTotal;
-                        var live = worn ? EnhancementSteeped.FindEffect(actor, garment.ID) : null; if (live != null) live.Duration = priorLeft;
+                        var live = worn ? EnhancementSteeped.FindEffect(actor, garment.ID) : null;
+                        if (live != null) { if (hadLive) live.Duration = priorLeft; else prior.OnUnequipped(actor, garment); }
                         return;
                     }
                     Restore();
