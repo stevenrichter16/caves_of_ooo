@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
@@ -172,6 +173,55 @@ namespace CavesOfOoo.Tests
             var seed = Carry("CandyCarrotSeed"); var grass = Place("Grass", 10, 10); Assert.False(seed.GetPart<SeedPart>().RequireCultivatedSoil, "fixture: a seed that needs no tilled bed");
             Assert.AreEqual(1, Rows(10, 10, "Plant").Length, "plain plantable ground takes it"); grass.SetTag("Barren"); Assert.IsEmpty(Rows(10, 10, "Plant"), "barren ground takes nothing");
             Assert.True(Actions(seed).Any(a => a.Name == "Plant"), "the pack still lists it");
+        }
+
+        // ── each heading groups rows from different tools that are the same kind of work ──
+
+        InventoryAction[] Groups(int x, int y, string heading) => CellMenu(x, y).Where(a => a.Name == "ToolGroup" && a.Command == WorldInteractionSystem.ToolGroupPrefix + heading).ToArray();
+        List<InventoryAction> Listed(int x, int y, string heading) => WorldInteractionSystem.BuildToolGroupActions(Zone.GetCell(x, y), Actor, heading).Where(a => a.Via != null).ToList();
+
+        [Test] public void AStripACordAndALoadedTrapAreOneLayRowThatOpensTheirList()
+        {
+            Place("Grass", 11, 10); var strip = Carry("HushStrip"); var cord = Carry("KnotflaxCord"); var trap = Carry("SpringTrap"); Carry("FireMoss"); Assert.True(Act(trap, Actions(trap).Single(a => a.Name == "LoadSpringTrap").Command), "fixture: a loaded trap");
+            var group = Groups(11, 10, ToolGroups.Lay); Assert.AreEqual(1, group.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display))); StringAssert.Contains("(3)", group[0].Display);
+            Assert.IsFalse(CellMenu(11, 10).Any(a => a.Name == "LayDevice" || a.Name == "LayCordSnare" || a.Name == "LaySpringTrap"), "not also inline"); CollectionAssert.AreEquivalent(new[] { strip, cord, trap }, Listed(11, 10, ToolGroups.Lay).Select(a => a.Via).ToArray());
+        }
+
+        [Test] public void ThreeVesselsAtAPoolAreOneFillRowThatOpensTheirList()
+        {
+            Pool(20, "water", 11, 10); Flask(0, "water", 12); Flask(5, "water", 12); Flask(3, "water", 12);
+            var group = Groups(11, 10, ToolGroups.Fill); Assert.AreEqual(1, group.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display))); StringAssert.Contains("(3)", group[0].Display); Assert.AreEqual(3, Listed(11, 10, ToolGroups.Fill).Count(a => a.Name == "FillLiquid"));
+        }
+
+        [Test] public void ThreeSeedsAtAPreparedBedAreOnePlantRowThatOpensTheirList()
+        {
+            Bed(11, 10); Carry("CandyCarrotSeed"); Carry("EmberwheatSeed"); Carry("KnotflaxSeed");
+            var group = Groups(11, 10, ToolGroups.Plant); Assert.AreEqual(1, group.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display))); StringAssert.Contains("(3)", group[0].Display); Assert.AreEqual(3, Listed(11, 10, ToolGroups.Plant).Count(a => a.Name == "PlantAdjacent"));
+        }
+
+        [Test] public void ThreeRawFoodsAtACampfireAreOneCookRowThatOpensTheirList()
+        {
+            Place("Campfire", 11, 10); Carry("Emberwheat"); Carry("Mushroom"); Carry("RawMeat");
+            var group = Groups(11, 10, ToolGroups.Cook); Assert.AreEqual(1, group.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display))); StringAssert.Contains("(3)", group[0].Display); Assert.AreEqual(3, Listed(11, 10, ToolGroups.Cook).Count(a => a.Name == "Cook"));
+        }
+
+        [Test] public void GreaseGritAndABrineFilmAreOneSpreadRowThatOpensTheirList()
+        {
+            Place("Grass", 11, 10); foreach (var cell in Zone.Cells) cell.IsVisible = cell.Explored = true; Carry("FrogOil"); Carry("SilverSand"); Carry("GlimmerBrine");
+            var group = Groups(11, 10, ToolGroups.Spread); Assert.AreEqual(1, group.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display))); StringAssert.Contains("(3)", group[0].Display);
+            CollectionAssert.AreEquivalent(new[] { "SpreadGrease", "ScatterGrit", "MaterialField" }, Listed(11, 10, ToolGroups.Spread).Select(a => a.Name).ToArray());
+        }
+
+        [Test] public void ThreeSeedsOnTheBedYouStandOnAreOnePlantRowThatOpensTheirList()
+        {
+            Bed(10, 10); Carry("CandyCarrotSeed"); Carry("EmberwheatSeed"); Carry("KnotflaxSeed");
+            var group = Groups(10, 10, ToolGroups.Plant); Assert.AreEqual(1, group.Length, string.Join(" / ", CellMenu(10, 10).Select(a => a.Display))); Assert.AreEqual(3, Listed(10, 10, ToolGroups.Plant).Count(a => a.Name == "Plant"));
+        }
+
+        [Test] public void ThreeVesselsAtATrayAreOneFillRowThatOpensTheirList()
+        {
+            Tray(); Flask(0, "water", 12); Flask(5, "oil", 12); Flask(3, "oil", 12);
+            var group = Groups(11, 10, ToolGroups.Fill); Assert.AreEqual(1, group.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display))); StringAssert.Contains("(3)", group[0].Display); Assert.AreEqual(3, Listed(11, 10, ToolGroups.Fill).Count(a => a.Name == "FillLiquid"));
         }
     }
 }

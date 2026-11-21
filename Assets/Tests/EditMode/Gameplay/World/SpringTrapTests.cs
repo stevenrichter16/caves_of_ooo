@@ -173,5 +173,15 @@ namespace CavesOfOoo.Tests
             Assert.False(east[0].Display.Contains("east"), "the one refusal row names no direction, so it reads right on every cell"); Assert.AreEqual(1, LayRows(kit).Length, "the pack still shows one refusal row");
             var cold = LoadedKit("FrostLichen"); Assert.AreEqual(1, CellMenu(11, 10).Count(a => a.Name == "LaySpringTrap" && !a.IsDisabled && a.Via == cold), "frost is not fire: offered");
         }
+
+        [Test] public void OnTheChoirsGroundTheRefusalIsListedWithTheOtherLayRows_NotLostWhenThoseGroup()
+        {
+            string groveId = Enumerable.Range(0, WorldMap.Width * WorldMap.Height).Select(i => WorldMap.ToZoneID(i % WorldMap.Width, i / WorldMap.Width, 0))
+                .First(id => { var (x, y, z) = WorldMap.FromZoneID(id); return WorldMapAuthoring.BiomeAt(x, y) == BiomeType.Grovelands; });
+            Zone.RemoveEntity(Actor); Zone = new Zone(groveId); Assert.True(Zone.AddEntity(Actor, 10, 10)); SettlementRuntime.ActiveZone = Zone; Assert.True(GroveLaw.IsChoirGround(Zone), "fixture: grove ground");
+            Place("Grass", 11, 10); Carry("HushStrip"); Carry("KnotflaxCord"); LoadedKit("FireMoss");
+            var group = CellMenu(11, 10).Where(a => a.Name == "ToolGroup" && a.Command.EndsWith(ToolGroups.Lay)).ToArray(); Assert.AreEqual(1, group.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display))); StringAssert.Contains("(3)", group[0].Display);
+            Assert.True(WorldInteractionSystem.BuildToolGroupActions(Zone.GetCell(11, 10), Actor, ToolGroups.Lay).Any(a => a.DisabledCode == "grove-law"), "the refusal is in the list, where the player will look for the trap");
+        }
     }
 }

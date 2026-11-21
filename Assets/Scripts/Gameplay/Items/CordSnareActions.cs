@@ -29,7 +29,7 @@ namespace CavesOfOoo.Core
                 if (!EmptyDestination(zone, origin, x, y)) continue;
                 string command = Prefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + Number(origin.X) + "|" + Number(origin.Y)
                     + "|" + Number(x) + "|" + Number(y) + "|" + Number(Quantity(item));
-                actions.AddAction("LayCordSnare", "lay cord snare " + direction.label + " (1 cord)", command, '\0', 18).AtCell(x, y);
+                actions.AddAction("LayCordSnare", "lay cord snare " + direction.label + " (1 cord)", command, '\0', 18).AtCell(x, y).InGroup(ToolGroups.Lay);
             }
         }
         internal static bool TryAct(Entity actor, Entity item, Zone zone, string command, InventoryTransaction transaction)

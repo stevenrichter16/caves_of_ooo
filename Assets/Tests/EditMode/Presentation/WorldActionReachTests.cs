@@ -47,6 +47,8 @@ namespace CavesOfOoo.Tests
                 WorldInteractionSystem.PickTargetCommandPrefix + "some-entity-id"),
                 "picking a row from the what's-here list is navigation, not action");
             Assert.IsFalse(InputHandler.ActionRequiresReach(null));
+            Assert.IsFalse(InputHandler.ActionRequiresReach(WorldInteractionSystem.ToolGroupPrefix + "set down a kit here"), "opening a list of tool rows is navigation");
+            Assert.IsFalse(InputHandler.ActionRequiresReach(WorldInteractionSystem.ToolGroupBackPrefix + "set down a kit here"), "so is leaving it");
         }
     }
 }

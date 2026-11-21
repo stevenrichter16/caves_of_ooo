@@ -47,7 +47,7 @@ namespace CavesOfOoo.Core
                 string command = (grease ? GreasePrefix : GritPrefix) + Uri.EscapeDataString(zone.ZoneID ?? "")
                     + "|" + Number(origin.X) + "|" + Number(origin.Y) + "|" + Number(x) + "|" + Number(y) + "|" + Number(count);
                 actions.AddAction(grease ? "SpreadGrease" : "ScatterGrit",
-                    (grease ? "spread grease " : "scatter grit ") + direction.name + " (1 item)", command, '\0', 18).AtCell(x, y);
+                    (grease ? "spread grease " : "scatter grit ") + direction.name + " (1 item)", command, '\0', 18).AtCell(x, y).InGroup(ToolGroups.Spread);
             }
         }
 

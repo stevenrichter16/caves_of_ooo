@@ -57,7 +57,7 @@ namespace CavesOfOoo.Core
                 +"|"+Escape(target?.ID)+"|"+N(count)+"|"+Escape(liquid);
             var row=actions.AddAction("MaterialField",label,command,'\0',18);
             // Ground and objects are the environment; a creature (or yourself) is not, so those rows stay in the pack.
-            if(target==null)row.AtCell(x,y);else if(!target.HasTag("Creature"))row.AtEntity(zone,target);
+            if(target==null)row.AtCell(x,y).InGroup(ToolGroups.Spread);else if(!target.HasTag("Creature"))row.AtEntity(zone,target);
         }
 
         internal static bool TryAct(Entity actor,Entity item,Zone zone,string command,InventoryTransaction tx)

@@ -141,6 +141,17 @@ namespace CavesOfOoo.Rendering
             a.Command != null && a.Command.StartsWith(WorldInteractionSystem.PickTargetCommandPrefix, System.StringComparison.Ordinal));
         public bool HasBackRow => _actions.Exists(a => a != null && a.Command == WorldInteractionSystem.PickCellCommand);
 
+        /// <summary>The heading of the opened group this menu is showing (it ends in a "back" row that names it), or null for an ordinary menu.</summary>
+        public string ToolGroupHeading
+        {
+            get
+            {
+                foreach (var a in _actions)
+                    if (a?.Command != null && a.Command.StartsWith(WorldInteractionSystem.ToolGroupBackPrefix, System.StringComparison.Ordinal)) return WorldInteractionSystem.ToolGroupHeading(a.Command);
+                return null;
+            }
+        }
+
         /// <summary>The input owner may layer its reader, then rebuild current actions on return.</summary>
         public void HideForReader() => Close();
         public void RestoreHighlight(InventoryAction identity)

@@ -173,7 +173,7 @@ namespace CavesOfOoo.Core
                 var result = batch.Evaluate(x, y, def.Spec, kit);
                 if (!result.Ok) { if (firstReason == null) firstReason = result.First; continue; }
                 legal++;
-                actions.AddAction("SetDownFixture", "set down " + d.label + Hint(part.Kind, zone, x, y), SetDownCommand(zone, origin, x, y, kit), '\0', 17, false, ActionTime.OneAction).AtCell(x, y);
+                actions.AddAction("SetDownFixture", "set down " + d.label + Hint(part.Kind, zone, x, y), SetDownCommand(zone, origin, x, y, kit), '\0', 17, false, ActionTime.OneAction).AtCell(x, y).InGroup(ToolGroups.SetDown);
             }
             // Nothing legal here: say why in one disabled row instead of eight, or none.
             if (legal == 0) { actions.AddDisabled("SetDownFixture", "set down", firstReason ?? "unavailable", Reason(firstReason, def), '\0', 17); return; }

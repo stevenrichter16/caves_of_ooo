@@ -72,6 +72,15 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool Shared;
 
+        /// <summary>
+        /// A heading shared by rows that are the same kind of work ("set down a kit here"). When the interact menu of a cell would show <see cref="WorldInteractionSystem.ToolGroupAt"/> or more rows under one heading, it
+        /// shows a single row with the heading and the count that opens them instead, so a loaded pack never makes a wall of rows. Empty: never grouped (a row about one particular thing, such as a vent to scrape).
+        /// </summary>
+        public string Group = "";
+
+        /// <summary>Puts this row under the heading <paramref name="heading"/> (see <see cref="ToolGroups"/>); returns the row so a producer can chain.</summary>
+        public InventoryAction InGroup(string heading) { Group = heading ?? ""; return this; }
+
         /// <summary>Marks this row as acting on the cell (<paramref name="x"/>, <paramref name="y"/>); returns the row so a producer can tag as it adds.</summary>
         public InventoryAction AtCell(int x, int y) { (TargetCells ??= new List<(int x, int y)>()).Add((x, y)); return this; }
 
@@ -115,6 +124,13 @@ namespace CavesOfOoo.Core
             Priority = priority;
             FireOnActor = fireOnActor;
         }
+    }
+
+    /// <summary>The headings producers put placement-style rows under, so rows from different parts that are the same kind of work (a hush strip, a spring trap and a cord snare are all "lay a device") group together.</summary>
+    public static class ToolGroups
+    {
+        public const string Lay = "lay a device here", SetDown = "set down a kit here", Pour = "pour out a liquid here", Spread = "spread a material here",
+            Fill = "fill a flask from here", Plant = "plant a seed here", Cook = "cook food here";
     }
 
     /// <summary>

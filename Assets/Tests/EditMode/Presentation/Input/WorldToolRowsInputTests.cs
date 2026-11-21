@@ -104,6 +104,76 @@ namespace CavesOfOoo.Tests
             args = new object[] { rows, new InventoryAction("FillLiquid", "x", "FillLiquidVessel|x|water"), 0 }; find.Invoke(null, args); Assert.AreEqual(0, (int)args[2], "a row with no tool is not the row of a tool");
         }
 
+        // ── grouped rows: a crowd of the same kind of work is one row that opens the list ──
+
+        const string Heading = "do a thing here";
+        static WorldToolProbePart[] GroupedTools(Scene s)
+        {
+            var probes = new List<WorldToolProbePart>();
+            foreach (var blueprint in new[] { "Waterskin", "IronSpikeComponent", "Scraper" })
+            {
+                var item = s.Content.Factory.CreateEntity(blueprint); Assert.True(s.Player.GetPart<InventoryPart>().AddObject(item)); var probe = new WorldToolProbePart(); item.AddPart(probe);
+                probe.PackRows.Add(new WorldToolProbePart.Row { X = 5, Y = 4, Display = "do it with " + blueprint, Command = "ProbeIt|" + blueprint, Group = Heading }); probes.Add(probe);
+            }
+            return probes.ToArray();
+        }
+        static string Title(Scene s) => (string)typeof(WorldActionMenuUI).GetField("_titleOverride", Private).GetValue(s.Menu);
+        static string InputState(Scene s) => typeof(InputHandler).GetField("_inputState", Private).GetValue(s.Ui.Input).ToString();
+
+        [Test] public void AGroupedRowOpensItsListOnTheRealMenu_AMemberRunsAndPaysOneAction_AndTheBackRowReturns()
+        {
+            using (var s = new Scene())
+            {
+                var probes = GroupedTools(s); s.Open(); var group = s.Actions.Where(a => a.Name == "ToolGroup").ToArray();
+                Assert.AreEqual(1, group.Length, string.Join(" / ", s.Actions.Select(a => a.Display))); Assert.IsFalse(s.Actions.Any(a => a.Command.StartsWith("ProbeIt")), "the three are not also inline"); Assert.AreNotEqual("ToolGroup", s.Actions[0].Name, "never the first row");
+                s.Choose(group[0]);
+                Assert.True(s.Menu.IsOpen); Assert.AreEqual(Heading, s.Menu.ToolGroupHeading); Assert.AreEqual("Do a thing here", Title(s), "the list is titled by its heading"); Assert.AreEqual("WorldActionMenuOpen", InputState(s)); Assert.AreEqual(4, s.Actions.Count, string.Join(" / ", s.Actions.Select(a => a.Display))); Assert.AreEqual("ToolGroupBack", s.Actions.Last().Name);
+                // back: the menu it came from, with its grouped row again
+                s.Choose(s.Actions.Last()); Assert.IsNull(s.Menu.ToolGroupHeading); Assert.AreEqual(1, s.Actions.Count(a => a.Name == "ToolGroup"), "back at the ordinary menu"); Assert.AreEqual("WorldActionMenuOpen", InputState(s));
+                // and choose a member for real
+                s.Choose(s.Actions.Single(a => a.Name == "ToolGroup")); var member = s.Actions.Single(a => a.Command == "ProbeIt|IronSpikeComponent"); int tick = s.Turns.TickCount, energy = s.Turns.GetEnergy(s.Player);
+                s.Choose(member);
+                Assert.AreEqual(1, probes.Sum(p => p.Runs), "exactly one tool ran"); Assert.AreEqual(1, probes[1].Runs, "the one that was chosen"); Assert.Greater(s.Turns.TickCount, tick);
+                Assert.AreEqual(energy - TurnManager.ActionThreshold + (s.Turns.TickCount - tick) * s.Player.GetStatValue("Speed", TurnManager.DefaultSpeed), s.Turns.GetEnergy(s.Player), "one action was paid"); Assert.AreEqual("Normal", InputState(s));
+            }
+        }
+
+        [Test] public void AGroupWhoseRowsAreAllGoneSaysSoAndLeavesTheMenu_NotAnEmptyList_Counter()
+        {
+            using (var s = new Scene())
+            {
+                var probes = GroupedTools(s); s.Open(); var group = s.Actions.Single(a => a.Name == "ToolGroup");
+                foreach (var p in probes) p.PackRows.Clear();   // the tools stopped offering them between drawing the menu and choosing
+                MessageLog.Clear(); s.Choose(group);
+                Assert.AreEqual("Normal", InputState(s)); Assert.IsNull(s.Menu.ToolGroupHeading, "no empty list was opened"); StringAssert.Contains("nothing left", string.Join("|", MessageLog.GetRecent(3)));
+            }
+        }
+
+        [Test] public void TheDetailsReaderInsideAListRebuildsTheListAndPutsTheHighlightBack()
+        {
+            using (var s = new Scene())
+            {
+                GroupedTools(s); s.Open(); s.Choose(s.Actions.Single(a => a.Name == "ToolGroup")); var member = s.Actions.Single(a => a.Command == "ProbeIt|Scraper"); s.Menu.RestoreHighlight(member);
+                var context = typeof(InputHandler).GetMethod("BuildReaderContext", Private).Invoke(s.Ui.Input, new object[] { s.Menu, s.Menu.HighlightedAction }); var contextType = context.GetType();
+                Assert.AreEqual(Heading, (string)contextType.GetField("ToolGroup").GetValue(context), "the reader remembers it was reading about a row in a list");
+                var rows = (List<InventoryAction>)typeof(InputHandler).GetMethod("GatherActionReaderRows", Private).Invoke(s.Ui.Input, new object[] { context });
+                Assert.AreEqual(1, rows.Count(a => a.Command == "ProbeIt|Scraper" && a.Via == member.Via), "the list is rebuilt, not the ordinary menu"); Assert.AreEqual("ToolGroupBack", rows.Last().Name);
+                typeof(InputHandler).GetMethod("RestoreWorldActionReader", Private).Invoke(s.Ui.Input, new object[] { context });
+                Assert.AreEqual(Heading, s.Menu.ToolGroupHeading, "back in the list"); Assert.AreEqual("Do a thing here", Title(s), "still titled"); Assert.AreEqual("ProbeIt|Scraper", s.Menu.HighlightedAction.Command, "on the row that was being read");
+            }
+        }
+
+        [Test] public void AListOpenedFromAPileSummaryReturnsToThePileSummary()
+        {
+            using (var s = new Scene())
+            {
+                GroupedTools(s); for (int i = 0; i < 2; i++) Assert.True(s.Zone.AddEntity(s.Content.Factory.CreateEntity("IronSpikeComponent"), 5, 4)); Assert.True(WorldInteractionSystem.IsPileCell(s.Cell, s.Player), "fixture: a pile");
+                typeof(InputHandler).GetMethod("OpenWorldActionMenu", Private).Invoke(s.Ui.Input, new object[] { 5, 4 }); Assert.True(s.Menu.SelectedCellIsPile, "fixture: the pile summary opened"); var group = s.Actions.SingleOrDefault(a => a.Name == "ToolGroup"); Assert.NotNull(group, string.Join(" / ", s.Actions.Select(a => a.Display)));
+                s.Choose(group); Assert.AreEqual(Heading, s.Menu.ToolGroupHeading); s.Choose(s.Actions.Last());
+                Assert.IsNull(s.Menu.ToolGroupHeading); Assert.True(s.Menu.SelectedCellIsPile, "back to the pile summary, not to one owner's menu");
+            }
+        }
+
         [Test] public void TheMenuOpenedForAnotherCellOffersNoToolRowForThisOne_Counter()
         {
             using (var s = new Scene())

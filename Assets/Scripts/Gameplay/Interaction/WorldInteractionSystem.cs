@@ -319,12 +319,63 @@ namespace CavesOfOoo.Core
         /// Adds what the tools the actor carries (or holds) can do to <paramref name="cell"/>, so using a tool on the environment never needs the pack opened: the rows the pack menu would show for each item that act on this
         /// cell, plus any the item offers for it through <see cref="WorldCellActionsEvent"/>. Each row is run by the item that offered it (<see cref="InventoryAction.Via"/>) with the command and checks the pack row has;
         /// a row that declares no turn cost costs one action, as the pack charges for these; hotkeys are dropped so none can clash with the menu's own; a label that does not say which item is told which; identical rows from identical items collapse to one; and rows come
-        /// after the cell's own, most prominent first, so the first row of a menu is never a tool. Nothing is added for an actor who cannot act, and nothing about the actor, pack or world changes by asking.
+        /// after the cell's own, most prominent first, so the first row of a menu is never a tool. Rows under one heading (<see cref="InventoryAction.Group"/>) collapse into a single row that opens them once there
+        /// are <see cref="ToolGroupAt"/> of them, so a loaded pack gives a short menu. Nothing is added for an actor who cannot act, and nothing about the actor, pack or world changes by asking.
         /// </summary>
         public static void AppendToolActions(List<InventoryAction> rows, Cell cell, Entity actor)
         {
+            if (rows == null) return;
+            var offered = CollectToolRows(cell, actor); if (offered == null) return;
+            // Rows that are the same kind of work (a heading) collapse into one row that opens them once there are enough to make a wall; a row with no heading, or a heading with few rows, stays where it is.
+            var crowded = offered.Where(o => !string.IsNullOrEmpty(o.row.Group)).GroupBy(o => o.row.Group).Where(g => g.Count() >= ToolGroupAt).ToDictionary(g => g.Key, g => g.ToList());
+            var opened = new HashSet<string>();
+            foreach (var (row, _) in offered)
+            {
+                if (!string.IsNullOrEmpty(row.Group) && crowded.TryGetValue(row.Group, out var members)) { if (opened.Add(row.Group)) rows.Add(GroupRow(row.Group, members)); continue; }
+                rows.Add(row);
+            }
+        }
+
+        /// <summary>How many rows under one heading it takes before the menu shows one row that opens them instead of the rows themselves.</summary>
+        public const int ToolGroupAt = 3;
+
+        /// <summary>The command of a grouped row (this prefix and the heading), which the input handler turns into the list of that group's rows; and of that list's "back" row.</summary>
+        public const string ToolGroupPrefix = "ToolGroup|", ToolGroupBackPrefix = "ToolGroupBack|";
+
+        /// <summary>Whether a command is a grouped row or the back row of its list: menu navigation, not an action on the world.</summary>
+        public static bool IsToolGroupCommand(string command) => command != null
+            && (command.StartsWith(ToolGroupPrefix, StringComparison.Ordinal) || command.StartsWith(ToolGroupBackPrefix, StringComparison.Ordinal));
+
+        /// <summary>The heading a grouped row or its back row names; null for any other command.</summary>
+        public static string ToolGroupHeading(string command) => IsToolGroupCommand(command) ? command.Substring(command.IndexOf('|') + 1) : null;
+
+        /// <summary>What the opened list is titled: its heading, capitalised.</summary>
+        public static string ToolGroupTitle(string heading) => string.IsNullOrEmpty(heading) ? "" : char.ToUpperInvariant(heading[0]) + heading.Substring(1);
+
+        /// <summary>
+        /// The rows a grouped row opens: every tool row of the cell under that heading, in menu order, then a row that goes back. Built from the same collection as the menu itself, so the list always agrees with the
+        /// count the grouped row showed, and a row that is no longer possible is simply not in it.
+        /// </summary>
+        public static List<InventoryAction> BuildToolGroupActions(Cell cell, Entity actor, string heading)
+        {
+            var result = new List<InventoryAction>(); var offered = CollectToolRows(cell, actor);
+            if (offered != null) foreach (var (row, _) in offered) if (row.Group == heading) result.Add(row);
+            result.Add(new InventoryAction("ToolGroupBack", "<< back", ToolGroupBackPrefix + heading, '\0', 0));
+            return result;
+        }
+
+        static InventoryAction GroupRow(string heading, List<(InventoryAction row, Entity item)> members)
+        {
+            var names = members.Select(m => ToolName(m.item)).Distinct().ToList();
+            string hint = "Choose from: " + string.Join(", ", names.Take(4)) + (names.Count > 4 ? " and " + (names.Count - 4) + " more" : "") + ".";
+            return new InventoryAction("ToolGroup", heading + " (" + members.Count + ") >>", ToolGroupPrefix + heading, '\0', members.Max(m => m.row.Priority)) { Hint = hint };
+        }
+
+        /// <summary>The finished, ordered tool rows of one cell (each row run by the item that offered it, named, told apart by what its item holds, duplicates collapsed), or null when there are none.</summary>
+        static List<(InventoryAction row, Entity item)> CollectToolRows(Cell cell, Entity actor)
+        {
             var zone = cell?.ParentZone; var pack = actor?.GetPart<InventoryPart>();
-            if (rows == null || zone == null || pack == null || !WorldResourceActions.ActorCurrent(actor, zone)) return;
+            if (zone == null || pack == null || !WorldResourceActions.ActorCurrent(actor, zone)) return null;
             var offered = new List<(InventoryAction row, Entity item)>();
             foreach (var item in pack.Objects.Concat(pack.EquippedItems.Values).Where(i => i != null).Distinct().ToArray())
             {
@@ -334,7 +385,7 @@ namespace CavesOfOoo.Core
                 item.FireEventAndRelease(e);
                 foreach (var row in list.Actions) if (row != null && !row.FireOnActor) offered.Add((row, item));
             }
-            if (offered.Count == 0) return;
+            if (offered.Count == 0) return null;
             foreach (var (row, item) in offered)
             {
                 row.Via ??= item; row.Key = '\0';
@@ -357,8 +408,9 @@ namespace CavesOfOoo.Core
             }
             // Four flasks of the same mire all read "pour bog mire east (12) [liquid flask]": the same choice four times. Rows that read alike collapse to the first (lowest id), so a full pack does not multiply a menu. A shared
             // row ("make camp here") is offered by every kit and is one choice whichever runs it.
-            var seen = new HashSet<string>();
-            foreach (var (row, _) in offered) if (seen.Add(row.Shared ? "shared|" + row.Name + "|" + row.Display : row.Display)) rows.Add(row);
+            var seen = new HashSet<string>(); var kept = new List<(InventoryAction row, Entity item)>();
+            foreach (var pair in offered) if (seen.Add(pair.row.Shared ? "shared|" + pair.row.Name + "|" + pair.row.Display : pair.row.Display)) kept.Add(pair);
+            return kept;
         }
 
         /// <summary>What an item holds, when that decides what its rows do: what a flask or waterskin contains (<see cref="IToolMenuState"/>) and how many are in a stack ("x3"), or an empty string.</summary>

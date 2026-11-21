@@ -16,7 +16,7 @@ namespace CavesOfOoo.Core
                 {
                     var row = e.GetParameter<InventoryActionList>("Actions")?.AddAction("Cook", "cook this stack beside a fire", "Cook", 'c', 19);
                     // Cooking is done at a fire: the interact menu of each campfire or hearth beside you offers it too.
-                    if (row != null && actor.SpatialZone != null) foreach (var station in CookingService.StationsBeside(actor, actor.SpatialZone)) row.AtEntity(actor.SpatialZone, station);
+                    if (row != null && actor.SpatialZone != null) foreach (var station in CookingService.StationsBeside(actor, actor.SpatialZone)) row.AtEntity(actor.SpatialZone, station).InGroup(ToolGroups.Cook);
                 }
                 return true;
             }

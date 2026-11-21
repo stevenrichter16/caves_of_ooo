@@ -550,5 +550,17 @@ namespace CavesOfOoo.Tests
             Assert.IsEmpty(CellMenu(AX + 1, AY).Where(a => a.Name == "MakeCamp"), "it is about where you stand");
             Assert.True(ChooseRow(own[0], AX, AY), string.Join("|", MessageLog.GetRecent(6))); Assert.AreEqual(4, Held().Count);
         }
+
+        [Test] public void AFullyLoadedPackOnOpenGroundGivesAShortMenu_TheCrowdsAreGroupedRowsThatOpen()
+        {
+            foreach (var kit in new[] { "CampHearth", "CampStill", "CampBench", "CampBox", "CampSettlingTray", "CampTrough" }) Carry(kit);
+            Flask(3, "oil"); Flask(3, "brine"); Carry("HushStrip"); Carry("KnotflaxCord");
+            var grass = WorldInteractionSystem.ResolveTarget(Zone.GetCell(AX + 1, AY), Actor); var own = WorldInteractionSystem.GatherActions(grass, Actor).Count; var menu = CellMenu(AX + 1, AY); var tools = menu.Skip(own).ToList();
+            Assert.LessOrEqual(tools.Count, 6, "a camp, two flasks, a strip and a cord on open ground: " + string.Join(" | ", tools.Select(a => a.Display)));
+            var kits = tools.Where(a => a.Name == "ToolGroup" && a.Command.EndsWith(ToolGroups.SetDown)).ToArray(); Assert.AreEqual(1, kits.Length, string.Join(" | ", tools.Select(a => a.Display))); Assert.AreEqual(ToolGroups.SetDown + " (6) >>", kits[0].Display);
+            Assert.AreEqual(1, tools.Count(a => a.Name == "ToolGroup" && a.Command.EndsWith(ToolGroups.Pour)), "two flasks, each with pour and pour one"); Assert.IsFalse(tools.Any(a => a.Name == "SetDownFixture" || a.Name == "PourLiquid" || a.Name == "PourOneLiquid"), "the crowds are not also inline");
+            var list = WorldInteractionSystem.BuildToolGroupActions(Zone.GetCell(AX + 1, AY), Actor, ToolGroups.SetDown); Assert.AreEqual(7, list.Count, "six kits and the way back"); Assert.AreEqual(6, list.Count(a => a.Name == "SetDownFixture"));
+            var hearth = list.First(a => a.Name == "SetDownFixture" && a.Via.BlueprintName == "CampHearth"); Assert.True(ChooseRow(hearth, AX + 1, AY), string.Join("|", MessageLog.GetRecent(3))); Assert.NotNull(wild.GetCell(AX + 1, AY).Objects.FirstOrDefault(e => e.BlueprintName == "CampHearth"), "a row in the opened list runs as it always did");
+        }
     }
 }

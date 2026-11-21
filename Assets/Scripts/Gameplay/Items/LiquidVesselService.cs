@@ -39,7 +39,7 @@ namespace CavesOfOoo.Core
                         if (!contained.CanFill(actor, zone, part)) continue;
                         var atContained = zone.GetEntityPosition(source);
                         actions.AddAction("FillLiquid", "fill with " + LiquidName(contained.LiquidId) + " from tray (" + atContained.x + "," + atContained.y + ")",
-                            FillPrefix + Encode(source.ID) + "|" + Encode(contained.LiquidId), '\0', 19).AtEntity(zone, source);
+                            FillPrefix + Encode(source.ID) + "|" + Encode(contained.LiquidId), '\0', 19).AtEntity(zone, source).InGroup(ToolGroups.Fill);
                         continue;
                     }
                     var pool = source.GetPart<LiquidPoolPart>();
@@ -47,7 +47,7 @@ namespace CavesOfOoo.Core
                     string name = LiquidRegistry.Get(pool.LiquidId).DisplayName ?? pool.LiquidId;
                     var at = zone.GetEntityPosition(source);
                     actions.AddAction("FillLiquid", "fill with " + name + " (" + at.x + "," + at.y + ")",
-                        FillPrefix + Encode(source.ID) + "|" + Encode(pool.LiquidId), '\0', 19).AtEntity(zone, source);
+                        FillPrefix + Encode(source.ID) + "|" + Encode(pool.LiquidId), '\0', 19).AtEntity(zone, source).InGroup(ToolGroups.Fill);
                 }
             }
             if (part.Volume == 0) return;
@@ -68,7 +68,7 @@ namespace CavesOfOoo.Core
                     + "|" + Encode(zone.ZoneID) + "|" + x.ToString(CultureInfo.InvariantCulture) + "|" + y.ToString(CultureInfo.InvariantCulture), '\0', 17);
                 if (pourHint != null && pour != null) pour.Hint = pourHint;
                 if (oneHint != null && one != null) one.Hint = oneHint;
-                pour?.AtCell(x, y); one?.AtCell(x, y);
+                pour?.AtCell(x, y).InGroup(ToolGroups.Pour); one?.AtCell(x, y).InGroup(ToolGroups.Pour);
             }
         }
 

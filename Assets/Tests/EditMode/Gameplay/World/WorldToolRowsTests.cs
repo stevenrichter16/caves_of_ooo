@@ -15,7 +15,7 @@ namespace CavesOfOoo.Tests
         public sealed class Row
         {
             public string Display = "probe it", Command = "ProbeIt"; public int X, Y; public bool Tagged = true; public ActionTime Time = ActionTime.Unspecified; public char Key = 'k'; public int Priority = 10; public string Disabled = "";
-            public Entity Target; public Zone TargetZone; public bool FireOnActor, Shared;
+            public Entity Target; public Zone TargetZone; public bool FireOnActor, Shared; public string Group = "";
         }
 
         public readonly List<Row> PackRows = new List<Row>(), EventRows = new List<Row>();
@@ -25,7 +25,7 @@ namespace CavesOfOoo.Tests
         {
             var action = string.IsNullOrEmpty(r.Disabled) ? list.AddAction("Probe", r.Display, r.Command, r.Key, r.Priority, r.FireOnActor, r.Time) : list.AddDisabled("Probe", r.Display, "probe-disabled", r.Disabled, r.Key, r.Priority);
             if (r.Target != null) action.AtEntity(r.TargetZone, r.Target); else if (r.Tagged) action.AtCell(r.X, r.Y);
-            action.Shared = r.Shared; return action;
+            action.Shared = r.Shared; action.Group = r.Group; return action;
         }
 
         public override bool HandleEvent(GameEvent e)
@@ -160,6 +160,70 @@ namespace CavesOfOoo.Tests
             var a = Tool(out var pa, "Waterskin"); var b = Tool(out var pb, "IronSpikeComponent"); Place("Grass", 11, 10); a.GetPart<WaterskinPart>().Charges = 2;
             pa.PackRows.Add(new WorldToolProbePart.Row { X = 11, Y = 10, Display = "pour it here", Command = "ProbeIt|a" }); pb.PackRows.Add(new WorldToolProbePart.Row { X = 11, Y = 10, Display = "pour it here", Command = "ProbeIt|b" });
             foreach (var r in ProbeRows(11, 10)) StringAssert.DoesNotContain("(2/3)", r.Display, "different names already read differently; no state is added");
+        }
+
+        // ── grouping: rows that are the same kind of work collapse into one row that opens them ──
+
+        WorldToolProbePart.Row Grouped(string display, string command, string group, int priority = 10) => new WorldToolProbePart.Row { X = 11, Y = 10, Display = display, Command = command, Group = group, Priority = priority };
+        InventoryAction[] GroupRows(int x, int y) => Menu(x, y).Where(a => a.Name == "ToolGroup").ToArray();
+        const string Heading = "do a thing here";
+
+        [Test] public void TwoRowsUnderAHeadingStayWhereTheyAre_Counter()
+        {
+            Tool(out var p); Place("Grass", 11, 10); p.PackRows.Add(Grouped("a", "ProbeIt|a", Heading)); p.PackRows.Add(Grouped("b", "ProbeIt|b", Heading));
+            Assert.AreEqual(2, ProbeRows(11, 10).Length, "two is not a wall"); Assert.IsEmpty(GroupRows(11, 10));
+        }
+
+        [Test] public void ThreeRowsUnderAHeadingBecomeOneRowThatSaysHowManyAndOpensThem()
+        {
+            var item = Tool(out var p); Place("Grass", 11, 10); foreach (var n in new[] { "a", "b", "c" }) p.PackRows.Add(Grouped("do " + n, "ProbeIt|" + n, Heading));
+            var group = GroupRows(11, 10); Assert.AreEqual(1, group.Length); Assert.AreEqual(Heading + " (3) >>", group[0].Display); Assert.AreEqual(WorldInteractionSystem.ToolGroupPrefix + Heading, group[0].Command); Assert.IsNull(group[0].Via, "opening a list is menu navigation, run by no tool");
+            Assert.IsEmpty(ProbeRows(11, 10), "the three rows are not also shown inline"); StringAssert.Contains("Choose from: " + Base(item), group[0].Hint);
+            var list = WorldInteractionSystem.BuildToolGroupActions(Zone.GetCell(11, 10), Actor, Heading); Assert.AreEqual(4, list.Count); CollectionAssert.AreEquivalent(new[] { "ProbeIt|a", "ProbeIt|b", "ProbeIt|c" }, list.Take(3).Select(a => a.Command).ToArray());
+            Assert.AreEqual(WorldInteractionSystem.ToolGroupBackPrefix + Heading, list[3].Command, "the list ends with a way back"); Assert.True(list.Take(3).All(a => a.Via == item), "each listed row is still run by its tool");
+        }
+
+        [Test] public void RowsWithNoHeadingAreNeverGrouped_HoweverManyThereAre_Counter()
+        {
+            Tool(out var p); Place("Grass", 11, 10); foreach (var n in new[] { "a", "b", "c", "d", "e" }) p.PackRows.Add(Grouped("do " + n, "ProbeIt|" + n, ""));
+            Assert.AreEqual(5, ProbeRows(11, 10).Length); Assert.IsEmpty(GroupRows(11, 10));
+        }
+
+        [Test] public void TwoHeadingsGroupSeparately_AndOnlyTheCrowdedOneCollapses()
+        {
+            Tool(out var p); Place("Grass", 11, 10);
+            foreach (var n in new[] { "a", "b", "c" }) p.PackRows.Add(Grouped("lay " + n, "ProbeIt|lay" + n, "lay it here")); foreach (var n in new[] { "x", "y" }) p.PackRows.Add(Grouped("pour " + n, "ProbeIt|pour" + n, "pour it here"));
+            var group = GroupRows(11, 10); Assert.AreEqual(1, group.Length); StringAssert.StartsWith("lay it here", group[0].Display); Assert.AreEqual(2, ProbeRows(11, 10).Count(r => r.Command.StartsWith("ProbeIt|pour")), "the two-row heading stays inline");
+            var list = WorldInteractionSystem.BuildToolGroupActions(Zone.GetCell(11, 10), Actor, "lay it here"); Assert.AreEqual(4, list.Count, "only that heading's three rows and the way back"); Assert.True(list.Take(3).All(a => a.Command.StartsWith("ProbeIt|lay")));
+        }
+
+        [Test] public void IdenticalItemsCollapseBeforeTheyAreCounted_SoFourOfOneThingDoNotMakeAGroup()
+        {
+            Place("Grass", 11, 10); for (int i = 0; i < 4; i++) { var skin = Tool(out var p, "Waterskin"); p.PackRows.Add(Grouped("pour it here", "ProbeIt|pour", Heading)); }
+            Assert.AreEqual(1, ProbeRows(11, 10).Length, "four identical skins are one choice"); Assert.IsEmpty(GroupRows(11, 10), "and one choice is not a crowd");
+        }
+
+        [Test] public void TheGroupRowSitsAmongTheToolRowsAtThePriorityOfItsBestRow_AndTheFirstRowIsStillNeverATool()
+        {
+            Tool(out var p); var grass = Place("Grass", 11, 10); p.PackRows.Add(Grouped("lone", "ProbeIt|lone", "", 20));
+            p.PackRows.Add(Grouped("a", "ProbeIt|a", Heading, 5)); p.PackRows.Add(Grouped("b", "ProbeIt|b", Heading, 30)); p.PackRows.Add(Grouped("c", "ProbeIt|c", Heading, 7));
+            var own = WorldInteractionSystem.GatherActions(grass, Actor); var menu = Menu(11, 10); var tools = menu.Skip(own.Count).ToList();
+            Assert.AreEqual(2, tools.Count); Assert.AreEqual("ToolGroup", tools[0].Name, "the group carries its best row's priority (30), so it leads the 20"); Assert.AreEqual(30, tools[0].Priority); Assert.AreEqual("ProbeIt|lone", tools[1].Command);
+            Assert.AreEqual(own[0].Command, menu[0].Command, "the cell's own first row still leads");
+        }
+
+        [Test] public void ADisabledRowCountsTowardAGroupAndIsListedInIt()
+        {
+            Tool(out var p); Place("Grass", 11, 10); p.PackRows.Add(Grouped("a", "ProbeIt|a", Heading)); p.PackRows.Add(Grouped("b", "ProbeIt|b", Heading)); p.PackRows.Add(new WorldToolProbePart.Row { X = 11, Y = 10, Display = "c", Command = "ProbeIt|c", Group = Heading, Disabled = "Not now." });
+            Assert.AreEqual(1, GroupRows(11, 10).Length); Assert.True(WorldInteractionSystem.BuildToolGroupActions(Zone.GetCell(11, 10), Actor, Heading).Any(a => a.IsDisabled), "the refusal is in the list, where the player will look");
+        }
+
+        [Test] public void GroupCommandsRoundTripTheirHeading_AndNothingElseIsAGroupCommand_Counter()
+        {
+            Assert.True(WorldInteractionSystem.IsToolGroupCommand(WorldInteractionSystem.ToolGroupPrefix + Heading)); Assert.True(WorldInteractionSystem.IsToolGroupCommand(WorldInteractionSystem.ToolGroupBackPrefix + Heading));
+            Assert.AreEqual(Heading, WorldInteractionSystem.ToolGroupHeading(WorldInteractionSystem.ToolGroupPrefix + Heading)); Assert.AreEqual(Heading, WorldInteractionSystem.ToolGroupHeading(WorldInteractionSystem.ToolGroupBackPrefix + Heading));
+            foreach (var other in new[] { "Examine", "PickCell", "ProbeIt|a", "ToolGroupish", "", null }) { Assert.False(WorldInteractionSystem.IsToolGroupCommand(other), other); Assert.IsNull(WorldInteractionSystem.ToolGroupHeading(other)); }
+            Assert.AreEqual("Do a thing here", WorldInteractionSystem.ToolGroupTitle(Heading));
         }
 
         [Test] public void AnItemNotCarriedOffersNothing_Counter()

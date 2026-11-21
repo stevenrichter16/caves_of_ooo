@@ -2999,6 +2999,32 @@ namespace CavesOfOoo.Rendering
         /// reachable WITHOUT going through the summary — otherwise that row
         /// would reopen the very menu it was selected from.</para>
         /// </summary>
+        /// <summary>Whether the menu a grouped row was chosen from was a pile summary, so its list's "back" row returns there and not to a single owner's menu.</summary>
+        private bool _toolGroupFromPile;
+
+        /// <summary>Opens the list of rows a grouped row stands for, titled by its heading, or goes back from that list to the menu it came from.</summary>
+        private void OpenToolGroupMenu(InventoryAction action, Entity target, Cell cell, bool isPileCell)
+        {
+            if (action.Command.StartsWith(WorldInteractionSystem.ToolGroupBackPrefix, StringComparison.Ordinal))
+            {
+                if (_toolGroupFromPile && cell != null) OpenWorldActionMenu(cell.X, cell.Y);
+                else OpenWorldActionMenuFor(target, cell, includeBackRow: WorldInteractionSystem.IsPileCell(cell, PlayerEntity));
+                return;
+            }
+            string heading = WorldInteractionSystem.ToolGroupHeading(action.Command);
+            var rows = WorldInteractionSystem.BuildToolGroupActions(cell, PlayerEntity, heading);
+            if (WorldActionMenuUI == null || rows.Count <= 1)   // only the back row is left: nothing to choose any more
+            {
+                MessageLog.Add("There is nothing left to choose here.");
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+            _toolGroupFromPile = isPileCell;
+            WorldActionMenuUI.Open(PlayerEntity, target, cell, rows, CurrentZone, false, WorldInteractionSystem.ToolGroupTitle(heading));
+            _inputState = InputState.WorldActionMenuOpen;
+            EnterCenteredPopupOverlayView();
+        }
+
         private void OpenTargetPicker(Cell cell)
         {
             if (WorldActionMenuUI == null || cell == null) return;
@@ -3119,6 +3145,7 @@ namespace CavesOfOoo.Rendering
             if (command == WorldInteractionSystem.PickCellCommand) return false;
             if (command.StartsWith(WorldInteractionSystem.PickTargetCommandPrefix, StringComparison.Ordinal)) return false;
             if (command.StartsWith(CraftingMarkPart.ToggleCommandPrefix, StringComparison.Ordinal)) return false;
+            if (WorldInteractionSystem.IsToolGroupCommand(command)) return false;   // opening or leaving a list of tool rows is menu navigation; the rows inside act, and are checked
             return true;
         }
 
@@ -3198,6 +3225,13 @@ namespace CavesOfOoo.Rendering
                     OpenTargetPicker(cell);
                 else
                     _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
+            // A grouped row ("set down a kit here (6) >>") opens the list of its rows; the list's "back" row returns to the menu it came from.
+            if (WorldInteractionSystem.IsToolGroupCommand(action.Command))
+            {
+                OpenToolGroupMenu(action, target, cell, isPileCell);
                 return;
             }
 
@@ -4706,11 +4740,13 @@ namespace CavesOfOoo.Rendering
             public Cell Cell;
             public InventoryAction Identity;
             public bool Pile, Picker, Back;
+            public string ToolGroup;   // the heading of the opened group the menu is showing, or null
         }
         private WorldActionReaderContext _worldActionReader;
 
         private List<InventoryAction> GatherActionReaderRows(WorldActionReaderContext context)
         {
+            if (context.ToolGroup != null) return WorldInteractionSystem.BuildToolGroupActions(context.Cell, PlayerEntity, context.ToolGroup);
             if (context.Pile) return WorldInteractionSystem.BuildPileSummaryActions(context.Cell, PlayerEntity);
             if (context.Picker) return WorldInteractionSystem.BuildTargetPickerActions(context.Cell, PlayerEntity);
             // The same composition the menu was opened with, so the details reader (and the menu it restores) keeps the tool and ignition rows.
@@ -4726,7 +4762,7 @@ namespace CavesOfOoo.Rendering
             => new WorldActionReaderContext { Owner = menu.SelectedTarget, Cell = menu.SelectedCell,
                 Identity = new InventoryAction(selected.Name, selected.Display, selected.Command, selected.Key,
                     selected.Priority, selected.FireOnActor) { Via = selected.Via }, Pile = menu.SelectedCellIsPile,
-                Picker = menu.IsTargetPicker, Back = menu.HasBackRow };
+                Picker = menu.IsTargetPicker, Back = menu.HasBackRow, ToolGroup = menu.ToolGroupHeading };
 
         /// <summary>The fresh row that is the highlighted row again: same name, command and firing target, and run by the same tool (two flasks fill from one pool with one command). <paramref name="matches"/> counts the rows that fit, so an ambiguous or vanished row can be refused.</summary>
         private static InventoryAction FindReaderRow(List<InventoryAction> rows, InventoryAction selected, out int matches)
@@ -4788,7 +4824,8 @@ namespace CavesOfOoo.Rendering
                 var actions = GatherActionReaderRows(context);
                 if (IsCurrentExamineOwner(context.Owner, context.Cell))
                 {
-                    WorldActionMenuUI.Open(PlayerEntity, context.Owner, context.Cell, actions, CurrentZone, context.Pile);
+                    WorldActionMenuUI.Open(PlayerEntity, context.Owner, context.Cell, actions, CurrentZone, context.Pile,
+                        context.ToolGroup == null ? null : WorldInteractionSystem.ToolGroupTitle(context.ToolGroup));
                     WorldActionMenuUI.RestoreHighlight(context.Identity);
                     _inputState = InputState.WorldActionMenuOpen;
                     EnterCenteredPopupOverlayView();

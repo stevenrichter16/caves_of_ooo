@@ -54,14 +54,14 @@ namespace CavesOfOoo.Core
                     if (WorldResourceActions.ActorCurrent(actor, zone))
                     {
                         // The cell you stand in offers it (from the interact menu) only where it could take: ground that is plantable, bare of crop, and tilled if this seed needs it.
-                        var standing = zone.GetEntityCell(actor); if (standing != null && CanPlantAt(zone, standing, false)) here.AtCell(standing.X, standing.Y);
+                        var standing = zone.GetEntityCell(actor); if (standing != null && CanPlantAt(zone, standing, false)) here.AtCell(standing.X, standing.Y).InGroup(ToolGroups.Plant);
                         var origin = zone.GetEntityPosition(actor);
                         for (int y = origin.y - 1; y <= origin.y + 1; y++) for (int x = origin.x - 1; x <= origin.x + 1; x++)
                         {
                             var bed = zone.GetCell(x, y);
                             if ((x == origin.x && y == origin.y) || !CultivatedSoilPart.IsCultivated(zone, bed) || bed.HasObjectWithPart<CropPart>()) continue;
                             actions.AddAction("PlantAdjacent", "plant prepared bed (" + x + "," + y + ")",
-                                AdjacentPrefix + Uri.EscapeDataString(zone.ZoneID) + "|" + x + "|" + y, '\0', 19).AtCell(x, y);
+                                AdjacentPrefix + Uri.EscapeDataString(zone.ZoneID) + "|" + x + "|" + y, '\0', 19).AtCell(x, y).InGroup(ToolGroups.Plant);
                         }
                     }
                 }
