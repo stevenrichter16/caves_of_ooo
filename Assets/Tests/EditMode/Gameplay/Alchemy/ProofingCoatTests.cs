@@ -119,6 +119,15 @@ namespace CavesOfOoo.Tests
             Assert.True(ItemExamineService.TryDescribeDetails(Flask(0), out string empty)); StringAssert.DoesNotContain("Coat a garment", empty);
         }
 
+        [Test] public void TheCoatRowSaysWhatYourResistanceWouldBeAndWhenThatIsImmunity()
+        {
+            var flask = Flask(4, "cold-proofing"); var cloak = Carry("ColdwardCloak"); var body = Carry("LeatherArmor");
+            StringAssert.Contains("Your cold resistance: 0 → 35 once worn", CoatRows(flask).First(r => r.Display.Contains("leather")).Hint, "unworn: what it would be once you put it on");
+            Assert.True(InventorySystem.Equip(Actor, cloak)); StringAssert.Contains("Your cold resistance: 50 → 85", CoatRows(flask).First(r => r.Display.Contains("(worn)")).Hint);
+            Assert.True(InventorySystem.Equip(Actor, body)); Assert.True(Act(flask, Row(flask, body))); string hint = CoatRows(flask).First(r => r.Display.Contains("coldward")).Hint; StringAssert.Contains("Your cold resistance: 85 → 120 (immune to freezing)", hint);
+            StringAssert.Contains("adds turns", CoatRows(flask).First(r => r.Display.Contains("leather")).Hint); StringAssert.DoesNotContain("→", CoatRows(flask).First(r => r.Display.Contains("leather")).Hint, "a top-up of a coat you already count changes only the turns");
+        }
+
         [Test] public void TheCoatsReaderSaysWhatItDoesAndWhatItAlsoBlunts()
         {
             var flask = Flask(1, "electric".Length > 0 ? "shock-proofing" : ""); var garment = Carry("LeatherArmor"); Assert.True(Act(flask, Row(flask, garment)));

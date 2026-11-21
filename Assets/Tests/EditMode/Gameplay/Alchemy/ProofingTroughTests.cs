@@ -138,6 +138,12 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(110, Stat("ColdResistance"), "plus a coat: past 100"); Assert.False(Actor.ApplyEffect(new FrozenEffect(0.6f)), "immune to freezing");
         }
 
+        [Test] public void TheProofRowSaysWhatYourResistanceWouldBe()
+        {
+            var trough = StandingTrough(); var cloak = Carry("ColdwardCloak"); Assert.True(InventorySystem.Equip(Actor, cloak)); var body = Carry("LeatherArmor"); Flask(4, "cold-proofing"); Clay(2);
+            StringAssert.Contains("Your cold resistance: 50 → 75 once worn", Rows(trough).Single(r => r.Display.Contains("leather")).Hint);
+        }
+
         [Test] public void TheReadersPointAtWhatYouHaveSeenNearby_AndSayNothingOfTheKindWhenYouHaveSeenNothing_Counter()
         {
             var trough = StandingTrough(); string Read() { var l = new System.Collections.Generic.List<string>(); StateReader.Collect(trough, true, Zone, Zone.GetEntityCell(trough), Actor, l); return string.Join(" ", l); }

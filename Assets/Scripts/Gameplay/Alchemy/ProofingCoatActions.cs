@@ -71,7 +71,9 @@ namespace CavesOfOoo.Core
                 var garment = garments[i]; var coat = CoatOf(garment); string refusal = Refusal(garment, element, out string why);
                 string note = coat == null ? "" : ProofingRegistry.Canonical(coat.Kind) == element.Id ? " (adds " + ProofingRules.CoatTurns + " turns to " + coat.TurnsLeft + ")" : " (replaces " + coat.TurnsLeft + " turns of " + coat.Label + " coat)";
                 string label = "coat " + garment.GetDisplayName() + (Worn(actor, garment) ? " (worn)" : "") + note;
-                if (refusal == null) actions.AddActionWithHint("CoatGarment", label, Prefix + Uri.EscapeDataString(garment.ID), hint, '\0', 16 - i, false, ActionTime.OneAction);
+                bool counted = coat != null && ProofingRegistry.Canonical(coat.Kind) == element.Id;   // a top-up of a coat you already count changes only the turns
+                string rowHint = hint + ProofingPressActions.ResistanceNote(actor, garment, element, ProofingRules.CoatAmount, counted);
+                if (refusal == null) actions.AddActionWithHint("CoatGarment", label, Prefix + Uri.EscapeDataString(garment.ID), rowHint, '\0', 16 - i, false, ActionTime.OneAction);
                 else actions.AddDisabled("CoatGarment", label, refusal, why, '\0', 16 - i);
             }
         }

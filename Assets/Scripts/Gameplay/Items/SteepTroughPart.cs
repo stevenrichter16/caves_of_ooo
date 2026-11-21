@@ -137,7 +137,7 @@ namespace CavesOfOoo.Core
                     if (shown >= MaxRows) break;
                     var garment = garments[i]; string refusal = Refusal(actor, garment, element, out string why);
                     string label = "proof " + garment.GetDisplayName() + (Worn(actor, garment) ? " (worn)" : "") + " against " + element.Label + " for good (" + ProofingRules.PermanentUnits + " " + element.Liquid + " + " + ProofingRules.PermanentClay + " fire clay)";
-                    string hint = "+" + ProofingRules.PermanentAmount + " " + element.Label + " resistance for as long as it lasts, and it blunts " + element.Status + ". Uses " + ProofingRules.PermanentUnits + " units of " + element.Liquid + " from your flasks and " + ProofingRules.PermanentClay + " fire clay. A garment keeps one lasting proofing.";
+                    string hint = "+" + ProofingRules.PermanentAmount + " " + element.Label + " resistance for as long as it lasts, and it blunts " + element.Status + ". Uses " + ProofingRules.PermanentUnits + " units of " + element.Liquid + " from your flasks and " + ProofingRules.PermanentClay + " fire clay. A garment keeps one lasting proofing." + ProofingPressActions.ResistanceNote(actor, garment, element, ProofingRules.PermanentAmount, false);
                     string command = Prefix + Uri.EscapeDataString(garment.ID) + "|" + element.Id; char key = shown == 0 ? 'p' : '\0'; int priority = 20 - Math.Min(shown, 15);
                     if (refusal == null) actions.AddActionWithHint("ProofGarment", label, command, hint, key, priority, false, ActionTime.OneAction);
                     else actions.AddDisabled("ProofGarment", label, refusal, why, key, priority);

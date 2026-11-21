@@ -35,6 +35,15 @@ namespace CavesOfOoo.Core
             string seen = ElementalThreats.ForElement(zone, actor, element.Id); return seen.Length == 0 ? "" : " You have seen " + element.Label + " nearby (" + seen + ").";
         }
 
+        /// <summary>" Your cold resistance: 50 → 85." for a garment that would add <paramref name="amount"/> of the element's resistance (" once worn" for a garment you are not wearing; "(immune to freezing)" at 100 or more), or empty when it would add nothing to what you already count.</summary>
+        internal static string ResistanceNote(Entity actor, Entity garment, ProofingElement element, int amount, bool alreadyCounted)
+        {
+            if (alreadyCounted || amount <= 0) return "";
+            int now = actor?.GetStatValue(element.Stat, 0) ?? 0, after = now + amount;
+            bool worn = actor?.GetPart<InventoryPart>()?.EquippedItems?.ContainsValue(garment) == true;
+            return " Your " + element.Label + " resistance: " + now + " → " + after + (worn ? "" : " once worn") + (after >= 100 ? " (immune to " + element.Status + ")" : "") + ".";
+        }
+
         static string CoatsText(int units) => units + (units == 1 ? " coat" : " coats");
 
         internal static void AddActions(Entity actor, Entity reagent, Zone zone, InventoryActionList actions)
