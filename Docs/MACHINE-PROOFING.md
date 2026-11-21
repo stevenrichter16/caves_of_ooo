@@ -41,6 +41,18 @@ The trough stops doing temporary treatments. It gives a garment one lasting proo
 ## 3. Worth it, and used
 
 - **Worth it:** it beats the +20 meal; it works on armor you already like (no DV or speed penalty of the special garments); the status dampening makes cold and shock worth proofing at all; immunity is reachable by stacking.
+- **The measured worth** (`ProofingWorthTests`, the game's own rules; one hit of the kind named, resistance of the stat that answers it):
+
+  | resistance | acid: HP lost to one Soursprayer-class corrosion | cold: turns frozen by a 0.6 freeze | heat: turns a 1.5-intensity burn lasts | shock: turns stunned |
+  |---|---|---|---|---|
+  | +0 | 35 | 6 | 5 | 2 |
+  | +25 (lasting) | 15 | 5 | 4 | 2 |
+  | +35 (a coat) | 11 | 4 | 3 | 1 |
+  | +60 (coat + lasting) | 7 | 3 | 2 | 1 |
+  | +85 (+ a +25 meal or part of a +50 garment) | 3 | 1 | 1 | 1 |
+  | +100 | 0 | 0 | 0 | 0 |
+
+  A coat cuts the corrosion of a spray by about two thirds, where the damage rule alone gave a little under a half (the dossier's 37 to about 18); a freeze that lost you six turns loses you four. The burn's damage per turn is resisted again on top of the shorter burn, which these columns do not show. Short stuns barely move until immunity, so shock is the weakest of the four to proof against on its own.
 - **Accessible:** the bottle is made anywhere in one action; a coat is one action; wear pauses off the body, so you prepare at the edge of the place and put it on when needed; each garment carries its own element, so a body piece, a cloak and a screen can be proofed against different things.
 
 ## 3a. Where the reagents come from [V: blueprints and TradeStockBuilder]
