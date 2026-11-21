@@ -43,6 +43,17 @@ The trough stops doing temporary treatments. It gives a garment one lasting proo
 - **Worth it:** it beats the +20 meal; it works on armor you already like (no DV or speed penalty of the special garments); the status dampening makes cold and shock worth proofing at all; immunity is reachable by stacking.
 - **Accessible:** the bottle is made anywhere in one action; a coat is one action; wear pauses off the body, so you prepare at the edge of the place and put it on when needed; each garment carries its own element, so a body piece, a cloak and a screen can be proofed against different things.
 
+## 3a. Where the reagents come from [V: blueprints and TradeStockBuilder]
+
+| Element | Reagents (levels) | Trade stock | Grown or harvested | Carried by the caster who deals it |
+|---|---|---|---|---|
+| heat | fire moss (2), ember fruit (1), pitchpod resin (1) | fire moss, ember fruit | pitchpod crop | Marlback Cindercaller carries fire moss; a Glowmaw's corpse gives ember fruit |
+| cold | glacier salt (3), frost lichen (2), chillcress tip (1) | frost lichen, glacier salt | frost lichen patch, chillcress crop | none carries one |
+| shock | spark root (3), glimmer brine (2), prismreed pith (1) | spark root, glimmer brine | prismreed crop | Marlback Stormbinder carries spark root |
+| acid | glimmer brine (2), sourmantle fold (1) | glimmer brine | sourmantle crop | Marlback Soursprayer carries glimmer brine |
+
+The traders' stock is the renewable source (the alpha economy pass made brew reagents a trade good so they do not run out), the crops are the home source, and three of the four casters drop the reagent that turns their own element: beating one hands you the next fight's proofing. Cold has no caster who carries its reagent, which fits that cold harm is the rarest of the four.
+
 ## 4. What the player reads
 
 - **Reagent** (examine, press rows): "press into a flask (cold-proofing, 2 coats; 0→2/12)"; the hint says one reagent is spent, what a coat does, what status it blunts and that no fire or bench is needed. A flask with too little room is a disabled row with the numbers; no suitable flask says what one needs.
