@@ -18,6 +18,10 @@ namespace CavesOfOoo.Core
         public static string StatFor(Effect effect)
             => effect is BurningEffect ? Heat : effect is FrozenEffect ? Cold : effect is ElectrifiedEffect ? Electric : effect is AcidicEffect ? Acid : null;
 
+        /// <summary>The player-facing word for the status a resistance blunts ("freezing", "burning", "shock", "corrosion"), or null.</summary>
+        public static string Word(Effect effect)
+            => effect is FrozenEffect ? "freezing" : effect is BurningEffect ? "burning" : effect is ElectrifiedEffect ? "shock" : effect is AcidicEffect ? "corrosion" : null;
+
         /// <summary>The fraction of the status that gets through: 1 with no (or negative) resistance, 0 at 100 or more.</summary>
         public static float Scale(Entity target, string stat)
         {

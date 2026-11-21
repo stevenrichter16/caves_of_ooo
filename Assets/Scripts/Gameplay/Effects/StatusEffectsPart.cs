@@ -78,6 +78,8 @@ namespace CavesOfOoo.Core
             if (!forced && !ElementalStatusResistance.Dampen(effect, ParentEntity))
             {
                 EmitApplyEffectRejectedDiag(effect, source, forced, "elemental_immunity");
+                string word = ElementalStatusResistance.Word(effect);
+                if (word != null) MessageLog.AddObserved(ParentEntity, ParentEntity.HasTag("Player") ? "You shrug off the " + word + "." : "The " + ParentEntity.GetDisplayName() + " shrugs off the " + word + ".");
                 if (Diag.IsChannelEnabled("effect"))
                     Diag.Record(category: "effect", kind: "ElementalImmunity", target: ParentEntity, actor: source,
                         payload: new { effect = effect.GetType().Name, stat = ElementalStatusResistance.StatFor(effect) });

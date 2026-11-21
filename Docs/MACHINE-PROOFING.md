@@ -23,7 +23,7 @@ Provenance: user direction, 2026-11-20 ("go with property-driven reagents and th
 | Electrified | duration and the contact stun | yes |
 | Acidic | `Corrosion` | yes |
 
-A vulnerability changes nothing here (the damage side already amplifies). Only the matching stat counts. A forced application bypasses it, like every other check. The damage tick is still resisted by the damage rule, so the two compound: that is what makes proofing worth the trouble.
+A vulnerability changes nothing here (the damage side already amplifies). Only the matching stat counts. A forced application bypasses it, like every other check. An immune body says so ("You shrug off the freezing.", "The ice wight shrugs off the burning.": freezing, burning, shock, corrosion) so a proofed player can tell the status was refused and not missed. The damage tick is still resisted by the damage rule, so the two compound: that is what makes proofing worth the trouble.
 
 ### 2.2 Element comes from the reagent
 

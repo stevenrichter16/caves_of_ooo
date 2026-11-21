@@ -115,6 +115,21 @@ namespace CavesOfOoo.Tests
             var e = Body(("AcidResistance", 100)); Assert.False(e.ApplyEffect(new AcidicEffect(0.8f))); Assert.IsNull(e.GetEffect<AcidicEffect>());
         }
 
+        // ── the immunity says so ──
+
+        [Test] public void AnImmuneBodySaysItShrugsOffTheStatus_NamingWhichOne()
+        {
+            foreach (var (stat, effect, word) in new (string, Effect, string)[] { ("ColdResistance", new FrozenEffect(0.6f), "freezing"), ("HeatResistance", new BurningEffect(1f), "burning"), ("ElectricResistance", new ElectrifiedEffect(1f), "shock"), ("AcidResistance", new AcidicEffect(0.8f), "corrosion") })
+            {
+                MessageLog.Clear(); var e = Body((stat, 100)); e.Tags["Player"] = ""; Assert.False(e.ApplyEffect(effect)); StringAssert.Contains("You shrug off the " + word, string.Join("|", MessageLog.GetRecent(3)), stat);
+            }
+        }
+
+        [Test] public void ADampenedButNotImmuneStatusSaysNothingOfShruggingItOff_Counter()
+        {
+            MessageLog.Clear(); var e = Body(("ColdResistance", 50)); e.Tags["Player"] = ""; Assert.True(e.ApplyEffect(new FrozenEffect(0.6f))); StringAssert.DoesNotContain("shrug", string.Join("|", MessageLog.GetRecent(5)));
+        }
+
         // ── the refusal is observable ──
 
         [Test] public void AnImmuneRefusalSaysWhyInTheDiagStream()
