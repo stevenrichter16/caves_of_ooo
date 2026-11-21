@@ -139,6 +139,10 @@ namespace CavesOfOoo.Core
                     // Nothing reconciles a zone you are not in, so the note projects the trap to now (read-only): what you would find.
                     int fish = trap.HeldNow(e.SpatialZone, WorldClock.CurrentTick); if (fish > 0) parts.Add("fish trap holds " + fish + " by now");
                 }
+                else if (kind == CampKinds.Tray && e.GetPart<SettlingTrayPart>() is SettlingTrayPart tray)
+                {
+                    int caught = tray.HeldNow(e.SpatialZone, WorldClock.CurrentTick); if (caught > 0) parts.Add("settling tray holds " + caught + " by now");
+                }
                 else if (kind == CampKinds.Box && e.GetPart<ContainerPart>() is ContainerPart box)
                 {
                     int things = 0; foreach (var item in box.Contents) things += item.GetPart<StackerPart>()?.StackCount ?? 1;

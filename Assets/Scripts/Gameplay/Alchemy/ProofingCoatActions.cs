@@ -28,12 +28,12 @@ namespace CavesOfOoo.Core
             return list;
         }
 
-        /// <summary>A garment the actor holds (in the pack, worn or not): armor that is not a creature, held exactly once, whole (a stack of armor is not one garment).</summary>
+        /// <summary>A garment the actor holds (in the pack, worn or not): armor that is not a creature, held exactly once; a stack of identical garments counts (one unit is split off when it is treated).</summary>
         static bool Held(Entity actor, Entity item)
         {
-            var physics = item?.GetPart<PhysicsPart>(); var stack = item?.GetPart<StackerPart>();
+            var physics = item?.GetPart<PhysicsPart>();
             return item != null && !string.IsNullOrEmpty(item.ID) && item.GetPart<ArmorPart>() != null && !item.HasTag("Creature") && item.SpatialZone == null
-                && Holdings(actor).Count(o => o == item || o.ID == item.ID) == 1 && physics?.ParentEntity == item && physics.Takeable && (stack == null || stack.StackCount == 1);
+                && Holdings(actor).Count(o => o == item || o.ID == item.ID) == 1 && physics?.ParentEntity == item && physics.Takeable && GarmentStacks.WholeOrSplittable(actor, item);
         }
 
         static bool Worn(Entity actor, Entity item) => actor.GetPart<InventoryPart>()?.EquippedItems?.ContainsValue(item) == true;
@@ -71,7 +71,7 @@ namespace CavesOfOoo.Core
             {
                 var garment = garments[i]; var coat = CoatOf(garment); string refusal = Refusal(garment, element, out string why);
                 string note = coat == null ? "" : ProofingRegistry.Canonical(coat.Kind) == element.Id ? " (adds " + Math.Min(ProofingRules.CoatTurns, ProofingRules.CoatMaxTurns - coat.TurnsLeft) + " turns to " + coat.TurnsLeft + ")" : " (replaces " + coat.TurnsLeft + " turns of " + coat.Label + " coat)";
-                string label = "coat " + garment.GetDisplayName() + (Worn(actor, garment) ? " (worn)" : "") + note;
+                string label = "coat " + garment.GetDisplayName() + GarmentStacks.Suffix(garment) + (Worn(actor, garment) ? " (worn)" : "") + note;
                 bool counted = coat != null && ProofingRegistry.Canonical(coat.Kind) == element.Id;   // a top-up of a coat you already count changes only the turns
                 string rowHint = hint + ProofingPressActions.ResistanceNote(actor, garment, element, ProofingRules.CoatAmount, counted);
                 if (refusal == null) actions.AddActionWithHint("CoatGarment", label, Prefix + Uri.EscapeDataString(garment.ID), rowHint, '\0', 16 - i, false, ActionTime.OneAction);
@@ -97,12 +97,20 @@ namespace CavesOfOoo.Core
                 var prior = CoatOf(garment); bool hadPrior = prior != null; string priorKind = prior?.Kind; int priorLeft = prior?.TurnsLeft ?? 0, priorTotal = prior?.TurnsTotal ?? 0, priorAmount = prior?.Amount ?? 0;
                 bool extend = hadPrior && ProofingRegistry.Canonical(priorKind) == element.Id; int newLeft = 0;
                 bool hadLive = worn && EnhancementSteeped.FindEffect(actor, garment.ID) != null;
+                // A stack of identical garments gives up one unit, which is treated and put back as its own single item (never stacked with the plain ones).
+                var stack = garment.GetPart<StackerPart>(); bool split = !worn && !hadPrior && stack != null && stack.StackCount > 1; int stackBefore = stack?.StackCount ?? 1; Entity target = garment; bool added = false;
 
                 void Restore()
                 {
                     // Back to exactly what was there: no coat, or the prior one (kind, amount, turns), on the wearer too when worn.
-                    var current = CoatOf(garment);
-                    if (current != null) ItemEnhancing.Remove(garment, "EnhancementSteeped", worn ? actor : null);
+                    var current = CoatOf(target);
+                    if (current != null) ItemEnhancing.Remove(target, "EnhancementSteeped", worn ? actor : null);
+                    if (split)
+                    {
+                        if (added) pack.Objects.Remove(target);
+                        if (stack != null) stack.StackCount = stackBefore;
+                        pack.RefreshHandlingCarryPenalty();
+                    }
                     if (!hadPrior) return;
                     if (!ItemEnhancing.Apply(garment, "EnhancementSteeped")) return;
                     var again = CoatOf(garment); if (again == null) return;
@@ -121,10 +129,12 @@ namespace CavesOfOoo.Core
                         return;
                     }
                     if (hadPrior) ItemEnhancing.Remove(garment, "EnhancementSteeped", worn ? actor : null);
-                    if (!ItemEnhancing.Apply(garment, "EnhancementSteeped")) return;
-                    var fresh = CoatOf(garment); if (fresh == null) return;
+                    if (split) { target = stack.RemoveOne(); if (target == null) { target = garment; return; } }   // one unit off the stack, not yet in the pack
+                    if (!ItemEnhancing.Apply(target, "EnhancementSteeped")) return;
+                    var fresh = CoatOf(target); if (fresh == null) return;
                     fresh.Kind = element.Id; fresh.Amount = ProofingRules.CoatAmount; fresh.TurnsTotal = ProofingRules.CoatTurns; fresh.TurnsLeft = ProofingRules.CoatTurns; newLeft = fresh.TurnsLeft;
                     if (worn) fresh.OnEquipped(actor, garment);   // applied with the kind and turns already set, so it works at once
+                    if (split) added = pack.AddObject(target);   // enhanced first, so it never merges back into the plain stack
                 },
                 () =>
                 {
@@ -138,12 +148,12 @@ namespace CavesOfOoo.Core
                     }
                     Restore();
                 });
-                var after = CoatOf(garment); if (after == null || ProofingRegistry.Canonical(after.Kind) != element.Id) return Reject(actor, flask, "not-applied");
+                var after = CoatOf(target); if (after == null || ProofingRegistry.Canonical(after.Kind) != element.Id || (split && !added)) return Reject(actor, flask, "not-applied");
                 tx.AfterCommit(() =>
                 {
                     MessageLog.Add(extend ? "You work another coat of " + element.Label + "-proofing into " + garmentName + ": " + newLeft + " turns of wear now."
                         : "You coat " + garmentName + " with " + element.Label + "-proofing. It will turn " + element.Label + " for " + ProofingRules.CoatTurns + " turns of wear." + (hadPrior ? " The " + SteepedAcidEffect.ElementLabel(priorKind) + " coat is gone." : ""));
-                    Diag.Record("liquid", "GarmentCoated", actor, garment, new { element = element.Id, extended = extend, turns = newLeft, replaced = hadPrior && !extend, flaskLeft = volumeBefore - 1, worn });
+                    Diag.Record("liquid", "GarmentCoated", actor, target, new { element = element.Id, extended = extend, turns = newLeft, replaced = hadPrior && !extend, flaskLeft = volumeBefore - 1, worn });
                 });
                 if (own) tx.Commit();
                 return true;

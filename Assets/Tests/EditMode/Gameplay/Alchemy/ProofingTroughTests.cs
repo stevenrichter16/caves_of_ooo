@@ -184,11 +184,88 @@ namespace CavesOfOoo.Tests
             Assert.NotNull(Pack.Objects.FirstOrDefault(o => o.BlueprintName == "LightningTonic"), "and a lightning tonic for the shock");
         }
 
+        [Test] public void AStackOfGarmentsIsProofedOneUnitAtATime_AndAnInterruptionPutsTheUnitBack()
+        {
+            var trough = StandingTrough(); var stack = Carry("LeatherArmor"); Carry("LeatherArmor"); Carry("LeatherArmor"); var flask = Flask(8, "cold-proofing"); Clay(4);
+            var row = Rows(trough).Single(); StringAssert.Contains("1 of 3", row.Display); string command = row.Command; FailAfter();
+            Assert.False(Act(trough, command)); Assert.AreEqual(3, stack.GetPart<StackerPart>().StackCount); Assert.AreEqual(8, flask.GetPart<LiquidVesselPart>().Volume); Assert.AreEqual(4, ClayLeft());
+            foreach (var junk in Actor.Parts.OfType<FiftyWorldThrowAfterPart>().ToList()) Actor.RemovePart(junk);
+            Assert.True(Act(trough, command), string.Join("|", MessageLog.GetRecent(3))); Assert.AreEqual(2, stack.GetPart<StackerPart>().StackCount); var proofed = Pack.Objects.Single(o => Proofed(o) != null);
+            Assert.AreNotSame(stack, proofed); Assert.Null(Proofed(stack)); Assert.AreEqual("cold", Proofed(proofed).Kind); Assert.AreEqual(4, flask.GetPart<LiquidVesselPart>().Volume); Assert.AreEqual(2, ClayLeft());
+            Assert.True(InventorySystem.Equip(Actor, proofed)); Assert.AreEqual(25, Stat("ColdResistance"));
+        }
+
         [Test] public void TheReadersNameWhatTheTroughDoesAndWhatYouCarry()
         {
             var trough = StandingTrough(); Flask(2, "cold-proofing"); Clay(1); var l = new System.Collections.Generic.List<string>(); StateReader.Collect(trough, true, Zone, Zone.GetEntityCell(trough), Actor, l); string text = string.Join(" ", l);
             StringAssert.Contains("for good", text); StringAssert.Contains("4", text); StringAssert.Contains("fire clay", text); StringAssert.Contains("2 cold", text.Replace("cold-proofing", "cold")); StringAssert.Contains("1 fire clay", text);
             var garment = Carry("LeatherArmor"); var f2 = Flask(4, "heat-proofing"); Clay(1); Assert.True(Act(trough, RowFor(trough, garment, "heat"))); StringAssert.Contains("Proofed against heat for good", Proofed(garment).GetEffectDescription()); StringAssert.Contains("+25", Proofed(garment).GetEffectDescription());
         }
+
+        // ── unpicking a lasting proofing (the reassessment: a wrong choice must not fill a slot for good) ──
+
+        InventoryAction[] UnpickRows(Entity trough) => WorldInteractionSystem.GatherActions(trough, Actor).Where(a => a.Name == "UnpickGarment").ToArray();
+        Entity Proofing(Entity trough, string blueprint, string liquid = "cold-proofing", bool wear = false)
+        {
+            var garment = Carry(blueprint); var flask = Flask(4, liquid); Clay(2); if (wear) Assert.True(InventorySystem.Equip(Actor, garment));
+            Assert.True(Act(trough, RowFor(trough, garment, liquid.Replace("-proofing", "").Replace("shock", "electric"))), string.Join("|", MessageLog.GetRecent(3))); Assert.NotNull(Proofed(garment)); return garment;
+        }
+
+        [Test] public void AWornProofedGarmentCanBeUnpickedWhichRemovesItsResistanceFreesTheSlotAndReturnsNothing()
+        {
+            var trough = StandingTrough(); var garment = Proofing(trough, "LeatherArmor", wear: true); Assert.AreEqual(25, Stat("ColdResistance")); int slots = ItemEnhancing.CountEnhancements(garment); Assert.AreEqual(1, slots);
+            var rows = UnpickRows(trough); Assert.AreEqual(1, rows.Length); StringAssert.Contains("unpick the cold proofing from", rows[0].Display); StringAssert.Contains("(worn)", rows[0].Display); StringAssert.Contains("nothing is returned", rows[0].Hint); StringAssert.Contains("+25 cold resistance goes with it", rows[0].Hint);
+            int clay = ClayLeft(), units = Pack.Objects.Select(o => o.GetPart<LiquidVesselPart>()).Where(v => v != null).Sum(v => v.Volume);
+            MessageLog.Clear(); Assert.True(Act(trough, rows[0].Command), string.Join("|", MessageLog.GetRecent(3)));
+            Assert.Null(Proofed(garment)); Assert.AreEqual(0, Stat("ColdResistance"), "the resistance goes at once"); Assert.AreEqual(0, ItemEnhancing.CountEnhancements(garment), "the slot is free");
+            Assert.AreEqual(clay, ClayLeft(), "no clay comes back"); Assert.AreEqual(units, Pack.Objects.Select(o => o.GetPart<LiquidVesselPart>()).Where(v => v != null).Sum(v => v.Volume), "and no proofing comes back");
+            StringAssert.Contains("Its slot is free again", string.Join(" ", MessageLog.GetRecent(3)));
+            Assert.AreEqual(1, DiagQuery.Apply(new DiagQuery.Filter { Category = "furniture", Kind = "GarmentUnpicked", Limit = 5 }).Records.Count);
+            Assert.AreEqual(0, UnpickRows(trough).Length, "nothing left to unpick");
+            var f = Flask(4, "heat-proofing"); Clay(2); Assert.True(Act(trough, RowFor(trough, garment, "heat")), "the freed garment can be proofed against something else"); Assert.AreEqual(25, Stat("HeatResistance"));
+        }
+
+        [Test] public void ACarriedGarmentCanBeUnpickedToo_AndOnlyProofedGarmentsAreOffered_Counter()
+        {
+            var trough = StandingTrough(); var plain = Carry("ChainMail"); var proofed = Proofing(trough, "LeatherArmor");
+            var rows = UnpickRows(trough); Assert.AreEqual(1, rows.Length, "the plain mail has nothing to unpick"); Assert.AreEqual(UnpickCommand(proofed), rows[0].Command); StringAssert.DoesNotContain("(worn)", rows[0].Display);
+            Assert.True(Act(trough, rows[0].Command)); Assert.Null(Proofed(proofed)); Assert.Null(Proofed(plain));
+        }
+
+        [Test] public void OnlyTheLastingProofingComesOut_ACoatOnTheSameGarmentStays_Counter()
+        {
+            var trough = StandingTrough(); var garment = Proofing(trough, "LeatherArmor"); Assert.True(ItemEnhancing.Apply(garment, "EnhancementSteeped")); var coat = garment.Parts.OfType<EnhancementSteeped>().Single(); coat.Kind = "heat"; coat.TurnsLeft = 40; Assert.AreEqual(2, ItemEnhancing.CountEnhancements(garment));
+            Assert.True(Act(trough, UnpickRows(trough).Single().Command)); Assert.Null(Proofed(garment)); Assert.AreEqual(1, ItemEnhancing.CountEnhancements(garment)); Assert.AreSame(coat, garment.Parts.OfType<EnhancementSteeped>().Single()); Assert.AreEqual(40, coat.TurnsLeft);
+        }
+
+        [Test] public void AnInterruptedUnpickLeavesTheGarmentProofedAndItsResistanceIntact()
+        {
+            var trough = StandingTrough(); var garment = Proofing(trough, "LeatherArmor", wear: true); string command = UnpickRows(trough).Single().Command; FailAfter();
+            Assert.False(Act(trough, command)); Assert.NotNull(Proofed(garment)); Assert.AreEqual("cold", Proofed(garment).Kind); Assert.AreEqual(25, Proofed(garment).Amount); Assert.AreEqual(25, Stat("ColdResistance"), "the worn bonus is exactly as it was, not doubled or lost"); Assert.AreEqual(1, ItemEnhancing.CountEnhancements(garment));
+        }
+
+        [Test] public void AStaleOrForeignUnpickChangesNothing_Counter()
+        {
+            var trough = StandingTrough(); var garment = Proofing(trough, "LeatherArmor"); var plain = Carry("ChainMail");
+            Assert.False(Act(trough, UnpickCommand(plain)), "a garment with nothing to unpick"); Assert.False(Act(trough, "UnpickGarment|nobody")); Assert.False(Act(trough, "UnpickGarment|")); Assert.NotNull(Proofed(garment));
+            var kit = Carry("CampTrough"); Assert.IsEmpty(Actions(kit).Where(a => a.Name == "UnpickGarment"), "a carried trough is a kit and offers nothing");
+            Pack.RemoveObject(garment); Assert.False(Act(trough, UnpickCommand(garment)), "no longer held"); Assert.NotNull(Proofed(garment));
+        }
+
+        [Test] public void TheReaderMentionsUnpickingOnlyWhenYouHoldAProofedGarment_Counter()
+        {
+            var trough = StandingTrough(); var l = new System.Collections.Generic.List<string>(); StateReader.Collect(trough, true, Zone, Zone.GetEntityCell(trough), Actor, l); StringAssert.DoesNotContain("unpick", string.Join(" ", l));
+            var garment = Proofing(trough, "LeatherArmor"); l.Clear(); StateReader.Collect(trough, true, Zone, Zone.GetEntityCell(trough), Actor, l); StringAssert.Contains("a lasting proofing: unpicking one frees its slot and returns nothing", string.Join(" ", l));
+        }
+
+        [Test] public void ManyProofedGarmentsAreCappedAndTheRestCounted()
+        {
+            var trough = StandingTrough(); var names = new[] { "LeatherArmor", "ChainMail", "PlateArmor", "Cloak", "WardedCloak", "IronHelmet", "LeatherBoots", "LeatherGloves" };
+            foreach (var n in names) { var g = Carry(n); Assert.True(ItemEnhancing.Apply(g, "EnhancementProofed")); Proofed(g).Kind = "heat"; }
+            var rows = UnpickRows(trough); Assert.AreEqual(SteepTroughPart.MaxUnpickRows + 1, rows.Length); var last = rows.Single(r => r.IsDisabled); Assert.AreSame(rows.Last(), last, "the count of the rest comes last"); StringAssert.Contains("2 more not shown", last.Display);
+            Assert.AreEqual(SteepTroughPart.MaxUnpickRows, rows.Count(r => !r.IsDisabled));
+        }
+
+        string UnpickCommand(Entity garment) => "UnpickGarment|" + Uri.EscapeDataString(garment.ID);
     }
 }

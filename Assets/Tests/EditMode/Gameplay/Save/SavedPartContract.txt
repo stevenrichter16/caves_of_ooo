@@ -1,4 +1,4 @@
-# parts=401
+# parts=404
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -695,6 +695,7 @@ Part CavesOfOoo.Core.PricklebrowNestPart | reflected
   ConsumeOnTrigger:System.Boolean
   TriggerFaction:System.String
   Triggered:System.Boolean
+Part CavesOfOoo.Core.ProvingGroundPart | reflected
 Part CavesOfOoo.Core.ReadableDocumentPart | reflected
   DocumentId:System.String
 Part CavesOfOoo.Core.ReagentPart | reflected
@@ -792,6 +793,11 @@ Part CavesOfOoo.Core.SealedLibraryBarrierPart | reflected
 Part CavesOfOoo.Core.SeedPart | reflected
   CropBlueprint:System.String
   RequireCultivatedSoil:System.Boolean
+Part CavesOfOoo.Core.SettlingTrayPart | reflected
+  Element:System.String
+  Held:System.Int32
+  LastTick:System.Int32
+  Progress:System.Int32
 Part CavesOfOoo.Core.SeventhPositionPart | reflected
 Part CavesOfOoo.Core.ShadePart | reflected
   Radius:System.Int32
@@ -808,6 +814,10 @@ Part CavesOfOoo.Core.SoundingRodPart | reflected
   LastReading:System.String
   LastTick:System.Int32
   Log:System.Collections.Generic.List`1[System.String]
+Part CavesOfOoo.Core.SourceStockPart | reflected
+  Available:System.Int32
+  Capacity:System.Int32
+  LastTick:System.Int32
 Part CavesOfOoo.Core.SpatialFootprintPart | reflected
   #hooks:OnBeforeSave
   CellsRaw:System.String

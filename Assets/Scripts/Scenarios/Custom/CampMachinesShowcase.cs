@@ -11,7 +11,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "Camp Machines (wild ground)",
         category: "Home",
-        description: "Starts on wild ground with the steeping trough, a sounding rod, a hearth and still with two flasks of mire, garments, and the pump's repair parts, for hand-testing the newer machines.")]
+        description: "Starts on wild ground with the proofing trough, a sounding rod, a hearth and still with two flasks of mire, garments, and the pump's repair parts, for hand-testing the newer machines.")]
     public class CampMachinesShowcase : IScenario
     {
         /// <summary>What the pack receives, in order. Pinned against the real content by a test.</summary>

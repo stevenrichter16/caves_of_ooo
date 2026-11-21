@@ -58,6 +58,8 @@ namespace CavesOfOoo.Core
             if (!CuttingToolPart.CompatibleStackState(ParentEntity,other)) return false;
             if (!MaterialProcessPayloadPolicies.CanMergeProcessingInputs(ParentEntity, other)) return false;
             if (!ConnectedClayProvenance.CanMerge(ParentEntity, other)) return false;
+            // What cannot be traded never merges with what can, in either direction: a free, unsellable item must not launder itself into a tradable stack (or poison one).
+            if (ParentEntity.HasTag("NoTrade") != other.HasTag("NoTrade")) return false;
 
             // Per-item consumable state cannot survive a merge.
             if (ParentEntity.GetPart<GrimoireChargePart>() != null

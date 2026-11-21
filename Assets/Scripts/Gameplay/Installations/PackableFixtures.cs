@@ -119,7 +119,7 @@ namespace CavesOfOoo.Core
     /// <summary>The kinds the camp verbs know by name ("make camp" lays them out in this order, the readers say what a hearth or box holds). Data in PackableFixtures.json; named once here.</summary>
     public static class CampKinds
     {
-        public const string Hearth = "camp-hearth", Still = "camp-still", Bench = "camp-bench", Box = "camp-box", FishTrap = "camp-fishtrap", Awning = "camp-awning";
+        public const string Hearth = "camp-hearth", Still = "camp-still", Bench = "camp-bench", Box = "camp-box", FishTrap = "camp-fishtrap", Awning = "camp-awning", Tray = "camp-tray";
     }
 
     /// <summary>

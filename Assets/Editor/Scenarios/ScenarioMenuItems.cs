@@ -321,6 +321,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_SoundingRod()
             => ScenarioRunner.LaunchWild<SoundingRodShowcase>(BiomeType.Spread, 1);
 
+        [MenuItem("Caves Of Ooo/Scenarios/Home/Proofing Workshop - everything, 10 armor sets, hazards, elemental foes", priority = 407)]
+        private static void Launch_ProofingWorkshop()
+            => ScenarioRunner.LaunchWild<ProofingWorkshopShowcase>();
+
         [MenuItem("Caves Of Ooo/Scenarios/Home/Concord Carriage (goods, drams and a parcel waiting at Cinderhold)", priority = 404)]
         private static void Launch_ConcordCarriage()
             => ScenarioRunner.Launch<ConcordCarriageShowcase>();

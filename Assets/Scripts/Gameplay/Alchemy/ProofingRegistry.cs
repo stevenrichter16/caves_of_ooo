@@ -9,6 +9,9 @@ namespace CavesOfOoo.Core
     public class ProofingElement
     {
         public string Id = "", Label = "", Property = "", Stat = "", Liquid = "", Alias = "", Status = "";
+
+        /// <summary>What a settling tray catches for this element (a reagent blueprint carrying its property), and where it catches it: a terrain declaring a steady "heat" or "cold" (<see cref="SourceTile"/>), or a pool of one of the comma-separated <see cref="SourceLiquids"/>.</summary>
+        public string Collects = "", SourceTile = "", SourceLiquids = "";
     }
 
     /// <summary>

@@ -185,6 +185,8 @@ namespace CavesOfOoo.Core
         /// <summary>Where the kit would stand relative to what you already keep: a still wants a fire within reach (its settling is coupled to one), a hearth is by a still, so a cell says so.</summary>
         static string Hint(string kind, Zone zone, int x, int y)
         {
+            // A tray's cell says what it would settle there, so the choice of cell is the choice of element.
+            if (kind == CampKinds.Tray) { ProofingSources.Find(zone, zone.GetCell(x, y), out var element); return element != null ? " (catches " + element.Label + ")" : " (nothing to catch here)"; }
             if (kind != CampKinds.Still && kind != CampKinds.Hearth) return "";
             bool hearth = false, fire = false, still = false;
             var owners = zone.GetReadOnlyEntitiesWithPart<PackableFixturePart>();
@@ -410,6 +412,8 @@ namespace CavesOfOoo.Core
                     int x = origin.X + d.x, y = origin.Y + d.y;
                     var verdict = batch.Evaluate(x, y, def.Spec, kit);
                     if (!verdict.Ok) { firstRefusal ??= verdict.Reasons.FirstOrDefault(); continue; }
+                    // A tray set down by "make camp" with nothing to settle from would only waste the kit: it stays in the pack unless a source is in reach of the cell.
+                    if (part.Kind == CampKinds.Tray && ProofingSources.Find(zone, zone.GetCell(x, y), out _) == null) continue;
                     bool known = hearthX != int.MinValue; int dist = known ? Math.Max(Math.Abs(x - hearthX), Math.Abs(y - hearthY)) : 0;
                     bool wants = part.Kind == CampKinds.Still ? !known || dist <= LiquidSettlingPart.FireReach : part.Kind == CampKinds.Box ? !known || dist >= 2 : true;
                     if (bx == int.MinValue || (wants && !preferred)) { bx = x; by = y; preferred = wants; }

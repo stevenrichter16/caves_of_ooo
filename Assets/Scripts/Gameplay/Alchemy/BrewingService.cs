@@ -147,6 +147,8 @@ namespace CavesOfOoo.Core
                         reason = "Unknown brew outcome.";
                         return RejectDiag(crafter, reason);
                 }
+                // What a free reagent (one tagged NoTrade, such as a settling tray's catch) is brewed into stays unsellable: a tonic made from it is worth nothing in drams.
+                if (prepared != null) foreach (var input in reagentItems) if (input != null && input.HasTag("NoTrade")) { prepared.SetTag("NoTrade"); break; }
                 if (brewResult.Kind != BrewOutcomeKind.Mishap && prepared == null)
                 {
                     reason = "Failed to create '" + (brewResult.Kind == BrewOutcomeKind.Brew ? BrewBlueprintName : SludgeBlueprintName) + "'.";

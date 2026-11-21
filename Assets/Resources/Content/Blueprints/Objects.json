@@ -5777,13 +5777,44 @@
       ]
     },
     {
+      "Name": "ElementalProvingPost",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "proving post" },
+            { "Key": "RenderString", "Value": "*" },
+            { "Key": "ColorString", "Value": "&R" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "true" },
+            { "Key": "Takeable", "Value": "false" }
+          ]
+        },
+        { "Name": "ProvingGround", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A scorched, rimed, pitted post of stone driven into the ground, with a ring of iron round it. Stand beside it and it will call the creatures that burn, freeze, shock or corrode, send them away again, or mend you between trials. It exists only to test proofing against." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "CampTrough",
       "Inherits": "PhysicalObject",
       "Parts": [
         {
           "Name": "Render",
           "Params": [
-            { "Key": "DisplayName", "Value": "steeping trough" },
+            { "Key": "DisplayName", "Value": "proofing trough" },
             { "Key": "RenderString", "Value": "U" },
             { "Key": "ColorString", "Value": "&c" },
             { "Key": "RenderLayer", "Value": "5" }
@@ -5801,7 +5832,7 @@
         {
           "Name": "Examinable",
           "Params": [
-            { "Key": "Description", "Value": "A long timber trough, tarred inside, with a lidded pot of clay slip at one end, made to be set down and used. Leather and cloth armor can be steeped here. It is not made for people, and it keeps nothing." }
+            { "Key": "Description", "Value": "A long timber trough, tarred inside, with a lidded pot of clay slip at one end, made to be set down and used. Any armor you hold can be proofed here against heat, cold, shock or acid for good, with proofing from a flask and fire clay. It is not made for people, and it keeps nothing." }
           ]
         },
         { "Name": "PackableFixture", "Params": [ { "Key": "Kind", "Value": "camp-trough" } ] }
@@ -5883,6 +5914,90 @@
         { "Key": "Item", "Value": "true" },
         { "Key": "Tier", "Value": "2" }
       ]
+    },
+    {
+      "Name": "CampSettlingTray",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "settling tray" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "true" },
+            { "Key": "Weight", "Value": "8" }
+          ]
+        },
+        { "Name": "SettlingTray", "Params": [] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "45" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A shallow pan of fired clay on three short legs, made to be set down near whatever gives off an element: the steam of a vent, the rime of a frost vent, the edge of a brine or acid pool. It settles out a little of what that source gives off, a few grains at a time, and it needs nothing. It makes the weakest reagent and only one kind at a time; it is a way to catch what the place gives freely, not a way to make more of it." }
+          ]
+        },
+        { "Name": "PackableFixture", "Params": [ { "Key": "Kind", "Value": "camp-tray" } ] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Item", "Value": "true" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "VentScale",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [ { "Key": "DisplayName", "Value": "vent scale" }, { "Key": "ColorString", "Value": "&r" } ] },
+        { "Name": "Reagent", "Params": [ { "Key": "PropertiesRaw", "Value": "heat:1" }, { "Key": "FlavorText", "Value": "A dull crust of baked-on mineral. Faintly warm. (heat)" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "0" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A crust of mineral scraped from where a vent breathes. It holds a little of the vent\u0027s warmth, and no more than that." } ] }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "NoTrade", "Value": "" } ]
+    },
+    {
+      "Name": "RimeFlake",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [ { "Key": "DisplayName", "Value": "rime flake" }, { "Key": "ColorString", "Value": "&C" } ] },
+        { "Name": "Reagent", "Params": [ { "Key": "PropertiesRaw", "Value": "cold:1" }, { "Key": "FlavorText", "Value": "A brittle flake that does not melt in the hand. (cold)" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "0" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A flake of rime that settled where cold air comes up out of the ground. Cold to hold, and slow to warm." } ] }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "NoTrade", "Value": "" } ]
+    },
+    {
+      "Name": "BrineCrust",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [ { "Key": "DisplayName", "Value": "brine crust" }, { "Key": "ColorString", "Value": "&Y" } ] },
+        { "Name": "Reagent", "Params": [ { "Key": "PropertiesRaw", "Value": "conductive:1" }, { "Key": "FlavorText", "Value": "A grey-white crust that stings the fingers. (conductive)" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "0" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A crust of salts left where a brine pool dries at its edge. It carries a charge faintly, as brine does." } ] }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "NoTrade", "Value": "" } ]
+    },
+    {
+      "Name": "AcidCrust",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [ { "Key": "DisplayName", "Value": "acid crust" }, { "Key": "ColorString", "Value": "&G" } ] },
+        { "Name": "Reagent", "Params": [ { "Key": "PropertiesRaw", "Value": "corrosive:1" }, { "Key": "FlavorText", "Value": "A pitted green crust that eats at cloth. (corrosive)" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "0" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A crust left at the edge of an acid pool, pitted where it has eaten itself. Handle it as you would the pool." } ] }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "NoTrade", "Value": "" } ]
     },
     {
       "Name": "SoundingRod",

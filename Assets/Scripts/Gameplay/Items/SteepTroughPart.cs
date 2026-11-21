@@ -18,10 +18,11 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "SteepTrough";
 
-        public const string Clay = "FireClay", Prefix = "ProofGarment|";
-        public const int MaxRows = 12;
+        public const string Clay = "FireClay", Prefix = "ProofGarment|", UnpickPrefix = "UnpickGarment|";
+        public const int MaxRows = 12, MaxUnpickRows = 6;
 
         public static bool IsCommand(string command) => command != null && command.StartsWith(Prefix, StringComparison.Ordinal);
+        static bool IsUnpick(string command) => command != null && command.StartsWith(UnpickPrefix, StringComparison.Ordinal);
 
         bool Standing => ParentEntity?.GetPart<PhysicsPart>()?.InInventory == null && !PackableFixturePart.IsInertKit(ParentEntity);
 
@@ -39,9 +40,9 @@ namespace CavesOfOoo.Core
 
         static bool Fits(Entity actor, Entity item)
         {
-            var physics = item?.GetPart<PhysicsPart>(); var stack = item?.GetPart<StackerPart>();
+            var physics = item?.GetPart<PhysicsPart>();
             return item != null && item.GetPart<ArmorPart>() != null && !item.HasTag("Creature") && item.SpatialZone == null && physics?.ParentEntity == item && physics.Takeable
-                && (stack == null || stack.StackCount == 1) && Holdings(actor).Count(o => o == item || o.ID == item.ID) == 1;
+                && GarmentStacks.WholeOrSplittable(actor, item) && Holdings(actor).Count(o => o == item || o.ID == item.ID) == 1;
         }
 
         static List<Entity> Eligible(Entity actor)
@@ -90,6 +91,8 @@ namespace CavesOfOoo.Core
             var have = new List<string>(); foreach (var element in ProofingRegistry.All) { int units = UnitsCarried(viewer, element); if (units > 0) have.Add(units + " " + element.Liquid); }
             int clay = ClayCarried(viewer); int garments = Eligible(viewer).Count;
             string seen = ElementalThreats.Summary(context.Zone ?? ParentEntity?.SpatialZone, viewer);
+            int proofed = Holdings(viewer).Count(o => Fits(viewer, o) && ProofedOf(o) != null);
+            if (proofed > 0) recipes += " " + proofed + (proofed == 1 ? " garment you hold has" : " garments you hold have") + " a lasting proofing: unpicking one frees its slot and returns nothing.";
             return recipes + " You carry " + (have.Count == 0 ? "no proofing" : string.Join(", ", have)) + " and " + clay + " fire clay; " + garments + (garments == 1 ? " garment" : " garments") + " could be proofed." + (seen.Length > 0 ? " " + seen : "");
         }
 
@@ -115,6 +118,11 @@ namespace CavesOfOoo.Core
                 var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone;
                 if (Proof(actor, zone, e.GetStringParameter("Command"), e.GetParameter<InventoryTransaction>("InventoryTransaction"))) { e.Handled = true; return false; }
             }
+            if (e.ID == "InventoryAction" && IsUnpick(e.GetStringParameter("Command")))
+            {
+                var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone;
+                if (Unpick(actor, zone, e.GetStringParameter("Command"), e.GetParameter<InventoryTransaction>("InventoryTransaction"))) { e.Handled = true; return false; }
+            }
             return true;
         }
 
@@ -122,6 +130,7 @@ namespace CavesOfOoo.Core
         {
             if (actions == null || actor == null || zone == null || !Standing || !WorldResourceActions.Nearby(actor, ParentEntity, zone)) return;
             var garments = Eligible(actor);
+            AddUnpickRows(actor, garments, actions);
             if (garments.Count == 0) { actions.AddDisabled("ProofGarment", "proof a garment for good", "no-garment", "Nothing you carry fits: armor or clothing.", 'p', 20); return; }
             var elements = ProofingRegistry.All.Where(el => UnitsCarried(actor, el) > 0).ToList();
             if (elements.Count == 0)
@@ -137,13 +146,59 @@ namespace CavesOfOoo.Core
             for (int shown = 0; shown < rows.Count && shown < MaxRows; shown++)
             {
                 var (garment, element, refusal, why) = rows[shown];
-                string label = "proof " + garment.GetDisplayName() + (Worn(actor, garment) ? " (worn)" : "") + " against " + element.Label + " for good (" + ProofingRules.PermanentUnits + " " + element.Liquid + " + " + ProofingRules.PermanentClay + " fire clay)";
+                string label = "proof " + garment.GetDisplayName() + GarmentStacks.Suffix(garment) + (Worn(actor, garment) ? " (worn)" : "") + " against " + element.Label + " for good (" + ProofingRules.PermanentUnits + " " + element.Liquid + " + " + ProofingRules.PermanentClay + " fire clay)";
                 string hint = "+" + ProofingRules.PermanentAmount + " " + element.Label + " resistance for as long as it lasts, and it blunts " + element.Status + ". Uses " + ProofingRules.PermanentUnits + " units of " + element.Liquid + " from your flasks and " + ProofingRules.PermanentClay + " fire clay. A garment keeps one lasting proofing." + ProofingPressActions.ResistanceNote(actor, garment, element, ProofingRules.PermanentAmount, false);
                 string command = Prefix + Uri.EscapeDataString(garment.ID) + "|" + element.Id; char key = shown == 0 ? 'p' : '\0'; int priority = 20 - Math.Min(shown, 15);
                 if (refusal == null) actions.AddActionWithHint("ProofGarment", label, command, hint, key, priority, false, ActionTime.OneAction);
                 else actions.AddDisabled("ProofGarment", label, refusal, why, key, priority);
             }
             if (rows.Count > MaxRows) actions.AddDisabled("ProofGarment", "proof a garment for good (" + (rows.Count - MaxRows) + " more not shown)", "more", (rows.Count - MaxRows) + " more choices are not shown: set some garments aside to see them.", '\0', 4);
+        }
+
+        /// <summary>Rows to take a lasting proofing back out: one per garment that has one (worn ones first), so a wrong choice is never a permanent loss of a slot.</summary>
+        void AddUnpickRows(Entity actor, List<Entity> garments, InventoryActionList actions)
+        {
+            var proofed = garments.Where(g => ProofedOf(g) != null).OrderBy(g => !Worn(actor, g)).ToList();
+            for (int i = 0; i < proofed.Count && i < MaxUnpickRows; i++)
+            {
+                var garment = proofed[i]; var done = ProofedOf(garment);
+                string label = "unpick the " + done.Label + " proofing from " + garment.GetDisplayName() + (Worn(actor, garment) ? " (worn)" : "");
+                string hint = "Takes the lasting proofing back out, so the garment's slot is free to be proofed again. The proofing and what went into it are lost: nothing is returned." + (Worn(actor, garment) ? " Its +" + done.Amount + " " + done.Label + " resistance goes with it." : "");
+                actions.AddActionWithHint("UnpickGarment", label, UnpickPrefix + Uri.EscapeDataString(garment.ID), hint, '\0', 5 - Math.Min(i, 4), false, ActionTime.OneAction);
+            }
+            if (proofed.Count > MaxUnpickRows) actions.AddDisabled("UnpickGarment", "unpick a proofing (" + (proofed.Count - MaxUnpickRows) + " more not shown)", "more", (proofed.Count - MaxUnpickRows) + " more proofed garments are not shown: set some aside to see them.", '\0', 0);
+        }
+
+        bool Unpick(Entity actor, Zone zone, string command, InventoryTransaction tx)
+        {
+            string[] f = command.Split('|'); var inv = actor?.GetPart<InventoryPart>();
+            if (actor == null || zone == null || inv == null || !Standing || f.Length != 2 || !WorldResourceActions.Nearby(actor, ParentEntity, zone)) return Block(actor, "invalid-context", "You cannot unpick anything here now.");
+            string garmentId = WorldResourceActions.Decode(f[1]); var garment = Holdings(actor).FirstOrDefault(o => o.ID == garmentId);
+            if (garment == null || !Fits(actor, garment)) return Block(actor, "stale-selection", "That is no longer something you hold.");
+            var done = ProofedOf(garment); if (done == null) return Block(actor, "not-proofed", "It has no lasting proofing to unpick.");
+            bool own = tx == null; tx ??= new InventoryTransaction();
+            try
+            {
+                if (!tx.TryClaim(ParentEntity, actor, command) || !tx.TryClaim(garment, actor, command)) return Block(actor, "in-progress", "That is already being worked.");
+                bool worn = Worn(actor, garment); string kind = done.Kind; int amount = done.Amount; string label = done.Label;
+                tx.Do(() => ItemEnhancing.Remove(garment, "EnhancementProofed", worn ? actor : null),
+                      () =>
+                      {
+                          if (ProofedOf(garment) != null || !ItemEnhancing.Apply(garment, "EnhancementProofed")) return;
+                          var back = ProofedOf(garment); if (back == null) return;
+                          back.Kind = kind; back.Amount = amount; if (worn) back.OnEquipped(actor, garment);
+                      });
+                if (ProofedOf(garment) != null) return Block(actor, "not-removed", "The proofing would not come out.");
+                string name = garment.GetDisplayName();
+                tx.AfterCommit(() =>
+                {
+                    MessageLog.Add("You pick the " + label + " proofing out of " + name + ". Its slot is free again.");
+                    Diag.Record("furniture", "GarmentUnpicked", actor, ParentEntity, new { garment = garment.BlueprintName, element = kind, worn });
+                });
+                if (own) tx.Commit();
+                return true;
+            }
+            finally { if (own) tx.Rollback(); }
         }
 
         // ── the proofing: one action; the units, the clay and the garment's new state come back together on any failure ──
@@ -160,7 +215,7 @@ namespace CavesOfOoo.Core
             try
             {
                 if (!tx.TryClaim(ParentEntity, actor, command) || !tx.TryClaim(garment, actor, command)) return Block(actor, "in-progress", "That is already being worked.");
-                bool worn = Worn(actor, garment);
+                bool worn = Worn(actor, garment); var stack = garment.GetPart<StackerPart>(); bool split = !worn && stack != null && stack.StackCount > 1; int stackBefore = stack?.StackCount ?? 1; Entity target = garment; bool added = false;
                 var flasks = Flasks(actor, element); var before = flasks.Select(v => (v, v.Volume, v.LiquidId)).ToList();
                 foreach (var v in flasks) if (!tx.TryClaim(v.ParentEntity, actor, command)) return Block(actor, "in-progress", "That is already being worked.");
                 var receipt = InventoryTransferSnapshot.Capture(inv);
@@ -178,22 +233,30 @@ namespace CavesOfOoo.Core
                 {
                     int need = ProofingRules.PermanentUnits;
                     foreach (var v in flasks) { int take = Math.Min(need, v.Volume); v.Volume -= take; if (v.Volume == 0) v.LiquidId = ""; need -= take; if (need == 0) break; }
-                    if (!ItemEnhancing.Apply(garment, "EnhancementProofed")) return;
-                    var fresh = ProofedOf(garment); if (fresh == null) return;
+                    if (split) { target = stack.RemoveOne(); if (target == null) { target = garment; return; } }   // one unit off the stack, not yet in the pack
+                    if (!ItemEnhancing.Apply(target, "EnhancementProofed")) return;
+                    var fresh = ProofedOf(target); if (fresh == null) return;
                     fresh.Kind = element.Id; fresh.Amount = ProofingRules.PermanentAmount;
                     if (worn) fresh.OnEquipped(actor, garment);   // set up with its kind and amount first, so it works at once
+                    if (split) added = inv.AddObject(target);   // enhanced first, so it never merges back into the plain stack
                 },
                 () =>
                 {
                     foreach (var (v, volume, liquid) in before) { v.Volume = volume; v.LiquidId = liquid; }
-                    if (ProofedOf(garment) != null) ItemEnhancing.Remove(garment, "EnhancementProofed", worn ? actor : null);
+                    if (ProofedOf(target) != null) ItemEnhancing.Remove(target, "EnhancementProofed", worn ? actor : null);
+                    if (split)
+                    {
+                        if (added) inv.Objects.Remove(target);
+                        if (stack != null) stack.StackCount = stackBefore;
+                        inv.RefreshHandlingCarryPenalty();
+                    }
                 });
-                if (ProofedOf(garment) == null) return Block(actor, "not-applied", "The proofing did not take.");
+                if (ProofedOf(target) == null || (split && !added)) return Block(actor, "not-applied", "The proofing did not take.");
                 string garmentName = garment.GetDisplayName();
                 tx.AfterCommit(() =>
                 {
                     MessageLog.Add("You work the proofing into " + garmentName + ". It will turn " + element.Label + " for good.");
-                    Diag.Record("furniture", "GarmentProofed", actor, ParentEntity, new { garment = garment.BlueprintName, element = element.Id, worn });
+                    Diag.Record("furniture", "GarmentProofed", actor, ParentEntity, new { garment = target.BlueprintName, element = element.Id, worn });
                 });
                 if (own) tx.Commit();
                 return true;

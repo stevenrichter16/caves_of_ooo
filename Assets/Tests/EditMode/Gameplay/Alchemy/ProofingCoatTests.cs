@@ -152,6 +152,30 @@ namespace CavesOfOoo.Tests
             var more = rows.Single(r => r.IsDisabled && r.DisabledCode == "more"); StringAssert.Contains("3 more", more.DisabledReason);   // fifteen held, twelve shown
         }
 
+        // ── a stack of identical garments: the coat goes on one unit of it ──
+
+        int Plain(string blueprint) => Pack.Objects.Where(o => o.BlueprintName == blueprint && Coat(o) == null).Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1);
+
+        [Test] public void AStackOfGarmentsOffersOneRowAndCoatingSplitsOneUnitOffItself()
+        {
+            var flask = Flask(3, "cold-proofing"); var stack = Carry("LeatherArmor"); Carry("LeatherArmor"); Carry("LeatherArmor"); Assert.AreEqual(3, stack.GetPart<StackerPart>().StackCount, "fixture: armor of one kind stacks");
+            var row = CoatRows(flask).Single(); Assert.False(row.IsDisabled); StringAssert.Contains("1 of 3", row.Display); Assert.True(Act(flask, row.Command), string.Join("|", MessageLog.GetRecent(3)));
+            Assert.AreEqual(2, stack.GetPart<StackerPart>().StackCount); Assert.Null(Coat(stack), "the rest of the stack is untouched"); var coated = Pack.Objects.Single(o => Coat(o) != null); Assert.AreNotSame(stack, coated);
+            Assert.AreEqual(1, coated.GetPart<StackerPart>()?.StackCount ?? 1); Assert.AreEqual("cold", Coat(coated).Kind); Assert.AreEqual(2, Vessel(flask).Volume); Assert.AreEqual(2, Plain("LeatherArmor"), "two plain ones remain, never merged with the coated one");
+        }
+
+        [Test] public void ACoatedUnitNeverStacksBackWithThePlainOnes_Counter()
+        {
+            var flask = Flask(4, "cold-proofing"); Carry("LeatherArmor"); Carry("LeatherArmor"); Assert.True(Act(flask, CoatRows(flask).First().Command)); Carry("LeatherArmor");
+            Assert.AreEqual(2, Pack.Objects.Count(o => o.BlueprintName == "LeatherArmor"), "one coated single and one plain stack, even after another plain one arrives"); Assert.AreEqual(1, Pack.Objects.Count(o => Coat(o) != null));
+        }
+
+        [Test] public void AnInterruptedCoatOfAStackPutsTheUnitBack()
+        {
+            var flask = Flask(3, "cold-proofing"); var stack = Carry("LeatherArmor"); Carry("LeatherArmor"); string command = CoatRows(flask).Single().Command; FailAfter();
+            Assert.False(Act(flask, command)); Assert.AreEqual(2, stack.GetPart<StackerPart>().StackCount); Assert.AreEqual(1, Pack.Objects.Count(o => o.BlueprintName == "LeatherArmor")); Assert.AreEqual(3, Vessel(flask).Volume); Assert.IsFalse(Pack.Objects.Any(o => Coat(o) != null));
+        }
+
         [Test] public void TheCoatsReaderSaysWhatItDoesAndWhatItAlsoBlunts()
         {
             var flask = Flask(1, "electric".Length > 0 ? "shock-proofing" : ""); var garment = Carry("LeatherArmor"); Assert.True(Act(flask, Row(flask, garment)));

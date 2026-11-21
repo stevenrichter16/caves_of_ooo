@@ -29,6 +29,17 @@ You start on wild ground with the trough kit, hearth, still, five flasks (two of
 - **Shade awning** (3o). Home menu, **Camp Awning - the Beating at noon**: the fresh game starts on wild ground in the Beating with the clock at the start of the Height band (take off any hat). Elsewhere, in the Beating (south of the world map) at the Height hours of the day, wait on open ground with a bare head: after ten turns the sidebar parches you. Set the awning down and stand under it or in the ring of cells around it: no stacks come, and stepping out starts the count again. Taking it up ends the shade. A hat or a roof still works too.
 - **Cinderhold's mine pump** (3f). Travel to Cinderhold (map 6,6, north-west), find the pump beside the well, **C**: the menu shows what each repair needs against what you carry; **mend for good** uses the two spikes, the haft and the binding. It then reads "running". The same menu is on Tine's fishing weir, the Drowned Ledger's survey line and Wellmeet's pan scales (beside the well; the scales read "are", not "is").
 
+## 2b. The proofing workshop: "Proofing Workshop (everything, 10 armor sets, hazards, elemental foes)"
+
+You start on wild ground as a sturdy test character with every machine, every reagent, flasks, fire clay, ten full armor sets, status tonics and the four elemental spell books, beside a **proving post** (press **C** by it). The scenario's log walks the loop; in short:
+
+1. Press reagents into flasks, coat a garment from a flask, set down the trough and proof a garment for good (a stack of identical armor is treated one unit at a time).
+2. Wear a set. Call enemies at the post (heat, cold, shock, acid, two of each), or walk the hazards: heat north-east, cold north-west, acid south-east, shock south-west.
+3. **Mend yourself** at the post between trials; **send away** what it called.
+4. Compare bare against coated against proofed: the status shortens, the damage falls, and at 100 the status is refused ("You shrug off ...").
+5. **Catch reagent for nothing.** Carry a settling tray (you start with two) to a hazard: a steam vent or ash bed, a frost vent or ice sheet, or a pool of brine, acid or mire. Press **C** on the tray kit in your pack: each set-down row says what that cell would catch ("set down east (catches heat)", "(nothing to catch here)"); a cell beside a hazard is refused, and so is the cell in line beyond an ash bed or frost vent. Set it down, rest a few hours, press **C** beside it: the reader says what it is settling and when the next is due ("due around Dusk" or "due soon"); "gather the vent scale (2)" takes them. What it holds is capped at four, one comes every half day, and a source gives only 3 to 5 before it is spent for a while (it looks "thin" and then "spent for now"; a day brings one back). A second tray on the same pool shares that supply. Press a catch into a flask: one coat each. The catches and any tonic brewed from them cannot be sold.
+6. **Undo a lasting proofing.** Set down the proofing trough beside a proofed garment: "unpick the cold proofing from <garment>" frees the slot (nothing comes back); a coat on the same garment stays.
+
 ## 3. The Concord's carriage: "Concord Carriage"
 
 You start with 60 drams, timber, a dagger, fire clay, a flask, a spore, and **one parcel already waiting at Cinderhold** (two iron spikes, "sent" from the Last Counter).
