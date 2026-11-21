@@ -3,8 +3,8 @@ using System.Linq;
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// The proofing a steeped garment gives its wearer while it is worn (Docs/MACHINE-INVENTED-USES.md 3h; the clay-wash against fire is 3l). The class keeps its saved name; <see cref="Kind"/> says which
-    /// resistance it gives (acid by default, so every earlier save loads as it always was). It is applied when the garment is put on, counts down on the wearer's
+    /// The proofing a coated garment gives its wearer while it is worn (Docs/MACHINE-PROOFING.md; earlier the steeping and clay-wash, MACHINE-INVENTED-USES.md 3h and 3l). The class keeps its saved name; <see cref="Kind"/> says which
+    /// element it proofs against (a <see cref="ProofingRegistry"/> id or alias; acid by default, so every earlier save loads as it always was). It is applied when the garment is put on, counts down on the wearer's
     /// own turns (so world-map travel, which fires no local turn, does not wear it), and is taken off with the garment, which keeps the turns that remain. One effect per garment: two steeped
     /// garments worn together each give their own. When its turns run out it ends the steeping on the garment as well, so the garment is plain again.
     /// <para>Public fields carry the exact shift applied, so a saved stat Boost is reverted without being reapplied on load (the <see cref="PreparedMealEffect"/> pattern).</para>
@@ -16,18 +16,21 @@ namespace CavesOfOoo.Core
         public int Amount;
         public int AppliedBonus;
         public string GarmentId = "";
-        /// <summary>"acid" (the original steeping) or "fire" (the clay-wash). An unknown or missing value reads as acid.</summary>
+        /// <summary>An element id: "acid", "heat", "cold" or "electric" (the clay-wash's older "fire" reads as heat). An unknown or missing value reads as acid.</summary>
         public string Kind = AcidKind;
         /// <summary>The stat the shift was applied to, so removal reverts exactly what was added whatever the kind says now. Empty in a save from before kinds existed: acid.</summary>
         public string AppliedStat = "";
 
-        public static string StatFor(string kind) => kind == FireKind ? FireStat : Stat;
+        public static string StatFor(string kind) => ProofingRegistry.StatFor(kind);
 
-        public override string DisplayName => Kind == FireKind ? "clay-washed against fire" : "steeped against acid";
+        public override string DisplayName => "proofed against " + ElementLabel(Kind);
+
+        /// <summary>The word for an element in what the player reads: "heat", "cold", "shock", "acid".</summary>
+        public static string ElementLabel(string kind) => ProofingRegistry.ById(kind)?.Label ?? "acid";
         public override int GetEffectType() => TYPE_METABOLIC;
 
         public SteepedAcidEffect() { }
-        public SteepedAcidEffect(int amount, int duration, string garmentId, string kind = AcidKind) { Amount = amount; Duration = duration; GarmentId = garmentId ?? ""; Kind = kind == FireKind ? FireKind : AcidKind; }
+        public SteepedAcidEffect(int amount, int duration, string garmentId, string kind = AcidKind) { Amount = amount; Duration = duration; GarmentId = garmentId ?? ""; Kind = ProofingRegistry.Canonical(kind); }
 
         public static bool Valid(int amount, int duration, string garmentId) => amount > 0 && amount <= 60 && duration > 0 && !string.IsNullOrEmpty(garmentId);
 
@@ -72,6 +75,6 @@ namespace CavesOfOoo.Core
                 if (pair.Value != null && pair.Value.ID == GarmentId) { var enhancement = pair.Value.Parts.OfType<EnhancementSteeped>().FirstOrDefault(); if (enhancement != null) enhancement.TurnsLeft = System.Math.Max(0, Duration); return; }
         }
 
-        public string Describe() => "+" + Amount + (Kind == FireKind ? " heat resistance; " : " acid resistance; ") + Duration + " of your turns left in this garment.";
+        public string Describe() => "+" + Amount + " " + ElementLabel(Kind) + " resistance; " + Duration + " of your turns left in this garment.";
     }
 }

@@ -51,6 +51,10 @@ namespace CavesOfOoo.Core
                     lines.Add("Contents: " + contents + " (" + vessel.Volume.ToString(CultureInfo.InvariantCulture)
                         + "/" + vessel.Capacity.ToString(CultureInfo.InvariantCulture) + " volume).");
                     if (vessel.Volume > 0) { string traits = LiquidRegistry.Get(vessel.LiquidId).DescribeTraits(); if (traits.Length > 0) lines.Add(traits); }
+                    var proofing = vessel.Volume > 0 ? ProofingRegistry.ByLiquid(vessel.LiquidId) : null;
+                    if (proofing != null)
+                        lines.Add("Coat a garment from it: one unit gives +" + ProofingRules.CoatAmount + " " + proofing.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, and blunts " + proofing.Status
+                            + ". A trough proofs one for good with " + ProofingRules.PermanentUnits + " units and " + ProofingRules.PermanentClay + " fire clay.");
                     lines.Add("Fill from a nearby unmixed pool; pour onto nearby ground.");
                 }
                 else lines.Add("Liquid contents are invalid; fill and pour are unavailable.");

@@ -18,6 +18,7 @@ namespace CavesOfOoo.Core
                 WaterTransferActions.AddActions(actor, ParentEntity, actor?.SpatialZone, e.GetParameter<InventoryActionList>("Actions"));
                 LiquidTransferActions.AddActions(actor, ParentEntity, actor?.SpatialZone, e.GetParameter<InventoryActionList>("Actions"));
                 DouseWorldActions.AddActions(actor, ParentEntity, actor?.SpatialZone, e.GetParameter<InventoryActionList>("Actions"));
+                ProofingCoatActions.AddActions(actor, ParentEntity, actor?.SpatialZone, e.GetParameter<InventoryActionList>("Actions"));
                 LiquidVesselService.AddActions(actor, ParentEntity, actor?.SpatialZone,
                     e.GetParameter<InventoryActionList>("Actions"));
                 return true;
@@ -36,6 +37,12 @@ namespace CavesOfOoo.Core
                 bool success = WaterTransferActions.IsCommand(command) ? WaterTransferActions.TryAct(actor, ParentEntity, zone, command, tx)
                     : DouseWorldActions.TryAct(actor, ParentEntity, zone, command, tx);
                 if (!success) return true; e.Handled = true; return false;
+            }
+            if (ProofingCoatActions.IsCommand(command))
+            {
+                if (!ProofingCoatActions.TryAct(e.GetParameter<Entity>("Actor"), ParentEntity, e.GetParameter<Zone>("Zone"), command,
+                    e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction"))) return true;
+                e.Handled = true; return false;
             }
             if (!LiquidVesselService.IsLiquidCommand(command)) return true;
             if (!LiquidVesselService.TryAct(e.GetParameter<Entity>("Actor"), ParentEntity,

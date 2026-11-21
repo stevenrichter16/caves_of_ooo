@@ -1,4 +1,4 @@
-# parts=400
+# parts=401
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -298,6 +298,12 @@ Part CavesOfOoo.Core.EnhancementLacquered | reflected
   Tier:System.Int32
 Part CavesOfOoo.Core.EnhancementPaleSalt | reflected
   BonusDamage:System.Int32
+  Tier:System.Int32
+Part CavesOfOoo.Core.EnhancementProofed | reflected
+  Amount:System.Int32
+  AppliedBonus:System.Boolean
+  AppliedStat:System.String
+  Kind:System.String
   Tier:System.Int32
 Part CavesOfOoo.Core.EnhancementSerrated | reflected
   ChancePercent:System.Int32

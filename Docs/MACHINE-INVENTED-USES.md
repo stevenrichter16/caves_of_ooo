@@ -136,6 +136,8 @@ What the object adds is the world's side. It is placed fresh-only beside Cinderh
 
 ## 3h. The sixth build: the steeping trough (2026-11-20)
 
+> **Superseded 2026-11-20 by [MACHINE-PROOFING.md](MACHINE-PROOFING.md) (3q).** The trough now does the permanent tier only; the temporary treatment is a coat from a bottle, and its element comes from the reagent, not from a fixed recipe. The text below is the history.
+
 **The gap.** Acid is the one hazard near the start that is both dangerous and under-served: a Marlback Soursprayer's spray is a damage-over-time that costs about 37 HP unresisted and about 18 with a +35 resistance, and the only counters were buying a particular apron or eating a particular meal. The bath dossier ([MachineDesign/machine-bath.md](MachineDesign/machine-bath.md)) found the honest V1: a small, optional, gear-only preparation that makes a garment turn acid for a while, and nothing more (the roster's other half, shedding spores, has no state to act on).
 
 **The invention.** The steeping trough, a camp kit like the bench and still (set it down, steep, pick it up; a Tinker may stock one, 20%). Beside it, a carried, unworn, unstacked garment of leather or cloth can be steeped with **one pitchpod resin and one fire clay**: it then gives **+35 acid resistance for 100 turns of wear** (`EnhancementSteeped`). The reagents are used up whether or not acid is ever met; there is no refund and no byproduct; the garment is not consumed; steeping again replaces what is left (the row says "replaces 37 turns"); a piece that already holds two treatments refuses a third.
@@ -191,6 +193,8 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 **Honest limits.** Not played in the Editor. The rate (2 + 1 per 5 weight), the road speed (a day per four cells), the six-parcel cap and the page size are proposals; the choice of the Choir's cutting as the thing that sings is an inference from the contract's wording. Clause five's "anything the Bower-Folk have asked after twice" cannot be evaluated and is not enforced. There is no recall: once sealed, the parcel goes where it was sent (the fee is kept, as clause the first has it). Cached towns keep their old keepers and conversations (the cart is added in conversation, not in the keeper's authored tree, so it appears for every living keeper at those two zones, including saved ones).
 
 ## 3l. The tenth build: a clay-wash against fire at the trough (2026-11-20)
+
+> **Superseded 2026-11-20 by [MACHINE-PROOFING.md](MACHINE-PROOFING.md) (3q):** a clay-wash is now one of four elements a coat or a lasting proofing can be; a garment saved with the older "fire" kind reads as heat.
 
 **What it is.** The steeping trough (3h) gave a garment a finite acid-proofing. Now it also gives a **clay-wash against fire**: 2 fire clay for +35 heat resistance for 100 turns of wear, the same shape as the steeping, on the same garments. The still bakes fire clay from bog-mire (3j), so the chain is bog-mire, hearth fuel, fire clay, garment: three machines that were built apart now feed one another. Burning is a real hazard (a burning tick is heat damage, which `HeatResistance` reduces by the same rule acid uses, never below 1 until resistance reaches 100).
 
@@ -263,6 +267,10 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 **Tests.** `NaturalHeatSettlingTests` (13) and `NaturalHeatCampTests` (3), read through the Full reader because the quick reader passes no viewer: the real set-down verb at two cells from a vent and the refusal one cell from it (with a control that removing the vent opens the same cell), vent before fire, out of reach, a source that no longer seeds heat or also chills, an ash bed, settle-all with no fuel cap, a vent is not a kiln, the reader on the vent and on the still, a carried still offers nothing, an outer failure returns the mire, a creature or a fuel-burning fire that declares heat is never a source. Twelve mutations of the rule, its gating and its call sites were each caught by the test meant to catch them.
 
 **Honest limits.** Not played in the Editor. The vent's heat is the world's declaration, not a measured temperature (the vent's own thermal part decays toward ambient, so the rule does not read it). Where vents sit is whatever the hazard builder places; the Sodden's mire and the vents are not guaranteed to be near each other, which is the point. Wording is placeholder pending voice review.
+
+## 3q. The fifteenth build: proofing for every element, from a bottle or at the trough (2026-11-20)
+
+One machine and one bottle for all four resistances, driven by the reagent's own property ([MACHINE-PROOFING.md](MACHINE-PROOFING.md)). A resistance now also blunts the status (Frozen, Burning, Electrified, Acidic: a fraction gets through, 100 is immunity), which is what makes cold and shock proofing worth having. The temporary tier is a **coat from a flask**: press a reagent into a flask (its element property names the element, its level is the number of coats), then coat any garment you hold, worn or not: +35 for 100 worn turns a unit, up to 300. The permanent tier is **the trough**: 4 units and 2 fire clay for a lasting +25 on a garment. Coat, lasting proofing and a +50 garment make 110: immune. Tests: status rule 16, registry 7, pressing 10, coating 15, trough 14 (including the scenario's own demo flow), with mutants caught for each. Honest limits are in the doc (not played, numbers are proposals, reagent properties beyond the element do nothing yet).
 
 ## 4. Order
 

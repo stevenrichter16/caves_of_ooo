@@ -30,6 +30,24 @@ namespace CavesOfOoo.Core
         private List<BrewPropertyAmount> _cachedProperties;
         private string _cachedRawSnapshot;
 
+        /// <summary>The reagent's own verb: press it into a flask as the proofing of the element it carries (<see cref="ProofingPressActions"/>).</summary>
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "GetInventoryActions")
+            {
+                var actor = e.GetParameter<Entity>("Actor");
+                ProofingPressActions.AddActions(actor, ParentEntity, e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone, e.GetParameter<InventoryActionList>("Actions"));
+                return true;
+            }
+            if (e.ID == "InventoryAction" && ProofingPressActions.IsCommand(e.GetStringParameter("Command")))
+            {
+                var actor = e.GetParameter<Entity>("Actor");
+                if (ProofingPressActions.TryAct(actor, ParentEntity, e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone, e.GetStringParameter("Command"), e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction")))
+                { e.Handled = true; return false; }
+            }
+            return true;
+        }
+
         public IReadOnlyList<BrewPropertyAmount> GetProperties()
         {
             if (_cachedProperties == null || !string.Equals(_cachedRawSnapshot, PropertiesRaw))

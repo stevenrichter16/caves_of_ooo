@@ -258,8 +258,10 @@ namespace CavesOfOoo.Tests
             foreach (var (blueprint, count) in CampMachinesShowcase.Loadout) { Assert.NotNull(Factory.CreateEntity(blueprint), blueprint); Assert.Greater(count, 0, blueprint); }
             int weight = CampMachinesShowcase.Loadout.Sum(l => (Factory.CreateEntity(l.Blueprint).GetPart<PhysicsPart>()?.Weight ?? 0) * l.Count); Assert.LessOrEqual(weight, 240, "Strength 16 carries 240");
             bool Has(string bp, int n = 1) => CampMachinesShowcase.Loadout.Any(l => l.Blueprint == bp && l.Count >= n);
-            Assert.True(Has("CampTrough") && Has("LeatherArmor") && Has("PitchpodResin", 2) && Has("FireClay"), "steeping"); Assert.True(Has("SoundingRod"), "sounding");
-            Assert.True(Has("CampHearth") && Has("CampStill") && Has("LiquidFlask", 2) && Has("SalvagedTimber", 4) && Has("FlintStriker"), "baking clay");
+            Assert.True(Has("CampTrough") && Has("LeatherArmor") && Has("ColdwardCloak") && Has("FireClay", ProofingRules.PermanentClay), "the lasting proofing");
+            foreach (var element in ProofingRegistry.All) Assert.True(CampMachinesShowcase.Loadout.Any(l => ProofingRegistry.ElementsOf(Factory.CreateEntity(l.Blueprint)).Contains(element)), "a reagent for " + element.Id);
+            Assert.GreaterOrEqual(CampMachinesShowcase.Loadout.Single(l => l.Blueprint == "FrostLichen").Count * 2, ProofingRules.PermanentUnits + 1, "enough cold to proof a garment for good and still coat another (cold:2 a lichen)"); Assert.True(Has("SoundingRod"), "sounding");
+            Assert.True(Has("CampHearth") && Has("CampStill") && Has("LiquidFlask", CampMachinesShowcase.MireFlasks + 3) && Has("SalvagedTimber", 4) && Has("FlintStriker"), "baking clay");
             var data = PlaceSiteCatalog.Get("Cinderhold", "Pump") ?? Load(); foreach (var m in data.Lasting.Materials) Assert.True(Has(m.Blueprint, m.Count), "the pump's " + m.Blueprint);
             Assert.AreEqual(0, CampMachinesShowcase.MireUnits % 1); Assert.GreaterOrEqual(CampMachinesShowcase.MireUnits, LiquidSettlingPart.ClayRatio, "each flask can bake a clay");
         }
@@ -270,7 +272,7 @@ namespace CavesOfOoo.Tests
         {
             Pack.MaxWeight = 400; var ctx = Context(out _); new CampMachinesShowcase().Apply(ctx);
             foreach (var (blueprint, count) in CampMachinesShowcase.Loadout) Assert.GreaterOrEqual(Pack.Objects.Where(o => o.BlueprintName == blueprint).Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1), count, blueprint);
-            var flasks = Pack.Objects.Where(o => o.BlueprintName == "LiquidFlask").Select(o => o.GetPart<LiquidVesselPart>()).ToArray(); Assert.AreEqual(2, flasks.Length); Assert.True(flasks.All(f => f.LiquidId == CampMachinesShowcase.MireLiquid && f.Volume == CampMachinesShowcase.MireUnits));
+            var flasks = Pack.Objects.Where(o => o.BlueprintName == "LiquidFlask").Select(o => o.GetPart<LiquidVesselPart>()).ToArray(); Assert.AreEqual(5, flasks.Length); Assert.True(flasks.Take(CampMachinesShowcase.MireFlasks).All(f => f.LiquidId == CampMachinesShowcase.MireLiquid && f.Volume == CampMachinesShowcase.MireUnits)); Assert.True(flasks.Skip(CampMachinesShowcase.MireFlasks).All(f => f.Volume == 0 && f.LiquidId == ""), "the other three are empty, for proofing");
             Assert.AreEqual(LiquidSettlingPart.Feed, CampMachinesShowcase.MireLiquid, "the liquid the still settles and bakes");
         }
 

@@ -168,7 +168,7 @@ namespace CavesOfOoo.Tests
             {
                 LiquidRegistry.InitializeFromJsonSources(Resources.LoadAll<TextAsset>(
                     "Content/Data/LiquidDefinitions").Select(asset => asset.text));
-                Assert.AreEqual(26, LiquidRegistry.Count, "Actual shipped liquid census must not be empty.");
+                Assert.AreEqual(30, LiquidRegistry.Count, "Actual shipped liquid census must not be empty (26 plus the four proofing tinctures, Docs/MACHINE-PROOFING.md).");
                 Assert.IsTrue(GlyphOnlyByDesign.Contains("PouredLiquidPool"),
                     "Only this reviewed dynamic shell opts into the legacy glyph fallback.");
                 var owner = _factory.CreateEntity("PouredLiquidPool");

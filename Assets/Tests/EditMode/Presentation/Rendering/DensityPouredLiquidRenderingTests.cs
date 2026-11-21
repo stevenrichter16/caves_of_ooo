@@ -22,7 +22,7 @@ namespace CavesOfOoo.Tests
             try
             {
                 LiquidRegistry.InitializeFromJsonSources(Resources.LoadAll<TextAsset>("Content/Data/LiquidDefinitions").Select(x=>x.text));
-                Assert.AreEqual(26,LiquidRegistry.Count,"Explicit current definition census, not an empty enumeration.");
+                Assert.AreEqual(30,LiquidRegistry.Count,"Explicit current definition census, not an empty enumeration (26 plus the four proofing tinctures, Docs/MACHINE-PROOFING.md).");
             }
             catch{RestoreRegistry();throw;}
         }
