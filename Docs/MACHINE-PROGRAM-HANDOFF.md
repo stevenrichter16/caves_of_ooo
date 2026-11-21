@@ -1,5 +1,7 @@
 # Machine, camp and world-tool program: handoff for the next agent
 
+**Brand-new session?** Start at [NEW-SESSION-HANDOFF-2026-11-21.md](NEW-SESSION-HANDOFF-2026-11-21.md): a self-contained orientation (project, owner, who else edits, rules, commands, what to do next).
+
 **Newer handoff:** read [Codex's November 21 handoff](CODEX-MACHINE-HANDOFF-2026-11-21.md)
 first for verified corrections, native play, the still-running regression gate,
 the unfixed scenario-capacity finding and the inventory redesign plan.
