@@ -88,7 +88,7 @@ namespace CavesOfOoo.Core
         public int Order => 40;
 
         /// <summary>What the element's catch is called, read from the blueprint's own display name. Reading never creates an entity (that would advance the factory's ID counter and fire creation events on every look).</summary>
-        static string ReagentName(ProofingElement kind)
+        internal static string ReagentName(ProofingElement kind)
         {
             if (kind == null) return "reagent";
             var blueprint = string.IsNullOrEmpty(kind.Collects) ? null : HarvestablePart.Factory?.GetBlueprint(kind.Collects);

@@ -6080,6 +6080,32 @@
       "Tags": []
     },
     {
+      "Name": "Scraper",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "scraper" },
+            { "Key": "RenderString", "Value": "/" },
+            { "Key": "ColorString", "Value": "&c" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" } ] },
+        { "Name": "Scraper", "Params": [] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "14" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A flat iron blade on a short handle, worn bright along one edge. The kind of tool you use at the lip of a vent or the rim of a brine pool, to take the crust or the rime a place lets go of. It is for scraping, not for fighting, and it is not quiet." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Item", "Value": "true" }, { "Key": "Tier", "Value": "2" } ]
+    },
+    {
       "Name": "SoundingRod",
       "Inherits": "PhysicalObject",
       "Parts": [

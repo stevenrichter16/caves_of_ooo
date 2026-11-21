@@ -324,6 +324,22 @@ One machine and one bottle for all four resistances, driven by the reagent's own
 
 **Tests.** `HushStripTests` (22): row per open direction, one spent per lay, one device to a cell, creature and wall refusal, an interrupted lay, stale and malformed commands, an item not carried; a step on the strip silent and the next heard, a lane quiet for exactly its length, a blow still heard, a real `PaleStalker`'s `HuntsBySound` perceiving or not, everyone (not only the player) quiet on it, every movement path (keyboard/navigation, a move to a cell, a shove, a swap); taking up (same item back, far refused, full pack keeps the strip, interrupted take-up, spent device has no row), the save round trip, the readers. Mutation: 11 mutants, 10 caught; the survivor (the explicit creature check in the laying rule) is redundant with the terrain check beside it and is kept as a second guard.
 
+## 3u. The nineteenth build: the scraper, and cold out of the deep (2026-11-20)
+
+**The gap.** The settling tray (3r) catches reagent for nothing, but its cold row was dead: the frost vents and ice sheets that give cold are in the hazard builder's underground table only, and camp kits cannot be set down underground (PB7). So the one element a trader does not carry in bulk, and no caster carries, could not be caught where it lies.
+
+**The machine.** A **scraper**: a flat iron blade carried like the sounding rod. Within two cells of a source it takes **one** level-one reagent of that source's element, **at once**, from the source's own shared stock (the supply every settling tray at that source draws on, kept on the whole blob's anchor cell, never more than its capacity, one back a day). A scraper and a tray at one source share one finite supply; neither adds to it. It works wherever a source is: a steam vent on the surface, a frost vent in a cave. Where the tray waits and is quiet, the scraper is immediate and **loud**: every scrape rings through the stone (`Noise.Mark`), which is how the eyeless stalkers find you. That puts the decision where the deep already has its tension: take the rime now and risk the pack, or lay a hush lane (3t), or wait and let a tray do it quietly if you can set one.
+
+**Why it fits.** It reuses the tray's whole rule (`ProofingSources`, `StockHolder`, `SourceStockPart`) and the sounding rod's habit of a carried, noisy tool, adds no new subsystem, and mints nothing: the catches are the tray's unsellable reagents, the stock is finite, and the cost is time and noise. It closes the cold gap without lifting the underground ban or touching the hazard tables (which would shift generation).
+
+**Quality of life.** The row names what it would take and from what ("scrape rime flake from the frost vent"); a spent source is a disabled row that says so and that it gives a little more each day; the hint says it rings.
+
+**Where it is found.** A Tinker stocks it at 25%; the workshop scenario carries one.
+
+**Tests.** `ScraperTests` (every source blueprint's catch at once, free/unsellable/loud, nothing near and out of reach, a poured pool, carried only, capacity then spent then a day later, noise only on success, an interrupted scrape, a full pack, a multi-cell pool shared from any side, readers, registration) and one test in `SettlingTrayTests` that a scraper and a tray share one supply. Mutation results are in the commit message.
+
+**Honest limits.** Not played in the Editor; numbers and wording are proposals; glyph only. Standing within two cells of a vent or a frost source is your own risk (the hazard is the terrain's).
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).

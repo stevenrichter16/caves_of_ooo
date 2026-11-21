@@ -48,6 +48,10 @@ Start a fresh game (or use a scenario that generates Posy, map 5,9) and walk to 
 
 Hush strips are in the Tinker's stock (a bundle of four to eight, a 25% roll) and in the workshop scenario's pack. Carry them below ground, where the pale stalkers are (tier 3 and below; the eyeless ones that hunt by sound). Press **C** on the strips in your pack: one row for each open neighbouring cell ("lay hush strip east"). Lay a lane toward a stair, standing still between; step along it with the stalker in earshot: it should not turn toward you while you are on the felt, and should the moment you step off the end. Strike something from a strip: that is heard. Press **C** beside a strip: "take up the hush strip" returns the same item.
 
+## 2e. The scraper
+
+You start the workshop scenario with one (a Tinker stocks it too). Stand within two cells of a hazard that gives something off (a steam vent or ash bed, a frost vent or ice sheet, a pool of brine, acid or mire) and press **C** on the scraper: "scrape rime flake from the frost vent" and so on. One grain comes at once; the message says it rang. A spent source shows a greyed row; a day later it gives one more. Set a settling tray at the same source and notice that the two share one supply. Below ground, scrape a frost vent for cold reagent and then press it into a flask. With a pale stalker nearby, the ring draws it.
+
 ## 3. The Concord's carriage: "Concord Carriage"
 
 You start with 60 drams, timber, a dagger, fire clay, a flask, a spore, and **one parcel already waiting at Cinderhold** (two iron spikes, "sent" from the Last Counter).

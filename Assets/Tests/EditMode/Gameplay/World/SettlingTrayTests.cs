@@ -366,6 +366,16 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(first + 1, second, "looking at the tray created no entity");
         }
 
+        [Test] public void AScraperAndATrayAtOneSourceShareOneFiniteSupply_Counter()
+        {
+            var vent = Source(); var tray = SetTray(); var scraper = Carry("Scraper"); var stock = SourceStockPart.For(wild, vent, WorldClock.CurrentTick); stock.Capacity = 4; stock.Available = 4;
+            wild.RemoveEntity(Actor); Assert.True(wild.AddEntity(Actor, AX + 1, AY));   // beside the tray, two cells from the vent
+            Assert.True(Act(scraper, "ScrapeSource")); Assert.True(Act(scraper, "ScrapeSource")); Assert.AreEqual(2, stock.Available, "two scraped");
+            Days(1.1); Assert.AreEqual(2, Part(tray).HeldNow(wild, WorldClock.CurrentTick), "a day and a tenth: two catches in the pan"); Assert.True(Act(tray, TakeRow(tray).Command));
+            Assert.AreEqual(4, Got("VentScale"), "two scraped and two settled: one supply of four"); Assert.AreEqual(1, stock.Available, "four drawn from a supply of four plus the one a day brings back, and no more");
+            Days(0.5); Assert.AreEqual(0, Part(tray).Held); int caught = Part(tray).HeldNow(wild, WorldClock.CurrentTick); Assert.LessOrEqual(caught, 1, "what is left is only what has come back");
+        }
+
         // ── when there is nothing to settle from ──
 
         [Test] public void WithNoSourceItSaysSoCatchesNothingAndOffersADisabledRowThatNamesTheRule()
