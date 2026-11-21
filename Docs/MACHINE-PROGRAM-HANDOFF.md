@@ -1,6 +1,6 @@
 # Machine, camp and world-tool program: handoff for the next agent
 
-Written 2026-11-21 (America/Chicago) at the end of a five-day run (2026-11-16 to 2026-11-21). State when first written: `main` at `a36edd91f` (this doc and the verification scripts; code at `d4a31ec11`); the descriptions pass (section 10.1) was committed after it. Check `git log` for the real head.
+Written 2026-11-21 (America/Chicago) at the end of a five-day run (2026-11-16 to 2026-11-21). State when first written: `main` at `a36edd91f` (this doc and the verification scripts; code at `d4a31ec11`); the descriptions pass (section 10.1) is `e89a81af6`, pushed to `main`. Check `git log` for the real head.
 Read section 0 first. Everything else is reference. This file is the entry point; the living records it links to hold the detail, and the memory note `machine-program-state.md` (in the Claude project memory) holds the same facts in diary form.
 
 ## 0. Read this first
@@ -10,7 +10,7 @@ Read section 0 first. Everything else is reference. This file is the entry point
 **State.**
 - Built, tested and pushed: the machine architecture (installations, stations, readers, declared action time, multi-stack claims, near-miss rows), the home/base layer (eight set-down camp kits), about twenty invented machine uses, a proofing system with status dampening, five more world machines (Sorters' frame, hush strips, scraper, spring trap, Setters' bench), and carried-tool rows on the C menu with grouping. Sections 2 and 4.
 - **Never played by a person.** Only the camp box, hearth, bench, still and the world-map note were played in the Editor (2026-11-18/19). Everything built after that is verified by EditMode tests, mutation checks and independent read-only reviews, not by a person at the keyboard. [MACHINE-HAND-TEST.md](MACHINE-HAND-TEST.md) is the guide for doing that.
-- **No full test run exists on the final tree.** The last complete full-suite verdict is for commit `eb12e00f9` (section 6.4). A full run (`fullg`, clone2, started 2026-11-21 10:25 on a tree that already had the tool-row work in progress) was still going when this was written. A clean full run on the final head is owed (section 10).
+- **No full test run has finished on the final tree yet.** The last complete full-suite verdict is for commit `eb12e00f9` (section 6.4). A clean full run on the final head `e89a81af6` was started 2026-11-21 13:42 in clone4 (`fullrun_h`; about three hours; results `/Users/steven/coo-verification/results/fullrun_h.xml`): compare it with `python3 Tools/CloneVerification/compare_full.py /Users/steven/coo-verification/results/fullrun_h.xml` and re-run every new failure alone (section 10.2). An older run (`fullg`, clone2, started 10:25 on a tree with the tool-row work in progress) was still going; its result, if it finished, is not the gate.
 - **Finished after this was first written:** the "descriptions pass" (section 10.1): every machine's and tool's Examine now says how to use it, what it needs and whether it is usable right now.
 
 **Five rules that bind everything below.**
@@ -247,7 +247,8 @@ The baseline `full_s9.xml` (2026-11-19) has 39,500 tests and 91 failures that al
 | `fullrun_e` | `a7f5b5cc6` | abandoned after 4 h 22 min, no result |
 | cumulative family run `fam10` (11-21) | `19fab8606` + | 22,062 tests: 54 baseline failures; 2 "new": Posy frame/bench had no 3D model (fixed by the glyph-only list, `787b35c60`) and `TrinketEquipmentTests.InventoryRowsComparison...` (not reproducible, passes alone); one REAL regression found late and fixed (`376c5f067`) |
 | tool-row wide runs (11-21) | working tree | 4,397 and 4,410 tests: 0 new failures against the baseline (6 baseline failures in those areas); the relevant suites unmutated 426/426 |
-| `fullg` (clone2, 11-21 10:25) | working tree during the tool-row work | **result pending when this was written** (3 hours); check `/Users/steven/coo-verification/results/` or the scratchpad; do not trust it as the final gate |
+| `fullg` (clone2, 11-21 10:25) | working tree during the tool-row work | still running at 3 h 16 min when this was written; it predates the final head, so it is not the gate |
+| **`fullrun_h`** (clone4, 11-21 13:42) | `e89a81af6` (final head of this run) | **running when this was written**: the gate. Compare with `compare_full.py`; the verdict is recorded here by whoever reads it first |
 
 ### 6.5 Lessons and pitfalls (each cost me time)
 
@@ -299,7 +300,7 @@ Process
 
 ## 10. Next steps
 
-### 10.1 The descriptions pass (built 2026-11-21; the owner's request, kept for reference)
+### 10.1 The descriptions pass (built 2026-11-21, commit `e89a81af6`; the owner's request, kept for reference)
 
 Owner: "instead of a long description for these tools and machines that doesn't tell the player exactly how they work or how to use them, the descriptions should do exactly that - tell the player how to use them, if they're usable in that moment, or what materials are needed, or what environmental factors are needed, etc to use them. go through all the machines and tools and do this."
 
@@ -312,7 +313,7 @@ Owner: "instead of a long description for these tools and machines that doesn't 
 
 ### 10.2 The final regression gate
 
-After the descriptions pass is committed and pushed, run one clean full EditMode run on the final head: sync into an idle clone, `clone_run.sh clone2 'CavesOfOoo' fullrun_h` in the background (3 hours, no other Unity runs on the machine meanwhile), then `compare_full.py`. Re-run every NEW failure alone. Record the verdict in section 6.4. Then replace the baseline copy in `baselines/` only if the owner agrees the failures it lists are still the accepted set.
+The descriptions pass is committed and pushed (`e89a81af6`) and the gate run was started: `Tools/CloneVerification/clone_run.sh clone4 'CavesOfOoo' fullrun_h` (2026-11-21 13:42, about three hours; avoid other Unity runs on this machine while it goes, they cause 180-second timeouts). When `/Users/steven/coo-verification/results/fullrun_h.xml` exists, run `python3 Tools/CloneVerification/compare_full.py /Users/steven/coo-verification/results/fullrun_h.xml`, re-run every NEW failure ALONE with its exact class filter (a timeout that passes alone is contention, not a regression), fix any that fail alone, and write the verdict into the table in section 6.4. Replace the baseline copy in `baselines/` only if the owner agrees the failures it lists are still the accepted set. If the run died (the XML is missing or short), start it again; do not trust a partial file.
 
 ### 10.3 A hand-play session (the single most valuable verification still missing)
 
