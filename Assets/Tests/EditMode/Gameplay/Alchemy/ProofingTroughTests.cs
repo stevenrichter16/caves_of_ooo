@@ -174,6 +174,16 @@ namespace CavesOfOoo.Tests
             Assert.True(InventorySystem.UnequipItem(copy, worn)); Assert.AreEqual(0, copy.GetStatValue("ColdResistance"), "taken off after a load, exactly the proofing goes");
         }
 
+        [Test] public void TheScenariosFrostTonicIsTheEasyWayToFeelTheStatusRule_ABareDrinkerFreezesLongerThanAProofedOne()
+        {
+            var ctx = new CavesOfOoo.Scenarios.ScenarioContext(Zone, Factory, Actor, Clock); new CavesOfOoo.Scenarios.Custom.CampMachinesShowcase().Apply(ctx);
+            var tonic = Pack.Objects.First(o => o.BlueprintName == "FrostTonic"); Assert.True(Act(tonic, "ApplyTonic"), string.Join("|", MessageLog.GetRecent(3))); float bare = Actor.GetEffect<FrozenEffect>().Cold; Actor.RemoveEffect<FrozenEffect>();
+            Actor.Statistics["ColdResistance"] = new Stat { Name = "ColdResistance", Owner = Actor, BaseValue = 60, Min = -100, Max = 200 };
+            var second = Pack.Objects.First(o => o.BlueprintName == "FrostTonic"); Assert.True(Act(second, "ApplyTonic")); float proofed = Actor.GetEffect<FrozenEffect>().Cold;
+            Assert.AreEqual(1f, bare, 1e-3f); Assert.AreEqual(0.4f, proofed, 1e-3f, "a full-strength frost tonic at +60 cold leaves 40%");
+            Assert.NotNull(Pack.Objects.FirstOrDefault(o => o.BlueprintName == "LightningTonic"), "and a lightning tonic for the shock");
+        }
+
         [Test] public void TheReadersNameWhatTheTroughDoesAndWhatYouCarry()
         {
             var trough = StandingTrough(); Flask(2, "cold-proofing"); Clay(1); var l = new System.Collections.Generic.List<string>(); StateReader.Collect(trough, true, Zone, Zone.GetEntityCell(trough), Actor, l); string text = string.Join(" ", l);
