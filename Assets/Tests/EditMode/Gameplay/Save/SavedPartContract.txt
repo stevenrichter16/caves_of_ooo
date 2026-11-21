@@ -1,4 +1,4 @@
-# parts=409
+# parts=411
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -913,6 +913,14 @@ Part CavesOfOoo.Core.SpreadTerritoryPart | reflected
   Top:System.Int32
   WarningTarget:CavesOfOoo.Core.Entity
   ZoneID:System.String
+Part CavesOfOoo.Core.SpringTrapKitPart | reflected
+  Kind:System.String
+  Loaded:System.String
+Part CavesOfOoo.Core.SpringTrapPart | reflected
+  Armed:System.Boolean
+  ConsumeOnTrigger:System.Boolean
+  Kind:System.String
+  TriggerFaction:System.String
 Part CavesOfOoo.Core.StackerPart | reflected
   MaxStack:System.Int32
   StackCount:System.Int32

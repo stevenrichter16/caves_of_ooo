@@ -340,6 +340,22 @@ One machine and one bottle for all four resistances, driven by the reagent's own
 
 **Honest limits.** Not played in the Editor; numbers and wording are proposals; glyph only. Standing within two cells of a vent or a frost source is your own risk (the hazard is the terrain's).
 
+## 3v. The twentieth build: the spring trap (2026-11-20)
+
+**The gap.** The tile engine (`Reactions.json`) already has the rules for a fight on a prepared floor: oil plus heat ignites (8 fire damage, embers, a smoke cloud that blocks sight), water plus charge electrifies (a shock and 5 damage), water plus cold freezes (and freezes whoever stands in it). Players meet it only through their own casts and the striker; every trap in the game (`TriggerOnStepPart`: the runes, the fire and spike traps) does its own flat damage and never touches the tile layer, and player-set traps were deferred in the timber-trap design. So a player who pours a slick or spills a pool has no way to make it do something later, to the next thing that crosses it.
+
+**The machine.** A **spring trap**: a frame of seasoned wood and a sprung blade. You **load** it with one thing you already carry (fire moss, frost lichen or spark root: the same three the material-field actions already know), then **lay** it on an empty cell beside you. The next thing to step there (anyone; it does not know its layer, you included) sets it off, and the load is written into that cell through `ZoneTileStateSystem` (`AddHeat`, `AddCold`, `AddCharge`) and the reactions resolve at once. It does not wound anyone itself: it hands the ground a spark, a chill or a charge, and the ground does the rest. Where nothing lies there to catch it, it marks the cell and is spent. So the trap is the way to give a pool, a slick or a spill a trigger: pour oil across a doorway (a flask pours, the still makes it) and a fire moss trap is a wall of fire and a screen of smoke; a puddle and a spark root trap is a shock; frost lichen freezes a ford. It is loaded once, laid once and spent when sprung (it cannot be taken up), so it is finite: the cost is a kit, a cartridge and the oil or water you spent preparing the cell.
+
+**Safety and law.** The laying is one atomic action and the trap arms only after it commits, so a refused or interrupted laying cannot spring on anyone; the kit is a single object that is not a stack, so differently loaded kits never merge. Fire is not laid on the Choir's ground (grove surface and the Cathedral floor): the lay row is a disabled row that says so, and the command is refused too. Frost and charge are not fire and are allowed.
+
+**Where it is found.** A Tinker stocks it at 20%; the workshop scenario carries two. It needs no site: it is laid anywhere a creature can walk, wild or deep (the cord snare's laying already does this; the underground ban on camp kits does not apply to a laid device).
+
+**What it uses.** The generic laying capability from 3t (`LaidDevicePart`, `LayableDevicePart.EmptyDestination`), the step trigger base (`TriggerOnStepPart`: the faction gate, the jam check, consume on trigger), and the tile-state writers. Nothing new in the world rules.
+
+**Honest limits.** Not played in the Editor. The smoke it makes blinds you too; the shock and the fire hurt the layer if they stand there. Whether oil under a creature that is already burning is wanted is the player's problem. Numbers (stock 20%, price 16) and wording are proposals; glyph only. The friendly-fire gate (`TriggerFaction`) is left unset on purpose: a trap does not know who laid it.
+
+**Tests.** `SpringTrapTests` (rows per cartridge carried and a disabled row when none, load spends one and sets the kind and cannot load twice, an interrupted loading, stale loads, laying spends the kit and leaves an armed device, an interrupted laying, an unarmed trap does nothing and stays, a fire moss trap on oil burns the stepper and is spent, with nothing there it only marks the cell, frost on water freezes it and whoever stands there, spark on water shocks, it springs on its layer too, the Choir's ground refuses a fire trap and not a cold one, the save and the no-stacking of loaded kits, the reader, the Tinker stock). Mutation results are in the commit message.
+
 ## 4. Order
 
 1. Flint striker (built), rest beside the hearth (built), settling at the still (built).

@@ -32,7 +32,7 @@ namespace CavesOfOoo.Scenarios.Custom
         /// <summary>The machines, the reagents (all ten, eight of each), the fixings, the status tonics and the four elemental spell books. The armor sets are given from <see cref="ArmorSets"/>.</summary>
         public static readonly (string Blueprint, int Count)[] Loadout =
         {
-            ("CampTrough", 1), ("CampSettlingTray", 2), ("HushStrip", 8), ("Scraper", 1), ("CampHearth", 1), ("CampStill", 1), ("CampBench", 1), ("CampBox", 1),
+            ("CampTrough", 1), ("CampSettlingTray", 2), ("HushStrip", 8), ("Scraper", 1), ("SpringTrap", 2), ("CampHearth", 1), ("CampStill", 1), ("CampBench", 1), ("CampBox", 1),
             ("FireMoss", 8), ("EmberFruit", 8), ("PitchpodResin", 8), ("FrostLichen", 8), ("GlacierSalt", 8), ("ChillcressTip", 8), ("SparkRoot", 8), ("PrismreedPith", 8), ("GlimmerBrine", 8), ("SourmantleFold", 8),
             ("LiquidFlask", 12), ("FireClay", 24), ("SalvagedTimber", 30), ("FlintStriker", 1), ("Torch", 3),
             ("PitchpodSeed", 4), ("ChillcressSeed", 4), ("PrismreedSeed", 4), ("SourmantleSeed", 4),

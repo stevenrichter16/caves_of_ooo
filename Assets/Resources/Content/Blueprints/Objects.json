@@ -6106,6 +6106,58 @@
       "Tags": [ { "Key": "Item", "Value": "true" }, { "Key": "Tier", "Value": "2" } ]
     },
     {
+      "Name": "SpringTrap",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "spring trap" },
+            { "Key": "RenderString", "Value": "v" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "16" } ] },
+        { "Name": "SpringTrapKit", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A frame of seasoned wood and a sprung blade on a catch, made to be loaded with something you carry and laid on the ground. It does not wound anyone itself. It puts what it was loaded with into the ground where it was laid, and the ground does the rest: oil catches, water freezes or carries a shock. It does not know who laid it." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Item", "Value": "true" }, { "Key": "Tier", "Value": "2" } ]
+    },
+    {
+      "Name": "SpringTrapLaid",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "spring trap" },
+            { "Key": "RenderString", "Value": "v" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        { "Name": "SpringTrap", "Params": [] },
+        { "Name": "LaidDevice", "Params": [ { "Key": "ItemBlueprint", "Value": "" }, { "Key": "Label", "Value": "spring trap" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A sprung frame laid flat on the ground, loaded. The next thing to step here sets it off." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Trap", "Value": "" } ]
+    },
+    {
       "Name": "SoundingRod",
       "Inherits": "PhysicalObject",
       "Parts": [

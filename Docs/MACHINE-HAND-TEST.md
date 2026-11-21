@@ -52,6 +52,10 @@ Hush strips are in the Tinker's stock (a bundle of four to eight, a 25% roll) an
 
 You start the workshop scenario with one (a Tinker stocks it too). Stand within two cells of a hazard that gives something off (a steam vent or ash bed, a frost vent or ice sheet, a pool of brine, acid or mire) and press **C** on the scraper: "scrape rime flake from the frost vent" and so on. One grain comes at once; the message says it rang. A spent source shows a greyed row; a day later it gives one more. Set a settling tray at the same source and notice that the two share one supply. Below ground, scrape a frost vent for cold reagent and then press it into a flask. With a pale stalker nearby, the ring draws it.
 
+## 2f. The spring trap
+
+In the workshop scenario (or from a Tinker). Press **C** on the trap kit in your pack: "load the spring trap with fire moss" (or frost lichen, spark root). Pour a flask of oil (or water) on a cell beside you, then press **C** on the loaded kit and choose where to lay it. Step onto the cell: oil plus fire moss goes up (fire damage and a smoke cloud that blocks sight); water plus spark root shocks; water plus frost lichen freezes the water and you. A trap on bare ground only marks the cell. In a Grovelands zone a fire-loaded kit refuses to be laid.
+
 ## 3. The Concord's carriage: "Concord Carriage"
 
 You start with 60 drams, timber, a dagger, fire clay, a flask, a spore, and **one parcel already waiting at Cinderhold** (two iron spikes, "sent" from the Last Counter).
