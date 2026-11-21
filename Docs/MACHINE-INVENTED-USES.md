@@ -308,7 +308,7 @@ One machine and one bottle for all four resistances, driven by the reagent's own
 
 **Tests.** `SortingFrameTests` (the colour table including every code, plain codes, first-code rule, rows, far, worn, a stack, dim then striking, the no-better refusal and its kept piece, a whole frame and its once-only bonus, a 40-trial random-sequence bound on total regard, precious at and above the limit, not-yours-to-give, stale commands, an interrupted setting, the save, a malformed saved string, the reader, the shipped Posy row placing one frame, and the new row kind); the installation census, registry and site-object tests updated for the works kind. Mutation results are recorded in the commit message.
 
-**Honest limits.** Not played in the Editor. The limit (15 drams), the points (2) and the bonus (4) are proposals. Posy is fresh-only: a Posy generated before this change keeps no frame. Wording is placeholder. No new art (a glyph; Posy has no voxel kit of its own).
+**Honest limits.** Not played in the Editor. The limit (15 drams), the points (2) and the bonus (4) are proposals. Posy is fresh-only: a Posy generated before this change keeps no frame. Wording is placeholder. No new art (a glyph; Posy has no voxel kit of its own). The Spread presentation census (`SpreadBiomeCoverageTests`) found the frame undrawn, so the frame and the bench are on the documented glyph-only list (`PreviousPresentationTierGap`, the same one the waysite props use): their flat art is owed.
 
 ## 3t. The eighteenth build: hush strips, and a generic way to lay things (2026-11-20)
 

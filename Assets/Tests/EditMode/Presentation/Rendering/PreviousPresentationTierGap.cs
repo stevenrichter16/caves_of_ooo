@@ -30,6 +30,9 @@ namespace CavesOfOoo.Tests
             "WaysiteNotePeatTally1", "WaysiteNotePeatTally2", "WaysiteNoteFerrySlate1", "WaysiteNoteFerrySlate2",
             "WaysiteNoteCistern1", "WaysiteNoteCistern2", "WaysiteNoteWatcher1", "WaysiteNoteWatcher2",
             "WaysiteNoteGatherer1", "WaysiteNoteGatherer2",
+            // Posy's working fixtures (Docs/MACHINE-INVENTED-USES.md 3s and 3w): the Sorters' frame and the Setters' bench are
+            // placed fresh-only by the installation pipeline as glyph-only machines (graphics are cancelled); their flat art is owed.
+            "SortingFrame", "SettingBench",
         };
 
         public static bool Excuses(string blueprint) => blueprint != null && Blueprints.Contains(blueprint);
