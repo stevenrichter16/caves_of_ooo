@@ -99,7 +99,7 @@ namespace CavesOfOoo.Tests
         public void WetChargeHasAnOrdinaryActionWindowAfterContactStunExpires(bool wet)
         {
             var screen=Wear("GroundwireScreen");if(wet)Actor.ApplyEffect(new WetEffect(1));
-            Actor.ApplyEffect(new ElectrifiedEffect(1));Actor.GetEffect<StunnedEffect>().Rng=new LowestSave();
+            Actor.ForceApplyEffect(new ElectrifiedEffect(1));Actor.GetEffect<StunnedEffect>().Rng=new LowestSave();   // forced: this pins the screen's action window, not the status rule, and the screen's own electric resistance would shorten the stun (Docs/MACHINE-PROOFING.md 2.1)
             for(int i=0;i<2;i++){var end=GameEvent.New("EndTurn");end.SetParameter("Zone",Zone);Actor.FireEventAndRelease(end);}
             Assert.IsNull(Actor.GetEffect<StunnedEffect>(),"Native duration recovery, not manual removal.");
             Assert.AreEqual(wet,Actions(screen).Any(a=>a.Command.StartsWith("GroundCharge|")));
