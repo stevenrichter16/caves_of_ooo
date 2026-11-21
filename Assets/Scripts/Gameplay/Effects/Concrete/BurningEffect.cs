@@ -18,6 +18,9 @@ namespace CavesOfOoo.Core
         public float Intensity;
         public bool CompletedNaturally;
         public Entity IgnitionSource;
+
+        /// <summary>The fraction of a fuel-less burn that gets through the target's heat resistance (1 = all of it); set where the effect is applied (<see cref="ElementalStatusResistance"/>).</summary>
+        public float DurationScale = 1f;
         public System.Random Rng;
 
         // Damage tiers by intensity (min damage, max damage)
@@ -60,7 +63,7 @@ namespace CavesOfOoo.Core
             // If no FuelPart, use fallback duration based on intensity
             var fuel = target.GetPart<FuelPart>();
             if (fuel == null)
-                Duration = System.Math.Max(1, (int)System.Math.Ceiling(Intensity * 3));
+                Duration = ElementalStatusResistance.Turns(System.Math.Max(1, (int)System.Math.Ceiling(Intensity * 3)), DurationScale);
 
             // Heat the entity just above FlameTemperature so it survives
             // a few decay ticks. Without this, ThermalPart.HandleEndTurn

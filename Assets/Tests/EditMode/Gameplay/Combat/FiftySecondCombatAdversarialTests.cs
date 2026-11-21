@@ -22,8 +22,9 @@ namespace CavesOfOoo.Tests
         [Test] public void FullyResistedDrawStillSpendsPrimerAndRegisteredCooldown()
         {
             var s=FiftySecondCombatFixture.Skill("Corrosion_CausticDraw");var a=f.Actor(s);var v=f.Target(12,10);
-            v.Statistics["AcidResistance"]=new Stat { Owner=v,Name="AcidResistance",BaseValue=100,Min=0,Max=100 };
-            v.ApplyEffect(new AcidicEffect(1),a,f.Zone);Assert.True(f.Cast(a,s));Assert.AreEqual(1000,v.GetStatValue("Hitpoints"));Assert.False(v.HasEffect<AcidicEffect>());Assert.AreEqual(20,FiftySecondCombatFixture.Cooldown(a,s));
+            // The target is already corroding when it becomes fully resistant: a resistant body would now refuse the status outright (ElementalStatusResistance), but this test is about a draw whose damage is fully resisted.
+            v.ApplyEffect(new AcidicEffect(1),a,f.Zone);
+            v.Statistics["AcidResistance"]=new Stat { Owner=v,Name="AcidResistance",BaseValue=100,Min=0,Max=100 };Assert.True(f.Cast(a,s));Assert.AreEqual(1000,v.GetStatValue("Hitpoints"));Assert.False(v.HasEffect<AcidicEffect>());Assert.AreEqual(20,FiftySecondCombatFixture.Cooldown(a,s));
         }
         [Test] public void CrosswiseWallDoesNotBuryAnOffAnchorBody()
         {

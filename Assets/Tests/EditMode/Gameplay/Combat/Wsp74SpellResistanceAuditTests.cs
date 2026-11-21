@@ -188,7 +188,7 @@ namespace CavesOfOoo.Tests
             // (ElectrifiedEffect.cs:64-65) and calling the typed overload.
             // Verified during the WSP7.4 audit — no migration needed.
             var target = MakeTarget("Electric", resistance: 100);
-            target.ApplyEffect(new ElectrifiedEffect(charge: 1.0f), null, null);
+            target.ForceApplyEffect(new ElectrifiedEffect(charge: 1.0f), null, null);   // forced: a fully resistant body would refuse the status (ElementalStatusResistance); this pin is about the tick damage
             var effect = target.GetPart<StatusEffectsPart>().GetEffect<ElectrifiedEffect>();
             Assert.IsNotNull(effect);
 
@@ -211,7 +211,7 @@ namespace CavesOfOoo.Tests
             // Verifies the pre-existing correct behavior wasn't broken
             // by the WSP7.4 migration.
             var target = MakeTarget("Heat", resistance: 100);
-            target.ApplyEffect(new BurningEffect(intensity: 1.0f), null, null);
+            target.ForceApplyEffect(new BurningEffect(intensity: 1.0f), null, null);   // forced: a fully resistant body would refuse the status (ElementalStatusResistance); this pin is about the tick damage
             var effect = target.GetPart<StatusEffectsPart>().GetEffect<BurningEffect>();
             Assert.IsNotNull(effect);
 
@@ -233,7 +233,8 @@ namespace CavesOfOoo.Tests
             // Need a MaterialPart for AcidicEffect to fire its tick logic
             // (the OnTurnStart method bails early without one).
             target.AddPart(new MaterialPart { Combustibility = 1.0f });
-            target.ApplyEffect(new AcidicEffect(corrosion: 1.0f), null, null);
+            // A fully resistant body refuses the status itself (ElementalStatusResistance); this pin is about the tick damage, so the effect is forced on.
+            target.ForceApplyEffect(new AcidicEffect(corrosion: 1.0f), null, null);
 
             int hpBefore = target.GetStatValue("Hitpoints");
             var ctx = GameEvent.New("BeginTakeAction");

@@ -74,6 +74,16 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
+            // A resistance blunts the status as well as the damage (ElementalStatusResistance): immune at 100, otherwise a smaller or shorter status, before it stacks or runs.
+            if (!forced && !ElementalStatusResistance.Dampen(effect, ParentEntity))
+            {
+                EmitApplyEffectRejectedDiag(effect, source, forced, "elemental_immunity");
+                if (Diag.IsChannelEnabled("effect"))
+                    Diag.Record(category: "effect", kind: "ElementalImmunity", target: ParentEntity, actor: source,
+                        payload: new { effect = effect.GetType().Name, stat = ElementalStatusResistance.StatFor(effect) });
+                return false;
+            }
+
             // Check for stacking with existing effects of the same type
             Type incomingType = effect.GetType();
             bool alreadyActive = HasActiveEffect(effect);

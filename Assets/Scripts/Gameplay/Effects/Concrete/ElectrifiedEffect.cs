@@ -15,6 +15,9 @@ namespace CavesOfOoo.Core
         /// <summary>Joules-equivalent charge. Higher = longer chain and stronger zap.</summary>
         public float Charge;
 
+        /// <summary>The fraction of the contact stun that gets through the target's electric resistance (1 = all of it); set where the effect is applied (<see cref="ElementalStatusResistance"/>).</summary>
+        public float StunScale = 1f;
+
         /// <summary>Contact-stun ceiling (turns); Toughness saves shorten it.</summary>
         public const int CONTACT_STUN_DURATION = 2;
 
@@ -66,7 +69,7 @@ namespace CavesOfOoo.Core
             if (target.HasTag("Creature"))
             {
                 target.ApplyEffect(new StunnedEffect(
-                    duration: CONTACT_STUN_DURATION,
+                    duration: ElementalStatusResistance.Turns(CONTACT_STUN_DURATION, StunScale),
                     saveTarget: CONTACT_STUN_SAVE_TARGET), null, null);
             }
         }
