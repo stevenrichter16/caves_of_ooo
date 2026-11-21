@@ -4,14 +4,22 @@ namespace CavesOfOoo.Core
 {
     /// <summary>A reusable, water-only vessel. Units are individual drinks.
     /// Public fields persist through the existing part save stream.</summary>
-    public sealed class WaterskinPart : Part
+    public sealed class WaterskinPart : Part, IToolMenuState
     {
         public override string Name => "Waterskin";
         public int Capacity = 3;
         public int Charges;
 
+        /// <summary>What a menu says to tell two skins apart: "2/3".</summary>
+        public string ToolMenuState() => Charges + "/" + Capacity;
+
         public override bool HandleEvent(GameEvent e)
         {
+            if (e.ID == WorldInteractionSystem.WorldCellActionsEvent)
+            {
+                WaterVesselService.AddCellActions(e.GetParameter<Entity>("Actor"), ParentEntity, e.GetParameter<Zone>("Zone"), e.GetParameter<Cell>("Cell"), e.GetParameter<InventoryActionList>("Actions"));
+                return true;
+            }
             if (e.ID == "GetInventoryActions")
             {
                 var actor = e.GetParameter<Entity>("Actor");
@@ -32,7 +40,7 @@ namespace CavesOfOoo.Core
                     : DouseWorldActions.TryAct(actor, ParentEntity, zone, command, tx);
                 if (!success) return true; e.Handled = true; return false;
             }
-            if (command != "FillWaterskin" && command != "DrinkWaterskin") return true;
+            if (!WaterVesselService.IsWaterCommand(command)) return true;
             if (!WaterVesselService.TryAct(e.GetParameter<Entity>("Actor"), ParentEntity,
                 e.GetParameter<Zone>("Zone"), command, e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
             e.Handled = true;

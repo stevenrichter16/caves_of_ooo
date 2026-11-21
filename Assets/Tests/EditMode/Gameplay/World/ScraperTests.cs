@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Diagnostics;
 using NUnit.Framework;
 
@@ -87,10 +88,124 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(Stock(pool[0, 0]).Capacity - 2, Stock(pool[0, 0]).Available);
         }
 
+        // ───────── the source's own interact (C) menu: the scrape row needs no trip through the pack ─────────
+
+        /// <summary>What the player is shown when they press C and a direction: the menu of the cell's target, built the one way the input handler builds it.</summary>
+        List<InventoryAction> Menu(Entity target, int x, int y) => WorldInteractionSystem.GatherCellActions(target, Zone.GetCell(x, y), Actor);
+        InventoryAction[] ScrapeRows(IEnumerable<InventoryAction> rows) => rows.Where(a => a.Name == "ScrapeSource").ToArray();
+        /// <summary>Choosing the row, exactly as the world menu runs it: the row's own tool does the work, else the menu's target.</summary>
+        bool Choose(InventoryAction row, Entity target) => InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(row.Via ?? target, row.Command), Actor, Zone).Success;
+        string Noun(string reagent) => reagent == "VentScale" ? "vent scale" : reagent == "RimeFlake" ? "rime flake" : reagent == "BrineCrust" ? "brine crust" : "acid crust";
+
+        [TestCase("SteamVent", "VentScale")] [TestCase("AshBed", "VentScale")] [TestCase("FrostVent", "RimeFlake")] [TestCase("IceSheet", "RimeFlake")]
+        [TestCase("BrinePool", "BrineCrust")] [TestCase("AcidPool", "AcidCrust")] [TestCase("MirePool", "AcidCrust")]
+        public void TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(string blueprint, string reagent)
+        {
+            var source = Source(blueprint, 11, 10); var scraper = Carry("Scraper"); var rows = ScrapeRows(Menu(source, 11, 10));
+            Assert.AreEqual(1, rows.Length, string.Join(" / ", Menu(source, 11, 10).Select(a => a.Display))); var row = rows[0];
+            StringAssert.Contains("scrape", row.Display); StringAssert.Contains(Noun(reagent), row.Display); StringAssert.Contains(source.GetDisplayName(), row.Display);
+            Assert.AreSame(scraper, row.Via, "the carried scraper does it: nothing is picked from the pack"); Assert.AreEqual(ActionTime.OneAction, row.Time, "it costs one action, like the pack row"); Assert.False(row.IsDisabled);
+            StringAssert.Contains("rings", row.Hint, "the row says it is loud before you choose it");
+            Assert.True(Choose(row, source), string.Join("|", MessageLog.GetRecent(3)));
+            Assert.AreEqual(1, Got(reagent)); Assert.True(Pack.Objects.First(o => o.BlueprintName == reagent).HasTag("NoTrade"));
+            Assert.AreEqual(Stock(source).Capacity - 1, Stock(source).Available); Assert.True(Heard(), "it rings just as the pack row's does"); Assert.True(Pack.Objects.Contains(scraper), "the scraper is not spent");
+            var record = DiagQuery.Apply(new DiagQuery.Filter { Category = "furniture", Kind = "SourceScraped", Limit = 5 }).Records; Assert.AreEqual(1, record.Count);
+        }
+
+        [Test] public void NoScraperNoRow_AndNoRowForASourceTwoCellsOff_OrANonSource_Counter()
+        {
+            var vent = Source("SteamVent", 11, 10); Assert.IsEmpty(ScrapeRows(Menu(vent, 11, 10)), "nothing carried");
+            var onGround = Factory.CreateEntity("Scraper"); Assert.True(Zone.AddEntity(onGround, 9, 10)); Assert.IsEmpty(ScrapeRows(Menu(vent, 11, 10)), "a scraper lying on the ground does nothing");
+            Carry("Scraper"); Assert.AreEqual(1, ScrapeRows(Menu(vent, 11, 10)).Length, "carried, beside the vent: the row");
+            var far = Source("SteamVent", 12, 10); Assert.IsEmpty(ScrapeRows(Menu(far, 12, 10)), "a vent two cells off is not beside you; the look cursor can point there but the row does not follow");
+            var chest = Place("Chest", 10, 11); Assert.IsEmpty(ScrapeRows(Menu(chest, 10, 11)), "an ordinary object offers nothing to scrape");
+            Assert.IsEmpty(ScrapeRows(Menu(null, 9, 9)), "an empty cell");
+        }
+
+        [Test] public void ThePoolYouPouredOffersNothing_Counter()
+        {
+            Carry("Scraper"); var poured = Pool(8, "brine", 11, 10); Assert.IsEmpty(ScrapeRows(Menu(poured, 11, 10)), "a flask-made pool is not a source");
+        }
+
+        [Test] public void TheRowIsForTheCellYouOpened_NotForWhicheverSourceIsNearest_Counter()
+        {
+            var steam = Source("SteamVent", 11, 10); var frost = Source("FrostVent", 10, 11); var scraper = Carry("Scraper");
+            Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, 10, 10)); var nearest = ProofingSources.Find(Zone, Zone.GetEntityCell(Actor), out _);
+            var chosen = nearest == steam ? frost : steam; var cell = Zone.GetEntityCell(chosen); var rows = ScrapeRows(Menu(chosen, cell.X, cell.Y)); Assert.AreEqual(1, rows.Length);
+            Assert.True(Choose(rows[0], chosen)); Assert.AreEqual(chosen == steam ? "VentScale" : "RimeFlake", Pack.Objects.Single(o => o.BlueprintName == "VentScale" || o.BlueprintName == "RimeFlake").BlueprintName, "the reagent of the vent you chose");
+            Assert.AreEqual(1, Stock(chosen).Capacity - Stock(chosen).Available, "drawn from the chosen vent"); Assert.IsNull(Stock(nearest), "the nearer one was never touched");
+        }
+
+        [Test] public void ALootItemLyingOnTheSourceDoesNotHideTheRow()
+        {
+            var vent = Source("SteamVent", 11, 10); var item = Place("Scraper", 11, 10); Carry("Scraper");
+            Assert.AreEqual(1, ScrapeRows(Menu(item, 11, 10)).Length, "the menu of the item on the vent still offers to scrape the vent"); Assert.AreEqual(1, ScrapeRows(Menu(vent, 11, 10)).Length);
+        }
+
+        [Test] public void AMultiCellPoolIsOneStockWhicheverCellYouOpen()
+        {
+            var pool = new Entity[2, 2]; for (int i = 0; i < 2; i++) for (int j = 0; j < 2; j++) pool[i, j] = Source("BrinePool", 11 + i, 9 + j); var scraper = Carry("Scraper");
+            var near = ScrapeRows(Menu(pool[0, 1], 11, 10)); Assert.AreEqual(1, near.Length); Assert.IsEmpty(ScrapeRows(Menu(pool[1, 1], 12, 10)), "two cells from you");
+            Assert.True(Choose(near[0], pool[0, 1])); var holders = pool.Cast<Entity>().Where(e => Stock(e) != null).ToList(); Assert.AreEqual(1, holders.Count); Assert.AreSame(pool[0, 0], holders[0], "the shared stock lives on the pool's anchor cell");
+            var other = ScrapeRows(Menu(pool[0, 0], 11, 9)); Assert.True(Choose(other[0], pool[0, 0])); Assert.AreEqual(Stock(pool[0, 0]).Capacity - 2, Stock(pool[0, 0]).Available);
+        }
+
+        [Test] public void ASpentSourceListsADisabledRow_AndAnotherDayBringsTheRowBack()
+        {
+            var source = Source("SteamVent", 11, 10); var scraper = Carry("Scraper"); int capacity = SourceStockPart.CapacityFor(Zone, source);
+            for (int i = 0; i < capacity; i++) { var row = ScrapeRows(Menu(source, 11, 10)).Single(); Assert.False(row.IsDisabled, "scrape " + i); Assert.True(Choose(row, source)); }
+            var spent = ScrapeRows(Menu(source, 11, 10)).Single(); Assert.True(spent.IsDisabled); Assert.AreEqual("spent", spent.DisabledCode); StringAssert.Contains("a little more each day", spent.DisabledReason); Assert.AreEqual(capacity, Got("VentScale"));
+            Clock.AdvanceClock(WorldClock.DayLengthTicks + 1); var back = ScrapeRows(Menu(source, 11, 10)).Single(); Assert.False(back.IsDisabled); Assert.True(Choose(back, source)); Assert.AreEqual(capacity + 1, Got("VentScale"));
+        }
+
+        [Test] public void ARowGoneStaleIsRefusedAndChangesNothing_TheSourceWalkedFromOrRemoved()
+        {
+            var source = Source("SteamVent", 11, 10); var scraper = Carry("Scraper"); var stock = SourceStockPart.For(Zone, source, WorldClock.CurrentTick); int before = stock.Available;
+            var row = ScrapeRows(Menu(source, 11, 10)).Single(); Actor.IntProperties.Remove(Noise.Property);
+            Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, 18, 10)); Assert.False(Choose(row, source), "you have walked away since the menu was drawn"); Assert.AreEqual(before, stock.Available); Assert.AreEqual(0, Got("VentScale")); Assert.False(Heard());
+            Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, 10, 10)); Zone.RemoveEntity(source); Assert.False(Choose(row, source), "the source is gone"); Assert.AreEqual(0, Got("VentScale")); Assert.False(Heard());
+        }
+
+        [Test] public void ACommandNamingSomethingThatIsNotASourceOrIsMalformedIsRefused_Counter()
+        {
+            Source("SteamVent", 11, 10); var scraper = Carry("Scraper"); var chest = Place("Chest", 10, 11); var stock0 = Zone.GetReadOnlyEntities().Count(e => e.GetPart<SourceStockPart>() != null);
+            foreach (string command in new[] { "ScrapeSource|" + System.Uri.EscapeDataString(chest.ID), "ScrapeSource|" + System.Uri.EscapeDataString(Actor.ID), "ScrapeSource|", "ScrapeSource|%zz", "ScrapeSource|no-such-id", "ScrapeSource|" + System.Uri.EscapeDataString(scraper.ID) })
+            {
+                int before = Diag.Snapshot(500).Count(r => r.Kind == "ScraperRefused");
+                Assert.False(Act(scraper, command), command);
+                var refusals = Diag.Snapshot(500).Where(r => r.Kind == "ScraperRefused").ToList();
+                Assert.AreEqual(before + 1, refusals.Count, "a refusal is recorded for " + command + " (a crash further on records nothing)");
+                Assert.True(refusals.All(r => r.PayloadJson.Contains("no-source")), "refused for the intended reason: " + command);
+            }
+            Assert.AreEqual(0, Got("VentScale")); Assert.False(Heard()); Assert.AreEqual(stock0, Zone.GetReadOnlyEntities().Count(e => e.GetPart<SourceStockPart>() != null), "no stock was made for a thing that is not a source");
+        }
+
+        [Test] public void AStunnedPlayerIsOfferedNoRowAndAnInterruptedCellScrapeChangesNothing()
+        {
+            var source = Source("SteamVent", 11, 10); var scraper = Carry("Scraper"); var row = ScrapeRows(Menu(source, 11, 10)).Single();
+            FailAfter(); Assert.False(Choose(row, source)); Assert.AreEqual(0, Got("VentScale")); Assert.False(Heard()); Assert.AreEqual(0, Stock(source) == null ? 0 : Stock(source).Capacity - Stock(source).Available, "an interrupted scrape draws nothing");
+            Actor.RemovePart(Actor.GetPart<FiftyWorldThrowAfterPart>()); Assert.True(Actor.ApplyEffect(new StunnedEffect(duration: 5)), "fixture: the stun lands"); Assert.True(Actor.GetPart<StatusEffectsPart>().IsActionBlocked(), "fixture: stunned");
+            Assert.IsEmpty(ScrapeRows(Menu(source, 11, 10)), "no row while you cannot act");
+        }
+
+        [Test] public void TheCompositionKeepsTheUnderfootRowsTheMenuAlwaysHad_AndOnlyAddsTheScrapeRowBeside()
+        {
+            var rug = Place("Chest", 10, 10); rug.Tags["UnderfootInteractable"] = ""; var other = Place("Scraper", 10, 10);
+            var rows = WorldInteractionSystem.GatherCellActions(other, Zone.GetCell(10, 10), Actor); Assert.AreEqual(1, rows.Count(a => a.Name == "Underfoot"), "the underfoot row is still there"); Assert.IsEmpty(ScrapeRows(rows));
+            Source("SteamVent", 11, 10); Carry("Scraper"); rows = WorldInteractionSystem.GatherCellActions(other, Zone.GetCell(10, 10), Actor); Assert.IsEmpty(ScrapeRows(rows), "the scrape row belongs to the vent's own cell, not to the cell you stand in");
+        }
+
+        [Test] public void TheInputHandlerBuildsTheCMenuThroughTheOneCompositionThatCarriesTheRow()
+        {
+            string text = System.IO.File.ReadAllText(System.IO.Path.Combine(UnityEngine.Application.dataPath, "Scripts/Presentation/Input/InputHandler.cs"));
+            StringAssert.Contains("WorldInteractionSystem.GatherCellActions(", text);
+            StringAssert.DoesNotContain("AppendIgnitionActions(", text, "the handler must not hand-compose the rows, or a new row is dropped from the live menu"); StringAssert.DoesNotContain("AppendUnderfootActions(", text, "the details reader once rebuilt the menu by hand and lost the tool rows");
+        }
+
         [Test] public void TheReaderSaysWhatItDoesAndThatItIsLoud()
         {
             var scraper = Carry("Scraper"); var l = new List<string>(); StateReader.Collect(scraper, true, Zone, null, Actor, l); string text = string.Join(" ", l);
-            StringAssert.Contains("the same supply a settling tray draws on", text); StringAssert.Contains("loud", text);
+            StringAssert.Contains("the same supply a settling tray draws on", text); StringAssert.Contains("loud", text); StringAssert.Contains("(C)", text, "the reader says the source's own interact menu is the way in");
         }
 
         [Test] public void TheScraperIsRegisteredStockedAndSavedWithoutFields()

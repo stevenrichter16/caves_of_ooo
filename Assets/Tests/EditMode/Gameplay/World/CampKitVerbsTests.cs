@@ -524,5 +524,31 @@ namespace CavesOfOoo.Tests
             int resist = Actor.GetStatValue("AcidResistance"); var copy = PartRoundTripHelper.RoundTripEntityViaTokenGraph(Actor); var effect = copy.GetEffect<SteepedAcidEffect>();
             Assert.NotNull(effect, "the effect is saved"); Assert.AreEqual(95, effect.Duration); Assert.AreEqual(35, effect.AppliedBonus); Assert.AreEqual(resist, copy.GetStatValue("AcidResistance"), "the saved boost is not applied twice on load");
         }
+
+        // ── the cell's own interact (C) menu: setting a kit down needs no trip through the pack ──
+
+        [Test] public void TheCellsOwnMenuOffersToSetTheKitDownThere_RunByTheKit_AndOnlyBesideYou()
+        {
+            Assert.IsEmpty(CellMenu(AX + 1, AY).Where(a => a.Name == "SetDownFixture"), "nothing carried");
+            var hearth = Carry("CampHearth"); var rows = CellMenu(AX + 1, AY).Where(a => a.Name == "SetDownFixture").ToArray(); Assert.AreEqual(1, rows.Length, string.Join(" / ", rows.Select(r => r.Display)));
+            Assert.AreSame(hearth, rows[0].Via); Assert.AreEqual(SetDownRow(hearth, "east"), rows[0].Command, "the very command the pack row runs"); Assert.AreEqual(ActionTime.OneAction, rows[0].Time);
+            StringAssert.Contains("set down east", rows[0].Display); Assert.IsEmpty(CellMenu(AX + 5, AY).Where(a => a.Name == "SetDownFixture"), "a cell out of reach");
+            Assert.True(ChooseRow(rows[0], AX + 1, AY), string.Join("|", MessageLog.GetRecent(3))); Assert.NotNull(wild.GetCell(AX + 1, AY).Objects.FirstOrDefault(e => e.ID == hearth.ID)); Assert.False(Pack.Objects.Contains(hearth));
+        }
+
+        [Test] public void EachCarriedKitOffersItsOwnRowOnTheSameCell_AndTheyAreToldApart()
+        {
+            var hearth = Carry("CampHearth"); var box = Carry("CampBox"); var rows = CellMenu(AX + 1, AY).Where(a => a.Name == "SetDownFixture").ToArray();
+            Assert.AreEqual(2, rows.Length); CollectionAssert.AreEquivalent(new[] { hearth, box }, rows.Select(r => r.Via).ToArray()); Assert.AreEqual(2, rows.Select(r => r.Display).Distinct().Count(), string.Join(" | ", rows.Select(r => r.Display)));
+        }
+
+        [Test] public void MakeCampIsOfferedOnceByTheCellYouStandIn_NotOncePerKit_AndRunsAsInThePack()
+        {
+            var hearth = Carry("CampHearth"); Carry("CampStill"); Carry("CampBench"); Carry("CampBox");
+            var own = CellMenu(AX, AY).Where(a => a.Name == "MakeCamp").ToArray(); Assert.AreEqual(1, own.Length, string.Join(" / ", own.Select(a => a.Display))); StringAssert.Contains("4 kits", own[0].Display);
+            Assert.True(own[0].Shared); StringAssert.DoesNotContain("[", own[0].Display, "it is about the camp, so it names no kit"); Assert.IsNotNull(own[0].Via); Assert.True(own[0].Via.HasPart<PackableFixturePart>(), "run by one of the kits");
+            Assert.IsEmpty(CellMenu(AX + 1, AY).Where(a => a.Name == "MakeCamp"), "it is about where you stand");
+            Assert.True(ChooseRow(own[0], AX, AY), string.Join("|", MessageLog.GetRecent(6))); Assert.AreEqual(4, Held().Count);
+        }
     }
 }

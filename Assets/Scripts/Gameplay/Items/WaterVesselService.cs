@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Diagnostics;
 
@@ -7,6 +8,27 @@ namespace CavesOfOoo.Core
     /// <summary>Transactional water transfer; no arbitrary-liquid ingestion or mixing.</summary>
     public static class WaterVesselService
     {
+        /// <summary>The fill command that names one source (the interact menu of a well or pool offers it): this prefix and the source's escaped ID. The plain "FillWaterskin" takes the first source beside you.</summary>
+        public const string FillSourcePrefix = "FillWaterskin|";
+
+        /// <summary>Whether a command is one this service runs: drinking, the plain fill, or the fill that names a source.</summary>
+        public static bool IsWaterCommand(string command) => command == "FillWaterskin" || command == "DrinkWaterskin" || command != null && command.StartsWith(FillSourcePrefix, System.StringComparison.Ordinal);
+
+        /// <summary>
+        /// The fill row of the interact (C) menu of a cell that holds fresh water you could draw (a well, cistern, spring or pool of water beside you or under you): "fill the waterskin from the pond", run by the waterskin in the
+        /// pack, naming exactly that source. Nothing for a skin that is full, not carried alone, an actor who cannot act, or water that is not fresh, drawable and unmixed (the same test the plain fill uses).
+        /// </summary>
+        internal static void AddCellActions(Entity actor, Entity vessel, Zone zone, Cell cell, InventoryActionList actions)
+        {
+            var skin = vessel?.GetPart<WaterskinPart>();
+            if (actions == null || cell == null || skin == null || !WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true
+                || !WorldResourceActions.Carried(actor, vessel) || skin.Capacity <= 0 || skin.Charges < 0 || skin.Charges >= skin.Capacity) return;
+            foreach (var source in cell.Objects.ToArray())
+                if (IsFreshSource(actor, zone, source))
+                    actions.AddActionWithHint("FillWater", "fill the waterskin from the " + source.GetDisplayName() + " (" + skin.Charges + "/" + skin.Capacity + ")", FillSourcePrefix + Uri.EscapeDataString(source.ID),
+                        "Fills the waterskin from this water, up to what it holds and what the water has.", '\0', 19, false, ActionTime.OneAction);
+        }
+
         public static bool TryAct(Entity actor, Entity vessel, Zone zone, string command, InventoryTransaction transaction = null)
         {
             if (CombatSystem.IsDeathHandled(actor) || (actor?.GetStat("Hitpoints") is Stat hp && hp.Value <= 0))
@@ -18,7 +40,7 @@ namespace CavesOfOoo.Core
                 return Reject(actor, vessel, command, "not_carried", "You must carry that waterskin.");
             if (skin.Capacity <= 0 || skin.Charges < 0 || skin.Charges > skin.Capacity)
                 return Reject(actor, vessel, command, "invalid_capacity", "That waterskin cannot hold water.");
-            if (command != "FillWaterskin" && command != "DrinkWaterskin") return false;
+            if (!IsWaterCommand(command)) return false;
             bool own = transaction == null;
             transaction ??= new InventoryTransaction();
             try
@@ -26,10 +48,10 @@ namespace CavesOfOoo.Core
                 if (!transaction.TryClaim(actor, actor, command) || !transaction.TryClaim(vessel, actor, command))
                     return Reject(actor, vessel, command, "in_progress", "That waterskin is already in use.");
                 int before = skin.Charges;
-                if (command == "FillWaterskin")
+                if (command != "DrinkWaterskin")   // the plain fill or the fill that names a source
                 {
                     if (before == skin.Capacity) return Reject(actor, vessel, command, "full", "The waterskin is already full.");
-                    Entity source = FindSource(actor, zone);
+                    Entity source = command == "FillWaterskin" ? FindSource(actor, zone) : NamedSource(actor, zone, command.Substring(FillSourcePrefix.Length));
                     if (source == null) return Reject(actor, vessel, command, "no_fresh_water", "Stand beside a well, cistern, or pool of fresh water to fill it.");
                     if (!transaction.TryClaim(source, actor, command)) return Reject(actor, vessel, command, "source_in_use", "That water is already being drawn.");
                     var pool = source.GetPart<LiquidPoolPart>();
@@ -113,23 +135,32 @@ namespace CavesOfOoo.Core
         private static Entity FindSource(Entity actor, Zone zone)
         {
             if (zone?.GetEntityCell(actor) == null) return null;
-            foreach (var source in zone.GetReadOnlyEntities())
-            {
-                if (SpatialQuery.Distance(zone, actor, source) > 1 || source.HasTag("Creature")
-                    || source.GetPart<PhysicsPart>()?.Takeable == true
-                    || source.GetPart<PhysicsPart>()?.InInventory != null
-                    || source.GetPart<PhysicsPart>()?.Equipped != null) continue;
-                // A finite pool takes precedence over terrain's renewing coating.
-                var pool = source.GetPart<LiquidPoolPart>();
-                if (pool != null)
-                { if (pool.LiquidId == "water" && pool.Volume > 0 && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedPool(zone, source)) return source; continue; }
-                if (source.GetPart<WellPart>() is WellPart well)
-                { if (well.IsUsable && well.HasWater && LiquidSourcePhase.CanDrawWater(zone, source) && !TentRightOath.RefusesWater(actor, zone)) return source; continue; }
-                var spring = source.GetPart<TileStateSourcePart>();
-                if (spring?.Coating == "water" && spring.CoatingTurns > 0
-                    && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedSource(zone, source, "water")) return source;
-            }
+            foreach (var source in zone.GetReadOnlyEntities()) if (IsFreshSource(actor, zone, source)) return source;
             return null;
+        }
+
+        /// <summary>The source an escaped ID names, when it is still fresh water beside the actor; otherwise null.</summary>
+        private static Entity NamedSource(Entity actor, Zone zone, string escapedId)
+        {
+            var source = WorldResourceActions.ExactGround(zone, escapedId);
+            return source != null && IsFreshSource(actor, zone, source) ? source : null;
+        }
+
+        /// <summary>Whether <paramref name="source"/> is fresh water the actor could draw right now: beside (or under) the actor, not a creature or a carried thing, and a pool of unmixed water with some left, a usable well with water, or a spring.</summary>
+        internal static bool IsFreshSource(Entity actor, Zone zone, Entity source)
+        {
+            if (source == null || zone?.GetEntityCell(actor) == null) return false;
+            if (SpatialQuery.Distance(zone, actor, source) > 1 || source.HasTag("Creature")
+                || source.GetPart<PhysicsPart>()?.Takeable == true
+                || source.GetPart<PhysicsPart>()?.InInventory != null
+                || source.GetPart<PhysicsPart>()?.Equipped != null) return false;
+            // A finite pool takes precedence over terrain's renewing coating.
+            var pool = source.GetPart<LiquidPoolPart>();
+            if (pool != null) return pool.LiquidId == "water" && pool.Volume > 0 && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedPool(zone, source);
+            if (source.GetPart<WellPart>() is WellPart well) return well.IsUsable && well.HasWater && LiquidSourcePhase.CanDrawWater(zone, source) && !TentRightOath.RefusesWater(actor, zone);
+            var spring = source.GetPart<TileStateSourcePart>();
+            return spring?.Coating == "water" && spring.CoatingTurns > 0
+                && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedSource(zone, source, "water");
         }
         private static bool Reject(Entity actor, Entity vessel, string command, string reason, string message)
         { MessageLog.Add(message); Diag.Record("event", "WaterskinRejected", actor, vessel, new { command, reason }); return false; }

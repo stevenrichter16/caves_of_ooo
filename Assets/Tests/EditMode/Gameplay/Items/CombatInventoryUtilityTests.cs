@@ -150,5 +150,14 @@ namespace CavesOfOoo.Tests
             Assert.Greater(acid.GetPart<LiquidPoolPart>().Volume, 0);
             Assert.False(LiquidSourceSafety.IsUnmixedPool(Zone, acid), "traction must not purify an oil/acid mixture");
         }
+
+        [TestCase("FrogOil", "SpreadGrease", "oil")] [TestCase("SilverSand", "ScatterGrit", "grit")]
+        public void TheCellsOwnMenuOffersToSpreadTheSupplyThere_AndTheCellYouStandInOffersItToo(string blueprint, string name, string film)
+        {
+            var item = Carry(blueprint); SetAmount(item, 3); Place("Grass", 11, 10); Place("Grass", 10, 10);
+            var rows = CellMenu(11, 10).Where(a => a.Name == name).ToArray(); Assert.AreEqual(1, rows.Length); Assert.AreSame(item, rows[0].Via); Assert.AreEqual(Selection(item), rows[0].Command); Assert.AreEqual(ActionTime.OneAction, rows[0].Time);
+            Assert.AreEqual(1, CellMenu(10, 10).Count(a => a.Name == name), "the 'here' row belongs to the cell you stand in"); Assert.IsEmpty(CellMenu(14, 10).Where(a => a.Name == name), "out of reach");
+            Assert.True(ChooseRow(rows[0], 11, 10)); Assert.True(Has(11, 10, film)); Assert.False(Has(12, 10, film)); Assert.AreEqual(2, Remaining(item));
+        }
     }
 }

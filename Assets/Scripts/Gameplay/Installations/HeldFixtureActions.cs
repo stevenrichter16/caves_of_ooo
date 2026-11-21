@@ -173,13 +173,18 @@ namespace CavesOfOoo.Core
                 var result = batch.Evaluate(x, y, def.Spec, kit);
                 if (!result.Ok) { if (firstReason == null) firstReason = result.First; continue; }
                 legal++;
-                actions.AddAction("SetDownFixture", "set down " + d.label + Hint(part.Kind, zone, x, y), SetDownCommand(zone, origin, x, y, kit), '\0', 17, false, ActionTime.OneAction);
+                actions.AddAction("SetDownFixture", "set down " + d.label + Hint(part.Kind, zone, x, y), SetDownCommand(zone, origin, x, y, kit), '\0', 17, false, ActionTime.OneAction).AtCell(x, y);
             }
             // Nothing legal here: say why in one disabled row instead of eight, or none.
             if (legal == 0) { actions.AddDisabled("SetDownFixture", "set down", firstReason ?? "unavailable", Reason(firstReason, def), '\0', 17); return; }
             int kits = CarriedKits(actor).Count;
-            if (kits >= 2) actions.AddActionWithHint("MakeCamp", "make camp here (" + kits + " kits)", MakeCampPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + kit.ID,
-                "Sets down every kit you carry at once: fire first, still beside it.", '\0', 18, false, ActionTime.OneAction);
+            if (kits >= 2)
+            {
+                var camp = actions.AddActionWithHint("MakeCamp", "make camp here (" + kits + " kits)", MakeCampPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + kit.ID,
+                    "Sets down every kit you carry at once: fire first, still beside it.", '\0', 18, false, ActionTime.OneAction);
+                // Every kit that can be set down offers it in the pack. The cell you stand in offers it once, whichever kit runs it (a shared row), so it cannot go missing because the first kit has nowhere to stand.
+                camp.AtCell(origin.X, origin.Y).Shared = true;
+            }
         }
 
         /// <summary>Where the kit would stand relative to what you already keep: a still wants a fire within reach (its settling is coupled to one), a hearth is by a still, so a cell says so.</summary>

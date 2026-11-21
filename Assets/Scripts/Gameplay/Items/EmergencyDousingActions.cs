@@ -23,9 +23,11 @@ namespace CavesOfOoo.Core
                 if (ValidateTarget(actor, target, zone, clay, true) != null) continue;
                 string command = BuildCommand(actor, target, zone, clay, amount);
                 bool provokes = !clay && Provokes(actor, target);
-                actions.AddAction(clay ? "SmotherFire" : "DrenchCreature",
+                var row = actions.AddAction(clay ? "SmotherFire" : "DrenchCreature",
                     (clay ? "smother flames on " : "drench ") + (target == actor ? "yourself" : target.GetDisplayName())
                     + (clay ? " (1 clay)" : " (1 water" + (provokes ? "; provokes" : "") + ")"), command, '\0', 18);
+                // A burning thing that is not a creature (a fire, a barrel) is the environment, offered on its own menu; a creature, yourself included, stays in the pack.
+                if (!target.HasTag("Creature")) row.AtEntity(zone, target);
             }
         }
 

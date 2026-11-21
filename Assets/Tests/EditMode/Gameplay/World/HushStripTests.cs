@@ -174,5 +174,17 @@ namespace CavesOfOoo.Tests
             Assert.True(System.IO.File.ReadAllText(System.IO.Path.Combine(UnityEngine.Application.dataPath, "Resources/Content/Data/Loot/LootTables.json")).Contains("\"HushStrip\""));
             Assert.LessOrEqual(Factory.CreateEntity("HushStrip").GetPart<CommercePart>().Value, 6, "strips are cheap; the lane is the cost");
         }
+
+        // ── the cell's own interact (C) menu: laying needs no trip through the pack ──
+
+        [Test] public void TheCellsOwnMenuOffersToLayAStripThere_RunByTheStrips_AndOnlyBesideYou()
+        {
+            Place("Grass", 11, 10); Place("Grass", 14, 10); Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Name == "LayDevice"), "nothing carried");
+            var item = Bundle(2); var rows = CellMenu(11, 10).Where(a => a.Name == "LayDevice").ToArray(); Assert.AreEqual(1, rows.Length);
+            StringAssert.Contains("lay hush strip east", rows[0].Display); Assert.AreSame(item, rows[0].Via); Assert.AreEqual(Row(item, "east").Command, rows[0].Command, "the very command the pack row runs"); Assert.AreEqual(ActionTime.OneAction, rows[0].Time);
+            Assert.IsEmpty(CellMenu(14, 10).Where(a => a.Name == "LayDevice"), "a cell out of reach");
+            Assert.True(ChooseRow(rows[0], 11, 10), string.Join("|", MessageLog.GetRecent(3))); Assert.NotNull(LaidAt(11, 10)); Assert.AreEqual(1, Strips());
+            Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Name == "LayDevice"), "a cell that holds a strip is not offered another");
+        }
     }
 }

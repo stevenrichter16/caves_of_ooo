@@ -155,5 +155,32 @@ namespace CavesOfOoo.Tests
             Assert.False(Act(quartz, command)); Assert.Contains(quartz, Pack.Objects);
             Assert.False(Zone.GetReadOnlyEntities().Any(e => e.BlueprintName == "CrackedGlowQuartz"));
         }
+
+        [Test] public void TheThingsOwnMenuOffersTheHeldTorchToIt_RunByTheTorchInHand()
+        {
+            Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Name == "TouchTorch"), "no torch held");
+            var torch = Wear("Torch"); var bush = Place("Bush"); var rows = CellMenu(11, 10).Where(a => a.Name == "TouchTorch").ToArray(); Assert.AreEqual(1, rows.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display)));
+            Assert.AreSame(torch, rows[0].Via, "the torch in hand does it"); Assert.AreEqual(At(torch, "TouchTorch|"), rows[0].Command, "the very command the pack row runs");
+            Assert.True(ChooseRow(rows[0], 11, 10)); Assert.NotNull(bush.GetEffect<BurningEffect>());
+        }
+
+        [Test] public void ABareOilFilmIsOfferedNoTorchRowHere_TheLightItRowOfTheCellAlreadyCoversIt_Counter()
+        {
+            Wear("Torch"); Zone.TileState.WriteCoating(11, 10, "oil", 9); Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Name == "TouchTorch"));
+        }
+
+        [Test] public void TheGasCellOffersTheFan_TheWallOffersTheGripWrap_AndTheQuartzOffersItselfOnTheCellItWouldLight()
+        {
+            var fan = Wear("LampveinFan"); Gas(); var gasRows = CellMenu(11, 10).Where(a => a.Name == "FanGas").ToArray(); Assert.AreEqual(1, gasRows.Length); Assert.AreSame(fan, gasRows[0].Via); Assert.AreEqual(At(fan, "FanGas|"), gasRows[0].Command);
+            Bed(10, 10); Place("StoneWall", 10, 9); var wrap = Wear("GripfrondWrap"); var wallRows = CellMenu(10, 9).Where(a => a.Name == "BraceGrip").ToArray(); Assert.AreEqual(1, wallRows.Length, string.Join(" / ", CellMenu(10, 9).Select(a => a.Display)));
+            Assert.AreSame(wrap, wallRows[0].Via, "the wrap on your hands does it"); Assert.AreEqual(Choice(wrap, "BraceGrip|"), wallRows[0].Command);
+            var quartz = Carry("GlowQuartz"); var lit = CellMenu(10, 11).Where(a => a.Name == "CrackQuartz").ToArray(); Assert.AreEqual(1, lit.Length, string.Join(" / ", CellMenu(10, 11).Select(a => a.Display))); Assert.AreSame(quartz, lit[0].Via); Assert.AreEqual(At(quartz, "CrackQuartz|", 10, 11), lit[0].Command);
+        }
+
+        [Test] public void PlantingYourFeetIsAboutYouNotAPlace_SoNoCellOffersIt_Counter()
+        {
+            Bed(10, 10); var boots = Wear("IronshodBoots"); Assert.True(Actions(boots).Any(a => a.Name == "BraceBoots"), "fixture: the pack offers it");
+            foreach (var (x, y) in new[] { (10, 10), (11, 10), (10, 11) }) Assert.IsEmpty(CellMenu(x, y).Where(a => a.Name == "BraceBoots"), "cell " + x + "," + y);
+        }
     }
 }

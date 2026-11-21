@@ -219,7 +219,7 @@ namespace CavesOfOoo.Core
             else actions.AddDisabled("SurveyLog", "read the survey log", "empty", "You have not sounded anything with this rod yet.", 'l', 19);
             string code = Refusal(actor, zone, out string why, out int reach);
             const string hint = "Drives the rod into the floor and strikes it. It hears open ground, ways up or down and dense stone you have not seen, as a bearing and a distance. The strike is loud.";
-            if (code == null) actions.AddActionWithHint("SoundGround", "sound the ground (carries about " + reach + " paces)", Command, hint, 's', 20, false, ActionTime.OneAction);
+            if (code == null) actions.AddActionWithHint("SoundGround", "sound the ground (carries about " + reach + " paces)", Command, hint, 's', 20, false, ActionTime.OneAction).AtCell(zone.GetEntityCell(actor).X, zone.GetEntityCell(actor).Y);
             else actions.AddDisabled("SoundGround", "sound the ground", code, why, 's', 20);
         }
 

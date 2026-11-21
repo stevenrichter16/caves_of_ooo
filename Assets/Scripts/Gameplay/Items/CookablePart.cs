@@ -11,8 +11,13 @@ namespace CavesOfOoo.Core
         {
             if (e.ID == "GetInventoryActions")
             {
-                if (e.GetParameter<Entity>("Actor")?.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true)
-                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("Cook", "cook this stack beside a fire", "Cook", 'c', 19);
+                var actor = e.GetParameter<Entity>("Actor");
+                if (actor?.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true)
+                {
+                    var row = e.GetParameter<InventoryActionList>("Actions")?.AddAction("Cook", "cook this stack beside a fire", "Cook", 'c', 19);
+                    // Cooking is done at a fire: the interact menu of each campfire or hearth beside you offers it too.
+                    if (row != null && actor.SpatialZone != null) foreach (var station in CookingService.StationsBeside(actor, actor.SpatialZone)) row.AtEntity(actor.SpatialZone, station);
+                }
                 return true;
             }
             if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "Cook") return true;

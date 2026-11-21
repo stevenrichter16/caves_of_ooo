@@ -73,13 +73,14 @@ namespace CavesOfOoo.Core
                 return;
             }
             var origin = zone.GetEntityCell(actor); if (origin == null) return;
-            bool fireBanned = Kind == "heat" && GroveLaw.IsChoirGround(zone);
+            bool fireBanned = Kind == "heat" && GroveLaw.IsChoirGround(zone); InventoryAction banned = null;
             foreach (var d in Directions)
             {
                 int x = origin.X + d.x, y = origin.Y + d.y; if (!LayableDevicePart.EmptyDestination(zone, origin, x, y)) continue;
+                // On the Choir's ground one disabled row says why; the interact menu of each open cell beside you offers that same row, so the refusal is where the player looked. It names no direction for that reason.
+                if (fireBanned) { (banned ??= actions.AddDisabled("LaySpringTrap", "lay the " + WordFor(Kind) + " trap", "grove-law", "Fire is not laid on the Choir's ground.", '\0', 17)).AtCell(x, y); continue; }
                 string label = "lay the " + WordFor(Kind) + " trap " + d.label;
-                if (fireBanned) { actions.AddDisabled("LaySpringTrap", label, "grove-law", "Fire is not laid on the Choir's ground.", '\0', 17); break; }
-                actions.AddActionWithHint("LaySpringTrap", label, LayPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + N(x) + "|" + N(y), "Lays it on that cell. It springs on the next thing to step there, you included, and is spent. It cannot be taken up again.", '\0', 17, false, ActionTime.OneAction);
+                actions.AddActionWithHint("LaySpringTrap", label, LayPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + N(x) + "|" + N(y), "Lays it on that cell. It springs on the next thing to step there, you included, and is spent. It cannot be taken up again.", '\0', 17, false, ActionTime.OneAction).AtCell(x, y);
             }
         }
 

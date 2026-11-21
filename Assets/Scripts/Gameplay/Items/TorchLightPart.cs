@@ -46,8 +46,10 @@ namespace CavesOfOoo.Core
                 if (CanReach(actor, actor?.SpatialZone))
                 {
                     bool lit = ParentEntity.GetPart<LightSourcePart>()?.Enabled == true;
-                    e.GetParameter<InventoryActionList>("Actions")?.AddAction(lit ? "Extinguish" : "Light",
+                    var row = e.GetParameter<InventoryActionList>("Actions")?.AddAction(lit ? "Extinguish" : "Light",
                         lit ? "extinguish torch" : "light torch at nearby fire", lit ? ExtinguishCommand : LightCommand, 'l', 15);
+                    // Lighting it is something done at a fire: the interact menu of each burning fire beside you offers it too. A held flame or a striker works anywhere and is not a place, so it tags nothing.
+                    if (row != null && !lit) foreach (var fire in IgnitionSources.GroundFiresBeside(actor, actor.SpatialZone, ParentEntity)) row.AtEntity(actor.SpatialZone, fire);
                 }
             }
             if (e.ID == "InventoryAction")

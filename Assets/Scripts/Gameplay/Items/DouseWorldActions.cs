@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
         {
             if (actions == null || !WorldResourceActions.ActorCurrent(actor, zone) || !WaterTransferActions.Vessel(actor, vessel, out int units, out _) || units == 0) return;
             foreach (var target in zone.GetReadOnlyEntities()) if (Target(actor, target, zone))
-                actions.AddAction("DouseWorld", "douse " + target.GetDisplayName() + " (1 water)", Prefix + Uri.EscapeDataString(target.ID), '\0', 16);
+                actions.AddAction("DouseWorld", "douse " + target.GetDisplayName() + " (1 water)", Prefix + Uri.EscapeDataString(target.ID), '\0', 16).AtEntity(zone, target);
         }
         internal static bool TryAct(Entity actor, Entity vessel, Zone zone, string command, InventoryTransaction tx)
         {

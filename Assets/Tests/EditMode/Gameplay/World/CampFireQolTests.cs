@@ -120,6 +120,30 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains("1 strike, 17 left", rows.Single().Display);
         }
 
+        [Test] public void TheLiveCMenuCompositionStillCarriesTheLightItRow()
+        {
+            Striker(17); var grass = Place("Grass", 11, 10); Zone.TileState.WriteCoating(11, 10, Oil, 5);
+            var rows = WorldInteractionSystem.GatherCellActions(grass, Zone.GetCell(11, 10), Actor); StringAssert.Contains("1 strike, 17 left", rows.Single(a => a.Name == "LightCell").Display, "the input handler builds the menu only through this composition, so the ignition row must come through it");
+        }
+
+        [Test] public void TheFiresOwnMenuOffersToLightTheTorchInHandAtIt_RunByTheTorch_AndNoOtherCellDoes()
+        {
+            var torch = Carry("Torch"); Assert.True(InventorySystem.Equip(Actor, torch), "fixture: a torch in hand"); Assert.True(Act(torch, "ExtinguishTorch")); Place("Grass", 10, 11);
+            var coals = Place("SpreadCookingCoals", 11, 10); coals.GetPart<FuelPart>().FuelMass = 0; coals.GetPart<ThermalPart>().Temperature = 25; Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Name == "Light"), "cold coals are not a flame to light it at");
+            coals.GetPart<FuelPart>().FuelMass = 10; coals.GetPart<ThermalPart>().Temperature = 500;
+            var rows = CellMenu(11, 10).Where(a => a.Name == "Light").ToArray(); Assert.AreEqual(1, rows.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display))); Assert.AreSame(torch, rows[0].Via); Assert.AreEqual("LightTorch", rows[0].Command);
+            Assert.IsEmpty(CellMenu(10, 11).Where(a => a.Name == "Light"), "a cell with no fire"); Assert.True(ChooseRow(rows[0], 11, 10), string.Join("|", MessageLog.GetRecent(3))); Assert.True(torch.GetPart<ThermalPart>().IsAflame);
+            Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Via == torch), "a torch already lit offers nothing at all at the fire (not even to put it out: that is about the torch, not the fire)");
+        }
+
+        [Test] public void EveryBurningFireBesideYouOffersToLightTheTorch_NotJustTheFirstTheCommandWouldUse()
+        {
+            var torch = Carry("Torch"); Assert.True(InventorySystem.Equip(Actor, torch)); Assert.True(Act(torch, "ExtinguishTorch"));
+            foreach (var x in new[] { 11, 9 }) { var c = Place("SpreadCookingCoals", x, 10); c.GetPart<FuelPart>().FuelMass = 10; c.GetPart<ThermalPart>().Temperature = 500; }
+            Assert.AreEqual(1, CellMenu(11, 10).Count(a => a.Name == "Light")); Assert.AreEqual(1, CellMenu(9, 10).Count(a => a.Name == "Light"), "the second fire offers it too");
+            var far = Place("SpreadCookingCoals", 13, 10); far.GetPart<FuelPart>().FuelMass = 10; far.GetPart<ThermalPart>().Temperature = 500; Assert.IsEmpty(CellMenu(13, 10).Where(a => a.Name == "Light"), "a fire two cells off is not beside you");
+        }
+
         [Test] public void AWornFlintSaysToKnapItWhereAFlameWasWanted()
         {
             var h = Hearth(10); Striker(0); Carry("IronSpikeComponent"); StringAssert.Contains("knap", Row(h, "RelightCookingFire").DisabledReason.ToLowerInvariant());

@@ -230,5 +230,14 @@ namespace CavesOfOoo.Tests
             string code = Refuse(special, false, out string said); Assert.AreEqual("not-ordinary", code, name + " sits on a point of interest"); StringAssert.Contains("no solid floor", said);
             Refuse("Overworld.5.5.0", false, out string surface); StringAssert.Contains("too loose", surface);
         }
+
+        // ── the interact (C) menu of the cell you stand in ──
+
+        [Test] public void TheCellYouStandInOffersToSoundTheGround_RunByTheRod_AndNoOtherCellDoes()
+        {
+            var own = CellMenu(40, 12).Where(a => a.Name == "SoundGround").ToArray(); Assert.AreEqual(1, own.Length); Assert.AreSame(rod, own[0].Via); Assert.AreEqual(SoundRow(), own[0].Command, "the very command the pack row runs");
+            Assert.IsEmpty(CellMenu(41, 12).Where(a => a.Name == "SoundGround"), "it is about the floor under you");
+            Actor.IntProperties.Remove(Noise.Property); Assert.True(ChooseRow(own[0], 40, 12), Said()); Assert.True(Noise.Recent(Actor, 1), "the strike is loud, as it is from the pack");
+        }
     }
 }

@@ -99,7 +99,9 @@ namespace CavesOfOoo.Core
             string label = verb == "TouchTorch" ? "touch lit torch" : verb == "FanGas" ? "fan gas (up to 5 density)"
                 : verb == "GroundCharge" ? "ground held charge" : verb == "BraceGrip" ? "brace against wall (one shove, 3 turns)"
                 : verb == "BraceBoots" ? "plant feet (one shove, 3 turns)" : "crack quartz light (1 mineral, 30 turns)";
-            actions.AddAction(verb,label + (target != null ? " — " + target.GetDisplayName() : "") + " [" + x + "," + y + "]",command,'\0',18);
+            var row = actions.AddAction(verb,label + (target != null ? " — " + target.GetDisplayName() : "") + " [" + x + "," + y + "]",command,'\0',18);
+            // Bracing the feet is about you, not a place; the rest act on the cell or the thing at [x,y]. A bare film of oil under a lit torch is already offered as "light it" (FireStarting), so the torch's own row stays for things.
+            if (verb != "BraceBoots" && !(verb == "TouchTorch" && target == null)) { if (target != null) row.AtEntity(zone, target); else row.AtCell(x, y); }
         }
         internal static bool TryAct(Entity actor,Entity item,Zone zone,string command,InventoryTransaction tx)
         {

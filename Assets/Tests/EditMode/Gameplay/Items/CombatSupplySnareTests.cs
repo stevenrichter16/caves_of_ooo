@@ -124,5 +124,13 @@ namespace CavesOfOoo.Tests
             Assert.True(MovementSystem.TryMove(Actor, Zone, 1, 0)); Assert.NotNull(Actor.GetEffect<RootedEffect>());
             Assert.IsNull(Zone.GetEntityCell(copy));
         }
+
+        [Test] public void TheCellsOwnMenuOffersToLayTheSnareThere_RunByTheCord()
+        {
+            Place("Grass", 11, 10); Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Name == "LayCordSnare"), "no cord carried");
+            var cord = Carry("KnotflaxCord"); Amount(cord, 3); var rows = CellMenu(11, 10).Where(a => a.Name == "LayCordSnare").ToArray(); Assert.AreEqual(1, rows.Length);
+            Assert.AreSame(cord, rows[0].Via); Assert.AreEqual(Lay(cord), rows[0].Command); Assert.AreEqual(ActionTime.OneAction, rows[0].Time); Assert.IsEmpty(CellMenu(14, 10).Where(a => a.Name == "LayCordSnare"), "out of reach");
+            Assert.True(ChooseRow(rows[0], 11, 10)); Assert.AreEqual(2, Amount(cord)); Assert.AreEqual((11, 10), Zone.GetEntityPosition(Snare()));
+        }
     }
 }

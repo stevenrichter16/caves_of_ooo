@@ -3,12 +3,15 @@ namespace CavesOfOoo.Core
     /// <summary>A reusable single-liquid vessel. Volume uses the same units as
     /// LiquidPoolPart; its identity and capacity persist through the normal save
     /// stream. Unlike the clean-water waterskin it has no drinking action.</summary>
-    public sealed class LiquidVesselPart : Part
+    public sealed class LiquidVesselPart : Part, IToolMenuState
     {
         public override string Name => "LiquidVessel";
         public int Capacity = 12;
         public int Volume;
         public string LiquidId = "";
+
+        /// <summary>What a menu says to tell two flasks apart: "empty" or "11/12 water".</summary>
+        public string ToolMenuState() => Volume <= 0 ? "empty" : Volume + "/" + Capacity + " " + ((LiquidRegistry.IsInitialized ? LiquidRegistry.Get(LiquidId)?.DisplayName : null) ?? LiquidId);
 
         public override bool HandleEvent(GameEvent e)
         {

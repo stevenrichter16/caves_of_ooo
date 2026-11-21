@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
 using NUnit.Framework;
 using UnityEngine;
@@ -83,6 +84,12 @@ namespace CavesOfOoo.Tests
         { var entity = Place("PouredLiquidPool", x, y); entity.GetPart<LiquidPoolPart>().LiquidId = liquid; entity.GetPart<LiquidPoolPart>().Volume = volume; return entity; }
         protected static int Units(Entity vessel) => vessel.GetPart<WaterskinPart>()?.Charges ?? vessel.GetPart<LiquidVesselPart>().Volume;
         protected bool Act(Entity entity, string command) => InventorySystem.PerformAction(Actor, entity, command, Zone);
+        /// <summary>The interact (C) menu of a cell: exactly the rows the input handler builds for the cell's target.</summary>
+        protected List<InventoryAction> CellMenu(int x, int y)
+        { var cell = Zone.GetCell(x, y); return WorldInteractionSystem.GatherCellActions(WorldInteractionSystem.ResolveTarget(cell, Actor), cell, Actor); }
+        /// <summary>Chooses a row of that menu the way the world menu runs it: the row's own tool does the work, else the menu's target.</summary>
+        protected bool ChooseRow(InventoryAction row, int x, int y)
+            => InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(row.Via ?? WorldInteractionSystem.ResolveTarget(Zone.GetCell(x, y), Actor), row.Command), Actor, Zone).Success;
         protected InventoryAction[] Actions(Entity entity) => InventorySystem.GetActions(Actor, entity).ToArray();
         protected string Choice(Entity source, string prefix, Func<InventoryAction, bool> match = null)
         {

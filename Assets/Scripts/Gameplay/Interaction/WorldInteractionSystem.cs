@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CavesOfOoo.Core
@@ -287,6 +289,7 @@ namespace CavesOfOoo.Core
 
             rows.Sort();
             AppendUnderfootActions(rows.Actions, cell, actor);
+            AppendToolActions(rows.Actions, cell, actor);
             return rows.Actions;
         }
 
@@ -305,6 +308,83 @@ namespace CavesOfOoo.Core
         /// <summary>Adds the "light it" row for a cell beside the actor where a spark would catch (an oil slick), run by the torch or flint striker the actor carries, so lighting never
         /// needs a trip through the pack menu. Nothing is added for any other cell.</summary>
         public static void AppendIgnitionActions(List<InventoryAction> rows, Cell cell, Entity actor) => FireStarting.AddCellRows(rows, cell, actor);
+
+        /// <summary>
+        /// The event a carried tool answers to offer rows for one cell that its pack rows do not already tag (Actor, Zone, Cell, Actions). A tool whose pack rows already name the cell they act on does not need it: it tags
+        /// those rows (<see cref="InventoryAction.AtCell"/>) and <see cref="AppendToolActions"/> reads them. A tool that works on whatever is in the cell (a scraper on a vent) answers this event for the cell asked about.
+        /// </summary>
+        public const string WorldCellActionsEvent = "GetWorldCellActions";
+
+        /// <summary>
+        /// Adds what the tools the actor carries (or holds) can do to <paramref name="cell"/>, so using a tool on the environment never needs the pack opened: the rows the pack menu would show for each item that act on this
+        /// cell, plus any the item offers for it through <see cref="WorldCellActionsEvent"/>. Each row is run by the item that offered it (<see cref="InventoryAction.Via"/>) with the command and checks the pack row has;
+        /// a row that declares no turn cost costs one action, as the pack charges for these; hotkeys are dropped so none can clash with the menu's own; a label that does not say which item is told which; identical rows from identical items collapse to one; and rows come
+        /// after the cell's own, most prominent first, so the first row of a menu is never a tool. Nothing is added for an actor who cannot act, and nothing about the actor, pack or world changes by asking.
+        /// </summary>
+        public static void AppendToolActions(List<InventoryAction> rows, Cell cell, Entity actor)
+        {
+            var zone = cell?.ParentZone; var pack = actor?.GetPart<InventoryPart>();
+            if (rows == null || zone == null || pack == null || !WorldResourceActions.ActorCurrent(actor, zone)) return;
+            var offered = new List<(InventoryAction row, Entity item)>();
+            foreach (var item in pack.Objects.Concat(pack.EquippedItems.Values).Where(i => i != null).Distinct().ToArray())
+            {
+                foreach (var row in InventorySystem.GetActions(actor, item)) if (row != null && !row.FireOnActor && row.ActsOnCell(cell.X, cell.Y)) offered.Add((row, item));
+                var list = new InventoryActionList(); var e = GameEvent.New(WorldCellActionsEvent);
+                e.SetParameter("Actor", (object)actor); e.SetParameter("Zone", (object)zone); e.SetParameter("Cell", (object)cell); e.SetParameter("Actions", (object)list);
+                item.FireEventAndRelease(e);
+                foreach (var row in list.Actions) if (row != null && !row.FireOnActor) offered.Add((row, item));
+            }
+            if (offered.Count == 0) return;
+            foreach (var (row, item) in offered)
+            {
+                row.Via ??= item; row.Key = '\0';
+                if (row.Time == ActionTime.Unspecified && !row.IsDisabled) row.Time = ActionTime.OneAction;
+                string name = ToolName(item);
+                if (!row.Shared && (row.Display == null || row.Display.IndexOf(name, StringComparison.OrdinalIgnoreCase) < 0)) row.Display = (row.Display ?? "") + " [" + name + "]";
+            }
+            offered.Sort((a, b) =>
+            {
+                int c = b.row.Priority.CompareTo(a.row.Priority); if (c != 0) return c;
+                c = string.CompareOrdinal(a.row.Display, b.row.Display); if (c != 0) return c;
+                c = a.row.IsDisabled.CompareTo(b.row.IsDisabled); if (c != 0) return c;   // of two rows that read alike, the one you can use is the one kept
+                return string.CompareOrdinal(a.item.ID, b.item.ID);
+            });
+            // An empty flask and a full one read alike ("fill with water (11,10) [liquid flask]") but do different things: where items of the same name differ in what they hold, each row says what its item holds.
+            foreach (var group in offered.Where(o => !o.row.Shared).GroupBy(o => o.row.Display).ToList())
+            {
+                if (group.Select(o => ToolState(o.item)).Distinct().Count() < 2) continue;
+                foreach (var o in group) { string state = ToolState(o.item); if (state.Length > 0) o.row.Display += " (" + state + ")"; }
+            }
+            // Four flasks of the same mire all read "pour bog mire east (12) [liquid flask]": the same choice four times. Rows that read alike collapse to the first (lowest id), so a full pack does not multiply a menu. A shared
+            // row ("make camp here") is offered by every kit and is one choice whichever runs it.
+            var seen = new HashSet<string>();
+            foreach (var (row, _) in offered) if (seen.Add(row.Shared ? "shared|" + row.Name + "|" + row.Display : row.Display)) rows.Add(row);
+        }
+
+        /// <summary>What an item holds, when that decides what its rows do: what a flask or waterskin contains (<see cref="IToolMenuState"/>) and how many are in a stack ("x3"), or an empty string.</summary>
+        static string ToolState(Entity item)
+        {
+            string state = "";
+            foreach (var part in item.Parts) if (part is IToolMenuState held) { string text = held.ToolMenuState(); if (!string.IsNullOrEmpty(text)) { state = text; break; } }
+            int count = item.GetPart<StackerPart>()?.StackCount ?? 1;
+            return count > 1 ? (state.Length == 0 ? "x" + count : state + ", x" + count) : state;
+        }
+
+        /// <summary>What a tool is called in a menu row: its plain name, without a stack count or a charge counter.</summary>
+        static string ToolName(Entity item) => item.GetPart<RenderPart>()?.DisplayName is string name && name.Length > 0 ? name : item.BlueprintName ?? "tool";
+
+        /// <summary>
+        /// The menu the interact (C) key opens for one cell's target: the target's own rows, then the rows that belong to the cell and the actor rather than to any one object there (what is underfoot, lighting an oil slick,
+        /// what the tools you carry can do to the cell). The input handler builds the live menu only through this, so a row added here reaches the player and a row added anywhere else does not.
+        /// </summary>
+        public static List<InventoryAction> GatherCellActions(Entity target, Cell cell, Entity actor)
+        {
+            var actions = GatherActions(target, actor);
+            AppendUnderfootActions(actions, cell, actor, target);
+            AppendIgnitionActions(actions, cell, actor);
+            AppendToolActions(actions, cell, actor);
+            return actions;
+        }
 
         public static List<InventoryAction> BuildTargetPickerActions(Cell cell)
             => BuildTargetPickerActions(cell, null);

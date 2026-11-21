@@ -59,6 +59,38 @@ namespace CavesOfOoo.Core
         /// <summary>Declared turn cost; <see cref="ActionTime.Unspecified"/> means the legacy chains decide.</summary>
         public ActionTime Time = ActionTime.Unspecified;
 
+        /// <summary>
+        /// The cells this row acts on, when it acts on a place or on a thing standing in one: where a device would be laid, the pool to draw from, the fire to douse. A row that acts on the item itself or on the actor leaves it null.
+        /// The pack menu ignores it. The interact (C) menu of one of these cells offers the row, run by the carried item that produced it, so the tool never needs the pack opened (Docs/WORLD-TOOL-ROWS.md). A tool opts in by
+        /// tagging the row it already shows in the pack; the command, its checks and its cost are the pack row's own.
+        /// </summary>
+        public List<(int x, int y)> TargetCells;
+
+        /// <summary>
+        /// True for a row that is about the place or the whole kit rather than the item that offers it ("make camp here" is offered by every kit you carry and does the same whichever runs it). The interact menu
+        /// keeps one such row, does not name an item on it, and does not tell items apart by what they hold.
+        /// </summary>
+        public bool Shared;
+
+        /// <summary>Marks this row as acting on the cell (<paramref name="x"/>, <paramref name="y"/>); returns the row so a producer can tag as it adds.</summary>
+        public InventoryAction AtCell(int x, int y) { (TargetCells ??= new List<(int x, int y)>()).Add((x, y)); return this; }
+
+        /// <summary>Marks this row as acting on <paramref name="target"/>: every cell it occupies in <paramref name="zone"/>, so a big thing is offered the row from any side. A target that is not in the zone tags nothing.</summary>
+        public InventoryAction AtEntity(Zone zone, Entity target)
+        {
+            if (zone == null || target == null) return this;
+            foreach (var cell in zone.GetOccupiedCells(target)) if (cell != null) AtCell(cell.X, cell.Y);
+            return this;
+        }
+
+        /// <summary>Whether this row acts on the cell (<paramref name="x"/>, <paramref name="y"/>).</summary>
+        public bool ActsOnCell(int x, int y)
+        {
+            if (TargetCells == null) return false;
+            for (int i = 0; i < TargetCells.Count; i++) if (TargetCells[i].x == x && TargetCells[i].y == y) return true;
+            return false;
+        }
+
         /// <summary>Stable token naming why the row is unavailable (for example "faulted"); empty when enabled.</summary>
         public string DisabledCode = "";
 
@@ -83,6 +115,15 @@ namespace CavesOfOoo.Core
             Priority = priority;
             FireOnActor = fireOnActor;
         }
+    }
+
+    /// <summary>
+    /// Implemented by a Part whose item's rows differ in effect with what the item holds (a flask, a waterskin). The interact menu uses it only to tell two items of the same name apart when their rows read
+    /// alike ("fill with water [liquid flask] (empty)" and "(11/12 water)"); items that hold the same collapse to one row. An empty string means nothing worth telling.
+    /// </summary>
+    public interface IToolMenuState
+    {
+        string ToolMenuState();
     }
 
     /// <summary>

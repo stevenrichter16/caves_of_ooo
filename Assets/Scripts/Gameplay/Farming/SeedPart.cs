@@ -48,17 +48,20 @@ namespace CavesOfOoo.Core
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null && IsCarried(e.GetParameter<Entity>("Actor")))
                 {
-                    actions.AddAction("Plant", "plant here", "PlantSeed", 'p', 20);
+                    // The plain plant costs no turn in the pack (only "plant prepared bed" does); the row says so, so the interact menu charges exactly what the pack does.
+                    var here = actions.AddAction("Plant", "plant here", "PlantSeed", 'p', 20, false, ActionTime.Free);
                     var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? SettlementRuntime.ActiveZone;
                     if (WorldResourceActions.ActorCurrent(actor, zone))
                     {
+                        // The cell you stand in offers it (from the interact menu) only where it could take: ground that is plantable, bare of crop, and tilled if this seed needs it.
+                        var standing = zone.GetEntityCell(actor); if (standing != null && CanPlantAt(zone, standing, false)) here.AtCell(standing.X, standing.Y);
                         var origin = zone.GetEntityPosition(actor);
                         for (int y = origin.y - 1; y <= origin.y + 1; y++) for (int x = origin.x - 1; x <= origin.x + 1; x++)
                         {
                             var bed = zone.GetCell(x, y);
                             if ((x == origin.x && y == origin.y) || !CultivatedSoilPart.IsCultivated(zone, bed) || bed.HasObjectWithPart<CropPart>()) continue;
                             actions.AddAction("PlantAdjacent", "plant prepared bed (" + x + "," + y + ")",
-                                AdjacentPrefix + Uri.EscapeDataString(zone.ZoneID) + "|" + x + "|" + y, '\0', 19);
+                                AdjacentPrefix + Uri.EscapeDataString(zone.ZoneID) + "|" + x + "|" + y, '\0', 19).AtCell(x, y);
                         }
                     }
                 }
@@ -79,6 +82,15 @@ namespace CavesOfOoo.Core
             }
 
             return true;
+        }
+
+        /// <summary>Whether a seed of this kind could take in <paramref name="cell"/> as it stands: plantable terrain, no crop already growing, not barren, and tilled soil where this seed (or a prepared-bed row) needs it. The same gates <see cref="DoPlant"/> applies.</summary>
+        bool CanPlantAt(Zone zone, Cell cell, bool preparedBedRow)
+        {
+            if (zone == null || cell == null || cell.HasObjectWithPart<CropPart>() || BarrenGroundRules.IsBarren(cell)) return false;
+            bool plantable = false;
+            for (int i = 0; i < cell.Objects.Count && !plantable; i++) plantable = cell.Objects[i].HasTag("Terrain") && cell.Objects[i].HasTag("Plantable");
+            return plantable && (!(RequireCultivatedSoil || preparedBedRow) || CultivatedSoilPart.IsCultivated(zone, cell));
         }
 
         private bool DoPlant(Entity actor, GameEvent e)

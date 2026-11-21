@@ -59,7 +59,7 @@ namespace CavesOfOoo.Core
             {
                 int x = origin.X + d.x, y = origin.Y + d.y; if (!EmptyDestination(zone, origin, x, y)) continue;
                 string command = Prefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + N(x) + "|" + N(y) + "|" + Uri.EscapeDataString(ParentEntity.ID);
-                actions.AddActionWithHint("LayDevice", "lay " + Label + " " + d.label, command, "Lays one " + Label + " on that cell. You can take it up again from beside it" + (Recoverable() ? "." : ": no, once laid it is spent."), '\0', 18, false, ActionTime.OneAction);
+                actions.AddActionWithHint("LayDevice", "lay " + Label + " " + d.label, command, "Lays one " + Label + " on that cell. You can take it up again from beside it" + (Recoverable() ? "." : ": no, once laid it is spent."), '\0', 18, false, ActionTime.OneAction).AtCell(x, y);
             }
         }
 

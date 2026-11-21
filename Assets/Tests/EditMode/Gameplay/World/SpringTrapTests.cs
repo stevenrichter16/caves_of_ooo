@@ -150,5 +150,28 @@ namespace CavesOfOoo.Tests
         {
             Assert.True(File.ReadAllText(Path.Combine(Application.dataPath, "Resources/Content/Data/Loot/LootTables.json")).Contains("\"SpringTrap\"")); Assert.NotNull(Factory.CreateEntity("SpringTrap").GetPart<SpringTrapKitPart>());
         }
+
+        // ── the cell's own interact (C) menu: laying needs no trip through the pack ──
+
+        [Test] public void TheCellsOwnMenuOffersToLayTheLoadedTrapThere_RunByTheKit_AndOnlyBesideYou_AndAnUnloadedKitOffersNone()
+        {
+            Place("Grass", 11, 10); Place("Grass", 14, 10); var kit = Carry("SpringTrap"); Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Name == "LaySpringTrap"), "unloaded: nothing to lay yet"); Carry("FireMoss");
+            Assert.True(Act(kit, LoadRows(kit).Single().Command)); var rows = CellMenu(11, 10).Where(a => a.Name == "LaySpringTrap").ToArray(); Assert.AreEqual(1, rows.Length, string.Join(" / ", CellMenu(11, 10).Select(a => a.Display)));
+            Assert.AreSame(kit, rows[0].Via); Assert.AreEqual(LayRows(kit).Single(r => r.Display.EndsWith(" east")).Command, rows[0].Command, "the very command the pack row runs"); Assert.AreEqual(ActionTime.OneAction, rows[0].Time);
+            Assert.IsEmpty(CellMenu(14, 10).Where(a => a.Name == "LaySpringTrap"), "out of reach"); Assert.True(ChooseRow(rows[0], 11, 10), string.Join("|", MessageLog.GetRecent(3)));
+            Assert.NotNull(Zone.GetCell(11, 10).Objects.FirstOrDefault(e => e.BlueprintName == "SpringTrapLaid"), "the trap lies on the cell you chose"); Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Name == "LaySpringTrap"), "a cell that holds a device is not offered another");
+        }
+
+        [Test] public void OnTheChoirsGroundEachOpenCellSaysWhyFireIsNotLaidThere_AndFrostIsOfferedPlainly()
+        {
+            string groveId = Enumerable.Range(0, WorldMap.Width * WorldMap.Height).Select(i => WorldMap.ToZoneID(i % WorldMap.Width, i / WorldMap.Width, 0))
+                .First(id => { var (x, y, z) = WorldMap.FromZoneID(id); return WorldMapAuthoring.BiomeAt(x, y) == BiomeType.Grovelands; });
+            Zone.RemoveEntity(Actor); Zone = new Zone(groveId); Assert.True(Zone.AddEntity(Actor, 10, 10)); SettlementRuntime.ActiveZone = Zone; Assert.True(GroveLaw.IsChoirGround(Zone), "fixture: grove ground");
+            Place("Grass", 11, 10); Place("Grass", 10, 11); var kit = LoadedKit("FireMoss");
+            var east = CellMenu(11, 10).Where(a => a.Name == "LaySpringTrap").ToArray(); var south = CellMenu(10, 11).Where(a => a.Name == "LaySpringTrap").ToArray();
+            Assert.AreEqual(1, east.Length); Assert.True(east[0].IsDisabled); Assert.AreEqual("grove-law", east[0].DisabledCode); Assert.AreEqual(1, south.Length); Assert.True(south[0].IsDisabled, "each open cell offers the refusal, not only the first");
+            Assert.False(east[0].Display.Contains("east"), "the one refusal row names no direction, so it reads right on every cell"); Assert.AreEqual(1, LayRows(kit).Length, "the pack still shows one refusal row");
+            var cold = LoadedKit("FrostLichen"); Assert.AreEqual(1, CellMenu(11, 10).Count(a => a.Name == "LaySpringTrap" && !a.IsDisabled && a.Via == cold), "frost is not fire: offered");
+        }
     }
 }

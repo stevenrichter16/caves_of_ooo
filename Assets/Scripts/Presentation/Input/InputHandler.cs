@@ -3034,9 +3034,7 @@ namespace CavesOfOoo.Rendering
 
             // Actor-aware gather: stations add in-menu crafting toggle rows
             // for the player's carried items (M3-L3 live-playtest finding).
-            var actions = WorldInteractionSystem.GatherActions(target, PlayerEntity);
-            WorldInteractionSystem.AppendUnderfootActions(actions, cell, PlayerEntity, target);
-            WorldInteractionSystem.AppendIgnitionActions(actions, cell, PlayerEntity);
+            var actions = WorldInteractionSystem.GatherCellActions(target, cell, PlayerEntity);
             if (actions.Count == 0)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
@@ -4715,12 +4713,29 @@ namespace CavesOfOoo.Rendering
         {
             if (context.Pile) return WorldInteractionSystem.BuildPileSummaryActions(context.Cell, PlayerEntity);
             if (context.Picker) return WorldInteractionSystem.BuildTargetPickerActions(context.Cell, PlayerEntity);
-            var actions = WorldInteractionSystem.GatherActions(context.Owner, PlayerEntity);
-            WorldInteractionSystem.AppendUnderfootActions(actions, context.Cell, PlayerEntity, context.Owner);
+            // The same composition the menu was opened with, so the details reader (and the menu it restores) keeps the tool and ignition rows.
+            var actions = WorldInteractionSystem.GatherCellActions(context.Owner, context.Cell, PlayerEntity);
             if ((context.Back || WorldInteractionSystem.BuildTargetPickerActions(context.Cell, PlayerEntity).Count > 1)
                 && !actions.Exists(a => a.Command == WorldInteractionSystem.PickCellCommand))
                 actions.Add(new InventoryAction("PickCell", "<< everything here", WorldInteractionSystem.PickCellCommand, '\0', 0));
             return actions;
+        }
+
+        /// <summary>What the details reader remembers of the open menu so it can rebuild it and put the highlight back: the target, the cell, the kind of menu and the row's identity, which includes the tool that runs it (two flasks fill from one pool with one command).</summary>
+        private WorldActionReaderContext BuildReaderContext(WorldActionMenuUI menu, InventoryAction selected)
+            => new WorldActionReaderContext { Owner = menu.SelectedTarget, Cell = menu.SelectedCell,
+                Identity = new InventoryAction(selected.Name, selected.Display, selected.Command, selected.Key,
+                    selected.Priority, selected.FireOnActor) { Via = selected.Via }, Pile = menu.SelectedCellIsPile,
+                Picker = menu.IsTargetPicker, Back = menu.HasBackRow };
+
+        /// <summary>The fresh row that is the highlighted row again: same name, command and firing target, and run by the same tool (two flasks fill from one pool with one command). <paramref name="matches"/> counts the rows that fit, so an ambiguous or vanished row can be refused.</summary>
+        private static InventoryAction FindReaderRow(List<InventoryAction> rows, InventoryAction selected, out int matches)
+        {
+            InventoryAction fresh = null; matches = 0;
+            foreach (var row in rows)
+                if (row != null && row.Name == selected.Name && row.Command == selected.Command && row.FireOnActor == selected.FireOnActor && ReferenceEquals(row.Via, selected.Via))
+                { fresh = row; matches++; }
+            return fresh;
         }
 
         private void OpenWorldActionDetailsReader()
@@ -4728,21 +4743,14 @@ namespace CavesOfOoo.Rendering
             var menu = WorldActionMenuUI;
             var selected = menu?.HighlightedAction;
             if (menu == null || !menu.IsOpen || selected == null || AnnouncementUI == null) return;
-            var context = new WorldActionReaderContext { Owner = menu.SelectedTarget, Cell = menu.SelectedCell,
-                Identity = new InventoryAction(selected.Name, selected.Display, selected.Command, selected.Key,
-                    selected.Priority, selected.FireOnActor), Pile = menu.SelectedCellIsPile,
-                Picker = menu.IsTargetPicker, Back = menu.HasBackRow };
+            var context = BuildReaderContext(menu, selected);
             if (!IsCurrentExamineOwner(context.Owner, context.Cell))
             {
                 RestoreWorldActionReader(context);
                 return;
             }
             var rows = GatherActionReaderRows(context);
-            InventoryAction fresh = null;
-            int matches = 0;
-            foreach (var row in rows)
-                if (row != null && row.Name == selected.Name && row.Command == selected.Command && row.FireOnActor == selected.FireOnActor)
-                { fresh = row; matches++; }
+            var fresh = FindReaderRow(rows, selected, out int matches);
             if (matches != 1 || !IsCurrentExamineOwner(context.Owner, context.Cell))
             {
                 MessageLog.Add("That action is no longer available to inspect.");

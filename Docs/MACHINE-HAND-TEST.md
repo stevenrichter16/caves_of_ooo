@@ -50,7 +50,18 @@ Hush strips are in the Tinker's stock (a bundle of four to eight, a 25% roll) an
 
 ## 2e. The scraper
 
-You start the workshop scenario with one (a Tinker stocks it too). Stand within two cells of a hazard that gives something off (a steam vent or ash bed, a frost vent or ice sheet, a pool of brine, acid or mire) and press **C** on the scraper: "scrape rime flake from the frost vent" and so on. One grain comes at once; the message says it rang. A spent source shows a greyed row; a day later it gives one more. Set a settling tray at the same source and notice that the two share one supply. Below ground, scrape a frost vent for cold reagent and then press it into a flask. With a pale stalker nearby, the ring draws it.
+You start the workshop scenario with one (a Tinker stocks it too). Keep it in your pack and do not open the pack at all. Stand beside a hazard that gives something off (a steam vent or ash bed, a frost vent or ice sheet, a pool of brine, acid or mire), press **C** and the direction of the hazard, and choose "scrape rime flake from the frost vent" (and so on) from the hazard's own menu. Without a scraper in the pack the row is not there; two cells away it is not there either (the pack menu's own row still reaches two cells). With two sources beside you, the row you pick takes from that one. One grain comes at once; the message says it rang. A spent source shows a greyed row; a day later it gives one more. Set a settling tray at the same source and notice that the two share one supply. Below ground, scrape a frost vent for cold reagent and then press it into a flask. With a pale stalker nearby, the ring draws it.
+
+## 2e2. Every tool from the C menu of what it acts on
+
+You should never need the pack to use a tool on the world. With the workshop scenario's pack (or a Tinker's goods), press **C** and a direction (or **.** for your own cell) on each of these and look for the row; choose it and the tool in your pack does it:
+
+- A vent, ash bed, frost vent, ice sheet or brine, acid or mire pool: "scrape ... from the ..." (scraper). A pool or well of fresh water: "fill the waterskin from the ..." (waterskin), or "fill with ..." (a flask). A burning thing: "douse ..." (waterskin).
+- An open cell beside you: "lay hush strip ...", "lay the fire/frost/shock trap ..." (a loaded spring trap kit), "lay cord snare ...", "set down ..." for each camp kit, "pour ... here" and "pour one ..." for a flask, "spread grease" or "scatter grit". With two or more kits: "make camp here" on **your own** cell, once.
+- A prepared bed: "plant prepared bed". Your own cell where a seed could take: "plant here". Your own cell in a deep cave: "sound the ground".
+- A fire, with your torch in hand and out: "light torch at nearby fire"; with raw food: "cook this stack beside a fire"; with fire clay and a burning thing: "smother flames on ...". A thing that would catch, with a torch in hand: "touch lit torch". Gas with the fan, a wall with the grip wrap, a cell with glow quartz.
+
+Check that each row is **below** the cell's own rows (so `C`, direction, `Enter` still examines), that it names the tool when the label does not, that four identical flasks give one pour row, that nothing is offered two cells off or for a creature, and that choosing a row costs the same as the pack row. See `Docs/WORLD-TOOL-ROWS.md`. If a loaded camp makes the menu feel like a wall, say so: the fix is one grouped row.
 
 ## 2f. The spring trap
 

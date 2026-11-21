@@ -204,5 +204,15 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(dv, target?.GetStatValue("DV") ?? 0);
             Assert.False(DiagQuery.Apply(new DiagQuery.Filter { Category="event", Kind="MaterialFieldUsed" }).Records.Any());
         }
+
+        [Test] public void AnObjectsOwnMenuOffersTheMaterialToIt_ButACreatureIsNotTheEnvironment_Counter()
+        {
+            var moss = Carry("FireMoss"); var barrel = Place("WoodenBarrel"); string kindle = Select(moss, "Kindle", barrel);
+            var rows = CellMenu(11, 10).Where(a => a.Name == "MaterialField").ToArray(); Assert.AreEqual(1, rows.Length, string.Join(" / ", rows.Select(r => r.Display)));
+            Assert.AreSame(moss, rows[0].Via); Assert.AreEqual(kindle, rows[0].Command); Assert.True(ChooseRow(rows[0], 11, 10)); Assert.NotNull(barrel.GetEffect<BurningEffect>());
+            Zone.RemoveEntity(barrel); var creature = HotTarget(); var salt = Carry("GlacierSalt");
+            Assert.True(Actions(salt).Any(a => a.Command.StartsWith("MaterialField|Cool|") && a.Command.Contains(Id(creature))), "fixture: the pack offers to cool the creature");
+            Assert.IsEmpty(CellMenu(11, 10).Where(a => a.Name == "MaterialField" && a.Command.Contains(Id(creature))), "a creature's cell does not offer it: that is care of a creature, not work on the environment");
+        }
     }
 }

@@ -100,5 +100,18 @@ namespace CavesOfOoo.Tests
             var post = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == "ElementalProvingPost"); var call = WorldInteractionSystem.GatherActions(post, Actor).Single(a => a.Command == "CallProvingFoe|IceWight"); Assert.True(Act(post, call.Command));
             Assert.NotNull(Zone.GetReadOnlyEntities().SingleOrDefault(e => e.BlueprintName == "IceWight"));
         }
+
+        [Test] public void TheWholeWorkshopCarriedKeepsAnOrdinaryCellsInteractMenuShort_NoRowRepeatsAndIdenticalFlasksAreOneChoice()
+        {
+            Run(); foreach (var cell in Zone.Cells) cell.IsVisible = cell.Explored = true;
+            var origin = Zone.GetEntityCell(Actor); int worst = 0;
+            foreach (var (dx, dy) in new[] { (0, 1), (-1, 0), (-1, 1), (1, 1) })
+            {
+                var tools = CellMenu(origin.X + dx, origin.Y + dy).Where(a => a.Via != null).ToList(); worst = System.Math.Max(worst, tools.Count);
+                Assert.AreEqual(tools.Count, tools.Select(a => a.Display).Distinct().Count(), "no row reads the same twice: " + string.Join(" | ", tools.Select(a => a.Display)));
+            }
+            Assert.LessOrEqual(worst, 6, "four identical mire flasks, a brine, a hush strip and the rest of the pack must not turn a plain cell's menu into a wall");
+            Assert.Greater(worst, 0, "fixture: the workshop does carry tools that act on an open cell");
+        }
     }
 }

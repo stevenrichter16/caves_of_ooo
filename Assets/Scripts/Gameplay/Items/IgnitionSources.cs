@@ -40,6 +40,20 @@ namespace CavesOfOoo.Core
             var striker = source?.GetPart<FlintStrikerPart>();
             return striker == null || striker.Spend(actor, tx, use);
         }
+        /// <summary>Every burning fire standing on the ground beside (or under) the actor: the places a torch could be lit at. Looks only at the cells around the actor, so it costs the same in any size of zone.</summary>
+        internal static System.Collections.Generic.List<Entity> GroundFiresBeside(Entity actor, Zone zone, Entity exclude)
+        {
+            var found = new System.Collections.Generic.List<Entity>(); var at = zone == null || actor == null ? null : zone.GetEntityCell(actor);
+            if (at == null || !WorldResourceActions.ActorCurrent(actor, zone)) return found;
+            for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++)
+            {
+                var cell = zone.GetCell(at.X + dx, at.Y + dy); if (cell == null) continue;
+                foreach (var source in cell.Occupants)
+                    if (source != null && source != exclude && !found.Contains(source) && WorldResourceActions.Ground(source, zone) && SpatialQuery.Distance(zone, actor, source) <= 1 && Hot(source)) found.Add(source);
+            }
+            return found;
+        }
+
         static bool Hot(Entity source)
         {
             var heat = source.GetPart<ThermalPart>(); var fuel = source.GetPart<FuelPart>();

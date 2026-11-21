@@ -146,8 +146,9 @@ namespace CavesOfOoo.Rendering
         public void RestoreHighlight(InventoryAction identity)
         {
             if (!_isOpen || identity == null) return;
+            // A tool row is told from another by the item that runs it too: two flasks fill from the same pool with the same command.
             int found = _actions.FindIndex(a => a != null && a.Name == identity.Name &&
-                a.Command == identity.Command && a.FireOnActor == identity.FireOnActor);
+                a.Command == identity.Command && a.FireOnActor == identity.FireOnActor && ReferenceEquals(a.Via, identity.Via));
             if (found >= 0) { _cursorIndex = found; ScrollIntoView(); Render(); }
         }
 

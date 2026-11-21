@@ -93,6 +93,15 @@ namespace CavesOfOoo.Core
                 && physics.InInventory == actor && physics.Equipped == null && food.SpatialZone == null;
         }
 
+        /// <summary>Every campfire, hearth or stove beside the actor that the cook command would accept right now (the same test <see cref="TryCook"/> applies), so each can offer "cook" on its own menu.</summary>
+        public static System.Collections.Generic.List<Entity> StationsBeside(Entity actor, Zone zone)
+        {
+            var found = new System.Collections.Generic.List<Entity>(); if (zone?.GetEntityCell(actor) == null) return found;
+            foreach (var entity in zone.GetReadOnlyEntitiesWithPart<CampfirePart>())
+                if (new StationProof(entity, zone).Current(actor, zone)) found.Add(entity);
+            return found;
+        }
+
         private static StationProof FindStation(Entity actor, Zone zone)
         {
             if (zone?.GetEntityCell(actor) == null) return null;
