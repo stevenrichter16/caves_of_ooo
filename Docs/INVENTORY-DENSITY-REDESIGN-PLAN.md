@@ -350,3 +350,21 @@ separate; chronology/protective NPC prerequisites still precede exposure.
 
 The second slice is bounded; category controls/sorting and broader redesign gates
 remain open. The detailed receipt preserves field/charge/treatment scope and limits.
+
+## Current package
+
+November22 [current public-state Mac candidate](Verification/MachineSystems/MacCandidate910F86DAE/README.md)
+packages pushed/remotely verified runtime910f86dae. Universal6000.3.4f1/nondev,
+56.487838s/0errors/5warnings exactly matchingFD4. Own74682/window70681 actual
+chooser/world/HUD boot; generation2667->2668final/7creatures. Fresh nativeinput
+preflightfalse, NO input posted, so packagedinventory/actions/save/controller
+remain open.32005source/32008effective/592external/186app pins;83changed0missing/
+3added exactoverlay, runtimeC# unchanged on import. Independent final artifact
+review0P1/P2; fresh full logicalprefs/Savesabsent and all5priorapps186files each
+independently checked. Main stopped/rootnull/clean/profilerfalse,84foreign861normal
+fresh17:37unchanged. All copies/builds retained; no new delivery/full12 acceptance.
+NEXT: ordinary regional mire supply->existing processing->useful output
+source/design/native baseline. Public inventory state and44/66 layout are
+published; category/sort and physical-input gates remain separate. Reuse accepted
+fixture oil/cold and finite-poured-fuel evidence; do not reopen closed P2.
+Chronology/protective NPC prerequisites remain before shared exposure enrollment.

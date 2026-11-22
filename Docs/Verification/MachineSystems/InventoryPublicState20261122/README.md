@@ -151,7 +151,8 @@ Fresh17:21UTC84foreign tracked and861normal selected files unchanged; no whole-
 directory/plist byte-exact claim. All prior builds, normal saves/preferences,
 foreign files and parked art preserved. No new profiler/FPS/performance claim;
 cache behavior is source/native-test evidence. Controller/pointer tests are not
-physical hardware/Deck evidence. Macfd4 predates this increment until a new receipt.
+physical hardware/Deck evidence. Published runtime910f86dae is now in ../MacCandidate910F86DAE/README.md:
+verified universal build/boot, packaged inventory actions still open.
 
 Next: coherent current Mac candidate, then source/design and actual baseline for
 an ORDINARY regional mire supply→existing camp/community processing→useful output

@@ -1,3 +1,19 @@
+November22 [current public-state Mac candidate](Verification/MachineSystems/MacCandidate910F86DAE/README.md)
+packages pushed/remotely verified runtime910f86dae. Universal6000.3.4f1/nondev,
+56.487838s/0errors/5warnings exactly matchingFD4. Own74682/window70681 actual
+chooser/world/HUD boot; generation2667->2668final/7creatures. Fresh nativeinput
+preflightfalse, NO input posted, so packagedinventory/actions/save/controller
+remain open.32005source/32008effective/592external/186app pins;83changed0missing/
+3added exactoverlay, runtimeC# unchanged on import. Independent final artifact
+review0P1/P2; fresh full logicalprefs/Savesabsent and all5priorapps186files each
+independently checked. Main stopped/rootnull/clean/profilerfalse,84foreign861normal
+fresh17:37unchanged. All copies/builds retained; no new delivery/full12 acceptance.
+NEXT: ordinary regional mire supply->existing processing->useful output
+source/design/native baseline. Public inventory state and44/66 layout are
+published; category/sort and physical-input gates remain separate. Reuse accepted
+fixture oil/cold and finite-poured-fuel evidence; do not reopen closed P2.
+Chronology/protective NPC prerequisites remain before shared exposure enrollment.
+
 November22 [public inventory state](Verification/MachineSystems/InventoryPublicState20261122/README.md)
 adds cached public flask contents/water charges and opt-in garment treatments to
 rows, selected/F1 details and literal search, preserving44/66 entries and exact
@@ -205,12 +221,12 @@ ignition paths/native persistence verified; physical water and natural/multi-cel
 sources retain their separate contract. This closes the bounded P2 below, not
 global fuel conservation or any complete-machine dependency gate.
 
-Latest bounded qualification: [native camp oil/cold trap chain](Verification/MachineSystems/ColdOilPlay20261121/README.md)
-demonstrates still12mire→3oil and shared brine freezing/oil ignition. It does not
-close the dependency matrix: recoverable poured oil Volume1 survives consumption
-of its ignition film. This source-reviewed P2 needs explicit finite combustion
-debit and native RED/recovery/reload countercases. Water freezing/charging must
-not inherit fuel depletion blindly. [Mac candidate](Verification/MachineSystems/MacCandidateBc0511d4d/README.md)
+Earlier fixture qualification: [native camp oil/cold trap chain](Verification/MachineSystems/ColdOilPlay20261121/README.md)
+demonstrated still12mire→3oil and shared brine freezing/oil ignition. At that
+checkpoint recoverable poured oil survived film ignition; the newer finite-fuel
+correction above closes that bounded P2. Do not reopen it from this historical
+receipt. The full dependency matrix remains open; water freezing/charging retains
+its distinct contract. [Mac candidate](Verification/MachineSystems/MacCandidateBc0511d4d/README.md)
 builds with0errors/5warnings but has no standalone acceptance; all twelve gates
 remain open. No new runtime behavior in these receipts.
 
