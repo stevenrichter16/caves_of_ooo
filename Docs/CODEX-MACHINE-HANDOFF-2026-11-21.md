@@ -2,6 +2,18 @@
 
 ## Resumed continuation — November 21 evening
 
+November22 [native freight qualification](Verification/MachineSystems/Freight20261122/README.md):
+fixture60drams/timber8 plus separateprearrivedspikes2; actual Cinderhold half
+shipment420 costs3drams, carry4/cart4, ready4020; fresh420 exact. Ordinary
+travelLastCounter, early780noCollect,324nativepaidwaits→4020HP40, collectmerges
+Timber4→8/cartempty/57drams; fresh4020 no duplicate collection. No runtime
+changes/newtests/ordinaryacquisition or all-machine acceptance. Archives
+`/private/tmp/coo-freight-{sent,delivered}-earned-20261122/6ea58bdf6fe04067a63967f244bc4e4a`.
+Mainstopped/nullroot/seed0/inputrestored;84foreign/861normal unchanged. Next:
+ordinary resin/quartz supply and proofing flask destination access, then gated
+shared exposure/NPC survival trial. Current Mac477 unchanged; hourly ACTIVE.
+
+
 Newest [Posy bench integration](Verification/MachineSystems/PosyBenchIntegration20261121/README.md)
 qualifies successful native lacquer, crowded late bench work and shared garment
 slots. Earned workshop160→ordinarytravelPosy320; cheapbrightseed+moss350→370

@@ -1,3 +1,9 @@
+**November22 NPC transport qualification:** [freight receipt](Verification/MachineSystems/Freight20261122/README.md)
+records actual half-stack custody/fee, travel/game-time arrival, collection/merge
+and fresh420/4020 without duplicated stock. This supplies an ordinary NPC-service
+alternative for transporting workshop stock, not a new machine implementation or
+ordinary acquisition/all-roster acceptance. Twelve-machine dependencies unchanged.
+
 **November21 Posy bench integration:** [native receipt](Verification/MachineSystems/PosyBenchIntegration20261121/README.md)
 qualifies successful worn/late carried lacquer, exact finite resin/stack ownership,
 shared coat+lacquer two-slot refusal and fresh390HP400. Existing behavior; no new
