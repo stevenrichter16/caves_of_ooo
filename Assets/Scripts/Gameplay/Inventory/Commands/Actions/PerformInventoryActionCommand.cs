@@ -65,7 +65,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             bool wellStatReceipt = WellDrinkingService.IsDrinkCommand(_actionCommand) && well?.ParentEntity == _item;
             bool skinReceipt = WaterVesselService.IsWaterCommand(_actionCommand) && _item.GetPart<WaterskinPart>()?.ParentEntity == _item;
             bool coolingReceipt = LiquidVesselService.OwnsCoolingReceipt(_item,_actionCommand);
-            var snapshot = skinReceipt || coolingReceipt ? null : CaptureSnapshot(context, _item, wellStatReceipt);
+            bool bakeReceipt = LiquidSettlingPart.OwnsBakeReceipt(_item,_actionCommand);
+            var snapshot = skinReceipt || coolingReceipt || bakeReceipt ? null : CaptureSnapshot(context, _item, wellStatReceipt);
             if (snapshot != null)
             {
                 transaction.Do(

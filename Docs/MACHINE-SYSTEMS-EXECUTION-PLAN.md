@@ -10,6 +10,29 @@
 
 ## Active handback continuation — November 21, 2026
 
+November22 [atomic clay baking and regional well repair](Verification/MachineSystems/RegionalClay20261122/README.md)
+closes a reproduced two-clay/eight-mire callback duplication bug. Single-action
+lease before factory, bound source/output Parts, exact8mire/10fuel payment and
+one-unit output undo preserve independent injury/stock/custody. No saved fields,
+recipe or ordinary settling changes. Native127/1270CS=25new102adjacent; three
+mutants killed3/5/3. Actual native GameBootstrap gathered24mire fromsource48->24,
+baked/physically merged2FireClay, traveled and repaired realGleanerswell9998 with
+only produced stock. Fixture20clay stayedboxed. Two timber/one strike/20process
+fuel+.75ordinary burn;8mire retained; combat/poison retainedHP360. NormalF5 then
+separate freshContinue3540 and3640 measured exact, finalrepaircause/menu/working
+DrawWaterAtWell persist; existingXP9->39 once. LegacyendlesswellStock-1, no generic
+LiquidFlask filling or hydration-benefit claim; Waterskin/source alternatives
+remain source-supported. Mainstopped/rootnull/clean/profileroff/7presets/custom0/
+selected0/noownedview; fresh23:11UTC84foreign861normalhashes unchanged. Compile-
+import/startup failures and wrong-target firstPNG explicitly excluded. Independent
+final source/artifact/gameplay-evidence review recorded in receipt, not second
+operator. CurrentMac451excludes this correction; NEXT publish then currentMac,
+then qualify pool-lesswell/genericflask gap as a bounded shared capability.
+KeepdenseInventory/countedauditedgroups, categories/sort, fullcorrectedregression,
+unloadedfirechronology/NPCexposure and all12complete-machine/deliverygates open.
+Graphicscancelled/capstan-culturesparked/Deckdeferred/hourlyACTIVE; user resumed
+after temporarypause. Preserveforeignchanges/normalstate/art/allbuilds.
+
 November22 [current finite-cooling Mac candidate](Verification/MachineSystems/MacCandidate45170B1B6/README.md)
 packages pushed/remotely verified runtime45170b1b6965ccfcf0b3460b08440aa3d94fa997.
 Universal6000.3.4f1/nondev61.304002s364109005bytes/0errors/5samewarnings as3fe.

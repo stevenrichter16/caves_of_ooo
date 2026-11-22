@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 20:22:05Z" end-time="2026-11-22 20:22:05Z" duration="0.673379">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40765" result="Failed" site="Child" start-time="2026-11-22 20:22:05Z" end-time="2026-11-22 20:22:05Z" duration="0.673379" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49696" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40765" result="Failed" site="Child" start-time="2026-11-22 20:22:05Z" end-time="2026-11-22 20:22:05Z" duration="0.667324" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="82588" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49697" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40765" result="Failed" site="Child" start-time="2026-11-22 20:22:05Z" end-time="2026-11-22 20:22:05Z" duration="0.663908" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49698" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40765" result="Failed" site="Child" start-time="2026-11-22 20:22:05Z" end-time="2026-11-22 20:22:05Z" duration="0.660854" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="20970" name="AtomicClayBakingTests" fullname="CavesOfOoo.Tests.AtomicClayBakingTests" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-11-22 20:22:05Z" end-time="2026-11-22 20:22:05Z" duration="0.141936" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="20972" name="CreationCallbackCannotBakeTheSameFeedTwice" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.CreationCallbackCannotBakeTheSameFeedTwice" methodname="CreationCallbackCannotBakeTheSameFeedTwice" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1930143187" result="Failed" start-time="2026-11-22 20:22:05Z" end-time="2026-11-22 20:22:05Z" duration="0.107131" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.AtomicClayBakingTests.CreationCallbackCannotBakeTheSameFeedTwice () [0x000ec] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/AtomicClayBakingTests.cs:35
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[bake receipt: nested=True, clay=2, mire=4, fuel=5
+]]></output>
+            </test-case>
+            <test-case id="20973" name="SharedTransactionReentryCannotClaimTheSameBatchTwice" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.SharedTransactionReentryCannotClaimTheSameBatchTwice" methodname="SharedTransactionReentryCannotClaimTheSameBatchTwice" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1488043008" result="Failed" start-time="2026-11-22 20:22:05Z" end-time="2026-11-22 20:22:05Z" duration="0.028261" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.AtomicClayBakingTests.SharedTransactionReentryCannotClaimTheSameBatchTwice () [0x0013d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/AtomicClayBakingTests.cs:42
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[bake receipt: nested=True, clay=2, mire=4, fuel=5
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

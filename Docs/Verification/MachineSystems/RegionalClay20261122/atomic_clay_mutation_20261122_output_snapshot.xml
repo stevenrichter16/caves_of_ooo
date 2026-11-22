@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Failed(Child)" total="25" passed="20" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 20:35:01Z" end-time="2026-11-22 20:35:02Z" duration="1.2549313">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40771" result="Failed" site="Child" start-time="2026-11-22 20:35:01Z" end-time="2026-11-22 20:35:02Z" duration="1.254931" total="25" passed="20" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49703" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40771" result="Failed" site="Child" start-time="2026-11-22 20:35:01Z" end-time="2026-11-22 20:35:02Z" duration="1.249685" total="25" passed="20" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="93252" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49704" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40771" result="Failed" site="Child" start-time="2026-11-22 20:35:01Z" end-time="2026-11-22 20:35:02Z" duration="1.247216" total="25" passed="20" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49705" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40771" result="Failed" site="Child" start-time="2026-11-22 20:35:01Z" end-time="2026-11-22 20:35:02Z" duration="1.244770" total="25" passed="20" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="20970" name="AtomicClayBakingTests" fullname="CavesOfOoo.Tests.AtomicClayBakingTests" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.755265" total="25" passed="20" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="20972" name="CreationCallbackCannotBakeTheSameFeedTwice" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.CreationCallbackCannotBakeTheSameFeedTwice" methodname="CreationCallbackCannotBakeTheSameFeedTwice" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1334693617" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.064940" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[bake receipt: nested=False, clay=1, mire=4, fuel=15
+]]></output>
+            </test-case>
+            <test-case id="20986" name="DroppedOutputWithIndependentStockIsNotPulledBack" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.DroppedOutputWithIndependentStockIsNotPulledBack" methodname="DroppedOutputWithIndependentStockIsNotPulledBack" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="846242365" result="Failed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.027309" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.AtomicClayBakingTests.DroppedOutputWithIndependentStockIsNotPulledBack () [0x00099] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/AtomicClayBakingTests.cs:85
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="20994" name="ExactLastTenFuelPaysACompleteBatch" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.ExactLastTenFuelPaysACompleteBatch" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.088316" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="20992" name="ExactLastTenFuelPaysACompleteBatch(False)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.ExactLastTenFuelPaysACompleteBatch(False)" methodname="ExactLastTenFuelPaysACompleteBatch" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="120341955" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024793" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="20993" name="ExactLastTenFuelPaysACompleteBatch(True)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.ExactLastTenFuelPaysACompleteBatch(True)" methodname="ExactLastTenFuelPaysACompleteBatch" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1902106675" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.062465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="20981" name="FactoryCannotMintAMultiUnitOutputForOneBill" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotMintAMultiUnitOutputForOneBill" methodname="FactoryCannotMintAMultiUnitOutputForOneBill" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1814954276" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024270" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="20980" name="FactoryCannotSpendAChangedOrDetachedInput" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.148453" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="20974" name="FactoryCannotSpendAChangedOrDetachedInput(&quot;liquid&quot;)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(&quot;liquid&quot;)" methodname="FactoryCannotSpendAChangedOrDetachedInput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="588893298" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.025503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="20975" name="FactoryCannotSpendAChangedOrDetachedInput(&quot;volume&quot;)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(&quot;volume&quot;)" methodname="FactoryCannotSpendAChangedOrDetachedInput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="2064137541" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024591" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="20976" name="FactoryCannotSpendAChangedOrDetachedInput(&quot;drop&quot;)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(&quot;drop&quot;)" methodname="FactoryCannotSpendAChangedOrDetachedInput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1405051572" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024186" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="20977" name="FactoryCannotSpendAChangedOrDetachedInput(&quot;fire-cold&quot;)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(&quot;fire-cold&quot;)" methodname="FactoryCannotSpendAChangedOrDetachedInput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1153463525" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024163" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="20978" name="FactoryCannotSpendAChangedOrDetachedInput(&quot;fire-fuel&quot;)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(&quot;fire-fuel&quot;)" methodname="FactoryCannotSpendAChangedOrDetachedInput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="132760831" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024593" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="20979" name="FactoryCannotSpendAChangedOrDetachedInput(&quot;station-move&quot;)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(&quot;station-move&quot;)" methodname="FactoryCannotSpendAChangedOrDetachedInput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1737734869" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024652" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="20991" name="FactoryCannotUseAnAlreadyOwnedOutput" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotUseAnAlreadyOwnedOutput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.095765" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="20989" name="FactoryCannotUseAnAlreadyOwnedOutput(False)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotUseAnAlreadyOwnedOutput(False)" methodname="FactoryCannotUseAnAlreadyOwnedOutput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1199798749" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.035233" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="20990" name="FactoryCannotUseAnAlreadyOwnedOutput(True)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotUseAnAlreadyOwnedOutput(True)" methodname="FactoryCannotUseAnAlreadyOwnedOutput" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="2008154076" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.060081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="20998" name="FactoryFailurePreservesIndependentInjuryAndReleasesActionLease" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.FactoryFailurePreservesIndependentInjuryAndReleasesActionLease" methodname="FactoryFailurePreservesIndependentInjuryAndReleasesActionLease" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="924960517" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.025627" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="20982" name="LateFuelChangeAndInjuryAreNotRewoundByRejectedBake" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.LateFuelChangeAndInjuryAreNotRewoundByRejectedBake" methodname="LateFuelChangeAndInjuryAreNotRewoundByRejectedBake" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="90403894" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024753" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="20971" name="NativeOneBatchKeepsTheRemainderAndPaysItsOwnFuel_Control" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.NativeOneBatchKeepsTheRemainderAndPaysItsOwnFuel_Control" methodname="NativeOneBatchKeepsTheRemainderAndPaysItsOwnFuel_Control" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1581662180" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024096" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="20985" name="OutputRollbackRemovesOnlyItsOneUnit" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.OutputRollbackRemovesOnlyItsOneUnit" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.054232" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="20983" name="OutputRollbackRemovesOnlyItsOneUnit(False)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.OutputRollbackRemovesOnlyItsOneUnit(False)" methodname="OutputRollbackRemovesOnlyItsOneUnit" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="970793155" result="Failed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.AtomicClayBakingTests.OutputRollbackRemovesOnlyItsOneUnit (System.Boolean existing) [0x0006d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/AtomicClayBakingTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="20984" name="OutputRollbackRemovesOnlyItsOneUnit(True)" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.OutputRollbackRemovesOnlyItsOneUnit(True)" methodname="OutputRollbackRemovesOnlyItsOneUnit" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="688468521" result="Failed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.029426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 7
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.AtomicClayBakingTests.OutputRollbackRemovesOnlyItsOneUnit (System.Boolean existing) [0x0006d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/AtomicClayBakingTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="20997" name="PostPaymentReplacementFuelPartIsNotOverwritten" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.PostPaymentReplacementFuelPartIsNotOverwritten" methodname="PostPaymentReplacementFuelPartIsNotOverwritten" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1476992547" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024232" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="20996" name="PostPaymentReplacementLiquidPartIsNotOverwritten" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.PostPaymentReplacementLiquidPartIsNotOverwritten" methodname="PostPaymentReplacementLiquidPartIsNotOverwritten" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1520572965" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="20995" name="PostPaymentSourceDropAndIndependentFuelRemainOnRefusal" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.PostPaymentSourceDropAndIndependentFuelRemainOnRefusal" methodname="PostPaymentSourceDropAndIndependentFuelRemainOnRefusal" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="1370263198" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024530" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="20988" name="ReplacedOutputPhysicsKeepsIndependentStockAndCustody" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.ReplacedOutputPhysicsKeepsIndependentStockAndCustody" methodname="ReplacedOutputPhysicsKeepsIndependentStockAndCustody" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="2127180894" result="Failed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024241" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.AtomicClayBakingTests.ReplacedOutputPhysicsKeepsIndependentStockAndCustody () [0x0006f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/AtomicClayBakingTests.cs:97
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="20987" name="ReplacedOutputStackerIsNotOverwrittenOrRetired" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.ReplacedOutputStackerIsNotOverwrittenOrRetired" methodname="ReplacedOutputStackerIsNotOverwrittenOrRetired" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="949836412" result="Failed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024268" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.AtomicClayBakingTests.ReplacedOutputStackerIsNotOverwrittenOrRetired () [0x0006f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/AtomicClayBakingTests.cs:91
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="20973" name="SharedTransactionReentryCannotClaimTheSameBatchTwice" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.SharedTransactionReentryCannotClaimTheSameBatchTwice" methodname="SharedTransactionReentryCannotClaimTheSameBatchTwice" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="2064376323" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024936" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[bake receipt: nested=False, clay=1, mire=4, fuel=15
+]]></output>
+            </test-case>
+            <test-case id="20999" name="ValidCompatibleOutputMergesAndBothInputsPay_Control" fullname="CavesOfOoo.Tests.AtomicClayBakingTests.ValidCompatibleOutputMergesAndBothInputsPay_Control" methodname="ValidCompatibleOutputMergesAndBothInputsPay_Control" classname="CavesOfOoo.Tests.AtomicClayBakingTests" runstate="Runnable" seed="864652327" result="Passed" start-time="2026-11-22 20:35:02Z" end-time="2026-11-22 20:35:02Z" duration="0.024882" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

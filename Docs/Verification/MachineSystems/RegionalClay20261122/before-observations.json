@@ -1,0 +1,260 @@
+{
+  "runtime": "45170b1b6965ccfcf0b3460b08440aa3d94fa997",
+  "documentation": "26d6e0dd4c828f0906e627b8fa45d2156679ed76",
+  "game": "8ab6a6384c2a44deb8b3a68303809d8f",
+  "before": {
+    "tick": 2850,
+    "hp": 385,
+    "zone": "Overworld.11.10.0",
+    "at": {
+      "Item1": 40,
+      "Item2": 9
+    },
+    "pack": [
+      "1a3e508a378e4552bb657b91edaeea1a",
+      "2127",
+      "2128",
+      "2129",
+      "2130",
+      "2131",
+      "2132",
+      "2134",
+      "2135",
+      "2136",
+      "2144",
+      "2145",
+      "2146",
+      "2151",
+      "2159",
+      "2175",
+      "2183",
+      "2191",
+      "2199",
+      "2207",
+      "2215",
+      "2223",
+      "2231",
+      "2232",
+      "2233",
+      "2234",
+      "2235",
+      "2238",
+      "2239",
+      "2240",
+      "2241",
+      "2242",
+      "2267",
+      "2287",
+      "2297",
+      "2298",
+      "2301",
+      "2305",
+      "2309",
+      "2313",
+      "2317",
+      "2323",
+      "2329",
+      "2330",
+      "2331",
+      "2332",
+      "2333",
+      "2334",
+      "2335",
+      "2336",
+      "2337",
+      "2344",
+      "2347",
+      "2348",
+      "2349",
+      "2351",
+      "2360",
+      "2363",
+      "2370",
+      "2373",
+      "2378",
+      "2380",
+      "3c6a92d5471b4e47add2a686e7fca289",
+      "78ec272038ff4ebf9b6a7391de5342b4",
+      "a724be89e3cb492fba914e0a14fbd7f0"
+    ],
+    "flasks": [
+      {
+        "id": "2231",
+        "liquid": "bog-mire",
+        "volume": 11,
+        "capacity": 12
+      },
+      {
+        "id": "2232",
+        "liquid": "water",
+        "volume": 2,
+        "capacity": 12
+      },
+      {
+        "id": "2233",
+        "liquid": "water",
+        "volume": 2,
+        "capacity": 12
+      },
+      {
+        "id": "2234",
+        "liquid": "water",
+        "volume": 2,
+        "capacity": 12
+      },
+      {
+        "id": "2235",
+        "liquid": "bog-mire",
+        "volume": 1,
+        "capacity": 12
+      },
+      {
+        "id": "2238",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2239",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2240",
+        "liquid": "water",
+        "volume": 1,
+        "capacity": 12
+      },
+      {
+        "id": "2241",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2242",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      }
+    ],
+    "clay": [],
+    "timber": [
+      {
+        "id": "2267",
+        "n": 17
+      },
+      {
+        "id": "2287",
+        "n": 10
+      }
+    ],
+    "striker": [
+      {
+        "id": "2297",
+        "strikes": 19
+      }
+    ],
+    "storedClay": [
+      {
+        "id": "2243",
+        "n": 20
+      }
+    ],
+    "well": {
+      "id": "9998",
+      "repaired": false,
+      "usable": false,
+      "stock": -1,
+      "cause": null
+    },
+    "source": {
+      "id": "13151",
+      "volume": 48
+    },
+    "fire": {
+      "id": "2147",
+      "fuel": 2.75,
+      "temp": 25,
+      "lit": false
+    }
+  },
+  "menu": {
+    "open": true,
+    "cursor": 0,
+    "input": "WorldActionMenuOpen",
+    "target": "9998",
+    "rows": [
+      {
+        "index": 0,
+        "name": "Repair",
+        "label": "patch the well lining (2 fire clay)",
+        "command": "RepairObject",
+        "via": null
+      },
+      {
+        "index": 1,
+        "name": "Examine",
+        "label": "examine",
+        "command": "Examine",
+        "via": null
+      },
+      {
+        "index": 2,
+        "name": "PickCell",
+        "label": "<< everything here",
+        "command": "PickCell",
+        "via": null
+      }
+    ],
+    "tick": 2850
+  },
+  "reader": {
+    "open": true,
+    "page": 0,
+    "pages": 1,
+    "lines": [
+      "CURRENT STATE",
+      "",
+      "A split in the fired lining lets the drawn water",
+      "drain through the rim. Pack the gap with fire clay.",
+      "Repair: 2 fire clay. Composition: Masonry.",
+      "",
+      "Fire clay seals this well's fired lining. A sound",
+      "lining allows drinking and vessel filling;",
+      "repairing a split takes two measures of fire clay.",
+      "The old supply cellar in the western ruin stored",
+      "repair clay. The reed basin nearby holds only a few",
+      "drinks; it cannot refill this well.",
+      "",
+      "Type: Object",
+      "Composition: Masonry",
+      "Repair: 2 fire clay"
+    ],
+    "subject": "9998",
+    "tick": 2850
+  },
+  "fixtureClay": [
+    {
+      "id": "2243",
+      "name": "fire clay (x20)",
+      "state": "",
+      "units": 20,
+      "weight": 20,
+      "members": [
+        "2243"
+      ],
+      "physical": 20
+    }
+  ],
+  "archive": "/private/tmp/coo-regional-clay-before-earned-20261122",
+  "notes": [
+    "Fixture2243x20 was placed into existingCampBox2150 using its actual Inventory popup, no tick/HP change2760HP390. Carriedclay0.",
+    "Worldmap rendering offsets30/3, so map40,14=camp10.11; Up/Right to41,13=11.10. Actual ascent2770HP388, map2810HP385, descend2820, three observed localmoves to40,9 at2850; fourth requestedUp was not observed, no collision cause claimed.",
+    "An initial C/Right targeted adjacentgrass9440, notwell; it was closed and not used for the well claim. Actual C/Numpad9 reached9998at41,8. Wrongtargetimage retained/excluded.",
+    "Reader1page, failed actualRepairObject withcarried0 leaves2850HP385/wellunrepaired/stock−1/source48. NormalF5metadata2850/385 and archive copied BEFOREStop.",
+    "Sourceguided route/cachedwell census; not unaided discovery. No grants, teleports, stat edits, forced thaw or gameplay helper calls. Fixturegear/capacities/fuel supplies/economics excluded. Well defaultstock−1 is legacyendless, not finite hydration acceptance.",
+    "Upcoming proposed production/repair unperformed. New independent sourceCallbackBake defect requiresnativeRED/correction beforechain acceptance."
+  ]
+}

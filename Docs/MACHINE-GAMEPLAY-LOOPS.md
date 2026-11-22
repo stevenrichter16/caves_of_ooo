@@ -181,3 +181,18 @@ need, including ordinary carried stock or an NPC service where supported. Avoid
 repeat demonstrations of accepted branches. Category/sort, further audited item
 groups and physical-input qualification remain separate. No wall-clock production,
 protected-information claim or population exposure rollout is implied.
+
+## Played regional clay journey — November22
+
+[RegionalClay20261122](Verification/MachineSystems/RegionalClay20261122/README.md)
+now demonstrates gather finite mire, choose two flask loads, carry them to a
+camp still/fire, spend finite timber/ignition/process fuel, retain mire, carry
+two produced clay and restore a village well permanently. Fresh reload retains
+the repair and working drinking service. The same FireClay repair consumer
+accepts crafted stock without a location-specific exception. Existing cellar
+clay/mender stock remain alternatives supported by source, not played purchases.
+This creates a useful journey with a lasting benefit, not repeated compulsory
+well upkeep. No generic flask filling/endless-to-finite conversion is claimed.
+Physical clay merges; audited stateful vessels use counted Inventory groups.
+Further category/sort work remains remembered. Camp equipment, carry capacity
+and HP maximum were inherited fixtures; no ordinary-acquisition/balance claim.

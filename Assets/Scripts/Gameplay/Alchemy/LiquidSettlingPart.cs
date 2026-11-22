@@ -192,44 +192,102 @@ namespace CavesOfOoo.Core
 
         // ── baking clay ──
 
+        internal static bool OwnsBakeReceipt(Entity owner, string command) => owner!=null
+            && owner.GetPart<LiquidSettlingPart>()?.ParentEntity==owner && command!=null
+            && command.StartsWith(BakeCommand,StringComparison.Ordinal);
+
         bool TryBake(Entity actor, Zone zone, string command, InventoryTransaction tx)
         {
-            string[] f = command.Split('|');
-            if (f.Length != 3 || !int.TryParse(f[2], NumberStyles.Integer, CultureInfo.InvariantCulture, out int volume)) return Reject(actor, "malformed_selection", "That is not a batch you can bake.");
-            if (zone == null || actor == null || !WorldResourceActions.ActorCurrent(actor, zone) || CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)
-                || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true || !Standing || zone.GetEntityCell(ParentEntity) == null || SpatialQuery.Distance(zone, actor, ParentEntity) > 1 || AlchemyStillPart.Factory == null)
-                return Reject(actor, "actor_unavailable", "You cannot work the still right now.");
-            var pack = actor.GetPart<InventoryPart>();
-            var flask = pack?.Objects.FirstOrDefault(o => o != null && o.ID == f[1] && WorldResourceActions.Carried(actor, o));
-            var vessel = flask?.GetPart<LiquidVesselPart>();
-            if (vessel == null || vessel.LiquidId != Feed || vessel.Volume != volume) return Reject(actor, "stale_selection", "The flask is not as it was.");
-            if (volume < ClayRatio) return Reject(actor, "too_little", "Baking clay needs at least " + ClayRatio + " units of mire.");
-            var fire = FindFire(zone, out float fullest, ClayFuel);
-            if (fire == null)
-                return fullest < 0 ? Reject(actor, "no_fire", NoFireToBake(zone))
-                    : Reject(actor, "fuel_short", "No fire here can spare the fuel: baking burns " + ClayFuel + " and the fullest has " + (int)Math.Floor(fullest) + ".");
-            var clay = AlchemyStillPart.Factory.CreateEntity(ClayBlueprint); if (clay == null) return Reject(actor, "no_clay", "The clay would not take.");
-            bool own = tx == null; tx ??= new InventoryTransaction();
+            string[] f=command.Split('|');
+            if(f.Length!=3 || !int.TryParse(f[2],NumberStyles.None,CultureInfo.InvariantCulture,out int volume))
+                return Reject(actor,"malformed_selection","That is not a batch you can bake.");
+            var owner=ParentEntity;var pack=actor?.GetPart<InventoryPart>();
+            if(zone==null || actor==null || pack==null || AlchemyStillPart.Factory==null
+                || !WorldResourceActions.Nearby(actor,owner,zone) || owner.GetPart<LiquidSettlingPart>()!=this || !Standing)
+                return Reject(actor,"actor_unavailable","You cannot work the still right now.");
+            var matches=pack.Objects.Where(o=>o?.ID==f[1]).ToArray();
+            var flask=matches.Length==1?matches[0]:null;var vessel=flask?.GetPart<LiquidVesselPart>();
+            if(!WorldResourceActions.Carried(actor,flask) || vessel?.ParentEntity!=flask || vessel.LiquidId!=Feed
+                || vessel.Volume!=volume || vessel.Capacity<=0 || volume>vessel.Capacity || volume<ClayRatio)
+                return Reject(actor,"stale_selection","The flask is not as it was, or has too little mire.");
+            var fire=FindFire(zone,out float fullest,ClayFuel);
+            if(fire==null)return Reject(actor,"no_fire",fullest<0?NoFireToBake(zone):"No fire here can spare ten fuel.");
+            var factory=AlchemyStillPart.Factory;var fuel=fire.GetPart<FuelPart>();var heat=fire.GetPart<ThermalPart>();
+            float fuelBefore=fuel.FuelMass,temperature=heat.Temperature,maxFuel=fuel.MaxFuel;
+            float paidFuel=fuelBefore-ClayFuel;
+            int capacity=vessel.Capacity,left=volume-ClayRatio;
+            var actorCell=zone.GetEntityCell(actor);var ownerCell=zone.GetEntityCell(owner);var fireCell=zone.GetEntityCell(fire);
+            var actorPhysics=actor.GetPart<PhysicsPart>();var flaskPhysics=flask.GetPart<PhysicsPart>();
+            var ownerPhysics=owner.GetPart<PhysicsPart>();var firePhysics=fire.GetPart<PhysicsPart>();
+            var flaskParts=flask.Parts.ToArray();var ownerParts=owner.Parts.ToArray();var fireParts=fire.Parts.ToArray();
+            string actorId=actor.ID,ownerId=owner.ID,flaskId=flask.ID,fireId=fire.ID;
+            bool Current(int units,float mass)
+            {
+                var camp=fire.GetPart<CampfirePart>();
+                return AlchemyStillPart.Factory==factory && ParentEntity==owner && owner.GetPart<LiquidSettlingPart>()==this
+                    && WorldResourceActions.ActorCurrent(actor,zone) && actor.GetStatValue("Hitpoints")>0
+                    && !CombatSystem.IsDeathHandled(actor) && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked()!=true
+                    && actor.GetPart<InventoryPart>()==pack && pack.ParentEntity==actor && actor.ID==actorId
+                    && actor.GetPart<PhysicsPart>()==actorPhysics && zone.GetEntityCell(actor)==actorCell
+                    && owner.ID==ownerId && Standing && WorldResourceActions.Ground(owner,zone) && zone.GetEntityCell(owner)==ownerCell
+                    && SpatialQuery.Distance(zone,actor,owner)<=1 && owner.GetPart<PhysicsPart>()==ownerPhysics
+                    && owner.Parts.SequenceEqual(ownerParts) && ownerParts.All(p=>p.ParentEntity==owner)
+                    && flask.ID==flaskId && WorldResourceActions.Carried(actor,flask) && flask.GetPart<PhysicsPart>()==flaskPhysics
+                    && flask.GetPart<LiquidVesselPart>()==vessel && vessel.ParentEntity==flask && vessel.Capacity==capacity
+                    && vessel.Volume==units && vessel.LiquidId==(units==0?"":Feed)
+                    && flask.Parts.SequenceEqual(flaskParts) && flaskParts.All(p=>p.ParentEntity==flask)
+                    && fire.ID==fireId && WorldResourceActions.Ground(fire,zone) && zone.GetEntityCell(fire)==fireCell
+                    && fire.GetPart<PhysicsPart>()==firePhysics && fire.GetPart<FuelPart>()==fuel && fuel.ParentEntity==fire
+                    && fire.GetPart<ThermalPart>()==heat && heat.ParentEntity==fire && heat.Temperature==temperature
+                    && fire.Parts.SequenceEqual(fireParts) && fireParts.All(p=>p.ParentEntity==fire)
+                    && fuel.FuelMass==mass && fuel.MaxFuel==maxFuel && WorldResourceActions.Finite(maxFuel) && maxFuel>=fuelBefore
+                    && WorldResourceActions.Finite(mass) && mass>=0 && paidFuel<fuelBefore
+                    && (camp?.FiniteCooking==true?heat.Temperature>=CookingService.MinimumFiniteCookingTemperature:heat.IsAflame)
+                    && !(fire.GetEffect<FrozenEffect>()?.Cold>0) && !(fire.GetEffect<WetEffect>()?.Moisture>WetLimit)
+                    && Math.Max(Math.Abs(fireCell.X-ownerCell.X),Math.Abs(fireCell.Y-ownerCell.Y))<=FireReach;
+            }
+            if(!Current(volume,fuelBefore))return Reject(actor,"invalid_inputs","The still's inputs are not ready.");
+            bool own=tx==null;tx??=new InventoryTransaction();
             try
             {
-                if (!tx.TryClaim(actor, actor, command) || !tx.TryClaim(flask, actor, command) || !tx.TryClaim(ParentEntity, actor, command) || !tx.TryClaim(fire, actor, command))
-                    return Reject(actor, "in_progress", "The still is already being worked.");
-                var fuel = fire.GetPart<FuelPart>(); float fuelBefore = fuel.FuelMass; string idBefore = vessel.LiquidId; int left = volume - ClayRatio;
-                var receipt = InventoryTransferSnapshot.Capture(pack, clay);
-                tx.Do(null, receipt.Restore);
-                if (!receipt.Apply(() => pack.AddObject(clay)) || !receipt.ClaimChanges(tx, actor, command))   // a second clay merges into the first stack, so the new entity itself need not be in the pack
-                    return Reject(actor, "no_room", "You cannot carry the clay.");
-                tx.Do(() => { vessel.Volume = left; if (left == 0) vessel.LiquidId = ""; fuel.FuelMass = fuelBefore - ClayFuel; }, () => { vessel.Volume = volume; vessel.LiquidId = idBefore; fuel.FuelMass = fuelBefore; });
-                var owner = ParentEntity;
-                tx.AfterCommit(() =>
+                if(!tx.TryClaimAction(actor) || !tx.TryClaim(actor,actor,command) || !tx.TryClaim(flask,actor,command)
+                    || !tx.TryClaim(owner,actor,command) || !tx.TryClaim(fire,actor,command))
+                    return Reject(actor,"in_progress","The still is already being worked.");
+                // Factory events can perform arbitrary work. No callback may spend
+                // this same action or source again, including through the same receipt.
+                var clay=factory.CreateEntity(ClayBlueprint);
+                var productPhysics=clay?.GetPart<PhysicsPart>();var productStack=clay?.GetPart<StackerPart>();
+                if(!Current(volume,fuelBefore) || clay?.BlueprintName!=ClayBlueprint || string.IsNullOrEmpty(clay.ID)
+                    || clay.SpatialZone!=null || clay.HasTag("Creature") || productPhysics?.ParentEntity!=clay || !productPhysics.Takeable
+                    || productPhysics.InInventory!=null || productPhysics.Equipped!=null || productStack?.ParentEntity!=clay || productStack.StackCount!=1
+                    || pack.Objects.Any(e=>e==clay||e?.ID==clay.ID) || zone.GetReadOnlyEntities().Any(e=>e.ID==clay.ID))
+                    return Reject(actor,"state_changed","The still's inputs or prepared clay changed before payment.");
+                tx.Do(()=>{vessel.Volume=left;vessel.LiquidId=left==0?"":Feed;fuel.FuelMass=paidFuel;},()=>
                 {
-                    MessageLog.Add("You boil the water off " + ClayRatio + " mire at the fire and bake what is left: one fire clay." + (left > 0 ? " " + left + " mire stays in the flask." : ""));
-                    Diag.Record("liquid", "Baked", actor, owner, new { from = Feed, units = ClayRatio, yield = 1, fuel = ClayFuel, left });
+                    if(flask.GetPart<LiquidVesselPart>()==vessel && vessel.ParentEntity==flask
+                        && (vessel.LiquidId==Feed || vessel.Volume==0 && string.IsNullOrEmpty(vessel.LiquidId)))
+                    {vessel.Volume=WaterQuantityUndo.Restore(vessel.Volume,-ClayRatio,vessel.Capacity);if(vessel.Volume>0)vessel.LiquidId=Feed;}
+                    else Diag.Record("liquid","BakeFeedUndoIdentityChanged",actor,flask);
+                    if(fire.GetPart<FuelPart>()==fuel && fuel.ParentEntity==fire && WorldResourceActions.Finite(fuel.FuelMass)
+                        && WorldResourceActions.Finite(fuel.MaxFuel) && fuel.MaxFuel>=0)
+                    {
+                        double restored=(double)fuel.FuelMass+ClayFuel;
+                        if(restored<0 || restored>fuel.MaxFuel)Diag.Record("liquid","BakeFuelUndoBoundary",actor,fire);
+                        fuel.FuelMass=(float)Math.Max(0,Math.Min(fuel.MaxFuel,restored));
+                    }
+                    else Diag.Record("liquid","BakeFuelUndoIdentityChanged",actor,fire);
                 });
-                if (own) tx.Commit();
-                return true;
+                if(!InventoryUnitOutputReceipt.TryPlace(pack,actor,clay,tx,command,out var output)
+                    || !Current(left,paidFuel) || !output.Current())return Reject(actor,"output_refused","You cannot carry that clay, or the selected inputs changed.");
+                tx.BeforeCommit(()=>Current(left,paidFuel)&&output.Current());
+                tx.AfterCommit(()=>
+                {
+                    MessageLog.Add("You boil the water off "+ClayRatio+" mire at the fire and bake what is left: one fire clay."+(left>0?" "+left+" mire stays in the flask.":""));
+                    Diag.Record("liquid","Baked",actor,owner,new{from=Feed,units=ClayRatio,yield=1,fuel=ClayFuel,left});
+                });
+                if(own)tx.Commit();return true;
             }
-            finally { if (own) tx.Rollback(); }
+            finally {if(own)tx.Rollback();}
         }
 
         static string CommandFor(string target, Entity flask, LiquidVesselPart vessel)

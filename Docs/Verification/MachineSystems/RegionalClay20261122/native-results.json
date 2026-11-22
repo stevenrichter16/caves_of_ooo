@@ -1,0 +1,205 @@
+{
+  "atomic_clay_mutation_20261122_actor_snapshot.xml": {
+    "total": "25",
+    "passed": "22",
+    "failed": "3",
+    "skipped": "0",
+    "duration": "1.2970169",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryFailurePreservesIndependentInjuryAndReleasesActionLease",
+        "message": "  Expected: 39\n  But was:  40\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.LateFuelChangeAndInjuryAreNotRewoundByRejectedBake",
+        "message": "  Expected: 39\n  But was:  40\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.PostPaymentSourceDropAndIndependentFuelRemainOnRefusal",
+        "message": "  Expected: 39\n  But was:  40\n"
+      }
+    ]
+  },
+  "atomic_clay_red_c_20261122.xml": {
+    "total": "2",
+    "passed": "0",
+    "failed": "2",
+    "skipped": "0",
+    "duration": "0.673379",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.CreationCallbackCannotBakeTheSameFeedTwice",
+        "message": "  Expected: 1\n  But was:  2\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.SharedTransactionReentryCannotClaimTheSameBatchTwice",
+        "message": "  Expected: 1\n  But was:  2\n"
+      }
+    ]
+  },
+  "atomic_clay_green_d_20261122.xml": {
+    "total": "63",
+    "passed": "62",
+    "failed": "1",
+    "skipped": "0",
+    "duration": "2.4111228",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.LateFuelChangeAndInjuryAreNotRewoundByRejectedBake",
+        "message": "  Expected: 27.0f\n  But was:  25.0f\n"
+      }
+    ]
+  },
+  "atomic_clay_mutation_20261122_factory_budget.xml": {
+    "total": "25",
+    "passed": "22",
+    "failed": "3",
+    "skipped": "0",
+    "duration": "1.077193",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(\"liquid\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(\"volume\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(\"fire-fuel\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      }
+    ]
+  },
+  "atomic_clay_red_b_20261122.xml": {
+    "total": "18",
+    "passed": "2",
+    "failed": "16",
+    "skipped": "0",
+    "duration": "0.993275",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.CreationCallbackCannotBakeTheSameFeedTwice",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.DroppedOutputWithIndependentStockIsNotPulledBack",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotMintAMultiUnitOutputForOneBill",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(\"liquid\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(\"volume\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(\"drop\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(\"fire-cold\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(\"fire-fuel\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotSpendAChangedOrDetachedInput(\"station-move\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotUseAnAlreadyOwnedOutput(False)",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.FactoryCannotUseAnAlreadyOwnedOutput(True)",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.LateFuelChangeAndInjuryAreNotRewoundByRejectedBake",
+        "message": "  Expected: 27.0f\n  But was:  25.0f\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.OutputRollbackRemovesOnlyItsOneUnit(False)",
+        "message": "  Expected: 2\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.OutputRollbackRemovesOnlyItsOneUnit(True)",
+        "message": "  Expected: 7\n  But was:  5\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.ReplacedOutputStackerIsNotOverwrittenOrRetired",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.SharedTransactionReentryCannotClaimTheSameBatchTwice",
+        "message": "  Expected: False\n  But was:  True\n"
+      }
+    ]
+  },
+  "atomic_clay_red_e_20261122.xml": {
+    "total": "1",
+    "passed": "0",
+    "failed": "1",
+    "skipped": "0",
+    "duration": "0.4544574",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.LateFuelChangeAndInjuryAreNotRewoundByRejectedBake",
+        "message": "  Expected: 22.0f\n  But was:  20.0f\n"
+      }
+    ]
+  },
+  "atomic_clay_green_f_20261122.xml": {
+    "total": "121",
+    "passed": "121",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "3.8867382",
+    "failures": []
+  },
+  "atomic_clay_green_g_20261122.xml": {
+    "total": "127",
+    "passed": "127",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "4.0849473",
+    "failures": []
+  },
+  "atomic_clay_mutation_20261122_output_snapshot.xml": {
+    "total": "25",
+    "passed": "20",
+    "failed": "5",
+    "skipped": "0",
+    "duration": "1.2549313",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.DroppedOutputWithIndependentStockIsNotPulledBack",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.OutputRollbackRemovesOnlyItsOneUnit(False)",
+        "message": "  Expected: 2\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.OutputRollbackRemovesOnlyItsOneUnit(True)",
+        "message": "  Expected: 7\n  But was:  5\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.ReplacedOutputPhysicsKeepsIndependentStockAndCustody",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.AtomicClayBakingTests.ReplacedOutputStackerIsNotOverwrittenOrRetired",
+        "message": "  Expected: True\n  But was:  False\n"
+      }
+    ]
+  }
+}

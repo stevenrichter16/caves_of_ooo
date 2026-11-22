@@ -1,0 +1,20 @@
+[
+  {
+    "id": "factory_budget",
+    "file": "Assets/Scripts/Gameplay/Alchemy/LiquidSettlingPart.cs",
+    "old": "if(!Current(volume,fuelBefore) || clay?.BlueprintName!=ClayBlueprint",
+    "new": "if(clay?.BlueprintName!=ClayBlueprint"
+  },
+  {
+    "id": "output_snapshot",
+    "file": "Assets/Scripts/Gameplay/Inventory/InventoryUnitOutputReceipt.cs",
+    "old": "if(paid==null)immediate.Restore();else paid.Undo();",
+    "new": "immediate.Restore();"
+  },
+  {
+    "id": "actor_snapshot",
+    "file": "Assets/Scripts/Gameplay/Inventory/Commands/Actions/PerformInventoryActionCommand.cs",
+    "old": "skinReceipt || coolingReceipt || bakeReceipt ? null",
+    "new": "skinReceipt || coolingReceipt ? null"
+  }
+]
