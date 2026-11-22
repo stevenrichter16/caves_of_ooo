@@ -30,6 +30,28 @@ namespace CavesOfOoo.Tests
         EnhancementEngraved Signed(Entity e) => e.Parts.OfType<EnhancementEngraved>().FirstOrDefault();
         string Read(Entity e) { var l = new List<string>(); StateReader.Collect(e, true, Zone, Zone.GetEntityCell(e), Actor, l); return string.Join(" ", l); }
 
+        [TestCase(false)] [TestCase(true)]
+        public void CrowdedBenchKeepsLateGarmentAndItsFiniteCostVisible(bool shortResin)
+        {
+            var bench = StandingBench(); Regard(8); var items = new List<Entity>();
+            for (int i = 0; i < 16; i++)
+            {
+                var item = Factory.CreateEntity("LeatherArmor"); item.RemovePart(item.GetPart<StackerPart>());
+                item.GetPart<RenderPart>().DisplayName = "garment " + i.ToString("D2");
+                Assert.True(Pack.AddObject(item)); items.Add(item);
+            }
+            Give("GlowQuartz", 1); if (!shortResin) Give("PitchpodResin", 1);
+            var rows = Rows(bench); Assert.AreEqual(32, rows.Length);
+            Assert.False(rows.Any(r => r.DisabledCode == "more"));
+            var late = rows.Single(r => r.Display.Contains("garment 15") && r.Display.Contains("lacquer"));
+            Assert.AreEqual(shortResin, late.IsDisabled);
+            Assert.AreEqual(!shortResin, Act(bench, Lacquer(items[15], 1)));
+            Assert.AreEqual(shortResin ? 0 : 1, Lacquered(items[15])?.Tier ?? 0);
+            Assert.True(items.Take(15).All(e => Lacquered(e) == null));
+            Assert.AreEqual(0, Got("PitchpodResin")); Assert.AreEqual(1, Got("GlowQuartz"));
+            Assert.AreEqual(8, PlayerReputation.Get("BowerFolk"));
+        }
+
         // ── the regard ladder ──
 
         [TestCase(-50, 0)] [TestCase(0, 0)] [TestCase(7, 0)] [TestCase(8, 1)] [TestCase(17, 1)] [TestCase(18, 2)] [TestCase(27, 2)] [TestCase(28, 3)] [TestCase(38, 4)] [TestCase(200, 4)]

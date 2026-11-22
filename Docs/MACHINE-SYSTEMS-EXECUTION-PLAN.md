@@ -10,6 +10,15 @@
 
 ## Active handback continuation — November 21, 2026
 
+[Posy menu access](Verification/MachineSystems/PosyMenuAccess20261121/README.md):
+removed frame8/bench12 candidate caps after four native RED failures;121/121
+focused GREEN. Actual formerly hidden fold placement, equal-quality refusal,
+finite moss/seed spending and frame→bench eligibility survive fresh1490HP29.
+Successful lacquer/sign and crowded bench actual play remain open. User renewed
+autonomous machine/tool improvement authorization; next qualify supply routes,
+sounding/noise and freight, then choose the next shared capability increment.
+
+
 [Native Cinderhold lasting repair](Verification/MachineSystems/TownPump20261121/README.md)
 now verifies actual readers, finite4unit bill,1320→1330 cost, stable/running/no
 repair rows and fresh1330HP29 persistence. Physical drainage/pressure/economy,

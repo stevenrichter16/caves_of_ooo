@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
         public override string Name => "SettingBench";
 
         public const string Faction = "BowerFolk", LacquerPrefix = "SetLacquer|", SignPrefix = "SetSign|", ResinBlueprint = "PitchpodResin", QuartzBlueprint = "GlowQuartz";
-        public const int MinRegard = 8, RegardPerTier = 10, MaxTier = 4, MaxRows = 12;
+        public const int MinRegard = 8, RegardPerTier = 10, MaxTier = 4;
 
         public static bool IsCommand(string command) => command != null && (command.StartsWith(LacquerPrefix, StringComparison.Ordinal) || command.StartsWith(SignPrefix, StringComparison.Ordinal));
 
@@ -112,7 +112,7 @@ namespace CavesOfOoo.Core
             }
             if (rows.Count == 0) { actions.AddDisabled("SetPiece", "have a piece set", "nothing-to-set", "Nothing you carry can be lacquered or signed: it takes armor, or something worn or wielded.", 's', 20); return; }
             rows = rows.Select((r, i) => (r, i)).OrderBy(x => x.r.refusal != null).ThenBy(x => x.i).Select(x => x.r).ToList();
-            for (int shown = 0; shown < rows.Count && shown < MaxRows; shown++)
+            for (int shown = 0; shown < rows.Count; shown++)
             {
                 var (item, lacquer, tier, refusal, why) = rows[shown];
                 string name = item.GetDisplayName() + GarmentStacks.Suffix(item) + (Worn(actor, item) ? " (worn)" : "");
@@ -122,7 +122,6 @@ namespace CavesOfOoo.Core
                 if (refusal == null) actions.AddActionWithHint("SetPiece", label, command, hint, shown == 0 ? 's' : '\0', 20 - Math.Min(shown, 15), false, ActionTime.OneAction);
                 else actions.AddDisabled("SetPiece", label, refusal, why, shown == 0 ? 's' : '\0', 20 - Math.Min(shown, 15));
             }
-            if (rows.Count > MaxRows) actions.AddDisabled("SetPiece", "have a piece set (" + (rows.Count - MaxRows) + " more not shown)", "more", (rows.Count - MaxRows) + " more choices are not shown: set some pieces aside to see them.", '\0', 0);
         }
 
         // ── the work: one action; the cost, the stack split and the treatment come back together on any failure ──

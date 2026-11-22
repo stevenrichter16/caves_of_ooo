@@ -1,3 +1,10 @@
+**November21 Posy access correction:** frame/bench candidate caps removed;
+[bounded receipt](Verification/MachineSystems/PosyMenuAccess20261121/README.md),
+121/121 focused native checks and actual finite frame placement/refusal→bench
+eligibility/fresh1490HP29. This improves access to supported item choices;
+successful bench treatment and every complete-machine acceptance gate stay open.
+The twelve-machine dependency roster below is unchanged.
+
 **Active focus — handoff publication:** M3c/currentMac accepted and published through420f82367. Next is source-only spurgrass-to-serrated-kit qualification; no recipe/runtime acceptance. See Docs/Verification/MachineSystems/SpurgrassBaseline/source-selection.md. Existing projectile and cord uses remain alternatives; full-machine gates remain open.
 
 **Active focus —2026-11-17 09:06UTC:** M3b prepared-leather feed accepted/published4dcb2d5bc, currentMac same source passes actual cutting→packassembly/equip→travel/F5/freshContinue3570HP40/4drams30weight. Independentdeliveryreview0P1/P2; see Batch4DCB2D5. Finite2offcut opening on freshWeaponsmith only, explicitusablepack/heldCuttingToolPart, away1→1binding/oneaction, cachedstockpreservation; source/gameplay/visual0P1P2. Native45feed+9supplier separate/172adjacent/28icons; overlaps not additive. Already-curedstock, not tanning. Next qualify genuine regional rawfeed/recovery opportunity.

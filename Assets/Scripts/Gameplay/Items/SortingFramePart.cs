@@ -18,8 +18,8 @@ namespace CavesOfOoo.Core
         public override string Name => "SortingFrame";
 
         public const string Prefix = "SortPiece|", Faction = "BowerFolk";
-        /// <summary>Drams above which a thing is "precious" and not taken; regard per point; the one-time regard for a frame with every place full and bright; rows shown.</summary>
-        public const int CheapLimit = 15, RegardPerPoint = 2, WholeRegard = 4, MaxRows = 8;
+        /// <summary>Drams above which a thing is "precious" and not taken; regard per point; the one-time regard for a frame with every place full and bright.</summary>
+        public const int CheapLimit = 15, RegardPerPoint = 2, WholeRegard = 4;
         public static readonly string[] Hues = { "red", "yellow", "green", "cyan", "blue", "magenta" };
 
         /// <summary>One digit per hue (0 empty, 1 dim, 2 striking), what has been paid out in points, and whether the whole frame's regard was paid. Saved.</summary>
@@ -143,7 +143,7 @@ namespace CavesOfOoo.Core
                 int ga = a.refusal == null ? a.power - PowerAt(a.hue) : -1, gb = b.refusal == null ? b.power - PowerAt(b.hue) : -1;
                 int c = gb.CompareTo(ga); return c != 0 ? c : string.CompareOrdinal(a.item.GetDisplayName() + a.item.ID, b.item.GetDisplayName() + b.item.ID);
             });
-            for (int i = 0; i < rows.Count && i < MaxRows; i++)
+            for (int i = 0; i < rows.Count; i++)
             {
                 var (item, hue, power, refusal, why) = rows[i];
                 string label = "set " + item.GetDisplayName() + " in the " + Hues[hue] + " place (" + (power >= 2 ? "striking" : "dim") + ")";
@@ -151,7 +151,6 @@ namespace CavesOfOoo.Core
                 if (refusal == null) actions.AddActionWithHint("SortPiece", label, Prefix + Uri.EscapeDataString(item.ID), hint, i == 0 ? 's' : '\0', 20 - Math.Min(i, 15), false, ActionTime.OneAction);
                 else actions.AddDisabled("SortPiece", label, refusal, why, i == 0 ? 's' : '\0', 20 - Math.Min(i, 15));
             }
-            if (rows.Count > MaxRows) actions.AddDisabled("SortPiece", "set a found thing (" + (rows.Count - MaxRows) + " more not shown)", "more", (rows.Count - MaxRows) + " more coloured things are not shown: set some aside to see them.", '\0', 0);
         }
 
         // ── the setting: one action; the piece, the frame and the regard come back together on any failure ──

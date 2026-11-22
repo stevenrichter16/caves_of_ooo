@@ -2,6 +2,21 @@
 
 ## Resumed continuation — November 21 evening
 
+Newest correction: [Posy menu access](Verification/MachineSystems/PosyMenuAccess20261121/README.md).
+Removed frame8/bench12 row caps and forced-stashing dead ends. Native4REDfailures,
+121/121 focused GREEN, independent source review0P1/P2. Actual previously hidden
+fold placement→free repeated-quality refusal→finite moss/seed placement unlocks
+bench atregard10; fresh1490HP29 retains frame221000/PaidPoints5 and bench prices/
+missing-material refusals. No successful lacquer/sign or crowded bench actual
+play claimed. Archive `/private/tmp/coo-posy-menu-after-earned-20261121/` contains
+earned gamec4b63809fc9047728501cc4015ebd8ca. User renewed broad autonomous
+machine/tool enhancement and integration direction. Next source/play checks:
+ordinary resin/quartz supply, sounding/noise and freight; analogous trough/proofing
+row caps are known separate follow-ups. Exposure/AI remains gated; no unsafe
+population-wide activation. Main stopped/nullroot/seed0 and fresh84foreign/861
+normal hashes unchanged after this audit. Mac candidate74 predates this fix.
+
+
 Newest native town check: [Cinderhold pump](Verification/MachineSystems/TownPump20261121/README.md).
 Earned camp-machine supplies reached canonical6,6 by ordinary travel. Native
 reader/pages/costs, lasting repair1320→1330 consuming2spikes+haft+binding,

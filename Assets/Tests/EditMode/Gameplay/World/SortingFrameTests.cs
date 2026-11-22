@@ -32,6 +32,28 @@ namespace CavesOfOoo.Tests
         }
         string Read(Entity e) { var l = new List<string>(); StateReader.Collect(e, true, Zone, Zone.GetEntityCell(e), Actor, l); return string.Join(" ", l); }
 
+        [TestCase(false)] [TestCase(true)]
+        public void CrowdedPackKeepsEveryPieceReachableAndLateSelectionUsesItsOwnItem(bool stale)
+        {
+            var frame = StandingFrame(); var items = new List<Entity>();
+            for (int i = 0; i < 30; i++)
+            {
+                var item = Factory.CreateEntity("FireMoss"); item.RemovePart(item.GetPart<StackerPart>());
+                item.GetPart<RenderPart>().DisplayName = "piece " + i.ToString("D2");
+                item.GetPart<RenderPart>().ColorString = "&g";
+                Assert.True(Pack.AddObject(item)); items.Add(item);
+            }
+            var rows = Rows(frame); Assert.AreEqual(30, rows.Length);
+            Assert.False(rows.Any(r => r.DisabledCode == "more"));
+            var chosen = rows.Single(r => r.Command == Command(items[29]));
+            Assert.False(chosen.IsDisabled); Assert.AreEqual(ActionTime.OneAction, chosen.Time);
+            if (stale) Assert.True(Pack.RemoveObject(items[29]));
+            Assert.AreEqual(!stale, Act(frame, chosen.Command));
+            Assert.AreEqual(stale ? 0 : 2, Regard);
+            Assert.AreEqual(stale ? "000000" : "001000", Part(frame).Places);
+            Assert.True(items.Take(29).All(Pack.Objects.Contains));
+        }
+
         // ── the eye ──
 
         [TestCase("&r", 0, 1)] [TestCase("&R", 0, 2)] [TestCase("&w", 1, 1)] [TestCase("&W", 1, 2)] [TestCase("&g", 2, 1)] [TestCase("&G", 2, 2)]
