@@ -52,6 +52,7 @@ namespace CavesOfOoo.Rendering
             { KeyCode.UpArrow, Key.UpArrow }, { KeyCode.DownArrow, Key.DownArrow },
             { KeyCode.LeftArrow, Key.LeftArrow }, { KeyCode.RightArrow, Key.RightArrow },
             { KeyCode.PageUp, Key.PageUp }, { KeyCode.PageDown, Key.PageDown },
+            { KeyCode.Home, Key.Home }, { KeyCode.End, Key.End },
             // Function keys
             { KeyCode.F1, Key.F1 }, { KeyCode.F2, Key.F2 }, { KeyCode.F3, Key.F3 },
             { KeyCode.F4, Key.F4 }, { KeyCode.F5, Key.F5 }, { KeyCode.F6, Key.F6 },

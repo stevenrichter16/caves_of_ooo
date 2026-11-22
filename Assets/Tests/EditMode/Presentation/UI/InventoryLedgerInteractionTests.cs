@@ -18,7 +18,7 @@ namespace CavesOfOoo.Tests
 {
     /// <summary>CPU checks of the actual retained paint/hit rectangles and production
     /// dispatcher. Camera conversions are real; no OS mouse, GPU or Deck-feel claim.</summary>
-    public sealed class InventoryLedgerInteractionTests
+    public sealed partial class InventoryLedgerInteractionTests
     {
         const BindingFlags Members = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
@@ -93,8 +93,7 @@ namespace CavesOfOoo.Tests
                 Assert.True(r.Pack.RemoveObject(departing));
                 Call(r.UI, "Rebuild"); Call(r.UI, "Render");
                 AssertSelectedItemIsPainted(r, remaining);
-                Assert.That(r.Labels().Any(label => r.BoundsOf(label).yMin >= 478
-                    && label.Content == departing.GetDisplayName()), Is.False, "Removed-owner title cannot survive in the detail panel.");
+                Assert.That(r.Labels().Any(label => label.Content == departing.GetDisplayName()), Is.False, "Removed-owner title cannot survive in the detail panel.");
                 Assert.AreEqual(1, r.Pack.Objects.Count); Assert.False(r.UI.ConsumePendingEverydayTurn());
                 Assert.IsNull(Get(r.UI, "_itemActionPopup"));
             }
@@ -155,8 +154,8 @@ namespace CavesOfOoo.Tests
             Assert.NotNull(document, "Inspect the already-painted snapshot; do not build another description in the test.");
             Assert.AreSame(expected, document.GetType().GetProperty("Subject", Members).GetValue(document));
             Assert.True(ExamineDocumentBuilder.IsCurrentSubject(document));
-            Assert.That(r.Labels().Any(label => r.BoundsOf(label).yMin >= 478
-                && label.Content == expected.GetDisplayName()), Is.True, "The lower panel must identify the selected owner.");
+            Assert.That(r.Labels().Any(label => r.BoundsOf(label).xMin >= ((Rect)Get(Get(r.UI, "_denseLayout"), "DetailBounds")).xMin
+                && label.Content == expected.GetDisplayName()), Is.True, "The selected-item pane must identify the exact owner.");
             Rect hit = Bounds(r.FindHit("Item", row));
             Color gold = new Color(.97f, .77f, .33f);
             Assert.That(r.UI.GetComponentsInChildren<UnityEngine.UI.Image>(true).Any(image => image.isActiveAndEnabled

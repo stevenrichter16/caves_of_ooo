@@ -379,6 +379,7 @@ namespace CavesOfOoo.Rendering
         public bool HandleInput()
         {
             if (!_isOpen) return false;
+            RefreshDenseViewport();
 
             if (_needsPostOpenRedraw)
             {
@@ -657,6 +658,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+
             // Up/Down: spatial navigation
             if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
@@ -736,6 +738,8 @@ namespace CavesOfOoo.Rendering
                 Render();
                 return;
             }
+
+            if (HandleDensePackKeys()) return;
 
             // Up/Down: list navigation
             if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
@@ -1895,6 +1899,7 @@ namespace CavesOfOoo.Rendering
 
         private void Rebuild()
         {
+            int oldOrdinal = DenseOrdinal;
             Entity selectedItem = _cursorIndex >= 0 && _cursorIndex < _rows.Count
                 ? _rows[_cursorIndex].Item?.Item : null;
             _state = InventoryScreenData.Build(PlayerEntity);
@@ -1902,10 +1907,12 @@ namespace CavesOfOoo.Rendering
             // Always rebuild both panels
             _rows.Clear();
             BuildItemRows();
+            BuildDenseRows();
             // Row positions can change after spending, dropping or filtering items.
             // Preserve the exact carried owner, never an adjacent lookalike.
             _cursorIndex = selectedItem == null ? 0
                 : _rows.FindIndex(row => ReferenceEquals(row.Item?.Item, selectedItem));
+            if (_cursorIndex < 0 && _denseRows.Count > 0) _cursorIndex = _denseRows[Math.Min(oldOrdinal, _denseRows.Count - 1)];
             ClampCursor();
             BuildTinkeringRows();
             BuildCraftingRows();

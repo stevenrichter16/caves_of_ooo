@@ -1,9 +1,32 @@
+**November22 readable inventory:** dedicated full-height Inventory shows44 actual entries at1280×800 and66 at1080p
+versus10 before, with measured final10×20px body glyphs at both targets.125% text gives30 at800p.
+Stable exact owners/search/resize, fitted modals and current hard/soft capacities;
+all existing command/time/custody rules remain. Valid RED27/26fail, reviewRED5/
+4fail, projectionRED3/2fail; final160+4 with3 overlapping strengthened cases =
+161 distinct passes (41new/120existing). Native arrows/pages/search/two-page
+reader/cancel/free wear/unwear, paid food2→1 and F5 verified. Separate earned
+1580→1590 minimal branch archived BEFORE Stop and fresh Continue preserves exact
+actor/food/flasks/treatments/69IDs; first1600 save was not archived and has no
+fresh claim. Misrouted follow-up made one real south move, retained/disclosed.
+Final corrected camera projection fills both targets. Profiler windows yielded
+no marker events, so no timing claim. Main stopped/rootnull/profilerfalse,
+original7GameView presets restored;84foreign/861normal unchanged. Final
+independent artifact/gameplay-evidence review accompanies the receipt. No new
+drop/liquid/camp actual-play or physical controller acceptance. Full redesign
+category filters/state badges/sort and all twelve full-machine gates remain open.
+NEXT: publish this layout and a current Mac candidate, then make disclosed flask/
+charge/treatment state easier to find and compare during recurring gathering,
+processing, preparation and freight trips. Preserve choices/services/lasting
+upgrades; no compulsory upkeep. Chronology/protective NPC work still precedes
+exposure enrollment; graphics cancelled, capstan/cultures parked, Deck deferred.
+
 **November22 user priority:** keep the hourly task current after completions;
 advance the [inventory density plan](INVENTORY-DENSITY-REDESIGN-PLAN.md) as the next
 player-facing layout increment, using a current critique/native baseline first.
 The [recurring gameplay contract](MACHINE-GAMEPLAY-LOOPS.md) now records repeat
 uses, alternatives, finite costs and cross-system outcomes for the full roster.
-It is design direction; no inventory increase or proposed full machine is shipped.
+The recurring-use proposals remain design direction; the bounded inventory
+layout above now has implementation evidence. No proposed full machine is accepted.
 
 **November22 current Mac water candidate:** [package receipt](Verification/MachineSystems/MacCandidate7C3BB8A57/README.md)
 packages runtime7c3bb8a57 with three bounded water increments. Universal build/

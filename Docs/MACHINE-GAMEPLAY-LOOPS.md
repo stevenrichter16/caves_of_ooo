@@ -70,21 +70,23 @@ a direct support system for this journey.
 ## Next player-facing priority: readable inventory density
 
 Follow [INVENTORY-DENSITY-REDESIGN-PLAN.md](INVENTORY-DENSITY-REDESIGN-PLAN.md).
-The plan targets44 real entries at1280×800 and64 at1920×1080, at readable scale,
+The first layout increment now qualifies44 real entries at1280×800 and66 at1920×1080, at the existing readable body size,
 with full-height text columns, contextual details and stable item selection.
-Those are proposed targets, not shipped counts. Use the existing large workshop
+See the bounded InventoryDensity20261122 receipt; category buttons, additional
+state badges and sorting remain open. Use the existing large workshop
 pack to check finding a reagent, a charged tool, a treated garment and a camp kit.
-First obtain a bounded current source/UI critique and record native baselines;
-then implement the smallest complete layout increment through the existing model,
-input and commands. Keep equipment comparisons and full readers accessible.
+The first layout has source/native/readability/action/fresh-reload evidence;
+use that receipt without repeating qualified tests. Next distinguish disclosed
+liquid contents, charges and treatments in rows/search, retaining exact item
+identity, equipment comparisons, full readers and existing commands.
 
 Qualification must include navigation, resizing/search, cancellation and an actual
 paid item action, preserving custody and turn costs. This is functional inventory
 work with the existing art; it does not resume the cancelled graphics program.
-Chronology, hydration normalization and protective NPC behavior remain separate
+Chronology, the remaining hydration policy/normalization and protective NPC behavior remain separate
 required gates before exposure enrollment.
 
 Bounded independent design critique found no material blocker. It corrected the
 inventory plan to display each current pack's actual hard limit, including
-unlimited and scenario-expanded values. Current source/UI critique and native
-readability remain required; this document supplies no implementation acceptance.
+unlimited and scenario-expanded values. This document supplies the design contract; the linked first-layout receipt
+supplies its separate bounded implementation evidence.

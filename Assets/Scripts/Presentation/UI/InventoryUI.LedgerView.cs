@@ -13,7 +13,7 @@ namespace CavesOfOoo.Rendering
         {
             Tab, Equipment, Item, TinkerRow, AbilitySlot, CraftRow, TinkerMode, CraftMode,
             ClearPicks, CraftCommit, ClearAbility, PopupRow, DisplaceYes, DisplaceNo,
-            Cancel, Details, Close, LoadoutRow, LoadoutAction
+            Cancel, Details, Close, LoadoutRow, LoadoutAction, PackTextScale
         }
         struct LedgerHit { public Rect Bounds; public LedgerHitKind Kind; public int Index; }
         readonly List<LedgerHit> _ledgerHits = new List<LedgerHit>(48);
@@ -76,6 +76,7 @@ namespace CavesOfOoo.Rendering
             if (_ledgerCanvas.worldCamera != null)
                 _ledgerCanvas.planeDistance = Mathf.Clamp(1f, _ledgerCanvas.worldCamera.nearClipPlane + .01f,
                     _ledgerCanvas.worldCamera.farClipPlane - .01f);
+            ConfigureLedgerGeometry();
         }
 
         static GameObject LedgerObject(string name, Transform parent, params Type[] components)
@@ -101,7 +102,7 @@ namespace CavesOfOoo.Rendering
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(_ledgerContent, screen, _ledgerCanvas.worldCamera, out var local)) return false;
             Rect rect = _ledgerContent.rect;
             point = new Vector2(local.x - rect.xMin, rect.yMax - local.y);
-            return point.x >= 0 && point.y >= 0 && point.x <= 1280 && point.y <= 800;
+            return point.x >= 0 && point.y >= 0 && point.x <= rect.width && point.y <= rect.height;
         }
 
         static void LedgerPlace(RectTransform transform, Rect bounds)
@@ -115,6 +116,7 @@ namespace CavesOfOoo.Rendering
         }
         Image LBox(Rect bounds, Color color)
         {
+            bounds = LedgerPaintRect(bounds);
             if (_ledgerImageUsed == _ledgerImages.Count)
             {
                 var image = LedgerObject("Panel", _ledgerContent, typeof(Image)).GetComponent<Image>();
@@ -131,6 +133,7 @@ namespace CavesOfOoo.Rendering
         }
         void LLabel(Rect bounds, string text, Color color, float height = 20)
         {
+            bounds = LedgerPaintRect(bounds); height *= _ledgerPaintScale;
             if (_ledgerLabelUsed == _ledgerLabels.Count)
             {
                 var label = LedgerObject("GlyphText", _ledgerContent, typeof(SkillScreenText)).GetComponent<SkillScreenText>();
@@ -142,7 +145,7 @@ namespace CavesOfOoo.Rendering
             result.Content = text; result.color = color;
         }
         void LHit(Rect bounds, LedgerHitKind kind, int index = 0)
-            => _ledgerHits.Add(new LedgerHit { Bounds = bounds, Kind = kind, Index = index });
+            => _ledgerHits.Add(new LedgerHit { Bounds = LedgerPaintRect(bounds), Kind = kind, Index = index });
         void EndLedgerPools()
         {
             for (int i = _ledgerImageUsed; i < _ledgerImages.Count; i++) _ledgerImages[i].gameObject.SetActive(false);
@@ -152,41 +155,53 @@ namespace CavesOfOoo.Rendering
         void RenderLedger()
         {
             if (!_isOpen || _ledgerHidden) return;
+            _ledgerPaintOffset = Vector2.zero; _ledgerPaintScale = 1;
             EnsureLedgerView();
             _ledgerRoot.SetActive(true);
             _ledgerImageUsed = _ledgerLabelUsed = 0; _ledgerHits.Clear();
             _ledgerPortrait.gameObject.SetActive(false);
-            LLabel(new Rect(24, 20, 560, 34), "PACK & EQUIPMENT", LInk, 28);
+            float width = DensePack ? _denseLayout.Width : 1280;
+            LLabel(new Rect(24, 20, DensePack ? 200 : 560, 34), DensePack ? "PACK" : "PACK & EQUIPMENT", LInk, 28);
             if (_state != null)
-                LLabel(new Rect(630, 28, 626, 24), "Weight " + _state.CarriedWeight + "/" + _state.MaxCarryWeight
-                    + " lb   Drams " + _state.Drams + "   Ink " + _state.Ink, LMuted, 18);
-            LBox(new Rect(24, 65, 1232, 1), LBorder);
+            {
+                int hard = PlayerEntity?.GetPart<InventoryPart>()?.MaxWeight ?? -1;
+                string summary = DensePack ? "Weight " + _state.CarriedWeight + " lb   Hard " + (hard < 0 ? "unlimited" : hard.ToString())
+                    + "   Soft " + _state.MaxCarryWeight + "   Drams " + _state.Drams + "   Ink " + _state.Ink
+                    : "Weight " + _state.CarriedWeight + "/" + _state.MaxCarryWeight + " lb   Drams " + _state.Drams + "   Ink " + _state.Ink;
+                LLabel(DensePack ? new Rect(230, 16, width - 254, 44) : new Rect(630, 28, 626, 24),
+                    DensePack ? SkillScreenText.Fit(summary, (int)((width - 254) / 8), 2) : summary, LMuted, DensePack ? 16 : 18);
+            }
+            LBox(new Rect(24, 65, width - 48, 1), LBorder);
             string[] tabs = { "Equipment", "Inventory", "Tinkering", "Abilities", "Crafting", "Loadouts" };
             for (int i = 0; i < tabs.Length; i++)
             {
-                var rect = new Rect(24 + i * 206, 76, 198, 40);
+                float tabWidth = (width - 48) / tabs.Length;
+                var rect = new Rect(24 + i * tabWidth, 76, tabWidth - 8, 40);
                 bool selected = _panel == i;
                 LFrame(rect, selected ? LGold : LBorder, selected ? LSelected : LPanel);
-                LLabel(new Rect(rect.x + 12, rect.y + 10, rect.width - 24, 20), tabs[i], selected ? LGold : LMuted, 20);
+                LLabel(new Rect(rect.x + 6, rect.y + 10, rect.width - 12, 20), tabs[i], selected ? LGold : LMuted, width < 1000 ? 16 : 20);
                 LHit(rect, LedgerHitKind.Tab, i);
             }
             if (_panel == PANEL_TINKERING) RenderLedgerTinkering();
             else if (_panel == PANEL_ABILITIES) RenderLedgerAbilities();
             else if (_panel == PANEL_CRAFTING) RenderLedgerCrafting();
             else if (_panel == PANEL_LOADOUTS) RenderLedgerLoadouts();
+            else if (DensePack) RenderDensePack();
             else
             {
                 RenderLedgerEquipment();
                 RenderLedgerPack();
                 RenderLedgerSelection();
             }
-            RenderLedgerFooter();
+            if (DensePack) RenderDenseFooter(); else RenderLedgerFooter();
             RenderLedgerPopup();
+            _ledgerPaintOffset = Vector2.zero; _ledgerPaintScale = 1;
             RenderLoadoutNamePrompt();
             // A refused action leaves its modal open for retry. Keep the reason
             // above that modal's dimmer, in its own non-overlapping footer row.
             if (!string.IsNullOrWhiteSpace(_actionStatus))
-                LLabel(new Rect(24, 712, 1232, 24), SkillScreenText.Fit(_actionStatus, 123, 1), _actionStatusSuccess ? LGreen : LRed, 20);
+                LLabel(DensePack ? new Rect(24, _denseLayout.Height - 52, width - 48, 24) : new Rect(24, 712, 1232, 24),
+                    SkillScreenText.Fit(_actionStatus, (int)((width - 48) / 10), 1), _actionStatusSuccess ? LGreen : LRed, 20);
             EndLedgerPools();
         }
 

@@ -177,6 +177,7 @@ namespace CavesOfOoo.Rendering
         private void SetInventoryQuery(string query)
         {
             var selected = _cursorIndex >= 0 && _cursorIndex < _rows.Count ? _rows[_cursorIndex].Item?.Item : null;
+            if (string.IsNullOrEmpty(query) && !string.IsNullOrEmpty(_inventoryQuery) && _searchReturnItem != null) selected = _searchReturnItem;
             _inventoryQuery = query ?? ""; Rebuild();
             int row = _rows.FindIndex(r => r.Item?.Item == selected && selected != null);
             _cursorIndex = row >= 0 ? row : _rows.FindIndex(r => r.Item != null);

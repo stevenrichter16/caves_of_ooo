@@ -1,7 +1,7 @@
 # Inventory density redesign — proposed November 21, 2026
 
 User direction: plan a redesign so many more items are visible at once.
-This is a functional inventory proposal, not implemented behavior or a restart
+This combines a qualified first functional layout increment and further proposals; it is not a restart
 of the cancelled graphics program. Preserve the existing visual language and art.
 
 November22 priority reaffirmed by the user: keep this on the ACTIVE hourly work
@@ -9,7 +9,8 @@ list as more machine/tool work completes. It is the next player-facing layout
 increment after the current water/package checkpoint. Begin with a current
 bounded source/UI critique and native baseline, then the smallest complete
 layout change, relevant checks and actual play. The proposed counts below are
-still targets. No density increase has shipped yet.
+historical targets. The November22 first increment below qualifies44/66 entries;
+additional state badges/category buttons/sorting remain proposals.
 
 Evaluate the screen during the recurring gathering/preparation/transport journey
 in [MACHINE-GAMEPLAY-LOOPS.md](MACHINE-GAMEPLAY-LOOPS.md): finding the right
@@ -95,7 +96,8 @@ from available height and the chosen UI text scale, rather than a fixed row coun
 | 1920×1080 | at least 64 | 12 rows including headings |
 | 2560×1440 | at least 88 | 12 rows including headings |
 
-These are design targets, not measured new-screen results. Start with roughly
+These are original design targets. Actual first-increment800p/1080p results are44/66;
+720p/1440p and other densities have layout-test evidence only. Start with roughly
 26-pixel rows and 20-pixel body glyphs at default scale; reserve room for controls
 and status messages. The existing readable text size is the starting point.
 Honor a larger text scale by reducing capacity. If columns become too narrow,
@@ -154,8 +156,8 @@ Native input checks must include column edges, category filtering, long stacks,
 extra body slots, F1 return and popup cancellation. Actual play must cover equip,
 drop, throwing cancellation, liquid/camp actions and one paid action: quantities,
 custody and turn costs stay governed by the existing commands. Obtain a bounded
-independent source/UI review before acceptance. No redesign code is authorized
-or claimed by this planning document alone.
+independent source/UI review before acceptance. The broader sequence remains subject to these gates; the first layout receipt
+below supplies its own bounded implementation evidence.
 
 Bounded independent plan review completed November 21: four requested navigation,
 filter-return, name-width and quantity contracts are incorporated above. Native
@@ -165,3 +167,85 @@ November22 bounded recurring-use/inventory-priority critique found no material
 design blocker. Its current-capacity correction is incorporated above. Pin
 column boundaries, ragged pages and wheel/hover behavior in the upcoming current
 source/UI critique before writing RED cases. Proposed targets remain unqualified.
+
+
+## First layout increment — November22 source and native contract
+
+Current source/UI critique permits an item-only ordinal adapter over existing
+header-bearing rows. Retain exact row/owner identities for existing commands and
+all other tabs. The dedicated Inventory view will use actual Canvas pixel bounds,
+full height, at most two name/quantity/weight columns, a contextual details pane
+when it fits, and a one-column fallback. Actual glyph advance is half glyph height;
+the32-name-glyph minimum must include numeric columns and equipped markers.
+Remove only the generated final stack suffix; retain genuine numeric qualifiers
+and live striker charges already present in the display snapshot.
+
+Up/down crosses a page boundary while retaining the selected column where valid;
+left/right stays within the page and never changes modes. Page Up/Down preserves
+row/column where valid; Home/End selects the exact first/last item. Ragged targets
+choose the closest valid owner. These rules keep all pages reachable with a
+D-pad. Wheel over the list uses the same vertical movement; other screen regions
+do not scroll it. A modal owns pointer/wheel input over its own translated/scaled
+frame and never exposes rows beneath it. Existing Tab/T and popup keys remain.
+
+Resize must refresh geometry before pointer dispatch, preserve the selected
+owner, and ignore a stationary pointer for that resize frame. Repaint and layout
+changes must reuse the existing model and description snapshot: no action or
+mutable-description requery on resize/scroll/hover within the same row. Rebuild,
+query/clear and reader return all need identity preservation; removing a selected
+item chooses its nearest remaining neighbor. Center/scale all modal children,
+text and hit rectangles together, including full-window dimming and status.
+No new per-frame component or inventory/custody/time rules are needed.
+
+Actual earned1580 workshop baseline has69 combined carried/equipped owners in75
+rows, not the earlier71/77 pack. Native I/Tab browsing shows10 real entries at
+both1280×800 and1920×1080. Tick1580/HP400 and quantities remain unchanged. Its
+fixture hard cap is5000 and soft limit1050. Screenshots and observations are in
+/private/tmp/coo-inventory-{before-800,before-1080}-20261122.png and
+/private/tmp/coo-inventory-density-baseline-20261122.json. External execute-code
+Screen.width is Editor-context2319×1283; actual GameView Canvas/PNG dimensions
+establish the target resolution. Owned keyboard/settings/callbacks and original
+GameView cleanup was initially incomplete (relative-index removal was a no-op);
+the corrected absolute-index cleanup and final fresh checks are in the receipt.
+Empty inventory, paid actions and camp-kit use were not staged in this baseline.
+
+This first increment may defer category-button filters, extra state badges and
+new sort controls. Existing search/readers remain available. Publishing the
+layout will not claim completion of the entire redesign.
+
+Performance: compute one small geometry value on layout invalidation and the
+item-ordinal map on model rebuild. Compare viewport/text-scale scalars in the
+existing input loop; paint only on changed geometry/input/model. Retain label/
+image pools and selection-prose cache. Do not query item actions or build lists
+each idle frame. Tests cover capacity/columns,200-entry reachability, exact hits,
+ragged navigation, selection/removal/query/resize, modal isolation and actual
+current weight limits. Native readability and action/save gates remain required.
+
+## First layout qualification — November22
+
+November22 [inventory layout qualification](Verification/MachineSystems/InventoryDensity20261122/README.md):
+dedicated full-height Inventory shows44 actual entries at1280×800 and66 at1080p
+versus10 before, with measured final10×20px body glyphs at both targets.125% text gives30 at800p.
+Stable exact owners/search/resize, fitted modals and current hard/soft capacities;
+all existing command/time/custody rules remain. Valid RED27/26fail, reviewRED5/
+4fail, projectionRED3/2fail; final160+4 with3 overlapping strengthened cases =
+161 distinct passes (41new/120existing). Native arrows/pages/search/two-page
+reader/cancel/free wear/unwear, paid food2→1 and F5 verified. Separate earned
+1580→1590 minimal branch archived BEFORE Stop and fresh Continue preserves exact
+actor/food/flasks/treatments/69IDs; first1600 save was not archived and has no
+fresh claim. Misrouted follow-up made one real south move, retained/disclosed.
+Final corrected camera projection fills both targets. Profiler windows yielded
+no marker events, so no timing claim. Main stopped/rootnull/profilerfalse,
+original7GameView presets restored;84foreign/861normal unchanged. Final
+independent artifact/gameplay-evidence review accompanies the receipt. No new
+drop/liquid/camp actual-play or physical controller acceptance. Full redesign
+category filters/state badges/sort and all twelve full-machine gates remain open.
+NEXT: publish this layout and a current Mac candidate, then make disclosed flask/
+charge/treatment state easier to find and compare during recurring gathering,
+processing, preparation and freight trips. Preserve choices/services/lasting
+upgrades; no compulsory upkeep. Chronology/protective NPC work still precedes
+exposure enrollment; graphics cancelled, capstan/cultures parked, Deck deferred.
+
+
+The receipt supersedes earlier future-tense descriptions only for the bounded
+first layout. Extra category/sort/state UI and wider gameplay coverage remain open.

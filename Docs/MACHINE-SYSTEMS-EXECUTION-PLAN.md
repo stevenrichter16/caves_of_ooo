@@ -10,11 +10,35 @@
 
 ## Active handback continuation — November 21, 2026
 
+November22 [inventory layout qualification](Verification/MachineSystems/InventoryDensity20261122/README.md):
+dedicated full-height Inventory shows44 actual entries at1280×800 and66 at1080p
+versus10 before, with measured final10×20px body glyphs at both targets.125% text gives30 at800p.
+Stable exact owners/search/resize, fitted modals and current hard/soft capacities;
+all existing command/time/custody rules remain. Valid RED27/26fail, reviewRED5/
+4fail, projectionRED3/2fail; final160+4 with3 overlapping strengthened cases =
+161 distinct passes (41new/120existing). Native arrows/pages/search/two-page
+reader/cancel/free wear/unwear, paid food2→1 and F5 verified. Separate earned
+1580→1590 minimal branch archived BEFORE Stop and fresh Continue preserves exact
+actor/food/flasks/treatments/69IDs; first1600 save was not archived and has no
+fresh claim. Misrouted follow-up made one real south move, retained/disclosed.
+Final corrected camera projection fills both targets. Profiler windows yielded
+no marker events, so no timing claim. Main stopped/rootnull/profilerfalse,
+original7GameView presets restored;84foreign/861normal unchanged. Final
+independent artifact/gameplay-evidence review accompanies the receipt. No new
+drop/liquid/camp actual-play or physical controller acceptance. Full redesign
+category filters/state badges/sort and all twelve full-machine gates remain open.
+NEXT: publish this layout and a current Mac candidate, then make disclosed flask/
+charge/treatment state easier to find and compare during recurring gathering,
+processing, preparation and freight trips. Preserve choices/services/lasting
+upgrades; no compulsory upkeep. Chronology/protective NPC work still precedes
+exposure enrollment; graphics cancelled, capstan/cultures parked, Deck deferred.
+
 November22 user priority update: keep the ACTIVE hourly task synchronized with
 completed work; retain the denser [inventory screen](INVENTORY-DENSITY-REDESIGN-PLAN.md)
 as the next player-facing layout increment after this water/package checkpoint.
 Obtain current source/UI critique and native baseline before implementation;
-existing44/64-entry readable targets are proposals, not shipped capacity. New
+original44/64-entry targets were proposals; the newer receipt above qualifies
+44/66 for the first layout. New
 [recurring gameplay contract](MACHINE-GAMEPLAY-LOOPS.md) connects finite gathering,
 processing, preparation, logistics and settlement services to long-term machine/
 tool usefulness. Preserve alternatives and lasting upgrades, with no compulsory

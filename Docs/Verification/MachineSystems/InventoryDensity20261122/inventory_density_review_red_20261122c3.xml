@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 15:37:29Z" end-time="2026-11-22 15:37:30Z" duration="0.8999517">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40620" result="Failed" site="Child" start-time="2026-11-22 15:37:29Z" end-time="2026-11-22 15:37:30Z" duration="0.899952" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49521" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40620" result="Failed" site="Child" start-time="2026-11-22 15:37:29Z" end-time="2026-11-22 15:37:30Z" duration="0.708946" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="4494" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49522" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40620" result="Failed" site="Child" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.567850" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49523" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40620" result="Failed" site="Child" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.393468" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="48197" name="InventoryLedgerInteractionTests" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="61" result="Failed" site="Child" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.015702" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="48221" name="DenseReviewPageKeepsRowWhenDestinationColumnDisappears" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewPageKeepsRowWhenDestinationColumnDisappears" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.011251" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48218" name="DenseReviewPageKeepsRowWhenDestinationColumnDisappears(1280,800,1.0f,22,47,44)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewPageKeepsRowWhenDestinationColumnDisappears(1280,800,1.0f,22,47,44)" methodname="DenseReviewPageKeepsRowWhenDestinationColumnDisappears" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1013691748" result="Failed" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.006193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 44
+  But was:  46
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewPageKeepsRowWhenDestinationColumnDisappears (System.Int32 width, System.Int32 height, System.Single scale, System.Int32 selected, System.Int32 count, System.Int32 expected) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48219" name="DenseReviewPageKeepsRowWhenDestinationColumnDisappears(1280,800,1.0f,23,47,45)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewPageKeepsRowWhenDestinationColumnDisappears(1280,800,1.0f,23,47,45)" methodname="DenseReviewPageKeepsRowWhenDestinationColumnDisappears" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1184623912" result="Failed" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.000103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 45
+  But was:  46
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewPageKeepsRowWhenDestinationColumnDisappears (System.Int32 width, System.Int32 height, System.Single scale, System.Int32 selected, System.Int32 count, System.Int32 expected) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48220" name="DenseReviewPageKeepsRowWhenDestinationColumnDisappears(1280,800,1.5f,10,23,20)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewPageKeepsRowWhenDestinationColumnDisappears(1280,800,1.5f,10,23,20)" methodname="DenseReviewPageKeepsRowWhenDestinationColumnDisappears" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1708076749" result="Passed" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.000739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="48224" name="DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.001146" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48222" name="DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds(2560,720,2.0f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds(2560,720,2.0f)" methodname="DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="559288659" result="Failed" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.000623" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds (System.Int32 width, System.Int32 height, System.Single scale) [0x00009] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48223" name="DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds(1280,360,1.0f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds(1280,360,1.0f)" methodname="DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="747286643" result="Failed" start-time="2026-11-22 15:37:30Z" end-time="2026-11-22 15:37:30Z" duration="0.000075" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds (System.Int32 width, System.Int32 height, System.Single scale) [0x00009] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:95
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

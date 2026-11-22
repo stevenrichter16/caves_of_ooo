@@ -144,21 +144,23 @@ namespace CavesOfOoo.Tests
                 var canvas = RequireView(r);
                 var display = InventoryScreenData.Build(r.Player).Categories.SelectMany(c => c.Items).Single(i => i.Item == food);
                 var labels = VisibleLabels(r);
-                var quantityHeader = labels.Single(t => Normal(t.Content) == "QTY");
-                var weightHeader = labels.Single(t => Normal(t.Content) == "WT" || Normal(t.Content) == "WEIGHT");
+                var quantityHeader = labels.Where(t => Normal(t.Content) == "QTY").OrderBy(t => Bounds(canvas, t).xMin).First();
+                var weightHeader = labels.Where(t => Normal(t.Content) == "WT").OrderBy(t => Bounds(canvas, t).xMin).First();
                 Rect quantity = Bounds(canvas, quantityHeader), weight = Bounds(canvas, weightHeader);
-                var name = labels.Where(t => Normal(t.Content.TrimStart('>', ' ')) == Normal(display.Name)
-                    && Bounds(canvas, t).xMin < quantity.xMin).OrderByDescending(t => Bounds(canvas, t).center.y).FirstOrDefault();
-                Assert.NotNull(name, "The real carried owner must have a visible list row, not only a detail title.");
+                var name = labels.FirstOrDefault(t => Normal(t.Content) == Normal(food.GetPart<RenderPart>().DisplayName)
+                    && Bounds(canvas, t).xMin < quantity.xMin);
+                Assert.NotNull(name, "The exact owner has a visible name without a duplicate generated quantity suffix.");
                 Rect row = Bounds(canvas, name);
-                var quantityCell = labels.SingleOrDefault(t => Normal(t.Content) == display.StackCount.ToString()
+                string quantityText = count == 10000000 ? "~10M" : display.StackCount.ToString();
+                string weightText = display.Weight >= 1000000 ? "~" + display.Weight / 1000000 + "M" : display.Weight.ToString();
+                var quantityCell = labels.SingleOrDefault(t => Normal(t.Content) == quantityText
                     && SameRow(canvas, name, t) && Bounds(canvas, t).center.x >= quantity.xMin
                     && Bounds(canvas, t).center.x < weight.xMin);
-                var weightCell = labels.SingleOrDefault(t => (Normal(t.Content) == display.Weight.ToString()
-                    || Normal(t.Content) == display.Weight + " LB") && SameRow(canvas, name, t)
-                    && Bounds(canvas, t).center.x >= weight.xMin);
-                Assert.NotNull(quantityCell, "Quantity must report stack units in its own column.");
-                Assert.NotNull(weightCell, "Weight must use ScreenData's actual weight, never copy quantity.");
+                var weightCell = labels.SingleOrDefault(t => Normal(t.Content) == Normal(weightText)
+                    && SameRow(canvas, name, t) && Bounds(canvas, t).center.x >= weight.xMin);
+                Assert.NotNull(quantityCell); Assert.NotNull(weightCell);
+                StringAssert.Contains("QUANTITY " + count, VisibleText(r));
+                StringAssert.Contains("WEIGHT " + display.Weight + " LB", VisibleText(r));
                 Assert.LessOrEqual(row.xMax, Bounds(canvas, quantityCell).xMin);
                 Assert.LessOrEqual(Bounds(canvas, quantityCell).xMax, Bounds(canvas, weightCell).xMin);
                 AssertTextFits(name); AssertTextFits(quantityCell); AssertTextFits(weightCell);
@@ -173,7 +175,7 @@ namespace CavesOfOoo.Tests
         [TestCase("LeatherArmor", null, 0, 0, "0 AV 0 DV")]
         [TestCase("LeatherArmor", null, -2, 12, "-2 AV +12 DV")]
         [TestCase("DriedMeat", null, 0, 0, "-")]
-        public void PackRowsShowCurrentWeaponDamageOrArmorDefenseWithoutClipping(
+        public void SelectedPackDetailsShowCurrentWeaponDamageOrArmorDefenseWithoutClipping(
             string blueprint, string damage, int av, int dv, string expected)
         {
             using (var r = new Rig())
@@ -184,23 +186,17 @@ namespace CavesOfOoo.Tests
                 r.Open(); r.Select(item);
                 var canvas = RequireView(r); var labels = VisibleLabels(r);
                 Assert.False(labels.Any(t => Normal(t.Content) == "WORN"));
-                var header = labels.Single(t => Normal(t.Content) == "DMG / DEF");
-                var quantity = labels.Single(t => Normal(t.Content) == "QTY");
-                var name = labels.First(t => Normal(t.Content) == Normal(item.GetDisplayName())
-                    && Bounds(canvas, t).yMin > 0 && Bounds(canvas, t).xMin < Bounds(canvas, quantity).xMin);
-                var metric = labels.Single(t => SameRow(canvas, name, t)
-                    && Bounds(canvas, t).xMin == Bounds(canvas, header).xMin);
-                Assert.AreEqual(expected, Normal(metric.Content));
-                AssertTextFits(header); AssertTextFits(metric);
-                var weight = labels.Single(t => SameRow(canvas, name, t) && Normal(t.Content).EndsWith(" LB"));
-                Assert.LessOrEqual(Bounds(canvas, weight).xMax, Bounds(canvas, metric).xMin);
-                Assert.False(labels.Any(t => SameRow(canvas, name, t) && t.Content == "[E]"));
+                var metric = labels.Single(t => Normal(t.Content) == "DMG / DEF " + expected);
+                var weightHeader = labels.Where(t => Normal(t.Content) == "WT").OrderBy(t => Bounds(canvas, t).xMin).First();
+                Assert.Greater(Bounds(canvas, metric).xMin, Bounds(canvas, weightHeader).xMax, "Combat facts are in the selected-item pane.");
+                AssertTextFits(metric);
+                Assert.False(labels.Any(t => t.Content == "[E]"));
                 Assert.False(r.UI.ConsumePendingEverydayTurn());
             }
         }
 
         [TestCase(false)] [TestCase(true)]
-        public void EquippedMarkerIsLastAfterDamageAndAbsentForUnequippedItems(bool equipped)
+        public void EquippedMarkerFollowsWeightAndIsAbsentForUnequippedItems(bool equipped)
         {
             using (var r = new Rig())
             {
@@ -208,15 +204,15 @@ namespace CavesOfOoo.Tests
                 if (equipped) Assert.True(r.Pack.EquipToBodyPart(sword, r.Player.GetPart<Body>().GetParts().First(p => p.Type == "Hand")));
                 r.Open(); r.Select(sword);
                 var canvas = RequireView(r); var labels = VisibleLabels(r);
-                var header = labels.Single(t => Normal(t.Content) == "DMG / DEF");
-                var metric = labels.Single(t => Normal(t.Content) == "1D8" && Bounds(canvas, t).xMin == Bounds(canvas, header).xMin);
-                var markers = labels.Where(t => t.Content == "[E]" && Mathf.Abs(Bounds(canvas, t).center.y - Bounds(canvas, metric).center.y) < 2f).ToList();
+                var qtyHeader = labels.Where(t => Normal(t.Content) == "QTY").OrderBy(t => Bounds(canvas, t).xMin).First();
+                var wtHeader = labels.Where(t => Normal(t.Content) == "WT").OrderBy(t => Bounds(canvas, t).xMin).First();
+                var name = labels.First(t => Normal(t.Content) == Normal(sword.GetDisplayName()) && Bounds(canvas, t).xMin < Bounds(canvas, qtyHeader).xMin);
+                var weight = labels.Single(t => SameRow(canvas, name, t) && Normal(t.Content) == InventoryPart.GetItemWeight(sword).ToString()
+                    && Bounds(canvas, t).center.x >= Bounds(canvas, wtHeader).xMin);
+                var markers = labels.Where(t => t.Content == "[E]" && SameRow(canvas, name, t)).ToList();
                 Assert.AreEqual(equipped ? 1 : 0, markers.Count);
-                if (equipped)
-                {
-                    Assert.GreaterOrEqual(Bounds(canvas, markers[0]).xMin, Bounds(canvas, metric).xMax);
-                    AssertTextFits(markers[0]);
-                }
+                // Shared row edges can differ by one projection ULP in camera space.
+                if (equipped) { Assert.GreaterOrEqual(Bounds(canvas, markers[0]).xMin + .1f, Bounds(canvas, weight).xMax); AssertTextFits(markers[0]); }
                 Assert.AreEqual(equipped, sword.GetPart<PhysicsPart>().Equipped == r.Player);
             }
         }
@@ -506,7 +502,7 @@ namespace CavesOfOoo.Tests
             return Rect.MinMaxRect(b.min.x, b.min.y, b.max.x, b.max.y);
         }
         static bool SameRow(Canvas c, SkillScreenText a, SkillScreenText b)
-            => Mathf.Abs(Bounds(c, a).yMax - Bounds(c, b).yMax) < 1f;
+            => Mathf.Abs(Bounds(c, a).center.y - Bounds(c, b).center.y) <= 3f;
         static void AssertTextFits(SkillScreenText label)
         {
             string[] lines = label.Content.Split('\n');

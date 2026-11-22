@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Failed(Child)" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 15:30:22Z" end-time="2026-11-22 15:30:24Z" duration="1.4858475">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40615" result="Failed" site="Child" start-time="2026-11-22 15:30:22Z" end-time="2026-11-22 15:30:24Z" duration="1.485848" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49514" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40615" result="Failed" site="Child" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:24Z" duration="1.302231" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="98826" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49515" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40615" result="Failed" site="Child" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:24Z" duration="1.169145" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49516" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40615" result="Failed" site="Child" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:24Z" duration="0.983643" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="48197" name="InventoryLedgerInteractionTests" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:24Z" duration="0.617761" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="48229" name="DenseFilterCancellationAndRepaintPreserveOwnerAndActionSnapshot" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseFilterCancellationAndRepaintPreserveOwnerAndActionSnapshot" methodname="DenseFilterCancellationAndRepaintPreserveOwnerAndActionSnapshot" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="209749665" result="Passed" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:23Z" duration="0.181077" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="48202" name="DenseGeometryMeetsReadableCapacityAndNameWidth" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometryMeetsReadableCapacityAndNameWidth" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:23Z" duration="0.004341" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48198" name="DenseGeometryMeetsReadableCapacityAndNameWidth(1280,720,36)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometryMeetsReadableCapacityAndNameWidth(1280,720,36)" methodname="DenseGeometryMeetsReadableCapacityAndNameWidth" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="360495764" result="Failed" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:23Z" duration="0.001822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometryMeetsReadableCapacityAndNameWidth (System.Int32 width, System.Int32 height, System.Int32 minimum) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48199" name="DenseGeometryMeetsReadableCapacityAndNameWidth(1280,800,44)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometryMeetsReadableCapacityAndNameWidth(1280,800,44)" methodname="DenseGeometryMeetsReadableCapacityAndNameWidth" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1041082575" result="Failed" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:23Z" duration="0.000107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometryMeetsReadableCapacityAndNameWidth (System.Int32 width, System.Int32 height, System.Int32 minimum) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48200" name="DenseGeometryMeetsReadableCapacityAndNameWidth(1920,1080,64)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometryMeetsReadableCapacityAndNameWidth(1920,1080,64)" methodname="DenseGeometryMeetsReadableCapacityAndNameWidth" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="2003145151" result="Failed" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:23Z" duration="0.000072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometryMeetsReadableCapacityAndNameWidth (System.Int32 width, System.Int32 height, System.Int32 minimum) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48201" name="DenseGeometryMeetsReadableCapacityAndNameWidth(2560,1440,88)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometryMeetsReadableCapacityAndNameWidth(2560,1440,88)" methodname="DenseGeometryMeetsReadableCapacityAndNameWidth" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1938121784" result="Failed" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:23Z" duration="0.000065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometryMeetsReadableCapacityAndNameWidth (System.Int32 width, System.Int32 height, System.Int32 minimum) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="48227" name="DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:24Z" duration="0.115253" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48224" name="DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit(-1,&quot;unlimited&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit(-1,&quot;unlimited&quot;)" methodname="DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1896581797" result="Failed" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:23Z" duration="0.038871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Hard unlimited"
+  But was:  "PACK & EQUIPMENT
+Weight 4/270 lb   Drams 50   Ink 50
+Equipment
+Inventory
+Tinkering
+Abilities
+Crafting
+Loadouts
+STATUS
+HP
+40/40
+AV
+0
+DV
+7
+LV
+1
+XP
+0
+STR
+18 (+1)
+AGI
+18 (+1)
+TGH
+18 (+1)
+INT
+10 (-3)
+WIL
+10 (-3)
+EGO
+16 (+0)
+SPD
+100
+AP
+0
++2 more stats
+EQUIPMENT
+body
+(empty)
+head
+(empty)
+back
+(empty)
+left arm
+(empty)
+left hand
+(empty)
+right arm
+(empty)
+right hand
+(empty)
+1-7 / 10 body slots
+ITEM
+QTY
+WT
+DMG / DEF
+MELEE WEAPONS
+dagger
+1
+4 lb
+1d4
+dagger
+Damage: 1d4 per penetration.
+Hit bonus: +0; Penetration bonus: +1.
+Penetration uses Strength modifier (cap 3).
+Attributes: Piercing.
+On damaging hits, independent attempts (targets may resist):...
+/
+F1 Details
+Arrows: browse  Enter: actions  D: drop  /: find  Tab: mode  F1: details  F2: status  Esc: close"
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit (System.Int32 limit, System.String caption) [0x0006b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:152
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48225" name="DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit(150,&quot;150&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit(150,&quot;150&quot;)" methodname="DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="139972992" result="Failed" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:23Z" duration="0.038779" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Hard 150"
+  But was:  "PACK & EQUIPMENT
+Weight 4/270 lb   Drams 50   Ink 50
+Equipment
+Inventory
+Tinkering
+Abilities
+Crafting
+Loadouts
+STATUS
+HP
+40/40
+AV
+0
+DV
+7
+LV
+1
+XP
+0
+STR
+18 (+1)
+AGI
+18 (+1)
+TGH
+18 (+1)
+INT
+10 (-3)
+WIL
+10 (-3)
+EGO
+16 (+0)
+SPD
+100
+AP
+0
++2 more stats
+EQUIPMENT
+body
+(empty)
+head
+(empty)
+back
+(empty)
+left arm
+(empty)
+left hand
+(empty)
+right arm
+(empty)
+right hand
+(empty)
+1-7 / 10 body slots
+ITEM
+QTY
+WT
+DMG / DEF
+MELEE WEAPONS
+dagger
+1
+4 lb
+1d4
+dagger
+Damage: 1d4 per penetration.
+Hit bonus: +0; Penetration bonus: +1.
+Penetration uses Strength modifier (cap 3).
+Attributes: Piercing.
+On damaging hits, independent attempts (targets may resist):...
+/
+F1 Details
+Arrows: browse  Enter: actions  D: drop  /: find  Tab: mode  F1: details  F2: status  Esc: close"
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit (System.Int32 limit, System.String caption) [0x0006b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:152
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48226" name="DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit(5000,&quot;5000&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit(5000,&quot;5000&quot;)" methodname="DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1387422303" result="Failed" start-time="2026-11-22 15:30:23Z" end-time="2026-11-22 15:30:24Z" duration="0.037142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Hard 5000"
+  But was:  "PACK & EQUIPMENT
+Weight 4/270 lb   Drams 50   Ink 50
+Equipment
+Inventory
+Tinkering
+Abilities
+Crafting
+Loadouts
+STATUS
+HP
+40/40
+AV
+0
+DV
+7
+LV
+1
+XP
+0
+STR
+18 (+1)
+AGI
+18 (+1)
+TGH
+18 (+1)
+INT
+10 (-3)
+WIL
+10 (-3)
+EGO
+16 (+0)
+SPD
+100
+AP
+0
++2 more stats
+EQUIPMENT
+body
+(empty)
+head
+(empty)
+back
+(empty)
+left arm
+(empty)
+left hand
+(empty)
+right arm
+(empty)
+right hand
+(empty)
+1-7 / 10 body slots
+ITEM
+QTY
+WT
+DMG / DEF
+MELEE WEAPONS
+dagger
+1
+4 lb
+1d4
+dagger
+Damage: 1d4 per penetration.
+Hit bonus: +0; Penetration bonus: +1.
+Penetration uses Strength modifier (cap 3).
+Attributes: Piercing.
+On damaging hits, independent attempts (targets may resist):...
+/
+F1 Details
+Arrows: browse  Enter: actions  D: drop  /: find  Tab: mode  F1: details  F2: status  Esc: close"
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseHeaderUsesCurrentHardLimitAndDistinctSoftLimit (System.Int32 limit, System.String caption) [0x0006b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:152
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="48222" name="DenseHomeEndAndPageKeysRemainFreeAndReachTheLastActualOwner" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseHomeEndAndPageKeysRemainFreeAndReachTheLastActualOwner" methodname="DenseHomeEndAndPageKeysRemainFreeAndReachTheLastActualOwner" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1314507953" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.059329" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <Entity(owner 48)>
+  But was:  <Entity(owner 8)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseHomeEndAndPageKeysRemainFreeAndReachTheLastActualOwner () [0x00071] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:127
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="48228" name="DenseNamesRemoveOnlyGeneratedStackSuffixAndRetainStrikerCharges" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNamesRemoveOnlyGeneratedStackSuffixAndRetainStrikerCharges" methodname="DenseNamesRemoveOnlyGeneratedStackSuffixAndRetainStrikerCharges" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="681681704" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.040995" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNamesRemoveOnlyGeneratedStackSuffixAndRetainStrikerCharges () [0x0006a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:162
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="48206" name="DenseNarrowOrLargeTextFallsBackWithoutLosingReachability" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNarrowOrLargeTextFallsBackWithoutLosingReachability" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.001149" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48203" name="DenseNarrowOrLargeTextFallsBackWithoutLosingReachability(640,480,1.0f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNarrowOrLargeTextFallsBackWithoutLosingReachability(640,480,1.0f)" methodname="DenseNarrowOrLargeTextFallsBackWithoutLosingReachability" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1238290044" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNarrowOrLargeTextFallsBackWithoutLosingReachability (System.Int32 width, System.Int32 height, System.Single scale) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48204" name="DenseNarrowOrLargeTextFallsBackWithoutLosingReachability(900,800,1.0f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNarrowOrLargeTextFallsBackWithoutLosingReachability(900,800,1.0f)" methodname="DenseNarrowOrLargeTextFallsBackWithoutLosingReachability" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1185184835" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNarrowOrLargeTextFallsBackWithoutLosingReachability (System.Int32 width, System.Int32 height, System.Single scale) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48205" name="DenseNarrowOrLargeTextFallsBackWithoutLosingReachability(1280,800,1.5f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNarrowOrLargeTextFallsBackWithoutLosingReachability(1280,800,1.5f)" methodname="DenseNarrowOrLargeTextFallsBackWithoutLosingReachability" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="320487741" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNarrowOrLargeTextFallsBackWithoutLosingReachability (System.Int32 width, System.Int32 height, System.Single scale) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="48216" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.001263" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48207" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(0)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(0)" methodname="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1897580338" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable (System.Int32 count) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48208" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(1)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(1)" methodname="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="844149665" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable (System.Int32 count) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48209" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(21)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(21)" methodname="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="55386546" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable (System.Int32 count) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48210" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(22)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(22)" methodname="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1135978481" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000063" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable (System.Int32 count) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48211" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(23)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(23)" methodname="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="777464484" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000056" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable (System.Int32 count) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48212" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(43)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(43)" methodname="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1102416014" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000057" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable (System.Int32 count) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48213" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(44)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(44)" methodname="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1095321565" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable (System.Int32 count) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48214" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(45)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(45)" methodname="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1593269482" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable (System.Int32 count) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48215" name="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(200)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable(200)" methodname="DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="849480082" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000059" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseNavigationKeepsEveryResultBoundedAndEveryOwnerReachable (System.Int32 count) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="48220" name="DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.107619" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48218" name="DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders(1280,800,44)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders(1280,800,44)" methodname="DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1823335149" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.054740" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: greater than or equal to 44
+  But was:  11
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders (System.Int32 width, System.Int32 height, System.Int32 minimum) [0x0007b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48219" name="DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders(1920,1080,64)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders(1920,1080,64)" methodname="DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="309342524" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.052603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: greater than or equal to 64
+  But was:  11
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders (System.Int32 width, System.Int32 height, System.Int32 minimum) [0x0007b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="48217" name="DenseRaggedColumnAndPageEdgesRetainClosestValidRow" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseRaggedColumnAndPageEdgesRetainClosestValidRow" methodname="DenseRaggedColumnAndPageEdgesRetainClosestValidRow" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="421618343" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.000197" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseRaggedColumnAndPageEdgesRetainClosestValidRow () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:78
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="48223" name="DenseRemovalChoosesNearestRemainingOwnerRatherThanFirst" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseRemovalChoosesNearestRemainingOwnerRatherThanFirst" methodname="DenseRemovalChoosesNearestRemainingOwnerRatherThanFirst" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1888715230" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.039403" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <Entity(same dagger)>
+  But was:  <Entity(same dagger)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseRemovalChoosesNearestRemainingOwnerRatherThanFirst () [0x000ae] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:142
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="48221" name="DenseRightColumnSelectsExactOwnerAndOuterDirectionsNeverSwitchModes" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseRightColumnSelectsExactOwnerAndOuterDirectionsNeverSwitchModes" methodname="DenseRightColumnSelectsExactOwnerAndOuterDirectionsNeverSwitchModes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="800381099" result="Failed" start-time="2026-11-22 15:30:24Z" end-time="2026-11-22 15:30:24Z" duration="0.059837" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A shared geometry must govern dense paint, navigation and hit rectangles.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseGeometry (System.Int32 width, System.Int32 height, System.Single scale) [0x00019] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:18
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseRightColumnSelectsExactOwnerAndOuterDirectionsNeverSwitchModes () [0x0004c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:111
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

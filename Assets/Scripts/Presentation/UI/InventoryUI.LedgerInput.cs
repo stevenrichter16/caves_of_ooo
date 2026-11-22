@@ -32,7 +32,9 @@ namespace CavesOfOoo.Rendering
             }
             else if (click) { if (LedgerHasPopup && !inside) CancelLedgerPopup(); return true; }
             float wheel = mouse != null ? mouse.scroll.ReadValue().y : Input.mouseScrollDelta.y;
-            if (inside && Mathf.Abs(wheel) > .01f)
+            bool wheelHere = LedgerHasPopup ? _ledgerModalBounds.Contains(point)
+                : !DensePack || _denseLayout != null && _denseLayout.ListBounds.Contains(point);
+            if (inside && wheelHere && Mathf.Abs(wheel) > .01f)
             {
                 MoveLedgerSelection(wheel > 0 ? -1 : 1); Render(); return true;
             }
@@ -57,7 +59,9 @@ namespace CavesOfOoo.Rendering
                     return SelectLoadout(hit.Index);
                 case LedgerHitKind.Item:
                     if (_panel == PANEL_INVENTORY && _cursorIndex == hit.Index) return false;
-                    _panel = PANEL_INVENTORY; _cursorIndex = hit.Index; return true;
+                    _panel = PANEL_INVENTORY; _cursorIndex = hit.Index;
+                    if (!_inventorySearchActive && !string.IsNullOrEmpty(_inventoryQuery)) _searchReturnItem = _rows[_cursorIndex].Item?.Item;
+                    return true;
                 case LedgerHitKind.TinkerRow:
                     if (_tinkerCursorIndex == hit.Index) return false; _tinkerCursorIndex = hit.Index; return true;
                 case LedgerHitKind.CraftRow:
@@ -88,6 +92,7 @@ namespace CavesOfOoo.Rendering
             switch (hit.Kind)
             {
                 case LedgerHitKind.Tab: _panel = hit.Index; Render(); return;
+                case LedgerHitKind.PackTextScale: ChangeDenseTextScale(hit.Index); return;
                 case LedgerHitKind.LoadoutRow: Render(); return;
                 case LedgerHitKind.LoadoutAction: ExecuteLoadoutAction(hit.Index); return;
                 case LedgerHitKind.Equipment:
@@ -159,7 +164,7 @@ namespace CavesOfOoo.Rendering
             else if (_modTargetPopup != null) _modTargetPopup.CursorIndex = Mathf.Clamp(_modTargetPopup.CursorIndex + delta, 0, Math.Max(0, _modTargetPopup.TotalRows - 1));
             else if (_grimoirePicker != null) _grimoirePicker.CursorIndex = Mathf.Clamp(_grimoirePicker.CursorIndex + delta, 0, Math.Max(0, _grimoirePicker.Grimoires.Count - 1));
             else if (_panel == PANEL_EQUIPMENT) MoveEquipCursor(0, delta);
-            else if (_panel == PANEL_INVENTORY) MoveCursor(delta);
+            else if (_panel == PANEL_INVENTORY) MoveDensePack(delta < 0 ? PackNavigation.Up : PackNavigation.Down);
             else if (_panel == PANEL_TINKERING) MoveTinkeringCursor(delta);
             else if (_panel == PANEL_CRAFTING) MoveCraftCursor(delta);
             else if (_panel == PANEL_LOADOUTS) MoveLoadoutSelection(delta);

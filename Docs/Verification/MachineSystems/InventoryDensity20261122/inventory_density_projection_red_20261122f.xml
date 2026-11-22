@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 15:52:37Z" end-time="2026-11-22 15:52:38Z" duration="1.1390709">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40628" result="Failed" site="Child" start-time="2026-11-22 15:52:37Z" end-time="2026-11-22 15:52:38Z" duration="1.139071" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49531" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40628" result="Failed" site="Child" start-time="2026-11-22 15:52:37Z" end-time="2026-11-22 15:52:38Z" duration="0.952756" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="17150" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49532" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40628" result="Failed" site="Child" start-time="2026-11-22 15:52:37Z" end-time="2026-11-22 15:52:38Z" duration="0.771374" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49533" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40628" result="Failed" site="Child" start-time="2026-11-22 15:52:37Z" end-time="2026-11-22 15:52:38Z" duration="0.593297" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="48197" name="InventoryLedgerInteractionTests" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="69" result="Failed" site="Child" start-time="2026-11-22 15:52:37Z" end-time="2026-11-22 15:52:38Z" duration="0.255631" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="48228" name="DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 15:52:37Z" end-time="2026-11-22 15:52:38Z" duration="0.252613" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48225" name="DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect(1920,1080,1.6f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect(1920,1080,1.6f)" methodname="DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="311251426" result="Failed" start-time="2026-11-22 15:52:37Z" end-time="2026-11-22 15:52:38Z" duration="0.173239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0.0f +/- 0.5f
+  But was:  -106.666718f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect (System.Int32 width, System.Int32 height, System.Single aspect) [0x0007a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48226" name="DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect(1280,800,1.9f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect(1280,800,1.9f)" methodname="DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1105973531" result="Failed" start-time="2026-11-22 15:52:38Z" end-time="2026-11-22 15:52:38Z" duration="0.038194" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0.0f +/- 0.5f
+  But was:  101.052628f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect (System.Int32 width, System.Int32 height, System.Single aspect) [0x0007a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48227" name="DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect(1280,800,1.6f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect(1280,800,1.6f)" methodname="DenseReviewCanvasProjectionFillsTargetUnderPinnedGameplayAspect" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1868355787" result="Passed" start-time="2026-11-22 15:52:38Z" end-time="2026-11-22 15:52:38Z" duration="0.037123" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -61,6 +61,11 @@ namespace CavesOfOoo.Rendering
             if (_panel != PANEL_ABILITIES || GetAbilitiesPart()?.GetAbilityBySlot(_abilitiesCursorSlot) != null)
                 AddLedgerCommand("Full details", () => _ledgerDetailsRequested = true);
             AddLedgerCommand("Character status", () => _ledgerStatusRequested = true);
+            if (DensePack)
+            {
+                AddLedgerCommand("Larger text", () => ChangeDenseTextScale(1));
+                AddLedgerCommand("Smaller text", () => ChangeDenseTextScale(-1));
+            }
             AddLedgerCommand("Close inventory", Close);
             _ledgerCommandsOpen = true; Render();
         }
@@ -86,7 +91,13 @@ namespace CavesOfOoo.Rendering
             if (!LedgerHasPopup || _loadoutNameEditing) return;
             // Opaque modal wins every hit; the underlying pack cannot be activated.
             _ledgerHits.Clear();
-            LBox(new Rect(0, 0, 1280, 800), new Color(0, 0, 0, .8f));
+            LBox(new Rect(0, 0, DensePack ? _denseLayout.Width : 1280, DensePack ? _denseLayout.Height : 800), new Color(0, 0, 0, .8f));
+            if (DensePack)
+            {
+                _ledgerPaintScale = Mathf.Min(1, _denseLayout.Width / 1280, _denseLayout.Height / 800);
+                _ledgerPaintOffset = new Vector2((_denseLayout.Width - 1280 * _ledgerPaintScale) / 2, (_denseLayout.Height - 800 * _ledgerPaintScale) / 2);
+            }
+            _ledgerModalBounds = LedgerPaintRect(new Rect(250, 142, 780, 556));
             const float x = 250, y = 142, width = 780, height = 556;
             LFrame(new Rect(x, y, width, height), LGold, LPanel);
             string title = "ITEM ACTIONS", owner = "";
