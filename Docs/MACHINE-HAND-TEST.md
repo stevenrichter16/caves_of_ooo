@@ -1,8 +1,9 @@
 # Hand-testing the camp and machine work
 
 November21 update: native GameBootstrap play now covers bounded camp, still,
-proofing, scraper/tray, vent-heat and fish/food paths. Awning protection has only a
-partial check; the sounding rod has two paid soundings, a free log and fresh
+proofing, scraper/tray, vent-heat and fish/food paths. Awning follow-up verifies
+standing reload, a full protected interval and take-up; ring-exit/alternatives
+remain open. The sounding rod has two paid soundings, a free log and fresh
 Continue. See the current [Codex handoff](CODEX-MACHINE-HANDOFF-2026-11-21.md) and
 [camp-tool limits](Verification/MachineSystems/CampTools20261121/README.md).
 The remaining steps below are a checklist, not claims that they passed. Earlier

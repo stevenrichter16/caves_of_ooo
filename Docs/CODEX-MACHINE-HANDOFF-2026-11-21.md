@@ -37,7 +37,15 @@ was refused with company nearby, so surface refusal remains open. See
 [CampTools evidence](Verification/MachineSystems/CampTools20261121/README.md).
 Main is again idle/clean with null save override and input settings restored.
 
-Next: finish awning protection/take-up, sounding surface/noise response,
+Later awning follow-up resumed the earned430 checkpoint through fresh Continue,
+retaining standing shade and existingParched1. Ordinary combat/drinks cleared the
+scorpion and existing status; ten protected paid actions440→540 added no Parched
+and kept exposure0. Same-ID awning2225 take-up540→550 removed shade and resumed
+exposure1; four waits reached590/exposure5. Separate earned take-up archive:
+`/private/tmp/coo-awning-takeup-earned-20261121/547789184890420f89518528a85fb9c6`.
+No full renewed unshaded interval, ring-exit comparison or carried reload claimed.
+
+Next: sounding surface/noise response,
 spring-trap/shared terrain reactions,
 town/Posy/freight/repair gameplay from MACHINE-HAND-TEST, then a coherent current
 Mac build and actual verification. Independent review of receipts is evidence

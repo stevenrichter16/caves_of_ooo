@@ -43,6 +43,9 @@ fresh Continue retaining both entries. Awning placement provided shade and reset
 exposure but a scorpion interrupted the longer comparison. Ascent was refused
 with company nearby, so sounding's surface refusal remains open. See
 [camp-tool evidence and exclusions](Verification/MachineSystems/CampTools20261121/README.md).
+The subsequent awning follow-up confirmed fresh standing reload, ten protected
+paid actions with exposure0/no new Parched, and same-ID take-up removing shade
+and resuming exposure. Remaining ring-exit/alternative/travel checks stay open.
 
 The user additionally requested an [inventory density redesign plan](INVENTORY-DENSITY-REDESIGN-PLAN.md).
 It proposes full-height columns and compact details over existing commands;
