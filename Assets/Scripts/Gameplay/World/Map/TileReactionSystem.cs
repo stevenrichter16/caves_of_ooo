@@ -75,6 +75,9 @@ namespace CavesOfOoo.Core
 
             // What the reaction eats.
             public bool ConsumeCoating;
+            /// <summary>Exhaust recoverable local poured fuel represented by the
+            /// consumed coating. Explicit opt-in; phase changes are not fuel use.</summary>
+            public bool ConsumePhysicalLiquid;
             public bool ConsumeResidue;
             public int ConsumeEnergy;
 
@@ -368,7 +371,10 @@ namespace CavesOfOoo.Core
             // replacement rather than a no-op refresh.
             string consumedCoating = r.ConsumeCoating && !string.IsNullOrEmpty(r.InputCoating)
                 ? FindInputCoating(state, x, y, r.InputCoating) : null;
-            if (consumedCoating != null) state.RemoveCoating(x, y, consumedCoating);
+            long consumedLiquid = 0;
+            if (consumedCoating != null && state.RemoveCoating(x, y, consumedCoating)
+                && r.ConsumePhysicalLiquid)
+                consumedLiquid = LiquidPoolPart.ConsumePouredFuel(zone, x, y, consumedCoating);
             if (r.ConsumeResidue && !string.IsNullOrEmpty(r.InputResidue))
                 state.RemoveResidue(x, y, r.InputResidue);
             if (r.ConsumeEnergy > 0 && !string.IsNullOrEmpty(r.InputEnergy))
@@ -401,6 +407,7 @@ namespace CavesOfOoo.Core
                 {
                     reaction = r.ID, x, y,
                     consumedCoating = consumedCoating ?? "",
+                    consumedPhysicalLiquid = consumedLiquid,
                     consumedEnergy = r.ConsumeEnergy,
                     outputCoating = r.OutputCoating,
                     outputCloud = r.OutputCloud,

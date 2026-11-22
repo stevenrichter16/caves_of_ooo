@@ -16,6 +16,12 @@ Standing whole-game architecture: [Composable world systems](SYSTEMS-DESIGN-PRIN
 
 ## Design principles
 
+[Finite poured-fuel correction](FINITE-POURED-FUEL.md) now debits the ordinary
+recoverable oil underlying an ignition coating, before damage callbacks. Both
+ignition paths/native persistence verified; physical water and natural/multi-cell
+sources retain their separate contract. This closes the bounded P2 below, not
+global fuel conservation or any complete-machine dependency gate.
+
 Latest bounded qualification: [native camp oil/cold trap chain](Verification/MachineSystems/ColdOilPlay20261121/README.md)
 demonstrates still12mire→3oil and shared brine freezing/oil ignition. It does not
 close the dependency matrix: recoverable poured oil Volume1 survives consumption

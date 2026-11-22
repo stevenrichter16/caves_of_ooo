@@ -1,4 +1,6 @@
 using CavesOfOoo.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CavesOfOoo.Core
 {
@@ -43,6 +45,43 @@ namespace CavesOfOoo.Core
         /// <summary>How much liquid is in the pool. Drives the
         /// contact-coating exposure in LQ.4. Clamped to ≥ 0.</summary>
         public int Volume = 0;
+
+        /// <summary>One explicit consuming reaction burns the whole local poured
+        /// puddle as one burst. Natural/replenishing and multi-cell sources keep
+        /// their separate lifetime policy; thin films have their own callback.</summary>
+        internal static long ConsumePouredFuel(Zone zone, int x, int y, string liquid)
+        {
+            var cell = zone?.GetCell(x, y);
+            if (cell == null || string.IsNullOrEmpty(liquid)) return 0;
+            var owners = UnityEngine.Pool.ListPool<Entity>.Get();
+            long consumed = 0;
+            try
+            {
+                owners.AddRange(cell.Occupants);
+                var seen = new HashSet<Entity>();
+                foreach (var owner in owners)
+                {
+                    if (owner == null || !seen.Add(owner) || owner.BlueprintName != LiquidVesselService.PoolBlueprint
+                        || owner.SpatialZone != zone || zone.GetEntityCell(owner) != cell || !cell.Occupants.Contains(owner)
+                        || zone.GetOccupiedCells(owner).Count != 1 || owner.HasTag("Creature")
+                        || owner.HasPart<FiniteLiquidFilmPart>() || owner.HasPart<TileStateSourcePart>() || owner.HasPart<WellPart>()) continue;
+                    var pool = owner.GetPart<LiquidPoolPart>();
+                    var physics = owner.GetPart<PhysicsPart>();
+                    if (pool?.ParentEntity != owner || pool.Volume <= 0 || pool.LiquidId != liquid
+                        || owner.Parts.Count(p => p is LiquidPoolPart) != 1
+                        || physics?.ParentEntity != owner || physics.Takeable || physics.InInventory != null || physics.Equipped != null
+                        || owner.Parts.Count(p => p is PhysicsPart) != 1) continue;
+                    int amount = pool.Volume;
+                    pool.Volume = 0; // reserve before removal hooks or occupant damage can reenter
+                    consumed += amount;
+                    LiquidVesselService.RetireExhaustedPouredPool(zone, owner, pool);
+                    Diag.Record("liquid", "PouredFuelConsumed", null, owner,
+                        new { liquid, amount, x, y });
+                }
+            }
+            finally { UnityEngine.Pool.ListPool<Entity>.Release(owners); }
+            return consumed;
+        }
 
         public override void Initialize()
         {

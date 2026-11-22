@@ -1,0 +1,342 @@
+{
+  "scope": "Root-operated native GameBootstrap keyboard/menu play. Fixture400HP/Strength70; no ad-hoc gameplay grants/calls/clock jumps. Raw readbacks, not independent game operation.",
+  "checkpoints": {
+    "fuelAfterNativeStart": {
+      "state": "Normal",
+      "x": 36,
+      "y": 10,
+      "tick": 220,
+      "hp": 400,
+      "rows": []
+    },
+    "fuelAfterPourNative": {
+      "tick": 230,
+      "x": 36,
+      "y": 10,
+      "hp": 400,
+      "tile": {
+        "Coatings": [
+          {
+            "Id": "oil",
+            "Turns": 2147483647,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Residues": [],
+        "Heat": 0,
+        "Cold": 0,
+        "Charge": 0,
+        "Cloud": "",
+        "CloudTurns": 0,
+        "IsEmpty": false
+      },
+      "objects": [
+        {
+          "id": "864",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        },
+        {
+          "id": "2716",
+          "bp": "PouredLiquidPool",
+          "liquid": "oil",
+          "volume": 1,
+          "trap": null
+        }
+      ],
+      "oil": [
+        {
+          "id": "2231",
+          "volume": 2
+        }
+      ],
+      "burning": false,
+      "messages": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You thaws.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You load the spring trap with fire moss.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of oil onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "fuelAfterArmedNative": {
+      "tick": 240,
+      "x": 36,
+      "y": 10,
+      "hp": 400,
+      "tile": {
+        "Coatings": [
+          {
+            "Id": "oil",
+            "Turns": 2147483647,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Residues": [],
+        "Heat": 0,
+        "Cold": 0,
+        "Charge": 0,
+        "Cloud": "",
+        "CloudTurns": 0,
+        "IsEmpty": false
+      },
+      "objects": [
+        {
+          "id": "864",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        },
+        {
+          "id": "2716",
+          "bp": "PouredLiquidPool",
+          "liquid": "oil",
+          "volume": 1,
+          "trap": null
+        },
+        {
+          "id": "2717",
+          "bp": "SpringTrapLaid",
+          "liquid": null,
+          "volume": 0,
+          "trap": "heat"
+        }
+      ],
+      "oil": [
+        {
+          "id": "2231",
+          "volume": 2
+        }
+      ],
+      "burning": false,
+      "messages": [
+        "You load the spring trap with fire moss.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of oil onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "fuelAfterTriggeredNative": {
+      "tick": 250,
+      "x": 35,
+      "y": 10,
+      "hp": 388,
+      "tile": {
+        "Coatings": [],
+        "Residues": [
+          {
+            "Id": "embers",
+            "Turns": 3,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Heat": 0,
+        "Cold": 0,
+        "Charge": 0,
+        "Cloud": "smoke",
+        "CloudTurns": 2,
+        "IsEmpty": false
+      },
+      "objects": [
+        {
+          "id": "864",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        },
+        {
+          "id": "2126",
+          "bp": "Player",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        }
+      ],
+      "oil": [
+        {
+          "id": "2231",
+          "volume": 2
+        }
+      ],
+      "burning": false,
+      "messages": [
+        "You pour 1 of oil onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You are covered in oily.",
+        "A spring trap goes off under you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "fuelAfterNoRecoveryMenu": {
+      "state": "WorldActionMenuOpen",
+      "x": 35,
+      "y": 10,
+      "tick": 250,
+      "hp": 388,
+      "rows": [
+        "0:examine",
+        "1:pour out a liquid here (4) >>",
+        "2:spread brine here (1 item) [glimmer-brine]"
+      ]
+    },
+    "fuelAfterSettledNative": {
+      "tick": 300,
+      "x": 35,
+      "y": 10,
+      "hp": 388,
+      "tile": null,
+      "objects": [
+        {
+          "id": "864",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        },
+        {
+          "id": "2126",
+          "bp": "Player",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        }
+      ],
+      "oil": [],
+      "burning": false,
+      "messages": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 2 of oil onto the ground.",
+        "The oily coating wears off you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "fuelFixedFreshContinueNative": {
+      "tick": 300,
+      "x": 35,
+      "y": 10,
+      "hp": 388,
+      "tile": null,
+      "objects": [
+        {
+          "id": "864",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        },
+        {
+          "id": "2126",
+          "bp": "Player",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        }
+      ],
+      "oil": [],
+      "burning": false,
+      "messages": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 2 of oil onto the ground.",
+        "The oily coating wears off you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "fuelSecondCellFreshContinueNative": {
+      "tick": 300,
+      "x": 35,
+      "y": 10,
+      "hp": 388,
+      "tile": null,
+      "objects": [
+        {
+          "id": "863",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        }
+      ],
+      "oil": [],
+      "burning": false,
+      "messages": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 2 of oil onto the ground.",
+        "The oily coating wears off you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "fuelNativeReactionDiagnostics": [
+      "{\"reaction\":\"ignite_oil_heat\",\"x\":35,\"y\":10,\"consumedCoating\":\"oil\",\"consumedPhysicalLiquid\":1,\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"smoke\",\"occupantsHit\":1}",
+      "{\"reaction\":\"ignite_oil_embers\",\"x\":34,\"y\":10,\"consumedCoating\":\"oil\",\"consumedPhysicalLiquid\":2,\"consumedEnergy\":0,\"outputCoating\":\"\",\"outputCloud\":\"smoke\",\"occupantsHit\":0}"
+    ],
+    "adjacentEmbersAfterPour": {
+      "tick": 260,
+      "x": 35,
+      "y": 10,
+      "hp": 388,
+      "tile": {
+        "Coatings": [],
+        "Residues": [
+          {
+            "Id": "embers",
+            "Turns": 3,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Heat": 0,
+        "Cold": 0,
+        "Charge": 0,
+        "Cloud": "smoke",
+        "CloudTurns": 2,
+        "IsEmpty": false
+      },
+      "objects": [
+        {
+          "id": "863",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        }
+      ],
+      "oil": [],
+      "burning": false,
+      "messages": [
+        "You are covered in oily.",
+        "A spring trap goes off under you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 2 of oil onto the ground.",
+        "The oily coating wears off you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    }
+  }
+}

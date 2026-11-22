@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Failed(Child)" total="23" passed="20" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 03:41:45Z" end-time="2026-11-22 03:41:47Z" duration="1.7292885">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40430" result="Failed" site="Child" start-time="2026-11-22 03:41:45Z" end-time="2026-11-22 03:41:47Z" duration="1.729289" total="23" passed="20" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49278" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40430" result="Failed" site="Child" start-time="2026-11-22 03:41:45Z" end-time="2026-11-22 03:41:47Z" duration="1.584403" total="23" passed="20" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="29061" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49279" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40430" result="Failed" site="Child" start-time="2026-11-22 03:41:45Z" end-time="2026-11-22 03:41:47Z" duration="1.373217" total="23" passed="20" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49280" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40430" result="Failed" site="Child" start-time="2026-11-22 03:41:45Z" end-time="2026-11-22 03:41:47Z" duration="1.161555" total="23" passed="20" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27548" name="PouredFuelCombustionTests" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:47Z" duration="0.848325" total="23" passed="20" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27555" name="ActualPourBurnAndStaleRecoveryCannotReuseTheSameOil" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.ActualPourBurnAndStaleRecoveryCannotReuseTheSameOil" methodname="ActualPourBurnAndStaleRecoveryCannotReuseTheSameOil" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="2108409475" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.104492" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27557" name="AllMatchingPouredOwnersBurnButUnrelatedLiquidsAndOtherCellsRemain" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.AllMatchingPouredOwnersBurnButUnrelatedLiquidsAndOtherCellsRemain" methodname="AllMatchingPouredOwnersBurnButUnrelatedLiquidsAndOtherCellsRemain" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="399483797" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.024825" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27556" name="CollectionBeforeIgnitionRemainsAnAlternative" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.CollectionBeforeIgnitionRemainsAnAlternative" methodname="CollectionBeforeIgnitionRemainsAnAlternative" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="1010722836" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.025476" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27564" name="ExistingThinFilmConsumptionKeepsItsOwnLifetime" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.ExistingThinFilmConsumptionKeepsItsOwnLifetime" methodname="ExistingThinFilmConsumptionKeepsItsOwnLifetime" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="898993473" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.043401" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27574" name="FuelIsSpentBeforeDamageCallbacksAndReentryCannotRecoverIt" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.FuelIsSpentBeforeDamageCallbacksAndReentryCannotRecoverIt" methodname="FuelIsSpentBeforeDamageCallbacksAndReentryCannotRecoverIt" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="961525386" result="Failed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.078614" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PouredFuelCombustionTests.FuelIsSpentBeforeDamageCallbacksAndReentryCannotRecoverIt () [0x0006b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/PouredFuelCombustionTests.cs:159
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27554" name="IgnitionExhaustsTheRepresentedPouredFuel" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.IgnitionExhaustsTheRepresentedPouredFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.132043" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27549" name="IgnitionExhaustsTheRepresentedPouredFuel(False,1)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.IgnitionExhaustsTheRepresentedPouredFuel(False,1)" methodname="IgnitionExhaustsTheRepresentedPouredFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="164142958" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.026092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27550" name="IgnitionExhaustsTheRepresentedPouredFuel(True,1)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.IgnitionExhaustsTheRepresentedPouredFuel(True,1)" methodname="IgnitionExhaustsTheRepresentedPouredFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="289422913" result="Failed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.026459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  burnt fuel must not remain collectible
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PouredFuelCombustionTests.IgnitionExhaustsTheRepresentedPouredFuel (System.Boolean embers, System.Int32 volume) [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/PouredFuelCombustionTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27551" name="IgnitionExhaustsTheRepresentedPouredFuel(False,3)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.IgnitionExhaustsTheRepresentedPouredFuel(False,3)" methodname="IgnitionExhaustsTheRepresentedPouredFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="743760031" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.025317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27552" name="IgnitionExhaustsTheRepresentedPouredFuel(True,3)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.IgnitionExhaustsTheRepresentedPouredFuel(True,3)" methodname="IgnitionExhaustsTheRepresentedPouredFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="933493113" result="Failed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.025562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  burnt fuel must not remain collectible
+  Expected: 0
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PouredFuelCombustionTests.IgnitionExhaustsTheRepresentedPouredFuel (System.Boolean embers, System.Int32 volume) [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/PouredFuelCombustionTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27553" name="IgnitionExhaustsTheRepresentedPouredFuel(False,int.MaxValue)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.IgnitionExhaustsTheRepresentedPouredFuel(False,int.MaxValue)" methodname="IgnitionExhaustsTheRepresentedPouredFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="675885968" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.026948" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27572" name="LegacyPoolRoundTripRequiresNoNewSavedFlag" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.LegacyPoolRoundTripRequiresNoNewSavedFlag" methodname="LegacyPoolRoundTripRequiresNoNewSavedFlag" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="95524082" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.030871" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27563" name="OtherConsumingRulesDoNotSilentlyAcquireAFuelDebit" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.OtherConsumingRulesDoNotSilentlyAcquireAFuelDebit" methodname="OtherConsumingRulesDoNotSilentlyAcquireAFuelDebit" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="1625317564" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.025287" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27561" name="PhysicalWaterIsNotFuel" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.PhysicalWaterIsNotFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.077358" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27558" name="PhysicalWaterIsNotFuel(&quot;freeze&quot;)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.PhysicalWaterIsNotFuel(&quot;freeze&quot;)" methodname="PhysicalWaterIsNotFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="320785290" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.025169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27559" name="PhysicalWaterIsNotFuel(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.PhysicalWaterIsNotFuel(&quot;charge&quot;)" methodname="PhysicalWaterIsNotFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="1676909407" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.025557" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27560" name="PhysicalWaterIsNotFuel(&quot;steam&quot;)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.PhysicalWaterIsNotFuel(&quot;steam&quot;)" methodname="PhysicalWaterIsNotFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="1616364269" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.026098" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27573" name="SpentPoolDoesNotReappearInAFullSessionRoundTrip" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.SpentPoolDoesNotReappearInAFullSessionRoundTrip" methodname="SpentPoolDoesNotReappearInAFullSessionRoundTrip" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="1160889678" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.071923" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27562" name="TileOnlyOilStillReactsWithoutInventingPhysicalFuel" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.TileOnlyOilStillReactsWithoutInventingPhysicalFuel" methodname="TileOnlyOilStillReactsWithoutInventingPhysicalFuel" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="1970605874" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.024445" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27571" name="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.UnsupportedSourceOrCustodyIsNotSilentlyDestroyed" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:47Z" duration="0.203388" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27565" name="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;authored&quot;)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;authored&quot;)" methodname="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="1739507261" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.024627" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27566" name="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;source&quot;)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;source&quot;)" methodname="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="860572873" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.038716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27567" name="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;well&quot;)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;well&quot;)" methodname="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="573417689" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.061450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27568" name="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;takeable&quot;)" methodname="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="1387434425" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:46Z" duration="0.025551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27569" name="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;creature&quot;)" methodname="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="939466572" result="Passed" start-time="2026-11-22 03:41:46Z" end-time="2026-11-22 03:41:47Z" duration="0.025248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27570" name="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;body&quot;)" fullname="CavesOfOoo.Tests.PouredFuelCombustionTests.UnsupportedSourceOrCustodyIsNotSilentlyDestroyed(&quot;body&quot;)" methodname="UnsupportedSourceOrCustodyIsNotSilentlyDestroyed" classname="CavesOfOoo.Tests.PouredFuelCombustionTests" runstate="Runnable" seed="1881795782" result="Passed" start-time="2026-11-22 03:41:47Z" end-time="2026-11-22 03:41:47Z" duration="0.026894" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

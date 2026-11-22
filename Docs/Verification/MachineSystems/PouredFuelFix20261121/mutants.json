@@ -1,0 +1,32 @@
+[
+  {
+    "id": "missing_physical_debit",
+    "file": "Assets/Scripts/Gameplay/World/Map/TileReactionSystem.cs",
+    "old": "consumedLiquid = LiquidPoolPart.ConsumePouredFuel(zone, x, y, consumedCoating);",
+    "new": "consumedLiquid = 0;"
+  },
+  {
+    "id": "embers_opt_out",
+    "file": "Assets/Resources/Content/Data/TileReactions/Reactions.json",
+    "old": "\"ID\": \"ignite_oil_embers\",\n      \"ConsumePhysicalLiquid\": true,",
+    "new": "\"ID\": \"ignite_oil_embers\",\n      \"ConsumePhysicalLiquid\": false,"
+  },
+  {
+    "id": "retain_recoverable_volume",
+    "file": "Assets/Scripts/Gameplay/Materials/LiquidPoolPart.cs",
+    "old": "pool.Volume = 0; // reserve before removal hooks or occupant damage can reenter",
+    "new": "pool.Volume = amount; // mutant retains fuel"
+  },
+  {
+    "id": "consume_replenishing_source",
+    "file": "Assets/Scripts/Gameplay/Materials/LiquidPoolPart.cs",
+    "old": "|| owner.HasPart<FiniteLiquidFilmPart>() || owner.HasPart<TileStateSourcePart>() || owner.HasPart<WellPart>()) continue;",
+    "new": "|| owner.HasPart<FiniteLiquidFilmPart>() || owner.HasPart<WellPart>()) continue;"
+  },
+  {
+    "id": "consume_physical_water",
+    "file": "Assets/Resources/Content/Data/TileReactions/Reactions.json",
+    "old": "\"ID\": \"steam\",",
+    "new": "\"ID\": \"steam\",\n      \"ConsumePhysicalLiquid\": true,"
+  }
+]

@@ -2,6 +2,18 @@
 
 ## Resumed continuation — November 21 evening
 
+Latest implementation: [finite poured fuel](FINITE-POURED-FUEL.md) closes the
+ordinary poured-oil reuse bug below, scoped to eligible single-cell nonrenewing
+poured pools. Both ignition rows opt in; water/natural/multi-cell rules retain
+their contract. Native RED23/11fail→GREEN229/229, five mutants killed, independent
+source0P1/P2. [Actual after-play and receipts](Verification/MachineSystems/PouredFuelFix20261121/README.md):
+same trap12damage, pool1 gone; ordinary pour beside embers burns remaining2;
+fresh Continue300HP388/nooil/owners. Main idle/clean/nullroot/input restored;
+fresh84foreign/861normal hashes unchanged. Clone3 retains final steam mutant,
+resync before reuse. NEXT rebuild current Mac from this accepted correction,
+verify standalone as available, then remaining NPC/Grove/town machine gates.
+Older bc0511d4d Mac candidate excludes this fix and is not accepted delivery.
+
 Latest direct-user continuation: both Unity sessions connected; main remains
 sole gameplay editor, dedicated batch build copy dca240c657bd1174 produced a
 [Mac candidate](Verification/MachineSystems/MacCandidateBc0511d4d/README.md),

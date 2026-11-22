@@ -10,6 +10,16 @@
 
 ## Active handback continuation — November 21, 2026
 
+Latest: [finite poured-fuel correction](FINITE-POURED-FUEL.md) implemented;
+native RED23/11fail, GREEN229/229, five mutants killed, independent source0P1/P2.
+Actual trap1unit and ordinary ember2unit consumption, collection-row removal
+and fresh300HP388/no-oil persistence are in the
+[after receipt](Verification/MachineSystems/PouredFuelFix20261121/README.md).
+This supersedes the ordinary-poured-oil P2 below; natural/multi-cell source
+accounting stays open. Next current Mac packaging/available standalone checks,
+then NPC/Grove/town qualification. Main clean/nullroot, foreign/normal preserved;
+clone3 has final test mutant and must resync. All12 complete-machine gates open.
+
 Direct-user follow-up connected both Unity sessions and produced a
 [nonaccepted Mac candidate](Verification/MachineSystems/MacCandidateBc0511d4d/README.md)
 from committed bc0511d4d plus disclosed editor-generated inputs (0errors/5warnings).
