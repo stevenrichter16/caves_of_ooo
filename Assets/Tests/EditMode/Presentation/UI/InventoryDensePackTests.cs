@@ -148,7 +148,7 @@ namespace CavesOfOoo.Tests
             using (var input = new NativeNavigationScope()) using (var r = new Rig())
             {
                 for (int i = 0; i < 60; i++) r.Carry("Dagger", "same dagger");
-                r.Open(); r.Tab(1); var owners = DenseOwners(r);
+                r.Open(); r.Tab(1); CountedToggle(r); var owners = DenseOwners(r);
                 int rows = (int)Get(DenseGeometry(1280, 800), "Rows");
                 input.Keys(Key.RightArrow); r.UI.HandleInput();
                 Assert.AreEqual(1, Get(r.UI, "_panel")); Assert.AreSame(owners[rows], DenseSelected(r));
@@ -177,7 +177,7 @@ namespace CavesOfOoo.Tests
             using (var r = new Rig())
             {
                 for (int i = 0; i < 8; i++) r.Carry("Dagger", "same dagger");
-                r.Open(); r.Tab(1); var owners = DenseOwners(r);
+                r.Open(); r.Tab(1); CountedToggle(r); var owners = DenseOwners(r);
                 Call(r.UI, "SelectLedgerHit", r.FindHit("Item", r.InventoryRow(owners[5])));
                 Assert.True(r.Pack.RemoveObject(owners[5])); Call(r.UI, "Rebuild"); Call(r.UI, "Render");
                 Assert.AreSame(owners[6], DenseSelected(r));
@@ -225,7 +225,7 @@ namespace CavesOfOoo.Tests
             using (var mouse = new NativeMouseScope()) using (var r = new Rig())
             {
                 for (int i = 0; i < 70; i++) r.Carry("Dagger", "same dagger");
-                r.Open(); r.Tab(1); Call(r.UI, "MoveDensePack", Enum.Parse(typeof(InventoryUI).Assembly.GetType("CavesOfOoo.Rendering.PackNavigation"), "Last")); Call(r.UI, "Render");
+                r.Open(); r.Tab(1); CountedToggle(r); Call(r.UI, "MoveDensePack", Enum.Parse(typeof(InventoryUI).Assembly.GetType("CavesOfOoo.Rendering.PackNavigation"), "Last")); Call(r.UI, "Render");
                 var selected = DenseSelected(r); var probe = new DenseQueryProbe(); selected.AddPart(probe);
                 Call(r.UI, "Rebuild"); Call(r.UI, "Render");
                 var state = Get(r.UI, "_state"); var document = Get(r.UI, "_ledgerSelectionDocument"); int queries = probe.Queries;

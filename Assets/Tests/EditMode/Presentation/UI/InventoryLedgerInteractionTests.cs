@@ -57,7 +57,7 @@ namespace CavesOfOoo.Tests
             using (var r = new Rig())
             {
                 for (int i = 0; i < 3; i++) r.Carry("Dagger", "matching dagger");
-                r.Open(); r.Tab(1);
+                r.Open(); r.Tab(1); CountedToggle(r);
                 var ordered = r.Rows("_rows").Cast<object>().Select(row => Get(row, "Item"))
                     .OfType<InventoryScreenData.ItemDisplay>().Select(display => display.Item).ToArray();
                 Assert.AreEqual(3, ordered.Length);

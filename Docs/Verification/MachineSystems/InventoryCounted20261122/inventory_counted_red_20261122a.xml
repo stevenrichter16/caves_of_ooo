@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="26" result="Failed(Child)" total="26" passed="13" failed="13" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 18:22:31Z" end-time="2026-11-22 18:22:33Z" duration="2.3717943">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40699" result="Failed" site="Child" start-time="2026-11-22 18:22:31Z" end-time="2026-11-22 18:22:33Z" duration="2.371794" total="26" passed="13" failed="13" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49617" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40699" result="Failed" site="Child" start-time="2026-11-22 18:22:31Z" end-time="2026-11-22 18:22:33Z" duration="2.148908" total="26" passed="13" failed="13" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85281" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49618" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40699" result="Failed" site="Child" start-time="2026-11-22 18:22:31Z" end-time="2026-11-22 18:22:33Z" duration="1.932229" total="26" passed="13" failed="13" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49619" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40699" result="Failed" site="Child" start-time="2026-11-22 18:22:31Z" end-time="2026-11-22 18:22:33Z" duration="1.776916" total="26" passed="13" failed="13" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="48197" name="InventoryLedgerInteractionTests" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="140" result="Failed" site="Child" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:33Z" duration="1.341874" total="26" passed="13" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="48225" name="CountedGroupsDoNotOverwritePhysicalStackCountAndDropOnlySelectedStack" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsDoNotOverwritePhysicalStackCountAndDropOnlySelectedStack" methodname="CountedGroupsDoNotOverwritePhysicalStackCountAndDropOnlySelectedStack" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="267795291" result="Failed" label="Error" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.177113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains more than one element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsDoNotOverwritePhysicalStackCountAndDropOnlySelectedStack () [0x00074] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:101 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="48224" name="CountedGroupsKeepEquippedOwnerSeparateAndSinglesCanSelectAnyMember" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsKeepEquippedOwnerSeparateAndSinglesCanSelectAnyMember" methodname="CountedGroupsKeepEquippedOwnerSeparateAndSinglesCanSelectAnyMember" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1667792731" result="Failed" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.055583" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  3
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsKeepEquippedOwnerSeparateAndSinglesCanSelectAnyMember () [0x00069] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:88
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="48226" name="CountedGroupsOneFlaskActionChangesOnlyItsOwnerAndRegroups" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOneFlaskActionChangesOnlyItsOwnerAndRegroups" methodname="CountedGroupsOneFlaskActionChangesOnlyItsOwnerAndRegroups" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="582060662" result="Failed" label="Error" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.048239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains more than one element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOneFlaskActionChangesOnlyItsOwnerAndRegroups () [0x0005c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:116 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="48218" name="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.257963" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48212" name="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;Waterskin&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;Waterskin&quot;)" methodname="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="135059547" result="Failed" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.041453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Waterskin
+  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows (System.String blueprint) [0x00040] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48213" name="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;FlintStriker&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;FlintStriker&quot;)" methodname="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1558432485" result="Failed" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.043862" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  FlintStriker
+  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows (System.String blueprint) [0x00040] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48214" name="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;Dagger&quot;)" methodname="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1016999110" result="Failed" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.042628" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Dagger
+  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows (System.String blueprint) [0x00040] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48215" name="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;LeatherArmor&quot;)" methodname="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="890482335" result="Failed" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.040941" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LeatherArmor
+  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows (System.String blueprint) [0x00040] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48216" name="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;DriedMeat&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;DriedMeat&quot;)" methodname="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1740120411" result="Failed" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.039337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  DriedMeat
+  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows (System.String blueprint) [0x00040] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48217" name="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(&quot;HealingTonic&quot;)" methodname="CountedGroupsOtherAuditedMatchingKindsAlsoShareRows" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1030448517" result="Failed" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:32Z" duration="0.047256" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HealingTonic
+  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows (System.String blueprint) [0x00040] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="48223" name="CountedGroupsPreserveChargesConditionAndTreatmentState" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPreserveChargesConditionAndTreatmentState" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:33Z" duration="0.218498" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="48219" name="CountedGroupsPreserveChargesConditionAndTreatmentState(&quot;skin&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPreserveChargesConditionAndTreatmentState(&quot;skin&quot;)" methodname="CountedGroupsPreserveChargesConditionAndTreatmentState" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="140784181" result="Passed" start-time="2026-11-22 18:22:32Z" end-time="2026-11-22 18:22:33Z" duration="0.065885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48220" name="CountedGroupsPreserveChargesConditionAndTreatmentState(&quot;striker&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPreserveChargesConditionAndTreatmentState(&quot;striker&quot;)" methodname="CountedGroupsPreserveChargesConditionAndTreatmentState" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1454353309" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.069871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48221" name="CountedGroupsPreserveChargesConditionAndTreatmentState(&quot;condition&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPreserveChargesConditionAndTreatmentState(&quot;condition&quot;)" methodname="CountedGroupsPreserveChargesConditionAndTreatmentState" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="609739522" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.041225" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48222" name="CountedGroupsPreserveChargesConditionAndTreatmentState(&quot;treatment&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPreserveChargesConditionAndTreatmentState(&quot;treatment&quot;)" methodname="CountedGroupsPreserveChargesConditionAndTreatmentState" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="810809600" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.040127" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="48227" name="CountedGroupsQueryAndPaintReuseCapturedIdentityWithoutProviderReads" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsQueryAndPaintReuseCapturedIdentityWithoutProviderReads" methodname="CountedGroupsQueryAndPaintReuseCapturedIdentityWithoutProviderReads" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1862457101" result="Failed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.041618" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsQueryAndPaintReuseCapturedIdentityWithoutProviderReads () [0x00092] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:135
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="48211" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.358854" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="48202" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;volume&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;volume&quot;)" methodname="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="604429628" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.040480" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48203" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;liquid&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;liquid&quot;)" methodname="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1011675344" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.039262" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48204" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;capacity&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;capacity&quot;)" methodname="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="355801810" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.039930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48205" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;name&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;name&quot;)" methodname="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1482056791" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.040366" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48206" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;no-trade&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;no-trade&quot;)" methodname="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="198258140" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.039378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48207" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;unknown-part&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;unknown-part&quot;)" methodname="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="890825740" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.039639" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48208" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;hidden&quot;)" methodname="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="2045228652" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.038711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48209" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;foreign&quot;)" methodname="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1911219023" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.039674" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="48210" name="CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;malformed&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(&quot;malformed&quot;)" methodname="CountedGroupsRefuseIncompatibleOrUnavailableFlasks" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1448610315" result="Passed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.039585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="48201" name="CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.175200" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48198" name="CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners(5,0,&quot;&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners(5,0,&quot;&quot;)" methodname="CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="595284715" result="Failed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.040196" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners (System.Int32 count, System.Int32 volume, System.String liquid) [0x0007c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:32
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48199" name="CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners(3,2,&quot;water&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners(3,2,&quot;water&quot;)" methodname="CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1299750791" result="Failed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.045035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners (System.Int32 count, System.Int32 volume, System.String liquid) [0x0007c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:32
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48200" name="CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners(3,2,&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners(3,2,&quot;bog-mire&quot;)" methodname="CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1133859667" result="Failed" start-time="2026-11-22 18:22:33Z" end-time="2026-11-22 18:22:33Z" duration="0.088869" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners (System.Int32 count, System.Int32 volume, System.String liquid) [0x0007c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

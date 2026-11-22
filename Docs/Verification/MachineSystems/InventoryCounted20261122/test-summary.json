@@ -1,0 +1,245 @@
+{
+  "inventory_counted_red_20261122a": {
+    "total": "26",
+    "passed": "13",
+    "failed": "13",
+    "result": "Failed(Child)",
+    "start-time": "2026-11-22 18:22:31Z",
+    "end-time": "2026-11-22 18:22:33Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsDoNotOverwritePhysicalStackCountAndDropOnlySelectedStack",
+        "message": "System.InvalidOperationException : Sequence contains more than one element"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsKeepEquippedOwnerSeparateAndSinglesCanSelectAnyMember",
+        "message": "  Expected: 2\n  But was:  3\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOneFlaskActionChangesOnlyItsOwnerAndRegroups",
+        "message": "System.InvalidOperationException : Sequence contains more than one element"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(\"Waterskin\")",
+        "message": "  Waterskin\n  Expected: 1\n  But was:  2\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(\"FlintStriker\")",
+        "message": "  FlintStriker\n  Expected: 1\n  But was:  2\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(\"Dagger\")",
+        "message": "  Dagger\n  Expected: 1\n  But was:  2\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(\"LeatherArmor\")",
+        "message": "  LeatherArmor\n  Expected: 1\n  But was:  2\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(\"DriedMeat\")",
+        "message": "  DriedMeat\n  Expected: 1\n  But was:  2\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOtherAuditedMatchingKindsAlsoShareRows(\"HealingTonic\")",
+        "message": "  HealingTonic\n  Expected: 1\n  But was:  2\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsQueryAndPaintReuseCapturedIdentityWithoutProviderReads",
+        "message": "  Expected: 1\n  But was:  2\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners(5,0,\"\")",
+        "message": "  Expected: 1\n  But was:  5\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners(3,2,\"water\")",
+        "message": "  Expected: 1\n  But was:  3\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRequestedFlasksBecomeOneRowWithoutMergingOwners(3,2,\"bog-mire\")",
+        "message": "  Expected: 1\n  But was:  3\n"
+      }
+    ]
+  },
+  "inventory_counted_green_20261122b": {
+    "total": "26",
+    "passed": "25",
+    "failed": "1",
+    "result": "Failed(Child)",
+    "start-time": "2026-11-22 18:25:32Z",
+    "end-time": "2026-11-22 18:25:34Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOneFlaskActionChangesOnlyItsOwnerAndRegroups",
+        "message": "  Expected: 1\n  But was:  2\n"
+      }
+    ]
+  },
+  "inventory_counted_review_red_20261122c": {
+    "total": "2",
+    "passed": "1",
+    "failed": "1",
+    "result": "Failed(Child)",
+    "start-time": "2026-11-22 18:28:05Z",
+    "end-time": "2026-11-22 18:28:07Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPopupAdvertisesEscapeThenGroupingWithoutChangingItsOwners",
+        "message": "  G is already a modal action hotkey; never advertise it alone as a modal grouping command.\n  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "inventory_counted_review_red_20261122d": {
+    "total": "4",
+    "passed": "1",
+    "failed": "3",
+    "result": "Failed(Child)",
+    "start-time": "2026-11-22 18:29:20Z",
+    "end-time": "2026-11-22 18:29:21Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsControllerCommandsExposeIndividualOwnersWithoutPaidWork",
+        "message": "  Expected: greater than or equal to 0\n  But was:  -1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsLongNamesNeverHidePopupActionScope",
+        "message": "  Action scope needs its own fitted line before arbitrarily long names.\n  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPopupAdvertisesEscapeThenGroupingWithoutChangingItsOwners",
+        "message": "  G is already a modal action hotkey; never advertise it alone as a modal grouping command.\n  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "inventory_counted_regression_20261122e": {
+    "total": "155",
+    "passed": "153",
+    "failed": "2",
+    "result": "Failed(Child)",
+    "start-time": "2026-11-22 18:30:27Z",
+    "end-time": "2026-11-22 18:30:34Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOneFlaskActionChangesOnlyItsOwnerAndRegroups",
+        "message": "  Expected: 1\n  But was:  2\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.PublicStateFindsTheCorrectSameNameFlaskAndRefreshesOnlyAfterModelRebuild",
+        "message": "  Expected: equivalent to < <Entity(liquid flask)>, <Entity(liquid flask)> >\n  But was:  < <Entity(liquid flask)> >\n"
+      }
+    ]
+  },
+  "inventory_counted_regression_20261122f": {
+    "total": "258",
+    "passed": "257",
+    "failed": "1",
+    "result": "Failed(Child)",
+    "start-time": "2026-11-22 18:33:05Z",
+    "end-time": "2026-11-22 18:33:23Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.WellDrawRemainsProtectedFromUnrelatedGroundSpill",
+        "message": "  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "inventory_counted_final_green_20261122g": {
+    "total": "329",
+    "passed": "329",
+    "failed": "0",
+    "result": "Passed",
+    "start-time": "2026-11-22 18:34:30Z",
+    "end-time": "2026-11-22 18:34:51Z",
+    "failures": []
+  },
+  "inventory_counted_legacy_well_baseline_20261122h": {
+    "total": "1",
+    "passed": "0",
+    "failed": "1",
+    "result": "Failed(Child)",
+    "start-time": "2026-11-22 18:36:02Z",
+    "end-time": "2026-11-22 18:36:03Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.WellDrawRemainsProtectedFromUnrelatedGroundSpill",
+        "message": "  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "inventory_counted_mutants_20261122_ignore_identity": {
+    "total": "30",
+    "passed": "19",
+    "failed": "11",
+    "result": "Failed(Child)",
+    "start-time": "2026-11-22 18:36:10Z",
+    "end-time": "2026-11-22 18:36:12Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsDistinctAdjacentFiniteThermalValuesNeverCollapseToOneKey",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsOneFlaskActionChangesOnlyItsOwnerAndRegroups",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPreserveChargesConditionAndTreatmentState(\"skin\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPreserveChargesConditionAndTreatmentState(\"striker\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPreserveChargesConditionAndTreatmentState(\"condition\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPreserveChargesConditionAndTreatmentState(\"treatment\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(\"volume\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(\"liquid\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(\"capacity\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(\"name\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsRefuseIncompatibleOrUnavailableFlasks(\"no-trade\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      }
+    ]
+  },
+  "inventory_counted_mutants_20261122_lose_selected": {
+    "total": "30",
+    "passed": "29",
+    "failed": "1",
+    "result": "Failed(Child)",
+    "start-time": "2026-11-22 18:37:07Z",
+    "end-time": "2026-11-22 18:37:09Z",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsKeepEquippedOwnerSeparateAndSinglesCanSelectAnyMember",
+        "message": "  Expected: same as <Entity(dagger)>\n  But was:  <Entity(dagger)>\n"
+      }
+    ]
+  },
+  "interpretation": {
+    "final329": "329/329 in finalUI/reader/tool family;30new+299previous cases; overlapping runs not additive.",
+    "adjacent": "Neighboring f257/258 plus original307 baselineh reproduces the one legacy well failure; no all-adjacent-green claim.",
+    "fixtureCorrections": "Initial pour test lacked a matching ground-water recipient and needed factory fallback; corrected recipientLiquidId=water and paidUIclose/reopen. Legacy public-state assertion now checks grouped2 plusSingles2;fourprevious navigation cases explicitly useSingles, assertions retained.",
+    "precision": "OldTorchcase unadmittedLightSourceFlicker rendered it inconclusive. FinalDaggerThermal test first proves equalgroup then adjacentvalue separation; Rformat defensive, not a fourth reproduced defect.",
+    "review": "d4:three relevant failures;oldfloatcontrol inconclusive. c2 overlaps d; not additive.",
+    "mutants": "Identity ignored:11fail;selectedmember ignored:1fail;0CSboth."
+  }
+}

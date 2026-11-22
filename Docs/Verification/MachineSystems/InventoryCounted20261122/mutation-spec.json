@@ -1,0 +1,14 @@
+[
+  {
+    "id": "ignore_identity",
+    "file": "Assets/Scripts/Gameplay/Inventory/InventoryItemGroups.cs",
+    "old": "return key.Length <= 16384 ? key.ToString() : null;",
+    "new": "return key.Length <= 16384 ? item.BlueprintName : null;"
+  },
+  {
+    "id": "lose_selected",
+    "file": "Assets/Scripts/Gameplay/Inventory/InventoryItemGroups.cs",
+    "old": "Selected = members.FirstOrDefault(x => x.Item == preferred) ?? members[0];",
+    "new": "Selected = members[0];"
+  }
+]

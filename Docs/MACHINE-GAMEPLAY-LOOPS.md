@@ -82,6 +82,14 @@ now distinguishes disclosed liquid contents, charges and treatments in rows/sear
 retaining exact item identity, equipment comparisons, full readers and existing commands.
 Category filters, sorting and physical-input qualification remain open.
 
+The subsequent [counted groups](INVENTORY-COUNTED-GROUPS.md) group matching
+complete audited item states into one counted Inventory entry, including equal
+empty/part-filled flasks, skins, finite-use tools and suitable ordinary equipment
+and consumables. Independent owners and physical stack quantities remain intact;
+selected-member actions regroup the result. The actual five-empty/three2-of12
+examples and fresh2700 are separately qualified in InventoryCounted20261122.
+This supports repeated gathering and preparation without changing resource costs.
+
 Qualification must include navigation, resizing/search, cancellation and an actual
 paid item action, preserving custody and turn costs. This is functional inventory
 work with the existing art; it does not resume the cancelled graphics program.

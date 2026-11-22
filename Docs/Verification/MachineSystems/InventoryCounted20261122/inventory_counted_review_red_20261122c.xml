@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 18:28:05Z" end-time="2026-11-22 18:28:07Z" duration="1.4961272">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40701" result="Failed" site="Child" start-time="2026-11-22 18:28:05Z" end-time="2026-11-22 18:28:07Z" duration="1.496127" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49619" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40701" result="Failed" site="Child" start-time="2026-11-22 18:28:05Z" end-time="2026-11-22 18:28:07Z" duration="1.278994" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="89407" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49620" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40701" result="Failed" site="Child" start-time="2026-11-22 18:28:05Z" end-time="2026-11-22 18:28:07Z" duration="1.067134" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49621" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40701" result="Failed" site="Child" start-time="2026-11-22 18:28:06Z" end-time="2026-11-22 18:28:07Z" duration="0.854313" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="48197" name="InventoryLedgerInteractionTests" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="142" result="Failed" site="Child" start-time="2026-11-22 18:28:06Z" end-time="2026-11-22 18:28:07Z" duration="0.292656" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="48229" name="CountedGroupsDistinctAdjacentFiniteFuelValuesNeverCollapseToOneKey" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsDistinctAdjacentFiniteFuelValuesNeverCollapseToOneKey" methodname="CountedGroupsDistinctAdjacentFiniteFuelValuesNeverCollapseToOneKey" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1781211136" result="Passed" start-time="2026-11-22 18:28:06Z" end-time="2026-11-22 18:28:06Z" duration="0.216759" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="48228" name="CountedGroupsPopupAdvertisesEscapeThenGroupingWithoutChangingItsOwners" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPopupAdvertisesEscapeThenGroupingWithoutChangingItsOwners" methodname="CountedGroupsPopupAdvertisesEscapeThenGroupingWithoutChangingItsOwners" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="879203895" result="Failed" start-time="2026-11-22 18:28:06Z" end-time="2026-11-22 18:28:07Z" duration="0.065348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G is already a modal action hotkey; never advertise it alone as a modal grouping command.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.CountedGroupsPopupAdvertisesEscapeThenGroupingWithoutChangingItsOwners () [0x00078] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryCountedGroupsTests.cs:151
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

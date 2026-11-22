@@ -1,5 +1,11 @@
 # Inventory density redesign — proposed November 21, 2026
 
+November22 user-requested [counted Inventory groups](INVENTORY-COUNTED-GROUPS.md)
+now add matching-item rows while preserving independent owners and physical
+stack quantities. Actual five-empty and three2/12 flask examples, selected-member
+actions and fresh2700 are in the InventoryCounted20261122 receipt. This extends
+the published44/66 layout/public-state slice; category/sort remain future work.
+
 User direction: plan a redesign so many more items are visible at once.
 This combines a qualified first functional layout increment and further proposals; it is not a restart
 of the cancelled graphics program. Preserve the existing visual language and art.

@@ -28,6 +28,7 @@ namespace CavesOfOoo.Core
             public bool IsEquipped;
             public string EquippedSlot;
             public List<InventoryAction> Actions;
+            internal string GroupingKey;
         }
 
         /// <summary>
@@ -469,7 +470,7 @@ namespace CavesOfOoo.Core
         private static ItemDisplay BuildItemDisplay(Entity actor, Entity item, bool equipped, string slot)
         {
             var stacker = item.GetPart<StackerPart>();
-            return new ItemDisplay
+            var display = new ItemDisplay
             {
                 Item = item,
                 Name = item.GetDisplayName(),
@@ -482,6 +483,8 @@ namespace CavesOfOoo.Core
                 EquippedSlot = slot,
                 Actions = InventorySystem.GetActions(actor, item)
             };
+            display.GroupingKey = InventoryItemGroups.CaptureIdentity(actor, display);
+            return display;
         }
 
         // Public, opt-in summaries only. Never enumerate arbitrary Part names,

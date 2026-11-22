@@ -198,6 +198,7 @@ namespace CavesOfOoo.Rendering
             public string Text;
             public Color Color;
             public InventoryScreenData.ItemDisplay Item;
+            public InventoryItemGroup Group;
         }
 
         private struct TinkeringRecipeRow
@@ -301,6 +302,7 @@ namespace CavesOfOoo.Rendering
             _lastPointerGrid = MouseToGrid();
             PerformanceDiagnostics.BeginInventorySession();
             _panel = PANEL_EQUIPMENT;
+            _inventoryUngrouped = false;
             _cursorIndex = 0;
             _scrollOffset = 0;
             _equipCursorIndex = 0;
@@ -348,6 +350,7 @@ namespace CavesOfOoo.Rendering
 
             _panel = PANEL_INVENTORY;
             Rebuild();
+            RebuildInventoryRows(item, DenseOrdinal);
 
             for (int i = 0; i < _rows.Count; i++)
             {
@@ -1915,7 +1918,7 @@ namespace CavesOfOoo.Rendering
         private void RebuildInventoryRows(Entity selectedItem, int oldOrdinal)
         {
             _rows.Clear();
-            BuildItemRows();
+            BuildItemRows(selectedItem);
             BuildDenseRows();
             // Row positions can change after spending, dropping or filtering items.
             // Preserve the exact carried owner, never an adjacent lookalike.
@@ -1925,7 +1928,7 @@ namespace CavesOfOoo.Rendering
             ClampCursor();
         }
 
-        private void BuildItemRows()
+        private void BuildItemRows(Entity preferred = null)
         {
             for (int i = 0; i < _state.Categories.Count; i++)
             {
@@ -1939,10 +1942,11 @@ namespace CavesOfOoo.Rendering
                     Color = QudColorParser.BrightYellow
                 });
 
-                for (int j = 0; j < cat.Items.Count; j++)
+                var groups = InventoryItemGroups.Project(matching, preferred, !_inventoryUngrouped);
+                for (int j = 0; j < groups.Count; j++)
                 {
-                    var item = cat.Items[j];
-                    if (!matching.Contains(item)) continue;
+                    var group = groups[j];
+                    var item = group.Selected;
                     string name = item.Name;
 
                     string equipped = item.IsEquipped ? " [E]" : "";
@@ -1964,7 +1968,8 @@ namespace CavesOfOoo.Rendering
                         IsHeader = false,
                         Text = line,
                         Color = item.IsEquipped ? QudColorParser.BrightCyan : QudColorParser.Gray,
-                        Item = item
+                        Item = item,
+                        Group = group
                     });
                 }
             }

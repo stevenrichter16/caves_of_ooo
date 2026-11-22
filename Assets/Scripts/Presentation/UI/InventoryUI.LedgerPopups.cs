@@ -63,6 +63,7 @@ namespace CavesOfOoo.Rendering
             AddLedgerCommand("Character status", () => _ledgerStatusRequested = true);
             if (DensePack)
             {
+                AddLedgerCommand(_inventoryUngrouped ? "Group matching items" : "Show individual items", ToggleInventoryGrouping);
                 AddLedgerCommand("Larger text", () => ChangeDenseTextScale(1));
                 AddLedgerCommand("Smaller text", () => ChangeDenseTextScale(-1));
             }
@@ -100,7 +101,7 @@ namespace CavesOfOoo.Rendering
             _ledgerModalBounds = LedgerPaintRect(new Rect(250, 142, 780, 556));
             const float x = 250, y = 142, width = 780, height = 556;
             LFrame(new Rect(x, y, width, height), LGold, LPanel);
-            string title = "ITEM ACTIONS", owner = "";
+            string title = "ITEM ACTIONS", owner = "", groupScope = "";
             int count = 0, cursor = 0;
             Func<int, string> label = null;
             if (_ledgerCommandsOpen)
@@ -130,6 +131,7 @@ namespace CavesOfOoo.Rendering
             else if (_itemActionPopup != null)
             {
                 owner = _itemActionPopup.Item.GetDisplayName();
+                groupScope = GroupActionScope(_itemActionPopup.Item);
                 if (_itemActionPopup.InBodyPartPicker)
                 {
                     title = "EQUIP TO BODY PART"; count = _itemActionPopup.BodyParts?.Count ?? 0; cursor = _itemActionPopup.BodyPartCursor;
@@ -150,7 +152,12 @@ namespace CavesOfOoo.Rendering
                 label = i => _grimoirePicker.Grimoires[i].DisplayName;
             }
             LLabel(new Rect(x + 24, y + 22, width - 48, 30), title, LGold, 26);
-            LLabel(new Rect(x + 24, y + 64, width - 48, 52), SkillScreenText.Fit(owner, 73, 2), LInk);
+            if (groupScope.Length > 0)
+            {
+                LLabel(new Rect(x + 24, y + 64, width - 48, 24), SkillScreenText.Fit(groupScope, 81, 1), LGold, 18);
+                LLabel(new Rect(x + 24, y + 90, width - 48, 26), SkillScreenText.Fit(owner, 73, 1), LInk);
+            }
+            else LLabel(new Rect(x + 24, y + 64, width - 48, 52), SkillScreenText.Fit(owner, 73, 2), LInk);
             LBox(new Rect(x + 24, y + 122, width - 48, 1), LBorder);
             if (_displaceConfirm == null)
             {

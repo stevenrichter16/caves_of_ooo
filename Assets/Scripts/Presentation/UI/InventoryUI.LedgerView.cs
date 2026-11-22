@@ -13,7 +13,7 @@ namespace CavesOfOoo.Rendering
         {
             Tab, Equipment, Item, TinkerRow, AbilitySlot, CraftRow, TinkerMode, CraftMode,
             ClearPicks, CraftCommit, ClearAbility, PopupRow, DisplaceYes, DisplaceNo,
-            Cancel, Details, Close, LoadoutRow, LoadoutAction, PackTextScale
+            Cancel, Details, Close, LoadoutRow, LoadoutAction, PackTextScale, PackGrouping
         }
         struct LedgerHit { public Rect Bounds; public LedgerHitKind Kind; public int Index; }
         readonly List<LedgerHit> _ledgerHits = new List<LedgerHit>(48);
@@ -269,8 +269,8 @@ namespace CavesOfOoo.Rendering
                 var rect = new Rect(360, y - 1, 888, 22);
                 if (selected) { LBox(rect, LSelected); LBox(new Rect(rect.x, rect.y, 3, rect.height), LGold); }
                 LLabel(new Rect(370, y, 404, 21), SkillScreenText.Fit(row.Item.Name, 40, 1), selected ? LGold : LInk, 20);
-                LLabel(new Rect(788, y, 96, 21), row.Item.StackCount.ToString(), LInk, 18);
-                LLabel(new Rect(896, y, 120, 21), row.Item.Weight + " lb", LInk, 18);
+                LLabel(new Rect(788, y, 96, 21), (row.Group?.TotalUnits ?? row.Item.StackCount).ToString(), LInk, 18);
+                LLabel(new Rect(896, y, 120, 21), (row.Group?.TotalWeight ?? row.Item.Weight) + " lb", LInk, 18);
                 LLabel(new Rect(1026, y, 176, 21), SkillScreenText.Fit(LedgerCombatValue(row.Item.Item), 19, 1), LInk, 18);
                 if (row.Item.IsEquipped) LLabel(new Rect(1220, y, 28, 20), "[E]", LGold, 18);
                 LHit(rect, LedgerHitKind.Item, index);

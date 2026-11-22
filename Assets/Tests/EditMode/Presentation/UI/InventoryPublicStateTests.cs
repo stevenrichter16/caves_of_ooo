@@ -204,7 +204,9 @@ namespace CavesOfOoo.Tests
                 var empty = PublicStateCarry(r, "LiquidFlask"); var full = PublicStateCarry(r, "LiquidFlask"); var vessel = full.GetPart<LiquidVesselPart>(); vessel.Volume = 12; vessel.LiquidId = "water";
                 r.Open(); r.Tab(1); Call(r.UI, "SetInventoryQuery", "water"); CollectionAssert.AreEqual(new[] { full }, DenseOwners(r)); Assert.AreSame(full, DenseSelected(r));
                 vessel.Volume = 0; vessel.LiquidId = ""; Call(r.UI, "SetInventoryQuery", "water"); CollectionAssert.AreEqual(new[] { full }, DenseOwners(r));
-                Call(r.UI, "Rebuild"); Call(r.UI, "Render"); Assert.IsEmpty(DenseOwners(r)); Call(r.UI, "SetInventoryQuery", "empty"); CollectionAssert.AreEquivalent(new[] { empty, full }, DenseOwners(r));
+                Call(r.UI, "Rebuild"); Call(r.UI, "Render"); Assert.IsEmpty(DenseOwners(r)); Call(r.UI, "SetInventoryQuery", "empty");
+                Assert.AreEqual(1, CountedRows(r).Length); Assert.AreEqual(2, CountedUnits(CountedRows(r)[0]));
+                CountedToggle(r); CollectionAssert.AreEquivalent(new[] { empty, full }, DenseOwners(r));
                 Assert.Zero(vessel.Volume); Assert.False(r.UI.ConsumePendingEverydayTurn());
             }
         }

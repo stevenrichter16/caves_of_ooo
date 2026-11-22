@@ -10,6 +10,33 @@
 
 ## Active handback continuation — November 21, 2026
 
+November22 counted Inventory groups are qualified in
+[InventoryCounted20261122](Verification/MachineSystems/InventoryCounted20261122/README.md)
+and [the grouping contract](INVENTORY-COUNTED-GROUPS.md). Same complete audited
+state shares a counted row; exact individual owners/physical stacks remain.
+DefaultGrouped, G/paintedtoggle/Commands->individuals; selected member survives
+regrouping. Group quantity/weight never overwrites physicalStackCount. Actions
+explicitly apply to selected1 or selectedphysicalN, with reserved scope line;
+unknown/active/stateful graphs/equipped owners remain conservative exclusions.
+Native REDa26=13fail13controls; independent review found3P2s, REDd3relevantfails;
+fixed popupG instruction, longname-hidden scope and controller member access.
+Finalg329/3290CS=30new299previous. Mutantsidentity11fail/selection1fail0CS.
+NeighborfWellDraw... failure reproduced on unmodified307 viah; no all-suitegreen.
+Actual2610->2700: sixempty/threefull groups; fixturemire2232–34 processed to3water
+then pouredone each ->three2/12 rowqty3. Free Drop2236/37 leftfiveempty rowqty5,
+bothsame-IDowners onground. Singles chose2240; regroup thenfillonly2240 0->1;
+oneuse2232 2->1 leaves2233/34 at2. Groupsnowtwo1/12 andtwo2/12; water12 conserved
+as6carried+6ground; natural source13151 stays48. Exacttwo-page2232reader/F5archive
+BEFOREStop/fresh2700 measuredworld+grouprows exact. Fixturegear/HP/capacities/feed
+and practicalbalance excluded. 1080p66rowgeometry/10x20glyphs/corners retained.
+Mainstopped/rootnull/clean/profileroff, original7presets/custom0/index0; fresh18:46
+84foreign861normal unchanged. No physicalinput/FPS/complete-machine acceptance.
+Implementation, exact13source/test/meta pins, tests and docs are in this commit.
+NEXT current Mac candidate, then separate reviewed water-cooling P2 correction;
+category/sort and further audited grouping graphs remain remembered. Existing
+watercoolingP2/unloaded-fire chronology are not fixed by this view-only slice.
+
+
 November22 [natural regional mire baseline](Verification/MachineSystems/RegionalMire20261122/README.md)
 uses ordinary GameBootstrap input: Works17.7 pool13151 at34,8,60→48 into empty2236
 0→12 at2030→2040; archive-before-Stop/fresh2040 exact. Source-guided route,

@@ -93,6 +93,7 @@ namespace CavesOfOoo.Rendering
             {
                 case LedgerHitKind.Tab: _panel = hit.Index; Render(); return;
                 case LedgerHitKind.PackTextScale: ChangeDenseTextScale(hit.Index); return;
+                case LedgerHitKind.PackGrouping: if (!_inventorySearchActive) ToggleInventoryGrouping(); return;
                 case LedgerHitKind.LoadoutRow: Render(); return;
                 case LedgerHitKind.LoadoutAction: ExecuteLoadoutAction(hit.Index); return;
                 case LedgerHitKind.Equipment:

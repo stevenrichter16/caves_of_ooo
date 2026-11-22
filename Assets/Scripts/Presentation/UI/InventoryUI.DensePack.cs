@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,23 @@ namespace CavesOfOoo.Rendering
         float _ledgerPaintScale = 1;
         Rect _ledgerModalBounds;
         bool DensePack => _panel == PANEL_INVENTORY;
+        bool _inventoryUngrouped;
+
+        void ToggleInventoryGrouping()
+        {
+            var selected = _cursorIndex >= 0 && _cursorIndex < _rows.Count ? _rows[_cursorIndex].Item?.Item : null;
+            _inventoryUngrouped = !_inventoryUngrouped;
+            RebuildInventoryRows(selected, DenseOrdinal);
+            Render();
+        }
+        InventoryItemGroup GroupFor(Entity item) => item == null ? null : _rows.Select(r => r.Group).FirstOrDefault(g => g != null && g.Contains(item));
+        string GroupActionScope(Entity item)
+        {
+            var group = GroupFor(item);
+            if (group == null || group.Members.Count < 2) return "";
+            int count = group.Members.First(m => m.Item == item).StackCount;
+            return "Selected " + count + " of " + group.TotalUnits + ". Esc, then G / Back, then Commands: individuals.";
+        }
 
         void BuildDenseRows()
         {
@@ -79,6 +97,7 @@ namespace CavesOfOoo.Rendering
 
         bool HandleDensePackKeys()
         {
+            if (InputHelper.GetKeyDown(KeyCode.G)) { ToggleInventoryGrouping(); return true; }
             PackNavigation? direction = null;
             if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K)) direction = PackNavigation.Up;
             else if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J)) direction = PackNavigation.Down;
@@ -100,9 +119,9 @@ namespace CavesOfOoo.Rendering
             string suffix = " (x" + item.StackCount + ")";
             return item.StackCount > 1 && name.EndsWith(suffix, StringComparison.Ordinal) ? name.Substring(0, name.Length - suffix.Length) : name;
         }
-        static string DenseNumber(int value)
+        static string DenseNumber(long value)
         {
-            long n = Math.Abs((long)value); string sign = value < 0 ? "-" : "";
+            long n = Math.Abs(value); string sign = value < 0 ? "-" : "";
             if (n < 10000) return value.ToString();
             long unit = n >= 1000000000 ? 1000000000 : n >= 1000000 ? 1000000 : 1000;
             return "~" + sign + n / unit + (unit == 1000000000 ? "B" : unit == 1000000 ? "M" : "k");
@@ -120,8 +139,12 @@ namespace CavesOfOoo.Rendering
             var g = _denseLayout; var list = g.ListBounds;
             LFrame(new Rect(list.x, 132, list.width, g.Height - 212), LGold, LPanel);
             string query = string.IsNullOrEmpty(_inventoryQuery) ? "ALL ITEMS   / Find" : "FIND: " + _inventoryQuery;
-            float queryWidth = list.width - (g.HasDetails ? 20 : 140);
+            float queryWidth = list.width - (g.HasDetails ? 160 : 280);
             LLabel(new Rect(list.x + 10, 143, queryWidth, 24), SkillScreenText.Fit(query + (_inventorySearchActive ? "_" : ""), (int)(queryWidth / 10), 1), _inventorySearchActive ? LGold : LMuted, 20);
+            var grouping = new Rect(list.xMax - (g.HasDetails ? 132 : 252), 140, 120, 27);
+            LFrame(grouping, LBorder, LBackground);
+            LLabel(new Rect(grouping.x + 5, grouping.y + 4, 110, 20), _inventoryUngrouped ? "G: Singles" : "G: Grouped", LGold, 16);
+            if (!_inventorySearchActive) LHit(grouping, LedgerHitKind.PackGrouping);
             for (int column = 0; column < g.Columns; column++)
             {
                 float x = list.x + column * (g.ColumnWidth + 12);
@@ -138,13 +161,16 @@ namespace CavesOfOoo.Rendering
                 bool selected = index == _cursorIndex;
                 if (selected) { LBox(row, LSelected); LBox(new Rect(row.x, row.y, 3, row.height), LGold); }
                 LLabel(new Rect(row.x + 10, row.y + 1, g.NameWidth, 22), DenseRowName(item, (int)(g.NameWidth / 10)), selected ? LGold : LInk, 20);
-                LLabel(new Rect(row.x + row.width - 126, row.y + 3, 40, 20), DenseNumber(item.StackCount), LInk, 16);
-                LLabel(new Rect(row.x + row.width - 78, row.y + 3, 54, 20), DenseNumber(item.Weight), LInk, 16);
+                var group = _rows[index].Group;
+                LLabel(new Rect(row.x + row.width - 126, row.y + 3, 40, 20), DenseNumber(group?.TotalUnits ?? item.StackCount), LInk, 16);
+                LLabel(new Rect(row.x + row.width - 78, row.y + 3, 54, 20), DenseNumber(group?.TotalWeight ?? item.Weight), LInk, 16);
                 if (item.IsEquipped) LLabel(new Rect(row.xMax - 24, row.y + 3, 24, 20), "[E]", LGold, 16);
                 LHit(row, LedgerHitKind.Item, index);
             }
+            long owners = _denseRows.Sum(i => (long)(_rows[i].Group?.Members.Count ?? 1));
+            long units = _denseRows.Sum(i => _rows[i].Group?.TotalUnits ?? _rows[i].Item.StackCount);
             LLabel(new Rect(24, g.Height - 73, g.Width - 48, 20), (_denseRows.Count == 0 ? "0" : (first + 1) + "-" + end) + " / " + _denseRows.Count
-                + " items (includes equipped)   ~ rounded; " + (g.HasDetails ? "select" : "F1") + " for exact values", LMuted, 16);
+                + " rows; " + owners + " stacks / " + units + " items (includes equipped)   ~ rounded", LMuted, 16);
             RenderDenseSelection();
         }
         void RenderDenseSelection()
@@ -160,11 +186,13 @@ namespace CavesOfOoo.Rendering
             if (document?.Subject == null || string.IsNullOrWhiteSpace(decision))
             { LLabel(new Rect(pane.x + 12, pane.y + 16, pane.width - 24, 76), SkillScreenText.Fit("Select an item to inspect it.", (int)((pane.width - 24) / 10), 3), LMuted, 20); return; }
             var item = _rows[_cursorIndex].Item;
+            var group = _rows[_cursorIndex].Group;
             LLabel(new Rect(pane.x + 12, pane.y + 16, pane.width - 24, 78), SkillScreenText.Fit(DenseName(item), (int)((pane.width - 24) / 11), 3), LGold, 22);
-            LLabel(new Rect(pane.x + 12, pane.y + 100, pane.width - 24, 66), SkillScreenText.Fit("Quantity " + item.StackCount + "\nWeight " + item.Weight + " lb\n" + item.Category, (int)((pane.width - 24) / 9), 3), LMuted, 18);
+            LLabel(new Rect(pane.x + 12, pane.y + 100, pane.width - 24, 66), SkillScreenText.Fit("Quantity " + (group?.TotalUnits ?? item.StackCount) + "\nWeight " + (group?.TotalWeight ?? item.Weight) + " lb\n" + item.Category, (int)((pane.width - 24) / 9), 3), LMuted, 18);
             LLabel(new Rect(pane.x + 12, pane.y + 176, pane.width - 24, 24), SkillScreenText.Fit("DMG / DEF " + LedgerCombatValue(item.Item), (int)((pane.width - 24) / 9), 1), LInk, 18);
             int lines = Math.Max(1, (int)((pane.height - 252) / 22));
-            LLabel(new Rect(pane.x + 12, pane.y + 206, pane.width - 24, pane.height - 252), SkillScreenText.Fit(decision, (int)((pane.width - 24) / 9), lines), LInk, 18);
+            string scope = group != null && group.Members.Count > 1 ? group.Scope + "\n\n" : "";
+            LLabel(new Rect(pane.x + 12, pane.y + 206, pane.width - 24, pane.height - 252), SkillScreenText.Fit(scope + decision, (int)((pane.width - 24) / 9), lines), LInk, 18);
             var details = new Rect(pane.x + 12, pane.yMax - 36, pane.width - 24, 26);
             LFrame(details, LBorder, LBackground); LLabel(new Rect(details.x + 8, details.y + 4, details.width - 16, 20), NativeGamepadInput.IsConnected ? "LT+RT Details" : "F1 Details", LGold, 16); LHit(details, LedgerHitKind.Details);
         }
