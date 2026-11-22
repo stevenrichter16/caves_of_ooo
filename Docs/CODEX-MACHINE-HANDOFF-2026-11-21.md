@@ -2,6 +2,18 @@
 
 ## Resumed continuation — November 21 evening
 
+November 22 [current Mac candidate](Verification/MachineSystems/MacCandidateF8C835549/README.md):
+sourcef8c835549 packages expiry/ascent/flask-access fixes; universal arm64/x86_64,
+60.64s/0errors/5existingwarnings. Actual own43696 boot/chooser/world/HUD captured;
+native input preflight false, no packaged actions/save/reload acceptance. Own
+player closed; standalone Saves restored absent/fresh logical prefs equal,
+84foreign/861normal unchanged; prior74/477 each186app files freshly unchanged.
+Clean source31983/effective31986/external592/app186 pins; generated83changed/
+0missing/3added disclosed with exact overlay, runtime C# unchanged on import.
+All copies/builds preserved, main stopped/rootnull. No new accepted delivery.
+Next: gated shared exposure/NPC survival source trial or other demonstrated
+machine integration gaps; do not repeat qualified supply/menu/freight slices.
+
 November 22 [complete proofing destinations](Verification/MachineSystems/ProofingDestinations20261122/README.md):
 removed only Press3-flask cap;8 native RED/7fail→96 focused GREEN, filters and
 transactions unchanged. Producer volume sort remains but shared menu text sort

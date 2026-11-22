@@ -1,3 +1,8 @@
+**November 22 Mac candidate:** [package receipt](Verification/MachineSystems/MacCandidateF8C835549/README.md)
+packages currentf8c835549 into a universal nondevelopment app, verified build and
+actual boot. Packaged input remains unavailable/unverified; no new complete-
+machine or Mac-delivery acceptance. All twelve dependency gates remain open.
+
 **November 22 proofing destination access:** [native receipt](Verification/MachineSystems/ProofingDestinations20261122/README.md)
 removes the final three-flask enumeration cap while keeping all validation and
 finite transactions. Native8 RED/7fail→96 focused GREEN, actual last flask2242
