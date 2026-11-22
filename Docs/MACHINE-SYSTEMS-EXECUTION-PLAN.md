@@ -10,6 +10,24 @@
 
 ## Active handback continuation — November 21, 2026
 
+November 22 [ordinary quartz supply and consumers](Verification/MachineSystems/QuartzSupply20261122/README.md):
+earned Posy390 had no quartz. Native travel to Spread11,10; vein9366 harvest
+650→660 yields2, consumes source; fresh660 retains depletion. Return Posy830,
+late41 sign on lacquered Ward1a3… costs1 quartz840. Equip/unequip/re-equip gives
+regard8→13→8→13 without accumulation; old cold coat is unworn/Cold0. Already
+signed refusal is free. Other mineral makes nonrecoverable radius4 light850,
+29 turns after placement; fresh850 keeps29. Twenty-nine paid waits expire it
+1140; fresh1140 keeps no quartz/light and same signed worn garment/regard13.
+Independent review found a stationary stale shard after expiry. Shared
+LifespanPart now invalidates enabled-light expiry fully (lighting), other expiry
+only at its former cell. Nine RED cases/3 expected failures; GREEN46+62=108
+distinct passes, including aftermath. Native same850→1140 replay visibly removes
+the shard without movement; fresh1140 retains state. Initial post-compile boot
+precondition failure excluded; settled retry qualified. Current Mac477 predates
+this correction. Higher tiers/ordinary resin/package controls remain open.
+Main stopped/rootnull,84 foreign/861 normal hashes unchanged. Next: resin supply,
+proofing flask destination cap, then gated exposure/NPC survival. Hourly ACTIVE.
+
 November22 [native freight qualification](Verification/MachineSystems/Freight20261122/README.md):
 fixture60drams/timber8 plus separateprearrivedspikes2; actual Cinderhold half
 shipment420 costs3drams, carry4/cart4, ready4020; fresh420 exact. Ordinary

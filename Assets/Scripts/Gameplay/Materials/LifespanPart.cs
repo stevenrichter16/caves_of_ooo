@@ -39,10 +39,19 @@ namespace CavesOfOoo.Core
 
             var zone = e.GetParameter<Zone>("Zone");
             var cell = zone?.GetEntityCell(ParentEntity);
-            if (cell != null && zone.RemoveEntity(ParentEntity)
-                && !string.IsNullOrEmpty(ExpiryCoating) && ExpiryCoatingTurns > 0)
+            bool removedLight = ParentEntity.GetPart<LightSourcePart>()?.Enabled == true;
+            if (cell == null || !zone.RemoveEntity(ParentEntity))
+                return true;
+
+            if (!string.IsNullOrEmpty(ExpiryCoating) && ExpiryCoatingTurns > 0)
                 ZoneTileStateSystem.WriteCoating(zone, cell.X, cell.Y, ExpiryCoating,
                     ExpiryCoatingTurns, ParentEntity, "natural-expiry");
+
+            // Ordinary single-cell removal does not invalidate its tile. A light
+            // also changes neighboring illumination: the cell-only render path
+            // deliberately reuses its lightmap, so refresh that once on expiry.
+            if (removedLight) ZoneRenderHooks.MarkFullDirty("LifespanExpiredLight");
+            else ZoneRenderHooks.MarkCellDirty(cell, "LifespanExpired");
 
             return true;
         }

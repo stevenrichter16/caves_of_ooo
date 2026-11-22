@@ -1,0 +1,1291 @@
+{
+  "quartzHarvestMenu": {
+    "tick": 650,
+    "state": "WorldActionMenuOpen",
+    "rows": [
+      {
+        "index": 0,
+        "label": "harvest",
+        "command": "Harvest",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 1,
+        "label": "examine",
+        "command": "Examine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 2,
+        "label": "<< everything here",
+        "command": "PickCell",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      }
+    ]
+  },
+  "quartzHarvested": {
+    "zone": "Overworld.11.10.0",
+    "tick": 660,
+    "x": 32,
+    "y": 10,
+    "hp": 400,
+    "regard": 8,
+    "items": [
+      {
+        "id": "2167",
+        "bp": "PitchpodResin",
+        "count": 6,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2298",
+        "bp": "Torch",
+        "count": 3,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2301",
+        "bp": "PitchpodSeed",
+        "count": 4,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2342",
+        "bp": "WardedCloak",
+        "count": 1,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "1a3e508a378e4552bb657b91edaeea1a",
+        "bp": "WardedCloak",
+        "count": 1,
+        "engraved": false,
+        "lacquer": true
+      },
+      {
+        "id": "10011",
+        "bp": "GlowQuartz",
+        "count": 2,
+        "engraved": false,
+        "lacquer": false
+      }
+    ]
+  },
+  "quartzSpentSourceMenu": {
+    "tick": 660,
+    "state": "WorldActionMenuOpen",
+    "rows": [
+      {
+        "index": 0,
+        "label": "examine",
+        "command": "Examine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 1,
+        "label": "crack quartz light (1 mineral, 30 turns) [31,10] [glow-quartz]",
+        "command": "CrackQuartz|Overworld.11.10.0|32|10|31|10||2",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 2,
+        "label": "lay hush strip west",
+        "command": "LayDevice|Overworld.11.10.0|32|10|31|10|2136",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 3,
+        "label": "pour bog mire west (12) [liquid flask]",
+        "command": "PourLiquidVessel|bog-mire|12|Overworld.11.10.0|31|10",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 4,
+        "label": "spread brine west (1 item) [glimmer-brine]",
+        "command": "MaterialField|Film|Overworld.11.10.0|32|10|31|10||8|brine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 5,
+        "label": "pour one bog mire west [liquid flask]",
+        "command": "PourOneLiquidVessel|bog-mire|12|Overworld.11.10.0|31|10",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      }
+    ]
+  },
+  "quartzFreshMined": {
+    "zone": "Overworld.11.10.0",
+    "tick": 660,
+    "x": 32,
+    "y": 10,
+    "hp": 400,
+    "regard": 8,
+    "items": [
+      {
+        "id": "2167",
+        "bp": "PitchpodResin",
+        "count": 6,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2298",
+        "bp": "Torch",
+        "count": 3,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2301",
+        "bp": "PitchpodSeed",
+        "count": 4,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2342",
+        "bp": "WardedCloak",
+        "count": 1,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "1a3e508a378e4552bb657b91edaeea1a",
+        "bp": "WardedCloak",
+        "count": 1,
+        "engraved": false,
+        "lacquer": true
+      },
+      {
+        "id": "10011",
+        "bp": "GlowQuartz",
+        "count": 2,
+        "engraved": false,
+        "lacquer": false
+      }
+    ]
+  },
+  "quartzBenchMenu": {
+    "tick": 830,
+    "state": "WorldActionMenuOpen",
+    "rows": [
+      {
+        "index": 0,
+        "label": "lacquer acidworker apron to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2378|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 1,
+        "label": "set the Bower sign on acidworker apron (1 glow-quartz)",
+        "command": "SetSign|2378",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 2,
+        "label": "lacquer buckler to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2360|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 3,
+        "label": "set the Bower sign on buckler (1 glow-quartz)",
+        "command": "SetSign|2360",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 4,
+        "label": "lacquer chain mail (x3) (1 of 3) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2348|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 5,
+        "label": "set the Bower sign on chain mail (x3) (1 of 3) (1 glow-quartz)",
+        "command": "SetSign|2348",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 6,
+        "label": "lacquer cloak (x4) (1 of 4) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2337|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 7,
+        "label": "set the Bower sign on cloak (x4) (1 of 4) (1 glow-quartz)",
+        "command": "SetSign|2337",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 8,
+        "label": "lacquer coldward cloak (x2) (1 of 2) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2347|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 9,
+        "label": "set the Bower sign on coldward cloak (x2) (1 of 2) (1 glow-quartz)",
+        "command": "SetSign|2347",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 10,
+        "label": "set the Bower sign on dagger (1 glow-quartz)",
+        "command": "SetSign|2127",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 11,
+        "label": "lacquer filter hood (x2) (1 of 2) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2344|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 12,
+        "label": "set the Bower sign on filter hood (x2) (1 of 2) (1 glow-quartz)",
+        "command": "SetSign|2344",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 13,
+        "label": "lacquer groundwire screen to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2380|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 14,
+        "label": "set the Bower sign on groundwire screen (1 glow-quartz)",
+        "command": "SetSign|2380",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 15,
+        "label": "lacquer coldward cloak to tier 1 (1 pitchpod resin)",
+        "command": "Disabled:slot-cap",
+        "disabled": true,
+        "code": "slot-cap",
+        "reason": "This piece already holds two treatments."
+      },
+      {
+        "index": 16,
+        "label": "lacquer iron buckler to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2370|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 17,
+        "label": "lacquer iron helmet (x5) (1 of 5) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2349|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 18,
+        "label": "lacquer ironshod boots (x5) (1 of 5) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2351|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 19,
+        "label": "lacquer kilnfelt apron to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2373|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 20,
+        "label": "lacquer leather armor (x3) (1 of 3) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2333|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 21,
+        "label": "lacquer leather boots (x5) (1 of 5) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2336|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 22,
+        "label": "lacquer leather cap (x3) (1 of 3) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2334|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 23,
+        "label": "lacquer leather gloves (x7) (1 of 7) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2335|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 24,
+        "label": "lacquer plate armor to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|a724be89e3cb492fba914e0a14fbd7f0|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 25,
+        "label": "lacquer plate armor to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2363|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 26,
+        "label": "lacquer warded cloak (worn) to tier 1 (1 pitchpod resin)",
+        "command": "Disabled:already",
+        "disabled": true,
+        "code": "already",
+        "reason": "It is lacquered already."
+      },
+      {
+        "index": 27,
+        "label": "lacquer warded cloak to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2342|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 28,
+        "label": "lacquer warded cloak to tier 1 (1 pitchpod resin)",
+        "command": "Disabled:already",
+        "disabled": true,
+        "code": "already",
+        "reason": "It is lacquered already."
+      },
+      {
+        "index": 29,
+        "label": "set the Bower sign on coldward cloak (1 glow-quartz)",
+        "command": "Disabled:slot-cap",
+        "disabled": true,
+        "code": "slot-cap",
+        "reason": "This piece already holds two treatments."
+      },
+      {
+        "index": 30,
+        "label": "set the Bower sign on iron buckler (1 glow-quartz)",
+        "command": "SetSign|2370",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 31,
+        "label": "set the Bower sign on iron helmet (x5) (1 of 5) (1 glow-quartz)",
+        "command": "SetSign|2349",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 32,
+        "label": "set the Bower sign on ironshod boots (x5) (1 of 5) (1 glow-quartz)",
+        "command": "SetSign|2351",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 33,
+        "label": "set the Bower sign on kilnfelt apron (1 glow-quartz)",
+        "command": "SetSign|2373",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 34,
+        "label": "set the Bower sign on leather armor (x3) (1 of 3) (1 glow-quartz)",
+        "command": "SetSign|2333",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 35,
+        "label": "set the Bower sign on leather boots (x5) (1 of 5) (1 glow-quartz)",
+        "command": "SetSign|2336",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 36,
+        "label": "set the Bower sign on leather cap (x3) (1 of 3) (1 glow-quartz)",
+        "command": "SetSign|2334",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 37,
+        "label": "set the Bower sign on leather gloves (x7) (1 of 7) (1 glow-quartz)",
+        "command": "SetSign|2335",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 38,
+        "label": "set the Bower sign on plate armor (1 glow-quartz)",
+        "command": "SetSign|2363",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 39,
+        "label": "set the Bower sign on plate armor (1 glow-quartz)",
+        "command": "SetSign|a724be89e3cb492fba914e0a14fbd7f0",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 40,
+        "label": "set the Bower sign on torch (x3) (1 of 3) (1 glow-quartz)",
+        "command": "SetSign|2298",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 41,
+        "label": "set the Bower sign on warded cloak (1 glow-quartz)",
+        "command": "SetSign|1a3e508a378e4552bb657b91edaeea1a",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 42,
+        "label": "set the Bower sign on warded cloak (1 glow-quartz)",
+        "command": "SetSign|2342",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 43,
+        "label": "set the Bower sign on warded cloak (worn) (1 glow-quartz)",
+        "command": "Disabled:slot-cap",
+        "disabled": true,
+        "code": "slot-cap",
+        "reason": "This piece already holds two treatments."
+      },
+      {
+        "index": 44,
+        "label": "examine",
+        "command": "Examine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 45,
+        "label": "pour bog mire south (12) [liquid flask]",
+        "command": "PourLiquidVessel|bog-mire|12|Overworld.5.9.0|39|15",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 46,
+        "label": "spread brine south (1 item) [glimmer-brine]",
+        "command": "MaterialField|Film|Overworld.5.9.0|39|14|39|15||8|brine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 47,
+        "label": "pour one bog mire south [liquid flask]",
+        "command": "PourOneLiquidVessel|bog-mire|12|Overworld.5.9.0|39|15",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 48,
+        "label": "<< everything here",
+        "command": "PickCell",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      }
+    ]
+  },
+  "quartzSigned": {
+    "zone": "Overworld.5.9.0",
+    "tick": 840,
+    "x": 39,
+    "y": 14,
+    "hp": 400,
+    "regard": 8,
+    "items": [
+      {
+        "id": "2167",
+        "bp": "PitchpodResin",
+        "count": 6,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2298",
+        "bp": "Torch",
+        "count": 3,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2301",
+        "bp": "PitchpodSeed",
+        "count": 4,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2342",
+        "bp": "WardedCloak",
+        "count": 1,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "1a3e508a378e4552bb657b91edaeea1a",
+        "bp": "WardedCloak",
+        "count": 1,
+        "engraved": true,
+        "lacquer": true
+      },
+      {
+        "id": "10011",
+        "bp": "GlowQuartz",
+        "count": 1,
+        "engraved": false,
+        "lacquer": false
+      }
+    ]
+  },
+  "quartzSignedWorn": {
+    "tick": 840,
+    "hp": 400,
+    "regard": 13,
+    "armor": 0,
+    "cold": 0,
+    "worn": [
+      {
+        "id": "1a3e508a378e4552bb657b91edaeea1a",
+        "bp": "WardedCloak",
+        "sign": true,
+        "lacquer": true,
+        "armor": 1
+      }
+    ]
+  },
+  "quartzSignedRemoved": {
+    "tick": 840,
+    "hp": 400,
+    "regard": 8,
+    "armor": 0,
+    "cold": 0,
+    "worn": []
+  },
+  "quartzSignedReworn": {
+    "tick": 840,
+    "hp": 400,
+    "regard": 13,
+    "armor": 0,
+    "cold": 0,
+    "worn": [
+      {
+        "id": "1a3e508a378e4552bb657b91edaeea1a",
+        "bp": "WardedCloak",
+        "sign": true,
+        "lacquer": true,
+        "armor": 1
+      }
+    ]
+  },
+  "quartzSignedRefusalMenu": {
+    "tick": 840,
+    "state": "WorldActionMenuOpen",
+    "rows": [
+      {
+        "index": 0,
+        "label": "lacquer acidworker apron to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2378|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 1,
+        "label": "set the Bower sign on acidworker apron (1 glow-quartz)",
+        "command": "SetSign|2378",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 2,
+        "label": "lacquer buckler to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2360|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 3,
+        "label": "set the Bower sign on buckler (1 glow-quartz)",
+        "command": "SetSign|2360",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 4,
+        "label": "lacquer chain mail (x3) (1 of 3) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2348|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 5,
+        "label": "set the Bower sign on chain mail (x3) (1 of 3) (1 glow-quartz)",
+        "command": "SetSign|2348",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 6,
+        "label": "lacquer cloak (x4) (1 of 4) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2337|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 7,
+        "label": "set the Bower sign on cloak (x4) (1 of 4) (1 glow-quartz)",
+        "command": "SetSign|2337",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 8,
+        "label": "lacquer coldward cloak (x2) (1 of 2) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2347|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 9,
+        "label": "set the Bower sign on coldward cloak (x2) (1 of 2) (1 glow-quartz)",
+        "command": "SetSign|2347",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 10,
+        "label": "set the Bower sign on dagger (1 glow-quartz)",
+        "command": "SetSign|2127",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 11,
+        "label": "lacquer filter hood (x2) (1 of 2) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2344|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 12,
+        "label": "set the Bower sign on filter hood (x2) (1 of 2) (1 glow-quartz)",
+        "command": "SetSign|2344",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 13,
+        "label": "lacquer groundwire screen to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2380|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 14,
+        "label": "set the Bower sign on groundwire screen (1 glow-quartz)",
+        "command": "SetSign|2380",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 15,
+        "label": "lacquer coldward cloak to tier 1 (1 pitchpod resin)",
+        "command": "Disabled:slot-cap",
+        "disabled": true,
+        "code": "slot-cap",
+        "reason": "This piece already holds two treatments."
+      },
+      {
+        "index": 16,
+        "label": "lacquer iron buckler to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2370|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 17,
+        "label": "lacquer iron helmet (x5) (1 of 5) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2349|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 18,
+        "label": "lacquer ironshod boots (x5) (1 of 5) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2351|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 19,
+        "label": "lacquer kilnfelt apron to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2373|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 20,
+        "label": "lacquer leather armor (x3) (1 of 3) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2333|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 21,
+        "label": "lacquer leather boots (x5) (1 of 5) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2336|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 22,
+        "label": "lacquer leather cap (x3) (1 of 3) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2334|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 23,
+        "label": "lacquer leather gloves (x7) (1 of 7) to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2335|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 24,
+        "label": "lacquer plate armor to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|a724be89e3cb492fba914e0a14fbd7f0|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 25,
+        "label": "lacquer plate armor to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2363|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 26,
+        "label": "lacquer warded cloak (worn) to tier 1 (1 pitchpod resin)",
+        "command": "Disabled:already",
+        "disabled": true,
+        "code": "already",
+        "reason": "It is lacquered already."
+      },
+      {
+        "index": 27,
+        "label": "lacquer warded cloak to tier 1 (1 pitchpod resin)",
+        "command": "Disabled:already",
+        "disabled": true,
+        "code": "already",
+        "reason": "It is lacquered already."
+      },
+      {
+        "index": 28,
+        "label": "lacquer warded cloak to tier 1 (1 pitchpod resin)",
+        "command": "SetLacquer|2342|1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 29,
+        "label": "set the Bower sign on coldward cloak (1 glow-quartz)",
+        "command": "Disabled:slot-cap",
+        "disabled": true,
+        "code": "slot-cap",
+        "reason": "This piece already holds two treatments."
+      },
+      {
+        "index": 30,
+        "label": "set the Bower sign on iron buckler (1 glow-quartz)",
+        "command": "SetSign|2370",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 31,
+        "label": "set the Bower sign on iron helmet (x5) (1 of 5) (1 glow-quartz)",
+        "command": "SetSign|2349",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 32,
+        "label": "set the Bower sign on ironshod boots (x5) (1 of 5) (1 glow-quartz)",
+        "command": "SetSign|2351",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 33,
+        "label": "set the Bower sign on kilnfelt apron (1 glow-quartz)",
+        "command": "SetSign|2373",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 34,
+        "label": "set the Bower sign on leather armor (x3) (1 of 3) (1 glow-quartz)",
+        "command": "SetSign|2333",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 35,
+        "label": "set the Bower sign on leather boots (x5) (1 of 5) (1 glow-quartz)",
+        "command": "SetSign|2336",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 36,
+        "label": "set the Bower sign on leather cap (x3) (1 of 3) (1 glow-quartz)",
+        "command": "SetSign|2334",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 37,
+        "label": "set the Bower sign on leather gloves (x7) (1 of 7) (1 glow-quartz)",
+        "command": "SetSign|2335",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 38,
+        "label": "set the Bower sign on plate armor (1 glow-quartz)",
+        "command": "SetSign|2363",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 39,
+        "label": "set the Bower sign on plate armor (1 glow-quartz)",
+        "command": "SetSign|a724be89e3cb492fba914e0a14fbd7f0",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 40,
+        "label": "set the Bower sign on torch (x3) (1 of 3) (1 glow-quartz)",
+        "command": "SetSign|2298",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 41,
+        "label": "set the Bower sign on warded cloak (1 glow-quartz)",
+        "command": "Disabled:slot-cap",
+        "disabled": true,
+        "code": "slot-cap",
+        "reason": "This piece already holds two treatments."
+      },
+      {
+        "index": 42,
+        "label": "set the Bower sign on warded cloak (1 glow-quartz)",
+        "command": "SetSign|2342",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 43,
+        "label": "set the Bower sign on warded cloak (worn) (1 glow-quartz)",
+        "command": "Disabled:already",
+        "disabled": true,
+        "code": "already",
+        "reason": "It already carries a sign."
+      },
+      {
+        "index": 44,
+        "label": "examine",
+        "command": "Examine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 45,
+        "label": "pour bog mire south (12) [liquid flask]",
+        "command": "PourLiquidVessel|bog-mire|12|Overworld.5.9.0|39|15",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 46,
+        "label": "spread brine south (1 item) [glimmer-brine]",
+        "command": "MaterialField|Film|Overworld.5.9.0|39|14|39|15||8|brine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 47,
+        "label": "pour one bog mire south [liquid flask]",
+        "command": "PourOneLiquidVessel|bog-mire|12|Overworld.5.9.0|39|15",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 48,
+        "label": "<< everything here",
+        "command": "PickCell",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      }
+    ]
+  },
+  "quartzSignedRepeatRefused": {
+    "zone": "Overworld.5.9.0",
+    "tick": 840,
+    "x": 39,
+    "y": 14,
+    "hp": 400,
+    "regard": 13,
+    "items": [
+      {
+        "id": "2167",
+        "bp": "PitchpodResin",
+        "count": 6,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2298",
+        "bp": "Torch",
+        "count": 3,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2301",
+        "bp": "PitchpodSeed",
+        "count": 4,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "2342",
+        "bp": "WardedCloak",
+        "count": 1,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "10011",
+        "bp": "GlowQuartz",
+        "count": 1,
+        "engraved": false,
+        "lacquer": false
+      },
+      {
+        "id": "3c6a92d5471b4e47add2a686e7fca289",
+        "bp": "WardedCloak",
+        "count": 1,
+        "engraved": false,
+        "lacquer": true
+      }
+    ]
+  },
+  "quartzLightMenu": {
+    "tick": 840,
+    "state": "WorldActionMenuOpen",
+    "rows": [
+      {
+        "index": 0,
+        "label": "examine",
+        "command": "Examine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 1,
+        "label": "crack quartz light (1 mineral, 30 turns) [39,13] [glow-quartz]",
+        "command": "CrackQuartz|Overworld.5.9.0|39|14|39|13||1",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 2,
+        "label": "lay hush strip north",
+        "command": "LayDevice|Overworld.5.9.0|39|14|39|13|2136",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 3,
+        "label": "pour bog mire north (12) [liquid flask]",
+        "command": "PourLiquidVessel|bog-mire|12|Overworld.5.9.0|39|13",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 4,
+        "label": "spread brine north (1 item) [glimmer-brine]",
+        "command": "MaterialField|Film|Overworld.5.9.0|39|14|39|13||8|brine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 5,
+        "label": "pour one bog mire north [liquid flask]",
+        "command": "PourOneLiquidVessel|bog-mire|12|Overworld.5.9.0|39|13",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      }
+    ]
+  },
+  "quartzLightPlaced": {
+    "tick": 850,
+    "hp": 400,
+    "regard": 13,
+    "stock": [],
+    "lights": [
+      {
+        "id": "10012",
+        "pos": "(39, 13)",
+        "turns": 29,
+        "enabled": true,
+        "radius": 4,
+        "takeable": false
+      }
+    ]
+  },
+  "quartzFreshLit": {
+    "tick": 850,
+    "hp": 400,
+    "regard": 13,
+    "stock": [],
+    "lights": [
+      {
+        "id": "10012",
+        "pos": "(39, 13)",
+        "turns": 29,
+        "enabled": true,
+        "radius": 4,
+        "takeable": false
+      }
+    ]
+  },
+  "quartzFreshSignedWorn": {
+    "tick": 850,
+    "hp": 400,
+    "regard": 13,
+    "armor": 0,
+    "cold": 0,
+    "worn": [
+      {
+        "id": "1a3e508a378e4552bb657b91edaeea1a",
+        "bp": "WardedCloak",
+        "sign": true,
+        "lacquer": true,
+        "armor": 1
+      }
+    ]
+  },
+  "quartzLightLastTurn": {
+    "tick": 1130,
+    "hp": 400,
+    "regard": 13,
+    "stock": [],
+    "lights": [
+      {
+        "id": "10012",
+        "pos": "(39, 13)",
+        "turns": 1,
+        "enabled": true,
+        "radius": 4,
+        "takeable": false
+      }
+    ]
+  },
+  "quartzLightExpired": {
+    "tick": 1140,
+    "hp": 400,
+    "regard": 13,
+    "stock": [],
+    "lights": []
+  },
+  "quartzFreshExpired": {
+    "tick": 1140,
+    "hp": 400,
+    "regard": 13,
+    "stock": [],
+    "lights": []
+  },
+  "quartzFreshFinalWearer": {
+    "tick": 1140,
+    "hp": 400,
+    "regard": 13,
+    "armor": 0,
+    "cold": 0,
+    "worn": [
+      {
+        "id": "1a3e508a378e4552bb657b91edaeea1a",
+        "bp": "WardedCloak",
+        "sign": true,
+        "lacquer": true,
+        "armor": 1
+      }
+    ]
+  },
+  "quartzFreshMinedSourceCell": {
+    "tick": 660,
+    "zone": "Overworld.11.10.0",
+    "x": 31,
+    "y": 10,
+    "owners": [
+      {
+        "id": "8139",
+        "bp": "Grass"
+      }
+    ],
+    "provenance": "Transcribed from successful read-only execute_code result immediately after fresh Continue660; no query recreated the vein."
+  }
+}

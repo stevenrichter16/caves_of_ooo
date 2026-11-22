@@ -1,3 +1,14 @@
+**November 22 ordinary quartz and competing uses:** [native receipt](Verification/MachineSystems/QuartzSupply20261122/README.md)
+qualifies finite world-vein acquisition, transport to Posy's sign service,
+conditional equipment regard without accumulation, and alternative expenditure
+on a temporary ground light. Fresh loads retain depleted source, exact goods,
+signed wearer and light lifetime/expiry. Review exposed stale expiry feedback:
+shared LifespanPart now requests full redraw on enabled-light removal and old-cell
+redraw for other expiry, preserving finite aftermath. Native9 RED/3fail→108
+targeted GREEN; actual stationary disappearance/fresh1140 qualified. Resin supply,
+dark-cave visibility and complete-machine acceptance remain open. Dependencies
+for all twelve machines remain unchanged.
+
 **November22 NPC transport qualification:** [freight receipt](Verification/MachineSystems/Freight20261122/README.md)
 records actual half-stack custody/fee, travel/game-time arrival, collection/merge
 and fresh420/4020 without duplicated stock. This supplies an ordinary NPC-service
