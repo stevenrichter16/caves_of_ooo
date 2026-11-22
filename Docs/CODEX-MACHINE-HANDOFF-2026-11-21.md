@@ -2,6 +2,22 @@
 
 ## Resumed continuation — November 21 evening
 
+November22 [current inventory Mac candidate](Verification/MachineSystems/MacCandidateFD4A638B4/README.md)
+packages committed/pushed/remotely verified runtimefd4a638b4. Universal6000.3.4f1,
+nondevelopment63.42s/0errors/5existingwarnings. Own43735/window70668 chooser/
+world/HUD boot captured; fresh nativeinputpreflightfalse and NO input posted,
+so packagedinventory/actions/save/controller and full delivery remain open.
+32003source/32006effective/592external/186app pins;83changed0missing3added exact
+overlay, runtimeC# unchanged on import. Main stopped/rootnull/profilerfalse,
+Saves restored absent/full logical prefs equal;84foreign861normal and prior
+74/477/f8/7c3 each186app files freshly unchanged. All copies/builds preserved.
+Independent bounded artifact review accompanies receipt. Inventory layout is
+published; category/state/sort broader redesign and all12complete-machine gates
+stay open. NEXT: source/privacy audit then disclosed contents/charge/treatment
+rows/search to support recurring preparation/processing/freight choices; shared
+tool-state capability already supplies flask/skin world-menu distinctions.
+Chronology/protective NPC work still precedes exposure enrollment.
+
 November22 [inventory layout qualification](Verification/MachineSystems/InventoryDensity20261122/README.md):
 dedicated full-height Inventory shows44 actual entries at1280×800 and66 at1080p
 versus10 before, with measured final10×20px body glyphs at both targets.125% text gives30 at800p.

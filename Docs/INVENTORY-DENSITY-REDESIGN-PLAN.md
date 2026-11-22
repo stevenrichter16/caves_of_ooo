@@ -249,3 +249,20 @@ exposure enrollment; graphics cancelled, capstan/cultures parked, Deck deferred.
 
 The receipt supersedes earlier future-tense descriptions only for the bounded
 first layout. Extra category/sort/state UI and wider gameplay coverage remain open.
+
+## Publication and next discovery increment
+
+Runtime fd4a638b4 is pushed/remotely verified. The current universal Mac candidate
+is recorded in Verification/MachineSystems/MacCandidateFD4A638B4/README.md; boot
+only, with packaged actions/physical input still open. No need to repeat accepted
+layout tests or the earned native branch.
+
+Source foothold for next work: InventoryScreenData.ItemDisplay currently snapshots
+name/category/weight/value/quantity/equipped/actions, not explicit fluid state.
+IToolMenuState is already used by WorldInteractionSystem to distinguish flask
+contents and waterskin charges in world menus; current implementations are
+LiquidVesselPart and WaterskinPart. Audit that public information contract and
+privacy before reusing it in cached rows/search. Striker charges already occur
+in its display name. Treatment markers need their own disclosed-information
+audit. Keep row geometry/count, exact item identity, actions and stack rules.
+This is a source selection and next proposal, not implemented extra badges.

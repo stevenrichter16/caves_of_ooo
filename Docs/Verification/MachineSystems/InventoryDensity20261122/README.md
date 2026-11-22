@@ -107,6 +107,6 @@ other-agent files. source-pins.json pins14 owned source/test/meta paths.
 
 excluded-clipped-1080.png preserves the preliminary failed viewport; it is not
 acceptance evidence. Final images/observations and valid RED/GREEN XML are stored
-alongside this receipt. Current Mac7c3 predates this UI until a new package receipt
-is published. Next: disclosed contents/charges/treatments in rows/search, then
+alongside this receipt. Runtime fd4a638b4 is published; new ../MacCandidateFD4A638B4/README.md
+records its universal build/boot. Packaged inventory gameplay remains open. Next: disclosed contents/charges/treatments in rows/search, then
 connected gathering/preparation/transport trips per MACHINE-GAMEPLAY-LOOPS.md.
