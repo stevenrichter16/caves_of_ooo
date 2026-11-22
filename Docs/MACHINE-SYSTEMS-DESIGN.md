@@ -1,3 +1,8 @@
+**November21 current Mac candidate:** [47761ba77 receipt](Verification/MachineSystems/MacCandidate47761ba77/README.md)
+includes finite fuel and both menu fixes, universal0errors5warnings and actual
+boot/render. Packaged input/actions/reload unverified; no change to accepted
+delivery or twelve-machine status. Prior builds and normal state preserved.
+
 **November21 protection-menu correction:** [receipt](Verification/MachineSystems/ProofingMenuAccess20261121/README.md)
 removes bottle-coat/trough/unpick candidate caps. Actual late item coating and
 lasting plate proofing spend finite stock, work with stack custody/equipment and

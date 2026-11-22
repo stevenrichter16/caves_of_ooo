@@ -2,6 +2,18 @@
 
 ## Resumed continuation — November 21 evening
 
+Newest package [47761ba77 Mac candidate](Verification/MachineSystems/MacCandidate47761ba77/README.md)
+includes both menu fixes and finite fuel: universal arm64/x86_64,59.76s,0errors/
+5samewarnings; actual own-process boot/chooser/world/HUD. Native OS input access
+false, no packaged movement/actions/reload qualification; last accepted delivery
+unchanged. Independent pins/boot/restoration review0P1/P2; ownplayer53179closed,
+standaloneSaves restoredabsent/freshlogicalprefs equal,84foreign/861normal hashes
+unchanged. Copy/sourcebundle/app/priorpackages preserved. No runtime edits here.
+Next Editor integration: use earned workshop supplies to qualify successful Posy
+bench work and shared garment slots/effects; ordinary acquisition remains separate.
+Freight and gated exposure/AI remain available follow-ups.
+
+
 Newest correction: [proofing menu access](Verification/MachineSystems/ProofingMenuAccess20261121/README.md).
 Coat12/trough12/unpick6 caps removed, no UI changes. Native9RED failures;107/107
 focused GREEN plus strengthened late-unpick1/1. Actual native47-choice bottle
