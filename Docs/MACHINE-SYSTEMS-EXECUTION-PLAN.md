@@ -10,6 +10,12 @@
 
 ## Active handback continuation — November 21, 2026
 
+The user's later [Beating environment investigation](BEATING-ENVIRONMENT-AUDIT-2026-11-21.md)
+confirmed native player-only glare versus shared fire/material effects, and the
+missing NPC sun/shelter/water response. Generalizing exposure through per-actor
+capabilities is a proposal requiring its own slice; this audit changes no runtime
+rules and closes no machine gate.
+
 The user explicitly handed repository, Unity and Git control to Codex and asked
 for the shared-source correction, regression assessment and native machine/camp
 play without further permission questions. This supersedes the older Claude

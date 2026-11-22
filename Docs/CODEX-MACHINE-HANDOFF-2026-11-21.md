@@ -2,6 +2,17 @@
 
 ## Resumed continuation — November 21 evening
 
+Latest user investigation: [Beating environment audit](BEATING-ENVIRONMENT-AUDIT-2026-11-21.md)
+traces effects on nonplayer actors. Native300→400 comparison found playerParched1
+but two bare bandits/scorpion0 despite no shade/headwear/heat resistance. The
+same scorpion then burned from ordinary Ember Spit. Sun is player-only by the
+documented v1 exception; shared material hazards are broader. No NPC shade/thirst
+response or true native sun-tolerance capability was found. Shared per-actor
+exposure/explicit adaptation/finite shelter-water AI is proposed, not implemented.
+No runtime changes. Main stopped clean/nullroot with input restored. Native save:
+`/private/tmp/coo-beating-actors-earned-20261121/ed8cb73c62154cf6aac918327c8a1387`.
+Independent source/artifact critique zero P1/P2; not independent game operation.
+
 This continuation supersedes the pending fullrun_h/capacity steps in the original
 handoff below. After the requested pause, the user said "Okay keep going" and
 explicitly authorized stopping the overlapping Claude session. The precise active

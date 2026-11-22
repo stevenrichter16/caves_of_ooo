@@ -1,0 +1,194 @@
+{
+  "runtimeBase": "3736ae52d",
+  "scenario": "CampAwningShowcase, seed64, real SampleScene/GameBootstrap input",
+  "before": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.13.14.0",
+        "tick": 300,
+        "actors": [
+          {
+            "id": "2098",
+            "bp": "AmbushBandit",
+            "x": 3,
+            "y": 19,
+            "hp": 22,
+            "str": 14,
+            "agi": 15,
+            "heatRes": 0,
+            "parched": 0,
+            "headCover": false,
+            "shade": false,
+            "interior": false,
+            "temperature": 25,
+            "ambient": 25
+          },
+          {
+            "id": "2116",
+            "bp": "AmbushBandit",
+            "x": 5,
+            "y": 20,
+            "hp": 22,
+            "str": 14,
+            "agi": 15,
+            "heatRes": 0,
+            "parched": 0,
+            "headCover": false,
+            "shade": false,
+            "interior": false,
+            "temperature": 25,
+            "ambient": 25
+          },
+          {
+            "id": "2178",
+            "bp": "Scorpion",
+            "x": 32,
+            "y": 18,
+            "hp": 10,
+            "str": 10,
+            "agi": 16,
+            "heatRes": 0,
+            "parched": 0,
+            "headCover": false,
+            "shade": false,
+            "interior": false,
+            "temperature": 25,
+            "ambient": 25
+          },
+          {
+            "id": "2211",
+            "bp": "Player",
+            "x": 40,
+            "y": 12,
+            "hp": 40,
+            "str": 18,
+            "agi": 18,
+            "heatRes": 0,
+            "parched": 0,
+            "headCover": false,
+            "shade": false,
+            "interior": false,
+            "temperature": 25,
+            "ambient": 25
+          }
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "afterTenNativeWaits": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.13.14.0",
+        "tick": 400,
+        "actors": [
+          {
+            "id": "2098",
+            "bp": "AmbushBandit",
+            "x": 3,
+            "y": 19,
+            "hp": 22,
+            "str": 14,
+            "agi": 15,
+            "heatRes": 0,
+            "parched": 0,
+            "headCover": false,
+            "shade": false,
+            "interior": false,
+            "temperature": 25,
+            "ambient": 25
+          },
+          {
+            "id": "2116",
+            "bp": "AmbushBandit",
+            "x": 5,
+            "y": 20,
+            "hp": 22,
+            "str": 14,
+            "agi": 15,
+            "heatRes": 0,
+            "parched": 0,
+            "headCover": false,
+            "shade": false,
+            "interior": false,
+            "temperature": 25,
+            "ambient": 25
+          },
+          {
+            "id": "2178",
+            "bp": "Scorpion",
+            "x": 39,
+            "y": 13,
+            "hp": 10,
+            "str": 10,
+            "agi": 16,
+            "heatRes": 0,
+            "parched": 0,
+            "headCover": false,
+            "shade": false,
+            "interior": false,
+            "temperature": 25,
+            "ambient": 25
+          },
+          {
+            "id": "2211",
+            "bp": "Player",
+            "x": 40,
+            "y": 12,
+            "hp": 40,
+            "str": 17,
+            "agi": 17,
+            "heatRes": 0,
+            "parched": 1,
+            "headCover": false,
+            "shade": false,
+            "interior": false,
+            "temperature": 25,
+            "ambient": 25
+          }
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "ordinaryEmberSpitOnSameScorpion": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 410,
+        "id": "2178",
+        "bp": "Scorpion",
+        "hp": 5,
+        "temp": 558.1875,
+        "ambient": 25,
+        "burning": true,
+        "heatRes": 0,
+        "messages": [
+          "Your ember spatters across scorpion, and catches!",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "scorpion takes 2 fire damage.",
+          "scorpion [left hand: sting] hits you in the body for 1 damage! (39 HP remaining)",
+          "You are poisoned!",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "You take 2 poison damage."
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "checkpoint": {
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/a9250aaa0d424753877f6b00fd19822e",
+    "id": "ed8cb73c62154cf6aac918327c8a1387"
+  },
+  "limits": [
+    "Only player, two AmbushBandits and one Scorpion were compared in native play.",
+    "Nonhostile villagers, recruited companions and natural ash/brine contact were audited in source, not played in this run.",
+    "Ability fire is an explicit cross-system control; it is not ambient sun damage.",
+    "No runtime changes or newly run tests."
+  ]
+}
