@@ -10,6 +10,31 @@
 
 ## Active handback continuation — November 21, 2026
 
+November22 user priority update: keep the ACTIVE hourly task synchronized with
+completed work; retain the denser [inventory screen](INVENTORY-DENSITY-REDESIGN-PLAN.md)
+as the next player-facing layout increment after this water/package checkpoint.
+Obtain current source/UI critique and native baseline before implementation;
+existing44/64-entry readable targets are proposals, not shipped capacity. New
+[recurring gameplay contract](MACHINE-GAMEPLAY-LOOPS.md) connects finite gathering,
+processing, preparation, logistics and settlement services to long-term machine/
+tool usefulness. Preserve alternatives and lasting upgrades, with no compulsory
+upkeep or unearned production. All twelve full-machine gates and exposure/NPC
+prerequisites remain open; capstan/cultures stay parked.
+
+November22 [Mac water milestone candidate](Verification/MachineSystems/MacCandidate7C3BB8A57/README.md):
+runtime7c3bb8a57 packages all three water increments; universal nondevelopment,
+56.22s/0errors/5existingwarnings. Own83931 chooser/world/HUD boot captured, but
+native input preflight false; no packaged movement/action/save/controller gate.
+Clean committed31997/effective32000/external592/app186 pins;83generated changes,
+0missing/3added with exact overlay, no runtime C# import changes. Player/batch
+closed, Saves restored absent/full logical prefs equal;84foreign/861normal and
+prior74/477/f8 each186files freshly unchanged. Main stopped/rootnull; two
+memoryless renderer console messages disclosed, no clean-console claim. All
+copies/builds retained. NEXT: denser inventory layout/source critique and native baseline; chronology/
+protective NPC work remains required before enrollment. No source migration or full shared
+hydration/twelve-machine/delivery acceptance. Do not repeat qualified water tests,
+prototype branches or this package without a new runtime change.
+
 November22 [carried-water transaction correction](Verification/MachineSystems/WaterskinTransactions20261122/README.md):
 shared transient relief/quantity receipts, current source/recipient validation,
 and native skin snapshot ownership preserve independent injuries/effects/drops

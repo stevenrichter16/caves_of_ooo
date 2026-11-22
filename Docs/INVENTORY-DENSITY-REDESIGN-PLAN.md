@@ -4,6 +4,18 @@ User direction: plan a redesign so many more items are visible at once.
 This is a functional inventory proposal, not implemented behavior or a restart
 of the cancelled graphics program. Preserve the existing visual language and art.
 
+November22 priority reaffirmed by the user: keep this on the ACTIVE hourly work
+list as more machine/tool work completes. It is the next player-facing layout
+increment after the current water/package checkpoint. Begin with a current
+bounded source/UI critique and native baseline, then the smallest complete
+layout change, relevant checks and actual play. The proposed counts below are
+still targets. No density increase has shipped yet.
+
+Evaluate the screen during the recurring gathering/preparation/transport journey
+in [MACHINE-GAMEPLAY-LOOPS.md](MACHINE-GAMEPLAY-LOOPS.md): finding the right
+reagent, charged tool, treated garment and camp kit should be faster while full
+names, consequences and existing actions remain accessible.
+
 ## What currently limits the pack
 
 The live GameBootstrap camp scenario was opened with ordinary inventory input.
@@ -62,10 +74,12 @@ order; show the selected item's category in details. Filtering and sorting are
 free browsing actions. Keep `/` search and its current cancel/clear behavior.
 Show stack quantity once, in QTY; keep meaningful name qualifiers and distinct
 item identities. Do not merge merely similar garments, flasks or damaged items.
-The weight summary must disclose both applicable limits when they differ: the
-shipped pack's hard admission cap is150, while the current sidebar can show a
-Strength-derived270. Explain the active limiting value without changing either
-game rule as part of this layout work.
+The weight summary must read the current pack's actual `MaxWeight`, including
+the −1 unlimited case, and distinguish it from the Strength-derived soft limit.
+The ordinary Creature blueprint starts at150, while a sidebar can show a
+Strength-derived270; scenario loadouts can expand the hard cap. Do not hard-code
+150 into the screen or infer ordinary capacity from the large workshop fixture.
+Explain the applicable limits without changing either game rule in this layout.
 Move DMG/DEF to selected-item comparison rather than spending a wide column on
 dashes for most materials and tools. Keep equipped and other important markers.
 
@@ -146,3 +160,8 @@ or claimed by this planning document alone.
 Bounded independent plan review completed November 21: four requested navigation,
 filter-return, name-width and quantity contracts are incorporated above. Native
 readability, rasterized layout and implementation review remain future gates.
+
+November22 bounded recurring-use/inventory-priority critique found no material
+design blocker. Its current-capacity correction is incorporated above. Pin
+column boundaries, ragged pages and wheel/hover behavior in the upcoming current
+source/UI critique before writing RED cases. Proposed targets remain unqualified.

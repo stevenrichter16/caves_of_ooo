@@ -1,3 +1,18 @@
+**November22 user priority:** keep the hourly task current after completions;
+advance the [inventory density plan](INVENTORY-DENSITY-REDESIGN-PLAN.md) as the next
+player-facing layout increment, using a current critique/native baseline first.
+The [recurring gameplay contract](MACHINE-GAMEPLAY-LOOPS.md) now records repeat
+uses, alternatives, finite costs and cross-system outcomes for the full roster.
+It is design direction; no inventory increase or proposed full machine is shipped.
+
+**November22 current Mac water candidate:** [package receipt](Verification/MachineSystems/MacCandidate7C3BB8A57/README.md)
+packages runtime7c3bb8a57 with three bounded water increments. Universal build/
+actual boot qualified; native input preflight false, so packaged gameplay and
+all twelve full-machine/delivery gates remain open. Source/effective overlay/
+external/app pins and save/preference/prior-build preservation are recorded.
+Next: inventory density; chronology and protective NPC prerequisites remain
+required before exposure enrollment.
+
 **November22 carried-water transaction prerequisite:** [receipt](Verification/MachineSystems/WaterskinTransactions20261122/README.md)
 adds shared transient relief/quantity undo and source/recipient commit guards,
 without tariffs/save-field/population changes. Native288 GREEN incl52new, actual
