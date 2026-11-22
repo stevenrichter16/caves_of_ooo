@@ -2,6 +2,29 @@
 
 ## Resumed continuation — November 21 evening
 
+November22 [current atomic-clay Mac candidate](Verification/MachineSystems/MacCandidate928A7244F/README.md)
+packages pushed/remotely verified runtime928a7244ff3355628320724d129aabaf94d8b5af.
+Universal6000.3.4f1/nondev54.489795s364114861bytes/0errors/5samewarnings451.
+32015source/32018effective/592external/186app pins;83changed0missing3added/exact86
+overlay/runtimeC#unchangedonimport. ProducedDLLbdf9b2f8be57294ab2e5fd5a8ee761482696ad50d45733754744ea828b3cba46
+includesnewbakeandunitreceiptmetadata, differs451. Owned22790/window70848 actual
+chooser/world/HUD2678generation->2679/7creatures. Freshnativeinputpreflightfalse,
+NOinputposted; packagedactions/save/controller/full deliveryremainopen. Closed
+withPID/executableguard; fresh10logicalprefsequal/Savesabsentnonsymlink, all8prior
+machineapps186fileinventoriesexact. Mainstopped/rootnull/clean/profileroff/7builtins/
+custom0/selected0/noownedview; fresh23:18UTC84foreign861normalhashesunchanged.
+Independentfinalartifactreviewrecordedinreceipt; notsecondnativeoperator. All
+builds/projects/exports retained. Clay127native+actualfinitegather/processing/
+lastingrepair/fresh3540and3640 separatelyqualified; all12complete-machinegatesopen.
+NEXT [well/flask contract](WELL-FLASK-FILLING.md): missingpool-lessfill plus
+source-reviewedpool-backedrepair/oathbypass. ReuseSourceAvailable/oath/phase/safety,
+finitepoolprecedence/Stock/-1policy, exactone-unitquantity/capacity/receipt and
+nativeREDbeforeimplementation; actualpack/Cselection/cancel/use/F5fresh finite
+accounting. No newwelltariff, upkeep orgeneralframework. Notimplemented yet.
+FurtherInventorygroups/category/sort, fullcorrectedregression, unloadedfiretime
+andNPCexposure remainremembered. Userresumedtask/hourlyACTIVE; graphicscancelled/
+capstan-culturesparked/Deckdeferred. NoownedruntimeWIP after thispublication.
+
 November22 [atomic clay baking and regional well repair](Verification/MachineSystems/RegionalClay20261122/README.md)
 closes a reproduced two-clay/eight-mire callback duplication bug. Single-action
 lease before factory, bound source/output Parts, exact8mire/10fuel payment and

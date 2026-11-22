@@ -196,3 +196,10 @@ well upkeep. No generic flask filling/endless-to-finite conversion is claimed.
 Physical clay merges; audited stateful vessels use counted Inventory groups.
 Further category/sort work remains remembered. Camp equipment, carry capacity
 and HP maximum were inherited fixtures; no ordinary-acquisition/balance claim.
+
+Next source-qualified extension: [well/flask filling](WELL-FLASK-FILLING.md),
+so carried water can feed existing cooling and crop actions after a repair.
+All Well-backed sources must share structural/access/phase/safety rules; finite
+pool precedence and existing Stock policy remain authoritative. Proposed only.
+Current Mac928a7244f packages this clay journey's runtime, boot/render verified;
+native input access unavailable, so packaged journey/save gates remain open.
