@@ -988,8 +988,12 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Pickup item (G or comma)
-            if (InputHelper.GetKeyDown(KeyCode.G) || InputHelper.GetKeyDown(KeyCode.Comma))
+            // Pickup item (G or bare comma). Shift+Comma belongs to ascent;
+            // it must not collect stock or open a pickup modal before travel.
+            if (InputHelper.GetKeyDown(KeyCode.G)
+                || (InputHelper.GetKeyDown(KeyCode.Comma)
+                    && !InputHelper.GetKey(KeyCode.LeftShift)
+                    && !InputHelper.GetKey(KeyCode.RightShift)))
             {
                 TryPickupItem();
                 _lastMoveTime = Time.time;

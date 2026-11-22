@@ -10,6 +10,19 @@
 
 ## Active handback continuation — November 21, 2026
 
+November 22 [ordinary resin and ascent custody](Verification/MachineSystems/ResinSupply20261122/README.md):
+source-guided seed64 Pitchpod4,9, fixture2167x6 stashed at40,12, walk away and
+verify carried0. Gather mature12313 at1410→1420 gives earned12315x2/seed4→5;
+fresh1420 keeps separate fixture6 and spent bed. Native Posy row20 lacquer2342
+1490→1500 spends earned2→1; fresh1500 exact. Found actual Shift+Comma also
+picked up before ascending; fixed comma branch to exclude either Shift, G kept.
+Initial compile-invalid RED excluded; valid10 RED/6fail4controls→128 native
+GREEN. Actual1540 ascent over fixture6→1550 map keeps ground6/pack1/no popup;
+descend1560/F5/fresh keeps exact custody, lacquer, bed, HP400/regard13. No
+regrowth/economy/complete-machine acceptance. Main stopped/rootnull,84 foreign/
+861 normal hashes unchanged. Current Mac477 predates expiry and chord fixes.
+Next: proofing flask destination cap, then batch Mac; exposure/NPC trial gated.
+
 November 22 [ordinary quartz supply and consumers](Verification/MachineSystems/QuartzSupply20261122/README.md):
 earned Posy390 had no quartz. Native travel to Spread11,10; vein9366 harvest
 650→660 yields2, consumes source; fresh660 retains depletion. Return Posy830,

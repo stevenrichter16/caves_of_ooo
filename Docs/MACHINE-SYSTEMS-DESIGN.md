@@ -1,3 +1,11 @@
+**November 22 ordinary resin and travel custody:** [native receipt](Verification/MachineSystems/ResinSupply20261122/README.md)
+qualifies actual world-crop Gather, transport to Posy and finite lacquer payment,
+with fixture resin kept separately on the ground and fresh exact custody. Fixes
+Shift+Comma incorrectly collecting stock before ascent, including the unintended
+extra action/modal:10 valid RED cases/6fail→128 focused native GREEN, actual
+ascent over saved stock/fresh1560. Complete-machine dependencies remain unchanged;
+regrowth and a complete ordinary economy are unqualified.
+
 **November 22 ordinary quartz and competing uses:** [native receipt](Verification/MachineSystems/QuartzSupply20261122/README.md)
 qualifies finite world-vein acquisition, transport to Posy's sign service,
 conditional equipment regard without accumulation, and alternative expenditure
