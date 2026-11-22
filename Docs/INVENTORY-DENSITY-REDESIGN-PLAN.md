@@ -375,3 +375,23 @@ source/design/native baseline. Public inventory state and44/66 layout are
 published; category/sort and physical-input gates remain separate. Reuse accepted
 fixture oil/cold and finite-poured-fuel evidence; do not reopen closed P2.
 Chronology/protective NPC prerequisites remain before shared exposure enrollment.
+
+## Current counted-inventory package
+
+November22 [current counted-inventory Mac candidate](Verification/MachineSystems/MacCandidate3FE9EFC1C/README.md)
+packages pushed/remotely verified runtime3fe9efc1c7918fe301091bb0e483d3158fc03ded.
+Universal6000.3.4f1/nondev62.30237s364099789bytes/0errors/5samewarnings as910.
+32009source/32012effective/592external/186app pins;83changed0missing3added exact
+86overlay, no runtimeC# importchange; producedassembly includes grouping metadata
+and differs910. Own19198/window70694 chooser/world/HUD observed, generation2700
+final2701/7creatures. Freshnativeinputpreflightfalse, NOinput posted: packaged
+Inventory/actions/save/controller and full delivery remain open. Ownerprocess
+closed, freshall10logicalprefs equal/Savesabsent; all6priorapps each186exact.
+Mainstopped/rootnull/clean/profileroff/noownedviewport; fresh18:57UTC84foreign861normal
+unchanged. All copies/builds preserved; no new full12/delivery acceptance.
+Counted Inventory has329native+actualfiveempty/three2/12/selectedmember/fresh2700
+qualification in its separate receipt; unknown graphs stay conservative.
+NEXT: resume independent water-cooling cost P2 policy/RED/smallestshared correction,
+preserving old pooledstock/natural sources/rollback/callbacks. Keep category/sort,
+further audited groups and physical-input gates remembered; no compulsory upkeep
+or physical stack/save migration is implied.
