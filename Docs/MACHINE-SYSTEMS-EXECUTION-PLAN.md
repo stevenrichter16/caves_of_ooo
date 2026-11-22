@@ -10,6 +10,17 @@
 
 ## Active handback continuation — November 21, 2026
 
+Direct-user follow-up connected both Unity sessions and produced a
+[nonaccepted Mac candidate](Verification/MachineSystems/MacCandidateBc0511d4d/README.md)
+from committed bc0511d4d plus disclosed editor-generated inputs (0errors/5warnings).
+[Native cold/brine and camp oil play](Verification/MachineSystems/ColdOilPlay20261121/README.md)
+verified freezing/slip/thaw,12mire→3oil, fire/oil damage+smoke/embers, spent
+persistence and no retrigger. A source-reviewed P2 remains: ordinary recoverable
+oil pools are not debited when their film ignites. Prioritize bounded combustion
+accounting RED/design before accepting finite fuel; no runtime changed here.
+Both main and owned batch-build copy connected; main stopped clean/nullroot.
+All twelve machine gates and standalone candidate gameplay verification remain open.
+
 The scheduled [Beating shared-exposure design pass](BEATING-EXPOSURE-SLICE-PLAN.md)
 now specifies a proposed five-actor native audition, elapsed-time/state policy,
 finite water corrections, NPC fallback and migration/RED/actual-play gates.

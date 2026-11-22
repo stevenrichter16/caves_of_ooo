@@ -16,6 +16,15 @@ Standing whole-game architecture: [Composable world systems](SYSTEMS-DESIGN-PRIN
 
 ## Design principles
 
+Latest bounded qualification: [native camp oil/cold trap chain](Verification/MachineSystems/ColdOilPlay20261121/README.md)
+demonstrates still12mire→3oil and shared brine freezing/oil ignition. It does not
+close the dependency matrix: recoverable poured oil Volume1 survives consumption
+of its ignition film. This source-reviewed P2 needs explicit finite combustion
+debit and native RED/recovery/reload countercases. Water freezing/charging must
+not inherit fuel depletion blindly. [Mac candidate](Verification/MachineSystems/MacCandidateBc0511d4d/README.md)
+builds with0errors/5warnings but has no standalone acceptance; all twelve gates
+remain open. No new runtime behavior in these receipts.
+
 1. Establish the opportunity before the apparatus. Every proposed machine needs a specific resource, problem, alternative solution, cost, and observable outcome. Do not degrade ordinary movement, crafting or recovery to manufacture demand.
 2. Create shared causal rules. A liquid should retain its relevant properties when collected, processed, spilled, carried or used outdoors. Mechanical work, temperature and contamination must have explicit boundaries; a label is not a resource supply.
 3. Keep distinct resources distinct. Material identity, structural composition, reagent potency, physical quantities, fuel, electrical charge, living cultures and social obligations are different concepts. Use deliberate conversions with finite inputs rather than silently treating one number as another.

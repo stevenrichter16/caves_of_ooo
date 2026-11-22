@@ -2,6 +2,21 @@
 
 ## Resumed continuation — November 21 evening
 
+Latest direct-user continuation: both Unity sessions connected; main remains
+sole gameplay editor, dedicated batch build copy dca240c657bd1174 produced a
+[Mac candidate](Verification/MachineSystems/MacCandidateBc0511d4d/README.md),
+zero errors/five warnings. Not yet standalone-played or accepted as delivery.
+[Cold/brine and camp oil chain](Verification/MachineSystems/ColdOilPlay20261121/README.md)
+earned native freeze/slip/thaw, still12mire→3oil, fire/oil12damage+smoke/embers,
+no retrigger and fresh spent Continue300/HP388/oil2. Importantly, poured oil's
+physical pool remains recoverable after its film burns: source-reviewed P2
+finite-combustion accounting follow-up. Do not claim oil volume consumption.
+Main stopped clean/nullroot, temporary input removed; fresh84foreign/861normal
+file hashes unchanged (analytics/TestResults excluded). Native archives and
+candidate input/pin paths are in those receipts. No runtime changes this pass.
+Next prioritize a bounded RED/source plan for this oil conservation gap, then
+NPC/Grove trap and remaining town/Posy/freight/repair gates. All12 remain open.
+
 Latest scheduled design pass: [shared Beating exposure slice](BEATING-EXPOSURE-SLICE-PLAN.md)
 turns the user's brainstorm into a source-verified proposed native audition and
 RED/countercase plan. Five actors, one clock, saved strain, real cover/tolerance,
