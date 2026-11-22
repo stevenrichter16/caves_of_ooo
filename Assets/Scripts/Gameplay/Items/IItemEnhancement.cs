@@ -107,6 +107,11 @@ namespace CavesOfOoo.Core
             return GetType().Name;
         }
 
+        /// <summary>Optional public pack summary. Default-empty deliberately
+        /// avoids publishing implementation names or undisclosed enhancement facts.
+        /// Pure; called once when the owned inventory snapshot is rebuilt.</summary>
+        public virtual string GetInventoryState() => "";
+
         /// <summary>
         /// Tier-aware effect description shown when the player examines
         /// an item carrying this enhancement (via

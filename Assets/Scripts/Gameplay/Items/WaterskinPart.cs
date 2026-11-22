@@ -11,7 +11,7 @@ namespace CavesOfOoo.Core
         public int Charges;
 
         /// <summary>What a menu says to tell two skins apart: "2/3".</summary>
-        public string ToolMenuState() => Charges + "/" + Capacity;
+        public string ToolMenuState() => Capacity <= 0 || Charges < 0 || Charges > Capacity ? "water state unavailable" : Charges + "/" + Capacity;
 
         public int Order => 10;
 

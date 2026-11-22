@@ -11,7 +11,14 @@ namespace CavesOfOoo.Core
         public string LiquidId = "";
 
         /// <summary>What a menu says to tell two flasks apart: "empty" or "11/12 water".</summary>
-        public string ToolMenuState() => Volume <= 0 ? "empty" : Volume + "/" + Capacity + " " + ((LiquidRegistry.IsInitialized ? LiquidRegistry.Get(LiquidId)?.DisplayName : null) ?? LiquidId);
+        public string ToolMenuState()
+        {
+            if (Capacity <= 0 || Volume < 0 || Volume > Capacity) return "contents unavailable";
+            if (Volume == 0) return string.IsNullOrEmpty(LiquidId) ? "empty" : "contents unavailable";
+            var liquid = LiquidRegistry.IsInitialized ? LiquidRegistry.Get(LiquidId) : null;
+            return liquid == null || string.IsNullOrWhiteSpace(liquid.DisplayName) ? "contents unavailable"
+                : Volume + "/" + Capacity + " " + liquid.DisplayName;
+        }
 
         public int Order => 10;
 

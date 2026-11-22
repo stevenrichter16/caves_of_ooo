@@ -266,3 +266,87 @@ privacy before reusing it in cached rows/search. Striker charges already occur
 in its display name. Treatment markers need their own disclosed-information
 audit. Keep row geometry/count, exact item identity, actions and stack rules.
 This is a source selection and next proposal, not implemented extra badges.
+
+## Second increment under critique — public item state
+
+Player problem: twelve identically named flasks and similarly named treated
+cloaks need repeated reader visits to choose the right finite input/receiver or
+expedition garment. Preserve44/66 entries and existing glyph/row geometry. Show a
+compact, explicitly disclosed state beside each name, retain full name/state in
+selected details/F1, and search the same cached public fields. Existing actions,
+quantity/custody/stack identity and clocks remain authoritative.
+
+Source correction: IToolMenuState currently serves flask/skin world-menu labels;
+InventoryScreenData does not snapshot it and pack search re-reads live names.
+ExaminablePart currently has no identification gate and publishes enhancement
+GetEffectDescription, but that does not authorize searching arbitrary Part names,
+blueprint IDs, unknown liquid IDs or protected lore. Use only opt-in public state.
+Existing striker charge counters are already in display names and must survive.
+
+Bounded independent design/source critique found no remaining blocker after
+these corrections. Contract for RED-first implementation: snapshot existing IToolMenuState
+once per model rebuild plus an optional default-empty inventory-state hook on
+IItemEnhancement, initially only lacquer, lasting proofing and temporary coat.
+Use short public treatment labels, with no new numeric/duration claim (remaining wear time needs the existing wearer/garment policy rather than a new
+badge-derived duration). Exhausted coats
+show spent; malformed amounts/remaining state show unavailable. Preserve complete
+reader facts through the existing reader. Do not alter world-menu grouping by
+adding these treatments to IToolMenuState. Nonowned/stale custody/provider Parts
+must not be queried for extra state. Unknown enhancements default to no badge.
+Invalid vessel state must say unavailable rather than expose raw unknown IDs;
+a shared provider correction requires its own world-menu compatibility pins.
+
+Use cached strings for row paint/search/selection; no full-description or extra
+action queries from paint/hover/resize. Query editing rebuilds only retained rows,
+not the model or its action/name/state providers. While editing, hide the selected
+pane without discarding its same-owner document. Open/commands still refresh the
+model; commit paths revalidate current state. Keep literal case-insensitive name search
+and stable exact-owner selection. A separate snapshot match method avoids
+ambiguating the existing reflection-tested Filter(Entity) API. Reserve bounded
+space for compact state without hiding the whole name; independently mark
+truncation and retain both full values in selected/F1. Multiple public states
+must remain distinct and stable. Existing320px name cell is a total text budget,
+not a new license to shrink body glyphs or halve item capacity.
+
+RED/countercases must cover empty/full/multiple fluids, partial water charges,
+all three treatment kinds and combined treatments, numeric striker names,
+invalid/unknown IDs, default-empty hidden enhancement metadata, foreign/stale
+custody, multiple/throwing providers, bounded single-line text, exact same-name
+owner selection, same-ID state refresh after action/reload, zero extra provider
+reads on paint/resize/search matching, full-name/F1 fallback and unchanged density.
+Actual use should find an empty receiver/raw feedstock/treated garment by public
+state, cancel freely, execute one existing finite action, observe the right owner
+and world consequence, F5/archive BEFORE Stop, and freshly Continue the same stock.
+This is WIP design/source selection, not shipped badges or machine acceptance.
+
+## Public-state qualification — November22
+
+November22 [public inventory state](Verification/MachineSystems/InventoryPublicState20261122/README.md)
+adds cached public flask contents/water charges and opt-in garment treatments to
+rows, selected/F1 details and literal search, preserving44/66 entries and exact
+owners. Shared IToolMenuState validators hide malformed/private liquid IDs;
+default-empty enhancement summaries avoid arbitrary type/description scans.
+Queries now rebuild retained rows only; same-owner search/cancel retains hidden
+private prose while exposing no details during typing. Valid RED34/33fail and
+reviewRED10/2fail -> final299/299 (44new255existing), noCS. One old private-cache
+assertion was retargeted to retained-private/null-public/no-hit behavior.
+Actual workshop1590->1620: findheatcoat/empty/mire;
+freecancel;2231pour12->11 createspool1; ordinary step applies mire-soaked/HP400->399;
+Cmenu distinguishes11/12 via2231 fromempty via2235; emptyfill gains1 and retires
+pool, countedflask+pool units48throughout. Fresh1620 retains exact measured
+world/69IDs/coat97/badges. Separate carried-water60->70:skin2254 2->1/debt1->0,
+Str/Agi17->18,HP40, row2/3->1/3; fresh70 exact. Archives copied BEFORE Stop.
+Initial enabled-but-uninitialized Play recovered by reopening same clean saved
+scene then ordinary GameBootstrap; no manualbootstrap/grants/teleports.
+Main stopped/rootnull/clean/profilerfalse, original7presets restored,84foreign/
+861normal unchanged. Independent source/artifact/gameplay-evidence review
+accompanies receipt; no hardware/fullredesign/complete-machine acceptance.
+NEXT: current Mac candidate, then ordinary regional mire supply->existing
+camp/community processing->useful output source/design/native baseline. Existing
+fixture still/oil/cold chains and finite-poured-fuel correction stay accepted;
+do not reopen the closed oil-film P2. No new recipe implied. Category/sort remain
+separate; chronology/protective NPC prerequisites still precede exposure.
+
+
+The second slice is bounded; category controls/sorting and broader redesign gates
+remain open. The detailed receipt preserves field/charge/treatment scope and limits.

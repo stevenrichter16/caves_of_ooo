@@ -156,6 +156,12 @@ namespace CavesOfOoo.Rendering
         private string DetailsForItem(Entity item)
         {
             if (item == null || !InventoryDecisionDetails.Owned(PlayerEntity, item)) return null;
+            string state = _state?.Categories.SelectMany(c => c.Items).FirstOrDefault(d => d.Item == item)?.State;
+            string details = DetailsForItemBody(item);
+            return string.IsNullOrEmpty(state) ? details : "State: " + state + "\n\n" + details;
+        }
+        private string DetailsForItemBody(Entity item)
+        {
             if (item.HasPart<FoodPart>()) return InventoryDecisionDetails.Food(PlayerEntity, item) + "\n\n" + InventoryDecisionDetails.Handling(PlayerEntity, item);
             if (item.HasPart<EquippablePart>() && EquipmentComparisonService.TryDescribe(PlayerEntity, item, out var comparison, out _))
                 return comparison + "\n\n" + InventoryDecisionDetails.Handling(PlayerEntity, item) + "\n" + InventoryDecisionDetails.Disassembly(PlayerEntity, item);
@@ -178,7 +184,9 @@ namespace CavesOfOoo.Rendering
         {
             var selected = _cursorIndex >= 0 && _cursorIndex < _rows.Count ? _rows[_cursorIndex].Item?.Item : null;
             if (string.IsNullOrEmpty(query) && !string.IsNullOrEmpty(_inventoryQuery) && _searchReturnItem != null) selected = _searchReturnItem;
-            _inventoryQuery = query ?? ""; Rebuild();
+            int oldOrdinal = DenseOrdinal;
+            _inventoryQuery = query ?? "";
+            if (_state == null) Rebuild(); else RebuildInventoryRows(selected, oldOrdinal);
             int row = _rows.FindIndex(r => r.Item?.Item == selected && selected != null);
             _cursorIndex = row >= 0 ? row : _rows.FindIndex(r => r.Item != null);
             if (_cursorIndex < 0) _cursorIndex = 0;

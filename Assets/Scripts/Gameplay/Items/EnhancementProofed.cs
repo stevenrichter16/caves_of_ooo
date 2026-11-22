@@ -21,6 +21,7 @@ namespace CavesOfOoo.Core
         public override string GetDisplayName() => "proofed";
 
         public string Label => SteepedAcidEffect.ElementLabel(Kind);
+        public override string GetInventoryState() => Amount > 0 ? Label + " proofed" : "proofing unavailable";
 
         public override string GetEffectDescription()
         {

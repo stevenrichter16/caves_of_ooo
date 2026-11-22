@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using CavesOfOoo.Core.Anatomy;
 
 namespace CavesOfOoo.Core
@@ -19,6 +20,7 @@ namespace CavesOfOoo.Core
         {
             public Entity Item;
             public string Name;
+            public string State;
             public string Category;
             public int Weight;
             public int Value;
@@ -471,6 +473,7 @@ namespace CavesOfOoo.Core
             {
                 Item = item,
                 Name = item.GetDisplayName(),
+                State = PublicItemState(actor, item),
                 Category = ItemCategory.GetCategory(item),
                 Weight = InventoryPart.GetItemWeight(item),
                 Value = TradeSystem.GetItemValue(item),
@@ -479,6 +482,54 @@ namespace CavesOfOoo.Core
                 EquippedSlot = slot,
                 Actions = InventorySystem.GetActions(actor, item)
             };
+        }
+
+        // Public, opt-in summaries only. Never enumerate arbitrary Part names,
+        // private fields or full descriptions just to paint/filter a pack row.
+        static bool CanReadState(Entity actor, Entity item)
+        {
+            var pack = actor?.GetPart<InventoryPart>(); var physics = item?.GetPart<PhysicsPart>(); var render = item?.GetPart<RenderPart>();
+            if (pack?.ParentEntity != actor || actor == null || item == null || item.SpatialZone != null
+                || physics?.ParentEntity != item || render?.ParentEntity != item || !render.Visible
+                || (item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0) return false;
+            return pack.Objects.Contains(item) && physics.InInventory == actor && physics.Equipped == null
+                || pack.EquippedItems.ContainsValue(item) && physics.Equipped == actor && physics.InInventory == null;
+        }
+        static string PublicItemState(Entity actor, Entity item)
+        {
+            if (!CanReadState(actor, item)) return "";
+            var states = new SortedSet<string>(StringComparer.Ordinal);
+            foreach (var part in item.Parts.ToArray())
+            {
+                if (part?.ParentEntity != item || !item.Parts.Contains(part)) continue;
+                if (part is IToolMenuState tool && !ReadState(actor, item, part, tool.ToolMenuState, states)) return "";
+                if (part is IItemEnhancement enhancement && !ReadState(actor, item, part, enhancement.GetInventoryState, states)) return "";
+            }
+            return StateLine(string.Join("; ", states), 256);
+        }
+        static bool ReadState(Entity actor, Entity item, Part part, Func<string> read, SortedSet<string> states)
+        {
+            string text;
+            try { text = StateLine(read(), 160); }
+            catch (Exception) { text = "state unavailable"; }
+            // A public provider is a read-only contract, but a faulty callback
+            // must not publish a summary after replacing its owner or custody.
+            if (part.ParentEntity != item || !item.Parts.Contains(part) || !CanReadState(actor, item)) return false;
+            if (text.Length > 0) states.Add(text);
+            return true;
+        }
+        static string StateLine(string text, int limit)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return "";
+            var result = new StringBuilder(Math.Min(text.Length, limit + 1));
+            bool space = false;
+            foreach (char ch in text)
+            {
+                if (char.IsWhiteSpace(ch) || char.IsControl(ch)) { space = result.Length > 0; continue; }
+                if (space) { result.Append(' '); space = false; }
+                result.Append(ch); if (result.Length > limit) return result.ToString(0, limit - 3) + "...";
+            }
+            return result.ToString();
         }
 
         private static void AddToCategory(Dictionary<string, CategoryGroup> map, ItemDisplay display)

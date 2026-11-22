@@ -275,6 +275,12 @@ namespace CavesOfOoo.Rendering
 
     public static class InventoryBrowseQuery
     {
+        /// <summary>Literal search of the retained public snapshot. No live item,
+        /// action or description providers are invoked by matching.</summary>
+        public static bool MatchesDisplay(InventoryScreenData.ItemDisplay item, string query)
+            => item != null && (string.IsNullOrEmpty(query) || ((item.Name ?? "") + " " + (item.State ?? ""))
+                .IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0);
+
         /// <summary>Literal display-name filter. Input order and owner state remain unchanged.</summary>
         public static List<Entity> Filter(IEnumerable<Entity> items, string query)
         {

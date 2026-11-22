@@ -125,14 +125,21 @@ namespace CavesOfOoo.Tests
                 var before = r.Pack.Objects.ToArray(); r.Open(); r.Tab(1);
                 Call(r.UI, "SelectLedgerHit", r.FindHit("Item", r.InventoryRow(tonic))); Call(r.UI, "Render");
                 AssertSelectedItemIsPainted(r, tonic);
+                var retained = Get(r.UI, "_ledgerSelectionDocument");
+                Action hidden = () =>
+                {
+                    Assert.AreSame(retained, Get(r.UI, "_ledgerSelectionDocument"), "Keep the private snapshot to avoid another description query on cancel.");
+                    Assert.IsNull(r.UI.SelectedDecisionPresentation(out var text)); Assert.IsNull(text, "No retained prose is exposed while typing.");
+                    Assert.False(r.Hits().Any(hit => Kind(hit) == "Details"));
+                };
                 Call(r.UI, "BeginInventorySearch");
-                Assert.True((bool)Get(r.UI, "_inventorySearchActive")); Assert.IsNull(Get(r.UI, "_ledgerSelectionDocument"));
+                Assert.True((bool)Get(r.UI, "_inventorySearchActive")); hidden();
                 Call(r.UI, "SetInventoryQuery", "zzznomatchingitem");
-                Assert.Zero(r.Rows("_rows").Count); Assert.IsNull(Get(r.UI, "_ledgerSelectionDocument"));
+                Assert.Zero(r.Rows("_rows").Count); hidden();
                 Assert.False(r.Hits().Any(hit => Kind(hit) == "Item" || Kind(hit) == "Details"));
                 Call(r.UI, "SetInventoryQuery", "ledger tonic");
                 Assert.GreaterOrEqual(r.InventoryRow(tonic), 0);
-                Assert.IsNull(Get(r.UI, "_ledgerSelectionDocument"), "A matching row alone must not expose details while typing a search.");
+                hidden();
                 input.Keys(Key.Enter); r.UI.HandleInput();
                 Assert.False((bool)Get(r.UI, "_inventorySearchActive")); AssertSelectedItemIsPainted(r, tonic);
                 Call(r.UI, "SetInventoryQuery", ""); AssertSelectedItemIsPainted(r, tonic);

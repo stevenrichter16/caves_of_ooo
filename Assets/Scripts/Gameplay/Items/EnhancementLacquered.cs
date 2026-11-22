@@ -78,6 +78,7 @@ namespace CavesOfOoo.Core
         public override string Name => nameof(EnhancementLacquered);
 
         public override string GetDisplayName() => "Lacquered";
+        public override string GetInventoryState() => "lacquered";
 
         public override string GetEffectDescription()
         {

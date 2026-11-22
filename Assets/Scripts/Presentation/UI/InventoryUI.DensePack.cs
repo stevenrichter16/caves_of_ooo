@@ -107,6 +107,14 @@ namespace CavesOfOoo.Rendering
             long unit = n >= 1000000000 ? 1000000000 : n >= 1000000 ? 1000000 : 1000;
             return "~" + sign + n / unit + (unit == 1000000000 ? "B" : unit == 1000000 ? "M" : "k");
         }
+        static string DenseRowName(InventoryScreenData.ItemDisplay item, int columns)
+        {
+            string name = DenseName(item), state = item.State;
+            if (string.IsNullOrEmpty(state)) return SkillScreenText.Fit(name, columns, 1);
+            int stateColumns = Math.Min(state.Length, Math.Max(5, columns / 2 - 2));
+            return SkillScreenText.Fit(name, Math.Max(1, columns - stateColumns - 3), 1)
+                + " [" + SkillScreenText.Fit(state, stateColumns, 1) + "]";
+        }
         void RenderDensePack()
         {
             var g = _denseLayout; var list = g.ListBounds;
@@ -129,7 +137,7 @@ namespace CavesOfOoo.Rendering
                 int index = _denseRows[ordinal]; var item = _rows[index].Item; var row = g.RowBounds(ordinal);
                 bool selected = index == _cursorIndex;
                 if (selected) { LBox(row, LSelected); LBox(new Rect(row.x, row.y, 3, row.height), LGold); }
-                LLabel(new Rect(row.x + 10, row.y + 1, g.NameWidth, 22), SkillScreenText.Fit(DenseName(item), (int)(g.NameWidth / 10), 1), selected ? LGold : LInk, 20);
+                LLabel(new Rect(row.x + 10, row.y + 1, g.NameWidth, 22), DenseRowName(item, (int)(g.NameWidth / 10)), selected ? LGold : LInk, 20);
                 LLabel(new Rect(row.x + row.width - 126, row.y + 3, 40, 20), DenseNumber(item.StackCount), LInk, 16);
                 LLabel(new Rect(row.x + row.width - 78, row.y + 3, 54, 20), DenseNumber(item.Weight), LInk, 16);
                 if (item.IsEquipped) LLabel(new Rect(row.xMax - 24, row.y + 3, 24, 20), "[E]", LGold, 16);

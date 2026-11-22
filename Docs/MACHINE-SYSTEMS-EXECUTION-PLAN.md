@@ -10,6 +10,32 @@
 
 ## Active handback continuation — November 21, 2026
 
+November22 [public inventory state](Verification/MachineSystems/InventoryPublicState20261122/README.md)
+adds cached public flask contents/water charges and opt-in garment treatments to
+rows, selected/F1 details and literal search, preserving44/66 entries and exact
+owners. Shared IToolMenuState validators hide malformed/private liquid IDs;
+default-empty enhancement summaries avoid arbitrary type/description scans.
+Queries now rebuild retained rows only; same-owner search/cancel retains hidden
+private prose while exposing no details during typing. Valid RED34/33fail and
+reviewRED10/2fail -> final299/299 (44new255existing), noCS. One old private-cache
+assertion was retargeted to retained-private/null-public/no-hit behavior.
+Actual workshop1590->1620: findheatcoat/empty/mire;
+freecancel;2231pour12->11 createspool1; ordinary step applies mire-soaked/HP400->399;
+Cmenu distinguishes11/12 via2231 fromempty via2235; emptyfill gains1 and retires
+pool, countedflask+pool units48throughout. Fresh1620 retains exact measured
+world/69IDs/coat97/badges. Separate carried-water60->70:skin2254 2->1/debt1->0,
+Str/Agi17->18,HP40, row2/3->1/3; fresh70 exact. Archives copied BEFORE Stop.
+Initial enabled-but-uninitialized Play recovered by reopening same clean saved
+scene then ordinary GameBootstrap; no manualbootstrap/grants/teleports.
+Main stopped/rootnull/clean/profilerfalse, original7presets restored,84foreign/
+861normal unchanged. Independent source/artifact/gameplay-evidence review
+accompanies receipt; no hardware/fullredesign/complete-machine acceptance.
+NEXT: current Mac candidate, then ordinary regional mire supply->existing
+camp/community processing->useful output source/design/native baseline. Existing
+fixture still/oil/cold chains and finite-poured-fuel correction stay accepted;
+do not reopen the closed oil-film P2. No new recipe implied. Category/sort remain
+separate; chronology/protective NPC prerequisites still precede exposure.
+
 November22 [current inventory Mac candidate](Verification/MachineSystems/MacCandidateFD4A638B4/README.md)
 packages committed/pushed/remotely verified runtimefd4a638b4. Universal6000.3.4f1,
 nondevelopment63.42s/0errors/5existingwarnings. Own43735/window70668 chooser/

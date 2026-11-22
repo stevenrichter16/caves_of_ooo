@@ -1904,7 +1904,16 @@ namespace CavesOfOoo.Rendering
                 ? _rows[_cursorIndex].Item?.Item : null;
             _state = InventoryScreenData.Build(PlayerEntity);
 
-            // Always rebuild both panels
+            RebuildInventoryRows(selectedItem, oldOrdinal);
+            BuildTinkeringRows();
+            BuildCraftingRows();
+            _equipSlots = _state.Equipment;
+            if (_equipSlots.Count > 0 && _equipCursorIndex >= _equipSlots.Count)
+                _equipCursorIndex = _equipSlots.Count - 1;
+        }
+
+        private void RebuildInventoryRows(Entity selectedItem, int oldOrdinal)
+        {
             _rows.Clear();
             BuildItemRows();
             BuildDenseRows();
@@ -1914,12 +1923,6 @@ namespace CavesOfOoo.Rendering
                 : _rows.FindIndex(row => ReferenceEquals(row.Item?.Item, selectedItem));
             if (_cursorIndex < 0 && _denseRows.Count > 0) _cursorIndex = _denseRows[Math.Min(oldOrdinal, _denseRows.Count - 1)];
             ClampCursor();
-            BuildTinkeringRows();
-            BuildCraftingRows();
-
-            _equipSlots = _state.Equipment;
-            if (_equipSlots.Count > 0 && _equipCursorIndex >= _equipSlots.Count)
-                _equipCursorIndex = _equipSlots.Count - 1;
         }
 
         private void BuildItemRows()
@@ -1927,7 +1930,7 @@ namespace CavesOfOoo.Rendering
             for (int i = 0; i < _state.Categories.Count; i++)
             {
                 var cat = _state.Categories[i];
-                var matching = InventoryBrowseQuery.Filter(cat.Items.Select(it => it.Item), _inventoryQuery);
+                var matching = cat.Items.Where(it => InventoryBrowseQuery.MatchesDisplay(it, _inventoryQuery)).ToList();
                 if (matching.Count == 0) continue;
                 _rows.Add(new DisplayRow
                 {
@@ -1939,7 +1942,7 @@ namespace CavesOfOoo.Rendering
                 for (int j = 0; j < cat.Items.Count; j++)
                 {
                     var item = cat.Items[j];
-                    if (!matching.Contains(item.Item)) continue;
+                    if (!matching.Contains(item)) continue;
                     string name = item.Name;
 
                     string equipped = item.IsEquipped ? " [E]" : "";

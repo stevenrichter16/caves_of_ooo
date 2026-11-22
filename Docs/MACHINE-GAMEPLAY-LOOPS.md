@@ -90,3 +90,21 @@ Bounded independent design critique found no material blocker. It corrected the
 inventory plan to display each current pack's actual hard limit, including
 unlimited and scenario-expanded values. This document supplies the design contract; the linked first-layout receipt
 supplies its separate bounded implementation evidence.
+
+## Public state and the next ordinary processing trip
+
+The bounded InventoryPublicState20261122 receipt qualifies finding an empty or
+filled flask and a treated garment, then existing finite pour/recovery actions
+with a world exposure consequence and exact fresh state. Separate carried-water
+UI play shows a paid2->1 charge change and fresh1/3. This helps repeated preparation
+without introducing upkeep. The raw workshop mire is fixture stock, not ordinary
+acquisition.
+
+Next source/design/native-baseline candidate: collect actual regional mire, carry
+it to an existing communal or portable still, choose a useful supported output
+(water, oil or fire clay) and use it through another existing system. Establish
+the real source/capacity/provenance and alternative carrying/services/finished-stock
+choices first; this paragraph ships no recipe or supply. Earlier fixture settling/
+cold/oil chains and the bounded finite-poured-fuel correction are already qualified,
+so reuse their evidence and do not reopen the closed oil-film P2. Full12dependencies
+and acceptance remain unchanged; no passive production or compulsory processing.

@@ -26,6 +26,9 @@ namespace CavesOfOoo.Core
 
         public override string Name => "EnhancementSteeped";
         public override string GetDisplayName() => "coated";
+        public override string GetInventoryState()
+            => Amount <= 0 || TurnsTotal <= 0 || TurnsLeft < 0 || TurnsLeft > TurnsTotal ? "coat unavailable"
+                : (TurnsLeft == 0 ? "spent " : "") + Label + " coat";
 
         public override bool Applicable(Entity item)
             => item != null && item.GetPart<ArmorPart>() != null && !item.HasTag("Creature");

@@ -307,7 +307,13 @@ namespace CavesOfOoo.Rendering
                 && _equipCursorIndex >= 0 && _equipCursorIndex < _equipSlots.Count)
                 selected = _equipSlots[_equipCursorIndex].EquippedItem;
             text = null;
-            if (selected == null) { ClearLedgerSelection(); return null; }
+            if (selected == null)
+            {
+                // Search hides the pane, but cancelling a query on the same
+                // snapshot/owner must not re-run mutable description providers.
+                if (!_inventorySearchActive) ClearLedgerSelection();
+                return null;
+            }
 
             // The retained backdrop is an inspection snapshot. A modal, rejection,
             // queued reader or layout repaint must not invoke mutable description
