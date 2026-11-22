@@ -15,7 +15,6 @@ namespace CavesOfOoo.Core
     internal static class ProofingCoatActions
     {
         const string Prefix = "CoatGarment|";
-        const int MaxRows = 12;
 
         internal static bool IsCommand(string command) => command != null && command.StartsWith(Prefix, StringComparison.Ordinal);
 
@@ -63,11 +62,11 @@ namespace CavesOfOoo.Core
             if (actions == null || actor == null || !WorldResourceActions.ActorCurrent(actor, zone)) return;
             var element = Element(actor, flask, out var vessel); if (element == null) return;
             var garments = Holdings(actor).Where(o => o != flask && Held(actor, o)).ToList();
-            // What you wear first (the pieces you are about to rely on), then by name; past the cap the menu says how many are not shown instead of hiding them.
+            // What you wear first (the pieces you are about to rely on), then by name; every held garment remains reachable in the scrolling menu.
             garments.Sort((a, b) => Worn(actor, a) != Worn(actor, b) ? (Worn(actor, a) ? -1 : 1) : string.CompareOrdinal(a.GetDisplayName(), b.GetDisplayName()) is int c && c != 0 ? c : string.CompareOrdinal(a.ID, b.ID));
             if (garments.Count == 0) { actions.AddDisabled("CoatGarment", "coat a garment", "no-garment", "Nothing you carry fits: armor or clothing.", '\0', 16); return; }
             string hint = "Spends one unit of " + element.Label + "-proofing. +" + ProofingRules.CoatAmount + " " + element.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, paused when taken off, and it blunts " + element.Status + ". Another coat of the same adds turns." + ProofingPressActions.SeenNote(zone, actor, element);
-            for (int i = 0; i < garments.Count && i < MaxRows; i++)
+            for (int i = 0; i < garments.Count; i++)
             {
                 var garment = garments[i]; var coat = CoatOf(garment); string refusal = Refusal(garment, element, out string why);
                 string note = coat == null ? "" : ProofingRegistry.Canonical(coat.Kind) == element.Id ? " (adds " + Math.Min(ProofingRules.CoatTurns, ProofingRules.CoatMaxTurns - coat.TurnsLeft) + " turns to " + coat.TurnsLeft + ")" : " (replaces " + coat.TurnsLeft + " turns of " + coat.Label + " coat)";
@@ -77,7 +76,6 @@ namespace CavesOfOoo.Core
                 if (refusal == null) actions.AddActionWithHint("CoatGarment", label, Prefix + Uri.EscapeDataString(garment.ID), rowHint, '\0', 16 - i, false, ActionTime.OneAction);
                 else actions.AddDisabled("CoatGarment", label, refusal, why, '\0', 16 - i);
             }
-            if (garments.Count > MaxRows) actions.AddDisabled("CoatGarment", "coat a garment (" + (garments.Count - MaxRows) + " more not shown)", "more", (garments.Count - MaxRows) + " more garments are not shown: set some aside to see them.", '\0', 3);
         }
 
         internal static bool TryAct(Entity actor, Entity flask, Zone zone, string command, InventoryTransaction tx)

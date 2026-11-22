@@ -2,6 +2,20 @@
 
 ## Resumed continuation — November 21 evening
 
+Newest correction: [proofing menu access](Verification/MachineSystems/ProofingMenuAccess20261121/README.md).
+Coat12/trough12/unpick6 caps removed, no UI changes. Native9RED failures;107/107
+focused GREEN plus strengthened late-unpick1/1. Actual native47-choice bottle
+menu/late Ward stack split/coating, wearerCold35, paused oldcoat and fresh100/120;
+ordinary two reagent presses→4units→latePlate trough costs4+2clay/split/proof/fresh150;
+unpick160 refundsnothing, no-proofing refusalfree. Crowd8unpick tested, actual2.
+Legacy25row UI suspicion was incorrect: retained popup already scrolls; retracted.
+First fresh attempt interrupted by delayedEditorreload excluded; later settled
+100/120/150 fresh loads valid. Mainstopped/nullroot/seed0,84foreign/861normal
+hashes unchanged. Earned archives in receipt; newestunpicked160, permanent150
+retained separately. Next: coherent current Mac candidate (prior74 excludes both
+menu fixes), freight and ordinarybench supply; shared exposure/AI stays gated.
+
+
 [Sounding/noise qualification](Verification/MachineSystems/SoundingHunter20261121/README.md):
 ordinary stairs/exploration reached natural depth5 PaleStalker18659. Silent600
 Wander/no target→paid rod strike610 acquires player/moves toward them; short

@@ -31,6 +31,30 @@ namespace CavesOfOoo.Tests
         int ClayLeft() => Pack.Objects.Where(o => o.BlueprintName == "FireClay").Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1);
         string RowFor(Entity trough, Entity garment, string element) => Rows(trough).Single(r => !r.IsDisabled && r.Command.EndsWith("|" + element, StringComparison.Ordinal) && r.Command.Contains(Uri.EscapeDataString(garment.ID))).Command;
 
+        [TestCase(false)] [TestCase(true)]
+        public void LateGarmentAndElementRemainReachableAndPayTheirExactBill(bool shortClay)
+        {
+            var trough = StandingTrough(); var cold = Flask(4, "cold-proofing");
+            var heat = Flask(4, "heat-proofing"); Clay(shortClay ? 1 : 2);
+            var garments = new System.Collections.Generic.List<Entity>();
+            for (int i = 0; i < 16; i++)
+            {
+                var g = Factory.CreateEntity("LeatherArmor"); g.RemovePart(g.GetPart<StackerPart>());
+                g.GetPart<RenderPart>().DisplayName = "garment " + i.ToString("D2");
+                Assert.True(Pack.AddObject(g)); garments.Add(g);
+            }
+            var rows = Rows(trough); Assert.AreEqual(32, rows.Length);
+            var last = garments.Last();
+            var selected = rows.Single(r => r.Display.Contains("garment 15") && r.Display.Contains("against heat"));
+            Assert.AreEqual(shortClay, selected.IsDisabled);
+            Assert.AreEqual(!shortClay, Act(trough, "ProofGarment|" + Uri.EscapeDataString(last.ID) + "|heat"));
+            Assert.AreEqual(shortClay ? 4 : 0, heat.GetPart<LiquidVesselPart>().Volume);
+            Assert.AreEqual(4, cold.GetPart<LiquidVesselPart>().Volume);
+            Assert.AreEqual(shortClay ? 1 : 0, ClayLeft());
+            Assert.AreEqual(shortClay ? null : "heat", Proofed(last)?.Kind);
+            Assert.True(garments.Take(15).All(g => Proofed(g) == null));
+        }
+
         [Test] public void ACarriedTroughIsAKitAndOffersNothing_Counter()
         {
             var kit = Carry("CampTrough"); Carry("LeatherArmor"); Flask(4, "cold-proofing"); Clay(2); Assert.IsEmpty(Actions(kit).Where(a => a.Name == "ProofGarment"));
@@ -155,14 +179,14 @@ namespace CavesOfOoo.Tests
             var cold = Flask(2, "cold-proofing"); StringAssert.DoesNotContain("You have seen", Actions(cold).First(a => a.Name == "CoatGarment" && !a.IsDisabled).Hint, "no cold has been seen");
         }
 
-        [Test] public void EveryProofableRowIsShownBeforeAnyRefusedOne_AndTheOverflowIsCounted()
+        [Test] public void EveryProofableRowIsShownBeforeEveryActualRefusal_WithoutTruncation()
         {
             var trough = StandingTrough(); Flask(8, "cold-proofing"); Flask(8, "heat-proofing"); Clay(8);
             var names = new[] { "AcidworkerApron", "ChainMail", "ColdwardCloak", "FilterHood", "GroundwireScreen", "IronshodBoots", "KilnfeltApron", "LeatherArmor" };
             foreach (var n in names) Carry(n); foreach (var done in Pack.Objects.Where(o => o.BlueprintName == "AcidworkerApron" || o.BlueprintName == "ChainMail").ToList()) { Assert.True(ItemEnhancing.Apply(done, "EnhancementProofed")); }
-            var rows = Rows(trough); Assert.AreEqual(13, rows.Length, "twelve rows and one saying how many more (8 garments x 2 elements is 16)");
+            var rows = Rows(trough); Assert.AreEqual(16, rows.Length, "all eight garments x two elements");
             int firstRefused = Array.FindIndex(rows, r => r.IsDisabled); Assert.Greater(firstRefused, 0); Assert.True(rows.Skip(firstRefused).All(r => r.IsDisabled), "every row you could use comes before any you could not");
-            Assert.AreEqual(12, rows.Count(r => !r.IsDisabled), "all twelve enabled rows (six garments x two elements) are shown"); var more = rows.Last(); Assert.AreEqual("more", more.DisabledCode); StringAssert.Contains("4 more", more.DisabledReason);
+            Assert.AreEqual(12, rows.Count(r => !r.IsDisabled)); Assert.AreEqual(4, rows.Count(r => r.DisabledCode == "already-proofed")); Assert.False(rows.Any(r => r.DisabledCode == "more"));
         }
 
         [Test] public void AProofedGarmentWornAtSaveTimeLoadsWithItsBonusOnceAndRevertsExactly()
@@ -260,12 +284,17 @@ namespace CavesOfOoo.Tests
             var garment = Proofing(trough, "LeatherArmor"); l.Clear(); StateReader.Collect(trough, true, Zone, Zone.GetEntityCell(trough), Actor, l); StringAssert.Contains("a lasting proofing: unpicking one frees its slot and returns nothing", string.Join(" ", l));
         }
 
-        [Test] public void ManyProofedGarmentsAreCappedAndTheRestCounted()
+        [Test] public void EveryProofedGarmentCanBeUnpickedWithoutStashingOtherGarments()
         {
             var trough = StandingTrough(); var names = new[] { "LeatherArmor", "ChainMail", "PlateArmor", "Cloak", "WardedCloak", "IronHelmet", "LeatherBoots", "LeatherGloves" };
             foreach (var n in names) { var g = Carry(n); Assert.True(ItemEnhancing.Apply(g, "EnhancementProofed")); Proofed(g).Kind = "heat"; }
-            var rows = UnpickRows(trough); Assert.AreEqual(SteepTroughPart.MaxUnpickRows + 1, rows.Length); var last = rows.Single(r => r.IsDisabled); Assert.AreSame(rows.Last(), last, "the count of the rest comes last"); StringAssert.Contains("2 more not shown", last.Display);
-            Assert.AreEqual(SteepTroughPart.MaxUnpickRows, rows.Count(r => !r.IsDisabled));
+            var rows = UnpickRows(trough); Assert.AreEqual(8, rows.Length); Assert.True(rows.All(r => !r.IsDisabled));
+            var last = Pack.Objects.Single(g => g.BlueprintName == "WardedCloak");
+            var selected = rows.Single(r => r.Command == UnpickCommand(last));
+            int before = Pack.Objects.Count; Assert.True(Act(trough, selected.Command));
+            Assert.Null(Proofed(last)); Assert.AreEqual(7, Pack.Objects.Count(g => Proofed(g) != null));
+            Assert.AreEqual(before, Pack.Objects.Count); Assert.AreEqual(0, ClayLeft());
+            Assert.False(Act(trough, selected.Command), "a repeated stale unpick refunds nothing");
         }
 
         string UnpickCommand(Entity garment) => "UnpickGarment|" + Uri.EscapeDataString(garment.ID);

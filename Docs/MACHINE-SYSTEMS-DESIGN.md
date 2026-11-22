@@ -1,3 +1,10 @@
+**November21 protection-menu correction:** [receipt](Verification/MachineSystems/ProofingMenuAccess20261121/README.md)
+removes bottle-coat/trough/unpick candidate caps. Actual late item coating and
+lasting plate proofing spend finite stock, work with stack custody/equipment and
+survive fresh100/120/150; native107/107 plus strengthened unpick1/1. No UI renderer
+change, new exposure activation, ordinary acquisition or full-machine acceptance.
+All twelve machine dependency/status rows below remain authoritative and open.
+
 **November21 sounding/noise qualification:** [native receipt](Verification/MachineSystems/SoundingHunter20261121/README.md)
 proves an ordinary survey strike draws a naturally generated PaleStalker and
 fresh610HP40 retains its remembered target/rod log. Existing behavior, no runtime

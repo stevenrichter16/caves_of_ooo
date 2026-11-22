@@ -141,15 +141,18 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains("adds turns", CoatRows(flask).First(r => r.Display.Contains("leather")).Hint); StringAssert.DoesNotContain("→", CoatRows(flask).First(r => r.Display.Contains("leather")).Hint, "a top-up of a coat you already count changes only the turns");
         }
 
-        [Test] public void EveryGarmentYouHoldIsOfferedUpToACapOfTwelve_WornFirst_AndTheRestAreCountedNotHidden()
+        [Test] public void EveryGarmentYouHoldIsOffered_WornFirst_WithoutAForcedStashingDeadEnd()
         {
             var flask = Flask(4, "cold-proofing"); var names = new[] { "LeatherArmor", "ChainMail", "FilterHood", "KilnfeltApron", "ColdwardCloak", "IronshodBoots", "GroundwireScreen", "AcidworkerApron" };
             var held = new System.Collections.Generic.List<Entity>(); foreach (var n in names) held.Add(Carry(n));
             Assert.AreEqual(8, CoatRows(flask).Count(r => !r.IsDisabled), "eight garments, eight rows (the old cap of six hid two)");
             foreach (var n in new[] { "Buckler", "IronHelmet", "LeatherBoots", "LeatherGloves", "LeatherCap", "WardedCloak", "PlateArmor" }) held.Add(Carry(n));   // distinct blueprints: armor of one kind would stack into one entry
             Assert.True(InventorySystem.Equip(Actor, held[0]), "equip: " + string.Join("|", MessageLog.GetRecent(3))); var rows = CoatRows(flask);
-            Assert.AreEqual(13, rows.Length, "twelve garments and one row saying how many more"); Assert.True(rows[0].Display.Contains("(worn)"), "what you wear is listed first: " + string.Join(" / ", rows.Select(r => r.Display)));
-            var more = rows.Single(r => r.IsDisabled && r.DisabledCode == "more"); StringAssert.Contains("3 more", more.DisabledReason);   // fifteen held, twelve shown
+            Assert.AreEqual(15, rows.Length, "every held garment remains reachable"); Assert.True(rows[0].Display.Contains("(worn)"), "what you wear is listed first: " + string.Join(" / ", rows.Select(r => r.Display)));
+            Assert.False(rows.Any(r => r.DisabledCode == "more"));
+            var late = held.Last(); Assert.True(Act(flask, Row(flask, late)));
+            Assert.NotNull(Coat(late)); Assert.AreEqual(3, Vessel(flask).Volume);
+            Assert.True(held.Take(held.Count - 1).All(g => Coat(g) == null));
         }
 
         // ── a stack of identical garments: the coat goes on one unit of it ──

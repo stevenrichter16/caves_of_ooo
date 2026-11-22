@@ -19,7 +19,6 @@ namespace CavesOfOoo.Core
         public override string Name => "SteepTrough";
 
         public const string Clay = "FireClay", Prefix = "ProofGarment|", UnpickPrefix = "UnpickGarment|";
-        public const int MaxRows = 12, MaxUnpickRows = 6;
 
         public static bool IsCommand(string command) => command != null && command.StartsWith(Prefix, StringComparison.Ordinal);
         static bool IsUnpick(string command) => command != null && command.StartsWith(UnpickPrefix, StringComparison.Ordinal);
@@ -150,11 +149,11 @@ namespace CavesOfOoo.Core
                     + ProofingRules.PermanentUnits + " units of one element and " + ProofingRules.PermanentClay + " fire clay.", 'p', 20);
                 return;
             }
-            // Every garment x element, the ones you could use first (what you wear before what you carry), then the refused ones; the overflow is counted, not hidden.
+            // Every garment x element, the ones you could use first (what you wear before what you carry), then the refused ones; every choice remains reachable.
             var rows = new List<(Entity garment, ProofingElement element, string refusal, string why)>();
             foreach (var garment in garments) foreach (var element in elements) { string refusal = Refusal(actor, garment, element, out string why); rows.Add((garment, element, refusal, why)); }
             rows = rows.Select((r, index) => (r, index)).OrderBy(x => x.r.refusal != null).ThenBy(x => !Worn(actor, x.r.garment)).ThenBy(x => x.index).Select(x => x.r).ToList();
-            for (int shown = 0; shown < rows.Count && shown < MaxRows; shown++)
+            for (int shown = 0; shown < rows.Count; shown++)
             {
                 var (garment, element, refusal, why) = rows[shown];
                 string label = "proof " + garment.GetDisplayName() + GarmentStacks.Suffix(garment) + (Worn(actor, garment) ? " (worn)" : "") + " against " + element.Label + " for good (" + ProofingRules.PermanentUnits + " " + element.Liquid + " + " + ProofingRules.PermanentClay + " fire clay)";
@@ -163,21 +162,19 @@ namespace CavesOfOoo.Core
                 if (refusal == null) actions.AddActionWithHint("ProofGarment", label, command, hint, key, priority, false, ActionTime.OneAction);
                 else actions.AddDisabled("ProofGarment", label, refusal, why, key, priority);
             }
-            if (rows.Count > MaxRows) actions.AddDisabled("ProofGarment", "proof a garment for good (" + (rows.Count - MaxRows) + " more not shown)", "more", (rows.Count - MaxRows) + " more choices are not shown: set some garments aside to see them.", '\0', 4);
         }
 
         /// <summary>Rows to take a lasting proofing back out: one per garment that has one (worn ones first), so a wrong choice is never a permanent loss of a slot.</summary>
         void AddUnpickRows(Entity actor, List<Entity> garments, InventoryActionList actions)
         {
             var proofed = garments.Where(g => ProofedOf(g) != null).OrderBy(g => !Worn(actor, g)).ToList();
-            for (int i = 0; i < proofed.Count && i < MaxUnpickRows; i++)
+            for (int i = 0; i < proofed.Count; i++)
             {
                 var garment = proofed[i]; var done = ProofedOf(garment);
                 string label = "unpick the " + done.Label + " proofing from " + garment.GetDisplayName() + (Worn(actor, garment) ? " (worn)" : "");
                 string hint = "Takes the lasting proofing back out, so the garment's slot is free to be proofed again. The proofing and what went into it are lost: nothing is returned." + (Worn(actor, garment) ? " Its +" + done.Amount + " " + done.Label + " resistance goes with it." : "");
                 actions.AddActionWithHint("UnpickGarment", label, UnpickPrefix + Uri.EscapeDataString(garment.ID), hint, '\0', 5 - Math.Min(i, 4), false, ActionTime.OneAction);
             }
-            if (proofed.Count > MaxUnpickRows) actions.AddDisabled("UnpickGarment", "unpick a proofing (" + (proofed.Count - MaxUnpickRows) + " more not shown)", "more", (proofed.Count - MaxUnpickRows) + " more proofed garments are not shown: set some aside to see them.", '\0', 0);
         }
 
         bool Unpick(Entity actor, Zone zone, string command, InventoryTransaction tx)
