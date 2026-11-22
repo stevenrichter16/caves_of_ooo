@@ -14,7 +14,6 @@ namespace CavesOfOoo.Core
     internal static class ProofingPressActions
     {
         const string Prefix = "PressProofing|";
-        const int MaxFlasksPerElement = 3;
 
         internal static bool IsCommand(string command) => command != null && command.StartsWith(Prefix, StringComparison.Ordinal);
 
@@ -71,7 +70,7 @@ namespace CavesOfOoo.Core
                 }
                 candidates.Sort((a, b) => b.vessel.Volume.CompareTo(a.vessel.Volume));
                 string seenNote = SeenNote(zone, actor, element);   // one scan of the zone per element, not one per flask row
-                for (int i = 0; i < candidates.Count && i < MaxFlasksPerElement; i++)
+                for (int i = 0; i < candidates.Count; i++)
                 {
                     var (flask, vessel) = candidates[i];
                     actions.AddActionWithHint("PressProofing", "press into " + flask.GetDisplayName() + " (" + liquid.DisplayName + ", " + CoatsText(units) + "; " + vessel.Volume + "→" + (vessel.Volume + units) + "/" + vessel.Capacity + ")",

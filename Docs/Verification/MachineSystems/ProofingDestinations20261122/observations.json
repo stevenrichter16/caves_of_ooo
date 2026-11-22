@@ -1,0 +1,841 @@
+{
+  "destinationBefore": {
+    "zone": "Overworld.4.9.0",
+    "tick": 1560,
+    "x": 40,
+    "y": 12,
+    "hp": 400,
+    "regard": 13,
+    "pack": [
+      {
+        "id": "2301",
+        "bp": "PitchpodSeed",
+        "count": 5
+      },
+      {
+        "id": "12315",
+        "bp": "PitchpodResin",
+        "count": 1
+      }
+    ],
+    "visibleResin": [
+      {
+        "id": "2167",
+        "pos": "(40, 12)",
+        "count": 6
+      }
+    ],
+    "crops": [
+      {
+        "id": "12314",
+        "pos": "(18, 14)",
+        "stage": 0
+      }
+    ]
+  },
+  "destinationMenu": {
+    "id": "12315",
+    "rows": [
+      {
+        "index": 0,
+        "label": "Examine",
+        "command": "examine_item"
+      },
+      {
+        "index": 1,
+        "label": "smear sticky coating on yourself (1 item)",
+        "command": "MaterialField|Coat|Overworld.4.9.0|40|12|40|12|2126|1|pitch"
+      },
+      {
+        "index": 2,
+        "label": "press into liquid flask (heat-proofing, 1 coat; 0→1/12)",
+        "command": "PressProofing|heat|2235"
+      },
+      {
+        "index": 3,
+        "label": "press into liquid flask (heat-proofing, 1 coat; 0→1/12)",
+        "command": "PressProofing|heat|2236"
+      },
+      {
+        "index": 4,
+        "label": "press into liquid flask (heat-proofing, 1 coat; 0→1/12)",
+        "command": "PressProofing|heat|2237"
+      },
+      {
+        "index": 5,
+        "label": "press into liquid flask (heat-proofing, 1 coat; 0→1/12)",
+        "command": "PressProofing|heat|2238"
+      },
+      {
+        "index": 6,
+        "label": "press into liquid flask (heat-proofing, 1 coat; 0→1/12)",
+        "command": "PressProofing|heat|2239"
+      },
+      {
+        "index": 7,
+        "label": "press into liquid flask (heat-proofing, 1 coat; 0→1/12)",
+        "command": "PressProofing|heat|2240"
+      },
+      {
+        "index": 8,
+        "label": "press into liquid flask (heat-proofing, 1 coat; 0→1/12)",
+        "command": "PressProofing|heat|2241"
+      },
+      {
+        "index": 9,
+        "label": "press into liquid flask (heat-proofing, 1 coat; 0→1/12)",
+        "command": "PressProofing|heat|2242"
+      },
+      {
+        "index": 10,
+        "label": "Throw",
+        "command": "throw"
+      },
+      {
+        "index": 11,
+        "label": "Set aside for crafting",
+        "command": "toggle_craftmark"
+      },
+      {
+        "index": 12,
+        "label": "Drop",
+        "command": "drop"
+      }
+    ]
+  },
+  "destinationBeforePress": {
+    "tick": 1560,
+    "hp": 400,
+    "regard": 13,
+    "resin": [
+      {
+        "id": "12315",
+        "count": 1
+      }
+    ],
+    "flasks": [
+      {
+        "id": "2231",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2232",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2233",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2234",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2235",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2236",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2237",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2238",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2239",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2240",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2241",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2242",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      }
+    ],
+    "ward": [
+      {
+        "id": "2342",
+        "coat": false,
+        "lacquer": true,
+        "armor": 0
+      }
+    ],
+    "heat": 0
+  },
+  "destinationPressed": {
+    "tick": 1570,
+    "hp": 400,
+    "regard": 13,
+    "resin": [],
+    "flasks": [
+      {
+        "id": "2231",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2232",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2233",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2234",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2235",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2236",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2237",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2238",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2239",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2240",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2241",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2242",
+        "liquid": "heat-proofing",
+        "volume": 1,
+        "capacity": 12
+      }
+    ],
+    "ward": [
+      {
+        "id": "2342",
+        "coat": false,
+        "lacquer": true,
+        "armor": 0
+      }
+    ],
+    "heat": 0
+  },
+  "destinationCoatMenu": {
+    "id": "2242",
+    "rows": [
+      {
+        "index": 0,
+        "label": "Examine",
+        "command": "examine_material"
+      },
+      {
+        "index": 1,
+        "label": "transfer 1 heat-proofing (src 1→0; to #1 0→1/12)",
+        "command": "TransferLiquid|2242|2235|heat-proofing|1|12||0|12|Overworld.4.9.0"
+      },
+      {
+        "index": 2,
+        "label": "transfer 1 heat-proofing (src 1→0; to #2 0→1/12)",
+        "command": "TransferLiquid|2242|2236|heat-proofing|1|12||0|12|Overworld.4.9.0"
+      },
+      {
+        "index": 3,
+        "label": "transfer 1 heat-proofing (src 1→0; to #3 0→1/12)",
+        "command": "TransferLiquid|2242|2237|heat-proofing|1|12||0|12|Overworld.4.9.0"
+      },
+      {
+        "index": 4,
+        "label": "transfer 1 heat-proofing (src 1→0; to #4 0→1/12)",
+        "command": "TransferLiquid|2242|2238|heat-proofing|1|12||0|12|Overworld.4.9.0"
+      },
+      {
+        "index": 5,
+        "label": "transfer 1 heat-proofing (src 1→0; to #5 0→1/12)",
+        "command": "TransferLiquid|2242|2239|heat-proofing|1|12||0|12|Overworld.4.9.0"
+      },
+      {
+        "index": 6,
+        "label": "transfer 1 heat-proofing (src 1→0; to #6 0→1/12)",
+        "command": "TransferLiquid|2242|2240|heat-proofing|1|12||0|12|Overworld.4.9.0"
+      },
+      {
+        "index": 7,
+        "label": "transfer 1 heat-proofing (src 1→0; to #7 0→1/12)",
+        "command": "TransferLiquid|2242|2241|heat-proofing|1|12||0|12|Overworld.4.9.0"
+      },
+      {
+        "index": 8,
+        "label": "pour heat-proofing east (1)",
+        "command": "PourLiquidVessel|heat-proofing|1|Overworld.4.9.0|41|12"
+      },
+      {
+        "index": 9,
+        "label": "pour heat-proofing here (1)",
+        "command": "PourLiquidVessel|heat-proofing|1|Overworld.4.9.0|40|12"
+      },
+      {
+        "index": 10,
+        "label": "pour heat-proofing north (1)",
+        "command": "PourLiquidVessel|heat-proofing|1|Overworld.4.9.0|40|11"
+      },
+      {
+        "index": 11,
+        "label": "pour heat-proofing northeast (1)",
+        "command": "PourLiquidVessel|heat-proofing|1|Overworld.4.9.0|41|11"
+      },
+      {
+        "index": 12,
+        "label": "pour heat-proofing northwest (1)",
+        "command": "PourLiquidVessel|heat-proofing|1|Overworld.4.9.0|39|11"
+      },
+      {
+        "index": 13,
+        "label": "pour heat-proofing south (1)",
+        "command": "PourLiquidVessel|heat-proofing|1|Overworld.4.9.0|40|13"
+      },
+      {
+        "index": 14,
+        "label": "pour heat-proofing southeast (1)",
+        "command": "PourLiquidVessel|heat-proofing|1|Overworld.4.9.0|41|13"
+      },
+      {
+        "index": 15,
+        "label": "pour heat-proofing southwest (1)",
+        "command": "PourLiquidVessel|heat-proofing|1|Overworld.4.9.0|39|13"
+      },
+      {
+        "index": 16,
+        "label": "pour heat-proofing west (1)",
+        "command": "PourLiquidVessel|heat-proofing|1|Overworld.4.9.0|39|12"
+      },
+      {
+        "index": 17,
+        "label": "pour one heat-proofing east",
+        "command": "PourOneLiquidVessel|heat-proofing|1|Overworld.4.9.0|41|12"
+      },
+      {
+        "index": 18,
+        "label": "pour one heat-proofing here",
+        "command": "PourOneLiquidVessel|heat-proofing|1|Overworld.4.9.0|40|12"
+      },
+      {
+        "index": 19,
+        "label": "pour one heat-proofing north",
+        "command": "PourOneLiquidVessel|heat-proofing|1|Overworld.4.9.0|40|11"
+      },
+      {
+        "index": 20,
+        "label": "pour one heat-proofing northeast",
+        "command": "PourOneLiquidVessel|heat-proofing|1|Overworld.4.9.0|41|11"
+      },
+      {
+        "index": 21,
+        "label": "pour one heat-proofing northwest",
+        "command": "PourOneLiquidVessel|heat-proofing|1|Overworld.4.9.0|39|11"
+      },
+      {
+        "index": 22,
+        "label": "pour one heat-proofing south",
+        "command": "PourOneLiquidVessel|heat-proofing|1|Overworld.4.9.0|40|13"
+      },
+      {
+        "index": 23,
+        "label": "pour one heat-proofing southeast",
+        "command": "PourOneLiquidVessel|heat-proofing|1|Overworld.4.9.0|41|13"
+      },
+      {
+        "index": 24,
+        "label": "pour one heat-proofing southwest",
+        "command": "PourOneLiquidVessel|heat-proofing|1|Overworld.4.9.0|39|13"
+      },
+      {
+        "index": 25,
+        "label": "pour one heat-proofing west",
+        "command": "PourOneLiquidVessel|heat-proofing|1|Overworld.4.9.0|39|12"
+      },
+      {
+        "index": 26,
+        "label": "coat warded cloak (worn) (unavailable)",
+        "command": "Disabled:slot-cap"
+      },
+      {
+        "index": 27,
+        "label": "coat acidworker apron",
+        "command": "CoatGarment|2378"
+      },
+      {
+        "index": 28,
+        "label": "coat buckler",
+        "command": "CoatGarment|2360"
+      },
+      {
+        "index": 29,
+        "label": "coat chain mail (x3) (1 of 3)",
+        "command": "CoatGarment|2348"
+      },
+      {
+        "index": 30,
+        "label": "coat cloak (x4) (1 of 4)",
+        "command": "CoatGarment|2337"
+      },
+      {
+        "index": 31,
+        "label": "coat coldward cloak (replaces 99 turns of cold coat)",
+        "command": "CoatGarment|78ec272038ff4ebf9b6a7391de5342b4"
+      },
+      {
+        "index": 32,
+        "label": "coat coldward cloak (x2) (1 of 2)",
+        "command": "CoatGarment|2347"
+      },
+      {
+        "index": 33,
+        "label": "coat filter hood (x2) (1 of 2)",
+        "command": "CoatGarment|2344"
+      },
+      {
+        "index": 34,
+        "label": "coat groundwire screen",
+        "command": "CoatGarment|2380"
+      },
+      {
+        "index": 35,
+        "label": "coat iron buckler",
+        "command": "CoatGarment|2370"
+      },
+      {
+        "index": 36,
+        "label": "coat iron helmet (x5) (1 of 5)",
+        "command": "CoatGarment|2349"
+      },
+      {
+        "index": 37,
+        "label": "coat ironshod boots (x5) (1 of 5)",
+        "command": "CoatGarment|2351"
+      },
+      {
+        "index": 38,
+        "label": "coat kilnfelt apron",
+        "command": "CoatGarment|2373"
+      },
+      {
+        "index": 39,
+        "label": "coat leather armor (x3) (1 of 3)",
+        "command": "CoatGarment|2333"
+      },
+      {
+        "index": 40,
+        "label": "coat leather boots (x5) (1 of 5)",
+        "command": "CoatGarment|2336"
+      },
+      {
+        "index": 41,
+        "label": "coat leather cap (x3) (1 of 3)",
+        "command": "CoatGarment|2334"
+      },
+      {
+        "index": 42,
+        "label": "coat leather gloves (x7) (1 of 7)",
+        "command": "CoatGarment|2335"
+      },
+      {
+        "index": 43,
+        "label": "coat plate armor",
+        "command": "CoatGarment|2363"
+      },
+      {
+        "index": 44,
+        "label": "coat plate armor",
+        "command": "CoatGarment|a724be89e3cb492fba914e0a14fbd7f0"
+      },
+      {
+        "index": 45,
+        "label": "coat warded cloak",
+        "command": "CoatGarment|2342"
+      },
+      {
+        "index": 46,
+        "label": "coat warded cloak (replaces 46 turns of cold coat)",
+        "command": "CoatGarment|3c6a92d5471b4e47add2a686e7fca289"
+      },
+      {
+        "index": 47,
+        "label": "Throw",
+        "command": "throw"
+      },
+      {
+        "index": 48,
+        "label": "Drop",
+        "command": "drop"
+      }
+    ]
+  },
+  "destinationCoated": {
+    "tick": 1580,
+    "hp": 400,
+    "regard": 13,
+    "resin": [],
+    "flasks": [
+      {
+        "id": "2231",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2232",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2233",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2234",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2235",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2236",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2237",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2238",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2239",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2240",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2241",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2242",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      }
+    ],
+    "ward": [
+      {
+        "id": "2342",
+        "coat": true,
+        "lacquer": true,
+        "armor": 0
+      }
+    ],
+    "heat": 0
+  },
+  "destinationWorn": {
+    "tick": 1580,
+    "hp": 400,
+    "regard": 8,
+    "resin": [],
+    "flasks": [
+      {
+        "id": "2231",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2232",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2233",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2234",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2235",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2236",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2237",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2238",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2239",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2240",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2241",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2242",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      }
+    ],
+    "ward": [
+      {
+        "id": "2342",
+        "coat": true,
+        "lacquer": true,
+        "armor": 1
+      }
+    ],
+    "heat": 35
+  },
+  "destinationFresh": {
+    "tick": 1580,
+    "hp": 400,
+    "regard": 8,
+    "resin": [],
+    "flasks": [
+      {
+        "id": "2231",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2232",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2233",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2234",
+        "liquid": "bog-mire",
+        "volume": 12,
+        "capacity": 12
+      },
+      {
+        "id": "2235",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2236",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2237",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2238",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2239",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2240",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2241",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      },
+      {
+        "id": "2242",
+        "liquid": "",
+        "volume": 0,
+        "capacity": 12
+      }
+    ],
+    "ward": [
+      {
+        "id": "2342",
+        "coat": true,
+        "lacquer": true,
+        "armor": 1
+      }
+    ],
+    "heat": 35
+  },
+  "destinationFreshCustody": {
+    "zone": "Overworld.4.9.0",
+    "tick": 1580,
+    "x": 40,
+    "y": 12,
+    "hp": 400,
+    "regard": 8,
+    "pack": [
+      {
+        "id": "2301",
+        "bp": "PitchpodSeed",
+        "count": 5
+      }
+    ],
+    "visibleResin": [
+      {
+        "id": "2167",
+        "pos": "(40, 12)",
+        "count": 6
+      }
+    ],
+    "crops": [
+      {
+        "id": "12314",
+        "pos": "(18, 14)",
+        "stage": 0
+      }
+    ]
+  },
+  "destinationFreshCoat": {
+    "id": "2342",
+    "kind": "heat",
+    "left": 100,
+    "total": 100
+  }
+}

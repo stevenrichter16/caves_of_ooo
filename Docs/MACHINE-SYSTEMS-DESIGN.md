@@ -1,3 +1,10 @@
+**November 22 proofing destination access:** [native receipt](Verification/MachineSystems/ProofingDestinations20261122/README.md)
+removes the final three-flask enumeration cap while keeping all validation and
+finite transactions. Native8 RED/7fail→96 focused GREEN, actual last flask2242
+receives earned resin's heat unit, then coat/equip lacquered2342 gives Heat35;
+fresh1580 preserves exact payment/owners/conditional effects. All twelve-machine
+dependencies and complete-machine acceptance gates remain unchanged.
+
 **November 22 ordinary resin and travel custody:** [native receipt](Verification/MachineSystems/ResinSupply20261122/README.md)
 qualifies actual world-crop Gather, transport to Posy and finite lacquer payment,
 with fixture resin kept separately on the ground and fresh exact custody. Fixes

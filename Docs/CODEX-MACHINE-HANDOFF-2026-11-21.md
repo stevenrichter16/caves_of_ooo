@@ -2,6 +2,17 @@
 
 ## Resumed continuation — November 21 evening
 
+November 22 [complete proofing destinations](Verification/MachineSystems/ProofingDestinations20261122/README.md):
+removed only Press3-flask cap;8 native RED/7fail→96 focused GREEN, filters and
+transactions unchanged. Producer volume sort remains but shared menu text sort
+can override its order. Actual earned1560 naturalresin12315x1 offers8empty;
+last2242 selection1560→1570 spends1/gains1heat, all other bottles unchanged.
+Latecoat45→Ward2342 at1580 empties2242, keeps lacquer, adds heat100. Equip
+Heat35/ArmorPart.AV1; old signed cloak off/regard13→8. Full reader and fresh
+1580 retain exact bottles/coat/fixture6ground/seed5/HP400. Main stopped/rootnull,
+84foreign/861normal unchanged. Next: batch current Mac with expiry/ascent/access
+corrections, then gated shared exposure/NPC survival; twelve-machine gates open.
+
 November 22 [ordinary resin and ascent custody](Verification/MachineSystems/ResinSupply20261122/README.md):
 source-guided seed64 Pitchpod4,9, fixture2167x6 stashed at40,12, walk away and
 verify carried0. Gather mature12313 at1410→1420 gives earned12315x2/seed4→5;
