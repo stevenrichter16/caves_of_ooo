@@ -1,5 +1,14 @@
 # Shared Beating exposure: bounded proposed slice
 
+November22 [isolated direct-dose primitive](Verification/MachineSystems/MeteredHydration20261122/README.md)
+implements WellPart.MeteredHydration defaultfalse, source-level finite unit/stack
+parity and a quoted paid batch. Only new trial owners opt in; legacy/infinite
+remain free/full. Native172 distinct GREEN/final39 and actual partial/direct/
+carried branches/fresh20/80 qualify that limited prototype. Shared hydration is
+NOT accepted: unchanged waterskin quantity/effect delta undo, independent stat
+snapshot preservation and source/recipient commit validation must be corrected
+before production migration or exposure/NPC activation. No sun strain reset yet.
+
 November22 prerequisite correction: [well source/transaction receipt](Verification/MachineSystems/WellSourceConsistency20261122/README.md)
 aligns phase/mixing/fault/existing-oath admission between direct and skin draws,
 and makes the established FREE direct-well row transactional. Native133/133 and
@@ -48,7 +57,7 @@ or settlement-sustainability evidence.
 | `ShadePart`, `Body`, `EquipmentChangeBus` | Real installed shade geometry, actual worn slots, monotonic equipment version. The bus is a version bump, NOT an existing after-commit subscriber event. Validate actual equipment; a failed equip/undo must not cache protection. |
 | `ParchedEffect`, `TonicPart`, companion care | Persistent1–3 stacks, −1 Strength/Agility each. Currently standing on a water-family tile cures everything; drinking tonics/care cure one. These recovery paths need a shared, transactional normalization for enrolled actors. |
 | `WaterskinPart`, `WaterVesselService` | Capacity3, charge-spending drink, finite source transfers and rollback. One charge relieves one stack. No body-water reservoir or exposure integration exists. |
-| `WellPart`, `WellDrinkingService` | Stock−1 ordinary wells, finite cisterns, stock/pool validation. Currently ONE direct-source unit clears ALL Parched stacks, while the same unit in a skin clears one. The new finite-dose proposal below is an intentional correction, not current behavior. |
+| `WellPart`, `WellDrinkingService` | Ordinary/unopted sources still spend ONE unit for full Parched relief. Isolated MeteredHydration sources now batch one unit per relieved level in one paid action; mode/quantity/debt quotes and direct delta undo are qualified. Source migration/shared hydration remain gated above. |
 | `TentRightOath.RefusesWater` | Existing player oathbreaker refusal; it explicitly checks Player. It is not a general permission/ownership policy for all NPC sources. |
 | `AIBehaviorPart`, goals, `FindPath`, terrain weights | Shared movement and finite danger costs. No shade/thirst planning. AIWellVisitor randomly walks beside literal Well and does not drink or recognize a cistern. |
 | `EntityFactory`, `SaveGraphSerializer` | Part discovery and public-field saving are available. New state still needs real old-save/default/roundtrip tests; dictionary/name discovery alone is not save acceptance. |

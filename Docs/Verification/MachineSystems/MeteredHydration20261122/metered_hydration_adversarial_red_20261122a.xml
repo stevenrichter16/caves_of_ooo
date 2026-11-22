@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 12:10:26Z" end-time="2026-11-22 12:10:28Z" duration="1.525387">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40534" result="Failed" site="Child" start-time="2026-11-22 12:10:26Z" end-time="2026-11-22 12:10:28Z" duration="1.525387" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49417" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40534" result="Failed" site="Child" start-time="2026-11-22 12:10:27Z" end-time="2026-11-22 12:10:28Z" duration="1.249234" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="40407" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49418" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40534" result="Failed" site="Child" start-time="2026-11-22 12:10:27Z" end-time="2026-11-22 12:10:28Z" duration="1.023505" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49419" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40534" result="Failed" site="Child" start-time="2026-11-22 12:10:27Z" end-time="2026-11-22 12:10:28Z" duration="0.732157" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="26959" name="MeteredHydrationTests" fullname="CavesOfOoo.Tests.MeteredHydrationTests" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-11-22 12:10:28Z" end-time="2026-11-22 12:10:28Z" duration="0.183480" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="27002" name="FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 12:10:28Z" end-time="2026-11-22 12:10:28Z" duration="0.094827" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27000" name="FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition(False)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition(False)" methodname="FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="2075863052" result="Failed" start-time="2026-11-22 12:10:28Z" end-time="2026-11-22 12:10:28Z" duration="0.062557" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 4
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition (System.Boolean pool) [0x00068] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:156
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27001" name="FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition(True)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition(True)" methodname="FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1247750009" result="Failed" start-time="2026-11-22 12:10:28Z" end-time="2026-11-22 12:10:28Z" duration="0.027420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 4
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.FailedCommitReturnsItsDebitAlongsideAnIndependentSourceAddition (System.Boolean pool) [0x00068] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:156
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27006" name="MalformedOrForeignDebtCannotAuthorizePartialRelief" fullname="CavesOfOoo.Tests.MeteredHydrationTests.MalformedOrForeignDebtCannotAuthorizePartialRelief" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 12:10:28Z" end-time="2026-11-22 12:10:28Z" duration="0.085636" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27003" name="MalformedOrForeignDebtCannotAuthorizePartialRelief(&quot;zero&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.MalformedOrForeignDebtCannotAuthorizePartialRelief(&quot;zero&quot;)" methodname="MalformedOrForeignDebtCannotAuthorizePartialRelief" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="239523016" result="Failed" start-time="2026-11-22 12:10:28Z" end-time="2026-11-22 12:10:28Z" duration="0.029898" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.MalformedOrForeignDebtCannotAuthorizePartialRelief (System.String fault) [0x00075] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:164
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27004" name="MalformedOrForeignDebtCannotAuthorizePartialRelief(&quot;status-owner&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.MalformedOrForeignDebtCannotAuthorizePartialRelief(&quot;status-owner&quot;)" methodname="MalformedOrForeignDebtCannotAuthorizePartialRelief" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1761145683" result="Failed" start-time="2026-11-22 12:10:28Z" end-time="2026-11-22 12:10:28Z" duration="0.026565" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.MalformedOrForeignDebtCannotAuthorizePartialRelief (System.String fault) [0x00075] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:164
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27005" name="MalformedOrForeignDebtCannotAuthorizePartialRelief(&quot;effect-owner&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.MalformedOrForeignDebtCannotAuthorizePartialRelief(&quot;effect-owner&quot;)" methodname="MalformedOrForeignDebtCannotAuthorizePartialRelief" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="2028699147" result="Failed" start-time="2026-11-22 12:10:28Z" end-time="2026-11-22 12:10:28Z" duration="0.028295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.MalformedOrForeignDebtCannotAuthorizePartialRelief (System.String fault) [0x00075] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:164
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

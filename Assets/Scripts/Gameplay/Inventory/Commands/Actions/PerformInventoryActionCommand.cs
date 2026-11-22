@@ -62,7 +62,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // stat snapshot would erase independent exposure or other changes
             // after those deltas are restored. Keep the item custody snapshot.
             var well = _item.GetPart<WellPart>();
-            bool wellStatReceipt = _actionCommand == "DrawWaterAtWell" && well?.ParentEntity == _item;
+            bool wellStatReceipt = WellDrinkingService.IsDrinkCommand(_actionCommand) && well?.ParentEntity == _item;
             var snapshot = CaptureSnapshot(context, _item, wellStatReceipt);
             if (snapshot != null)
             {

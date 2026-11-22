@@ -10,6 +10,19 @@
 
 ## Active handback continuation — November 21, 2026
 
+November 22 [isolated finite-dose prototype](Verification/MachineSystems/MeteredHydration20261122/README.md):
+default-false source policy; only new trial cisterns opt in. One water unit buys
+one Parched level, direct batches in one paid action; legacy/infinite stay free/
+full. Stale mode/quantity quotes reject, direct undo preserves independent deltas.
+Native32 RED/26fail plus5 adverse RED→172 distinct GREEN; final39 after wording.
+Actual separate initial10 branches: small1→debt2/fresh20, thenneeded2→clear30;
+direct3→clear20/fresh20; fill3→carryaway→three drinks50/60/70→clear. Cancel
+preventive quote80 is free; actual viper damage/poison retained, fresh80HP36.
+No NPC/exposure/production-source migration or shared-hydration acceptance.
+Next REQUIRED: waterskin fill/drink delta undo, generic stat-snapshot boundary
+and commit validation before chronology/NPC enrollment. Main stopped/rootnull,
+84foreign/861normal unchanged; current Macf8 predates both water increments.
+
 November 22 [consistent water-source admission](Verification/MachineSystems/WellSourceConsistency20261122/README.md):
 plain direct wells now honor phase/mixing; pool-backed fills honor well faults/
 existing oath. Free well rows use the shared outer transaction; one-unit/full-

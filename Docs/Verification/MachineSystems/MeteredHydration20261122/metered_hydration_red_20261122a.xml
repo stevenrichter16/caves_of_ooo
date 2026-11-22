@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="32" result="Failed(Child)" total="32" passed="6" failed="26" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 12:05:29Z" end-time="2026-11-22 12:05:31Z" duration="2.0619999">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40529" result="Failed" site="Child" start-time="2026-11-22 12:05:29Z" end-time="2026-11-22 12:05:31Z" duration="2.062000" total="32" passed="6" failed="26" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49410" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40529" result="Failed" site="Child" start-time="2026-11-22 12:05:29Z" end-time="2026-11-22 12:05:31Z" duration="1.850176" total="32" passed="6" failed="26" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="36988" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49411" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40529" result="Failed" site="Child" start-time="2026-11-22 12:05:29Z" end-time="2026-11-22 12:05:31Z" duration="1.644459" total="32" passed="6" failed="26" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49412" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40529" result="Failed" site="Child" start-time="2026-11-22 12:05:29Z" end-time="2026-11-22 12:05:31Z" duration="1.508455" total="32" passed="6" failed="26" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="26959" name="MeteredHydrationTests" fullname="CavesOfOoo.Tests.MeteredHydrationTests" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-11-22 12:05:29Z" end-time="2026-11-22 12:05:31Z" duration="1.105360" total="32" passed="6" failed="26" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="26990" name="AfterActionSourceOrActorChangesMustNotCommitTheOldDraw" fullname="CavesOfOoo.Tests.MeteredHydrationTests.AfterActionSourceOrActorChangesMustNotCommitTheOldDraw" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 12:05:29Z" end-time="2026-11-22 12:05:30Z" duration="0.117316" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26987" name="AfterActionSourceOrActorChangesMustNotCommitTheOldDraw(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.AfterActionSourceOrActorChangesMustNotCommitTheOldDraw(&quot;frozen&quot;)" methodname="AfterActionSourceOrActorChangesMustNotCommitTheOldDraw" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1938571499" result="Passed" start-time="2026-11-22 12:05:29Z" end-time="2026-11-22 12:05:30Z" duration="0.058982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26988" name="AfterActionSourceOrActorChangesMustNotCommitTheOldDraw(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.AfterActionSourceOrActorChangesMustNotCommitTheOldDraw(&quot;moved&quot;)" methodname="AfterActionSourceOrActorChangesMustNotCommitTheOldDraw" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="658652992" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.028775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 9
+  But was:  10
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.AfterActionSourceOrActorChangesMustNotCommitTheOldDraw (System.String change) [0x0009c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26989" name="AfterActionSourceOrActorChangesMustNotCommitTheOldDraw(&quot;mode&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.AfterActionSourceOrActorChangesMustNotCommitTheOldDraw(&quot;mode&quot;)" methodname="AfterActionSourceOrActorChangesMustNotCommitTheOldDraw" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="2052515504" result="Passed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.026583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="26974" name="FillingThenThreeCarriedDrinksBuysTheSameThreeStacksOfRelief" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FillingThenThreeCarriedDrinksBuysTheSameThreeStacksOfRelief" methodname="FillingThenThreeCarriedDrinksBuysTheSameThreeStacksOfRelief" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1584630853" result="Passed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.034816" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26986" name="FinalRemovalCallbackExposureAndThrowKeepConsistentCappedPenalties" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FinalRemovalCallbackExposureAndThrowKeepConsistentCappedPenalties" methodname="FinalRemovalCallbackExposureAndThrowKeepConsistentCappedPenalties" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="590728082" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.026333" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.FinalRemovalCallbackExposureAndThrowKeepConsistentCappedPenalties () [0x00059] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26965" name="FiniteDosesBatchOnlyTheNeededAvailableWater" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.138708" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26960" name="FiniteDosesBatchOnlyTheNeededAvailableWater(1,3,1)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater(1,3,1)" methodname="FiniteDosesBatchOnlyTheNeededAvailableWater" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1083789584" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.029671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 26 but was 15. Strings differ at index 4.
+  Expected: "DrawMeteredWaterAtWell|1|3"
+  But was:  "DrawWaterAtWell"
+  ---------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater (System.Int32 stock, System.Int32 debt, System.Int32 units) [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26961" name="FiniteDosesBatchOnlyTheNeededAvailableWater(2,3,2)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater(2,3,2)" methodname="FiniteDosesBatchOnlyTheNeededAvailableWater" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1054144996" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.026589" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 26 but was 15. Strings differ at index 4.
+  Expected: "DrawMeteredWaterAtWell|2|3"
+  But was:  "DrawWaterAtWell"
+  ---------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater (System.Int32 stock, System.Int32 debt, System.Int32 units) [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26962" name="FiniteDosesBatchOnlyTheNeededAvailableWater(3,3,3)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater(3,3,3)" methodname="FiniteDosesBatchOnlyTheNeededAvailableWater" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="346546040" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.026675" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 26 but was 15. Strings differ at index 4.
+  Expected: "DrawMeteredWaterAtWell|3|3"
+  But was:  "DrawWaterAtWell"
+  ---------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater (System.Int32 stock, System.Int32 debt, System.Int32 units) [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26963" name="FiniteDosesBatchOnlyTheNeededAvailableWater(7,2,2)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater(7,2,2)" methodname="FiniteDosesBatchOnlyTheNeededAvailableWater" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1784067061" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.027318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 26 but was 15. Strings differ at index 4.
+  Expected: "DrawMeteredWaterAtWell|2|2"
+  But was:  "DrawWaterAtWell"
+  ---------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater (System.Int32 stock, System.Int32 debt, System.Int32 units) [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26964" name="FiniteDosesBatchOnlyTheNeededAvailableWater(3,0,1)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater(3,0,1)" methodname="FiniteDosesBatchOnlyTheNeededAvailableWater" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="112254731" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.027285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 26 but was 15. Strings differ at index 4.
+  Expected: "DrawMeteredWaterAtWell|1|0"
+  But was:  "DrawWaterAtWell"
+  ---------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.FiniteDosesBatchOnlyTheNeededAvailableWater (System.Int32 stock, System.Int32 debt, System.Int32 units) [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="26995" name="LegacyFieldPayloadWithoutTheNewFlagDefaultsToFalse" fullname="CavesOfOoo.Tests.MeteredHydrationTests.LegacyFieldPayloadWithoutTheNewFlagDefaultsToFalse" methodname="LegacyFieldPayloadWithoutTheNewFlagDefaultsToFalse" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1329913" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.029184" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.LegacyFieldPayloadWithoutTheNewFlagDefaultsToFalse () [0x000a5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:131
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26972" name="LegacyFiniteAndInfiniteRecoveryStayFreeFullAndConvenient" fullname="CavesOfOoo.Tests.MeteredHydrationTests.LegacyFiniteAndInfiniteRecoveryStayFreeFullAndConvenient" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.082378" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26970" name="LegacyFiniteAndInfiniteRecoveryStayFreeFullAndConvenient(False)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.LegacyFiniteAndInfiniteRecoveryStayFreeFullAndConvenient(False)" methodname="LegacyFiniteAndInfiniteRecoveryStayFreeFullAndConvenient" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="2051074180" result="Passed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.030558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26971" name="LegacyFiniteAndInfiniteRecoveryStayFreeFullAndConvenient(True)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.LegacyFiniteAndInfiniteRecoveryStayFreeFullAndConvenient(True)" methodname="LegacyFiniteAndInfiniteRecoveryStayFreeFullAndConvenient" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="741843725" result="Passed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.051139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26994" name="LiteralSaveRoundTripKeepsPolicyAndFiniteStock" fullname="CavesOfOoo.Tests.MeteredHydrationTests.LiteralSaveRoundTripKeepsPolicyAndFiniteStock" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.088133" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26992" name="LiteralSaveRoundTripKeepsPolicyAndFiniteStock(False)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.LiteralSaveRoundTripKeepsPolicyAndFiniteStock(False)" methodname="LiteralSaveRoundTripKeepsPolicyAndFiniteStock" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1195913668" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.059609" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the source policy is a saved public field
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.LiteralSaveRoundTripKeepsPolicyAndFiniteStock (System.Boolean enabled) [0x00015] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26993" name="LiteralSaveRoundTripKeepsPolicyAndFiniteStock(True)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.LiteralSaveRoundTripKeepsPolicyAndFiniteStock(True)" methodname="LiteralSaveRoundTripKeepsPolicyAndFiniteStock" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="940277343" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.027522" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the source policy is a saved public field
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.LiteralSaveRoundTripKeepsPolicyAndFiniteStock (System.Boolean enabled) [0x00015] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="26973" name="PartialAndPreventivePreviewsStateTheirRealFinitePriceAndRelief" fullname="CavesOfOoo.Tests.MeteredHydrationTests.PartialAndPreventivePreviewsStateTheirRealFinitePriceAndRelief" methodname="PartialAndPreventivePreviewsStateTheirRealFinitePriceAndRelief" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1374256000" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.027436" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "1 water"
+  But was:  <string.Empty>
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.MeteredHydrationTests.PartialAndPreventivePreviewsStateTheirRealFinitePriceAndRelief () [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:62
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="26985" name="PartialRollbackAfterIndependentFullCureRestoresOnlyItsOneStack" fullname="CavesOfOoo.Tests.MeteredHydrationTests.PartialRollbackAfterIndependentFullCureRestoresOnlyItsOneStack" methodname="PartialRollbackAfterIndependentFullCureRestoresOnlyItsOneStack" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="948838658" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.026139" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  3
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.Debt (System.Int32 amount) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:26
+at CavesOfOoo.Tests.MeteredHydrationTests.PartialRollbackAfterIndependentFullCureRestoresOnlyItsOneStack () [0x00045] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:95
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="26969" name="PoolWaterIsFiniteEvenWhenTheWellsStockIsEndless" fullname="CavesOfOoo.Tests.MeteredHydrationTests.PoolWaterIsFiniteEvenWhenTheWellsStockIsEndless" methodname="PoolWaterIsFiniteEvenWhenTheWellsStockIsEndless" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="722560621" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.027229" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 26 but was 15. Strings differ at index 4.
+  Expected: "DrawMeteredWaterAtWell|2|3"
+  But was:  "DrawWaterAtWell"
+  ---------------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.PoolWaterIsFiniteEvenWhenTheWellsStockIsEndless () [0x00010] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:48
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26999" name="RealMenuChargesOneTurnOnlyForACommittedMeteredDraw" fullname="CavesOfOoo.Tests.MeteredHydrationTests.RealMenuChargesOneTurnOnlyForACommittedMeteredDraw" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.153504" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26996" name="RealMenuChargesOneTurnOnlyForACommittedMeteredDraw(&quot;valid&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.RealMenuChargesOneTurnOnlyForACommittedMeteredDraw(&quot;valid&quot;)" methodname="RealMenuChargesOneTurnOnlyForACommittedMeteredDraw" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1411353301" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.071641" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 27
+  But was:  17
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.RealMenuChargesOneTurnOnlyForACommittedMeteredDraw (System.String condition) [0x001e1] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:147
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26997" name="RealMenuChargesOneTurnOnlyForACommittedMeteredDraw(&quot;stale&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.RealMenuChargesOneTurnOnlyForACommittedMeteredDraw(&quot;stale&quot;)" methodname="RealMenuChargesOneTurnOnlyForACommittedMeteredDraw" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="342285858" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.040075" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 3
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.RealMenuChargesOneTurnOnlyForACommittedMeteredDraw (System.String condition) [0x00209] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:147
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26998" name="RealMenuChargesOneTurnOnlyForACommittedMeteredDraw(&quot;after&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.RealMenuChargesOneTurnOnlyForACommittedMeteredDraw(&quot;after&quot;)" methodname="RealMenuChargesOneTurnOnlyForACommittedMeteredDraw" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="184648943" result="Passed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.041065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26984" name="StaleQuantityOrReliefQuotesRefuseWithoutTakingWater" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleQuantityOrReliefQuotesRefuseWithoutTakingWater" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.052947" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26982" name="StaleQuantityOrReliefQuotesRefuseWithoutTakingWater(&quot;stock&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleQuantityOrReliefQuotesRefuseWithoutTakingWater(&quot;stock&quot;)" methodname="StaleQuantityOrReliefQuotesRefuseWithoutTakingWater" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1810600325" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.026175" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.StaleQuantityOrReliefQuotesRefuseWithoutTakingWater (System.String change) [0x00043] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:89
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26983" name="StaleQuantityOrReliefQuotesRefuseWithoutTakingWater(&quot;debt&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleQuantityOrReliefQuotesRefuseWithoutTakingWater(&quot;debt&quot;)" methodname="StaleQuantityOrReliefQuotesRefuseWithoutTakingWater" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="2002565893" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.025854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.StaleQuantityOrReliefQuotesRefuseWithoutTakingWater (System.String change) [0x00043] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:89
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26981" name="StaleTariffRowsCannotRunUnderAnotherCostMode" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.214667" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26975" name="StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;opt-in&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;opt-in&quot;)" methodname="StaleTariffRowsCannotRunUnderAnotherCostMode" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="853893102" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.025790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode (System.String change) [0x00119] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26976" name="StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;opt-out&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;opt-out&quot;)" methodname="StaleTariffRowsCannotRunUnderAnotherCostMode" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1487201334" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.026222" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode (System.String change) [0x00119] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26977" name="StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;finite&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;finite&quot;)" methodname="StaleTariffRowsCannotRunUnderAnotherCostMode" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="480975048" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.026336" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode (System.String change) [0x00119] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26978" name="StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;infinite&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;infinite&quot;)" methodname="StaleTariffRowsCannotRunUnderAnotherCostMode" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1492668373" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.029269" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode (System.String change) [0x00119] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26979" name="StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;pool-added&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;pool-added&quot;)" methodname="StaleTariffRowsCannotRunUnderAnotherCostMode" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="857315227" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.077890" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode (System.String change) [0x00119] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26980" name="StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;pool-removed&quot;)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode(&quot;pool-removed&quot;)" methodname="StaleTariffRowsCannotRunUnderAnotherCostMode" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1255231386" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:30Z" duration="0.028169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.StaleTariffRowsCannotRunUnderAnotherCostMode (System.String change) [0x00119] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26968" name="TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer" fullname="CavesOfOoo.Tests.MeteredHydrationTests.TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:31Z" duration="0.055071" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26966" name="TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer(False)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer(False)" methodname="TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="1194860796" result="Failed" start-time="2026-11-22 12:05:30Z" end-time="2026-11-22 12:05:31Z" duration="0.027374" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer (System.Boolean player) [0x00029] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26967" name="TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer(True)" fullname="CavesOfOoo.Tests.MeteredHydrationTests.TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer(True)" methodname="TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="2042189414" result="Failed" start-time="2026-11-22 12:05:31Z" end-time="2026-11-22 12:05:31Z" duration="0.027195" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.TheSameFiniteWaterCostsTheSameForPlayerAndNonPlayer (System.Boolean player) [0x00029] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="26991" name="TwoConsumersCannotSpendTheLastDoseTwice" fullname="CavesOfOoo.Tests.MeteredHydrationTests.TwoConsumersCannotSpendTheLastDoseTwice" methodname="TwoConsumersCannotSpendTheLastDoseTwice" classname="CavesOfOoo.Tests.MeteredHydrationTests" runstate="Runnable" seed="727783512" result="Failed" start-time="2026-11-22 12:05:31Z" end-time="2026-11-22 12:05:31Z" duration="0.026232" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.MeteredHydrationTests.TwoConsumersCannotSpendTheLastDoseTwice () [0x0005c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/MeteredHydrationTests.cs:114
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

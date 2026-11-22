@@ -1,3 +1,12 @@
+**November22 isolated finite-dose prototype:** [receipt](Verification/MachineSystems/MeteredHydration20261122/README.md)
+adds a saved default-false source policy, truthful finite direct batches and
+quote/commit/owned-delta safeguards. Native172 distinct GREEN/final39, actual
+separate initial-debt direct/partial/carried alternatives and fresh20/80 qualify
+the bounded primitive. Production sources remain legacy; shared hydration is
+blocked on waterskin delta/commit/stat-snapshot corrections before exposure/NPC
+enrollment. All twelve complete-machine dependency and acceptance statuses below
+remain unchanged; current Macf8 excludes both water increments.
+
 **November 22 water-source prerequisite:** [correction receipt](Verification/MachineSystems/WellSourceConsistency20261122/README.md)
 aligns direct/fill well phase, mixing, faults and existing oath admission. Free
 native drinking now uses the shared transaction, preserving legacy one-unit/full

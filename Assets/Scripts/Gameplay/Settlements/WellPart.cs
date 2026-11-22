@@ -5,8 +5,8 @@ namespace CavesOfOoo.Core
     /// (Render + Physics) even though canon makes them the wasteland's
     /// nodes of power ("water is the truest wealth and is given, never
     /// sold, to a guest" — Lore/History/08_MaterialCulture.md:161).
-    /// Drawing water clears <see cref="ParchedEffect"/> entirely — the
-    /// well is the cure the pan is the cause of.
+    /// Ordinary drawing clears <see cref="ParchedEffect"/> entirely.
+    /// Explicit finite metering instead prices one stack per water unit.
     ///
     /// <para>Mirrors <see cref="SanctuaryPart"/>'s action idiom exactly
     /// (declare on GetInventoryActions, act on InventoryAction).</para>
@@ -23,6 +23,11 @@ namespace CavesOfOoo.Core
         /// pool instead. Plain public: it round-trips through the reflection save path.</summary>
         public int Stock = -1;
 
+        /// <summary>Opt-in source tariff: finite water relieves one Parched
+        /// stack per unit in one paid batch. Defaults false for old saves and
+        /// ordinary sources. An endless well retains its free full recovery.</summary>
+        public bool MeteredHydration;
+
         /// <summary>False only for a finite well that has run dry.</summary>
         public bool HasWater => Stock != 0;
 
@@ -31,19 +36,18 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 var queryingActor = e.GetParameter<Entity>("Actor");
-                if (!WellDrinkingService.Available(queryingActor, this, e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone)) return true;
-                var actions = e.GetParameter<InventoryActionList>("Actions");
-                // Established well drinking is free, but must still share the
-                // command transaction and outer veto used by carried water.
-                actions?.AddAction("Draw water", "draw water", "DrawWaterAtWell", 'w', 20, time: ActionTime.Free);
+                WellDrinkingService.AddAction(queryingActor, this,
+                    e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone,
+                    e.GetParameter<InventoryActionList>("Actions"));
                 return true;
             }
             if (e.ID == "InventoryAction")
             {
-                if (e.GetStringParameter("Command") != "DrawWaterAtWell") return true;
+                string command = e.GetStringParameter("Command");
+                if (!WellDrinkingService.IsDrinkCommand(command)) return true;
                 var actor = e.GetParameter<Entity>("Actor");
                 if (!WellDrinkingService.TryDrink(actor, this, e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? SettlementRuntime.ActiveZone,
-                    e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction"))) return true;
+                    e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction"), command)) return true;
                 e.Handled = true;
                 return false;
             }
