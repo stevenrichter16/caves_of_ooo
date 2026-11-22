@@ -1,0 +1,258 @@
+{
+  "soundDepth3Arrival": {
+    "zone": "Overworld.10.11.3",
+    "tick": 240,
+    "hp": 40,
+    "at": "(39, 11)",
+    "foes": [
+      {
+        "id": "10292",
+        "bp": "Rotling",
+        "at": "(33, 11)",
+        "heard": false,
+        "visible": true
+      },
+      {
+        "id": "10291",
+        "bp": "Rotling",
+        "at": "(19, 23)",
+        "heard": false,
+        "visible": false
+      }
+    ],
+    "stairs": [
+      {
+        "bp": "StairsUp",
+        "at": "(59, 10)",
+        "seen": false
+      },
+      {
+        "bp": "StairsUp",
+        "at": "(10, 4)",
+        "seen": false
+      },
+      {
+        "bp": "StairsDown",
+        "at": "(40, 12)",
+        "seen": true
+      },
+      {
+        "bp": "StairsUp",
+        "at": "(39, 11)",
+        "seen": true
+      }
+    ],
+    "log": [
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved."
+    ]
+  },
+  "soundDepth5Arrival": {
+    "zone": "Overworld.10.11.5",
+    "tick": 280,
+    "hp": 40,
+    "at": "(35, 6)",
+    "foes": [
+      {
+        "id": "18659",
+        "bp": "PaleStalker",
+        "at": "(8, 11)",
+        "heard": true,
+        "visible": false
+      }
+    ],
+    "stairs": [
+      {
+        "bp": "StairsUp",
+        "at": "(35, 6)",
+        "seen": true
+      },
+      {
+        "bp": "StairsUp",
+        "at": "(59, 16)",
+        "seen": false
+      },
+      {
+        "bp": "StairsUp",
+        "at": "(4, 14)",
+        "seen": false
+      },
+      {
+        "bp": "StairsDown",
+        "at": "(40, 12)",
+        "seen": false
+      }
+    ],
+    "log": [
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved."
+    ]
+  },
+  "soundDepth5Menu": {
+    "tick": 290,
+    "state": "WorldActionMenuOpen",
+    "rows": [
+      {
+        "index": 0,
+        "label": "examine",
+        "command": "Examine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 1,
+        "label": "sound the ground (carries about 14 paces) [sounding rod]",
+        "command": "SoundGround",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      }
+    ]
+  },
+  "soundApproach590": {
+    "tick": 590,
+    "hp": 40,
+    "at": "(16, 11)",
+    "noise": 580,
+    "hunters": [
+      {
+        "id": "18659",
+        "at": "(6, 4)",
+        "hp": 50,
+        "state": "Wander",
+        "target": null,
+        "radius": 10,
+        "window": 1,
+        "visible": false
+      }
+    ]
+  },
+  "soundSilent600": {
+    "tick": 600,
+    "hp": 40,
+    "at": "(16, 11)",
+    "noise": 580,
+    "hunters": [
+      {
+        "id": "18659",
+        "at": "(7, 5)",
+        "hp": 50,
+        "state": "Wander",
+        "target": null,
+        "radius": 10,
+        "window": 1,
+        "visible": true
+      }
+    ]
+  },
+  "soundNearHunterMenu": {
+    "tick": 600,
+    "state": "WorldActionMenuOpen",
+    "rows": [
+      {
+        "index": 0,
+        "label": "examine",
+        "command": "Examine",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      },
+      {
+        "index": 1,
+        "label": "sound the ground (carries about 14 paces) [sounding rod]",
+        "command": "SoundGround",
+        "disabled": false,
+        "code": "",
+        "reason": ""
+      }
+    ]
+  },
+  "soundStrike610": {
+    "tick": 610,
+    "hp": 40,
+    "at": "(16, 11)",
+    "noise": 600,
+    "hunters": [
+      {
+        "id": "18659",
+        "at": "(9, 7)",
+        "hp": 50,
+        "state": "Chase",
+        "target": "3449",
+        "radius": 10,
+        "window": 1,
+        "visible": true
+      }
+    ]
+  },
+  "soundSaved610": {
+    "tick": 610,
+    "hp": 40,
+    "at": "(16, 11)",
+    "noise": 600,
+    "hunters": [
+      {
+        "id": "18659",
+        "at": "(9, 7)",
+        "hp": 50,
+        "state": "Chase",
+        "target": "3449",
+        "radius": 10,
+        "window": 1,
+        "visible": true
+      }
+    ]
+  },
+  "soundFresh610": {
+    "tick": 610,
+    "hp": 40,
+    "at": "(16, 11)",
+    "noise": 600,
+    "hunters": [
+      {
+        "id": "18659",
+        "at": "(9, 7)",
+        "hp": 50,
+        "state": "Chase",
+        "target": "3449",
+        "radius": 10,
+        "window": 1,
+        "visible": true
+      }
+    ]
+  },
+  "soundFreshRod": {
+    "zone": "Overworld.10.11.5",
+    "rod": "3457",
+    "player": "3449",
+    "last": 600,
+    "reading": "Open ground lies northwest, close.",
+    "log": [
+      "10|map (10,11) depth 1, at (40,12)|Open ground lies east, close.",
+      "150|map (10,11) depth 1, at (45,12)|Open ground lies east, close.",
+      "290|map (10,11) depth 5, at (34,6)|Open ground lies northeast, close. Something bored through the stone lies southeast, close. Dense stone lies south, middling.",
+      "600|map (10,11) depth 5, at (16,11)|Open ground lies northwest, close."
+    ]
+  },
+  "soundFreshSilent620": {
+    "tick": 620,
+    "hp": 40,
+    "at": "(16, 11)",
+    "noise": 600,
+    "hunters": [
+      {
+        "id": "18659",
+        "at": "(10, 8)",
+        "hp": 50,
+        "state": "Chase",
+        "target": "3449",
+        "radius": 10,
+        "window": 1,
+        "visible": true
+      }
+    ]
+  }
+}

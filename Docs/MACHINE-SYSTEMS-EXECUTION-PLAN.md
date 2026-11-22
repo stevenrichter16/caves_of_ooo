@@ -10,6 +10,18 @@
 
 ## Active handback continuation — November 21, 2026
 
+[Sounding/noise qualification](Verification/MachineSystems/SoundingHunter20261121/README.md):
+ordinary stairs/exploration reached natural depth5 PaleStalker18659. Silent600
+Wander/no target→paid rod strike610 acquires player/moves toward them; short
+hearing becomes remembered search. Fresh610HP40 retains hunter/target/rod4logs.
+No runtime edits/new tests/hush-strip/search-expiry proof. Archive
+`/private/tmp/coo-sounding-hunter-earned-20261121/741e3cb41b084fc69e0dcda33fef22b0`.
+Independent source/evidence0P1/P2; stopped/nullroot,84foreign/861normal unchanged.
+Next bounded correction: analogous bottle-coat/trough/unpick row caps; existing
+proofing workshop can provide actual crowded garment menu. Freight and ordinary
+bench-material supply remain open; no exposure population activation.
+
+
 [Posy menu access](Verification/MachineSystems/PosyMenuAccess20261121/README.md):
 removed frame8/bench12 candidate caps after four native RED failures;121/121
 focused GREEN. Actual formerly hidden fold placement, equal-quality refusal,

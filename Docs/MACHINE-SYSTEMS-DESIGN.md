@@ -1,3 +1,8 @@
+**November21 sounding/noise qualification:** [native receipt](Verification/MachineSystems/SoundingHunter20261121/README.md)
+proves an ordinary survey strike draws a naturally generated PaleStalker and
+fresh610HP40 retains its remembered target/rod log. Existing behavior, no runtime
+change; hush strips, search expiry and full resonator acceptance remain open.
+
 **November21 Posy access correction:** frame/bench candidate caps removed;
 [bounded receipt](Verification/MachineSystems/PosyMenuAccess20261121/README.md),
 121/121 focused native checks and actual finite frame placement/refusal→bench
