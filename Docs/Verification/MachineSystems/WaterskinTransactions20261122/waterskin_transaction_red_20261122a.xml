@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="39" result="Failed(Child)" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 13:06:17Z" end-time="2026-11-22 13:06:19Z" duration="2.3558175">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40575" result="Failed" site="Child" start-time="2026-11-22 13:06:17Z" end-time="2026-11-22 13:06:19Z" duration="2.355818" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49466" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40575" result="Failed" site="Child" start-time="2026-11-22 13:06:17Z" end-time="2026-11-22 13:06:19Z" duration="2.086562" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="58512" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49467" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40575" result="Failed" site="Child" start-time="2026-11-22 13:06:17Z" end-time="2026-11-22 13:06:19Z" duration="1.822013" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49468" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40575" result="Failed" site="Child" start-time="2026-11-22 13:06:17Z" end-time="2026-11-22 13:06:19Z" duration="1.502070" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31684" name="WaterskinTransactionTests" fullname="CavesOfOoo.Tests.WaterskinTransactionTests" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:19Z" duration="1.182714" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31701" name="AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.088186" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31699" name="AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack(False)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack(False)" methodname="AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1696161025" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.058635" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack (System.Boolean drink) [0x00042] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31700" name="AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack(True)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack(True)" methodname="AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="846737073" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.026913" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.AFailedWaterActionDoesNotPullAnIndependentlyDroppedSkinBackIntoThePack (System.Boolean drink) [0x00042] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31714" name="DirectServiceRefusesMalformedOrUnavailableParticipants" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.370516" total="12" passed="1" failed="11" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31702" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;actor-zone&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;actor-zone&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1307584924" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.026588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31703" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;actor-physics&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;actor-physics&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1009983182" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.026259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31704" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;actor-frozen&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;actor-frozen&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="437518048" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.028418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31705" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;actor-blocked&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;actor-blocked&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="471087708" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.025801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31706" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;skin-parent&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;skin-parent&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1898400730" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.025371" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31707" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;skin-physics&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;skin-physics&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1968666953" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.029116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31708" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;pack-parent&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;pack-parent&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="190936623" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.053802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31709" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;duplicate&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1867049621" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.026107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31710" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;stack&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;stack&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="802620713" result="Passed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.028601" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31711" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;status-parent&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;status-parent&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1882614515" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.025713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31712" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;effect-owner&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;effect-owner&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="2062761347" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.026039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31713" name="DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;zero-debt&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants(&quot;zero-debt&quot;)" methodname="DirectServiceRefusesMalformedOrUnavailableParticipants" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1616075090" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.027378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DirectServiceRefusesMalformedOrUnavailableParticipants (System.String fault) [0x0018c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31698" name="DrinkDebitUndoPreservesValidIndependentWaterAndCapacity" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DrinkDebitUndoPreservesValidIndependentWaterAndCapacity" methodname="DrinkDebitUndoPreservesValidIndependentWaterAndCapacity" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="2126105566" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.026620" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 4
+  But was:  3
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DrinkDebitUndoPreservesValidIndependentWaterAndCapacity () [0x0003e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:57
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31725" name="DrinkRevalidatesItsRecipientAfterOuterCallbacks" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DrinkRevalidatesItsRecipientAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.079940" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31722" name="DrinkRevalidatesItsRecipientAfterOuterCallbacks(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DrinkRevalidatesItsRecipientAfterOuterCallbacks(&quot;moved&quot;)" methodname="DrinkRevalidatesItsRecipientAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="2003369756" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.027247" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DrinkRevalidatesItsRecipientAfterOuterCallbacks (System.String fault) [0x0004c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31723" name="DrinkRevalidatesItsRecipientAfterOuterCallbacks(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DrinkRevalidatesItsRecipientAfterOuterCallbacks(&quot;replaced&quot;)" methodname="DrinkRevalidatesItsRecipientAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="23403059" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.026108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DrinkRevalidatesItsRecipientAfterOuterCallbacks (System.String fault) [0x0004c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31724" name="DrinkRevalidatesItsRecipientAfterOuterCallbacks(&quot;identity&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.DrinkRevalidatesItsRecipientAfterOuterCallbacks(&quot;identity&quot;)" methodname="DrinkRevalidatesItsRecipientAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="800473295" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.025602" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.DrinkRevalidatesItsRecipientAfterOuterCallbacks (System.String fault) [0x0004c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31696" name="FailedFillReturnsItsSourceDebitAlongsideIndependentWater" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FailedFillReturnsItsSourceDebitAlongsideIndependentWater" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.106695" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31692" name="FailedFillReturnsItsSourceDebitAlongsideIndependentWater(False,False)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FailedFillReturnsItsSourceDebitAlongsideIndependentWater(False,False)" methodname="FailedFillReturnsItsSourceDebitAlongsideIndependentWater" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="176106578" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.026955" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FailedFillReturnsItsSourceDebitAlongsideIndependentWater (System.Boolean pool, System.Boolean throwAfter) [0x00041] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31693" name="FailedFillReturnsItsSourceDebitAlongsideIndependentWater(False,True)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FailedFillReturnsItsSourceDebitAlongsideIndependentWater(False,True)" methodname="FailedFillReturnsItsSourceDebitAlongsideIndependentWater" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="501794027" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.025666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 4
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FailedFillReturnsItsSourceDebitAlongsideIndependentWater (System.Boolean pool, System.Boolean throwAfter) [0x0006e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31694" name="FailedFillReturnsItsSourceDebitAlongsideIndependentWater(True,False)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FailedFillReturnsItsSourceDebitAlongsideIndependentWater(True,False)" methodname="FailedFillReturnsItsSourceDebitAlongsideIndependentWater" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="464060189" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.027631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FailedFillReturnsItsSourceDebitAlongsideIndependentWater (System.Boolean pool, System.Boolean throwAfter) [0x00041] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31695" name="FailedFillReturnsItsSourceDebitAlongsideIndependentWater(True,True)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FailedFillReturnsItsSourceDebitAlongsideIndependentWater(True,True)" methodname="FailedFillReturnsItsSourceDebitAlongsideIndependentWater" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1230628512" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:18Z" duration="0.025544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 4
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FailedFillReturnsItsSourceDebitAlongsideIndependentWater (System.Boolean pool, System.Boolean throwAfter) [0x0006e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31721" name="FillRevalidatesItsSourceAfterOuterCallbacks" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:19Z" duration="0.202821" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31715" name="FillRevalidatesItsSourceAfterOuterCallbacks(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks(&quot;moved&quot;)" methodname="FillRevalidatesItsSourceAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="421207676" result="Failed" start-time="2026-11-22 13:06:18Z" end-time="2026-11-22 13:06:19Z" duration="0.025092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks (System.String fault) [0x0004d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31716" name="FillRevalidatesItsSourceAfterOuterCallbacks(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks(&quot;frozen&quot;)" methodname="FillRevalidatesItsSourceAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1800629352" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.035838" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks (System.String fault) [0x0004d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31717" name="FillRevalidatesItsSourceAfterOuterCallbacks(&quot;mixed&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks(&quot;mixed&quot;)" methodname="FillRevalidatesItsSourceAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="190236096" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.064774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks (System.String fault) [0x0004d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31718" name="FillRevalidatesItsSourceAfterOuterCallbacks(&quot;broken&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks(&quot;broken&quot;)" methodname="FillRevalidatesItsSourceAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1455878813" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.024915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks (System.String fault) [0x0004d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31719" name="FillRevalidatesItsSourceAfterOuterCallbacks(&quot;part-owner&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks(&quot;part-owner&quot;)" methodname="FillRevalidatesItsSourceAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="906718737" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.025805" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks (System.String fault) [0x0004d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31720" name="FillRevalidatesItsSourceAfterOuterCallbacks(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks(&quot;replaced&quot;)" methodname="FillRevalidatesItsSourceAfterOuterCallbacks" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1454591107" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.025446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.FillRevalidatesItsSourceAfterOuterCallbacks (System.String fault) [0x0004d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:95
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31690" name="FinalRemovalCallbackThrowRetainsItsReplacementExposure" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.FinalRemovalCallbackThrowRetainsItsReplacementExposure" methodname="FinalRemovalCallbackThrowRetainsItsReplacementExposure" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1273047952" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.026509" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.Debt (System.Int32 n) [0x00027] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:14
+at CavesOfOoo.Tests.WaterskinTransactionTests.FinalRemovalCallbackThrowRetainsItsReplacementExposure () [0x00062] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:33
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31685" name="IndependentCureAndOuterVetoRestoreOnlyTheOneRelievedLevel" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.IndependentCureAndOuterVetoRestoreOnlyTheOneRelievedLevel" methodname="IndependentCureAndOuterVetoRestoreOnlyTheOneRelievedLevel" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="453426390" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.025649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  3
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.Debt (System.Int32 n) [0x00027] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:14
+at CavesOfOoo.Tests.WaterskinTransactionTests.IndependentCureAndOuterVetoRestoreOnlyTheOneRelievedLevel () [0x00033] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:21
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31691" name="IndependentHealthAndUnrelatedPenaltySurviveFailedDrink" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.IndependentHealthAndUnrelatedPenaltySurviveFailedDrink" methodname="IndependentHealthAndUnrelatedPenaltySurviveFailedDrink" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1344635895" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.025709" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 38
+  But was:  40
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.IndependentHealthAndUnrelatedPenaltySurviveFailedDrink () [0x00044] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:39
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31730" name="PartialReliefAndChargesRoundTripTogether" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.PartialReliefAndChargesRoundTripTogether" methodname="PartialReliefAndChargesRoundTripTogether" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1136482473" result="Passed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.035975" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31697" name="RecipientCreditUndoPreservesValidIndependentWaterAndCapacity" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.RecipientCreditUndoPreservesValidIndependentWaterAndCapacity" methodname="RecipientCreditUndoPreservesValidIndependentWaterAndCapacity" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1058488139" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.026473" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.RecipientCreditUndoPreservesValidIndependentWaterAndCapacity () [0x00035] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31689" name="ReplacementExposureSurvivesRollbackWithMatchingPenalties" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.ReplacementExposureSurvivesRollbackWithMatchingPenalties" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.078225" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31686" name="ReplacementExposureSurvivesRollbackWithMatchingPenalties(0)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.ReplacementExposureSurvivesRollbackWithMatchingPenalties(0)" methodname="ReplacementExposureSurvivesRollbackWithMatchingPenalties" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1362054799" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.025782" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.Debt (System.Int32 n) [0x00027] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:14
+at CavesOfOoo.Tests.WaterskinTransactionTests.ReplacementExposureSurvivesRollbackWithMatchingPenalties (System.Int32 initial) [0x00033] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31687" name="ReplacementExposureSurvivesRollbackWithMatchingPenalties(1)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.ReplacementExposureSurvivesRollbackWithMatchingPenalties(1)" methodname="ReplacementExposureSurvivesRollbackWithMatchingPenalties" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1897767408" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.025592" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.Debt (System.Int32 n) [0x00027] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:14
+at CavesOfOoo.Tests.WaterskinTransactionTests.ReplacementExposureSurvivesRollbackWithMatchingPenalties (System.Int32 initial) [0x00033] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31688" name="ReplacementExposureSurvivesRollbackWithMatchingPenalties(2)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.ReplacementExposureSurvivesRollbackWithMatchingPenalties(2)" methodname="ReplacementExposureSurvivesRollbackWithMatchingPenalties" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="631215551" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.026001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 3
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.Debt (System.Int32 n) [0x00027] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:14
+at CavesOfOoo.Tests.WaterskinTransactionTests.ReplacementExposureSurvivesRollbackWithMatchingPenalties (System.Int32 initial) [0x00033] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31726" name="UnsupportedConsumptionOfProvisionalFillCreditIsBoundedAndDiagnosed" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.UnsupportedConsumptionOfProvisionalFillCreditIsBoundedAndDiagnosed" methodname="UnsupportedConsumptionOfProvisionalFillCreditIsBoundedAndDiagnosed" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="842732934" result="Failed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.025159" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WaterskinTransactionTests.UnsupportedConsumptionOfProvisionalFillCreditIsBoundedAndDiagnosed () [0x0002e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WaterskinTransactionTests.cs:110
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31729" name="ValidExhaustionAndInfiniteSourceFillsRemainAvailable" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.ValidExhaustionAndInfiniteSourceFillsRemainAvailable" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.059167" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31727" name="ValidExhaustionAndInfiniteSourceFillsRemainAvailable(False)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.ValidExhaustionAndInfiniteSourceFillsRemainAvailable(False)" methodname="ValidExhaustionAndInfiniteSourceFillsRemainAvailable" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="1704643252" result="Passed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.030941" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31728" name="ValidExhaustionAndInfiniteSourceFillsRemainAvailable(True)" fullname="CavesOfOoo.Tests.WaterskinTransactionTests.ValidExhaustionAndInfiniteSourceFillsRemainAvailable(True)" methodname="ValidExhaustionAndInfiniteSourceFillsRemainAvailable" classname="CavesOfOoo.Tests.WaterskinTransactionTests" runstate="Runnable" seed="659107265" result="Passed" start-time="2026-11-22 13:06:19Z" end-time="2026-11-22 13:06:19Z" duration="0.027576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

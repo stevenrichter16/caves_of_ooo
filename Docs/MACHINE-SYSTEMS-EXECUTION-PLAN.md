@@ -10,6 +10,19 @@
 
 ## Active handback continuation — November 21, 2026
 
+November22 [carried-water transaction correction](Verification/MachineSystems/WaterskinTransactions20261122/README.md):
+shared transient relief/quantity receipts, current source/recipient validation,
+and native skin snapshot ownership preserve independent injuries/effects/drops
+without free water. Spring ownership, rehomed effects and callback paralysis
+review gaps have native RED; final288 GREEN incl52new. Existing skin publication/
+audio tests now require gameplay rejection/refund, while flask/visibility policy
+stays. Actual partial20→fill30→away50→drink60 leaves skin2/debt1/stats17; fresh60,
+menu cancellation and full two-page reader preserve exact data/HP40. No global
+migration/exposure/NPC/strain or full shared-hydration acceptance. Main stopped/
+rootnull;84foreign/861normal unchanged. NEXT: batch current Mac candidate at this
+water milestone, then chronological exposure/source verification and protective
+NPC behavior before enrollment. Full twelve-machine gates remain open.
+
 November 22 [isolated finite-dose prototype](Verification/MachineSystems/MeteredHydration20261122/README.md):
 default-false source policy; only new trial cisterns opt in. One water unit buys
 one Parched level, direct batches in one paid action; legacy/infinite stay free/
@@ -19,8 +32,9 @@ Actual separate initial10 branches: small1→debt2/fresh20, thenneeded2→clear3
 direct3→clear20/fresh20; fill3→carryaway→three drinks50/60/70→clear. Cancel
 preventive quote80 is free; actual viper damage/poison retained, fresh80HP36.
 No NPC/exposure/production-source migration or shared-hydration acceptance.
-Next REQUIRED: waterskin fill/drink delta undo, generic stat-snapshot boundary
-and commit validation before chronology/NPC enrollment. Main stopped/rootnull,
+At that prototype baseline the next gate was waterskin fill/drink delta undo,
+generic stat-snapshot boundary and commit validation; the newer correction
+above closes that bounded gate before chronology/NPC enrollment. Main stopped/rootnull,
 84foreign/861normal unchanged; current Macf8 predates both water increments.
 
 November 22 [consistent water-source admission](Verification/MachineSystems/WellSourceConsistency20261122/README.md):

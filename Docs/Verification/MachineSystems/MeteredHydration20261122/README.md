@@ -119,7 +119,11 @@ Archives, each with game9c8e062b087341acb5c7e5f81250eb78:
 10/20/20/80 respectively. Copies are controlled trial branches; no reapplication
 of thirst/water occurred mid-play. Current Macf8 predates this increment.
 
-## Required remaining gate
+## Required remaining gate at this prototype baseline
+
+November22 follow-up: [carried-water transaction correction](../WaterskinTransactions20261122/README.md)
+closes the bounded inherited skin gap described in this historical1f54 prototype
+receipt. Whole shared hydration/exposure and production migration remain gated.
 
 Acceptance is limited to the isolated DIRECT-dose primitive and ordinary
 successful direct/container quantity equivalence. The shared hydration foundation

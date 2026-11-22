@@ -57,10 +57,10 @@ namespace CavesOfOoo.Tests
                 if(change=="refund")skin.GetPart<WaterskinPart>().Charges=2;
                 else Assert.True(Zone.MoveEntity(Actor,10,9));
             };
-            Assert.True(Act(skin,"DrinkWaterskin"),"presentation does not veto existing callback semantics");
-            Assert.AreEqual(1,callbacks);Assert.IsNull(Actor.GetEffect<ParchedEffect>());
-            Assert.AreEqual(change=="refund"?2:1,Units(skin));Assert.AreEqual(0,Audio.AcceptedSoundCount);
-            hook.Removed=()=>callbacks++;Assert.True(Zone.MoveEntity(Actor,10,10));Actor.ApplyEffect(new ParchedEffect());
+            Assert.False(Act(skin,"DrinkWaterskin"),"gameplay revalidation refuses the changed recipient; presentation alone is not a veto");
+            Assert.AreEqual(1,callbacks);Assert.AreEqual(1,Actor.GetEffect<ParchedEffect>().Stacks);
+            Assert.AreEqual(change=="refund"?3:2,Units(skin));Assert.AreEqual(0,Audio.AcceptedSoundCount);
+            hook.Removed=()=>callbacks++;Assert.True(Zone.MoveEntity(Actor,10,10));
             Assert.True(Act(skin,"DrinkWaterskin"));Assert.AreEqual(2,callbacks);One("WaterDrink");
         }
         [TestCase(false)][TestCase(true)] public void ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool(bool exhaust)
@@ -121,11 +121,12 @@ namespace CavesOfOoo.Tests
                 if(change=="vessel-alias")skin.GetPart<PhysicsPart>().InInventory=null;
                 if(change=="actor-hidden")Actor.GetPart<RenderPart>().Visible=false;
             };
-            Assert.True(Act(skin,"FillWaterskin"),"presentation proof does not change gameplay success");
-            Assert.AreEqual(3,Units(skin)); Assert.AreEqual(0,Audio.AcceptedSoundCount);
+            bool invalid=change=="source-moved"||change=="actor-moved"||change=="vessel-alias";
+            Assert.AreEqual(!invalid,Act(skin,"FillWaterskin"),"only gameplay/custody changes veto; hidden presentation alone still commits");
+            Assert.AreEqual(invalid?0:3,Units(skin)); Assert.AreEqual(0,Audio.AcceptedSoundCount);
             observer.After=null; pool.GetPart<RenderPart>().Visible=true; Actor.GetPart<RenderPart>().Visible=true;
             Zone.MoveEntity(pool,11,10); Zone.MoveEntity(Actor,10,10); skin.GetPart<PhysicsPart>().InInventory=Actor;
-            Assert.True(Act(skin,"DrinkWaterskin")); One("WaterDrink");
+            Assert.True(Act(skin,invalid?"FillWaterskin":"DrinkWaterskin")); One(invalid?"WaterFill":"WaterDrink");
         }
         [TestCase(false)][TestCase(true)] public void CommittedPlayerVesselWorkMayFinishInItsMenu(bool menu)
         {

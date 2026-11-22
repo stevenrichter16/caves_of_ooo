@@ -79,13 +79,16 @@ namespace CavesOfOoo.Tests
                 else if(mutation=="part"){source.RemovePart(pool);source.AddPart(new LiquidPoolPart{LiquidId="water",Volume=3});Assert.AreNotSame(pool,source.GetPart<LiquidPoolPart>());}
                 else if(mutation=="moved"){Assert.True(zone.MoveEntity(source,12,10));Assert.AreEqual((12,10),zone.GetEntityPosition(source));}
                 else{pool.ParentEntity=actor;Assert.AreNotSame(source,pool.ParentEntity);}
-                dirty.Clear();tx.Commit();Assert.IsEmpty(dirty);
+                dirty.Clear();
+                if(skin){Assert.Throws<InvalidOperationException>(()=>tx.Commit());tx.Rollback();Assert.AreEqual(3,pool.Volume);Assert.Zero(Carried(true));}
+                else tx.Commit();
+                Assert.IsEmpty(dirty);
             }finally{tx.Rollback();}
         }
         [TestCase(false)][TestCase(true)] public void ExistingPouredPoolStillRetiresThroughItsExistingLifecycle(bool skin)
         {Vessel(skin);source.BlueprintName=LiquidVesselService.PoolBlueprint;Assert.True(Fill(skin));Assert.Zero(pool.Volume);Assert.IsNull(zone.GetEntityCell(source));Assert.True(dirty.Any(d=>d.reason=="LiquidVessel.SourceExhausted"));}
         [TestCase(false)][TestCase(true)] public void MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(bool skin)
-        {Vessel(skin);source.BlueprintName=LiquidVesselService.PoolBlueprint;var tx=new InventoryTransaction();try{Assert.True(Fill(skin,tx));Assert.True(zone.MoveEntity(source,12,10));Assert.AreEqual((12,10),zone.GetEntityPosition(source));dirty.Clear();tx.Commit();Assert.AreSame(zone.GetCell(12,10),zone.GetEntityCell(source));Assert.AreEqual((12,10),zone.GetEntityPosition(source));Assert.IsEmpty(dirty);}finally{tx.Rollback();}}
+        {Vessel(skin);source.BlueprintName=LiquidVesselService.PoolBlueprint;var tx=new InventoryTransaction();try{Assert.True(Fill(skin,tx));Assert.True(zone.MoveEntity(source,12,10));Assert.AreEqual((12,10),zone.GetEntityPosition(source));dirty.Clear();if(skin){Assert.Throws<InvalidOperationException>(()=>tx.Commit());tx.Rollback();Assert.AreEqual(3,pool.Volume);Assert.Zero(Carried(true));}else tx.Commit();Assert.AreSame(zone.GetCell(12,10),zone.GetEntityCell(source));Assert.AreEqual((12,10),zone.GetEntityPosition(source));Assert.IsEmpty(dirty);}finally{tx.Rollback();}}
         [Test] public void InfiniteWellWithoutFinitePoolDoesNotEmitFiniteVolumeInvalidation()
         {Vessel(true);source.RemovePart(pool);source.AddPart(new WellPart());Assert.True(Fill(true));Assert.AreEqual(3,Carried(true));Assert.IsEmpty(dirty);}
     }

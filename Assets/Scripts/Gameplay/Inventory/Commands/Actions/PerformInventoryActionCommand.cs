@@ -58,12 +58,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var actor = context.Actor;
             var zone = context.Zone;
 
-            // Native well drinking owns its effect/stat delta undo. A blanket
-            // stat snapshot would erase independent exposure or other changes
-            // after those deltas are restored. Keep the item custody snapshot.
+            // Native water commands own quantity/effect deltas. A skin action
+            // moves no custody; blanket stats/item restoration would erase an
+            // independent injury or pull a forced drop back into the pack.
             var well = _item.GetPart<WellPart>();
             bool wellStatReceipt = WellDrinkingService.IsDrinkCommand(_actionCommand) && well?.ParentEntity == _item;
-            var snapshot = CaptureSnapshot(context, _item, wellStatReceipt);
+            bool skinReceipt = WaterVesselService.IsWaterCommand(_actionCommand) && _item.GetPart<WaterskinPart>()?.ParentEntity == _item;
+            var snapshot = skinReceipt ? null : CaptureSnapshot(context, _item, wellStatReceipt);
             if (snapshot != null)
             {
                 transaction.Do(

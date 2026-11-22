@@ -19,23 +19,7 @@ namespace CavesOfOoo.Core
         static bool IsMetered(WellPart well) => well.MeteredHydration
             && (well.ParentEntity.GetPart<LiquidPoolPart>() != null || well.Stock >= 0);
         static int Water(WellPart well) => well.ParentEntity.GetPart<LiquidPoolPart>()?.Volume ?? well.Stock;
-        static bool ValidMeteredDebt(Entity actor)
-        {
-            var effects = actor.GetPart<StatusEffectsPart>(); var thirst = actor.GetEffect<ParchedEffect>();
-            return (effects == null || effects.ParentEntity == actor)
-                && (thirst == null || thirst.Owner == actor && thirst.Stacks >= 1 && thirst.Stacks <= ParchedEffect.MaxStacks);
-        }
-        static int RestoreDebit(int current, int debit, bool endlessAllowed)
-        {
-            if (endlessAllowed && current == -1) return current;
-            long restored = (long)current + debit;
-            if (current < 0 || restored > int.MaxValue)
-            {
-                CavesOfOoo.Diagnostics.Diag.Record("event", "WaterUndoBoundary", payload: new { current, debit });
-                return current;
-            }
-            return (int)restored;
-        }
+        static bool ValidMeteredDebt(Entity actor) => HydrationReliefReceipt.ValidContext(actor);
         internal static void AddAction(Entity actor, WellPart well, Zone zone, InventoryActionList rows)
         {
             if (rows == null || !Available(actor, well, zone)) return;
@@ -52,7 +36,8 @@ namespace CavesOfOoo.Core
         internal static bool Available(Entity actor, WellPart well, Zone zone)
         {
             var owner = well?.ParentEntity;
-            return WorldResourceActions.Nearby(actor, owner, zone) && SourceAvailable(well, zone);
+            return WorldResourceActions.Nearby(actor, owner, zone) && SourceAvailable(well, zone)
+                && HydrationReliefReceipt.ValidContext(actor) && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true;
         }
         // Source-only admission is shared with filling. Literal fill sources may
         // lack Physics; direct drinking still requires Nearby's physical owner.
@@ -84,48 +69,31 @@ namespace CavesOfOoo.Core
             {
                 var owner = well.ParentEntity;
                 if (!tx.TryClaim(actor, actor, command) || !tx.TryClaim(owner, actor, command)) return false;
-                var effects = actor.GetPart<StatusEffectsPart>(); var thirst = actor.GetEffect<ParchedEffect>();
-                int index = -1, relieved = 0; string cause = thirst?.LastRemovalCause;
-                if (thirst != null) for (int i = 0; i < effects.EffectCount; i++) if (effects.GetAllEffects()[i] == thirst) index = i;
+                var thirst = actor.GetEffect<ParchedEffect>();
                 var pool = owner.GetPart<LiquidPoolPart>(); var sourceCell = zone.GetEntityCell(owner); var actorCell = zone.GetEntityCell(actor);
                 int volume = pool?.Volume ?? 0, stock = well.Stock;
                 tx.Do(null, () =>
                 {
-                    if (pool != null) pool.Volume = RestoreDebit(pool.Volume, units, false);
-                    else if (stock > 0) well.Stock = RestoreDebit(well.Stock, units, true);
-                    if (relieved == 0) return;
-                    var current = actor.GetEffect<ParchedEffect>(); int restored = relieved;
-                    if (current == null) { thirst.Stacks = relieved; thirst.LastRemovalCause = cause; effects.RestoreRemovedEffectForInventoryUndo(thirst, index); }
-                    else { restored = Math.Max(0, Math.Min(relieved, ParchedEffect.MaxStacks - current.Stacks)); current.Stacks += restored; }
-                    if (actor.GetStat("Strength") is Stat strength) strength.Penalty += restored * ParchedEffect.PenaltyPerStack;
-                    if (actor.GetStat("Agility") is Stat agility) agility.Penalty += restored * ParchedEffect.PenaltyPerStack;
+                    if (pool != null) pool.Volume = WaterQuantityUndo.Restore(pool.Volume, -units);
+                    else if (stock > 0) well.Stock = WaterQuantityUndo.Restore(well.Stock, -units, endlessAllowed: true);
                 });
                 if (pool != null) pool.Volume -= units;
                 else if (well.Stock > 0) well.Stock -= units;
-                if (thirst != null)
-                {
-                    int relief = metered ? Math.Min(units, stacks) : stacks;
-                    if (relief == stacks) effects.RemoveEffectWithReceipt(thirst, null, () => relieved = relief);
-                    else
-                    {
-                        thirst.Stacks -= relief; relieved = relief;
-                        if (actor.GetStat("Strength") is Stat strength) strength.Penalty -= relief * ParchedEffect.PenaltyPerStack;
-                        if (actor.GetStat("Agility") is Stat agility) agility.Penalty -= relief * ParchedEffect.PenaltyPerStack;
-                    }
-                }
+                if (!HydrationReliefReceipt.TryApply(actor, metered ? units : ParchedEffect.MaxStacks, tx, out var relief)) return false;
                 // Expected exhaustion is valid. Recheck context without asking
                 // our just-paid source to still hold another drink.
-                tx.BeforeCommit(() => WorldResourceActions.Nearby(actor, owner, zone) && SourceAvailable(well, zone, false)
+                tx.BeforeCommit(() => WorldResourceActions.Nearby(actor, owner, zone) && SourceAvailable(well, zone, false) && HydrationReliefReceipt.ValidContext(actor)
+                    && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true
                     && !TentRightOath.RefusesWater(actor, zone) && well.MeteredHydration == configured && IsMetered(well) == metered
                     && zone.GetEntityCell(actor) == actorCell && zone.GetEntityCell(owner) == sourceCell
                     && owner.GetPart<LiquidPoolPart>() == pool
                     && (pool != null ? pool.Volume == volume - units : well.Stock == stock - (stock > 0 ? units : 0)));
                 tx.AfterCommit(() => LiquidVesselService.PublishCommittedPoolDraw(zone, owner, pool, sourceCell));
                 tx.AfterCommit(() => MessageLog.Add(metered ? "You drink " + units + (units == 1 ? " unit" : " units") + " of water."
-                    + (relieved == 0 ? "" : " (" + relieved + (relieved == 1 ? " level" : " levels") + " of parch relieved.)")
+                    + (relief.Relieved == 0 ? "" : " (" + relief.Relieved + (relief.Relieved == 1 ? " level" : " levels") + " of parch relieved.)")
                     : thirst != null ? "You draw cool water and drink until the parch lets go." : "You drink. The well water is cool."));
                 tx.AfterCommit(() => CavesOfOoo.Diagnostics.Diag.Record("furniture", "WaterDrawn", actor, owner,
-                    new { curedParched = thirst != null && relieved == stacks, relievedStacks = relieved, metered,
+                    new { curedParched = thirst != null && relief.Relieved == stacks, relievedStacks = relief.Relieved, metered,
                         finiteUnitsSpent = pool != null || stock > 0 ? units : 0, stockLeft = well.Stock }));
                 if (own) tx.Commit(); return true;
             }

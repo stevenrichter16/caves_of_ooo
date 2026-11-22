@@ -1,13 +1,22 @@
 # Shared Beating exposure: bounded proposed slice
 
+November22 [carried-water transaction follow-up](Verification/MachineSystems/WaterskinTransactions20261122/README.md)
+closes the bounded waterskin rollback/stat/custody/commit gap identified below:
+shared actual-relief/quantity receipts and exact participants, native288 GREEN
+including52new, actual partial fill/away-drink/fresh60/cancel/full reader. Historical
+prototype limits below describe its earlier source. Whole shared hydration is
+still unaccepted: other hydration paths/sun strain, chronology, protection and NPC
+safety remain gated. No source migration, exposure enrollment or new time policy.
+
 November22 [isolated direct-dose primitive](Verification/MachineSystems/MeteredHydration20261122/README.md)
 implements WellPart.MeteredHydration defaultfalse, source-level finite unit/stack
 parity and a quoted paid batch. Only new trial owners opt in; legacy/infinite
 remain free/full. Native172 distinct GREEN/final39 and actual partial/direct/
 carried branches/fresh20/80 qualify that limited prototype. Shared hydration is
-NOT accepted: unchanged waterskin quantity/effect delta undo, independent stat
-snapshot preservation and source/recipient commit validation must be corrected
-before production migration or exposure/NPC activation. No sun strain reset yet.
+NOT accepted. At that prototype baseline, waterskin quantity/effect delta undo,
+independent stat snapshot preservation and source/recipient commit validation
+were the next gate; the newer correction above closes that bounded prerequisite.
+Production migration/exposure/NPC activation remain gated. No sun strain reset yet.
 
 November22 prerequisite correction: [well source/transaction receipt](Verification/MachineSystems/WellSourceConsistency20261122/README.md)
 aligns phase/mixing/fault/existing-oath admission between direct and skin draws,
@@ -56,7 +65,7 @@ or settlement-sustainability evidence.
 | `RestSystem`, `WorldMapTravelCostPart` | Rest and map movement can advance the clock outside ordinary actor-energy ticks. Map movement adds10 through AfterMove before the normal paid-turn path; do not infer total cost from that constant alone. Transactional rest advances only after commit. |
 | `ShadePart`, `Body`, `EquipmentChangeBus` | Real installed shade geometry, actual worn slots, monotonic equipment version. The bus is a version bump, NOT an existing after-commit subscriber event. Validate actual equipment; a failed equip/undo must not cache protection. |
 | `ParchedEffect`, `TonicPart`, companion care | Persistent1–3 stacks, −1 Strength/Agility each. Currently standing on a water-family tile cures everything; drinking tonics/care cure one. These recovery paths need a shared, transactional normalization for enrolled actors. |
-| `WaterskinPart`, `WaterVesselService` | Capacity3, charge-spending drink, finite source transfers and rollback. One charge relieves one stack. No body-water reservoir or exposure integration exists. |
+| `WaterskinPart`, `WaterVesselService` | Capacity3, one-charge/one-level relief, current finite source transfers and owned delta/commit receipts shared with wells. Partial native save/reload qualified; no body-water reservoir or exposure integration. |
 | `WellPart`, `WellDrinkingService` | Ordinary/unopted sources still spend ONE unit for full Parched relief. Isolated MeteredHydration sources now batch one unit per relieved level in one paid action; mode/quantity/debt quotes and direct delta undo are qualified. Source migration/shared hydration remain gated above. |
 | `TentRightOath.RefusesWater` | Existing player oathbreaker refusal; it explicitly checks Player. It is not a general permission/ownership policy for all NPC sources. |
 | `AIBehaviorPart`, goals, `FindPath`, terrain weights | Shared movement and finite danger costs. No shade/thirst planning. AIWellVisitor randomly walks beside literal Well and does not drink or recognize a cistern. |

@@ -1,10 +1,20 @@
+**November22 carried-water transaction prerequisite:** [receipt](Verification/MachineSystems/WaterskinTransactions20261122/README.md)
+adds shared transient relief/quantity undo and source/recipient commit guards,
+without tariffs/save-field/population changes. Native288 GREEN incl52new, actual
+partial fill/away-drink/fresh60/cancel/full reader qualify this bounded correction.
+Independent valid state/custody survives refusal; unsupported raw provisional-
+credit consumption is bounded and diagnosed. Whole hydration/exposure and all
+twelve full-machine gates remain open. Batch a current Mac candidate at this
+water milestone, then chronology and protective NPC prerequisites.
+
 **November22 isolated finite-dose prototype:** [receipt](Verification/MachineSystems/MeteredHydration20261122/README.md)
 adds a saved default-false source policy, truthful finite direct batches and
 quote/commit/owned-delta safeguards. Native172 distinct GREEN/final39, actual
 separate initial-debt direct/partial/carried alternatives and fresh20/80 qualify
-the bounded primitive. Production sources remain legacy; shared hydration is
-blocked on waterskin delta/commit/stat-snapshot corrections before exposure/NPC
-enrollment. All twelve complete-machine dependency and acceptance statuses below
+the bounded primitive. Production sources remain legacy. At this prototype
+baseline, waterskin delta/commit/stat-snapshot corrections blocked progression;
+the newer correction above closes that bounded prerequisite. Exposure/NPC
+enrollment and whole shared hydration remain unaccepted. All twelve complete-machine dependency and acceptance statuses below
 remain unchanged; current Macf8 excludes both water increments.
 
 **November 22 water-source prerequisite:** [correction receipt](Verification/MachineSystems/WellSourceConsistency20261122/README.md)
