@@ -111,7 +111,7 @@ The post and the range only place objects and call creatures through the ordinar
 
 ## 7. Honest limits and what is not done
 
-- Not played in the Editor. Strengths and costs (35, 100 turns, 300 cap, 25, 4 units, 2 clay) are proposals.
+- Bounded Editor coat/trough/equipment/reload checks are now recorded in the November21 receipt above, with [Posy coat+lacquer integration](Verification/MachineSystems/PosyBenchIntegration20261121/README.md). This does not qualify all hazards/elements or balance; strengths and costs (35, 100 turns, 300 cap, 25, 4 units, 2 clay) remain provisional.
 - The reagent level is the only thing that scales: a better reagent makes more coats, never a stronger one. Reagent properties other than the element (volatile, combustible, toxic, sweet) have no effect on proofing yet, so every reagent of an element is the same except in coats per reagent.
 - Status dampening applies to Burning, Frozen, Electrified and Acidic. It does not touch poison, bleeding, the Beating's glare (the awning's job) or steam contact (which already checks heat immunity itself).
 - The explicit rollback of a replaced coat is also covered by the world receipt in these tests, so the undo closure is not separately pinned.
@@ -156,5 +156,5 @@ The element table (`Proofing.json`) carries the `Collects`, `SourceTile` and `So
 
 **Tests.** `SettlingTrayTests`, run against the real set-down and gather verbs, the Full reader and a save round trip: element table and reagent properties, sources and what is not one (poured pools, creatures, fuelled fires, chilled or cooled vents, dry pools, unnamed liquids), nearest and tie-breaking, the shared and finite stock, every source blueprint's catch pressing into the right proofing, the rollback of an interrupted gather, a full pack, taking the tray up, the mixing rule, the reader and the rows, make camp, the workshop having a source for each element, one stock for a whole multi-cell pool (trays at three edges, a tray moved along the shore, the anchor cell drawn dry, two pools, two elements side by side), a reader that promises exactly what the gather gives (including a source of capacity three nobody has drawn on), a brewed tonic and a stack of free items staying unsellable, and a look that creates no entity. `ProofingTroughTests` adds the unpick cases (worn and carried, coat kept, interruption, stale or foreign commands, crowded-list access and exact late-item removal). Mutation and review results are in MACHINE-INVENTED-USES.md section 3r.
 
-**Honest limits.** Not played in the Editor. Cold cannot be caught on the surface until a surface cold source exists or underground set-down is allowed (PB7). Acid is caught in the Sodden only. Timings (half a day, four held, 3 to 5 stock, one a day) are proposals. Wording is placeholder pending voice review.
+**Honest limits.** Settling-tray catching has not been played in the Editor. Cold cannot be caught on the surface until a surface cold source exists or underground set-down is allowed (PB7). Acid is caught in the Sodden only. Timings (half a day, four held, 3 to 5 stock, one a day) are proposals. Wording is placeholder pending voice review.
 

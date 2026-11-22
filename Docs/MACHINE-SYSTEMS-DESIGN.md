@@ -1,3 +1,8 @@
+**November21 Posy bench integration:** [native receipt](Verification/MachineSystems/PosyBenchIntegration20261121/README.md)
+qualifies successful worn/late carried lacquer, exact finite resin/stack ownership,
+shared coat+lacquer two-slot refusal and fresh390HP400. Existing behavior; no new
+runtime/test changes, no ordinary acquisition/sign/hazard/full-machine acceptance.
+
 **November21 current Mac candidate:** [47761ba77 receipt](Verification/MachineSystems/MacCandidate47761ba77/README.md)
 includes finite fuel and both menu fixes, universal0errors5warnings and actual
 boot/render. Packaged input/actions/reload unverified; no change to accepted

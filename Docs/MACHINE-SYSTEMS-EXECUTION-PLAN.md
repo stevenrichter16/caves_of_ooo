@@ -10,6 +10,21 @@
 
 ## Active handback continuation — November 21, 2026
 
+Newest [Posy bench integration](Verification/MachineSystems/PosyBenchIntegration20261121/README.md)
+qualifies successful native lacquer, crowded late bench work and shared garment
+slots. Earned workshop160→ordinarytravelPosy320; cheapbrightseed+moss350→370
+earn8regard. WorncoatedWard lacquer370→380/resin8→7/ArmorAV0→1/Cold35 kept;
+third-slot sign refusal atlate40free. LateplainWard19 lacquer380→390/resin7→6,
+exactsplit/no duplicatewornbonus. Fullreader andfresh390HP400 keep allowners,
+frame200200/PaidPoints4/regard8/two-treatment limit. Fixture supplies, no ordinary
+acquisition/sign/hazard/higher-tier acceptance. Independent source/evidence0P1/P2;
+mainstopped/nullroot/seed0,84foreign/861normal hashes unchanged. Archive
+`/private/tmp/coo-posy-bench-integrated-earned-20261121/8ab6a6384c2a44deb8b3a68303809d8f`.
+No runtime changes/new tests; Mac477 alreadycontains behavior. Next: freight,
+ordinary resin/quartz supply and consistent proofing flask destination access, then
+gated shared exposure/NPC survival trial. Keep hourly program ACTIVE.
+
+
 Newest package [47761ba77 Mac candidate](Verification/MachineSystems/MacCandidate47761ba77/README.md)
 includes both menu fixes and finite fuel: universal arm64/x86_64,59.76s,0errors/
 5samewarnings; actual own-process boot/chooser/world/HUD. Native OS input access
