@@ -10,6 +10,12 @@
 
 ## Active handback continuation — November 21, 2026
 
+Later native [spring-trap and surface-rod checks](Verification/MachineSystems/SpringTrapPlay20261121/README.md)
+verified surface refusal without time/log changes, charge-on-brine shock/stun,
+fire-on-bare-ground countercase, no retrigger, and fresh armed/spent persistence.
+These are bounded fixture checks with remaining reaction/NPC/Grove gates; no
+runtime change, complete-machine acceptance or current Mac delivery follows.
+
 The user's later [Beating environment investigation](BEATING-ENVIRONMENT-AUDIT-2026-11-21.md)
 confirmed native player-only glare versus shared fire/material effects, and the
 missing NPC sun/shelter/water response. Generalizing exposure through per-actor

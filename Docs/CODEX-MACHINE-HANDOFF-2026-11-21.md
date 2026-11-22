@@ -2,6 +2,18 @@
 
 ## Resumed continuation — November 21 evening
 
+Latest bounded native play: [spring-trap/surface-rod receipt](Verification/MachineSystems/SpringTrapPlay20261121/README.md).
+Surface rod disabled reason/Enter refusal stayed at1100 with empty log. A loaded
+charge trap on brine survived fresh armed Continue, shocked/stunned the player
+and was consumed; a fire trap on bare grass was consumed without direct damage
+or Burning. Re-entry did not retrigger; fresh spent Continue320 preserved both
+consumptions, root7/moss7 andHP367. Workshop's authored400HP/Strength70 is a fixture,
+not normal-player balance/acquisition evidence. Forced stun turns are disclosed.
+Archives: `/private/tmp/coo-spring-trap-armed-earned-20261121` and
+`/private/tmp/coo-spring-traps-spent-earned-20261121`, gamee2445cd132044fb9af2914083a67b513.
+No runtime changes; remaining frost/water, fire/oil, NPC trigger and Grove refusal
+still need native play. Main idle/clean/nullroot and original input/seed restored.
+
 Latest user investigation: [Beating environment audit](BEATING-ENVIRONMENT-AUDIT-2026-11-21.md)
 traces effects on nonplayer actors. Native300→400 comparison found playerParched1
 but two bare bandits/scorpion0 despite no shade/headwear/heat resistance. The
@@ -56,8 +68,8 @@ exposure1; four waits reached590/exposure5. Separate earned take-up archive:
 `/private/tmp/coo-awning-takeup-earned-20261121/547789184890420f89518528a85fb9c6`.
 No full renewed unshaded interval, ring-exit comparison or carried reload claimed.
 
-Next: sounding surface/noise response,
-spring-trap/shared terrain reactions,
+Next: sounding noise response,
+remaining spring-trap/shared terrain reactions,
 town/Posy/freight/repair gameplay from MACHINE-HAND-TEST, then a coherent current
 Mac build and actual verification. Independent review of receipts is evidence
 review, not a second operator playing Unity. All twelve complete-machine gates

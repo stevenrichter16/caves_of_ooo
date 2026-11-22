@@ -1,0 +1,506 @@
+{
+  "sourceBase": "20f1dfa12",
+  "surfaceBefore": {
+    "tick": 1100,
+    "row": "sound the ground (unavailable)",
+    "command": "Disabled:surface",
+    "reason": "The ground up here is too loose to carry a sounding."
+  },
+  "surfaceAfterAttempt": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "zone": "Overworld.10.11.0",
+        "tick": 1100,
+        "id": "2179",
+        "LastReading": "",
+        "LastTick": -1,
+        "Log": []
+      },
+      "compiler": "codedom"
+    }
+  },
+  "springBeforeLoad": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 10,
+        "hp": 400,
+        "roots": 8,
+        "traps": [
+          {
+            "id": "2145",
+            "Loaded": "",
+            "Kind": ""
+          },
+          {
+            "id": "2146",
+            "Loaded": "",
+            "Kind": ""
+          }
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "springAfterLoad": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 20,
+        "hp": 400,
+        "roots": 7,
+        "traps": [
+          {
+            "id": "2145",
+            "Loaded": "SparkRoot",
+            "Kind": "charge"
+          },
+          {
+            "id": "2146",
+            "Loaded": "",
+            "Kind": ""
+          }
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "armedBeforeReload": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 190,
+        "hp": 385,
+        "x": 31,
+        "y": 16,
+        "cell": [
+          {
+            "id": "2405",
+            "bp": "BrinePool",
+            "kind": null,
+            "armed": false,
+            "liquid": "brine",
+            "volume": 90
+          },
+          {
+            "id": "2416",
+            "bp": "SpringTrapLaid",
+            "kind": "charge",
+            "armed": true,
+            "liquid": null,
+            "volume": 0
+          }
+        ],
+        "charge": 0,
+        "electric": 0,
+        "electrified": false,
+        "messages": [
+          "You take 1 poison damage.",
+          "You are no longer poisoned.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Interact — choose a direction, or . for underfoot.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Interact — choose a direction, or . for underfoot.",
+          "You lay the spark root trap. It springs on the next thing to step there, you included.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "armedAfterReload": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 190,
+        "hp": 385,
+        "x": 31,
+        "y": 16,
+        "cell": [
+          {
+            "id": "2405",
+            "bp": "BrinePool",
+            "kind": null,
+            "armed": false,
+            "liquid": "brine",
+            "volume": 90
+          },
+          {
+            "id": "2416",
+            "bp": "SpringTrapLaid",
+            "kind": "charge",
+            "armed": true,
+            "liquid": null,
+            "volume": 0
+          }
+        ],
+        "charge": 0,
+        "electric": 0,
+        "electrified": false,
+        "messages": [
+          "You take 1 poison damage.",
+          "You are no longer poisoned.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Interact — choose a direction, or . for underfoot.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Interact — choose a direction, or . for underfoot.",
+          "You lay the spark root trap. It springs on the next thing to step there, you included.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "packAfterArmedReload": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 190,
+        "hp": 385,
+        "roots": 7,
+        "traps": [
+          {
+            "id": "2146",
+            "Loaded": "",
+            "Kind": ""
+          }
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "shockTrigger": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 210,
+        "hp": 371,
+        "x": 31,
+        "y": 17,
+        "cell": [
+          {
+            "id": "2405",
+            "bp": "BrinePool",
+            "kind": null,
+            "armed": false,
+            "liquid": "brine",
+            "volume": 90
+          }
+        ],
+        "charge": 0,
+        "electric": 0,
+        "electrified": true,
+        "messages": [
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "You are covered in briny.",
+          "You are electrified!",
+          "You are stunned!",
+          "A spring trap goes off under you.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "You are stunned and cannot act!",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "fireLoaded": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 230,
+        "hp": 367,
+        "roots": 7,
+        "traps": [
+          {
+            "id": "2146",
+            "Loaded": "FireMoss",
+            "Kind": "heat"
+          }
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "bareBeforeLay": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 240,
+        "hp": 367,
+        "fireMoss": 7,
+        "coatings": null,
+        "heat": 0,
+        "burning": false,
+        "cell": [
+          {
+            "id": "1260",
+            "bp": "Grass",
+            "kind": null,
+            "armed": false
+          }
+        ],
+        "messages": [
+          "You load the spring trap with fire moss.",
+          "You are no longer electrified.",
+          "The briny coating wears off you.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Interact — choose a direction, or . for underfoot."
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "bareLaid": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 250,
+        "hp": 367,
+        "fireMoss": 7,
+        "coatings": null,
+        "heat": 0,
+        "burning": false,
+        "cell": [
+          {
+            "id": "1260",
+            "bp": "Grass",
+            "kind": null,
+            "armed": false
+          },
+          {
+            "id": "2705",
+            "bp": "SpringTrapLaid",
+            "kind": "heat",
+            "armed": true
+          }
+        ],
+        "messages": [
+          "The briny coating wears off you.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Interact — choose a direction, or . for underfoot.",
+          "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "bareTrigger": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 260,
+        "hp": 367,
+        "fireMoss": 7,
+        "coatings": null,
+        "heat": 0,
+        "burning": false,
+        "cell": [
+          {
+            "id": "1260",
+            "bp": "Grass",
+            "kind": null,
+            "armed": false
+          },
+          {
+            "id": "2126",
+            "bp": "Player",
+            "kind": null,
+            "armed": false
+          }
+        ],
+        "messages": [
+          "Interact — choose a direction, or . for underfoot.",
+          "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "A spring trap goes off under you.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "packAfterBoth": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 260,
+        "hp": 367,
+        "roots": 7,
+        "traps": []
+      },
+      "compiler": "codedom"
+    }
+  },
+  "bareReentry": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 280,
+        "hp": 367,
+        "fireMoss": 7,
+        "coatings": null,
+        "heat": 0,
+        "burning": false,
+        "cell": [
+          {
+            "id": "1260",
+            "bp": "Grass",
+            "kind": null,
+            "armed": false
+          },
+          {
+            "id": "2126",
+            "bp": "Player",
+            "kind": null,
+            "armed": false
+          }
+        ],
+        "messages": [
+          "Interact — choose a direction, or . for underfoot.",
+          "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "A spring trap goes off under you.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "brineReentry": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 320,
+        "hp": 367,
+        "x": 31,
+        "y": 15,
+        "cell": [
+          {
+            "id": "2405",
+            "bp": "BrinePool",
+            "kind": null,
+            "armed": false,
+            "liquid": "brine",
+            "volume": 90
+          }
+        ],
+        "charge": 0,
+        "electric": 0,
+        "electrified": false,
+        "messages": [
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Interact — choose a direction, or . for underfoot.",
+          "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "A spring trap goes off under you.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "You are covered in briny.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "spentReloadPack": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 320,
+        "hp": 367,
+        "roots": 7,
+        "traps": []
+      },
+      "compiler": "codedom"
+    }
+  },
+  "spentReloadBrine": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 320,
+        "hp": 367,
+        "x": 31,
+        "y": 15,
+        "cell": [
+          {
+            "id": "2405",
+            "bp": "BrinePool",
+            "kind": null,
+            "armed": false,
+            "liquid": "brine",
+            "volume": 90
+          }
+        ],
+        "charge": 0,
+        "electric": 0,
+        "electrified": false,
+        "messages": [
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Interact — choose a direction, or . for underfoot.",
+          "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "A spring trap goes off under you.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "You are covered in briny.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+      },
+      "compiler": "codedom"
+    }
+  },
+  "spentReloadBare": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "tick": 320,
+        "hp": 367,
+        "fireMoss": 7,
+        "coatings": null,
+        "heat": 0,
+        "burning": false,
+        "cell": [
+          {
+            "id": "1260",
+            "bp": "Grass",
+            "kind": null,
+            "armed": false
+          },
+          {
+            "id": "2126",
+            "bp": "Player",
+            "kind": null,
+            "armed": false
+          }
+        ],
+        "messages": [
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "A spring trap goes off under you.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "You are covered in briny.",
+          "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+      },
+      "compiler": "codedom"
+    }
+  }
+}

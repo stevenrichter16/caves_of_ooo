@@ -6,6 +6,9 @@ standing reload, a full protected interval and take-up; ring-exit/alternatives
 remain open. The sounding rod has two paid soundings, a free log and fresh
 Continue. See the current [Codex handoff](CODEX-MACHINE-HANDOFF-2026-11-21.md) and
 [camp-tool limits](Verification/MachineSystems/CampTools20261121/README.md).
+The later [trap/surface receipt](Verification/MachineSystems/SpringTrapPlay20261121/README.md)
+adds sounding surface refusal, charge trap on brine, fire trap on bare ground and
+fresh armed/spent persistence. Other trap combinations remain checklist items.
 The remaining steps below are a checklist, not claims that they passed. Earlier
 EditMode tests, mutation checks and read-only reviews do not replace actual play.
 Evidence and design notes for each live in [MACHINE-INVENTED-USES.md](MACHINE-INVENTED-USES.md)
