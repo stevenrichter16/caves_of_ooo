@@ -1,3 +1,22 @@
+November22 [current finite-cooling Mac candidate](Verification/MachineSystems/MacCandidate45170B1B6/README.md)
+packages pushed/remotely verified runtime45170b1b6965ccfcf0b3460b08440aa3d94fa997.
+Universal6000.3.4f1/nondev61.304002s364109005bytes/0errors/5samewarnings as3fe.
+32011source/32014effective/592external/186app pins;83changed0missing3added exact86
+overlay, runtimeC# unchangedonimport; producedDLL includesnewcoolingreceiptmetadata
+and differs3fe. Owned63833/window70708 actualchooser/world/HUD; generation2658,
+final2659/7creatures. Freshnativeinputpreflightfalse, NOinputposted: packaged
+cooling/Inventory/actions/save/controller/full delivery remainopen. Ownerprocess
+closed, fresh10logicalprefsallvaluesequal/Savesabsentnonsymlink; all7priorapps each
+186fullinventory/hashesexact. Mainstopped/rootnull/clean/profileroff/original7presets/
+custom0/selected0/noownedview; fresh19:47UTC84foreign861normalunchanged. Independent
+finalartifactreview0P1/P2; notsecondgameoperator or full12/deliveryacceptance.
+Finitecooling175native+mutants15/3/1+actualwater12->7/coldhearth/F5/fresh2760HP390
+is separately qualified. FirstunsavedInventory-modalbranch/archive2700isexcluded.
+NEXT: another useful existing crop/hydration/repair output need and real supply/
+servicealternatives; category/sort and furtherauditedgroups remain remembered.
+Keepunloaded-fire chronology/exposureNPCprerequisites open; graphicscancelled,
+capstan/culturesparked,Deckdeferred,hourlyACTIVE. Preserveall8apps/projects/exports.
+
 November22 [finite hearth cooling](Verification/MachineSystems/FiniteCooling20261122/README.md)
 closes the independently reproduced water-cost P2 with a bounded newly-poured
 sink: ceil-to-ambient at40degrees/unit, only unused surplus recoverable, older

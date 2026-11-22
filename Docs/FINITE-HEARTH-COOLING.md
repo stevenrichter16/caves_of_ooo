@@ -2,7 +2,9 @@
 
 Status: bounded correction implemented; native175/175, three killed mutants,
 actual cooling/recovery/readers/movement/F5/fresh2760. Final independent source/artifact/gameplay-evidence review0P1/P2.
-Publication follows with this contract and dependency/continuation updates. See Verification/MachineSystems/FiniteCooling20261122.
+Published runtime45170b1b6 includes this contract and dependency/continuation
+updates. Current Mac source candidate is documented in
+Verification/MachineSystems/MacCandidate45170B1B6; packaged action gates remain open. See Verification/MachineSystems/FiniteCooling20261122.
 The ordinary regional mire receipt reproduces a distinct water defect: pouring,
 recovering and repouring one unit repeatedly cools an owned hearth without
 consuming that water. The closed poured-oil fuel defect stays closed.
