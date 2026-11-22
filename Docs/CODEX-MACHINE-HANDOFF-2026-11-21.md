@@ -29,7 +29,16 @@ were preserved. Other Claude sessions were untouched. Root owns Unity/Git.
   Clone3 contains the final verification mutant, not production source: re-sync
   exact owned source before any future clone test. Do not launch tests in main.
 
-Next: awning/noon glare, sounding underground, spring-trap/shared terrain reactions,
+Further native checks after publication: awning/noon glare partially verified
+(one parched stack before placement, shade true/exposure0 afterward; scorpion
+interrupted the longer comparison). Sounding rod made two paid coarse readings,
+free survey log, and retained both entries/sameID through fresh Continue. Ascent
+was refused with company nearby, so surface refusal remains open. See
+[CampTools evidence](Verification/MachineSystems/CampTools20261121/README.md).
+Main is again idle/clean with null save override and input settings restored.
+
+Next: finish awning protection/take-up, sounding surface/noise response,
+spring-trap/shared terrain reactions,
 town/Posy/freight/repair gameplay from MACHINE-HAND-TEST, then a coherent current
 Mac build and actual verification. Independent review of receipts is evidence
 review, not a second operator playing Unity. All twelve complete-machine gates

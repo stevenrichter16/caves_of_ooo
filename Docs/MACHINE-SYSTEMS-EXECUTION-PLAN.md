@@ -38,6 +38,12 @@ corrected head. See the
 Further machine gameplay remains in progress; no complete-machine acceptance or
 new Mac delivery is claimed here.
 
+Later bounded play added two paid sounding-rod readings, a free survey log and
+fresh Continue retaining both entries. Awning placement provided shade and reset
+exposure but a scorpion interrupted the longer comparison. Ascent was refused
+with company nearby, so sounding's surface refusal remains open. See
+[camp-tool evidence and exclusions](Verification/MachineSystems/CampTools20261121/README.md).
+
 The user additionally requested an [inventory density redesign plan](INVENTORY-DENSITY-REDESIGN-PLAN.md).
 It proposes full-height columns and compact details over existing commands;
 implementation and native readability qualification remain future work.

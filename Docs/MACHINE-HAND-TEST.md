@@ -1,6 +1,14 @@
 # Hand-testing the camp and machine work
 
-Nothing in this list has been played in the Editor yet: every machine below was verified by EditMode tests, mutation checks and independent read-only reviews, not by a person at the keyboard. This is the order to try them in, what each step should show, and what to tell me if it does not. Evidence and design notes for each live in [MACHINE-INVENTED-USES.md](MACHINE-INVENTED-USES.md) (sections 3a-3q) and [HOME-BASE-IMPLEMENTATION.md](HOME-BASE-IMPLEMENTATION.md).
+November21 update: native GameBootstrap play now covers bounded camp, still,
+proofing, scraper/tray, vent-heat and fish/food paths. Awning protection has only a
+partial check; the sounding rod has two paid soundings, a free log and fresh
+Continue. See the current [Codex handoff](CODEX-MACHINE-HANDOFF-2026-11-21.md) and
+[camp-tool limits](Verification/MachineSystems/CampTools20261121/README.md).
+The remaining steps below are a checklist, not claims that they passed. Earlier
+EditMode tests, mutation checks and read-only reviews do not replace actual play.
+Evidence and design notes for each live in [MACHINE-INVENTED-USES.md](MACHINE-INVENTED-USES.md)
+(sections 3a-3q) and [HOME-BASE-IMPLEMENTATION.md](HOME-BASE-IMPLEMENTATION.md).
 
 Scenarios are under **Caves Of Ooo > Scenarios > Home** in the Editor menu bar (start from the menu, not by pressing Play first). Press **C** toward a thing to open its menu; highlight a row to read the small text under the list.
 
@@ -17,6 +25,8 @@ You start on ordinary wild ground with the box, hearth, bench and still, timber,
 ## 2. The newer machines: "Camp Machines - wild ground"
 
 You start on wild ground with the trough kit, hearth, still, five flasks (two of bog mire), garments and a Coldward cloak, a reagent for each element, three fire clay, a sounding rod and the parts Cinderhold's pump asks for.
+
+The whole loadout weighs more than the shipped pack's hard cap (150), so the scenario lifts that cap to the sidebar's capacity (Strength x 15) before it gives anything, and writes a line to the message log if any item still did not arrive (before 2026-11-21 it dropped the later items silently with only a console warning: no striker, torch, flasks or repair parts). If you see that log line, say so: it means a step cannot be tried. The other camp scenarios go through the same check.
 
 - **Steam vent heat** (3p). A steam vent steams six cells east of you. Walk three cells east, set the still down east: it lands two cells from the vent (the cell right beside it is refused). **C** toward the still with a mire flask: the settle rows are enabled with no fire anywhere, and the small text says "The vent's steady heat pays; no fuel." Settle one: the message says "on the vent's heat" and no fuel moves. The bake row says the vent is not hot enough. Examine the vent while carrying mire or the still kit: it tells you what it is good for.
 - **What a flask is good for.** Examine a flask of oil, water or mire: one extra sentence says what it does (oil "burns readily and makes ground slippery"; water "carries a charge and damps fire"; mire "damps fire"). It is the same data the game's reactions already use.
