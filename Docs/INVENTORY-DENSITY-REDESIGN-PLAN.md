@@ -317,7 +317,8 @@ reads on paint/resize/search matching, full-name/F1 fallback and unchanged densi
 Actual use should find an empty receiver/raw feedstock/treated garment by public
 state, cancel freely, execute one existing finite action, observe the right owner
 and world consequence, F5/archive BEFORE Stop, and freshly Continue the same stock.
-This is WIP design/source selection, not shipped badges or machine acceptance.
+This was the pre-implementation contract; the following qualification records
+the shipped bounded badge/search slice. Complete-machine acceptance is separate.
 
 ## Public-state qualification — November22
 

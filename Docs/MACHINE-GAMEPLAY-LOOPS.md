@@ -76,9 +76,11 @@ See the bounded InventoryDensity20261122 receipt; category buttons, additional
 state badges and sorting remain open. Use the existing large workshop
 pack to check finding a reagent, a charged tool, a treated garment and a camp kit.
 The first layout has source/native/readability/action/fresh-reload evidence;
-use that receipt without repeating qualified tests. Next distinguish disclosed
-liquid contents, charges and treatments in rows/search, retaining exact item
-identity, equipment comparisons, full readers and existing commands.
+use that receipt without repeating qualified tests. The subsequent
+[public-state slice](Verification/MachineSystems/InventoryPublicState20261122/README.md)
+now distinguishes disclosed liquid contents, charges and treatments in rows/search,
+retaining exact item identity, equipment comparisons, full readers and existing commands.
+Category filters, sorting and physical-input qualification remain open.
 
 Qualification must include navigation, resizing/search, cancellation and an actual
 paid item action, preserving custody and turn costs. This is functional inventory
@@ -108,3 +110,45 @@ choices first; this paragraph ships no recipe or supply. Earlier fixture settlin
 cold/oil chains and the bounded finite-poured-fuel correction are already qualified,
 so reuse their evidence and do not reopen the closed oil-film P2. Full12dependencies
 and acceptance remain unchanged; no passive production or compulsory processing.
+
+## Different reasons for long-term use
+
+A tool need not wear out or demand a refill to remain useful. Match its lifecycle
+to the player's choices; measure meaningful outcomes rather than total activations.
+
+| Lifecycle | Useful return to the system | Practical alternative and acceptance boundary |
+| --- | --- | --- |
+| Expedition supplies | A different route or destination changes which water, food, light, protection and trap supplies are useful. Prepare a finite amount, with visible remaining stock. | Carry bought or found supplies; use a village stop. Water-cooling reuse below must be corrected before claiming finite dousing cost. |
+| Lasting equipment work | A newly found garment or different environment makes a different proofing/refit worthwhile. An existing lasting treatment keeps its benefit. | Keep current gear, use temporary preparation or buy suitable equipment. No imposed decay to create repeat demand. |
+| Salvage decisions | Another damaged find presents a new choice between intact use, repair, dismantling, sale and recovery of declared components. | Leave it, carry it or use an existing service. Every retained improvement and conversion loss needs explicit accounting. |
+| Camp location and transport | Moving the work frontier makes another camp or relocation useful; retained storage and access can save a journey. | Return to town, carry the kit or pay existing freight. Base delivery and automatic production remain proposed; unloaded fire accounting is still open. |
+| Knowledge and relationships | A new material, unfamiliar site or changed local condition can justify another supported observation or consultation. | Reuse what the character already knows. Do not force repeated assay clicks or disclose protected mysteries. |
+| Finished projects | A repaired pump, lasting installation or opened route remains valuable after the work is done. Further use is the resulting service/access. | Preserve ordinary bypasses/services. Do not reset a finished repair or repeat its reward just to make the machine busy. |
+
+Concrete next comparisons: local mire plus available heat versus carried clean
+water; clay for an actual repair versus buying the repair material; a regional
+garment treatment versus temporary protection; and freight versus a real carried
+load. These are proposed comparisons, not qualified economics. Settling does not
+currently reduce carrying weight, and generic settled oil does not feed the
+LampOil-only torch action. Town and portable variants must retain these same
+material/ownership rules wherever both are supported.
+
+## Natural-feed baseline and water-cooling defect — November22
+
+[RegionalMire20261122](Verification/MachineSystems/RegionalMire20261122/README.md)
+records normal input collecting12 from a natural60-unit Works pool into an empty
+flask (source48), fresh2040 persistence, travel to the existing10.11 camp and
+processing12→3 water at5 fuel plus0.25 ordinary burn. Fixture gear, HP/capacity and
+the other carried mire remain excluded. The dense Inventory finds the resulting
+2/12 water by public contents. Fresh2610 preserves the measured source, flask,
+ground pool, hearth and actor state.
+
+The outside-machine pour visibly banks the hearth, but its water remains
+recoverable. Actual recovery and repouring applies cooling again: an independent
+open P2 in water-cost accounting. Output remains2 in the flask+1 on the ground;
+do not call that water consumed. This does not reopen the closed oil-fuel fix.
+Next correct the newly poured cooling-dose contract with RED/countercases,
+review and native proof, preserving preexisting pooled stock and natural sources.
+Then prefer an existing crop need, existing hydration debt or actual repair for
+a useful finite output endpoint. No manufactured hazard, forced upkeep or new
+recipe is implied; all twelve complete-machine acceptance gates remain open.

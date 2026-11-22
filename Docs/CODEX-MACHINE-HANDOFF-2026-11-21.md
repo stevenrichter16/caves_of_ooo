@@ -2,6 +2,30 @@
 
 ## Resumed continuation — November 21 evening
 
+November22 [natural regional mire baseline](Verification/MachineSystems/RegionalMire20261122/README.md)
+uses ordinary GameBootstrap input: Works17.7 pool13151 at34,8,60→48 into empty2236
+0→12 at2030→2040; archive-before-Stop/fresh2040 exact. Source-guided route,
+fixture equipment/HP399/max400/capacity and existing mire2231–2235 excluded.
+Return via4.9 (no still there) then actual kept camp10.11: still2148/hearth2147,
+exact2236 batch2570→2580 12→3water, fuel26.5→21.25 =5batch+.25turn.
+One-water pour2580→2590 banks, not extinguishes, hearth; water2carried+1ground.
+NEW water-cooling P2 reproduced: recover1 into sameflask2590→2600, repour2600→2610
+earns another40-degree dose without netwaterloss. Pool14783 retains1,2236 has2,
+hearth20.5fuel/243.584885/lighton; finalarchive-before-Stop/fresh2610 exact.
+Not the closed oil-fuel P2. No runtime/tests/build changes or finitecooling/full12
+acceptance. Existing unloaded-fire accounting limitation persists.
+Main stopped/rootnull/clean/profileroff, original7presets/custom0/index0;
+fresh18:02UTC84foreign861normal unchanged. Full source/design and bounded
+artifact/gameplay-evidence review in receipt; not a second native operator.
+NEXT: reviewed newly-poured cooling-dose policy, native RED/countercases and
+smallest correction protecting older pooled water, natural sources, rollback
+and callbacks; actual cooling/recovery/save proof. Then useful output against
+an existing crop/hydration/repair need and practical supply/service alternatives.
+Inventory44/66 and publicstate/search stay published, category/sort remembered.
+Long-term lifecycle distinctions/comparisons now explicit in MACHINE-GAMEPLAY-LOOPS.
+Current Mac runtime910f86dae unchanged; physical input and all12gates open.
+
+
 November22 [current public-state Mac candidate](Verification/MachineSystems/MacCandidate910F86DAE/README.md)
 packages pushed/remotely verified runtime910f86dae. Universal6000.3.4f1/nondev,
 56.487838s/0errors/5warnings exactly matchingFD4. Own74682/window70681 actual
