@@ -24,6 +24,11 @@ namespace CavesOfOoo.Core
             && (command.StartsWith(FillPrefix, StringComparison.Ordinal)
                 || command.StartsWith(PourPrefix, StringComparison.Ordinal) || command.StartsWith(OnePrefix, StringComparison.Ordinal));
 
+        // Only quoted cooling commands opt out of the executor's blanket item/stat
+        // snapshot. This receipt transfers quantity, never custody or actor stats.
+        internal static bool OwnsCoolingReceipt(Entity vessel, string command) => vessel?.GetPart<LiquidVesselPart>()?.ParentEntity == vessel && vessel!=null
+            && IsLiquidCommand(command) && !command.StartsWith(FillPrefix,StringComparison.Ordinal) && command.Split('|').Length==7;
+
         /// <summary>Read-only menu projection of carried contents and physically
         /// nearby pools. Every selected identity/position is checked again when used.</summary>
         public static void AddActions(Entity actor, Entity vessel, Zone zone, InventoryActionList actions)
@@ -59,13 +64,15 @@ namespace CavesOfOoo.Core
                 if (ValidDestination(zone, actor, part.LiquidId, x, y, out _) != null) continue;
                 string name = LiquidRegistry.Get(part.LiquidId).DisplayName ?? part.LiquidId;
                 // Over your own lit hearth the row says what the pour would do to the fire (the rule is FireDouse's).
-                string pourHint = FireDouse.Hint(zone, x, y, part.LiquidId, part.Volume), oneHint = FireDouse.Hint(zone, x, y, part.LiquidId, 1);
+                if (!FireDouse.TryQuote(zone,x,y,part.LiquidId,part.Volume,out var pourQuote)
+                    || !FireDouse.TryQuote(zone,x,y,part.LiquidId,1,out var oneQuote)) continue;
+                string pourHint = pourQuote?.Hint, oneHint = oneQuote?.Hint;
                 var pour = actions.AddAction("PourLiquid", "pour " + name + " " + direction.Item3 + " (" + part.Volume + ")",
                     PourPrefix + Encode(part.LiquidId) + "|" + part.Volume.ToString(CultureInfo.InvariantCulture)
-                    + "|" + Encode(zone.ZoneID) + "|" + x.ToString(CultureInfo.InvariantCulture) + "|" + y.ToString(CultureInfo.InvariantCulture), '\0', 18);
+                    + "|" + Encode(zone.ZoneID) + (pourQuote==null ? "" : "|"+Encode(pourQuote.Key)) + "|" + x.ToString(CultureInfo.InvariantCulture) + "|" + y.ToString(CultureInfo.InvariantCulture), '\0', 18);
                 var one = actions.AddAction("PourOneLiquid", "pour one " + name + " " + direction.Item3,
                     OnePrefix + Encode(part.LiquidId) + "|" + part.Volume.ToString(CultureInfo.InvariantCulture)
-                    + "|" + Encode(zone.ZoneID) + "|" + x.ToString(CultureInfo.InvariantCulture) + "|" + y.ToString(CultureInfo.InvariantCulture), '\0', 17);
+                    + "|" + Encode(zone.ZoneID) + (oneQuote==null ? "" : "|"+Encode(oneQuote.Key)) + "|" + x.ToString(CultureInfo.InvariantCulture) + "|" + y.ToString(CultureInfo.InvariantCulture), '\0', 17);
                 if (pourHint != null && pour != null) pour.Hint = pourHint;
                 if (oneHint != null && one != null) one.Hint = oneHint;
                 pour?.AtCell(x, y).InGroup(ToolGroups.Pour); one?.AtCell(x, y).InGroup(ToolGroups.Pour);
@@ -82,7 +89,7 @@ namespace CavesOfOoo.Core
             if (invalid != null) return Reject(actor, vessel, command, invalid);
             string[] bits = command.Split('|');
             bool filling = command.StartsWith(FillPrefix, StringComparison.Ordinal);
-            if (bits.Length != (filling ? 3 : 6)) return Reject(actor, vessel, command, "invalid-selection");
+            if (filling ? bits.Length != 3 : bits.Length != 6 && bits.Length != 7) return Reject(actor, vessel, command, "invalid-selection");
             bool own = transaction == null;
             transaction ??= new InventoryTransaction();
             try
@@ -194,8 +201,8 @@ namespace CavesOfOoo.Core
             string command, InventoryTransaction transaction, bool own)
         {
             if (!int.TryParse(bits[2], NumberStyles.None, CultureInfo.InvariantCulture, out int expectedVolume)
-                || !int.TryParse(bits[4], NumberStyles.Integer, CultureInfo.InvariantCulture, out int x)
-                || !int.TryParse(bits[5], NumberStyles.Integer, CultureInfo.InvariantCulture, out int y))
+                || !int.TryParse(bits[bits.Length-2], NumberStyles.Integer, CultureInfo.InvariantCulture, out int x)
+                || !int.TryParse(bits[bits.Length-1], NumberStyles.Integer, CultureInfo.InvariantCulture, out int y))
                 return Reject(actor, vessel, command, "invalid-selection");
             string liquidId = part.LiquidId; int before = part.Volume; int amount = command.StartsWith(OnePrefix, StringComparison.Ordinal) ? Math.Min(1, before) : before;
             if (amount <= 0) return Reject(actor, vessel, command, "empty");
@@ -203,8 +210,15 @@ namespace CavesOfOoo.Core
                 return Reject(actor, vessel, command, "contents-or-zone-changed");
             string invalid = ValidDestination(zone, actor, liquidId, x, y, out Entity destination);
             if (invalid != null) return Reject(actor, vessel, command, invalid);
-            var irrigation = CropPourIrrigation.Capture(zone, x, y, liquidId);
-            bool created = destination == null;
+            if (!FireDouse.TryQuote(zone,x,y,liquidId,amount,out var cooling)
+                || (bits.Length==7 ? cooling==null || cooling.Key!=Decode(bits[4]) : cooling!=null))
+                return Reject(actor,vessel,command,"cooling-selection-changed");
+            if(cooling!=null && !transaction.TryClaim(cooling.Hearth,actor,command)) return Reject(actor,vessel,command,"hearth-in-use");
+            int residual=cooling?.Residual ?? amount;
+            var actorCell=zone.GetEntityCell(actor);
+            var vesselParts=vessel.Parts.ToArray(); int vesselCapacity=part.Capacity;
+            var irrigation = residual>0 ? CropPourIrrigation.Capture(zone, x, y, liquidId) : null;
+            bool created = destination == null && residual > 0;
             if (created)
             {
                 destination = MaterialReactionResolver.Factory?.CreateEntity(PoolBlueprint);
@@ -221,51 +235,95 @@ namespace CavesOfOoo.Core
                     || ValidDestination(zone, actor, liquidId, x, y, out var appeared) != null || appeared != null)
                     return Reject(actor, vessel, command, "state-changed-during-preparation");
             }
-            if (!transaction.TryClaim(destination, actor, command)) return Reject(actor, vessel, command, "destination-in-use");
-            var pool = destination.GetPart<LiquidPoolPart>();
-            int oldPool = pool.Volume; string oldId = pool.LiquidId;
-            if (oldPool < 0 || (long)oldPool + amount > int.MaxValue)
+            if (destination!=null && !transaction.TryClaim(destination, actor, command)) return Reject(actor, vessel, command, "destination-in-use");
+            var pool = destination?.GetPart<LiquidPoolPart>();
+            int oldPool = pool?.Volume ?? 0; string oldId = pool?.LiquidId;
+            if (oldPool < 0 || (long)oldPool + residual > int.MaxValue)
                 return Reject(actor, vessel, command, "destination-overflow");
             Entity recipient = destination;
             int previousCoating = zone.TileState.CoatingTurns(x, y, liquidId);
+            bool flaskDebited=false, poolCredited=false;
+            int recoverableCredit=residual;
             transaction.Do(null, () =>
             {
-                part.Volume = before; part.LiquidId = liquidId;
+                if(cooling==null) { part.Volume=before; part.LiquidId=liquidId; }
+                else if(flaskDebited)
+                {
+                    if(vessel.GetPart<LiquidVesselPart>()==part && part.ParentEntity==vessel
+                        && (part.LiquidId==liquidId || part.Volume==0 && string.IsNullOrEmpty(part.LiquidId)))
+                    { part.Volume=WaterQuantityUndo.Restore(part.Volume,-amount,part.Capacity); if(part.Volume>0) part.LiquidId=liquidId; }
+                    else Diag.Record("liquid","CoolingUndoIdentityChanged",actor,vessel);
+                }
                 // Removal must see the staged liquid identity to erase its pool
                 // projection, then restore any older independent coating lease.
-                if (created && recipient.SpatialZone == zone)
+                if (created && recipient.SpatialZone == zone && (cooling==null || recipient.GetPart<LiquidPoolPart>()==pool
+                    && pool.ParentEntity==recipient && recipient.GetPart<PhysicsPart>()?.InInventory==null
+                    && recipient.GetPart<PhysicsPart>()?.Equipped==null && pool.LiquidId==liquidId
+                    && (pool.Volume==recoverableCredit || pool.Volume==0)))
                 {
                     zone.RemoveEntity(recipient);
                     if (previousCoating > 0) zone.TileState.WriteCoating(x, y, liquidId, previousCoating);
                 }
-                pool.Volume = oldPool; pool.LiquidId = oldId;
+                if(pool!=null)
+                {
+                    if(cooling==null) { pool.Volume=oldPool; pool.LiquidId=oldId; }
+                    else if(poolCredited)
+                    {
+                        if(recipient.GetPart<LiquidPoolPart>()==pool && pool.ParentEntity==recipient && pool.LiquidId==liquidId)
+                        { pool.Volume=WaterQuantityUndo.Restore(pool.Volume,recoverableCredit); if(!created && pool.Volume==oldPool) pool.LiquidId=oldId; }
+                        else Diag.Record("liquid","CoolingPoolUndoIdentityChanged",actor,recipient);
+                    }
+                }
             });
-            pool.Volume += amount; pool.LiquidId = liquidId;
+            part.Volume = before - amount; if (part.Volume == 0) part.LiquidId = ""; flaskDebited=true;
+            if(pool!=null && residual>0) { pool.Volume += residual; pool.LiquidId = liquidId; poolCredited=true; }
             if (created)
             {
                 pool.Initialize();
                 if (recipient.GetPart<RenderPart>() is RenderPart render) render.DisplayName = LiquidName(liquidId) + " puddle";
                 if (!zone.AddEntity(recipient, x, y)) return Reject(actor, vessel, command, "placement-refused");
             }
-            part.Volume = before - amount; if (part.Volume == 0) part.LiquidId = "";
-            irrigation?.Apply(actor, zone, recipient, transaction);
+            if(cooling!=null)
+            {
+                transaction.BeforeCommit(()=>Validate(actor,vessel,zone,out var current)==null && current==part
+                    && zone.GetEntityCell(actor)==actorCell && part.Capacity==vesselCapacity && part.Volume==before-amount
+                    && part.LiquidId==(before==amount?"":liquidId) && vessel.Parts.SequenceEqual(vesselParts)
+                    && vesselParts.All(p=>p.ParentEntity==vessel) && cooling.Current());
+                transaction.AfterCommit(()=>cooling.Publish(actor));
+            }
+            if(residual>0 && irrigation?.Apply(actor, zone, recipient, transaction, cooling!=null)==true && cooling!=null) recoverableCredit--;
+            if(cooling!=null && pool!=null)
+            {
+                int committedPool=pool.Volume;
+                var recipientCell=zone.GetEntityCell(recipient);
+                var recipientPhysics=recipient.GetPart<PhysicsPart>();
+                transaction.BeforeCommit(()=>recipientCell==zone.GetCell(x,y) && zone.GetEntityCell(recipient)==recipientCell
+                    && recipient.GetPart<LiquidPoolPart>()==pool && pool.ParentEntity==recipient && pool.Volume==committedPool
+                    && pool.LiquidId==liquidId && recipient.GetPart<PhysicsPart>()==recipientPhysics && recipientPhysics?.ParentEntity==recipient
+                    && recipientPhysics.InInventory==null && recipientPhysics.Equipped==null && !recipientPhysics.Takeable
+                    && LiquidSourceSafety.IsUnmixedCell(zone,x,y,liquidId));
+            }
             int capacity=part.Capacity;
-            var audio=liquidId=="water"?WorldAudioUtility.Take(actor,vessel,zone,WorldAudioCue.WaterPour,recipient,false,
+            var audio=liquidId=="water" && recipient!=null && residual>0?WorldAudioUtility.Take(actor,vessel,zone,WorldAudioCue.WaterPour,recipient,false,
                 ()=>vessel.GetPart<LiquidVesselPart>()==part&&part.ParentEntity==vessel&&part.Capacity==capacity&&part.Volume==before-amount
                     &&part.LiquidId==(before==amount?"":"water")&&recipient.GetPart<LiquidPoolPart>()==pool
-                    &&pool.ParentEntity==recipient&&pool.Volume==oldPool+amount&&pool.LiquidId=="water"):null;
+                    &&pool.ParentEntity==recipient&&pool.Volume==oldPool+residual&&pool.LiquidId=="water"):null;
             transaction.AfterCommit(()=>audio?.Publish());
-            transaction.AfterCommit(() => ApplyContact(zone, actor, recipient, x, y, liquidId, amount));
+            if(residual>0) transaction.AfterCommit(() => ApplyContact(zone, actor, recipient, pool, x, y, liquidId, residual));
             transaction.AfterCommit(() => Diag.Record("liquid", "VesselPoured", actor, vessel,
-                new { destination = recipient.ID, liquidId, amount, x, y }));
-            transaction.AfterCommit(() => MessageLog.Add("You pour " + amount + " of " + LiquidName(liquidId) + " onto the ground."));
+                new { destination = recipient?.ID, liquidId, amount, evaporated=cooling?.Used ?? 0, recoverable=residual, x, y }));
+            transaction.AfterCommit(() => MessageLog.Add(cooling==null ? "You pour " + amount + " of " + LiquidName(liquidId) + " onto the ground."
+                : "You pour " + amount + " of " + LiquidName(liquidId) + "; " + cooling.Used + " evaporate, " + residual + " remain recoverable."));
             if (own) transaction.Commit();
             return true;
         }
 
-        static void ApplyContact(Zone zone, Entity actor, Entity pool, int x, int y, string liquidId, int amount)
+        static void ApplyContact(Zone zone, Entity actor, Entity pool, LiquidPoolPart captured, int x, int y, string liquidId, int amount)
         {
-            if (zone.GetEntityCell(pool) == null) return;
+            var physical=pool?.GetPart<PhysicsPart>();
+            if (zone.GetEntityCell(pool) != zone.GetCell(x,y) || captured==null || pool.GetPart<LiquidPoolPart>()!=captured
+                || captured.ParentEntity!=pool || captured.LiquidId!=liquidId || captured.Volume<=0
+                || physical==null || physical.ParentEntity!=pool || physical.InInventory!=null || physical.Equipped!=null || physical.Takeable) return;
             foreach (var target in zone.GetOccupants(x, y).Where(e => e.HasTag("Creature")).ToArray())
             {
                 var contact = GameEvent.New("EntityEnteredCell");
@@ -274,7 +332,6 @@ namespace CavesOfOoo.Core
             }
             ZoneTileStateSystem.WriteCoating(zone, x, y, liquidId, PouredCoatingTurns, actor, "PourLiquidVessel");
             ZoneTileStateSystem.ResolveAfterAbility(zone, actor);
-            FireDouse.Apply(zone, actor, x, y, liquidId, amount);   // water on your own lit hearth cools it
         }
 
         static string Validate(Entity actor, Entity vessel, Zone zone, out LiquidVesselPart part)

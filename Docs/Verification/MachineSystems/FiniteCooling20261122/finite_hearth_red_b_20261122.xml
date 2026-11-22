@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="20" result="Failed(Child)" total="20" passed="4" failed="16" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 19:11:37Z" end-time="2026-11-22 19:11:38Z" duration="1.3514672">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40723" result="Failed" site="Child" start-time="2026-11-22 19:11:37Z" end-time="2026-11-22 19:11:38Z" duration="1.351467" total="20" passed="4" failed="16" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49647" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40723" result="Failed" site="Child" start-time="2026-11-22 19:11:37Z" end-time="2026-11-22 19:11:38Z" duration="1.228463" total="20" passed="4" failed="16" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28585" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49648" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40723" result="Failed" site="Child" start-time="2026-11-22 19:11:37Z" end-time="2026-11-22 19:11:38Z" duration="1.166586" total="20" passed="4" failed="16" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49649" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40723" result="Failed" site="Child" start-time="2026-11-22 19:11:37Z" end-time="2026-11-22 19:11:38Z" duration="1.106532" total="20" passed="4" failed="16" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="23930" name="FiniteHearthCoolingTests" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-11-22 19:11:37Z" end-time="2026-11-22 19:11:38Z" duration="0.714437" total="20" passed="4" failed="16" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="23947" name="ChangedMenuQuoteRefusesNewPrice" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ChangedMenuQuoteRefusesNewPrice" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 19:11:37Z" end-time="2026-11-22 19:11:38Z" duration="0.141788" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="23945" name="ChangedMenuQuoteRefusesNewPrice(350.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ChangedMenuQuoteRefusesNewPrice(350.0f)" methodname="ChangedMenuQuoteRefusesNewPrice" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="587792482" result="Failed" start-time="2026-11-22 19:11:37Z" end-time="2026-11-22 19:11:38Z" duration="0.110671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.ChangedMenuQuoteRefusesNewPrice (System.Single changed) [0x00037] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="23946" name="ChangedMenuQuoteRefusesNewPrice(600.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ChangedMenuQuoteRefusesNewPrice(600.0f)" methodname="ChangedMenuQuoteRefusesNewPrice" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1051860192" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.028237" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.ChangedMenuQuoteRefusesNewPrice (System.Single changed) [0x00037] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="23941" name="FullAbsorptionNeedsNoPoolFactoryAndPreservesOlderCoating" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.FullAbsorptionNeedsNoPoolFactoryAndPreservesOlderCoating" methodname="FullAbsorptionNeedsNoPoolFactoryAndPreservesOlderCoating" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1955948869" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.030061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.FullAbsorptionNeedsNoPoolFactoryAndPreservesOlderCoating () [0x0004a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:54
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="23940" name="OlderPoolIsPreservedAndOnlyNewSurplusIsAdded" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OlderPoolIsPreservedAndOnlyNewSurplusIsAdded" methodname="OlderPoolIsPreservedAndOnlyNewSurplusIsAdded" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="278308678" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.029935" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 8
+  But was:  19
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.OlderPoolIsPreservedAndOnlyNewSurplusIsAdded () [0x00047] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:47
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23934" name="OnePaidCoolingUnitIsNotRecoverable" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.086081" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="23931" name="OnePaidCoolingUnitIsNotRecoverable(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable(&quot;water&quot;)" methodname="OnePaidCoolingUnitIsNotRecoverable" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1980917718" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.028537" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable (System.String liquid) [0x00066] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:32
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="23932" name="OnePaidCoolingUnitIsNotRecoverable(&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable(&quot;bog-mire&quot;)" methodname="OnePaidCoolingUnitIsNotRecoverable" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="628009555" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.029315" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable (System.String liquid) [0x00066] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:32
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="23933" name="OnePaidCoolingUnitIsNotRecoverable(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable(&quot;brine&quot;)" methodname="OnePaidCoolingUnitIsNotRecoverable" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="106704249" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.027402" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable (System.String liquid) [0x00066] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:32
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="23950" name="OuterRollbackHasNoCoolingAndNoPoolGhost" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OuterRollbackHasNoCoolingAndNoPoolGhost" methodname="OuterRollbackHasNoCoolingAndNoPoolGhost" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="768883562" result="Passed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.029561" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23949" name="PreviewDisclosesExactSpentAndRecoverableUnits" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.PreviewDisclosesExactSpentAndRecoverableUnits" methodname="PreviewDisclosesExactSpentAndRecoverableUnits" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1683950551" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.028281" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "11"
+  But was:  "Puts out your hearth. It keeps its fuel."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.FiniteHearthCoolingTests.PreviewDisclosesExactSpentAndRecoverableUnits () [0x0002b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:76
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23953" name="StaleCommitPreservesIndependentInjuryAndForcedDrop" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.057266" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="23951" name="StaleCommitPreservesIndependentInjuryAndForcedDrop(False)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop(False)" methodname="StaleCommitPreservesIndependentInjuryAndForcedDrop" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1903981706" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.027606" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop (System.Boolean drop) [0x00071] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="23952" name="StaleCommitPreservesIndependentInjuryAndForcedDrop(True)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop(True)" methodname="StaleCommitPreservesIndependentInjuryAndForcedDrop" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1334351664" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.029037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop (System.Boolean drop) [0x00071] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="23939" name="TariffLeavesOnlyUnusedSurplus" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.164987" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="23935" name="TariffLeavesOnlyUnusedSurplus(450.0f,12,11,1,25.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus(450.0f,12,11,1,25.0f)" methodname="TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="995212780" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.027786" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  12
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus (System.Single t, System.Int32 n, System.Int32 used, System.Int32 surplus, System.Single after) [0x0004a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="23936" name="TariffLeavesOnlyUnusedSurplus(200.0f,12,5,7,25.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus(200.0f,12,5,7,25.0f)" methodname="TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="2027061878" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.026866" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 7
+  But was:  12
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus (System.Single t, System.Int32 n, System.Int32 used, System.Int32 surplus, System.Single after) [0x0004a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="23937" name="TariffLeavesOnlyUnusedSurplus(150.0f,4,4,0,25.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus(150.0f,4,4,0,25.0f)" methodname="TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="324350817" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.040092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus (System.Single t, System.Int32 n, System.Int32 used, System.Int32 surplus, System.Single after) [0x0004a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="23938" name="TariffLeavesOnlyUnusedSurplus(450.0f,4,4,0,290.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus(450.0f,4,4,0,290.0f)" methodname="TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1818139176" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.069390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus (System.Single t, System.Int32 n, System.Int32 used, System.Int32 surplus, System.Single after) [0x0004a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="23954" name="ThermalCallbacksSeePaidReservationAndCannotRecoverIt" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ThermalCallbacksSeePaidReservationAndCannotRecoverIt" methodname="ThermalCallbacksSeePaidReservationAndCannotRecoverIt" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="554925803" result="Passed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.028756" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23955" name="ThrowingThermalCallbackNeverRefundsCommittedDose" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ThrowingThermalCallbackNeverRefundsCommittedDose" methodname="ThrowingThermalCallbackNeverRefundsCommittedDose" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1677523867" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.028684" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.ThrowingThermalCallbackNeverRefundsCommittedDose () [0x00079] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:103
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23944" name="TownAndColdHearthsKeepOrdinaryRecoverablePour" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TownAndColdHearthsKeepOrdinaryRecoverablePour" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.056083" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="23942" name="TownAndColdHearthsKeepOrdinaryRecoverablePour(False)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TownAndColdHearthsKeepOrdinaryRecoverablePour(False)" methodname="TownAndColdHearthsKeepOrdinaryRecoverablePour" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1923623570" result="Passed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.027628" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23943" name="TownAndColdHearthsKeepOrdinaryRecoverablePour(True)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TownAndColdHearthsKeepOrdinaryRecoverablePour(True)" methodname="TownAndColdHearthsKeepOrdinaryRecoverablePour" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="2138451497" result="Passed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.027682" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="23948" name="UnquotedNewFireCannotSilentlyConsumeOrdinaryGroundPour" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.UnquotedNewFireCannotSilentlyConsumeOrdinaryGroundPour" methodname="UnquotedNewFireCannotSilentlyConsumeOrdinaryGroundPour" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1919199640" result="Failed" start-time="2026-11-22 19:11:38Z" end-time="2026-11-22 19:11:38Z" duration="0.027939" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.UnquotedNewFireCannotSilentlyConsumeOrdinaryGroundPour () [0x0002a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:71
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

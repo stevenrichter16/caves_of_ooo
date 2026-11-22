@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="43" result="Failed(Child)" total="43" passed="40" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 19:24:20Z" end-time="2026-11-22 19:24:22Z" duration="1.8154741">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40746" result="Failed" site="Child" start-time="2026-11-22 19:24:20Z" end-time="2026-11-22 19:24:22Z" duration="1.815474" total="43" passed="40" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49673" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40746" result="Failed" site="Child" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:22Z" duration="1.751461" total="43" passed="40" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="39693" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49674" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40746" result="Failed" site="Child" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:22Z" duration="1.697387" total="43" passed="40" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49675" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40746" result="Failed" site="Child" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:22Z" duration="1.639310" total="43" passed="40" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="23930" name="FiniteHearthCoolingTests" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:22Z" duration="1.300554" total="43" passed="40" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="23947" name="ChangedMenuQuoteRefusesNewPrice" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ChangedMenuQuoteRefusesNewPrice" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.120920" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="23945" name="ChangedMenuQuoteRefusesNewPrice(350.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ChangedMenuQuoteRefusesNewPrice(350.0f)" methodname="ChangedMenuQuoteRefusesNewPrice" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1048273378" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.094120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23946" name="ChangedMenuQuoteRefusesNewPrice(600.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ChangedMenuQuoteRefusesNewPrice(600.0f)" methodname="ChangedMenuQuoteRefusesNewPrice" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="28831876" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.024383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="23969" name="CropRollbackPreservesIndependentPoolAddition" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.CropRollbackPreservesIndependentPoolAddition" methodname="CropRollbackPreservesIndependentPoolAddition" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1383637127" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.032061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23977" name="EarlierCommittedObserverCannotRetargetPaidCooling" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.EarlierCommittedObserverCannotRetargetPaidCooling" methodname="EarlierCommittedObserverCannotRetargetPaidCooling" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1082007305" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.030529" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23941" name="FullAbsorptionNeedsNoPoolFactoryAndPreservesOlderCoating" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.FullAbsorptionNeedsNoPoolFactoryAndPreservesOlderCoating" methodname="FullAbsorptionNeedsNoPoolFactoryAndPreservesOlderCoating" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="470131944" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.026920" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23954" name="IndependentOlderPoolAdditionSurvivesCoolingRollback" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.IndependentOlderPoolAdditionSurvivesCoolingRollback" methodname="IndependentOlderPoolAdditionSurvivesCoolingRollback" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1838192330" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.024854" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23978" name="InterceptedHeatDoesNotAnnounceCoolingOrRefundPaidAttempt" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.InterceptedHeatDoesNotAnnounceCoolingOrRefundPaidAttempt" methodname="InterceptedHeatDoesNotAnnounceCoolingOrRefundPaidAttempt" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="2074753146" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.024150" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23967" name="MalformedAmbientCannotBecomeAnUnpricedDose" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.MalformedAmbientCannotBecomeAnUnpricedDose" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.118174" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="23964" name="MalformedAmbientCannotBecomeAnUnpricedDose(float.NaN)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.MalformedAmbientCannotBecomeAnUnpricedDose(float.NaN)" methodname="MalformedAmbientCannotBecomeAnUnpricedDose" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="209999772" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.023252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23965" name="MalformedAmbientCannotBecomeAnUnpricedDose(float.PositiveInfinity)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.MalformedAmbientCannotBecomeAnUnpricedDose(float.PositiveInfinity)" methodname="MalformedAmbientCannotBecomeAnUnpricedDose" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="885554235" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.030418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23966" name="MalformedAmbientCannotBecomeAnUnpricedDose(float.NegativeInfinity)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.MalformedAmbientCannotBecomeAnUnpricedDose(float.NegativeInfinity)" methodname="MalformedAmbientCannotBecomeAnUnpricedDose" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1837204434" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.063617" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="23974" name="MovedResidualPoolCannotCoatItsFormerCell" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.MovedResidualPoolCannotCoatItsFormerCell" methodname="MovedResidualPoolCannotCoatItsFormerCell" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="196397022" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.024965" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23955" name="NaturalSourceKeepsItsIdentityAndOldStock" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.NaturalSourceKeepsItsIdentityAndOldStock" methodname="NaturalSourceKeepsItsIdentityAndOldStock" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1013945181" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.032281" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23940" name="OlderPoolIsPreservedAndOnlyNewSurplusIsAdded" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OlderPoolIsPreservedAndOnlyNewSurplusIsAdded" methodname="OlderPoolIsPreservedAndOnlyNewSurplusIsAdded" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1225501255" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.026106" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23934" name="OnePaidCoolingUnitIsNotRecoverable" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:22Z" duration="0.078297" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="23931" name="OnePaidCoolingUnitIsNotRecoverable(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable(&quot;water&quot;)" methodname="OnePaidCoolingUnitIsNotRecoverable" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1502274212" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:21Z" duration="0.023600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23932" name="OnePaidCoolingUnitIsNotRecoverable(&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable(&quot;bog-mire&quot;)" methodname="OnePaidCoolingUnitIsNotRecoverable" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="2102390413" result="Passed" start-time="2026-11-22 19:24:21Z" end-time="2026-11-22 19:24:22Z" duration="0.029792" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23933" name="OnePaidCoolingUnitIsNotRecoverable(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OnePaidCoolingUnitIsNotRecoverable(&quot;brine&quot;)" methodname="OnePaidCoolingUnitIsNotRecoverable" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="80854679" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="23968" name="OnlySurplusCanWaterACropOnTheSameCell" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OnlySurplusCanWaterACropOnTheSameCell" methodname="OnlySurplusCanWaterACropOnTheSameCell" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="114771321" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23950" name="OuterRollbackHasNoCoolingAndNoPoolGhost" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.OuterRollbackHasNoCoolingAndNoPoolGhost" methodname="OuterRollbackHasNoCoolingAndNoPoolGhost" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="775215425" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024134" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23976" name="PreparationCallbackCannotChangeTheAcceptedQuoteOrRewindInjury" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.PreparationCallbackCannotChangeTheAcceptedQuoteOrRewindInjury" methodname="PreparationCallbackCannotChangeTheAcceptedQuoteOrRewindInjury" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="866088356" result="Failed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.026701" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 39
+  But was:  40
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.PreparationCallbackCannotChangeTheAcceptedQuoteOrRewindInjury () [0x000bd] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:173
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="23949" name="PreviewDisclosesExactSpentAndRecoverableUnits" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.PreviewDisclosesExactSpentAndRecoverableUnits" methodname="PreviewDisclosesExactSpentAndRecoverableUnits" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1594784306" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024965" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23973" name="RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.073802" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="23970" name="RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid(&quot;flask-full&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid(&quot;flask-full&quot;)" methodname="RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="296255752" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.025194" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23971" name="RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid(&quot;flask-unlike&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid(&quot;flask-unlike&quot;)" methodname="RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="371362866" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.023006" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23972" name="RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid(&quot;pool-empty&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid(&quot;pool-empty&quot;)" methodname="RawProvisionalCreditMutationIsBoundedAndNeverChangesLiquid" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1084354941" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="23975" name="ReplacedThermalPartCannotPublishSuccessFromDetachedState" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ReplacedThermalPartCannotPublishSuccessFromDetachedState" methodname="ReplacedThermalPartCannotPublishSuccessFromDetachedState" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1677460032" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.030827" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23979" name="RollbackCannotRetireAnIndependentReplacementPoolPart" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.RollbackCannotRetireAnIndependentReplacementPoolPart" methodname="RollbackCannotRetireAnIndependentReplacementPoolPart" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="371817634" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.061990" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23953" name="StaleCommitPreservesIndependentInjuryAndForcedDrop" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.051571" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="23951" name="StaleCommitPreservesIndependentInjuryAndForcedDrop(False)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop(False)" methodname="StaleCommitPreservesIndependentInjuryAndForcedDrop" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="649426522" result="Failed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.025064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 39
+  But was:  40
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop (System.Boolean drop) [0x00094] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="23952" name="StaleCommitPreservesIndependentInjuryAndForcedDrop(True)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop(True)" methodname="StaleCommitPreservesIndependentInjuryAndForcedDrop" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1690277732" result="Failed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.026001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 39
+  But was:  40
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleCommitPreservesIndependentInjuryAndForcedDrop (System.Boolean drop) [0x00094] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="23963" name="StaleQuotedHearthCannotBeSubstituted" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleQuotedHearthCannotBeSubstituted" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.173058" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="23956" name="StaleQuotedHearthCannotBeSubstituted(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleQuotedHearthCannotBeSubstituted(&quot;missing&quot;)" methodname="StaleQuotedHearthCannotBeSubstituted" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1964514314" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.025938" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23957" name="StaleQuotedHearthCannotBeSubstituted(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleQuotedHearthCannotBeSubstituted(&quot;moved&quot;)" methodname="StaleQuotedHearthCannotBeSubstituted" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1350923554" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.023911" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23958" name="StaleQuotedHearthCannotBeSubstituted(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleQuotedHearthCannotBeSubstituted(&quot;replaced&quot;)" methodname="StaleQuotedHearthCannotBeSubstituted" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="2072372547" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024013" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23959" name="StaleQuotedHearthCannotBeSubstituted(&quot;fuel&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleQuotedHearthCannotBeSubstituted(&quot;fuel&quot;)" methodname="StaleQuotedHearthCannotBeSubstituted" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1815707478" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.025176" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23960" name="StaleQuotedHearthCannotBeSubstituted(&quot;ambient&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleQuotedHearthCannotBeSubstituted(&quot;ambient&quot;)" methodname="StaleQuotedHearthCannotBeSubstituted" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="821213605" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024782" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23961" name="StaleQuotedHearthCannotBeSubstituted(&quot;capacity&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleQuotedHearthCannotBeSubstituted(&quot;capacity&quot;)" methodname="StaleQuotedHearthCannotBeSubstituted" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="2128896596" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024720" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23962" name="StaleQuotedHearthCannotBeSubstituted(&quot;ambiguous&quot;)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.StaleQuotedHearthCannotBeSubstituted(&quot;ambiguous&quot;)" methodname="StaleQuotedHearthCannotBeSubstituted" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="260057825" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.023610" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="23939" name="TariffLeavesOnlyUnusedSurplus" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.095887" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="23935" name="TariffLeavesOnlyUnusedSurplus(450.0f,12,11,1,25.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus(450.0f,12,11,1,25.0f)" methodname="TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="380174150" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23936" name="TariffLeavesOnlyUnusedSurplus(200.0f,12,5,7,25.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus(200.0f,12,5,7,25.0f)" methodname="TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="543248808" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23937" name="TariffLeavesOnlyUnusedSurplus(150.0f,4,4,0,25.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus(150.0f,4,4,0,25.0f)" methodname="TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1994692852" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.023711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23938" name="TariffLeavesOnlyUnusedSurplus(450.0f,4,4,0,290.0f)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TariffLeavesOnlyUnusedSurplus(450.0f,4,4,0,290.0f)" methodname="TariffLeavesOnlyUnusedSurplus" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="2053359462" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.023305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="23980" name="ThermalCallbacksSeePaidReservationAndCannotRecoverIt" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ThermalCallbacksSeePaidReservationAndCannotRecoverIt" methodname="ThermalCallbacksSeePaidReservationAndCannotRecoverIt" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="9100670" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.026922" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23981" name="ThrowingThermalCallbackNeverRefundsCommittedDose" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ThrowingThermalCallbackNeverRefundsCommittedDose" methodname="ThrowingThermalCallbackNeverRefundsCommittedDose" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1169283879" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.065505" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23944" name="TownAndColdHearthsKeepOrdinaryRecoverablePour" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TownAndColdHearthsKeepOrdinaryRecoverablePour" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.051649" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="23942" name="TownAndColdHearthsKeepOrdinaryRecoverablePour(False)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TownAndColdHearthsKeepOrdinaryRecoverablePour(False)" methodname="TownAndColdHearthsKeepOrdinaryRecoverablePour" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="746866892" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="23943" name="TownAndColdHearthsKeepOrdinaryRecoverablePour(True)" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.TownAndColdHearthsKeepOrdinaryRecoverablePour(True)" methodname="TownAndColdHearthsKeepOrdinaryRecoverablePour" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1446647975" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.026316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="23948" name="UnquotedNewFireCannotSilentlyConsumeOrdinaryGroundPour" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.UnquotedNewFireCannotSilentlyConsumeOrdinaryGroundPour" methodname="UnquotedNewFireCannotSilentlyConsumeOrdinaryGroundPour" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="348140988" result="Passed" start-time="2026-11-22 19:24:22Z" end-time="2026-11-22 19:24:22Z" duration="0.024482" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

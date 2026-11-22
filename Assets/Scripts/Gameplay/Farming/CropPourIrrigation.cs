@@ -23,7 +23,7 @@ namespace CavesOfOoo.Core
             var soil = cell.Objects.First(e => e.HasPart<CultivatedSoilPart>() && e.HasTag("Terrain") && e.HasTag("Plantable"));
             return new CropPourIrrigation(crop, soil, cell);
         }
-        internal bool Apply(Entity actor, Zone zone, Entity poolOwner, InventoryTransaction tx)
+        internal bool Apply(Entity actor, Zone zone, Entity poolOwner, InventoryTransaction tx, bool deltaReceipt = false)
         {
             if (!CropTime.IsCurrentOwner(crop, zone) || zone.GetEntityCell(owner) != cell || crop.GrowthStage < 0 || crop.GrowthStage >= 2
                 || crop.MoistureTicks < 0 || crop.MoistureTicks >= 40 || !WorldResourceActions.Ground(soil, zone)
@@ -34,7 +34,12 @@ namespace CavesOfOoo.Core
             if (pool?.LiquidId != "water" || pool.Volume <= 0 || zone.GetEntityCell(poolOwner) != cell || !LiquidSourceSafety.IsUnmixedPool(zone, poolOwner)
                 || !tx.TryClaim(owner, actor, "PourIrrigate") || !tx.TryClaim(soil, actor, "PourIrrigate")) return false;
             int moisture = crop.MoistureTicks, volume = pool.Volume; var render = owner.GetPart<RenderPart>(); string background = render?.BackgroundColor;
-            tx.Do(null, () => { crop.MoistureTicks = moisture; pool.Volume = volume; if (render != null) render.BackgroundColor = background; });
+            tx.Do(null, () => {
+                if (!deltaReceipt) { crop.MoistureTicks=moisture; pool.Volume=volume; if(render!=null) render.BackgroundColor=background; }
+                // Cooling owns the net pool delta, including this unit, to avoid two bounded inverses losing independent stock.
+                else { if(crop.MoistureTicks==40) crop.MoistureTicks=moisture;
+                    if(render!=null && render.BackgroundColor==CropPart.WET_SOIL_BG) render.BackgroundColor=background; }
+            });
             crop.MoistureTicks = 40; pool.Volume--; if (render != null) render.BackgroundColor = CropPart.WET_SOIL_BG;
             tx.AfterCommit(() =>
             {

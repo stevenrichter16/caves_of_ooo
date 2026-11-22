@@ -1,3 +1,23 @@
+November22 [finite hearth cooling](Verification/MachineSystems/FiniteCooling20261122/README.md)
+closes the independently reproduced water-cost P2 with a bounded newly-poured
+sink: ceil-to-ambient at40degrees/unit, only unused surplus recoverable, older
+pools/natural sources preserved. Bound menu quote/current Parts/claims, bounded
+quantity undo and committed shared ApplyHeat preserve outer veto and independent
+injury/custody. Callback-moved/replaced targets cannot receive stale contact or
+false success. Native175/1750CS=43new132previous; mutants15/3/1fail; final independent
+source/artifact/gameplay-evidence review0P1/P2 (not a second native operator).
+Actual2700->2760:1spent/nohearthfill; recover old6; quote4spent2surplus/freecancel;
+quench25/dark/fuel2.75; recover2; realDown/Up; NormalF5/archive-before-Stop/fresh2760
+full measuredworld exact. Water12->7, source48, groupedthree2/12; viper/poison
+retainedHP390. First unsaved Inventory-modal branch/archive2700 explicitlyexcluded.
+Mainstopped/rootnull/clean/profileroff/original7presets/custom0/index0; fresh19:37
+84foreign861normal hashes unchanged. No new full12/delivery/exposure acceptance.
+Current Mac3fe9efc1c excludes this correction. NEXT current Mac candidate, then
+existing useful crop/hydration/repair endpoint with practical supply/service
+alternatives; category/sort and further audited grouping remain remembered.
+Unloaded-fire chronology remains open; graphicscancelled/capstan-culturesparked/
+Deckdeferred/hourlyACTIVE.
+
 November22 [current counted-inventory Mac candidate](Verification/MachineSystems/MacCandidate3FE9EFC1C/README.md)
 packages pushed/remotely verified runtime3fe9efc1c7918fe301091bb0e483d3158fc03ded.
 Universal6000.3.4f1/nondev62.30237s364099789bytes/0errors/5samewarnings as910.
@@ -403,7 +423,7 @@ All complete machines remain proposed. M1c adds accepted canonical-rig adjacent 
 | Culture vat | Grow a finite useful culture from acquired stock. | Strain identity, feedstock, bounded growth, conditions and yield allocation. | Two competing uses for one finite culture, different supported conditions, consent/ownership and persistence. | Proposed; finite culture identity/feed/growth/conditions and competing uses remain open. M1d oil preparation does not implement cultures. |
 | Anchored capstan | Recover or reposition loads ordinary carrying cannot handle. | Valid anchors, cable/pull paths, work budget and installed-versus-loose state. | Actual obstruction, terrain and existing cargo weight affect pulling; movement and interruption remain coherent. | Proposed; M1b recovery/service and M1c bounded relocation accepted; current Mac includes M1b/M1c; complete-machine prerequisites open. |
 | Sump pump | Reach submerged resources or redirect a local liquid supply. | Finite source/receiver transfer, level/state thresholds, compatible fittings and outlet consequences. | A real passage or resource changes access; transferred liquid appears at a valid destination with no regeneration exploit. | Proposed; M1a vessel transfer accepted, but actual finite source/depletion/receiver/access loop remains unqualified. M2a contained recovery is publishedc43631ad6 with native56/56, actual clean/manual/crafting/contact/travel/reload/old-cache and currentMac action/travel/reload; full pump purpose/flow remains open. M1d does not implement pumping. |
-| Thermal exchanger | Use a local source for drying, cooling or processing. | Explicit source/receiver coupling, work limits and bounded local temperature effects. | Useful cooling/heating and a second consequence share existing thermal rules; unsupported sources do not create energy. | Proposed; machine-specific prerequisites open. |
+| Thermal exchanger | Use a local source for drying, cooling or processing. | Explicit source/receiver coupling, work limits and bounded local temperature effects. | Useful cooling/heating and a second consequence share existing thermal rules; unsupported sources do not create energy. | Proposed; bounded owned-hearth cooling now spends finite newly poured water, preserves surplus/older stock, uses shared thermal/light/cooking and has actual recovery/fresh2760 proof. This is not general source/receiver coupling or a complete exchanger; machine-specific prerequisites remain open. |
 | Dynamo and charging bench | Prepare finite work for portable equipment. | Authored energy source, storage loss/capacity and at least one real consumer. | Charged equipment does useful work away from the generator; finite conversion and refusal paths are verified. | Proposed; machine-specific prerequisites open. |
 | Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed; machine-specific prerequisites open. |
 | Signal relay | Coordinate separated people and owned locations. | Connectivity, observed reports and persistent dispatch/delivery state with genuine cargo custody. | One physical delivery or report follows a real arrangement, survives interruption/reload and cannot duplicate goods. | Proposed; machine-specific prerequisites open. |

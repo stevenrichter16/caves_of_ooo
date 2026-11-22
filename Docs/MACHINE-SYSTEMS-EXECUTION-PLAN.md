@@ -10,6 +10,26 @@
 
 ## Active handback continuation — November 21, 2026
 
+November22 [finite hearth cooling](Verification/MachineSystems/FiniteCooling20261122/README.md)
+closes the independently reproduced water-cost P2 with a bounded newly-poured
+sink: ceil-to-ambient at40degrees/unit, only unused surplus recoverable, older
+pools/natural sources preserved. Bound menu quote/current Parts/claims, bounded
+quantity undo and committed shared ApplyHeat preserve outer veto and independent
+injury/custody. Callback-moved/replaced targets cannot receive stale contact or
+false success. Native175/1750CS=43new132previous; mutants15/3/1fail; final independent
+source/artifact/gameplay-evidence review0P1/P2 (not a second native operator).
+Actual2700->2760:1spent/nohearthfill; recover old6; quote4spent2surplus/freecancel;
+quench25/dark/fuel2.75; recover2; realDown/Up; NormalF5/archive-before-Stop/fresh2760
+full measuredworld exact. Water12->7, source48, groupedthree2/12; viper/poison
+retainedHP390. First unsaved Inventory-modal branch/archive2700 explicitlyexcluded.
+Mainstopped/rootnull/clean/profileroff/original7presets/custom0/index0; fresh19:37
+84foreign861normal hashes unchanged. No new full12/delivery/exposure acceptance.
+Current Mac3fe9efc1c excludes this correction. NEXT current Mac candidate, then
+existing useful crop/hydration/repair endpoint with practical supply/service
+alternatives; category/sort and further audited grouping remain remembered.
+Unloaded-fire chronology remains open; graphicscancelled/capstan-culturesparked/
+Deckdeferred/hourlyACTIVE.
+
 November22 [current counted-inventory Mac candidate](Verification/MachineSystems/MacCandidate3FE9EFC1C/README.md)
 packages pushed/remotely verified runtime3fe9efc1c7918fe301091bb0e483d3158fc03ded.
 Universal6000.3.4f1/nondev62.30237s364099789bytes/0errors/5samewarnings as910.

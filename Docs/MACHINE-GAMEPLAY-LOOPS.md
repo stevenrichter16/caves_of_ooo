@@ -126,7 +126,7 @@ to the player's choices; measure meaningful outcomes rather than total activatio
 
 | Lifecycle | Useful return to the system | Practical alternative and acceptance boundary |
 | --- | --- | --- |
-| Expedition supplies | A different route or destination changes which water, food, light, protection and trap supplies are useful. Prepare a finite amount, with visible remaining stock. | Carry bought or found supplies; use a village stop. Water-cooling reuse below must be corrected before claiming finite dousing cost. |
+| Expedition supplies | A different route or destination changes which water, food, light, protection and trap supplies are useful. Prepare a finite amount, with visible remaining stock. | Carry bought or found supplies; use a village stop. The separately qualified finite-cooling correction spends only the newly poured dose; surplus and older stock stay recoverable. |
 | Lasting equipment work | A newly found garment or different environment makes a different proofing/refit worthwhile. An existing lasting treatment keeps its benefit. | Keep current gear, use temporary preparation or buy suitable equipment. No imposed decay to create repeat demand. |
 | Salvage decisions | Another damaged find presents a new choice between intact use, repair, dismantling, sale and recovery of declared components. | Leave it, carry it or use an existing service. Every retained improvement and conversion loss needs explicit accounting. |
 | Camp location and transport | Moving the work frontier makes another camp or relocation useful; retained storage and access can save a journey. | Return to town, carry the kit or pay existing freight. Base delivery and automatic production remain proposed; unloaded fire accounting is still open. |
@@ -160,3 +160,24 @@ review and native proof, preserving preexisting pooled stock and natural sources
 Then prefer an existing crop need, existing hydration debt or actual repair for
 a useful finite output endpoint. No manufactured hazard, forced upkeep or new
 recipe is implied; all twelve complete-machine acceptance gates remain open.
+
+
+## Finite cooling endpoint — November22
+
+[FiniteCooling20261122](Verification/MachineSystems/FiniteCooling20261122/README.md)
+closes the water-cost defect above. Newly poured water evaporates in whole units
+needed to cool toward ambient; only surplus reaches the ground. Actual native
+one-unit banking spends that unit, with no fill option at the hearth. Recovered
+older west water6 then spends4 and leaves2, extinguishing cooking/light while
+retaining fuel2.75. Recovering those2 leaves total water7 from12; the five paid
+units cannot be recovered. Normal movement/F5/fresh2760 preserves the measured
+world, and the Inventory groups three actual2/12 flasks without merging owners.
+Viper/poison consequences remain; no compulsory upkeep or new hazard was added.
+
+This is a useful existing processing-output endpoint and finite accounting fix,
+not ordinary supply/economic balance or a complete fractionator/exchanger. Next
+compare another supported output against an actual crop, hydration or repair
+need, including ordinary carried stock or an NPC service where supported. Avoid
+repeat demonstrations of accepted branches. Category/sort, further audited item
+groups and physical-input qualification remain separate. No wall-clock production,
+protected-information claim or population exposure rollout is implied.

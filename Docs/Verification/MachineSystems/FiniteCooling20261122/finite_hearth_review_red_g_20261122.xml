@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 19:19:38Z" end-time="2026-11-22 19:19:39Z" duration="0.7732513">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40745" result="Failed" site="Child" start-time="2026-11-22 19:19:38Z" end-time="2026-11-22 19:19:39Z" duration="0.773251" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49672" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40745" result="Failed" site="Child" start-time="2026-11-22 19:19:38Z" end-time="2026-11-22 19:19:39Z" duration="0.699021" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35573" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49673" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40745" result="Failed" site="Child" start-time="2026-11-22 19:19:38Z" end-time="2026-11-22 19:19:39Z" duration="0.632109" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49674" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40745" result="Failed" site="Child" start-time="2026-11-22 19:19:38Z" end-time="2026-11-22 19:19:39Z" duration="0.493411" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="23930" name="FiniteHearthCoolingTests" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" testcasecount="42" result="Failed" site="Child" start-time="2026-11-22 19:19:39Z" end-time="2026-11-22 19:19:39Z" duration="0.117882" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="23975" name="ReplacedThermalPartCannotPublishSuccessFromDetachedState" fullname="CavesOfOoo.Tests.FiniteHearthCoolingTests.ReplacedThermalPartCannotPublishSuccessFromDetachedState" methodname="ReplacedThermalPartCannotPublishSuccessFromDetachedState" classname="CavesOfOoo.Tests.FiniteHearthCoolingTests" runstate="Runnable" seed="1462316871" result="Failed" start-time="2026-11-22 19:19:39Z" end-time="2026-11-22 19:19:39Z" duration="0.110975" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not String containing "goes out"
+  But was:  "The water hisses and your hearth goes out in a cloud of steam. It keeps its fuel. You pour 12 of water; 11 evaporate, 1 remain recoverable."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.DoesNotContain (System.String expected, System.String actual, System.String message, System.Object[] args) [0x0000c] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.DoesNotContain (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.FiniteHearthCoolingTests.ReplacedThermalPartCannotPublishSuccessFromDetachedState () [0x0009e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiniteHearthCoolingTests.cs:164
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
