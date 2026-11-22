@@ -16,6 +16,16 @@ Standing whole-game architecture: [Composable world systems](SYSTEMS-DESIGN-PRIN
 
 ## Design principles
 
+[Cinderhold repair after-play](Verification/MachineSystems/TownPump20261121/README.md)
+qualifies shared settlement-object repair accounting/readers/persistence, not a
+finite pumping/drainage/economy foundation or acceptance of the proposed sump pump.
+
+[Native NPC/Grove qualification](Verification/MachineSystems/NpcAndGrove20261121/README.md)
+adds a common-event outcome: Jet Blast forces a creature across an oil/fire trap;
+fuel/device consumption, damage and terrain persist through reload. Grove6,6
+refuses fire placement freely while permitting the cold alternative. These are
+bounded examples, not universal AI/territory qualification or machine acceptance.
+
 [Finite poured-fuel correction](FINITE-POURED-FUEL.md) now debits the ordinary
 recoverable oil underlying an ignition coating, before damage callbacks. Both
 ignition paths/native persistence verified; physical water and natural/multi-cell

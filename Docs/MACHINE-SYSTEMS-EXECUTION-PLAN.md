@@ -10,6 +10,30 @@
 
 ## Active handback continuation — November 21, 2026
 
+[Native Cinderhold lasting repair](Verification/MachineSystems/TownPump20261121/README.md)
+now verifies actual readers, finite4unit bill,1320→1330 cost, stable/running/no
+repair rows and fresh1330HP29 persistence. Physical drainage/pressure/economy,
+patch timing and elder path unqualified. No runtime changes/new tests here.
+Grove launch limitation source-traced to installation eligibility→Spread fallback;
+actual travel, not requested parameters, qualified the rule. Remaining: sounding
+noise, Posy/freight, packaged controls with OS input access, gated exposure trial.
+
+Latest native [NPC/Grove checks](Verification/MachineSystems/NpcAndGrove20261121/README.md)
+earn a nonplayer Jet-Blast-forced trap trigger, spent/creature-health persistence,
+canonical6,6 fire refusal without charge and allowed cold alternative with fresh
+reload. No runtime changes/new tests or general AI avoidance claim. Requested
+wild-biome launch differed from observed start; actual travel established the
+tested Grove. Main clean/nullroot/defaults restored, normal/foreign preserved.
+Next available: sounding noise and town/Posy/repair/freight. Mac packaged control
+gate remains blocked by unavailable OS native input; no complete-machine acceptance.
+
+[Mac candidate74d85569a](Verification/MachineSystems/MacCandidate74d85569a/README.md)
+now includes the fix below:0errors/5warnings, actual character-chooser/world boot.
+Native OS input denied/unavailable; packaged movement/actions/reload remain open,
+so this is not accepted delivery. Own player stopped; standalone Saves absent as
+before, app preferences logically restored,84foreign/861normal file hashes unchanged.
+Preserve both new/prior candidates. Continue available Editor NPC/Grove/town checks.
+
 Latest: [finite poured-fuel correction](FINITE-POURED-FUEL.md) implemented;
 native RED23/11fail, GREEN229/229, five mutants killed, independent source0P1/P2.
 Actual trap1unit and ordinary ember2unit consumption, collection-row removal

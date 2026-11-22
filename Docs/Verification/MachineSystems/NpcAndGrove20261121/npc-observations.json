@@ -1,0 +1,479 @@
+{
+  "scope": "Root-operated actual GameBootstrap fixture. Existing workshop proving-post menu called one CaveSlime; no ad-hoc spawn, movement, health edits or clock jumps. Native keyboard controls all actions.",
+  "checkpoints": {
+    "npcTrapOilPlaced": {
+      "tick": 290,
+      "x": 40,
+      "y": 12,
+      "hp": 400,
+      "tile": {
+        "Coatings": [
+          {
+            "Id": "oil",
+            "Turns": 2147483647,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Residues": [],
+        "Heat": 0,
+        "Cold": 0,
+        "Charge": 0,
+        "Cloud": "",
+        "CloudTurns": 0,
+        "IsEmpty": false
+      },
+      "objects": [
+        {
+          "id": "948",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        },
+        {
+          "id": "2703",
+          "bp": "PouredLiquidPool",
+          "liquid": "oil",
+          "volume": 1,
+          "trap": null
+        }
+      ],
+      "oil": [
+        {
+          "id": "2231",
+          "volume": 2
+        }
+      ],
+      "burning": false,
+      "messages": [
+        "You thaws.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You load the spring trap with fire moss.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of oil onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "npcTrapArmed": {
+      "tick": 300,
+      "x": 40,
+      "y": 12,
+      "hp": 400,
+      "tile": {
+        "Coatings": [
+          {
+            "Id": "oil",
+            "Turns": 2147483647,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Residues": [],
+        "Heat": 0,
+        "Cold": 0,
+        "Charge": 0,
+        "Cloud": "",
+        "CloudTurns": 0,
+        "IsEmpty": false
+      },
+      "objects": [
+        {
+          "id": "948",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        },
+        {
+          "id": "2703",
+          "bp": "PouredLiquidPool",
+          "liquid": "oil",
+          "volume": 1,
+          "trap": null
+        },
+        {
+          "id": "2704",
+          "bp": "SpringTrapLaid",
+          "liquid": null,
+          "volume": 0,
+          "trap": "heat"
+        }
+      ],
+      "oil": [
+        {
+          "id": "2231",
+          "volume": 2
+        }
+      ],
+      "burning": false,
+      "messages": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of oil onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "npcPostMenu": {
+      "state": "WorldActionMenuOpen",
+      "x": 40,
+      "y": 12,
+      "tick": 300,
+      "hp": 400,
+      "rows": [
+        "0:call a Marlback cindercaller (heat: spits embers)",
+        "1:call a charred husk (heat: burns what it touches)",
+        "2:call a ice wight (cold: throws ice lances)",
+        "3:call a rune cultist (cold: calls frost)",
+        "4:call a Marlback stormbinder (shock: arcs lightning)",
+        "5:call a vault sentinel (shock: shocks)",
+        "6:call a Marlback soursprayer (acid: sprays acid)",
+        "7:call a cave slime (acid: corrodes)",
+        "8:mend yourself (full health, harmful statuses cleared)",
+        "9:send away everything called",
+        "10:examine",
+        "11:pour out a liquid here (4) >>",
+        "12:spread brine east (1 item) [glimmer-brine]",
+        "13:<< everything here"
+      ]
+    },
+    "npcTrapFoeCalled": {
+      "tick": 300,
+      "hp": 400,
+      "foes": [
+        {
+          "id": "2705",
+          "bp": "CaveSlime",
+          "x": 37,
+          "y": 9,
+          "hp": 18,
+          "heatRes": 0,
+          "burning": false
+        }
+      ],
+      "messages": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of oil onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "A cave slime answers the post."
+      ]
+    },
+    "npcTrapApproach1": {
+      "tick": 310,
+      "hp": 400,
+      "foes": [
+        {
+          "id": "2705",
+          "bp": "CaveSlime",
+          "x": 37,
+          "y": 9,
+          "hp": 18,
+          "heatRes": 0,
+          "burning": false
+        }
+      ],
+      "messages": [
+        "You pour 1 of oil onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "A cave slime answers the post.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "npcTrapApproach2": {
+      "tick": 330,
+      "hp": 388,
+      "foes": [
+        {
+          "id": "2705",
+          "bp": "CaveSlime",
+          "x": 38,
+          "y": 10,
+          "hp": 18,
+          "heatRes": 0,
+          "burning": false
+        }
+      ],
+      "messages": [
+        "A cave slime answers the post.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "cave slime douses you for 4 damage!",
+        "You are coated in acid.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 4 acid damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 4 acid damage."
+      ]
+    },
+    "npcTrapOutcome": {
+      "tick": 350,
+      "hp": 382,
+      "foes": [
+        {
+          "id": "2705",
+          "bp": "CaveSlime",
+          "x": 39,
+          "y": 10,
+          "hp": 18,
+          "heatRes": 0,
+          "burning": false
+        }
+      ],
+      "messages": [
+        "You take 4 acid damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 acid damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The rune of frost bites viper with cold!",
+        "viper is frozen!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 acid damage."
+      ]
+    },
+    "npcTrapReposition": {
+      "tick": 360,
+      "hp": 379,
+      "foes": [
+        {
+          "id": "2705",
+          "bp": "CaveSlime",
+          "x": 40,
+          "y": 11,
+          "hp": 18,
+          "heatRes": 0,
+          "burning": false
+        }
+      ],
+      "messages": [
+        "The rune of frost bites viper with cold!",
+        "viper is frozen!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 acid damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "viper is frozen and cannot act!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 acid damage."
+      ]
+    },
+    "npcTrapLaterOutcome": {
+      "tick": 380,
+      "hp": 370,
+      "foes": [
+        {
+          "id": "2705",
+          "bp": "CaveSlime",
+          "x": 40,
+          "y": 11,
+          "hp": 18,
+          "heatRes": 0,
+          "burning": false
+        }
+      ],
+      "messages": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 acid damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "cave slime [left hand: pseudopod] hits you in the right arm for 4 damage! (372 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "viper is frozen and cannot act!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 2 acid damage."
+      ]
+    },
+    "npcTrapJetAim": {
+      "state": "AwaitingDirection",
+      "x": 41,
+      "y": 13,
+      "tick": 400,
+      "hp": 366,
+      "rows": [
+        "0:call a Marlback cindercaller (heat: spits embers)",
+        "1:call a charred husk (heat: burns what it touches)",
+        "2:call a ice wight (cold: throws ice lances)",
+        "3:call a rune cultist (cold: calls frost)",
+        "4:call a Marlback stormbinder (shock: arcs lightning)",
+        "5:call a vault sentinel (shock: shocks)",
+        "6:call a Marlback soursprayer (acid: sprays acid)",
+        "7:call a cave slime (acid: corrodes)",
+        "8:mend yourself (full health, harmful statuses cleared)",
+        "9:send away everything called",
+        "10:examine",
+        "11:pour out a liquid here (4) >>",
+        "12:spread brine east (1 item) [glimmer-brine]",
+        "13:<< everything here"
+      ]
+    },
+    "npcTrapAfterJetFoe": {
+      "tick": 410,
+      "hp": 364,
+      "foes": [
+        {
+          "id": "2705",
+          "bp": "CaveSlime",
+          "x": 40,
+          "y": 12,
+          "hp": 4,
+          "heatRes": 0,
+          "burning": false
+        }
+      ],
+      "messages": [
+        "A spring trap goes off under cave slime.",
+        "Your jet blast drenches 1 target!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The oily coating wears off cave slime.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "viper is frozen and cannot act!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 2 acid damage."
+      ]
+    },
+    "npcTrapAfterJetCell": {
+      "tick": 410,
+      "x": 41,
+      "y": 13,
+      "hp": 364,
+      "tile": {
+        "Coatings": [
+          {
+            "Id": "water",
+            "Turns": 5,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Residues": [
+          {
+            "Id": "embers",
+            "Turns": 3,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Heat": 0,
+        "Cold": 0,
+        "Charge": 0,
+        "Cloud": "smoke",
+        "CloudTurns": 2,
+        "IsEmpty": false
+      },
+      "objects": [
+        {
+          "id": "948",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        }
+      ],
+      "oil": [
+        {
+          "id": "2231",
+          "volume": 2
+        }
+      ],
+      "burning": false,
+      "messages": [
+        "A spring trap goes off under cave slime.",
+        "Your jet blast drenches 1 target!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The oily coating wears off cave slime.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "viper is frozen and cannot act!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 2 acid damage."
+      ]
+    },
+    "npcTrapReaction": [
+      "{\"reaction\":\"ignite_oil_heat\",\"x\":39,\"y\":11,\"consumedCoating\":\"oil\",\"consumedPhysicalLiquid\":1,\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"smoke\",\"occupantsHit\":1}"
+    ],
+    "npcTrapFreshContinueFoe": {
+      "tick": 410,
+      "hp": 364,
+      "foes": [
+        {
+          "id": "2705",
+          "bp": "CaveSlime",
+          "x": 40,
+          "y": 12,
+          "hp": 4,
+          "heatRes": 0,
+          "burning": false
+        }
+      ],
+      "messages": [
+        "A spring trap goes off under cave slime.",
+        "Your jet blast drenches 1 target!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The oily coating wears off cave slime.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "viper is frozen and cannot act!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 2 acid damage."
+      ]
+    },
+    "npcTrapFreshContinueCell": {
+      "tick": 410,
+      "x": 41,
+      "y": 13,
+      "hp": 364,
+      "tile": {
+        "Coatings": [
+          {
+            "Id": "water",
+            "Turns": 5,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Residues": [
+          {
+            "Id": "embers",
+            "Turns": 3,
+            "ProjectionOwnerId": ""
+          }
+        ],
+        "Heat": 0,
+        "Cold": 0,
+        "Charge": 0,
+        "Cloud": "smoke",
+        "CloudTurns": 2,
+        "IsEmpty": false
+      },
+      "objects": [
+        {
+          "id": "948",
+          "bp": "RoadStone",
+          "liquid": null,
+          "volume": 0,
+          "trap": null
+        }
+      ],
+      "oil": [
+        {
+          "id": "2231",
+          "volume": 2
+        }
+      ],
+      "burning": false,
+      "messages": [
+        "A spring trap goes off under cave slime.",
+        "Your jet blast drenches 1 target!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The oily coating wears off cave slime.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "viper is frozen and cannot act!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 2 acid damage."
+      ]
+    }
+  }
+}

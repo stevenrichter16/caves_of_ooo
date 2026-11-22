@@ -1,0 +1,461 @@
+{
+  "scope": "Actual native keyboard workflow in authored workshop fixture, then ordinary world-map travel to canonical Grovelands surface6,6; no biome mutation or teleport.",
+  "checkpoints": {
+    "groveFireLoadedBaseline": {
+      "zone": "Overworld.11.10.0",
+      "choirGround": false,
+      "tick": 20,
+      "hp": 400,
+      "moss": 7
+    },
+    "groveArrival": {
+      "zone": "Overworld.6.6.0",
+      "x": 39,
+      "y": 11,
+      "choirGround": true,
+      "tick": 220,
+      "hp": 400,
+      "messages": [
+        "Autosaved.",
+        "There is nothing here to pick up.",
+        "There are no stairs leading up here.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "groveBeforeRefusal": {
+      "zone": "Overworld.6.6.0",
+      "tick": 220,
+      "hp": 400,
+      "actions": [
+        {
+          "i": 0,
+          "Display": "examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 1,
+          "Display": "lay hush strip west",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 2,
+          "Display": "pour bog mire west (12) [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 3,
+          "Display": "spread brine west (1 item) [glimmer-brine]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 4,
+          "Display": "lay the fire moss trap [spring trap]",
+          "IsDisabled": true,
+          "DisabledCode": "grove-law",
+          "DisabledReason": "Fire is not laid on the Choir's ground."
+        },
+        {
+          "i": 5,
+          "Display": "pour one bog mire west [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        }
+      ],
+      "traps": [
+        {
+          "id": "2716",
+          "Loaded": "FireMoss",
+          "Kind": "heat"
+        },
+        {
+          "id": "2717",
+          "Loaded": "",
+          "Kind": ""
+        }
+      ],
+      "moss": 7,
+      "lichen": 8,
+      "devices": []
+    },
+    "groveAfterRefusal": {
+      "zone": "Overworld.6.6.0",
+      "tick": 220,
+      "hp": 400,
+      "actions": [
+        {
+          "i": 0,
+          "Display": "examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 1,
+          "Display": "lay hush strip west",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 2,
+          "Display": "pour bog mire west (12) [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 3,
+          "Display": "spread brine west (1 item) [glimmer-brine]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 4,
+          "Display": "lay the fire moss trap [spring trap]",
+          "IsDisabled": true,
+          "DisabledCode": "grove-law",
+          "DisabledReason": "Fire is not laid on the Choir's ground."
+        },
+        {
+          "i": 5,
+          "Display": "pour one bog mire west [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        }
+      ],
+      "traps": [
+        {
+          "id": "2716",
+          "Loaded": "FireMoss",
+          "Kind": "heat"
+        },
+        {
+          "id": "2717",
+          "Loaded": "",
+          "Kind": ""
+        }
+      ],
+      "moss": 7,
+      "lichen": 8,
+      "devices": []
+    },
+    "groveFrostAlternativeMenu": {
+      "zone": "Overworld.6.6.0",
+      "tick": 230,
+      "hp": 400,
+      "actions": [
+        {
+          "i": 0,
+          "Display": "examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 1,
+          "Display": "lay a device here (3) >>",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 2,
+          "Display": "pour bog mire west (12) [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 3,
+          "Display": "spread brine west (1 item) [glimmer-brine]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 4,
+          "Display": "pour one bog mire west [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        }
+      ],
+      "traps": [
+        {
+          "id": "2716",
+          "Loaded": "FireMoss",
+          "Kind": "heat"
+        },
+        {
+          "id": "2717",
+          "Loaded": "FrostLichen",
+          "Kind": "cold"
+        }
+      ],
+      "moss": 7,
+      "lichen": 7,
+      "devices": []
+    },
+    "groveGroupedAlternativeMenu": {
+      "zone": "Overworld.6.6.0",
+      "tick": 230,
+      "hp": 400,
+      "actions": [
+        {
+          "i": 0,
+          "Display": "lay hush strip west",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 1,
+          "Display": "lay the fire moss trap [spring trap]",
+          "IsDisabled": true,
+          "DisabledCode": "grove-law",
+          "DisabledReason": "Fire is not laid on the Choir's ground."
+        },
+        {
+          "i": 2,
+          "Display": "lay the frost lichen trap west [spring trap]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 3,
+          "Display": "<< back",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        }
+      ],
+      "traps": [
+        {
+          "id": "2716",
+          "Loaded": "FireMoss",
+          "Kind": "heat"
+        },
+        {
+          "id": "2717",
+          "Loaded": "FrostLichen",
+          "Kind": "cold"
+        }
+      ],
+      "moss": 7,
+      "lichen": 7,
+      "devices": []
+    },
+    "groveColdPlaced": {
+      "zone": "Overworld.6.6.0",
+      "tick": 240,
+      "hp": 400,
+      "actions": [
+        {
+          "i": 0,
+          "Display": "lay hush strip west",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 1,
+          "Display": "lay the fire moss trap [spring trap]",
+          "IsDisabled": true,
+          "DisabledCode": "grove-law",
+          "DisabledReason": "Fire is not laid on the Choir's ground."
+        },
+        {
+          "i": 2,
+          "Display": "lay the frost lichen trap west [spring trap]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 3,
+          "Display": "<< back",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        }
+      ],
+      "traps": [
+        {
+          "id": "2716",
+          "Loaded": "FireMoss",
+          "Kind": "heat"
+        }
+      ],
+      "moss": 7,
+      "lichen": 7,
+      "devices": [
+        {
+          "id": "7437",
+          "Kind": "cold"
+        }
+      ]
+    },
+    "groveFreshContinue": {
+      "zone": "Overworld.6.6.0",
+      "tick": 240,
+      "hp": 400,
+      "actions": [],
+      "traps": [
+        {
+          "id": "2716",
+          "Loaded": "FireMoss",
+          "Kind": "heat"
+        }
+      ],
+      "moss": 7,
+      "lichen": 7,
+      "devices": [
+        {
+          "id": "7437",
+          "Kind": "cold"
+        }
+      ]
+    },
+    "groveFreshRefusalMenu": {
+      "zone": "Overworld.6.6.0",
+      "tick": 240,
+      "hp": 400,
+      "actions": [
+        {
+          "i": 0,
+          "Display": "examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 1,
+          "Display": "lay hush strip east",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 2,
+          "Display": "pour bog mire east (12) [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 3,
+          "Display": "spread brine east (1 item) [glimmer-brine]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 4,
+          "Display": "lay the fire moss trap [spring trap]",
+          "IsDisabled": true,
+          "DisabledCode": "grove-law",
+          "DisabledReason": "Fire is not laid on the Choir's ground."
+        },
+        {
+          "i": 5,
+          "Display": "pour one bog mire east [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        }
+      ],
+      "traps": [
+        {
+          "id": "2716",
+          "Loaded": "FireMoss",
+          "Kind": "heat"
+        }
+      ],
+      "moss": 7,
+      "lichen": 7,
+      "devices": [
+        {
+          "id": "7437",
+          "Kind": "cold"
+        }
+      ]
+    },
+    "groveFreshRefusalAfter": {
+      "zone": "Overworld.6.6.0",
+      "tick": 240,
+      "hp": 400,
+      "actions": [
+        {
+          "i": 0,
+          "Display": "examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 1,
+          "Display": "lay hush strip east",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 2,
+          "Display": "pour bog mire east (12) [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 3,
+          "Display": "spread brine east (1 item) [glimmer-brine]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        },
+        {
+          "i": 4,
+          "Display": "lay the fire moss trap [spring trap]",
+          "IsDisabled": true,
+          "DisabledCode": "grove-law",
+          "DisabledReason": "Fire is not laid on the Choir's ground."
+        },
+        {
+          "i": 5,
+          "Display": "pour one bog mire east [liquid flask]",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": ""
+        }
+      ],
+      "traps": [
+        {
+          "id": "2716",
+          "Loaded": "FireMoss",
+          "Kind": "heat"
+        }
+      ],
+      "moss": 7,
+      "lichen": 7,
+      "devices": [
+        {
+          "id": "7437",
+          "Kind": "cold"
+        }
+      ]
+    }
+  }
+}

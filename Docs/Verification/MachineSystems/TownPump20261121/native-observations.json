@@ -1,0 +1,190 @@
+{
+  "scope": "Root-operated actual GameBootstrap fixture supplies from earned camp-machine1100 save; native world-map travel, readers and C-menu lasting repair, F5/fresh Continue. No new runtime changes/grants/action calls/clock jumps.",
+  "checkpoints": {
+    "pumpStart": {
+      "zone": "Overworld.10.11.0",
+      "x": 36,
+      "y": 10,
+      "tick": 1100,
+      "hp": 29,
+      "parts": [
+        {
+          "id": "2193",
+          "bp": "IronSpikeComponent",
+          "count": 2
+        },
+        {
+          "id": "2195",
+          "bp": "OakHaftComponent",
+          "count": 1
+        },
+        {
+          "id": "2196",
+          "bp": "LeatherBindingComponent",
+          "count": 1
+        }
+      ],
+      "messages": [
+        "The wet coating wears off you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You heal 3 HP.",
+        "You eat lake perch.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "pumpTownSites": {
+      "zone": "Overworld.6.6.0",
+      "sites": [
+        {
+          "id": "7147",
+          "bp": "MinePump",
+          "x": 39,
+          "y": 8,
+          "Place": "Cinderhold",
+          "SiteId": "Pump"
+        }
+      ]
+    },
+    "pumpBeforeMenu": {
+      "state": "WorldActionMenuOpen",
+      "x": 39,
+      "y": 9,
+      "tick": 1320,
+      "hp": 29,
+      "rows": [
+        "0:mend the mine pump for good",
+        "1:patch the mine pump for now",
+        "2:examine",
+        "3:pour water north (3) [liquid flask]",
+        "4:pour one water north [liquid flask]",
+        "5:<< everything here"
+      ]
+    },
+    "pumpBeforeRepair": {
+      "zone": "Overworld.6.6.0",
+      "tick": 1320,
+      "hp": 29,
+      "stage": "Fouled",
+      "severity": 1,
+      "method": "None",
+      "resolvedAt": -1,
+      "relapseAt": null,
+      "outcome": "None",
+      "parts": [
+        {
+          "id": "2193",
+          "bp": "IronSpikeComponent",
+          "count": 2
+        },
+        {
+          "id": "2195",
+          "bp": "OakHaftComponent",
+          "count": 1
+        },
+        {
+          "id": "2196",
+          "bp": "LeatherBindingComponent",
+          "count": 1
+        }
+      ],
+      "messages": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a mine pump (sheared).\nThe pump's rod has sheared at the collar, and the old binding hangs in black strings. Water stands in the shaft below.\nHow to use: Stand beside it, press C and choose mend the mine pump for good, or patch it for now. The menu lists each material with how many you carry.\nNeeds: to mend it for good: 2 iron spike, 1 oak haft, 1 leather binding; to patch it for now: 2 fire clay.\nCost and limits: Mending uses up the materials and keeps any tool, and the repair lasts. A patch holds about 600 turns, then fails.\nRight now you can: mend the mine pump for good, patch the mine pump for now.\n\nA hand pump on an iron collar over the mine shaft, worked by a long oak rod. The lower level lives or drowns by it."
+      ]
+    },
+    "pumpAfterRepair": {
+      "zone": "Overworld.6.6.0",
+      "tick": 1330,
+      "hp": 29,
+      "stage": "StableRepair",
+      "severity": 1,
+      "method": "ManualRepair",
+      "resolvedAt": 1320,
+      "relapseAt": null,
+      "outcome": "Stable",
+      "parts": [],
+      "messages": [
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a mine pump (sheared).\nThe pump's rod has sheared at the collar, and the old binding hangs in black strings. Water stands in the shaft below.\nHow to use: Stand beside it, press C and choose mend the mine pump for good, or patch it for now. The menu lists each material with how many you carry.\nNeeds: to mend it for good: 2 iron spike, 1 oak haft, 1 leather binding; to patch it for now: 2 fire clay.\nCost and limits: Mending uses up the materials and keeps any tool, and the repair lasts. A patch holds about 600 turns, then fails.\nRight now you can: mend the mine pump for good, patch the mine pump for now.\n\nA hand pump on an iron collar over the mine shaft, worked by a long oak rod. The lower level lives or drowns by it.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pin a new oak rod with iron at the collar and bind it tight. The pump takes its first stroke, coughs up black water, and keeps going.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "pumpRunningMenu": {
+      "state": "WorldActionMenuOpen",
+      "x": 39,
+      "y": 9,
+      "tick": 1330,
+      "hp": 29,
+      "rows": [
+        "0:examine",
+        "1:pour water north (3) [liquid flask]",
+        "2:pour one water north [liquid flask]",
+        "3:<< everything here"
+      ]
+    },
+    "pumpAfterReader": {
+      "zone": "Overworld.6.6.0",
+      "tick": 1330,
+      "hp": 29,
+      "stage": "StableRepair",
+      "severity": 1,
+      "method": "ManualRepair",
+      "resolvedAt": 1320,
+      "relapseAt": null,
+      "outcome": "Stable",
+      "parts": [],
+      "messages": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a mine pump (sheared).\nThe pump's rod has sheared at the collar, and the old binding hangs in black strings. Water stands in the shaft below.\nHow to use: Stand beside it, press C and choose mend the mine pump for good, or patch it for now. The menu lists each material with how many you carry.\nNeeds: to mend it for good: 2 iron spike, 1 oak haft, 1 leather binding; to patch it for now: 2 fire clay.\nCost and limits: Mending uses up the materials and keeps any tool, and the repair lasts. A patch holds about 600 turns, then fails.\nRight now you can: mend the mine pump for good, patch the mine pump for now.\n\nA hand pump on an iron collar over the mine shaft, worked by a long oak rod. The lower level lives or drowns by it.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pin a new oak rod with iron at the collar and bind it tight. The pump takes its first stroke, coughs up black water, and keeps going.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a mine pump (running).\nMended, and working.\nCost and limits: It is mended and working; there is nothing more to do to it.\n\nA hand pump on an iron collar over the mine shaft, worked by a long oak rod. The lower level lives or drowns by it."
+      ]
+    },
+    "pumpFreshContinue": {
+      "zone": "Overworld.6.6.0",
+      "tick": 1330,
+      "hp": 29,
+      "stage": "StableRepair",
+      "severity": 1,
+      "method": "ManualRepair",
+      "resolvedAt": 1320,
+      "relapseAt": null,
+      "outcome": "Stable",
+      "parts": [],
+      "messages": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a mine pump (sheared).\nThe pump's rod has sheared at the collar, and the old binding hangs in black strings. Water stands in the shaft below.\nHow to use: Stand beside it, press C and choose mend the mine pump for good, or patch it for now. The menu lists each material with how many you carry.\nNeeds: to mend it for good: 2 iron spike, 1 oak haft, 1 leather binding; to patch it for now: 2 fire clay.\nCost and limits: Mending uses up the materials and keeps any tool, and the repair lasts. A patch holds about 600 turns, then fails.\nRight now you can: mend the mine pump for good, patch the mine pump for now.\n\nA hand pump on an iron collar over the mine shaft, worked by a long oak rod. The lower level lives or drowns by it.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pin a new oak rod with iron at the collar and bind it tight. The pump takes its first stroke, coughs up black water, and keeps going.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a mine pump (running).\nMended, and working.\nCost and limits: It is mended and working; there is nothing more to do to it.\n\nA hand pump on an iron collar over the mine shaft, worked by a long oak rod. The lower level lives or drowns by it."
+      ]
+    },
+    "pumpFreshMenu": {
+      "state": "WorldActionMenuOpen",
+      "x": 39,
+      "y": 9,
+      "tick": 1330,
+      "hp": 29,
+      "rows": [
+        "0:examine",
+        "1:pour water north (3) [liquid flask]",
+        "2:pour one water north [liquid flask]",
+        "3:<< everything here"
+      ]
+    }
+  }
+}

@@ -2,6 +2,42 @@
 
 ## Resumed continuation — November 21 evening
 
+Newest native town check: [Cinderhold pump](Verification/MachineSystems/TownPump20261121/README.md).
+Earned camp-machine supplies reached canonical6,6 by ordinary travel. Native
+reader/pages/costs, lasting repair1320→1330 consuming2spikes+haft+binding,
+StableRepair/running/no further repair rows and fresh1330HP29 persistence verified.
+No physical drainage/pressure/economy, patch-expiry or elder-dialogue qualification.
+Archive `/private/tmp/coo-pump-mended-earned-20261121/c4b63809fc9047728501cc4015ebd8ca`.
+The earlier Grove launch mismatch is now source-explained: WildStart uses the
+installation allow-list, which excludes Grovelands, then falls back to Spread.
+Do not broaden placement permission to make an audition start work. Actual Grove
+checks used ordinary travel and remain valid. Source/evidence review only; no
+second operator. Remaining available play: sounding noise, Posy and freight;
+shared exposure/AI audition stays a gated next implementation proposal.
+
+Newest native qualification: [creature trap and Grove rules](Verification/MachineSystems/NpcAndGrove20261121/README.md).
+Ordinary Jet Blast pushed a proving-post CaveSlime across an oil/fire trap;
+creature18→4combineddamage, trap/oil consumed, water+embers+smoke retained;
+fresh Continue410/player364/slime4 and native Look verified. Separate actual
+world-map travel reached Grove6,6: fire trap disabled/Enter220 unchanged; cold
+alternative placed230→240; fresh240 preserves device7437/firekit2716 and
+repeated free fire refusal. Requested Grovelands fixture initially landed in
+non-Choir11,10; the source explanation is recorded above. Observed zone gates evidence.
+Main idle/clean/nullroot, input/seed/launch defaults restored; fresh84foreign/
+861normal hashes unchanged. Archives and exact scope are in the receipt.
+NEXT available play: sounding noise, town/Posy/repair/freight. Mac movement/
+actions/reload require native OS input access; candidate remains unaccepted.
+
+Newest package: [74d85569a Mac candidate](Verification/MachineSystems/MacCandidate74d85569a/README.md)
+includes the poured-fuel fix, built0errors/5warnings and actually booted to the
+character chooser/world. OS native-input permission is absent, so packaged
+movement/actions/save-reload remain unverified; not accepted delivery. Own player
+closed, original absent standalone Saves restored, logical app preferences verified
+after removing four newly added display keys. Fresh84foreign/861normal hashes
+unchanged, main idle/clean/nullroot. Candidate, prior builds and pin bundles
+preserved. Continue available Editor NPC/Grove/town checks while packaged native
+input is unavailable; do not substitute Editor play for the open Mac gates.
+
 Latest implementation: [finite poured fuel](FINITE-POURED-FUEL.md) closes the
 ordinary poured-oil reuse bug below, scoped to eligible single-cell nonrenewing
 poured pools. Both ignition rows opt in; water/natural/multi-cell rules retain

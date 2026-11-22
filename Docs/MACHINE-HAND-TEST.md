@@ -1,5 +1,21 @@
 # Hand-testing the camp and machine work
 
+[Cinderhold lasting pump repair](Verification/MachineSystems/TownPump20261121/README.md)
+now has native before/after readers, finite part bill, one-action cost and fresh
+persistence. Temporary patch/expiry, elder path and physical drainage remain open.
+
+[NPC/Grove after-play](Verification/MachineSystems/NpcAndGrove20261121/README.md)
+now covers a Jet-Blast-forced creature trap trigger/fresh persistence and6,6 fire
+placement refusal with a legal cold alternative/fresh persistence. Voluntary
+NPC trap entry, other Grove locations and full machine qualification remain open.
+
+Latest bounded checks: [cold/brine and camp oil](Verification/MachineSystems/ColdOilPlay20261121/README.md)
+and [poured-fuel correction](Verification/MachineSystems/PouredFuelFix20261121/README.md)
+cover freeze/slip/thaw, fire/oil damage+smoke, finite poured-fuel debit through
+heat/embers and fresh spent persistence. NPC trigger and Grove refusal remain
+open. [Current Mac candidate](Verification/MachineSystems/MacCandidate74d85569a/README.md)
+boots, but OS native-input access is unavailable; packaged gameplay remains open.
+
 November21 update: native GameBootstrap play now covers bounded camp, still,
 proofing, scraper/tray, vent-heat and fish/food paths. Awning follow-up verifies
 standing reload, a full protected interval and take-up; ring-exit/alternatives
