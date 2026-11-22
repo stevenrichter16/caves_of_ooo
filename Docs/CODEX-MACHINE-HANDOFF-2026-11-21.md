@@ -1,5 +1,44 @@
 # Codex machine-program handoff — November 21, 2026
 
+## Resumed continuation — November 21 evening
+
+This continuation supersedes the pending fullrun_h/capacity steps in the original
+handoff below. After the requested pause, the user said "Okay keep going" and
+explicitly authorized stopping the overlapping Claude session. The precise active
+same-repo Claude worker and its pending mutation waiter were stopped; their files
+were preserved. Other Claude sessions were untouched. Root owns Unity/Git.
+
+- Inherited fullrun_h completed:40,376 total,40,267 passed,92 failed,9 inconclusive,
+  8 skipped. All91 baseline failures remain. The only new result was one180-second
+  timeout; an independent isolated family rerun passed30/30, exact case1.97s.
+  No new reproduced functional failure; no clean-suite/current-head claim.
+  [Assessment and hardware limits](Verification/MachineSystems/Regression20261121/README.md).
+- Adopted and reviewed the preserved ScenarioLoadout draft across five scenario
+  callers. Empty requests do not lift capacity; delivered quantities are checked
+  against prior quantities and duplicate requests combine. Root strengthened two
+  countercases. Native RED35/four fail; GREEN159/159; five root mutants killed;
+  final independent source review zero P1/P2. Ordinary carry rules are unchanged.
+- Fresh main GameBootstrap confirmed all late Camp Machines supplies. Vent heat
+  settled12 mire→3water, clay refused; fish trap caught one perch after ordinary
+  waiting/combat, pond4→3; eating healed26→29. Fresh Play/Continue retained exact
+  fixture/flask IDs, volume, trap progress, pond stock, tick1100 andHP29.
+  [Evidence and input limitations](Verification/MachineSystems/ScenarioLoadout20261121/README.md).
+- Main Editor is idle, SampleScene clean, save override null, temporary keyboard
+  removed. Earned checkpoint:
+  `/private/tmp/coo-camp-machines-complete-earned-20261121/c4b63809fc9047728501cc4015ebd8ca`.
+  Clone3 contains the final verification mutant, not production source: re-sync
+  exact owned source before any future clone test. Do not launch tests in main.
+
+Next: awning/noon glare, sounding underground, spring-trap/shared terrain reactions,
+town/Posy/freight/repair gameplay from MACHINE-HAND-TEST, then a coherent current
+Mac build and actual verification. Independent review of receipts is evidence
+review, not a second operator playing Unity. All twelve complete-machine gates
+remain open. Inventory remains a plan; it now distinguishes the hard150 admission
+limit from the Strength270 soft limit. Graphics/cultures/capstan/Deck remain parked
+as directed. Do not restart the completed full regression or accepted M3c builds.
+
+## Original publication record (superseded where noted above)
+
 Read this before the older [Claude handoff](MACHINE-PROGRAM-HANDOFF.md).
 The user transferred repo/Unity/Git control to Codex, requested the shared-resource
 fix, completion of regression assessment and actual machine/camp play, then added

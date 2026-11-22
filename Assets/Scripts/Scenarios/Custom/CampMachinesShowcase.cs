@@ -1,5 +1,6 @@
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Scenarios.Builders;
 
 namespace CavesOfOoo.Scenarios.Custom
 {
@@ -37,7 +38,7 @@ namespace CavesOfOoo.Scenarios.Custom
 
         public void Apply(ScenarioContext ctx)
         {
-            foreach (var (blueprint, count) in Loadout) ctx.Player.GiveItem(blueprint, count);
+            ScenarioLoadout.Give(ctx, Loadout, "[Machines]");   // the whole loadout outweighs the shipped pack's hard cap (150), so room is made for it first and any shortfall is said in the log
             foreach (var vessel in (ctx.PlayerEntity?.GetPart<InventoryPart>()?.Objects ?? new System.Collections.Generic.List<Entity>()).Where(o => o != null && o.BlueprintName == "LiquidFlask").Select(o => o.GetPart<LiquidVesselPart>()).Where(v => v != null).Take(MireFlasks))
             { vessel.LiquidId = MireLiquid; vessel.Volume = MireUnits; }
             // A steam vent six cells east: steady heat for the still (Docs/MACHINE-INVENTED-USES.md, 3p). Walk three cells east and set the still down east: it lands two cells from the vent.

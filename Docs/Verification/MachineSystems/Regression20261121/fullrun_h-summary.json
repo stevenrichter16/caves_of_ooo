@@ -1,0 +1,43 @@
+{
+  "source_commit": "e89a81af6",
+  "result_file": "/Users/steven/coo-verification/results/fullrun_h.xml",
+  "sha256": "5a4df3f02efc485324708f3db6fae2b8676a31a0fdb8dea8662da1ba1ee05172",
+  "totals": {
+    "total": "40376",
+    "passed": "40267",
+    "failed": "92",
+    "inconclusive": "9",
+    "skipped": "8",
+    "duration": "14284.4746206",
+    "start-time": "2026-11-21 19:42:39Z",
+    "end-time": "2026-11-21 23:40:44Z"
+  },
+  "baseline_file": "/Users/steven/coo-verification/baselines/full_s9.xml",
+  "baseline_failures": 91,
+  "new_failures": [
+    {
+      "name": "CavesOfOoo.Tests.ThrowingPayloadComparisonTests.W7_WaterAndAcidOrdersPayForTheirRealInterveningEnemyTurns(2)",
+      "message": "Timeout value of 180000 ms was exceeded. If this is intended, increase the timeout value using a TimeoutAttribute."
+    }
+  ],
+  "isolated_rerun": {
+    "file": "fullrun_h_new_failure_isolation_20261121.xml",
+    "total": "30",
+    "passed": "30",
+    "failed": "0",
+    "duration": "56.1508521",
+    "timed_out_case_alone_seconds": "1.969366",
+    "compile_error_lines": 0
+  },
+  "compile_error_lines": 0,
+  "sample": {
+    "path": "/private/tmp/coo-fullrun-h-sample-20261121.txt",
+    "physical_footprint": "49.6G",
+    "peak": "77.5G",
+    "host_ram_gib": 32,
+    "observation": "main thread sampling dominated by managed array allocation/GC; later test-family progress resumed"
+  },
+  "limits": "Inherited runtime, not current published fixes or uncommitted scenario draft. No acceptance verdict until new timeout rerun alone.",
+  "process_cleanup": "Guarded SIGTERM after completed XML was written and parsed, following over three minutes of post-result high-memory teardown. Test result preserved; no test was interrupted.",
+  "assessment": "91 baseline failures remain; the only new failure was a 180s timeout, not reproduced in an isolated 30/30 family rerun. Compatible with resource/order sensitivity; specific causal attribution not proven. Does not establish a clean suite or qualify later changes."
+}

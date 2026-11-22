@@ -88,7 +88,14 @@ budget and action-time corrections are documented in the
 [native play](Verification/MachineSystems/CampPlay20261121/README.md) receipts.
 The fractionating-still/treatment-bath dependencies benefit from these bounded
 processing/proofing checks; finite-source collection, remaining actual play,
-regional purpose, full regression assessment and current delivery remain gates.
+regional purpose and current delivery remain gates. The inherited full regression
+assessment is [recorded](Verification/MachineSystems/Regression20261121/README.md):
+91 baseline failures plus one new timeout, with its family passing 30/30 in
+isolation. It is not a clean suite or full coverage of the corrected head.
+The [scenario loadout correction](Verification/MachineSystems/ScenarioLoadout20261121/README.md)
+restores promised fixture supplies without changing ordinary carry limits; actual
+vent-assisted settlement demonstrates low natural heat while clay baking remains
+refused. This is another bounded still dependency, not complete-machine acceptance.
 Capstan and culture work remain parked. Preserve all twelve roster entries and
 distinguish these earned slices from the broader machine proposals.
 

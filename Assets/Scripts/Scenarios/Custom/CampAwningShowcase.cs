@@ -1,4 +1,5 @@
 using CavesOfOoo.Core;
+using CavesOfOoo.Scenarios.Builders;
 
 namespace CavesOfOoo.Scenarios.Custom
 {
@@ -27,7 +28,7 @@ namespace CavesOfOoo.Scenarios.Custom
 
         public void Apply(ScenarioContext ctx)
         {
-            foreach (var (blueprint, count) in Loadout) ctx.Player.GiveItem(blueprint, count);
+            ScenarioLoadout.Give(ctx, Loadout, "[Awning]");
             if (ctx.Turns != null) ctx.Turns.AdvanceClock(HeightStart(ctx.Turns.TickCount) - ctx.Turns.TickCount);
             var (zx, zy, zdepth) = WorldMap.FromZoneID(ctx.Zone?.ZoneID);
             bool inBeating = ctx.Zone != null && zdepth == 0 && WorldMapAuthoring.InBounds(zx, zy) && WorldMapAuthoring.BiomeAt(zx, zy) == BiomeType.Beating;

@@ -1,5 +1,6 @@
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Scenarios.Builders;
 
 namespace CavesOfOoo.Scenarios.Custom
 {
@@ -23,7 +24,7 @@ namespace CavesOfOoo.Scenarios.Custom
         {
             var player = ctx.PlayerEntity;
             TradeSystem.SetDrams(player, Drams);
-            foreach (var (blueprint, count) in Loadout) ctx.Player.GiveItem(blueprint, count);
+            ScenarioLoadout.Give(ctx, Loadout, "[Carriage]");
             var waiting = ctx.Factory.CreateEntity(WaitingBlueprint);
             if (WaitingCount > 1) waiting.GetPart<StackerPart>().StackCount = WaitingCount;
             var cart = player.GetPart<ConcordCarriagePart>() ?? new ConcordCarriagePart();

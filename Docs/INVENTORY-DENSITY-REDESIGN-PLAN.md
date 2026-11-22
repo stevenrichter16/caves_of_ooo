@@ -62,6 +62,10 @@ order; show the selected item's category in details. Filtering and sorting are
 free browsing actions. Keep `/` search and its current cancel/clear behavior.
 Show stack quantity once, in QTY; keep meaningful name qualifiers and distinct
 item identities. Do not merge merely similar garments, flasks or damaged items.
+The weight summary must disclose both applicable limits when they differ: the
+shipped pack's hard admission cap is150, while the current sidebar can show a
+Strength-derived270. Explain the active limiting value without changing either
+game rule as part of this layout work.
 Move DMG/DEF to selected-item comparison rather than spending a wide column on
 dashes for most materials and tools. Keep equipped and other important markers.
 

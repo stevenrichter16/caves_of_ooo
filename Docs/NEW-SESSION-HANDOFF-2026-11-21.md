@@ -1,5 +1,12 @@
 # Caves of Ooo: start here (complete context for a brand-new session)
 
+**Later Codex continuation:** Read the opening continuation in
+[CODEX-MACHINE-HANDOFF-2026-11-21.md](CODEX-MACHINE-HANDOFF-2026-11-21.md)
+before following this original snapshot. The ownership overlap is resolved,
+fullrun_h has been assessed, the loadout draft has native tests and actual play,
+and vent settlement/fish catch/food use/fresh Continue have been checked. The
+remaining native machine work and current Mac delivery are still open.
+
 Written 2026-11-21 (America/Chicago) by Claude, at the user's request: "a handoff doc i can give a brand new session so it has all context necessary."
 This file is self-contained. It does not replace the deeper records it links to; it tells you what they are, which to trust, what is true right now, and what to do first.
 If you only read one section, read **section 1** and **section 6**.

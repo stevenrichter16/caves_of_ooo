@@ -28,8 +28,14 @@ travel/Continue and pack-up; coating plus lasting proofing combined with gear to
 prevent an ordinary frost-tonic freeze. Play found missing turn declarations on
 the newer hearth work and proofing press, now corrected through the shared action
 contract. [Native play and timing receipts](Verification/MachineSystems/CampPlay20261121/README.md)
-record exact limits and remaining gates. The inherited fullrun_h comparison and
-further machine gameplay remain in progress; no complete-machine acceptance or
+record exact limits and remaining gates. The inherited fullrun_h assessment is
+complete: 40,376 cases, 40,267 passed, 92 failed, nine inconclusive and eight
+skipped. The 91 baseline failures remain; the only new failure was a 180-second
+timeout, whose entire family passed 30/30 on an independent isolated rerun (the
+exact case took 1.97 seconds). This is not a clean suite or a full run on the
+corrected head. See the
+[regression assessment](Verification/MachineSystems/Regression20261121/README.md).
+Further machine gameplay remains in progress; no complete-machine acceptance or
 new Mac delivery is claimed here.
 
 The user additionally requested an [inventory density redesign plan](INVENTORY-DENSITY-REDESIGN-PLAN.md).

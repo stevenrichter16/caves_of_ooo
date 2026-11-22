@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Failed(Child)" total="35" passed="34" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-21 23:55:21Z" end-time="2026-11-21 23:55:23Z" duration="2.1104744">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40407" result="Failed" site="Child" start-time="2026-11-21 23:55:21Z" end-time="2026-11-21 23:55:23Z" duration="2.110474" total="35" passed="34" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49251" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40407" result="Failed" site="Child" start-time="2026-11-21 23:55:21Z" end-time="2026-11-21 23:55:23Z" duration="2.098408" total="35" passed="34" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="56053" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49252" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40407" result="Failed" site="Child" start-time="2026-11-21 23:55:21Z" end-time="2026-11-21 23:55:23Z" duration="2.089071" total="35" passed="34" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49253" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40407" result="Failed" site="Child" start-time="2026-11-21 23:55:21Z" end-time="2026-11-21 23:55:23Z" duration="2.080387" total="35" passed="34" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="21312" name="CampKitShowcaseTests" fullname="CavesOfOoo.Tests.CampKitShowcaseTests" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-11-21 23:55:21Z" end-time="2026-11-21 23:55:23Z" duration="1.776554" total="35" passed="34" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="21328" name="ADepthOneWildStartIsAnOrdinaryCaveTheFreshGamePlacesTheActorInAndTheRodCanSound" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ADepthOneWildStartIsAnOrdinaryCaveTheFreshGamePlacesTheActorInAndTheRodCanSound" methodname="ADepthOneWildStartIsAnOrdinaryCaveTheFreshGamePlacesTheActorInAndTheRodCanSound" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="2078928470" result="Passed" start-time="2026-11-21 23:55:21Z" end-time="2026-11-21 23:55:22Z" duration="0.540773" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'BoneCacheT1'
+[LootTableRegistry] Unknown loot table 'OreCacheT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'OreCacheT1'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'OreCacheT1'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+            </test-case>
+            <test-case id="21342" name="AFixtureLoadoutThatDoesNotArriveIsSaidInTheMessageLog_AndOneThatDoesIsNot" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AFixtureLoadoutThatDoesNotArriveIsSaidInTheMessageLog_AndOneThatDoesIsNot" methodname="AFixtureLoadoutThatDoesNotArriveIsSaidInTheMessageLog_AndOneThatDoesIsNot" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="574029129" result="Failed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.030213" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "[T]"
+  But was:  <string.Empty>
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CampKitShowcaseTests.AFixtureLoadoutThatDoesNotArriveIsSaidInTheMessageLog_AndOneThatDoesIsNot () [0x000d3] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CampKitShowcaseTests.cs:354
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'NoSuchLoadoutBlueprint'
+[Scenario] Player.GiveItem: blueprint 'NoSuchLoadoutBlueprint' not found — skipping remaining 2.
+]]></output>
+            </test-case>
+            <test-case id="21331" name="AFreshCaveStartKeepsItsFloorSoNoFarmPlotIsSeededUnderground_AndTheSurfaceStillGetsOne_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AFreshCaveStartKeepsItsFloorSoNoFarmPlotIsSeededUnderground_AndTheSurfaceStillGetsOne_Counter" methodname="AFreshCaveStartKeepsItsFloorSoNoFarmPlotIsSeededUnderground_AndTheSurfaceStillGetsOne_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1586613417" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.183622" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'BoneCacheT1'
+[LootTableRegistry] Unknown loot table 'OreCacheT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+]]></output>
+            </test-case>
+            <test-case id="21314" name="AllFourKitsAreGivenAndEachIsAShippedPackableKind" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AllFourKitsAreGivenAndEachIsAShippedPackableKind" methodname="AllFourKitsAreGivenAndEachIsAShippedPackableKind" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1578212870" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.025046" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21343" name="ALoadoutHeavierThanTheSidebarCapacityStillArrivesWhole_AndTheCapRisesToHoldIt" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ALoadoutHeavierThanTheSidebarCapacityStillArrivesWhole_AndTheCapRisesToHoldIt" methodname="ALoadoutHeavierThanTheSidebarCapacityStillArrivesWhole_AndTheCapRisesToHoldIt" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1348645365" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.043539" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21344" name="AnAlreadyCarriedItemCannotHideAFailedFixtureGrant" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AnAlreadyCarriedItemCannotHideAFailedFixtureGrant" methodname="AnAlreadyCarriedItemCannotHideAFailedFixtureGrant" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="903179447" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.023945" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[EntityFactory: unknown blueprint 'Dagger'
+[Scenario] Player.GiveItem: blueprint 'Dagger' not found — skipping remaining 1.
+]]></output>
+            </test-case>
+            <test-case id="21322" name="ApplyingAScenarioClearsTheWildStartRequestSoItCannotLeakIntoALaterGame" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ApplyingAScenarioClearsTheWildStartRequestSoItCannotLeakIntoALaterGame" methodname="ApplyingAScenarioClearsTheWildStartRequestSoItCannotLeakIntoALaterGame" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="509150455" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.033132" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [CampKits wild] You start on ordinary wild ground: set-down works here. Everything for a camp is in your pack.
+[Scenario] [CampKits wild] 1. Open the pack (i), select a camp kit and choose 'make camp here (4 kits)': the hearth goes down first, the still beside it, the bench and box clear of the flames. 2. Press C toward the hearth and highlight 'stoke': the small text says what it does. Choose it: it feeds the timber and lights the fire from the striker in one action. 3. Press C toward the still and read what your mire would settle to; settle it. 4. Press C on any kit and choose 'name this camp' (press it again to change the name). 5. Open the world map: the note names the camp, where it is and what it holds as you left it. 6. 'move' shifts one kit a cell; 'pack up camp' takes everything within four cells back.
+[ScenarioRunner] Applied scenario: CampKitsWildShowcase
+]]></output>
+            </test-case>
+            <test-case id="21323" name="AWildStartCanBeAskedForTheBeatingAndStillDefaultsToTheSpread_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AWildStartCanBeAskedForTheBeatingAndStillDefaultsToTheSpread_Counter" methodname="AWildStartCanBeAskedForTheBeatingAndStillDefaultsToTheSpread_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1206583364" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.082222" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21320" name="AWildStartIsAnOrdinarySpreadZoneTheKitRulesAcceptAtEverySeed" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AWildStartIsAnOrdinarySpreadZoneTheKitRulesAcceptAtEverySeed" methodname="AWildStartIsAnOrdinarySpreadZoneTheKitRulesAcceptAtEverySeed" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="220853780" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.045481" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21341" name="EveryCampFixtureGivesItsWholeLoadoutAtTheShippedPackCap" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.EveryCampFixtureGivesItsWholeLoadoutAtTheShippedPackCap" methodname="EveryCampFixtureGivesItsWholeLoadoutAtTheShippedPackCap" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1514191040" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.035623" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [CampKits wild] You start on ordinary wild ground: set-down works here. Everything for a camp is in your pack.
+[Scenario] [CampKits wild] 1. Open the pack (i), select a camp kit and choose 'make camp here (4 kits)': the hearth goes down first, the still beside it, the bench and box clear of the flames. 2. Press C toward the hearth and highlight 'stoke': the small text says what it does. Choose it: it feeds the timber and lights the fire from the striker in one action. 3. Press C toward the still and read what your mire would settle to; settle it. 4. Press C on any kit and choose 'name this camp' (press it again to change the name). 5. Open the world map: the note names the camp, where it is and what it holds as you left it. 6. 'move' shifts one kit a cell; 'pack up camp' takes everything within four cells back.
+[Scenario] [CampKits night] It is night and you are hurt. A camp is the way through it.
+[Scenario] [CampKits night] 1. Open the pack, pick a camp kit and choose 'make camp here (4 kits)'. 2. Press C toward the hearth and choose 'stoke' (highlight it first to read what it does): it feeds the timber and lights it. 3. Press C on the hearth again: 'rest until Dawn' shows what the night heals and how much fuel it burns; choose it. 4. Wake at dawn: the fire has burned its fuel and your health is restored. 5. Try 'pack up camp' to leave, then the world map to see what you left.
+[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+[Scenario] [Sounding] The start did not start you underground (the cave start could not be placed), and the rod refuses on the surface. Take any stairs down into an ordinary cave to use it; the rod is in your pack.
+[Scenario] [Carriage] 60 drams, 8 timber, a dagger, 2 fire clay, a flask, a blastcap spore, and one parcel (2 iron spikes) already waiting for you at Cinderhold.
+[Scenario] [Carriage] 1. Open the world map with < and travel to Cinderhold (6,6); find the Concord Factor in the pruning post and talk to him. 2. The greeting lists the parcel in your name and offers 'Collect what has arrived (1)': take it. 3. Choose 'Send a parcel to the Last Counter': the list shows each stack with its fee (the spore is not offered: clause five); pick the timber and read the bargain (all, half or one, each with its fee), then send. 4. The greeting now reads the parcel as due in 3 days. 5. Travel to the Last Counter (18,18), wait the days out (rest at a fire), and talk to the Envoy: 'Collect what has arrived'. 6. Open the world map at any time: one line says how many parcels ride and where any have arrived.
+[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21313" name="EveryLoadoutBlueprintExistsInTheRealContent" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.EveryLoadoutBlueprintExistsInTheRealContent" methodname="EveryLoadoutBlueprintExistsInTheRealContent" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="859718373" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.025134" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[EntityFactory: unknown blueprint 'NoSuchBlueprintForTheShowcase'
+]]></output>
+            </test-case>
+            <test-case id="21334" name="EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds" methodname="EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1456505594" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.027709" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21346" name="NothingToGiveChangesNothing_NoItemsNoCapLiftNoMessage_Boundary" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.NothingToGiveChangesNothing_NoItemsNoCapLiftNoMessage_Boundary" methodname="NothingToGiveChangesNothing_NoItemsNoCapLiftNoMessage_Boundary" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1136111721" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.023984" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21345" name="RepeatedMissingBlueprintRowsReportTheCombinedRequestedCount" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.RepeatedMissingBlueprintRowsReportTheCombinedRequestedCount" methodname="RepeatedMissingBlueprintRowsReportTheCombinedRequestedCount" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="862124287" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.024626" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[EntityFactory: unknown blueprint 'NoSuchLoadoutBlueprint'
+[Scenario] Player.GiveItem: blueprint 'NoSuchLoadoutBlueprint' not found — skipping remaining 2.
+EntityFactory: unknown blueprint 'NoSuchLoadoutBlueprint'
+[Scenario] Player.GiveItem: blueprint 'NoSuchLoadoutBlueprint' not found — skipping remaining 3.
+]]></output>
+            </test-case>
+            <test-case id="21324" name="ResolvingTheStartZoneCarriesTheAskedBiomeAndIgnoresItWhenNoWildStartWasAsked_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ResolvingTheStartZoneCarriesTheAskedBiomeAndIgnoresItWhenNoWildStartWasAsked_Counter" methodname="ResolvingTheStartZoneCarriesTheAskedBiomeAndIgnoresItWhenNoWildStartWasAsked_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="964802815" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.029270" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21321" name="ResolvingTheStartZoneHonoursTheSceneThenTheScenarioAndOtherwiseChangesNothing" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ResolvingTheStartZoneHonoursTheSceneThenTheScenarioAndOtherwiseChangesNothing" methodname="ResolvingTheStartZoneHonoursTheSceneThenTheScenarioAndOtherwiseChangesNothing" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1228497282" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:22Z" duration="0.029496" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21327" name="TheAwningScenarioKeepsTheClockWhereItIsWhenItIsAlreadyHeightAndNeverRunsItBackwards_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheAwningScenarioKeepsTheClockWhereItIsWhenItIsAlreadyHeightAndNeverRunsItBackwards_Counter" methodname="TheAwningScenarioKeepsTheClockWhereItIsWhenItIsAlreadyHeightAndNeverRunsItBackwards_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1627280255" result="Passed" start-time="2026-11-21 23:55:22Z" end-time="2026-11-21 23:55:23Z" duration="0.025800" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+]]></output>
+            </test-case>
+            <test-case id="21333" name="TheAwningScenarioSaysSoWhenTheStartWasNotInTheBeating_AndStaysQuietWhenItWas_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheAwningScenarioSaysSoWhenTheStartWasNotInTheBeating_AndStaysQuietWhenItWas_Counter" methodname="TheAwningScenarioSaysSoWhenTheStartWasNotInTheBeating_AndStaysQuietWhenItWas_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="2048538418" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.025192" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+[Scenario] [Awning] It is the Height of the day on the open pan of the Beating, and nothing should be on your head (take off any hat). The glare is on from now.
+[Scenario] [Awning] 1. Stand still (rest or wait) for ten turns in the open: the sidebar parches you, and again every ten turns after. 2. Open the pack, choose the awning's 'set down' toward an open cell, and stand on it or in the ring of cells around it for a few turns: the count starts over and no stacks come. 3. Step out of the ring and wait ten turns: the glare finds you again. 4. Take the awning up and the shade goes with it. The Height band is about thirty turns long from the start, so do not dawdle; if it ends, rest until the next day's Height. The sidebar shows the time of day.
+]]></output>
+            </test-case>
+            <test-case id="21326" name="TheAwningScenarioStartsAtTheHeightBandBareheadedWithTheAwningAndNothingMoreThanItNeeds" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheAwningScenarioStartsAtTheHeightBandBareheadedWithTheAwningAndNothingMoreThanItNeeds" methodname="TheAwningScenarioStartsAtTheHeightBandBareheadedWithTheAwningAndNothingMoreThanItNeeds" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="2077002797" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.024611" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+]]></output>
+            </test-case>
+            <test-case id="21347" name="TheCarriageScenarioGivesDramsGoodsAndOneParcelAlreadyWaitingAtCinderhold" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheCarriageScenarioGivesDramsGoodsAndOneParcelAlreadyWaitingAtCinderhold" methodname="TheCarriageScenarioGivesDramsGoodsAndOneParcelAlreadyWaitingAtCinderhold" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1431377200" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.026137" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Carriage] 60 drams, 8 timber, a dagger, 2 fire clay, a flask, a blastcap spore, and one parcel (2 iron spikes) already waiting for you at Cinderhold.
+[Scenario] [Carriage] 1. Open the world map with < and travel to Cinderhold (6,6); find the Concord Factor in the pruning post and talk to him. 2. The greeting lists the parcel in your name and offers 'Collect what has arrived (1)': take it. 3. Choose 'Send a parcel to the Last Counter': the list shows each stack with its fee (the spore is not offered: clause five); pick the timber and read the bargain (all, half or one, each with its fee), then send. 4. The greeting now reads the parcel as due in 3 days. 5. Travel to the Last Counter (18,18), wait the days out (rest at a fire), and talk to the Envoy: 'Collect what has arrived'. 6. Open the world map at any time: one line says how many parcels ride and where any have arrived.
+]]></output>
+            </test-case>
+            <test-case id="21319" name="TheDarkStartNeverRunsTheClockBackwards" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheDarkStartNeverRunsTheClockBackwards" methodname="TheDarkStartNeverRunsTheClockBackwards" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1932232140" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.031896" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21329" name="TheDepthIsCarriedThroughTheResolverAndIgnoredWithoutAWildStart_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheDepthIsCarriedThroughTheResolverAndIgnoredWithoutAWildStart_Counter" methodname="TheDepthIsCarriedThroughTheResolverAndIgnoredWithoutAWildStart_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="748175275" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.066608" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21316" name="TheLoadoutCarriesWhatEachKitNeedsToBeTried" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheLoadoutCarriesWhatEachKitNeedsToBeTried" methodname="TheLoadoutCarriesWhatEachKitNeedsToBeTried" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="553028003" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.024281" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21315" name="TheLoadoutIsLightEnoughForTheSmallestPlayerToCarry" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheLoadoutIsLightEnoughForTheSmallestPlayerToCarry" methodname="TheLoadoutIsLightEnoughForTheSmallestPlayerToCarry" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="449211910" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.025285" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21337" name="TheMachinesScenarioDigsAFishablePondWestSoTheTrapCanBeTriedWithoutATrip" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioDigsAFishablePondWestSoTheTrapCanBeTriedWithoutATrip" methodname="TheMachinesScenarioDigsAFishablePondWestSoTheTrapCanBeTriedWithoutATrip" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="850697313" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.029739" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21335" name="TheMachinesScenarioFillsBothFlasksWithMireAndGivesEverythingItNames" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioFillsBothFlasksWithMireAndGivesEverythingItNames" methodname="TheMachinesScenarioFillsBothFlasksWithMireAndGivesEverythingItNames" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1640947799" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.029294" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21338" name="TheMachinesScenarioGivesItsWholeLoadoutToAPlayerWhoHoldsTheShippedPackCap" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioGivesItsWholeLoadoutToAPlayerWhoHoldsTheShippedPackCap" methodname="TheMachinesScenarioGivesItsWholeLoadoutToAPlayerWhoHoldsTheShippedPackCap" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="978480604" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.029762" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21340" name="TheMachinesScenarioNeverTightensABiggerCap_AndLeavesAnUncappedPackUncapped" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioNeverTightensABiggerCap_AndLeavesAnUncappedPackUncapped" methodname="TheMachinesScenarioNeverTightensABiggerCap_AndLeavesAnUncappedPackUncapped" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="242839747" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.031525" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21336" name="TheMachinesScenarioPutsASteamVentSixCellsEastSoTheStillCanSettleWithoutAFire" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioPutsASteamVentSixCellsEastSoTheStillCanSettleWithoutAFire" methodname="TheMachinesScenarioPutsASteamVentSixCellsEastSoTheStillCanSettleWithoutAFire" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1376849878" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.028829" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21318" name="TheNightScenarioStartsAtDarkAndHurt_AndTheDayOneStartsAtNeitherCounter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheNightScenarioStartsAtDarkAndHurt_AndTheDayOneStartsAtNeitherCounter" methodname="TheNightScenarioStartsAtDarkAndHurt_AndTheDayOneStartsAtNeitherCounter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="63499570" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.027992" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [CampKits wild] You start on ordinary wild ground: set-down works here. Everything for a camp is in your pack.
+[Scenario] [CampKits wild] 1. Open the pack (i), select a camp kit and choose 'make camp here (4 kits)': the hearth goes down first, the still beside it, the bench and box clear of the flames. 2. Press C toward the hearth and highlight 'stoke': the small text says what it does. Choose it: it feeds the timber and lights the fire from the striker in one action. 3. Press C toward the still and read what your mire would settle to; settle it. 4. Press C on any kit and choose 'name this camp' (press it again to change the name). 5. Open the world map: the note names the camp, where it is and what it holds as you left it. 6. 'move' shifts one kit a cell; 'pack up camp' takes everything within four cells back.
+[Scenario] [CampKits night] It is night and you are hurt. A camp is the way through it.
+[Scenario] [CampKits night] 1. Open the pack, pick a camp kit and choose 'make camp here (4 kits)'. 2. Press C toward the hearth and choose 'stoke' (highlight it first to read what it does): it feeds the timber and lights it. 3. Press C on the hearth again: 'rest until Dawn' shows what the night heals and how much fuel it burns; choose it. 4. Wake at dawn: the fire has burned its fuel and your health is restored. 5. Try 'pack up camp' to leave, then the world map to see what you left.
+]]></output>
+            </test-case>
+            <test-case id="21332" name="TheRodScenarioSaysSoWhenTheStartWasNotUnderground_AndStaysQuietWhenItWas_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheRodScenarioSaysSoWhenTheStartWasNotUnderground_AndStaysQuietWhenItWas_Counter" methodname="TheRodScenarioSaysSoWhenTheStartWasNotUnderground_AndStaysQuietWhenItWas_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="2119258182" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.030691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Sounding] The start did not start you underground (the cave start could not be placed), and the rod refuses on the surface. Take any stairs down into an ordinary cave to use it; the rod is in your pack.
+[Scenario] [Sounding] You are in an ordinary cave one floor below wild ground, with a sounding rod in your pack.
+[Scenario] [Sounding] 1. Open the pack, choose the rod's 'sound the ground (carries about N paces)': the strike is loud, and it names open ground, a way up or down and dense stone you have not seen, as a bearing and a distance. 2. Walk toward what it named and see whether it is so (nothing it reports is a promise about what is there beyond the bearing and the distance). 3. Sound again somewhere else, then choose 'read the survey log': it reprints your last eight soundings with where you stood. 4. Climb the stairs and try the rod on the surface: the ground there is too loose to carry a sounding.
+]]></output>
+            </test-case>
+            <test-case id="21339" name="TheRoomTheMachinesScenarioMakesIsTheCapacityTheSidebarShowsWithRoomToSpare" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheRoomTheMachinesScenarioMakesIsTheCapacityTheSidebarShowsWithRoomToSpare" methodname="TheRoomTheMachinesScenarioMakesIsTheCapacityTheSidebarShowsWithRoomToSpare" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="983248748" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.028348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21325" name="TheWildBiomeRequestIsOneShotLikeTheWildStartItself" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheWildBiomeRequestIsOneShotLikeTheWildStartItself" methodname="TheWildBiomeRequestIsOneShotLikeTheWildStartItself" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="560271231" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.024827" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+[ScenarioRunner] Applied scenario: CampAwningShowcase
+]]></output>
+            </test-case>
+            <test-case id="21330" name="TheWildDepthRequestIsOneShotAndTheRodScenarioGivesTheRod" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheWildDepthRequestIsOneShotAndTheRodScenarioGivesTheRod" methodname="TheWildDepthRequestIsOneShotAndTheRodScenarioGivesTheRod" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1818633740" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.025022" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Sounding] The start did not start you underground (the cave start could not be placed), and the rod refuses on the surface. Take any stairs down into an ordinary cave to use it; the rod is in your pack.
+[ScenarioRunner] Applied scenario: SoundingRodShowcase
+]]></output>
+            </test-case>
+            <test-case id="21317" name="TheWildScenariosGiveTheSameSuppliesAsTheOpeningOne" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheWildScenariosGiveTheSameSuppliesAsTheOpeningOne" methodname="TheWildScenariosGiveTheSameSuppliesAsTheOpeningOne" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="444501353" result="Passed" start-time="2026-11-21 23:55:23Z" end-time="2026-11-21 23:55:23Z" duration="0.028460" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [CampKits wild] You start on ordinary wild ground: set-down works here. Everything for a camp is in your pack.
+[Scenario] [CampKits wild] 1. Open the pack (i), select a camp kit and choose 'make camp here (4 kits)': the hearth goes down first, the still beside it, the bench and box clear of the flames. 2. Press C toward the hearth and highlight 'stoke': the small text says what it does. Choose it: it feeds the timber and lights the fire from the striker in one action. 3. Press C toward the still and read what your mire would settle to; settle it. 4. Press C on any kit and choose 'name this camp' (press it again to change the name). 5. Open the world map: the note names the camp, where it is and what it holds as you left it. 6. 'move' shifts one kit a cell; 'pack up camp' takes everything within four cells back.
+[Scenario] [CampKits night] It is night and you are hurt. A camp is the way through it.
+[Scenario] [CampKits night] 1. Open the pack, pick a camp kit and choose 'make camp here (4 kits)'. 2. Press C toward the hearth and choose 'stoke' (highlight it first to read what it does): it feeds the timber and lights it. 3. Press C on the hearth again: 'rest until Dawn' shows what the night heals and how much fuel it burns; choose it. 4. Wake at dawn: the fire has burned its fuel and your health is restored. 5. Try 'pack up camp' to leave, then the world map to see what you left.
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

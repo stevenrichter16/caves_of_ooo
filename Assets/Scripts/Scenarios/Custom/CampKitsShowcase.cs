@@ -1,5 +1,6 @@
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Scenarios.Builders;
 
 namespace CavesOfOoo.Scenarios.Custom
 {
@@ -42,7 +43,7 @@ namespace CavesOfOoo.Scenarios.Custom
         /// <summary>Gives the loadout, fills the flask with mire, and lays down the campfire and the oil slick. Shared by the opening-zone scenario and the two wild-ground ones.</summary>
         public static void Supply(ScenarioContext ctx)
         {
-            foreach (var (blueprint, count) in Loadout) ctx.Player.GiveItem(blueprint, count);
+            ScenarioLoadout.Give(ctx, Loadout, "[CampKits]");
             var vessel = ctx.PlayerEntity?.GetPart<InventoryPart>()?.Objects.FirstOrDefault(o => o != null && o.BlueprintName == "LiquidFlask")?.GetPart<LiquidVesselPart>();
             if (vessel != null) { vessel.LiquidId = MireLiquid; vessel.Volume = MireUnits; }
             ctx.World.PlaceObject(FireBlueprint).AtPlayerOffset(2, 0);

@@ -1,0 +1,1176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="159" result="Passed" total="159" passed="159" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-21 23:48:34Z" end-time="2026-11-21 23:48:42Z" duration="8.3563836">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40407" result="Passed" start-time="2026-11-21 23:48:34Z" end-time="2026-11-21 23:48:42Z" duration="8.356384" total="159" passed="159" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="49251" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40407" result="Passed" start-time="2026-11-21 23:48:34Z" end-time="2026-11-21 23:48:42Z" duration="8.332570" total="159" passed="159" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="48493" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="49252" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40407" result="Passed" start-time="2026-11-21 23:48:34Z" end-time="2026-11-21 23:48:42Z" duration="8.310705" total="159" passed="159" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="49253" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40407" result="Passed" start-time="2026-11-21 23:48:34Z" end-time="2026-11-21 23:48:42Z" duration="8.289153" total="159" passed="159" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="21312" name="CampKitShowcaseTests" fullname="CavesOfOoo.Tests.CampKitShowcaseTests" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-11-21 23:48:35Z" end-time="2026-11-21 23:48:37Z" duration="1.813736" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="21328" name="ADepthOneWildStartIsAnOrdinaryCaveTheFreshGamePlacesTheActorInAndTheRodCanSound" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ADepthOneWildStartIsAnOrdinaryCaveTheFreshGamePlacesTheActorInAndTheRodCanSound" methodname="ADepthOneWildStartIsAnOrdinaryCaveTheFreshGamePlacesTheActorInAndTheRodCanSound" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="498505295" result="Passed" start-time="2026-11-21 23:48:35Z" end-time="2026-11-21 23:48:35Z" duration="0.504889" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'BoneCacheT1'
+[LootTableRegistry] Unknown loot table 'OreCacheT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'OreCacheT1'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'OreCacheT1'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+            </test-case>
+            <test-case id="21342" name="AFixtureLoadoutThatDoesNotArriveIsSaidInTheMessageLog_AndOneThatDoesIsNot" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AFixtureLoadoutThatDoesNotArriveIsSaidInTheMessageLog_AndOneThatDoesIsNot" methodname="AFixtureLoadoutThatDoesNotArriveIsSaidInTheMessageLog_AndOneThatDoesIsNot" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1960030379" result="Passed" start-time="2026-11-21 23:48:35Z" end-time="2026-11-21 23:48:35Z" duration="0.039796" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[EntityFactory: unknown blueprint 'NoSuchLoadoutBlueprint'
+[Scenario] Player.GiveItem: blueprint 'NoSuchLoadoutBlueprint' not found — skipping remaining 2.
+[Scenario] [T] The pack did not receive all of this fixture's loadout, so some steps cannot be tried: NoSuchLoadoutBlueprint (0 of 2).
+]]></output>
+            </test-case>
+            <test-case id="21331" name="AFreshCaveStartKeepsItsFloorSoNoFarmPlotIsSeededUnderground_AndTheSurfaceStillGetsOne_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AFreshCaveStartKeepsItsFloorSoNoFarmPlotIsSeededUnderground_AndTheSurfaceStillGetsOne_Counter" methodname="AFreshCaveStartKeepsItsFloorSoNoFarmPlotIsSeededUnderground_AndTheSurfaceStillGetsOne_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1765136807" result="Passed" start-time="2026-11-21 23:48:35Z" end-time="2026-11-21 23:48:36Z" duration="0.226303" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'BoneCacheT1'
+[LootTableRegistry] Unknown loot table 'OreCacheT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+]]></output>
+            </test-case>
+            <test-case id="21314" name="AllFourKitsAreGivenAndEachIsAShippedPackableKind" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AllFourKitsAreGivenAndEachIsAShippedPackableKind" methodname="AllFourKitsAreGivenAndEachIsAShippedPackableKind" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="2144234474" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.027415" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21343" name="ALoadoutHeavierThanTheSidebarCapacityStillArrivesWhole_AndTheCapRisesToHoldIt" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ALoadoutHeavierThanTheSidebarCapacityStillArrivesWhole_AndTheCapRisesToHoldIt" methodname="ALoadoutHeavierThanTheSidebarCapacityStillArrivesWhole_AndTheCapRisesToHoldIt" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1072570066" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.045721" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21344" name="AnAlreadyCarriedItemCannotHideAFailedFixtureGrant" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AnAlreadyCarriedItemCannotHideAFailedFixtureGrant" methodname="AnAlreadyCarriedItemCannotHideAFailedFixtureGrant" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="314373578" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.024415" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[EntityFactory: unknown blueprint 'Dagger'
+[Scenario] Player.GiveItem: blueprint 'Dagger' not found — skipping remaining 1.
+[Scenario] [T] The pack did not receive all of this fixture's loadout, so some steps cannot be tried: Dagger (0 of 1).
+]]></output>
+            </test-case>
+            <test-case id="21322" name="ApplyingAScenarioClearsTheWildStartRequestSoItCannotLeakIntoALaterGame" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ApplyingAScenarioClearsTheWildStartRequestSoItCannotLeakIntoALaterGame" methodname="ApplyingAScenarioClearsTheWildStartRequestSoItCannotLeakIntoALaterGame" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1933698485" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.028421" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [CampKits wild] You start on ordinary wild ground: set-down works here. Everything for a camp is in your pack.
+[Scenario] [CampKits wild] 1. Open the pack (i), select a camp kit and choose 'make camp here (4 kits)': the hearth goes down first, the still beside it, the bench and box clear of the flames. 2. Press C toward the hearth and highlight 'stoke': the small text says what it does. Choose it: it feeds the timber and lights the fire from the striker in one action. 3. Press C toward the still and read what your mire would settle to; settle it. 4. Press C on any kit and choose 'name this camp' (press it again to change the name). 5. Open the world map: the note names the camp, where it is and what it holds as you left it. 6. 'move' shifts one kit a cell; 'pack up camp' takes everything within four cells back.
+[ScenarioRunner] Applied scenario: CampKitsWildShowcase
+]]></output>
+            </test-case>
+            <test-case id="21323" name="AWildStartCanBeAskedForTheBeatingAndStillDefaultsToTheSpread_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AWildStartCanBeAskedForTheBeatingAndStillDefaultsToTheSpread_Counter" methodname="AWildStartCanBeAskedForTheBeatingAndStillDefaultsToTheSpread_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="848471257" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.047382" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21320" name="AWildStartIsAnOrdinarySpreadZoneTheKitRulesAcceptAtEverySeed" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.AWildStartIsAnOrdinarySpreadZoneTheKitRulesAcceptAtEverySeed" methodname="AWildStartIsAnOrdinarySpreadZoneTheKitRulesAcceptAtEverySeed" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="671296912" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.044497" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21341" name="EveryCampFixtureGivesItsWholeLoadoutAtTheShippedPackCap" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.EveryCampFixtureGivesItsWholeLoadoutAtTheShippedPackCap" methodname="EveryCampFixtureGivesItsWholeLoadoutAtTheShippedPackCap" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="439694560" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.035401" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [CampKits wild] You start on ordinary wild ground: set-down works here. Everything for a camp is in your pack.
+[Scenario] [CampKits wild] 1. Open the pack (i), select a camp kit and choose 'make camp here (4 kits)': the hearth goes down first, the still beside it, the bench and box clear of the flames. 2. Press C toward the hearth and highlight 'stoke': the small text says what it does. Choose it: it feeds the timber and lights the fire from the striker in one action. 3. Press C toward the still and read what your mire would settle to; settle it. 4. Press C on any kit and choose 'name this camp' (press it again to change the name). 5. Open the world map: the note names the camp, where it is and what it holds as you left it. 6. 'move' shifts one kit a cell; 'pack up camp' takes everything within four cells back.
+[Scenario] [CampKits night] It is night and you are hurt. A camp is the way through it.
+[Scenario] [CampKits night] 1. Open the pack, pick a camp kit and choose 'make camp here (4 kits)'. 2. Press C toward the hearth and choose 'stoke' (highlight it first to read what it does): it feeds the timber and lights it. 3. Press C on the hearth again: 'rest until Dawn' shows what the night heals and how much fuel it burns; choose it. 4. Wake at dawn: the fire has burned its fuel and your health is restored. 5. Try 'pack up camp' to leave, then the world map to see what you left.
+[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+[Scenario] [Sounding] The start did not start you underground (the cave start could not be placed), and the rod refuses on the surface. Take any stairs down into an ordinary cave to use it; the rod is in your pack.
+[Scenario] [Carriage] 60 drams, 8 timber, a dagger, 2 fire clay, a flask, a blastcap spore, and one parcel (2 iron spikes) already waiting for you at Cinderhold.
+[Scenario] [Carriage] 1. Open the world map with < and travel to Cinderhold (6,6); find the Concord Factor in the pruning post and talk to him. 2. The greeting lists the parcel in your name and offers 'Collect what has arrived (1)': take it. 3. Choose 'Send a parcel to the Last Counter': the list shows each stack with its fee (the spore is not offered: clause five); pick the timber and read the bargain (all, half or one, each with its fee), then send. 4. The greeting now reads the parcel as due in 3 days. 5. Travel to the Last Counter (18,18), wait the days out (rest at a fire), and talk to the Envoy: 'Collect what has arrived'. 6. Open the world map at any time: one line says how many parcels ride and where any have arrived.
+[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21313" name="EveryLoadoutBlueprintExistsInTheRealContent" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.EveryLoadoutBlueprintExistsInTheRealContent" methodname="EveryLoadoutBlueprintExistsInTheRealContent" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1323411318" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.024074" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[EntityFactory: unknown blueprint 'NoSuchBlueprintForTheShowcase'
+]]></output>
+            </test-case>
+            <test-case id="21334" name="EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds" methodname="EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1658568201" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.039239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21346" name="NothingToGiveChangesNothing_NoItemsNoCapLiftNoMessage_Boundary" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.NothingToGiveChangesNothing_NoItemsNoCapLiftNoMessage_Boundary" methodname="NothingToGiveChangesNothing_NoItemsNoCapLiftNoMessage_Boundary" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="607813712" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.057129" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21345" name="RepeatedMissingBlueprintRowsReportTheCombinedRequestedCount" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.RepeatedMissingBlueprintRowsReportTheCombinedRequestedCount" methodname="RepeatedMissingBlueprintRowsReportTheCombinedRequestedCount" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1836372337" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.025239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[EntityFactory: unknown blueprint 'NoSuchLoadoutBlueprint'
+[Scenario] Player.GiveItem: blueprint 'NoSuchLoadoutBlueprint' not found — skipping remaining 2.
+EntityFactory: unknown blueprint 'NoSuchLoadoutBlueprint'
+[Scenario] Player.GiveItem: blueprint 'NoSuchLoadoutBlueprint' not found — skipping remaining 3.
+[Scenario] [T] The pack did not receive all of this fixture's loadout, so some steps cannot be tried: NoSuchLoadoutBlueprint (0 of 5).
+]]></output>
+            </test-case>
+            <test-case id="21324" name="ResolvingTheStartZoneCarriesTheAskedBiomeAndIgnoresItWhenNoWildStartWasAsked_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ResolvingTheStartZoneCarriesTheAskedBiomeAndIgnoresItWhenNoWildStartWasAsked_Counter" methodname="ResolvingTheStartZoneCarriesTheAskedBiomeAndIgnoresItWhenNoWildStartWasAsked_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="166213724" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.028666" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21321" name="ResolvingTheStartZoneHonoursTheSceneThenTheScenarioAndOtherwiseChangesNothing" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.ResolvingTheStartZoneHonoursTheSceneThenTheScenarioAndOtherwiseChangesNothing" methodname="ResolvingTheStartZoneHonoursTheSceneThenTheScenarioAndOtherwiseChangesNothing" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="756630511" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.037470" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21327" name="TheAwningScenarioKeepsTheClockWhereItIsWhenItIsAlreadyHeightAndNeverRunsItBackwards_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheAwningScenarioKeepsTheClockWhereItIsWhenItIsAlreadyHeightAndNeverRunsItBackwards_Counter" methodname="TheAwningScenarioKeepsTheClockWhereItIsWhenItIsAlreadyHeightAndNeverRunsItBackwards_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1358086703" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.025350" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+]]></output>
+            </test-case>
+            <test-case id="21333" name="TheAwningScenarioSaysSoWhenTheStartWasNotInTheBeating_AndStaysQuietWhenItWas_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheAwningScenarioSaysSoWhenTheStartWasNotInTheBeating_AndStaysQuietWhenItWas_Counter" methodname="TheAwningScenarioSaysSoWhenTheStartWasNotInTheBeating_AndStaysQuietWhenItWas_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="541794152" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.024625" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+[Scenario] [Awning] It is the Height of the day on the open pan of the Beating, and nothing should be on your head (take off any hat). The glare is on from now.
+[Scenario] [Awning] 1. Stand still (rest or wait) for ten turns in the open: the sidebar parches you, and again every ten turns after. 2. Open the pack, choose the awning's 'set down' toward an open cell, and stand on it or in the ring of cells around it for a few turns: the count starts over and no stacks come. 3. Step out of the ring and wait ten turns: the glare finds you again. 4. Take the awning up and the shade goes with it. The Height band is about thirty turns long from the start, so do not dawdle; if it ends, rest until the next day's Height. The sidebar shows the time of day.
+]]></output>
+            </test-case>
+            <test-case id="21326" name="TheAwningScenarioStartsAtTheHeightBandBareheadedWithTheAwningAndNothingMoreThanItNeeds" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheAwningScenarioStartsAtTheHeightBandBareheadedWithTheAwningAndNothingMoreThanItNeeds" methodname="TheAwningScenarioStartsAtTheHeightBandBareheadedWithTheAwningAndNothingMoreThanItNeeds" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="805606291" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.024479" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+]]></output>
+            </test-case>
+            <test-case id="21347" name="TheCarriageScenarioGivesDramsGoodsAndOneParcelAlreadyWaitingAtCinderhold" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheCarriageScenarioGivesDramsGoodsAndOneParcelAlreadyWaitingAtCinderhold" methodname="TheCarriageScenarioGivesDramsGoodsAndOneParcelAlreadyWaitingAtCinderhold" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1652979022" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.026858" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Carriage] 60 drams, 8 timber, a dagger, 2 fire clay, a flask, a blastcap spore, and one parcel (2 iron spikes) already waiting for you at Cinderhold.
+[Scenario] [Carriage] 1. Open the world map with < and travel to Cinderhold (6,6); find the Concord Factor in the pruning post and talk to him. 2. The greeting lists the parcel in your name and offers 'Collect what has arrived (1)': take it. 3. Choose 'Send a parcel to the Last Counter': the list shows each stack with its fee (the spore is not offered: clause five); pick the timber and read the bargain (all, half or one, each with its fee), then send. 4. The greeting now reads the parcel as due in 3 days. 5. Travel to the Last Counter (18,18), wait the days out (rest at a fire), and talk to the Envoy: 'Collect what has arrived'. 6. Open the world map at any time: one line says how many parcels ride and where any have arrived.
+]]></output>
+            </test-case>
+            <test-case id="21319" name="TheDarkStartNeverRunsTheClockBackwards" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheDarkStartNeverRunsTheClockBackwards" methodname="TheDarkStartNeverRunsTheClockBackwards" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1009103732" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.025093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21329" name="TheDepthIsCarriedThroughTheResolverAndIgnoredWithoutAWildStart_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheDepthIsCarriedThroughTheResolverAndIgnoredWithoutAWildStart_Counter" methodname="TheDepthIsCarriedThroughTheResolverAndIgnoredWithoutAWildStart_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1047396159" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.031532" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21316" name="TheLoadoutCarriesWhatEachKitNeedsToBeTried" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheLoadoutCarriesWhatEachKitNeedsToBeTried" methodname="TheLoadoutCarriesWhatEachKitNeedsToBeTried" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1964557204" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.029837" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21315" name="TheLoadoutIsLightEnoughForTheSmallestPlayerToCarry" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheLoadoutIsLightEnoughForTheSmallestPlayerToCarry" methodname="TheLoadoutIsLightEnoughForTheSmallestPlayerToCarry" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1512647119" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.024913" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21337" name="TheMachinesScenarioDigsAFishablePondWestSoTheTrapCanBeTriedWithoutATrip" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioDigsAFishablePondWestSoTheTrapCanBeTriedWithoutATrip" methodname="TheMachinesScenarioDigsAFishablePondWestSoTheTrapCanBeTriedWithoutATrip" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1227013449" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.028678" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21335" name="TheMachinesScenarioFillsBothFlasksWithMireAndGivesEverythingItNames" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioFillsBothFlasksWithMireAndGivesEverythingItNames" methodname="TheMachinesScenarioFillsBothFlasksWithMireAndGivesEverythingItNames" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1079546588" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.035534" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21338" name="TheMachinesScenarioGivesItsWholeLoadoutToAPlayerWhoHoldsTheShippedPackCap" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioGivesItsWholeLoadoutToAPlayerWhoHoldsTheShippedPackCap" methodname="TheMachinesScenarioGivesItsWholeLoadoutToAPlayerWhoHoldsTheShippedPackCap" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="240785197" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.063141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21340" name="TheMachinesScenarioNeverTightensABiggerCap_AndLeavesAnUncappedPackUncapped" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioNeverTightensABiggerCap_AndLeavesAnUncappedPackUncapped" methodname="TheMachinesScenarioNeverTightensABiggerCap_AndLeavesAnUncappedPackUncapped" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="40077509" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:36Z" duration="0.029993" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21336" name="TheMachinesScenarioPutsASteamVentSixCellsEastSoTheStillCanSettleWithoutAFire" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheMachinesScenarioPutsASteamVentSixCellsEastSoTheStillCanSettleWithoutAFire" methodname="TheMachinesScenarioPutsASteamVentSixCellsEastSoTheStillCanSettleWithoutAFire" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1436313127" result="Passed" start-time="2026-11-21 23:48:36Z" end-time="2026-11-21 23:48:37Z" duration="0.036097" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21318" name="TheNightScenarioStartsAtDarkAndHurt_AndTheDayOneStartsAtNeitherCounter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheNightScenarioStartsAtDarkAndHurt_AndTheDayOneStartsAtNeitherCounter" methodname="TheNightScenarioStartsAtDarkAndHurt_AndTheDayOneStartsAtNeitherCounter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1076034527" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.033719" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [CampKits wild] You start on ordinary wild ground: set-down works here. Everything for a camp is in your pack.
+[Scenario] [CampKits wild] 1. Open the pack (i), select a camp kit and choose 'make camp here (4 kits)': the hearth goes down first, the still beside it, the bench and box clear of the flames. 2. Press C toward the hearth and highlight 'stoke': the small text says what it does. Choose it: it feeds the timber and lights the fire from the striker in one action. 3. Press C toward the still and read what your mire would settle to; settle it. 4. Press C on any kit and choose 'name this camp' (press it again to change the name). 5. Open the world map: the note names the camp, where it is and what it holds as you left it. 6. 'move' shifts one kit a cell; 'pack up camp' takes everything within four cells back.
+[Scenario] [CampKits night] It is night and you are hurt. A camp is the way through it.
+[Scenario] [CampKits night] 1. Open the pack, pick a camp kit and choose 'make camp here (4 kits)'. 2. Press C toward the hearth and choose 'stoke' (highlight it first to read what it does): it feeds the timber and lights it. 3. Press C on the hearth again: 'rest until Dawn' shows what the night heals and how much fuel it burns; choose it. 4. Wake at dawn: the fire has burned its fuel and your health is restored. 5. Try 'pack up camp' to leave, then the world map to see what you left.
+]]></output>
+            </test-case>
+            <test-case id="21332" name="TheRodScenarioSaysSoWhenTheStartWasNotUnderground_AndStaysQuietWhenItWas_Counter" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheRodScenarioSaysSoWhenTheStartWasNotUnderground_AndStaysQuietWhenItWas_Counter" methodname="TheRodScenarioSaysSoWhenTheStartWasNotUnderground_AndStaysQuietWhenItWas_Counter" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="855841217" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.025229" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Sounding] The start did not start you underground (the cave start could not be placed), and the rod refuses on the surface. Take any stairs down into an ordinary cave to use it; the rod is in your pack.
+[Scenario] [Sounding] You are in an ordinary cave one floor below wild ground, with a sounding rod in your pack.
+[Scenario] [Sounding] 1. Open the pack, choose the rod's 'sound the ground (carries about N paces)': the strike is loud, and it names open ground, a way up or down and dense stone you have not seen, as a bearing and a distance. 2. Walk toward what it named and see whether it is so (nothing it reports is a promise about what is there beyond the bearing and the distance). 3. Sound again somewhere else, then choose 'read the survey log': it reprints your last eight soundings with where you stood. 4. Climb the stairs and try the rod on the surface: the ground there is too loose to carry a sounding.
+]]></output>
+            </test-case>
+            <test-case id="21339" name="TheRoomTheMachinesScenarioMakesIsTheCapacityTheSidebarShowsWithRoomToSpare" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheRoomTheMachinesScenarioMakesIsTheCapacityTheSidebarShowsWithRoomToSpare" methodname="TheRoomTheMachinesScenarioMakesIsTheCapacityTheSidebarShowsWithRoomToSpare" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1299538855" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.027480" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="21325" name="TheWildBiomeRequestIsOneShotLikeTheWildStartItself" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheWildBiomeRequestIsOneShotLikeTheWildStartItself" methodname="TheWildBiomeRequestIsOneShotLikeTheWildStartItself" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1727421899" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.024198" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Awning] The start did not start you in the Beating (the wild start could not be placed there), so there is no glare here. Travel south on the world map into the Beating and wait for the Height hours; the awning is in your pack.
+[ScenarioRunner] Applied scenario: CampAwningShowcase
+]]></output>
+            </test-case>
+            <test-case id="21330" name="TheWildDepthRequestIsOneShotAndTheRodScenarioGivesTheRod" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheWildDepthRequestIsOneShotAndTheRodScenarioGivesTheRod" methodname="TheWildDepthRequestIsOneShotAndTheRodScenarioGivesTheRod" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1833844056" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.024021" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Sounding] The start did not start you underground (the cave start could not be placed), and the rod refuses on the surface. Take any stairs down into an ordinary cave to use it; the rod is in your pack.
+[ScenarioRunner] Applied scenario: SoundingRodShowcase
+]]></output>
+            </test-case>
+            <test-case id="21317" name="TheWildScenariosGiveTheSameSuppliesAsTheOpeningOne" fullname="CavesOfOoo.Tests.CampKitShowcaseTests.TheWildScenariosGiveTheSameSuppliesAsTheOpeningOne" methodname="TheWildScenariosGiveTheSameSuppliesAsTheOpeningOne" classname="CavesOfOoo.Tests.CampKitShowcaseTests" runstate="Runnable" seed="1006419949" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.028250" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [CampKits wild] You start on ordinary wild ground: set-down works here. Everything for a camp is in your pack.
+[Scenario] [CampKits wild] 1. Open the pack (i), select a camp kit and choose 'make camp here (4 kits)': the hearth goes down first, the still beside it, the bench and box clear of the flames. 2. Press C toward the hearth and highlight 'stoke': the small text says what it does. Choose it: it feeds the timber and lights the fire from the striker in one action. 3. Press C toward the still and read what your mire would settle to; settle it. 4. Press C on any kit and choose 'name this camp' (press it again to change the name). 5. Open the world map: the note names the camp, where it is and what it holds as you left it. 6. 'move' shifts one kit a cell; 'pack up camp' takes everything within four cells back.
+[Scenario] [CampKits night] It is night and you are hurt. A camp is the way through it.
+[Scenario] [CampKits night] 1. Open the pack, pick a camp kit and choose 'make camp here (4 kits)'. 2. Press C toward the hearth and choose 'stoke' (highlight it first to read what it does): it feeds the timber and lights it. 3. Press C on the hearth again: 'rest until Dawn' shows what the night heals and how much fuel it burns; choose it. 4. Wake at dawn: the fire has burned its fuel and your health is restored. 5. Try 'pack up camp' to leave, then the world map to see what you left.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="24045" name="FishTrapTests" fullname="CavesOfOoo.Tests.FishTrapTests" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:38Z" duration="1.601187" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="24050" name="ACarriedTrapIsAKitThatOffersNothingAndSaysWhatItIs_Counter" fullname="CavesOfOoo.Tests.FishTrapTests.ACarriedTrapIsAKitThatOffersNothingAndSaysWhatItIs_Counter" methodname="ACarriedTrapIsAKitThatOffersNothingAndSaysWhatItIs_Counter" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1989644758" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.054826" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24072" name="AFishedOutPondPromisesNoNextFish_Counter" fullname="CavesOfOoo.Tests.FishTrapTests.AFishedOutPondPromisesNoNextFish_Counter" methodname="AFishedOutPondPromisesNoNextFish_Counter" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="2132045712" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.054284" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24057" name="AFullPackTakesAsManyAsFitAndTheRestStayInTheTrap" fullname="CavesOfOoo.Tests.FishTrapTests.AFullPackTakesAsManyAsFitAndTheRestStayInTheTrap" methodname="AFullPackTakesAsManyAsFitAndTheRestStayInTheTrap" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="268720160" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.045935" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24071" name="AFullTrapSaysItIsFullAndPromisesNoFurtherFish_Counter" fullname="CavesOfOoo.Tests.FishTrapTests.AFullTrapSaysItIsFullAndPromisesNoFurtherFish_Counter" methodname="AFullTrapSaysItIsFullAndPromisesNoFurtherFish_Counter" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1964730120" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.090298" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24056" name="AnInterruptedTakeLeavesTheTrapAndThePondAsTheyWereAndYouCarryNoFish" fullname="CavesOfOoo.Tests.FishTrapTests.AnInterruptedTakeLeavesTheTrapAndThePondAsTheyWereAndYouCarryNoFish" methodname="AnInterruptedTakeLeavesTheTrapAndThePondAsTheyWereAndYouCarryNoFish" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1981180574" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.048163" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24054" name="APondNeverGivesMoreThanItsCapacityPlusWhatItRefills" fullname="CavesOfOoo.Tests.FishTrapTests.APondNeverGivesMoreThanItsCapacityPlusWhatItRefills" methodname="APondNeverGivesMoreThanItsCapacityPlusWhatItRefills" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="17439684" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.053971" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24047" name="APuddleOrABogOrFrozenWaterIsNotAPond_Counter" fullname="CavesOfOoo.Tests.FishTrapTests.APuddleOrABogOrFrozenWaterIsNotAPond_Counter" methodname="APuddleOrABogOrFrozenWaterIsNotAPond_Counter" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1230479459" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.046908" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24066" name="ATrapSeesTheBiggerOfTwoPondsAndNeverMergesThem" fullname="CavesOfOoo.Tests.FishTrapTests.ATrapSeesTheBiggerOfTwoPondsAndNeverMergesThem" methodname="ATrapSeesTheBiggerOfTwoPondsAndNeverMergesThem" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="813835990" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.045775" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24075" name="AwayFromFishableWaterTheSetDownRowSaysWhatTheTrapNeeds_NotJustThatTheGroundIsWrong" fullname="CavesOfOoo.Tests.FishTrapTests.AwayFromFishableWaterTheSetDownRowSaysWhatTheTrapNeeds_NotJustThatTheGroundIsWrong" methodname="AwayFromFishableWaterTheSetDownRowSaysWhatTheTrapNeeds_NotJustThatTheGroundIsWrong" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1789752313" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.044066" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24064" name="CascadeBasinsGeneratedBeforeTheTagExistedAreStillFishable_Counter" fullname="CavesOfOoo.Tests.FishTrapTests.CascadeBasinsGeneratedBeforeTheTagExistedAreStillFishable_Counter" methodname="CascadeBasinsGeneratedBeforeTheTagExistedAreStillFishable_Counter" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1377752186" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.049816" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24062" name="DrawingWaterOrFreezingTheAnchorNeverMovesOrResetsThePondsStock" fullname="CavesOfOoo.Tests.FishTrapTests.DrawingWaterOrFreezingTheAnchorNeverMovesOrResetsThePondsStock" methodname="DrawingWaterOrFreezingTheAnchorNeverMovesOrResetsThePondsStock" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="395742080" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.046172" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24063" name="DryingABridgingCellDoesNotSplitOnePondIntoTwoStocks" fullname="CavesOfOoo.Tests.FishTrapTests.DryingABridgingCellDoesNotSplitOnePondIntoTwoStocks" methodname="DryingABridgingCellDoesNotSplitOnePondIntoTwoStocks" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="66706050" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.044679" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24065" name="IceAcrossThePondMakesItUnfishable_Counter" fullname="CavesOfOoo.Tests.FishTrapTests.IceAcrossThePondMakesItUnfishable_Counter" methodname="IceAcrossThePondMakesItUnfishable_Counter" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="400068112" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.041431" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24058" name="IfTheWaterGoesTheTrapSaysSoAndCatchesNothing" fullname="CavesOfOoo.Tests.FishTrapTests.IfTheWaterGoesTheTrapSaysSoAndCatchesNothing" methodname="IfTheWaterGoesTheTrapSaysSoAndCatchesNothing" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1696079966" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.068049" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24051" name="ItCatchesOneFishEveryHalfDayUpToFourAndReadingChangesNothing" fullname="CavesOfOoo.Tests.FishTrapTests.ItCatchesOneFishEveryHalfDayUpToFourAndReadingChangesNothing" methodname="ItCatchesOneFishEveryHalfDayUpToFourAndReadingChangesNothing" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1047645542" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:37Z" duration="0.072263" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24076" name="OtherKitsKeepTheGenericRefusalWording_Counter" fullname="CavesOfOoo.Tests.FishTrapTests.OtherKitsKeepTheGenericRefusalWording_Counter" methodname="OtherKitsKeepTheGenericRefusalWording_Counter" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="183567572" result="Passed" start-time="2026-11-21 23:48:37Z" end-time="2026-11-21 23:48:38Z" duration="0.042940" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24046" name="ShoreGroundNeedsAFishablePondBeside_AndOtherKitsStillRefuseTheWaterEdge_Counter" fullname="CavesOfOoo.Tests.FishTrapTests.ShoreGroundNeedsAFishablePondBeside_AndOtherKitsStillRefuseTheWaterEdge_Counter" methodname="ShoreGroundNeedsAFishablePondBeside_AndOtherKitsStillRefuseTheWaterEdge_Counter" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="371452343" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.045338" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24055" name="StockCapacityIsStableForAPondAndDifferentPondsAreIndependent" fullname="CavesOfOoo.Tests.FishTrapTests.StockCapacityIsStableForAPondAndDifferentPondsAreIndependent" methodname="StockCapacityIsStableForAPondAndDifferentPondsAreIndependent" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1213955085" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.046261" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24052" name="TakingTheFishGivesRealPerchEmptiesTheTrapAndTheTimeKeepsRunning" fullname="CavesOfOoo.Tests.FishTrapTests.TakingTheFishGivesRealPerchEmptiesTheTrapAndTheTimeKeepsRunning" methodname="TakingTheFishGivesRealPerchEmptiesTheTrapAndTheTimeKeepsRunning" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1017323412" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.047731" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24059" name="TakingTheTrapUpBringsItUpToDateFirst_ItKeepsItsFishAndFishesNoMoreUntilSetDownAgain" fullname="CavesOfOoo.Tests.FishTrapTests.TakingTheTrapUpBringsItUpToDateFirst_ItKeepsItsFishAndFishesNoMoreUntilSetDownAgain" methodname="TakingTheTrapUpBringsItUpToDateFirst_ItKeepsItsFishAndFishesNoMoreUntilSetDownAgain" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1933948099" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.047642" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24061" name="TheCampNoteProjectsWhatTheTrapWouldHoldByNowWithoutChangingIt" fullname="CavesOfOoo.Tests.FishTrapTests.TheCampNoteProjectsWhatTheTrapWouldHoldByNowWithoutChangingIt" methodname="TheCampNoteProjectsWhatTheTrapWouldHoldByNowWithoutChangingIt" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="2114435202" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.046178" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24073" name="TheDisabledTakeRowOfAnEmptyTrapSaysWhenToComeBack" fullname="CavesOfOoo.Tests.FishTrapTests.TheDisabledTakeRowOfAnEmptyTrapSaysWhenToComeBack" methodname="TheDisabledTakeRowOfAnEmptyTrapSaysWhenToComeBack" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="836963865" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.044054" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24049" name="TheKitIsRegisteredStockedAndAShippedBlueprint" fullname="CavesOfOoo.Tests.FishTrapTests.TheKitIsRegisteredStockedAndAShippedBlueprint" methodname="TheKitIsRegisteredStockedAndAShippedBlueprint" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="318142542" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.044585" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24074" name="TheMachinesScenariosPondTakesTheTrapTwoCellsWestOfTheStartThroughTheRealVerb" fullname="CavesOfOoo.Tests.FishTrapTests.TheMachinesScenariosPondTakesTheTrapTwoCellsWestOfTheStartThroughTheRealVerb" methodname="TheMachinesScenariosPondTakesTheTrapTwoCellsWestOfTheStartThroughTheRealVerb" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1344219676" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.054844" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="24067" name="TheMovePickerCannotPutTheTrapInWaterOrOffTheShore_Counter" fullname="CavesOfOoo.Tests.FishTrapTests.TheMovePickerCannotPutTheTrapInWaterOrOffTheShore_Counter" methodname="TheMovePickerCannotPutTheTrapInWaterOrOffTheShore_Counter" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="555184698" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.083370" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24068" name="TheReaderNamesTheCatchAndHowTheWaterLooksNeverACount" fullname="CavesOfOoo.Tests.FishTrapTests.TheReaderNamesTheCatchAndHowTheWaterLooksNeverACount" methodname="TheReaderNamesTheCatchAndHowTheWaterLooksNeverACount" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1169618463" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.047489" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24069" name="TheReaderSaysWhenTheNextFishIsDue_InTheNameOfTheTimeOfDayNeverATickCount" fullname="CavesOfOoo.Tests.FishTrapTests.TheReaderSaysWhenTheNextFishIsDue_InTheNameOfTheTimeOfDayNeverATickCount" methodname="TheReaderSaysWhenTheNextFishIsDue_InTheNameOfTheTimeOfDayNeverATickCount" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1087305010" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.045666" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24048" name="TheSetDownVerbOffersOnlyShoreCellsAndTheTrapStandsThere" fullname="CavesOfOoo.Tests.FishTrapTests.TheSetDownVerbOffersOnlyShoreCellsAndTheTrapStandsThere" methodname="TheSetDownVerbOffersOnlyShoreCellsAndTheTrapStandsThere" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="450387190" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.046847" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24060" name="TheTrapAndItsPondRideTheSave" fullname="CavesOfOoo.Tests.FishTrapTests.TheTrapAndItsPondRideTheSave" methodname="TheTrapAndItsPondRideTheSave" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="17706716" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.052552" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24053" name="TwoTrapsShareOnePondSupplyAndItRefillsOneFishADay" fullname="CavesOfOoo.Tests.FishTrapTests.TwoTrapsShareOnePondSupplyAndItRefillsOneFishADay" methodname="TwoTrapsShareOnePondSupplyAndItRefillsOneFishADay" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="269565442" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.048191" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24070" name="WhenTheNextFishIsAboutToComeTheReaderSaysSoInsteadOfNamingTheBand" fullname="CavesOfOoo.Tests.FishTrapTests.WhenTheNextFishIsAboutToComeTheReaderSaysSoInsteadOfNamingTheBand" methodname="WhenTheNextFishIsAboutToComeTheReaderSaysSoInsteadOfNamingTheBand" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="451813142" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.046875" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="26570" name="MachineUseGuideTests" fullname="CavesOfOoo.Tests.MachineUseGuideTests" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:39Z" duration="0.860579" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="26581" name="ACarriedKitSaysHowToSetItDownAndWhatGroundItWantsAndAStandingOneHowToMoveIt" fullname="CavesOfOoo.Tests.MachineUseGuideTests.ACarriedKitSaysHowToSetItDownAndWhatGroundItWantsAndAStandingOneHowToMoveIt" methodname="ACarriedKitSaysHowToSetItDownAndWhatGroundItWantsAndAStandingOneHowToMoveIt" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="219978457" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.024235" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26583" name="ACarriedStillExplainsSettingDownNotSettling_Counter" fullname="CavesOfOoo.Tests.MachineUseGuideTests.ACarriedStillExplainsSettingDownNotSettling_Counter" methodname="ACarriedStillExplainsSettingDownNotSettling_Counter" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1287842278" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.023025" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26585" name="ADroppedKitBesideYouSaysToPickItUpWhateverMachineItIs" fullname="CavesOfOoo.Tests.MachineUseGuideTests.ADroppedKitBesideYouSaysToPickItUpWhateverMachineItIs" methodname="ADroppedKitBesideYouSaysToPickItUpWhateverMachineItIs" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="273863922" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.026738" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26599" name="AFarawayMachineSaysYouAreNotBesideIt" fullname="CavesOfOoo.Tests.MachineUseGuideTests.AFarawayMachineSaysYouAreNotBesideIt" methodname="AFarawayMachineSaysYouAreNotBesideIt" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1828980032" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.023628" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26584" name="AHandedOverOrWorldFixtureDoesNotSayItCanBeTakenUp" fullname="CavesOfOoo.Tests.MachineUseGuideTests.AHandedOverOrWorldFixtureDoesNotSayItCanBeTakenUp" methodname="AHandedOverOrWorldFixtureDoesNotSayItCanBeTakenUp" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="256467954" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.028408" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26601" name="AMachinesStaticDescriptionIsWhatItIsAndNeverHowToUseIt" fullname="CavesOfOoo.Tests.MachineUseGuideTests.AMachinesStaticDescriptionIsWhatItIsAndNeverHowToUseIt" methodname="AMachinesStaticDescriptionIsWhatItIsAndNeverHowToUseIt" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="945952791" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.065063" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26586" name="AStandingKitFarFromYouSaysYouAreNotBesideIt" fullname="CavesOfOoo.Tests.MachineUseGuideTests.AStandingKitFarFromYouSaysYouAreNotBesideIt" methodname="AStandingKitFarFromYouSaysYouAreNotBesideIt" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="888283063" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:38Z" duration="0.024915" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26574" name="AStunnedActorIsToldItCannotActNotThatNothingIsNear" fullname="CavesOfOoo.Tests.MachineUseGuideTests.AStunnedActorIsToldItCannotActNotThatNothingIsNear" methodname="AStunnedActorIsToldItCannotActNotThatNothingIsNear" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="495736537" result="Passed" start-time="2026-11-21 23:48:38Z" end-time="2026-11-21 23:48:39Z" duration="0.026952" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26573" name="AToolLyingOnTheGroundSaysToPickItUpNotThatNothingIsNear" fullname="CavesOfOoo.Tests.MachineUseGuideTests.AToolLyingOnTheGroundSaysToPickItUpNotThatNothingIsNear" methodname="AToolLyingOnTheGroundSaysToPickItUpNotThatNothingIsNear" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="896321786" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.028969" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26576" name="AWornStrikerWithNoSpikeSaysItNeedsOne" fullname="CavesOfOoo.Tests.MachineUseGuideTests.AWornStrikerWithNoSpikeSaysItNeedsOne" methodname="AWornStrikerWithNoSpikeSaysItNeedsOne" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="623736567" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.025397" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26591" name="EveryShippedKitExplainsItselfCarriedAndStanding" fullname="CavesOfOoo.Tests.MachineUseGuideTests.EveryShippedKitExplainsItselfCarriedAndStanding" methodname="EveryShippedKitExplainsItselfCarriedAndStanding" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="896699571" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.026601" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26600" name="ExportUseTextsForTheVoicePass" fullname="CavesOfOoo.Tests.MachineUseGuideTests.ExportUseTextsForTheVoicePass" methodname="ExportUseTextsForTheVoicePass" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Explicit" seed="350066223" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.034371" asserts="0">
+              <properties>
+                <property name="_SKIPREASON" value="writes Docs/MACHINE-USE-TEXTS.md for the owner's voice review" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26578" name="HushStripsSayHowToLayThemAndWhatALaneDoes" fullname="CavesOfOoo.Tests.MachineUseGuideTests.HushStripsSayHowToLayThemAndWhatALaneDoes" methodname="HushStripsSayHowToLayThemAndWhatALaneDoes" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1100619660" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.024223" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26594" name="TheBenchAndTheForgeExplainCrafting_AndACarriedBenchLeavesItToTheKit" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheBenchAndTheForgeExplainCrafting_AndACarriedBenchLeavesItToTheKit" methodname="TheBenchAndTheForgeExplainCrafting_AndACarriedBenchLeavesItToTheKit" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1371937051" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.024255" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26596" name="TheFishTrapAndTheAwningSayWhatTheyNeedAndWhatTheyGive" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheFishTrapAndTheAwningSayWhatTheyNeedAndWhatTheyGive" methodname="TheFishTrapAndTheAwningSayWhatTheyNeedAndWhatTheyGive" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1731063662" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.023024" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26575" name="TheFlintStrikerCountsItsStrikesAndSaysWhatItLights" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheFlintStrikerCountsItsStrikesAndSaysWhatItLights" methodname="TheFlintStrikerCountsItsStrikesAndSaysWhatItLights" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1306385431" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.023863" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26588" name="TheForgeSaysWhatThePickedPartsWouldMake" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheForgeSaysWhatThePickedPartsWouldMake" methodname="TheForgeSaysWhatThePickedPartsWouldMake" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1460669363" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.023931" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26592" name="TheHearthExplainsFeedingLightingAndCooking_AndOnlyTheCampHearthDoes" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheHearthExplainsFeedingLightingAndCooking_AndOnlyTheCampHearthDoes" methodname="TheHearthExplainsFeedingLightingAndCooking_AndOnlyTheCampHearthDoes" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1069654834" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.023713" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26582" name="TheKitSentenceComesFirstWhileCarriedAndLastWhileStanding" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheKitSentenceComesFirstWhileCarriedAndLastWhileStanding" methodname="TheKitSentenceComesFirstWhileCarriedAndLastWhileStanding" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1637392448" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.024509" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26598" name="TheProvingPostListsWhatItCanCall" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheProvingPostListsWhatItCanCall" methodname="TheProvingPostListsWhatItCanCall" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1414118967" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.025574" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26571" name="TheScraperSaysHowToUseItWhatItNeedsAndWhatItCostsFromTheLiveNumbers" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheScraperSaysHowToUseItWhatItNeedsAndWhatItCostsFromTheLiveNumbers" methodname="TheScraperSaysHowToUseItWhatItNeedsAndWhatItCostsFromTheLiveNumbers" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="311087680" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.026576" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26572" name="TheScrapersRightNowFollowsTheSourcesAroundIt" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheScrapersRightNowFollowsTheSourcesAroundIt" methodname="TheScrapersRightNowFollowsTheSourcesAroundIt" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="159508924" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.042348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26590" name="TheShoreKitNamesTheShoreItNeeds" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheShoreKitNamesTheShoreItNeeds" methodname="TheShoreKitNamesTheShoreItNeeds" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1631572766" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.046263" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26597" name="TheSortersFrameAndTheSettersBenchSayWhatTheyWantAndGive" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheSortersFrameAndTheSettersBenchSayWhatTheyWantAndGive" methodname="TheSortersFrameAndTheSettersBenchSayWhatTheyWantAndGive" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1738967660" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.024097" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26577" name="TheSoundingRodSaysWhereItWorksAndWhyItCannotHere" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheSoundingRodSaysWhereItWorksAndWhyItCannotHere" methodname="TheSoundingRodSaysWhereItWorksAndWhyItCannotHere" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="2085248704" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.023737" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26579" name="TheSpringTrapSaysWhatItTakesToLoadAndLay_AndLoadingChangesIt" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheSpringTrapSaysWhatItTakesToLoadAndLay_AndLoadingChangesIt" methodname="TheSpringTrapSaysWhatItTakesToLoadAndLay_AndLoadingChangesIt" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="115017463" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.024097" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26593" name="TheStillExplainsBrewingSettlingAndBakingWithItsRates" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheStillExplainsBrewingSettlingAndBakingWithItsRates" methodname="TheStillExplainsBrewingSettlingAndBakingWithItsRates" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="297768783" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.022976" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26589" name="TheStillSaysWhetherAMixIsPicked" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheStillSaysWhetherAMixIsPicked" methodname="TheStillSaysWhetherAMixIsPicked" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="170426847" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.023476" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26595" name="TheTroughTraySaysTheNumbersItsRulesUse" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheTroughTraySaysTheNumbersItsRulesUse" methodname="TheTroughTraySaysTheNumbersItsRulesUse" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1319020347" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.024299" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26580" name="TheWaterskinAndTheFlaskSayHowToFillAndPour" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheWaterskinAndTheFlaskSayHowToFillAndPour" methodname="TheWaterskinAndTheFlaskSayHowToFillAndPour" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="1264784407" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.024061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26587" name="TheWaterskinSaysWhetherDrinkingAndFillingWouldWork" fullname="CavesOfOoo.Tests.MachineUseGuideTests.TheWaterskinSaysWhetherDrinkingAndFillingWouldWork" methodname="TheWaterskinSaysWhetherDrinkingAndFillingWouldWork" classname="CavesOfOoo.Tests.MachineUseGuideTests" runstate="Runnable" seed="884744134" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.022742" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="6977" name="ProofingTroughTests" fullname="CavesOfOoo.Tests.ProofingTroughTests" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:41Z" duration="2.225927" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="6999" name="ACarriedGarmentCanBeUnpickedToo_AndOnlyProofedGarmentsAreOffered_Counter" fullname="CavesOfOoo.Tests.ProofingTroughTests.ACarriedGarmentCanBeUnpickedToo_AndOnlyProofedGarmentsAreOffered_Counter" methodname="ACarriedGarmentCanBeUnpickedToo_AndOnlyProofedGarmentsAreOffered_Counter" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1255593527" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.169044" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6978" name="ACarriedTroughIsAKitAndOffersNothing_Counter" fullname="CavesOfOoo.Tests.ProofingTroughTests.ACarriedTroughIsAKitAndOffersNothing_Counter" methodname="ACarriedTroughIsAKitAndOffersNothing_Counter" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1561520120" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.024550" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6985" name="ACoatAndALastingProofingTogetherUseBothSlots_AndAThirdTreatmentIsRefused" fullname="CavesOfOoo.Tests.ProofingTroughTests.ACoatAndALastingProofingTogetherUseBothSlots_AndAThirdTreatmentIsRefused" methodname="ACoatAndALastingProofingTogetherUseBothSlots_AndAThirdTreatmentIsRefused" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="40377482" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:39Z" duration="0.108866" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6983" name="AGarmentHoldsOneLastingProofing_AndAFullOneRefusesAnother" fullname="CavesOfOoo.Tests.ProofingTroughTests.AGarmentHoldsOneLastingProofing_AndAFullOneRefusesAnother" methodname="AGarmentHoldsOneLastingProofing_AndAFullOneRefusesAnother" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1254154848" result="Passed" start-time="2026-11-21 23:48:39Z" end-time="2026-11-21 23:48:40Z" duration="0.108304" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6989" name="ALasting_ProofingSurvivesSaveAndLoad_AndStillWorksWhenWorn" fullname="CavesOfOoo.Tests.ProofingTroughTests.ALasting_ProofingSurvivesSaveAndLoad_AndStillWorksWhenWorn" methodname="ALasting_ProofingSurvivesSaveAndLoad_AndStillWorksWhenWorn" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1458837057" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:40Z" duration="0.105243" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6987" name="AnInterruptedProofingGivesEverythingBack" fullname="CavesOfOoo.Tests.ProofingTroughTests.AnInterruptedProofingGivesEverythingBack" methodname="AnInterruptedProofingGivesEverythingBack" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1732651942" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:40Z" duration="0.095860" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="7001" name="AnInterruptedUnpickLeavesTheGarmentProofedAndItsResistanceIntact" fullname="CavesOfOoo.Tests.ProofingTroughTests.AnInterruptedUnpickLeavesTheGarmentProofedAndItsResistanceIntact" methodname="AnInterruptedUnpickLeavesTheGarmentProofedAndItsResistanceIntact" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1148134323" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:40Z" duration="0.115755" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6984" name="AnyArmorQualifiesAndNothingElseDoes_Counter" fullname="CavesOfOoo.Tests.ProofingTroughTests.AnyArmorQualifiesAndNothingElseDoes_Counter" methodname="AnyArmorQualifiesAndNothingElseDoes_Counter" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="880503603" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:40Z" duration="0.115842" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6994" name="AProofedGarmentWornAtSaveTimeLoadsWithItsBonusOnceAndRevertsExactly" fullname="CavesOfOoo.Tests.ProofingTroughTests.AProofedGarmentWornAtSaveTimeLoadsWithItsBonusOnceAndRevertsExactly" methodname="AProofedGarmentWornAtSaveTimeLoadsWithItsBonusOnceAndRevertsExactly" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="368819724" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:40Z" duration="0.093869" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6996" name="AStackOfGarmentsIsProofedOneUnitAtATime_AndAnInterruptionPutsTheUnitBack" fullname="CavesOfOoo.Tests.ProofingTroughTests.AStackOfGarmentsIsProofedOneUnitAtATime_AndAnInterruptionPutsTheUnitBack" methodname="AStackOfGarmentsIsProofedOneUnitAtATime_AndAnInterruptionPutsTheUnitBack" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="151854319" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:40Z" duration="0.092916" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="7002" name="AStaleOrForeignUnpickChangesNothing_Counter" fullname="CavesOfOoo.Tests.ProofingTroughTests.AStaleOrForeignUnpickChangesNothing_Counter" methodname="AStaleOrForeignUnpickChangesNothing_Counter" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1526187040" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:40Z" duration="0.090160" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6998" name="AWornProofedGarmentCanBeUnpickedWhichRemovesItsResistanceFreesTheSlotAndReturnsNothing" fullname="CavesOfOoo.Tests.ProofingTroughTests.AWornProofedGarmentCanBeUnpickedWhichRemovesItsResistanceFreesTheSlotAndReturnsNothing" methodname="AWornProofedGarmentCanBeUnpickedWhichRemovesItsResistanceFreesTheSlotAndReturnsNothing" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="488252050" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:40Z" duration="0.093737" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6986" name="CoatAndGearAndALastingProofingStackToImmunity_ThatIsWhatItIsFor" fullname="CavesOfOoo.Tests.ProofingTroughTests.CoatAndGearAndALastingProofingStackToImmunity_ThatIsWhatItIsFor" methodname="CoatAndGearAndALastingProofingStackToImmunity_ThatIsWhatItIsFor" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="2124134193" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:40Z" duration="0.090982" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6993" name="EveryProofableRowIsShownBeforeAnyRefusedOne_AndTheOverflowIsCounted" fullname="CavesOfOoo.Tests.ProofingTroughTests.EveryProofableRowIsShownBeforeAnyRefusedOne_AndTheOverflowIsCounted" methodname="EveryProofableRowIsShownBeforeAnyRefusedOne_AndTheOverflowIsCounted" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="250246627" result="Passed" start-time="2026-11-21 23:48:40Z" end-time="2026-11-21 23:48:41Z" duration="0.089974" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6980" name="FourUnitsAndTwoClayGiveTheGarmentALastingProofingThatWorksWornAtOnce" fullname="CavesOfOoo.Tests.ProofingTroughTests.FourUnitsAndTwoClayGiveTheGarmentALastingProofingThatWorksWornAtOnce" methodname="FourUnitsAndTwoClayGiveTheGarmentALastingProofingThatWorksWornAtOnce" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="2080996944" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.087714" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="7004" name="ManyProofedGarmentsAreCappedAndTheRestCounted" fullname="CavesOfOoo.Tests.ProofingTroughTests.ManyProofedGarmentsAreCappedAndTheRestCounted" methodname="ManyProofedGarmentsAreCappedAndTheRestCounted" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1572862309" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.089362" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="7000" name="OnlyTheLastingProofingComesOut_ACoatOnTheSameGarmentStays_Counter" fullname="CavesOfOoo.Tests.ProofingTroughTests.OnlyTheLastingProofingComesOut_ACoatOnTheSameGarmentStays_Counter" methodname="OnlyTheLastingProofingComesOut_ACoatOnTheSameGarmentStays_Counter" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="911906467" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.089676" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6982" name="ShortOfUnitsOrClayIsRefusedWithTheNumbers_AndSpendsNothing" fullname="CavesOfOoo.Tests.ProofingTroughTests.ShortOfUnitsOrClayIsRefusedWithTheNumbers_AndSpendsNothing" methodname="ShortOfUnitsOrClayIsRefusedWithTheNumbers_AndSpendsNothing" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="913541449" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.023757" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6990" name="TheMachinesScenariosOwnLoadoutCanDoTheWholeColdDemoItsTextPromises" fullname="CavesOfOoo.Tests.ProofingTroughTests.TheMachinesScenariosOwnLoadoutCanDoTheWholeColdDemoItsTextPromises" methodname="TheMachinesScenariosOwnLoadoutCanDoTheWholeColdDemoItsTextPromises" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="249202452" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.097616" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="6988" name="TheOldTemporaryRowsAreGone_AndResinAndClayNoLongerTreatAnything_Counter" fullname="CavesOfOoo.Tests.ProofingTroughTests.TheOldTemporaryRowsAreGone_AndResinAndClayNoLongerTreatAnything_Counter" methodname="TheOldTemporaryRowsAreGone_AndResinAndClayNoLongerTreatAnything_Counter" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="239215928" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.024071" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6991" name="TheProofRowSaysWhatYourResistanceWouldBe" fullname="CavesOfOoo.Tests.ProofingTroughTests.TheProofRowSaysWhatYourResistanceWouldBe" methodname="TheProofRowSaysWhatYourResistanceWouldBe" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1808996659" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.024180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="7003" name="TheReaderMentionsUnpickingOnlyWhenYouHoldAProofedGarment_Counter" fullname="CavesOfOoo.Tests.ProofingTroughTests.TheReaderMentionsUnpickingOnlyWhenYouHoldAProofedGarment_Counter" methodname="TheReaderMentionsUnpickingOnlyWhenYouHoldAProofedGarment_Counter" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="322401682" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.094985" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6997" name="TheReadersNameWhatTheTroughDoesAndWhatYouCarry" fullname="CavesOfOoo.Tests.ProofingTroughTests.TheReadersNameWhatTheTroughDoesAndWhatYouCarry" methodname="TheReadersNameWhatTheTroughDoesAndWhatYouCarry" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1272218563" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.130951" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6992" name="TheReadersPointAtWhatYouHaveSeenNearby_AndSayNothingOfTheKindWhenYouHaveSeenNothing_Counter" fullname="CavesOfOoo.Tests.ProofingTroughTests.TheReadersPointAtWhatYouHaveSeenNearby_AndSayNothingOfTheKindWhenYouHaveSeenNothing_Counter" methodname="TheReadersPointAtWhatYouHaveSeenNearby_AndSayNothingOfTheKindWhenYouHaveSeenNothing_Counter" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="423325439" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.024840" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6995" name="TheScenariosFrostTonicIsTheEasyWayToFeelTheStatusRule_ABareDrinkerFreezesLongerThanAProofedOne" fullname="CavesOfOoo.Tests.ProofingTroughTests.TheScenariosFrostTonicIsTheEasyWayToFeelTheStatusRule_ABareDrinkerFreezesLongerThanAProofedOne" methodname="TheScenariosFrostTonicIsTheEasyWayToFeelTheStatusRule_ABareDrinkerFreezesLongerThanAProofedOne" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="369667747" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.029141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Scenario] [Machines] You start on wild ground with a proofing trough, a hearth and a still, two flasks of bog-mire and three empty ones, garments, a reagent for each element, a sounding rod and the parts Cinderhold's pump asks for.
+[Scenario] [Machines] 1. Open the pack, pick the hearth and choose 'set down' east, then the still west ('make camp here' lays out every kit at once). 2. Press C toward the hearth: highlight 'stoke' and read what it does, then choose it. 3. Press C toward the still: it shows your mix status and, beside the lit fire, offers 'bake 12 mire to 1 fire clay' for each of the two mire flasks (each uses 8 mire and 10 fuel; settle some mire instead to compare).
+[Scenario] [Machines] 3b. A steam vent steams six cells east of you. Pick up the still you set down in step 1 (or use a fresh kit), walk three cells east and set it down east (it lands two cells from the vent: the cell right beside a vent is refused), then press C toward it: settling needs no fire there, and the row says the vent's heat pays. Baking clay still wants the hearth. Examine the vent with mire or the still in your pack for what it is good for.
+[Scenario] [Machines] 4. Proofing, the short way (no machine): open the pack, choose a reagent (frost lichen, fire moss, spark root or sourmantle fold) and 'press into a flask': the flask then holds that element's proofing, one unit a coat (a stronger reagent makes more coats). Choose the flask, then 'coat <garment>': +35 of that resistance for 100 worn turns, paused when the garment is off; another coat of the same adds turns, another element replaces. Examine the flask and the garment to read it. Wear the cloak, coat it with cold and put a freeze on yourself (a frost vent, an ice lance) to feel the status shorten as well as the damage (drink a frost tonic for a freeze, a lightning tonic for a shock; the steam vent six east scalds for heat). 4a. Proofing for good: set down the trough, press 4 units of one element into a flask, and with 2 fire clay choose 'proof <garment> against <element> for good' at the trough: +25, never wears out, one a garment. Cold from the cloak (+50), a coat (+35) and the trough (+25) is past 100: immune. Bake more clay at the still (4b below). 4b. Pour one of the mire flasks onto your lit hearth (pack, the flask, 'pour ... east'): the row says what it would do. A full flask puts the fire out and the hearth keeps its fuel; stoke and light it again from a flame.
+[Scenario] [Machines] 4c. The fish trap needs a pool of falling water to fish; a small one has been dug four cells west of you. Walk two cells west, open the pack and choose the trap's 'set down' west: it lands on the shore beside the water, and it offers no cell where there is no fishable water. The reader says when the next fish is due; rest half a day, then 'take the fish'. A second trap on the same pool shares its supply.
+[Scenario] [Machines] 4d. The shade awning answers the Beating's glare: in the Height hours, ten bareheaded turns on the open pan parch you a stack. Set it down on open ground in the Beating (the south of the world map) and stand under it or in the ring of cells around it: the count resets, as under a roof or a hat. Take it up and the shade goes with it.
+[Scenario] [Machines] 5. Cinderhold's mine pump: travel to Cinderhold (Overworld.6.6.0, north-west on the world map), find the pump beside the well, press C: its menu shows what each repair needs against what you carry; 'mend for good' uses the two iron spikes, the oak haft and the binding. The pump then reads 'running'.
+[Scenario] [Machines] 6. The sounding rod works only in an ordinary deep cave: take any stairs down, step in, open the pack, choose 'sound the ground'. It names open ground, a way through and dense stone you have not seen, as a bearing and a distance, and the strike is loud.
+]]></output>
+            </test-case>
+            <test-case id="6981" name="UnitsMayComeFromSeveralFlasksButOnlyOfTheRightElement" fullname="CavesOfOoo.Tests.ProofingTroughTests.UnitsMayComeFromSeveralFlasksButOnlyOfTheRightElement" methodname="UnitsMayComeFromSeveralFlasksButOnlyOfTheRightElement" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="778931786" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.087291" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6979" name="WithNoProofingInAFlaskOneDisabledRowSaysWhatToDo" fullname="CavesOfOoo.Tests.ProofingTroughTests.WithNoProofingInAFlaskOneDisabledRowSaysWhatToDo" methodname="WithNoProofingInAFlaskOneDisabledRowSaysWhatToDo" classname="CavesOfOoo.Tests.ProofingTroughTests" runstate="Runnable" seed="1777390147" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.023777" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="27802" name="ScraperTests" fullname="CavesOfOoo.Tests.ScraperTests" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:42Z" duration="1.091608" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="27834" name="ACommandNamingSomethingThatIsNotASourceOrIsMalformedIsRefused_Counter" fullname="CavesOfOoo.Tests.ScraperTests.ACommandNamingSomethingThatIsNotASourceOrIsMalformedIsRefused_Counter" methodname="ACommandNamingSomethingThatIsNotASourceOrIsMalformedIsRefused_Counter" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="2037780740" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.024807" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27817" name="AFullPackRefusesWithoutDrawingOnTheSource_Counter" fullname="CavesOfOoo.Tests.ScraperTests.AFullPackRefusesWithoutDrawingOnTheSource_Counter" methodname="AFullPackRefusesWithoutDrawingOnTheSource_Counter" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="718628455" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.022988" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27830" name="ALootItemLyingOnTheSourceDoesNotHideTheRow" fullname="CavesOfOoo.Tests.ScraperTests.ALootItemLyingOnTheSourceDoesNotHideTheRow" methodname="ALootItemLyingOnTheSourceDoesNotHideTheRow" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="242648073" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.026292" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27818" name="AMultiCellPoolIsOneSourceWhereverYouStand_Counter" fullname="CavesOfOoo.Tests.ScraperTests.AMultiCellPoolIsOneSourceWhereverYouStand_Counter" methodname="AMultiCellPoolIsOneSourceWhereverYouStand_Counter" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1827550752" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.023440" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27831" name="AMultiCellPoolIsOneStockWhicheverCellYouOpen" fullname="CavesOfOoo.Tests.ScraperTests.AMultiCellPoolIsOneStockWhicheverCellYouOpen" methodname="AMultiCellPoolIsOneStockWhicheverCellYouOpen" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1190967364" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:41Z" duration="0.024184" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27816" name="AnInterruptedScrapeTakesNothingFromTheSourceGivesNothingAndMakesNoNoise" fullname="CavesOfOoo.Tests.ScraperTests.AnInterruptedScrapeTakesNothingFromTheSourceGivesNothingAndMakesNoNoise" methodname="AnInterruptedScrapeTakesNothingFromTheSourceGivesNothingAndMakesNoNoise" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1319907911" result="Passed" start-time="2026-11-21 23:48:41Z" end-time="2026-11-21 23:48:42Z" duration="0.024304" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27812" name="APoolYouPouredIsNotASourceForTheScraperEither_Counter" fullname="CavesOfOoo.Tests.ScraperTests.APoolYouPouredIsNotASourceForTheScraperEither_Counter" methodname="APoolYouPouredIsNotASourceForTheScraperEither_Counter" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1367602044" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023995" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27833" name="ARowGoneStaleIsRefusedAndChangesNothing_TheSourceWalkedFromOrRemoved" fullname="CavesOfOoo.Tests.ScraperTests.ARowGoneStaleIsRefusedAndChangesNothing_TheSourceWalkedFromOrRemoved" methodname="ARowGoneStaleIsRefusedAndChangesNothing_TheSourceWalkedFromOrRemoved" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="78917563" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023870" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27815" name="AScrapeIsHeardAndARefusedOneIsNot" fullname="CavesOfOoo.Tests.ScraperTests.AScrapeIsHeardAndARefusedOneIsNot" methodname="AScrapeIsHeardAndARefusedOneIsNot" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1722032452" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023247" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27814" name="ASourceGivesAsMuchAsItsCapacityThenIsSpent_AndANewDayBringsOneBack" fullname="CavesOfOoo.Tests.ScraperTests.ASourceGivesAsMuchAsItsCapacityThenIsSpent_AndANewDayBringsOneBack" methodname="ASourceGivesAsMuchAsItsCapacityThenIsSpent_AndANewDayBringsOneBack" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1387709665" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.022974" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27832" name="ASpentSourceListsADisabledRow_AndAnotherDayBringsTheRowBack" fullname="CavesOfOoo.Tests.ScraperTests.ASpentSourceListsADisabledRow_AndAnotherDayBringsTheRowBack" methodname="ASpentSourceListsADisabledRow_AndAnotherDayBringsTheRowBack" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="399349188" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.022812" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27835" name="AStunnedPlayerIsOfferedNoRowAndAnInterruptedCellScrapeChangesNothing" fullname="CavesOfOoo.Tests.ScraperTests.AStunnedPlayerIsOfferedNoRowAndAnInterruptedCellScrapeChangesNothing" methodname="AStunnedPlayerIsOfferedNoRowAndAnInterruptedCellScrapeChangesNothing" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="682155086" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.030036" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27810" name="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud" fullname="CavesOfOoo.Tests.ScraperTests.EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.208195" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27803" name="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;SteamVent&quot;,&quot;VentScale&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;SteamVent&quot;,&quot;VentScale&quot;)" methodname="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1705698190" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.061733" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27804" name="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;AshBed&quot;,&quot;VentScale&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;AshBed&quot;,&quot;VentScale&quot;)" methodname="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="725023617" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.024449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27805" name="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;FrostVent&quot;,&quot;RimeFlake&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;FrostVent&quot;,&quot;RimeFlake&quot;)" methodname="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1282167312" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.024023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27806" name="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;IceSheet&quot;,&quot;RimeFlake&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;IceSheet&quot;,&quot;RimeFlake&quot;)" methodname="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1390209388" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27807" name="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;BrinePool&quot;,&quot;BrineCrust&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;BrinePool&quot;,&quot;BrineCrust&quot;)" methodname="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="2097606457" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.024246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27808" name="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;AcidPool&quot;,&quot;AcidCrust&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;AcidPool&quot;,&quot;AcidCrust&quot;)" methodname="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="363744165" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.024306" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27809" name="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;MirePool&quot;,&quot;AcidCrust&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud(&quot;MirePool&quot;,&quot;AcidCrust&quot;)" methodname="EachSourceGivesItsElementsReagentAtOnce_AndItIsFreeUnsellableAndLoud" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="217017755" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.025093" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27813" name="ItMustBeCarriedAndAGroundScraperOffersNothing_Counter" fullname="CavesOfOoo.Tests.ScraperTests.ItMustBeCarriedAndAGroundScraperOffersNothing_Counter" methodname="ItMustBeCarriedAndAGroundScraperOffersNothing_Counter" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="455763845" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.024584" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27827" name="NoScraperNoRow_AndNoRowForASourceTwoCellsOff_OrANonSource_Counter" fullname="CavesOfOoo.Tests.ScraperTests.NoScraperNoRow_AndNoRowForASourceTwoCellsOff_OrANonSource_Counter" methodname="NoScraperNoRow_AndNoRowForASourceTwoCellsOff_OrANonSource_Counter" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="350319808" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023951" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27811" name="NothingToScrapeHereMeansNoRow_AndThreeCellsOutIsOutOfReach_Counter" fullname="CavesOfOoo.Tests.ScraperTests.NothingToScrapeHereMeansNoRow_AndThreeCellsOutIsOutOfReach_Counter" methodname="NothingToScrapeHereMeansNoRow_AndThreeCellsOutIsOutOfReach_Counter" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="656219738" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.022563" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27836" name="TheCompositionKeepsTheUnderfootRowsTheMenuAlwaysHad_AndOnlyAddsTheScrapeRowBeside" fullname="CavesOfOoo.Tests.ScraperTests.TheCompositionKeepsTheUnderfootRowsTheMenuAlwaysHad_AndOnlyAddsTheScrapeRowBeside" methodname="TheCompositionKeepsTheUnderfootRowsTheMenuAlwaysHad_AndOnlyAddsTheScrapeRowBeside" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1593224086" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023417" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27837" name="TheInputHandlerBuildsTheCMenuThroughTheOneCompositionThatCarriesTheRow" fullname="CavesOfOoo.Tests.ScraperTests.TheInputHandlerBuildsTheCMenuThroughTheOneCompositionThatCarriesTheRow" methodname="TheInputHandlerBuildsTheCMenuThroughTheOneCompositionThatCarriesTheRow" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="44129563" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.026795" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27828" name="ThePoolYouPouredOffersNothing_Counter" fullname="CavesOfOoo.Tests.ScraperTests.ThePoolYouPouredOffersNothing_Counter" methodname="ThePoolYouPouredOffersNothing_Counter" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1960795858" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023607" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27838" name="TheReaderSaysWhatItDoesAndThatItIsLoud" fullname="CavesOfOoo.Tests.ScraperTests.TheReaderSaysWhatItDoesAndThatItIsLoud" methodname="TheReaderSaysWhatItDoesAndThatItIsLoud" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="199028287" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.022514" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27829" name="TheRowIsForTheCellYouOpened_NotForWhicheverSourceIsNearest_Counter" fullname="CavesOfOoo.Tests.ScraperTests.TheRowIsForTheCellYouOpened_NotForWhicheverSourceIsNearest_Counter" methodname="TheRowIsForTheCellYouOpened_NotForWhicheverSourceIsNearest_Counter" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1091703690" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.029119" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27839" name="TheScraperIsRegisteredStockedAndSavedWithoutFields" fullname="CavesOfOoo.Tests.ScraperTests.TheScraperIsRegisteredStockedAndSavedWithoutFields" methodname="TheScraperIsRegisteredStockedAndSavedWithoutFields" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="219997544" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023383" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27826" name="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened" fullname="CavesOfOoo.Tests.ScraperTests.TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.367444" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27819" name="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;SteamVent&quot;,&quot;VentScale&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;SteamVent&quot;,&quot;VentScale&quot;)" methodname="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1292570919" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.050187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27820" name="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;AshBed&quot;,&quot;VentScale&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;AshBed&quot;,&quot;VentScale&quot;)" methodname="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="736183563" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.068954" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27821" name="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;FrostVent&quot;,&quot;RimeFlake&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;FrostVent&quot;,&quot;RimeFlake&quot;)" methodname="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="2047592894" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.073916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27822" name="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;IceSheet&quot;,&quot;RimeFlake&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;IceSheet&quot;,&quot;RimeFlake&quot;)" methodname="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1827793865" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.082000" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27823" name="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;BrinePool&quot;,&quot;BrineCrust&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;BrinePool&quot;,&quot;BrineCrust&quot;)" methodname="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1519243430" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.044298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27824" name="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;AcidPool&quot;,&quot;AcidCrust&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;AcidPool&quot;,&quot;AcidCrust&quot;)" methodname="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="1487305562" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27825" name="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;MirePool&quot;,&quot;AcidCrust&quot;)" fullname="CavesOfOoo.Tests.ScraperTests.TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened(&quot;MirePool&quot;,&quot;AcidCrust&quot;)" methodname="TheSourcesOwnMenuOffersToScrapeWithTheScraperYouCarry_SoThePackIsNeverOpened" classname="CavesOfOoo.Tests.ScraperTests" runstate="Runnable" seed="251459321" result="Passed" start-time="2026-11-21 23:48:42Z" end-time="2026-11-21 23:48:42Z" duration="0.023065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using CavesOfOoo.Core;
 using CavesOfOoo.Scenarios;
+using CavesOfOoo.Scenarios.Builders;
 using CavesOfOoo.Scenarios.Custom;
 using NUnit.Framework;
 using UnityEngine;
@@ -43,7 +44,7 @@ namespace CavesOfOoo.Tests
         [Test] public void TheLoadoutIsLightEnoughForTheSmallestPlayerToCarry()
         {
             int weight = CampKitsShowcase.Loadout.Sum(l => (Factory.CreateEntity(l.Blueprint).GetPart<PhysicsPart>()?.Weight ?? 0) * l.Count);
-            Assert.LessOrEqual(weight, 240, "Strength 16 carries 240; a heavier fixture would silently drop its last items");
+            Assert.LessOrEqual(weight, 240, "Strength 16 carries 240 before it is overburdened (the soft limit; the hard pack cap of 150 is pinned further down, by what the scenarios give at that cap)");
             Assert.GreaterOrEqual(weight, 66, "counter: the four kits alone weigh 66, so a zero here means the weight read is broken");
         }
 
@@ -256,7 +257,7 @@ namespace CavesOfOoo.Tests
         [Test] public void EveryMachinesLoadoutBlueprintExistsAndTheLoadoutIsCarriable_AndItGivesWhatEachMachineNeeds()
         {
             foreach (var (blueprint, count) in CampMachinesShowcase.Loadout) { Assert.NotNull(Factory.CreateEntity(blueprint), blueprint); Assert.Greater(count, 0, blueprint); }
-            int weight = CampMachinesShowcase.Loadout.Sum(l => (Factory.CreateEntity(l.Blueprint).GetPart<PhysicsPart>()?.Weight ?? 0) * l.Count); Assert.LessOrEqual(weight, 240, "Strength 16 carries 240");
+            int weight = CampMachinesShowcase.Loadout.Sum(l => (Factory.CreateEntity(l.Blueprint).GetPart<PhysicsPart>()?.Weight ?? 0) * l.Count); Assert.LessOrEqual(weight, 240, "Strength 16 carries 240 before it is overburdened (the soft limit; the hard pack cap is pinned by TheMachinesScenarioGivesItsWholeLoadoutToAPlayerWhoHoldsTheShippedPackCap)");
             bool Has(string bp, int n = 1) => CampMachinesShowcase.Loadout.Any(l => l.Blueprint == bp && l.Count >= n);
             Assert.True(Has("CampTrough") && Has("LeatherArmor") && Has("ColdwardCloak") && Has("FireClay", ProofingRules.PermanentClay), "the lasting proofing");
             foreach (var element in ProofingRegistry.All) Assert.True(CampMachinesShowcase.Loadout.Any(l => ProofingRegistry.ElementsOf(Factory.CreateEntity(l.Blueprint)).Contains(element)), "a reagent for " + element.Id);
@@ -292,6 +293,111 @@ namespace CavesOfOoo.Tests
             Assert.True(FishPond.TryFind(Zone, shoreX, me.y, out var anchor), "the cell on the pond's near shore is beside a pond a trap can fish");
             Assert.GreaterOrEqual(FishPond.Component(Zone, shoreX - 1, me.y).Count, FishPond.MinCells, "and it is big enough");
             Assert.AreEqual(CampMachinesShowcase.PondWidth * CampMachinesShowcase.PondHeight, Zone.GetReadOnlyEntities().Count(e => e.BlueprintName == FishPond.LegacyBlueprint));
+        }
+
+        // ── the pack cap the fixtures are actually played at ──
+        // Every test above raises the cap first (400, or the world fixture's 200), and the weight pins measure the soft Strength limit, so the shipped HARD cap never showed: the real player's pack holds 150,
+        // and a loadout past it arrived partly with only a console warning (found in the first hand-play of the machines fixture, 2026-11-21).
+
+        int ShippedCap() { int cap = Factory.CreateEntity("Player").GetPart<InventoryPart>().MaxWeight; Assert.GreaterOrEqual(cap, 0, "the shipped player has a hard carry cap"); return cap; }
+        int Held(string blueprint) => Pack.Objects.Where(o => o.BlueprintName == blueprint).Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1);
+
+        [Test] public void TheMachinesScenarioGivesItsWholeLoadoutToAPlayerWhoHoldsTheShippedPackCap()
+        {
+            int shipped = ShippedCap();
+            Assert.Greater(ScenarioLoadout.WeightOf(Factory, CampMachinesShowcase.Loadout), shipped, "counter: this loadout outweighs the shipped cap, so a pack that is given no room drops its later items");
+            Pack.MaxWeight = shipped; MessageLog.Clear(); new CampMachinesShowcase().Apply(Context(out _));
+            foreach (var (blueprint, count) in CampMachinesShowcase.Loadout) Assert.GreaterOrEqual(Held(blueprint), count, blueprint);
+            StringAssert.DoesNotContain("did not receive", string.Join("|", MessageLog.GetRecent(40)), "and nothing is reported missing");
+        }
+
+        [Test] public void TheRoomTheMachinesScenarioMakesIsTheCapacityTheSidebarShowsWithRoomToSpare()
+        {
+            Pack.MaxWeight = ShippedCap(); new CampMachinesShowcase().Apply(Context(out _));
+            Assert.GreaterOrEqual(Pack.MaxWeight, Pack.GetMaxCarryWeight(), "the hard cap is lifted to the capacity the sidebar shows");
+            Assert.GreaterOrEqual(Pack.MaxWeight - Pack.GetCarriedWeight(), 40, "and room is left above the loadout for what the steps make: clay, flakes, a fish");
+        }
+
+        [Test] public void TheMachinesScenarioNeverTightensABiggerCap_AndLeavesAnUncappedPackUncapped()
+        {
+            Pack.MaxWeight = 5000; new CampMachinesShowcase().Apply(Context(out _)); Assert.AreEqual(5000, Pack.MaxWeight, "a bigger cap is not lowered");
+            foreach (var e in Pack.Objects.ToArray()) Pack.RemoveObject(e);
+            Pack.MaxWeight = -1; new CampMachinesShowcase().Apply(Context(out _)); Assert.AreEqual(-1, Pack.MaxWeight, "no hard cap stays none");
+            Assert.GreaterOrEqual(Held("SalvagedTimber"), 6, "and the loadout arrived whole");
+        }
+
+        [Test] public void EveryCampFixtureGivesItsWholeLoadoutAtTheShippedPackCap()
+        {
+            int shipped = ShippedCap();
+            var fixtures = new (IScenario Scenario, (string Blueprint, int Count)[] Loadout)[]
+            {
+                (new CampKitsWildShowcase(), CampKitsShowcase.Loadout), (new CampKitsWildNightShowcase(), CampKitsShowcase.Loadout), (new CampAwningShowcase(), CampAwningShowcase.Loadout),
+                (new SoundingRodShowcase(), SoundingRodShowcase.Loadout), (new ConcordCarriageShowcase(), ConcordCarriageShowcase.Loadout), (new CampMachinesShowcase(), CampMachinesShowcase.Loadout),
+            };
+            foreach (var (scenario, loadout) in fixtures)
+            {
+                foreach (var e in Pack.Objects.ToArray()) Pack.RemoveObject(e);
+                foreach (var e in Zone.GetReadOnlyEntities().Where(e => e.BlueprintName == CampKitsShowcase.FireBlueprint).ToArray()) Zone.RemoveEntity(e);
+                Pack.MaxWeight = shipped; scenario.Apply(Context(out _));
+                foreach (var (blueprint, count) in loadout) Assert.GreaterOrEqual(Held(blueprint), count, scenario.GetType().Name + " gives " + blueprint + " at a pack cap of " + shipped);
+            }
+        }
+
+        [Test] public void AFixtureLoadoutThatDoesNotArriveIsSaidInTheMessageLog_AndOneThatDoesIsNot()
+        {
+            MessageLog.Clear(); var ctx = Context(out _);
+            Assert.IsEmpty(ScenarioLoadout.Give(ctx, new[] { ("Dagger", 1) }, "[T]"));
+            StringAssert.DoesNotContain("[T]", string.Join("|", MessageLog.GetRecent(8)), "counter: a loadout that all arrived says nothing");
+            LogAssert.Expect(LogType.Error, "EntityFactory: unknown blueprint 'NoSuchLoadoutBlueprint'");
+            var missing = ScenarioLoadout.Give(ctx, new[] { ("NoSuchLoadoutBlueprint", 2), ("Dagger", 1) }, "[T]");
+            Assert.AreEqual(1, missing.Count); StringAssert.Contains("NoSuchLoadoutBlueprint (0 of 2)", missing[0]);
+            string log = string.Join("|", MessageLog.GetRecent(8)); StringAssert.Contains("[T]", log); StringAssert.Contains("NoSuchLoadoutBlueprint", log);
+            Assert.AreEqual(2, Held("Dagger"), "the other items still arrive, and a dagger already carried does not hide a shortfall in the count");
+        }
+
+        [Test] public void ALoadoutHeavierThanTheSidebarCapacityStillArrivesWhole_AndTheCapRisesToHoldIt()
+        {
+            var ctx = Context(out _); Pack.MaxWeight = ShippedCap(); MessageLog.Clear();
+            int soft = Pack.GetMaxCarryWeight(), n = soft + 60;   // timber weighs one a piece: more than Strength alone carries, so the lift must follow the loadout and not stop at the sidebar's figure
+            Assert.Greater(n + Pack.GetCarriedWeight(), soft, "counter: this really is past the soft capacity");
+            Assert.IsEmpty(ScenarioLoadout.Give(ctx, new[] { ("SalvagedTimber", n) }, "[T]"), "nothing is reported missing");
+            Assert.GreaterOrEqual(Held("SalvagedTimber"), n, "and every one arrived");
+            Assert.GreaterOrEqual(Pack.MaxWeight, Pack.GetCarriedWeight(), "the hard cap rose to what is now carried");
+        }
+
+        [Test] public void AnAlreadyCarriedItemCannotHideAFailedFixtureGrant()
+        {
+            Carry("Dagger");
+            var blueprint = Factory.Blueprints["Dagger"];
+            Factory.Blueprints.Remove("Dagger");
+            try
+            {
+                LogAssert.Expect(LogType.Error, "EntityFactory: unknown blueprint 'Dagger'");
+                var missing = ScenarioLoadout.Give(Context(out _), new[] { ("Dagger", 1) }, "[T]");
+                CollectionAssert.AreEqual(new[] { "Dagger (0 of 1)" }, missing);
+                Assert.AreEqual(1, Held("Dagger"), "the old dagger remains, but no new one arrived");
+            }
+            finally { Factory.Blueprints["Dagger"] = blueprint; }
+        }
+
+        [Test] public void RepeatedMissingBlueprintRowsReportTheCombinedRequestedCount()
+        {
+            LogAssert.Expect(LogType.Error, "EntityFactory: unknown blueprint 'NoSuchLoadoutBlueprint'");
+            LogAssert.Expect(LogType.Error, "EntityFactory: unknown blueprint 'NoSuchLoadoutBlueprint'");
+            var missing = ScenarioLoadout.Give(Context(out _), new[] { ("NoSuchLoadoutBlueprint", 2), ("NoSuchLoadoutBlueprint", 3) }, "[T]");
+            CollectionAssert.AreEqual(new[] { "NoSuchLoadoutBlueprint (0 of 5)" }, missing);
+        }
+
+        [Test] public void NothingToGiveChangesNothing_NoItemsNoCapLiftNoMessage_Boundary()
+        {
+            MessageLog.Clear(); var ctx = Context(out _); Pack.MaxWeight = ShippedCap(); int items = Pack.Objects.Count, cap = Pack.MaxWeight;
+            Assert.Less(cap, Pack.GetMaxCarryWeight(), "counter: the shipped cap sits below the sidebar capacity, so an unconditional lift would be visible");
+            Assert.IsEmpty(ScenarioLoadout.Give(ctx, null, "[T]"));
+            Assert.IsEmpty(ScenarioLoadout.Give(ctx, new (string, int)[0], "[T]"));
+            Assert.IsEmpty(ScenarioLoadout.Give(ctx, new[] { ("Dagger", 0), ("Dagger", -3) }, "[T]"), "zero and negative counts give nothing");
+            Assert.AreEqual(items, Pack.Objects.Count, "no items arrived"); Assert.AreEqual(cap, Pack.MaxWeight, "and the cap was not lifted for nothing");
+            StringAssert.DoesNotContain("[T]", string.Join("|", MessageLog.GetRecent(8)), "and nothing was said");
+            Assert.AreEqual(0, ScenarioLoadout.WeightOf(null, CampMachinesShowcase.Loadout), "no factory weighs nothing"); Assert.AreEqual(0, ScenarioLoadout.WeightOf(Factory, null), "no loadout weighs nothing");
         }
 
         // ── the Concord carriage fixture ──
