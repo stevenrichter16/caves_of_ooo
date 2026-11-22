@@ -78,6 +78,15 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+The [proposed shared Beating exposure slice](BEATING-EXPOSURE-SLICE-PLAN.md) adds a
+reviewable clothing/shelter/water/NPC dependency contract, not runtime behavior.
+Solar strain is distinct from Thermal heat/fire resistance: proofing or a thermal
+exchanger must not silently grant dehydration immunity, and recovered process
+liquid is not automatically potable. The proposed finite hydration-dose
+normalization and population policies require their own migration/play gates.
+Existing accepted processing/recovery rules and all twelve statuses below remain
+unchanged; no machinery or upkeep tax is required to survive ordinary settlements.
+
 November 21 reassessment: Codex now owns the explicitly handed-back repository
 and Unity session. Recent camp/station/tool/proofing implementations add useful
 partial foundations; they do not close any of the twelve complete-machine gates

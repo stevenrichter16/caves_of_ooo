@@ -10,6 +10,13 @@
 
 ## Active handback continuation — November 21, 2026
 
+The scheduled [Beating shared-exposure design pass](BEATING-EXPOSURE-SLICE-PLAN.md)
+now specifies a proposed five-actor native audition, elapsed-time/state policy,
+finite water corrections, NPC fallback and migration/RED/actual-play gates.
+It activates no exposure/AI behavior and accepts no machine or sustainable-town
+simulation. Preserve the existing machine-play queue; future implementation of
+this proposal begins with its bounded RED/owned-source plan.
+
 Later native [spring-trap and surface-rod checks](Verification/MachineSystems/SpringTrapPlay20261121/README.md)
 verified surface refusal without time/log changes, charge-on-brine shock/stun,
 fire-on-bare-ground countercase, no retrigger, and fresh armed/spent persistence.

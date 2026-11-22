@@ -2,6 +2,17 @@
 
 ## Resumed continuation — November 21 evening
 
+Latest scheduled design pass: [shared Beating exposure slice](BEATING-EXPOSURE-SLICE-PLAN.md)
+turns the user's brainstorm into a source-verified proposed native audition and
+RED/countercase plan. Five actors, one clock, saved strain, real cover/tolerance,
+finite water and survival AI are specified; population-wide activation is gated.
+Finite direct-source hydration normalization is an intentional FUTURE correction,
+not today's well behavior. No runtime/tests/play/build for this design pass.
+Existing source/native audit evidence is reused, not replayed. The standing
+remaining machine-play queue resumes after this bounded design/refinement pass;
+prototype implementation would start with the listed native RED and owned-file
+plan, not by enabling NPC glare globally. All twelve machine gates remain open.
+
 Latest bounded native play: [spring-trap/surface-rod receipt](Verification/MachineSystems/SpringTrapPlay20261121/README.md).
 Surface rod disabled reason/Enter refusal stayed at1100 with empty log. A loaded
 charge trap on brine survived fresh armed Continue, shocked/stunned the player
