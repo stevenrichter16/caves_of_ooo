@@ -2,6 +2,18 @@
 
 ## Resumed continuation — November 21 evening
 
+November 22 [consistent water-source admission](Verification/MachineSystems/WellSourceConsistency20261122/README.md):
+plain direct wells now honor phase/mixing; pool-backed fills honor well faults/
+existing oath. Free well rows use the shared outer transaction; one-unit/full-
+cure and infinite-well policy unchanged. Native27 RED/19fail→133 focused GREEN,
+29 new cases; rollback preserves independent penalties and unspent Stock, pool
+redraw only after commit. Actual natural trough12274 at4,9: native drink1770/
+energy1000 unchanged, complete reader and fresh1770 exact source/custody/HP400.
+No carried skin or existing Parched in that checkpoint: fill/cure/fault/freeze/
+oath/veto are test-only. No metering/exposure/AI rollout or new full-machine gate.
+Main stopped/rootnull; Macf8 predates this fix. Next: metered finite-dose proposal,
+chronological exposure settlement and protective NPC behavior before enrollment.
+
 November 22 [current Mac candidate](Verification/MachineSystems/MacCandidateF8C835549/README.md):
 sourcef8c835549 packages expiry/ascent/flask-access fixes; universal arm64/x86_64,
 60.64s/0errors/5existingwarnings. Actual own43696 boot/chooser/world/HUD captured;

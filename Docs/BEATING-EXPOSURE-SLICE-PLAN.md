@@ -1,5 +1,12 @@
 # Shared Beating exposure: bounded proposed slice
 
+November22 prerequisite correction: [well source/transaction receipt](Verification/MachineSystems/WellSourceConsistency20261122/README.md)
+aligns phase/mixing/fault/existing-oath admission between direct and skin draws,
+and makes the established FREE direct-well row transactional. Native133/133 and
+ordinary trough drink/reader/fresh1770 qualify that bounded correction. Legacy
+one-unit/full cure remains shipped; finite dose/batch/paid-action policy below
+is still a deliberate future change. No exposure/AI enrollment or new save fields.
+
 November21,2026 (America/Chicago). User-requested follow-up to the Beating audit
 and survival brainstorm, added to the active hourly task. Source baseline
 14c4750c1. This is a proposed design/native-audition contract, not shipped

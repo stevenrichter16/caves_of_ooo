@@ -58,7 +58,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var actor = context.Actor;
             var zone = context.Zone;
 
-            var snapshot = CaptureSnapshot(context, _item);
+            // Native well drinking owns its effect/stat delta undo. A blanket
+            // stat snapshot would erase independent exposure or other changes
+            // after those deltas are restored. Keep the item custody snapshot.
+            var well = _item.GetPart<WellPart>();
+            bool wellStatReceipt = _actionCommand == "DrawWaterAtWell" && well?.ParentEntity == _item;
+            var snapshot = CaptureSnapshot(context, _item, wellStatReceipt);
             if (snapshot != null)
             {
                 transaction.Do(
@@ -118,14 +123,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
             return InventoryCommandResult.Ok();
         }
 
-        private static ActionSnapshot CaptureSnapshot(InventoryContext context, Entity item)
+        private static ActionSnapshot CaptureSnapshot(InventoryContext context, Entity item, bool wellStatReceipt)
         {
             if (context?.Actor == null || item == null)
                 return null;
 
             return new ActionSnapshot
             {
-                ActorStats = CaptureActorStats(context.Actor),
+                ActorStats = wellStatReceipt ? null : CaptureActorStats(context.Actor),
                 ItemState = CaptureItemState(context, item)
             };
         }

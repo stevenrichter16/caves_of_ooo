@@ -1,3 +1,12 @@
+**November 22 water-source prerequisite:** [correction receipt](Verification/MachineSystems/WellSourceConsistency20261122/README.md)
+aligns direct/fill well phase, mixing, faults and existing oath admission. Free
+native drinking now uses the shared transaction, preserving legacy one-unit/full
+cure and infinite supply. Native27 RED/19fail→133 GREEN; actual trough drink/
+reader/fresh1770 keeps free timing and exact custody. Finite-dose metering, shared
+exposure and protective NPC behavior remain gated proposals; all twelve complete-
+machine dependency and acceptance statuses below remain unchanged. Macf8 predates
+this correction; no new delivery acceptance.
+
 **November 22 Mac candidate:** [package receipt](Verification/MachineSystems/MacCandidateF8C835549/README.md)
 packages currentf8c835549 into a universal nondevelopment app, verified build and
 actual boot. Packaged input remains unavailable/unverified; no new complete-

@@ -7,11 +7,17 @@ namespace CavesOfOoo.Core
         internal static bool Available(Entity actor, WellPart well, Zone zone)
         {
             var owner = well?.ParentEntity;
-            if (!WorldResourceActions.Nearby(actor, owner, zone) || owner.GetPart<WellPart>() != well
-                || owner.GetPart<PhysicsPart>().Takeable || owner.HasTag("Creature") || !well.IsUsable) return false;
+            return WorldResourceActions.Nearby(actor, owner, zone) && SourceAvailable(well, zone);
+        }
+        // Source-only admission is shared with filling. Literal fill sources may
+        // lack Physics; direct drinking still requires Nearby's physical owner.
+        internal static bool SourceAvailable(WellPart well, Zone zone)
+        {
+            var owner = well?.ParentEntity;
+            if (owner == null || owner.GetPart<WellPart>() != well || owner.HasTag("Creature") || !well.IsUsable
+                || !LiquidSourcePhase.CanDrawWater(zone, owner) || !LiquidSourceSafety.IsUnmixedSource(zone, owner, "water")) return false;
             var pool = owner.GetPart<LiquidPoolPart>();
-            return pool == null ? well.HasWater : pool.ParentEntity == owner && pool.LiquidId == "water" && pool.Volume > 0
-                && LiquidSourcePhase.CanDrawWater(zone, owner) && LiquidSourceSafety.IsUnmixedPool(zone, owner);
+            return pool == null ? well.HasWater : pool.ParentEntity == owner && pool.LiquidId == "water" && pool.Volume > 0;
         }
         internal static bool TryDrink(Entity actor, WellPart well, Zone zone, InventoryTransaction tx)
         {
@@ -29,11 +35,12 @@ namespace CavesOfOoo.Core
                 var effects = actor.GetPart<StatusEffectsPart>(); var thirst = actor.GetEffect<ParchedEffect>();
                 int index = -1, stacks = thirst?.Stacks ?? 0; string cause = thirst?.LastRemovalCause;
                 if (thirst != null) for (int i = 0; i < effects.EffectCount; i++) if (effects.GetAllEffects()[i] == thirst) index = i;
-                var pool = owner.GetPart<LiquidPoolPart>(); int volume = pool?.Volume ?? 0, stock = well.Stock;
+                var pool = owner.GetPart<LiquidPoolPart>(); var sourceCell = zone.GetEntityCell(owner);
+                int volume = pool?.Volume ?? 0, stock = well.Stock;
                 tx.Do(null, () =>
                 {
                     if (pool != null) pool.Volume = volume;
-                    well.Stock = stock;
+                    else well.Stock = stock;
                     if (thirst == null) return;
                     var current = actor.GetEffect<ParchedEffect>(); int restored = stacks;
                     if (current == null) { thirst.Stacks = stacks; thirst.LastRemovalCause = cause; effects.RestoreRemovedEffectForInventoryUndo(thirst, index); }
@@ -44,6 +51,7 @@ namespace CavesOfOoo.Core
                 if (pool != null) pool.Volume--;
                 else if (well.Stock > 0) well.Stock--;
                 if (thirst != null) effects.RemoveEffect<ParchedEffect>();
+                tx.AfterCommit(() => LiquidVesselService.PublishCommittedPoolDraw(zone, owner, pool, sourceCell));
                 tx.AfterCommit(() => MessageLog.Add(thirst != null ? "You draw cool water and drink until the parch lets go." : "You drink. The well water is cool."));
                 tx.AfterCommit(() => CavesOfOoo.Diagnostics.Diag.Record("furniture", "WaterDrawn", actor, owner,
                     new { curedParched = thirst != null, finiteUnitsSpent = pool != null || stock > 0 ? 1 : 0, stockLeft = well.Stock }));

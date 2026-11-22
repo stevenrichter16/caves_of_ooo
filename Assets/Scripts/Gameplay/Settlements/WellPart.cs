@@ -33,7 +33,9 @@ namespace CavesOfOoo.Core
                 var queryingActor = e.GetParameter<Entity>("Actor");
                 if (!WellDrinkingService.Available(queryingActor, this, e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone)) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
-                actions?.AddAction("Draw water", "draw water", "DrawWaterAtWell", 'w', 20);
+                // Established well drinking is free, but must still share the
+                // command transaction and outer veto used by carried water.
+                actions?.AddAction("Draw water", "draw water", "DrawWaterAtWell", 'w', 20, time: ActionTime.Free);
                 return true;
             }
             if (e.ID == "InventoryAction")

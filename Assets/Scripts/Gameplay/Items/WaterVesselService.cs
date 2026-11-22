@@ -157,10 +157,14 @@ namespace CavesOfOoo.Core
                 || source.GetPart<PhysicsPart>()?.Takeable == true
                 || source.GetPart<PhysicsPart>()?.InInventory != null
                 || source.GetPart<PhysicsPart>()?.Equipped != null) return false;
+            // A pool supplies quantity, not permission to bypass its well's
+            // structural fault, source condition or existing water refusal.
+            var well = source.GetPart<WellPart>();
+            if (well != null && (!WellDrinkingService.SourceAvailable(well, zone) || TentRightOath.RefusesWater(actor, zone))) return false;
             // A finite pool takes precedence over terrain's renewing coating.
             var pool = source.GetPart<LiquidPoolPart>();
-            if (pool != null) return pool.LiquidId == "water" && pool.Volume > 0 && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedPool(zone, source);
-            if (source.GetPart<WellPart>() is WellPart well) return well.IsUsable && well.HasWater && LiquidSourcePhase.CanDrawWater(zone, source) && !TentRightOath.RefusesWater(actor, zone);
+            if (pool != null) return pool.ParentEntity == source && pool.LiquidId == "water" && pool.Volume > 0 && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedPool(zone, source);
+            if (well != null) return true;
             var spring = source.GetPart<TileStateSourcePart>();
             return spring?.Coating == "water" && spring.CoatingTurns > 0
                 && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedSource(zone, source, "water");

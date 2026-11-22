@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Failed(Child)" total="27" passed="8" failed="19" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 11:05:16Z" end-time="2026-11-22 11:05:18Z" duration="2.0782685">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40495" result="Failed" site="Child" start-time="2026-11-22 11:05:16Z" end-time="2026-11-22 11:05:18Z" duration="2.078269" total="27" passed="8" failed="19" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49366" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40495" result="Failed" site="Child" start-time="2026-11-22 11:05:17Z" end-time="2026-11-22 11:05:18Z" duration="1.805694" total="27" passed="8" failed="19" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9974" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49367" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40495" result="Failed" site="Child" start-time="2026-11-22 11:05:17Z" end-time="2026-11-22 11:05:18Z" duration="1.532453" total="27" passed="8" failed="19" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49368" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40495" result="Failed" site="Child" start-time="2026-11-22 11:05:17Z" end-time="2026-11-22 11:05:18Z" duration="1.264897" total="27" passed="8" failed="19" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31776" name="WellSourceConsistencyTests" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-11-22 11:05:17Z" end-time="2026-11-22 11:05:18Z" duration="0.952705" total="27" passed="8" failed="19" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31798" name="DirectPoolDrawNotifiesItsExactCellOnlyAfterCommit" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DirectPoolDrawNotifiesItsExactCellOnlyAfterCommit" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 11:05:17Z" end-time="2026-11-22 11:05:18Z" duration="0.090231" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31796" name="DirectPoolDrawNotifiesItsExactCellOnlyAfterCommit(False)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DirectPoolDrawNotifiesItsExactCellOnlyAfterCommit(False)" methodname="DirectPoolDrawNotifiesItsExactCellOnlyAfterCommit" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="1996343631" result="Failed" start-time="2026-11-22 11:05:17Z" end-time="2026-11-22 11:05:18Z" duration="0.061898" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.ValueTuple`2[System.Int32,System.Int32][1]>, actual is <System.Collections.Generic.List`1[System.ValueTuple`2[System.Int32,System.Int32]]]]><![CDATA[> with 0 elements
+  Values differ at index [0]
+  Missing:  < (11, 10) >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WellSourceConsistencyTests.DirectPoolDrawNotifiesItsExactCellOnlyAfterCommit (System.Boolean fail) [0x000bd] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31797" name="DirectPoolDrawNotifiesItsExactCellOnlyAfterCommit(True)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DirectPoolDrawNotifiesItsExactCellOnlyAfterCommit(True)" methodname="DirectPoolDrawNotifiesItsExactCellOnlyAfterCommit" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="916257168" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.025871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31788" name="DrawAndFillRefuseUnavailableWell" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.233770" total="7" passed="3" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31781" name="DrawAndFillRefuseUnavailableWell(False,&quot;ice&quot;)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell(False,&quot;ice&quot;)" methodname="DrawAndFillRefuseUnavailableWell" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="1256281318" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.033333" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  direct drink
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell (System.Boolean pool, System.String state) [0x000ad] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31782" name="DrawAndFillRefuseUnavailableWell(False,&quot;cold&quot;)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell(False,&quot;cold&quot;)" methodname="DrawAndFillRefuseUnavailableWell" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="2029744351" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.066827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  direct drink
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell (System.Boolean pool, System.String state) [0x000ad] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31783" name="DrawAndFillRefuseUnavailableWell(False,&quot;mixed&quot;)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell(False,&quot;mixed&quot;)" methodname="DrawAndFillRefuseUnavailableWell" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="696300291" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.026016" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  direct drink
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell (System.Boolean pool, System.String state) [0x000ad] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31784" name="DrawAndFillRefuseUnavailableWell(True,&quot;ice&quot;)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell(True,&quot;ice&quot;)" methodname="DrawAndFillRefuseUnavailableWell" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="959697728" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.029564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31785" name="DrawAndFillRefuseUnavailableWell(True,&quot;cold&quot;)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell(True,&quot;cold&quot;)" methodname="DrawAndFillRefuseUnavailableWell" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="793344536" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.025362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31786" name="DrawAndFillRefuseUnavailableWell(True,&quot;mixed&quot;)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell(True,&quot;mixed&quot;)" methodname="DrawAndFillRefuseUnavailableWell" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="2049637543" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.024931" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31787" name="DrawAndFillRefuseUnavailableWell(True,&quot;broken&quot;)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell(True,&quot;broken&quot;)" methodname="DrawAndFillRefuseUnavailableWell" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="30403041" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.026449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  skin fill
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.DrawAndFillRefuseUnavailableWell (System.Boolean pool, System.String state) [0x000c8] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31799" name="DrinkRollbackKeepsAnIndependentUnrelatedStatPenalty" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.DrinkRollbackKeepsAnIndependentUnrelatedStatPenalty" methodname="DrinkRollbackKeepsAnIndependentUnrelatedStatPenalty" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="1970619960" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.025568" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 6
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.DrinkRollbackKeepsAnIndependentUnrelatedStatPenalty () [0x00063] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:117
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31780" name="EndlessWellRecoveryRemainsEndlessAndFreeInItsRow" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.EndlessWellRecoveryRemainsEndlessAndFreeInItsRow" methodname="EndlessWellRecoveryRemainsEndlessAndFreeInItsRow" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="64852166" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.025687" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: Free
+  But was:  Unspecified
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.EndlessWellRecoveryRemainsEndlessAndFreeInItsRow () [0x00043] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:40
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31795" name="ForeignPartOwnershipCannotAuthorizeEitherWaterPath" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.ForeignPartOwnershipCannotAuthorizeEitherWaterPath" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.051140" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31793" name="ForeignPartOwnershipCannotAuthorizeEitherWaterPath(&quot;well&quot;)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.ForeignPartOwnershipCannotAuthorizeEitherWaterPath(&quot;well&quot;)" methodname="ForeignPartOwnershipCannotAuthorizeEitherWaterPath" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="1483666079" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.025923" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.ForeignPartOwnershipCannotAuthorizeEitherWaterPath (System.String part) [0x00062] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31794" name="ForeignPartOwnershipCannotAuthorizeEitherWaterPath(&quot;pool&quot;)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.ForeignPartOwnershipCannotAuthorizeEitherWaterPath(&quot;pool&quot;)" methodname="ForeignPartOwnershipCannotAuthorizeEitherWaterPath" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="996041932" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.024767" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.ForeignPartOwnershipCannotAuthorizeEitherWaterPath (System.String part) [0x00062] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31792" name="LiteralWellWithoutPhysicsStillFillsASkin" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.LiteralWellWithoutPhysicsStillFillsASkin" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.051516" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31790" name="LiteralWellWithoutPhysicsStillFillsASkin(False)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.LiteralWellWithoutPhysicsStillFillsASkin(False)" methodname="LiteralWellWithoutPhysicsStillFillsASkin" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="852150371" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.025504" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31791" name="LiteralWellWithoutPhysicsStillFillsASkin(True)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.LiteralWellWithoutPhysicsStillFillsASkin(True)" methodname="LiteralWellWithoutPhysicsStillFillsASkin" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="1842682473" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.025567" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31789" name="PoolBackedWellCannotBypassTheExistingPlayerOathRefusal" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.PoolBackedWellCannotBypassTheExistingPlayerOathRefusal" methodname="PoolBackedWellCannotBypassTheExistingPlayerOathRefusal" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="2039847619" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.026632" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.PoolBackedWellCannotBypassTheExistingPlayerOathRefusal () [0x00086] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:68
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31800" name="PoolRollbackDoesNotRewindUnspentWellStock" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.PoolRollbackDoesNotRewindUnspentWellStock" methodname="PoolRollbackDoesNotRewindUnspentWellStock" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="496483815" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.025029" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 7
+  But was:  3
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.PoolRollbackDoesNotRewindUnspentWellStock () [0x00073] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:130
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31810" name="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.319395" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31804" name="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;valid&quot;,False)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;valid&quot;,False)" methodname="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="98138244" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.073629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  real menu uses common transaction
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink (System.String condition, System.Boolean pool) [0x0022d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:164
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31805" name="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;stale&quot;,False)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;stale&quot;,False)" methodname="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="131091219" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.052567" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  real menu uses common transaction
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink (System.String condition, System.Boolean pool) [0x0022d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:164
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31806" name="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;after&quot;,False)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;after&quot;,False)" methodname="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="1615686472" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.073556" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  real menu uses common transaction
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink (System.String condition, System.Boolean pool) [0x0022d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:164
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31807" name="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;valid&quot;,True)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;valid&quot;,True)" methodname="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="1350901792" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.040432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  real menu uses common transaction
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink (System.String condition, System.Boolean pool) [0x0022d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:164
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31808" name="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;stale&quot;,True)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;stale&quot;,True)" methodname="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="2009055320" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.039290" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  real menu uses common transaction
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink (System.String condition, System.Boolean pool) [0x0022d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:164
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="31809" name="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;after&quot;,True)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink(&quot;after&quot;,True)" methodname="RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="355093039" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.038953" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  real menu uses common transaction
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.RealCMenuKeepsFreeTimingAndOnlyCommitsItsWholeDrink (System.String condition, System.Boolean pool) [0x0022d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:164
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31803" name="RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.050423" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31801" name="RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow(1)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow(1)" methodname="RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="50531774" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.024916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 3
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.Debt (System.Int32 stacks) [0x00027] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:25
+at CavesOfOoo.Tests.WellSourceConsistencyTests.RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow (System.Int32 added) [0x00057] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31802" name="RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow(3)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow(3)" methodname="RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="1565344173" result="Failed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.024824" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 3
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSourceConsistencyTests.Debt (System.Int32 stacks) [0x00027] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:25
+at CavesOfOoo.Tests.WellSourceConsistencyTests.RollbackPreservesReplacementExposureWithoutStackOrPenaltyOverflow (System.Int32 added) [0x00057] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSourceConsistencyTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31779" name="WorkingSourcesKeepOneUnitFullCureAndPoolPrecedence" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.WorkingSourcesKeepOneUnitFullCureAndPoolPrecedence" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.048846" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31777" name="WorkingSourcesKeepOneUnitFullCureAndPoolPrecedence(False)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.WorkingSourcesKeepOneUnitFullCureAndPoolPrecedence(False)" methodname="WorkingSourcesKeepOneUnitFullCureAndPoolPrecedence" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="482875939" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.024363" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31778" name="WorkingSourcesKeepOneUnitFullCureAndPoolPrecedence(True)" fullname="CavesOfOoo.Tests.WellSourceConsistencyTests.WorkingSourcesKeepOneUnitFullCureAndPoolPrecedence(True)" methodname="WorkingSourcesKeepOneUnitFullCureAndPoolPrecedence" classname="CavesOfOoo.Tests.WellSourceConsistencyTests" runstate="Runnable" seed="691211393" result="Passed" start-time="2026-11-22 11:05:18Z" end-time="2026-11-22 11:05:18Z" duration="0.023844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
