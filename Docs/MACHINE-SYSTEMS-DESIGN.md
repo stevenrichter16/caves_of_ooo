@@ -1,3 +1,17 @@
+November22 evening full corrected-head regression has started in idle clone2
+at00:49:49UTCNovember23; runtimea9de3d3d9/docs7602dc783,3887code/test/configpins
+matched after sync, all6well/flask pins exact. See
+[start receipt](Verification/MachineSystems/FullRegressionA9DE3D3D9/README.md)
+and live /private/tmp/coo-full-a9de3d3d9-20261122/progress.json. Result/log named
+machine_full_a9de3d3d9_20261122 under coo-verification/results; session56408.
+No result/acceptance yet. While active: no clone2resync, native play/build/other
+batch, or runtime/test edits; read-only source/design work is useful. On finish
+require0CS/exactpins, comparefull_s9+inheritedfullrun_h and rerunnewfailuresalone.
+Do not repeat accepted well/clay/cooling/counting actualplay/tests/builds.
+HourlyACTIVE; lastfull-deliveryM3c/all12gatesopen,graphicscancelled/capstan-cultures
+parked/Deckdeferred. No ownedruntimeWIP; later records-only commits do not change
+the pinned runtime. Existing foreign changes and every build remain preserved.
+
 November22 [current well/flask Mac candidate](Verification/MachineSystems/MacCandidateA9DE3D3D9/README.md)
 packages pushed/remotely verified runtimea9de3d3d9de9c21a917748c0d74c387b17ab7b3d.
 Universal6000.3.4f1/nondev58.360659s364121661bytes/0errors/5samewarnings928.
