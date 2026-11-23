@@ -21,7 +21,7 @@ namespace CavesOfOoo.Core
 
         /// <summary>Recognizes this Part's two encoded inventory commands.</summary>
         public static bool IsLiquidCommand(string command) => command != null
-            && (command.StartsWith(FillPrefix, StringComparison.Ordinal)
+            && (WellFlaskFilling.IsCommand(command) || command.StartsWith(FillPrefix, StringComparison.Ordinal)
                 || command.StartsWith(PourPrefix, StringComparison.Ordinal) || command.StartsWith(OnePrefix, StringComparison.Ordinal));
 
         // Only quoted cooling commands opt out of the executor's blanket item/stat
@@ -38,6 +38,8 @@ namespace CavesOfOoo.Core
             {
                 foreach (var source in zone.GetReadOnlyEntities())
                 {
+                    if(source.HasPart<WellPart>())
+                    {WellFlaskFilling.AddActions(actor,vessel,source,zone,actions);continue;}
                     var contained = source.GetPart<ContainedLiquidSourcePart>();
                     if (contained != null)
                     {
@@ -84,6 +86,7 @@ namespace CavesOfOoo.Core
         /// only after commit. A refused or rolled-back action preserves both sides.</summary>
         public static bool TryAct(Entity actor, Entity vessel, Zone zone, string command, InventoryTransaction transaction = null)
         {
+            if(WellFlaskFilling.IsCommand(command))return WellFlaskFilling.TryAct(actor,vessel,zone,command,transaction);
             if (!IsLiquidCommand(command)) return false;
             string invalid = Validate(actor, vessel, zone, out var part);
             if (invalid != null) return Reject(actor, vessel, command, invalid);
@@ -109,6 +112,7 @@ namespace CavesOfOoo.Core
             var matches = zone.GetReadOnlyEntities().Where(e => e.ID == id).ToArray();
             if (matches.Length != 1) return Reject(actor, vessel, command, "source-gone-or-ambiguous");
             var source = matches[0]; var pool = source.GetPart<LiquidPoolPart>();
+            if(source.HasPart<WellPart>())return Reject(actor,vessel,command,"well-quote-required");
             var contained = source.GetPart<ContainedLiquidSourcePart>();
             if (contained != null) return FillContained(actor, vessel, part, zone, source, contained, expectedLiquid, command, transaction, own);
             string invalid = ValidSource(zone, actor, source, pool, part);

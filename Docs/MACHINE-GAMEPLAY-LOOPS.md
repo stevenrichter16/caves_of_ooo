@@ -203,3 +203,17 @@ All Well-backed sources must share structural/access/phase/safety rules; finite
 pool precedence and existing Stock policy remain authoritative. Proposed only.
 Current Mac928a7244f packages this clay journey's runtime, boot/render verified;
 native input access unavailable, so packaged journey/save gates remain open.
+
+## Played water transport across settlement and camp — November22
+
+[WellFlasks20261122](Verification/MachineSystems/WellFlasks20261122/README.md)
+joins ordinary flask filling to the same repair/access/phase/safety contract as
+waterskins. Actual play uses a restored village well and a natural finite grove
+seep, retains explicit source quantities, carries water between regions and
+pays a useful camp-hearth cooling cost with recoverable surplus. Grouped equal
+flasks select one owner; individual view chooses the finite-source load for use.
+Fresh saves preserve40->28source water and12->10spent+2retained accounting.
+This supports expedition preparation and material choices without inventing a
+recurring well repair, tariff or mandatory thirst. Existing Waterskins/direct
+drinking remain alternatives; finiteStock3 is native-only in this trial. No new
+machine, exposure behavior, economy proof or unloaded-zone simulation is implied.

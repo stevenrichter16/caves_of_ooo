@@ -1,3 +1,30 @@
+November22 [ordinary flasks at usable wells](Verification/MachineSystems/WellFlasks20261122/README.md)
+closes native-reproduced broken/oath pool-backed well bypasses and supplies the
+missing pool-less flask draw. Shared Well/Waterskin source admission, exact
+source-kind/quantity/recipient quote, action lease, current Part/anchor/access/
+phase guards and bounded quantity undo preserve independent injury/drop/stock.
+No saved field, pool invention, tariff change or flask-drinking action. Native
+191/191(42new149adjacent); additional222/223 with1unchanged legacy spill test
+reproduced alone on ef5 baseline; mutants killed6/13/3, zero compiler errors.
+Actual GameBootstrap Inventory group2empty/selected2241 fills12 from restored
+Gleaners well at3650, other2242unchanged/Stock-1. Native C preview/cancel free.
+Ordinary route to Grovelands4.7 real GroveSeep17170: finite pool40->28/exact2242
+empty->12 at3930, fresh3930fullmeasuredstate/equipment exact. Carry to camp,
+select2242individual;10water cools hearth393.9534->25/dark,2surplus recovered,
+source28/endless2241water12 retained. NormalF5/archive-beforeStop/fresh4200
+fullmeasuredsources/receivers/fire/repair stock exact, HP360. Full3page reader
+shows2242water2/12 freely; no grants/teleports/stat resets. Pool-less finiteStock3
+native-only. Equipment/acquisition/economics and unloaded-fire chronology open.
+Source/artifact/gameplay-evidence review recorded in receipt; notsecondoperator.
+Initial non-Inventory before-capture/frozen fixtures/transport and transient startup
+failures disclosed; actual branches verified separately. Mainstopped/rootnull/
+clean/profileroff/original7presets/custom0/selected0/noownedview; fresh00:38UTC
+84foreign861normal selected hashes unchanged. Allapps/projects/exports preserved.
+NEXT publish/currentMac then fullcorrected-head regression and further useful
+machine/tool loops; denseInventory/countedauditedgroups/category-sort remembered.
+All12complete-machine/deliverygates open; graphicscancelled/capstan-culturesparked/
+Deckdeferred/hourlyACTIVE. [Contract](WELL-FLASK-FILLING.md).
+
 November22 [current atomic-clay Mac candidate](Verification/MachineSystems/MacCandidate928A7244F/README.md)
 packages pushed/remotely verified runtime928a7244ff3355628320724d129aabaf94d8b5af.
 Universal6000.3.4f1/nondev54.489795s364114861bytes/0errors/5samewarnings451.
@@ -482,7 +509,7 @@ All complete machines remain proposed. M1c adds accepted canonical-rig adjacent 
 | Machine | Why it would be useful | Missing support and meaningful choice | First evidence required | Status |
 | --- | --- | --- | --- | --- |
 | Forge and reclamation rig | Recover useful workmanship from finite damaged finds. | Physical recoverable parts/quantities and irreversible salvage choices; preserve an assembly versus obtain repair stock. Existing weapon salvage is a foundation. | Two genuinely useful competing outputs, one source consumed once, both usable outside the new rig. | Complete machine remains proposed. BoundedM3a recovery/cold-dressing accepted:294native plus28distinct UIcases; both actual output branches/assembly/combat/travel/freshreload and independent0P1/P2. Current Mac source1237eae9f actual process/assembly/equip/travel/freshreload3230HP40 accepted, independentdelivery0P1/P2; no raw-ore/heat/jobs acceptance. M3b accepted4dcb2d5bc adds prepared offcut→existingbinding via explicitHandCutting, actualcurrentMac3570HP40 passes. M3c accepted bounded finite multi-input processing adds actualcord+recoveredleather→existingGuardLashing away fromstation,327native/actualexistingrefit/travel/fresh4420HP40/sourcegameplayvisual0P1/P2; publishedc600701d0/currentMac actual4410HP40 passes, independent finaldeliveryreview0P1/P2; currentMac accepted. Neither is a new complete machine. |
-| Fractionating still | Turn a difficult local feed into a useful liquid and retained residue. | Known feed accounting, bounded processing, fuel/work, output and waste receivers. Existing reagent still is not fractionation. | Source-to-receiver accounting, real use of the result, blocked/interrupted/reloaded jobs and waste handling. | Proposed complete machine; M1d discrete preparation and portable output use accepted. November22 bounded baking127native+actual finite mire48->24, two clay/20process fuel, lasting Gleaners well repair and fresh3540/3640 qualified (RegionalClay20261122). General fractionation, physical waste, elapsed jobs and unloaded work remain open. |
+| Fractionating still | Turn a difficult local feed into a useful liquid and retained residue. | Known feed accounting, bounded processing, fuel/work, output and waste receivers. Existing reagent still is not fractionation. | Source-to-receiver accounting, real use of the result, blocked/interrupted/reloaded jobs and waste handling. | Proposed complete machine; M1d discrete preparation and portable output use accepted. November22 bounded baking127native+actual finite mire48->24, two clay/20process fuel, lasting Gleaners well repair and fresh3540/3640 qualified (RegionalClay20261122). Well/flask transport qualified across village/grove/camp (WellFlasks20261122). General fractionation, physical waste, elapsed jobs and unloaded work remain open. |
 | Restoration cradle | Recover the particular function of damaged equipment. | Persistent component slots, explicit compatibility, faults and tested substitution tradeoffs. | Restored apparatus performs its real action; alternate repair changes a legible capability, not merely item flavor. | Proposed; M1b recovery/service and M1c bounded relocation accepted; current Mac includes M1b/M1c; complete-machine prerequisites open. |
 | Assay cabinet | Spend evidence to make a practical decision. | Samples with quantity/provenance, authored questions and partial findings. | An answer changes a processing, repair or route choice; missing evidence and hidden knowledge remain unavailable. | Proposed; machine-specific prerequisites open. |
 | Culture vat | Grow a finite useful culture from acquired stock. | Strain identity, feedstock, bounded growth, conditions and yield allocation. | Two competing uses for one finite culture, different supported conditions, consent/ownership and persistence. | Proposed; finite culture identity/feed/growth/conditions and competing uses remain open. M1d oil preparation does not implement cultures. |

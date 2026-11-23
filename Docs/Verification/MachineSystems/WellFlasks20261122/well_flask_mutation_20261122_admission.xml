@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="42" result="Failed(Child)" total="42" passed="36" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-23 00:24:41Z" end-time="2026-11-23 00:24:43Z" duration="2.4590712">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40813" result="Failed" site="Child" start-time="2026-11-23 00:24:41Z" end-time="2026-11-23 00:24:43Z" duration="2.459071" total="42" passed="36" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49756" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40813" result="Failed" site="Child" start-time="2026-11-23 00:24:41Z" end-time="2026-11-23 00:24:43Z" duration="2.183191" total="42" passed="36" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="38303" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49757" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40813" result="Failed" site="Child" start-time="2026-11-23 00:24:41Z" end-time="2026-11-23 00:24:43Z" duration="1.912185" total="42" passed="36" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49758" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40813" result="Failed" site="Child" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:43Z" duration="1.641613" total="42" passed="36" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31906" name="WellFlaskFillingTests" fullname="CavesOfOoo.Tests.WellFlaskFillingTests" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="42" result="Failed" site="Child" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:43Z" duration="1.328262" total="42" passed="36" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31926" name="BrokenWellCannotBeFilledByLegacyPoolCommand" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.BrokenWellCannotBeFilledByLegacyPoolCommand" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.087647" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31924" name="BrokenWellCannotBeFilledByLegacyPoolCommand(False)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.BrokenWellCannotBeFilledByLegacyPoolCommand(False)" methodname="BrokenWellCannotBeFilledByLegacyPoolCommand" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="2045609128" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.049775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31925" name="BrokenWellCannotBeFilledByLegacyPoolCommand(True)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.BrokenWellCannotBeFilledByLegacyPoolCommand(True)" methodname="BrokenWellCannotBeFilledByLegacyPoolCommand" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1498717259" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.035448" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31914" name="CommitGuardRejectsNewOathRefusalWithoutUndoingTheFact" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNewOathRefusalWithoutUndoingTheFact" methodname="CommitGuardRejectsNewOathRefusalWithoutUndoingTheFact" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="2085137864" result="Failed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.079904" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNewOathRefusalWithoutUndoingTheFact () [0x00089] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellFlaskFillingTests.cs:19
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31913" name="CommitGuardRejectsNonthrowingSourceOrRecipientChanges" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.162147" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31907" name="CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;broken&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;broken&quot;)" methodname="CommitGuardRejectsNonthrowingSourceOrRecipientChanges" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="744255523" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.026294" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31908" name="CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;ice&quot;)" methodname="CommitGuardRejectsNonthrowingSourceOrRecipientChanges" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1314580671" result="Failed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.026864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges (System.String kind) [0x00048] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellFlaskFillingTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31909" name="CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;stock&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;stock&quot;)" methodname="CommitGuardRejectsNonthrowingSourceOrRecipientChanges" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1970823068" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.026158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31910" name="CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;blocked&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;blocked&quot;)" methodname="CommitGuardRejectsNonthrowingSourceOrRecipientChanges" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="200685017" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.028852" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31911" name="CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;capacity&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;capacity&quot;)" methodname="CommitGuardRejectsNonthrowingSourceOrRecipientChanges" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="2056663583" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.026132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31912" name="CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;pool&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(&quot;pool&quot;)" methodname="CommitGuardRejectsNonthrowingSourceOrRecipientChanges" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="512860323" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.026937" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31930" name="DryPoolNeverFallsBackToEndlessStock" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.DryPoolNeverFallsBackToEndlessStock" methodname="DryPoolNeverFallsBackToEndlessStock" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="579596004" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.026519" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31922" name="EndlessWellFillsCapacityAndKeepsLegacyPolicy" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.EndlessWellFillsCapacityAndKeepsLegacyPolicy" methodname="EndlessWellFillsCapacityAndKeepsLegacyPolicy" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1063881763" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.027050" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31921" name="FiniteWellFillsAndExhaustsWithoutRetiringOwner" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.FiniteWellFillsAndExhaustsWithoutRetiringOwner" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.051460" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31919" name="FiniteWellFillsAndExhaustsWithoutRetiringOwner(False)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.FiniteWellFillsAndExhaustsWithoutRetiringOwner(False)" methodname="FiniteWellFillsAndExhaustsWithoutRetiringOwner" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1153872674" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.025228" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31920" name="FiniteWellFillsAndExhaustsWithoutRetiringOwner(True)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.FiniteWellFillsAndExhaustsWithoutRetiringOwner(True)" methodname="FiniteWellFillsAndExhaustsWithoutRetiringOwner" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1153015993" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.025712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31951" name="ForcedRecipientDropSurvivesRejectedFill" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.ForcedRecipientDropSurvivesRejectedFill" methodname="ForcedRecipientDropSurvivesRejectedFill" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="66827380" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.025950" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31936" name="IneligibleRecipientHasNoWellFill" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.IneligibleRecipientHasNoWellFill" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.112842" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31933" name="IneligibleRecipientHasNoWellFill(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.IneligibleRecipientHasNoWellFill(&quot;oil&quot;)" methodname="IneligibleRecipientHasNoWellFill" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1508776443" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.059594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31934" name="IneligibleRecipientHasNoWellFill(&quot;full&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.IneligibleRecipientHasNoWellFill(&quot;full&quot;)" methodname="IneligibleRecipientHasNoWellFill" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1522738192" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.026447" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31935" name="IneligibleRecipientHasNoWellFill(&quot;stacked&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.IneligibleRecipientHasNoWellFill(&quot;stacked&quot;)" methodname="IneligibleRecipientHasNoWellFill" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="739509456" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.026198" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31929" name="InvalidOrDryStockOffersNoFill" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.InvalidOrDryStockOffersNoFill" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:43Z" duration="0.099140" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31927" name="InvalidOrDryStockOffersNoFill(0)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.InvalidOrDryStockOffersNoFill(0)" methodname="InvalidOrDryStockOffersNoFill" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1132042019" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:42Z" duration="0.033295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31928" name="InvalidOrDryStockOffersNoFill(-2)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.InvalidOrDryStockOffersNoFill(-2)" methodname="InvalidOrDryStockOffersNoFill" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="906236306" result="Passed" start-time="2026-11-23 00:24:42Z" end-time="2026-11-23 00:24:43Z" duration="0.065114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31931" name="LiteralWellWithoutPhysicsStillSuppliesWater" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.LiteralWellWithoutPhysicsStillSuppliesWater" methodname="LiteralWellWithoutPhysicsStillSuppliesWater" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1001522584" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.028255" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31918" name="NestedSecondFlaskCannotSpendTheSameActorAction" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.NestedSecondFlaskCannotSpendTheSameActorAction" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.054388" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31916" name="NestedSecondFlaskCannotSpendTheSameActorAction(False)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.NestedSecondFlaskCannotSpendTheSameActorAction(False)" methodname="NestedSecondFlaskCannotSpendTheSameActorAction" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1455436807" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.027223" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31917" name="NestedSecondFlaskCannotSpendTheSameActorAction(True)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.NestedSecondFlaskCannotSpendTheSameActorAction(True)" methodname="NestedSecondFlaskCannotSpendTheSameActorAction" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1448608145" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.026403" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31950" name="OuterVetoRestoresOnlyOwnedDeltas" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.OuterVetoRestoresOnlyOwnedDeltas" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.054036" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31948" name="OuterVetoRestoresOnlyOwnedDeltas(False)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.OuterVetoRestoresOnlyOwnedDeltas(False)" methodname="OuterVetoRestoresOnlyOwnedDeltas" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1916831194" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.026812" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31949" name="OuterVetoRestoresOnlyOwnedDeltas(True)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.OuterVetoRestoresOnlyOwnedDeltas(True)" methodname="OuterVetoRestoresOnlyOwnedDeltas" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="377662649" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.026715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31915" name="PoolBackedWellCannotBypassOathRefusalThroughAFlask" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.PoolBackedWellCannotBypassOathRefusalThroughAFlask" methodname="PoolBackedWellCannotBypassOathRefusalThroughAFlask" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1349529164" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.026283" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31923" name="PositivePoolWinsOverEndlessStock" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.PositivePoolWinsOverEndlessStock" methodname="PositivePoolWinsOverEndlessStock" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="759952299" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.025965" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="31958" name="RealCellMenuNamesRecipientAndDeclaresOneAction" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.RealCellMenuNamesRecipientAndDeclaresOneAction" methodname="RealCellMenuNamesRecipientAndDeclaresOneAction" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="242195402" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.030937" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31957" name="ReplacementOrMovementRefusesWithoutOverwritingIndependentState" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.127862" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31952" name="ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;source&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;source&quot;)" methodname="ReplacementOrMovementRefusesWithoutOverwritingIndependentState" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="2090544457" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.026015" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31953" name="ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;vessel&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;vessel&quot;)" methodname="ReplacementOrMovementRefusesWithoutOverwritingIndependentState" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1443627999" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.025433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31954" name="ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;physics&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;physics&quot;)" methodname="ReplacementOrMovementRefusesWithoutOverwritingIndependentState" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1894108551" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.025375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31955" name="ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;liquid&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;liquid&quot;)" methodname="ReplacementOrMovementRefusesWithoutOverwritingIndependentState" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1575982546" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.025389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31956" name="ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;source-move&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(&quot;source-move&quot;)" methodname="ReplacementOrMovementRefusesWithoutOverwritingIndependentState" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1711945636" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.024738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="31932" name="SameWaterTopUpSpendsOnlyFreeCapacity" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.SameWaterTopUpSpendsOnlyFreeCapacity" methodname="SameWaterTopUpSpendsOnlyFreeCapacity" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1123806960" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.024303" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31942" name="SourceConditionsPreventFilling" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.174476" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31937" name="SourceConditionsPreventFilling(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(&quot;ice&quot;)" methodname="SourceConditionsPreventFilling" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="2019408586" result="Failed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.029479" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling (System.String kind) [0x000ca] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellFlaskFillingTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31938" name="SourceConditionsPreventFilling(&quot;mixed&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(&quot;mixed&quot;)" methodname="SourceConditionsPreventFilling" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="724109271" result="Failed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.064806" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling (System.String kind) [0x000ca] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellFlaskFillingTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31939" name="SourceConditionsPreventFilling(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(&quot;frozen&quot;)" methodname="SourceConditionsPreventFilling" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="53709297" result="Failed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.026457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling (System.String kind) [0x000ca] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellFlaskFillingTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31940" name="SourceConditionsPreventFilling(&quot;broken&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(&quot;broken&quot;)" methodname="SourceConditionsPreventFilling" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="526971952" result="Failed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.026068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling (System.String kind) [0x000ca] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellFlaskFillingTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31941" name="SourceConditionsPreventFilling(&quot;ambiguous&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(&quot;ambiguous&quot;)" methodname="SourceConditionsPreventFilling" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1239969306" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.026892" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31947" name="StaleQuotedQuantitiesRefuseFreely" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.104248" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31943" name="StaleQuotedQuantitiesRefuseFreely(&quot;stock&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(&quot;stock&quot;)" methodname="StaleQuotedQuantitiesRefuseFreely" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="589851647" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.025619" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31944" name="StaleQuotedQuantitiesRefuseFreely(&quot;volume&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(&quot;volume&quot;)" methodname="StaleQuotedQuantitiesRefuseFreely" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="36882642" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.025982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31945" name="StaleQuotedQuantitiesRefuseFreely(&quot;capacity&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(&quot;capacity&quot;)" methodname="StaleQuotedQuantitiesRefuseFreely" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="708823183" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.025830" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31946" name="StaleQuotedQuantitiesRefuseFreely(&quot;pool-kind&quot;)" fullname="CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(&quot;pool-kind&quot;)" methodname="StaleQuotedQuantitiesRefuseFreely" classname="CavesOfOoo.Tests.WellFlaskFillingTests" runstate="Runnable" seed="1144074115" result="Passed" start-time="2026-11-23 00:24:43Z" end-time="2026-11-23 00:24:43Z" duration="0.025963" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -2,6 +2,33 @@
 
 ## Resumed continuation — November 21 evening
 
+November22 [ordinary flasks at usable wells](Verification/MachineSystems/WellFlasks20261122/README.md)
+closes native-reproduced broken/oath pool-backed well bypasses and supplies the
+missing pool-less flask draw. Shared Well/Waterskin source admission, exact
+source-kind/quantity/recipient quote, action lease, current Part/anchor/access/
+phase guards and bounded quantity undo preserve independent injury/drop/stock.
+No saved field, pool invention, tariff change or flask-drinking action. Native
+191/191(42new149adjacent); additional222/223 with1unchanged legacy spill test
+reproduced alone on ef5 baseline; mutants killed6/13/3, zero compiler errors.
+Actual GameBootstrap Inventory group2empty/selected2241 fills12 from restored
+Gleaners well at3650, other2242unchanged/Stock-1. Native C preview/cancel free.
+Ordinary route to Grovelands4.7 real GroveSeep17170: finite pool40->28/exact2242
+empty->12 at3930, fresh3930fullmeasuredstate/equipment exact. Carry to camp,
+select2242individual;10water cools hearth393.9534->25/dark,2surplus recovered,
+source28/endless2241water12 retained. NormalF5/archive-beforeStop/fresh4200
+fullmeasuredsources/receivers/fire/repair stock exact, HP360. Full3page reader
+shows2242water2/12 freely; no grants/teleports/stat resets. Pool-less finiteStock3
+native-only. Equipment/acquisition/economics and unloaded-fire chronology open.
+Source/artifact/gameplay-evidence review recorded in receipt; notsecondoperator.
+Initial non-Inventory before-capture/frozen fixtures/transport and transient startup
+failures disclosed; actual branches verified separately. Mainstopped/rootnull/
+clean/profileroff/original7presets/custom0/selected0/noownedview; fresh00:38UTC
+84foreign861normal selected hashes unchanged. Allapps/projects/exports preserved.
+NEXT publish/currentMac then fullcorrected-head regression and further useful
+machine/tool loops; denseInventory/countedauditedgroups/category-sort remembered.
+All12complete-machine/deliverygates open; graphicscancelled/capstan-culturesparked/
+Deckdeferred/hourlyACTIVE. [Contract](WELL-FLASK-FILLING.md).
+
 November22 [current atomic-clay Mac candidate](Verification/MachineSystems/MacCandidate928A7244F/README.md)
 packages pushed/remotely verified runtime928a7244ff3355628320724d129aabaf94d8b5af.
 Universal6000.3.4f1/nondev54.489795s364114861bytes/0errors/5samewarnings451.

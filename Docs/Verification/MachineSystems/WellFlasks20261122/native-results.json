@@ -1,0 +1,361 @@
+{
+  "well_flask_green_f_20261122.xml": {
+    "total": "223",
+    "passed": "222",
+    "failed": "1",
+    "duration": "7.0222635",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.WellDrawRemainsProtectedFromUnrelatedGroundSpill",
+        "message": "  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "well_flask_red_a_20261122.xml": {
+    "total": "32",
+    "passed": "11",
+    "failed": "21",
+    "duration": "2.1108778",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.BrokenWellCannotBeFilledByLegacyPoolCommand(True)",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.EndlessWellFillsCapacityAndKeepsLegacyPolicy",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.FiniteWellFillsAndExhaustsWithoutRetiringOwner(False)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.FiniteWellFillsAndExhaustsWithoutRetiringOwner(True)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ForcedRecipientDropSurvivesRejectedFill",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.IneligibleRecipientHasNoWellFill(\"stacked\")",
+        "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.LiteralWellWithoutPhysicsStillSuppliesWater",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.OuterVetoRestoresOnlyOwnedDeltas(False)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.OuterVetoRestoresOnlyOwnedDeltas(True)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.PositivePoolWinsOverEndlessStock",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.RealCellMenuNamesRecipientAndDeclaresOneAction",
+        "message": "System.InvalidOperationException : Sequence contains no matching element"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"source\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"vessel\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"physics\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"liquid\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"source-move\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.SameWaterTopUpSpendsOnlyFreeCapacity",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(\"stock\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(\"volume\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(\"capacity\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(\"pool-kind\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      }
+    ]
+  },
+  "well_flask_mutation_20261122_commit_guard.xml": {
+    "total": "42",
+    "passed": "29",
+    "failed": "13",
+    "duration": "2.5360757",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNewOathRefusalWithoutUndoingTheFact",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(\"broken\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(\"ice\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(\"stock\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(\"blocked\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(\"capacity\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(\"pool\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ForcedRecipientDropSurvivesRejectedFill",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"source\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"vessel\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"physics\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"liquid\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"source-move\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      }
+    ]
+  },
+  "well_flask_baseline_spill_g_20261122.xml": {
+    "total": "1",
+    "passed": "0",
+    "failed": "1",
+    "duration": "0.5900598",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.WellDrawRemainsProtectedFromUnrelatedGroundSpill",
+        "message": "  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "well_flask_mutation_20261122_admission.xml": {
+    "total": "42",
+    "passed": "36",
+    "failed": "6",
+    "duration": "2.4590712",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNewOathRefusalWithoutUndoingTheFact",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.CommitGuardRejectsNonthrowingSourceOrRecipientChanges(\"ice\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(\"ice\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(\"mixed\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(\"frozen\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(\"broken\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      }
+    ]
+  },
+  "well_flask_mutation_20261122_actor_snapshot.xml": {
+    "total": "42",
+    "passed": "39",
+    "failed": "3",
+    "duration": "2.3667763",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ForcedRecipientDropSurvivesRejectedFill",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.OuterVetoRestoresOnlyOwnedDeltas(False)",
+        "message": "  Expected: 39\n  But was:  40\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.OuterVetoRestoresOnlyOwnedDeltas(True)",
+        "message": "  Expected: 39\n  But was:  40\n"
+      }
+    ]
+  },
+  "well_flask_red_b_20261122.xml": {
+    "total": "35",
+    "passed": "12",
+    "failed": "23",
+    "duration": "2.3481685",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.BrokenWellCannotBeFilledByLegacyPoolCommand(True)",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.EndlessWellFillsCapacityAndKeepsLegacyPolicy",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.FiniteWellFillsAndExhaustsWithoutRetiringOwner(False)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.FiniteWellFillsAndExhaustsWithoutRetiringOwner(True)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ForcedRecipientDropSurvivesRejectedFill",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.LiteralWellWithoutPhysicsStillSuppliesWater",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.NestedSecondFlaskCannotSpendTheSameActorAction(False)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.NestedSecondFlaskCannotSpendTheSameActorAction(True)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.OuterVetoRestoresOnlyOwnedDeltas(False)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.OuterVetoRestoresOnlyOwnedDeltas(True)",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.PoolBackedWellCannotBypassOathRefusalThroughAFlask",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.PositivePoolWinsOverEndlessStock",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.RealCellMenuNamesRecipientAndDeclaresOneAction",
+        "message": "System.InvalidOperationException : Sequence contains no matching element"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"source\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"vessel\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"physics\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"liquid\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.ReplacementOrMovementRefusesWithoutOverwritingIndependentState(\"source-move\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.SameWaterTopUpSpendsOnlyFreeCapacity",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(\"stock\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(\"volume\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(\"capacity\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.StaleQuotedQuantitiesRefuseFreely(\"pool-kind\")",
+        "message": "  Expected one actual menu choice for FillWellFlask|\n  Expected: 1\n  But was:  0\n"
+      }
+    ]
+  },
+  "well_flask_green_d_20261122.xml": {
+    "total": "184",
+    "passed": "183",
+    "failed": "1",
+    "duration": "6.0658905",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(\"frozen\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "well_flask_green_c_20261122.xml": {
+    "total": "184",
+    "passed": "183",
+    "failed": "1",
+    "duration": "5.9272414",
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.WellFlaskFillingTests.SourceConditionsPreventFilling(\"frozen\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      }
+    ]
+  },
+  "well_flask_green_e_20261122.xml": {
+    "total": "191",
+    "passed": "191",
+    "failed": "0",
+    "duration": "6.8984235",
+    "failures": []
+  }
+}

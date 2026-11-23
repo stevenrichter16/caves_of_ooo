@@ -1,0 +1,20 @@
+[
+  {
+    "id": "admission",
+    "file": "Assets/Scripts/Gameplay/Items/WellFlaskFilling.cs",
+    "old": "&&!source.HasPart<ContainedLiquidSourcePart>()&&WaterVesselService.IsFreshSource(actor,zone,source,requireWater);",
+    "new": "&&!source.HasPart<ContainedLiquidSourcePart>();"
+  },
+  {
+    "id": "commit_guard",
+    "file": "Assets/Scripts/Gameplay/Items/WellFlaskFilling.cs",
+    "old": "tx.BeforeCommit(()=>Current(before+amount,after));",
+    "new": "tx.BeforeCommit(()=>true);"
+  },
+  {
+    "id": "actor_snapshot",
+    "file": "Assets/Scripts/Gameplay/Inventory/Commands/Actions/PerformInventoryActionCommand.cs",
+    "old": "skinReceipt || coolingReceipt || bakeReceipt || wellFlaskReceipt ? null",
+    "new": "skinReceipt || coolingReceipt || bakeReceipt ? null"
+  }
+]
