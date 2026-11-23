@@ -1,19 +1,23 @@
-Latest user priority — November23: implement dependable merchant staples plus
-periodically changing interesting/potentially unique special consignments. Opened
-trade routes and useful machines/tools built for a merchant can expand special
-stock, giving lasting projects a visible business benefit. Record and refine
-[Merchant staples and special stock](MERCHANT-STAPLES-AND-SPECIAL-STOCK.md).
-This is a requested design/implementation direction, not shipped stock layers.
-It takes precedence over the previously suggested oil-to-torch connection.
-Next verify TraderPart/TraderRestockSystem/PlaceConsequences and shared time,
-valuation/custody/save behavior; obtain bounded independent critique, nativeRED
-and a small complete implementation with actual shopping/rotation/project-unlock/
-save-fresh evidence. Keep staples dependable, special quantities/provenance and
-current lot persistent, player-sold/bought goods safe, and prevent menu/reload/
-travel/upgrade rerolls, duplicate one-offs or profit loops. One game clock,
-bounded unloaded work, no wall-clock economy. Exact cadence/unsold handling and
-core availability remain explicit design choices. All12 machine statuses remain
-unchanged; hourlyACTIVE, root sole owner, preserve all foreign files/states/apps.
+Merchant pilot — November23: FarmerStock and ArmorerStock now retain dependable
+staples and saved special consignments. Native234 total/233pass/0fail/1Explicit
+utilityskip/0CS;64 new feature/countercase executions. Independent source review
+found0remainingP1/P2. Actual GameBootstrap showed both shops/readers, free cancel,
+unaffordable armor refusal, exact seed purchase, elder guide and one carried fire
+clay rebuilding the oven, current-lot retention, next-lot extra baking, buying and
+eating that meal (HP360→367/ColdResistance0→20), and fresh4630/4870 persistence.
+The strong supplied fixture is not acquisition/economy/difficulty proof. Ordinary
+staple top-ups merge safely; bought/resold goods leave consignment membership;
+changed/escaped goods survive rotation. One1200tick game-day window from actual
+installation, one bounded catch-up, strict>300tick staple top-ups, no wallclock.
+See [merchant contract](MERCHANT-STAPLES-AND-SPECIAL-STOCK.md) and
+[pilot receipt](Verification/MachineSystems/MerchantConsignments20261123/README.md).
+Next deliver a current Mac package without replacing prior apps, then qualify an
+honest route/import or equipment-enabled second project using real existing
+conditions. Those expansions, global unique issuance and other merchant profiles
+remain proposals. All12 machine statuses remain unchanged/open; original full
+regression remainsFAILED. HourlyACTIVE/root sole Unity/Git owner. Preserve dense
+inventory/readers and the category/sort follow-up, all84foreign changes/normal
+states/apps, cancelled graphics, parked capstan/cultures and deferred Deck.
 
 Current Mac delivery — November23: published well-supply runtimefff96f4c1b6465fae594a1dcb437c5b1e7c6be5b
 is packaged at /Users/steven/coo-verification/builds/mac-fff96f4c1-20261123/CavesOfOoo.app.
@@ -635,6 +639,12 @@ The twelve machines are not all ready because individual foundations exist. Cont
 The user prioritizes reclamation of damaged finds and regional raw materials into useful component inputs. M3a accepts an explicit damaged-tool manifest, mutually exclusive dismantle/reclaim choices, and cold dressing of recovered iron into an existing piercing point. Retained quotes, Part-owned policies and shared transactions have native and actual acceptance; both routes feed ordinary equipped weapons used outside the service, with travel/fresh reload. Carrying/selling intact is a demonstrated alternative. Regional raw-material processing is a separate remaining qualification: existing pack timber/cord recipes are retained, and a recovered manufactured blank does not establish ore refining. Full heat/fuel, provenance, useful outputs, waste, economy and actual-play gates must be satisfied by their own scoped processes.
 
 ## Dependency matrix for the twelve machines
+
+November23 merchant dependency: the bounded staple/consignment pilot connects
+an existing stable VillageOven project to future farmer baking, with actual meal
+purchase/use and fresh-save evidence. This is a shared supply/project prerequisite
+for inhabited installations; it is not simulated machine production, a route
+network, a universal market, or completion of any machine in the roster below.
 
 November23 dependency correction: [drawn well supplies](WELL-SUPPLY-PROVENANCE.md)
 are separate from exposed ground liquids; finite Stock/pool precedence and unsafe

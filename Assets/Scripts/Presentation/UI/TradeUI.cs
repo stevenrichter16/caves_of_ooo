@@ -84,9 +84,15 @@ namespace CavesOfOoo.Rendering
             public int Weight;
         }
 
+        private System.IDisposable _stockView;
+
         public void Open(Entity trader)
         {
             if (PlayerEntity == null || trader == null) return;
+            MerchantStockService.ForgetOffer(_deal);
+            _stockView?.Dispose();
+            MerchantStockService.Reconcile(trader, trader.SpatialZone, TurnManager.Active?.TickCount ?? 0);
+            _stockView = MerchantStockService.BeginView(trader);
             _trader = trader;
             _isOpen = true;
             _panel = 0;
@@ -102,6 +108,9 @@ namespace CavesOfOoo.Rendering
 
         public void Close()
         {
+            MerchantStockService.ForgetOffer(_deal);
+            _deal = null;
+            _stockView?.Dispose(); _stockView = null;
             _isOpen = false;
             if (Tilemap != null)
             {
@@ -109,6 +118,8 @@ namespace CavesOfOoo.Rendering
                 PerformanceDiagnostics.RecordTilemapClear();
             }
         }
+
+        private void OnDisable() { Close(); }
 
         // ===== Data =====
 
@@ -151,7 +162,7 @@ namespace CavesOfOoo.Rendering
             return new TradeRow
             {
                 Item = item,
-                Name = item.GetDisplayName(),
+                Name = (MerchantStockService.IsSpecial(_trader, item) ? "* " : "") + item.GetDisplayName(),
                 Price = price,
                 Weight = InventoryPart.GetItemWeight(item)
             };
@@ -270,6 +281,7 @@ namespace CavesOfOoo.Rendering
             if (key == KeyCode.D)
             {
                 if (_tender != TenderKind.Drams) return false;
+                MerchantStockService.ForgetOffer(_deal);
                 _deal = _deal == null ? new BarterDeal(PlayerEntity, _trader) : null;
                 _statusMessage = null; Render(); return true;
             }
@@ -590,9 +602,12 @@ namespace CavesOfOoo.Rendering
 
                 // Row 41: the deal's balance (EC6c)
                 if (_deal != null) DrawText(1, CONTENT_BOTTOM, DealSummary(out Color summaryColor), summaryColor);
+                else DrawText(1, CONTENT_BOTTOM, MerchantStockService.Describe(_trader), QudColorParser.BrightYellow);
 
-                // Row 42: separator
-                DrawHLine(0, CONTENT_BOTTOM + 1, W);
+                // The project benefit gets a complete readable line, including in deal mode.
+                string projectBenefit = MerchantStockService.ProjectBenefit(_trader);
+                if (projectBenefit.Length > 0) DrawText(1, CONTENT_BOTTOM + 1, projectBenefit, QudColorParser.BrightGreen);
+                else DrawHLine(0, CONTENT_BOTTOM + 1, W);
 
                 // Row 43: detail line for selected item
                 RenderDetailLine();

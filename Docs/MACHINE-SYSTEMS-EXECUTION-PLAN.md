@@ -10,22 +10,26 @@
 
 ## Active handback continuation — November 21, 2026
 
-Latest user priority — November23: implement dependable merchant staples plus
-periodically changing interesting/potentially unique special consignments. Opened
-trade routes and useful machines/tools built for a merchant can expand special
-stock, giving lasting projects a visible business benefit. Record and refine
-[Merchant staples and special stock](MERCHANT-STAPLES-AND-SPECIAL-STOCK.md).
-This is a requested design/implementation direction, not shipped stock layers.
-It takes precedence over the previously suggested oil-to-torch connection.
-Next verify TraderPart/TraderRestockSystem/PlaceConsequences and shared time,
-valuation/custody/save behavior; obtain bounded independent critique, nativeRED
-and a small complete implementation with actual shopping/rotation/project-unlock/
-save-fresh evidence. Keep staples dependable, special quantities/provenance and
-current lot persistent, player-sold/bought goods safe, and prevent menu/reload/
-travel/upgrade rerolls, duplicate one-offs or profit loops. One game clock,
-bounded unloaded work, no wall-clock economy. Exact cadence/unsold handling and
-core availability remain explicit design choices. All12 machine statuses remain
-unchanged; hourlyACTIVE, root sole owner, preserve all foreign files/states/apps.
+Merchant pilot — November23: FarmerStock and ArmorerStock now retain dependable
+staples and saved special consignments. Native234 total/233pass/0fail/1Explicit
+utilityskip/0CS;64 new feature/countercase executions. Independent source review
+found0remainingP1/P2. Actual GameBootstrap showed both shops/readers, free cancel,
+unaffordable armor refusal, exact seed purchase, elder guide and one carried fire
+clay rebuilding the oven, current-lot retention, next-lot extra baking, buying and
+eating that meal (HP360→367/ColdResistance0→20), and fresh4630/4870 persistence.
+The strong supplied fixture is not acquisition/economy/difficulty proof. Ordinary
+staple top-ups merge safely; bought/resold goods leave consignment membership;
+changed/escaped goods survive rotation. One1200tick game-day window from actual
+installation, one bounded catch-up, strict>300tick staple top-ups, no wallclock.
+See [merchant contract](MERCHANT-STAPLES-AND-SPECIAL-STOCK.md) and
+[pilot receipt](Verification/MachineSystems/MerchantConsignments20261123/README.md).
+Next deliver a current Mac package without replacing prior apps, then qualify an
+honest route/import or equipment-enabled second project using real existing
+conditions. Those expansions, global unique issuance and other merchant profiles
+remain proposals. All12 machine statuses remain unchanged/open; original full
+regression remainsFAILED. HourlyACTIVE/root sole Unity/Git owner. Preserve dense
+inventory/readers and the category/sort follow-up, all84foreign changes/normal
+states/apps, cancelled graphics, parked capstan/cultures and deferred Deck.
 
 Current Mac delivery — November23: published well-supply runtimefff96f4c1b6465fae594a1dcb437c5b1e7c6be5b
 is packaged at /Users/steven/coo-verification/builds/mac-fff96f4c1-20261123/CavesOfOoo.app.

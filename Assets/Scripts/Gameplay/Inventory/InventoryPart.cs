@@ -99,7 +99,8 @@ namespace CavesOfOoo.Core
                 for (int i = 0; i < Objects.Count; i++)
                 {
                     var existingStacker = Objects[i].GetPart<StackerPart>();
-                    if (existingStacker != null && (!deferCapacity || existingStacker.StackCount > 0)
+                    if (existingStacker != null && !MerchantStockService.ProtectsMerge(ParentEntity, Objects[i], item)
+                        && (!deferCapacity || existingStacker.StackCount > 0)
                         && existingStacker.CanStackWith(item))
                     {
                         existingStacker.MergeFrom(item);

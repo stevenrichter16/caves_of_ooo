@@ -1,0 +1,204 @@
+[
+  {
+    "name": "merchant_stock_baseline_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_stock_baseline_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_stock_baseline_20261123a.log",
+    "total": "142",
+    "passed": "142",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": []
+  },
+  {
+    "name": "merchant_consignments_red_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_red_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_red_20261123a.log",
+    "invalid": "No results; first RED attempt had one source compile error (SetProperty unavailable). Fixed before compiling RED b."
+  },
+  {
+    "name": "merchant_consignments_red_20261123b",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_red_20261123b.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_red_20261123b.log",
+    "total": "24",
+    "passed": "2",
+    "failed": "22",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": [
+      "ActiveViewDefersWithdrawalThenAllowsIt",
+      "BarterPurchaseReleasesMembershipAndClearsOffer",
+      "CapacityFailurePreservesOldLotAndStamp",
+      "ChangedOrEscapedMembersSurviveRotation(\"changed\")",
+      "ChangedOrEscapedMembersSurviveRotation(\"unsupported\")",
+      "ChangedOrEscapedMembersSurviveRotation(\"quantity\")",
+      "ChangedOrEscapedMembersSurviveRotation(\"escaped\")",
+      "CurrentLotAndExactSavedMembersRoundTripWithoutReroll",
+      "DependableStaplesAndTwoRealSpecials(\"Farmer\",\"CandyCarrotSeed\",3)",
+      "DependableStaplesAndTwoRealSpecials(\"Farmer\",\"EmberwheatSeed\",2)",
+      "DependableStaplesAndTwoRealSpecials(\"Armorer\",\"LeatherArmor\",1)",
+      "DependableStaplesAndTwoRealSpecials(\"Armorer\",\"LeatherCap\",1)",
+      "DependableStaplesAndTwoRealSpecials(\"Armorer\",\"LeatherBoots\",1)",
+      "FailedHeavyPurchaseRestoresMembershipAndPurses",
+      "GameDayBoundaryAndBoundedLateCatchup",
+      "MissingFactoryPreservesOldLot",
+      "OrdinarySaleCannotMergeIntoSpecial",
+      "PendingOfferDefersUntilExplicitlyForgotten",
+      "PurchasedResoldGoodsAreNeverReturnedWithConsignment",
+      "ReopenReadsAndBackwardTimeCannotReroll",
+      "StaplesWaitStrictlyMoreThanThreeHundredTicks",
+      "ZoneRestockInstallsProfileWithoutLegacyRandomShelf"
+    ]
+  },
+  {
+    "name": "merchant_consignments_green_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_green_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_green_20261123a.log",
+    "total": "166",
+    "passed": "166",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": []
+  },
+  {
+    "name": "merchant_consignments_adversarial_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_adversarial_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_adversarial_20261123a.log",
+    "total": "188",
+    "passed": "188",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": []
+  },
+  {
+    "name": "merchant_consignments_review_red_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_review_red_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_review_red_20261123a.log",
+    "total": "49",
+    "passed": "46",
+    "failed": "3",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": [
+      "FactoryEquippedGoodCannotBeAdoptedOrClearedFromAnotherActor",
+      "OvenGateChangedDuringFactoryWorkCannotPublishBonus",
+      "StockExplanationFitsTheActualScreenAndProjectBenefitHasItsOwnLine"
+    ]
+  },
+  {
+    "name": "merchant_consignments_review_red_20261123b",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_review_red_20261123b.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_review_red_20261123b.log",
+    "total": "54",
+    "passed": "47",
+    "failed": "7",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": [
+      "FactoryCannotSubstituteInvalidFreshGood(\"blueprint\")",
+      "FactoryCannotSubstituteInvalidFreshGood(\"id\")",
+      "FactoryEquippedGoodCannotBeAdoptedOrClearedFromAnotherActor",
+      "FactoryOpenedViewOrOfferDefersWithdrawalOfExistingLot(\"view\")",
+      "FactoryOpenedViewOrOfferDefersWithdrawalOfExistingLot(\"offer\")",
+      "OvenGateChangedDuringFactoryWorkCannotPublishBonus",
+      "StockExplanationFitsTheActualScreenAndProjectBenefitHasItsOwnLine"
+    ]
+  },
+  {
+    "name": "merchant_consignments_review_red_20261123c",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_review_red_20261123c.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_review_red_20261123c.log",
+    "total": "57",
+    "passed": "48",
+    "failed": "9",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": [
+      "ArbitraryFactoryFailureIsContainedAndReleasesReentryGuard",
+      "EveryAuthoredChoiceCanBeInstalledAcrossACompleteCycle(\"Armorer\",5)",
+      "FactoryCannotSubstituteInvalidFreshGood(\"blueprint\")",
+      "FactoryCannotSubstituteInvalidFreshGood(\"id\")",
+      "FactoryEquippedGoodCannotBeAdoptedOrClearedFromAnotherActor",
+      "FactoryOpenedViewOrOfferDefersWithdrawalOfExistingLot(\"view\")",
+      "FactoryOpenedViewOrOfferDefersWithdrawalOfExistingLot(\"offer\")",
+      "OvenGateChangedDuringFactoryWorkCannotPublishBonus",
+      "StockExplanationFitsTheActualScreenAndProjectBenefitHasItsOwnLine"
+    ]
+  },
+  {
+    "name": "merchant_consignments_review_green_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_review_green_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_review_green_20261123a.log",
+    "total": "201",
+    "passed": "201",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": []
+  },
+  {
+    "name": "merchant_consignments_final_red_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_final_red_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_final_red_20261123a.log",
+    "total": "62",
+    "passed": "60",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": [
+      "LaterFactoryCallbackCannotPublishStaleStapleDeficitOrRewindInjury",
+      "MissingPurseCannotOptInThroughShopOpen"
+    ]
+  },
+  {
+    "name": "merchant_consignments_final_green_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_final_green_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_final_green_20261123a.log",
+    "total": "232",
+    "passed": "231",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "1",
+    "failures": []
+  },
+  {
+    "name": "merchant_consignments_play_message_red_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_play_message_red_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_play_message_red_20261123a.log",
+    "total": "1",
+    "passed": "0",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": [
+      "RepairedOvenExplainsWaitingForNextConsignmentWithoutReroll"
+    ]
+  },
+  {
+    "name": "merchant_consignments_play_polish_red_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_play_polish_red_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_play_polish_red_20261123a.log",
+    "total": "64",
+    "passed": "62",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "failures": [
+      "OrdinaryStapleTopupMergesIntoTheExistingMatchingStack",
+      "RepairedOvenExplainsWaitingForNextConsignmentWithoutReroll"
+    ]
+  },
+  {
+    "name": "merchant_consignments_play_polish_green_20261123a",
+    "xml": "/Users/steven/coo-verification/results/merchant_consignments_play_polish_green_20261123a.xml",
+    "log": "/Users/steven/coo-verification/results/merchant_consignments_play_polish_green_20261123a.log",
+    "total": "234",
+    "passed": "233",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "1",
+    "failures": []
+  }
+]

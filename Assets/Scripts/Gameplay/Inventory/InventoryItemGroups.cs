@@ -63,7 +63,14 @@ namespace CavesOfOoo.Core
             return lists.Select(m => new InventoryItemGroup(m, preferred)).ToList();
         }
 
-        internal static string CaptureIdentity(Entity actor, InventoryScreenData.ItemDisplay display)
+        internal static string CaptureIdentity(Entity actor, InventoryScreenData.ItemDisplay display) => CaptureIdentity(actor, display, false);
+
+        // Consignment withdrawal also audits the exact built-in gas-mask Power.
+        // Ordinary grouping keeps its original closed whitelist; this grants no
+        // merge/split/crafting permission and accepts no GasMask subclass.
+        internal static string CaptureMerchantIdentity(Entity actor, InventoryScreenData.ItemDisplay display) => CaptureIdentity(actor, display, true);
+
+        static string CaptureIdentity(Entity actor, InventoryScreenData.ItemDisplay display, bool merchantMask)
         {
             var item = display.Item; var pack = actor?.GetPart<InventoryPart>(); var physics = item?.GetPart<PhysicsPart>();
             var render = item?.GetPart<RenderPart>();
@@ -100,8 +107,10 @@ namespace CavesOfOoo.Core
                 if (part?.ParentEntity != item) return null;
                 if (MaterialProcessPayloadPolicies.IsInertTracking(part)) continue;
                 var type = part.GetType();
-                if (!Known.Contains(type) || !types.Add(type)) return null;
+                bool mask = merchantMask && type == typeof(GasMaskPart);
+                if ((!Known.Contains(type) && !mask) || !types.Add(type)) return null;
                 Add(key, type.FullName);
+                if (mask) { Add(key, "Power"); Add(key, ((GasMaskPart)part).Power); continue; }
                 foreach (var field in Fields[type])
                 {
                     if (field.Name == "ParentEntity" || type == typeof(PhysicsPart) && (field.Name == "InInventory" || field.Name == "Equipped")

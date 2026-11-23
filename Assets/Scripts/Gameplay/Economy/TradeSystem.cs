@@ -182,6 +182,8 @@ namespace CavesOfOoo.Core
             public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
             {
                 var buyer = context.Actor; var stock = _trader.GetPart<InventoryPart>();
+                if (!MerchantStockService.EnterTrade(_trader, transaction))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The trader is arranging a consignment. Try again.");
                 if (ReferenceEquals(buyer, _trader))
                     return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You cannot buy from yourself.");
                 if (!transaction.TryClaim(_item, buyer, Name))
@@ -208,6 +210,7 @@ namespace CavesOfOoo.Core
                     return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You can't afford that.");
                 if ((long)traderDrams + Price > int.MaxValue)
                     return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The trader cannot carry that much currency.");
+                MerchantStockService.ReleaseForTransfer(_trader, _item, transaction);
                 var source = InventoryTransferSnapshot.Capture(stock);
                 transaction.Do(apply: null, undo: source.Restore);
                 if (!source.Apply(() => stock.RemoveObject(_item)))
@@ -281,6 +284,8 @@ namespace CavesOfOoo.Core
             {
                 if (ReferenceEquals(context.Actor, _trader))
                     return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You cannot sell to yourself.");
+                if (!MerchantStockService.EnterTrade(_trader, transaction))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The trader is arranging a consignment. Try again.");
                 if (!transaction.TryClaim(_item, context.Actor, Name))
                     return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
                 if (!context.Inventory.Contains(_item) || (_item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)

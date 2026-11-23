@@ -68,6 +68,10 @@ namespace CavesOfOoo.Core
                 if (drams < 0)
                     continue;
 
+                // Specials have their own saved day window, independent of purse
+                // replenishment. Opted-in staples replace the old low-shelf roll.
+                MerchantStockService.Reconcile(e, zone, currentTurn);
+
                 int last = e.GetIntProperty(LastRestockProp, int.MinValue);
                 if (last != int.MinValue && (long)currentTurn - last <= RestockIntervalTurns)
                     continue;
@@ -88,7 +92,7 @@ namespace CavesOfOoo.Core
                 // re-rolls their themed stock table (Factory-gated —
                 // contexts without the factory keep drams-only).
                 string stockTable = e.GetProperty(ShopStockTableProp);
-                if (Factory != null && !string.IsNullOrEmpty(stockTable))
+                if (Factory != null && !string.IsNullOrEmpty(stockTable) && !MerchantStockService.HasProfile(e))
                 {
                     var inv = e.GetPart<InventoryPart>();
                     if (inv != null && CountStockUnits(inv, stockTable) < ShelfLowWaterMark)

@@ -145,6 +145,7 @@ namespace CavesOfOoo.Core
             if (count == 0) side.RemoveAt(index);
             else if (index < 0) side.Add(new Line(item, count));
             else side[index] = new Line(item, count);
+            MerchantStockService.TrackOffer(this);
             return true;
         }
 
@@ -181,6 +182,7 @@ namespace CavesOfOoo.Core
             var result = InventorySystem.ExecuteCommand(command, deal.Player);
             if (!result.Success) return Refuse(deal, command.Reason ?? "transfer_failed", result.ErrorMessage, out failureReason);
 
+            MerchantStockService.ForgetOffer(deal);
             MessageLog.Add(Receipt(command));
             if (Diag.IsChannelEnabled("trade"))
                 Diag.Record("trade", "Bartered", actor: deal.Player, target: deal.Trader, payload: new
@@ -237,6 +239,8 @@ namespace CavesOfOoo.Core
             public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
             {
                 var player = context.Actor; var trader = _deal.Trader;
+                if (!MerchantStockService.EnterTrade(trader, transaction))
+                    return Fail("stock_busy", "The trader is arranging a consignment. Try again.");
                 var pack = context.Inventory; var shelf = trader.GetPart<InventoryPart>();
                 if (ReferenceEquals(player, trader)) return Fail("self", "You cannot trade with yourself.");
                 Tender = Core.Tender.For(trader);
@@ -309,6 +313,7 @@ namespace CavesOfOoo.Core
                 string name = line.Count > 1 || line.Item.GetPart<StackerPart>() != null && line.Count != BarterDeal.Units(line.Item)
                     ? line.Count + " " + line.Item.GetDisplayName() : line.Item.GetDisplayName();
                 Entity moving = line.Item;
+                MerchantStockService.ReleaseForTransfer(from.ParentEntity, moving, transaction);
                 var source = InventoryTransferSnapshot.Capture(from);
                 transaction.Do(apply: null, undo: source.Restore);
                 if (line.Count < BarterDeal.Units(line.Item))

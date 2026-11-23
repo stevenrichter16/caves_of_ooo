@@ -1,4 +1,4 @@
-# parts=412
+# parts=413
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -619,6 +619,15 @@ Part CavesOfOoo.Core.MeleeWeaponPart | reflected
   OnHitEffectsRaw:System.String
   PenBonus:System.Int32
   Stat:System.String
+Part CavesOfOoo.Core.MerchantStockPart | reflected
+  BonusApplied:System.Boolean
+  Generation:System.Int32
+  LastSpecialTick:System.Int32
+  LastStapleTick:System.Int32
+  ProfileId:System.String
+  SelectionRaw:System.String
+  SpecialKeys:System.Collections.Generic.List`1[System.String]
+  Specials:System.Collections.Generic.List`1[CavesOfOoo.Core.Entity]
 Part CavesOfOoo.Core.MineralPreparationPart | reflected
 Part CavesOfOoo.Core.MorrowfastDoorPart | reflected
   ComponentId:System.String

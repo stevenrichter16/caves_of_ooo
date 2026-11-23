@@ -1,8 +1,10 @@
 # Merchant staples and changing special stock
 
-User direction, November 23, 2026. Prioritize this as the next merchant and
-lasting-project increment in the active hourly systems program. This is the
-requested design direction; the new stock layers and unlocks are not shipped.
+User direction, November 23, 2026. The first bounded implementation now covers
+FarmerStock and ArmorerStock, with a repaired local oven expanding the farmer's
+next consignment. Native and actual Editor verification are recorded in the
+[pilot receipt](Verification/MachineSystems/MerchantConsignments20261123/README.md).
+Route imports, other merchant profiles and unique-item issuance remain proposals.
 
 Merchants should have a dependable base selection of specific goods and a
 separate, periodically changing selection of interesting specials. Returning to
@@ -131,3 +133,106 @@ Preserve all twelve machine statuses. This direction connects merchant variety
 to lasting projects; it does not complete a machine or accept any hypothetical
 route, production, NPC labor or economy simulation. Graphics remain cancelled,
 capstan/cultures parked and Deck deferred.
+
+## First pilot contract
+
+The bounded pilot opts in the existing FarmerStock
+and ArmorerStock declarations through a small authored profile catalogue. Existing
+shelves and old saves retain all their goods. Missing saved consignment state is
+initialized on authoritative arrival or explicit shop opening, never while loading
+an entity or painting a screen. Other merchants retain their current behavior.
+
+Farmer staples: three CandyCarrotSeed and two EmberwheatSeed. Armorer staples:
+one LeatherArmor, LeatherCap and LeatherBoots. Top up only deficits after the
+existing strict300tick interval, with a saved per-profile stamp; no instant
+replacement on purchase. Existing purses, barter and prices stay authoritative.
+The opted-in profile replaces that merchant's legacy low-shelf table reroll;
+ordinary held/player-sold goods remain. Other conditional supplies remain under
+their existing authority and do not overlap the new special bonus.
+
+Each pilot consignment has two single-unit, audited existing items. Farmer
+choices are KnotflaxSeed, HearthbulbSeed, SeamleafSeed and PitchpodSeed. Armorer
+choices are FilterHood, ColdwardCloak, KilnfeltApron, AcidworkerApron and
+GroundwireScreen. A stable merchant/profile hash and saved generation rotate
+through the authored choices without replacing both slots with an identical
+successive lot. These are ordinary distinctive goods, not globally unique relics.
+True one-off issuance and a trade-route network remain later increments.
+
+Specials stay for at least one complete game day after the current lot is
+installed:1200 TurnManager ticks, using WorldClock.DayLengthTicks. Reconcile a
+late visit once and give the new lot its full window; do not materialize missed
+lots. No wall clock, current-turn random seed or runtime string hash. Opening a
+shop can reconcile a due consignment once, but reads/repaint/cancel/reopen cannot
+reroll it. An open shop or pending deal defers withdrawal of live offers.
+
+The first lasting-project eligibility is the merchant's existing local
+VillageOven stable repair or improved saved site state (including Sill). It adds one RoastedHearthbulb to the farmer's next
+special lot; it does not replace the current lot. Existing PlaceConsequences
+ToastedEmberwheat stock stays separate. This is eligibility for abstract merchant
+supply, not a claim of simulated NPC ingredient consumption or production. The
+oven's existing repair methods and ordinary cooking are alternatives. Read the existing site with TryGetExistingSite; StableRepair does not require
+the caretaker-only ImprovedOven condition. No newly invented route flag.
+
+Save exact special-member entity references, generation/install tick, membership
+and bounded audited payload keys. CaptureIdentity excludes stack quantity and
+inert bookkeeping; separately require a single unit and exact current custody. Install each special without merging. Prevent
+incoming ordinary/sold stacks from merging into a current special. Both drams
+and barter transfers must relinquish withdrawal eligibility transactionally;
+rollback restores it, committed purchases permanently leave it, and buyback is
+ordinary stock. Rotation withdraws only demonstrably untouched, unreserved units
+still owned by that merchant. Changed or escaped owners stay intact as ordinary
+goods; no world-owned/purchased object is deleted. Withdrawn untouched generated
+ordinary stock leaves the simulated shelf as a returned consignment.
+
+Acquire a merchant operation claim and a reentry guard before factory or weight
+callbacks. Keep metadata undo separate from inventory receipts. Admit only
+audited bounded item payloads, validate participants/configuration again before
+commit, and preserve independent callback injury, sales, item changes and goods.
+Use the existing exact-owner insertion and transfer snapshots; no generic save
+or transaction rewrite. Failed/capacity-limited preparation keeps the old lot.
+
+Source corrections motivating this contract: current restock stamps after
+callbacks; matching-blueprint counts do not encode provenance; ordinary AddObject
+merges; and BarterDeal records offers before it claims their goods. The source
+review requires independent safeguards for this new opt-in policy. It does not
+claim a general repair of every legacy shop or a finished merchant economy.
+
+The independent pilot critique also requires a trade-in-progress lease that
+defers reconciliation while preserving independent-item nested trades, including
+the same merchant. A blanket merchant claim in ordinary Buy/Sell/Barter would
+change that existing contract; reserve the exclusive claim for stock generation.
+Pending offers must be explicitly released on close/switch/success rather than
+waiting for garbage collection. These corrections were implemented after native RED.
+
+Usable staple counts require exact base-payload keys: modified, untradeable,
+unsupported, empty or foreign-owned goods remain real goods but do not hide a
+deficit in ordinary usable supply. Canonical staples merge through the existing
+stacking routine only when every potential recipient matches that audited key;
+special consignments stay separate. The exact GasMaskPart.Power field has a
+merchant-only fingerprint path for filter hoods; ordinary inventory grouping and
+physical stacking permissions were not expanded.
+
+All factory work precedes shelf publication under a stock-operation guard.
+Fresh goods must have the requested blueprint, valid distinct identity, owned
+Parts and no world/inventory/equipment custody. Recheck prepared goods, usable
+staple baselines, project eligibility, views and offers after callbacks and again
+before commit. Independent injury or changes to stock remain intact when a
+preparation is refused. Null withdrawal keys preserve the old good and let the
+next lot proceed without retiring it.
+
+The shop marks special rows with an asterisk, preserves existing equipment
+readers, and reserves a complete second status line for the local oven. Its
+states are repair guidance, repaired and awaiting the next consignment, and
+baking included. Painting those lines reads saved state without restocking.
+
+Final native verification: 234 tests, 233 passes, zero failures, one explicitly
+skipped golden-regeneration utility, zero compiler errors; 64 new feature and
+countercase executions. Actual GameBootstrap shopping covered both profiles,
+readers, cancellation, an unaffordable armor purchase, exact seed purchase,
+elder-guide acquisition, oven repair with one carried fire clay, unchanged current
+lot, a later consignment adding an extra meal, and that meal's ordinary inventory
+consumption for healing and cold resistance. Fresh loads at4630 and4870 preserved
+the project, quantities, exact current stock, purchased seed and consumed meal.
+The inherited strong/provisioned fixture is not acquisition or economy proof.
+Mac packaging, route projects, other profiles and wider survival/performance
+acceptance remain separate gates. All twelve complete-machine statuses stay open.
