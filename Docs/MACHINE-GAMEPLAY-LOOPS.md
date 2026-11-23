@@ -255,6 +255,13 @@ selection, making lasting projects visibly worthwhile. See the
 [recorded direction and first implementation gates](MERCHANT-STAPLES-AND-SPECIAL-STOCK.md).
 This takes priority over the proposed oil-to-torch extension above.
 
+The approved refinement distinguishes route-based imports from equipment-enabled
+local work; those project benefits can combine. Special finds can suggest useful
+projects in return, connecting merchant discovery to later construction, repair
+or processing. Preserve recognizable specialties, reasonable offer windows and
+variety in utility/materials/workmanship. Exact scheduling and production remain
+subject to the implementation gates below and the merchant design note.
+
 Preserve ordinary supply access and trade alternatives. Stock must have finite
 quantities, actual owners and persistent current-lot decisions; time, travel,
 reload and equipment toggles cannot be free rerolls. Use shared world conditions

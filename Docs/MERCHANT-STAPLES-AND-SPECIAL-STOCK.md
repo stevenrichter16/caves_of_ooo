@@ -11,6 +11,13 @@ something new. Opening a trade route or building a useful machine or tool for
 the merchant can expand the special selection. Such projects gain a lasting,
 visible benefit through the merchant's actual business.
 
+The user approved the following refinements in the subsequent discussion:
+routes introduce regional imports; equipment enables particular local work;
+the two improvements can combine. A special find can also suggest a useful
+project, so projects change merchant opportunities and merchant discoveries can
+give the player a reason to undertake a project. Applications must follow what
+the character can know and the item's supported capabilities.
+
 ## Dependable staples
 
 Give each participating merchant an authored core catalogue appropriate to their
@@ -28,6 +35,11 @@ be an unusual material, regional tool, useful component, distinctive piece of
 equipment or supported modification combination. Interesting does not require
 ever-increasing combat power. Different merchants should have different themes
 and pools, with enough variation to reward revisiting them.
+
+Give a consignment a reasonable opportunity to be encountered and considered,
+with understandable refresh expectations. Keep merchant specialties and supply
+origins recognizable. Prefer variety in utility, materials and workmanship to
+constant combat-power escalation or rapid reroll checking.
 
 The user explicitly wants potentially unique items. Distinguish an unusual
 generated item from a genuinely one-off authored object. A one-off must retain
@@ -57,6 +69,12 @@ projects or supply networks already exist. Use shared capabilities and world
 conditions, not a separate scripted exception for each merchant and machine.
 An upgrade broadens future eligible offers; it must not mint another lot whenever
 the player toggles equipment, crosses a zone boundary or opens the shop.
+
+Keep import and production unlocks distinct. For example, a route can introduce
+an unfamiliar regional material; a restored smith's equipment can enable
+supported finished goods made using appropriate materials. Their combined
+eligibility should remain subject to the same bounded consignment and resource
+rules. An unlocked catalogue alone does not establish automatic NPC production.
 
 Explain a meaningful unlock to the player: the relevant project is finished,
 which kind of goods can now arrive or be made, and whether it affects the current
