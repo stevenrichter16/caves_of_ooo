@@ -1,0 +1,247 @@
+VERIFIED System.Boolean CavesOfOoo.Core.MerchantStockService::ProjectBonus(CavesOfOoo.Core.MerchantStockService/Profile,CavesOfOoo.Core.Zone) -> SettlementManager::HasExistingCondition
+VERIFIED CavesOfOoo.Core.MerchantStockService/Profile CavesOfOoo.Core.MerchantStockService::ProfileFor(CavesOfOoo.Core.Entity) -> PlaceSiteCatalog::PlaceAt
+VERIFIED new profile constants and pure saved-condition call
+VERIFIED eight exact merchant payload audit types
+VERIFIED System.Int32 CavesOfOoo.Core.TraderRestockSystem::RestockZone(CavesOfOoo.Core.Zone,System.Int32) -> MerchantStockService::Reconcile
+VERIFIED System.Void CavesOfOoo.Rendering.TradeUI::Open(CavesOfOoo.Core.Entity) -> MerchantStockService::Reconcile
+VERIFIED System.Boolean CavesOfOoo.Core.InventoryPart::AddObjectCore(CavesOfOoo.Core.Entity,System.Boolean,CavesOfOoo.Core.Entity&,System.Boolean) -> MerchantStockService::ProtectsMerge
+VERIFIED CavesOfOoo.Core.Inventory.InventoryCommandResult CavesOfOoo.Core.TradeSystem/BuyTransferCommand::Execute(CavesOfOoo.Core.Inventory.InventoryContext,CavesOfOoo.Core.Inventory.InventoryTransaction) -> MerchantStockService::ReleaseForTransfer
+VERIFIED CavesOfOoo.Core.Inventory.InventoryCommandResult CavesOfOoo.Core.Barter/DealCommand::Move(CavesOfOoo.Core.Inventory.InventoryTransaction,CavesOfOoo.Core.Entity,CavesOfOoo.Core.BarterDeal/Line,CavesOfOoo.Core.InventoryPart,CavesOfOoo.Core.InventoryPart,System.String,System.Collections.Generic.List`1<System.String>) -> MerchantStockService::ReleaseForTransfer
+SAVED System.String CavesOfOoo.Core.MerchantStockPart::ProfileId
+SAVED System.Int32 CavesOfOoo.Core.MerchantStockPart::Generation
+SAVED System.Int32 CavesOfOoo.Core.MerchantStockPart::LastSpecialTick
+SAVED System.Int32 CavesOfOoo.Core.MerchantStockPart::LastStapleTick
+SAVED System.String CavesOfOoo.Core.MerchantStockPart::SelectionRaw
+SAVED System.Boolean CavesOfOoo.Core.MerchantStockPart::BonusApplied
+SAVED System.Collections.Generic.List`1<CavesOfOoo.Core.Entity> CavesOfOoo.Core.MerchantStockPart::Specials
+SAVED System.Collections.Generic.List`1<System.String> CavesOfOoo.Core.MerchantStockPart::SpecialKeys
+System.Boolean CavesOfOoo.Core.MerchantStockService::ProjectBonus(CavesOfOoo.Core.MerchantStockService/Profile,CavesOfOoo.Core.Zone)
+IL_0007: call CavesOfOoo.Core.SettlementManager CavesOfOoo.Core.SettlementManager::get_Current()
+IL_002d: callvirt System.Boolean CavesOfOoo.Core.SettlementManager::HasExistingCondition(System.String,System.String)
+IL_004a: callvirt System.Boolean CavesOfOoo.Core.SettlementManager::TryGetExistingSite(System.String,System.String,CavesOfOoo.Core.RepairableSiteState&)
+System.Boolean CavesOfOoo.Core.MerchantStockService::ValidFreshPayload(CavesOfOoo.Core.Entity)
+IL_0006: ldstr "InkVial"
+IL_000b: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0013: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.InkVialPart>()
+IL_0020: call System.Type System.Object::GetType()
+IL_002a: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+IL_002f: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+IL_0049: ldstr "Codex04"
+IL_004e: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0056: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.ReadableDocumentPart>()
+IL_0063: call System.Type System.Object::GetType()
+IL_006d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+IL_0072: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+IL_007f: ldstr "codex-04"
+IL_0084: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0092: ldstr "LampOil"
+IL_0097: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_009f: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.ReagentPart>()
+IL_00ac: call System.Type System.Object::GetType()
+IL_00b6: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+IL_00bb: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+IL_00c8: ldstr "combustible:3, viscous:1"
+IL_00cd: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_00da: ldstr "Slow, greasy, eager to burn. (combustible, viscous)"
+IL_00df: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_00ed: ldstr "CampHearth"
+IL_00f2: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_00fd: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.PackableFixturePart>()
+IL_0104: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.FuelPart>()
+IL_010c: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.ThermalPart>()
+IL_0114: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.LightSourcePart>()
+IL_011c: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.CampfirePart>()
+IL_012f: ldstr "camp-hearth"
+IL_0134: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0150: ldstr ""
+IL_0155: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_015d: callvirt System.Boolean CavesOfOoo.Core.Entity::HasPart<CavesOfOoo.Core.InstallablePart>()
+IL_0193: callvirt System.Boolean CavesOfOoo.Core.Entity::HasPart<CavesOfOoo.Core.HearthGlowPart>()
+IL_019b: callvirt System.Boolean CavesOfOoo.Core.Entity::HasPart<CavesOfOoo.Core.HearthRestPart>()
+IL_01df: ldstr "PoisonGasGrenade"
+IL_01e4: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_01ec: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.GasGrenadePart>()
+IL_01fc: call System.Type System.Object::GetType()
+IL_0206: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+IL_020b: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+IL_0219: ldstr "poison-vapor"
+IL_021e: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0241: ldstr ""
+IL_0246: call System.Boolean System.String::op_Equality(System.String,System.String)
+System.Boolean CavesOfOoo.Core.MerchantStockService::Reconcile(CavesOfOoo.Core.Entity,CavesOfOoo.Core.Zone,System.Int32)
+IL_0000: newobj System.Void CavesOfOoo.Core.MerchantStockService/<>c__DisplayClass29_0::.ctor()
+IL_0022: call CavesOfOoo.Core.MerchantStockService/Profile CavesOfOoo.Core.MerchantStockService::ProfileFor(CavesOfOoo.Core.Entity)
+IL_005a: call System.Boolean CavesOfOoo.Core.MerchantStockService::Valid(CavesOfOoo.Core.Entity,CavesOfOoo.Core.Zone,CavesOfOoo.Core.MerchantStockService/Profile)
+IL_006a: call CavesOfOoo.Core.MerchantStockService/Activity CavesOfOoo.Core.MerchantStockService::For(CavesOfOoo.Core.Entity)
+IL_00a3: call System.Boolean CavesOfOoo.Core.MerchantStockService::HasOffer(CavesOfOoo.Core.MerchantStockService/Activity)
+IL_00b3: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.MerchantStockPart>()
+IL_00d6: ldftn System.Boolean CavesOfOoo.Core.MerchantStockService/<>c::<Reconcile>b__29_0(CavesOfOoo.Core.Part)
+IL_00dc: newobj System.Void System.Func`2<CavesOfOoo.Core.Part,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00e7: call System.Int32 System.Linq.Enumerable::Count<CavesOfOoo.Core.Part>(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,System.Boolean>)
+IL_0101: call System.Boolean CavesOfOoo.Core.MerchantStockService::ValidState(CavesOfOoo.Core.MerchantStockPart,CavesOfOoo.Core.Entity,CavesOfOoo.Core.MerchantStockService/Profile)
+IL_0127: ldc.i4 300
+IL_0154: ldc.i4 1200
+IL_0191: ldc.i4 2147483647
+IL_01a3: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.InventoryPart>()
+IL_01ad: newobj System.Void CavesOfOoo.Core.Inventory.InventoryTransaction::.ctor()
+IL_01cc: ldstr "MerchantConsignment"
+IL_01d1: callvirt System.Boolean CavesOfOoo.Core.Inventory.InventoryTransaction::TryClaim(CavesOfOoo.Core.Entity,CavesOfOoo.Core.Entity,System.String)
+IL_01ee: newobj System.Void CavesOfOoo.Core.MerchantStockService/StateReceipt::.ctor(CavesOfOoo.Core.MerchantStockPart)
+IL_01f8: newobj System.Void System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::.ctor()
+IL_0203: newobj System.Void System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::.ctor()
+IL_020e: newobj System.Void System.Collections.Generic.List`1<System.String>::.ctor()
+IL_0219: newobj System.Void System.Collections.Generic.Dictionary`2<CavesOfOoo.Core.Entity,System.String>::.ctor()
+IL_0224: newobj System.Void System.Collections.Generic.Dictionary`2<CavesOfOoo.Core.Entity,System.Int32>::.ctor()
+IL_022f: newobj System.Void System.Collections.Generic.Dictionary`2<CavesOfOoo.Core.Entity,System.String>::.ctor()
+IL_0282: newobj System.Void CavesOfOoo.Core.Entity::.ctor()
+IL_028d: newobj System.Void CavesOfOoo.Core.InventoryPart::.ctor()
+IL_02aa: callvirt System.Void CavesOfOoo.Core.Entity::AddPart(CavesOfOoo.Core.Part)
+IL_02b0: ldftn CavesOfOoo.Core.Entity CavesOfOoo.Core.MerchantStockService/<>c__DisplayClass29_0::<Reconcile>b__1(System.String)
+IL_02b6: newobj System.Void System.Func`2<System.String,CavesOfOoo.Core.Entity>::.ctor(System.Object,System.IntPtr)
+IL_02de: callvirt !1 System.Func`2<System.String,CavesOfOoo.Core.Entity>::Invoke(!0)
+IL_02ed: call System.String CavesOfOoo.Core.MerchantStockService::Key(CavesOfOoo.Core.Entity,CavesOfOoo.Core.Entity)
+IL_030a: call System.Int64 CavesOfOoo.Core.MerchantStockService::UsableUnits(CavesOfOoo.Core.Entity,System.String,System.String)
+IL_033b: call System.Int64 System.Math::Max(System.Int64,System.Int64)
+IL_034c: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.StackerPart>()
+IL_0367: ldstr "Invalid staple stack."
+IL_036c: newobj System.Void System.InvalidOperationException::.ctor(System.String)
+IL_0387: callvirt System.Void System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::Add(!0)
+IL_039c: call System.String CavesOfOoo.Core.MerchantStockService::Key(CavesOfOoo.Core.Entity,CavesOfOoo.Core.Entity)
+IL_03a1: callvirt System.Void System.Collections.Generic.Dictionary`2<CavesOfOoo.Core.Entity,System.String>::Add(!0,!1)
+IL_03b0: callvirt System.Void System.Collections.Generic.Dictionary`2<CavesOfOoo.Core.Entity,System.Int32>::Add(!0,!1)
+IL_03c4: callvirt System.Void System.Collections.Generic.Dictionary`2<CavesOfOoo.Core.Entity,System.String>::Add(!0,!1)
+IL_042c: call System.Boolean CavesOfOoo.Core.MerchantStockService::ProjectBonus(CavesOfOoo.Core.MerchantStockService/Profile,CavesOfOoo.Core.Zone)
+IL_045d: call System.String[] CavesOfOoo.Core.MerchantStockService::Selection(CavesOfOoo.Core.MerchantStockService/Profile,CavesOfOoo.Core.Entity,System.Int32,System.Boolean)
+IL_0489: callvirt !1 System.Func`2<System.String,CavesOfOoo.Core.Entity>::Invoke(!0)
+IL_0498: callvirt System.Void System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::Add(!0)
+IL_04a5: callvirt System.Void System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::Add(!0)
+IL_04b2: call System.String CavesOfOoo.Core.MerchantStockService::Key(CavesOfOoo.Core.Entity,CavesOfOoo.Core.Entity)
+IL_04c1: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_04d0: callvirt System.Void System.Collections.Generic.Dictionary`2<CavesOfOoo.Core.Entity,System.String>::Add(!0,!1)
+IL_04de: callvirt System.Void System.Collections.Generic.Dictionary`2<CavesOfOoo.Core.Entity,System.Int32>::Add(!0,!1)
+IL_04f2: callvirt System.Void System.Collections.Generic.Dictionary`2<CavesOfOoo.Core.Entity,System.String>::Add(!0,!1)
+IL_051a: call System.Boolean CavesOfOoo.Core.MerchantStockService::Valid(CavesOfOoo.Core.Entity,CavesOfOoo.Core.Zone,CavesOfOoo.Core.MerchantStockService/Profile)
+IL_053a: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.InventoryPart>()
+IL_0550: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.MerchantStockPart>()
+IL_0588: call System.Boolean CavesOfOoo.Core.MerchantStockService::HasOffer(CavesOfOoo.Core.MerchantStockService/Activity)
+IL_05a3: call System.Boolean CavesOfOoo.Core.MerchantStockService::ProjectBonus(CavesOfOoo.Core.MerchantStockService/Profile,CavesOfOoo.Core.Zone)
+IL_05c6: call System.Collections.Generic.IEnumerable`1<System.Int32> System.Linq.Enumerable::Range(System.Int32,System.Int32)
+IL_05cc: ldftn System.Boolean CavesOfOoo.Core.MerchantStockService/<>c__DisplayClass29_0::<Reconcile>b__2(System.Int32)
+IL_05d2: newobj System.Void System.Func`2<System.Int32,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_05d7: call System.Boolean System.Linq.Enumerable::Any<System.Int32>(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,System.Boolean>)
+IL_05e5: ldftn System.Boolean CavesOfOoo.Core.MerchantStockService/<>c__DisplayClass29_0::<Reconcile>b__3(CavesOfOoo.Core.Entity)
+IL_05eb: newobj System.Void System.Func`2<CavesOfOoo.Core.Entity,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_05f0: call System.Boolean System.Linq.Enumerable::Any<CavesOfOoo.Core.Entity>(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,System.Boolean>)
+IL_0601: callvirt System.Boolean CavesOfOoo.Core.MerchantStockService/StateReceipt::Matches(CavesOfOoo.Core.MerchantStockPart)
+IL_0611: newobj System.Void System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::.ctor()
+IL_0643: callvirt !0 System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::get_Item(System.Int32)
+IL_0657: callvirt !0 System.Collections.Generic.List`1<System.String>::get_Item(System.Int32)
+IL_065c: call System.Boolean System.String::IsNullOrEmpty(System.String)
+IL_0665: call System.Int32 CavesOfOoo.Core.BarterDeal::Units(CavesOfOoo.Core.Entity)
+IL_0675: call System.String CavesOfOoo.Core.MerchantStockService::Key(CavesOfOoo.Core.Entity,CavesOfOoo.Core.Entity)
+IL_0687: callvirt !0 System.Collections.Generic.List`1<System.String>::get_Item(System.Int32)
+IL_068c: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_069b: callvirt System.Void System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::Add(!0)
+IL_06b3: callvirt System.Int32 System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::get_Count()
+IL_06c9: call System.Collections.Generic.IEnumerable`1<!!0> System.Linq.Enumerable::Concat<CavesOfOoo.Core.Entity>(System.Collections.Generic.IEnumerable`1<!!0>,System.Collections.Generic.IEnumerable`1<!!0>)
+IL_06ce: callvirt System.Collections.Generic.IEnumerator`1<!0> System.Collections.Generic.IEnumerable`1<CavesOfOoo.Core.Entity>::GetEnumerator()
+IL_06d9: callvirt !0 System.Collections.Generic.IEnumerator`1<CavesOfOoo.Core.Entity>::get_Current()
+IL_06e9: ldstr "MerchantConsignment"
+IL_06ee: callvirt System.Boolean CavesOfOoo.Core.Inventory.InventoryTransaction::TryClaim(CavesOfOoo.Core.Entity,CavesOfOoo.Core.Entity,System.String)
+IL_06ff: callvirt System.Boolean System.Collections.IEnumerator::MoveNext()
+IL_070e: callvirt System.Void System.IDisposable::Dispose()
+IL_0720: callvirt !0[] System.Collections.Generic.List`1<CavesOfOoo.Core.Entity>::ToArray()
+IL_0725: call CavesOfOoo.Core.Inventory.InventoryTransferSnapshot CavesOfOoo.Core.Inventory.InventoryTransferSnapshot::Capture(CavesOfOoo.Core.InventoryPart,CavesOfOoo.Core.Entity[])
+IL_0730: ldftn System.Void CavesOfOoo.Core.Inventory.InventoryTransferSnapshot::Restore()
+IL_0736: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+IL_073b: callvirt System.Void CavesOfOoo.Core.Inventory.InventoryTransaction::Do(System.Action,System.Action)
+IL_0743: ldftn System.Boolean CavesOfOoo.Core.MerchantStockService/<>c__DisplayClass29_0::<Reconcile>b__4()
+IL_0749: newobj System.Void System.Func`1<System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_074e: callvirt System.Boolean CavesOfOoo.Core.Inventory.InventoryTransferSnapshot::Apply(System.Func`1<System.Boolean>)
+IL_075e: ldstr "MerchantConsignment"
+IL_0763: callvirt System.Boolean CavesOfOoo.Core.Inventory.InventoryTransferSnapshot::ClaimChanges(CavesOfOoo.Core.Inventory.InventoryTransaction,CavesOfOoo.Core.Entity,System.String)
+IL_077d: newobj System.Void CavesOfOoo.Core.MerchantStockPart::.ctor()
+IL_07a7: newobj System.Void CavesOfOoo.Core.MerchantStockService/StateReceipt::.ctor(CavesOfOoo.Core.MerchantStockPart)
+IL_07b6: ldftn System.Void CavesOfOoo.Core.MerchantStockService/<>c__DisplayClass29_0::<Reconcile>b__5()
+IL_07bc: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+IL_07c2: ldftn System.Void CavesOfOoo.Core.MerchantStockService/<>c__DisplayClass29_0::<Reconcile>b__6()
+IL_07c8: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+IL_07cd: callvirt System.Void CavesOfOoo.Core.Inventory.InventoryTransaction::Do(System.Action,System.Action)
+IL_07d4: ldftn System.Boolean CavesOfOoo.Core.MerchantStockService/<>c__DisplayClass29_0::<Reconcile>b__7()
+IL_07da: newobj System.Void System.Func`1<System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_07df: callvirt System.Void CavesOfOoo.Core.Inventory.InventoryTransaction::BeforeCommit(System.Func`1<System.Boolean>)
+IL_07e5: callvirt System.Void CavesOfOoo.Core.Inventory.InventoryTransaction::Commit()
+IL_07f1: ldstr "trade"
+IL_07f6: ldstr "ConsignmentDeferred"
+IL_0804: callvirt System.Type System.Exception::GetType()
+IL_0809: callvirt System.String System.Reflection.MemberInfo::get_Name()
+IL_080e: newobj System.Void <>f__AnonymousType14`1<System.String>::.ctor(<reason>j__TPar)
+IL_0814: call System.Void CavesOfOoo.Diagnostics.Diag::Record(System.String,System.String,CavesOfOoo.Core.Entity,CavesOfOoo.Core.Entity,System.Object,System.String)
+IL_081f: callvirt System.Boolean CavesOfOoo.Core.Inventory.InventoryTransaction::get_IsCommitted()
+IL_0827: callvirt System.Void CavesOfOoo.Core.Inventory.InventoryTransaction::Rollback()
+System.String CavesOfOoo.Core.MerchantStockService::ProjectBenefit(CavesOfOoo.Core.Entity)
+IL_0007: call T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.MerchantStockPart>()
+IL_000e: call CavesOfOoo.Core.MerchantStockService/Profile CavesOfOoo.Core.MerchantStockService::ProfileFor(CavesOfOoo.Core.Entity)
+IL_0039: call System.Boolean System.String::op_Inequality(System.String,System.String)
+IL_0043: ldstr ""
+IL_005f: call System.Boolean CavesOfOoo.Core.MerchantStockService::ProjectBonus(CavesOfOoo.Core.MerchantStockService/Profile,CavesOfOoo.Core.Zone)
+System.Void CavesOfOoo.Core.MerchantStockService::.cctor()
+IL_0000: ldstr "FarmerStock"
+IL_000d: ldstr "CandyCarrotSeed"
+IL_0015: ldstr "EmberwheatSeed"
+IL_0031: ldstr "KnotflaxSeed"
+IL_0039: ldstr "HearthbulbSeed"
+IL_0041: ldstr "SeamleafSeed"
+IL_0049: ldstr "PitchpodSeed"
+IL_0050: ldstr "RoastedHearthbulb"
+IL_0055: ldstr "Repair the local oven to add baking to future consignments."
+IL_005a: ldstr "Oven repaired: baking joins the next consignment."
+IL_005f: ldstr "Oven baking included: an extra meal in each new consignment."
+IL_0064: ldstr "VillageOven"
+IL_006a: newobj System.Void CavesOfOoo.Core.MerchantStockService/ProjectSupply::.ctor(System.String,System.String,System.String,System.String,System.String,System.String)
+IL_006f: newobj System.Void CavesOfOoo.Core.MerchantStockService/Profile::.ctor(System.String,System.String[],System.Int32[],System.String[],System.String,CavesOfOoo.Core.MerchantStockService/ProjectSupply)
+IL_0079: ldstr "ArmorerStock"
+IL_0086: ldstr "LeatherArmor"
+IL_008e: ldstr "LeatherCap"
+IL_0096: ldstr "LeatherBoots"
+IL_00a8: call System.Void System.Runtime.CompilerServices.RuntimeHelpers::InitializeArray(System.Array,System.RuntimeFieldHandle)
+IL_00b5: ldstr "FilterHood"
+IL_00bd: ldstr "ColdwardCloak"
+IL_00c5: ldstr "KilnfeltApron"
+IL_00cd: ldstr "AcidworkerApron"
+IL_00d5: ldstr "GroundwireScreen"
+IL_00dd: newobj System.Void CavesOfOoo.Core.MerchantStockService/Profile::.ctor(System.String,System.String[],System.Int32[],System.String[],System.String,CavesOfOoo.Core.MerchantStockService/ProjectSupply)
+IL_00e7: ldstr "ScribeStock"
+IL_00f4: ldstr "InkVial"
+IL_00fc: ldstr "GrimoireCopy"
+IL_0104: ldstr "Codex04"
+IL_0116: call System.Void System.Runtime.CompilerServices.RuntimeHelpers::InitializeArray(System.Array,System.RuntimeFieldHandle)
+IL_0123: ldstr "WardGleamGrimoire"
+IL_012b: ldstr "WateringGrimoire"
+IL_0133: ldstr "PurifyWaterGrimoire"
+IL_013b: ldstr "MendingRiteGrimoire"
+IL_0141: ldstr "Quillhold"
+IL_0146: ldstr "DryingBreezeGrimoire"
+IL_014b: ldstr "Supply the copy-room lamps to add drying books to future consignments."
+IL_0150: ldstr "Copy-room lamps supplied: drying joins the next consignment."
+IL_0155: ldstr "Copy-room supply included: an extra drying book in each new consignment."
+IL_015b: ldstr "Quillhold.DesksLit"
+IL_0160: newobj System.Void CavesOfOoo.Core.MerchantStockService/ProjectSupply::.ctor(System.String,System.String,System.String,System.String,System.String,System.String)
+IL_0165: newobj System.Void CavesOfOoo.Core.MerchantStockService/Profile::.ctor(System.String,System.String[],System.Int32[],System.String[],System.String,CavesOfOoo.Core.MerchantStockService/ProjectSupply)
+IL_016f: ldstr "ProvisionerStock"
+IL_017c: ldstr "LiquidFlask"
+IL_0184: ldstr "Waterskin"
+IL_018c: ldstr "DriedMeat"
+IL_0194: ldstr "Starapple"
+IL_019c: ldstr "Torch"
+IL_01a4: ldstr "CandyCarrotSeed"
+IL_01ac: ldstr "LampOil"
+IL_01be: call System.Void System.Runtime.CompilerServices.RuntimeHelpers::InitializeArray(System.Array,System.RuntimeFieldHandle)
+IL_01cb: ldstr "Mushroom"
+IL_01d3: ldstr "RawMeat"
+IL_01db: ldstr "EmberwheatSeed"
+IL_01e3: ldstr "WaterTonic"
+IL_01eb: ldstr "CampHearth"
+IL_01f3: ldstr "PoisonGasGrenade"
+IL_01fb: newobj System.Void CavesOfOoo.Core.MerchantStockService/Profile::.ctor(System.String,System.String[],System.Int32[],System.String[],System.String,CavesOfOoo.Core.MerchantStockService/ProjectSupply)
+IL_0205: newobj System.Void System.Runtime.CompilerServices.ConditionalWeakTable`2<CavesOfOoo.Core.Entity,CavesOfOoo.Core.MerchantStockService/Activity>::.ctor()

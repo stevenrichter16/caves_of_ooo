@@ -342,3 +342,10 @@ project, exact remaining lot and water0/2/2. Final affected237/236pass/0fail/
 1Explicit skip/0CS;59newcases. Independent source/gameplay-evidence review found
 0remainingP1/P2. Fixture financing and staged finite-water demonstration do not
 prove normal affordability, discovery or combat balance. See the regional receipt.
+
+
+Current runtime publication203023f315f4b0e3942b2ffd251937e56abb35ac and universal
+Mac artifact/startup delivery are recorded in the
+[delivery receipt](Verification/MachineSystems/MacCandidate203023F31/README.md).
+Editor qualification and packaged startup have distinct limits; controlled
+packaged gameplay/performance and complete-machine gates stay open.

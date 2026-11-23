@@ -1,3 +1,21 @@
+**Current Mac delivery — November23,2026:** runtime203023f315f4b0e3942b2ffd251937e56abb35ac
+is published on main. Universal nondevelopment Mac artifact/startup checks pass:
+/Users/steven/coo-verification/builds/mac-203023f31-20261123/CavesOfOoo.app.
+Build58.084523s364146605bytes/0errors/7warning occurrences (same5unique messages
+as prior73,2duplicates),32031source/32034effective/592external/186app pins;
+83changed0missing3added/exact86overlay/no runtime C# import change. Cecil7calls,
+new profiles/pure condition reader/8payload types and unchanged8saved fields.
+DLLb7f704bbb54281301e459b0582ee09cec5bcf56393e86a19c55d837d7efe8e04.
+Owned26842/window71086actual640x428chooser/world/HUD; native inputfalse/AXfalse,
+no input or activation posted. Controlled packaged play/save/controller/FPS and
+Intel execution remain open. Exact owned player closed;10logicalprefs exact,
+MacSavesabsent/nonsymlink;14previous full186-file app maps+current186 exact,
+84foreign/861selectednormal exact. Mainstopped/rootnull/clean/profileroff/original
+7/index0. Independent artifact review0remainingP1/P2 (read-only). Source/Editor237/236pass/0fail/
+1Explicit/59new and actual project/book/drying/fresh8040&9320 remain accepted.
+See [delivery receipt](Verification/MachineSystems/MacCandidate203023F31/README.md).
+All12 full-machine gates remain open; original full regression FAILED. HourlyACTIVE.
+
 **Current Editor merchant extension — November23,2026:** ProvisionerStock now
 keeps dependable lamp oil and all previously guaranteed basic goods; its original
 optional goods cycle as saved specials. ScribeStock in authored Quillhold keeps
@@ -13,9 +31,7 @@ skill/water0,2,2/purse10/HP172 and exact remaining g3 books. Fixture-funded sale
 read-only scouting, native detours, first ignored Pause cast and source limits
 are disclosed. See [the receipt](Verification/MachineSystems/QuillholdConsignments20261123/README.md).
 All12 complete-machine statuses unchanged/open; original full regression FAILED.
-Current delivered Mac remains73fb59da4 until the next candidate is built and
-verified. Next: publish exact owned source/
-tests/design/continuation, then coherent Mac delivery; afterward qualify a real
+Runtime203023f31 is published; current Mac delivery is recorded above. Next qualify a real
 route/import or useful machine/tool supply project. Do not repeat accepted play.
 Root sole Unity/Git owner/hourlyACTIVE. Preserve all84foreign files,861selected
 normal states, all apps/art/checkpoints, dense inventory and separate armor/dodge/

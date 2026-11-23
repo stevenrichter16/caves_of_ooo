@@ -1,9 +1,9 @@
 # Provisioner supply and Quillhold copy-room consignments
 
 November23,2026. Bounded Editor qualification accepted after independent source and
-gameplay-evidence review0remainingP1/P2. Runtime is a working-tree change
-over73fb59da4 pending source publication.
-Current delivered Mac remains73fb59da4. All twelve complete-machine gates stay open.
+gameplay-evidence review0remainingP1/P2. Runtime203023f315f4b0e3942b2ffd251937e56abb35ac is published.
+Current artifact/startup delivery is recorded in
+[the Mac receipt](../MacCandidate203023F31/README.md). All twelve complete-machine gates stay open.
 
 The existing merchant contract now also supports genuine ProvisionerStock
 keepers and genuine ScribeStock keepers in authored Quillhold only. Provisioners
