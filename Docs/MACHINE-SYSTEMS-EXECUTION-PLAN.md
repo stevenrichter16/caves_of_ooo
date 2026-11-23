@@ -1,3 +1,19 @@
+**Mire field-recovery continuation — November23,2026:** Bounded Editor recovery
+is accepted after independent source/gameplay-evidence review0P1/P2 (read-only). Existing pith body cleanup admits bog-mire;
+one pith removes at most20 from self/adjacent visible nonhostile party, with
+unchanged payment/claims/exact-effect/save behavior. Both readers name mire;
+finite discard, partial penalties, no healing and thin-film/pool limits explained.
+Native RED19new failures+separate readerRED1; final261total/260pass/0fail/
+1Explicit utilityskip/0CS,20newcases. Actual earned7100:272coat/8pith/218HP/
+Agility16; paidwipe7110→245/7/217/16, ordinary movement/waits7440→14/7/184/16,
+finalwipe7450→none/6/184/18; F5/fresh7450 exact. No ordinary acquisition or
+new exposure/AI claim; all12 complete-machine dependency/status gates stay open.
+Current Mac203 predates this slice; next coherent package remains open. Original
+full regression stays FAILED. Main stopped/rootnull/clean;84foreign/861selected
+normal hashes exact. See [the recovery design](MACHINE-MIRE-FIELD-RECOVERY.md)
+and [native receipt](Verification/MachineSystems/MirePithRecovery20261123/README.md).
+HourlyACTIVE; root sole owner; preserve dense inventory/separate stats/all apps.
+
 **Current Mac delivery — November23,2026:** runtime203023f315f4b0e3942b2ffd251937e56abb35ac
 is published on main. Universal nondevelopment Mac artifact/startup checks pass:
 /Users/steven/coo-verification/builds/mac-203023f31-20261123/CavesOfOoo.app.

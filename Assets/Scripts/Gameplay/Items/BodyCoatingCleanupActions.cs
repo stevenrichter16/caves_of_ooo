@@ -8,7 +8,7 @@ using CavesOfOoo.Diagnostics;
 namespace CavesOfOoo.Core
 {
     /// <summary>One carried pith removes up to twenty units of an existing oil,
-    /// pitch or honey body coat. Selection binds the exact effect, not merely
+    /// pitch, honey or bog-mire body coat. Selection binds the exact effect, not merely
     /// its name; weak transient tokens neither change saves nor retain owners.</summary>
     public static class BodyCoatingCleanupActions
     {
@@ -94,7 +94,7 @@ namespace CavesOfOoo.Core
             if (coats.Length != 1) return false;
             coat = coats[0];
             return coat.GetType() == typeof(LiquidCoveredEffect) && coat.Owner == target && coat.Amount > 0 && coat.Duration != 0
-                && (coat.LiquidId == "oil" || coat.LiquidId == "pitch" || coat.LiquidId == "honey");
+                && (coat.LiquidId == "oil" || coat.LiquidId == "pitch" || coat.LiquidId == "honey" || coat.LiquidId == "bog-mire");
         }
         static int Quantity(Entity item) => item.GetPart<StackerPart>()?.StackCount ?? 1;
         static string Escape(string value) => Uri.EscapeDataString(value ?? "");

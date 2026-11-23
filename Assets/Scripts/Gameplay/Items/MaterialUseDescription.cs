@@ -30,6 +30,15 @@ namespace CavesOfOoo.Core
                         + " No liquid touches the ground. Source and receiver quantities show before and after; receiver numbers apply only to this transfer menu.";
                 return true;
             }
+            if (item.BlueprintName == "PrismreedPith")
+            {
+                text = item.GetDisplayName() + "\n\nField cleanup\nSpend one pith to wick up to "
+                    + BodyCoatingCleanupActions.MaximumAmount + " units of oil, pitch, honey or bog mire from yourself or an adjacent, visible, nonhostile party companion."
+                    + " The pith and absorbed liquid are discarded. Any remaining coating keeps its effects until it is gone; other conditions and prior injuries remain."
+                    + "\n\nGround cleanup\nOne pith can wick a temporary thin film from nearby ground. It cannot drain pools or permanent liquid sources; other ground hazards remain."
+                    + "\n\nBrewing\nUse the pith in brewing a charged coating, then throw the bottle to electrify a target.";
+                return true;
+            }
             if (item.BlueprintName == "FrogOil")
             {
                 text = item.GetDisplayName() + "\n\nSpread one gourd underfoot or onto nearby ground to leave grease for eight turns."

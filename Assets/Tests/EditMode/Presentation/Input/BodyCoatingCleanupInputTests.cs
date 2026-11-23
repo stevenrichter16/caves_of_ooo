@@ -22,14 +22,15 @@ namespace CavesOfOoo.Tests
             typeof(InputHandler).GetField("_lastMoveTime",Hidden).SetValue(input,-999f);
             typeof(InputHandler).GetField("_lastWaitTime",Hidden).SetValue(input,-999f); Call(input,"Update");
         }
-        [TestCase("partial")] [TestCase("full")] [TestCase("stale")] [TestCase("after")]
-        public void ActualControllerConfirmationPaysOnlyCommittedBodyCleanup(string condition)
+        [TestCase("partial", "pitch")] [TestCase("full", "pitch")] [TestCase("stale", "pitch")] [TestCase("after", "pitch")]
+        [TestCase("partial", "bog-mire")] [TestCase("full", "bog-mire")] [TestCase("stale", "bog-mire")] [TestCase("after", "bog-mire")]
+        public void ActualControllerConfirmationPaysOnlyCommittedBodyCleanup(string condition, string liquid)
         {
             var inputs = new InputTestFixture(); inputs.Setup();
             try { using(var ui = new HotbarSaveFixture(true,false)) {
                 var pad = InputSystem.AddDevice<Gamepad>(); pad.MakeCurrent();
                 var manager = OverworldZoneManager.CreateDetached(Factory,64,true); manager.SetActiveZone(Zone);
-                var target = Friend(); var coat = Coat(target,"pitch",condition == "full" ? 10 : 35); var pith = Carry("PrismreedPith");
+                var target = Friend(); var coat = Coat(target,liquid,condition == "full" ? 10 : 35); var pith = Carry("PrismreedPith");
                 Clock.RestoreSavedState(17,true,Actor,new List<TurnManager.SavedTurnEntry>{new TurnManager.SavedTurnEntry{Entity=Actor,Energy=TurnManager.ActionThreshold}});
                 ui.BindOld(GameSessionState.Capture("body-cleanup","native-confirmation",manager,Clock,Actor));
                 var inventory=ui.Root.AddComponent<InventoryUI>();inventory.PlayerEntity=Actor;inventory.CurrentZone=Zone;inventory.EntityFactory=Factory;ui.Input.InventoryUI=inventory;
