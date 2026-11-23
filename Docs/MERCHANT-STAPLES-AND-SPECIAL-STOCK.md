@@ -234,5 +234,7 @@ lot, a later consignment adding an extra meal, and that meal's ordinary inventor
 consumption for healing and cold resistance. Fresh loads at4630 and4870 preserved
 the project, quantities, exact current stock, purchased seed and consumed meal.
 The inherited strong/provisioned fixture is not acquisition or economy proof.
-Mac packaging, route projects, other profiles and wider survival/performance
-acceptance remain separate gates. All twelve complete-machine statuses stay open.
+Mac artifact/startup delivery is recorded in the
+[current receipt](Verification/MachineSystems/MacCandidate73FB59DA4/README.md).
+Controlled packaged play, route projects, other profiles and wider survival/
+performance acceptance remain separate gates. All twelve complete-machine statuses stay open.

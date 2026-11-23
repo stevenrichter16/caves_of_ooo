@@ -1,0 +1,49 @@
+{
+  "first": {
+    "process": {
+      "pid": 61866,
+      "exe": "/Users/steven/coo-verification/builds/mac-73fb59da4-20261123/CavesOfOoo.app/Contents/MacOS/caves-of-ooo",
+      "exe_sha256": "9bda27c6ea3a5b15cde7aea5d105221057dd258d35e76535962358f61bbd6fe6",
+      "saves_before": "absent",
+      "purpose": "Boot/render verification; fresh native input preflight required before any input"
+    },
+    "capture": "Standalone helper aborted because AppKit/CG initialization was missing; no render proof from this attempt.",
+    "restoration": {
+      "player_stopped": true,
+      "normal_saves_restored": "absent",
+      "preferences_logically_restored": true,
+      "changed_preference_keys": [
+        "Screenmanager Fullscreen mode",
+        "Screenmanager Resolution Height",
+        "Screenmanager Resolution Use Native",
+        "Screenmanager Resolution Width",
+        "unity.player_session_count",
+        "unity.player_sessionid",
+        "unity_connect.mega_session_id",
+        "unity_connect.session_id"
+      ],
+      "no_byte_exact_plist_claim": true
+    },
+    "freshCheck": {
+      "checkedUTC": "2026-11-23T16:41:47.079384+00:00",
+      "logicalPreferenceKeys": 10,
+      "allValuesEqual": true,
+      "normalSavesAbsent": true,
+      "normalSavesNonSymlink": true,
+      "noByteExactPlistClaim": true
+    }
+  },
+  "retry": {
+    "process": {
+      "pid": 62144,
+      "exe": "/Users/steven/coo-verification/builds/mac-73fb59da4-20261123/CavesOfOoo.app/Contents/MacOS/caves-of-ooo",
+      "exe_sha256": "9bda27c6ea3a5b15cde7aea5d105221057dd258d35e76535962358f61bbd6fe6",
+      "saves_before": "absent",
+      "purpose": "Boot/render verification; fresh native input preflight required before any input"
+    },
+    "capture": "Initial1512x33menubar probe excluded; correct PID/frame-height filtered game window71065is640x428.",
+    "actualImage": "owned-game-window.png",
+    "nativeInputPosted": false,
+    "AppActivationRequested": false
+  }
+}

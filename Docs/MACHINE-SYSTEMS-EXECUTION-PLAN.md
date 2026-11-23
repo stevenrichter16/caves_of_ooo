@@ -23,15 +23,33 @@ changed/escaped goods survive rotation. One1200tick game-day window from actual
 installation, one bounded catch-up, strict>300tick staple top-ups, no wallclock.
 See [merchant contract](MERCHANT-STAPLES-AND-SPECIAL-STOCK.md) and
 [pilot receipt](Verification/MachineSystems/MerchantConsignments20261123/README.md).
-Next deliver a current Mac package without replacing prior apps, then qualify an
-honest route/import or equipment-enabled second project using real existing
-conditions. Those expansions, global unique issuance and other merchant profiles
+Current Mac artifact/startup for73fb59da4 is verified in the
+[delivery receipt](Verification/MachineSystems/MacCandidate73FB59DA4/README.md).
+Controlled packaged gameplay remains open. Next qualify an honest route/import
+or equipment-enabled second project using real existing conditions. Those expansions, global unique issuance and other merchant profiles
 remain proposals. All12 machine statuses remain unchanged/open; original full
 regression remainsFAILED. HourlyACTIVE/root sole Unity/Git owner. Preserve dense
 inventory/readers and the category/sort follow-up, all84foreign changes/normal
 states/apps, cancelled graphics, parked capstan/cultures and deferred Deck.
 
-Current Mac delivery — November23: published well-supply runtimefff96f4c1b6465fae594a1dcb437c5b1e7c6be5b
+Current Mac delivery — November23, merchant pilot73fb59da4:
+/Users/steven/coo-verification/builds/mac-73fb59da4-20261123/CavesOfOoo.app.
+Universal6000.3.4f1/nondev55.315611s364143533bytes/0errors/5sameFFFwarnings.
+32027source/32030effective/592external/186app pins;83changed0missing3added,
+86overlay/no runtimeCSharpchange. Cecil5integrationcalls/8savedfields verified;
+DLL24dad1063682e79e2ffc3f5e124a8f1998f642739ddde00da4dbd92252f2e6fe.
+Owned62144/window71065actual640x428chooser/world/HUD; nativeinputfalse,
+no events/activation posted. Packaged controlledplay/save/controller/perf remain
+open. First capturehelper aborted withoutAppKit; retrymenubar probe excluded;
+correctPID/height-filtered gameframe retained. Bothownedplayers closed normally,
+10logicalprefs exact/Savesabsentnonsymlink,12priorapps+current full186maps exact,
+84foreign/861selectednormal exact. HelperactualCavesOfOoo.LastGameID literal
+corrected for future reuse; branch not exercised by this chooser-only startup.
+Source-only fix leaves both successful restorations valid. Mainstopped/rootnull/
+clean/profileroff/original7/index0. All12full-machine gates remainopen; hourlyACTIVE.
+[Delivery receipt](Verification/MachineSystems/MacCandidate73FB59DA4/README.md).
+
+Prior well-supply Mac delivery — November23: published well-supply runtimefff96f4c1b6465fae594a1dcb437c5b1e7c6be5b
 is packaged at /Users/steven/coo-verification/builds/mac-fff96f4c1-20261123/CavesOfOoo.app.
 Universal6000.3.4f1/nondev53.037878s364128829bytes/0errors/5sameFBEwarnings/0CS.
 32021committed/32024effective/592external/186app pins;83changed0missing3added,

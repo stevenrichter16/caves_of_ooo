@@ -4,8 +4,9 @@ November23,2026. Bounded Editor qualification of FarmerStock and ArmorerStock.
 This adds dependable base goods and persistent limited special lots, plus one
 existing local project that expands future farmer supply. Routes, unique relic
 issuance, other merchant profiles and all twelve complete machines remain open.
-Current Mac packaging is a separate next step; this receipt claims no packaged
-gameplay, controller or performance qualification.
+The [current Mac artifact/startup receipt](../MacCandidate73FB59DA4/README.md)
+is separate; this receipt claims no packaged gameplay, controller or performance
+qualification.
 
 ## Policy and independent source corrections
 

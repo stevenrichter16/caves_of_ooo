@@ -1,0 +1,13 @@
+{
+  "scope": "Evaluate actual Python AST policy expressions from retained helper files; no live preference writes or new native app run",
+  "cases": {
+    "actualKeyAbsentBeforeStillOwned": true,
+    "bareWrongKeyRefused": true,
+    "independentChangeRefused": true,
+    "unrelatedAddedKeyRefused": true,
+    "oldUsedHelperWouldRefuseActualKey": true
+  },
+  "realKey": "CavesOfOoo.LastGameID",
+  "usedHelperRetained": "boot-check-retry-used.py",
+  "actualRunsAddedNoLastGameID": true
+}
