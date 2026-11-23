@@ -10,6 +10,25 @@
 
 ## Active handback continuation — November 21, 2026
 
+Current Mac candidate — November22/23: published UI sourcefbe0742f235ba5c92237cee710571ff0ee1d1a7b
+is packaged at /Users/steven/coo-verification/builds/mac-fbe0742f2-20261122/CavesOfOoo.app.
+Universal6000.3.4f1/nondev55.993293s364128829bytes/0errors/5samea9warnings.
+32019committed/32022effective/592external/186app pins;83changed0missing3added,
+exact86overlay and no runtimeCSimportchange. NewDLLeb6f1655ac27aaf481ad8169107861908e0c198c3c826fda996c1478a7688da3
+has section/snapshot APIs and AV/DV labels absentina9. Actual owned17768/window70955
+chooser/world/HUD2676->2677; fresh nativeinputaccessfalse and NOinputposted.
+Packaged Inventory/actions/save/controller/performance/full delivery remainopen;
+Editor27screens/native471/savefresh qualify UI separately. PID/exeguardedclose,
+10logicalprefsequal/Savesabsentnonsymlink; all10priorapps186file inventories/hashes
+exact, currentapp186still exactafterboot. Fresh84foreign861selectednormal match;
+mainstopped/rootnull/clean/profileroff/7builtins/custom0/selected0/noownedview.
+Allapps/projects/exports retained. See [Mac receipt](Verification/MachineSystems/MacCandidateFBE0742F2/README.md).
+All12 complete-machine/full-delivery gates remainopen; last FULL deliveryM3c.
+Next preserve accepted UI and resume useful shared machine/tool loops plus the
+explicitly unresolved old well/spill safety expectation, without repeating these
+accepted checks/builds or reviving cancelled graphics/parked capstan-cultures/Deck.
+HourlyACTIVE, no ownedruntimeWIP. This is a delivery records update; runtime remainsfbe.
+
 Current inventory description increment — November22/23: implemented and bounded
 Editor-qualified. Weapons/armor retain typed logical sections, contrasting
 headings, complete effects/comparison/flavor and cached overviews. Armor value
@@ -43,8 +62,8 @@ The user's explicit instruction to start before the full run finished superseded
 older freeze/after-full-run text. Root is sole Unity/Git owner; clone2 was never
 resynced/edited. Fresh84foreign/861selectednormal hashes match; main stopped,
 rootnull/clean/profileroff/7builtins/custom0/selected0/noownedview. No balance,
-save fields or authored hybrid/recipe added. Current Mac a9 predates UI; next
-coherent delivery is a current Mac candidate preserving all previous apps.
+save fields or authored hybrid/recipe added. Current Mac fbe packages this UI; its bounded receipt is above. Packaged UI
+interaction remains open; all previous apps are retained.
 All12 complete-machine/full-delivery gates stay open, last full deliveryM3c.
 Graphics cancelled, capstan/cultures parked, Deck deferred; hourlyACTIVE. Further
 machine expansion follows this UI completion and outstanding regression policy

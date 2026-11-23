@@ -102,7 +102,8 @@ Main finished stopped/rootnull/clean scene/profiler off, original7 built-in
 Game-view entries/custom0/selected0/no owned view. Fresh84 foreign baseline
 files and861 selected normal-state hashes match (Unity analytics/TestResults
 excluded). This is not a fresh whole-directory or all-preferences byte claim.
-Every existing app/project/export and art source is retained. Current Mac a9
-predates this UI; no packaged UI interaction acceptance is claimed here.
+Every existing app/project/export and art source is retained. The current
+[Mac fbe candidate](../MacCandidateFBE0742F2/README.md) packages this UI;
+packaged UI interaction acceptance remains open.
 All12 complete-machine/full-delivery gates remain open; M3c remains last full
 delivery. Graphics cancelled, capstan/cultures parked, Deck deferred.
