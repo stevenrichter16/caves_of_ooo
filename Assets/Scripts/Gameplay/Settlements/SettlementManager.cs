@@ -84,6 +84,15 @@ namespace CavesOfOoo.Core
             return site != null && site.SiteId == siteId;
         }
 
+        /// <summary>Read already saved local conditions without creating or
+        /// backfilling a settlement. Content readers must not initialize supply.</summary>
+        public bool HasExistingCondition(string settlementId, string condition)
+        {
+            return !string.IsNullOrEmpty(settlementId) && !string.IsNullOrEmpty(condition)
+                && _settlements.TryGetValue(settlementId, out var state)
+                && state != null && state.SettlementId == settlementId && state.HasCondition(condition);
+        }
+
         public bool AdvanceSettlement(string settlementId, int currentTurn)
         {
             PointOfInterest poi = ResolvePoi(settlementId);

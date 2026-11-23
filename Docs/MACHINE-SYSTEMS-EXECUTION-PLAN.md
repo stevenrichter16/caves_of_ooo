@@ -1,3 +1,28 @@
+**Current Editor merchant extension — November23,2026:** ProvisionerStock now
+keeps dependable lamp oil and all previously guaranteed basic goods; its original
+optional goods cycle as saved specials. ScribeStock in authored Quillhold keeps
+ink, blank copies and canonical Codex04, with utility manuscripts and a third
+DryingBreeze book in future lots after the existing finite copy-room oil project.
+No new saved Part/field or ordinary stacking/grouping permission. Final targeted
+237total/236pass/0fail/1Explicit utilityskip/0CS;59newcases. Independent source
+and gameplay-evidence review0remainingP1/P2 (not a second native operator). Actual purchased
+3oil for49, supplied lamps, retained g2/install8030 through fresh8040, waited one
+game-day window, bought bonus25644 for107 and read it, then used its actual world
+ability to remove finite-water Wet at9270/9320. Fresh9320 retained project/book/
+skill/water0,2,2/purse10/HP172 and exact remaining g3 books. Fixture-funded sales,
+read-only scouting, native detours, first ignored Pause cast and source limits
+are disclosed. See [the receipt](Verification/MachineSystems/QuillholdConsignments20261123/README.md).
+All12 complete-machine statuses unchanged/open; original full regression FAILED.
+Current delivered Mac remains73fb59da4 until the next candidate is built and
+verified. Next: publish exact owned source/
+tests/design/continuation, then coherent Mac delivery; afterward qualify a real
+route/import or useful machine/tool supply project. Do not repeat accepted play.
+Root sole Unity/Git owner/hourlyACTIVE. Preserve all84foreign files,861selected
+normal states, all apps/art/checkpoints, dense inventory and separate armor/dodge/
+hit/penetration lines; category/sort remains a follow-up. Graphics cancelled,
+capstan/cultures parked, Deck deferred. Mire-washing is separate recovery debt,
+not a claim about Drying Breeze. These lines supersede older continuations.
+
 **Whole-game architectural direction — user, November16,2026 (America/Chicago):** Follow Docs/SYSTEMS-DESIGN-PRINCIPLES.md. Compose machines, NPCs and objects through Parts, stable capabilities and shared events; attach future effects/behaviors to instances/components without per-scenario scripting. Apply common-sense interactions wherever supported, with finite accounting and persistence. Continue the active reclamation/processing implementation.
 
 **Current user priority —2026-11-17 03:20UTC:** focus reclamation forge and regional raw-material processing into components. Capstan/culture qualification is parked. Follow Docs/MACHINE-RECLAMATION-PROCESSING.md; this supersedes older capstan NEXT text below.

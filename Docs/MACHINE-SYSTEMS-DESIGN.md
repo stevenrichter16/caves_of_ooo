@@ -1,3 +1,28 @@
+**Current Editor merchant extension — November23,2026:** ProvisionerStock now
+keeps dependable lamp oil and all previously guaranteed basic goods; its original
+optional goods cycle as saved specials. ScribeStock in authored Quillhold keeps
+ink, blank copies and canonical Codex04, with utility manuscripts and a third
+DryingBreeze book in future lots after the existing finite copy-room oil project.
+No new saved Part/field or ordinary stacking/grouping permission. Final targeted
+237total/236pass/0fail/1Explicit utilityskip/0CS;59newcases. Independent source
+and gameplay-evidence review0remainingP1/P2 (not a second native operator). Actual purchased
+3oil for49, supplied lamps, retained g2/install8030 through fresh8040, waited one
+game-day window, bought bonus25644 for107 and read it, then used its actual world
+ability to remove finite-water Wet at9270/9320. Fresh9320 retained project/book/
+skill/water0,2,2/purse10/HP172 and exact remaining g3 books. Fixture-funded sales,
+read-only scouting, native detours, first ignored Pause cast and source limits
+are disclosed. See [the receipt](Verification/MachineSystems/QuillholdConsignments20261123/README.md).
+All12 complete-machine statuses unchanged/open; original full regression FAILED.
+Current delivered Mac remains73fb59da4 until the next candidate is built and
+verified. Next: publish exact owned source/
+tests/design/continuation, then coherent Mac delivery; afterward qualify a real
+route/import or useful machine/tool supply project. Do not repeat accepted play.
+Root sole Unity/Git owner/hourlyACTIVE. Preserve all84foreign files,861selected
+normal states, all apps/art/checkpoints, dense inventory and separate armor/dodge/
+hit/penetration lines; category/sort remains a follow-up. Graphics cancelled,
+capstan/cultures parked, Deck deferred. Mire-washing is separate recovery debt,
+not a claim about Drying Breeze. These lines supersede older continuations.
+
 Merchant pilot — November23: FarmerStock and ArmorerStock now retain dependable
 staples and saved special consignments. Native234 total/233pass/0fail/1Explicit
 utilityskip/0CS;64 new feature/countercase executions. Independent source review
@@ -657,6 +682,14 @@ The twelve machines are not all ready because individual foundations exist. Cont
 The user prioritizes reclamation of damaged finds and regional raw materials into useful component inputs. M3a accepts an explicit damaged-tool manifest, mutually exclusive dismantle/reclaim choices, and cold dressing of recovered iron into an existing piercing point. Retained quotes, Part-owned policies and shared transactions have native and actual acceptance; both routes feed ordinary equipped weapons used outside the service, with travel/fresh reload. Carrying/selling intact is a demonstrated alternative. Regional raw-material processing is a separate remaining qualification: existing pack timber/cord recipes are retained, and a recovered manufactured blank does not establish ore refining. Full heat/fuel, provenance, useful outputs, waste, economy and actual-play gates must be satisfied by their own scoped processes.
 
 ## Dependency matrix for the twelve machines
+
+November23 supply extension: dependable provisioner LampOil and the existing
+Quillhold copy-room project now form a verified purchase→finite handover→saved
+local condition→later manuscript→learned world ability loop. Cold straining,
+ordinary lighting and crafting remain alternatives; no processing yields,
+shipping-route simulation or complete-machine status changes. The 12 rows below
+retain their individual prerequisites and open acceptance gates. See the
+[regional merchant receipt](Verification/MachineSystems/QuillholdConsignments20261123/README.md).
 
 November23 merchant dependency: the bounded staple/consignment pilot connects
 an existing stable VillageOven project to future farmer baking, with actual meal

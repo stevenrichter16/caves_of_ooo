@@ -1,0 +1,390 @@
+[
+  {
+    "run": "quillhold_consignments_red_20261123a",
+    ".log": {
+      "sha256": "83f98bb332e7fe871ce928274ffa23997fff7556a3bfa563c87480d9cc2d29fa",
+      "bytes": 251463
+    },
+    "qualification": "No test result: compilation failure, excluded."
+  },
+  {
+    "run": "quillhold_consignments_red_20261123b",
+    ".log": {
+      "sha256": "873699042eeeba382795930a5e806ecbdd9ed0ebfb5b977d3f4e64b32b806048",
+      "bytes": 84039
+    },
+    ".xml": {
+      "sha256": "8d8cc2e280a0eb3a5fccd7c77f0bfc852388748d01e4298a807b03604f64b574",
+      "bytes": 33746
+    },
+    "result": {
+      "total": "24",
+      "passed": "7",
+      "failed": "17",
+      "skipped": "0",
+      "inconclusive": "0"
+    },
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.BothProjectMessagesFitTheReservedStatusLine",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.ConditionReadsNeitherCreateNorBackfillSettlements",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.CurrentBonusStockRoundTripsByExactReferenceWithoutReroll",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.EveryUtilityChoiceWorksAcrossTheCompleteCycle",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.ExistingLitInkTopupRemainsThreeNotThreeMore",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.FailedBonusPreparationKeepsOldLotAndDoesNotConsumePlayerOil",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.ModifiedGoodsStayRealButDoNotHideBaseSupplyDeficits(\"ink\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.ModifiedGoodsStayRealButDoNotHideBaseSupplyDeficits(\"document\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.ModifiedGoodsStayRealButDoNotHideBaseSupplyDeficits(\"unknown-ink\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.OldScribeSaveLoadsWithoutAnyRestock",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.OnlyOilSuppliedLampsExpandTheNextLot",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.OrdinaryGroupingStillRefusesInkAndDocumentExtraPayloads",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.OtherConditionsDoNotImplySuppliedLamps(\"Quillhold.ReportCollated\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.OtherConditionsDoNotImplySuppliedLamps(\"ImprovedOven\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.OtherConditionsDoNotImplySuppliedLamps(\"Quillhold.LampsLit\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.QuillholdHasInkCopiesCanonicalReadingAndTwoSpecials",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.RemoteSuppliedLampsCannotExpandLocalOffers",
+        "message": "  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  {
+    "run": "quillhold_consignments_green_20261123a",
+    ".log": {
+      "sha256": "85c2d3f2c7992ce2b7ef10fb8603a0edab194e9ab58e70bb283085700f086bca",
+      "bytes": 90998
+    },
+    ".xml": {
+      "sha256": "d659557f9c77de6e4aec4ec5024fc58abea14d56d2cf8370de406b0ad4f5ee00",
+      "bytes": 71538
+    },
+    "result": {
+      "total": "88",
+      "passed": "88",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0"
+    },
+    "failures": []
+  },
+  {
+    "run": "quillhold_consignments_adjacent_green_20261123a",
+    ".log": {
+      "sha256": "d1076a285bff1b1617dfbe788f57a995db55ef51e3aa870cc40d1357ce0b8eef",
+      "bytes": 101682
+    },
+    ".xml": {
+      "sha256": "7bfa4615b60958347815867e80956622d569242c48bdf6bf62b8f59a9a9f8b3b",
+      "bytes": 150524
+    },
+    "result": {
+      "total": "202",
+      "passed": "201",
+      "failed": "0",
+      "skipped": "1",
+      "inconclusive": "0"
+    },
+    "failures": []
+  },
+  {
+    "run": "quillhold_consignments_review_red_20261123a",
+    ".log": {
+      "sha256": "4d8d990a4f0acdd1d84da7c97e80d09cc7f27c05ca394daf134c26059fe1b127",
+      "bytes": 85260
+    },
+    ".xml": {
+      "sha256": "4d2c50f1139cc745ec95341b28fd54579ea42ac4c9320a3d162d3acbdbd6e7ab",
+      "bytes": 29203
+    },
+    "result": {
+      "total": "30",
+      "passed": "26",
+      "failed": "4",
+      "skipped": "0",
+      "inconclusive": "0"
+    },
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.MalformedFreshSupplyCannotBePublished(\"empty-ink\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.MalformedFreshSupplyCannotBePublished(\"negative-ink\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.MalformedFreshSupplyCannotBePublished(\"missing-document\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.QuillholdConsignmentTests.MalformedFreshSupplyCannotBePublished(\"wrong-document\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      }
+    ]
+  },
+  {
+    "run": "quillhold_consignments_review_green_20261123a",
+    ".log": {
+      "sha256": "46da05ffeca133d1dcaccf73911cb3708c75e8e8135915ab3ef63ac4dbfd2342",
+      "bytes": 123482
+    },
+    ".xml": {
+      "sha256": "7533d2349e9308e6a94a1dcdb787f57373e6a9a087c44e835ff96fcd36e828da",
+      "bytes": 155239
+    },
+    "result": {
+      "total": "208",
+      "passed": "207",
+      "failed": "0",
+      "skipped": "1",
+      "inconclusive": "0"
+    },
+    "failures": []
+  },
+  {
+    "run": "provisioner_consignments_red_20261123a",
+    ".log": {
+      "sha256": "15a905a7e0386d3c2a9088a3b159ba780e6d8bd75d4fe2659bbf5d6f7ccc1e86",
+      "bytes": 245220
+    },
+    "qualification": "No test result: compilation failure, excluded."
+  },
+  {
+    "run": "provisioner_consignments_red_20261123b",
+    ".log": {
+      "sha256": "0701625026d3934146c13b25e5a859262af4bb441e456e9cad38f638d0529870",
+      "bytes": 86611
+    },
+    ".xml": {
+      "sha256": "332a6f87a22159b69de202d881f8023d74ef19b18578f87f57117e67c3537955",
+      "bytes": 43256
+    },
+    "result": {
+      "total": "27",
+      "passed": "2",
+      "failed": "25",
+      "skipped": "0",
+      "inconclusive": "0"
+    },
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.AlteredResidentGoodsSurviveAndDoNotHideAUsableSupplyDeficit(\"oil\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.AlteredResidentGoodsSurviveAndDoNotHideAUsableSupplyDeficit(\"torch\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.AlteredResidentGoodsSurviveAndDoNotHideAUsableSupplyDeficit(\"skin\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.BuyingAndResellingAHearthPermanentlyReleasesWithdrawalMembership",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.ChangedHearthConsignmentsArePreservedDuringRotation(\"name\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.ChangedHearthConsignmentsArePreservedDuringRotation(\"set-tick\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.ChangedHearthConsignmentsArePreservedDuringRotation(\"fuel\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.ChangedHearthConsignmentsArePreservedDuringRotation(\"heat\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.EveryOriginalOptionalGoodAppearsInTheSixDayCycle",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.EveryPreviouslyGuaranteedLineAndUsefulOilSupplyRemainsAvailable(\"LiquidFlask\",1)",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.EveryPreviouslyGuaranteedLineAndUsefulOilSupplyRemainsAvailable(\"Waterskin\",1)",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.EveryPreviouslyGuaranteedLineAndUsefulOilSupplyRemainsAvailable(\"DriedMeat\",2)",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.EveryPreviouslyGuaranteedLineAndUsefulOilSupplyRemainsAvailable(\"Starapple\",1)",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.EveryPreviouslyGuaranteedLineAndUsefulOilSupplyRemainsAvailable(\"Torch\",1)",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.EveryPreviouslyGuaranteedLineAndUsefulOilSupplyRemainsAvailable(\"CandyCarrotSeed\",1)",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.EveryPreviouslyGuaranteedLineAndUsefulOilSupplyRemainsAvailable(\"LampOil\",3)",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.ExistingOilIsCountedAndMergedWithoutAnAdditiveGrant",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.GrenadeSightPayloadChangesPreventRetirement(\"cloud\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.GrenadeSightPayloadChangesPreventRetirement(\"turns\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.MalformedFreshGoodsCannotEstablishTheSupplyBaseline(\"oil\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.MalformedFreshGoodsCannotEstablishTheSupplyBaseline(\"flicker\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.MalformedFreshGoodsCannotEstablishTheSupplyBaseline(\"hearth-fuel\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.MalformedFreshGoodsCannotEstablishTheSupplyBaseline(\"hearth-install\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.OilPurchasePaysForThreeRealUnitsAndOnlyDeficitsReturnAfterTheBoundary",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.OrdinaryGroupingIsNotExpandedByNewMerchantPayloads",
+        "message": "  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  {
+    "run": "provisioner_quillhold_green_20261123a",
+    ".log": {
+      "sha256": "3f2d1d1d8421fe086ab0e9e61d10b4d5254d4fcec3640e456b5f5bee1af6b0ae",
+      "bytes": 127177
+    },
+    ".xml": {
+      "sha256": "a9becd5ed8fcc86ca7f8e43c16054fd9f8ae194242729eb50b7d75343df5b147",
+      "bytes": 179625
+    },
+    "result": {
+      "total": "235",
+      "passed": "233",
+      "failed": "1",
+      "skipped": "1",
+      "inconclusive": "0"
+    },
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.AlteredResidentGoodsSurviveAndDoNotHideAUsableSupplyDeficit(\"skin\")",
+        "message": "  Expected: 2\n  But was:  1\n"
+      }
+    ]
+  },
+  {
+    "run": "provisioner_hearth_review_red_20261123a",
+    ".log": {
+      "sha256": "0dc93c655203d8e1e308885d14d01e00bb8a6875ee584c82ed3ad7f9a4b97d43",
+      "bytes": 85380
+    },
+    ".xml": {
+      "sha256": "41f10d6a7493238c49f5441766a44b4b58e616384425902226dd44b7068ab25e",
+      "bytes": 9464
+    },
+    "result": {
+      "total": "6",
+      "passed": "4",
+      "failed": "2",
+      "skipped": "0",
+      "inconclusive": "0"
+    },
+    "failures": [
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.MalformedFreshGoodsCannotEstablishTheSupplyBaseline(\"hearth-no-glow\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.ProvisionerConsignmentTests.MalformedFreshGoodsCannotEstablishTheSupplyBaseline(\"hearth-no-debit\")",
+        "message": "  Expected: False\n  But was:  True\n"
+      }
+    ]
+  },
+  {
+    "run": "provisioner_quillhold_review_green_20261123a",
+    ".log": {
+      "sha256": "71ac760f2ed9b4456559fedb04f4b3a18d93744021e91dc887779ff05f0dffed",
+      "bytes": 128409
+    },
+    ".xml": {
+      "sha256": "c833e9fb9c91a6291efbe84cad99b03497c93f7603c223cdb7906c9aa894bf42",
+      "bytes": 180438
+    },
+    "result": {
+      "total": "237",
+      "passed": "236",
+      "failed": "0",
+      "skipped": "1",
+      "inconclusive": "0"
+    },
+    "failures": []
+  }
+]

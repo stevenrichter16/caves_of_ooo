@@ -6,24 +6,45 @@ using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
-    /// <summary>Two opt-in catalogues composed from existing goods. This is abstract
+    /// <summary>Opt-in catalogues composed from existing goods. This is abstract
     /// merchant supply, not unloaded NPC production. All updates use game ticks.</summary>
     public static class MerchantStockService
     {
         sealed class Profile
         {
-            internal readonly string Id;
+            internal readonly string Id, Place;
             internal readonly string[] Staples, Choices;
             internal readonly int[] Floors;
-            internal Profile(string id, string[] staples, int[] floors, string[] choices)
-            { Id = id; Staples = staples; Floors = floors; Choices = choices; }
+            internal readonly ProjectSupply Project;
+            internal Profile(string id, string[] staples, int[] floors, string[] choices, string place = null, ProjectSupply project = null)
+            { Id = id; Staples = staples; Floors = floors; Choices = choices; Place = place; Project = project; }
+        }
+        sealed class ProjectSupply
+        {
+            internal readonly string Item, Site, Condition, Unmet, Ready, Included;
+            internal ProjectSupply(string item, string unmet, string ready, string included, string site = null, string condition = null)
+            { Item = item; Unmet = unmet; Ready = ready; Included = included; Site = site; Condition = condition; }
         }
         static readonly Profile Farmer = new Profile("FarmerStock",
             new[] { "CandyCarrotSeed", "EmberwheatSeed" }, new[] { 3, 2 },
-            new[] { "KnotflaxSeed", "HearthbulbSeed", "SeamleafSeed", "PitchpodSeed" });
+            new[] { "KnotflaxSeed", "HearthbulbSeed", "SeamleafSeed", "PitchpodSeed" }, project: new ProjectSupply("RoastedHearthbulb",
+                "Repair the local oven to add baking to future consignments.",
+                "Oven repaired: baking joins the next consignment.",
+                "Oven baking included: an extra meal in each new consignment.", site: SettlementSiteDefinitions.VillageOvenSiteId));
         static readonly Profile Armorer = new Profile("ArmorerStock",
             new[] { "LeatherArmor", "LeatherCap", "LeatherBoots" }, new[] { 1, 1, 1 },
             new[] { "FilterHood", "ColdwardCloak", "KilnfeltApron", "AcidworkerApron", "GroundwireScreen" });
+        static readonly Profile Scribe = new Profile("ScribeStock",
+            new[] { "InkVial", "GrimoireCopy", "Codex04" }, new[] { 1, 1, 1 },
+            new[] { "WardGleamGrimoire", "WateringGrimoire", "PurifyWaterGrimoire", "MendingRiteGrimoire" }, "Quillhold",
+            new ProjectSupply("DryingBreezeGrimoire",
+                "Supply the copy-room lamps to add drying books to future consignments.",
+                "Copy-room lamps supplied: drying joins the next consignment.",
+                "Copy-room supply included: an extra drying book in each new consignment.", condition: "Quillhold.DesksLit"));
+        static readonly Profile Provisioner = new Profile("ProvisionerStock",
+            new[] { "LiquidFlask", "Waterskin", "DriedMeat", "Starapple", "Torch", "CandyCarrotSeed", "LampOil" },
+            new[] { 1, 1, 2, 1, 1, 1, 3 },
+            new[] { "Mushroom", "RawMeat", "EmberwheatSeed", "WaterTonic", "CampHearth", "PoisonGasGrenade" });
         sealed class Activity
         {
             internal int Trades, Views;
@@ -44,7 +65,10 @@ namespace CavesOfOoo.Core
             var trader = merchant?.GetPart<TraderPart>();
             if (merchant == null || trader?.ParentEntity != merchant || merchant.Parts.Count(p => p is TraderPart) != 1
                 || merchant.GetProperty(TraderRestockSystem.ShopStockTableProp) != trader.StockTable) return null;
-            return trader.StockTable == Farmer.Id ? Farmer : trader.StockTable == Armorer.Id ? Armorer : null;
+            var profile = trader.StockTable == Farmer.Id ? Farmer : trader.StockTable == Armorer.Id ? Armorer
+                : trader.StockTable == Scribe.Id ? Scribe : trader.StockTable == Provisioner.Id ? Provisioner : null;
+            return profile != null && (profile.Place == null || PlaceSiteCatalog.PlaceAt(merchant.SpatialZone?.ZoneID) == profile.Place)
+                ? profile : null;
         }
         internal static bool HasProfile(Entity merchant) => ProfileFor(merchant) != null;
         static bool Valid(Entity merchant, Zone zone, Profile profile)
@@ -121,11 +145,13 @@ namespace CavesOfOoo.Core
                 int at = Math.Min(index, members.Count); members.Insert(at, item); keys.Insert(at, key);
             });
         }
-        static bool OvenBonus(Profile profile, Zone zone)
+        static bool ProjectBonus(Profile profile, Zone zone)
         {
-            if (profile != Farmer || zone == null || SettlementManager.Current == null
-                || !SettlementManager.Current.TryGetExistingSite(zone.ZoneID, SettlementSiteDefinitions.VillageOvenSiteId, out var oven)) return false;
-            return oven.Stage == RepairStage.StableRepair || oven.Stage == RepairStage.ImprovedWithCaretaker;
+            var project = profile.Project; var manager = SettlementManager.Current;
+            if (project == null || zone == null || manager == null) return false;
+            if (project.Condition != null) return manager.HasExistingCondition(zone.ZoneID, project.Condition);
+            return project.Site != null && manager.TryGetExistingSite(zone.ZoneID, project.Site, out var site)
+                && (site.Stage == RepairStage.StableRepair || site.Stage == RepairStage.ImprovedWithCaretaker);
         }
         static uint StableHash(string value)
         { uint h = 2166136261; foreach (char c in value) { h = unchecked((h ^ c) * 16777619); } return h; }
@@ -133,7 +159,7 @@ namespace CavesOfOoo.Core
         {
             int start = (int)((StableHash(merchant.ID + ":" + profile.Id) + (ulong)generation) % (ulong)profile.Choices.Length);
             var result = new List<string> { profile.Choices[start], profile.Choices[(start + 1) % profile.Choices.Length] };
-            if (bonus) result.Add("RoastedHearthbulb"); return result.ToArray();
+            if (bonus) result.Add(profile.Project.Item); return result.ToArray();
         }
         static long UsableUnits(Entity merchant, string blueprint, string key)
         {
@@ -141,6 +167,46 @@ namespace CavesOfOoo.Core
             foreach (var item in merchant.GetPart<InventoryPart>().Objects)
                 if (item?.BlueprintName == blueprint && key != null && Key(merchant, item) == key) count += BarterDeal.Units(item);
             return count;
+        }
+        // Fresh supply must retain the catalogue's intended use/content. A
+        // post-creation callback must not redefine the baseline sample itself.
+        // Resident altered goods remain intact and are compared by their key.
+        static bool ValidFreshPayload(Entity item)
+        {
+            if (item.BlueprintName == "InkVial")
+            {
+                var ink = item.GetPart<InkVialPart>();
+                return ink?.GetType() == typeof(InkVialPart) && ink.InkAmount == 25;
+            }
+            if (item.BlueprintName == "Codex04")
+            {
+                var document = item.GetPart<ReadableDocumentPart>();
+                return document?.GetType() == typeof(ReadableDocumentPart) && document.DocumentId == "codex-04";
+            }
+            if (item.BlueprintName == "LampOil")
+            {
+                var reagent = item.GetPart<ReagentPart>();
+                return reagent?.GetType() == typeof(ReagentPart) && reagent.PropertiesRaw == "combustible:3, viscous:1"
+                    && reagent.FlavorText == "Slow, greasy, eager to burn. (combustible, viscous)";
+            }
+            if (item.BlueprintName == "CampHearth")
+            {
+                var kit = item.GetPart<PackableFixturePart>(); var fuel = item.GetPart<FuelPart>();
+                var heat = item.GetPart<ThermalPart>(); var light = item.GetPart<LightSourcePart>();
+                var fire = item.GetPart<CampfirePart>();
+                return kit?.Kind == CampKinds.Hearth && kit.SetTick == -1 && kit.CampName == ""
+                    && !item.HasPart<InstallablePart>() && fuel?.FuelMass == 0 && fuel.MaxFuel == 30
+                    && fuel.BurnRate == 0.25f && item.HasPart<HearthGlowPart>() && item.HasPart<HearthRestPart>()
+                    && heat?.Temperature == 25 && light != null && !light.Enabled
+                    && fire != null && fire.FiniteCooking && !fire.AllowRest;
+            }
+            if (item.BlueprintName == "PoisonGasGrenade")
+            {
+                var gas = item.GetPart<GasGrenadePart>();
+                return gas?.GetType() == typeof(GasGrenadePart) && gas.GasId == "poison-vapor" && gas.Density == 20
+                    && gas.Level == 1 && gas.SightCloud == "" && gas.SightCloudTurns == 0;
+            }
+            return true;
         }
         static bool AddStaple(InventoryPart pack, Entity item, string key)
         {
@@ -185,7 +251,7 @@ namespace CavesOfOoo.Core
                     if (!factory.Blueprints.ContainsKey(bp)) throw new InvalidOperationException("Missing consignment good.");
                     var item = factory.CreateEntity(bp);
                     var physics = item?.GetPart<PhysicsPart>();
-                    if (item == null || item.BlueprintName != bp || string.IsNullOrEmpty(item.ID)
+                    if (item == null || item.BlueprintName != bp || !ValidFreshPayload(item) || string.IsNullOrEmpty(item.ID)
                         || item.ID == merchant.ID || pack.Objects.Concat(stagedPack.Objects).Any(i => i?.ID == item.ID)
                         || zone.GetReadOnlyEntities().Any(i => i?.ID == item.ID)
                         || BarterDeal.Units(item) != 1 || item.SpatialZone != null || physics?.ParentEntity != item
@@ -209,7 +275,7 @@ namespace CavesOfOoo.Core
                         productIds.Add(sample, sample.ID); suppliedUnits[n] = missing;
                     }
                 int generation = state == null ? 0 : state.Generation + (specialDue ? 1 : 0);
-                bool bonus = specialDue && OvenBonus(profile, zone);
+                bool bonus = specialDue && ProjectBonus(profile, zone);
                 string[] selected = specialDue ? Selection(profile, merchant, generation, bonus) : null;
                 if (specialDue)
                     foreach (string bp in selected)
@@ -222,7 +288,7 @@ namespace CavesOfOoo.Core
                 if (!Valid(merchant, zone, profile) || TraderRestockSystem.Factory != factory
                     || merchant.GetPart<InventoryPart>() != pack || merchant.GetPart<MerchantStockPart>() != state
                     || activity.Views > 0 || activity.Trades > 0 || HasOffer(activity)
-                    || specialDue && OvenBonus(profile, zone) != bonus
+                    || specialDue && ProjectBonus(profile, zone) != bonus
                     || staplesDue && Enumerable.Range(0, profile.Staples.Length).Any(n => UsableUnits(merchant, profile.Staples[n], stapleKeys[n]) != heldUnits[n])
                     || products.Any(i => i.ID != productIds[i] || BarterDeal.Units(i) != productCounts[i] || Key(staging, i) != productKeys[i])
                     || expected != null && !expected.Matches(state)) return false;
@@ -264,7 +330,7 @@ namespace CavesOfOoo.Core
                 transaction.BeforeCommit(() => Valid(merchant, zone, profile) && TraderRestockSystem.Factory == factory
                     && merchant.GetPart<InventoryPart>() == pack && merchant.GetPart<MerchantStockPart>() == installed
                     && activity.Views == 0 && activity.Trades == 0 && !HasOffer(activity)
-                    && (!specialDue || OvenBonus(profile, zone) == bonus)
+                    && (!specialDue || ProjectBonus(profile, zone) == bonus)
                     && newSpecials.All(i => pack.Objects.Contains(i) && i.ID == productIds[i] && BarterDeal.Units(i) == productCounts[i]
                         && productKeys[i] != null && Key(merchant, i) == productKeys[i])
                     && (!staplesDue || Enumerable.Range(0, profile.Staples.Length).All(n =>
@@ -309,10 +375,10 @@ namespace CavesOfOoo.Core
         public static string ProjectBenefit(Entity merchant)
         {
             var state = merchant?.GetPart<MerchantStockPart>();
-            if (state?.ProfileId != Farmer.Id) return "";
-            if (state.BonusApplied) return "Oven baking included: an extra meal in each new consignment.";
-            return OvenBonus(Farmer, merchant.SpatialZone) ? "Oven repaired: baking joins the next consignment."
-                : "Repair the local oven to add baking to future consignments.";
+            var profile = ProfileFor(merchant); var project = profile?.Project;
+            if (state?.ProfileId != profile?.Id || project == null) return "";
+            if (state.BonusApplied) return project.Included;
+            return ProjectBonus(profile, merchant.SpatialZone) ? project.Ready : project.Unmet;
         }
     }
 }

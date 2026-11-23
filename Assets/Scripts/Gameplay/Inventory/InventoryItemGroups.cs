@@ -46,6 +46,14 @@ namespace CavesOfOoo.Core
         };
         static readonly Dictionary<Type, FieldInfo[]> Fields = Known.ToDictionary(t => t,
             t => t.GetFields(BindingFlags.Public | BindingFlags.Instance).OrderBy(f => f.Name, StringComparer.Ordinal).ToArray());
+        // Exact merchant-only payloads: no grouping/stacking permission. Reader
+        // properties, parsed reagent caches and flicker methods are never invoked.
+        static readonly Dictionary<Type, FieldInfo[]> MerchantFields = new[]
+        {
+            typeof(ReagentPart), typeof(LightSourceFlickerPart), typeof(CookablePart), typeof(CampfirePart),
+            typeof(HearthGlowPart), typeof(HearthRestPart), typeof(PackableFixturePart), typeof(GasGrenadePart)
+        }.ToDictionary(t => t, t => t.GetFields(BindingFlags.Public | BindingFlags.Instance)
+            .OrderBy(f => f.Name, StringComparer.Ordinal).ToArray());
 
         public static List<InventoryItemGroup> Project(IEnumerable<InventoryScreenData.ItemDisplay> items, Entity preferred, bool grouped)
         {
@@ -65,12 +73,12 @@ namespace CavesOfOoo.Core
 
         internal static string CaptureIdentity(Entity actor, InventoryScreenData.ItemDisplay display) => CaptureIdentity(actor, display, false);
 
-        // Consignment withdrawal also audits the exact built-in gas-mask Power.
+        // Consignment withdrawal also audits exact built-in mask/ink/document payloads.
         // Ordinary grouping keeps its original closed whitelist; this grants no
-        // merge/split/crafting permission and accepts no GasMask subclass.
+        // merge/split/crafting permission and accepts no payload subclass.
         internal static string CaptureMerchantIdentity(Entity actor, InventoryScreenData.ItemDisplay display) => CaptureIdentity(actor, display, true);
 
-        static string CaptureIdentity(Entity actor, InventoryScreenData.ItemDisplay display, bool merchantMask)
+        static string CaptureIdentity(Entity actor, InventoryScreenData.ItemDisplay display, bool merchantExtras)
         {
             var item = display.Item; var pack = actor?.GetPart<InventoryPart>(); var physics = item?.GetPart<PhysicsPart>();
             var render = item?.GetPart<RenderPart>();
@@ -107,11 +115,17 @@ namespace CavesOfOoo.Core
                 if (part?.ParentEntity != item) return null;
                 if (MaterialProcessPayloadPolicies.IsInertTracking(part)) continue;
                 var type = part.GetType();
-                bool mask = merchantMask && type == typeof(GasMaskPart);
-                if ((!Known.Contains(type) && !mask) || !types.Add(type)) return null;
+                bool mask = merchantExtras && type == typeof(GasMaskPart);
+                bool vial = merchantExtras && type == typeof(InkVialPart);
+                bool document = merchantExtras && type == typeof(ReadableDocumentPart);
+                FieldInfo[] extraFields = null;
+                bool extra = merchantExtras && MerchantFields.TryGetValue(type, out extraFields);
+                if ((!Known.Contains(type) && !mask && !vial && !document && !extra) || !types.Add(type)) return null;
                 Add(key, type.FullName);
                 if (mask) { Add(key, "Power"); Add(key, ((GasMaskPart)part).Power); continue; }
-                foreach (var field in Fields[type])
+                if (vial) { Add(key, "InkAmount"); Add(key, ((InkVialPart)part).InkAmount); continue; }
+                if (document) { Add(key, "DocumentId"); Add(key, ((ReadableDocumentPart)part).DocumentId); continue; }
+                foreach (var field in extra ? extraFields : Fields[type])
                 {
                     if (field.Name == "ParentEntity" || type == typeof(PhysicsPart) && (field.Name == "InInventory" || field.Name == "Equipped")
                         || type == typeof(StackerPart) && field.Name == "StackCount") continue;

@@ -1,10 +1,12 @@
 # Merchant staples and changing special stock
 
-User direction, November 23, 2026. The first bounded implementation now covers
-FarmerStock and ArmorerStock, with a repaired local oven expanding the farmer's
-next consignment. Native and actual Editor verification are recorded in the
-[pilot receipt](Verification/MachineSystems/MerchantConsignments20261123/README.md).
-Route imports, other merchant profiles and unique-item issuance remain proposals.
+User direction, November23,2026. Bounded Editor implementations cover
+FarmerStock, ArmorerStock, ProvisionerStock and genuine ScribeStock in Quillhold.
+A repaired local oven expands farmer consignments; the existing finite copy-room
+oil project adds a drying manuscript to later scribe lots. See the
+[first pilot](Verification/MachineSystems/MerchantConsignments20261123/README.md)
+and [regional extension](Verification/MachineSystems/QuillholdConsignments20261123/README.md).
+Route imports, other profiles and unique-item issuance remain proposals.
 
 Merchants should have a dependable base selection of specific goods and a
 separate, periodically changing selection of interesting specials. Returning to
@@ -238,3 +240,105 @@ Mac artifact/startup delivery is recorded in the
 [current receipt](Verification/MachineSystems/MacCandidate73FB59DA4/README.md).
 Controlled packaged play, route projects, other profiles and wider survival/
 performance acceptance remain separate gates. All twelve complete-machine statuses stay open.
+
+## Next regional pilot: Quillhold copy-room supply
+
+Bounded Editor acceptance after native checks, actual play and independent
+source/gameplay-evidence review. Delivery is tracked separately. Source qualification found no opened-route
+graph: Concord carriage currently connects two authored posts and gates service
+by the player's ledger, not a repaired route. Do not call that a route unlock.
+Quillhold has an existing finite project with a direct workmanship connection:
+the Dark Copy-Desks concern consumes three actual LampOil items and persists
+Quillhold.DesksLit. Its alternate collation sets ReportCollated, not DesksLit.
+
+Opt in only a genuine ScribeStock declaration in authored Quillhold, retaining
+other scribes' behavior and all old shelves. Dependable baseline: one InkVial,
+one GrimoireCopy and one Codex04. A blank grimoire copy is a material for existing
+copying/caretaker services, not a teaching book. Codex04 remains available as in
+the old guaranteed ScribeStock entry. Merchant-only fingerprints may audit the
+exact InkVialPart.InkAmount and ReadableDocumentPart.DocumentId; ordinary grouping
+and physical stack permissions must stay unchanged.
+
+Two-item special choices: WardGleamGrimoire, WateringGrimoire,
+PurifyWaterGrimoire and MendingRiteGrimoire. Supplied copy-room lamps add one
+DryingBreezeGrimoire to the next lot. Keep the existing game-day window,
+bounded catch-up, slot/key custody and transaction rules. A pure read of an
+already saved local condition must not backfill settlements. Revalidate both
+place eligibility and condition after factory callbacks and before publication.
+No new saved Part/field, timetable or production/route framework is proposed.
+
+The existing lit-desks PlaceConsequences top-up-to-three InkVial authority
+remains separate: both floors count held vials; never grant another conditional
+three vials in the new service. Ordinary base supply is one, lit room supply is
+up to three through that existing authority. Custom/invalid payloads remain
+real goods and do not hide a deficit of ordinary usable baseline stock.
+
+Existing Quillhold copying and Ward Gleam/Drying Breeze loan services remain
+alternatives. Buying a special provides ownership/availability, not an exclusive
+skill gate. These are abstract manuscript consignments; supplying oil does not
+prove NPC ink/paper consumption or a newly simulated lighting cycle. No protected
+document or mystery is disclosed by catalogue generation.
+
+Independent bounded source/design critique requires compiling RED for exact
+place/declaration eligibility, pure reads, all authored choices, baseline/codex
+preservation, ink-floor coexistence, saved lots, callback condition changes,
+next-lot delay and the existing custody/rollback rules. Actual qualification
+must acquire and supply three real LampOil items, retain the current lot, verify
+saved lighting, buy the later exact bonus book, read it and use its supported
+drying outside the shop. Drying Breeze removes Wet and temporary water coating;
+it does not drain pools, remove mire/acid or implement book preservation.
+Generic liquid oil and pitchpod resin are not LampOil by analogy. Ordinary
+supplier/straining access needs actual evidence; acquisition/economy acceptance
+cannot be inferred from supplied fixture materials.
+
+November23 working-tree qualification: compiling RED24 total/17failed/7passed;
+first attempt had a test-access compilation error and is excluded. Independent
+review reproduced fresh factory-payload corruption with four new failing cases
+(empty/negative ink and missing/wrong document). Fresh canonical ink25 and
+Codex04/codex-04 admission corrected it; final affected208total/207passed/0failed/
+1Explicit utility skip/0compiler errors. Independent bounded source re-review
+found no remaining P1/P2. This does not replace the open gameplay gate.
+
+Actual partial GameBootstrap branch from retained4870: visited Sill provisioner
+and Quillhold merchant without finding LampOil, then acquired two actual FrogOil
+gourds by harvesting Reedfrog22842 at17.6. A second ordinary frog harvest at16.6
+gave no oil. No LampOil has been created, bought or supplied in this branch.
+Quillhold's two scribes have saved local profiles, base goods, starred specials
+and the complete project hint. Verified F5/archive/stopped/fresh7100 preserves
+both exact lots,2FrogOil,20drams,218/400HP and DesksLit=false. Archive:
+/private/tmp/coo-quillhold-ordinary-supply-partial-earned-20261123. The strong
+inherited loadout, read-only coordinate/supplier scouting, wall strikes and
+ordinary combat/environmental costs are disclosed; no discovery, balance or
+acquisition-chain acceptance. Bog-mire bodily coating continues causing damage.
+Water's actual popup offers drenching, not washing; neither drenching nor
+Drying Breeze has a mire-washing contract. That recovery gap is separate debt.
+
+### Qualified provisioner supply prerequisite
+
+Observed oil scarcity motivates dependable supply at genuine ProvisionerStock
+keepers through the existing consignment contract. Qualified base floors retain
+every previously guaranteed line: empty LiquidFlask1, Waterskin1, DriedMeat2,
+Starapple1, Torch1 and CandyCarrotSeed1, adding LampOil3. Two daily specials
+cycle through the original optional goods: Mushroom, RawMeat, EmberwheatSeed,
+WaterTonic, CampHearth and PoisonGasGrenade. No Speed/Strength tonic expansion.
+All existing goods stay; optional lottery rolls deliberately become saved
+cycling availability. Ordinary wells, harvesting, straining, lights and crafting
+remain alternatives. Purchases still pay real prices; this is abstract merchant
+supply, not NPC production or a simulated shipping route.
+
+Independent pre-RED source critique identified eight exact merchant-only scalar
+audits: ReagentPart(PropertiesRaw,FlavorText), LightSourceFlickerPart(two finite
+floats), CookablePart(Into), CampfirePart(two flags), HearthGlowPart and
+HearthRestPart(type presence), PackableFixturePart(Kind,SetTick,CampName), and
+all FIVE GasGrenadePart fields including SightCloud/SightCloudTurns. Never invoke
+provider/reader/flicker methods or broaden ordinary grouping. Fresh hearths must
+be cold, unfuelled, uninstalled kits; altered returned goods survive withdrawal.
+Native RED/GREEN covers full catalogue/floors, canonical fresh corruption,
+modified residents, sight-cloud changes, hearth lifecycle, exact subclass
+refusal, old saves, reservations and bounded late refresh. Actual chain now passes: purchased3oil for49, supplied lamps, retained g2
+through fresh8040, bought later bonus book25644 for107, learned the skill and
+used it to clear finite-water Wet in the world. Fresh9320 retained book, skill,
+project, exact remaining lot and water0/2/2. Final affected237/236pass/0fail/
+1Explicit skip/0CS;59newcases. Independent source/gameplay-evidence review found
+0remainingP1/P2. Fixture financing and staged finite-water demonstration do not
+prove normal affordability, discovery or combat balance. See the regional receipt.
