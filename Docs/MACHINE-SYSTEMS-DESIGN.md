@@ -1,3 +1,27 @@
+November22 [current well/flask Mac candidate](Verification/MachineSystems/MacCandidateA9DE3D3D9/README.md)
+packages pushed/remotely verified runtimea9de3d3d9de9c21a917748c0d74c387b17ab7b3d.
+Universal6000.3.4f1/nondev58.360659s364121661bytes/0errors/5samewarnings928.
+32019source/32022effective/592external/186app pins;83changed0missing3added/exact86
+overlay/runtimeC#unchangedonimport. ProducedDLLcf2b442bbbf9cecb7d5f67c36e14087b8a89bbf82b12a8583ae3b610fafeeb98
+includesnewWellFlaskFilling metadata/UTF16commandprefix, absent928. Owned54602/
+window70863 actualchooser/world/HUD2684generation->2685/7creatures. Freshnative
+inputpreflightfalse, NOinputposted: packagedactions/save/controller/full delivery
+remainopen. Guardedplayerclosed; fresh10logicalprefsequal/Savesabsentnonsymlink,
+all9prior machineapps186fileinventories/hashesexact. Mainstopped/rootnull/clean/
+profileroff/7builtins/custom0/selected0/noownedview;00:45UTC84foreign861normal
+selected hashes unchanged. Independentfinalartifactreviewrecordedinreceipt;
+notsecondgameoperator. Allapps/projects/exports preserved. Well/flask191native+
+additional222passes/1isolatedunchangedlegacyfailure+mutants6/13/3 and actual
+endless/finite40->28/gather-carry-cool10+recover2/fresh3930&4200/fullreader qualify
+the bounded shared correction separately. FiniteStock3native-only. All12complete-
+machine and full-delivery gates remain open; last full deliveryM3c/current420.
+NEXT full corrected-head regression through idle clone2, pin exact current code
+and compare both acceptedfull_s9 and inheritedfullrun_h; rerun new failures alone
+before attributing regressions. No new native play/builds during that run.
+Then continue useful machine/tool gameplay and further audited Inventory groups/
+category-sort. Unloaded-fire chronology/NPCexposure/economics remain open.
+Graphicscancelled/capstan-culturesparked/Deckdeferred/hourlyACTIVE.
+
 November22 [ordinary flasks at usable wells](Verification/MachineSystems/WellFlasks20261122/README.md)
 closes native-reproduced broken/oath pool-backed well bypasses and supplies the
 missing pool-less flask draw. Shared Well/Waterskin source admission, exact

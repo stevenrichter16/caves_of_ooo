@@ -217,3 +217,9 @@ This supports expedition preparation and material choices without inventing a
 recurring well repair, tariff or mandatory thirst. Existing Waterskins/direct
 drinking remain alternatives; finiteStock3 is native-only in this trial. No new
 machine, exposure behavior, economy proof or unloaded-zone simulation is implied.
+
+Current Mac candidatea9de3d3d9 includes this shared well/flask transport and the
+earlier clay/cooling/counted Inventory work. Boot/render and source preservation
+are verified; native input access remains unavailable, so packaged interaction
+and full delivery remain open. Next full corrected-head regression precedes more
+native play; use that interval for bounded source/design review of useful loops.
