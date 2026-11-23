@@ -244,3 +244,20 @@ selection, existing LampOil convenience and other light options. Do not equate
 all combustible liquids or introduce mandatory upkeep. Shared transactions,
 late callbacks, individual targets from stacks, cancellation, loaded/unloaded
 state and actual normal input require critique/RED/qualification first.
+
+## Merchant staples and special consignments
+
+User priority, November23: a merchant keeps a dependable base selection while a
+separate special consignment changes periodically. Interesting regional goods,
+components and distinctive equipment give return visits variety. Opening a
+trade route or building useful equipment for a merchant can expand the special
+selection, making lasting projects visibly worthwhile. See the
+[recorded direction and first implementation gates](MERCHANT-STAPLES-AND-SPECIAL-STOCK.md).
+This takes priority over the proposed oil-to-torch extension above.
+
+Preserve ordinary supply access and trade alternatives. Stock must have finite
+quantities, actual owners and persistent current-lot decisions; time, travel,
+reload and equipment toggles cannot be free rerolls. Use shared world conditions
+and existing trade/restock systems, with an explicit rule for sold/bought/unsold
+goods and genuinely unique provenance. The new layers and unlocks remain proposed
+until native/source/actual-shopping/save/project evidence earns acceptance.

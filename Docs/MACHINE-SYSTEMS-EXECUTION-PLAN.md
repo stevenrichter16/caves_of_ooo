@@ -10,6 +10,23 @@
 
 ## Active handback continuation — November 21, 2026
 
+Latest user priority — November23: implement dependable merchant staples plus
+periodically changing interesting/potentially unique special consignments. Opened
+trade routes and useful machines/tools built for a merchant can expand special
+stock, giving lasting projects a visible business benefit. Record and refine
+[Merchant staples and special stock](MERCHANT-STAPLES-AND-SPECIAL-STOCK.md).
+This is a requested design/implementation direction, not shipped stock layers.
+It takes precedence over the previously suggested oil-to-torch connection.
+Next verify TraderPart/TraderRestockSystem/PlaceConsequences and shared time,
+valuation/custody/save behavior; obtain bounded independent critique, nativeRED
+and a small complete implementation with actual shopping/rotation/project-unlock/
+save-fresh evidence. Keep staples dependable, special quantities/provenance and
+current lot persistent, player-sold/bought goods safe, and prevent menu/reload/
+travel/upgrade rerolls, duplicate one-offs or profit loops. One game clock,
+bounded unloaded work, no wall-clock economy. Exact cadence/unsold handling and
+core availability remain explicit design choices. All12 machine statuses remain
+unchanged; hourlyACTIVE, root sole owner, preserve all foreign files/states/apps.
+
 Current Mac delivery — November23: published well-supply runtimefff96f4c1b6465fae594a1dcb437c5b1e7c6be5b
 is packaged at /Users/steven/coo-verification/builds/mac-fff96f4c1-20261123/CavesOfOoo.app.
 Universal6000.3.4f1/nondev53.037878s364128829bytes/0errors/5sameFBEwarnings/0CS.
