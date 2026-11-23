@@ -4,7 +4,7 @@ Status: implemented and bounded Editor-qualified. Native 252/252, actual separat
 water/spill drawing and recovery, normal saves/fresh loads, and independent
 source/gameplay-evidence review passed. See the [receipt](Verification/MachineSystems/WellSupplyProvenance20261123/README.md).
 This resolves a documented policy conflict, not a newly introduced a9 failure.
-The original full regression remains failed; current Mac delivery is separate.
+The original full regression remains failed; [current Mac startup/artifact delivery](Verification/MachineSystems/MacCandidateFFF96F4C1/README.md) is qualified separately, with packaged controlled-input gates open.
 
 `DENSITY-LIQUID-CARRY-POUR.md` explicitly preserves clean draws from a contained
 well despite a spill around its base. Its legacy adversarial test still asserts

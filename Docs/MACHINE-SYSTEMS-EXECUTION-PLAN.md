@@ -10,6 +10,37 @@
 
 ## Active handback continuation — November 21, 2026
 
+Current Mac delivery — November23: published well-supply runtimefff96f4c1b6465fae594a1dcb437c5b1e7c6be5b
+is packaged at /Users/steven/coo-verification/builds/mac-fff96f4c1-20261123/CavesOfOoo.app.
+Universal6000.3.4f1/nondev53.037878s364128829bytes/0errors/5sameFBEwarnings/0CS.
+32021committed/32024effective/592external/186app pins;83changed0missing3added,
+exact86overlay/no runtime import change. Packaged SourceAvailable IL has the new
+pool/emitter branch and retained purity call; DLL a4912c2f4a05a98206f6dcef71bb83e5a98ee9d7bcb185e3a7f939cc8b696577.
+Owned88413/window71006 rendered world/HUD2690->2691/7creatures. Picker log ON,
+observed Warden/initial checkpoint; advancement cause unestablished. No input
+posted by this task; fresh native input accessfalse. PID-scoped all-window
+capture, no app activation. Packaged controlledactions/save/controller/performance
+remainopen; Editor252/actualseparatewater-mire/fresh4580&4590 qualifies separately.
+ExactPID/exe close. Initial defaults-import cleanup rejected leftover app-created
+LastGameID+4screenkeys; all5 verified absentbefore/stillmatchingownedafter and
+removedonlythose. Userpaused/resumed; fresh complete postchecks nowpass11priorapps
+with186fileinventorieseach/current186/84foreign/861selectednormal/10logicalprefs
+exact/Savesabsentnonsymlink. No byteexactplist claim. All apps/projects/exports
+retained. Mainstopped/rootnull/clean/profileroff/original7views. HourlyACTIVE.
+[Delivery receipt](Verification/MachineSystems/MacCandidateFFF96F4C1/README.md).
+This is a delivery records update; runtime remainsfff. All12 full-machine/gates
+remainopen; M3c remains lastFULL delivery, original full a9 regression remains
+FAILED. Do not repeat completed bounded tests/play/builds without new concerns.
+Next choose a useful shared reclamation/processing connection from the gameplay
+loops. One source-identified candidate: settled flaskoil does not currently feed
+LampOil-only torchrefueling. It is a proposal requiring bounded design/source
+critique, nativeRED/accounting/countercases and actual input before implementation
+acceptance. Preserve ordinary LampOil, safe unlit-target/finite/capacity rules,
+other light options and honest source/price/quality limits. No generic oil-fuel
+adapter or new recipe is shipped by this paragraph. Keep accepted dense Inventory,
+separate weapon/armor stat rows and further category/sort plans. Graphicscancelled,
+capstan/culturesparked/Deckdeferred; NPCsurvival/unloadedfire/economics stayopen.
+
 Well supply/spill correction — November23: the earlier conflict is resolved by
 restoring the documented drawn Stock versus exposed LiquidPool distinction.
 Shared admission preserves unlike-pool/emitter refusal, no dry-pool fallback,
@@ -33,7 +64,7 @@ no inferred full count,91baseline failure names remain open. All12 statuses stay
 open. Graphics cancelled, capstan/cultures parked, Deck deferred, hourlyACTIVE.
 See [contract](WELL-SUPPLY-PROVENANCE.md) and
 [receipt](Verification/MachineSystems/WellSupplyProvenance20261123/README.md).
-Current Mac fbe precedes this correction; delivery follows publication. Latest
+Current Mac fff now packages this correction, as recorded above. Latest
 reusable ordinary checkpoint is /private/tmp/coo-well-provenance-recovery-earned-20261123/8ab6a6384c2a44deb8b3a68303809d8f at4590; preserve earlier4200/4580 too.
 Next continue useful shared machine/tool gameplay loops; preserve accepted UI
 separate Damage/Hit/Penetration and AV/DV rows, safe complete-state stacking,

@@ -223,3 +223,24 @@ earlier clay/cooling/counted Inventory work. Boot/render and source preservation
 are verified; native input access remains unavailable, so packaged interaction
 and full delivery remain open. Next full corrected-head regression precedes more
 native play; use that interval for bounded source/design review of useful loops.
+
+## Separate supplies and the next useful connection — November23
+
+[WellSupplyProvenance20261123](Verification/MachineSystems/WellSupplyProvenance20261123/README.md)
+restores the documented distinction between drawn water and a spill around its
+source. Actual ordinary input draws water while retaining the separate mire,
+then recovers that finite mire for further use; fresh4580/4590 preserves both
+branches. The current fff Mac packages this correction; startup/artifacts are
+qualified separately, with controlled packaged input/save gates open. This
+supersedes the older well-conflict and regression-before-play next steps above.
+
+A concrete next candidate is regional mire → settled oil → a suitable torch's
+finite fuel → underground recovery. Current source only offers refueling from
+the LampOil item, not registered oil inside a flask. This is a proposal, not a
+shipped adapter or new recipe. Verify whether process output is suitable fuel,
+define a bounded conversion against the existing25fuel LampOil measure, account
+for capacity/unused contents, and preserve unlit-target eligibility, exact owner
+selection, existing LampOil convenience and other light options. Do not equate
+all combustible liquids or introduce mandatory upkeep. Shared transactions,
+late callbacks, individual targets from stacks, cancellation, loaded/unloaded
+state and actual normal input require critique/RED/qualification first.

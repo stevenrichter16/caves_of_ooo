@@ -1,0 +1,80 @@
+System.Boolean CavesOfOoo.Core.WellDrinkingService::SourceAvailable(CavesOfOoo.Core.WellPart,CavesOfOoo.Core.Zone,System.Boolean)
+IL_0000: ldarg.0
+IL_0001: brtrue.s IL_0006
+IL_0003: ldnull
+IL_0004: br.s IL_000c
+IL_0006: ldarg.0
+IL_0007: ldfld CavesOfOoo.Core.Entity CavesOfOoo.Core.Part::ParentEntity
+IL_000c: stloc.0
+IL_000d: ldloc.0
+IL_000e: brfalse.s IL_0037
+IL_0010: ldloc.0
+IL_0011: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.WellPart>()
+IL_0016: ldarg.0
+IL_0017: bne.un.s IL_0037
+IL_0019: ldloc.0
+IL_001a: ldstr "Creature"
+IL_001f: callvirt System.Boolean CavesOfOoo.Core.Entity::HasTag(System.String)
+IL_0024: brtrue.s IL_0037
+IL_0026: ldarg.0
+IL_0027: callvirt System.Boolean CavesOfOoo.Core.WellPart::get_IsUsable()
+IL_002c: brfalse.s IL_0037
+IL_002e: ldarg.1
+IL_002f: ldloc.0
+IL_0030: call System.Boolean CavesOfOoo.Core.LiquidSourcePhase::CanDrawWater(CavesOfOoo.Core.Zone,CavesOfOoo.Core.Entity)
+IL_0035: brtrue.s IL_0039
+IL_0037: ldc.i4.0
+IL_0038: ret
+IL_0039: ldloc.0
+IL_003a: callvirt T CavesOfOoo.Core.Entity::GetPart<CavesOfOoo.Core.LiquidPoolPart>()
+IL_003f: stloc.1
+IL_0040: ldloc.1
+IL_0041: brtrue.s IL_004b
+IL_0043: ldloc.0
+IL_0044: callvirt System.Boolean CavesOfOoo.Core.Entity::HasPart<CavesOfOoo.Core.TileStateSourcePart>()
+IL_0049: brfalse.s IL_005b
+IL_004b: ldarg.1
+IL_004c: ldloc.0
+IL_004d: ldstr "water"
+IL_0052: call System.Boolean CavesOfOoo.Core.LiquidSourceSafety::IsUnmixedSource(CavesOfOoo.Core.Zone,CavesOfOoo.Core.Entity,System.String)
+IL_0057: brtrue.s IL_005b
+IL_0059: ldc.i4.0
+IL_005a: ret
+IL_005b: ldloc.1
+IL_005c: brfalse.s IL_008a
+IL_005e: ldloc.1
+IL_005f: ldfld CavesOfOoo.Core.Entity CavesOfOoo.Core.Part::ParentEntity
+IL_0064: ldloc.0
+IL_0065: bne.un.s IL_0088
+IL_0067: ldloc.1
+IL_0068: ldfld System.String CavesOfOoo.Core.LiquidPoolPart::LiquidId
+IL_006d: ldstr "water"
+IL_0072: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0077: brfalse.s IL_0088
+IL_0079: ldarg.2
+IL_007a: brfalse.s IL_0086
+IL_007c: ldloc.1
+IL_007d: ldfld System.Int32 CavesOfOoo.Core.LiquidPoolPart::Volume
+IL_0082: ldc.i4.0
+IL_0083: cgt
+IL_0085: ret
+IL_0086: ldc.i4.1
+IL_0087: ret
+IL_0088: ldc.i4.0
+IL_0089: ret
+IL_008a: ldarg.0
+IL_008b: ldfld System.Boolean CavesOfOoo.Core.WellPart::MeteredHydration
+IL_0090: brfalse.s IL_009b
+IL_0092: ldarg.0
+IL_0093: ldfld System.Int32 CavesOfOoo.Core.WellPart::Stock
+IL_0098: ldc.i4.m1
+IL_0099: blt.s IL_00a7
+IL_009b: ldarg.2
+IL_009c: brfalse.s IL_00a5
+IL_009e: ldarg.0
+IL_009f: callvirt System.Boolean CavesOfOoo.Core.WellPart::get_HasWater()
+IL_00a4: ret
+IL_00a5: ldc.i4.1
+IL_00a6: ret
+IL_00a7: ldc.i4.0
+IL_00a8: ret
