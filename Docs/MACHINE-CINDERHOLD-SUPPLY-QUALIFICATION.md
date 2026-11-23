@@ -1,7 +1,11 @@
 # Cinderhold repair supply — next slice qualification
 
-November23,2026. Source/design qualification only. No new shop profile, pump
-reward, route, physical drainage or runtime behavior is accepted by this note.
+November23,2026. Bounded Cinderhold-only smith supply accepted in the Editor
+after native200/199pass/0fail/1Explicit and independent source/gameplay-evidence
+review0P1/P2. See [the complete receipt](Verification/MachineSystems/CinderholdSmithSupply20261123/README.md).
+The initial qualification below records the baseline and selected contract. No new
+pump reward, route, physical drainage or complete-machine behavior is accepted.
+Current Mac1a predates this increment; packaging remains open.
 
 ## Concrete player problem
 
@@ -61,9 +65,9 @@ declaration/zone eligibility and old-save policy. Countercases include altered
 resident goods, reservations, callback rollback, regional opening grants not
 duplicated and temporary patch/seal/combat not treated as a lasting repair.
 
-No runtime was written in this qualification. Actual baseline, final design,
-RED, implementation, play, review and delivery remain open. The existing
-twelve-machine dependency roster and acceptance statuses remain unchanged.
+The initial source-only qualification preceded the earned baseline and
+implementation recorded below and in the receipt above. All twelve complete-machine
+dependency and acceptance statuses remain open.
 
 ## Retained baseline candidate
 
@@ -75,3 +79,46 @@ CinderholdOverworld.6.6.0/tick2670/HP40. Copy into owned isolation with the game
 ID as directory; preserve the checkpoint. This is an older cached town, so
 newer fresh-only pump bodies/reclamation finds may be absent. No current-source
 load, supplier census or repair baseline has been earned from it by this note.
+
+## Earned current-source baseline and selected minimal contract
+
+Current sourceba7b3af2e loaded the retained2670 checkpoint in owned isolation.
+Actual cached census: Weaponsmith13522 at55,7; Quartermaster13573 at22,21;
+Tinker13584 at66,6; pump savedFouled/PumpRunningfalse; no pump-body Part or
+ReleasedExtractionTool in this cached town. No fresh placement or resource
+injection. Genuine smith opened2690: eleven ordinary shelf rows, no spike,
+oakhaft13532x1 and leatherbinding13533x2. Alternate real Tinker opened2780:
+spike13586x3 at69drams for the stack. The candidate fixes a local promise,
+not a world-wide absence. Player15drams/HP40; normal31movement actions to the
+elder, no health/resource purchases or mutation. Actual elder13629 repeated
+smith-sells-all-three, accepted Drowned Level, and at2980 listed exact lasting
+bill with no repair option while materials absent. F5/archive retained2980;
+main stopped/rootnull after cleanup. Private baseline evidence and earned root:
+`/private/tmp/coo-cinderhold-supply-20261123`,
+`/private/tmp/coo-cinderhold-supply-before-earned-20261123`.
+
+Choose Cinderhold-only genuine WeaponsmithStock (matching saved declaration
+and actual place). Staples: Dagger1, IronSpikeComponent2, OakHaftComponent1,
+LeatherBindingComponent1. Existing regional/ordinary/player-sold items remain;
+count canonical deficits only. Non-Cinder smiths, Tinkers and Quartermasters keep
+their policies. No new project reward, condition, Part or saved field.
+
+Two single-unit specials cycle every1200game ticks from actual installation:
+SplitHaftTokenTrinket, ShortSword, Mace, Spear, Hatchet, LongSword, Battleaxe,
+Warhammer, SteelBladeComponent, SerratedEdgeComponent, StunGasGrenade. This
+preserves every original optional identity: oak/binding become dependable, and
+all eleven remaining identities stay eligible. Legacy stun grenade roll1–2
+becomes one per special slot; this is a bounded quantity policy, not exact roll
+probability parity. Existing regional extra head/apron/braced-haft remain real
+ordinary goods. No duplicate opening grant or future inferred NPC production.
+
+Use unchanged >300staple/1200special timestamps, custody/claims/rollback and
+retirement rules. Audit complete eleven-choice cycle; no broader grouping or
+physical stack permission. Fresh pump components must retain canonical exact
+WeaponComponent payload; existing merchant fingerprints still bind weight/value.
+Stun payload must retain all
+five canonical gas fields. Factory callbacks cannot redefine the baseline.
+Altered resident goods survive and do not hide a canonical supply deficit.
+Compiling native RED17 followed by profile-only payloadRED29 preceded exact
+guards. Actual after-play and final independent review now qualify this bounded
+Editor increment; package inclusion remains open.

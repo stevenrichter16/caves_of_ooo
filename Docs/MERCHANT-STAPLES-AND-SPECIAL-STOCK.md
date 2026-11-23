@@ -1,7 +1,8 @@
 # Merchant staples and changing special stock
 
 User direction, November23,2026. Bounded Editor implementations cover
-FarmerStock, ArmorerStock, ProvisionerStock and genuine ScribeStock in Quillhold.
+FarmerStock, ArmorerStock, ProvisionerStock, genuine ScribeStock in Quillhold
+and genuine WeaponsmithStock in Cinderhold.
 A repaired local oven expands farmer consignments; the existing finite copy-room
 oil project adds a drying manuscript to later scribe lots. See the
 [first pilot](Verification/MachineSystems/MerchantConsignments20261123/README.md)
@@ -352,7 +353,7 @@ Mac artifact/startup delivery are recorded in the
 Editor qualification and packaged startup have distinct limits; controlled
 packaged gameplay/performance and complete-machine gates stay open.
 
-## Next grounded supply qualification — November23
+## Source qualification before the Cinderhold increment — November23
 
 [The Cinderhold source critique](MACHINE-CINDERHOLD-SUPPLY-QUALIFICATION.md)
 identifies a concrete promise gap: the pump concern names smith-sold spikes,
@@ -360,4 +361,20 @@ but WeaponsmithStock has no spike entry. One finite reclaimed blank makes only
 one spike, while the lasting repair requires two. Actual pump/shop/census and
 old-save baseline must precede any local dependable smith profile. Existing
 pump commerce benefits remain; no new instrument-production or route claim.
-This is a candidate, not shipped supply or a new accepted machine.
+At that source-only stage this was a candidate. The accepted bounded supply
+contract follows; no complete machine is accepted.
+
+## Cinderhold promised repair supply — accepted Editor increment
+
+Cinderhold-only smith staples: Dagger1, IronSpikeComponent2, OakHaftComponent1,
+LeatherBindingComponent1. All11other original optional identities cycle as two
+single-unit specials; legacy stun roll1–2 becomes one per special slot. No
+regional opening grant repeated, ordinary goods removed, or other smith policy
+changed. Canonical fresh8component/5stun payload fields are bound; no new saved
+field or generic grouping/stacking permission. Existing game clocks/custody
+remain. [Native receipt](Verification/MachineSystems/CinderholdSmithSupply20261123/README.md)
+records200/199pass/0fail/1Explicit/49new, old-town gap and alternate Tinker,
+actual finite reclaim+bought spike into lasting pump repair, existing commerce
+benefit and fresh10660. Fixture financing and modal/combat/level-up detours are
+explicit. Current Mac1a predates this addition; no complete pump/route/NPC
+production or full-program acceptance.

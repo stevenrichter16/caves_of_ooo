@@ -45,6 +45,10 @@ namespace CavesOfOoo.Core
             new[] { "LiquidFlask", "Waterskin", "DriedMeat", "Starapple", "Torch", "CandyCarrotSeed", "LampOil" },
             new[] { 1, 1, 2, 1, 1, 1, 3 },
             new[] { "Mushroom", "RawMeat", "EmberwheatSeed", "WaterTonic", "CampHearth", "PoisonGasGrenade" });
+        static readonly Profile CinderholdSmith = new Profile("WeaponsmithStock",
+            new[] { "Dagger", "IronSpikeComponent", "OakHaftComponent", "LeatherBindingComponent" }, new[] { 1, 2, 1, 1 },
+            new[] { "SplitHaftTokenTrinket", "ShortSword", "Mace", "Spear", "Hatchet", "LongSword", "Battleaxe", "Warhammer",
+                "SteelBladeComponent", "SerratedEdgeComponent", "StunGasGrenade" }, "Cinderhold");
         sealed class Activity
         {
             internal int Trades, Views;
@@ -66,7 +70,8 @@ namespace CavesOfOoo.Core
             if (merchant == null || trader?.ParentEntity != merchant || merchant.Parts.Count(p => p is TraderPart) != 1
                 || merchant.GetProperty(TraderRestockSystem.ShopStockTableProp) != trader.StockTable) return null;
             var profile = trader.StockTable == Farmer.Id ? Farmer : trader.StockTable == Armorer.Id ? Armorer
-                : trader.StockTable == Scribe.Id ? Scribe : trader.StockTable == Provisioner.Id ? Provisioner : null;
+                : trader.StockTable == Scribe.Id ? Scribe : trader.StockTable == Provisioner.Id ? Provisioner
+                : trader.StockTable == CinderholdSmith.Id ? CinderholdSmith : null;
             return profile != null && (profile.Place == null || PlaceSiteCatalog.PlaceAt(merchant.SpatialZone?.ZoneID) == profile.Place)
                 ? profile : null;
         }
@@ -173,6 +178,19 @@ namespace CavesOfOoo.Core
         // Resident altered goods remain intact and are compared by their key.
         static bool ValidFreshPayload(Entity item)
         {
+            if (item.BlueprintName == "IronSpikeComponent" || item.BlueprintName == "OakHaftComponent" || item.BlueprintName == "LeatherBindingComponent")
+            {
+                // These promised repair inputs also remain real forging parts.
+                // A factory callback cannot redefine their canonical baseline.
+                var part = item.GetPart<WeaponComponentPart>();
+                bool spike = item.BlueprintName == "IronSpikeComponent", haft = item.BlueprintName == "OakHaftComponent";
+                return part?.GetType() == typeof(WeaponComponentPart)
+                    && part.Slot == (spike ? "Blade" : haft ? "Haft" : "Binding")
+                    && part.BaseDamage == (spike ? "1d4" : "") && part.PenBonus == (spike ? 1 : 0)
+                    && part.HitBonus == (!spike && !haft ? 1 : 0) && part.MaxStrengthBonus == (haft ? 3 : -1)
+                    && part.Attributes == (spike ? "Piercing" : "") && part.OnHitEffectSpec == ""
+                    && part.NameFragment == (spike ? "iron spike" : haft ? "oak-hafted" : "leather-bound");
+            }
             if (item.BlueprintName == "InkVial")
             {
                 var ink = item.GetPart<InkVialPart>();
@@ -200,10 +218,11 @@ namespace CavesOfOoo.Core
                     && heat?.Temperature == 25 && light != null && !light.Enabled
                     && fire != null && fire.FiniteCooking && !fire.AllowRest;
             }
-            if (item.BlueprintName == "PoisonGasGrenade")
+            if (item.BlueprintName == "PoisonGasGrenade" || item.BlueprintName == "StunGasGrenade")
             {
                 var gas = item.GetPart<GasGrenadePart>();
-                return gas?.GetType() == typeof(GasGrenadePart) && gas.GasId == "poison-vapor" && gas.Density == 20
+                return gas?.GetType() == typeof(GasGrenadePart)
+                    && gas.GasId == (item.BlueprintName == "PoisonGasGrenade" ? "poison-vapor" : "stun-vapor") && gas.Density == 20
                     && gas.Level == 1 && gas.SightCloud == "" && gas.SightCloudTurns == 0;
             }
             return true;

@@ -1,3 +1,25 @@
+**Current Cinderhold supply foundation — November23,2026:** bounded Editor
+acceptance after independent source/gameplay-evidence0P1/P2. Genuine local
+WeaponsmithStock now keeps dagger1/spike2/oak1/binding1 and two saved specials
+from all11remaining original optional goods. Existing regional/sold goods and
+non-Cinder smith/Tinker/Quartermaster policies preserved; no new save field,
+whitelist, repair/reward/price rule. Canonical fresh8component/5stun fields close
+native reproduced callback corruption.49newcases; final200total/199pass/0fail/
+1Explicit utilityskip/0CS. Actual oldtown gap/Tinker alternative/free44dram refusal
+with15drams qualified separately from full consumer. Supplied strong branch
+picked finite released tool, reclaimed/pointed one spike, bought one spike+oak+
+binding for66 (providedbook sale73 disclosed), then actual world pump mend10370
+consumed four units into StableRepair/PumpRunning. Travel return10450 added
+existing Quartermaster2spikes; actual report10610 existing50drams/2200XP. Fresh
+10660 retained questdone/purse67/level5/HP412/26timber/no spent inputs and exact
+g0/install9490/28104+28105. Existing snake interruption, NPC flight, level healing,
+ignored modal inputs and affordability limits disclosed. No physical drainage,
+route, automatic production or complete-machine claim. See [design](MACHINE-CINDERHOLD-SUPPLY-QUALIFICATION.md)
+and [native receipt](Verification/MachineSystems/CinderholdSmithSupply20261123/README.md).
+Current Mac1a predates this increment; next coherent package remains open.
+Mainstopped/rootnull/clean/original7views;84foreign/861selectednormal exact.
+All12 gates and failed full regression remain open; hourlyACTIVE/root sole owner.
+
 **Current Mac delivery — November23,2026:** published runtime1a153dc6948a838c87b8cfd3b3fd06db9421ad85
 now includes mire/pith recovery and both corrected readers. Universal nondevelopment
 app: /Users/steven/coo-verification/builds/mac-1a153dc69-20261123/CavesOfOoo.app.
