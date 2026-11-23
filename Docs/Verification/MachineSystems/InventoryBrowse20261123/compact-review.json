@@ -1,0 +1,10 @@
+{
+  "priority": 2,
+  "source": "independent third P2",
+  "nativeRed": "inventory_browse_compact_red_20261123",
+  "total": 2,
+  "failed": 2,
+  "compilerErrors": 0,
+  "observed": "One-glyph header query fed existing SkillScreenText.Fit fewer columns than its ellipsis and threw ArgumentOutOfRangeException during render. Both480logical default and960physical large-text2 reproduced.",
+  "correction": "Compact80px Browse and80px Grouped/Singles controls leave114px/11queryglyphs at480logical. Activequery shows insertionend withoutprefix, reserved F1details remainsseparate. Under4glyph exceptional width avoids Fit. No generic SkillScreenText changes."
+}

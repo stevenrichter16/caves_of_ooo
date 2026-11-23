@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace CavesOfOoo.Core
@@ -32,6 +33,22 @@ namespace CavesOfOoo.Core
         public const string Corpses = "Corpses";
         public const string Miscellaneous = "Miscellaneous";
         public const string Unknown = "Unknown";
+        public const string Seeds = "Seeds";
+        public const string Reagents = "Reagents";
+        public const string Components = "Components";
+        public const string Materials = "Materials";
+        public const string Containers = "Containers";
+        public const string CampEquipment = "Camp Equipment";
+        public const string Documents = "Documents";
+
+        // Named ordinary supplies with no more specific public capability Part.
+        // Do not infer materials from arbitrary composition or hidden enhancements.
+        static readonly HashSet<string> MaterialItems = new HashSet<string>(StringComparer.Ordinal)
+        { "FireClay", "SalvagedTimber", "KnotflaxCord", "Tepuibone", "Bone", "InertSludge", "SilverSand" };
+        static readonly HashSet<string> DocumentItems = new HashSet<string>(StringComparer.Ordinal)
+        { "WellMaintenanceManual", "OvenBuildersGuide", "LanternOilRecipe" };
+        static readonly HashSet<string> PreparedOils = new HashSet<string>(StringComparer.Ordinal)
+        { "FrogOil", "WardOil", "LanternOil" };
 
         /// <summary>
         /// Sort order for categories. Lower = displayed first.
@@ -48,11 +65,18 @@ namespace CavesOfOoo.Core
             { Trinkets, 55 },
             { LightSources, 60 },
             { Food, 70 },
+            { Seeds, 75 },
             { Tonics, 80 },
+            { Reagents, 85 },
             { Grenades, 90 },
             { EnergyCells, 100 },
+            { Components, 105 },
+            { Materials, 107 },
+            { Containers, 109 },
             { Tools, 110 },
+            { CampEquipment, 115 },
             { Books, 120 },
+            { Documents, 125 },
             { Artifacts, 130 },
             { TradeGoods, 140 },
             { QuestItems, 150 },
@@ -83,7 +107,7 @@ namespace CavesOfOoo.Core
             if (entity == null) return Unknown;
 
             var physics = entity.GetPart<PhysicsPart>();
-            if (physics != null && !string.IsNullOrEmpty(physics.Category))
+            if (physics != null && !string.IsNullOrEmpty(physics.Category) && physics.Category != Miscellaneous)
                 return physics.Category;
 
             // Infer from parts if Category not explicitly set
@@ -101,6 +125,24 @@ namespace CavesOfOoo.Core
                 if (equip.Slot == "Back")
                     return Clothes;
             }
+
+            // Refine the old empty/Miscellaneous fallback for existing saves as
+            // well as new goods. Presence checks never invoke use/state providers
+            // or rewrite the entity. Primary use wins over incidental living light.
+            if (entity.HasPart<PackableFixturePart>()) return CampEquipment;
+            if (entity.HasPart<WeaponComponentPart>()) return Components;
+            if (entity.HasPart<LiquidVesselPart>() || entity.HasPart<WaterskinPart>()) return Containers;
+            if (entity.HasPart<GasGrenadePart>()) return Grenades;
+            if (entity.HasPart<TonicPart>() || entity.HasPart<CureTonicPart>() || entity.HasPart<StatusTonicPart>()) return Tonics;
+            if (entity.HasPart<GrimoirePart>()) return Books;
+            if (entity.HasPart<ReadableDocumentPart>() || entity.HasPart<SchematicPart>() || DocumentItems.Contains(entity.BlueprintName ?? "")) return Documents;
+            if (entity.HasPart<ScraperPart>() || entity.HasPart<SpringTrapKitPart>() || entity.HasPart<SoundingRodPart>()
+                || entity.HasPart<FlintStrikerPart>() || entity.HasPart<LayableDevicePart>()) return Tools;
+            if (entity.HasPart<SeedPart>()) return Seeds;
+            if (entity.HasPart<MaterialProcessInputPart>() || entity.HasPart<MineralPreparationPart>() || entity.HasPart<BotanicalProcessingPart>()
+                || MaterialItems.Contains(entity.BlueprintName ?? "")) return Materials;
+            if (entity.HasPart<ReagentPart>() || PreparedOils.Contains(entity.BlueprintName ?? "")) return Reagents;
+            if (entity.HasPart<LightSourcePart>() || entity.HasPart<TorchLightPart>()) return LightSources;
 
             return Miscellaneous;
         }

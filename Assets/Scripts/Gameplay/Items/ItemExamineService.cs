@@ -147,7 +147,6 @@ namespace CavesOfOoo.Core
                     lines.Add("Speed: " + Signed(-(long)armor.SpeedPenalty) + " while equipped.");
                 string overview = "Armor value (AV): " + Signed(armor.AV) + ".\nDodge value (DV): " + Signed(armor.DV) + "."
                     + (armor.SpeedPenalty != 0 ? "\nSpeed: " + Signed(-(long)armor.SpeedPenalty) + " while equipped." : "");
-                lines.Add("AV is armor value; DV is dodge value. These are this item's contributions.");
                 lines.Add("AV protects a struck body location, not the whole body.");
                 result.Add(new AnnouncementSection("Protection", string.Join("\n", lines), AnnouncementTone.Normal, overview));
             }

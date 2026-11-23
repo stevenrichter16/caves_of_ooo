@@ -1,3 +1,23 @@
+**Inventory readability continuation — November23 evening:** native263/263/0CS
+and actual old-save UI qualification are accepted after independent read-only
+source/gameplay-evidence review with0remainingP1/P2. F3categories/F4sorting,13actual categories instead of7,
+62groups/68owners/211units retained;44-row1280view and readable480query. Exact
+2242member selection, literal water/category intersection, late Documents,
+separate AV/DV/Hit/Pen readers and requested armor-paragraph removal verified.
+Final/fresh10660HP412/purse67/26timber/quest/pump/originalCinderlot exact; compressed
+save payload hash unchanged. Earlier input-interference/stepped-helper branches
+are preserved and excluded; no new recovery claim. See the [receipt](Verification/MachineSystems/InventoryBrowse20261123/README.md).
+Main stopped/rootnull/clean/original7views/index0; fresh84foreign/861normal exact.
+Current Mac7cpredates UI; batch next coherent package with weapon-stock extension.
+User clarified overarching wonder: discovering the broad practical surface of
+shared equipment/mechanics/items should expand what players can attempt; see
+[SYSTEMS-DESIGN-PRINCIPLES.md](SYSTEMS-DESIGN-PRINCIPLES.md). All12 dependency/status
+rows and original failed full regression remain open. Root sole owner/hourlyACTIVE.
+Next explicit request: genuine weapon merchants beyond Cinderhold get standard
+weapons and rotating specials. [Weapon supply qualification](MACHINE-WEAPON-MERCHANT-SUPPLY.md)
+is in progress, not yet accepted. Do not conflate its pending source/tests with
+this inventory increment. Preserve all foreign files, saves/preferences/art/apps.
+
 **Current Mac delivery — November23,2026:** published Cinderhold runtime7c248f7f06d437d91fb3abbb2f7f2678da5c652a
 is packaged at /Users/steven/coo-verification/builds/mac-7c248f7f0-20261123/CavesOfOoo.app.
 Universal6000.3.4f1/nondev56.152444s364149165bytes/0errors/5warnings (same5unique

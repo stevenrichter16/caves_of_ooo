@@ -289,6 +289,7 @@ namespace CavesOfOoo.Rendering
             _pendingEverydayTurn = false;
             _closingActivationKey = KeyCode.None;
             _inventoryQuery = ""; _inventorySearchActive = false; _searchReturnItem = null;
+            _inventoryCategory = ""; _inventorySort = "Category"; _categoryReturnItem = null;
             ClearActionStatus();
             _isOpen = true;
             _ledgerCommandsOpen = false; _ledgerDetailsRequested = false; _ledgerStatusRequested = false;
@@ -432,6 +433,7 @@ namespace CavesOfOoo.Rendering
             }
 
             if (InputHelper.GetKeyDown(KeyCode.Escape) && !string.IsNullOrEmpty(_inventoryQuery)) { SetInventoryQuery(""); return true; }
+            if (DensePack && InputHelper.GetKeyDown(KeyCode.Escape) && !string.IsNullOrEmpty(_inventoryCategory)) { SetInventoryCategory(""); return true; }
             if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyboardKeyDown(KeyCode.I))
             {
                 Close();
@@ -1182,6 +1184,7 @@ namespace CavesOfOoo.Rendering
 
         private void OpenItemActionPopup(InventoryScreenData.ItemDisplay itemDisplay)
         {
+            if (DensePack && ReferenceEquals(BrowseSelected, itemDisplay.Item)) RememberBrowseSelection();
             var item = itemDisplay.Item;
             var actions = new List<ItemAction>();
 
@@ -1930,48 +1933,39 @@ namespace CavesOfOoo.Rendering
 
         private void BuildItemRows(Entity preferred = null)
         {
+            var allGroups = new List<InventoryItemGroup>();
             for (int i = 0; i < _state.Categories.Count; i++)
             {
                 var cat = _state.Categories[i];
+                if (!string.IsNullOrEmpty(_inventoryCategory) && cat.CategoryName != _inventoryCategory) continue;
                 var matching = cat.Items.Where(it => InventoryBrowseQuery.MatchesDisplay(it, _inventoryQuery)).ToList();
                 if (matching.Count == 0) continue;
+                allGroups.AddRange(InventoryItemGroups.Project(matching, preferred, !_inventoryUngrouped));
+            }
+            if (_inventorySort != "Category") allGroups.Sort(CompareBrowseGroups);
+            string lastCategory = null;
+            for (int j = 0; j < allGroups.Count; j++)
+            {
+                var group = allGroups[j];
+                var item = group.Selected;
+                if (_inventorySort == "Category" && item.Category != lastCategory)
+                {
+                    lastCategory = item.Category;
+                    _rows.Add(new DisplayRow { IsHeader = true, Text = lastCategory, Color = QudColorParser.BrightYellow });
+                }
+                string equipped = item.IsEquipped ? " [E]" : "";
+                string line = "  " + item.Name;
+                int nameWidth = RIGHT_W - 16;
+                if (line.Length < nameWidth) line += new string(' ', nameWidth - line.Length);
+                else line = line.Substring(0, nameWidth);
+                line += item.Weight.ToString().PadLeft(4) + "lb ";
+                line += item.Value.ToString().PadLeft(4) + "$" + equipped;
                 _rows.Add(new DisplayRow
                 {
-                    IsHeader = true,
-                    Text = cat.CategoryName,
-                    Color = QudColorParser.BrightYellow
+                    IsHeader = false, Text = line,
+                    Color = item.IsEquipped ? QudColorParser.BrightCyan : QudColorParser.Gray,
+                    Item = item, Group = group
                 });
-
-                var groups = InventoryItemGroups.Project(matching, preferred, !_inventoryUngrouped);
-                for (int j = 0; j < groups.Count; j++)
-                {
-                    var group = groups[j];
-                    var item = group.Selected;
-                    string name = item.Name;
-
-                    string equipped = item.IsEquipped ? " [E]" : "";
-                    string line = "  " + name;
-
-                    // Pad/truncate for right panel width (49 cols, with weight/value at end)
-                    int nameWidth = RIGHT_W - 16; // reserve 16 for weight/value/equipped
-                    if (line.Length < nameWidth)
-                        line = line + new string(' ', nameWidth - line.Length);
-                    else
-                        line = line.Substring(0, nameWidth);
-
-                    line += item.Weight.ToString().PadLeft(4) + "lb ";
-                    line += item.Value.ToString().PadLeft(4) + "$";
-                    line += equipped;
-
-                    _rows.Add(new DisplayRow
-                    {
-                        IsHeader = false,
-                        Text = line,
-                        Color = item.IsEquipped ? QudColorParser.BrightCyan : QudColorParser.Gray,
-                        Item = item,
-                        Group = group
-                    });
-                }
             }
         }
 

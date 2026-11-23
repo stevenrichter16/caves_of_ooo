@@ -1,3 +1,10 @@
+**November23 Editor qualification:** the new [category/sort receipt](Verification/MachineSystems/InventoryBrowse20261123/README.md)
+records native263/263 and actual13-category/62-group/68-owner/211-unit old-save
+browsing,480/1280views, exact member selection and fresh10660. The requested
+armor AV/DV explanatory paragraph is removed; individual AV/DV/Hit/Pen lines
+remain. Independent source/gameplay-evidence review has0remainingP1/P2; current Mac7cpredates
+this UI. Full regression/all12machine gates remain open.
+
 # Readable item descriptions — November22 user priority
 
 Implemented and bounded Editor-qualified in this increment; source and27 actual

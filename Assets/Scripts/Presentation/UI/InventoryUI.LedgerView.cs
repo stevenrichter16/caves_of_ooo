@@ -13,7 +13,7 @@ namespace CavesOfOoo.Rendering
         {
             Tab, Equipment, Item, TinkerRow, AbilitySlot, CraftRow, TinkerMode, CraftMode,
             ClearPicks, CraftCommit, ClearAbility, PopupRow, DisplaceYes, DisplaceNo,
-            Cancel, Details, Close, LoadoutRow, LoadoutAction, PackTextScale, PackGrouping
+            Cancel, Details, Close, LoadoutRow, LoadoutAction, PackTextScale, PackGrouping, PackCategory, PackSort, PackBrowse
         }
         struct LedgerHit { public Rect Bounds; public LedgerHitKind Kind; public int Index; }
         readonly List<LedgerHit> _ledgerHits = new List<LedgerHit>(48);

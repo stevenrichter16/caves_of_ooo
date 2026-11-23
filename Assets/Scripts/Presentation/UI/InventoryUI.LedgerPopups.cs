@@ -22,6 +22,7 @@ namespace CavesOfOoo.Rendering
 
         void OpenLedgerCommands()
         {
+            _ledgerCommandTitle = "COMMANDS";
             _ledgerCommands.Clear(); _ledgerCommandIndex = 0;
             if (_panel == PANEL_LOADOUTS)
                 AddLoadoutCommands();
@@ -63,6 +64,8 @@ namespace CavesOfOoo.Rendering
             AddLedgerCommand("Character status", () => _ledgerStatusRequested = true);
             if (DensePack)
             {
+                AddLedgerCommand("Choose category", OpenCategoryChooser);
+                AddLedgerCommand("Sort items", OpenSortChooser);
                 AddLedgerCommand(_inventoryUngrouped ? "Group matching items" : "Show individual items", ToggleInventoryGrouping);
                 AddLedgerCommand("Larger text", () => ChangeDenseTextScale(1));
                 AddLedgerCommand("Smaller text", () => ChangeDenseTextScale(-1));
@@ -105,7 +108,7 @@ namespace CavesOfOoo.Rendering
             int count = 0, cursor = 0;
             Func<int, string> label = null;
             if (_ledgerCommandsOpen)
-            { title = "COMMANDS"; count = _ledgerCommands.Count; cursor = _ledgerCommandIndex; label = i => _ledgerCommands[i].Label; }
+            { title = _ledgerCommandTitle; count = _ledgerCommands.Count; cursor = _ledgerCommandIndex; label = i => _ledgerCommands[i].Label; }
             else if (_displaceConfirm != null)
             {
                 title = "REPLACE EQUIPMENT?"; owner = _displaceConfirm.ItemToEquip.GetDisplayName();

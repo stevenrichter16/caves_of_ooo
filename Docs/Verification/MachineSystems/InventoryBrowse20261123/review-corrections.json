@@ -1,0 +1,20 @@
+{
+  "nativeReviewRed": "inventory_browse_review_red2_20261123",
+  "total": 6,
+  "passed": 2,
+  "failed": 4,
+  "compilerErrors": 0,
+  "failures": [
+    "640x480GroupingvsDetails",
+    "480x360GroupingvsDetails",
+    "keyboard fallback actionreturn",
+    "pointer fallback actionreturn"
+  ],
+  "corrections": [
+    "reserve existing120pixel F1fallbackheaderregion when noDetails",
+    "remember exactvisibleowner at explicit actionpopup entry",
+    "queryheader bounds leave gap before browsecontrols",
+    "clip footer summary with filter/sort first"
+  ],
+  "firstAdditionalFailure": "green2 provider initial description-count assertion corrected to no additional reads; retained initial normal selected inspection is allowed"
+}

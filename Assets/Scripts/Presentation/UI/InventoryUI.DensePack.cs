@@ -46,7 +46,7 @@ namespace CavesOfOoo.Rendering
             if (_denseRows.Count == 0 || _denseLayout == null) return;
             int before = _cursorIndex;
             _cursorIndex = _denseRows[_denseLayout.Move(DenseOrdinal, _denseRows.Count, direction)];
-            if (_cursorIndex != before && !_inventorySearchActive && !string.IsNullOrEmpty(_inventoryQuery)) _searchReturnItem = _rows[_cursorIndex].Item.Item;
+            if (_cursorIndex != before) RememberBrowseSelection();
         }
         void ChangeDenseTextScale(int delta)
         { _denseTextScale = Mathf.Clamp(_denseTextScale + delta * .25f, 1, 2); Render(); }
@@ -97,6 +97,8 @@ namespace CavesOfOoo.Rendering
 
         bool HandleDensePackKeys()
         {
+            if (InputHelper.GetKeyDown(KeyCode.F3)) { OpenCategoryChooser(); return true; }
+            if (InputHelper.GetKeyDown(KeyCode.F4)) { OpenSortChooser(); return true; }
             if (InputHelper.GetKeyDown(KeyCode.G)) { ToggleInventoryGrouping(); return true; }
             PackNavigation? direction = null;
             if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K)) direction = PackNavigation.Up;
@@ -138,13 +140,7 @@ namespace CavesOfOoo.Rendering
         {
             var g = _denseLayout; var list = g.ListBounds;
             LFrame(new Rect(list.x, 132, list.width, g.Height - 212), LGold, LPanel);
-            string query = string.IsNullOrEmpty(_inventoryQuery) ? "ALL ITEMS   / Find" : "FIND: " + _inventoryQuery;
-            float queryWidth = list.width - (g.HasDetails ? 160 : 280);
-            LLabel(new Rect(list.x + 10, 143, queryWidth, 24), SkillScreenText.Fit(query + (_inventorySearchActive ? "_" : ""), (int)(queryWidth / 10), 1), _inventorySearchActive ? LGold : LMuted, 20);
-            var grouping = new Rect(list.xMax - (g.HasDetails ? 132 : 252), 140, 120, 27);
-            LFrame(grouping, LBorder, LBackground);
-            LLabel(new Rect(grouping.x + 5, grouping.y + 4, 110, 20), _inventoryUngrouped ? "G: Singles" : "G: Grouped", LGold, 16);
-            if (!_inventorySearchActive) LHit(grouping, LedgerHitKind.PackGrouping);
+            RenderBrowseHeader();
             for (int column = 0; column < g.Columns; column++)
             {
                 float x = list.x + column * (g.ColumnWidth + 12);
@@ -154,7 +150,7 @@ namespace CavesOfOoo.Rendering
             }
             int first = g.PageStart(DenseOrdinal), end = Math.Min(first + g.Capacity, _denseRows.Count);
             if (_denseRows.Count == 0)
-                LLabel(new Rect(list.x + 10, list.y + 8, list.width - 20, 72), string.IsNullOrEmpty(_inventoryQuery) ? "Your pack is empty." : "No items match this search. Escape clears the filter.", LMuted, 20);
+                LLabel(new Rect(list.x + 10, list.y + 8, list.width - 20, 72), !string.IsNullOrEmpty(_inventoryQuery) ? "No items match this search. Escape clears the filter." : !string.IsNullOrEmpty(_inventoryCategory) ? "No items in this category. Escape shows all categories." : "Your pack is empty.", LMuted, 20);
             for (int ordinal = first; ordinal < end; ordinal++)
             {
                 int index = _denseRows[ordinal]; var item = _rows[index].Item; var row = g.RowBounds(ordinal);
@@ -169,8 +165,11 @@ namespace CavesOfOoo.Rendering
             }
             long owners = _denseRows.Sum(i => (long)(_rows[i].Group?.Members.Count ?? 1));
             long units = _denseRows.Sum(i => _rows[i].Group?.TotalUnits ?? _rows[i].Item.StackCount);
-            LLabel(new Rect(24, g.Height - 73, g.Width - 48, 20), (_denseRows.Count == 0 ? "0" : (first + 1) + "-" + end) + " / " + _denseRows.Count
-                + " rows; " + owners + " stacks / " + units + " items (includes equipped)   ~ rounded", LMuted, 16);
+            string status = (string.IsNullOrEmpty(_inventoryCategory) ? "All categories" : _inventoryCategory)
+                + " / " + (_inventorySort == "Weight" ? "Heaviest first" : _inventorySort == "Name" ? "Name A-Z" : "Category order")
+                + "   " + (_denseRows.Count == 0 ? "0" : (first + 1) + "-" + end) + " / " + _denseRows.Count
+                + " rows; " + owners + " stacks / " + units + " items (includes equipped)   ~ rounded";
+            LLabel(new Rect(24, g.Height - 73, g.Width - 48, 20), SkillScreenText.Fit(status, Math.Max(1,(int)((g.Width-48)/8)),1), LMuted, 16);
             RenderDenseSelection();
         }
         void RenderDenseSelection()

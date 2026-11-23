@@ -2,6 +2,22 @@
 
 Standing user direction, November16,2026 (America/Chicago). This is a central design philosophy for the whole game: machines, NPCs, objects, their components, behaviors and effects.
 
+The user clarified the overarching purpose on November23: an eye-widening sense
+of wonder as players discover how much of the world the equipment, mechanics
+and items let them engage with. Favor discoveries that expand what a player can
+reasonably attempt. Learning one capability should suggest useful applications
+across travel, inhabited places, creatures, materials and lasting projects.
+Content quantity is valuable when it produces distinct opportunities and
+connections through shared rules, rather than repeated isolated interactions.
+
+Let a discovery lead somewhere: an unusual merchant item can suggest a project;
+a completed project can enable an activity; familiar equipment can acquire a
+new practical use in that activity. Preserve experimentation, observable
+consequences and multiple approaches. Descriptions, readable inventory categories
+and previews should help players recognize these possibilities without spelling
+out every combination or claiming unsupported behavior. The examples express a
+design aim; each supported interaction still needs implementation and actual play.
+
 Build on the existing Entity/Part/event model. Capabilities and persistent instance state belong to composable Parts; shared rules and services coordinate their interactions. New content should participate through those capabilities and contracts. Routine additions of behaviors or effects should not require editing every interacting system or scripting each entity pairing.
 
 Players should be able to reason from the world. With suitable materials, components, objects, machines, knowledge and physical access, an interaction that makes sense should have a consistent supported path. Apply the same implemented rules throughout the world, including combinations and situations the designers did not author individually. Preserve useful alternatives, understandable costs, ownership and consequences. Avoid single-solution tool puzzles and progression padding.

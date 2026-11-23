@@ -1,4 +1,55 @@
+**November23 Editor qualification:** the new [category/sort receipt](Verification/MachineSystems/InventoryBrowse20261123/README.md)
+records native263/263 and actual13-category/62-group/68-owner/211-unit old-save
+browsing,480/1280views, exact member selection and fresh10660. The requested
+armor AV/DV explanatory paragraph is removed; individual AV/DV/Hit/Pen lines
+remain. Independent source/gameplay-evidence review has0remainingP1/P2; current Mac7cpredates
+this UI. Full regression/all12machine gates remain open.
+
 # Inventory density redesign — proposed November 21, 2026
+
+## November 23 category and sort qualification (in progress)
+
+Actual native continuation of the retained Cinderhold10660 character showed62
+grouped rows,68 physical stacks and211 units at76-row capacity. Searching
+`tools` returned no results: current search matches disclosed names/state, not
+the already displayed category. The current ordering is category then ordinal
+entity ID, rather than alphabetical name. Baseline screenshots and a fresh
+10660 checkpoint are retained under `/private/tmp/coo-inventory-browse-20261123`
+and `/private/tmp/coo-inventory-browse-before-earned-20261123`. The supplied
+character is a browsing fixture; no accepted processing/repair loop was repeated.
+
+Small proposed increment: an explicit category chooser (All plus categories in
+the retained public snapshot), and Category / Name A–Z / Heaviest first sorting.
+Weight sorting uses the displayed group's total weight, not per-unit weight;
+equal keys use disclosed name then ordinal entity ID for stable ties. Category
+ordering preserves the current default. Search and category filters intersect.
+No category inference from hidden Parts, new live description queries, physical
+stacking permission, inventory mutation, time charge or saved field is needed.
+
+Preserve the exact selected member through sorting and grouping. A category
+filter that excludes it remembers it until clearing, unless the player explicitly
+selects a different item. Empty/removed categories remain visibly empty until
+cleared. Escape clears search, then category, then closes. F2 keeps status;
+F3/F4 open the category/sort choosers. Use the existing modal for keyboard,
+pointer and controller commands, with full category labels inside. Fit controls
+in the existing header without reducing item rows; narrow views may combine the
+controls into a Browse button. Full reopen resets these temporary view choices.
+Native RED, independent critique, actual navigation/actions/readers/save checks
+and independent evidence review remain required before acceptance.
+
+The user then explicitly requested more categories for readability. The actual
+fixture places34 of62 rows in Miscellaneous, including flasks, seeds, reagents,
+timber, fire clay and tools. Qualify display-only refinement of empty/Miscellaneous
+categories using existing public capabilities and a small named-material/manual
+catalogue. Preserve explicit non-Miscellaneous categories, custom labels and
+Unknown/Artifacts/Quest Items; do not classify from arbitrary Composition or
+hidden enhancement state. New proposed groups are Containers, Seeds, Reagents,
+Materials, Components, Camp Equipment and Documents; reuse Tools, Grenades,
+Light Sources, Books and Tonics where supported. This must work for retained
+old-save items without rewriting Physics.Category, custody, stack permissions or save
+fields. Native category RED and the same real navigation/readers/fresh gates
+remain open. Weapon-merchant expansion requested subsequently is a separate
+next implementation; current stock remains Cinderhold-only for WeaponsmithStock.
 
 November22 user-requested [counted Inventory groups](INVENTORY-COUNTED-GROUPS.md)
 now add matching-item rows while preserving independent owners and physical
@@ -395,3 +446,9 @@ NEXT: resume independent water-cooling cost P2 policy/RED/smallestshared correct
 preserving old pooledstock/natural sources/rollback/callbacks. Keep category/sort,
 further audited groups and physical-input gates remembered; no compulsory upkeep
 or physical stack/save migration is implied.
+
+Independent category critique: primary equipment/tool/container/camp use must
+precede incidental LightSource; no arbitrary enhancement/provider calls. UI
+grouping fingerprints contain the display category, so their bytes can change
+on rebuild; audited membership permissions and saved physical state remain the
+same. Merchant fingerprint construction supplies an empty category explicitly.

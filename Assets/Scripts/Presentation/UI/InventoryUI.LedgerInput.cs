@@ -60,7 +60,7 @@ namespace CavesOfOoo.Rendering
                 case LedgerHitKind.Item:
                     if (_panel == PANEL_INVENTORY && _cursorIndex == hit.Index) return false;
                     _panel = PANEL_INVENTORY; _cursorIndex = hit.Index;
-                    if (!_inventorySearchActive && !string.IsNullOrEmpty(_inventoryQuery)) _searchReturnItem = _rows[_cursorIndex].Item?.Item;
+                    RememberBrowseSelection();
                     return true;
                 case LedgerHitKind.TinkerRow:
                     if (_tinkerCursorIndex == hit.Index) return false; _tinkerCursorIndex = hit.Index; return true;
@@ -94,6 +94,9 @@ namespace CavesOfOoo.Rendering
                 case LedgerHitKind.Tab: _panel = hit.Index; Render(); return;
                 case LedgerHitKind.PackTextScale: ChangeDenseTextScale(hit.Index); return;
                 case LedgerHitKind.PackGrouping: if (!_inventorySearchActive) ToggleInventoryGrouping(); return;
+                case LedgerHitKind.PackCategory: OpenCategoryChooser(); return;
+                case LedgerHitKind.PackSort: OpenSortChooser(); return;
+                case LedgerHitKind.PackBrowse: OpenBrowseCommands(); return;
                 case LedgerHitKind.LoadoutRow: Render(); return;
                 case LedgerHitKind.LoadoutAction: ExecuteLoadoutAction(hit.Index); return;
                 case LedgerHitKind.Equipment:
