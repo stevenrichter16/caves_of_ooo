@@ -1,3 +1,26 @@
+**Current Mac delivery — November23,2026:** published runtime1a153dc6948a838c87b8cfd3b3fd06db9421ad85
+now includes mire/pith recovery and both corrected readers. Universal nondevelopment
+app: /Users/steven/coo-verification/builds/mac-1a153dc69-20261123/CavesOfOoo.app.
+60.534291s364148141bytes/0errors/7warning occurrences=same5uniqueprior203.
+32033committed/32036effective/83changed0missing3added/exact86overlay/
+0runtimeCSharpimportchange/592external/186app pins. Git blobs/export exact;
+Cecil15checks newmire/guides/unchanged body and merchant contracts/saved fields.
+DLL884be79e6dbc8dd02f4e67567b3bd09062cb828891c2fbae35df7e666ae4aa85.
+Actualowned55465/window71103/640x428chooser/world/HUD/7registeredcreatures;
+inputpostfalse/AXfalse/screentrue, no input/activation/request posted. Exact owned
+player closed;10logicalprefs restored/MacSavesabsent nonsymlink; all15prior app
+maps/current186/84foreign/861selectednormal exact. Mainstopped/rootnull/clean/
+profileroff/original7views/index0. Independent read-only artifact review0P1/P2;
+no controlled packaged play/save/controller/FPS/Intel/full12/fullregression claim.
+See [delivery receipt](Verification/MachineSystems/MacCandidate1A153DC69/README.md).
+Next source-qualified candidate: [Cinderhold smith repair supply](MACHINE-CINDERHOLD-SUPPLY-QUALIFICATION.md).
+The concern promises smith-sold spikes absent from its catalogue; one reclaimed
+blank makes one spike, pump lastingrepair needs two. Actual shop/pump/census and
+complete optional-payload baseline remain required. Quartermaster absence is
+not established; no new pump reward, route or merchant profile is shipped here.
+Current all12 statuses unchanged/open; hourlyACTIVE/root sole owner. These lines
+supersede older currentMac203 references. All previous apps/checkpoints preserved.
+
 **Mire field-recovery continuation — November23,2026:** Bounded Editor recovery
 is accepted after independent source/gameplay-evidence review0P1/P2 (read-only). Existing pith body cleanup admits bog-mire;
 one pith removes at most20 from self/adjacent visible nonhostile party, with

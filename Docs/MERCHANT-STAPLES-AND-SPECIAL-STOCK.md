@@ -86,14 +86,15 @@ consignment or a later one. Preserve alternate merchants, direct crafting,
 gathering and services. Special-stock improvements should be useful optional
 projects, without making a particular machine mandatory for basic supplies.
 
-## Current source footholds
+## Original source footholds (before the shipped pilots)
 
 `TraderPart` already authors a StockTable, starting purse and opening allocation.
 `TraderRestockSystem` already stores LastRestockTurn and, on eligible zone entry,
 tops up buying power and rolls the existing themed table when its shelf falls
-below the low-water threshold. Its current interval guard is 300 turns; that is
-not a selected cadence for new specials. The implementation currently uses one
-themed shelf policy rather than the proposed independent staple/special layers.
+below the low-water threshold. Its legacy interval guard is300ticks. The shipped opted-in profiles now use
+independent staple/special layers, as recorded below; other merchants retain
+the legacy low-shelf policy. Specials use1200game ticks from actual installation,
+while staple top-ups retain the strict greater-than300tick guard.
 
 `PlaceConsequences.OnZoneEntered` already tops up listed goods when an authored
 place condition holds, with its own saved interval stamp. This is a possible
@@ -101,9 +102,10 @@ integration seam, not a verified trade-route graph or special-consignment system
 Concord carriage holds actual entrusted goods; merchant supply should not be
 confused with transmitting information or the player's freight parcel custody.
 
-Verify the shared authoritative time path, shelf accounting, generated item
-state, valuation, save graph, sold-item custody and existing conditional stock
-before selecting a minimal implementation. Reuse existing trade infrastructure.
+The shipped pilots verified shared game time, shelf accounting, generated
+payloads, valuation, save graphs and bought/sold custody through the existing
+trade infrastructure. New profiles must qualify those contracts for every new
+payload and preserve the documented limits.
 
 ## First bounded implementation and acceptance
 
@@ -349,3 +351,13 @@ Mac artifact/startup delivery are recorded in the
 [delivery receipt](Verification/MachineSystems/MacCandidate203023F31/README.md).
 Editor qualification and packaged startup have distinct limits; controlled
 packaged gameplay/performance and complete-machine gates stay open.
+
+## Next grounded supply qualification — November23
+
+[The Cinderhold source critique](MACHINE-CINDERHOLD-SUPPLY-QUALIFICATION.md)
+identifies a concrete promise gap: the pump concern names smith-sold spikes,
+but WeaponsmithStock has no spike entry. One finite reclaimed blank makes only
+one spike, while the lasting repair requires two. Actual pump/shop/census and
+old-save baseline must precede any local dependable smith profile. Existing
+pump commerce benefits remain; no new instrument-production or route claim.
+This is a candidate, not shipped supply or a new accepted machine.

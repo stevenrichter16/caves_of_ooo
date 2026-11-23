@@ -1,7 +1,8 @@
 # Bog-mire field recovery
 
 November 23, 2026. Bounded Editor recovery accepted after independent source and
-gameplay-evidence review. Current Mac203 predates this increment; packaging is open.
+gameplay-evidence review. Current Mac1a153dc69 includes this increment; artifact/
+startup verification is recorded in [its delivery receipt](Verification/MachineSystems/MacCandidate1A153DC69/README.md).
 
 An actual retained Quillhold branch at tick 7100 has 272 units of bog-mire,
 Agility 16 instead of 18, HP 218/400 and eight carried prismreed pith. Its real
@@ -68,5 +69,5 @@ retained HP184 and six pith, then F5/fresh7450 exact. Independent bounded source
 and gameplay-evidence review found0remainingP1/P2 (read-only, not a second native
 operator). See [the native receipt](Verification/MachineSystems/MirePithRecovery20261123/README.md).
 All twelve full-machine acceptance gates and the original failed full regression
-remain open. Current Mac203 excludes this slice; build at the next coherent
-playable package milestone while preserving every prior app.
+remain open. Current Mac1a153dc69 includes this slice with artifact/startup
+verification; controlled packaged interaction/save and performance remain open.

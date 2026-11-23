@@ -3,7 +3,8 @@
 November 23, 2026. Independent bounded source/gameplay-evidence review accepted
 with0remainingP1/P2. This is bounded
 manual field recovery, not a treatment bath or new creature exposure system.
-The current Mac remains source203023f31 and does not include this increment.
+This Editor receipt preceded Mac1a153dc69; that current package includes the
+increment with [separate artifact/startup verification](../MacCandidate1A153DC69/README.md).
 
 ## What was proved
 
