@@ -1,5 +1,10 @@
 # Corrected-head full regression — November22 evening
 
+Completed native result and independent reruns are now recorded in
+[ASSESSMENT.md](ASSESSMENT.md). Raw full remains104fail/9inconclusive/8skipped;
+focused corrected UI/fixture integration is471/471. The original start receipt
+below is retained historically and is superseded by that assessment.
+
 Run started November23,00:49:49UTC (November22 America/Chicago). This is a start
 receipt, not a completed test result or full-machine acceptance.
 

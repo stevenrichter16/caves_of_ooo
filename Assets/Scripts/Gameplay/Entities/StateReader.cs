@@ -54,7 +54,8 @@ namespace CavesOfOoo.Core
             }
         }
 
-        public static void Collect(Entity owner, bool full, Zone zone, Cell cell, Entity viewer, List<string> into)
+        public static void Collect(Entity owner, bool full, Zone zone, Cell cell, Entity viewer, List<string> into,
+            Func<Part, bool> include = null)
         {
             if (owner == null || into == null) return;
             var parts = owner.Parts; int found = 0;
@@ -63,7 +64,8 @@ namespace CavesOfOoo.Core
             var wanted = full ? ReaderScope.Full : ReaderScope.Quick;
             var ordered = new List<(int order, int index, IDescribeState part)>(found);
             for (int i = 0; i < parts.Count; i++)
-                if (parts[i] is IDescribeState d && (d.Scope & wanted) != 0) ordered.Add((d.Order, i, d));
+                if (parts[i] is IDescribeState d && (d.Scope & wanted) != 0 && (include == null || include(parts[i])))
+                    ordered.Add((d.Order, i, d));
             ordered.Sort((a, b) => a.order != b.order ? a.order.CompareTo(b.order) : a.index.CompareTo(b.index));
             var context = new DescribeContext { Owner = owner, Zone = zone, Cell = cell, Viewer = viewer, Full = full };
             for (int i = 0; i < ordered.Count; i++)

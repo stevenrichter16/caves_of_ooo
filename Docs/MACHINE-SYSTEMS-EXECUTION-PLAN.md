@@ -10,35 +10,45 @@
 
 ## Active handback continuation — November 21, 2026
 
-New user priority — November22: improve inventory item comprehensibility,
-especially weapons/armor, using logical sections with visibly distinct headings
-and concise stat rows. Source cause: SelectedDecisionPresentation collapses all
-content into one Decision details section; sidebar and equipment preview flatten
-it again. [Implementation contract](INVENTORY-ITEM-DESCRIPTIONS.md) records Combat/
-Protection, Handling/slots, Effects/condition, actual Equipment comparison and
-Description, with typed cached sections shared by sidebar/fullreader. Preserve
-per-location AV, item-vs-character contributions, conditional effects, selection/
-ownership/callback guards and established dense item capacity. Source-qualified
-design only, no runtime/UI implementation or play claim. Independent bounded
-source/design critique found no blocker; required one provider capture, carried
-versus worn coverage, exact displaced/natural slots, explicit-read versus repaint
-semantics and heading/page spacing are recorded in the contract. Full clone2 regression is still running; keep runtime/tests
-frozen and no native play/build/second batch. This UI request takes priority over
-further machine expansion after full-run assessment. HourlyACTIVE.
+Current inventory description increment — November22/23: implemented and bounded
+Editor-qualified. Weapons/armor retain typed logical sections, contrasting
+headings, complete effects/comparison/flavor and cached overviews. Armor value
+(AV), Dodge value (DV), Damage, Hit bonus and Penetration bonus each have their
+own row. Exact provider/Part/slot/owner guards and dense capacity are preserved.
+Native compiling RED20 retained16 meaningful failures/2 corrected fixture errors/
+2controls; final combined native471/471/0CS includes20new UI cases and corrected
+regression fixtures. Actual isolated GameBootstrap native keyboard routes inspect
+Dagger2127, boots2351, modified cloak3c6..., worn cloak2342 and every reader page;
+normal views/resize/F1/F5/fresh Continue preserve measured4200/HP360/energy1000/
+weight536/66owners. At2315x1189:61countedrows/210items/capacity76. All27 current
+screenshots use real end-of-frame capture. A separately disclosed hybrid test
+item exercises both stat families and native popup equip; it is never saved,
+with raw4file before/after hashes and ordinary checkpoint retained. Independent
+source/gameplay-evidence review0P1/P2, not second native operator. See
+[UI receipt and gallery](Verification/MachineSystems/InventorySections20261122/README.md)
+and [description contract](INVENTORY-ITEM-DESCRIPTIONS.md).
 
-November22 evening full corrected-head regression has started in idle clone2
-at00:49:49UTCNovember23; runtimea9de3d3d9/docs7602dc783,3887code/test/configpins
-matched after sync, all6well/flask pins exact. See
-[start receipt](Verification/MachineSystems/FullRegressionA9DE3D3D9/README.md)
-and live /private/tmp/coo-full-a9de3d3d9-20261122/progress.json. Result/log named
-machine_full_a9de3d3d9_20261122 under coo-verification/results; session56408.
-No result/acceptance yet. While active: no clone2resync, native play/build/other
-batch, or runtime/test edits; read-only source/design work is useful. On finish
-require0CS/exactpins, comparefull_s9+inheritedfullrun_h and rerunnewfailuresalone.
-Do not repeat accepted well/clay/cooling/counting actualplay/tests/builds.
-HourlyACTIVE; lastfull-deliveryM3c/all12gatesopen,graphicscancelled/capstan-cultures
-parked/Deckdeferred. No ownedruntimeWIP; later records-only commits do not change
-the pinned runtime. Existing foreign changes and every build remain preserved.
+Full pinned a9 regression completed40813total/40692pass/104fail/9inconclusive/
+8skipped/0CS,3887pins exact. Compare BOTH full_s9/fullrun_h:13new failure names,
+all rerun separately on unchanged snapshot (13processes,1caseeach,0CS):10invalid
+water fixtures fail,1old well/spill conflict fails,2input/random fixtures pass.
+Correct actor+pool physics, scope/restore oil-slip RNG with landing assertion,
+and explicitly test keyboard/controller journal footer; behavioral assertions
+remain. Corrected classes are included in focused471GREEN, not a new full run.
+Older well safety/test conflict and baseline91failure names remain open. Common
+message differences are clone paths or HushStripLaid already present in fullrun_h;
+no graphics resumed. [Full assessment](Verification/MachineSystems/FullRegressionA9DE3D3D9/ASSESSMENT.md).
+
+The user's explicit instruction to start before the full run finished superseded
+older freeze/after-full-run text. Root is sole Unity/Git owner; clone2 was never
+resynced/edited. Fresh84foreign/861selectednormal hashes match; main stopped,
+rootnull/clean/profileroff/7builtins/custom0/selected0/noownedview. No balance,
+save fields or authored hybrid/recipe added. Current Mac a9 predates UI; next
+coherent delivery is a current Mac candidate preserving all previous apps.
+All12 complete-machine/full-delivery gates stay open, last full deliveryM3c.
+Graphics cancelled, capstan/cultures parked, Deck deferred; hourlyACTIVE. Further
+machine expansion follows this UI completion and outstanding regression policy
+work; retain long-term loops, safe stacking and dense category/sort priorities.
 
 November22 [current well/flask Mac candidate](Verification/MachineSystems/MacCandidateA9DE3D3D9/README.md)
 packages pushed/remotely verified runtimea9de3d3d9de9c21a917748c0d74c387b17ab7b3d.

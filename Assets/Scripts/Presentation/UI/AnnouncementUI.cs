@@ -125,7 +125,18 @@ namespace CavesOfOoo.Rendering
                     if (string.IsNullOrEmpty(section.Text)) continue;
                     if (_ledgerLines.Count > 0) AddLines("", Ivory);
                     if (!string.IsNullOrEmpty(section.Heading) && section.Heading != "Description")
-                    { AddLines(section.Heading.ToUpperInvariant(), SeaGreen); AddLines("", Ivory); }
+                    {
+                        var heading = new List<string>(); WrapText(section.Heading.ToUpperInvariant(), MAX_TEXT_WIDTH, heading);
+                        // Reserve heading + spacer + the first nonempty body line.
+                        // Very long authored headings can span pages as ordinary prose.
+                        int keep = heading.Count + 2;
+                        var body = new List<string>(); WrapText(section.Text, MAX_TEXT_WIDTH, body);
+                        for (int i = 0; i < body.Count && string.IsNullOrWhiteSpace(body[i]); i++) keep++;
+                        int remaining = PAGE_LINES - _ledgerLines.Count % PAGE_LINES;
+                        if (keep <= PAGE_LINES && remaining < keep)
+                            for (int i = 0; i < remaining; i++) AddLines("", Ivory);
+                        AddLines(section.Heading.ToUpperInvariant(), SeaGreen); AddLines("", Ivory);
+                    }
                     AddLines(section.Text, section.Tone == AnnouncementTone.Warning ? Amber : Ivory);
                 }
                 if (document.Facts.Count > 0 && _ledgerLines.Count > 0) AddLines("", Ivory);

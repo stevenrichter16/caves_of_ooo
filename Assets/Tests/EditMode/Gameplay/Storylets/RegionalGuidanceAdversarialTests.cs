@@ -10,6 +10,7 @@ using CavesOfOoo.Rendering;
 using CavesOfOoo.Storylets;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace CavesOfOoo.Tests
 {
     public class RegionalGuidanceAdversarialTests
@@ -87,11 +88,13 @@ namespace CavesOfOoo.Tests
                 StringAssert.Contains("Quillhold",RegionalTravelNotes.Read(loaded).Single());
             }
         }
-        [Test] public void LongObjectiveActuallyRendersReturnContactBeyondFirstLine()
+        [TestCase(false)] [TestCase(true)] public void LongObjectiveActuallyRendersReturnContactBeyondFirstLine(bool controller)
         {
+            var devices = new InputTestFixture(); devices.Setup();
             var go=new GameObject("objective-wrap-test");
             try
             {
+                if (controller) InputSystem.AddDevice<Gamepad>(); else InputSystem.AddDevice<Keyboard>();
                 var map=go.AddComponent<Tilemap>();var ui=go.AddComponent<QuestLogUI>();ui.Tilemap=map;ui.Open();
                 string text="Leave the village and follow the eastern road past the old hedges. Speak with the contact at the far well before gathering a permitted sample; avoid taking another person's supplies. Bring the sample back and RETURN TO MORROWFAST.";
                 var entry=new QuestLogActiveEntry("TestTravel","outbound",0,0,
@@ -103,9 +106,9 @@ namespace CavesOfOoo.Tests
                 var rendered=new StringBuilder();
                 for(int y=0;y<45;y++){for(int x=0;x<80;x++){var tile=map.GetTile(new Vector3Int(x,44-y,0));rendered.Append(tile!=null&&glyphs.TryGetValue((Tile)tile,out char c)?c:' ');}rendered.Append(' ');}
                 StringAssert.Contains("MORROWFAST",rendered.ToString(),"The player must see the return destination, not just the first66characters.");
-                StringAssert.Contains("[Tab]",rendered.ToString(),"Wrapping must not erase journal navigation.");
+                StringAssert.Contains(controller ? "[Y]" : "[Tab]",rendered.ToString(),"Wrapping must not erase navigation for the current input mode.");
             }
-            finally{UnityEngine.Object.DestroyImmediate(go);}
+            finally{UnityEngine.Object.DestroyImmediate(go);devices.TearDown();}
         }
     }
 }

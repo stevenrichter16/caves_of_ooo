@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="20" result="Failed(Child)" total="20" passed="2" failed="18" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-23 03:51:31Z" end-time="2026-11-23 03:51:39Z" duration="7.5064361">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40833" result="Failed" site="Child" start-time="2026-11-23 03:51:31Z" end-time="2026-11-23 03:51:39Z" duration="7.506436" total="20" passed="2" failed="18" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49781" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40833" result="Failed" site="Child" start-time="2026-11-23 03:51:32Z" end-time="2026-11-23 03:51:39Z" duration="6.816417" total="20" passed="2" failed="18" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79833" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49782" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40833" result="Failed" site="Child" start-time="2026-11-23 03:51:33Z" end-time="2026-11-23 03:51:39Z" duration="5.956867" total="20" passed="2" failed="18" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49783" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40833" result="Failed" site="Child" start-time="2026-11-23 03:51:33Z" end-time="2026-11-23 03:51:39Z" duration="5.303724" total="20" passed="2" failed="18" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33140" name="InventoryDetailsPresentationTests" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" testcasecount="36" result="Failed" site="Child" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:36Z" duration="0.743942" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="33174" name="DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.287899" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33172" name="DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear(False)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear(False)" methodname="DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="113605097" result="Failed" label="Error" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.234191" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Collection was modified; enumeration operation may not execute.]]></message>
+                  <stack-trace><![CDATA[  at System.Collections.Generic.List`1+Enumerator[T].MoveNextRare () [0x00013] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNext () [0x0004a] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Core.EquipmentComparisonService.AddFacts (CavesOfOoo.Core.Entity item, System.Collections.Generic.List`1[T] lines) [0x0006d] in /Users/steven/coo-verification/clone3/Assets/Scripts/Gameplay/Items/EquipmentComparisonService.cs:296 
+  at CavesOfOoo.Core.EquipmentComparisonService.TryDescribe (CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.Entity candidate, System.String& text, System.String& reason) [0x00154] in /Users/steven/coo-verification/clone3/Assets/Scripts/Gameplay/Items/EquipmentComparisonService.cs:48 
+  at CavesOfOoo.Rendering.InventoryUI.DetailsForItemBody (CavesOfOoo.Core.Entity item) [0x0002b] in /Users/steven/coo-verification/clone3/Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs:166 
+  at CavesOfOoo.Rendering.InventoryUI.DetailsForItem (CavesOfOoo.Core.Entity item) [0x0007e] in /Users/steven/coo-verification/clone3/Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs:160 
+  at CavesOfOoo.Rendering.InventoryUI.BuildSelectedDecisionDetails (CavesOfOoo.Core.Entity& subject) [0x00753] in /Users/steven/coo-verification/clone3/Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs:147 
+  at CavesOfOoo.Rendering.InventoryUI.SelectedDecisionPresentation (System.String& text) [0x0000e] in /Users/steven/coo-verification/clone3/Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs:27 
+  at CavesOfOoo.Tests.InventoryDetailsPresentationTests.DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear (System.Boolean onCurrent) [0x00093] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:249 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="33173" name="DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear(True)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear(True)" methodname="DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="217785716" result="Failed" label="Error" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.050656" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Collection was modified; enumeration operation may not execute.]]></message>
+                  <stack-trace><![CDATA[  at System.Collections.Generic.List`1+Enumerator[T].MoveNextRare () [0x00013] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNext () [0x0004a] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Core.EquipmentComparisonService.AddFacts (CavesOfOoo.Core.Entity item, System.Collections.Generic.List`1[T] lines) [0x0006d] in /Users/steven/coo-verification/clone3/Assets/Scripts/Gameplay/Items/EquipmentComparisonService.cs:296 
+  at CavesOfOoo.Core.EquipmentComparisonService.TryDescribe (CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.Entity candidate, System.String& text, System.String& reason) [0x00337] in /Users/steven/coo-verification/clone3/Assets/Scripts/Gameplay/Items/EquipmentComparisonService.cs:81 
+  at CavesOfOoo.Rendering.InventoryUI.DetailsForItemBody (CavesOfOoo.Core.Entity item) [0x0002b] in /Users/steven/coo-verification/clone3/Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs:166 
+  at CavesOfOoo.Rendering.InventoryUI.DetailsForItem (CavesOfOoo.Core.Entity item) [0x0007e] in /Users/steven/coo-verification/clone3/Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs:160 
+  at CavesOfOoo.Rendering.InventoryUI.BuildSelectedDecisionDetails (CavesOfOoo.Core.Entity& subject) [0x00753] in /Users/steven/coo-verification/clone3/Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs:147 
+  at CavesOfOoo.Rendering.InventoryUI.SelectedDecisionPresentation (System.String& text) [0x0000e] in /Users/steven/coo-verification/clone3/Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs:27 
+  at CavesOfOoo.Tests.InventoryDetailsPresentationTests.DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear (System.Boolean onCurrent) [0x00093] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:249 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33171" name="EquipmentCallbackChangingARealSlotCannotPublishTheEarlierComparison" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentCallbackChangingARealSlotCannotPublishTheEarlierComparison" methodname="EquipmentCallbackChangingARealSlotCannotPublishTheEarlierComparison" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="669085123" result="Failed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.047181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.AnnouncementDocument>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentCallbackChangingARealSlotCannotPublishTheEarlierComparison () [0x00063] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:234
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33169" name="EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.212678" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33165" name="EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor(&quot;Dagger&quot;)" methodname="EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="1141014396" result="Failed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.047932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor (System.String blueprint) [0x00076] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33166" name="EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor(&quot;Buckler&quot;)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor(&quot;Buckler&quot;)" methodname="EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="1821828784" result="Failed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.085273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor (System.String blueprint) [0x00076] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33167" name="EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor(&quot;VenomDagger&quot;)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor(&quot;VenomDagger&quot;)" methodname="EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="887954017" result="Failed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.039181" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor (System.String blueprint) [0x00076] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33168" name="EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor(&quot;IronshodBoots&quot;)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor(&quot;IronshodBoots&quot;)" methodname="EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="711872043" result="Failed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.039038" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryDetailsPresentationTests.EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor (System.String blueprint) [0x00076] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33170" name="HybridEquipmentRetainsBothStatFamiliesWithoutInvokingEnhancementsTwice" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.HybridEquipmentRetainsBothStatFamiliesWithoutInvokingEnhancementsTwice" methodname="HybridEquipmentRetainsBothStatFamiliesWithoutInvokingEnhancementsTwice" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="412006848" result="Failed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.039514" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  One explicit capture must consult an enhancement once.
+  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryDetailsPresentationTests.HybridEquipmentRetainsBothStatFamiliesWithoutInvokingEnhancementsTwice () [0x0004e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:217
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33179" name="ReaderSectionHeadingStaysWithItsFirstBodyLine" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.ReaderSectionHeadingStaysWithItsFirstBodyLine" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:36Z" duration="0.149241" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33175" name="ReaderSectionHeadingStaysWithItsFirstBodyLine(16)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.ReaderSectionHeadingStaysWithItsFirstBodyLine(16)" methodname="ReaderSectionHeadingStaysWithItsFirstBodyLine" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="1461842326" result="Passed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.041017" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33176" name="ReaderSectionHeadingStaysWithItsFirstBodyLine(17)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.ReaderSectionHeadingStaysWithItsFirstBodyLine(17)" methodname="ReaderSectionHeadingStaysWithItsFirstBodyLine" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="1183657561" result="Failed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.034945" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A heading alone at the bottom of a page makes the next page unclear.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryDetailsPresentationTests.ReaderSectionHeadingStaysWithItsFirstBodyLine (System.Int32 precedingLines) [0x000a1] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:269
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33177" name="ReaderSectionHeadingStaysWithItsFirstBodyLine(18)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.ReaderSectionHeadingStaysWithItsFirstBodyLine(18)" methodname="ReaderSectionHeadingStaysWithItsFirstBodyLine" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="269158108" result="Failed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:35Z" duration="0.035391" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A heading alone at the bottom of a page makes the next page unclear.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryDetailsPresentationTests.ReaderSectionHeadingStaysWithItsFirstBodyLine (System.Int32 precedingLines) [0x000a1] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/InventoryDetailsPresentationTests.cs:269
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33178" name="ReaderSectionHeadingStaysWithItsFirstBodyLine(19)" fullname="CavesOfOoo.Tests.InventoryDetailsPresentationTests.ReaderSectionHeadingStaysWithItsFirstBodyLine(19)" methodname="ReaderSectionHeadingStaysWithItsFirstBodyLine" classname="CavesOfOoo.Tests.InventoryDetailsPresentationTests" runstate="Runnable" seed="1128789569" result="Passed" start-time="2026-11-23 03:51:35Z" end-time="2026-11-23 03:51:36Z" duration="0.036577" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="48347" name="InventoryLedgerInteractionTests" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="149" result="Failed" site="Child" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:36Z" duration="0.517472" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="48422" name="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:36Z" duration="0.505241" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48417" name="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(1280,720,1.0f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(1280,720,1.0f)" methodname="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1866330310" result="Failed" label="Error" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:36Z" duration="0.109284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable (System.Int32 width, System.Int32 height, System.Single scale) [0x00176] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:162 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48418" name="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(1280,800,1.0f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(1280,800,1.0f)" methodname="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="559904403" result="Failed" label="Error" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:36Z" duration="0.087528" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable (System.Int32 width, System.Int32 height, System.Single scale) [0x00176] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:162 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48419" name="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(1920,1080,1.0f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(1920,1080,1.0f)" methodname="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="983047705" result="Failed" label="Error" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:36Z" duration="0.088616" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable (System.Int32 width, System.Int32 height, System.Single scale) [0x00176] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:162 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48420" name="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(1280,800,1.5f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(1280,800,1.5f)" methodname="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1979575571" result="Failed" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:36Z" duration="0.095705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Item index 14
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests+Rig.FindHit (System.String kind, System.Int32 index) [0x00031] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerInteractionTests.cs:851
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable (System.Int32 width, System.Int32 height, System.Single scale) [0x000ab] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48421" name="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(640,480,1.0f)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(640,480,1.0f)" methodname="DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="836811187" result="Failed" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:36Z" duration="0.122921" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Item index 14
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests+Rig.FindHit (System.String kind, System.Int32 index) [0x00031] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerInteractionTests.cs:851
+at CavesOfOoo.Tests.InventoryLedgerInteractionTests.DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable (System.Int32 width, System.Int32 height, System.Single scale) [0x000ab] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryDensePackTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="48566" name="InventoryLedgerViewTests" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:39Z" duration="2.598776" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="48597" name="HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:39Z" duration="2.470906" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="48595" name="HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies(False)" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies(False)" methodname="HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="891359399" result="Failed" label="Error" start-time="2026-11-23 03:51:36Z" end-time="2026-11-23 03:51:38Z" duration="2.287274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.InventoryLedgerViewTests.HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies (System.Boolean flat) [0x000cb] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:320 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="48596" name="HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies(True)" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies(True)" methodname="HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="1495787845" result="Failed" label="Error" start-time="2026-11-23 03:51:38Z" end-time="2026-11-23 03:51:39Z" duration="0.183138" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.InventoryLedgerViewTests.HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies (System.Boolean flat) [0x000cb] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:320 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="48594" name="StructuredOverviewRepaintsAndTextControlsDoNotRecaptureDescriptionProviders" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.StructuredOverviewRepaintsAndTextControlsDoNotRecaptureDescriptionProviders" methodname="StructuredOverviewRepaintsAndTextControlsDoNotRecaptureDescriptionProviders" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="358489904" result="Failed" start-time="2026-11-23 03:51:39Z" end-time="2026-11-23 03:51:39Z" duration="0.124018" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  An explicit read captures once.
+  Expected: 3
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.StructuredOverviewRepaintsAndTextControlsDoNotRecaptureDescriptionProviders () [0x00126] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:301
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -142,6 +142,47 @@ namespace CavesOfOoo.Tests
                 Assert.False(r.UI.ConsumePendingEverydayTurn());
             }
         }
+        [TestCase(1280, 720, 1f)] [TestCase(1280, 800, 1f)] [TestCase(1920, 1080, 1f)]
+        [TestCase(1280, 800, 1.5f)] [TestCase(640, 480, 1f)]
+        public void DenseSectionOverviewKeepsCapacityAndCompleteDetailsReachable(int width, int height, float scale)
+        {
+            using (var r = new Rig(width, height))
+            {
+                var item = r.Carry("Dagger", "hybrid equipment"); item.AddPart(new ArmorPart { AV = 3, DV = 1 });
+                for (int i = 0; i < 100; i++) r.Carry("Dagger", "ordinary owner " + i);
+                r.Open(); r.Tab(1);
+                r.UI.GetType().GetField("_denseTextScale", Members).SetValue(r.UI, scale); Call(r.UI, "Render");
+                // Place the real selection on its page before finding its painted hit.
+                r.UI.GetType().GetField("_cursorIndex", Members).SetValue(r.UI, r.InventoryRow(item)); Call(r.UI, "Render");
+                Call(r.UI, "SelectLedgerHit", r.FindHit("Item", r.InventoryRow(item))); Call(r.UI, "Render");
+                var layout = Get(r.UI, "_denseLayout");
+                Assert.AreEqual(Get(DenseGeometry(width, height, scale), "Capacity"), Get(layout, "Capacity"));
+                var labels = r.Labels().ToList();
+                Assert.True(labels.Any(label => label.Content.Contains("Details") || label.Content.Contains("details")));
+                if ((bool)layout.GetType().GetProperty("HasDetails").GetValue(layout))
+                {
+                    var combat = labels.Single(label => label.Content == "COMBAT");
+                    var armor = labels.Single(label => label.Content == "PROTECTION");
+                    var damage = labels.Single(label => label.Content.Contains("per penetration"));
+                    Assert.AreNotEqual(combat.color, damage.color); Assert.AreEqual(combat.color, armor.color);
+                    var pane = (Rect)Get(layout, "DetailBounds");
+                    foreach (var label in new[] { combat, armor, damage })
+                    {
+                        var rect = r.BoundsOf(label);
+                        Assert.True(pane.Contains(rect.min + Vector2.one)); Assert.True(pane.Contains(rect.max - Vector2.one));
+                        var lines = label.Content.Split('\n');
+                        Assert.LessOrEqual(lines.Length * label.GlyphHeight + (lines.Length - 1) * 4, rect.height + .1f);
+                        Assert.LessOrEqual(lines.Max(line => line.Length) * label.GlyphHeight * .5f, rect.width + .1f);
+                    }
+                }
+                var document = r.UI.SelectedDecisionPresentation(out string text);
+                Assert.NotNull(document);
+                Assert.True(document.Sections.Any(section => section.Heading == "Combat"));
+                Assert.True(document.Sections.Any(section => section.Heading == "Protection"));
+                Assert.AreSame(item, DenseSelected(r)); Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
         [Test]
         public void DenseRightColumnSelectsExactOwnerAndOuterDirectionsNeverSwitchModes()
         {

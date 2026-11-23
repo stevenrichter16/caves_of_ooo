@@ -17,14 +17,14 @@ namespace CavesOfOoo.Tests
         {
             factory=new EntityFactory(); factory.LoadBlueprints(File.ReadAllText(Path.Combine(Application.dataPath,"Resources/Content/Blueprints/Objects.json")));
             oldFactory=MaterialReactionResolver.Factory; MaterialReactionResolver.Factory=factory; oldMessage=MessageLog.OnMessage;
-            actor=new Entity { ID="adversarial-cook",BlueprintName="Player" }; actor.AddPart(new InventoryPart()); actor.AddPart(new StatusEffectsPart());
+            actor=new Entity { ID="adversarial-cook",BlueprintName="Player" }; actor.AddPart(new InventoryPart()); actor.AddPart(new StatusEffectsPart()); actor.AddPart(new PhysicsPart());
             foreach(string n in new[]{"Strength","Agility","Speed"}) actor.Statistics[n]=new Stat {Owner=actor,Name=n,BaseValue=20,Max=200};
             zone=new Zone("EverydayAdversarial"); zone.AddEntity(actor,10,10); MessageLog.Clear(); Diag.ResetAll();
         }
         [TearDown] public void Cleanup(){MaterialReactionResolver.Factory=oldFactory;MessageLog.OnMessage=oldMessage;}
         Entity Carry(string name,int count=1){var item=factory.CreateEntity(name);if(item.HasPart<StackerPart>())item.GetPart<StackerPart>().StackCount=count;Assert.True(actor.GetPart<InventoryPart>().AddObject(item));return item;}
         Entity Fire(){var fire=factory.CreateEntity("Campfire");zone.AddEntity(fire,11,10);return fire;}
-        Entity Water(int units=3){var e=new Entity { ID="pool" };e.AddPart(new LiquidPoolPart{LiquidId="water",Volume=units});zone.AddEntity(e,11,10);return e;}
+        Entity Water(int units=3){var e=new Entity { ID="pool" };e.AddPart(new PhysicsPart { Solid=false });e.AddPart(new LiquidPoolPart{LiquidId="water",Volume=units});zone.AddEntity(e,11,10);return e;}
         bool Act(Entity item,string command)=>InventorySystem.PerformAction(actor,item,command,zone);
         int Count(string name)=>actor.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName==name).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
         int Records(string kind)=>DiagQuery.Apply(new DiagQuery.Filter{Kind=kind,Limit=100}).Records.Count;
@@ -86,7 +86,7 @@ namespace CavesOfOoo.Tests
         [Test] public void OldSavedFoodWithoutCookablePart_IsNotSilentlyMigrated()
         {var raw=Carry("RawMeat",2);raw.RemovePart(raw.GetPart<CookablePart>());var loaded=PartRoundTripHelper.RoundTripEntityViaTokenGraph(raw);Assert.Null(loaded.GetPart<CookablePart>());Assert.False(InventorySystem.GetActions(actor,loaded).Any(x=>x.Command=="Cook"));}
         [Test] public void ClockAdvanceDoesNotSimulateAdditionalHungerOrActorTurns()
-        {var previous=TurnManager.Active;try{var tm=new TurnManager();actor.SetTag("Player");actor.AddPart(new PhysicsPart());actor.Statistics["Hitpoints"]=new Stat{Owner=actor,Name="Hitpoints",BaseValue=1,Max=20};var spy=new TurnSpyPart();actor.AddPart(spy);Assert.True(RestSystem.TryRestUntilNextBand(actor,zone,"test",out _));Assert.AreEqual(300,tm.TickCount);Assert.AreEqual(0,spy.TurnEvents);}finally{typeof(TurnManager).GetProperty("Active").SetValue(null,previous);}}
+        {var previous=TurnManager.Active;try{var tm=new TurnManager();actor.SetTag("Player");actor.Statistics["Hitpoints"]=new Stat{Owner=actor,Name="Hitpoints",BaseValue=1,Max=20};var spy=new TurnSpyPart();actor.AddPart(spy);Assert.True(RestSystem.TryRestUntilNextBand(actor,zone,"test",out _));Assert.AreEqual(300,tm.TickCount);Assert.AreEqual(0,spy.TurnEvents);}finally{typeof(TurnManager).GetProperty("Active").SetValue(null,previous);}}
         public class VetoPart:Part{public override string Name=>"EverydayVeto";public override bool HandleEvent(GameEvent e)=>e.ID!="BeforeInventoryAction";}
         public class CallbackPart:Part{public override string Name=>"EverydayCallback";public Action Callback;public override bool HandleEvent(GameEvent e){if(e.ID=="AfterInventoryAction")Callback();return true;}}
         public class TurnSpyPart:Part{public override string Name=>"EverydayTurnSpy";public int TurnEvents;public override bool HandleEvent(GameEvent e){if(e.ID=="EndTurn"||e.ID=="TickEnd")TurnEvents++;return true;}}

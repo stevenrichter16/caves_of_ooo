@@ -1,10 +1,16 @@
 # Readable item descriptions — November22 user priority
 
-User request: item descriptions, especially weapons and armor, currently look
-like paragraphs with uniform styling. Divide them into logical sections and
-make the headings visibly distinct. This is authorized implementation work and
-the next UI priority after the active full regression; no further confirmation
-is needed. Current status: source-qualified design, not implemented or played.
+Implemented and bounded Editor-qualified in this increment; source and27 actual
+screenshots are in [the verification receipt](Verification/MachineSystems/InventorySections20261122/README.md).
+Final focused native471/471/zeroCS includes20new UI cases. Native GameBootstrap
+selection/F1/pages/return/resize/F5/fresh Continue preserve measured gameplay;
+independent source/gameplay-artifact review found0P1/P2. This is not whole-suite,
+packaged-game, controller or hardware acceptance. All12 machine gates stay open.
+
+The user's instruction to proceed before the full regression finished supersedes
+older sequencing. The full a9 snapshot is now assessed separately; no broad
+all-green claim. The design/source findings below record the original cause and
+implementation contract, rather than current unfixed behavior.
 
 ## Player-facing result
 
@@ -16,11 +22,12 @@ capacity and text-size controls. The full details reader uses the same logical
 sections and retains every supported fact; the sidebar is a concise overview
 with a clear Full details continuation when content does not fit.
 
-- Combat: damage per penetration, accuracy bonus, penetration bonus, relevant
+- Combat: separate rows for damage per penetration, hit bonus and penetration
+  bonus, followed by the relevant
   attribute and strength cap. A bonus is never labeled as a final chance, final
   penetration or guaranteed damage. Explain existing abbreviations in plain
   labels; do not invent DPS or dice ranges for unsupported expressions.
-- Protection: armor contribution (AV), dodge contribution (DV) and speed effect.
+- Protection: separate rows for Armor value (AV), Dodge value (DV) and speed effect.
   Worn armor names its actual protected location; carried armor names eligible
   or planned locations for each equip choice. Armor on one body part does not
   protect the whole body. Hybrid weapon/armor items show both applicable sections.
@@ -83,10 +90,10 @@ their distinct scope; they must not inherit irrelevant generic equipment section
 
 ## Review and acceptance
 
-Prepare the presentation patch privately while clone2's pinned full run is
-active. Do not edit runtime/test source, refresh/play Unity, build or launch a
-second native batch during that run. Documentation/source review can continue.
-After it finishes, implement this UI request before further machine expansion.
+The patch was prepared privately, then applied after explicit user instruction
+to proceed while the pinned full run finished independently. Its source snapshot
+was preserved. Complete receipts retain the compiling RED/targeted corrections,
+final GREEN and actual native screenshot/save evidence before publication.
 
 Bounded checks should prove useful behavior rather than fixed string copies:
 weapons, armor and hybrid gear have correct independent sections and live values;

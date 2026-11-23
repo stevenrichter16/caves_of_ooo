@@ -189,12 +189,21 @@ namespace CavesOfOoo.Rendering
             var group = _rows[_cursorIndex].Group;
             LLabel(new Rect(pane.x + 12, pane.y + 16, pane.width - 24, 78), SkillScreenText.Fit(DenseName(item), (int)((pane.width - 24) / 11), 3), LGold, 22);
             LLabel(new Rect(pane.x + 12, pane.y + 100, pane.width - 24, 66), SkillScreenText.Fit("Quantity " + (group?.TotalUnits ?? item.StackCount) + "\nWeight " + (group?.TotalWeight ?? item.Weight) + " lb\n" + item.Category, (int)((pane.width - 24) / 9), 3), LMuted, 18);
-            LLabel(new Rect(pane.x + 12, pane.y + 176, pane.width - 24, 24), SkillScreenText.Fit("DMG / DEF " + LedgerCombatValue(item.Item), (int)((pane.width - 24) / 9), 1), LInk, 18);
-            int lines = Math.Max(1, (int)((pane.height - 252) / 22));
-            string scope = group != null && group.Members.Count > 1 ? group.Scope + "\n\n" : "";
-            LLabel(new Rect(pane.x + 12, pane.y + 206, pane.width - 24, pane.height - 252), SkillScreenText.Fit(scope + decision, (int)((pane.width - 24) / 9), lines), LInk, 18);
+            float overviewY = pane.y + 176;
+            if (group != null && group.Members.Count > 1)
+            {
+                var scope = SkillScreenText.Wrap(group.Scope, Mathf.Max(1, (int)((pane.width - 24) / 9)));
+                float scopeHeight = scope.Count * 22;
+                if (overviewY + scopeHeight < pane.yMax - 46)
+                {
+                    LLabel(new Rect(pane.x + 12, overviewY, pane.width - 24, scopeHeight), string.Join("\n", scope), LMuted, 18);
+                    overviewY += scopeHeight + 8;
+                }
+            }
+            if (overviewY < pane.yMax - 46)
+                RenderItemSectionOverview(new Rect(pane.x + 12, overviewY, pane.width - 24, pane.yMax - 46 - overviewY), document, decision);
             var details = new Rect(pane.x + 12, pane.yMax - 36, pane.width - 24, 26);
-            LFrame(details, LBorder, LBackground); LLabel(new Rect(details.x + 8, details.y + 4, details.width - 16, 20), NativeGamepadInput.IsConnected ? "LT+RT Details" : "F1 Details", LGold, 16); LHit(details, LedgerHitKind.Details);
+            LFrame(details, LBorder, LBackground); LLabel(new Rect(details.x + 8, details.y + 4, details.width - 16, 20), NativeGamepadInput.IsConnected ? "LT+RT Full details" : "F1 Full details", LGold, 16); LHit(details, LedgerHitKind.Details);
         }
         void RenderDenseFooter()
         {

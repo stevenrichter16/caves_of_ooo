@@ -109,7 +109,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase("HealingTonic", "4d6+4", "ApplyTonic")]
         [TestCase("Dagger", "Damage: 1d4", "equip_auto")]
-        [TestCase("LeatherArmor", "DV: -1", "equip_auto")]
+        [TestCase("LeatherArmor", "Dodge value (DV): -1", "equip_auto")]
         [TestCase("FlamingSword", "30%", "equip_auto")]
         [TestCase("IronshodBoots", "Speed: -5", "equip_auto")]
         public void OneExamineDisplaysRealDetailsAndPreservesOtherActions(string blueprint, string detail, string otherAction)

@@ -16,8 +16,19 @@ namespace CavesOfOoo.Core
     public static class EquipmentComparisonService
     {
         public static bool TryDescribe(Entity actor, Entity candidate, out string text, out string reason)
+            => TryCapture(actor, candidate, out text, out _, out reason);
+
+        public static bool TryDescribeSections(Entity actor, Entity candidate,
+            out IReadOnlyList<AnnouncementSection> sections, out string reason,
+            Func<IReadOnlyList<AnnouncementSection>> captureContext = null)
+            => TryCapture(actor, candidate, out _, out sections, out reason, captureContext);
+
+        private static bool TryCapture(Entity actor, Entity candidate, out string text,
+            out IReadOnlyList<AnnouncementSection> sections, out string reason,
+            Func<IReadOnlyList<AnnouncementSection>> captureContext = null)
         {
             text = null;
+            sections = null;
             reason = "Equipment comparison is unavailable.";
             if (actor == null || CombatSystem.IsDeathHandled(actor)
                 || (actor.GetStat("Hitpoints") != null && actor.GetStatValue("Hitpoints") <= 0))
@@ -45,8 +56,15 @@ namespace CavesOfOoo.Core
                 FirstNatural = p.FirstSlotForDefaultBehavior, p.Abstract, p.TargetWeight }).ToArray();
             int quantityBefore = candidate.GetPart<StackerPart>()?.StackCount ?? 1;
             var lines = new List<string> { "Equipment comparison", "", "Candidate: " + candidate.GetDisplayName() };
-            AddFacts(candidate, lines);
+            var captured = new List<AnnouncementSection>();
+            var readParts = new Dictionary<Entity, Part[]> { [candidate] = candidate.Parts.ToArray() };
+            // Explicit-read capability providers participate inside the same
+            // ownership/slot/Part snapshot, not in a second metadata pass.
+            var context = captureContext?.Invoke();
+            AddFacts(candidate, lines, captured, readParts);
+            if (context != null) captured.AddRange(context);
             lines.Add("");
+            int comparisonStart = lines.Count;
             var facts = new List<Entity>();
             if (candidate.GetPart<PhysicsPart>().Equipped == actor)
             {
@@ -74,11 +92,16 @@ namespace CavesOfOoo.Core
                     }
                 }
             }
+            captured.Add(new AnnouncementSection("Equipment comparison", string.Join("\n", lines.Skip(comparisonStart)),
+                AnnouncementTone.Normal, "Actual slots and displaced gear: see full details."));
             foreach (var current in facts)
             {
                 lines.Add("");
                 lines.Add("Current: " + current.GetDisplayName());
-                AddFacts(current, lines);
+                int start = lines.Count;
+                AddFacts(current, lines, null, readParts);
+                captured.Add(new AnnouncementSection("Current: " + current.GetDisplayName(), string.Join("\n", lines.Skip(start)),
+                    AnnouncementTone.Normal, ""));
             }
             lines.Add("");
             lines.Add("Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.");
@@ -93,6 +116,8 @@ namespace CavesOfOoo.Core
                 || (actor.GetStat("Hitpoints") != null && actor.GetStatValue("Hitpoints") <= 0)
                 || !Owned(actor, inventory, currentParts, candidate)
                 || !CurrentEquipment(actor, inventory, body, currentParts)
+                || readParts.Any(read => !read.Value.SequenceEqual(read.Key.Parts)
+                    || read.Value.Any(part => part == null || part.ParentEntity != read.Key))
                 || (candidate.GetPart<StackerPart>()?.StackCount ?? 1) != quantityBefore
                 || !equipmentBefore.SequenceEqual(inventory.EquippedItems)
                 || !slotsBefore.SequenceEqual(currentParts.Select(p => new { Part = p, Item = p._Equipped,
@@ -103,6 +128,10 @@ namespace CavesOfOoo.Core
                 return false;
             }
             text = string.Join("\n", lines);
+            captured.Add(new AnnouncementSection("Reading these numbers",
+                "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\n"
+                + "Inspection snapshot. Equipping rechecks current slots and restrictions.", AnnouncementTone.Muted, ""));
+            sections = captured.AsReadOnly();
             reason = null;
             return true;
         }
@@ -289,13 +318,24 @@ namespace CavesOfOoo.Core
             if (!items.Contains(item)) items.Add(item);
         }
 
-        private static void AddFacts(Entity item, List<string> lines)
+        private static void AddFacts(Entity item, List<string> lines, List<AnnouncementSection> captured,
+            Dictionary<Entity, Part[]> readParts)
         {
-            if (ItemExamineService.TryDescribeEquipmentDetails(item, out string details)) lines.Add(details);
+            if (!readParts.ContainsKey(item)) readParts[item] = item.Parts.ToArray();
+            if (ItemExamineService.TryDescribeEquipmentSections(item, out var details))
+                foreach (var section in details) { lines.Add(section.Text); captured?.Add(section); }
             lines.Add("Weight per item: " + HandlingService.GetWeight(item).ToString(CultureInfo.InvariantCulture) + ".");
-            foreach (var part in item.Parts)
-                if (part is IItemEnhancement enhancement)
-                    lines.Add("Conditional enhancement: " + enhancement.GetEffectDescription());
+            var enhancements = new List<string>();
+            // Extensible descriptions are captured once and validated by TryCapture.
+            foreach (var part in readParts[item])
+                if (part.ParentEntity == item && part is IItemEnhancement enhancement)
+                {
+                    string description = "Conditional enhancement: " + enhancement.GetEffectDescription();
+                    lines.Add(description); enhancements.Add(description);
+                }
+            if (enhancements.Count > 0)
+                captured?.Add(new AnnouncementSection("Conditional effects", string.Join("\n", enhancements),
+                    AnnouncementTone.Normal, "Conditional effects: see full details."));
         }
     }
 }

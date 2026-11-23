@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-23 04:00:26Z" end-time="2026-11-23 04:00:26Z" duration="0.8549801">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40813" result="Failed" site="Child" start-time="2026-11-23 04:00:26Z" end-time="2026-11-23 04:00:26Z" duration="0.854980" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49756" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone4/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40813" result="Failed" site="Child" start-time="2026-11-23 04:00:26Z" end-time="2026-11-23 04:00:26Z" duration="0.769549" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="86491" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49757" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40813" result="Failed" site="Child" start-time="2026-11-23 04:00:26Z" end-time="2026-11-23 04:00:26Z" duration="0.720353" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49758" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40813" result="Failed" site="Child" start-time="2026-11-23 04:00:26Z" end-time="2026-11-23 04:00:26Z" duration="0.671343" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="14161" name="DensityEverydayAdversarialTests" fullname="CavesOfOoo.Tests.DensityEverydayAdversarialTests" classname="CavesOfOoo.Tests.DensityEverydayAdversarialTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-11-23 04:00:26Z" end-time="2026-11-23 04:00:26Z" duration="0.054044" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="14183" name="DrinkOuterRollback_PreservesIndependentStrengthPenalty" fullname="CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty" classname="CavesOfOoo.Tests.DensityEverydayAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-23 04:00:26Z" end-time="2026-11-23 04:00:26Z" duration="0.051107" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="14182" name="DrinkOuterRollback_PreservesIndependentStrengthPenalty(3)" fullname="CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(3)" methodname="DrinkOuterRollback_PreservesIndependentStrengthPenalty" classname="CavesOfOoo.Tests.DensityEverydayAdversarialTests" runstate="Runnable" seed="158191191" result="Failed" start-time="2026-11-23 04:00:26Z" end-time="2026-11-23 04:00:26Z" duration="0.046680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty (System.Int32 stacks) [0x00040] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayAdversarialTests.cs:66
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

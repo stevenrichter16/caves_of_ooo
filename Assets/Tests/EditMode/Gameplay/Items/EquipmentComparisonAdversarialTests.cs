@@ -102,7 +102,7 @@ namespace CavesOfOoo.Tests
         public void RuntimeEquippableWithoutItemTagRetainsActualFacts()
         {
             var item = Carry("LeatherCap"); item.Tags.Remove("Item");
-            StringAssert.Contains("Armor contribution", Text(item));
+            StringAssert.Contains("Armor value (AV)", Text(item));
         }
 
         [Test]

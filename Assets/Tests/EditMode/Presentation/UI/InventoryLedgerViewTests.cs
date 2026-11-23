@@ -169,12 +169,12 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase("LongSword", "2d12+3", 0, 0, "2D12+3")]
-        [TestCase("LeatherArmor", null, 3, -1, "3 AV -1 DV")]
-        [TestCase("Buckler", null, 1, 1, "1 AV +1 DV")]
-        [TestCase("LeatherArmor", null, 0, 0, "0 AV 0 DV")]
-        [TestCase("LeatherArmor", null, -2, 12, "-2 AV +12 DV")]
-        [TestCase("DriedMeat", null, 0, 0, "-")]
+        [TestCase("LongSword", "2d12+3", 0, 0, "DAMAGE: 2D12+3 PER PENETRATION.")]
+        [TestCase("LeatherArmor", null, 3, -1, "ARMOR VALUE (AV): +3. DODGE VALUE (DV): -1.")]
+        [TestCase("Buckler", null, 1, 1, "ARMOR VALUE (AV): +1. DODGE VALUE (DV): +1.")]
+        [TestCase("LeatherArmor", null, 0, 0, "ARMOR VALUE (AV): +0. DODGE VALUE (DV): +0.")]
+        [TestCase("LeatherArmor", null, -2, 12, "ARMOR VALUE (AV): -2. DODGE VALUE (DV): +12.")]
+        [TestCase("DriedMeat", null, 0, 0, "EAT ONE UNIT.")]
         public void SelectedPackDetailsShowCurrentWeaponDamageOrArmorDefenseWithoutClipping(
             string blueprint, string damage, int av, int dv, string expected)
         {
@@ -186,7 +186,7 @@ namespace CavesOfOoo.Tests
                 r.Open(); r.Select(item);
                 var canvas = RequireView(r); var labels = VisibleLabels(r);
                 Assert.False(labels.Any(t => Normal(t.Content) == "WORN"));
-                var metric = labels.Single(t => Normal(t.Content) == "DMG / DEF " + expected);
+                var metric = labels.Single(t => Normal(t.Content).Contains(expected));
                 var weightHeader = labels.Where(t => Normal(t.Content) == "WT").OrderBy(t => Bounds(canvas, t).xMin).First();
                 Assert.Greater(Bounds(canvas, metric).xMin, Bounds(canvas, weightHeader).xMax, "Combat facts are in the selected-item pane.");
                 AssertTextFits(metric);
@@ -273,6 +273,58 @@ namespace CavesOfOoo.Tests
                 }
                 Assert.AreSame(r.Player, sword.GetPart<PhysicsPart>().Equipped);
                 Assert.AreSame(r.Player, shield.GetPart<PhysicsPart>().Equipped);
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
+        sealed class SectionCaptureNote : IItemEnhancement
+        {
+            public override string Name => "SectionCaptureNote";
+            public int Calls;
+            public override string GetEffectDescription() { Calls++; return "A conditional inspection note."; }
+        }
+
+        [Test]
+        public void StructuredOverviewRepaintsAndTextControlsDoNotRecaptureDescriptionProviders()
+        {
+            using (var r = new Rig())
+            {
+                var item = r.Carry("Dagger"); var note = new SectionCaptureNote(); item.AddPart(note);
+                r.Open(); r.Select(item); RequireView(r);
+                int before = note.Calls; Assert.Greater(before, 0);
+                for (int i = 0; i < 3; i++) Call(r.UI, "Render");
+                Call(r.UI, "ChangeDenseTextScale", 1); Call(r.UI, "ChangeDenseTextScale", -1);
+                Call(r.UI, "BeginInventorySearch");
+                Set(r.UI, "_inventorySearchActive", false); Call(r.UI, "SetInventoryQuery", "");
+                Assert.AreEqual(before, note.Calls, "Painting/layout/search must use the retained capture.");
+                var document = r.UI.SelectedDecisionPresentation(out string text);
+                Assert.NotNull(document); Assert.AreEqual(before + 1, note.Calls, "An explicit read captures once.");
+                StringAssert.Contains("A conditional inspection note.", text);
+                Assert.True(r.Pack.Contains(item)); Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void HybridEquipmentOverviewUsesDistinctHeadersForBothStatFamilies(bool flat)
+        {
+            using (var r = new Rig(flat))
+            {
+                var item = r.Carry("Dagger");
+                item.AddPart(new ArmorPart { AV = 2, DV = 1 });
+                Assert.True(InventorySystem.Equip(r.Player, item));
+                r.Open(); Set(r.UI, "_panel", 0);
+                var slots = InventoryScreenData.Build(r.Player).Equipment;
+                Set(r.UI, "_equipCursorIndex", slots.FindIndex(slot => slot.EquippedItem == item));
+                Call(r.UI, "Render"); RequireView(r);
+                var labels = VisibleLabels(r);
+                var combat = labels.Single(label => label.Content == "COMBAT");
+                var protection = labels.Single(label => label.Content == "PROTECTION");
+                var damage = labels.Single(label => label.Content.Contains("per penetration"));
+                Assert.AreNotEqual(combat.color, damage.color); Assert.AreEqual(combat.color, protection.color);
+                AssertTextFits(combat); AssertTextFits(protection); AssertTextFits(damage);
+                Assert.True(labels.Any(label => label.Content.Contains("Armor value (AV): +2.\nDodge value (DV): +1.")));
+                Assert.True(labels.Any(label => label.Content.Contains("Full details")));
+                Assert.AreSame(r.Player, item.GetPart<PhysicsPart>().Equipped);
                 Assert.False(r.UI.ConsumePendingEverydayTurn());
             }
         }

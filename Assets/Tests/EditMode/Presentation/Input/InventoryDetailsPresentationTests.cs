@@ -171,6 +171,111 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("InventoryOpen", State); Assert.False(input.AnnouncementUI.IsOpen);
         }
 
+        [TestCase("Dagger")] [TestCase("Buckler")] [TestCase("VenomDagger")] [TestCase("IronshodBoots")]
+        public void EquipmentReaderSeparatesLiveStatsComparisonHandlingAndFlavor(string blueprint)
+        {
+            var item = Select(blueprint, false);
+            item.GetPart<ExaminablePart>().Text = "An individually repaired piece from the road.";
+            int tick = turns.TickCount, energy = turns.GetEnergy(player);
+            string before = UI.SelectedDecisionDetails();
+            Call(input, "OpenInventoryDetailsReader");
+            AssertDocument(item, before);
+            var sections = input.AnnouncementUI.Document.Sections;
+            Assert.False(sections.Any(section => section.Heading == "Decision details"));
+            if (item.HasPart<MeleeWeaponPart>())
+            {
+                var combat = sections.Single(section => section.Heading == "Combat");
+                StringAssert.Contains(item.GetPart<MeleeWeaponPart>().BaseDamage, combat.Text);
+                StringAssert.Contains("per penetration", combat.Text);
+                var combatRows = combat.Text.Split('\n');
+                Assert.True(combatRows.Any(row => row.StartsWith("Hit bonus:") && !row.Contains("Penetration bonus:")));
+                Assert.True(combatRows.Any(row => row.StartsWith("Penetration bonus:") && !row.Contains("Hit bonus:")));
+            }
+            if (item.HasPart<ArmorPart>())
+            {
+                var protection = sections.Single(section => section.Heading == "Protection");
+                StringAssert.Contains("not the whole body", protection.Text);
+            }
+            Assert.True(sections.Any(section => section.Heading == "Equipment comparison"));
+            Assert.True(sections.Any(section => section.Heading == "Handling" && section.Text.Contains("Weight per unit")));
+            Assert.AreEqual(item.GetPart<ExaminablePart>().Text, sections.Single(section => section.Heading == "About this item").Text);
+            if (blueprint == "VenomDagger")
+            {
+                var effects = sections.Single(section => section.Heading == "On-hit effects");
+                StringAssert.Contains("independent attempts", effects.Text);
+                StringAssert.Contains("targets may resist", effects.Text);
+                StringAssert.Contains("50%", effects.Text);
+            }
+            Assert.AreEqual(tick, turns.TickCount); Assert.AreEqual(energy, turns.GetEnergy(player));
+            Assert.True(Pack.Contains(item));
+        }
+
+        [Test]
+        public void HybridEquipmentRetainsBothStatFamiliesWithoutInvokingEnhancementsTwice()
+        {
+            var item = Select("Dagger", false);
+            item.AddPart(new ArmorPart { AV = 3, DV = -2, SpeedPenalty = 5 });
+            var note = new DescriptionCallback(); item.AddPart(note);
+            var document = UI.SelectedDecisionPresentation(out string text);
+            Assert.NotNull(document); Assert.AreEqual(1, note.Calls, "One explicit capture must consult an enhancement once.");
+            Assert.True(document.Sections.Any(section => section.Heading == "Combat"));
+            var protection = document.Sections.Single(section => section.Heading == "Protection");
+            StringAssert.Contains("Armor value (AV): +3.\nDodge value (DV): -2.", protection.Text);
+            StringAssert.Contains("Speed: -5", protection.Text);
+            Assert.AreEqual(1, document.Sections.Count(section => section.Text.Contains("A selected-item enhancement note.")));
+            StringAssert.Contains("Conditional enhancement", text);
+            Assert.AreSame(item, typeof(AnnouncementDocument).GetProperty("Subject", Members).GetValue(document));
+        }
+
+        [Test]
+        public void EquipmentCallbackChangingARealSlotCannotPublishTheEarlierComparison()
+        {
+            var item = Select("Dagger", false);
+            var replacement = factory.CreateEntity("LongSword"); Assert.True(Pack.AddObject(replacement));
+            var note = new DescriptionCallback { Callback = () => Assert.True(InventorySystem.Equip(player, replacement)) };
+            item.AddPart(note);
+            Assert.IsNull(UI.SelectedDecisionPresentation(out string text)); Assert.IsNull(text);
+            Assert.AreEqual(1, note.Calls); Assert.AreSame(player, replacement.GetPart<PhysicsPart>().Equipped);
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void DetachedEquipmentDescriptionProviderCannotPublishForCandidateOrCurrentGear(bool onCurrent)
+        {
+            var candidate = Select("Dagger", false);
+            var owner = candidate;
+            if (onCurrent)
+            {
+                owner = factory.CreateEntity("LongSword"); Assert.True(Pack.AddObject(owner));
+                Assert.True(InventorySystem.Equip(player, owner));
+            }
+            var note = new DescriptionCallback(); note.Callback = () => owner.RemovePart(note); owner.AddPart(note);
+            Assert.IsNull(UI.SelectedDecisionPresentation(out string text)); Assert.IsNull(text);
+            Assert.AreEqual(1, note.Calls);
+        }
+
+        [TestCase(16)] [TestCase(17)] [TestCase(18)] [TestCase(19)]
+        public void ReaderSectionHeadingStaysWithItsFirstBodyLine(int precedingLines)
+        {
+            var reader = input.AnnouncementUI;
+            var document = new AnnouncementDocument("Equipment inspection", sections: new[] {
+                new AnnouncementSection("", string.Join("\n", Enumerable.Repeat("Earlier line", precedingLines))),
+                new AnnouncementSection("Combat", "Damage: 1d4 per penetration.") });
+            reader.OpenDocument(document);
+            bool found = false;
+            for (int page = 0; page < reader.PageCount; page++)
+            {
+                reader.GoToPage(page);
+                var lines = reader.VisibleLines.ToArray();
+                int header = Array.IndexOf(lines, "COMBAT");
+                if (header < 0) continue;
+                found = true;
+                Assert.True(lines.Skip(header + 1).Any(line => line.Contains("Damage: 1d4")),
+                    "A heading alone at the bottom of a page makes the next page unclear.");
+                Assert.LessOrEqual(lines.Length, AnnouncementUI.PageLineCapacity);
+            }
+            Assert.True(found);
+        }
+
         [Test] public void CraftingPreviewRemainsNeutralAndKeepsItsDecisionText()
         {
             Select("HealingTonic", false); Set(UI, "_panel", 4);
@@ -236,8 +341,9 @@ namespace CavesOfOoo.Tests
             if (decision != null)
             {
                 Assert.AreEqual(decision, Field(input.AnnouncementUI, "_message"));
-                Assert.True(document.Sections.Any(section => section.Text == decision),
-                    "The original comparison/handling/food/material prose must remain a displayed section, not merely a hidden fallback.");
+                string structured = string.Join("\n\n", document.Sections.Select(section => section.Heading + "\n" + section.Text));
+                Assert.True(document.Sections.Any(section => section.Text == decision) || structured == decision,
+                    "Every decision fact must remain in displayed sections, not merely in a hidden fallback.");
             }
         }
         string State => Field(input, "_inputState").ToString();

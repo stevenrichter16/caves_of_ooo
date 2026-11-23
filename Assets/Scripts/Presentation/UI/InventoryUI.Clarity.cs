@@ -24,9 +24,10 @@ namespace CavesOfOoo.Rendering
         {
             var viewer = PlayerEntity;
             var zone = CurrentZone;
-            text = BuildSelectedDecisionDetails(out var subject);
+            text = BuildSelectedDecisionSnapshot(out var subject, out var sections);
             if (string.IsNullOrWhiteSpace(text) || subject == null) return null;
-            var identity = ExamineDocumentBuilder.BuildInventory(subject, viewer);
+            var identity = sections == null ? ExamineDocumentBuilder.BuildInventory(subject, viewer)
+                : ExamineDocumentBuilder.BuildInventorySnapshot(subject, viewer, sections);
             if (identity == null || !_isOpen || _inventorySearchActive
                 || PlayerEntity != viewer || CurrentZone != zone)
             {
@@ -34,13 +35,17 @@ namespace CavesOfOoo.Rendering
                 return null;
             }
             return new AnnouncementDocument(identity.Title, identity.Kind,
-                new[] { new AnnouncementSection("Decision details", text) }, identity.Facts,
+                sections ?? new[] { new AnnouncementSection("Decision details", text) }, identity.Facts,
                 identity.BlueprintName, identity.Glyph, identity.GlyphColor,
                 identity.Subject, identity.SubjectZone, identity.SubjectCell, identity.SubjectViewer);
         }
 
         private string BuildSelectedDecisionDetails(out Entity subject)
+            => BuildSelectedDecisionSnapshot(out subject, out _);
+
+        private string BuildSelectedDecisionSnapshot(out Entity subject, out IReadOnlyList<AnnouncementSection> sections)
         {
+            sections = null;
             subject = null;
             if (!_isOpen || _inventorySearchActive) return null;
             if (_panel == PANEL_LOADOUTS && !_loadoutNameEditing) return DescribeSelectedLoadout();
@@ -103,7 +108,7 @@ namespace CavesOfOoo.Rendering
                     }
                 }
                 subject = item;
-                return DetailsForItem(item);
+                return DetailsForItemSnapshot(item, out sections);
             }
             if (_modTargetPopup != null && _modTargetPopup.CursorIndex >= 0 && _modTargetPopup.CursorIndex < _modTargetPopup.Targets.Count)
             {
@@ -114,7 +119,7 @@ namespace CavesOfOoo.Rendering
             if (_equipPopup != null && _equipPopup.CursorItemIndex >= 0 && _equipPopup.CursorItemIndex < _equipPopup.Items.Count)
             {
                 subject = _equipPopup.Items[_equipPopup.CursorItemIndex];
-                return DetailsForItem(subject);
+                return DetailsForItemSnapshot(subject, out sections);
             }
             if (_panel == PANEL_ABILITIES)
             {
@@ -144,15 +149,62 @@ namespace CavesOfOoo.Rendering
             if (_panel == PANEL_INVENTORY && _cursorIndex >= 0 && _cursorIndex < _rows.Count)
             {
                 subject = _rows[_cursorIndex].Item?.Item;
-                return DetailsForItem(subject);
+                return DetailsForItemSnapshot(subject, out sections);
             }
             if (_panel == PANEL_EQUIPMENT && _equipCursorIndex >= 0 && _equipCursorIndex < _equipSlots.Count)
             {
                 subject = _equipSlots[_equipCursorIndex].EquippedItem;
-                return DetailsForItem(subject);
+                return DetailsForItemSnapshot(subject, out sections);
             }
             return null;
         }
+        private string DetailsForItemSnapshot(Entity item, out IReadOnlyList<AnnouncementSection> sections)
+        {
+            sections = null;
+            if (item == null || !InventoryDecisionDetails.Owned(PlayerEntity, item)) return null;
+            // Food/action-specific previews keep their established scope. Equipment
+            // captures both full prose and compact overviews in one validated pass.
+            if (!item.HasPart<EquippablePart>() || item.HasPart<FoodPart>()) return DetailsForItem(item);
+            var description = item.GetPart<ExaminablePart>();
+            string flavor = description?.GetDescriptionText();
+            if (!EquipmentComparisonService.TryDescribeSections(PlayerEntity, item, out var equipment, out _, () =>
+            {
+                var context = new List<AnnouncementSection>();
+                var state = new List<string>();
+                string publicState = _state?.Categories.SelectMany(c => c.Items).FirstOrDefault(d => d.Item == item)?.State;
+                if (!string.IsNullOrWhiteSpace(publicState)) state.Add("State: " + publicState);
+                var effects = item.GetPart<StatusEffectsPart>()?.GetAllEffects();
+                if (effects != null)
+                    foreach (var effect in effects)
+                        if (effect != null && effect.Owner == item && effect.Duration != 0) state.Add(EffectDescriber.Describe(effect));
+                // The torch section owns its validated flame/fuel reading. Keep
+                // other attached state providers without publishing fuel twice.
+                bool torch = item.HasPart<TorchLightPart>();
+                StateReader.Collect(item, true, null, null, PlayerEntity, state, part => !torch || !(part is FuelPart));
+                if (state.Count > 0)
+                    context.Add(new AnnouncementSection("Current condition", string.Join("\n", state),
+                        AnnouncementTone.Normal, "Condition: see full details."));
+                string use = UseGuides.SectionText(item, null, null, PlayerEntity);
+                if (!string.IsNullOrWhiteSpace(use))
+                    context.Add(new AnnouncementSection(UseGuides.Heading, use, AnnouncementTone.Normal, "How to use: see full details."));
+                return context.AsReadOnly();
+            })) return null;
+            var captured = new List<AnnouncementSection>(equipment);
+            string handling = InventoryDecisionDetails.Handling(PlayerEntity, item);
+            if (!string.IsNullOrWhiteSpace(handling))
+                captured.Add(new AnnouncementSection("Handling", handling, AnnouncementTone.Normal,
+                    "Carrying and throwing: see full details."));
+            string disassembly = InventoryDecisionDetails.Disassembly(PlayerEntity, item);
+            if (!string.IsNullOrWhiteSpace(disassembly))
+                captured.Add(new AnnouncementSection("Disassembly", disassembly, AnnouncementTone.Normal, ""));
+            if (!string.IsNullOrWhiteSpace(flavor))
+                captured.Add(new AnnouncementSection("About this item", flavor.Trim(), AnnouncementTone.Muted, ""));
+            if (!InventoryDecisionDetails.Owned(PlayerEntity, item)
+                || !ReferenceEquals(description, item.GetPart<ExaminablePart>())) return null;
+            sections = captured.AsReadOnly();
+            return string.Join("\n\n", captured.Select(section => section.Heading + "\n" + section.Text));
+        }
+
         private string DetailsForItem(Entity item)
         {
             if (item == null || !InventoryDecisionDetails.Owned(PlayerEntity, item)) return null;

@@ -149,14 +149,27 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void FuelIsSpentBeforeDamageCallbacksAndReentryCannotRecoverIt()
         {
-            var pool = Poured(3); Assert.True(MovementSystem.TryMove(Actor, Zone, 1, 0));
-            bool called = false;
-            Actor.AddPart(new DamageProbe { Callback = () =>
+            var previousSlipRng = LiquidSlipSystem.TestRng;
+            try
             {
-                called = true; Assert.Zero(pool.GetPart<LiquidPoolPart>().Volume);
-                Assert.Null(Zone.GetEntityCell(pool)); TileReactionSystem.ResolveZone(Zone);
-            }});
-            Ignite(); Assert.True(called);
+                // This test measures callback ordering, not a random slide away
+                // from the ignition cell. Keep ordinary entry/contact behavior.
+                LiquidSlipSystem.TestRng = new NoSlipRoll();
+                var pool = Poured(3); Assert.True(MovementSystem.TryMove(Actor, Zone, 1, 0));
+                Assert.AreSame(Zone.GetCell(11, 10), Zone.GetEntityCell(Actor));
+                bool called = false;
+                Actor.AddPart(new DamageProbe { Callback = () =>
+                {
+                    called = true; Assert.Zero(pool.GetPart<LiquidPoolPart>().Volume);
+                    Assert.Null(Zone.GetEntityCell(pool)); TileReactionSystem.ResolveZone(Zone);
+                }});
+                Ignite(); Assert.True(called);
+            }
+            finally { LiquidSlipSystem.TestRng = previousSlipRng; }
+        }
+        sealed class NoSlipRoll : System.Random
+        {
+            public override int Next(int maxValue) => Math.Max(0, maxValue - 1);
         }
         sealed class DamageProbe : Part
         {

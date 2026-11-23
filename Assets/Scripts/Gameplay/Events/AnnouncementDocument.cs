@@ -12,8 +12,13 @@ namespace CavesOfOoo.Core
         public string Heading { get; }
         public string Text { get; }
         public AnnouncementTone Tone { get; }
+        /// <summary>Complete short overview captured with the full text, never inferred by
+        /// clipping conditional prose during repaint. An empty overview means full-reader only.</summary>
+        public string OverviewText { get; }
         public AnnouncementSection(string heading,string text,AnnouncementTone tone=AnnouncementTone.Normal)
-        { Heading=heading??"";Text=text??"";Tone=tone; }
+            : this(heading,text,tone,text) { }
+        public AnnouncementSection(string heading,string text,AnnouncementTone tone,string overviewText)
+        { Heading=heading??"";Text=text??"";Tone=tone;OverviewText=overviewText??""; }
     }
 
     /// <summary>A named, already-established subject fact, not a prediction or an action.</summary>

@@ -114,8 +114,8 @@ namespace CavesOfOoo.Tests
         public void ArmorReportsContributionsRatherThanActorTotals(string name, string av, string dv)
         {
             string text = Examine(Item(name));
-            StringAssert.Contains("AV: " + av, text);
-            StringAssert.Contains("DV: " + dv, text);
+            StringAssert.Contains("Armor value (AV): " + av, text);
+            StringAssert.Contains("Dodge value (DV): " + dv, text);
             StringAssert.DoesNotContain("Damage:", text);
         }
 

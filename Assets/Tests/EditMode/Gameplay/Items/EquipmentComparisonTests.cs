@@ -106,7 +106,7 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains(b.GetDisplayName(), text);
             StringAssert.Contains(hands[0].GetDisplayName(), text);
             StringAssert.Contains(hands[1].GetDisplayName(), text);
-            StringAssert.Contains("AV: +1", text);
+            StringAssert.Contains("Armor value (AV): +1", text);
         }
 
         [Test]
@@ -136,7 +136,7 @@ namespace CavesOfOoo.Tests
             var item = Carry("LeatherCap"); item.GetPart<EquippablePart>().UsesSlots = "ImpossibleSlot";
             string text = Text(item);
             StringAssert.Contains("Unavailable: No available ImpossibleSlot slot", text);
-            StringAssert.Contains("Armor contribution", text);
+            StringAssert.Contains("Armor value (AV)", text);
         }
 
         [Test]
@@ -148,7 +148,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("IronshodBoots", "Speed: -5")]
-        [TestCase("Buckler", "AV: +1; DV: +1")]
+        [TestCase("Buckler", "Armor value (AV): +1.\nDodge value (DV): +1.")]
         [TestCase("VenomDagger", "50%")]
         public void EquipmentContributionsReuseExistingItemDescriptions(string blueprint, string expected)
         {

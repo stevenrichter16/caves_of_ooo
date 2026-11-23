@@ -28,6 +28,22 @@ namespace CavesOfOoo.Core
             return Owned(target,viewer)&&ReferenceEquals(examinable,target.GetPart<ExaminablePart>())?document:null;
         }
 
+        /// <summary>Metadata for an already captured carried/equipped inspection. Does not
+        /// invoke description, state or enhancement providers a second time.</summary>
+        public static AnnouncementDocument BuildInventorySnapshot(Entity target, Entity viewer,
+            IEnumerable<AnnouncementSection> sections)
+        {
+            if (!Owned(target, viewer)) return null;
+            var examinable = target.GetPart<ExaminablePart>();
+            var facts = new List<AnnouncementFact>();
+            AddFacts(target, facts);
+            var render = target.GetPart<RenderPart>();
+            var document = new AnnouncementDocument(target.GetDisplayName(), "EXAMINE", sections, facts,
+                target.BlueprintName, string.IsNullOrEmpty(render.RenderString) ? (char?)null : render.RenderString[0],
+                render.ColorString, target, null, null, viewer);
+            return Owned(target, viewer) && ReferenceEquals(examinable, target.GetPart<ExaminablePart>()) ? document : null;
+        }
+
         /// <summary>Open-time authority for a current subject portrait. Rechecks only physical
         /// ownership and the captured visible cell/viewer; never calls description providers or
         /// refreshes the document's prose. An unrelated replacement owner or zone grants no access.</summary>

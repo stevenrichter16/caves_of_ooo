@@ -110,45 +110,78 @@ namespace CavesOfOoo.Core
         public static bool TryDescribeEquipmentDetails(Entity item, out string details)
         {
             details = null;
+            if (!TryDescribeEquipmentSections(item, out var sections)) return false;
+            var text = new List<string>();
+            foreach (var section in sections) text.Add(section.Text);
+            details = string.Join("\n", text);
+            return true;
+        }
+
+        /// <summary>The same live item contributions, with explicit section boundaries.
+        /// This captures facts, not equip eligibility or the inspecting character's totals.</summary>
+        public static bool TryDescribeEquipmentSections(Entity item, out IReadOnlyList<AnnouncementSection> sections)
+        {
+            sections = null;
             if (item == null) return false;
+            var result = new List<AnnouncementSection>();
             var lines = new List<string>();
             if (item.HasTag("Item")) DescribeTorch(item, lines);
+            if (lines.Count > 0)
+                result.Add(new AnnouncementSection("Flame and fuel", string.Join("\n", lines),
+                    AnnouncementTone.Normal, lines[0]));
+
             var weapon = item.GetPart<MeleeWeaponPart>();
+            if (weapon != null)
+            {
+                lines.Clear(); DescribeWeapon(weapon, lines);
+                result.Add(new AnnouncementSection("Combat", string.Join("\n", lines),
+                    AnnouncementTone.Normal, lines[0] + "\n" + lines[1] + "\n" + lines[2]));
+            }
             var armor = item.GetPart<ArmorPart>();
-            if (weapon != null) DescribeWeapon(weapon, lines);
             if (armor != null)
             {
-                lines.Add("Armor contribution - AV: " + Signed(armor.AV)
-                    + "; DV: " + Signed(armor.DV) + ".");
+                lines.Clear();
+                lines.Add("Armor value (AV): " + Signed(armor.AV) + ".");
+                lines.Add("Dodge value (DV): " + Signed(armor.DV) + ".");
                 if (armor.SpeedPenalty != 0)
                     lines.Add("Speed: " + Signed(-(long)armor.SpeedPenalty) + " while equipped.");
+                string overview = "Armor value (AV): " + Signed(armor.AV) + ".\nDodge value (DV): " + Signed(armor.DV) + "."
+                    + (armor.SpeedPenalty != 0 ? "\nSpeed: " + Signed(-(long)armor.SpeedPenalty) + " while equipped." : "");
+                lines.Add("AV is armor value; DV is dodge value. These are this item's contributions.");
+                lines.Add("AV protects a struck body location, not the whole body.");
+                result.Add(new AnnouncementSection("Protection", string.Join("\n", lines), AnnouncementTone.Normal, overview));
             }
-
-            if (item.GetPart<EquippablePart>() != null)
+            var equipment = item.GetPart<EquippablePart>();
+            if (equipment != null)
             {
-                var equipment = item.GetPart<EquippablePart>();
-                if (equipment != null)
-                {
-                    lines.Add("Equip slots: " + string.Join(",", equipment.GetSlotArray()) + ".");
-                    DescribeEquipBonuses(equipment.EquipBonuses, lines);
-                    string skills = DescribeSkillBonuses(equipment.EquipSkillBonuses);
-                    if (skills.Length > 0)
-                        lines.Add("Skills while equipped: " + skills
-                            + ". Grants unlearned skills; ranks stop at each skill's maximum."
-                            + " Does not spend or grant skill points.");
-                }
+                result.Add(new AnnouncementSection("Equip slots", "Equip slots: " + string.Join(",", equipment.GetSlotArray()) + "."));
+                lines.Clear(); DescribeEquipBonuses(equipment.EquipBonuses, lines);
+                string skills = DescribeSkillBonuses(equipment.EquipSkillBonuses);
+                if (skills.Length > 0)
+                    lines.Add("Skills while equipped: " + skills
+                        + ". Grants unlearned skills; ranks stop at each skill's maximum."
+                        + " Does not spend or grant skill points.");
+                if (lines.Count > 0)
+                    result.Add(new AnnouncementSection("Equipped bonuses", string.Join("\n", lines),
+                        AnnouncementTone.Normal, "Bonuses and requirements: see full details."));
             }
-
-            if (lines.Count == 0) return false;
-            details = string.Join("\n", lines);
+            if (weapon != null)
+            {
+                lines.Clear(); DescribeWeaponEffects(weapon, lines);
+                if (lines.Count > 0)
+                    result.Add(new AnnouncementSection("On-hit effects", string.Join("\n", lines),
+                        AnnouncementTone.Normal, "Independent attempts on damaging hits; targets may resist. See full details."));
+            }
+            if (result.Count == 0) return false;
+            sections = result.AsReadOnly();
             return true;
         }
 
         private static void DescribeWeapon(MeleeWeaponPart weapon, List<string> lines)
         {
             lines.Add("Damage: " + (weapon.BaseDamage ?? "1d2") + " per penetration.");
-            lines.Add("Hit bonus: " + Signed(weapon.HitBonus)
-                + "; Penetration bonus: " + Signed(weapon.PenBonus) + ".");
+            lines.Add("Hit bonus: " + Signed(weapon.HitBonus) + ".");
+            lines.Add("Penetration bonus: " + Signed(weapon.PenBonus) + ".");
             int cap = weapon.MaxStrengthBonus < 0
                 ? CombatSystem.LEGACY_UNCAPPED_MAX_STR_BONUS : weapon.MaxStrengthBonus;
             lines.Add("Penetration uses " + (weapon.Stat ?? "Strength")
@@ -156,6 +189,10 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrWhiteSpace(weapon.Attributes))
                 lines.Add("Attributes: " + weapon.Attributes.Trim() + ".");
 
+        }
+
+        private static void DescribeWeaponEffects(MeleeWeaponPart weapon, List<string> lines)
+        {
             var attempts = new List<string>();
             var damage = new Damage(0);
             damage.AddAttribute("Melee");

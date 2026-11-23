@@ -343,6 +343,50 @@ namespace CavesOfOoo.Rendering
             return document;
         }
 
+        // A partial pane is explicitly an overview. Never cut off a conditional
+        // probability or an armor-coverage qualification to make it look complete.
+        void RenderItemSectionOverview(Rect bounds, AnnouncementDocument document, string fallback)
+        {
+            bool structured = document.Sections.Any(section => section.Heading == "Combat" || section.Heading == "Protection");
+            if (!structured)
+            {
+                LLabel(bounds, SkillScreenText.Fit(fallback, Mathf.Max(1, (int)(bounds.width / 9)),
+                    Mathf.Max(1, (int)(bounds.height / 22))), LInk, 18);
+                return;
+            }
+            var primary = document.Sections.Where(section => section.Heading == "Combat" || section.Heading == "Protection").ToList();
+            if (primary.Count > 1 && bounds.width >= 600 && bounds.height < 140)
+            {
+                float width = (bounds.width - 20) / 2;
+                RenderItemOverviewColumn(new Rect(bounds.x, bounds.y, width, bounds.height), primary.Take(1));
+                RenderItemOverviewColumn(new Rect(bounds.x + width + 20, bounds.y, width, bounds.height), primary.Skip(1));
+                return;
+            }
+            // Combat/protection precede other overviews even when a condition is
+            // present. Full details retains the complete condition/effect prose.
+            RenderItemOverviewColumn(bounds, primary.Concat(document.Sections.Where(section => section.Heading != "Combat" && section.Heading != "Protection")));
+        }
+
+        void RenderItemOverviewColumn(Rect bounds, IEnumerable<AnnouncementSection> sections)
+        {
+            float y = bounds.y;
+            int columns = Mathf.Max(1, (int)(bounds.width / 9));
+            foreach (var section in sections)
+            {
+                if (string.IsNullOrWhiteSpace(section.OverviewText)) continue;
+                var heading = SkillScreenText.Wrap(section.Heading.ToUpperInvariant(), columns);
+                var body = SkillScreenText.Wrap(section.OverviewText, columns);
+                float headingHeight = heading.Count * 22;
+                float bodyHeight = body.Count * 22;
+                if (y + headingHeight + bodyHeight + 7 > bounds.yMax) continue;
+                LBox(new Rect(bounds.x, y, bounds.width, 1), LBorder);
+                LLabel(new Rect(bounds.x, y + 3, bounds.width, headingHeight), string.Join("\n", heading), LGold, 18);
+                LLabel(new Rect(bounds.x, y + headingHeight + 5, bounds.width, bodyHeight), string.Join("\n", body),
+                    section.Tone == AnnouncementTone.Warning ? LGold : LInk, 18);
+                y += headingHeight + bodyHeight + 12;
+            }
+        }
+
         void RenderLedgerSelection()
         {
             LFrame(new Rect(352, 478, 904, 226), LBorder, LPanel);
@@ -357,16 +401,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
             LLabel(new Rect(448, 495, 790, 52), SkillScreenText.Fit(subject.GetDisplayName(), 71, 2), LGold, 22);
-            var lines = new List<string>();
-            foreach (string line in decision.Split('\n'))
-            {
-                string trimmed = line.Trim();
-                if (trimmed.Length == 0 || trimmed == "Equipment comparison" || trimmed.StartsWith("Candidate: ", StringComparison.Ordinal)
-                    || trimmed == subject.GetDisplayName()) continue;
-                lines.Add(trimmed);
-            }
-            string preview = SkillScreenText.Fit(string.Join("\n", lines), 87, 5);
-            LLabel(new Rect(448, 553, 790, 108), preview, LInk, 18);
+            RenderItemSectionOverview(new Rect(448, 553, 790, 108), document, decision);
             // This is a current, authorized owner in the existing renderer, never
             // a blueprint guess or an offscreen model capture. Texture stays borrowed.
             var renderer = Tilemap != null ? Tilemap.GetComponent<ZoneRenderer>() : null;
@@ -380,7 +415,7 @@ namespace CavesOfOoo.Rendering
                 LLabel(new Rect(384, 522, 36, 48), document.Glyph.Value.ToString(), QudColorParser.Parse(document.GlyphColor), 44);
             var details = new Rect(1066, 670, 174, 26);
             LFrame(details, LBorder, LBackground);
-            LLabel(new Rect(details.x + 8, details.y + 4, details.width - 16, 18), NativeGamepadInput.IsConnected ? "LT+RT Details" : "F1 Details", LMuted, 16);
+            LLabel(new Rect(details.x + 8, details.y + 4, details.width - 16, 18), NativeGamepadInput.IsConnected ? "LT+RT Full details" : "F1 Full details", LMuted, 16);
             LHit(details, LedgerHitKind.Details);
         }
 

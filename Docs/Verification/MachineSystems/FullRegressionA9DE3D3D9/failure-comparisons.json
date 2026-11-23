@@ -1,0 +1,81 @@
+{
+  "full_s9": {
+    "newNames": [
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.CommitMessageObserverThrows_ResultAndReceiptStillPublish(\"DrinkWaterskin\",\"WaterskinDrunk\")",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.CommitMessageObserverThrows_ResultAndReceiptStillPublish(\"FillWaterskin\",\"WaterskinFilled\")",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(1)",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(3)",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkRollback_RestoresParchedIdentityWithoutRemovingUnrelatedEffect",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.Fill_RollsBackPoolAndVesselUnderOuterTransaction",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.PoolWithRenewingWaterCoating_StillConservesItsFiniteVolume",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.ReentrantDifferentVessel_CannotSpendDuringAnUncommittedAction(False)",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.ReentrantDifferentVessel_CannotSpendDuringAnUncommittedAction(True)",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.StandingSourceReach_UsesFootprintRatherThanRemoteAnchor",
+      "CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.WellDrawRemainsProtectedFromUnrelatedGroundSpill",
+      "CavesOfOoo.Tests.PouredFuelCombustionTests.FuelIsSpentBeforeDamageCallbacksAndReentryCannotRecoverIt",
+      "CavesOfOoo.Tests.RegionalGuidanceAdversarialTests.LongObjectiveActuallyRendersReturnContactBeyondFirstLine"
+    ],
+    "baselineNowPasses": [],
+    "common": 91,
+    "changedMessages": [
+      {
+        "fullname": "CavesOfOoo.Tests.TerrainRenderCoverageTests.EveryTerrainBlueprintIsEitherGroundOrDeliberatelyAGlyph",
+        "old": "  These terrain blueprints resolve no ground material and are not listed as glyph-only, so they will render as bare ASCII over the flowing ground field. Either map them in EnvironmentSpriteRenderer.ResolveGroundMaterial or add them to GlyphOnlyByDesign with a reason: FrontierClothScreen, CausticFilm\n  Expected: <empty>\n  But was:  < \"FrontierClothScreen\", \"CausticFilm\" >\n",
+        "current": "  These terrain blueprints resolve no ground material and are not listed as glyph-only, so they will render as bare ASCII over the flowing ground field. Either map them in EnvironmentSpriteRenderer.ResolveGroundMaterial or add them to GlyphOnlyByDesign with a reason: FrontierClothScreen, CausticFilm, HushStripLaid\n  Expected: <empty>\n  But was:  < \"FrontierClothScreen\", \"CausticFilm\", \"HushStripLaid\" >\n"
+      }
+    ]
+  },
+  "fullrun_h": {
+    "newNames": [
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.CommitMessageObserverThrows_ResultAndReceiptStillPublish(\"DrinkWaterskin\",\"WaterskinDrunk\")",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.CommitMessageObserverThrows_ResultAndReceiptStillPublish(\"FillWaterskin\",\"WaterskinFilled\")",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(1)",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(3)",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkRollback_RestoresParchedIdentityWithoutRemovingUnrelatedEffect",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.Fill_RollsBackPoolAndVesselUnderOuterTransaction",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.PoolWithRenewingWaterCoating_StillConservesItsFiniteVolume",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.ReentrantDifferentVessel_CannotSpendDuringAnUncommittedAction(False)",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.ReentrantDifferentVessel_CannotSpendDuringAnUncommittedAction(True)",
+      "CavesOfOoo.Tests.DensityEverydayAdversarialTests.StandingSourceReach_UsesFootprintRatherThanRemoteAnchor",
+      "CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.WellDrawRemainsProtectedFromUnrelatedGroundSpill",
+      "CavesOfOoo.Tests.PouredFuelCombustionTests.FuelIsSpentBeforeDamageCallbacksAndReentryCannotRecoverIt",
+      "CavesOfOoo.Tests.RegionalGuidanceAdversarialTests.LongObjectiveActuallyRendersReturnContactBeyondFirstLine"
+    ],
+    "baselineNowPasses": [
+      "CavesOfOoo.Tests.ThrowingPayloadComparisonTests.W7_WaterAndAcidOrdersPayForTheirRealInterveningEnemyTurns(2)"
+    ],
+    "common": 91,
+    "changedMessages": [
+      {
+        "fullname": "CavesOfOoo.Tests.CurationAnnexArtTests.FiveFunctionalFormsHaveReviewedSourceAndPersistentNativeGeometry(\"annex-placard\")",
+        "old": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone4/ArtSource/CurationYard3D/kit.json\".",
+        "current": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone2/ArtSource/CurationYard3D/kit.json\"."
+      },
+      {
+        "fullname": "CavesOfOoo.Tests.CurationAnnexArtTests.FiveFunctionalFormsHaveReviewedSourceAndPersistentNativeGeometry(\"inspection-slab\")",
+        "old": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone4/ArtSource/CurationYard3D/kit.json\".",
+        "current": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone2/ArtSource/CurationYard3D/kit.json\"."
+      },
+      {
+        "fullname": "CavesOfOoo.Tests.CurationAnnexArtTests.FiveFunctionalFormsHaveReviewedSourceAndPersistentNativeGeometry(\"maintenance-rack\")",
+        "old": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone4/ArtSource/CurationYard3D/kit.json\".",
+        "current": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone2/ArtSource/CurationYard3D/kit.json\"."
+      },
+      {
+        "fullname": "CavesOfOoo.Tests.CurationAnnexArtTests.FiveFunctionalFormsHaveReviewedSourceAndPersistentNativeGeometry(\"recovery-cabinet\")",
+        "old": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone4/ArtSource/CurationYard3D/kit.json\".",
+        "current": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone2/ArtSource/CurationYard3D/kit.json\"."
+      },
+      {
+        "fullname": "CavesOfOoo.Tests.CurationAnnexArtTests.FiveFunctionalFormsHaveReviewedSourceAndPersistentNativeGeometry(\"service-gate-broken\")",
+        "old": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone4/ArtSource/CurationYard3D/kit.json\".",
+        "current": "System.IO.DirectoryNotFoundException : Could not find a part of the path \"/Users/steven/coo-verification/clone2/ArtSource/CurationYard3D/kit.json\"."
+      },
+      {
+        "fullname": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_LateInvalidRowRejectsBeforeAnyOwnedInstanceCanBeChanged",
+        "old": "  Expected: <System.InvalidOperationException>\n  But was:  <System.MissingMethodException: Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.\n  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:36 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests+<>c__DisplayClass15_0.<Adversarial_LateInvalidRowRejectsBeforeAnyOwnedInstanceCanBeChanged>b__0 () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:96 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n",
+        "current": "  Expected: <System.InvalidOperationException>\n  But was:  <System.MissingMethodException: Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.\n  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/coo-verification/clone2/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:36 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests+<>c__DisplayClass15_0.<Adversarial_LateInvalidRowRejectsBeforeAnyOwnedInstanceCanBeChanged>b__0 () [0x00000] in /Users/steven/coo-verification/clone2/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:96 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+      }
+    ]
+  }
+}
