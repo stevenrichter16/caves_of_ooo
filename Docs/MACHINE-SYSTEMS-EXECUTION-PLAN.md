@@ -10,6 +10,22 @@
 
 ## Active handback continuation — November 21, 2026
 
+New user priority — November22: improve inventory item comprehensibility,
+especially weapons/armor, using logical sections with visibly distinct headings
+and concise stat rows. Source cause: SelectedDecisionPresentation collapses all
+content into one Decision details section; sidebar and equipment preview flatten
+it again. [Implementation contract](INVENTORY-ITEM-DESCRIPTIONS.md) records Combat/
+Protection, Handling/slots, Effects/condition, actual Equipment comparison and
+Description, with typed cached sections shared by sidebar/fullreader. Preserve
+per-location AV, item-vs-character contributions, conditional effects, selection/
+ownership/callback guards and established dense item capacity. Source-qualified
+design only, no runtime/UI implementation or play claim. Independent bounded
+source/design critique found no blocker; required one provider capture, carried
+versus worn coverage, exact displaced/natural slots, explicit-read versus repaint
+semantics and heading/page spacing are recorded in the contract. Full clone2 regression is still running; keep runtime/tests
+frozen and no native play/build/second batch. This UI request takes priority over
+further machine expansion after full-run assessment. HourlyACTIVE.
+
 November22 evening full corrected-head regression has started in idle clone2
 at00:49:49UTCNovember23; runtimea9de3d3d9/docs7602dc783,3887code/test/configpins
 matched after sync, all6well/flask pins exact. See
