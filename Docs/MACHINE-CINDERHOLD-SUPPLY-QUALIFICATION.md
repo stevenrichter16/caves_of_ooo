@@ -5,7 +5,7 @@ after native200/199pass/0fail/1Explicit and independent source/gameplay-evidence
 review0P1/P2. See [the complete receipt](Verification/MachineSystems/CinderholdSmithSupply20261123/README.md).
 The initial qualification below records the baseline and selected contract. No new
 pump reward, route, physical drainage or complete-machine behavior is accepted.
-Current Mac1a predates this increment; packaging remains open.
+Current Mac7c248f7f0 includes this increment with [artifact/startup verification](Verification/MachineSystems/MacCandidate7C248F7F0/README.md); controlled packaged play remains open.
 
 ## Concrete player problem
 
@@ -121,4 +121,4 @@ five canonical gas fields. Factory callbacks cannot redefine the baseline.
 Altered resident goods survive and do not hide a canonical supply deficit.
 Compiling native RED17 followed by profile-only payloadRED29 preceded exact
 guards. Actual after-play and final independent review now qualify this bounded
-Editor increment; package inclusion remains open.
+Editor increment; package inclusion/artifact startup are now verified separately.

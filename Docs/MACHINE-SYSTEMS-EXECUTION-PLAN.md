@@ -1,3 +1,26 @@
+**Current Mac delivery — November23,2026:** published Cinderhold runtime7c248f7f06d437d91fb3abbb2f7f2678da5c652a
+is packaged at /Users/steven/coo-verification/builds/mac-7c248f7f0-20261123/CavesOfOoo.app.
+Universal6000.3.4f1/nondev56.152444s364149165bytes/0errors/5warnings (same5unique
+prior1a messages).32035committed/32038effective/83changed0missing3added/
+exact86overlay/noRuntimeCSimportchange/592external/186app pins. Git blobs exact;
+Cecil36checks new local profile/catalogue/place/fresh fields and unchanged shared
+contracts/saved fields/grouping/mire. Raw Reconcile comparison initially stopped
+on generated29→30 identifier labels; narrow normalization retains all instructions,
+offsets/constants/other operands; not byte-identical IL. DLL
+e0e8ee5d3abd0db0aaef9b386a4460212af1377218ebb22973e3feb76325d352.
+Oneactualowned91031/window71119/640x428chooser/world/HUD/7creatures/2672entities;
+postfalse/AXfalse/screentrue, no input/activation/request. Exactownedplayer closed;
+10logicalprefs restored/MacSavesabsent nonsymlink;16prior app maps/current186/
+84foreign/861selectednormal exact. Mainstoppedrootnullclean/original7views.
+Independent read-only artifact review0P1/P2; controlled packagedplay/save/controller/
+FPS/Intel remain open. See [delivery receipt](Verification/MachineSystems/MacCandidate7C248F7F0/README.md).
+Editor200/199pass/0fail/1Explicit49new and actual reclaim+purchase+lastingpump/
+existingcommerce/fresh10660 accepted separately. All12/fullregression gates open.
+HourlyACTIVE/root sole owner; preserve every app/checkpoint/art/foreign change.
+Next qualify dense-inventory category/sort friction or another practical supply
+project from actual evidence; neither is accepted simply by this suggestion.
+These lines supersede older currentMac1a references.
+
 **Current Cinderhold supply foundation — November23,2026:** bounded Editor
 acceptance after independent source/gameplay-evidence0P1/P2. Genuine local
 WeaponsmithStock now keeps dagger1/spike2/oak1/binding1 and two saved specials

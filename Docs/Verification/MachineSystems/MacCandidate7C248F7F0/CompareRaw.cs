@@ -1,0 +1,2 @@
+using System;using System.Linq;using System.IO;using Mono.Cecil;
+class CompareRaw {static void Main(string[] a){for(int n=0;n<2;n++)using(var asm=AssemblyDefinition.ReadAssembly(a[n])){var t=asm.MainModule.Types.Single(x=>x.FullName=="CavesOfOoo.Core.MerchantStockService");File.WriteAllLines(a[2]+(n==0?"/reconcile-new.txt":"/reconcile-old.txt"),t.Methods.Single(m=>m.Name=="Reconcile").Body.Instructions.Select(i=>i.ToString()).ToArray());}}}

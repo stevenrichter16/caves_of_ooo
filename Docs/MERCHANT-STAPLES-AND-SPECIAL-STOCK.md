@@ -376,5 +376,5 @@ remain. [Native receipt](Verification/MachineSystems/CinderholdSmithSupply202611
 records200/199pass/0fail/1Explicit/49new, old-town gap and alternate Tinker,
 actual finite reclaim+bought spike into lasting pump repair, existing commerce
 benefit and fresh10660. Fixture financing and modal/combat/level-up detours are
-explicit. Current Mac1a predates this addition; no complete pump/route/NPC
-production or full-program acceptance.
+explicit. Current Mac7c248f7f0 includes this addition with separate artifact/
+startup verification; no complete pump/route/NPC production or full-program acceptance.

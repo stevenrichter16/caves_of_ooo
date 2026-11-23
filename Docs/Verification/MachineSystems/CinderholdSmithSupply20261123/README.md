@@ -3,7 +3,8 @@
 November23,2026. Bounded Editor acceptance after independent source and
 gameplay-evidence review0remainingP1/P2 (read-only, not a second operator). Source
 review0P1/P2 and native200total/199pass/0fail/1Explicit utilityskip/0CS.
-Current Mac1a153dc69 predates this change; package inclusion remains open.
+Current Mac7c248f7f0 includes this change with [separate artifact/startup
+verification](../MacCandidate7C248F7F0/README.md); packaged interaction/save remains open.
 
 ## Bounded change and native proof
 
