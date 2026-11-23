@@ -45,8 +45,14 @@ namespace CavesOfOoo.Core
         {
             var owner = well?.ParentEntity;
             if (owner == null || owner.GetPart<WellPart>() != well || owner.HasTag("Creature") || !well.IsUsable
-                || !LiquidSourcePhase.CanDrawWater(zone, owner) || !LiquidSourceSafety.IsUnmixedSource(zone, owner, "water")) return false;
+                || !LiquidSourcePhase.CanDrawWater(zone, owner)) return false;
             var pool = owner.GetPart<LiquidPoolPart>();
+            // Stock is a drawn supply, separate from spills around its base.
+            // An attached pool/emitter instead exposes the actual source cell:
+            // it must never turn unlike liquid into clean water or fall back.
+            // See WellSupplyProvenanceTests and DENSITY-LIQUID-CARRY-POUR.md.
+            if ((pool != null || owner.HasPart<TileStateSourcePart>())
+                && !LiquidSourceSafety.IsUnmixedSource(zone, owner, "water")) return false;
             return pool == null ? (!well.MeteredHydration || well.Stock >= -1) && (!requireWater || well.HasWater)
                 : pool.ParentEntity == owner && pool.LiquidId == "water" && (!requireWater || pool.Volume > 0);
         }

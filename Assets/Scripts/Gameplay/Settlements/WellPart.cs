@@ -20,7 +20,9 @@ namespace CavesOfOoo.Core
         /// <summary>Units of water left. -1 (the default) is an endless well or spring. A finite well
         /// (a waysite rain cistern, Docs/CHUNK-ACTIVITY.md) spends one unit per drink and one per
         /// waterskin charge, and offers nothing once dry. A well with its own LiquidPool counts that
-        /// pool instead. Plain public: it round-trips through the reflection save path.</summary>
+        /// pool instead. Stock is a drawn supply separate from ground spills;
+        /// an attached pool or tile-state source retains occupied-cell purity checks.
+        /// Plain public: it round-trips through the reflection save path.</summary>
         public int Stock = -1;
 
         /// <summary>Opt-in source tariff: finite water relieves one Parched

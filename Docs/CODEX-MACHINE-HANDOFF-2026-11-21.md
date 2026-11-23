@@ -2,6 +2,36 @@
 
 ## Resumed continuation — November 21 evening
 
+Well supply/spill correction — November23: the earlier conflict is resolved by
+restoring the documented drawn Stock versus exposed LiquidPool distinction.
+Shared admission preserves unlike-pool/emitter refusal, no dry-pool fallback,
+phase/ice, repair, oath, custody, finite quantities and callbacks. The original
+legacy spill success assertion is unchanged. Corrected native REDb40=16fail/
+24controls; GREENb252/252/0CS includes42new cases, non-null acid exposure and
+metered last-unit controls. Exposed-safety mutant killed9/43; clone3 source
+restored to all7 exact main pins, next native run imports restored source.
+Actual ordinary source-guided travel from4200 reaches TankBrocchinia17798 at
+Overworld.3.4.0,47,6. Carried2235 pours1mire4570, then C-fill draws12water4580
+while ground19577 remains1/Stock-1. Direct drink stays free; F5/fresh4580 measured
+state exact. Native C-recovery puts that1mire into2231(11->12), removes only the
+ground owner, keeps water2235=12; F5/fresh4590 exact. Both four-file checkpoints
+archived;8actual PNGs and raw observations retained. Finite/metered/acid/oil/
+exposed-refusal branches remain test-only; inherited hero/items are fixtures.
+Independent source/gameplay-evidence review0P1/P2, not a second native operator.
+Fresh84foreign/861selectednormal hashes match; main stopped/rootnull/clean/
+profileroff/original7views. No new save fields, supply, tariff, immunity or
+full-machine acceptance. Original full a9 run stays FAILED40813/104fail;
+no inferred full count,91baseline failure names remain open. All12 statuses stay
+open. Graphics cancelled, capstan/cultures parked, Deck deferred, hourlyACTIVE.
+See [contract](WELL-SUPPLY-PROVENANCE.md) and
+[receipt](Verification/MachineSystems/WellSupplyProvenance20261123/README.md).
+Current Mac fbe precedes this correction; delivery follows publication. Latest
+reusable ordinary checkpoint is /private/tmp/coo-well-provenance-recovery-earned-20261123/8ab6a6384c2a44deb8b3a68303809d8f at4590; preserve earlier4200/4580 too.
+Next continue useful shared machine/tool gameplay loops; preserve accepted UI
+separate Damage/Hit/Penetration and AV/DV rows, safe complete-state stacking,
+dense Inventory and further category/sort plans. NPC survival, unloaded-fire
+chronology, general fractionation/economics and full delivery remain open.
+
 Current Mac candidate — November22/23: published UI sourcefbe0742f235ba5c92237cee710571ff0ee1d1a7b
 is packaged at /Users/steven/coo-verification/builds/mac-fbe0742f2-20261122/CavesOfOoo.app.
 Universal6000.3.4f1/nondev55.993293s364128829bytes/0errors/5samea9warnings.
@@ -16,10 +46,10 @@ exact, currentapp186still exactafterboot. Fresh84foreign861selectednormal match;
 mainstopped/rootnull/clean/profileroff/7builtins/custom0/selected0/noownedview.
 Allapps/projects/exports retained. See [Mac receipt](Verification/MachineSystems/MacCandidateFBE0742F2/README.md).
 All12 complete-machine/full-delivery gates remainopen; last FULL deliveryM3c.
-Next preserve accepted UI and resume useful shared machine/tool loops plus the
-explicitly unresolved old well/spill safety expectation, without repeating these
-accepted checks/builds or reviving cancelled graphics/parked capstan-cultures/Deck.
-HourlyACTIVE, no ownedruntimeWIP. This is a delivery records update; runtime remainsfbe.
+Historical delivery record: fbe is this package's source. The November23 well
+supply correction below supersedes the old unresolved-spill next step; continue
+useful shared machine/tool loops without repeating accepted UI work or reviving
+cancelled graphics/parked capstan-cultures/Deck. HourlyACTIVE.
 
 Current inventory description increment — November22/23: implemented and bounded
 Editor-qualified. Weapons/armor retain typed logical sections, contrasting
@@ -46,7 +76,8 @@ water fixtures fail,1old well/spill conflict fails,2input/random fixtures pass.
 Correct actor+pool physics, scope/restore oil-slip RNG with landing assertion,
 and explicitly test keyboard/controller journal footer; behavioral assertions
 remain. Corrected classes are included in focused471GREEN, not a new full run.
-Older well safety/test conflict and baseline91failure names remain open. Common
+The older well conflict is now resolved by the November23 correction above;
+baseline91failure names remain open. Common
 message differences are clone paths or HushStripLaid already present in fullrun_h;
 no graphics resumed. [Full assessment](Verification/MachineSystems/FullRegressionA9DE3D3D9/ASSESSMENT.md).
 

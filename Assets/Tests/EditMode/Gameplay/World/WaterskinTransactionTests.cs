@@ -92,8 +92,11 @@ namespace CavesOfOoo.Tests
         public void FillRevalidatesItsSourceAfterOuterCallbacks(string fault)
         {
             var well=Well();var skin=Skin(0);var original=well.GetPart<WellPart>();
+            // Mixed ground affects an exposed pool, not the separate Stock supply.
+            if(fault=="mixed")well.AddPart(new LiquidPoolPart{LiquidId="water",Volume=3});
             After(()=>{if(fault=="moved")Assert.True(Zone.MoveEntity(well,20,10));if(fault=="frozen")Zone.TileState.WriteCoating(11,10,"ice",5);if(fault=="mixed")Zone.TileState.WriteCoating(11,10,"oil",5);if(fault=="broken")well.AddPart(new RepairablePart());if(fault=="part-owner")original.ParentEntity=Factory.CreateEntity("Well");if(fault=="replaced"){well.RemovePart(original);well.AddPart(new WellPart{Stock=7});}});
             Assert.False(Act(skin,Fill(well)));Assert.AreEqual(0,Units(skin));Assert.AreEqual(3,original.Stock);
+            if(fault=="mixed")Assert.AreEqual(3,well.GetPart<LiquidPoolPart>().Volume);
             if(fault=="replaced")Assert.AreEqual(7,well.GetPart<WellPart>().Stock);
         }
         [TestCase("moved")] [TestCase("replaced")] [TestCase("identity")]

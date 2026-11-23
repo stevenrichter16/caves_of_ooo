@@ -62,10 +62,15 @@ reported.
 The remaining WellDrawRemainsProtectedFromUnrelatedGroundSpill failure is already
 reproduced alone on committed ef5 in
 [the retained baseline receipt](../WellFlasks20261122/README.md), identical message.
-Its success expectation conflicts with existing source-safety refusal beside
-acid. This older policy/test conflict remains **open**; neither production safety
-nor the assertion was silently weakened. It is new to these two full-run failure
-name lists, not proven new to a9. The other91 baseline failure names remain open.
+Its success expectation conflicted with blanket source-safety refusal beside
+acid. November23 independent review recovered the explicit earlier drawn-supply
+contract. The [separate-supply correction](../WellSupplyProvenance20261123/README.md)
+restores Stock provenance while retaining exposed-pool/emitter safety. The original
+legacy success assertion is unchanged; native252/252 plus actual separate draw/
+recovery and fresh saves qualify that bounded correction. This does not change
+the raw full-run result or establish a new full-suite failure count. The failure
+was new to these two full-run name lists, not proven new to a9. The other91
+baseline failure names remain open.
 
 Independent bounded source/evidence review and raw comparisons are retained.
 No runtime water/combustion/journal balance or save behavior changed in these

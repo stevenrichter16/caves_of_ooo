@@ -1,0 +1,8 @@
+[
+  {
+    "id": "drop_exposed_purity",
+    "file": "Assets/Scripts/Gameplay/Settlements/WellDrinkingService.cs",
+    "old": "            if ((pool != null || owner.HasPart<TileStateSourcePart>())\n                && !LiquidSourceSafety.IsUnmixedSource(zone, owner, \"water\")) return false;",
+    "new": "            // Mutant: all exposed-supply purity checks removed."
+  }
+]

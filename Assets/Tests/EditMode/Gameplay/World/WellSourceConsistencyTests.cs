@@ -39,7 +39,7 @@ namespace CavesOfOoo.Tests
             Debt(0); Assert.AreEqual(-1, well.GetPart<WellPart>().Stock);
             Assert.AreEqual(ActionTime.Free, Actions(well).Single(a => a.Command == "DrawWaterAtWell").Time);
         }
-        [TestCase(false, "ice")] [TestCase(false, "cold")] [TestCase(false, "mixed")]
+        [TestCase(false, "ice")] [TestCase(false, "cold")]
         [TestCase(true, "ice")] [TestCase(true, "cold")] [TestCase(true, "mixed")]
         [TestCase(true, "broken")]
         public void DrawAndFillRefuseUnavailableWell(bool pool, string state)

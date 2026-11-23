@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="40" result="Failed(Child)" total="40" passed="12" failed="28" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-23 06:09:28Z" end-time="2026-11-23 06:09:30Z" duration="1.8553583">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="40873" result="Failed" site="Child" start-time="2026-11-23 06:09:28Z" end-time="2026-11-23 06:09:30Z" duration="1.855358" total="40" passed="12" failed="28" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="49828" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="40873" result="Failed" site="Child" start-time="2026-11-23 06:09:28Z" end-time="2026-11-23 06:09:30Z" duration="1.805112" total="40" passed="12" failed="28" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="26969" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="49829" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40873" result="Failed" site="Child" start-time="2026-11-23 06:09:28Z" end-time="2026-11-23 06:09:30Z" duration="1.758850" total="40" passed="12" failed="28" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="49830" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40873" result="Failed" site="Child" start-time="2026-11-23 06:09:28Z" end-time="2026-11-23 06:09:30Z" duration="1.653082" total="40" passed="12" failed="28" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="14442" name="DensityLiquidVesselAdversarialTests" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" testcasecount="62" result="Failed" site="Child" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.059556" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="14446" name="WellDrawRemainsProtectedFromUnrelatedGroundSpill" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.WellDrawRemainsProtectedFromUnrelatedGroundSpill" methodname="WellDrawRemainsProtectedFromUnrelatedGroundSpill" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1672645709" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.052770" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.WellDrawRemainsProtectedFromUnrelatedGroundSpill () [0x0005a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/DensityLiquidVesselAdversarialTests.cs:30
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="32064" name="WellSupplyProvenanceTests" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:30Z" duration="1.165135" total="39" passed="12" failed="27" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32090" name="ActorCellHazardDoesNotBecomeWaterFromADifferentSource" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.225900" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32084" name="ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;drink&quot;,False)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;drink&quot;,False)" methodname="ActorCellHazardDoesNotBecomeWaterFromADifferentSource" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="626844166" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.036239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource (System.String consumer, System.Boolean pool) [0x000c4] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32085" name="ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;skin&quot;,False)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;skin&quot;,False)" methodname="ActorCellHazardDoesNotBecomeWaterFromADifferentSource" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="624528688" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.026236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource (System.String consumer, System.Boolean pool) [0x000c4] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32086" name="ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;flask&quot;,False)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;flask&quot;,False)" methodname="ActorCellHazardDoesNotBecomeWaterFromADifferentSource" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="47625750" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.042665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource (System.String consumer, System.Boolean pool) [0x000c4] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32087" name="ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;drink&quot;,True)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;drink&quot;,True)" methodname="ActorCellHazardDoesNotBecomeWaterFromADifferentSource" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1327041223" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.068534" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource (System.String consumer, System.Boolean pool) [0x000c4] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32088" name="ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;skin&quot;,True)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;skin&quot;,True)" methodname="ActorCellHazardDoesNotBecomeWaterFromADifferentSource" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="859138709" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.025404" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource (System.String consumer, System.Boolean pool) [0x000c4] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32089" name="ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;flask&quot;,True)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource(&quot;flask&quot;,True)" methodname="ActorCellHazardDoesNotBecomeWaterFromADifferentSource" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="793346341" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.025847" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.ActorCellHazardDoesNotBecomeWaterFromADifferentSource (System.String consumer, System.Boolean pool) [0x000c4] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32101" name="EmptyExposedPoolCannotDrawAbstractStockBesideASpill" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.EmptyExposedPoolCannotDrawAbstractStockBesideASpill" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.082124" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32098" name="EmptyExposedPoolCannotDrawAbstractStockBesideASpill(&quot;drink&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.EmptyExposedPoolCannotDrawAbstractStockBesideASpill(&quot;drink&quot;)" methodname="EmptyExposedPoolCannotDrawAbstractStockBesideASpill" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1221778504" result="Passed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.028638" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32099" name="EmptyExposedPoolCannotDrawAbstractStockBesideASpill(&quot;skin&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.EmptyExposedPoolCannotDrawAbstractStockBesideASpill(&quot;skin&quot;)" methodname="EmptyExposedPoolCannotDrawAbstractStockBesideASpill" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1463625822" result="Passed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.025497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32100" name="EmptyExposedPoolCannotDrawAbstractStockBesideASpill(&quot;flask&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.EmptyExposedPoolCannotDrawAbstractStockBesideASpill(&quot;flask&quot;)" methodname="EmptyExposedPoolCannotDrawAbstractStockBesideASpill" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="2041053949" result="Passed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.027333" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32097" name="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.154870" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32091" name="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;drink&quot;,False)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;drink&quot;,False)" methodname="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1880346246" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.026381" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply (System.String consumer, System.Boolean pool) [0x00078] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32092" name="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;skin&quot;,False)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;skin&quot;,False)" methodname="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="833741805" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.025441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply (System.String consumer, System.Boolean pool) [0x00078] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32093" name="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;flask&quot;,False)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;flask&quot;,False)" methodname="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="724428943" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.025158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply (System.String consumer, System.Boolean pool) [0x00078] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32094" name="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;drink&quot;,True)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;drink&quot;,True)" methodname="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="418603264" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.025066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply (System.String consumer, System.Boolean pool) [0x000ca] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32095" name="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;skin&quot;,True)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;skin&quot;,True)" methodname="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="884469346" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.026471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply (System.String consumer, System.Boolean pool) [0x000ca] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32096" name="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;flask&quot;,True)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply(&quot;flask&quot;,True)" methodname="LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="379834583" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.025491" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.LateSpillPreservesItsOwnStateAndRevalidatesTheActualSupply (System.String consumer, System.Boolean pool) [0x000ca] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32083" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:30Z" duration="0.503194" total="18" passed="3" failed="15" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32065" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;finite&quot;,&quot;acid-pool&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;finite&quot;,&quot;acid-pool&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="626123835" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.024966" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.AssertMenu (CavesOfOoo.Core.Entity source, CavesOfOoo.Core.Entity recipient, System.String consumer, System.Boolean available) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:42
+at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00069] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32066" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;finite&quot;,&quot;oil-coating&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;finite&quot;,&quot;oil-coating&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1130896195" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.024845" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.AssertMenu (CavesOfOoo.Core.Entity source, CavesOfOoo.Core.Entity recipient, System.String consumer, System.Boolean available) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:42
+at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00069] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32067" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;endless&quot;,&quot;acid-pool&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;endless&quot;,&quot;acid-pool&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="2049179262" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.025551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.AssertMenu (CavesOfOoo.Core.Entity source, CavesOfOoo.Core.Entity recipient, System.String consumer, System.Boolean available) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:42
+at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00069] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32068" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;endless&quot;,&quot;oil-coating&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;endless&quot;,&quot;oil-coating&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1924989798" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.035156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.AssertMenu (CavesOfOoo.Core.Entity source, CavesOfOoo.Core.Entity recipient, System.String consumer, System.Boolean available) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:42
+at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00069] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32069" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;pool&quot;,&quot;acid-pool&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;pool&quot;,&quot;acid-pool&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="2003874498" result="Failed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:29Z" duration="0.062250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00171] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32070" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;pool&quot;,&quot;oil-coating&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;drink&quot;,&quot;pool&quot;,&quot;oil-coating&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1461742933" result="Passed" start-time="2026-11-23 06:09:29Z" end-time="2026-11-23 06:09:30Z" duration="0.025369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32071" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;finite&quot;,&quot;acid-pool&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;finite&quot;,&quot;acid-pool&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="2103016767" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025409" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00074] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32072" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;finite&quot;,&quot;oil-coating&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;finite&quot;,&quot;oil-coating&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1356567578" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00074] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32073" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;endless&quot;,&quot;acid-pool&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;endless&quot;,&quot;acid-pool&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="566542011" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00074] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32074" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;endless&quot;,&quot;oil-coating&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;endless&quot;,&quot;oil-coating&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="961796570" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025742" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00074] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32075" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;pool&quot;,&quot;acid-pool&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;pool&quot;,&quot;acid-pool&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="361661804" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025602" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00171] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32076" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;pool&quot;,&quot;oil-coating&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;skin&quot;,&quot;pool&quot;,&quot;oil-coating&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="780504217" result="Passed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.024535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32077" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;finite&quot;,&quot;acid-pool&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;finite&quot;,&quot;acid-pool&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1240334077" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.024782" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.AssertMenu (CavesOfOoo.Core.Entity source, CavesOfOoo.Core.Entity recipient, System.String consumer, System.Boolean available) [0x00056] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:43
+at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00069] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32078" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;finite&quot;,&quot;oil-coating&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;finite&quot;,&quot;oil-coating&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="984137118" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.024912" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.AssertMenu (CavesOfOoo.Core.Entity source, CavesOfOoo.Core.Entity recipient, System.String consumer, System.Boolean available) [0x00056] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:43
+at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00069] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32079" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;endless&quot;,&quot;acid-pool&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;endless&quot;,&quot;acid-pool&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1724087081" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.AssertMenu (CavesOfOoo.Core.Entity source, CavesOfOoo.Core.Entity recipient, System.String consumer, System.Boolean available) [0x00056] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:43
+at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00069] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32080" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;endless&quot;,&quot;oil-coating&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;endless&quot;,&quot;oil-coating&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1252375844" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025240" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.AssertMenu (CavesOfOoo.Core.Entity source, CavesOfOoo.Core.Entity recipient, System.String consumer, System.Boolean available) [0x00056] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:43
+at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00069] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32081" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;pool&quot;,&quot;acid-pool&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;pool&quot;,&quot;acid-pool&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="914507913" result="Failed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety (System.String consumer, System.String supply, System.String spill) [0x00171] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WellSupplyProvenanceTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32082" name="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;pool&quot;,&quot;oil-coating&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety(&quot;flask&quot;,&quot;pool&quot;,&quot;oil-coating&quot;)" methodname="StockSupplyIsSeparateButExposedPoolRetainsMixedCellSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1826946939" result="Passed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32108" name="WellWithAnExposedEmitterCannotBypassMixedSourceSafety" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.WellWithAnExposedEmitterCannotBypassMixedSourceSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.197953" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32102" name="WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;drink&quot;,&quot;oil&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;drink&quot;,&quot;oil&quot;)" methodname="WellWithAnExposedEmitterCannotBypassMixedSourceSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="767694646" result="Passed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025492" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32103" name="WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;skin&quot;,&quot;oil&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;skin&quot;,&quot;oil&quot;)" methodname="WellWithAnExposedEmitterCannotBypassMixedSourceSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="248531168" result="Passed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.029918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32104" name="WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;flask&quot;,&quot;oil&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;flask&quot;,&quot;oil&quot;)" methodname="WellWithAnExposedEmitterCannotBypassMixedSourceSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="2014725731" result="Passed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.065001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32105" name="WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;drink&quot;,&quot;water&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;drink&quot;,&quot;water&quot;)" methodname="WellWithAnExposedEmitterCannotBypassMixedSourceSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="976129357" result="Passed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32106" name="WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;skin&quot;,&quot;water&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;skin&quot;,&quot;water&quot;)" methodname="WellWithAnExposedEmitterCannotBypassMixedSourceSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="1562173850" result="Passed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.024874" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32107" name="WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;flask&quot;,&quot;water&quot;)" fullname="CavesOfOoo.Tests.WellSupplyProvenanceTests.WellWithAnExposedEmitterCannotBypassMixedSourceSafety(&quot;flask&quot;,&quot;water&quot;)" methodname="WellWithAnExposedEmitterCannotBypassMixedSourceSafety" classname="CavesOfOoo.Tests.WellSupplyProvenanceTests" runstate="Runnable" seed="537383758" result="Passed" start-time="2026-11-23 06:09:30Z" end-time="2026-11-23 06:09:30Z" duration="0.025843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,5 +1,12 @@
 # Consistent usable water sources and transactional free drinking
 
+Current source-policy clarification — November23: the historical blanket
+stock-well mixed-ground expectation below is superseded by the documented
+[drawn Stock versus exposed-pool distinction](../WellSupplyProvenance20261123/README.md).
+The old results remain historical; the original legacy spill assertion now passes
+unchanged. Native252/252 and actual separate water/mire draw/recovery/fresh saves
+qualify the correction. No full-suite or complete-machine acceptance follows.
+
 Source baseline6ac871a21/runtimef8c835549. Exposure prerequisite review found
 three existing source/dispatch differences: direct Stock wells skip freezing and
 mixing checks; filling from a pool-backed well skips its structural fault and

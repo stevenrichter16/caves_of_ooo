@@ -1,5 +1,12 @@
 # Ordinary flasks at usable wells — November 22, 2026
 
+Current source-policy clarification — November23: the historical blanket
+stock-well mixed-ground expectation below is superseded by the documented
+[drawn Stock versus exposed-pool distinction](../WellSupplyProvenance20261123/README.md).
+The old results remain historical; the original legacy spill assertion now passes
+unchanged. Native252/252 and actual separate water/mire draw/recovery/fresh saves
+qualify the correction. No full-suite or complete-machine acceptance follows.
+
 Qualified native correction and actual play; final independent source/artifact/
 gameplay-evidence review0P1/P2, see independent-review.md. Publication/current
 Mac are recorded in the continuation. No complete-machine acceptance.
