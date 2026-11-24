@@ -1,5 +1,40 @@
 # Weather and seasonal tool design continuation
 
+## Current qualification — November 24, 2026
+
+Screenshot guidance is now a handful per meaningful change, usually 3–5 showing
+the key choices and results. Do not create another 41-image record.
+
+Bounded independent W1b source critique found that general automatic crop rain
+needs an exposure-history contract before implementation. `CropTime.Reconcile`
+currently settles one wet interval; natural rain must split that chronology,
+retain wet remainder and mark a window handled even when moisture is already
+at least 40. Calling `CropPart.Water` inside reconciliation would hit its reentry
+guard. Counting shower windows alone cannot handle partial intervals or excess
+initial moisture correctly.
+
+`Cell.IsInterior` is a public field and actual owner/cover changes lack one
+settled exposure boundary. Current roof appearance cannot establish exposure
+through an unloaded interval. Fixed collector validation proves current custody,
+not past weather exposure; Shade supplies no rain-cover authority. General W1b
+therefore requires explicit exposure-change integration for both crops and
+covers, with before/after chronology and loaded/unloaded parity tests.
+
+A strictly enforced fixed outdoor plot with immutable exposure could support
+a narrower pilot, activated at real planting/load time with no earlier rain.
+That would not close general W1b. There is no immediate player need to replace
+the accepted manual-water alternative with such a pilot. Pursue another useful
+medium-depth material/tool connection before broadening weather architecture.
+This is source/design qualification only: no runtime, RED test or new actual
+rain-watering acceptance. Final read-only publication review found0P1/P2 in
+these design corrections; reviewer performed no Unity operation, tests or writes.
+
+Current Mac088 already includes W1a and later accepted tool/supply work; the
+older package references below are historical. Main4d5ccd6ff records the ordinary
+finite timber -> optional lasting wicket circuit. Reuse those receipts and
+earned roots. W1b/W2, regional opportunity density and all twelve complete-machine
+gates remain open. Keep the 30-minute task ACTIVE.
+
 Resumed at the user's explicit request on November23,2026 (America/Chicago).
 The machine task is ACTIVE every30minutes. The earlier pause checkpoint below is retained
 as the research baseline; existing uncommitted work is preserved.
@@ -25,7 +60,8 @@ The new Mac074d packages W1a and vessel-oil refill; see the
 Controlled packaged interactions remain open. Preserve all19apps and checkpoints.
 
 Latest user direction: develop numerous connected mechanics with medium-depth
-nuance, and provide frequent screenshots. Do not deepen W1a speculatively now
+nuance, and provide a handful of screenshots at meaningful milestones. Do not
+deepen W1a speculatively now
 that bounded correctness/play gates pass. The recovered-oil/light connection now has native and actual proof, with
 its bounded source/gameplay/artifact receipt in
 [the oil/light record](Verification/MachineSystems/VesselOilTorch20261123/README.md).

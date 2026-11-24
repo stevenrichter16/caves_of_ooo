@@ -209,6 +209,19 @@ W1a fixes one public plot to an exact notice/ground/world binding and two fixed
 frames. It adds no portable collector entitlement or cached retrofit. See the
 [implementation contract](WEATHER-SHOWER-COLLECTION.md) and linked receipt.
 
+November 24 source qualification: general W1b is not a small adapter over the
+current crop clock. `Cell.IsInterior` can change directly; crop/cover movement
+does not supply a settled historical exposure boundary. Current fixed-collector
+validation and Shade cannot establish that history. A strictly enforced immutable
+outdoor plot could be a narrower pilot; it would not qualify general rainfall.
+Before general W1b RED, specify exposure changes and chronological aggregation,
+including partial first/last windows, initial moisture above 40, consecutive
+showers, wet remainder and once-per-window handling when no top-up is needed.
+Do not call Water recursively inside CropTime reconciliation. Independent
+bounded source critique recommends another medium-depth material/tool connection
+first; existing W1a/manual watering remains useful. No new behavior is shipped by
+this qualification. See the [current continuation](WEATHER-DESIGN-CONTINUATION-2026-11-23.md).
+
 W1 is optional shower water with two practical consumers. It adds a regional
 weather context, a qualified catch-cloth on an installed awning or communal
 frame, and natural watering of eligible exposed planted crops. Existing
