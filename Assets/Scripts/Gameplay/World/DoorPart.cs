@@ -20,7 +20,9 @@ namespace CavesOfOoo.Core
         {
             if(e.ID=="GetInventoryActions")
             {
-                if(!RepairablePart.BlocksFunction(ParentEntity))
+                if(DoorBraceActions.Blocked(ParentEntity,ParentEntity?.SpatialZone))
+                    e.GetParameter<InventoryActionList>("Actions")?.AddDisabled("Door","open door (braced)","braced","Remove the iron spike from the doorway first.",'o',30);
+                else if(!RepairablePart.BlocksFunction(ParentEntity))
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction("Door",IsClosed?"open door":"close door",IsClosed?OpenCommand:CloseCommand,'o',30);
             }
             else if(e.ID=="InventoryAction")
@@ -34,7 +36,7 @@ namespace CavesOfOoo.Core
         }
         /// <summary>Read-only path permission. No key use, movement, action,
         /// diagnostic, or state mutation. Reach is checked only at execution.</summary>
-        public bool CanOperate(Entity actor,Zone zone)=>HasAuthority(actor,zone)&&!RepairablePart.BlocksFunction(ParentEntity)&&ParentEntity.GetPart<LockPart>()?.IsLocked!=true;
+        public bool CanOperate(Entity actor,Zone zone)=>HasAuthority(actor,zone)&&!DoorBraceActions.Blocked(ParentEntity,zone)&&!RepairablePart.BlocksFunction(ParentEntity)&&ParentEntity.GetPart<LockPart>()?.IsLocked!=true;
         internal bool CanUnlock(Entity actor,Zone zone)=>HasAuthority(actor,zone)&&SpatialQuery.Distance(zone,actor,ParentEntity)<=1;
         internal void RefreshAfterLockChange(){RefreshGlyph();ParentEntity?.SpatialZone?.MarkDoorOcclusionChanged();ZoneRenderHooks.MarkFullDirty("Door.LockState");}
         internal void RejectUnlock(Entity actor)=>Reject(actor,"invalid-lock-request");

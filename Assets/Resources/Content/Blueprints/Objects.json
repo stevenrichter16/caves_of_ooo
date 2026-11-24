@@ -26656,6 +26656,10 @@
               "Value": "Fine, pale grains flash as they move. Settled together, they look duller than a single grain does."
             }
           ]
+        },
+        {
+          "Name": "TrailMarking",
+          "Params": []
         }
       ],
       "Tags": [
@@ -61428,6 +61432,147 @@
         {
           "Key": "Tier",
           "Value": "2"
+        }
+      ]
+    },
+    {
+      "Name": "HandBellows",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hand bellows"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "b"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "3"
+            },
+            {
+              "Key": "Category",
+              "Value": "Tools"
+            }
+          ]
+        },
+        {
+          "Name": "DirectedAir",
+          "Params": []
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Wooden cheeks and a leather bag drive a short jet of air. Pushes one thin transient gas cloud into the next clear cell; it does not destroy the gas."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Item",
+          "Value": "true"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "TrailMark",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sand mark"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "!"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "TrailMark",
+          "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A traveller's sand mark. It says what someone chose to leave here; it makes no promise about what lies ahead."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Furniture",
+          "Value": ""
         }
       ]
     }

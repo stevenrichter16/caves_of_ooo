@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="17" result="Failed(Child)" total="17" passed="5" failed="12" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:54Z" duration="1.308529">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41639" result="Failed" site="Child" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:54Z" duration="1.308529" total="17" passed="5" failed="12" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50748" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41639" result="Failed" site="Child" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:54Z" duration="1.192799" total="17" passed="5" failed="12" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="86963" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50749" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41639" result="Failed" site="Child" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:54Z" duration="1.013994" total="17" passed="5" failed="12" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50750" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41639" result="Failed" site="Child" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:54Z" duration="0.835374" total="17" passed="5" failed="12" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28540" name="RouteWorkToolsTests" fullname="CavesOfOoo.Tests.RouteWorkToolsTests" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:54Z" duration="0.579427" total="17" passed="5" failed="12" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28541" name="BellowsMovesSameThinCloudWithoutSpawningOrLosingDensity" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.BellowsMovesSameThinCloudWithoutSpawningOrLosingDensity" methodname="BellowsMovesSameThinCloudWithoutSpawningOrLosingDensity" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1288948559" result="Failed" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:53Z" duration="0.049160" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandBellows
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.RouteWorkToolsTests.BellowsMovesSameThinCloudWithoutSpawningOrLosingDensity () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:24
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandBellows'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28546" name="BellowsRefusesUnsupportedOrBlockedGasPath" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.BellowsRefusesUnsupportedOrBlockedGasPath" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:54Z" duration="0.110572" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28542" name="BellowsRefusesUnsupportedOrBlockedGasPath(&quot;dense&quot;)" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.BellowsRefusesUnsupportedOrBlockedGasPath(&quot;dense&quot;)" methodname="BellowsRefusesUnsupportedOrBlockedGasPath" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1053841510" result="Failed" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:53Z" duration="0.027699" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandBellows
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.RouteWorkToolsTests.BellowsRefusesUnsupportedOrBlockedGasPath (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandBellows'
+]]></output>
+              </test-case>
+              <test-case id="28543" name="BellowsRefusesUnsupportedOrBlockedGasPath(&quot;stable&quot;)" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.BellowsRefusesUnsupportedOrBlockedGasPath(&quot;stable&quot;)" methodname="BellowsRefusesUnsupportedOrBlockedGasPath" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1726614876" result="Failed" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:53Z" duration="0.027157" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandBellows
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.RouteWorkToolsTests.BellowsRefusesUnsupportedOrBlockedGasPath (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandBellows'
+]]></output>
+              </test-case>
+              <test-case id="28544" name="BellowsRefusesUnsupportedOrBlockedGasPath(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.BellowsRefusesUnsupportedOrBlockedGasPath(&quot;hidden&quot;)" methodname="BellowsRefusesUnsupportedOrBlockedGasPath" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1293677848" result="Failed" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:53Z" duration="0.027258" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandBellows
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.RouteWorkToolsTests.BellowsRefusesUnsupportedOrBlockedGasPath (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandBellows'
+]]></output>
+              </test-case>
+              <test-case id="28545" name="BellowsRefusesUnsupportedOrBlockedGasPath(&quot;door&quot;)" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.BellowsRefusesUnsupportedOrBlockedGasPath(&quot;door&quot;)" methodname="BellowsRefusesUnsupportedOrBlockedGasPath" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="913563096" result="Failed" start-time="2026-11-24 20:46:53Z" end-time="2026-11-24 20:46:54Z" duration="0.027077" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandBellows
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.RouteWorkToolsTests.BellowsRefusesUnsupportedOrBlockedGasPath (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandBellows'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="28558" name="DestroyedDoorLeavesExactSpikeRecoverable" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.DestroyedDoorLeavesExactSpikeRecoverable" methodname="DestroyedDoorLeavesExactSpikeRecoverable" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="178944152" result="Failed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.070797" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for BraceDoor|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.RouteWorkToolsTests.DestroyedDoorLeavesExactSpikeRecoverable () [0x00014] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:77
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28557" name="DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.106176" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28553" name="DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike(&quot;open&quot;)" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike(&quot;open&quot;)" methodname="DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="340742586" result="Passed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.027928" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28554" name="DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike(&quot;locked&quot;)" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike(&quot;locked&quot;)" methodname="DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="618503141" result="Passed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.025746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28555" name="DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike(&quot;owned&quot;)" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike(&quot;owned&quot;)" methodname="DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1061175948" result="Passed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.025934" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28556" name="DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike(&quot;stack&quot;)" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike(&quot;stack&quot;)" methodname="DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="779304003" result="Passed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.025854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28547" name="InterruptedBellowsDoesNotMoveOrThinGas" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.InterruptedBellowsDoesNotMoveOrThinGas" methodname="InterruptedBellowsDoesNotMoveOrThinGas" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1603353441" result="Failed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.032433" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandBellows
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.RouteWorkToolsTests.InterruptedBellowsDoesNotMoveOrThinGas () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:40
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandBellows'
+]]></output>
+            </test-case>
+            <test-case id="28559" name="InterruptedBraceLeavesOrdinaryDoorAndOriginalSpike" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.InterruptedBraceLeavesOrdinaryDoorAndOriginalSpike" methodname="InterruptedBraceLeavesOrdinaryDoorAndOriginalSpike" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="275641174" result="Failed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.067372" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for BraceDoor|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.RouteWorkToolsTests.InterruptedBraceLeavesOrdinaryDoorAndOriginalSpike () [0x00013] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:81
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28551" name="InterruptedMarkLeavesSandAndNoGroundMarker" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.InterruptedMarkLeavesSandAndNoGroundMarker" methodname="InterruptedMarkLeavesSandAndNoGroundMarker" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1815146161" result="Failed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.028528" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MakeTrailMark|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.RouteWorkToolsTests.InterruptedMarkLeavesSandAndNoGroundMarker () [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:57
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28548" name="RepeatedBellowsGatherRetainsDisplayedChoice" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.RepeatedBellowsGatherRetainsDisplayedChoice" methodname="RepeatedBellowsGatherRetainsDisplayedChoice" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1075245043" result="Failed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.027291" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandBellows
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.RouteWorkToolsTests.RepeatedBellowsGatherRetainsDisplayedChoice () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:42
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandBellows'
+]]></output>
+            </test-case>
+            <test-case id="28552" name="SameIronSpikeBracesSharedDoorAndCanBeRecovered" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.SameIronSpikeBracesSharedDoorAndCanBeRecovered" methodname="SameIronSpikeBracesSharedDoorAndCanBeRecovered" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1710364524" result="Failed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.026540" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for BraceDoor|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.RouteWorkToolsTests.SameIronSpikeBracesSharedDoorAndCanBeRecovered () [0x0001a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:61
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28549" name="SandMarkSpendsOneUnitAndPersistsItsPlayerMeaning" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.SandMarkSpendsOneUnitAndPersistsItsPlayerMeaning" methodname="SandMarkSpendsOneUnitAndPersistsItsPlayerMeaning" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="1445751775" result="Failed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.027181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MakeTrailMark|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.RouteWorkToolsTests.SandMarkSpendsOneUnitAndPersistsItsPlayerMeaning () [0x00024] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/RouteWorkToolsTests.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28550" name="WetFloorAndDuplicateMarkRefuseSandPayment" fullname="CavesOfOoo.Tests.RouteWorkToolsTests.WetFloorAndDuplicateMarkRefuseSandPayment" methodname="WetFloorAndDuplicateMarkRefuseSandPayment" classname="CavesOfOoo.Tests.RouteWorkToolsTests" runstate="Runnable" seed="813400980" result="Passed" start-time="2026-11-24 20:46:54Z" end-time="2026-11-24 20:46:54Z" duration="0.027232" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

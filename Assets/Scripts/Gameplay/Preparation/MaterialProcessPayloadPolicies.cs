@@ -37,7 +37,7 @@ namespace CavesOfOoo.Core
         {
             foreach(var type in new[]{typeof(RenderPart),typeof(PhysicsPart),typeof(ExaminablePart),typeof(CommercePart),
                 typeof(StackerPart),typeof(WeaponComponentPart),typeof(MaterialPart),typeof(CompositionPart),
-                typeof(PreparationRecipePart),typeof(MaterialProcessInputPart),typeof(MeleeWeaponPart),typeof(HandlingPart),typeof(FieldWorkToolPart)})Policies[type]=new ScalarPolicy(type);
+                typeof(PreparationRecipePart),typeof(MaterialProcessInputPart),typeof(MeleeWeaponPart),typeof(HandlingPart),typeof(FieldWorkToolPart),typeof(DirectedAirPart),typeof(TrailMarkingPart),typeof(TrailMarkPart)})Policies[type]=new ScalarPolicy(type);
             foreach(var type in new[]{typeof(ArmorPart),typeof(EquippablePart),typeof(ThermalPart),typeof(RepairablePart)})
                 Policies[type]=new ScalarPolicy(type,false);
             // Compared by inertness only, never by Revision: consuming the last unit of a stack invalidates its throw

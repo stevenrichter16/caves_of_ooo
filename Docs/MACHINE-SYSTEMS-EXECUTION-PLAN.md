@@ -1,3 +1,20 @@
+**Route work tools — November24,2026:** three new bounded connections now have
+native/recorded Editor qualification: bellows move the same transient gas owner;
+silver sand lays player-authored navigation marks; an actual singleton spike
+braces shared ordinary doors and returns with its identity. Nativei325/325
+(29new/296retained),0CS. Actualforge20/brace40/mark50/fresh50/recover60/open+cross120/
+brush140/north150/poison160/bellows170/fresh170. Movedcloud19atcommit/18afterordinary
+decay through reopeneddoor,390HPstillpoisoned; no detox or permanent safe-areaclaim.
+Three F5archives/all12files/twoselectedfreshpairs; fourPNGs. Initial pause-navigation,
+invaliddiagnostic/test attempts and one backgroundpure-readtimeout retained/excluded.
+DoorVillage hasnoDestructiblePart: no ordinarydoorbreaking claim. Throwaimcursor42
+versusactualdiagnosticcenter40 disclosed, no accuracyclaim. Source and recorded-play review0P1P2;
+exact-owned publication/coherentMacnext. Mainstopped/rootnull/clean/profileroff/
+original7viewsindex0/inputsettingsrestored/reloadlockreleased. CurrentMac152bpredates
+thisbatch. All12complete-machine/full-suite/discovery/balance/sustainedNPC/hardware
+gates stayopen. See [contract](MACHINE-ROUTE-WORK-TOOLS.md) and
+[evidence](Verification/MachineSystems/RouteWorkTools20261124/README.md).
+
 **Field tools Mac delivery — November24,2026:** corrected runtime152b2cdcf
 (three tools4a plus shared rod-blocking fix) is pushed/remotely verified and has
 currentMac `/Users/steven/coo-verification/builds/mac-152b2cdcf-20261124/CavesOfOoo.app`.

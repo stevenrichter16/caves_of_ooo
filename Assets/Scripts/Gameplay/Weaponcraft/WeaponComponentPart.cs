@@ -56,13 +56,14 @@ namespace CavesOfOoo.Core
         bool IMaterialProcessPermission.Allows(MaterialProcessDefinition definition)=>definition!=null
             && ParentEntity?.GetPart<WeaponComponentPart>()==this && ParentEntity.BlueprintName==definition.SourceBlueprint
             && definition.SourceRecipeId.Length==0 && definition.Mode=="Process" && definition.WorkKind=="ForgeCold";
-        public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<WeaponComponentPart>()==this && MaterialProcessInputPart.IsCommand(command);
+        public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<WeaponComponentPart>()==this && (MaterialProcessInputPart.IsCommand(command) || DoorBraceActions.IsCommand(command));
         public override bool HandleEvent(GameEvent e)=>ParentEntity?.GetPart<WeaponComponentPart>()!=this
-            || ParentEntity.HasPart<MaterialProcessInputPart>() || MaterialProcessActions.Handle(ParentEntity,e,MaterialProcessRegistry.ForSource(ParentEntity)
-                .Where(d=>d.Mode=="Process" && d.WorkKind=="ForgeCold" && d.SourceRecipeId.Length==0).Select(d=>d.Id));
+            || (ParentEntity.HasPart<LodgedSpikePart>() || DoorBraceActions.Handle(ParentEntity,e)) && (ParentEntity.HasPart<MaterialProcessInputPart>() || MaterialProcessActions.Handle(ParentEntity,e,MaterialProcessRegistry.ForSource(ParentEntity)
+                .Where(d=>d.Mode=="Process" && d.WorkKind=="ForgeCold" && d.SourceRecipeId.Length==0).Select(d=>d.Id)));
         public int Order=>40;
         public void AddUseRows(Entity actor,Zone zone,InventoryActionList rows)
         {
+            DoorBraceActions.AddUseRows(ParentEntity,actor,zone,rows);
             if(ParentEntity?.HasPart<MaterialProcessInputPart>()!=false)return;
             foreach(var d in MaterialProcessRegistry.ForSource(ParentEntity))
                 if(d.Mode=="Process" && d.WorkKind=="ForgeCold" && MaterialProcessService.TryQuote(MaterialProcessPlan.TryCreate(actor,ParentEntity,d.Id,zone,ForgePart.Factory))!=null)
@@ -70,6 +71,7 @@ namespace CavesOfOoo.Core
         }
         public void DescribeUse(DescribeContext context,UseGuide guide)
         {
+            if(ParentEntity?.BlueprintName=="IronSpikeComponent"){guide.How.Add("Use a single plain carried spike beside an ordinary closed unlocked door to brace it.");guide.Limits.Add("One action; blocks opening from both sides. Remove the same spike to reopen. No added door strength or protected-door bypass.");}
             var processes=MaterialProcessRegistry.ForSource(ParentEntity).Where(d=>d.Mode=="Process" && d.WorkKind=="ForgeCold" && d.SourceRecipeId.Length==0).ToArray();
             if(processes.Length==0 || ParentEntity.HasPart<MaterialProcessInputPart>())return;
             guide.How.Add("At a forge, select this component in your pack to make: "+string.Join(", ",processes.Select(d=>d.ActionText))+".");

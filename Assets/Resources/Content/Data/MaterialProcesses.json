@@ -1,6 +1,29 @@
 {
   "Processes": [
     {
+      "Id": "make_hand_bellows",
+      "SourceBlueprint": "IronSpikeComponent",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "AdditionalInputBlueprints": [
+        "OakHaftComponent",
+        "LeatherBindingComponent"
+      ],
+      "AdditionalInputCounts": [
+        1,
+        1
+      ],
+      "OutputBlueprints": [
+        "HandBellows"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "make hand bellows",
+      "LossText": "materials become one reusable tool"
+    },
+    {
       "Id": "make_hearth_nozzle",
       "SourceBlueprint": "IronSpikeComponent",
       "Mode": "Process",
