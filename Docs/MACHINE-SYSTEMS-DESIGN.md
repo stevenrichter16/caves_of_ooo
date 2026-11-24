@@ -1,3 +1,28 @@
+**Optional reagent fuel — November24,2026:** implemented; bounded native and
+actual checks accepted after final independent recorded-play review0P1/P2. Stable
+combustible reagents feed finite fires through their own C menu:1resin=5fuel,
+1LampOil=15, actual clamped gain/surplus quoted, no heat or ignition. Strict local
+payload/full-parser/ID/count/reach/commit guards and one-unit delta receipts;
+no saved Part/field added. Attached Part receipt hook covers existing torch/
+hearth kindling plus new fuel without another executor command switch.
+Native250total/249pass/1Explicit utilityskip/0CS,45new; final45/45 after copy-only
+polish overlaps. Valid RED34(18fail16controls), review2+4RED reproduced three P2s,
+all fixed; three focused mutants killed. First test compile failure excluded.
+Actual supplied1030->1100/HP364/50drams: normal waits cool hearth, two resin8->6
+add4->9->14fuel while dark; normal relight ->13.75fuel, still8mire->1clay/25->26,
+normal burn leaves3.5fuel. Timber26/moss4 kept. Fullfresh1100 selected exact;
+free readers/F5/all4files-before-Finish passed. Compressed bytes differ, no whole-
+world equality. Five screenshots; last precedes minor wording polish only.
+[Contract](MACHINE-REAGENT-FUEL.md) / [receipt](Verification/MachineSystems/ReagentFuel20261124/README.md).
+Regional resin acquisition/lacquer and clay/well consumer evidence reused, not
+replayed. This actual feed uses fixture resin; no natural discovery/balance,
+seasonal reuse or complete-machine acceptance. All12gates/failed full suite/W1b/
+W2 open. CurrentMac088 predates this feature; coherent delivery next.
+Retain supplied1100 `/private/tmp/coo-reagent-fuel-fresh-earned-20261124` and all
+prior roots; ordinary2440 separate. Main stopped/rootnull/clean/original7views/
+index0/profileroff; scoped84foreign861normal2otherforeign4Macsaves exact12:32UTC.
+Root sole owner; task ACTIVE every30minutes; screenshots a handful, usually3–5.
+
 **Source-caught cold coat — November24,2026:** unchanged runtime088; bounded
 Editor integration accepted after independent recorded-play review0P1/P2. Earned540
 seed64/400HP/Strength70, no new grants: one fixture-vent scrape -> rime2727 ->
@@ -1090,6 +1115,14 @@ The twelve machines are not all ready because individual foundations exist. Cont
 The user prioritizes reclamation of damaged finds and regional raw materials into useful component inputs. M3a accepts an explicit damaged-tool manifest, mutually exclusive dismantle/reclaim choices, and cold dressing of recovered iron into an existing piercing point. Retained quotes, Part-owned policies and shared transactions have native and actual acceptance; both routes feed ordinary equipped weapons used outside the service, with travel/fresh reload. Carrying/selling intact is a demonstrated alternative. Regional raw-material processing is a separate remaining qualification: existing pack timber/cord recipes are retained, and a recovered manufactured blank does not establish ore refining. Full heat/fuel, provenance, useful outputs, waste, economy and actual-play gates must be satisfied by their own scoped processes.
 
 ## Dependency matrix for the twelve machines
+
+November24 fuel dependency: optional stable reagent fuel now gives inhabited
+finite fires and portable hearths another explicit finite input. Actual supplied
+resin->fuel->ordinary ignition->still clay preserved all26timber for repair,
+with fresh1100 proof. Reuse separate ordinary resin/lacquer and clay/well receipts;
+this is not new natural acquisition, thermal exchange, fractionation or autonomous
+production. All twelve complete-machine statuses remain proposed. See the
+[fuel contract](MACHINE-REAGENT-FUEL.md) and its bounded receipt.
 
 November24 treatment dependency: physically scraped fixture rime now has a
 bounded actual path to one temporary worn cold coat and a normal tonic status

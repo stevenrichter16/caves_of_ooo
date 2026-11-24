@@ -6,9 +6,11 @@ namespace CavesOfOoo.Core
     /// - Proximity ambient message (one-shot per zone visit)
     /// Ember particles are handled by CampfireEmberRenderer (world-space, not grid-locked).
     /// </summary>
-    public class CampfirePart : Part, IDescribeState, IDescribeUse
+    public class CampfirePart : Part, IDescribeState, IDescribeUse, IInventoryActionReceiptOwner
     {
         public override string Name => "Campfire";
+        public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<CampfirePart>() == this
+            && (PortableKindling.OwnsReceipt(ParentEntity, command) || FiniteCooking && ReagentFireFuel.IsCommand(command));
 
         // "What can I do here?": what the fire's rows would offer whoever is looking, in both examine readers.
         public ReaderScope Scope => ReaderScope.Both;
@@ -28,6 +30,7 @@ namespace CavesOfOoo.Core
                 guide.How.Add("Cook raw food by choosing cook this stack beside a fire from the food in your pack.");
             }
             guide.Needs.Add("to feed it: salvaged timber (each timber is 10 fuel" + (fuel != null && fuel.MaxFuel > 0 ? "; it holds up to " + fuel.MaxFuel.ToString("G5", System.Globalization.CultureInfo.InvariantCulture) : "") + ")");
+            guide.Needs.Add("optional fuel: one dry, stable combustible reagent; pitchpod resin gives " + ReagentFireFuel.FuelPerTier + " fuel, lamp-oil gives " + 3 * ReagentFireFuel.FuelPerTier + ", up to capacity. Feeding does not light it; volatile mixtures are unsuitable");
             guide.Needs.Add("to light it: a flame to light it from (a burning fire beside you, a lit torch in your hand, or a flint striker)");
             guide.Limits.Add("It burns its fuel while it is lit and goes out when the fuel does. Taking it up puts it out.");
             guide.WhyNot = "you are not beside it";
@@ -70,6 +73,7 @@ namespace CavesOfOoo.Core
                 var queryingActor = e.GetParameter<Entity>("Actor");
                 var queryingZone = e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone;
                 CampfireWorkActions.AddActions(queryingActor, this, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
+                ReagentFireFuel.AddActions(queryingActor, this, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
                 PortableKindling.AddActions(queryingActor, ParentEntity, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
                 if (!AllowRest || !WorldResourceActions.Nearby(queryingActor, ParentEntity, queryingZone)) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
@@ -80,6 +84,12 @@ namespace CavesOfOoo.Core
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
+                if (ReagentFireFuel.IsCommand(command))
+                {
+                    if (!ReagentFireFuel.TryAct(e.GetParameter<Entity>("Actor"), this, e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone,
+                        command, e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction"))) return true;
+                    e.Handled = true; return false;
+                }
                 if (CampfireWorkActions.IsCommand(command))
                 {
                     if (!CampfireWorkActions.TryAct(e.GetParameter<Entity>("Actor"), this, e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone,

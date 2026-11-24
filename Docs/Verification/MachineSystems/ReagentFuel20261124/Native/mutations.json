@@ -1,0 +1,20 @@
+[
+  {
+    "id": "m1-allow-volatile",
+    "file": "Assets/Scripts/Gameplay/Settlements/ReagentFireFuel.cs",
+    "old": "name != BrewProperties.Combustible && name != BrewProperties.Heat && name != BrewProperties.Viscous",
+    "new": "name != BrewProperties.Combustible && name != BrewProperties.Heat && name != BrewProperties.Viscous && name != BrewProperties.Volatile"
+  },
+  {
+    "id": "m2-skip-commit-revalidation",
+    "file": "Assets/Scripts/Gameplay/Settlements/ReagentFireFuel.cs",
+    "old": "tx.BeforeCommit(() => PaidCurrent() && FireCurrent(before + gain));",
+    "new": "tx.BeforeCommit(() => true);"
+  },
+  {
+    "id": "m3-skip-part-receipt",
+    "file": "Assets/Scripts/Gameplay/Inventory/Commands/Actions/PerformInventoryActionCommand.cs",
+    "old": "|| oilFuelReceipt || partReceipt ? null",
+    "new": "|| oilFuelReceipt ? null"
+  }
+]

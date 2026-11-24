@@ -6,9 +6,10 @@ namespace CavesOfOoo.Core
 {
     /// <summary>A controlled tool flame, separate from destructive BurningEffect.
     /// Stowed torches keep state; equipped/loose torches consume existing fuel.</summary>
-    public sealed class TorchLightPart : Part
+    public sealed class TorchLightPart : Part, IInventoryActionReceiptOwner
     {
         public override string Name => "TorchLight";
+        public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<TorchLightPart>() == this && PortableKindling.OwnsReceipt(ParentEntity, command);
         public const string LightCommand = "LightTorch", ExtinguishCommand = "ExtinguishTorch";
         public float LightTemperature = 450f;
 

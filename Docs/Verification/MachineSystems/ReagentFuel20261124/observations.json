@@ -1,0 +1,2313 @@
+{
+  "baseRuntime": "088029e00241a9b59e20d2cc0bcbf99dba69ae16",
+  "baseDocumentation": "f8b7d1b3195e8d10b62d1da35e46e2e8d30fcd51",
+  "game": "d3c56928ecec4cd0a4532b3402867974",
+  "seed": 64,
+  "fixture": "Retained supplied proofing character Strength70, starting400HP; earned930 startHP364/purse50. No new grants/teleports/healing/clock/status edits.",
+  "beforeRows": [
+    {
+      "name": "TakeUpFixture",
+      "label": "take up",
+      "command": "TakeUp|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "PackUpCamp",
+      "label": "pack up camp (5 things)",
+      "command": "PackUp|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "HearthRest",
+      "label": "rest",
+      "command": "Disabled:fuel_short",
+      "via": null
+    },
+    {
+      "name": "HearthRestBand",
+      "label": "rest until Dawn",
+      "command": "Disabled:fuel_short",
+      "via": null
+    },
+    {
+      "name": "FeedCookingFire",
+      "label": "feed coals (1 salvaged timber, up to 10 fuel)",
+      "command": "FeedCookingFire",
+      "via": null
+    },
+    {
+      "name": "FeedCookingFireFull",
+      "label": "feed coals to full (3 timber, +25 fuel)",
+      "command": "FeedCookingFireFull",
+      "via": null
+    },
+    {
+      "name": "HandOverFixture",
+      "label": "hand over (you can no longer take it up)",
+      "command": "HandOver|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "MoveFixture",
+      "label": "move",
+      "command": "MovePick|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "NameCamp",
+      "label": "name this camp: Home",
+      "command": "NameCamp|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "Examine",
+      "label": "examine",
+      "command": "Examine",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "apply cold pack to camp hearth (1 item; provokes) [glacier salt]",
+      "command": "MaterialField|Cool|Overworld.10.11.0|40|9|40|8|2147|8|",
+      "via": "2183"
+    },
+    {
+      "name": "ToolGroup",
+      "label": "pour out a liquid here (6) >>",
+      "command": "ToolGroup|pour out a liquid here",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "spread brine north (1 item) [glimmer-brine]",
+      "command": "MaterialField|Film|Overworld.10.11.0|40|9|40|8||7|brine",
+      "via": "2215"
+    },
+    {
+      "name": "PickCell",
+      "label": "<< everything here",
+      "command": "PickCell",
+      "via": null
+    }
+  ],
+  "afterRows": [
+    {
+      "name": "TakeUpFixture",
+      "label": "take up",
+      "command": "TakeUp|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "PackUpCamp",
+      "label": "pack up camp (5 things)",
+      "command": "PackUp|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "HearthRest",
+      "label": "rest",
+      "command": "Disabled:fire_out",
+      "via": null
+    },
+    {
+      "name": "HearthRestBand",
+      "label": "rest until Dawn",
+      "command": "Disabled:fire_out",
+      "via": null
+    },
+    {
+      "name": "FeedCookingFire",
+      "label": "feed coals (1 salvaged timber, up to 10 fuel)",
+      "command": "FeedCookingFire",
+      "via": null
+    },
+    {
+      "name": "RelightCookingFire",
+      "label": "relight coals from flame",
+      "command": "RelightCookingFire",
+      "via": null
+    },
+    {
+      "name": "StokeCookingFire",
+      "label": "stoke: feed 3 timber and light it",
+      "command": "StokeCookingFire",
+      "via": null
+    },
+    {
+      "name": "FeedCookingFireFull",
+      "label": "feed coals to full (3 timber, +26 fuel)",
+      "command": "FeedCookingFireFull",
+      "via": null
+    },
+    {
+      "name": "FeedReagentFuel",
+      "label": "feed coals (1 pitchpod resin, +5 fuel)",
+      "command": "FeedReagentFuel|Overworld.10.11.0|40|9|2147|2167|8|heat%3A1%2Ccombustible%3A1|4%3A30%3A0.25%3A148.930908",
+      "via": null
+    },
+    {
+      "name": "HandOverFixture",
+      "label": "hand over (you can no longer take it up)",
+      "command": "HandOver|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "MoveFixture",
+      "label": "move",
+      "command": "MovePick|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "NameCamp",
+      "label": "name this camp: Home",
+      "command": "NameCamp|Overworld.10.11.0|2147",
+      "via": null
+    },
+    {
+      "name": "Examine",
+      "label": "examine",
+      "command": "Examine",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "apply cold pack to camp hearth (1 item; provokes) [glacier salt]",
+      "command": "MaterialField|Cool|Overworld.10.11.0|40|9|40|8|2147|8|",
+      "via": "2183"
+    },
+    {
+      "name": "ToolGroup",
+      "label": "pour out a liquid here (6) >>",
+      "command": "ToolGroup|pour out a liquid here",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "spread brine north (1 item) [glimmer-brine]",
+      "command": "MaterialField|Film|Overworld.10.11.0|40|9|40|8||7|brine",
+      "via": "2215"
+    },
+    {
+      "name": "PickCell",
+      "label": "<< everything here",
+      "command": "PickCell",
+      "via": null
+    }
+  ],
+  "stillRows": [
+    {
+      "name": "TakeUpFixture",
+      "label": "take up",
+      "command": "TakeUp|Overworld.10.11.0|2148",
+      "via": null
+    },
+    {
+      "name": "PackUpCamp",
+      "label": "pack up camp (5 things)",
+      "command": "PackUp|Overworld.10.11.0|2148",
+      "via": null
+    },
+    {
+      "name": "Brew",
+      "label": "brew the mix",
+      "command": "BrewMix",
+      "via": null
+    },
+    {
+      "name": "BrewBatch",
+      "label": "brew a full batch",
+      "command": "BrewMixBatch",
+      "via": null
+    },
+    {
+      "name": "SettleLiquid",
+      "label": "settle 12 mire to 3 water #2",
+      "command": "SettleLiquid|water|2233|12",
+      "via": null
+    },
+    {
+      "name": "SettleLiquid",
+      "label": "settle 12 mire to 3 water #3",
+      "command": "SettleLiquid|water|2234|12",
+      "via": null
+    },
+    {
+      "name": "SettleLiquid",
+      "label": "settle 4 mire to 1 water #1",
+      "command": "SettleLiquid|water|2232|4",
+      "via": null
+    },
+    {
+      "name": "SettleLiquid",
+      "label": "settle 12 mire to 3 oil #2",
+      "command": "SettleLiquid|oil|2233|12",
+      "via": null
+    },
+    {
+      "name": "SettleLiquid",
+      "label": "settle 12 mire to 3 oil #3",
+      "command": "SettleLiquid|oil|2234|12",
+      "via": null
+    },
+    {
+      "name": "SettleLiquid",
+      "label": "settle 4 mire to 1 oil #1",
+      "command": "SettleLiquid|oil|2232|4",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] fire-moss (x4) - add",
+      "command": "CraftToggle:2151",
+      "via": null
+    },
+    {
+      "name": "SettleAll",
+      "label": "settle 2 of 3 flasks to 4 water",
+      "command": "SettleAll|water",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] ember-fruit (x8) - add",
+      "command": "CraftToggle:2159",
+      "via": null
+    },
+    {
+      "name": "SettleAll",
+      "label": "settle 2 of 3 flasks to 4 oil",
+      "command": "SettleAll|oil",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] pitchpod resin (x6) - add",
+      "command": "CraftToggle:2167",
+      "via": null
+    },
+    {
+      "name": "BakeClay",
+      "label": "bake 8 of the 12 mire to 1 fire clay #2",
+      "command": "BakeClay|2233|12",
+      "via": null
+    },
+    {
+      "name": "BakeClay",
+      "label": "bake 8 of the 12 mire to 1 fire clay #3",
+      "command": "BakeClay|2234|12",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] frost lichen (x7) - add",
+      "command": "CraftToggle:2175",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] glacier salt (x8) - add",
+      "command": "CraftToggle:2183",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] chillcress tip (x8) - add",
+      "command": "CraftToggle:2191",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] spark-root (x8) - add",
+      "command": "CraftToggle:2199",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] prismreed pith (x8) - add",
+      "command": "CraftToggle:2207",
+      "via": null
+    },
+    {
+      "name": "HandOverFixture",
+      "label": "hand over (you can no longer take it up)",
+      "command": "HandOver|Overworld.10.11.0|2148",
+      "via": null
+    },
+    {
+      "name": "MoveFixture",
+      "label": "move",
+      "command": "MovePick|Overworld.10.11.0|2148",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] glimmer-brine (x7) - add",
+      "command": "CraftToggle:2215",
+      "via": null
+    },
+    {
+      "name": "CraftToggle",
+      "label": "[ ] sourmantle fold (x8) - add",
+      "command": "CraftToggle:2223",
+      "via": null
+    },
+    {
+      "name": "NameCamp",
+      "label": "name this camp: Home",
+      "command": "NameCamp|Overworld.10.11.0|2148",
+      "via": null
+    },
+    {
+      "name": "Examine",
+      "label": "examine",
+      "command": "Examine",
+      "via": null
+    },
+    {
+      "name": "ToolGroup",
+      "label": "pour out a liquid here (6) >>",
+      "command": "ToolGroup|pour out a liquid here",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "spread brine northeast (1 item) [glimmer-brine]",
+      "command": "MaterialField|Film|Overworld.10.11.0|40|9|41|8||7|brine",
+      "via": "2215"
+    },
+    {
+      "name": "PickCell",
+      "label": "<< everything here",
+      "command": "PickCell",
+      "via": null
+    }
+  ],
+  "observations": [
+    {
+      "label": "earned930-start",
+      "tick": 930,
+      "at": {
+        "x": 34,
+        "y": 7
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 8
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [],
+      "state": "Normal"
+    },
+    {
+      "label": "hearth-approach",
+      "tick": 1020,
+      "at": {
+        "x": 40,
+        "y": 10
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 8
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 4.75,
+          "max": 30,
+          "temperature": 159.361664,
+          "light": true
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "baseline1030-before-implementation",
+      "tick": 1030,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 8
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 4.5,
+          "max": 30,
+          "temperature": 156.674423,
+          "light": true
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "after-current-code-continued1030",
+      "tick": 1030,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 8
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 4.5,
+          "max": 30,
+          "temperature": 156.674423,
+          "light": true
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "naturally-cooled-before-resin",
+      "tick": 1060,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 8
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 4,
+          "max": 30,
+          "temperature": 148.930908,
+          "light": false
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "first-resin-fuel-cold",
+      "tick": 1070,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 7
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 9,
+          "max": 30,
+          "temperature": 146.452286,
+          "light": false
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "second-resin-fuel-still-cold",
+      "tick": 1080,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 6
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 14,
+          "max": 30,
+          "temperature": 144.023239,
+          "light": false
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "free-full-hearth-reader",
+      "tick": 1080,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 6
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 14,
+          "max": 30,
+          "temperature": 144.023239,
+          "light": false
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "ordinary-flame-relit-resin-fuel",
+      "tick": 1090,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 6
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 13.75,
+          "max": 30,
+          "temperature": 441.5,
+          "light": true
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "still-bake-preview",
+      "tick": 1090,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 6
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 25
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 13.75,
+          "max": 30,
+          "temperature": 441.5,
+          "light": true
+        }
+      ],
+      "state": "WorldActionMenuOpen"
+    },
+    {
+      "label": "resin-fire-baked-clay",
+      "tick": 1100,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 6
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 26
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 3.5,
+          "max": 30,
+          "temperature": 433.17,
+          "light": true
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "fresh1100",
+      "tick": 1100,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 6
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 26
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 3.5,
+          "max": 30,
+          "temperature": 433.17,
+          "light": true
+        }
+      ],
+      "state": "Normal"
+    },
+    {
+      "label": "fresh1100-free-readers",
+      "tick": 1100,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 6
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 26
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 3.5,
+          "max": 30,
+          "temperature": 433.17,
+          "light": true
+        }
+      ],
+      "state": "Normal"
+    }
+  ],
+  "selectedReload": {
+    "before": {
+      "tick": 1100,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 6
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 26
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 3.5,
+          "max": 30,
+          "temperature": 433.17,
+          "light": true
+        }
+      ]
+    },
+    "fresh": {
+      "tick": 1100,
+      "at": {
+        "x": 40,
+        "y": 9
+      },
+      "zone": "Overworld.10.11.0",
+      "hp": 364,
+      "purse": 50,
+      "effects": [
+        "SteepedAcidEffect"
+      ],
+      "inputs": [
+        {
+          "ID": "2151",
+          "BlueprintName": "FireMoss",
+          "count": 4
+        },
+        {
+          "ID": "2167",
+          "BlueprintName": "PitchpodResin",
+          "count": 6
+        },
+        {
+          "ID": "2243",
+          "BlueprintName": "FireClay",
+          "count": 26
+        },
+        {
+          "ID": "2267",
+          "BlueprintName": "SalvagedTimber",
+          "count": 16
+        },
+        {
+          "ID": "2287",
+          "BlueprintName": "SalvagedTimber",
+          "count": 10
+        }
+      ],
+      "flasks": [
+        {
+          "ID": "2231",
+          "liquid": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "liquid": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2234",
+          "liquid": "bog-mire",
+          "volume": 12
+        },
+        {
+          "ID": "2235",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2236",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2237",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "liquid": "",
+          "volume": 0
+        }
+      ],
+      "fires": [
+        {
+          "ID": "2147",
+          "BlueprintName": "CampHearth",
+          "at": {
+            "x": 40,
+            "y": 8
+          },
+          "fuel": 3.5,
+          "max": 30,
+          "temperature": 433.17,
+          "light": true
+        }
+      ]
+    },
+    "equal": true
+  },
+  "hearthReader": {
+    "sections": [
+      {
+        "heading": "Current state",
+        "text": "Fuel: 14 left, about 56 turns once you light it.\nHere you can: feed it (2 timber), light it.\nYou set this down. It stays here, with whatever is in it. You can take it up again, or hand it over and leave it for good.\nCooking: no longer hot enough to prepare food."
+      },
+      {
+        "heading": "How to use",
+        "text": "Press C beside it. Feed coals with salvaged timber (or feed to full); light it with relight coals, or stoke to feed and light in one action. Once it burns, dry wet gear on it. Cook raw food by choosing cook this stack beside a fire from the food in your pack. Press C beside it and choose rest, or rest until a time of day: the fire keeps burning while you sleep, and the row says how much fuel the night takes. To take it up, move it, name this camp or hand it over, press C beside it. Pack up camp takes up every kit of yours within 4 cells in one action.\nNeeds: to feed it: salvaged timber (each timber is 10 fuel; it holds up to 30); optional fuel: one dry, stable combustible reagent; pitchpod resin gives 5 fuel, lamp-oil gives 15, up to capacity. Feeding does not light it; volatile mixtures are unsuitable; to light it: a flame to light it from (a burning fire beside you, a lit torch in your hand, or a flint striker); to rest by it: no hostile creature within 8 cells, as for any rest, and a lit fire with fuel enough for the night (it burns about 0.25 fuel for every turn you rest).\nCost and limits: It burns its fuel while it is lit and goes out when the fuel does. Taking it up puts it out. The fuel the night burns is spent. If the fire could not last a normal rest the row is greyed and says what would fix it. Taking it up keeps its contents and fuel. Handing it over leaves it standing, and you can no longer take it up.\nRight now you can: feed coals (1 salvaged timber, up to 10 fuel), feed coals to full (2 timber, +16 fuel), relight coals from flame, stoke: feed 2 timber and light it and 6 more. Not now: rest (The fire is out. Light it before you settle down), rest until Dawn (The fire is out. Light it before you settle down)."
+      },
+      {
+        "heading": "Description",
+        "text": "A shallow iron pan on a wire stand, made to hold a small fire."
+      }
+    ],
+    "pages": [
+      {
+        "page": 0,
+        "total": 3,
+        "tick": 1080,
+        "visible": [
+          "CURRENT STATE",
+          "",
+          "Fuel: 14 left, about 56 turns once you light it.",
+          "Here you can: feed it (2 timber), light it.",
+          "You set this down. It stays here, with whatever is",
+          "in it. You can take it up again, or hand it over",
+          "and leave it for good.",
+          "Cooking: no longer hot enough to prepare food.",
+          "",
+          "HOW TO USE",
+          "",
+          "Press C beside it. Feed coals with salvaged timber",
+          "(or feed to full); light it with relight coals, or",
+          "stoke to feed and light in one action. Once it",
+          "burns, dry wet gear on it. Cook raw food by",
+          "choosing cook this stack beside a fire from the",
+          "food in your pack. Press C beside it and choose",
+          "rest, or rest until a time of day: the fire keeps",
+          "burning while you sleep, and the row says how much",
+          "fuel the night takes. To take it up, move it, name"
+        ]
+      },
+      {
+        "page": 1,
+        "total": 3,
+        "tick": 1080,
+        "visible": [
+          "this camp or hand it over, press C beside it. Pack",
+          "up camp takes up every kit of yours within 4 cells",
+          "in one action.",
+          "Needs: to feed it: salvaged timber (each timber is",
+          "10 fuel; it holds up to 30); optional fuel: one",
+          "dry, stable combustible reagent; pitchpod resin",
+          "gives 5 fuel, lamp-oil gives 15, up to capacity.",
+          "Feeding does not light it; volatile mixtures are",
+          "unsuitable; to light it: a flame to light it from",
+          "(a burning fire beside you, a lit torch in your",
+          "hand, or a flint striker); to rest by it: no",
+          "hostile creature within 8 cells, as for any rest,",
+          "and a lit fire with fuel enough for the night (it",
+          "burns about 0.25 fuel for every turn you rest).",
+          "Cost and limits: It burns its fuel while it is lit",
+          "and goes out when the fuel does. Taking it up puts",
+          "it out. The fuel the night burns is spent. If the",
+          "fire could not last a normal rest the row is greyed",
+          "and says what would fix it. Taking it up keeps its",
+          "contents and fuel. Handing it over leaves it"
+        ]
+      },
+      {
+        "page": 2,
+        "total": 3,
+        "tick": 1080,
+        "visible": [
+          "standing, and you can no longer take it up.",
+          "Right now you can: feed coals (1 salvaged timber,",
+          "up to 10 fuel), feed coals to full (2 timber, +16",
+          "fuel), relight coals from flame, stoke: feed 2",
+          "timber and light it and 6 more. Not now: rest (The",
+          "fire is out. Light it before you settle down), rest",
+          "until Dawn (The fire is out. Light it before you",
+          "settle down).",
+          "",
+          "A shallow iron pan on a wire stand, made to hold a",
+          "small fire.",
+          "",
+          "Type: Item",
+          "Material: Iron"
+        ]
+      }
+    ]
+  },
+  "freshResinReader": {
+    "sections": [
+      {
+        "heading": "How to use",
+        "text": "Stand beside a finite cooking fire, press C on the fire and choose feed coals with this reagent.\nNeeds: one dry, plain, stable reagent; its combustible property supplies 5 fuel per item.\nCost and limits: Feeding adds no flame. The menu states the actual gain; surplus beyond the fire's capacity is lost. Volatile, malformed or modified mixtures are unsuitable. Other uses remain available.\nRight now you can: press into liquid flask (heat-proofing, 1 coat; 0→1/12)."
+      },
+      {
+        "heading": "Description",
+        "text": "Brew the resin into a burning coating, then throw the bottle to ignite a target. Amber resin beads under the papery pods and sticks stubbornly to the fingers."
+      },
+      {
+        "heading": "Use & mechanics",
+        "text": "Tactical use: Spend one resin to smear an adjacent uncoated creature with sticky pitch, lowering Agility and DV while coated and increasing fire vulnerability. Uninvited use provokes hostility; attacks and movement remain possible. Choose its inventory action while in reach; success costs one action."
+      }
+    ],
+    "pages": [
+      {
+        "page": 0,
+        "total": 2,
+        "tick": 1100,
+        "visible": [
+          "HOW TO USE",
+          "",
+          "Stand beside a finite cooking fire, press C on the",
+          "fire and choose feed coals with this reagent.",
+          "Needs: one dry, plain, stable reagent; its",
+          "combustible property supplies 5 fuel per item.",
+          "Cost and limits: Feeding adds no flame. The menu",
+          "states the actual gain; surplus beyond the fire's",
+          "capacity is lost. Volatile, malformed or modified",
+          "mixtures are unsuitable. Other uses remain",
+          "available.",
+          "Right now you can: press into liquid flask",
+          "(heat-proofing, 1 coat; 0→1/12).",
+          "",
+          "Brew the resin into a burning coating, then throw",
+          "the bottle to ignite a target. Amber resin beads",
+          "under the papery pods and sticks stubbornly to the",
+          "fingers.",
+          "",
+          ""
+        ]
+      },
+      {
+        "page": 1,
+        "total": 2,
+        "tick": 1100,
+        "visible": [
+          "USE & MECHANICS",
+          "",
+          "Tactical use: Spend one resin to smear an adjacent",
+          "uncoated creature with sticky pitch, lowering",
+          "Agility and DV while coated and increasing fire",
+          "vulnerability. Uninvited use provokes hostility;",
+          "attacks and movement remain possible. Choose its",
+          "inventory action while in reach; success costs one",
+          "action.",
+          "",
+          "Type: Item",
+          "Weight: 1 lb each",
+          "Stack: 6; 6 lb total"
+        ]
+      }
+    ]
+  },
+  "notes": [
+    "One free pack-flask inspection did not offer baking; cancelled and used the existing still's C menu. No resources/time spent on that search.",
+    "Screenshot05 and recorded reader precede wording-only polish removing technical terms from two new fuel hints; fuel amounts, conditions, costs and instructions are unchanged. No extra capture was made for this copy edit.",
+    "First clone RED attempt failed compilation on a test-only internal SpatialZone access; no RED claimed. Fixed using public Zone.GetEntityCell before valid RED-b.",
+    "Main script-only refresh initially compiled against an unimported new interface. Full forced asset refresh registered the three new files, then main compiler/console were clean and both interfaces verified before actual after-play.",
+    "No natural acquisition, NPC service balance, new weather behavior, full-machine acceptance or complete clean regression claim."
+  ],
+  "archives": {
+    "before": "/private/tmp/coo-reagent-fuel-before-earned-20261124",
+    "after": "/private/tmp/coo-reagent-fuel-after-earned-20261124",
+    "fresh": "/private/tmp/coo-reagent-fuel-fresh-earned-20261124"
+  }
+}

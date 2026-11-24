@@ -69,8 +69,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
             bool wellFlaskReceipt = WellFlaskFilling.OwnsReceipt(_item,_actionCommand);
             bool rainReceipt = RainCollectorPart.OwnsReceipt(_item, _actionCommand);
             bool oilFuelReceipt = VesselTorchRefueling.OwnsReceipt(_item, _actionCommand);
-            bool kindlingReceipt = PortableKindling.OwnsReceipt(_item, _actionCommand);
-            var snapshot = skinReceipt || coolingReceipt || bakeReceipt || wellFlaskReceipt || rainReceipt || oilFuelReceipt || kindlingReceipt ? null : CaptureSnapshot(context, _item, wellStatReceipt);
+            bool partReceipt = false;
+            foreach (var part in _item.Parts)
+                if (part?.ParentEntity == _item && part is IInventoryActionReceiptOwner owner && owner.OwnsInventoryReceipt(_actionCommand))
+                { partReceipt = true; break; }
+            var snapshot = skinReceipt || coolingReceipt || bakeReceipt || wellFlaskReceipt || rainReceipt || oilFuelReceipt || partReceipt ? null : CaptureSnapshot(context, _item, wellStatReceipt);
             if (snapshot != null)
             {
                 transaction.Do(

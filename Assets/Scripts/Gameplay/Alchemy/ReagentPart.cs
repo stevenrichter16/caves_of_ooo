@@ -17,7 +17,7 @@ namespace CavesOfOoo.Core
     /// names the properties in-fiction so the player can reason toward
     /// combos instead of brute-forcing them.
     /// </summary>
-    public class ReagentPart : Part
+    public class ReagentPart : Part, IDescribeUse
     {
         public override string Name => "Reagent";
 
@@ -29,6 +29,12 @@ namespace CavesOfOoo.Core
 
         private List<BrewPropertyAmount> _cachedProperties;
         private string _cachedRawSnapshot;
+
+        public int Order => 45;
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            if (GetType() == typeof(ReagentPart)) ReagentFireFuel.DescribeUse(ParentEntity, guide);
+        }
 
         /// <summary>The reagent's own verb: press it into a flask as the proofing of the element it carries (<see cref="ProofingPressActions"/>).</summary>
         public override bool HandleEvent(GameEvent e)

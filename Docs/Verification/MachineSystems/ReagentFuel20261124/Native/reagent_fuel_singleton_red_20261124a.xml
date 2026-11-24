@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 12:12:16Z" end-time="2026-11-24 12:12:17Z" duration="1.2510961">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41406" result="Failed" site="Child" start-time="2026-11-24 12:12:16Z" end-time="2026-11-24 12:12:17Z" duration="1.251096" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50469" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41406" result="Failed" site="Child" start-time="2026-11-24 12:12:16Z" end-time="2026-11-24 12:12:17Z" duration="1.003681" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="26521" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50470" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41406" result="Failed" site="Child" start-time="2026-11-24 12:12:17Z" end-time="2026-11-24 12:12:17Z" duration="0.760060" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50471" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41406" result="Failed" site="Child" start-time="2026-11-24 12:12:17Z" end-time="2026-11-24 12:12:17Z" duration="0.525610" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28304" name="ReagentFuelTests" fullname="CavesOfOoo.Tests.ReagentFuelTests" classname="CavesOfOoo.Tests.ReagentFuelTests" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-11-24 12:12:17Z" end-time="2026-11-24 12:12:17Z" duration="0.096521" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28349" name="SingletonDetachedChangesAreNotRecapturedOrOverwritten" fullname="CavesOfOoo.Tests.ReagentFuelTests.SingletonDetachedChangesAreNotRecapturedOrOverwritten" classname="CavesOfOoo.Tests.ReagentFuelTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 12:12:17Z" end-time="2026-11-24 12:12:17Z" duration="0.093968" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28347" name="SingletonDetachedChangesAreNotRecapturedOrOverwritten(False)" fullname="CavesOfOoo.Tests.ReagentFuelTests.SingletonDetachedChangesAreNotRecapturedOrOverwritten(False)" methodname="SingletonDetachedChangesAreNotRecapturedOrOverwritten" classname="CavesOfOoo.Tests.ReagentFuelTests" runstate="Runnable" seed="1624359105" result="Failed" start-time="2026-11-24 12:12:17Z" end-time="2026-11-24 12:12:17Z" duration="0.061017" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ReagentFuelTests.SingletonDetachedChangesAreNotRecapturedOrOverwritten (System.Boolean forceFireRefusal) [0x0005f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/ReagentFuelTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28348" name="SingletonDetachedChangesAreNotRecapturedOrOverwritten(True)" fullname="CavesOfOoo.Tests.ReagentFuelTests.SingletonDetachedChangesAreNotRecapturedOrOverwritten(True)" methodname="SingletonDetachedChangesAreNotRecapturedOrOverwritten" classname="CavesOfOoo.Tests.ReagentFuelTests" runstate="Runnable" seed="370218457" result="Failed" start-time="2026-11-24 12:12:17Z" end-time="2026-11-24 12:12:17Z" duration="0.028621" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ReagentFuelTests.SingletonDetachedChangesAreNotRecapturedOrOverwritten (System.Boolean forceFireRefusal) [0x00071] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/ReagentFuelTests.cs:118
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

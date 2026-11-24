@@ -1,3 +1,28 @@
+**Optional reagent fuel — November24,2026:** implemented; bounded native and
+actual checks accepted after final independent recorded-play review0P1/P2. Stable
+combustible reagents feed finite fires through their own C menu:1resin=5fuel,
+1LampOil=15, actual clamped gain/surplus quoted, no heat or ignition. Strict local
+payload/full-parser/ID/count/reach/commit guards and one-unit delta receipts;
+no saved Part/field added. Attached Part receipt hook covers existing torch/
+hearth kindling plus new fuel without another executor command switch.
+Native250total/249pass/1Explicit utilityskip/0CS,45new; final45/45 after copy-only
+polish overlaps. Valid RED34(18fail16controls), review2+4RED reproduced three P2s,
+all fixed; three focused mutants killed. First test compile failure excluded.
+Actual supplied1030->1100/HP364/50drams: normal waits cool hearth, two resin8->6
+add4->9->14fuel while dark; normal relight ->13.75fuel, still8mire->1clay/25->26,
+normal burn leaves3.5fuel. Timber26/moss4 kept. Fullfresh1100 selected exact;
+free readers/F5/all4files-before-Finish passed. Compressed bytes differ, no whole-
+world equality. Five screenshots; last precedes minor wording polish only.
+[Contract](MACHINE-REAGENT-FUEL.md) / [receipt](Verification/MachineSystems/ReagentFuel20261124/README.md).
+Regional resin acquisition/lacquer and clay/well consumer evidence reused, not
+replayed. This actual feed uses fixture resin; no natural discovery/balance,
+seasonal reuse or complete-machine acceptance. All12gates/failed full suite/W1b/
+W2 open. CurrentMac088 predates this feature; coherent delivery next.
+Retain supplied1100 `/private/tmp/coo-reagent-fuel-fresh-earned-20261124` and all
+prior roots; ordinary2440 separate. Main stopped/rootnull/clean/original7views/
+index0/profileroff; scoped84foreign861normal2otherforeign4Macsaves exact12:32UTC.
+Root sole owner; task ACTIVE every30minutes; screenshots a handful, usually3–5.
+
 **Source-caught cold coat — November24,2026:** unchanged runtime088; bounded
 Editor integration accepted after independent recorded-play review0P1/P2. Earned540
 seed64/400HP/Strength70, no new grants: one fixture-vent scrape -> rime2727 ->
