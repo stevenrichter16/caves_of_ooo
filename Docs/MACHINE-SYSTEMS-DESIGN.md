@@ -1,3 +1,22 @@
+**Lasting Cinderhold project supply — November24,2026:** bounded Editor accepted
+after native, actual and independent source/artifact/gameplay-evidence review0P1/P2.
+Local stable/improved Pump OR existing Sealed adds one paid sounding rod to future
+smith consignments. Temporary/remote/Running-only progress does not. Two ordinary
+specials and staple floors remain; no current-lot rewrite or new repair cost.
+Merchant-only bounded notebook identity grants no grouping/stack permission.
+Native316total/315pass/0fail/1Explicit utilityskip/0CS includes34new cases.
+Actual earned10660 old lot retained; ordinary walk/shop10810 produced g1 rod30387
+plus battleaxe30385/warhammer30386. Paid57 (67->10); two-page readers, cancel,
+surface refusal and F5/four-file-before-Finish passed. Full fresh10810 selected
+snapshot exact; actual fresh shop did not refill/reroll. Strong inherited fixture,
+no new funding/discovery/cave-sounding or physical drainage claim. Fresh84foreign,
+861selectednormal,2otherforeign,4Macsaves exact; stopped/rootnull/clean.
+[Receipt](Verification/MachineSystems/CinderholdProjectSupply20261124/README.md).
+CurrentMac632 predates this extension; batch another coherent milestone.
+All12complete-machine gates, failed full regression, W1b/W2 remain open.
+Root sole owner; task ACTIVE every30minutes; show frequent real screenshots.
+Next broaden to another useful medium-depth connection after publishing this one.
+
 **Current Mac delivery — November24,2026:** runtime6325062a1cb3d9f2a1065fec5458f1d8b9b8959d
 packages accepted knife guidance and portable fire-moss ignition together at
 `/Users/steven/coo-verification/builds/mac-6325062a1-20261124/CavesOfOoo.app`.
@@ -1050,9 +1069,16 @@ current statuses. See [weather opportunities](WEATHER-AND-SEASONAL-TOOL-USES.md)
 | Sump pump | Reach submerged resources or redirect a local liquid supply. | Finite source/receiver transfer, level/state thresholds, compatible fittings and outlet consequences. | A real passage or resource changes access; transferred liquid appears at a valid destination with no regeneration exploit. | Proposed; M1a vessel transfer accepted, but actual finite source/depletion/receiver/access loop remains unqualified. M2a contained recovery is publishedc43631ad6 with native56/56, actual clean/manual/crafting/contact/travel/reload/old-cache and currentMac action/travel/reload; full pump purpose/flow remains open. M1d does not implement pumping. |
 | Thermal exchanger | Use a local source for drying, cooling or processing. | Explicit source/receiver coupling, work limits and bounded local temperature effects. | Useful cooling/heating and a second consequence share existing thermal rules; unsupported sources do not create energy. | Proposed; bounded owned-hearth cooling now spends finite newly poured water, preserves surplus/older stock, uses shared thermal/light/cooking and has actual recovery/fresh2760 proof. This is not general source/receiver coupling or a complete exchanger; machine-specific prerequisites remain open. |
 | Dynamo and charging bench | Prepare finite work for portable equipment. | Authored energy source, storage loss/capacity and at least one real consumer. | Charged equipment does useful work away from the generator; finite conversion and refusal paths are verified. | Proposed; machine-specific prerequisites open. |
-| Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed; machine-specific prerequisites open. |
+| Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed complete machine; bounded existing sounding-rod supply now follows lasting Cinderhold repair or seep sealing, with actual paid purchase/read/fresh10810 proof. This does not add sensing behavior, calibration or a complete expedition/resonator; machine-specific gates remain open. |
 | Signal relay | Coordinate separated people and owned locations. | Connectivity, observed reports and persistent dispatch/delivery state with genuine cargo custody. | One physical delivery or report follows a real arrangement, survives interruption/reload and cannot duplicate goods. | Proposed; machine-specific prerequisites open. |
 | Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. | Proposed; existing coatings/reagents are foundations; targeted treatment eligibility, effects, alternatives and persistence remain open. M1d does not implement treatment. |
+
+November24 lasting-project dependency: Cinderhold's existing stable pump repair
+and seep-sealing alternative now both expand future paid smith consignments with
+one existing sounding rod. Native and actual purchase/read/save proof connects
+lasting local work to continued tool access. No physical drainage, hidden-place
+sensing, NPC production or new repair burden. Complete pump/resonator status stays
+open; see the project-supply receipt and its separate review gate above.
 
 November23 sump-pump dependency addendum: dependable local Cinderhold repair
 inputs now have actual finite reclaim+shopping→lasting native pump-state repair,

@@ -51,7 +51,11 @@ namespace CavesOfOoo.Core
             new[] { "Dagger", "ShortSword", "Spear", "OakHaftComponent", "LeatherBindingComponent" }, new[] { 1, 1, 1, 1, 1 }, WeaponChoices);
         static readonly Profile CinderholdSmith = new Profile("WeaponsmithStock",
             new[] { "Dagger", "ShortSword", "Spear", "IronSpikeComponent", "OakHaftComponent", "LeatherBindingComponent" }, new[] { 1, 1, 1, 2, 1, 1 },
-            WeaponChoices, "Cinderhold");
+            WeaponChoices, "Cinderhold", new ProjectSupply("SoundingRod",
+                "Repair the pump or seal the seep to add rods to future consignments.",
+                "Mine work restored: a sounding rod joins the next consignment.",
+                "Mine work supply included: an extra sounding rod in each new consignment.",
+                site: "Pump", condition: "Cinderhold.Sealed"));
         sealed class Activity
         {
             internal int Trades, Views;
@@ -157,7 +161,7 @@ namespace CavesOfOoo.Core
         {
             var project = profile.Project; var manager = SettlementManager.Current;
             if (project == null || zone == null || manager == null) return false;
-            if (project.Condition != null) return manager.HasExistingCondition(zone.ZoneID, project.Condition);
+            if (project.Condition != null && manager.HasExistingCondition(zone.ZoneID, project.Condition)) return true;
             return project.Site != null && manager.TryGetExistingSite(zone.ZoneID, project.Site, out var site)
                 && (site.Stage == RepairStage.StableRepair || site.Stage == RepairStage.ImprovedWithCaretaker);
         }
@@ -181,6 +185,12 @@ namespace CavesOfOoo.Core
         // Resident altered goods remain intact and are compared by their key.
         static bool ValidFreshPayload(Entity item)
         {
+            if (item.BlueprintName == "SoundingRod")
+            {
+                var rod = item.GetPart<SoundingRodPart>();
+                return rod?.GetType() == typeof(SoundingRodPart) && rod.LastReading == ""
+                    && rod.LastTick == -1 && rod.Log != null && rod.Log.Count == 0;
+            }
             if (item.BlueprintName == "Dagger" || item.BlueprintName == "ShortSword" || item.BlueprintName == "Spear")
             {
                 var weapon = item.GetPart<MeleeWeaponPart>();

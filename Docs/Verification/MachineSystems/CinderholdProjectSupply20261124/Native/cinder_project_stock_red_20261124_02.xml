@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="26" result="Failed(Child)" total="26" passed="3" failed="23" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:40Z" duration="1.4042356">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41346" result="Failed" site="Child" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:40Z" duration="1.404236" total="26" passed="3" failed="23" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50389" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41346" result="Failed" site="Child" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:40Z" duration="1.391718" total="26" passed="3" failed="23" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="53178" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50390" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41346" result="Failed" site="Child" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:40Z" duration="1.381744" total="26" passed="3" failed="23" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50391" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41346" result="Failed" site="Child" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:40Z" duration="1.372014" total="26" passed="3" failed="23" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="10432" name="CinderholdProjectConsignmentTests" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:40Z" duration="1.098242" total="26" passed="3" failed="23" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="10452" name="BonusRodAndExactMembershipSaveWithoutRerollOrFreeRefresh" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.BonusRodAndExactMembershipSaveWithoutRerollOrFreeRefresh" methodname="BonusRodAndExactMembershipSaveWithoutRerollOrFreeRefresh" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="100999077" result="Failed" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:39Z" duration="0.103513" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.BonusRodAndExactMembershipSaveWithoutRerollOrFreeRefresh () [0x0004f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:96
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="10437" name="BothQualifyingPathsStillGiveOnlyOneExtraRod" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.BothQualifyingPathsStillGiveOnlyOneExtraRod" methodname="BothQualifyingPathsStillGiveOnlyOneExtraRod" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1916662909" result="Failed" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:39Z" duration="0.028135" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.BothQualifyingPathsStillGiveOnlyOneExtraRod () [0x0002d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="10448" name="DueBoundaryAndReopeningCannotRerollOrDuplicateTheRod" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.DueBoundaryAndReopeningCannotRerollOrDuplicateTheRod" methodname="DueBoundaryAndReopeningCannotRerollOrDuplicateTheRod" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="2079643614" result="Failed" label="Error" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:39Z" duration="0.027385" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.Rod (CavesOfOoo.Core.Entity s) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:34 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.DueBoundaryAndReopeningCannotRerollOrDuplicateTheRod () [0x00017] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:67 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="10462" name="FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:39Z" duration="0.054031" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="10460" name="FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt(False)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt(False)" methodname="FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="999166492" result="Failed" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:39Z" duration="0.026361" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt (System.Boolean sealedPath) [0x00039] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:126
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10461" name="FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt(True)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt(True)" methodname="FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="929310849" result="Failed" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:39Z" duration="0.026344" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FactoryCallbackLosingTheLastQualifyingPathDefersWithoutErasingIt (System.Boolean sealedPath) [0x00039] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:126
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="10459" name="FreshToolsMustHaveTheirExactPristineSurveyPayload" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:40Z" duration="0.195960" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="10454" name="FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;reading&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;reading&quot;)" methodname="FreshToolsMustHaveTheirExactPristineSurveyPayload" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1832370945" result="Failed" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:39Z" duration="0.035485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload (System.String change) [0x00043] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10455" name="FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;tick&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;tick&quot;)" methodname="FreshToolsMustHaveTheirExactPristineSurveyPayload" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="949467131" result="Failed" start-time="2026-11-24 07:53:39Z" end-time="2026-11-24 07:53:40Z" duration="0.076596" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload (System.String change) [0x00043] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10456" name="FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;log&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;log&quot;)" methodname="FreshToolsMustHaveTheirExactPristineSurveyPayload" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1505089473" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.027928" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload (System.String change) [0x00043] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10457" name="FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;null&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;null&quot;)" methodname="FreshToolsMustHaveTheirExactPristineSurveyPayload" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1502297498" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.027486" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload (System.String change) [0x00043] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10458" name="FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload(&quot;missing&quot;)" methodname="FreshToolsMustHaveTheirExactPristineSurveyPayload" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="306905235" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.027460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.FreshToolsMustHaveTheirExactPristineSurveyPayload (System.String change) [0x00043] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="10435" name="LastingLocalPumpExpandsOnlyTheNextDueLot" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.LastingLocalPumpExpandsOnlyTheNextDueLot" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.055971" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="10433" name="LastingLocalPumpExpandsOnlyTheNextDueLot(StableRepair)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.LastingLocalPumpExpandsOnlyTheNextDueLot(StableRepair)" methodname="LastingLocalPumpExpandsOnlyTheNextDueLot" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1068640475" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.028024" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "next"
+  But was:  <string.Empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.LastingLocalPumpExpandsOnlyTheNextDueLot (CavesOfOoo.Core.RepairStage stage) [0x0005c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10434" name="LastingLocalPumpExpandsOnlyTheNextDueLot(ImprovedWithCaretaker)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.LastingLocalPumpExpandsOnlyTheNextDueLot(ImprovedWithCaretaker)" methodname="LastingLocalPumpExpandsOnlyTheNextDueLot" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="345912722" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.027420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "next"
+  But was:  <string.Empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.LastingLocalPumpExpandsOnlyTheNextDueLot (CavesOfOoo.Core.RepairStage stage) [0x0005c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="10451" name="ModifiedUnboughtRodCannotBeWithdrawnAsPristine" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.ModifiedUnboughtRodCannotBeWithdrawnAsPristine" methodname="ModifiedUnboughtRodCannotBeWithdrawnAsPristine" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1172600447" result="Failed" label="Error" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.026927" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.Rod (CavesOfOoo.Core.Entity s) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:34 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.ModifiedUnboughtRodCannotBeWithdrawnAsPristine () [0x00017] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:87 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="10449" name="OrdinaryPaidPurchaseRemovesOnlyThatSpecialMembership" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.OrdinaryPaidPurchaseRemovesOnlyThatSpecialMembership" methodname="OrdinaryPaidPurchaseRemovesOnlyThatSpecialMembership" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1304666680" result="Failed" label="Error" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.027306" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.Rod (CavesOfOoo.Core.Entity s) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:34 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.OrdinaryPaidPurchaseRemovesOnlyThatSpecialMembership () [0x00017] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:74 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="10447" name="OtherSmithsKeepTheirOrdinaryCatalogue" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.OtherSmithsKeepTheirOrdinaryCatalogue" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.057328" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="10445" name="OtherSmithsKeepTheirOrdinaryCatalogue(&quot;Overworld.6.6.1&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.OtherSmithsKeepTheirOrdinaryCatalogue(&quot;Overworld.6.6.1&quot;)" methodname="OtherSmithsKeepTheirOrdinaryCatalogue" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1694287274" result="Passed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.028393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="10446" name="OtherSmithsKeepTheirOrdinaryCatalogue(&quot;Overworld.10.10.0&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.OtherSmithsKeepTheirOrdinaryCatalogue(&quot;Overworld.10.10.0&quot;)" methodname="OtherSmithsKeepTheirOrdinaryCatalogue" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="920880518" result="Passed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.028395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="10463" name="ProjectMessagesFitTheExistingStatusLine" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.ProjectMessagesFitTheExistingStatusLine" methodname="ProjectMessagesFitTheExistingStatusLine" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="706304588" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.030324" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: in range (1,78)
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.ProjectMessagesFitTheExistingStatusLine () [0x00011] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:130
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="10444" name="ReadingAndStockWithNoManagerDoNotCreateAProject" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.ReadingAndStockWithNoManagerDoNotCreateAProject" methodname="ReadingAndStockWithNoManagerDoNotCreateAProject" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="392548768" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.028617" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "pump"
+  But was:  <string.Empty>
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.ReadingAndStockWithNoManagerDoNotCreateAProject () [0x0001b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:61
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="10443" name="RemoteProgressCannotQualifyLocalSmithOrCreateLocalState" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.RemoteProgressCannotQualifyLocalSmithOrCreateLocalState" methodname="RemoteProgressCannotQualifyLocalSmithOrCreateLocalState" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="816869993" result="Passed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.028084" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="10453" name="RodIdentityDoesNotGrantOrdinaryGroupingOrPhysicalStackPermission" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.RodIdentityDoesNotGrantOrdinaryGroupingOrPhysicalStackPermission" methodname="RodIdentityDoesNotGrantOrdinaryGroupingOrPhysicalStackPermission" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1698741215" result="Failed" label="Error" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.028456" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.Rod (CavesOfOoo.Core.Entity s) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:34 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.RodIdentityDoesNotGrantOrdinaryGroupingOrPhysicalStackPermission () [0x00017] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:102 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="10436" name="SealingTheSeepIsAnEqualLastingAlternative" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.SealingTheSeepIsAnEqualLastingAlternative" methodname="SealingTheSeepIsAnEqualLastingAlternative" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1064002577" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.026579" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.SealingTheSeepIsAnEqualLastingAlternative () [0x00027] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="10442" name="TemporaryOrUnrelatedProgressDoesNotQualify" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.TemporaryOrUnrelatedProgressDoesNotQualify" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.345804" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="10438" name="TemporaryOrUnrelatedProgressDoesNotQualify(&quot;broken&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.TemporaryOrUnrelatedProgressDoesNotQualify(&quot;broken&quot;)" methodname="TemporaryOrUnrelatedProgressDoesNotQualify" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="714246021" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.068483" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "pump"
+  But was:  <string.Empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.TemporaryOrUnrelatedProgressDoesNotQualify (System.String state) [0x00093] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10439" name="TemporaryOrUnrelatedProgressDoesNotQualify(&quot;patch&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.TemporaryOrUnrelatedProgressDoesNotQualify(&quot;patch&quot;)" methodname="TemporaryOrUnrelatedProgressDoesNotQualify" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1233351390" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.084972" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "pump"
+  But was:  <string.Empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.TemporaryOrUnrelatedProgressDoesNotQualify (System.String state) [0x00093] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10440" name="TemporaryOrUnrelatedProgressDoesNotQualify(&quot;running&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.TemporaryOrUnrelatedProgressDoesNotQualify(&quot;running&quot;)" methodname="TemporaryOrUnrelatedProgressDoesNotQualify" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="2063597037" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.085238" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "pump"
+  But was:  <string.Empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.TemporaryOrUnrelatedProgressDoesNotQualify (System.String state) [0x00093] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10441" name="TemporaryOrUnrelatedProgressDoesNotQualify(&quot;field&quot;)" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.TemporaryOrUnrelatedProgressDoesNotQualify(&quot;field&quot;)" methodname="TemporaryOrUnrelatedProgressDoesNotQualify" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="802056383" result="Failed" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.105982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "pump"
+  But was:  <string.Empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.TemporaryOrUnrelatedProgressDoesNotQualify (System.String state) [0x00093] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="10450" name="UsedOrResoldRodSurvivesTheNextConsignment" fullname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests.UsedOrResoldRodSurvivesTheNextConsignment" methodname="UsedOrResoldRodSurvivesTheNextConsignment" classname="CavesOfOoo.Tests.CinderholdProjectConsignmentTests" runstate="Runnable" seed="1142898225" result="Failed" label="Error" start-time="2026-11-24 07:53:40Z" end-time="2026-11-24 07:53:40Z" duration="0.026910" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.Rod (CavesOfOoo.Core.Entity s) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:34 
+  at CavesOfOoo.Tests.CinderholdProjectConsignmentTests.UsedOrResoldRodSurvivesTheNextConsignment () [0x00017] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Economy/CinderholdProjectConsignmentTests.cs:80 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

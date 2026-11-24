@@ -54,6 +54,15 @@ namespace CavesOfOoo.Core
             typeof(HearthGlowPart), typeof(HearthRestPart), typeof(PackableFixturePart), typeof(GasGrenadePart)
         }.ToDictionary(t => t, t => t.GetFields(BindingFlags.Public | BindingFlags.Instance)
             .OrderBy(f => f.Name, StringComparer.Ordinal).ToArray());
+        // The rod's notebook is the only audited non-scalar merchant payload.
+        // Fail closed if its saved public schema grows; no general list support.
+        static readonly bool MerchantRodSchema = typeof(SoundingRodPart)
+            .GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+            .OrderBy(f => f.Name, StringComparer.Ordinal)
+            .Select(f => (f.Name, f.FieldType)).SequenceEqual(new[]
+            {
+                ("LastReading", typeof(string)), ("LastTick", typeof(int)), ("Log", typeof(List<string>))
+            });
 
         public static List<InventoryItemGroup> Project(IEnumerable<InventoryScreenData.ItemDisplay> items, Entity preferred, bool grouped)
         {
@@ -118,13 +127,15 @@ namespace CavesOfOoo.Core
                 bool mask = merchantExtras && type == typeof(GasMaskPart);
                 bool vial = merchantExtras && type == typeof(InkVialPart);
                 bool document = merchantExtras && type == typeof(ReadableDocumentPart);
+                bool rod = merchantExtras && type == typeof(SoundingRodPart);
                 FieldInfo[] extraFields = null;
                 bool extra = merchantExtras && MerchantFields.TryGetValue(type, out extraFields);
-                if ((!Known.Contains(type) && !mask && !vial && !document && !extra) || !types.Add(type)) return null;
+                if ((!Known.Contains(type) && !mask && !vial && !document && !rod && !extra) || !types.Add(type)) return null;
                 Add(key, type.FullName);
                 if (mask) { Add(key, "Power"); Add(key, ((GasMaskPart)part).Power); continue; }
                 if (vial) { Add(key, "InkAmount"); Add(key, ((InkVialPart)part).InkAmount); continue; }
                 if (document) { Add(key, "DocumentId"); Add(key, ((ReadableDocumentPart)part).DocumentId); continue; }
+                if (rod) { if (!RodIdentity(key, (SoundingRodPart)part)) return null; continue; }
                 foreach (var field in extra ? extraFields : Fields[type])
                 {
                     if (field.Name == "ParentEntity" || type == typeof(PhysicsPart) && (field.Name == "InInventory" || field.Name == "Equipped")
@@ -149,6 +160,20 @@ namespace CavesOfOoo.Core
         {
             string name = item.Name ?? "", suffix = " (x" + item.StackCount + ")";
             return item.StackCount > 1 && name.EndsWith(suffix, StringComparison.Ordinal) ? name.Substring(0, name.Length - suffix.Length) : name;
+        }
+        static bool RodIdentity(StringBuilder key, SoundingRodPart rod)
+        {
+            if (!MerchantRodSchema || rod.LastReading == null || rod.LastTick < -1
+                || rod.Log == null || rod.Log.Count > SoundingRodPart.LogSize) return false;
+            if (key.Length + (long)rod.LastReading.Length > 16384) return false;
+            Add(key, "LastReading"); Add(key, rod.LastReading); Add(key, "LastTick"); Add(key, rod.LastTick);
+            Add(key, "Log"); Add(key, rod.Log.Count);
+            foreach (string entry in rod.Log)
+            {
+                if (entry == null || key.Length + (long)entry.Length > 16384) return false;
+                Add(key, entry);
+            }
+            return key.Length <= 16384;
         }
         static bool Map<T>(StringBuilder key, IDictionary<string, T> values)
         {

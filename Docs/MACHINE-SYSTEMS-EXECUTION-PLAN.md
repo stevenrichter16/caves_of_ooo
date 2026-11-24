@@ -1,3 +1,22 @@
+**Lasting Cinderhold project supply — November24,2026:** bounded Editor accepted
+after native, actual and independent source/artifact/gameplay-evidence review0P1/P2.
+Local stable/improved Pump OR existing Sealed adds one paid sounding rod to future
+smith consignments. Temporary/remote/Running-only progress does not. Two ordinary
+specials and staple floors remain; no current-lot rewrite or new repair cost.
+Merchant-only bounded notebook identity grants no grouping/stack permission.
+Native316total/315pass/0fail/1Explicit utilityskip/0CS includes34new cases.
+Actual earned10660 old lot retained; ordinary walk/shop10810 produced g1 rod30387
+plus battleaxe30385/warhammer30386. Paid57 (67->10); two-page readers, cancel,
+surface refusal and F5/four-file-before-Finish passed. Full fresh10810 selected
+snapshot exact; actual fresh shop did not refill/reroll. Strong inherited fixture,
+no new funding/discovery/cave-sounding or physical drainage claim. Fresh84foreign,
+861selectednormal,2otherforeign,4Macsaves exact; stopped/rootnull/clean.
+[Receipt](Verification/MachineSystems/CinderholdProjectSupply20261124/README.md).
+CurrentMac632 predates this extension; batch another coherent milestone.
+All12complete-machine gates, failed full regression, W1b/W2 remain open.
+Root sole owner; task ACTIVE every30minutes; show frequent real screenshots.
+Next broaden to another useful medium-depth connection after publishing this one.
+
 **Current Mac delivery — November24,2026:** runtime6325062a1cb3d9f2a1065fec5458f1d8b9b8959d
 packages accepted knife guidance and portable fire-moss ignition together at
 `/Users/steven/coo-verification/builds/mac-6325062a1-20261124/CavesOfOoo.app`.
