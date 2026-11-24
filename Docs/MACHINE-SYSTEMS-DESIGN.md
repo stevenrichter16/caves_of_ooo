@@ -1,3 +1,31 @@
+**Weapon stock continuation — November23 evening:** Editor acceptance after
+independent read-only source/gameplay-evidence review0remainingP1/P2. Genuine
+matching WeaponsmithStock now gets dagger1/shortsword1/spear1/oak1/binding1;
+Cinderhold keeps spike2. Two saved specials from9remaining original kinds;
+old promoted members remain physical ordinary goods at due rotation. Current
+lots/clock/custody/ordinary sold goods/services/prices/save fields protected.
+Full8fresh standard-weapon fields close24realcallback-publicationRED cases.
+Final220/219pass/0fail/1Explicit utilityskip/0CS,49new. Actual oldCinder10660g0
+unchanged; Quillhold had no weaponNPC; real Sill17366at6,17: paid41for17369at
+11410purse67to26, fresh11410sameg0/noinstantreplacement, exact300no-refill11710,
+310one30418refill11720, full1200window12210g1Token30427/Mace30428. Oldordinary
+17367/stun17375x2/player17369retained; fresh12210exactpurse26/HP412/lot/ownership.
+Native movement/waits/readers/save; strong supplied fixture/scouting/traffic
+and helper exclusions disclosed. Old promoted-special migrations native-only.
+See [design](MACHINE-WEAPON-MERCHANT-SUPPLY.md) and
+[receipt](Verification/MachineSystems/WeaponMerchants20261123/README.md).
+The older UI receipt counting note is corrected:87descriptionpasses,46initial
+weapon cases(41fail5pass); finalweapon49. UI native263/263 and28+54new remain.
+Current Mac7cpredates accepted UI1fda and this stock source. NEXT build one
+coherent Mac from accepted committed source, preserving all17previous apps and
+normal preferences/saves. Mainstopped/rootnullclean/original7views/index0;
+fresh84foreign/861normalexact. Root sole owner/hourlyACTIVE; all12complete-machine
+gates and original failed full regression remain open. Standing purpose is
+wonder through a broad surface of consistent practical capabilities, not only
+catalogue variety. Next runtime candidate after delivery: source-qualify finite
+recovered/processed oil for compatible lights, preserving existing LampOil and
+honest material/access/capacity limits before any recipe/permission extension.
+
 **Inventory readability continuation — November23 evening:** native263/263/0CS
 and actual old-save UI qualification are accepted after independent read-only
 source/gameplay-evidence review with0remainingP1/P2. F3categories/F4sorting,13actual categories instead of7,

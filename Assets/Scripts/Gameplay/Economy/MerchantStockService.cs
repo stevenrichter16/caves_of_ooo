@@ -45,10 +45,13 @@ namespace CavesOfOoo.Core
             new[] { "LiquidFlask", "Waterskin", "DriedMeat", "Starapple", "Torch", "CandyCarrotSeed", "LampOil" },
             new[] { 1, 1, 2, 1, 1, 1, 3 },
             new[] { "Mushroom", "RawMeat", "EmberwheatSeed", "WaterTonic", "CampHearth", "PoisonGasGrenade" });
+        static readonly string[] WeaponChoices = { "SplitHaftTokenTrinket", "Mace", "Hatchet", "LongSword", "Battleaxe", "Warhammer",
+            "SteelBladeComponent", "SerratedEdgeComponent", "StunGasGrenade" };
+        static readonly Profile Weaponsmith = new Profile("WeaponsmithStock",
+            new[] { "Dagger", "ShortSword", "Spear", "OakHaftComponent", "LeatherBindingComponent" }, new[] { 1, 1, 1, 1, 1 }, WeaponChoices);
         static readonly Profile CinderholdSmith = new Profile("WeaponsmithStock",
-            new[] { "Dagger", "IronSpikeComponent", "OakHaftComponent", "LeatherBindingComponent" }, new[] { 1, 2, 1, 1 },
-            new[] { "SplitHaftTokenTrinket", "ShortSword", "Mace", "Spear", "Hatchet", "LongSword", "Battleaxe", "Warhammer",
-                "SteelBladeComponent", "SerratedEdgeComponent", "StunGasGrenade" }, "Cinderhold");
+            new[] { "Dagger", "ShortSword", "Spear", "IronSpikeComponent", "OakHaftComponent", "LeatherBindingComponent" }, new[] { 1, 1, 1, 2, 1, 1 },
+            WeaponChoices, "Cinderhold");
         sealed class Activity
         {
             internal int Trades, Views;
@@ -71,7 +74,7 @@ namespace CavesOfOoo.Core
                 || merchant.GetProperty(TraderRestockSystem.ShopStockTableProp) != trader.StockTable) return null;
             var profile = trader.StockTable == Farmer.Id ? Farmer : trader.StockTable == Armorer.Id ? Armorer
                 : trader.StockTable == Scribe.Id ? Scribe : trader.StockTable == Provisioner.Id ? Provisioner
-                : trader.StockTable == CinderholdSmith.Id ? CinderholdSmith : null;
+                : trader.StockTable == Weaponsmith.Id ? (PlaceSiteCatalog.PlaceAt(merchant.SpatialZone?.ZoneID) == "Cinderhold" ? CinderholdSmith : Weaponsmith) : null;
             return profile != null && (profile.Place == null || PlaceSiteCatalog.PlaceAt(merchant.SpatialZone?.ZoneID) == profile.Place)
                 ? profile : null;
         }
@@ -178,6 +181,17 @@ namespace CavesOfOoo.Core
         // Resident altered goods remain intact and are compared by their key.
         static bool ValidFreshPayload(Entity item)
         {
+            if (item.BlueprintName == "Dagger" || item.BlueprintName == "ShortSword" || item.BlueprintName == "Spear")
+            {
+                var weapon = item.GetPart<MeleeWeaponPart>();
+                bool dagger = item.BlueprintName == "Dagger", spear = item.BlueprintName == "Spear";
+                return weapon?.GetType() == typeof(MeleeWeaponPart)
+                    && weapon.BaseDamage == (dagger ? "1d4" : spear ? "1d6+1" : "1d6")
+                    && weapon.PenBonus == (spear ? 2 : 1) && weapon.HitBonus == 0
+                    && weapon.MaxStrengthBonus == (dagger ? 3 : -1) && weapon.Stat == "Strength"
+                    && weapon.Attributes == (spear || dagger ? "Piercing" : "Cutting LongBlades")
+                    && weapon.OnHitEffectsRaw == "" && weapon.EmitGasOnHitRaw == "";
+            }
             if (item.BlueprintName == "IronSpikeComponent" || item.BlueprintName == "OakHaftComponent" || item.BlueprintName == "LeatherBindingComponent")
             {
                 // These promised repair inputs also remain real forging parts.
@@ -316,7 +330,11 @@ namespace CavesOfOoo.Core
                     for (int n = 0; n < state.Specials.Count; n++)
                     {
                         var item = state.Specials[n];
-                        if (!string.IsNullOrEmpty(state.SpecialKeys[n]) && BarterDeal.Units(item) == 1
+                        // A catalogue migration can promote an old special to a
+                        // staple. Keep that exact good as ordinary stock when
+                        // replacing membership; withdrawing it would erase the
+                        // floor counted above and repeatedly roll back the lot.
+                        if (!profile.Staples.Contains(item.BlueprintName) && !string.IsNullOrEmpty(state.SpecialKeys[n]) && BarterDeal.Units(item) == 1
                             && Key(merchant, item) == state.SpecialKeys[n]) retire.Add(item);
                     }
                 foreach (var item in retire.Concat(products))

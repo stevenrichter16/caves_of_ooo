@@ -52,9 +52,9 @@ remain separate lines. Hit bonus and penetration remain separate weapon lines.
   corrected with the existing isolated registry, without runtime workaround.
 - Final categories/UI/equipment regression263/263/0CS,54new category executions
   plus28Browse executions. Includes existing category and shield-rendering
-  controls. The later weapon_merchant_red3 run separately passed all84existing
-  item-description tests; its49new merchant tests remain separate RED evidence
-  (8controls passed,41feature failures). Earlier merchant test compilation
+  controls. The later weapon_merchant_red3 run separately passed all87existing
+  item-description tests; its46new merchant tests remain separate RED evidence
+  (5controls passed,41feature failures). Earlier merchant test compilation
   attempts are excluded and do not establish RED.
 
 The original full a9 regression remains failed. These targeted runs do not

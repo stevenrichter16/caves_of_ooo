@@ -1,8 +1,22 @@
+**Weapon-merchant extension — November23 evening:** the shared standard/special
+policy now covers genuine WeaponsmithStock outside Cinderhold. Dependable
+weapons: dagger, short sword, spear; components: oak haft and leather binding;
+Cinderhold retains two spikes. Two rotating slots cover the other nine original
+optional goods. Existing saved promoted sword/spear specials become ordinary
+stock at due rotation without withdrawal/recreation. Native220/219pass/0fail/
+1Explicit utilityskip/0CS,49new; actual Sill paid purchase, strict300/310refill,
+1200rotation and fresh12210qualify after independent review0P1/P2. Older
+Cinderhold-only paragraphs below record the earlier increment. See the
+[extension](MACHINE-WEAPON-MERCHANT-SUPPLY.md) and
+[receipt](Verification/MachineSystems/WeaponMerchants20261123/README.md).
+Current Mac7cpredates this and UI1fda; one coherent package follows. Trade-route
+imports and automatic NPC production remain proposals; all12 machine gates open.
+
 # Merchant staples and changing special stock
 
 User direction, November23,2026. Bounded Editor implementations cover
 FarmerStock, ArmorerStock, ProvisionerStock, genuine ScribeStock in Quillhold
-and genuine WeaponsmithStock in Cinderhold.
+and genuine WeaponsmithStock across communities; Cinderhold retains regional spikes.
 A repaired local oven expands farmer consignments; the existing finite copy-room
 oil project adds a drying manuscript to later scribe lots. See the
 [first pilot](Verification/MachineSystems/MerchantConsignments20261123/README.md)

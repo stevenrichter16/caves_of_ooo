@@ -47,7 +47,7 @@ namespace CavesOfOoo.Tests
         public void GenuineLocalSmithKeepsPromisedRepairInputsAndGuaranteedDagger(string bp, int count)
         { var e = Smith(); Start(e); Assert.AreEqual(count, Units(e, bp)); }
 
-        [Test] public void AllElevenOriginalOptionalIdentitiesRemainInTheCompleteSavedCycle()
+        [Test] public void AllOriginalOptionalIdentitiesRemainAvailableAsStandardsOrSpecials()
         {
             var e = Smith(); var s = Start(e); var seen = new HashSet<string>(); string previous = null;
             for (int n = 0; n < Choices.Length; n++) {
@@ -55,11 +55,13 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(2, s.Specials.Count); Assert.False(s.BonusApplied); Assert.AreNotEqual(previous, s.SelectionRaw); previous = s.SelectionRaw;
                 foreach (var item in s.Specials) { seen.Add(item.BlueprintName); Assert.AreEqual(1, BarterDeal.Units(item)); Assert.True(MerchantStockService.IsSpecial(e, item)); }
             }
+            Assert.AreEqual(9, seen.Count); seen.Add("ShortSword"); seen.Add("Spear");
+            Assert.AreEqual(1, Units(e, "ShortSword")); Assert.AreEqual(1, Units(e, "Spear"));
             CollectionAssert.AreEquivalent(Choices, seen);
         }
         [TestCase("Overworld.6.6.1")] [TestCase("Overworld.10.10.0")] [TestCase("Overworld.14.9.0")]
-        public void OtherSmithsKeepTheirExistingPolicy(string zone)
-        { Zone.ZoneID = zone; var e = Smith(); Assert.False(MerchantStockService.Reconcile(e, Zone, 10)); Assert.IsNull(e.GetPart<MerchantStockPart>()); }
+        public void OtherGenuineSmithsJoinWithoutCinderholdRegionalSpikeGrant(string zone)
+        { Zone.ZoneID = zone; var e = Smith(); Start(e); Assert.AreEqual(1, Units(e, "ShortSword")); Assert.AreEqual(1, Units(e, "Spear")); Assert.Zero(Units(e, "IronSpikeComponent")); }
         [TestCase("Tinker")] [TestCase("Quartermaster")]
         public void ExistingAlternateSuppliersDoNotJoinTheSmithProfile(string bp)
         { var e = Smith(bp); Assert.False(MerchantStockService.Reconcile(e, Zone, 10)); Assert.IsNull(e.GetPart<MerchantStockPart>()); }
