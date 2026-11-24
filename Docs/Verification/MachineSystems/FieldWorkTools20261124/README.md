@@ -16,7 +16,7 @@ unknown Parts still refuse. All twelve complete-machine gates remain open.
 
 ## Native checks and exclusions
 
-Final `field-tools-final-20261124t`: **245/245**, 46 new and199 retained, zero
+Final `field-tools-final-20261124v`: **248/248**, 49 new and199 retained, zero
 compile errors. The199 retained cover striker, processing content/registry/plan/
 execution, armor recovery, box work and field binding. Tests ran only in idle
 verification clones; main Editor was reserved for actual play.
@@ -38,7 +38,9 @@ verification clones; main Editor was reserved for actual play.
 | p / q | Last-root forced-state REDs: p3fail/1control, q4fail/1control. Equipped ownership, regrown quantity, raw pack alias and a newly active effect cannot count as consumed payment. |
 | r |244/244 after exact removed-unit admission and shared refund alias refusal. |
 | s | Own-hearth actor access RED:1failure/3controls; an NPC is not granted access to a player-held fire by proximity. |
-| t | Final245/245,46new/199retained, zero compile errors. |
+| t |245/245 after final payment/access guards; superseded by path correctionv. |
+| u | Shared closed-door pathRED2fail/2controls,0CS. |
+| v | Final248/248,49new/199retained,0CS; uses shared Cell.BlocksMovement. |
 
 Full readers use pure guide rows. Repeated executable gathers retain an original
 quote only for the same actor, zone, exact source/station/claims/choice while its
@@ -89,11 +91,11 @@ turn454. Source death processing creates loot before the corpse; the observed
 root fits that existing path. The rod creates no root/refund. Individual weighted
 RNG provenance is not claimed beyond this record and source-backed inference.
 
-`Actual/fresh-comparisons.json` compares six fresh pairs. All selected values
+`Actual/fresh-comparisons.json` compares seven fresh pairs. All selected values
 match with UI input state excluded and fixture enumeration sorted by stableID;
 only the first130 raw fixture enumeration order differs. This is not whole-world,
 normal-save-restoration or compressed-byte equality. `checkpoint-integrity.json`
-checks seven archived F5 checkpoints and all28 files before their original sessions
+checks eight archived F5 checkpoints and all32 files before their original sessions
 were cleaned up. Every prior root, save and build remains preserved.
 
 ## Screens and review limits
@@ -108,8 +110,9 @@ recorded native state/actions/messages/loot diagnostic/fresh-save evidence.
 Independent bounded current-source and recorded-play review: zero remaining
 P1/P2. An old60°C predicate finding was explicitly withdrawn after rechecking
 the current source and REDn/GREENo. Reviewer did not operate Unity or the player.
-Final natural-root pickup/reload review separately verified all28 checkpoint
-files, all six normalized fresh comparisons and the retained loot diagnostic.
+Natural-root pickup/reload review verified the retained loot diagnostic.
+Final shared-path review then independently verified all32 checkpoint files,
+all seven normalized fresh comparisons and final nativev248/248.
 Final payment-guard/native245 and current-source normal pickup/load/fresh490
 were reviewed separately. Package review remains a separate delivery check.
 
@@ -120,3 +123,9 @@ failed suite40813total/40692pass/104fail/9inconclusive/8skip is not cleared by t
 targeted checks. No FPS, Intel or controller claim. Graphics cancelled;
 capstan/cultures parked; Deck deferred. Current Mac9a predates this batch until
 the separate delivery receipt supersedes it.
+
+Final shared-path addendum: [shared-line-correction.md](shared-line-correction.md).
+The current-source clear170->180/fresh180 compatibility continuation adds the
+eighth four-file checkpoint and seventh selected comparison. It is a correction,
+not a fourth capability. The preserved4a export was not built; the coherent Mac
+package must use the corrected runtime.

@@ -1,7 +1,7 @@
 # Field work tools — November 24, 2026
 
-Status: bounded native and recorded Editor play qualified; publication and
-coherent Mac delivery next. These are three
+Status: base tools published as4a7328557; bounded native and recorded Editor
+play qualify the shared-path correction; coherent Mac delivery next. These are three
 bounded connections, not complete thermal-exchanger or dynamo implementations.
 The twelve-machine roster and its acceptance gates remain unchanged.
 
@@ -59,7 +59,7 @@ archives and fresh Continue; independent source/recorded-play review. Supplied
 fixtures do not establish ordinary acquisition or opportunity density. Full
 regression and hardware limits remain open until separately earned.
 
-Final native checks: 245/245, 46 new and 199 retained, zero compile errors.
+Final native checks after shared-path correction: 248/248, 49 new and 199 retained, zero compile errors.
 Independent bounded source and recorded-play review found zero remaining P1/P2.
 Actual native forge construction used all three supplied spikes, three clay and
 one cord, yielding three reusable tools. Heat130->140 spent five fuel plus normal
@@ -82,8 +82,8 @@ The action-hint refresh failure at130 was corrected rather than accepted:
 repeated gathering now retains only the same still-current, still-offered quote
 and token. Six native RED countercases cover tool and construction menus. The
 misleadingly named screenshot `03-nozzle-thaws-ice.png` is the failed attempt and
-is excluded. Five PNGs total, four accepted. Seven native F5 checkpoints retain all
-28 files before session cleanup. Six recorded fresh pairs match selected
+is excluded. Five PNGs total, four accepted. Eight native F5 checkpoints retain all
+32 files before session cleanup. Seven recorded fresh pairs match selected
 values; the initial130 fixture enumeration is sorted by ID for comparison.
 This is not whole-world or compressed-save byte equality.
 
@@ -100,3 +100,8 @@ not erased. The nozzle's own-hearth boundary explicitly requires a Player actor;
 no NPC access policy was invented. Normal native pickup/load under these final
 guards succeeds and fresh490 retains one charge; its four-file archive is kept
 separately as FinalPaymentGuard490.
+
+The two-cell intermediate path now uses the existing Cell.BlocksMovement rule,
+including closed doors, archive barriers and scene-owned blockers. Nativeu RED
+and finalv248 plus current-code clear-shot/fresh180 qualify this correction.
+See the [path addendum](Verification/MachineSystems/FieldWorkTools20261124/shared-line-correction.md).

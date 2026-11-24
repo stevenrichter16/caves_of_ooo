@@ -234,5 +234,25 @@ namespace CavesOfOoo.Tests
             if(change=="equipped")Assert.AreSame(Actor,root.GetPart<PhysicsPart>().Equipped);
             if(change=="quantity")Assert.AreEqual(2,root.GetPart<StackerPart>().StackCount,"independent quantity change is not rewound");
         }
+        DoorPart IntermediateDoor(bool open)
+        {
+            var item=Place("SalvagedTimber",11,10);item.GetPart<PhysicsPart>().Takeable=false;
+            var door=new DoorPart{IsOpen=open};item.AddPart(door);return door;
+        }
+        [TestCase(true)] [TestCase(false)]
+        public void TwoCellDischargeUsesSharedDoorBlockingEvenWithVisibleFarGround(bool open)
+        {
+            var tool=Carry("DischargeRod");Carry("SparkRoot");Assert.True(Act(tool,Choice(tool,"LoadDischargeRod|")));
+            Place("CopperPipe",12,10);IntermediateDoor(open);
+            Assert.AreEqual(!open,Zone.GetCell(11,10).BlocksMovement());
+            Assert.AreEqual(open,Actions(tool).Any(a=>a.Command.StartsWith("DischargeRod|12|10|")));
+        }
+        [Test] public void DoorClosingDuringDischargePreservesDoorAndStoredCharge()
+        {
+            var tool=Carry("DischargeRod");Carry("SparkRoot");Assert.True(Act(tool,Choice(tool,"LoadDischargeRod|")));
+            Place("CopperPipe",12,10);var door=IntermediateDoor(true);string command=Row(tool,"DischargeRod|",12,10);
+            Actor.AddPart(new Probe{Run=e=>{if(e.ID=="AfterInventoryAction")Assert.True(door.TrySetOpen(Actor,Zone,false));}});
+            Assert.False(Act(tool,command));Assert.True(door.IsClosed);Assert.AreEqual(1,Stored(tool));Assert.AreEqual(0,Zone.TileState.Get(12,10)?.Charge??0);
+        }
     }
 }

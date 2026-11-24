@@ -4,7 +4,7 @@ The independent source reviewer inspected the proposed coupling/permission desig
 then the implementation and native/recorded-play artifacts. The reviewer did not
 operate Unity, run tests, control the player, mutate Git or edit files.
 
-Final source/recorded-play conclusion: zero remaining actionable P1/P2 in this
+Initial tool publication source/recorded-play conclusion: zero remaining actionable P1/P2 in this
 scope. Fifteen current source pins match the final native clone. Finalt is245/245,
 46new/199retained. Seven F5 checkpoints retain all28 files; six normalized fresh
 pairs include the final payment-guard pickup/load compatibility continuation.
@@ -35,3 +35,11 @@ filename. Four accepted views show construction, successful thaw and the two
 new tool readers. No added combat screenshot, full-suite clearance, ordinary
 tool-discovery/balance, complete-machine or packaged-play acceptance. Package
 review belongs to the later coherent delivery receipt.
+
+Shared-path correction final review: zero remaining P1/P2. The reviewer checked
+all15current source pins, native REDu2fail/2controls and GREENv248/248 with
+49new/199retained. All32checkpoint hashes and seven normalized fresh pairs match.
+Current-code clear-path180 consumes one charge and fresh180 matches selected
+values. This is recorded evidence review only, with no Unity/player operation.
+The one-call correction preserves closed doors/archive/scene blockers under the
+existing movement rule; no fourth capability or package/full-suite claim.

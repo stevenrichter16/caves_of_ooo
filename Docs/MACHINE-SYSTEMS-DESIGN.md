@@ -1,3 +1,16 @@
+**Shared rod path — November24,2026:** one-line integration correction uses
+Cell.BlocksMovement for the two-cell intermediate path, preserving existing
+solid, closed-door, sealed-barrier and Morrowfast rules. NativeREDu2fail/2controls
+-> final248/248 (49new/199retained),0CS. Current-code native clear170->180 and
+fresh180 retain expected charge0/HP400; all4files archived. Batch now8checkpoints/
+32files and7normalizedfreshpairs. This is0newcapabilities; three field tools below
+remain the additions. Independent bounded source and final recorded-artifact review0P1/P2. Main stopped/rootnull/clean/inputrestored/unlocked. Runtime4a is
+pushed; this correction ships separately without rewriting it. The prepared4a
+Mac export was not built and is preserved; coherent package from final corrected
+runtime next. Current boundedMac9a remains prior delivery. All12complete-machine,
+failed-full-suite, ordinary discovery/balance and hardware gates remain open.
+See [correction](Verification/MachineSystems/FieldWorkTools20261124/shared-line-correction.md).
+
 **Field work tools — November24,2026:** three new bounded capabilities are
 qualified in native tests and recorded Editor play: five-fuel aimed hearth heat,
 one-root/one-charge portable discharge with two-cell straight reach, and finite

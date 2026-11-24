@@ -46,7 +46,7 @@ namespace CavesOfOoo.Core
             if(d<1 || d>2 || dx!=0 && dy!=0 && Math.Abs(dx)!=Math.Abs(dy))return false;
             if(d==1)return true;
             var mid=zone.GetCell(origin.X+Math.Sign(dx),origin.Y+Math.Sign(dy));
-            return Visible(mid) && !mid.Objects.Any(o=>o?.GetPart<PhysicsPart>()?.Solid==true || o?.HasTag("Solid")==true);
+            return Visible(mid) && !mid.BlocksMovement();
         }
         IEnumerable<Quote> Choices(Entity actor,Zone zone)
         {
