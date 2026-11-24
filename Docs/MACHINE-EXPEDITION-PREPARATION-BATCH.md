@@ -4,8 +4,8 @@ November24,2026. Implemented with final valid native RED74/53fail/21controls,
 GREEN154/154 and separate adjacent152/152, all0compiler errors. Actual supplied
 GameBootstrap1840->2100 and fresh2100 selected-state equality completed; final
 independent recorded-play/artifact review including matched85coat utility
-addendum0P1/P2. Bounded Editor/native accepted. Mac238 does
-not yet contain this batch. See the [evidence and limits](Verification/MachineSystems/ExpeditionPreparation20261124/README.md).
+addendum0P1/P2. Bounded Editor/native accepted. The current bounded Mac7a193eae6 now contains the batch; controlled packaged
+interactions remain open. See the [evidence and limits](Verification/MachineSystems/ExpeditionPreparation20261124/README.md).
 The user now targets3-5 distinct new player-facing additions per work run;
 correctness fixes, tests, documents and builds do not count as additions.
 

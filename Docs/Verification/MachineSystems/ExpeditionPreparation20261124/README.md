@@ -4,7 +4,7 @@ November24,2026. Implemented and native/source qualified; actual GameBootstrap
 checks below completed. Independent source/recorded-play/artifact reviews,
 including the matched acid-utility addendum, found0remainingP1/P2. Bounded
 Editor/native acceptance: three additions, plus separate fish fixes.
-Current Mac238096389 does not contain this batch yet. All twelve complete-machine
+Current bounded [Mac7a193eae6](../MacCandidate7A193EAE6/README.md) includes this batch; packaged interactions remain open. All twelve complete-machine
 gates remain open. Original full regression remains failed; these bounded runs
 do not clear its91unresolved baseline names.
 

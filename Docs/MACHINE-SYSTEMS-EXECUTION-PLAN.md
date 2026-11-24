@@ -1,3 +1,23 @@
+**Expedition Mac delivery — November24,2026:** runtime
+7a193eae699421f97cbd9f9ffe9dc45877389697 is pushed/remotely verified and now the
+current bounded Mac package. Three new capabilities: finite brine distillation,
+water acid-rinse and recoverable unsprung loaded traps; separate shared fish
+corrections. [Delivery receipt](Verification/MachineSystems/MacCandidate7A193EAE6/README.md)
+records0errors/5unchangedwarnings,57.488087s,32083Git/SHA source/32086effective
+inputs/86exactoverlaybodies/592external/186playerpins.104selected assembly checks,
+all428Part names/instancefields unchanged versus074d/088/238. Independent final
+package/artifact review0actionableP1/P2; no reviewer native operations. Owned
+PID68501startup log+window71695/640x428 only; no extra screenshot/render judgment,
+packaged input/actions/save/Intel/controller/FPS acceptance.4normal Mac saves
+byte-exact/18logicalpreferences restored. Fresh15:38:48UTC23apps4278files,
+84foreign861selectednormal2otherforeign4Macsaves exact, scoped only. Main stopped,
+rootnull,clean,profileroff,original7views/index0/inputrestored. Actual1840->2100/
+fresh2100 and extra matched85acid control/rinse2150 remain Editor evidence,
+not packaged gameplay. All12complete-machine gates/failed full suite/W1b/W2/
+ordinary opportunity density remain open. Next implement another3-5distinct
+medium-depth material/tool/project connections; reuse accepted evidence/builds.
+Supplied2100/2150 and ordinary2440 remain separate. Root sole owner; ACTIVE30m.
+
 **Expedition preparation — November24,2026:** three new capabilities implemented
 and qualified through actual supplied GameBootstrap1840->2100/fresh2100: finite
 4brine+5fuel->2water in one chosen flask;2water removes up to20acid and leaves Wet;
