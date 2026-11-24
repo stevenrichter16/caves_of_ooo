@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="13" result="Failed(Child)" total="13" passed="2" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 22:25:54Z" end-time="2026-11-24 22:25:55Z" duration="0.7670745">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41664" result="Failed" site="Child" start-time="2026-11-24 22:25:54Z" end-time="2026-11-24 22:25:55Z" duration="0.767075" total="13" passed="2" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50774" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41664" result="Failed" site="Child" start-time="2026-11-24 22:25:54Z" end-time="2026-11-24 22:25:55Z" duration="0.752811" total="13" passed="2" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="34478" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50775" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41664" result="Failed" site="Child" start-time="2026-11-24 22:25:54Z" end-time="2026-11-24 22:25:55Z" duration="0.741563" total="13" passed="2" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50776" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41664" result="Failed" site="Child" start-time="2026-11-24 22:25:54Z" end-time="2026-11-24 22:25:55Z" duration="0.730848" total="13" passed="2" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="21950" name="CargoSledTests" fullname="CavesOfOoo.Tests.CargoSledTests" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.422333" total="13" passed="2" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="21958" name="ActiveHaulingRefusesSledRemoval" fullname="CavesOfOoo.Tests.CargoSledTests.ActiveHaulingRefusesSledRemoval" methodname="ActiveHaulingRefusesSledRemoval" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1326493967" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.048588" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.ActiveHaulingRefusesSledRemoval () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:77
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21962" name="BrokenSledLosesAidWithoutDeletingMassOrLeavingSpeedResidue" fullname="CavesOfOoo.Tests.CargoSledTests.BrokenSledLosesAidWithoutDeletingMassOrLeavingSpeedResidue" methodname="BrokenSledLosesAidWithoutDeletingMassOrLeavingSpeedResidue" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1311514302" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.025394" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.BrokenSledLosesAidWithoutDeletingMassOrLeavingSpeedResidue () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:101
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21952" name="ExistingBlockerStillStopsOrdinaryLoadFollowing" fullname="CavesOfOoo.Tests.CargoSledTests.ExistingBlockerStillStopsOrdinaryLoadFollowing" methodname="ExistingBlockerStillStopsOrdinaryLoadFollowing" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1720864622" result="Passed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.037961" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21961" name="FittedSaveGraphRetainsSameSledAndLoadReferences" fullname="CavesOfOoo.Tests.CargoSledTests.FittedSaveGraphRetainsSameSledAndLoadReferences" methodname="FittedSaveGraphRetainsSameSledAndLoadReferences" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1038401465" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.024725" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.FittedSaveGraphRetainsSameSledAndLoadReferences () [0x0000b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:94
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21954" name="FittedSledChangesSpeedAndFollowsTheSameLoad" fullname="CavesOfOoo.Tests.CargoSledTests.FittedSledChangesSpeedAndFollowsTheSameLoad" methodname="FittedSledChangesSpeedAndFollowsTheSameLoad" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="305296076" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.033768" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.FittedSledChangesSpeedAndFollowsTheSameLoad () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:49
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21953" name="FittingSledKeepsBothPhysicalOwnersAndCountsItsMass" fullname="CavesOfOoo.Tests.CargoSledTests.FittingSledKeepsBothPhysicalOwnersAndCountsItsMass" methodname="FittingSledKeepsBothPhysicalOwnersAndCountsItsMass" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="2083146669" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.062618" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.FittingSledKeepsBothPhysicalOwnersAndCountsItsMass () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:41
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21960" name="InterruptedFittingRestoresExactSledAndNoSupport" fullname="CavesOfOoo.Tests.CargoSledTests.InterruptedFittingRestoresExactSledAndNoSupport" methodname="InterruptedFittingRestoresExactSledAndNoSupport" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1363534605" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.025741" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.InterruptedFittingRestoresExactSledAndNoSupport () [0x0000b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:88
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21951" name="OrdinaryBeamRetainsItsExistingHaulWeightAndPenalty" fullname="CavesOfOoo.Tests.CargoSledTests.OrdinaryBeamRetainsItsExistingHaulWeightAndPenalty" methodname="OrdinaryBeamRetainsItsExistingHaulWeightAndPenalty" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="957216770" result="Passed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.026185" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21956" name="RecoveryReturnsSameSledWithoutDeletingOrMovingLoad" fullname="CavesOfOoo.Tests.CargoSledTests.RecoveryReturnsSameSledWithoutDeletingOrMovingLoad" methodname="RecoveryReturnsSameSledWithoutDeletingOrMovingLoad" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1033031500" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.025758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.RecoveryReturnsSameSledWithoutDeletingOrMovingLoad () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:63
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21957" name="RemovedLoadLeavesSledRecoverable" fullname="CavesOfOoo.Tests.CargoSledTests.RemovedLoadLeavesSledRecoverable" methodname="RemovedLoadLeavesSledRecoverable" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1927941725" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.026080" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.RemovedLoadLeavesSledRecoverable () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:71
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21963" name="RepeatedCurrentGatherRetainsDisplayedSledChoice" fullname="CavesOfOoo.Tests.CargoSledTests.RepeatedCurrentGatherRetainsDisplayedSledChoice" methodname="RepeatedCurrentGatherRetainsDisplayedSledChoice" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1293139205" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.026076" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.RepeatedCurrentGatherRetainsDisplayedSledChoice () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:107
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21955" name="SledDoesNotMakeTooHeavyMillstoneHaulable" fullname="CavesOfOoo.Tests.CargoSledTests.SledDoesNotMakeTooHeavyMillstoneHaulable" methodname="SledDoesNotMakeTooHeavyMillstoneHaulable" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1272968306" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.025821" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.SledDoesNotMakeTooHeavyMillstoneHaulable () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:57
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+]]></output>
+            </test-case>
+            <test-case id="21959" name="StaleFittingQuoteDoesNotStealMovedLoad" fullname="CavesOfOoo.Tests.CargoSledTests.StaleFittingQuoteDoesNotStealMovedLoad" methodname="StaleFittingQuoteDoesNotStealMovedLoad" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="649221004" result="Failed" start-time="2026-11-24 22:25:55Z" end-time="2026-11-24 22:25:55Z" duration="0.026453" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CargoSled
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.CargoSledTests.Sled () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:16
+at CavesOfOoo.Tests.CargoSledTests.StaleFittingQuoteDoesNotStealMovedLoad () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:82
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'CargoSled'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

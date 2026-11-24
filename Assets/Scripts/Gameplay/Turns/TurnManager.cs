@@ -204,6 +204,10 @@ namespace CavesOfOoo.Core
                 // instead of acting every tick as their Speed implies.
                 for (int i = 0; i < _entries.Count; i++)
                 {
+                    // Reconcile current physical hauling support before Speed
+                    // grants energy. Pure GetSpeed queries remain side-effect free.
+                    var entity = _entries[i].Entity;
+                    if (entity.HasPart<DragPart>()) DragSystem.ValidateLink(entity, entity.SpatialZone);
                     int speed = GetSpeed(_entries[i].Entity);
                     _entries[i].Energy = SaturatingAdd(_entries[i].Energy, speed);
                 }

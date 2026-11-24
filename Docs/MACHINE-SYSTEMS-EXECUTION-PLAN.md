@@ -1,3 +1,22 @@
+**Cargo sled — November 24, 2026:** One new bounded local hauling capability
+has native and recorded Editor qualification. Final h352/352 includes25 sled
+cases (two ordinary controls) and327 retained adjacent cases, zero compiler
+errors. Independent design/source/recorded-play and final wording reviews found
+0 remaining P1/P2 after two real callback failures were reproduced and fixed.
+Actual supplied Strength18/40HP route: forge20, fit30, same-owner hauling43/55,
+blocked step55, F5/fresh55 with active grip, release55/Speed100, original-sled
+recovery65, existing pallet dismantle75 and field-haft preparation85/fresh85.
+Three checkpoints/all12files, two exact selected fresh pairs, three PNGs. Added
+six physical weight and half hauling penalty use shared handling, movement and
+energy accounting; no extra pulling strength, general cross-zone cargo or
+capstan. Normal alternatives remain. Current delivered Mac a02338565 predates
+this increment; batch another useful connection before coherent package work.
+Fresh22:51:53UTC scoped84foreign/861normal/twootherforeign/27apps5022files/fourMac
+saves exact. Main stopped/rootnull/clean/inputrestored/unlocked/RequestedSeed0.
+All twelve complete-machine, full-suite, ordinary acquisition, economics and
+sustained NPC gates remain open. Screen/crossing are candidates, not shipped.
+See [contract](MACHINE-CARGO-SLED.md) and [evidence](Verification/MachineSystems/CargoSled20261124/README.md).
+
 **Route tools Mac delivery — November 24, 2026:** Runtime `a02338565` is
 pushed and remotely verified. Current Mac:
 `/Users/steven/coo-verification/builds/mac-a02338565-20261124/CavesOfOoo.app`.

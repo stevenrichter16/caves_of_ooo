@@ -251,7 +251,9 @@ namespace CavesOfOoo.Core
         {
             int weight = DragRules.WeightOf(load);
             if (weight <= 0) return 0;
-            return weight * PenaltyPerTenWeight / 10;
+            long penalty = (long)weight * PenaltyPerTenWeight / 10;
+            if (CargoSledSupport.Assists(load)) penalty /= 2;
+            return (int)System.Math.Min(int.MaxValue, penalty);
         }
 
         /// <summary>Apply (positive) or lift (negative) a speed penalty,
@@ -310,6 +312,16 @@ namespace CavesOfOoo.Core
                 || IsGone(actor) || IsGone(load);
 
             if (broken) Slip(actor, load, "link no longer valid");
+            else
+            {
+                int current = PenaltyFor(load);
+                if (dragPart.SpeedPenalty != current)
+                {
+                    LiftSpeedPenalty(actor, dragPart);
+                    dragPart.SpeedPenalty = current;
+                    dragPart.AppliedPenalty = ApplySpeedPenalty(actor, current);
+                }
+            }
         }
 
         // Structural HP can be zero when BeforeDestroy vetoes destruction.
@@ -391,8 +403,11 @@ namespace CavesOfOoo.Core
             // straight through another millstone.
             if (destination.BlocksMovement(load)) { Slip(hauler, load, "blocked"); return; }
 
+            var from = zone.GetEntityCell(load);
+            var sled = load.GetPart<SledLoadPart>()?.Sled;
             if (!MovementSystem.ForceMoveTo(load, zone, x, y))
                 Slip(hauler, load, "could not move");
+            else CargoSledSupport.Follow(load, sled, zone, from, destination);
         }
 
         /// <summary>Lose the grip, and say so. One record, one message.</summary>

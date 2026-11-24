@@ -1,3 +1,22 @@
+**Cargo sled — November 24, 2026:** One new bounded local hauling capability
+has native and recorded Editor qualification. Final h352/352 includes25 sled
+cases (two ordinary controls) and327 retained adjacent cases, zero compiler
+errors. Independent design/source/recorded-play and final wording reviews found
+0 remaining P1/P2 after two real callback failures were reproduced and fixed.
+Actual supplied Strength18/40HP route: forge20, fit30, same-owner hauling43/55,
+blocked step55, F5/fresh55 with active grip, release55/Speed100, original-sled
+recovery65, existing pallet dismantle75 and field-haft preparation85/fresh85.
+Three checkpoints/all12files, two exact selected fresh pairs, three PNGs. Added
+six physical weight and half hauling penalty use shared handling, movement and
+energy accounting; no extra pulling strength, general cross-zone cargo or
+capstan. Normal alternatives remain. Current delivered Mac a02338565 predates
+this increment; batch another useful connection before coherent package work.
+Fresh22:51:53UTC scoped84foreign/861normal/twootherforeign/27apps5022files/fourMac
+saves exact. Main stopped/rootnull/clean/inputrestored/unlocked/RequestedSeed0.
+All twelve complete-machine, full-suite, ordinary acquisition, economics and
+sustained NPC gates remain open. Screen/crossing are candidates, not shipped.
+See [contract](MACHINE-CARGO-SLED.md) and [evidence](Verification/MachineSystems/CargoSled20261124/README.md).
+
 **Route tools Mac delivery — November 24, 2026:** Runtime `a02338565` is
 pushed and remotely verified. Current Mac:
 `/Users/steven/coo-verification/builds/mac-a02338565-20261124/CavesOfOoo.app`.
@@ -1343,7 +1362,7 @@ This is a source audit, not a new gameplay qualification. Older document status 
 | Crafting and salvage | `WeaponAssemblyPart` records components; `WeaponSalvagePart` returns the recorded head and haft, losing binding/improvements. Tinkering bits form a separate economy. | General recovered machinery, discrete components, restoration choices and physical output accounting. Preserve existing pack crafting and weapon salvage. |
 | Preparation | `PreparationRecipePart` already shapes components/bandages, concentrates mendleaf and detoxifies GroveRed at a still. `BrewingService` combines reagent properties with transactions. | Liquid fractionation is new. Do not reimplement existing preparation as a new milestone or treat MAX reagent potency as conserved mixture mass. |
 | Repairs | `RepairablePart` and repair recipes support opt-in faults, payment and saved restored function. | Bounded machine faults, meaningful substitutions and calibration where justified. No blanket combat-HP repair, resurrection or retroactive damage to existing sites. |
-| Handling | `HandlingPart`, `DragRules`, hauling links and `ContainerLoadPart` support weight and spatial following. | Anchored pulling, safe machine disconnection/installation and cross-zone cargo policies. Reuse current weight, contents and cycle protections. |
+| Handling | `HandlingPart`, `DragRules`, hauling links and `ContainerLoadPart` support weight and spatial following. Bounded local CargoSled adds its six physical weight, halves ordinary hauling slowdown while sound, follows only actual hauling and preserves exact recovery/save references. | Anchored pulling, safe machine disconnection/installation and cross-zone cargo policies. Reuse current weight, contents and cycle protections. |
 | Jobs | `KitchenBatchPart` has real escrow, due ticks, blocking and identified outputs. | Reuse its transaction/revalidation approach without inheriting kitchen-specific actors/sites. Define scheduling, interruption and unloaded-zone reconciliation explicitly. |
 | Information and relationships | Existing Examine, discoveries, traders, requests and reputation provide entry points. | Sample provenance, bounded assay answers, source-limited survey reports, actual delivery jobs and explicit machine-use/salvage permission. |
 
@@ -1356,6 +1375,14 @@ The twelve machines are not all ready because individual foundations exist. Cont
 The user prioritizes reclamation of damaged finds and regional raw materials into useful component inputs. M3a accepts an explicit damaged-tool manifest, mutually exclusive dismantle/reclaim choices, and cold dressing of recovered iron into an existing piercing point. Retained quotes, Part-owned policies and shared transactions have native and actual acceptance; both routes feed ordinary equipped weapons used outside the service, with travel/fresh reload. Carrying/selling intact is a demonstrated alternative. Regional raw-material processing is a separate remaining qualification: existing pack timber/cord recipes are retained, and a recovered manufactured blank does not establish ore refining. Full heat/fuel, provenance, useful outputs, waste, economy and actual-play gates must be satisfied by their own scoped processes.
 
 ## Dependency matrix for the twelve machines
+
+November24 local transport dependency: the same cargo sled and load now have
+native/recorded Editor forging, physical following, blocked-step, recovery and
+two fresh-load qualifications. It adds no anchoring, increased haul capacity,
+installed-machine disconnection, autonomous transport or generic cross-zone
+cargo. The capstan remains parked/proposed and all twelve machine gates remain
+open. The new local material-to-tool-to-moved-obstacle/reclamation connection is
+one capability. See [cargo sled](MACHINE-CARGO-SLED.md).
 
 November24 field-tool dependency: aimed finite hearth heat now thaws outside
 ice through shared reactions; a one-root rod stores and delivers one charge;

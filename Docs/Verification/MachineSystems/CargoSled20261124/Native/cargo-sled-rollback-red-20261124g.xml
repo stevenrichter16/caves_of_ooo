@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 22:33:32Z" end-time="2026-11-24 22:33:32Z" duration="0.7499836">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41676" result="Failed" site="Child" start-time="2026-11-24 22:33:32Z" end-time="2026-11-24 22:33:32Z" duration="0.749984" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50787" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41676" result="Failed" site="Child" start-time="2026-11-24 22:33:32Z" end-time="2026-11-24 22:33:32Z" duration="0.736754" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="41752" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50788" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41676" result="Failed" site="Child" start-time="2026-11-24 22:33:32Z" end-time="2026-11-24 22:33:32Z" duration="0.726409" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50789" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41676" result="Failed" site="Child" start-time="2026-11-24 22:33:32Z" end-time="2026-11-24 22:33:32Z" duration="0.716232" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="21950" name="CargoSledTests" fullname="CavesOfOoo.Tests.CargoSledTests" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-11-24 22:33:32Z" end-time="2026-11-24 22:33:32Z" duration="0.094394" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="21975" name="LateIndependentSledMoveStaysRecoverableAtItsRealDestination" fullname="CavesOfOoo.Tests.CargoSledTests.LateIndependentSledMoveStaysRecoverableAtItsRealDestination" methodname="LateIndependentSledMoveStaysRecoverableAtItsRealDestination" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1877749250" result="Failed" start-time="2026-11-24 22:33:32Z" end-time="2026-11-24 22:33:32Z" duration="0.058645" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  rollback leaves an independently moved sled ordinarily recoverable
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CargoSledTests.LateIndependentSledMoveStaysRecoverableAtItsRealDestination () [0x000d2] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:176
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="21976" name="RecoveryRefusesPhantomOriginalBesideARealSameIdOwner" fullname="CavesOfOoo.Tests.CargoSledTests.RecoveryRefusesPhantomOriginalBesideARealSameIdOwner" methodname="RecoveryRefusesPhantomOriginalBesideARealSameIdOwner" classname="CavesOfOoo.Tests.CargoSledTests" runstate="Runnable" seed="1691401083" result="Failed" start-time="2026-11-24 22:33:32Z" end-time="2026-11-24 22:33:32Z" duration="0.028409" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CargoSledTests.RecoveryRefusesPhantomOriginalBesideARealSameIdOwner () [0x0005a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/CargoSledTests.cs:186
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,1214 @@
+{
+  "suppliedFixture": "CargoSledShowcase, seed64, Strength18, ordinary40HP, materials and pallet supplied; no post-setup world injection",
+  "game": "7ce9d799d2c946a08602e63db9b82446",
+  "firstInputNoOp": "First native I left Normal/tick10; separately observed I opened pack; no access block",
+  "forgeMenu": [
+    {
+      "label": "make cargo sled: 1 iron spike + 2 salvaged timber + 2 knotflax cord -> 1 cargo sled; materials become one reusable local hauling sled (1 action, pack)",
+      "command": "MaterialProcess|make_cargo_sled|2141|139f1a34352640d1b63590726e80c140"
+    },
+    {
+      "label": "make discharge rod: 1 iron spike + 1 knotflax cord -> 1 discharge rod; materials become one reusable tool (1 action, pack)",
+      "command": "MaterialProcess|make_discharge_rod|2141|9850f2d5eceb496fa2d3e6ff7a320072"
+    },
+    {
+      "label": "make hearth nozzle (unavailable)",
+      "command": "Disabled:short"
+    },
+    {
+      "label": "make steam condenser (unavailable)",
+      "command": "Disabled:short"
+    },
+    {
+      "label": "examine",
+      "command": "Examine"
+    },
+    {
+      "label": "Set aside for crafting",
+      "command": "toggle_craftmark"
+    },
+    {
+      "label": "Drop",
+      "command": "drop"
+    }
+  ],
+  "fitMenu": [
+    {
+      "label": "fit sled beneath reclaimable timber pallet (+6 weight; half hauling slowdown)",
+      "command": "FitCargoSled|2142|415924d472fd45b59ea9b3ac4921de52"
+    },
+    {
+      "label": "examine",
+      "command": "Examine"
+    },
+    {
+      "label": "Drop",
+      "command": "drop"
+    }
+  ],
+  "initial": {
+    "tick": 10,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "speed": 100,
+    "str": 18,
+    "energy": 1000,
+    "grip": null,
+    "game": "CargoSledProbe",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2136",
+        "bp": "IronSpikeComponent",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2137",
+        "bp": "SalvagedTimber",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2139",
+        "bp": "KnotflaxCord",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 41,
+        "y": 12,
+        "weight": 90,
+        "penalty": 36,
+        "load": null,
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "forged": {
+    "tick": 20,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "speed": 100,
+    "str": 18,
+    "energy": 1000,
+    "grip": null,
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "n": 1,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 41,
+        "y": 12,
+        "weight": 90,
+        "penalty": 36,
+        "load": null,
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "fitted": {
+    "tick": 30,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "speed": 100,
+    "str": 18,
+    "energy": 1000,
+    "grip": null,
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 41,
+        "y": 12,
+        "weight": 96,
+        "penalty": 19,
+        "load": null,
+        "sled": "2143",
+        "takeable": false
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "x": 41,
+        "y": 12,
+        "weight": 6,
+        "penalty": 2,
+        "load": "2142",
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "haulingStart": {
+    "tick": 30,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "speed": 81,
+    "str": 18,
+    "energy": 1000,
+    "grip": "2142",
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 41,
+        "y": 12,
+        "weight": 96,
+        "penalty": 19,
+        "load": null,
+        "sled": "2143",
+        "takeable": false
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "x": 41,
+        "y": 12,
+        "weight": 6,
+        "penalty": 2,
+        "load": "2142",
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "firstHaulMove": {
+    "tick": 43,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 12
+    },
+    "hp": 40,
+    "speed": 81,
+    "str": 18,
+    "energy": 1053,
+    "grip": "2142",
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 40,
+        "y": 12,
+        "weight": 96,
+        "penalty": 19,
+        "load": null,
+        "sled": "2143",
+        "takeable": false
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "x": 40,
+        "y": 12,
+        "weight": 6,
+        "penalty": 2,
+        "load": "2142",
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "forgeApproach": {
+    "tick": 55,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 81,
+    "str": 18,
+    "energy": 1025,
+    "grip": "2142",
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 39,
+        "y": 12,
+        "weight": 96,
+        "penalty": 19,
+        "load": null,
+        "sled": "2143",
+        "takeable": false
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "x": 39,
+        "y": 12,
+        "weight": 6,
+        "penalty": 2,
+        "load": "2142",
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "blockedByOwnLoad": {
+    "tick": 55,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 81,
+    "str": 18,
+    "energy": 1025,
+    "grip": "2142",
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 39,
+        "y": 12,
+        "weight": 96,
+        "penalty": 19,
+        "load": null,
+        "sled": "2143",
+        "takeable": false
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "x": 39,
+        "y": 12,
+        "weight": 6,
+        "penalty": 2,
+        "load": "2142",
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "beforeFresh55": {
+    "tick": 55,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 81,
+    "str": 18,
+    "energy": 1025,
+    "grip": "2142",
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 39,
+        "y": 12,
+        "weight": 96,
+        "penalty": 19,
+        "load": null,
+        "sled": "2143",
+        "takeable": false
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "x": 39,
+        "y": 12,
+        "weight": 6,
+        "penalty": 2,
+        "load": "2142",
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "afterFresh55": {
+    "tick": 55,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 81,
+    "str": 18,
+    "energy": 1025,
+    "grip": "2142",
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 39,
+        "y": 12,
+        "weight": 96,
+        "penalty": 19,
+        "load": null,
+        "sled": "2143",
+        "takeable": false
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "x": 39,
+        "y": 12,
+        "weight": 6,
+        "penalty": 2,
+        "load": "2142",
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "released": {
+    "tick": 55,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 100,
+    "str": 18,
+    "energy": 1025,
+    "grip": null,
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 39,
+        "y": 12,
+        "weight": 96,
+        "penalty": 19,
+        "load": null,
+        "sled": "2143",
+        "takeable": false
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "x": 39,
+        "y": 12,
+        "weight": 6,
+        "penalty": 2,
+        "load": "2142",
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "recovered": {
+    "tick": 65,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 100,
+    "str": 18,
+    "energy": 1025,
+    "grip": null,
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "n": 1,
+        "load": null
+      }
+    ],
+    "ground": [
+      {
+        "id": "2142",
+        "bp": "GleanersTimberPallet",
+        "x": 39,
+        "y": 12,
+        "weight": 90,
+        "penalty": 36,
+        "load": null,
+        "sled": null,
+        "takeable": false
+      }
+    ],
+    "state": "Normal"
+  },
+  "dismantled": {
+    "tick": 75,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 100,
+    "str": 18,
+    "energy": 1025,
+    "grip": null,
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2705",
+        "bp": "SalvagedTimber",
+        "n": 2,
+        "load": null
+      }
+    ],
+    "ground": [],
+    "state": "Normal"
+  },
+  "final85": {
+    "tick": 85,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 100,
+    "str": 18,
+    "energy": 1025,
+    "grip": null,
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2705",
+        "bp": "SalvagedTimber",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2707",
+        "bp": "FieldHaftComponent",
+        "n": 1,
+        "load": null
+      }
+    ],
+    "ground": [],
+    "state": "Normal"
+  },
+  "beforeFresh85": {
+    "tick": 85,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 100,
+    "str": 18,
+    "energy": 1025,
+    "grip": null,
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2705",
+        "bp": "SalvagedTimber",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2707",
+        "bp": "FieldHaftComponent",
+        "n": 1,
+        "load": null
+      }
+    ],
+    "ground": [],
+    "state": "Normal"
+  },
+  "afterFresh85": {
+    "tick": 85,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 11
+    },
+    "hp": 40,
+    "speed": 100,
+    "str": 18,
+    "energy": 1025,
+    "grip": null,
+    "game": "7ce9d799d2c946a08602e63db9b82446",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "load": null
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "load": null
+      },
+      {
+        "id": "2143",
+        "bp": "CargoSled",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2705",
+        "bp": "SalvagedTimber",
+        "n": 1,
+        "load": null
+      },
+      {
+        "id": "2707",
+        "bp": "FieldHaftComponent",
+        "n": 1,
+        "load": null
+      }
+    ],
+    "ground": [],
+    "state": "Normal"
+  },
+  "unfittedReaderSecondPage": {
+    "open": true,
+    "page": 1,
+    "pages": 2,
+    "title": "cargo sled",
+    "subject": "2143",
+    "sections": [
+      {
+        "heading": "Current state",
+        "text": "Ready to fit beneath one nearby ordinary haulable load."
+      },
+      {
+        "heading": "How to use",
+        "text": "Carry it beside an ordinary heavy load, fit it underneath, then use the load's usual haul command. Release the haul to recover the same sled.\nCost and limits: One action to fit or recover. Adds 6 weight and halves only hauling Speed penalty; no extra strength, blocked-path bypass or general travel between zones. Broken or frozen sleds give no assistance.\nRight now you can: fit sled beneath reclaimable timber pallet (+6 weight; half hauling slowdown)."
+      },
+      {
+        "heading": "Description",
+        "text": "Low timber runners bound with cord and iron fasteners. Fit this same sled beneath an ordinary nearby haulable load. It adds its own weight but halves hauling slowdown while sound; normal strength, doors and obstacles still matter."
+      }
+    ],
+    "visible": [
+      "nearby haulable load. It adds its own weight but",
+      "halves hauling slowdown while sound; normal",
+      "strength, doors and obstacles still matter.",
+      "",
+      "Type: Tools",
+      "Weight: 6 lb each"
+    ],
+    "tick": 20,
+    "energy": 1000,
+    "hp": 40
+  },
+  "selectedFreshPairsExact": true,
+  "notes": [
+    "Two-owner cell initially opens the intentional pile summary: choose everything here then the actual sled or pallet; not a missing action or source fix.",
+    "Forge at39,11 is passable: Up moved there and is not a blocked-move proof. Native Down into the moved solid pallet refused with tick55/position unchanged.",
+    "Existing shape_haft produced FieldHaftComponent, not OakHaftComponent.",
+    "No exact targeting, ordinary acquisition, optimal haul-before-dismantle economics, travel, whole-world equality, controller or FPS qualification."
+  ]
+}

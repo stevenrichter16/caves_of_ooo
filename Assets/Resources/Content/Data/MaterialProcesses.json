@@ -1,6 +1,29 @@
 {
   "Processes": [
     {
+      "Id": "make_cargo_sled",
+      "SourceBlueprint": "IronSpikeComponent",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "AdditionalInputBlueprints": [
+        "SalvagedTimber",
+        "KnotflaxCord"
+      ],
+      "AdditionalInputCounts": [
+        2,
+        2
+      ],
+      "OutputBlueprints": [
+        "CargoSled"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "make cargo sled",
+      "LossText": "materials become one reusable local hauling sled"
+    },
+    {
       "Id": "make_hand_bellows",
       "SourceBlueprint": "IronSpikeComponent",
       "Mode": "Process",

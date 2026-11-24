@@ -1,6 +1,87 @@
 {
   "Objects": [
     {
+      "Name": "CargoSled",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cargo sled"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "6"
+            },
+            {
+              "Key": "Category",
+              "Value": "Tools"
+            }
+          ]
+        },
+        {
+          "Name": "CargoSled",
+          "Params": []
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Low timber runners bound with cord and iron fasteners. Fit this same sled beneath an ordinary nearby haulable load. It adds its own weight but halves hauling slowdown while sound; normal strength, doors and obstacles still matter."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Item",
+          "Value": "true"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
       "Name": "CinderholdOilRecoveryTray",
       "Parts": [
         { "Name": "Render", "Params": [
