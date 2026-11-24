@@ -3,9 +3,9 @@
 Three new bounded capabilities connect spare equipment, camp storage and an
 existing assembled weapon. Implementation and native/Editor verification are
 complete. Independent source and recorded-play review found no remaining P1/P2;
-the three capabilities are accepted within this bounded scope. Publication and
-current Mac delivery follow.
-Current delivered Mac6b predates this batch. All twelve complete-machine gates
+the three capabilities are accepted within this bounded scope. Runtime9a is
+committed, pushed and remotely verified. The [current bounded Mac delivery](../MacCandidate9A0D55F93/README.md)
+includes this batch. All twelve complete-machine gates
 and the inherited failed full regression remain open.
 
 | Capability | Cost and result | Useful alternative |

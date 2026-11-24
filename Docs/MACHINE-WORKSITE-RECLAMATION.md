@@ -1,3 +1,22 @@
+**Worksite Mac delivery — November24,2026:** runtime
+9a0d55f9303b76c033af98ee28a0d985663c3624 is pushed/remotely verified and now has a
+current bounded universal Mac package. Three distinct additions: spare leather
+armor recovery, selected own-box material work and lossy field rebinding. Native
+287/287 (72new/215retained); actual Editor menus/readers/movement/fresh states
+and independent source/recorded-play review0P1/P2. Package0errors/5exactprior
+warnings62.790529s;32097Git/SHA source32100effective/86exactoverlay/592external/
+186playerpins.143selected assembly checks;428Part names/fields unchanged,
+including immediate6b. OwnedPID75323startup2688->2689/7creatures/window71754
+640x428only; no packaged input/actions/save/render/Intel/controller/FPS claim.
+4normalMacsaves byte-exact/18logicalprefs restored. Fresh18:18:40UTC25apps4650files,
+84foreign861selectednormal2otherforeign4Macsaves scoped exact. Main stopped,
+rootnull,scene clean,profileroff,original7views/index0/inputrestored. Final independent package
+review0remainingP1/P2. All12complete-machine/full-suite/discovery/hardware
+gates stay open. See [delivery receipt](Verification/MachineSystems/MacCandidate9A0D55F93/README.md).
+Next qualify another3–5distinct medium-depth tool/material/lasting-project
+connections; do not replay this accepted batch as new work. Root sole owner;
+task ACTIVE every30minutes. Graphics cancelled, capstan/cultures parked, Deck deferred.
+
 **Worksite connections accepted in bounded Editor scope — November24,2026:**
 Three distinct new capabilities: plain unworn leather armor recovery with a
 cutter; supervised material processing from the selected adjacent own installed
