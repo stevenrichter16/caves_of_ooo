@@ -1,3 +1,21 @@
+**Current Mac delivery — November24,2026:** runtime088 package accepted after
+final independent source/package/startup-artifact review0P1/P2.
+Runtime088029e00241a9b59e20d2cc0bcbf99dba69ae16 packages accepted Cinderhold supply
+and water-menu clarity together. Universal6000.3.4f1/nondev,57.231673s364197149bytes,
+0errors/5exact632warnings.32065Git/SHA source,32068effective/83changed0missing3added,
+86overlayexact/0runtimeC#changes/592external186playerpins.57metadata/literal/call
+checks; all428Partnames/instancefields equal074d and immediate632, not complete
+IL equivalence or gameplay proof. Owned87186/window71597 actual640x428startup/
+save-choice/world,7creatures2701generated2702ready; closed. Fresh no-request
+post/AXfalse/screentrue; no input/activation/request.4normalMacsavefiles exact in
+place,18logicalprefs restored. All21apps/3906files freshlyexact (20prior3720+186new),
+84foreign861selectednormal2otherforeign exact08:59:51UTC; main stopped/rootnull/
+clean/profileroff/original7views/index0. [Receipt](Verification/MachineSystems/MacCandidate088029E00/README.md).
+Current `/Users/steven/coo-verification/builds/mac-088029e00-20261124/CavesOfOoo.app`.
+Supersedes older632=currentMac references below. Controlled packaged interactions/save,
+FPS/controller/Intel, failed full regression,all12complete-machine gates,W1b/W2
+remain open. Root sole owner; task ACTIVE every30minutes; frequent real screenshots.
+
 **Ordinary discovery / water-menu clarity — November24,2026:** bounded Editor
 accepted after native, actual and independent source/artifact/gameplay-evidence review0P1/P2.
 Real pack rows now reuse the existing truthful waterskin availability producer:
@@ -1091,6 +1109,11 @@ current statuses. See [weather opportunities](WEATHER-AND-SEASONAL-TOOL-USES.md)
 | Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed complete machine; bounded existing sounding-rod supply now follows lasting Cinderhold repair or seep sealing, with actual paid purchase/read/fresh10810 proof. This does not add sensing behavior, calibration or a complete expedition/resonator; machine-specific gates remain open. |
 | Signal relay | Coordinate separated people and owned locations. | Connectivity, observed reports and persistent dispatch/delivery state with genuine cargo custody. | One physical delivery or report follows a real arrangement, survives interruption/reload and cannot duplicate goods. | Proposed; machine-specific prerequisites open. |
 | Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. | Proposed; existing coatings/reagents are foundations; targeted treatment eligibility, effects, alternatives and persistence remain open. M1d does not implement treatment. |
+
+November24 package addendum: accepted currentMac088 includes both the lasting
+Cinderhold supply and shared water-menu prerequisite with source/artifact/startup
+proof and independent final review0P1/P2. Complete-machine statuses do not change;
+controlled packaged gameplay remains separate from Editor behavior/Part shapes.
 
 November24 vessel-access dependency: actual ordinary starter acquisition now
 qualifies drawgourd shell+seed -> finite basin -> chosen crop growth, with a
