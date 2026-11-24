@@ -1,3 +1,23 @@
+**Source-caught cold coat — November24,2026:** unchanged runtime088; bounded
+Editor integration accepted after independent recorded-play review0P1/P2. Earned540
+seed64/400HP/Strength70, no new grants: one fixture-vent scrape -> rime2727 ->
+flask2235 -> one split leather cap. Original three caps became two plain plus
+one coated; free equip gave35cold. Equal normal frost-tonic doses at dry25C/
+34,7:0resistance froze0.895 after first thaw, recovery110ticks;35resistance
+froze0.545, recovery80ticks/coat93. Viper/poison injury400->364 retained and
+excluded from the cold comparison. Source2389 stock5->4/Last820; two tonics spent.
+Fullfresh930 selected snapshot exact, actual free cap reader/remaining93 passed;
+both four-file archives verified before Finish. Compressed bytes differ, no
+whole-world equality. Five real screenshots. [Receipt](Verification/MachineSystems/SourceProofing20261124/README.md).
+No runtime/tests/build changes; no ordinary supply/natural discovery, environment
+balance or immunity claim. All12complete-machine gates,W1b/W2/failed full suite
+remain open; currentMac088 unchanged. Main stopped/rootnull/clean/original7views/
+index0/profileroff; scoped84foreign861normal2otherforeign4Macsaves exact11:37UTC.
+Retain supplied930 `/private/tmp/coo-source-proofing-fresh-earned-20261124` and
+prior540; ordinary2440 separate/preserved. Next broaden after this bounded
+prerequisite, no repeat depletion/pressing/coat or unchanged tests/builds.
+Root sole owner; task ACTIVE every30minutes; screenshots a handful, usually3–5.
+
 **Reusable hush-strip lane — November24,2026:** unchanged runtime088; actual
 bounded qualification accepted, final source/evidence review0P1/P2. Supplied
 proofing420 seed64/HP400/Strength70, no new grants: native plain steps stamped
