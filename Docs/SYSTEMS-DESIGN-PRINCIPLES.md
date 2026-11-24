@@ -31,3 +31,25 @@ Use explicit adapters for incompatible state rather than assuming every object c
 Prove the architecture through small playable increments: more than one participating instance/location, a meaningful ordinary alternative, a useful interaction outside the new apparatus, and a cross-system consequence. Check that extensions apply through Parts/contracts instead of hidden site-specific permission. Add abstractions when real behavior requires them; a universal simulation framework is not a prerequisite.
 
 The immediate implementation priority remains reclamation and regional processing. This principle guides that work and later systems; it does not reactivate the cancelled graphics program or parked capstan/culture implementation.
+
+## Weather and seasonal opportunities
+
+User direction, November23,2026: weather should primarily make selected
+activities more rewarding. Skipping an opportunity should usually mean missing
+a bonus while ordinary exploration stays comfortable. Preserve baseline travel,
+gathering, crafting and services; do not introduce routine exposure or upkeep
+chores to justify equipment. Lasting improvements should keep their benefits.
+
+Some of the same tools should acquire different practical uses as seasonal
+materials and conditions change. An observable flexible stem, ripe seed head or
+fallen branch can suggest a different work choice. Support the interaction
+through actual material state, finite quantities, access and explicit
+capabilities; a calendar label or combat attribute is not work permission.
+Learning a tool should suggest applications elsewhere, including useful town
+services and portable counterparts where supported.
+
+The [weather design](WEATHER-AND-SEASONAL-TOOL-USES.md) records concrete proposed
+uses, regional discovery, resource/timing policies and staged acceptance. These
+are design extensions, not claims that natural weather or seasonal tool uses
+already exist. Qualify both taking a bonus and comfortably ignoring it, and
+observe ordinary exploratory routes rather than only directed recipe tests.

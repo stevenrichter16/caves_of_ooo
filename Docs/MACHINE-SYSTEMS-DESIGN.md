@@ -1,3 +1,19 @@
+**Weather design continuation — November23,2026:** the user requested mostly
+optional weather benefits, comfortable ordinary exploration when skipped, and
+different practical seasonal uses for some of the same tools. The
+[weather and seasonal tool design](WEATHER-AND-SEASONAL-TOOL-USES.md) now records
+10candidate opportunities,5tool/apparatus families, regional discovery,
+finite quantities, game-time/save rules and a staged implementation order.
+Independent design/source critique found0publication-blocking P1/P2; W1
+catchment/ownership/crop chronology and W2 seasonal reuse gates remain explicit. W1 proposes optional shower
+collection/crop watering; W2 must separately prove a second actual use for the
+same frame. No weather runtime, tests or play acceptance is claimed. All twelve
+complete-machine statuses and the original failed regression remain open.
+Hourly task ACTIVE after explicit resume; preserve the pending Mac7ed delivery
+receipt publication and all prior apps/checkpoints. Do not repeat accepted
+builds/tests/startup to prepare this design. See the
+[weather continuation](WEATHER-DESIGN-CONTINUATION-2026-11-23.md).
+
 **Weapon stock continuation — November23 evening:** Editor acceptance after
 independent read-only source/gameplay-evidence review0remainingP1/P2. Genuine
 matching WeaponsmithStock now gets dagger1/shortsword1/spear1/oak1/binding1;
@@ -882,6 +898,11 @@ Capstan and culture work remain parked. Preserve all twelve roster entries and
 distinguish these earned slices from the broader machine proposals.
 
 All complete machines remain proposed. M1c adds accepted canonical-rig adjacent surface relocation over four exact plain cells, two source-effort rounds, coherent custody and actual off-site service/travel/reload; no general cargo or capstan. Current Mac sourcec43631ad6 includes M1c, M1d0 readability, M1d straining and accepted M2a contained recovery. M1b demonstrates a bounded recoverable workshop service, local hauling, repair, refitting and finite reclamation connected to ordinary crafting; bounded acceptance, publication and current Mac delivery are complete. It does not complete a reclamation forge, restoration cradle or capstan. See [current M1b evidence](MACHINE-FIELD-WORK-RIG.md). M1a supplies single-liquid handling only; it does not supply processing, mixture/provenance, pumping or elapsed work. See [its exact contract and evidence](MACHINE-LIQUID-HANDLING.md).
+
+Weather design dependency note, November23: proposed collection, material
+preparation and seasonal tool configurations may support future loops, but add
+no accepted machine prerequisite. The full twelve-row roster below retains its
+current statuses. See [weather opportunities](WEATHER-AND-SEASONAL-TOOL-USES.md).
 
 | Machine | Why it would be useful | Missing support and meaningful choice | First evidence required | Status |
 | --- | --- | --- | --- | --- |

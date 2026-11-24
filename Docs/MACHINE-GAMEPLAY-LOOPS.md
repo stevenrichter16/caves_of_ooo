@@ -49,6 +49,16 @@ a purchase/process/resale loop that generates unlimited profit or stock.
 
 ## A useful increment must answer these questions
 
+Weather and seasons are an additional proposed way to make these loops
+worthwhile: favorable conditions can offer finite water, a different material
+preparation or another use for familiar equipment. The user explicitly wants
+mostly optional benefits, with comfortable ordinary exploration when they are
+skipped. The [weather and seasonal tool design](WEATHER-AND-SEASONAL-TOOL-USES.md)
+defines ten candidate opportunities, a table of different uses for the same
+tools, and separate first gates for optional shower water and a second use of
+one reusable frame. No weather extension is accepted by this planning link;
+all twelve complete-machine statuses remain unchanged.
+
 Record the player problem and at least two practical approaches. Identify finite
 inputs, capacities, provenance, outputs and waste; show what the player can know
 before committing. Explain why another use becomes worthwhile later: a different

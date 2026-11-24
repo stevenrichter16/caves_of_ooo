@@ -1,3 +1,19 @@
+**Weather design continuation — November23,2026:** the user requested mostly
+optional weather benefits, comfortable ordinary exploration when skipped, and
+different practical seasonal uses for some of the same tools. The
+[weather and seasonal tool design](WEATHER-AND-SEASONAL-TOOL-USES.md) now records
+10candidate opportunities,5tool/apparatus families, regional discovery,
+finite quantities, game-time/save rules and a staged implementation order.
+Independent design/source critique found0publication-blocking P1/P2; W1
+catchment/ownership/crop chronology and W2 seasonal reuse gates remain explicit. W1 proposes optional shower
+collection/crop watering; W2 must separately prove a second actual use for the
+same frame. No weather runtime, tests or play acceptance is claimed. All twelve
+complete-machine statuses and the original failed regression remain open.
+Hourly task ACTIVE after explicit resume; preserve the pending Mac7ed delivery
+receipt publication and all prior apps/checkpoints. Do not repeat accepted
+builds/tests/startup to prepare this design. See the
+[weather continuation](WEATHER-DESIGN-CONTINUATION-2026-11-23.md).
+
 **Weapon stock continuation — November23 evening:** Editor acceptance after
 independent read-only source/gameplay-evidence review0remainingP1/P2. Genuine
 matching WeaponsmithStock now gets dagger1/shortsword1/spear1/oak1/binding1;
