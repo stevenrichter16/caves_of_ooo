@@ -1,3 +1,26 @@
+**Route tools Mac delivery — November 24, 2026:** Runtime `a02338565` is
+pushed and remotely verified. Current Mac:
+`/Users/steven/coo-verification/builds/mac-a02338565-20261124/CavesOfOoo.app`.
+Three new capabilities have 325/325 targeted native checks (29 new, 296 retained),
+actual Editor forging, actions, readers and movement, three four-file F5
+checkpoints, two selected fresh-load comparisons and four screenshots.
+Independent source, recorded-play and package reviews found 0 remaining P1/P2.
+The Mac build has 0 errors and the same five preceding warnings; 217 selected
+assembly checks passed (188 retained, 29 new). All 429 prior Part field shapes
+remain unchanged. The owned startup reached 2,703 ready entities and seven
+creatures, then closed. Four normal Mac saves remain byte-exact and 18 logical
+preferences were restored. All 27 apps / 5,022 files remain preserved within the
+recorded scope. Main Editor is stopped, root null and scene clean, with original
+views and input settings restored and reload locks released.
+
+Package qualification covers integrity and startup only; controlled packaged
+play, Continue, actions, saves, rendered-image review, Intel execution, controller
+and comparable FPS remain unverified. All twelve complete-machine gates, the
+failed wider regression, ordinary discovery, balance and sustained NPC behavior
+remain open. Next broaden useful material and inhabited-place connections at
+medium depth. Active chat work need not wait for the 30-minute schedule.
+See [delivery](Verification/MachineSystems/MacCandidateA02338565/README.md).
+
 **Route work tools — November24,2026:** three new bounded connections now have
 native/recorded Editor qualification: bellows move the same transient gas owner;
 silver sand lays player-authored navigation marks; an actual singleton spike

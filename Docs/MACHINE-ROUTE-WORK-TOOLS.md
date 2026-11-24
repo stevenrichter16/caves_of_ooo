@@ -1,7 +1,7 @@
 # Route work tools — November24,2026
 
 Status: implementation and bounded native/recorded Editor play qualified;
-exact-owned publication and coherent Mac delivery next. This batch
+pushed as `a02338565` with coherent Mac source/build/startup delivery. This batch
 adds gas routing, player trail marking and reversible physical door bracing.
 Three distinct connections are qualified below. All twelve complete-machine gates
 remain open. The last delivered field tools/Mac152b remain accepted separately.
@@ -99,3 +99,8 @@ rootnull, clean scene, input/views/settings restored and owned reloadlockrelease
 Ordinary material acquisition, sustained NPC behavior, route benefit/balance,
 full failed regression, complete-machine and hardware gates remain open.
 See [evidence](Verification/MachineSystems/RouteWorkTools20261124/README.md).
+
+Current [Mac delivery](Verification/MachineSystems/MacCandidateA02338565/README.md)
+qualifies source/build/selected packaged connections and owned startup separately
+from the Editor native route. No packaged controlled gameplay or complete-machine
+acceptance follows. All original evidence, saves and earlier builds are preserved.
