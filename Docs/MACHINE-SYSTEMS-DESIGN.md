@@ -1,3 +1,22 @@
+**Reusable hush-strip lane — November24,2026:** unchanged runtime088; actual
+bounded qualification accepted, final source/evidence review0P1/P2. Supplied
+proofing420 seed64/HP400/Strength70, no new grants: native plain steps stamped
+Noise420/430; three paid placements8->5 and steps onto2710/2711/2712 retained430.
+Step off stamped500. Paid recovery retired2712/stack5->6; re-lay made2714/6->5,
+step onto it kept500. Fullfresh540 selected three devices/pack5/Noise500/HP400/
+50drams/41,14 exact; fresh menu offered TakeUp, examining free. Archives verified
+before both Finish calls; compressed bytes differ, no whole-world equality.
+Five actual screenshots; future captures a handful, usually3–5 per meaningful
+change, superseding older “frequent” guidance. No runtime/new tests/build; current
+Mac088 unchanged. [Receipt](Verification/MachineSystems/HushLane20261124/README.md).
+Hunter avoidance, ordinary supply, attack/cast counters, search expiry, regional
+density,W1b/W2/failed full regression and all12complete-machine gates stay open.
+Scoped84foreign861normal2otherforeign4Macsaves exact10:34UTC; main stopped/
+rootnull/clean/original7views/index0/console0errors. Retain latest supplied540
+`/private/tmp/coo-hush-lane-fresh-earned-20261124`; ordinary2440 separate/preserved.
+Next broaden to a different connection; do not replay this bounded lane.
+Root sole owner, scheduled task ACTIVE every30minutes.
+
 **Ordinary timber circuit — November24,2026:** unchanged runtime088; actual
 bounded Editor accepted after independent source/evidence review0P1/P2.
 Same ordinary seed1498104061 continued610, no grants/reroll: signs and visible
@@ -1135,6 +1154,12 @@ November24 package addendum: accepted currentMac088 includes both the lasting
 Cinderhold supply and shared water-menu prerequisite with source/artifact/startup
 proof and independent final review0P1/P2. Complete-machine statuses do not change;
 controlled packaged gameplay remains separate from Editor behavior/Part shapes.
+
+November24 route-tool prerequisite: actual supplied hush strips now qualify a
+reusable quiet lane, a normal noisy-step countercase and paid recovery/re-laying
+with conserved units and fresh540 persistence. This complements the separate
+accepted sounding/noise cost; no combined hunter-avoidance or resonator claim.
+All twelve machine statuses remain open. See the hush-lane receipt.
 
 November24 reclamation-access dependency: an ordinary Strength18 starter has
 now followed the visible cellar signs, moved a real beam, recovered exactly two

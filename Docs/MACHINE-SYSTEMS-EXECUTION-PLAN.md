@@ -1,3 +1,22 @@
+**Reusable hush-strip lane — November24,2026:** unchanged runtime088; actual
+bounded qualification accepted, final source/evidence review0P1/P2. Supplied
+proofing420 seed64/HP400/Strength70, no new grants: native plain steps stamped
+Noise420/430; three paid placements8->5 and steps onto2710/2711/2712 retained430.
+Step off stamped500. Paid recovery retired2712/stack5->6; re-lay made2714/6->5,
+step onto it kept500. Fullfresh540 selected three devices/pack5/Noise500/HP400/
+50drams/41,14 exact; fresh menu offered TakeUp, examining free. Archives verified
+before both Finish calls; compressed bytes differ, no whole-world equality.
+Five actual screenshots; future captures a handful, usually3–5 per meaningful
+change, superseding older “frequent” guidance. No runtime/new tests/build; current
+Mac088 unchanged. [Receipt](Verification/MachineSystems/HushLane20261124/README.md).
+Hunter avoidance, ordinary supply, attack/cast counters, search expiry, regional
+density,W1b/W2/failed full regression and all12complete-machine gates stay open.
+Scoped84foreign861normal2otherforeign4Macsaves exact10:34UTC; main stopped/
+rootnull/clean/original7views/index0/console0errors. Retain latest supplied540
+`/private/tmp/coo-hush-lane-fresh-earned-20261124`; ordinary2440 separate/preserved.
+Next broaden to a different connection; do not replay this bounded lane.
+Root sole owner, scheduled task ACTIVE every30minutes.
+
 **Ordinary timber circuit — November24,2026:** unchanged runtime088; actual
 bounded Editor accepted after independent source/evidence review0P1/P2.
 Same ordinary seed1498104061 continued610, no grants/reroll: signs and visible
