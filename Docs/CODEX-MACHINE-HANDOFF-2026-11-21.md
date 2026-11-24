@@ -1,3 +1,24 @@
+**Ordinary timber circuit — November24,2026:** unchanged runtime088; actual
+bounded Editor accepted after independent source/evidence review0P1/P2.
+Same ordinary seed1498104061 continued610, no grants/reroll: signs and visible
+route -> cellar1200 -> shared beam haul -> pallet dismantle1650 ->2timber ->
+optional wicket repair2390 -> native open/cross/close2440. Surface warden killed
+the first scrabbler after player injury/one tonic; cellar return interception
+cost9HP, escaped with29HP/50drams. No player kill/loot claim. Pallet removed once;
+timber4750x2 consumed. Fullfresh2440 selected gate/provenance, moved beam, spent
+pallet and pack/HP/purse exact; fresh real menu/reader passed. Compressed save
+bytes differ, no whole-world equality. Both four-file archives verified before
+Finish.41real screenshots retain failed searches/encounters. No runtime/native
+test/build changes or replay. One authored clearing/cellar; regional density,
+stranger comprehension,W1b/W2, failed full regression and all12complete-machine
+gates stay open. [Receipt](Verification/MachineSystems/OrdinaryReclamation20261124/README.md).
+CurrentMac088 unchanged. Scoped84foreign861normal2otherforeign4Macsaves exact
+09:44:50UTC; main stopped/rootnull/clean/original7views/index0/console0errors.
+Retain latest earned2440 at `/private/tmp/coo-ordinary-reclamation-fresh-20261124`
+and both prior roots; do not reroll/replay. Next broaden to a different
+medium-depth connection after this checkpoint. Root sole owner, task
+ACTIVE every30minutes, frequent real screenshots.
+
 **Current Mac delivery — November24,2026:** runtime088 package accepted after
 final independent source/package/startup-artifact review0P1/P2.
 Runtime088029e00241a9b59e20d2cc0bcbf99dba69ae16 packages accepted Cinderhold supply
