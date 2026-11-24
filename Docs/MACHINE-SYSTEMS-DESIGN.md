@@ -1,3 +1,20 @@
+**Vessel oil and torch light — November23,2026:** direct finite liquid oil
+now refills an unlit packed torch:1oil→up to25fuel, existing LampOil tariff,
+no saleable item minting. Final core native257total/256pass/0fail/1utilityskip;
+final oil/readability54/54/0CS overlaps (23new oil cases). Actual earned oil3→2
+at290, exact torch48.8→50/Out, normal ignition/travel/renderer light contribution,
+and full fresh1040selectedsnapshot exact:HP391/purse50/oil2/torch29.3000526/held/lit.
+Viperbite/poison damage and fist kill retained; later relight used finite flint.
+Strong fixture/earlier earned oil provenance, not new ordinary acquisition or
+balance. Source review0P1/P2; final source/gameplay/artifact gate recorded in the
+[receipt](Verification/MachineSystems/VesselOilTorch20261123/README.md).
+Current Mac7ed predates rain/oil. All12whole-machine gates and original failed
+full regression remain open. Root sole owner/task ACTIVE every30minutes.
+User priority: numerous connected interactions with medium-depth nuance; frequent
+screenshots at visible checkpoints. W1a is publishedc90a below; W1b/W2/discovery
+remain separate. Next broaden through a useful additional material/tool/project
+connection after qualification; batch coherent delivery while preserving18apps.
+
 **Optional shower collection — November23,2026:** W1a is bounded Editor
 accepted: two fixed public Morrowfast frames share3water per600-tick shower;
 ordinary flask/skin collection feeds existing manual crop watering. Final native

@@ -99,8 +99,8 @@ namespace CavesOfOoo.Core
                 + fuel.FuelMass.ToString("G5", CultureInfo.InvariantCulture) + "/"
                 + fuel.MaxFuel.ToString("G5", CultureInfo.InvariantCulture) + " per torch.");
             lines.Add("Lit held or loose torches use fuel; stowed torches retain their state.");
-            lines.Add("To refuel: extinguish, unequip into your pack, then use lamp oil."
-                + " One measure adds up to 25 fuel, capped at capacity. Relight beside a burning fire.");
+            lines.Add("To refuel: extinguish, unequip into your pack, then use lamp oil or an oil-filled flask."
+                + " One measure or liquid oil unit adds up to 25 fuel, capped at capacity. Relight beside a burning fire.");
         }
 
         private static bool Finite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);

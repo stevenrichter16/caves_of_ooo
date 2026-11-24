@@ -24,9 +24,11 @@ Current Mac7ed predates W1a. Preserve all18apps and prior earned checkpoints.
 
 Latest user direction: develop numerous connected mechanics with medium-depth
 nuance, and provide frequent screenshots. Do not deepen W1a speculatively now
-that bounded correctness/play gates pass. Next source-qualify a different useful
-material/tool consumer (the recovered-oil/light connection remains a candidate),
-then build a small practical interaction with ordinary alternatives. W1b/W2 are
+that bounded correctness/play gates pass. The recovered-oil/light connection now has native and actual proof, with
+its bounded source/gameplay/artifact receipt in
+[the oil/light record](Verification/MachineSystems/VesselOilTorch20261123/README.md).
+Next qualify a different material/tool or lasting-project interaction; keep
+ordinary alternatives and the next coherent package milestone. W1b/W2 are
 separate increments; do not silently claim seasonal reuse from W1a. Update the
 ACTIVE every30minutes task after completed work/material checkpoints. Main
 stopped/rootnull/clean/original7views/index0 after actual play.

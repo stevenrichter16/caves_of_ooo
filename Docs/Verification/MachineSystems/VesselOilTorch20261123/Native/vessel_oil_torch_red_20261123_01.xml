@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Failed(Child)" total="22" passed="11" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 04:19:59Z" end-time="2026-11-24 04:20:01Z" duration="2.0452681">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41272" result="Failed" site="Child" start-time="2026-11-24 04:19:59Z" end-time="2026-11-24 04:20:01Z" duration="2.045268" total="22" passed="11" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50298" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41272" result="Failed" site="Child" start-time="2026-11-24 04:19:59Z" end-time="2026-11-24 04:20:01Z" duration="1.724984" total="22" passed="11" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="46859" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50299" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41272" result="Failed" site="Child" start-time="2026-11-24 04:19:59Z" end-time="2026-11-24 04:20:01Z" duration="1.387631" total="22" passed="11" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50300" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41272" result="Failed" site="Child" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:01Z" duration="1.091246" total="22" passed="11" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="17641" name="VesselOilTorchTests" fullname="CavesOfOoo.Tests.VesselOilTorchTests" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:01Z" duration="0.769977" total="22" passed="11" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="17660" name="BeforeCallbackChangedSourceCannotRedeemOldQuote" fullname="CavesOfOoo.Tests.VesselOilTorchTests.BeforeCallbackChangedSourceCannotRedeemOldQuote" methodname="BeforeCallbackChangedSourceCannotRedeemOldQuote" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="791259285" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.092593" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.BeforeCallbackChangedSourceCannotRedeemOldQuote () [0x00026] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:72 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17661" name="FailedOuterCallbackRestoresOnlyPaymentAndPreservesInjury" fullname="CavesOfOoo.Tests.VesselOilTorchTests.FailedOuterCallbackRestoresOnlyPaymentAndPreservesInjury" methodname="FailedOuterCallbackRestoresOnlyPaymentAndPreservesInjury" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="865356147" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.027689" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.FailedOuterCallbackRestoresOnlyPaymentAndPreservesInjury () [0x0001b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:78 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17664" name="ForcedDropRemainsDroppedAfterRollback" fullname="CavesOfOoo.Tests.VesselOilTorchTests.ForcedDropRemainsDroppedAfterRollback" methodname="ForcedDropRemainsDroppedAfterRollback" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1387223340" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.027672" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.ForcedDropRemainsDroppedAfterRollback () [0x0002d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:98 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17662" name="IndependentFuelAndOilChangesSurviveFailedCommit" fullname="CavesOfOoo.Tests.VesselOilTorchTests.IndependentFuelAndOilChangesSurviveFailedCommit" methodname="IndependentFuelAndOilChangesSurviveFailedCommit" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1605014963" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.025656" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.IndependentFuelAndOilChangesSurviveFailedCommit () [0x0002b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:85 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17645" name="LastUnitLeavesTheSameCanonicalEmptyFlaskAndReadersExplainBothFuels" fullname="CavesOfOoo.Tests.VesselOilTorchTests.LastUnitLeavesTheSameCanonicalEmptyFlaskAndReadersExplainBothFuels" methodname="LastUnitLeavesTheSameCanonicalEmptyFlaskAndReadersExplainBothFuels" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="503014627" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.025626" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.LastUnitLeavesTheSameCanonicalEmptyFlaskAndReadersExplainBothFuels () [0x00021] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:36 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17659" name="MenusArePureAndAChangedQuotedTorchRefusesWithoutSpending" fullname="CavesOfOoo.Tests.VesselOilTorchTests.MenusArePureAndAChangedQuotedTorchRefusesWithoutSpending" methodname="MenusArePureAndAChangedQuotedTorchRefusesWithoutSpending" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="225209840" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.032804" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.MenusArePureAndAChangedQuotedTorchRefusesWithoutSpending () [0x0001b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:65 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="17644" name="OneOilFeedsOnlyTheChosenTorchWithVisibleCap" fullname="CavesOfOoo.Tests.VesselOilTorchTests.OneOilFeedsOnlyTheChosenTorchWithVisibleCap" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.104676" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="17642" name="OneOilFeedsOnlyTheChosenTorchWithVisibleCap(5,30)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.OneOilFeedsOnlyTheChosenTorchWithVisibleCap(5,30)" methodname="OneOilFeedsOnlyTheChosenTorchWithVisibleCap" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="2125577495" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.076991" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.OneOilFeedsOnlyTheChosenTorchWithVisibleCap (System.Single before, System.Single after) [0x00029] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17643" name="OneOilFeedsOnlyTheChosenTorchWithVisibleCap(45,50)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.OneOilFeedsOnlyTheChosenTorchWithVisibleCap(45,50)" methodname="OneOilFeedsOnlyTheChosenTorchWithVisibleCap" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1192254657" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.026247" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.OneOilFeedsOnlyTheChosenTorchWithVisibleCap (System.Single before, System.Single after) [0x00029] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="17665" name="ReentrantRefillCannotUseClaimedOwners" fullname="CavesOfOoo.Tests.VesselOilTorchTests.ReentrantRefillCannotUseClaimedOwners" methodname="ReentrantRefillCannotUseClaimedOwners" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1206979074" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.026229" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.ReentrantRefillCannotUseClaimedOwners () [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:105 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17663" name="ReplacedLiquidStateIsPreservedWhileFuelIsUndone" fullname="CavesOfOoo.Tests.VesselOilTorchTests.ReplacedLiquidStateIsPreservedWhileFuelIsUndone" methodname="ReplacedLiquidStateIsPreservedWhileFuelIsUndone" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1403072911" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.026512" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.ReplacedLiquidStateIsPreservedWhileFuelIsUndone () [0x00026] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:91 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17666" name="SavedOilAndFuelRemainFiniteAndCanContinueAfterGraphReload" fullname="CavesOfOoo.Tests.VesselOilTorchTests.SavedOilAndFuelRemainFiniteAndCanContinueAfterGraphReload" methodname="SavedOilAndFuelRemainFiniteAndCanContinueAfterGraphReload" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1699320426" result="Failed" label="Error" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.026642" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.VesselOilTorchTests.Row (CavesOfOoo.Core.Entity oil, CavesOfOoo.Core.Entity torch) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:18 
+  at CavesOfOoo.Tests.VesselOilTorchTests.SavedOilAndFuelRemainFiniteAndCanContinueAfterGraphReload () [0x00039] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs:112 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="17658" name="UnqualifiedTorchesNeverOfferRefilling" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnqualifiedTorchesNeverOfferRefilling" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.166063" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="17652" name="UnqualifiedTorchesNeverOfferRefilling(&quot;full&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnqualifiedTorchesNeverOfferRefilling(&quot;full&quot;)" methodname="UnqualifiedTorchesNeverOfferRefilling" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1917806103" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.030111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17653" name="UnqualifiedTorchesNeverOfferRefilling(&quot;lit&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnqualifiedTorchesNeverOfferRefilling(&quot;lit&quot;)" methodname="UnqualifiedTorchesNeverOfferRefilling" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1518530112" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.028178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17654" name="UnqualifiedTorchesNeverOfferRefilling(&quot;ground&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnqualifiedTorchesNeverOfferRefilling(&quot;ground&quot;)" methodname="UnqualifiedTorchesNeverOfferRefilling" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="245483398" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.026814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17655" name="UnqualifiedTorchesNeverOfferRefilling(&quot;stacked&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnqualifiedTorchesNeverOfferRefilling(&quot;stacked&quot;)" methodname="UnqualifiedTorchesNeverOfferRefilling" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1628578946" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.026986" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17656" name="UnqualifiedTorchesNeverOfferRefilling(&quot;duplicate-fuel&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnqualifiedTorchesNeverOfferRefilling(&quot;duplicate-fuel&quot;)" methodname="UnqualifiedTorchesNeverOfferRefilling" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1027525769" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.025900" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17657" name="UnqualifiedTorchesNeverOfferRefilling(&quot;nan&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnqualifiedTorchesNeverOfferRefilling(&quot;nan&quot;)" methodname="UnqualifiedTorchesNeverOfferRefilling" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="230761177" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.026801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="17651" name="UnsupportedSourcesNeverOfferOrSpendFuel" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnsupportedSourcesNeverOfferOrSpendFuel" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:01Z" duration="0.181232" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="17646" name="UnsupportedSourcesNeverOfferOrSpendFuel(&quot;water&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnsupportedSourcesNeverOfferOrSpendFuel(&quot;water&quot;)" methodname="UnsupportedSourcesNeverOfferOrSpendFuel" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="787631934" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:00Z" duration="0.028087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17647" name="UnsupportedSourcesNeverOfferOrSpendFuel(&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnsupportedSourcesNeverOfferOrSpendFuel(&quot;bog-mire&quot;)" methodname="UnsupportedSourcesNeverOfferOrSpendFuel" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1024498710" result="Passed" start-time="2026-11-24 04:20:00Z" end-time="2026-11-24 04:20:01Z" duration="0.027659" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17648" name="UnsupportedSourcesNeverOfferOrSpendFuel(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnsupportedSourcesNeverOfferOrSpendFuel(&quot;empty&quot;)" methodname="UnsupportedSourcesNeverOfferOrSpendFuel" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="1264680294" result="Passed" start-time="2026-11-24 04:20:01Z" end-time="2026-11-24 04:20:01Z" duration="0.026144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17649" name="UnsupportedSourcesNeverOfferOrSpendFuel(&quot;stacked&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnsupportedSourcesNeverOfferOrSpendFuel(&quot;stacked&quot;)" methodname="UnsupportedSourcesNeverOfferOrSpendFuel" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="2114719480" result="Passed" start-time="2026-11-24 04:20:01Z" end-time="2026-11-24 04:20:01Z" duration="0.029145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17650" name="UnsupportedSourcesNeverOfferOrSpendFuel(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.VesselOilTorchTests.UnsupportedSourcesNeverOfferOrSpendFuel(&quot;duplicate&quot;)" methodname="UnsupportedSourcesNeverOfferOrSpendFuel" classname="CavesOfOoo.Tests.VesselOilTorchTests" runstate="Runnable" seed="404185262" result="Passed" start-time="2026-11-24 04:20:01Z" end-time="2026-11-24 04:20:01Z" duration="0.069203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

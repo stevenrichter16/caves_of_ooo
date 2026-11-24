@@ -1,0 +1,57 @@
+{
+  "status": "bounded Editor source/native/actual acceptance after independent final review0P1/P2",
+  "baseCommit": "c90a6d3ccc3f3067d01cf2d099f53c369f0586dd",
+  "sourceTestPins": {
+    "Assets/Scripts/Gameplay/Preparation/VesselTorchRefueling.cs": "0f419f374230da8302710adf3d8c3a559b979e205fffba7073de0fa4a0cf8657",
+    "Assets/Scripts/Gameplay/Preparation/VesselTorchRefueling.cs.meta": "b85faf55206d0ae1cd438c9d243b872260daf64cffd2737878de7aa8dbda0b7f",
+    "Assets/Scripts/Gameplay/Items/LiquidVesselPart.cs": "59183d66f358ec05a4e4c4580d85abad058d01b829eb0e67b36e95021bf5a9a7",
+    "Assets/Scripts/Gameplay/Items/ItemExamineService.cs": "60b02ff418860258879a83a0dbb013f82fb505e3558241be460ee774e4bee903",
+    "Assets/Scripts/Gameplay/Inventory/Commands/Actions/PerformInventoryActionCommand.cs": "d44eb6186d949f77ddf79a100f61fa8194f1a11a977b65053ad17c2cd46a9ef6",
+    "Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs": "81f5709629ca780a3a7b34e1dd19864d715e07ce24d5211291ce9a0bcff797d5",
+    "Assets/Tests/EditMode/Gameplay/Preparation/VesselOilTorchTests.cs.meta": "0069929a9a59b3632abaecbde607ee11543b8ce403a1adf03ce5a08f7a9910e6"
+  },
+  "nativeCore": {
+    "total": 257,
+    "passed": 256,
+    "failed": 0,
+    "skipped": 1,
+    "compileErrors": 0,
+    "durationSeconds": 13.8158968,
+    "newOilCases": 22
+  },
+  "finalPresentationAndOil": {
+    "total": 54,
+    "passed": 54,
+    "failed": 0,
+    "compileErrors": 0,
+    "newOilCases": 23,
+    "overlap": "23oil plus31retainedreadout, not additive with257"
+  },
+  "actual": {
+    "game": "d3c56928ecec4cd0a4532b3402867974",
+    "fixture": "earned strong ProofingWorkshopShowcase seed64; prior actual ColdOilPlay oil provenance reused",
+    "source": "2231 oil3\u21922",
+    "target": "9be07b23c7a24a079adb7aeb10f66c7b",
+    "paidTick": 290,
+    "beforeFuel": 48.8000031,
+    "afterFuel": 50,
+    "finalFreshTick": 1040,
+    "finalHP": 391,
+    "finalPurse": 50,
+    "finalFuel": 29.3000526,
+    "finalHeld": true,
+    "finalLit": true,
+    "selectedSnapshotExact": true,
+    "lightEvidence": "actual renderer samples950/960 around native extinguish; ambient0.4, player/camp light remain, no sole-light or pixel-exact claim",
+    "encounter": "viper bite3 + three poison ticks2; actual fist8 killed viper; final poison status not separately compared",
+    "relight": "first near hearth310; later log shows flint striker ignition, remaining strike count not separately compared"
+  },
+  "review": {
+    "designP1P2": 0,
+    "sourceP1P2": 0,
+    "finalSourceEvidenceArtifact": "0P1/P2;27artifact/7source-test pins/counts/cancel/fresh state verified independently"
+  },
+  "package": "Current Mac7ed predates rain and oil; no new build",
+  "fullRegression": "original failed full suite remains open",
+  "newSavedFields": false
+}
