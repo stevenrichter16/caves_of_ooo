@@ -1,3 +1,26 @@
+**Camp movement safety — November24,2026:** fixed accidental bump destruction
+of installed player-held camp fixtures. Actual trace showed CampBox2150 survived
+all distil/trap work at14HP/25C, then a normal south bump destroyed it through
+legacy break-through input. New9line guard refuses freely and points to C move/
+take-up/deliberate break; generated/handed-over/tag-only obstacles retain breaking.
+Valid nativeRED10/5fail5controls0CS; final104/104 including10new94retained, no
+full-suite clearance. Two invalid test-compile attempts and a diagnostic-channel
+fixture failure are retained/excluded. Actual matched1840south bump preserves
+14HP and tick/position; fullfresh1840same and free2page reader. ExplicitC Break
+still destroys it for one paid action1850, separate preserved counterbranch.
+All4F5files archived before Finish; 3screenshots; no fullworld/savebyte equality.
+Final independent source/recorded-play review0remainingP1/P2; currentMac7a
+predates this correction, coherent package next. [Receipt](Verification/MachineSystems/CampBumpSafety20261124/README.md).
+Fresh16:24UTC84foreign861normal2otherforeign23apps4278files4Macsaves scoped exact;
+main stopped/rootnull/clean/profileroff/original7views/index0/inputrestored.
+This is0newcapabilities,1correction. Two promising new worksite candidates,
+plain armor recovery and own-box work supplies, remain unimplemented; conditional
+companion repair demand unqualified. Do not count existing paid artisan repairs
+or duplicate recipes as additions. All12complete-machine gates/failed full suite
+remain open. Root sole owner, task ACTIVE every30minutes. Preserve actual intact
+box branch /private/tmp/coo-camp-bump-fresh-earned-20261124, not destructive1850;
+later proofing2330/2150 and ordinary2440 remain separate and preserved.
+
 **Expedition Mac delivery — November24,2026:** runtime
 7a193eae699421f97cbd9f9ffe9dc45877389697 is pushed/remotely verified and now the
 current bounded Mac package. Three new capabilities: finite brine distillation,

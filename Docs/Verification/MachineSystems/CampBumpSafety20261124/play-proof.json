@@ -1,0 +1,239 @@
+{
+  "after": {
+    "before": {
+      "tick": 1840,
+      "box": {
+        "ID": "2150",
+        "BlueprintName": "CampBox",
+        "at": {
+          "Item1": 41,
+          "Item2": 10
+        },
+        "hp": 14,
+        "gone": false,
+        "temperature": 25,
+        "fuel": null,
+        "effects": null,
+        "contents": 0
+      }
+    },
+    "after": {
+      "tick": 1840,
+      "box": {
+        "ID": "2150",
+        "BlueprintName": "CampBox",
+        "at": {
+          "Item1": 41,
+          "Item2": 10
+        },
+        "hp": 14,
+        "gone": false,
+        "temperature": 25,
+        "fuel": null,
+        "effects": null,
+        "contents": 0
+      }
+    },
+    "position": {
+      "Item1": 41,
+      "Item2": 9
+    },
+    "messages": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "Your camp box blocks the way. Use C to move, take up or deliberately break it."
+    ],
+    "note": "Bump was already executed in prior tool result, both original before/after1840state recorded there. First capture failed because output directory absent; no game mutation."
+  },
+  "actualMenu": [
+    {
+      "name": "Open",
+      "label": "open",
+      "command": "OpenContainer",
+      "via": null
+    },
+    {
+      "name": "TakeUpFixture",
+      "label": "take up",
+      "command": "TakeUp|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "PackUpCamp",
+      "label": "pack up camp (5 things)",
+      "command": "PackUp|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "Break",
+      "label": "break",
+      "command": "Break",
+      "via": null
+    },
+    {
+      "name": "HandOverFixture",
+      "label": "hand over (you can no longer take it up)",
+      "command": "HandOver|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "MoveFixture",
+      "label": "move",
+      "command": "MovePick|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "NameCamp",
+      "label": "name this camp: Home",
+      "command": "NameCamp|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "Examine",
+      "label": "examine",
+      "command": "Examine",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "kindle camp box (1 item) [fire-moss]",
+      "command": "MaterialField|Kindle|Overworld.10.11.0|41|9|41|10|2150|4|",
+      "via": "2151"
+    },
+    {
+      "name": "ToolGroup",
+      "label": "pour out a liquid here (8) >>",
+      "command": "ToolGroup|pour out a liquid here",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "spread brine south (1 item) [glimmer-brine]",
+      "command": "MaterialField|Film|Overworld.10.11.0|41|9|41|10||7|brine",
+      "via": "2215"
+    },
+    {
+      "name": "TouchTorch",
+      "label": "touch lit torch — camp box [41,10]",
+      "command": "TouchTorch|Overworld.10.11.0|41|9|41|10|2150|5.30007935",
+      "via": "9be07b23c7a24a079adb7aeb10f66c7b"
+    },
+    {
+      "name": "PickCell",
+      "label": "<< everything here",
+      "command": "PickCell",
+      "via": null
+    }
+  ],
+  "afterSaved": {
+    "tick": 1840,
+    "box": {
+      "ID": "2150",
+      "BlueprintName": "CampBox",
+      "at": {
+        "Item1": 41,
+        "Item2": 10
+      },
+      "hp": 14,
+      "gone": false,
+      "temperature": 25,
+      "fuel": null,
+      "effects": null,
+      "contents": 0
+    }
+  },
+  "afterReceipt": {
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "d3c56928ecec4cd0a4532b3402867974",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.10.11.0",
+      "ActiveZoneDisplayLabel": "Overworld.10.11.0",
+      "Turn": 1840,
+      "SaveTimestampUtc": "2026-11-24T16:19:56.3611220Z",
+      "HPSummary": "358/400",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "files": {
+      "Quick.sav.gz": "d51500526d1a2bda33e0c70f169f0cbfbbc00124e68bd025128c70c4ce7013a0",
+      "Quick.sav.gz.bak": "5e97aa79f562303b4b351cea5e25130221edb423cab7ebcc30aa677dc0824384",
+      "Quick.json.bak": "3d70be9daf13bee3f761f686e6426e4e5afc76ac35049236c14397a6bff50dbb",
+      "Quick.json": "a99bf055b02dd966a0b44a066cf121d19d6f8b9623f42f49598832ff60af70c7"
+    }
+  },
+  "fresh": {
+    "before": {
+      "tick": 1840,
+      "box": {
+        "ID": "2150",
+        "BlueprintName": "CampBox",
+        "at": {
+          "Item1": 41,
+          "Item2": 10
+        },
+        "hp": 14,
+        "gone": false,
+        "temperature": 25,
+        "fuel": null,
+        "effects": null,
+        "contents": 0
+      }
+    },
+    "after": {
+      "tick": 1840,
+      "box": {
+        "ID": "2150",
+        "BlueprintName": "CampBox",
+        "at": {
+          "Item1": 41,
+          "Item2": 10
+        },
+        "hp": 14,
+        "gone": false,
+        "temperature": 25,
+        "fuel": null,
+        "effects": null,
+        "contents": 0
+      }
+    }
+  },
+  "freshReceipt": {
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "d3c56928ecec4cd0a4532b3402867974",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.10.11.0",
+      "ActiveZoneDisplayLabel": "Overworld.10.11.0",
+      "Turn": 1840,
+      "SaveTimestampUtc": "2026-11-24T16:21:50.1314970Z",
+      "HPSummary": "358/400",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "files": {
+      "Quick.sav.gz": "886725b21d8a9e11026170a1ff12da997b6c2ee4b4455688717aa8e2ad6785cc",
+      "Quick.sav.gz.bak": "d51500526d1a2bda33e0c70f169f0cbfbbc00124e68bd025128c70c4ce7013a0",
+      "Quick.json.bak": "a99bf055b02dd966a0b44a066cf121d19d6f8b9623f42f49598832ff60af70c7",
+      "Quick.json": "2d65edc1db2c997241a1f2250a72f5c60e7f1099cd040a758ccd640b54b39fc1"
+    }
+  },
+  "explicitBreak": {
+    "state": {
+      "tick": 1850,
+      "box": null
+    },
+    "messages": [
+      "Interact — choose a direction, or . for underfoot.",
+      "camp box is destroyed.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "scope": "Actual supplied proofing branch, not ordinary acquisition. Free bump1840 preserves14HP; full fresh1840 same selected box; deliberateCbreak1850 stilldestroyed. No full-world equality. Failed bootstrap/capture attempts excluded."
+}

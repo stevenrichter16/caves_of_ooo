@@ -1067,6 +1067,15 @@ namespace CavesOfOoo.Rendering
                 }
                 else if (DestructionSystem.IsBreakable(blockedBy))
                 {
+                    // A blocked travel step must not dismantle the camp the
+                    // player is trying to use. Deliberate C-menu Break retains
+                    // its structural-damage path below.
+                    if (HeldFixtureActions.IsPlayerHeld(blockedBy))
+                    {
+                        MessageLog.Add("Your " + blockedBy.GetDisplayName() + " blocks the way. Use C to move, take up or deliberately break it.");
+                        Diag.Record("movement", "CampFixtureBumpBlocked", PlayerEntity, blockedBy);
+                        return;
+                    }
                     // Bump-to-BREAK: the Qud behaviour of smashing through a
                     // barrel or a hedge to make a shortcut.
                     //

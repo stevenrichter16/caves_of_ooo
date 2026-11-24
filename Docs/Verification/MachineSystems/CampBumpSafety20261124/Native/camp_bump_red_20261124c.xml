@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Failed(Child)" total="10" passed="5" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 16:05:49Z" end-time="2026-11-24 16:05:51Z" duration="1.540917">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41501" result="Failed" site="Child" start-time="2026-11-24 16:05:49Z" end-time="2026-11-24 16:05:51Z" duration="1.540917" total="10" passed="5" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50585" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41501" result="Failed" site="Child" start-time="2026-11-24 16:05:49Z" end-time="2026-11-24 16:05:51Z" duration="1.527115" total="10" passed="5" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="75624" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50586" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41501" result="Failed" site="Child" start-time="2026-11-24 16:05:49Z" end-time="2026-11-24 16:05:51Z" duration="1.516710" total="10" passed="5" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50587" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41501" result="Failed" site="Child" start-time="2026-11-24 16:05:49Z" end-time="2026-11-24 16:05:51Z" duration="1.506246" total="10" passed="5" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33074" name="CampFixtureBumpInputTests" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-11-24 16:05:49Z" end-time="2026-11-24 16:05:51Z" duration="1.192657" total="10" passed="5" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33085" name="ExplicitBreakRowStillExistsAndDirectStructuralDamageStillWorks" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.ExplicitBreakRowStillExistsAndDirectStructuralDamageStillWorks" methodname="ExplicitBreakRowStillExistsAndDirectStructuralDamageStillWorks" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="455021512" result="Passed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:50Z" duration="0.228402" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="33086" name="InstalledPlayerFixtureWithoutOwnedTagRemainsProtectedLikeLegacyMarkers" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.InstalledPlayerFixtureWithoutOwnedTagRemainsProtectedLikeLegacyMarkers" methodname="InstalledPlayerFixtureWithoutOwnedTagRemainsProtectedLikeLegacyMarkers" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="163680347" result="Failed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:50Z" duration="0.123924" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 14
+  But was:  12
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CampFixtureBumpInputTests.InstalledPlayerFixtureWithoutOwnedTagRemainsProtectedLikeLegacyMarkers () [0x0004e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/CampFixtureBumpInputTests.cs:64
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33084" name="OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:50Z" duration="0.439027" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33080" name="OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking(&quot;generated&quot;)" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking(&quot;generated&quot;)" methodname="OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="937201914" result="Passed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:50Z" duration="0.148782" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="33081" name="OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking(&quot;handed-over&quot;)" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking(&quot;handed-over&quot;)" methodname="OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="1628271623" result="Passed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:50Z" duration="0.097192" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="33082" name="OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking(&quot;loose&quot;)" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking(&quot;loose&quot;)" methodname="OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="626233022" result="Passed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:50Z" duration="0.098389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="33083" name="OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking(&quot;owned-tag-only&quot;)" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking(&quot;owned-tag-only&quot;)" methodname="OrdinaryBlockingCratesAndUnheldFixturesRetainBumpBreaking" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="1806294118" result="Passed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:50Z" duration="0.092317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33079" name="RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:51Z" duration="0.368814" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33075" name="RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn(1,0,D)" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn(1,0,D)" methodname="RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="296486705" result="Failed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:50Z" duration="0.092340" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Movement must not spend the player's own camp box.
+  Expected: 14
+  But was:  13
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CampFixtureBumpInputTests.RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn (System.Int32 dx, System.Int32 dy, UnityEngine.InputSystem.Key key) [0x00086] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/CampFixtureBumpInputTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="33076" name="RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn(-1,0,A)" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn(-1,0,A)" methodname="RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="1723532199" result="Failed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:50Z" duration="0.092402" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Movement must not spend the player's own camp box.
+  Expected: 14
+  But was:  12
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CampFixtureBumpInputTests.RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn (System.Int32 dx, System.Int32 dy, UnityEngine.InputSystem.Key key) [0x00086] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/CampFixtureBumpInputTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="33077" name="RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn(0,1,S)" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn(0,1,S)" methodname="RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="1348508857" result="Failed" start-time="2026-11-24 16:05:50Z" end-time="2026-11-24 16:05:51Z" duration="0.091388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Movement must not spend the player's own camp box.
+  Expected: 14
+  But was:  13
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CampFixtureBumpInputTests.RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn (System.Int32 dx, System.Int32 dy, UnityEngine.InputSystem.Key key) [0x00086] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/CampFixtureBumpInputTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="33078" name="RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn(0,-1,W)" fullname="CavesOfOoo.Tests.CampFixtureBumpInputTests.RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn(0,-1,W)" methodname="RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn" classname="CavesOfOoo.Tests.CampFixtureBumpInputTests" runstate="Runnable" seed="1986240911" result="Failed" start-time="2026-11-24 16:05:51Z" end-time="2026-11-24 16:05:51Z" duration="0.091209" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Movement must not spend the player's own camp box.
+  Expected: 14
+  But was:  13
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CampFixtureBumpInputTests.RealMovementBumpKeepsOwnedInstalledBoxAndCostsNoTurn (System.Int32 dx, System.Int32 dy, UnityEngine.InputSystem.Key key) [0x00086] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Presentation/Input/CampFixtureBumpInputTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 74 equipment build recipes from blueprints.
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
