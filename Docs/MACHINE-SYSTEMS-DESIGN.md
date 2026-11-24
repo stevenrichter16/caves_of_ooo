@@ -1,3 +1,25 @@
+**Regional fuel Mac delivery — November24,2026:** runtime
+238096389f84ff55c97dc7691b2bfe089b959799 is now the current bounded Mac delivery.
+[Package receipt](Verification/MachineSystems/MacCandidate238096389/README.md)
+records the isolated universal nondevelopment build:0errors/5unchanged warnings,
+55.975677s; new -nographics build flag disclosed.32071committed Git/SHA inputs,
+32074effective/86exact overlays/0runtime C# import changes;592external/186player
+pins.75selected assembly checks/all428Part names and fields unchanged against
+074d/088; no complete IL/behavior equivalence claim. Owned read-only Mac startup
+PID60440/window71614 rendered world/save-choice/HUD at actual640x428, then closed.
+4normal save files unchanged/18logical preferences restored; no controlled
+packaged actions/save/Intel/controller/FPS claim. Independent final bounded
+source/package/startup-artifact review0P1/P2; no reviewer Unity/player/native tests.
+Fresh12:58UTC all22apps4092files/84foreign861selectednormal2otherforeign4Macsave
+pins exact. Main stopped/rootnull/clean/profiler-off/original7views/index0.
+The accepted resin->finite fuel->ordinary flame->still clay behavior remains
+Editor/native/recorded-play evidence; prior acquisition/lacquer and clay/well
+connections reused. All12complete-machine statuses/failed full suite/W1b/W2 and
+natural opportunity density remain open. Next broaden a different useful
+material/tool/project connection at medium depth; preserve supplied1100 and
+ordinary2440, no replay of accepted branches. Keep screenshots to a handful,
+usually3-5 meaningful views. Root sole owner; task ACTIVE every30minutes.
+
 **Optional reagent fuel — November24,2026:** implemented; bounded native and
 actual checks accepted after final independent recorded-play review0P1/P2. Stable
 combustible reagents feed finite fires through their own C menu:1resin=5fuel,
@@ -1115,6 +1137,13 @@ The twelve machines are not all ready because individual foundations exist. Cont
 The user prioritizes reclamation of damaged finds and regional raw materials into useful component inputs. M3a accepts an explicit damaged-tool manifest, mutually exclusive dismantle/reclaim choices, and cold dressing of recovered iron into an existing piercing point. Retained quotes, Part-owned policies and shared transactions have native and actual acceptance; both routes feed ordinary equipped weapons used outside the service, with travel/fresh reload. Carrying/selling intact is a demonstrated alternative. Regional raw-material processing is a separate remaining qualification: existing pack timber/cord recipes are retained, and a recovered manufactured blank does not establish ore refining. Full heat/fuel, provenance, useful outputs, waste, economy and actual-play gates must be satisfied by their own scoped processes.
 
 ## Dependency matrix for the twelve machines
+
+November24 current package: runtime238 now packages the optional fuel prerequisite,
+following accepted source/native/Editor play and bounded Mac source/artifact/startup
+review0P1/P2. It replaces088 as current delivery while preserving all prior apps.
+Controlled packaged actions/save/Intel/controller/FPS stay open. All twelve
+complete-machine statuses below remain proposed/open; no prerequisite is promoted
+into a complete thermal exchanger, fractionating still or autonomous producer.
 
 November24 fuel dependency: optional stable reagent fuel now gives inhabited
 finite fires and portable hearths another explicit finite input. Actual supplied
