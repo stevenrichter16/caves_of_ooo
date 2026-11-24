@@ -1,7 +1,7 @@
 # Field work tools — November 24, 2026
 
-Status: base tools published as4a7328557; bounded native and recorded Editor
-play qualify the shared-path correction; coherent Mac delivery next. These are three
+Status: tools4a7328557 and corrected runtime152b2cdcf are pushed; bounded native,
+recorded Editor play and coherent Mac source/build/startup are qualified. These are three
 bounded connections, not complete thermal-exchanger or dynamo implementations.
 The twelve-machine roster and its acceptance gates remain unchanged.
 
@@ -105,3 +105,8 @@ The two-cell intermediate path now uses the existing Cell.BlocksMovement rule,
 including closed doors, archive barriers and scene-owned blockers. Nativeu RED
 and finalv248 plus current-code clear-shot/fresh180 qualify this correction.
 See the [path addendum](Verification/MachineSystems/FieldWorkTools20261124/shared-line-correction.md).
+
+Current coherent [Mac receipt](Verification/MachineSystems/MacCandidate152B2CDCF/README.md)
+records the corrected152b runtime. Native248/248 and Editor actual evidence are
+separate from source/build/selected-assembly/startup package qualification. No
+packaged controlled input/action/save or complete-machine acceptance is claimed.

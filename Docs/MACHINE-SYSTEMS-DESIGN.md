@@ -1,3 +1,20 @@
+**Field tools Mac delivery — November24,2026:** corrected runtime152b2cdcf
+(three tools4a plus shared rod-blocking fix) is pushed/remotely verified and has
+currentMac `/Users/steven/coo-verification/builds/mac-152b2cdcf-20261124/CavesOfOoo.app`.
+Native248/248 (49new/199retained), three distinct capabilities; eight F5 archives/
+32files/seven selected fresh pairs. Source/recorded-play review0P1/P2. Mac build
+0errors/5exact9awarnings64.18378s364300237bytes;32103Git bodies/32106effective/
+86exactoverlay/592external/186playerpins,188selected assembly checks143retained+
+45new. One new Kind/ChargePart; all428old Part fields retained. Owned82514startup
+2668->2669/7creatures/window71789bounds640x428; closed,4normal saves byte-exact/
+18logicalprefsrestored. No packaged controlled input/Continue/actions/save/render/
+Intel/controller/FPS claim. Fresh scoped26apps4836files/84foreign861normal2other
+foreign exact. Main stopped/rootnull/clean/profileroff/7viewsindex0/inputrestored/
+reloadlocksreleased. All12complete-machine/full-suite/discovery/balance gates open.
+Final independent package review recorded in delivery receipt; next3–5newdistinct
+medium-depth connections, especially town/route benefits and ordinary discovery.
+See [delivery](Verification/MachineSystems/MacCandidate152B2CDCF/README.md).
+
 **Shared rod path — November24,2026:** one-line integration correction uses
 Cell.BlocksMovement for the two-cell intermediate path, preserving existing
 solid, closed-door, sealed-barrier and Morrowfast rules. NativeREDu2fail/2controls
