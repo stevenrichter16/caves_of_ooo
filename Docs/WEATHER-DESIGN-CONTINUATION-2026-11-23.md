@@ -18,7 +18,8 @@ jobs on the SAME physical frame under distinct seasonal/material conditions.
 
 The research checkpoint and next-work list below record the earlier pause;
 the linked full proposal now governs design continuation. Current separate
-Mac receipt publication remains pending. Do not rebuild or replay earned work.
+Mac7ed source/package/startup receipt is now published with its bounded review.
+Do not rebuild or replay earned work.
 
 ## User direction to retain
 
@@ -121,8 +122,8 @@ complete-machine gates and the original failed full regression remain open.
 ## Separate preserved work
 
 Inventory1fda and weapon-supply7ed are published. The Mac7ed app has completed
-bounded source/package/startup/preservation review with0P1/P2, but its receipt
-publication remains pending in existing uncommitted owned docs and artifacts.
+bounded source/package/startup/preservation review with0P1/P2 and its receipt
+is now published in the owned delivery documents/artifacts.
 See Docs/Verification/MachineSystems/MacCandidate7EDC5A4C2 and the saved hourly
 checkpoint. Do not repeat its accepted tests, build or startup. Do not call
 controlled packaged gameplay/save/controller/FPS/Intel verified. Preserve all

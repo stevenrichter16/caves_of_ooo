@@ -9,10 +9,38 @@ catchment/ownership/crop chronology and W2 seasonal reuse gates remain explicit.
 collection/crop watering; W2 must separately prove a second actual use for the
 same frame. No weather runtime, tests or play acceptance is claimed. All twelve
 complete-machine statuses and the original failed regression remain open.
-Hourly task ACTIVE after explicit resume; preserve the pending Mac7ed delivery
-receipt publication and all prior apps/checkpoints. Do not repeat accepted
+Hourly task ACTIVE after explicit resume; Mac7ed source/package/startup delivery
+is recorded below. Preserve all prior apps/checkpoints. Do not repeat accepted
 builds/tests/startup to prepare this design. See the
 [weather continuation](WEATHER-DESIGN-CONTINUATION-2026-11-23.md).
+
+**Current Mac delivery — November23,2026:** accepted inventory1fda and weapon
+supply7ed source are now packaged together at
+`/Users/steven/coo-verification/builds/mac-7edc5a4c2-20261123/CavesOfOoo.app`.
+Runtime7edc5a4c2d74a25008272198b5c835ef95d8ae4d; universal6000.3.4f1/nondev,
+55.841123s364155309bytes/0errors/5same prior7c warnings.32043committed/
+32046effective/83changed0missing3added/exact86overlay/0runtimeCSimportchanges/
+592external/186player pins. Git blob/source proof exact; Cecil56checks new
+shared weapon profile/fresh8fields/promoted-core guard/UI categories/sorts and
+armor text, with unchanged saved fields and selected prior shared contracts.
+Reconcile intentionally changes; no unchanged or byte-identical IL claim.
+Artifact-only obsolete-Cecil and BlueprintName-property assumptions corrected;
+no source/player rebuild. Oneactualowned80552/window71174/640x428starting
+chooser/world/HUD/bootstrap7creatures2684entities. Freshpostfalse/AXfalse/
+screentrue, no input/activation/request. Exactownedplayerclosed;10logicalprefs
+restored/MacSavesabsent nonsymlink.17prior3162files+new186exact=18apps retained;
+84historicalforeign/861selectednormal exact; separately dirty foreign handoff
+and PackageManagerSettings recorded without staging. Mainstopped/rootnullclean/
+profileroff/original7builtinviews/index0. Independent read-only artifact review
+completed with0remainingP1/P2; source/package/startup/preservation only.
+Controlled packaged interaction/save/controller/FPS/Intel remain open. See
+[delivery receipt](Verification/MachineSystems/MacCandidate7EDC5A4C2/README.md).
+UI263/263 and weapon220/219pass/0fail/1Explicit utilityskip/49new plus actual
+Editor fresh10660/12210 remain separate evidence. All twelve complete-machine
+statuses and original failed full regression stay open. Root sole owner/hourly
+ACTIVE. Next source-qualify finite recovered/settled oil for suitable portable
+lights, preserving existing LampOil convenience, finite custody/capacity and
+ordinary alternatives. This supersedes older currentMac7c references below.
 
 **Weapon stock continuation — November23 evening:** Editor acceptance after
 independent read-only source/gameplay-evidence review0remainingP1/P2. Genuine
@@ -898,6 +926,13 @@ Capstan and culture work remain parked. Preserve all twelve roster entries and
 distinguish these earned slices from the broader machine proposals.
 
 All complete machines remain proposed. M1c adds accepted canonical-rig adjacent surface relocation over four exact plain cells, two source-effort rounds, coherent custody and actual off-site service/travel/reload; no general cargo or capstan. Current Mac sourcec43631ad6 includes M1c, M1d0 readability, M1d straining and accepted M2a contained recovery. M1b demonstrates a bounded recoverable workshop service, local hauling, repair, refitting and finite reclamation connected to ordinary crafting; bounded acceptance, publication and current Mac delivery are complete. It does not complete a reclamation forge, restoration cradle or capstan. See [current M1b evidence](MACHINE-FIELD-WORK-RIG.md). M1a supplies single-liquid handling only; it does not supply processing, mixture/provenance, pumping or elapsed work. See [its exact contract and evidence](MACHINE-LIQUID-HANDLING.md).
+
+November23 package dependency note: Mac7ed now includes the accepted browsing
+and shared weapon-supply foundations alongside prior processing/recovery. This
+qualifies packaging/startup only; it supplies no additional complete-machine
+prerequisite or acceptance. All twelve rows below retain their current statuses.
+Controlled packaged gameplay and full regression remain open; see the
+[bounded delivery receipt](Verification/MachineSystems/MacCandidate7EDC5A4C2/README.md).
 
 Weather design dependency note, November23: proposed collection, material
 preparation and seasonal tool configurations may support future loops, but add
