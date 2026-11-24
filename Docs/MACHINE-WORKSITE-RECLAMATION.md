@@ -31,7 +31,7 @@ and ordinary generated/handed-over crates and hedges retain their behavior.
 Use existing installation authority, not the generic Owned tag alone. Native real InputHandler RED10/5fail5controls0CS -> final104/1040CS;
 actual matched1840/fresh1840free bump,14HP unchanged; native C deliberateBreak
 1850still destroys.3screenshots/all4F5archives beforeFinish,16:24UTC scoped
-preservation complete. Independent final review0remainingP1/P2; bounded correction accepted. This correction is not a new capability in the3-5target.
+preservation complete. Independent final review0remainingP1/P2; bounded correction accepted and published6b5421a82/current bounded Mac. This correction is not a new capability in the3-5target.
 
 No new weather damage, upkeep, lore mystery, universal resource or clock.
 Graphics/capstan/cultures remain parked; all12complete-machine gates stay open.

@@ -1,3 +1,26 @@
+**Camp safety Mac delivery — November24,2026:** runtime
+6b5421a82567a1085d767b5289b06e25fefbb8bb is the pushed/remotely verified current
+bounded Mac package.9line movement guard protects installed player-held camp
+fixtures from accidental bump breaking; deliberateC Break remains. This is
+0newcapabilities/1correction, not padded progress toward the3-5new-feature target.
+[Delivery receipt](Verification/MachineSystems/MacCandidate6B5421A82/README.md):
+0errors5exactpriorwarnings56.062199s/32085Git-SHA source32088effective/86exact
+inputoverlaybodies/592external186playerpins.110selected assembly checks, all428
+Part names/fields unchanged, InputHandler fields unchanged versus7a. Final
+independent package/artifact review0actionableP1/P2; no reviewer native actions.
+OwnedPID98430startup log2687->2688/7creatures/window71710bounds640x428only; no
+PNG/renderjudgment, packaged input/action/save, Intel/controller/FPS acceptance.
+4normalMacsaves byte-exact,18logicalprefs restored. Fresh16:32:06UTC24apps4464files,
+84foreign861selectednormal2otherforeign4Macsaves scoped exact. Main stopped,
+rootnull,clean,profileroff,original7views/index0/inputrestored. Accepted Editor
+bump/fresh1840and explicitBreak1850 are separate recorded evidence; all20files
+archived before Finish,3screenshots. Preserve intact fresh1840 for worksite
+trials, not destructive1850; laterproofing2330/2150 and ordinary2440 retained.
+Next implement distinct source-qualified worksite capabilities: plain armor
+recovery and explicit own-box materials are proposed; qualify a third real gap
+rather than repeat recipes or the existing paid artisan repair. All12complete-
+machine/fullregression/W1b/W2/ordinarydiscovery gates remain open. ACTIVE30m.
+
 **Camp movement safety — November24,2026:** fixed accidental bump destruction
 of installed player-held camp fixtures. Actual trace showed CampBox2150 survived
 all distil/trap work at14HP/25C, then a normal south bump destroyed it through

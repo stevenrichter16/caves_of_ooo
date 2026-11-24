@@ -4,7 +4,7 @@ November24,2026. Correction accepted after final independent source/recorded-pla
 review0remainingP1/P2. This is a safety correction, not one of the
 user's3-5targeted new capabilities. Armor recovery and box-stock work remain
 proposals in [the worksite plan](../../../MACHINE-WORKSITE-RECLAMATION.md).
-Current Mac7a193eae6 predates this correction.
+Current bounded [Mac6b5421a82](../MacCandidate6B5421A82/README.md) includes the correction; controlled packaged actions remain open.
 
 ## Cause and change
 
