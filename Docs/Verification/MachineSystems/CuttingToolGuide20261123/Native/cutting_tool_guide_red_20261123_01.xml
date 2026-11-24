@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.8848707">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41285" result="Failed" site="Child" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.884871" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50313" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41285" result="Failed" site="Child" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.858349" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="77984" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50314" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41285" result="Failed" site="Child" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.783095" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50315" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41285" result="Failed" site="Child" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.749931" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="17544" name="CuttingToolGuideTests" fullname="CavesOfOoo.Tests.CuttingToolGuideTests" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.441340" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="17555" name="ACombatHatchetDoesNotAcquireFlexibleStockInstructions" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.ACombatHatchetDoesNotAcquireFlexibleStockInstructions" methodname="ACombatHatchetDoesNotAcquireFlexibleStockInstructions" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="647377534" result="Passed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.079712" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17551" name="GroundToolExplainsThatItMustBePickedUpFirst" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.GroundToolExplainsThatItMustBePickedUpFirst" methodname="GroundToolExplainsThatItMustBePickedUpFirst" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="2063021595" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.027841" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.GroundToolExplainsThatItMustBePickedUpFirst () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:42
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17556" name="KnifeDoesNotGainFictionalDirectMaterialActions" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.KnifeDoesNotGainFictionalDirectMaterialActions" methodname="KnifeDoesNotGainFictionalDirectMaterialActions" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="694252193" result="Passed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.028489" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17545" name="KnifeExplainsThreeMaterialChoicesWithoutHidingCombatDetails" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.KnifeExplainsThreeMaterialChoicesWithoutHidingCombatDetails" methodname="KnifeExplainsThreeMaterialChoicesWithoutHidingCombatDetails" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="1950190715" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.023963" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.KnifeExplainsThreeMaterialChoicesWithoutHidingCombatDetails () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:20
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17553" name="LongAuthorCatalogueIsBoundedAndUsesItsLiveCounts" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.LongAuthorCatalogueIsBoundedAndUsesItsLiveCounts" methodname="LongAuthorCatalogueIsBoundedAndUsesItsLiveCounts" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="1242295014" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.025822" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.LongAuthorCatalogueIsBoundedAndUsesItsLiveCounts () [0x00060] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:61
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17554" name="MissingFactoryDoesNotAdvertiseRecipesItCannotValidate" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.MissingFactoryDoesNotAdvertiseRecipesItCannotValidate" methodname="MissingFactoryDoesNotAdvertiseRecipesItCannotValidate" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="931977739" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.034740" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.MissingFactoryDoesNotAdvertiseRecipesItCannotValidate () [0x00012] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:68
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17552" name="ReadingTheKnifePreservesARealMaterialQuoteAndAllQuantities" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.ReadingTheKnifePreservesARealMaterialQuoteAndAllQuantities" methodname="ReadingTheKnifePreservesARealMaterialQuoteAndAllQuantities" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="1506198580" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.077058" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.ReadingTheKnifePreservesARealMaterialQuoteAndAllQuantities () [0x00075] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:48
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17557" name="SavedKnifeRetainsTheGuideWithoutNewInstanceState" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.SavedKnifeRetainsTheGuideWithoutNewInstanceState" methodname="SavedKnifeRetainsTheGuideWithoutNewInstanceState" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="879733378" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.025432" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.SavedKnifeRetainsTheGuideWithoutNewInstanceState () [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:80
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="17550" name="UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.112159" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="17546" name="UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability(&quot;disabled&quot;)" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability(&quot;disabled&quot;)" methodname="UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="1718276665" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.026775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability (System.String state) [0x00082] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17547" name="UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability(&quot;broken&quot;)" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability(&quot;broken&quot;)" methodname="UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="1733246225" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.032172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability (System.String state) [0x00082] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17548" name="UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability(&quot;stacked&quot;)" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability(&quot;stacked&quot;)" methodname="UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="1016408581" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.025821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability (System.String state) [0x00082] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17549" name="UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability(&quot;duplicate&quot;)" methodname="UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="1547711514" result="Failed" start-time="2026-11-24 05:32:50Z" end-time="2026-11-24 05:32:50Z" duration="0.025289" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The tool should explain its existing material preparations.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.Guide (CavesOfOoo.Core.Entity tool) [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:15
+at CavesOfOoo.Tests.CuttingToolGuideTests.UnavailableExactToolDoesNotBorrowAnotherKnifesAvailability (System.String state) [0x00082] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:37
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

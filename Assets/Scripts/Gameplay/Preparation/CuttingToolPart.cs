@@ -7,10 +7,48 @@ namespace CavesOfOoo.Core
 {
     /// <summary>Explicit physical capability for cutting flexible workshop stock.
     /// This does not infer combat damage, tool wear, or other cutting uses.</summary>
-    public sealed class CuttingToolPart : Part
+    public sealed class CuttingToolPart : Part, IDescribeUse
     {
         public override string Name => "CuttingTool";
         public bool FlexibleStock = true;
+        public int Order => 35;
+
+        /// <summary>Describe existing material-side work without gathering a
+        /// material menu, replacing quote tokens or creating example entities.</summary>
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            var owner = ParentEntity;
+            if (owner == null || owner.GetPart<CuttingToolPart>() != this) return;
+            if (!FlexibleStock || owner.Parts.Count(p => p is CuttingToolPart) != 1)
+            {
+                guide.How.Add("Flexible-stock cutting is unavailable for this tool.");
+                guide.WhyNot = "this tool's cutting capability is unavailable";
+                return;
+            }
+            guide.How.Add("Keep one sound tool carried or equipped. In your pack, choose the prepared material, then its cutting action.");
+            guide.Needs.Add("compatible prepared stock and the exact extra inputs shown in the material's preview");
+            guide.Limits.Add("Each preparation spends its materials and one action; the tool is kept. The material preview states the output and discarded trimming. Flexible workshop stock and purchased components remain useful alternatives.");
+            var factory = ForgePart.Factory;
+            bool catalogue = factory != null && MaterialProcessRegistry.Validate(factory).Count == 0;
+            if (catalogue)
+            {
+                string Label(string blueprint) => factory.Blueprints[blueprint].Parts.TryGetValue("Render", out var p)
+                    && p.TryGetValue("DisplayName", out var label) ? label : blueprint;
+                var examples = MaterialProcessRegistry.ForWorkKind("HandCutting").Take(3).Select(d =>
+                {
+                    var inputs = new[] { d.InputCount + " " + Label(d.SourceBlueprint) }
+                        .Concat(d.AdditionalInputBlueprints.Select((bp, i) => d.AdditionalInputCounts[i] + " " + Label(bp)));
+                    var outputs = d.OutputBlueprints.Select((bp, i) => d.OutputCounts[i] + " " + Label(bp));
+                    return string.Join(" + ", inputs) + " -> " + string.Join(" + ", outputs);
+                }).ToArray();
+                if (examples.Length > 0) guide.How.Add("\nExamples:\n" + string.Join("\n", examples));
+                else catalogue = false;
+            }
+            guide.WhyNot = !UseGuides.CarriedBy(context.Viewer, owner) ? UseGuides.PickUpFirst
+                : !MaterialCuttingWorkReceipt.Usable(context.Viewer, owner, context.Zone) ? "this exact tool is unavailable for cutting; it must be sound, owned and usable as one item"
+                : !catalogue ? "the preparation catalogue is unavailable right now"
+                : "choose a prepared material in your pack to see its cutting actions and exact requirements";
+        }
         internal const string DefinitionSeen="CuttingToolDefinitionSeen";
         public override void Initialize(){if(ParentEntity!=null)ParentEntity.IntProperties[DefinitionSeen]=1;}
         internal static void UpgradeLoadedDefinition(Entity item,CavesOfOoo.Data.EntityFactory factory)
@@ -96,6 +134,7 @@ namespace CavesOfOoo.Core
             var owners=pack.Objects.Concat(pack.EquippedItems.Values).Concat(actor.GetPart<Body>()?.GetParts().Select(l=>l._Equipped)??Enumerable.Empty<Entity>()).Where(e=>e!=null).Distinct();
             return owners.Count(e=>e.ID==item.ID)==1 && !zone.GetReadOnlyEntities().Any(e=>e.ID==item.ID);
         }
+        internal static bool Usable(Entity actor, Entity tool, Zone zone) => Available(actor, null, tool, zone);
         static bool OwnedOptional<T>(Entity item) where T:Part
         {var parts=item.Parts.OfType<T>().ToArray();return parts.Length<=1 && parts.All(p=>p.ParentEntity==item);}
         internal static MaterialCuttingWorkReceipt Resolve(Entity actor,Entity source,Zone zone)

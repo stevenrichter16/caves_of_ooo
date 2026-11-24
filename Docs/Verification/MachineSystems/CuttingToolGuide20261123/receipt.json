@@ -1,0 +1,59 @@
+{
+  "status": "bounded Editor discoverability accepted; packaged delivery deferred",
+  "baseCommit": "9a9e2372867674ca69c02d4ec9c16cd964b48524",
+  "sourceTestPins": {
+    "Assets/Scripts/Gameplay/Preparation/CuttingToolPart.cs": "c0f3b0de77d81ff2d605f068a1e4000d16de4bc5720180f43073221877021764",
+    "Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs": "e414f41f9c5c19357e4f047acce81f84d96cdf640285861ae627ea154f1342b0",
+    "Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs.meta": "4588ec3188804c8ecc7fe0f7bd06e32fc4c2fb28a8e5183394fec410c34eac21"
+  },
+  "coreNative": {
+    "total": 139,
+    "passed": 138,
+    "failed": 0,
+    "skipped": 1,
+    "compileErrors": 0,
+    "durationSeconds": 4.7477973
+  },
+  "finalNative": {
+    "total": 66,
+    "passed": 66,
+    "failed": 0,
+    "compileErrors": 0,
+    "durationSeconds": 3.366518,
+    "newGuideCases": 12,
+    "overlap": "12guide+31machineguide+23useguide overlap core139; do not sum"
+  },
+  "actual": {
+    "game": "d3c56928ecec4cd0a4532b3402867974",
+    "fixture": "earned strong seed64 before-oil-refill280",
+    "knife": "2127",
+    "initialTick": 280,
+    "finalFreshTick": 290,
+    "hp": 400,
+    "purse": 50,
+    "damage": "1d4",
+    "hit": 0,
+    "penetration": 1,
+    "packReadFree": true,
+    "worldReadFree": true,
+    "selectedFreshSnapshotExact": true,
+    "derivedGuideTextExact": true,
+    "readerPagesTraversed": "pack0/1/2 of6, world0/1/2 of3; allHowToUse content and combat/limits observed; no full6page pack traverse",
+    "dropPickup": "normal dropfree; Gpickup290 autoequipped sameknife; freeunequip returned it to pack",
+    "exclusions": "Unicode arrow before correction; separate wrong-picker branch300 tookdagger/trough and is archived/excluded; accepted branch resumed280 and used guarded actual commands"
+  },
+  "review": {
+    "designSourceP1P2": 0,
+    "implementationSourceP1P2": 0,
+    "finalEvidenceArtifact": {
+      "p1p2": 0,
+      "reviewer": "independent shared_source_review",
+      "scope": "3 source/test pins, 21 evidence pins, counts/overlap, actual images/free reads/fresh290; no independent native operation"
+    }
+  },
+  "newSavedFields": false,
+  "newRecipes": false,
+  "seasonalUseGate": "W2 remains open; this explains existing year-round work",
+  "package": "Current Mac074d excludes reader; batch at later coherent milestone",
+  "fullRegression": "original failures and all12whole-machine gates remain open"
+}

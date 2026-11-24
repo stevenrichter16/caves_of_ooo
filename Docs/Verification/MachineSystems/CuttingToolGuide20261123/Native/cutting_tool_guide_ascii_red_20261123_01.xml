@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 05:41:43Z" end-time="2026-11-24 05:41:43Z" duration="0.7502349">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41285" result="Failed" site="Child" start-time="2026-11-24 05:41:43Z" end-time="2026-11-24 05:41:43Z" duration="0.750235" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50313" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41285" result="Failed" site="Child" start-time="2026-11-24 05:41:43Z" end-time="2026-11-24 05:41:43Z" duration="0.706833" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85745" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50314" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41285" result="Failed" site="Child" start-time="2026-11-24 05:41:43Z" end-time="2026-11-24 05:41:43Z" duration="0.665659" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50315" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41285" result="Failed" site="Child" start-time="2026-11-24 05:41:43Z" end-time="2026-11-24 05:41:43Z" duration="0.627336" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="17544" name="CuttingToolGuideTests" fullname="CavesOfOoo.Tests.CuttingToolGuideTests" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-11-24 05:41:43Z" end-time="2026-11-24 05:41:43Z" duration="0.115623" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="17545" name="KnifeExplainsThreeMaterialChoicesWithoutHidingCombatDetails" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.KnifeExplainsThreeMaterialChoicesWithoutHidingCombatDetails" methodname="KnifeExplainsThreeMaterialChoicesWithoutHidingCombatDetails" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="39751853" result="Failed" start-time="2026-11-24 05:41:43Z" end-time="2026-11-24 05:41:43Z" duration="0.083458" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Examples need separate lines with arrows supported by the pixel reader.
+  Expected: 3
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.KnifeExplainsThreeMaterialChoicesWithoutHidingCombatDetails () [0x00054] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:25
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17553" name="LongAuthorCatalogueIsBoundedAndUsesItsLiveCounts" fullname="CavesOfOoo.Tests.CuttingToolGuideTests.LongAuthorCatalogueIsBoundedAndUsesItsLiveCounts" methodname="LongAuthorCatalogueIsBoundedAndUsesItsLiveCounts" classname="CavesOfOoo.Tests.CuttingToolGuideTests" runstate="Runnable" seed="730066333" result="Failed" start-time="2026-11-24 05:41:43Z" end-time="2026-11-24 05:41:43Z" duration="0.025987" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 3
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CuttingToolGuideTests.LongAuthorCatalogueIsBoundedAndUsesItsLiveCounts () [0x00072] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Preparation/CuttingToolGuideTests.cs:69
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

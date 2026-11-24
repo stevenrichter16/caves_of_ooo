@@ -1,3 +1,20 @@
+**Knife fieldwork guide — November23/24,2026:** bounded Editor accepted after
+native, actual readers and independent source/gameplay-evidence review0P1/P2. A capable knife now explains up to
+three existing flexible-stock preparations using the validated live catalogue:
+leather binding, guard lashing and serrated edge. It directs the player to choose
+prepared material in the pack; no new recipe, direct knife action or saved field.
+Exact-tool availability and normal combat details are retained. Core139 gives
+138pass/0fail/1Explicit utilityskip/0CS; final66/66 overlaps and includes12new
+cases. Live font defect led to2ASCII-format RED and the supported arrow fix.
+Native F1/world reads were free; normal drop/pickup/unequip retained exact2127,
+280→290. Full fresh290 selected snapshot and derived guide matched. Separate
+wrong-picker300 branch is archived/excluded. Main stopped/rootnull/clean; scoped
+normal/foreign pins preserved. [Receipt](Verification/MachineSystems/CuttingToolGuide20261123/README.md).
+CurrentMac074d excludes this reader; batch at another coherent milestone.
+All12complete-machine gates, failed full regression, W1b/W2 and natural discovery
+remain open. Root sole owner; task ACTIVE every30minutes. Next broaden to another
+useful material/tool or lasting-project connection, with frequent real screenshots.
+
 **Current Mac delivery — November23,2026:** runtime074d84fa9f9c2ee1db2eca407dd8aea19d694912
 packages accepted W1a shower collection and direct vessel-oil torch refill at
 `/Users/steven/coo-verification/builds/mac-074d84fa9-20261123/CavesOfOoo.app`.
