@@ -22,10 +22,10 @@ namespace CavesOfOoo.Core
             zone = zone ?? actor.SpatialZone;
             WaterTransferActions.AddActions(actor, ParentEntity, zone, rows); DouseWorldActions.AddActions(actor, ParentEntity, zone, rows);
             string drink = "drink water (" + Charges + "/" + Capacity + ")";
-            if (Charges > 0) rows.AddAction("DrinkWater", drink, "DrinkWaterskin"); else rows.AddDisabled("DrinkWater", drink, "empty", "The waterskin is empty.");
-            if (Charges >= Capacity) rows.AddDisabled("FillWater", "fill from nearby fresh water", "full", "The waterskin is full.");
-            else if (WaterVesselService.FreshSourceBeside(actor, zone) == null) rows.AddDisabled("FillWater", "fill from nearby fresh water", "no-water", "There is no fresh water beside you.");
-            else rows.AddAction("FillWater", "fill from nearby fresh water", "FillWaterskin");
+            if (Charges > 0) rows.AddAction("DrinkWater", drink, "DrinkWaterskin", 'd', 20); else rows.AddDisabled("DrinkWater", drink, "empty", "The waterskin is empty.", 'd', 20);
+            if (Charges >= Capacity) rows.AddDisabled("FillWater", "fill from nearby fresh water", "full", "The waterskin is full.", 'f', 19);
+            else if (WaterVesselService.FreshSourceBeside(actor, zone) == null) rows.AddDisabled("FillWater", "fill from nearby fresh water", "no-water", "There is no fresh water beside you.", 'f', 19);
+            else rows.AddAction("FillWater", "fill from nearby fresh water", "FillWaterskin", 'f', 19);
         }
 
         /// <summary>How to use it (the owner, 2026-11-21): drink, fill, douse. The "right now" line is built from the rows the pack menu shows for it.</summary>
@@ -50,11 +50,8 @@ namespace CavesOfOoo.Core
             {
                 var actor = e.GetParameter<Entity>("Actor");
                 if (actor?.GetPart<InventoryPart>()?.Objects.Contains(ParentEntity) != true) return true;
-                var actions = e.GetParameter<InventoryActionList>("Actions");
-                WaterTransferActions.AddActions(actor, ParentEntity, actor?.SpatialZone, actions);
-                DouseWorldActions.AddActions(actor, ParentEntity, actor?.SpatialZone, actions);
-                actions?.AddAction("DrinkWater", "drink water (" + Charges + "/" + Capacity + ")", "DrinkWaterskin", 'd', 20);
-                actions?.AddAction("FillWater", "fill from nearby fresh water", "FillWaterskin", 'f', 19);
+                AddUseRows(actor, e.GetParameter<Zone>("Zone") ?? actor.SpatialZone,
+                    e.GetParameter<InventoryActionList>("Actions"));
                 return true;
             }
             if (e.ID != "InventoryAction") return true;

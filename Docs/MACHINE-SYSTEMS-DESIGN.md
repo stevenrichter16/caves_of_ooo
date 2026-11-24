@@ -1,3 +1,22 @@
+**Ordinary discovery / water-menu clarity — November24,2026:** bounded Editor
+accepted after native, actual and independent source/artifact/gameplay-evidence review0P1/P2.
+Real pack rows now reuse the existing truthful waterskin availability producer:
+empty/no-fresh-water/full reasons, preserved d/f keys20/19priorities and enabled
+costs. No service/quantity/source/saved-field changes. Native213total/212pass/
+0fail/1Explicit utilityskip/0CS includes14new. Fresh ordinary Classic seed1498104061,
+40HP/18Strength/50drams, no grants: visible gleaning/sign -> bypass wicket ->
+natural drawgourd shell+seed -> actual3drink basin -> replant -> spend1water.
+Postfix disabled selection free340; fill440 shell0->3/basin3->0; plant600/water610
+shell3->2/crop2731progress1moisture39. Fullfresh610 selected snapshot exact.
+29real screenshots include failures/search; one authored clearing example, not
+regional density or W2 seasonal reuse. [Receipt](Verification/MachineSystems/OrdinaryDiscovery20261124/README.md).
+Main stopped/rootnull/clean/original7views/index0/console0errors; fresh scoped
+84foreign/861normal/2otherforeign/4Macsavepins exact08:42UTC. CurrentMac632 predates
+this correction and Cinderhold supply; these can form a later coherent batch.
+All12complete-machine gates, failed full regression,W1b/W2 stay open; root sole
+owner/task ACTIVE every30minutes, frequent real screenshots. Ordinary earned610
+is retained for later distinct exploration; do not restart or reroll it.
+
 **Lasting Cinderhold project supply — November24,2026:** bounded Editor accepted
 after native, actual and independent source/artifact/gameplay-evidence review0P1/P2.
 Local stable/improved Pump OR existing Sealed adds one paid sounding rod to future
@@ -1072,6 +1091,12 @@ current statuses. See [weather opportunities](WEATHER-AND-SEASONAL-TOOL-USES.md)
 | Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed complete machine; bounded existing sounding-rod supply now follows lasting Cinderhold repair or seep sealing, with actual paid purchase/read/fresh10810 proof. This does not add sensing behavior, calibration or a complete expedition/resonator; machine-specific gates remain open. |
 | Signal relay | Coordinate separated people and owned locations. | Connectivity, observed reports and persistent dispatch/delivery state with genuine cargo custody. | One physical delivery or report follows a real arrangement, survives interruption/reload and cannot duplicate goods. | Proposed; machine-specific prerequisites open. |
 | Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. | Proposed; existing coatings/reagents are foundations; targeted treatment eligibility, effects, alternatives and persistence remain open. M1d does not implement treatment. |
+
+November24 vessel-access dependency: actual ordinary starter acquisition now
+qualifies drawgourd shell+seed -> finite basin -> chosen crop growth, with a
+truthful shared pack availability correction and fresh610 evidence. This is one
+authored clearing, not general discovery density. No water-source permission or
+quantity changes and no completed machine. All12statuses remain open.
 
 November24 lasting-project dependency: Cinderhold's existing stable pump repair
 and seep-sealing alternative now both expand future paid smith consignments with

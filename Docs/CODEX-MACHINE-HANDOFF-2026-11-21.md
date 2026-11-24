@@ -1,3 +1,22 @@
+**Ordinary discovery / water-menu clarity — November24,2026:** bounded Editor
+accepted after native, actual and independent source/artifact/gameplay-evidence review0P1/P2.
+Real pack rows now reuse the existing truthful waterskin availability producer:
+empty/no-fresh-water/full reasons, preserved d/f keys20/19priorities and enabled
+costs. No service/quantity/source/saved-field changes. Native213total/212pass/
+0fail/1Explicit utilityskip/0CS includes14new. Fresh ordinary Classic seed1498104061,
+40HP/18Strength/50drams, no grants: visible gleaning/sign -> bypass wicket ->
+natural drawgourd shell+seed -> actual3drink basin -> replant -> spend1water.
+Postfix disabled selection free340; fill440 shell0->3/basin3->0; plant600/water610
+shell3->2/crop2731progress1moisture39. Fullfresh610 selected snapshot exact.
+29real screenshots include failures/search; one authored clearing example, not
+regional density or W2 seasonal reuse. [Receipt](Verification/MachineSystems/OrdinaryDiscovery20261124/README.md).
+Main stopped/rootnull/clean/original7views/index0/console0errors; fresh scoped
+84foreign/861normal/2otherforeign/4Macsavepins exact08:42UTC. CurrentMac632 predates
+this correction and Cinderhold supply; these can form a later coherent batch.
+All12complete-machine gates, failed full regression,W1b/W2 stay open; root sole
+owner/task ACTIVE every30minutes, frequent real screenshots. Ordinary earned610
+is retained for later distinct exploration; do not restart or reroll it.
+
 **Lasting Cinderhold project supply — November24,2026:** bounded Editor accepted
 after native, actual and independent source/artifact/gameplay-evidence review0P1/P2.
 Local stable/improved Pump OR existing Sealed adds one paid sounding rod to future
