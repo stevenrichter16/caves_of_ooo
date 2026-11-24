@@ -1,3 +1,24 @@
+**Current Mac delivery — November24,2026:** runtime6325062a1cb3d9f2a1065fec5458f1d8b9b8959d
+packages accepted knife guidance and portable fire-moss ignition together at
+`/Users/steven/coo-verification/builds/mac-6325062a1-20261124/CavesOfOoo.app`.
+Universal6000.3.4f1/nondev,57.154212s364196125bytes/0errors/5samepriorwarnings.
+32061Git/SHA source pins,32064effective/83changed0missing3added/exact86overlay,
+592external/186player pins. Cecil38feature/wiring/field checks; all428metadata
+Part-derived names/instance fields match074d (broader than native saved-contract
+eligibility); no new saved Part or complete-IL semantic equivalence claim.
+Owned46251/window71581 actual640x428save-choice/world/HUD7creatures2686entities,
+closed. Five owned window entries included four33pxmenu bars; one game qualified.
+Fresh AX/postfalse/screentrue; no input/activation/permission request.4normalMacsave
+files stayed byteexact in place,18logicalprefs restored. Fresh20apps/3720files exact
+(19prior3534+186new),84foreign/861selectednormal/2otherforeign pins match. Main
+stopped/rootnull/clean/profileroff/original7views/index0. Independent final package/
+source/startup-artifact review0P1/P2; [receipt](Verification/MachineSystems/MacCandidate6325062A1/README.md).
+Controlled packaged interactions/save/controller/FPS/Intel, original failed full
+regression, all12complete-machine gates, W1b/W2 and natural discovery stay open.
+Root sole owner; task ACTIVE every30minutes. Next broaden after publication;
+do not repeat accepted tests, branches/build/startup. Supersedes older074d=currentMac
+references below. Graphics cancelled; capstan/cultures parked; Deck deferred.
+
 **Portable fire-moss — November24,2026:** bounded Editor accepted after native,
 actual and independent final source/artifact/gameplay-evidence review0P1/P2. A quoted1moss row starts an existing
 fueled torch or finite hearth; real flame/flint stay preferred. Moss adds no fuel;
