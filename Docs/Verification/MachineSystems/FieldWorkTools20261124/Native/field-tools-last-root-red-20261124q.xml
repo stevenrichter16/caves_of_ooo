@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 19:48:07Z" end-time="2026-11-24 19:48:08Z" duration="0.9519111">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41618" result="Failed" site="Child" start-time="2026-11-24 19:48:07Z" end-time="2026-11-24 19:48:08Z" duration="0.951911" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50723" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone4/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41618" result="Failed" site="Child" start-time="2026-11-24 19:48:07Z" end-time="2026-11-24 19:48:08Z" duration="0.840116" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="46650" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50724" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41618" result="Failed" site="Child" start-time="2026-11-24 19:48:07Z" end-time="2026-11-24 19:48:08Z" duration="0.794931" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50725" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41618" result="Failed" site="Child" start-time="2026-11-24 19:48:07Z" end-time="2026-11-24 19:48:08Z" duration="0.748472" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24304" name="FieldWorkToolsTests" fullname="CavesOfOoo.Tests.FieldWorkToolsTests" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-11-24 19:48:08Z" end-time="2026-11-24 19:48:08Z" duration="0.178299" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24318" name="FailedRodLoadReturnsTheRootWithoutCharging" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.FailedRodLoadReturnsTheRootWithoutCharging" methodname="FailedRodLoadReturnsTheRootWithoutCharging" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1587108852" result="Passed" start-time="2026-11-24 19:48:08Z" end-time="2026-11-24 19:48:08Z" duration="0.056283" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24357" name="LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 19:48:08Z" end-time="2026-11-24 19:48:08Z" duration="0.115119" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24353" name="LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit(&quot;equipped&quot;)" methodname="LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1234805608" result="Failed" start-time="2026-11-24 19:48:08Z" end-time="2026-11-24 19:48:08Z" duration="0.029420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit (System.String change) [0x0009e] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:231
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24354" name="LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit(&quot;quantity&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit(&quot;quantity&quot;)" methodname="LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="407961744" result="Failed" start-time="2026-11-24 19:48:08Z" end-time="2026-11-24 19:48:08Z" duration="0.026391" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit (System.String change) [0x0009e] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:231
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24355" name="LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit(&quot;pack-alias&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit(&quot;pack-alias&quot;)" methodname="LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1339025477" result="Failed" start-time="2026-11-24 19:48:08Z" end-time="2026-11-24 19:48:08Z" duration="0.025449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit (System.String change) [0x0009e] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:231
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24356" name="LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit(&quot;effect&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit(&quot;effect&quot;)" methodname="LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="592666728" result="Failed" start-time="2026-11-24 19:48:08Z" end-time="2026-11-24 19:48:08Z" duration="0.032513" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.LastRootMustRemainOneFullyRemovedUnitBeforeChargeCanCommit (System.String change) [0x0009e] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:231
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

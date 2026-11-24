@@ -29,7 +29,7 @@ namespace CavesOfOoo.Core
 
         // Old saved armor already has this Part. Only a declared reclamation
         // manifest grants work; material and composition never imply a yield.
-        bool IMaterialReclaimPermission.Allows(MaterialProcessDefinition definition)
+        bool IMaterialProcessPermission.Allows(MaterialProcessDefinition definition)
             => ParentEntity?.GetPart<ArmorPart>() == this && definition != null
                 && definition.SourceBlueprint == ParentEntity.BlueprintName
                 && definition.Mode == "Reclaim" && definition.WorkKind == "HandCutting"

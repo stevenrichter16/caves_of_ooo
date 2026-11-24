@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 18:50:46Z" end-time="2026-11-24 18:50:48Z" duration="1.5383109">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41594" result="Failed" site="Child" start-time="2026-11-24 18:50:46Z" end-time="2026-11-24 18:50:48Z" duration="1.538311" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50695" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone4/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41594" result="Failed" site="Child" start-time="2026-11-24 18:50:46Z" end-time="2026-11-24 18:50:48Z" duration="1.487459" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="89359" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50696" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41594" result="Failed" site="Child" start-time="2026-11-24 18:50:46Z" end-time="2026-11-24 18:50:48Z" duration="1.442079" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50697" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41594" result="Failed" site="Child" start-time="2026-11-24 18:50:46Z" end-time="2026-11-24 18:50:48Z" duration="1.326458" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24304" name="FieldWorkToolsTests" fullname="CavesOfOoo.Tests.FieldWorkToolsTests" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-11-24 18:50:47Z" end-time="2026-11-24 18:50:48Z" duration="0.161824" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24314" name="FailedNozzleActionLeavesFuelAndGroundUnchanged" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.FailedNozzleActionLeavesFuelAndGroundUnchanged" methodname="FailedNozzleActionLeavesFuelAndGroundUnchanged" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1004763699" result="Failed" start-time="2026-11-24 18:50:47Z" end-time="2026-11-24 18:50:47Z" duration="0.049849" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HearthNozzle
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.FailedNozzleActionLeavesFuelAndGroundUnchanged () [0x00007] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:50
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HearthNozzle'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24313" name="NozzleCannotUseUnpaidOrUnownedHeat" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-24 18:50:47Z" end-time="2026-11-24 18:50:48Z" duration="0.078384" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24310" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;cold&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;cold&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1958520753" result="Failed" start-time="2026-11-24 18:50:47Z" end-time="2026-11-24 18:50:47Z" duration="0.027341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HearthNozzle
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat (System.String change) [0x00007] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:42
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HearthNozzle'
+]]></output>
+              </test-case>
+              <test-case id="24311" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;empty&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="863679969" result="Failed" start-time="2026-11-24 18:50:47Z" end-time="2026-11-24 18:50:48Z" duration="0.024727" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HearthNozzle
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat (System.String change) [0x00007] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:42
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HearthNozzle'
+]]></output>
+              </test-case>
+              <test-case id="24312" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;public&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;public&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1505162850" result="Failed" start-time="2026-11-24 18:50:48Z" end-time="2026-11-24 18:50:48Z" duration="0.024997" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HearthNozzle
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat (System.String change) [0x00007] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:42
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HearthNozzle'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24309" name="NozzleSpendsFiveActualFuelAndThawsThroughSharedTileRules" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleSpendsFiveActualFuelAndThawsThroughSharedTileRules" methodname="NozzleSpendsFiveActualFuelAndThawsThroughSharedTileRules" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="773785343" result="Failed" start-time="2026-11-24 18:50:48Z" end-time="2026-11-24 18:50:48Z" duration="0.026186" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HearthNozzle
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.NozzleSpendsFiveActualFuelAndThawsThroughSharedTileRules () [0x00007] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:35
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HearthNozzle'
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="24722" name="FlintStrikerTests" fullname="CavesOfOoo.Tests.FlintStrikerTests" classname="CavesOfOoo.Tests.FlintStrikerTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-11-24 18:50:48Z" end-time="2026-11-24 18:50:48Z" duration="0.031601" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="24723" name="TheShippedBlueprintIsASmallFiniteToolAndNotAFireOrAStack" fullname="CavesOfOoo.Tests.FlintStrikerTests.TheShippedBlueprintIsASmallFiniteToolAndNotAFireOrAStack" methodname="TheShippedBlueprintIsASmallFiniteToolAndNotAFireOrAStack" classname="CavesOfOoo.Tests.FlintStrikerTests" runstate="Runnable" seed="1780318891" result="Passed" start-time="2026-11-24 18:50:48Z" end-time="2026-11-24 18:50:48Z" duration="0.029157" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

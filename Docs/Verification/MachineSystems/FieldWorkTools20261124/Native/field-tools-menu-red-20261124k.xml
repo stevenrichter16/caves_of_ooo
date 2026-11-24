@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 19:10:05Z" end-time="2026-11-24 19:10:06Z" duration="1.1799163">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41613" result="Failed" site="Child" start-time="2026-11-24 19:10:05Z" end-time="2026-11-24 19:10:06Z" duration="1.179916" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50717" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41613" result="Failed" site="Child" start-time="2026-11-24 19:10:05Z" end-time="2026-11-24 19:10:06Z" duration="1.131636" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="8762" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50718" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41613" result="Failed" site="Child" start-time="2026-11-24 19:10:05Z" end-time="2026-11-24 19:10:06Z" duration="1.087900" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50719" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41613" result="Failed" site="Child" start-time="2026-11-24 19:10:05Z" end-time="2026-11-24 19:10:06Z" duration="0.974873" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24304" name="FieldWorkToolsTests" fullname="CavesOfOoo.Tests.FieldWorkToolsTests" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-11-24 19:10:06Z" end-time="2026-11-24 19:10:06Z" duration="0.241392" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24345" name="ReaderDoesNotReplaceAnOpenHeatQuote" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.ReaderDoesNotReplaceAnOpenHeatQuote" methodname="ReaderDoesNotReplaceAnOpenHeatQuote" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1777465044" result="Passed" start-time="2026-11-24 19:10:06Z" end-time="2026-11-24 19:10:06Z" duration="0.108427" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24351" name="RepeatedMenuGatherRetainsTheSameCurrentChoice" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.RepeatedMenuGatherRetainsTheSameCurrentChoice" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-24 19:10:06Z" end-time="2026-11-24 19:10:06Z" duration="0.123842" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24348" name="RepeatedMenuGatherRetainsTheSameCurrentChoice(&quot;HearthNozzle&quot;,&quot;DirectHearthHeat|&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.RepeatedMenuGatherRetainsTheSameCurrentChoice(&quot;HearthNozzle&quot;,&quot;DirectHearthHeat|&quot;)" methodname="RepeatedMenuGatherRetainsTheSameCurrentChoice" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="919437848" result="Failed" start-time="2026-11-24 19:10:06Z" end-time="2026-11-24 19:10:06Z" duration="0.031252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.RepeatedMenuGatherRetainsTheSameCurrentChoice (System.String blueprint, System.String prefix) [0x000dd] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:207
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24349" name="RepeatedMenuGatherRetainsTheSameCurrentChoice(&quot;DischargeRod&quot;,&quot;DischargeRod|&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.RepeatedMenuGatherRetainsTheSameCurrentChoice(&quot;DischargeRod&quot;,&quot;DischargeRod|&quot;)" methodname="RepeatedMenuGatherRetainsTheSameCurrentChoice" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="334845901" result="Failed" start-time="2026-11-24 19:10:06Z" end-time="2026-11-24 19:10:06Z" duration="0.027029" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.RepeatedMenuGatherRetainsTheSameCurrentChoice (System.String blueprint, System.String prefix) [0x000dd] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:207
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24350" name="RepeatedMenuGatherRetainsTheSameCurrentChoice(&quot;SteamCondenser&quot;,&quot;CondenseSteam|&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.RepeatedMenuGatherRetainsTheSameCurrentChoice(&quot;SteamCondenser&quot;,&quot;CondenseSteam|&quot;)" methodname="RepeatedMenuGatherRetainsTheSameCurrentChoice" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="964377075" result="Failed" start-time="2026-11-24 19:10:06Z" end-time="2026-11-24 19:10:06Z" duration="0.064141" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.RepeatedMenuGatherRetainsTheSameCurrentChoice (System.String blueprint, System.String prefix) [0x000dd] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:207
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

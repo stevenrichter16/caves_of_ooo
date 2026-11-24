@@ -1,3 +1,4 @@
+using System.Linq;
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -12,7 +13,7 @@ namespace CavesOfOoo.Core
     /// one weapon; contributions are combined by
     /// WeaponForgingService.PreviewForge.
     /// </summary>
-    public class WeaponComponentPart : Part
+    public class WeaponComponentPart : Part, IMaterialProcessPermission, IInventoryActionReceiptOwner, IDescribeUse, IDescribeUseRows
     {
         public override string Name => "WeaponComponent";
 
@@ -51,6 +52,29 @@ namespace CavesOfOoo.Core
         /// (e.g. "long-hafted" + "serrated" + "steel blade").
         /// </summary>
         public string NameFragment = "";
+
+        bool IMaterialProcessPermission.Allows(MaterialProcessDefinition definition)=>definition!=null
+            && ParentEntity?.GetPart<WeaponComponentPart>()==this && ParentEntity.BlueprintName==definition.SourceBlueprint
+            && definition.SourceRecipeId.Length==0 && definition.Mode=="Process" && definition.WorkKind=="ForgeCold";
+        public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<WeaponComponentPart>()==this && MaterialProcessInputPart.IsCommand(command);
+        public override bool HandleEvent(GameEvent e)=>ParentEntity?.GetPart<WeaponComponentPart>()!=this
+            || ParentEntity.HasPart<MaterialProcessInputPart>() || MaterialProcessActions.Handle(ParentEntity,e,MaterialProcessRegistry.ForSource(ParentEntity)
+                .Where(d=>d.Mode=="Process" && d.WorkKind=="ForgeCold" && d.SourceRecipeId.Length==0).Select(d=>d.Id));
+        public int Order=>40;
+        public void AddUseRows(Entity actor,Zone zone,InventoryActionList rows)
+        {
+            if(ParentEntity?.HasPart<MaterialProcessInputPart>()!=false)return;
+            foreach(var d in MaterialProcessRegistry.ForSource(ParentEntity))
+                if(d.Mode=="Process" && d.WorkKind=="ForgeCold" && MaterialProcessService.TryQuote(MaterialProcessPlan.TryCreate(actor,ParentEntity,d.Id,zone,ForgePart.Factory))!=null)
+                    rows.AddAction(d.Id,d.ActionText,"description-only",'\0',19);
+        }
+        public void DescribeUse(DescribeContext context,UseGuide guide)
+        {
+            var processes=MaterialProcessRegistry.ForSource(ParentEntity).Where(d=>d.Mode=="Process" && d.WorkKind=="ForgeCold" && d.SourceRecipeId.Length==0).ToArray();
+            if(processes.Length==0 || ParentEntity.HasPart<MaterialProcessInputPart>())return;
+            guide.How.Add("At a forge, select this component in your pack to make: "+string.Join(", ",processes.Select(d=>d.ActionText))+".");
+            guide.Limits.Add("One action; the selected component and each listed extra material are used up. Plain unworn inputs only; the finished tool goes into your pack.");
+        }
 
         public override void OnAfterLoad(SaveReader reader)
         {

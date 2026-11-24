@@ -1,3 +1,29 @@
+**Field work tools — November24,2026:** three new bounded capabilities are
+qualified in native tests and recorded Editor play: five-fuel aimed hearth heat,
+one-root/one-charge portable discharge with two-cell straight reach, and finite
+steam-water catching using the existing elected proofing source stock. Three
+forge manifests consume existing iron/clay/cord; recipes are not extra features.
+Final native245/245 (46new/199retained), independent current-source/recorded-play
+review0remainingP1/P2. Actual native forging70, paid thaw140, loaded-rod fresh170,
+two-cell discharge180, water catches230/240, ordinary hearth cooling/fresh310,
+free cancel/walking/save330, and natural wet-viper shock/death/fresh460 qualify
+these connections. Native pickup of its ordinary death-loot root and reload/fresh490
+retain one discharge, corpse/waterpool1, source1/3 Last220 and player398HP.
+Seven F5 checkpoints/all28files archived before cleanup; six fresh selected pairs
+match after sorting fixture enumeration byID. Five PNGs total;03 is an excluded
+failed menu attempt. Actual F1 exposed token invalidation: current-quote retention
+now covers tool and shared processing menus, with nativeREDs. Steady steam uses
+its declared source, with frozen admission retained; passive thermal cooling does
+not impose reheating. Main stopped/rootnull/clean/profiler-off/original7views/index0,
+input restored and owned assembly locks released.19:41UTC scoped84foreign,
+861normal,2otherforeign and25priorapps4650files exact. CurrentMac9a predates this
+batch; exact-owned publication and coherent delivery next. All12complete-machine,
+failed-full-suite, ordinary-discovery/balance and hardware gates remain open.
+See [tool contract](MACHINE-FIELD-WORK-TOOLS.md) and
+[evidence/exclusions](Verification/MachineSystems/FieldWorkTools20261124/README.md).
+Root sole Unity/Git owner; ACTIVE every30minutes. Graphics cancelled;
+capstan/cultures parked; Deck deferred.
+
 **Worksite Mac delivery — November24,2026:** runtime
 9a0d55f9303b76c033af98ee28a0d985663c3624 is pushed/remotely verified and now has a
 current bounded universal Mac package. Three distinct additions: spare leather

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 19:52:47Z" end-time="2026-11-24 19:52:48Z" duration="0.6895343">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41619" result="Failed" site="Child" start-time="2026-11-24 19:52:47Z" end-time="2026-11-24 19:52:48Z" duration="0.689534" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50724" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone4/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41619" result="Failed" site="Child" start-time="2026-11-24 19:52:47Z" end-time="2026-11-24 19:52:48Z" duration="0.635968" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="50592" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50725" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41619" result="Failed" site="Child" start-time="2026-11-24 19:52:47Z" end-time="2026-11-24 19:52:48Z" duration="0.587170" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50726" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41619" result="Failed" site="Child" start-time="2026-11-24 19:52:47Z" end-time="2026-11-24 19:52:48Z" duration="0.480605" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24304" name="FieldWorkToolsTests" fullname="CavesOfOoo.Tests.FieldWorkToolsTests" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-11-24 19:52:47Z" end-time="2026-11-24 19:52:48Z" duration="0.154013" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="24314" name="NozzleCannotUseUnpaidOrUnownedHeat" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 19:52:47Z" end-time="2026-11-24 19:52:48Z" duration="0.150054" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24310" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;cold&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;cold&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="451388774" result="Passed" start-time="2026-11-24 19:52:47Z" end-time="2026-11-24 19:52:47Z" duration="0.058320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24311" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;empty&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="185750638" result="Passed" start-time="2026-11-24 19:52:47Z" end-time="2026-11-24 19:52:48Z" duration="0.027852" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24312" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;public&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;public&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1680179999" result="Passed" start-time="2026-11-24 19:52:48Z" end-time="2026-11-24 19:52:48Z" duration="0.027925" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24313" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;nonplayer&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;nonplayer&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1756099385" result="Failed" start-time="2026-11-24 19:52:48Z" end-time="2026-11-24 19:52:48Z" duration="0.030783" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat (System.String change) [0x0008d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:50
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

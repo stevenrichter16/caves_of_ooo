@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 18:54:04Z" end-time="2026-11-24 18:54:06Z" duration="2.2436558">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41610" result="Failed" site="Child" start-time="2026-11-24 18:54:04Z" end-time="2026-11-24 18:54:06Z" duration="2.243656" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50713" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone4/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41610" result="Failed" site="Child" start-time="2026-11-24 18:54:04Z" end-time="2026-11-24 18:54:06Z" duration="2.191381" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92411" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50714" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41610" result="Failed" site="Child" start-time="2026-11-24 18:54:04Z" end-time="2026-11-24 18:54:06Z" duration="2.146223" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50715" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41610" result="Failed" site="Child" start-time="2026-11-24 18:54:04Z" end-time="2026-11-24 18:54:06Z" duration="2.068136" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24304" name="FieldWorkToolsTests" fullname="CavesOfOoo.Tests.FieldWorkToolsTests" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-11-24 18:54:06Z" end-time="2026-11-24 18:54:06Z" duration="0.268992" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24346" name="CommittedObserverCannotLaunchHeatAfterMovingTheSource" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.CommittedObserverCannotLaunchHeatAfterMovingTheSource" methodname="CommittedObserverCannotLaunchHeatAfterMovingTheSource" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="2090902902" result="Failed" start-time="2026-11-24 18:54:06Z" end-time="2026-11-24 18:54:06Z" duration="0.061313" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.CommittedObserverCannotLaunchHeatAfterMovingTheSource () [0x00072] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:190
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="24340" name="LateReceiverFreezeRefundsOnlyTheNewWaterAndSourceCatch" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.LateReceiverFreezeRefundsOnlyTheNewWaterAndSourceCatch" methodname="LateReceiverFreezeRefundsOnlyTheNewWaterAndSourceCatch" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1270233015" result="Failed" start-time="2026-11-24 18:54:06Z" end-time="2026-11-24 18:54:06Z" duration="0.078454" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.LateReceiverFreezeRefundsOnlyTheNewWaterAndSourceCatch () [0x000c9] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:151
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="24339" name="NewlyFrozenReceiverInvalidatesTheCapturedSelection" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NewlyFrozenReceiverInvalidatesTheCapturedSelection" methodname="NewlyFrozenReceiverInvalidatesTheCapturedSelection" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1274151747" result="Failed" start-time="2026-11-24 18:54:06Z" end-time="2026-11-24 18:54:06Z" duration="0.026959" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.NewlyFrozenReceiverInvalidatesTheCapturedSelection () [0x00044] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:143
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="24345" name="ReaderDoesNotReplaceAnOpenHeatQuote" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.ReaderDoesNotReplaceAnOpenHeatQuote" methodname="ReaderDoesNotReplaceAnOpenHeatQuote" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="482690179" result="Passed" start-time="2026-11-24 18:54:06Z" end-time="2026-11-24 18:54:06Z" duration="0.035810" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24338" name="RoundedFuelCannotPretendToPayFive" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.RoundedFuelCannotPretendToPayFive" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 18:54:06Z" end-time="2026-11-24 18:54:06Z" duration="0.055297" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24336" name="RoundedFuelCannotPretendToPayFive(1.342177E+08f)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.RoundedFuelCannotPretendToPayFive(1.342177E+08f)" methodname="RoundedFuelCannotPretendToPayFive" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1668616828" result="Failed" start-time="2026-11-24 18:54:06Z" end-time="2026-11-24 18:54:06Z" duration="0.026737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.RoundedFuelCannotPretendToPayFive (System.Single amount) [0x00029] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:138
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24337" name="RoundedFuelCannotPretendToPayFive(6.710886E+07f)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.RoundedFuelCannotPretendToPayFive(6.710886E+07f)" methodname="RoundedFuelCannotPretendToPayFive" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1635304373" result="Failed" start-time="2026-11-24 18:54:06Z" end-time="2026-11-24 18:54:06Z" duration="0.026864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldWorkToolsTests.RoundedFuelCannotPretendToPayFive (System.Single amount) [0x00029] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:138
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

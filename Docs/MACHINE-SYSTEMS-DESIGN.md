@@ -1,3 +1,29 @@
+**Field work tools — November24,2026:** three new bounded capabilities are
+qualified in native tests and recorded Editor play: five-fuel aimed hearth heat,
+one-root/one-charge portable discharge with two-cell straight reach, and finite
+steam-water catching using the existing elected proofing source stock. Three
+forge manifests consume existing iron/clay/cord; recipes are not extra features.
+Final native245/245 (46new/199retained), independent current-source/recorded-play
+review0remainingP1/P2. Actual native forging70, paid thaw140, loaded-rod fresh170,
+two-cell discharge180, water catches230/240, ordinary hearth cooling/fresh310,
+free cancel/walking/save330, and natural wet-viper shock/death/fresh460 qualify
+these connections. Native pickup of its ordinary death-loot root and reload/fresh490
+retain one discharge, corpse/waterpool1, source1/3 Last220 and player398HP.
+Seven F5 checkpoints/all28files archived before cleanup; six fresh selected pairs
+match after sorting fixture enumeration byID. Five PNGs total;03 is an excluded
+failed menu attempt. Actual F1 exposed token invalidation: current-quote retention
+now covers tool and shared processing menus, with nativeREDs. Steady steam uses
+its declared source, with frozen admission retained; passive thermal cooling does
+not impose reheating. Main stopped/rootnull/clean/profiler-off/original7views/index0,
+input restored and owned assembly locks released.19:41UTC scoped84foreign,
+861normal,2otherforeign and25priorapps4650files exact. CurrentMac9a predates this
+batch; exact-owned publication and coherent delivery next. All12complete-machine,
+failed-full-suite, ordinary-discovery/balance and hardware gates remain open.
+See [tool contract](MACHINE-FIELD-WORK-TOOLS.md) and
+[evidence/exclusions](Verification/MachineSystems/FieldWorkTools20261124/README.md).
+Root sole Unity/Git owner; ACTIVE every30minutes. Graphics cancelled;
+capstan/cultures parked; Deck deferred.
+
 **Worksite Mac delivery — November24,2026:** runtime
 9a0d55f9303b76c033af98ee28a0d985663c3624 is pushed/remotely verified and now has a
 current bounded universal Mac package. Three distinct additions: spare leather
@@ -1261,6 +1287,15 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+November24 field-tool dependency: aimed finite hearth heat now thaws outside
+ice through shared reactions; a one-root rod stores and delivers one charge;
+finite vent water shares scraper/tray stock and feeds ordinary cooling or a
+conductive wet-creature interaction. Actual reuse includes naturally recovered
+root loading and fresh490. These are bounded source/storage/consumer connections,
+not a complete exchanger, dynamo, generator, pipe network or automatic producer.
+All twelve complete-machine statuses remain open; capstan/culture work stays
+parked. See [field work tools](MACHINE-FIELD-WORK-TOOLS.md).
+
 November24 worksite dependency: explicit equipment recovery, selected own-box
 material custody and lossy field binding are accepted bounded prerequisites for
 reclamation and restoration access. They add an outside-machine source/use and
@@ -1364,11 +1399,11 @@ current statuses. See [weather opportunities](WEATHER-AND-SEASONAL-TOOL-USES.md)
 | Fractionating still | Turn a difficult local feed into a useful liquid and retained residue. | Known feed accounting, bounded processing, fuel/work, output and waste receivers. Existing reagent still is not fractionation. | Source-to-receiver accounting, real use of the result, blocked/interrupted/reloaded jobs and waste handling. | Proposed complete machine; M1d discrete preparation and portable output use accepted. November22 bounded baking127native+actual finite mire48->24, two clay/20process fuel, lasting Gleaners well repair and fresh3540/3640 qualified (RegionalClay20261122). Well/flask transport qualified across village/grove/camp (WellFlasks20261122). November24 bounded brine distillation adds4brine+5fuel->2water, actual portable acid-rinse use and fresh2100; discarded concentrate/no salt, not general separation or physical waste. General fractionation, physical waste, elapsed jobs and unloaded work remain open. |
 | Restoration cradle | Recover the particular function of damaged equipment. | Persistent component slots, explicit compatibility, faults and tested substitution tradeoffs. | Restored apparatus performs its real action; alternate repair changes a legible capability, not merely item flavor. | Proposed; M1b recovery/service and M1c bounded relocation accepted; current Mac includes M1b/M1c; complete-machine prerequisites open. |
 | Assay cabinet | Spend evidence to make a practical decision. | Samples with quantity/provenance, authored questions and partial findings. | An answer changes a processing, repair or route choice; missing evidence and hidden knowledge remain unavailable. | Proposed; machine-specific prerequisites open. |
-| Culture vat | Grow a finite useful culture from acquired stock. | Strain identity, feedstock, bounded growth, conditions and yield allocation. | Two competing uses for one finite culture, different supported conditions, consent/ownership and persistence. | Proposed; finite culture identity/feed/growth/conditions and competing uses remain open. M1d oil preparation does not implement cultures. |
-| Anchored capstan | Recover or reposition loads ordinary carrying cannot handle. | Valid anchors, cable/pull paths, work budget and installed-versus-loose state. | Actual obstruction, terrain and existing cargo weight affect pulling; movement and interruption remain coherent. | Proposed; M1b recovery/service and M1c bounded relocation accepted; current Mac includes M1b/M1c; complete-machine prerequisites open. |
+| Culture vat | Grow a finite useful culture from acquired stock. | Strain identity, feedstock, bounded growth, conditions and yield allocation. | Two competing uses for one finite culture, different supported conditions, consent/ownership and persistence. | Proposed and parked; finite culture identity/feed/growth/conditions and competing uses remain open. M1d oil preparation does not implement cultures. |
+| Anchored capstan | Recover or reposition loads ordinary carrying cannot handle. | Valid anchors, cable/pull paths, work budget and installed-versus-loose state. | Actual obstruction, terrain and existing cargo weight affect pulling; movement and interruption remain coherent. | Proposed and parked; M1b recovery/service and M1c bounded relocation accepted; current Mac includes M1b/M1c; complete-machine prerequisites open. |
 | Sump pump | Reach submerged resources or redirect a local liquid supply. | Finite source/receiver transfer, level/state thresholds, compatible fittings and outlet consequences. | A real passage or resource changes access; transferred liquid appears at a valid destination with no regeneration exploit. | Proposed; M1a vessel transfer accepted, but actual finite source/depletion/receiver/access loop remains unqualified. M2a contained recovery is publishedc43631ad6 with native56/56, actual clean/manual/crafting/contact/travel/reload/old-cache and currentMac action/travel/reload; full pump purpose/flow remains open. M1d does not implement pumping. |
-| Thermal exchanger | Use a local source for drying, cooling or processing. | Explicit source/receiver coupling, work limits and bounded local temperature effects. | Useful cooling/heating and a second consequence share existing thermal rules; unsupported sources do not create energy. | Proposed; bounded owned-hearth cooling now spends finite newly poured water, preserves surplus/older stock, uses shared thermal/light/cooking and has actual recovery/fresh2760 proof. This is not general source/receiver coupling or a complete exchanger; machine-specific prerequisites remain open. |
-| Dynamo and charging bench | Prepare finite work for portable equipment. | Authored energy source, storage loss/capacity and at least one real consumer. | Charged equipment does useful work away from the generator; finite conversion and refusal paths are verified. | Proposed; machine-specific prerequisites open. |
+| Thermal exchanger | Use a local source for drying, cooling or processing. | Explicit source/receiver coupling, work limits and bounded local temperature effects. | Useful cooling/heating and a second consequence share existing thermal rules; unsupported sources do not create energy. | Proposed; bounded owned-hearth cooling now spends finite newly poured water, preserves surplus/older stock, uses shared thermal/light/cooking and has actual recovery/fresh2760 proof. November24 bounded nozzle and condenser add five-fuel aimed tile heat and one-water catches from the shared finite vent stock, with actual thaw, cooling and fresh490. General source/receiver coupling and complete exchanger prerequisites remain open. |
+| Dynamo and charging bench | Prepare finite work for portable equipment. | Authored energy source, storage loss/capacity and at least one real consumer. | Charged equipment does useful work away from the generator; finite conversion and refusal paths are verified. | Proposed complete machine. November24 bounded rod stores one SparkRoot discharge, carries it through fresh170/490 and delivers shared charge one/two clear cells away; actual wet-viper interaction and finite root reuse qualified. Direct root charge already existed. No generator, multi-charge conversion or charging network acceptance; machine-specific gates remain open. |
 | Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed complete machine; bounded existing sounding-rod supply now follows lasting Cinderhold repair or seep sealing, with actual paid purchase/read/fresh10810 proof. This does not add sensing behavior, calibration or a complete expedition/resonator; machine-specific gates remain open. |
 | Signal relay | Coordinate separated people and owned locations. | Connectivity, observed reports and persistent dispatch/delivery state with genuine cargo custody. | One physical delivery or report follows a real arrangement, survives interruption/reload and cannot duplicate goods. | Proposed; machine-specific prerequisites open. |
 | Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. | Proposed; existing coatings/reagents are foundations; November24 finite carried-water acid rinse is bounded actual/native qualified (self actual; adjacent party native), leaves Wet and no healing; no complete bath. Broader targeted treatment eligibility, effects, alternatives and persistence remain open. M1d does not implement treatment. |

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 19:14:31Z" end-time="2026-11-24 19:14:32Z" duration="0.8604581">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41614" result="Failed" site="Child" start-time="2026-11-24 19:14:31Z" end-time="2026-11-24 19:14:32Z" duration="0.860458" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50718" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone4/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41614" result="Failed" site="Child" start-time="2026-11-24 19:14:32Z" end-time="2026-11-24 19:14:32Z" duration="0.812598" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12593" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50719" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41614" result="Failed" site="Child" start-time="2026-11-24 19:14:32Z" end-time="2026-11-24 19:14:32Z" duration="0.768272" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50720" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41614" result="Failed" site="Child" start-time="2026-11-24 19:14:32Z" end-time="2026-11-24 19:14:32Z" duration="0.726277" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24304" name="FieldWorkToolsTests" fullname="CavesOfOoo.Tests.FieldWorkToolsTests" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-11-24 19:14:32Z" end-time="2026-11-24 19:14:32Z" duration="0.196815" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24320" name="LookingAtUntouchedVentCreatesNoResourceStock" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.LookingAtUntouchedVentCreatesNoResourceStock" methodname="LookingAtUntouchedVentCreatesNoResourceStock" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1209926092" result="Passed" start-time="2026-11-24 19:14:32Z" end-time="2026-11-24 19:14:32Z" duration="0.113905" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24352" name="SteadySteamSourceDoesNotDependOnItsIncidentalCoolingTemperature" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.SteadySteamSourceDoesNotDependOnItsIncidentalCoolingTemperature" methodname="SteadySteamSourceDoesNotDependOnItsIncidentalCoolingTemperature" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="377032341" result="Failed" start-time="2026-11-24 19:14:32Z" end-time="2026-11-24 19:14:32Z" duration="0.075609" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for CondenseSteam|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.FieldWorkToolsTests.SteadySteamSourceDoesNotDependOnItsIncidentalCoolingTemperature () [0x0004a] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:215
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

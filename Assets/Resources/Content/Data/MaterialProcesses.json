@@ -1,6 +1,69 @@
 {
   "Processes": [
     {
+      "Id": "make_hearth_nozzle",
+      "SourceBlueprint": "IronSpikeComponent",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "AdditionalInputBlueprints": [
+        "FireClay"
+      ],
+      "AdditionalInputCounts": [
+        2
+      ],
+      "OutputBlueprints": [
+        "HearthNozzle"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "make hearth nozzle",
+      "LossText": "materials become one reusable tool"
+    },
+    {
+      "Id": "make_discharge_rod",
+      "SourceBlueprint": "IronSpikeComponent",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "AdditionalInputBlueprints": [
+        "KnotflaxCord"
+      ],
+      "AdditionalInputCounts": [
+        1
+      ],
+      "OutputBlueprints": [
+        "DischargeRod"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "make discharge rod",
+      "LossText": "materials become one reusable tool"
+    },
+    {
+      "Id": "make_steam_condenser",
+      "SourceBlueprint": "IronSpikeComponent",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "AdditionalInputBlueprints": [
+        "FireClay"
+      ],
+      "AdditionalInputCounts": [
+        1
+      ],
+      "OutputBlueprints": [
+        "SteamCondenser"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "make steam condenser",
+      "LossText": "materials become one reusable tool"
+    },
+    {
       "Id": "reclaim_leather_armor",
       "SourceBlueprint": "LeatherArmor",
       "Mode": "Reclaim",

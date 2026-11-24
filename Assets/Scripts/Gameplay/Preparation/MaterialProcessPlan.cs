@@ -75,9 +75,9 @@ namespace CavesOfOoo.Core
                 if(source.HasPart<MaterialProcessInputPart>())
                     return source.GetPart<MaterialProcessInputPart>() is MaterialProcessInputPart explicitPart && explicitPart.Allows(definition)
                         && source.Parts.Count(p=>p is MaterialProcessInputPart)==1 && explicitPart.ParentEntity==source?explicitPart:null;
-                var adapters=source.Parts.Where(p=>p is IMaterialReclaimPermission).ToArray();
+                var adapters=source.Parts.Where(p=>p is IMaterialProcessPermission).ToArray();
                 return adapters.Length==1 && adapters[0].ParentEntity==source
-                    && ((IMaterialReclaimPermission)adapters[0]).Allows(definition)?adapters[0]:null;
+                    && ((IMaterialProcessPermission)adapters[0]).Allows(definition)?adapters[0]:null;
             }
             if(source.HasPart<MaterialProcessInputPart>() || source.Parts.Count(p=>p is PreparationRecipePart)!=1)return null;
             var recipe=PreparationRecipeService.Recipes.FirstOrDefault(r=>r.Id==definition.SourceRecipeId);
@@ -85,7 +85,7 @@ namespace CavesOfOoo.Core
             return recipe!=null && recipe.Input==definition.SourceBlueprint && part.ParentEntity==source && part.Allows(recipe)?part:null;
         }
         static string Authorization(Part part)=>part is MaterialProcessInputPart p?p.ProcessIds
-            :part is IMaterialReclaimPermission?part.Name:(part as PreparationRecipePart)?.RecipeIds;
+            :part is IMaterialProcessPermission?part.Name:(part as PreparationRecipePart)?.RecipeIds;
         static bool Permission(Entity source,MaterialProcessDefinition definition)=>PermissionPart(source,definition)!=null;
         static bool VisibleStation(Entity actor,Entity station,Zone zone)
             => ForgeWorkReceipt.Near(actor,station,zone) && zone.GetEntityCell(station) is Cell cell && cell.IsVisible && cell.Explored;

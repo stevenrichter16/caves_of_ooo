@@ -32,6 +32,9 @@ namespace CavesOfOoo.Core
                 }
                 if(item.SpatialZone!=null || physics.InInventory!=null || physics.Equipped!=null)return;
                 if(stack!=null && (stack.StackCount<1 || stack.StackCount>stack.MaxStack)){Refused(actor,item,"changed_count_bounds");return;}
+                // A forced listener may already have placed the removed identity
+                // back in the list without updating Physics. Never insert it twice.
+                if(list.Any(e=>e==item || e?.ID==id)){Refused(actor,item,"input_already_listed");return;}
                 bool same=pack!=null?holder.GetPart<InventoryPart>()==pack && pack.ParentEntity==holder
                     :holder.GetPart<ContainerPart>()==container && container.ParentEntity==holder;
                 same &= holder.GetPart<DestructiblePart>()?.Gone!=true && holder.GetPart<DestructiblePart>()?.HP<=0!=true

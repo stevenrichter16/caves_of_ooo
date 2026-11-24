@@ -5,8 +5,9 @@ using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
-    internal interface IMaterialReclaimPermission
+    internal interface IMaterialProcessPermission
     { bool Allows(MaterialProcessDefinition definition); }
+    internal interface IMaterialReclaimPermission : IMaterialProcessPermission { }
     /// <summary>Authored permission only. No material tag implies a salvage yield.</summary>
     public sealed class MaterialProcessInputPart : Part
     {
@@ -35,7 +36,8 @@ namespace CavesOfOoo.Core
             if(e.ID=="GetInventoryActions")
             {
                 if(e.GetParameter<Entity>("MaterialProcessGatherOwner")==owner)return true;
-                e.SetParameter("MaterialProcessGatherOwner",owner);var menu=Menus.GetValue(owner,_=>new Menu());menu.Quotes.Clear();
+                e.SetParameter("MaterialProcessGatherOwner",owner);var menu=Menus.GetValue(owner,_=>new Menu());
+                var previous=menu.Quotes.ToArray();menu.Quotes.Clear();
                 foreach(var id in ids.Distinct())
                 {
                     var plan=MaterialProcessPlan.TryCreate(actor,owner,id,zone,ForgePart.Factory);
@@ -47,7 +49,9 @@ namespace CavesOfOoo.Core
                             e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id,MaterialProcessRegistry.Get(id).ActionText,miss.Code,miss.Reason,'\0',MaterialProcessMisses.RowPriority);
                         continue;
                     }
-                    string token=Guid.NewGuid().ToString("N");menu.Quotes[token]=quoted;
+                    var retained=previous.FirstOrDefault(p=>p.Value.Plan.Actor==actor && p.Value.Plan.Source==owner && p.Value.Plan.Zone==zone
+                        && p.Value.Plan.Station==plan.Station && p.Value.Plan.Definition==plan.Definition && p.Value.Current());
+                    string token=retained.Key??Guid.NewGuid().ToString("N");menu.Quotes[token]=retained.Value??quoted;
                     var d=plan.Definition;
                     string outputs=string.Join(" + ",d.OutputBlueprints.Select((bp,i)=>d.OutputCounts[i]+" "+Label(plan.Factory,bp)));
                     string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));

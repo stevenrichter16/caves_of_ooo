@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Failed(Child)" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 18:45:33Z" end-time="2026-11-24 18:45:34Z" duration="1.5290974">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41594" result="Failed" site="Child" start-time="2026-11-24 18:45:33Z" end-time="2026-11-24 18:45:34Z" duration="1.529097" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50695" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41594" result="Failed" site="Child" start-time="2026-11-24 18:45:33Z" end-time="2026-11-24 18:45:34Z" duration="1.423594" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="84979" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50696" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41594" result="Failed" site="Child" start-time="2026-11-24 18:45:33Z" end-time="2026-11-24 18:45:34Z" duration="1.384369" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50697" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41594" result="Failed" site="Child" start-time="2026-11-24 18:45:33Z" end-time="2026-11-24 18:45:34Z" duration="1.344384" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24304" name="FieldWorkToolsTests" fullname="CavesOfOoo.Tests.FieldWorkToolsTests" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.628134" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24317" name="BlockedOrHiddenIntermediateCellCannotBeDischargedThrough" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.BlockedOrHiddenIntermediateCellCannotBeDischargedThrough" methodname="BlockedOrHiddenIntermediateCellCannotBeDischargedThrough" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="163840644" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.039683" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  DischargeRod
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.BlockedOrHiddenIntermediateCellCannotBeDischargedThrough () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:68
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'DischargeRod'
+]]></output>
+            </test-case>
+            <test-case id="24324" name="CondenserDoesNotOverwriteTheContentsOfANonemptyFlask" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.CondenserDoesNotOverwriteTheContentsOfANonemptyFlask" methodname="CondenserDoesNotOverwriteTheContentsOfANonemptyFlask" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="823755479" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.025823" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  SteamCondenser
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.CondenserDoesNotOverwriteTheContentsOfANonemptyFlask () [0x00010] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:92
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'SteamCondenser'
+]]></output>
+            </test-case>
+            <test-case id="24319" name="CondenserSharesTheExistingVentBudgetAndFillsOnlyTheChosenFlask" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.CondenserSharesTheExistingVentBudgetAndFillsOnlyTheChosenFlask" methodname="CondenserSharesTheExistingVentBudgetAndFillsOnlyTheChosenFlask" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="270501683" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.025249" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  SteamCondenser
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.CondenserSharesTheExistingVentBudgetAndFillsOnlyTheChosenFlask () [0x0002e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:79
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'SteamCondenser'
+]]></output>
+            </test-case>
+            <test-case id="24325" name="FailedCondensingReturnsSourceStockAndLeavesFlaskEmpty" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.FailedCondensingReturnsSourceStockAndLeavesFlaskEmpty" methodname="FailedCondensingReturnsSourceStockAndLeavesFlaskEmpty" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1993838890" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.025028" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  SteamCondenser
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.FailedCondensingReturnsSourceStockAndLeavesFlaskEmpty () [0x0002e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:96
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'SteamCondenser'
+]]></output>
+            </test-case>
+            <test-case id="24314" name="FailedNozzleActionLeavesFuelAndGroundUnchanged" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.FailedNozzleActionLeavesFuelAndGroundUnchanged" methodname="FailedNozzleActionLeavesFuelAndGroundUnchanged" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="436953171" result="Failed" label="Error" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.025766" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at CavesOfOoo.Tests.FieldWorkToolsTests.Hearth () [0x00053] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:22 
+  at CavesOfOoo.Tests.FieldWorkToolsTests.FailedNozzleActionLeavesFuelAndGroundUnchanged () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:50 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="24318" name="FailedRodLoadReturnsTheRootWithoutCharging" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.FailedRodLoadReturnsTheRootWithoutCharging" methodname="FailedRodLoadReturnsTheRootWithoutCharging" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1860533642" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.030459" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  DischargeRod
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.FailedRodLoadReturnsTheRootWithoutCharging () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:73
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'DischargeRod'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24323" name="HeatAloneIsNotPotableWater" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.HeatAloneIsNotPotableWater" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.090422" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24321" name="HeatAloneIsNotPotableWater(&quot;AshBed&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.HeatAloneIsNotPotableWater(&quot;AshBed&quot;)" methodname="HeatAloneIsNotPotableWater" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="220259838" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.064200" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  SteamCondenser
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.HeatAloneIsNotPotableWater (System.String blueprint) [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:90
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'SteamCondenser'
+]]></output>
+              </test-case>
+              <test-case id="24322" name="HeatAloneIsNotPotableWater(&quot;SpreadCookingCoals&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.HeatAloneIsNotPotableWater(&quot;SpreadCookingCoals&quot;)" methodname="HeatAloneIsNotPotableWater" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1750502793" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.025026" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  SteamCondenser
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.HeatAloneIsNotPotableWater (System.String blueprint) [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:90
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'SteamCondenser'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24316" name="LoadedRodRoundTripsWithoutGeneratingCharges" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.LoadedRodRoundTripsWithoutGeneratingCharges" methodname="LoadedRodRoundTripsWithoutGeneratingCharges" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="836412150" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.024938" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  DischargeRod
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.LoadedRodRoundTripsWithoutGeneratingCharges () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:62
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'DischargeRod'
+]]></output>
+            </test-case>
+            <test-case id="24320" name="LookingAtUntouchedVentCreatesNoResourceStock" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.LookingAtUntouchedVentCreatesNoResourceStock" methodname="LookingAtUntouchedVentCreatesNoResourceStock" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1975702163" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.024436" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  SteamCondenser
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.LookingAtUntouchedVentCreatesNoResourceStock () [0x0000f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:84
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'SteamCondenser'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24329" name="MovingAfterSelectionCannotRetargetThePaidAction" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.MovingAfterSelectionCannotRetargetThePaidAction" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.073348" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24326" name="MovingAfterSelectionCannotRetargetThePaidAction(&quot;HearthNozzle&quot;,&quot;DirectHearthHeat|&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.MovingAfterSelectionCannotRetargetThePaidAction(&quot;HearthNozzle&quot;,&quot;DirectHearthHeat|&quot;)" methodname="MovingAfterSelectionCannotRetargetThePaidAction" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="672487924" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.024388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HearthNozzle
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.MovingAfterSelectionCannotRetargetThePaidAction (System.String blueprint, System.String prefix) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:102
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HearthNozzle'
+]]></output>
+              </test-case>
+              <test-case id="24327" name="MovingAfterSelectionCannotRetargetThePaidAction(&quot;DischargeRod&quot;,&quot;DischargeRod|&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.MovingAfterSelectionCannotRetargetThePaidAction(&quot;DischargeRod&quot;,&quot;DischargeRod|&quot;)" methodname="MovingAfterSelectionCannotRetargetThePaidAction" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1180544137" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.024246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  DischargeRod
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.MovingAfterSelectionCannotRetargetThePaidAction (System.String blueprint, System.String prefix) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:102
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'DischargeRod'
+]]></output>
+              </test-case>
+              <test-case id="24328" name="MovingAfterSelectionCannotRetargetThePaidAction(&quot;SteamCondenser&quot;,&quot;CondenseSteam|&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.MovingAfterSelectionCannotRetargetThePaidAction(&quot;SteamCondenser&quot;,&quot;CondenseSteam|&quot;)" methodname="MovingAfterSelectionCannotRetargetThePaidAction" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="138840516" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.024180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  SteamCondenser
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.MovingAfterSelectionCannotRetargetThePaidAction (System.String blueprint, System.String prefix) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:102
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'SteamCondenser'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24313" name="NozzleCannotUseUnpaidOrUnownedHeat" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.073565" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24310" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;cold&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;cold&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1258060622" result="Failed" label="Error" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.024452" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at CavesOfOoo.Tests.FieldWorkToolsTests.Hearth () [0x00053] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:22 
+  at CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat (System.String change) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:42 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24311" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;empty&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="327156589" result="Failed" label="Error" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.024461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at CavesOfOoo.Tests.FieldWorkToolsTests.Hearth () [0x00053] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:22 
+  at CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat (System.String change) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:42 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24312" name="NozzleCannotUseUnpaidOrUnownedHeat(&quot;public&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat(&quot;public&quot;)" methodname="NozzleCannotUseUnpaidOrUnownedHeat" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1644631103" result="Failed" label="Error" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.024130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at CavesOfOoo.Tests.FieldWorkToolsTests.Hearth () [0x00053] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:22 
+  at CavesOfOoo.Tests.FieldWorkToolsTests.NozzleCannotUseUnpaidOrUnownedHeat (System.String change) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:42 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="24309" name="NozzleSpendsFiveActualFuelAndThawsThroughSharedTileRules" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.NozzleSpendsFiveActualFuelAndThawsThroughSharedTileRules" methodname="NozzleSpendsFiveActualFuelAndThawsThroughSharedTileRules" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1237612845" result="Failed" label="Error" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.024766" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at CavesOfOoo.Tests.FieldWorkToolsTests.Hearth () [0x00053] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:22 
+  at CavesOfOoo.Tests.FieldWorkToolsTests.NozzleSpendsFiveActualFuelAndThawsThroughSharedTileRules () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:35 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24308" name="ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.079464" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24305" name="ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel(&quot;HearthNozzle&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel(&quot;HearthNozzle&quot;)" methodname="ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="589637254" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.025113" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HearthNozzle
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel (System.String blueprint) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:29
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HearthNozzle'
+]]></output>
+              </test-case>
+              <test-case id="24306" name="ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel(&quot;DischargeRod&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel(&quot;DischargeRod&quot;)" methodname="ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1347391114" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.026129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  DischargeRod
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel (System.String blueprint) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:29
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'DischargeRod'
+]]></output>
+              </test-case>
+              <test-case id="24307" name="ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel(&quot;SteamCondenser&quot;)" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel(&quot;SteamCondenser&quot;)" methodname="ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1279896344" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.027711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  SteamCondenser
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.ReusableToolsHaveExplicitUsesAndDoNotInventLightOrFuel (System.String blueprint) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:29
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'SteamCondenser'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24315" name="RodLoadsOneRootAndCarriesExactlyOneDischargeAcrossTwoCells" fullname="CavesOfOoo.Tests.FieldWorkToolsTests.RodLoadsOneRootAndCarriesExactlyOneDischargeAcrossTwoCells" methodname="RodLoadsOneRootAndCarriesExactlyOneDischargeAcrossTwoCells" classname="CavesOfOoo.Tests.FieldWorkToolsTests" runstate="Runnable" seed="1320869272" result="Failed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.059093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  DischargeRod
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.FieldWorkToolsTests.RodLoadsOneRootAndCarriesExactlyOneDischargeAcrossTwoCells () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FieldWorkToolsTests.cs:56
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'DischargeRod'
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="24722" name="FlintStrikerTests" fullname="CavesOfOoo.Tests.FlintStrikerTests" classname="CavesOfOoo.Tests.FlintStrikerTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.031522" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="24723" name="TheShippedBlueprintIsASmallFiniteToolAndNotAFireOrAStack" fullname="CavesOfOoo.Tests.FlintStrikerTests.TheShippedBlueprintIsASmallFiniteToolAndNotAFireOrAStack" methodname="TheShippedBlueprintIsASmallFiniteToolAndNotAFireOrAStack" classname="CavesOfOoo.Tests.FlintStrikerTests" runstate="Runnable" seed="470114717" result="Passed" start-time="2026-11-24 18:45:34Z" end-time="2026-11-24 18:45:34Z" duration="0.029564" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
