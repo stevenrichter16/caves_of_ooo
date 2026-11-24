@@ -18,6 +18,11 @@ and previews should help players recognize these possibilities without spelling
 out every combination or claiming unsupported behavior. The examples express a
 design aim; each supported interaction still needs implementation and actual play.
 
+Latest user refinement, November23: develop numerous connected mechanics with
+medium-depth nuance. Finish meaningful correctness and actual-play gates for
+each increment, then expand the useful surface instead of repeatedly deepening
+one instance. Share screenshots at visible progress points.
+
 Build on the existing Entity/Part/event model. Capabilities and persistent instance state belong to composable Parts; shared rules and services coordinate their interactions. New content should participate through those capabilities and contracts. Routine additions of behaviors or effects should not require editing every interacting system or scripting each entity pairing.
 
 Players should be able to reason from the world. With suitable materials, components, objects, machines, knowledge and physical access, an interaction that makes sense should have a consistent supported path. Apply the same implemented rules throughout the world, including combinations and situations the designers did not author individually. Preserve useful alternatives, understandable costs, ownership and consequences. Avoid single-solution tool puzzles and progression padding.
@@ -50,6 +55,6 @@ services and portable counterparts where supported.
 
 The [weather design](WEATHER-AND-SEASONAL-TOOL-USES.md) records concrete proposed
 uses, regional discovery, resource/timing policies and staged acceptance. These
-are design extensions, not claims that natural weather or seasonal tool uses
-already exist. Qualify both taking a bonus and comfortably ignoring it, and
+are design extensions except bounded W1a collection/manual watering, now
+Editor accepted. Automatic crop rain and distinct seasonal reuse remain open. Qualify both taking a bonus and comfortably ignoring it, and
 observe ordinary exploratory routes rather than only directed recipe tests.

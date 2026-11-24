@@ -1,25 +1,38 @@
 # Weather and seasonal tool design continuation
 
 Resumed at the user's explicit request on November23,2026 (America/Chicago).
-The hourly machine task is ACTIVE. The earlier pause checkpoint below is retained
+The machine task is ACTIVE every30minutes. The earlier pause checkpoint below is retained
 as the research baseline; existing uncommitted work is preserved.
 
-## Current design checkpoint
+## Current implementation checkpoint
 
-The full [weather and seasonal tool proposal](WEATHER-AND-SEASONAL-TOOL-USES.md)
-now exists and has bounded independent design/source critique with zero
-publication-blocking P1/P2 findings. It includes ten candidate weather
-opportunities, five tool/apparatus families with different seasonal work choices,
-regional discovery, bounded resource/time/save policies and staged W1/W2/W3.
-No weather runtime or gameplay acceptance. Before W1 RED, finalize catchment
-identity/overlap/ownership/coverage and exact bounded crop rain chronology,
-including the existing wet-tick remainder. W2 must demonstrate two different
-jobs on the SAME physical frame under distinct seasonal/material conditions.
+W1a optional shower collection is bounded Editor accepted. Two fixed public
+frames at the fresh Morrowfast allotment share a finite catchment and fill
+ordinary compatible carried flasks/skins. Actual collected water then watered
+a dry crop, and spending persisted through map travel and full fresh Continue.
+Final native106total/105pass/0fail/1Explicit utilityskip/0CS;52new weather cases.
+Separate saved-contract28total/27pass/1skip overlaps. Independent final source/
+gameplay-evidence review0remainingP1/P2. See [receipt](Verification/MachineSystems/WeatherCollection20261123/README.md)
+and [contract](WEATHER-SHOWER-COLLECTION.md).
 
-The research checkpoint and next-work list below record the earlier pause;
-the linked full proposal now governs design continuation. Current separate
-Mac7ed source/package/startup receipt is now published with its bounded review.
-Do not rebuild or replay earned work.
+W1b automatic crop rainfall, W2 another seasonal job on the SAME physical frame,
+wholeW1, natural discovery/frequency and weather package delivery remain open.
+The actual trial was directed and used a supplied strong fixture; do not call
+this ordinary acquisition or natural opportunity density. No global rainfall
+FX, HUD forecast, actor exposure or generic portable collection was added.
+Current Mac7ed predates W1a. Preserve all18apps and prior earned checkpoints.
+
+Latest user direction: develop numerous connected mechanics with medium-depth
+nuance, and provide frequent screenshots. Do not deepen W1a speculatively now
+that bounded correctness/play gates pass. Next source-qualify a different useful
+material/tool consumer (the recovered-oil/light connection remains a candidate),
+then build a small practical interaction with ordinary alternatives. W1b/W2 are
+separate increments; do not silently claim seasonal reuse from W1a. Update the
+ACTIVE every30minutes task after completed work/material checkpoints. Main
+stopped/rootnull/clean/original7views/index0 after actual play.
+
+The design research and earlier pause below are historical, not current blockers.
+Do not replay accepted tests, builds or branches merely to resume.
 
 ## User direction to retain
 

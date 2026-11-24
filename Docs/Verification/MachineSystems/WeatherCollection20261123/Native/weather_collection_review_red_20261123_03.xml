@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 03:46:51Z" end-time="2026-11-24 03:46:53Z" duration="2.2544905">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41250" result="Failed" site="Child" start-time="2026-11-24 03:46:51Z" end-time="2026-11-24 03:46:53Z" duration="2.254491" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50272" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41250" result="Failed" site="Child" start-time="2026-11-24 03:46:51Z" end-time="2026-11-24 03:46:53Z" duration="1.850640" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="20969" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50273" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41250" result="Failed" site="Child" start-time="2026-11-24 03:46:51Z" end-time="2026-11-24 03:46:53Z" duration="1.445711" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50274" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41250" result="Failed" site="Child" start-time="2026-11-24 03:46:52Z" end-time="2026-11-24 03:46:53Z" duration="0.961200" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32246" name="RainCollectionSiteTests" fullname="CavesOfOoo.Tests.RainCollectionSiteTests" classname="CavesOfOoo.Tests.RainCollectionSiteTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-24 03:46:53Z" end-time="2026-11-24 03:46:53Z" duration="0.164188" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32247" name="FactoryReentryIsRefusedBeforeCreatingAnotherFrame" fullname="CavesOfOoo.Tests.RainCollectionSiteTests.FactoryReentryIsRefusedBeforeCreatingAnotherFrame" methodname="FactoryReentryIsRefusedBeforeCreatingAnotherFrame" classname="CavesOfOoo.Tests.RainCollectionSiteTests" runstate="Runnable" seed="2094179372" result="Failed" start-time="2026-11-24 03:46:53Z" end-time="2026-11-24 03:46:53Z" duration="0.085669" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.RainCollectionSiteTests.FactoryReentryIsRefusedBeforeCreatingAnotherFrame () [0x00038] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:334
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32250" name="SecondFactoryCannotChangeThePreviouslyPreparedCollector" fullname="CavesOfOoo.Tests.RainCollectionSiteTests.SecondFactoryCannotChangeThePreviouslyPreparedCollector" classname="CavesOfOoo.Tests.RainCollectionSiteTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 03:46:53Z" end-time="2026-11-24 03:46:53Z" duration="0.072066" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32248" name="SecondFactoryCannotChangeThePreviouslyPreparedCollector(&quot;anchor&quot;)" fullname="CavesOfOoo.Tests.RainCollectionSiteTests.SecondFactoryCannotChangeThePreviouslyPreparedCollector(&quot;anchor&quot;)" methodname="SecondFactoryCannotChangeThePreviouslyPreparedCollector" classname="CavesOfOoo.Tests.RainCollectionSiteTests" runstate="Runnable" seed="1539490405" result="Failed" start-time="2026-11-24 03:46:53Z" end-time="2026-11-24 03:46:53Z" duration="0.035442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.RainCollectionSiteTests.SecondFactoryCannotChangeThePreviouslyPreparedCollector (System.String field) [0x00033] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:347
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32249" name="SecondFactoryCannotChangeThePreviouslyPreparedCollector(&quot;clean&quot;)" fullname="CavesOfOoo.Tests.RainCollectionSiteTests.SecondFactoryCannotChangeThePreviouslyPreparedCollector(&quot;clean&quot;)" methodname="SecondFactoryCannotChangeThePreviouslyPreparedCollector" classname="CavesOfOoo.Tests.RainCollectionSiteTests" runstate="Runnable" seed="1867449369" result="Failed" start-time="2026-11-24 03:46:53Z" end-time="2026-11-24 03:46:53Z" duration="0.035074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.RainCollectionSiteTests.SecondFactoryCannotChangeThePreviouslyPreparedCollector (System.String field) [0x00033] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:347
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="32204" name="RainCollectionTests" fullname="CavesOfOoo.Tests.RainCollectionTests" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" testcasecount="36" result="Failed" site="Child" start-time="2026-11-24 03:46:53Z" end-time="2026-11-24 03:46:53Z" duration="0.080381" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32233" name="MalformedNegativeCallbackQuantityNeverWrapsIntoWater" fullname="CavesOfOoo.Tests.RainCollectionTests.MalformedNegativeCallbackQuantityNeverWrapsIntoWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 03:46:53Z" end-time="2026-11-24 03:46:53Z" duration="0.078277" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32231" name="MalformedNegativeCallbackQuantityNeverWrapsIntoWater(&quot;flask&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.MalformedNegativeCallbackQuantityNeverWrapsIntoWater(&quot;flask&quot;)" methodname="MalformedNegativeCallbackQuantityNeverWrapsIntoWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1806315227" result="Failed" start-time="2026-11-24 03:46:53Z" end-time="2026-11-24 03:46:53Z" duration="0.045695" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  2147483645
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.RainCollectionTests.MalformedNegativeCallbackQuantityNeverWrapsIntoWater (System.String kind) [0x00088] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:237
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32232" name="MalformedNegativeCallbackQuantityNeverWrapsIntoWater(&quot;skin&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.MalformedNegativeCallbackQuantityNeverWrapsIntoWater(&quot;skin&quot;)" methodname="MalformedNegativeCallbackQuantityNeverWrapsIntoWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1000773692" result="Failed" start-time="2026-11-24 03:46:53Z" end-time="2026-11-24 03:46:53Z" duration="0.031930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  2147483645
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.RainCollectionTests.MalformedNegativeCallbackQuantityNeverWrapsIntoWater (System.String kind) [0x00088] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:237
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,58 @@
+{
+  "utc": "2026-11-24T04:14:07.093230+00:00",
+  "baseCommit": "c5c176aa5b7a67b0384c7e8bfa41116d4642d7a3",
+  "status": "bounded Editor W1a source and actual-play acceptance; W1/W1b/W2/package acceptance open",
+  "runtimeAndTestPins": {
+    "Assets/Scripts/Gameplay/World/RegionalWeather.cs": "be5d60df5fbbc1362c098be9b12e9425af00efc9d0094dc6fdbd0bde6340694a",
+    "Assets/Scripts/Gameplay/Items/RainCollectionParts.cs": "41a6bd99f768e1c7995a78284cfd4806a2e77168973adc7b0ce44a0c45a8e3e0",
+    "Assets/Scripts/Gameplay/World/ShowerCollectionSite.cs": "e3c54a4b79a56c97090932c769681f9f6979b34169cd5ac381f9598312179e08",
+    "Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs": "92ee7f0fa1a6553c5355ca4aa33b1a33f9c54a3fe790de037cfe609903a92373",
+    "Assets/Scripts/Gameplay/World/RegionalWeather.cs.meta": "ac0e7d5127912a24ede24bd0afd7aea6155ddc1a93736570c07c6c3a0157b958",
+    "Assets/Scripts/Gameplay/Items/RainCollectionParts.cs.meta": "ac1e62014f2373fb2835c564a15412f560ddbe151b8579236fda0d6a53e32b6e",
+    "Assets/Scripts/Gameplay/World/ShowerCollectionSite.cs.meta": "7e6f5a5a00ba5ed9f026694ae9c5cc887a22a7a4ae46ffb74809426cd96416e9",
+    "Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs.meta": "f61a08b60dd755e86f4a4f52d9f6d7f8c6e273c542e37c1f4ab9ddfc65399a06",
+    "Assets/Scripts/Gameplay/Inventory/Commands/Actions/PerformInventoryActionCommand.cs": "03aa79af39c304d3a72b77ec01333abf94bb0d71586afd00786db0ac9b59c647",
+    "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs": "5ec3b994aa348985df6df53615f5a354c2def7e31ed093a1f3c31124aa5f5ba2",
+    "Assets/Tests/EditMode/Gameplay/Save/SavedPartContract.txt": "50ea55f055b601be8b55c573e0c3ca049647db2476795e6f30c0887fb6933251"
+  },
+  "nativeFinal": {
+    "total": 106,
+    "passed": 105,
+    "failed": 0,
+    "skipped": 1,
+    "compileErrors": 0,
+    "newWeatherCases": 52,
+    "durationSeconds": 5.1389698
+  },
+  "savedContractSeparateOverlapping": {
+    "total": 28,
+    "passed": 27,
+    "failed": 0,
+    "skipped": 1
+  },
+  "review": {
+    "sourceP1P2": 0,
+    "gameplayEvidenceP1P2": 0,
+    "mode": "independent read-only evidence review, not another gameplay operator",
+    "durableReceiptFinalReview": "0P1/P2; independently verified41artifact pins/11source-test pins/counts and acceptance bounds"
+  },
+  "game": "8ab6a6384c2a44deb8b3a68303809d8f",
+  "seed": 64,
+  "finalFreshTick": 14590,
+  "finalHP": 383,
+  "finalPurse": 26,
+  "finalWaterFlask2232": 2,
+  "catchmentSpent": 3,
+  "catchmentWindow": 24,
+  "finalCropSnapshotCapture": "after fresh Continue14590; no independently paired final pre/fresh crop snapshot",
+  "sourceApp": "Editor Unity6000.3.4f1",
+  "macDelivery": "existing7ed app predates W1a; no new build",
+  "limitations": [
+    "strong supplied fixture and directed scouting",
+    "ordinary world-map waiting to shower; no natural discovery or frequency proof",
+    "no automatic crop rain or second seasonal frame job",
+    "partial receivers and next-window replenishment tested natively, not hand-played",
+    "original full regression remains failed",
+    "no packaged weather interaction, hardware/FPS/Intel/Deck acceptance"
+  ]
+}

@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="33" result="Failed(Child)" total="33" passed="0" failed="33" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 03:27:02Z" end-time="2026-11-24 03:27:05Z" duration="2.2991148">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41231" result="Failed" site="Child" start-time="2026-11-24 03:27:02Z" end-time="2026-11-24 03:27:05Z" duration="2.299115" total="33" passed="0" failed="33" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50249" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41231" result="Failed" site="Child" start-time="2026-11-24 03:27:03Z" end-time="2026-11-24 03:27:05Z" duration="2.021966" total="33" passed="0" failed="33" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3475" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50250" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41231" result="Failed" site="Child" start-time="2026-11-24 03:27:03Z" end-time="2026-11-24 03:27:05Z" duration="1.785847" total="33" passed="0" failed="33" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50251" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41231" result="Failed" site="Child" start-time="2026-11-24 03:27:03Z" end-time="2026-11-24 03:27:05Z" duration="1.513599" total="33" passed="0" failed="33" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32204" name="RainCollectionTests" fullname="CavesOfOoo.Tests.RainCollectionTests" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:05Z" duration="1.032150" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32224" name="ANewWindowCannotRedeemAnOldQuotedCommandOrBankMissedRain" fullname="CavesOfOoo.Tests.RainCollectionTests.ANewWindowCannotRedeemAnOldQuotedCommandOrBankMissedRain" methodname="ANewWindowCannotRedeemAnOldQuotedCommandOrBankMissedRain" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="451330337" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.063323" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32226" name="CollectedWaterFeedsTheExistingOrdinaryCropAction" fullname="CavesOfOoo.Tests.RainCollectionTests.CollectedWaterFeedsTheExistingOrdinaryCropAction" methodname="CollectedWaterFeedsTheExistingOrdinaryCropAction" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1146275867" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.031280" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32229" name="ExactAnchorAndGroundReferencesSurviveTheProductionGraphRoundTrip" fullname="CavesOfOoo.Tests.RainCollectionTests.ExactAnchorAndGroundReferencesSurviveTheProductionGraphRoundTrip" methodname="ExactAnchorAndGroundReferencesSurviveTheProductionGraphRoundTrip" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="701181979" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.030981" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32205" name="ExactFlaskReceivesThreeOrdinaryWaterUnitsWithoutChangingOtherVesselsOrWind" fullname="CavesOfOoo.Tests.RainCollectionTests.ExactFlaskReceivesThreeOrdinaryWaterUnitsWithoutChangingOtherVesselsOrWind" methodname="ExactFlaskReceivesThreeOrdinaryWaterUnitsWithoutChangingOtherVesselsOrWind" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="334000691" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.030773" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32223" name="IneligibleReceiversStayUnchanged" fullname="CavesOfOoo.Tests.RainCollectionTests.IneligibleReceiversStayUnchanged" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.184224" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32219" name="IneligibleReceiversStayUnchanged(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.IneligibleReceiversStayUnchanged(&quot;oil&quot;)" methodname="IneligibleReceiversStayUnchanged" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="32828776" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.030871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32220" name="IneligibleReceiversStayUnchanged(&quot;full&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.IneligibleReceiversStayUnchanged(&quot;full&quot;)" methodname="IneligibleReceiversStayUnchanged" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1299483099" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.042731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32221" name="IneligibleReceiversStayUnchanged(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.IneligibleReceiversStayUnchanged(&quot;foreign&quot;)" methodname="IneligibleReceiversStayUnchanged" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="890858850" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.076887" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32222" name="IneligibleReceiversStayUnchanged(&quot;duplicate-part&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.IneligibleReceiversStayUnchanged(&quot;duplicate-part&quot;)" methodname="IneligibleReceiversStayUnchanged" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1859623760" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.032040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32218" name="InvalidAuthorityDoesNotOfferOrGrantWater" fullname="CavesOfOoo.Tests.RainCollectionTests.InvalidAuthorityDoesNotOfferOrGrantWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.254512" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32210" name="InvalidAuthorityDoesNotOfferOrGrantWater(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.InvalidAuthorityDoesNotOfferOrGrantWater(&quot;missing&quot;)" methodname="InvalidAuthorityDoesNotOfferOrGrantWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="11395412" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.031346" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32211" name="InvalidAuthorityDoesNotOfferOrGrantWater(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.InvalidAuthorityDoesNotOfferOrGrantWater(&quot;moved&quot;)" methodname="InvalidAuthorityDoesNotOfferOrGrantWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="243165504" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.031579" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32212" name="InvalidAuthorityDoesNotOfferOrGrantWater(&quot;replaced-ground&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.InvalidAuthorityDoesNotOfferOrGrantWater(&quot;replaced-ground&quot;)" methodname="InvalidAuthorityDoesNotOfferOrGrantWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="202418619" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.031534" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32213" name="InvalidAuthorityDoesNotOfferOrGrantWater(&quot;private&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.InvalidAuthorityDoesNotOfferOrGrantWater(&quot;private&quot;)" methodname="InvalidAuthorityDoesNotOfferOrGrantWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1462484156" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.031469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32214" name="InvalidAuthorityDoesNotOfferOrGrantWater(&quot;dirty&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.InvalidAuthorityDoesNotOfferOrGrantWater(&quot;dirty&quot;)" methodname="InvalidAuthorityDoesNotOfferOrGrantWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1691139768" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.032330" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32215" name="InvalidAuthorityDoesNotOfferOrGrantWater(&quot;unknown-policy&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.InvalidAuthorityDoesNotOfferOrGrantWater(&quot;unknown-policy&quot;)" methodname="InvalidAuthorityDoesNotOfferOrGrantWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1624818922" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.031778" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32216" name="InvalidAuthorityDoesNotOfferOrGrantWater(&quot;duplicate-anchor&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.InvalidAuthorityDoesNotOfferOrGrantWater(&quot;duplicate-anchor&quot;)" methodname="InvalidAuthorityDoesNotOfferOrGrantWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="668709828" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.032227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32217" name="InvalidAuthorityDoesNotOfferOrGrantWater(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.InvalidAuthorityDoesNotOfferOrGrantWater(&quot;interior&quot;)" methodname="InvalidAuthorityDoesNotOfferOrGrantWater" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="2002601995" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.031164" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32228" name="LateIndependentWaterAdditionSurvivesRefusal" fullname="CavesOfOoo.Tests.RainCollectionTests.LateIndependentWaterAdditionSurvivesRefusal" methodname="LateIndependentWaterAdditionSurvivesRefusal" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1042084655" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.032691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32227" name="LateInvalidationReturnsOwnedWaterButKeepsIndependentInjury" fullname="CavesOfOoo.Tests.RainCollectionTests.LateInvalidationReturnsOwnedWaterButKeepsIndependentInjury" methodname="LateInvalidationReturnsOwnedWaterButKeepsIndependentInjury" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="641643260" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.031824" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32208" name="PartialCapacityLeavesTheRestForTheSecondCollector" fullname="CavesOfOoo.Tests.RainCollectionTests.PartialCapacityLeavesTheRestForTheSecondCollector" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.141152" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32206" name="PartialCapacityLeavesTheRestForTheSecondCollector(&quot;flask&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.PartialCapacityLeavesTheRestForTheSecondCollector(&quot;flask&quot;)" methodname="PartialCapacityLeavesTheRestForTheSecondCollector" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1231069763" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.050051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32207" name="PartialCapacityLeavesTheRestForTheSecondCollector(&quot;skin&quot;)" fullname="CavesOfOoo.Tests.RainCollectionTests.PartialCapacityLeavesTheRestForTheSecondCollector(&quot;skin&quot;)" methodname="PartialCapacityLeavesTheRestForTheSecondCollector" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1092658887" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:04Z" duration="0.090157" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32209" name="ReadersAndMenuReopeningDoNotSpendOrRefillTheSharedAllowance" fullname="CavesOfOoo.Tests.RainCollectionTests.ReadersAndMenuReopeningDoNotSpendOrRefillTheSharedAllowance" methodname="ReadersAndMenuReopeningDoNotSpendOrRefillTheSharedAllowance" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="1778746144" result="Failed" start-time="2026-11-24 03:27:04Z" end-time="2026-11-24 03:27:05Z" duration="0.099789" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32225" name="RemovingAndReplacingACollectorCannotRenewTheAnchorBudget" fullname="CavesOfOoo.Tests.RainCollectionTests.RemovingAndReplacingACollectorCannotRenewTheAnchorBudget" methodname="RemovingAndReplacingACollectorCannotRenewTheAnchorBudget" classname="CavesOfOoo.Tests.RainCollectionTests" runstate="Runnable" seed="392275989" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.124953" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing weather opportunity contract: RainCatchmentPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Part (System.String name) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:26
+at CavesOfOoo.Tests.RainCollectionTests.SetUpRain () [0x000b5] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="32190" name="RegionalWeatherTests" fullname="CavesOfOoo.Tests.RegionalWeatherTests" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.005945" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32203" name="InvalidIntervalsDoNotManufactureCredit" fullname="CavesOfOoo.Tests.RegionalWeatherTests.InvalidIntervalsDoNotManufactureCredit" methodname="InvalidIntervalsDoNotManufactureCredit" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="800314085" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.001813" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: <System.ArgumentOutOfRangeException>
+  But was:  <NUnit.Framework.AssertionException:   Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+
+  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16 
+  at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21 
+  at CavesOfOoo.Tests.WeatherTestApi.Count (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 first, System.Int32 end) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:34 
+  at CavesOfOoo.Tests.RegionalWeatherTests+<>c.<InvalidIntervalsDoNotManufactureCredit>b__5_0 () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:82 
+  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.RegionalWeatherTests.InvalidIntervalsDoNotManufactureCredit () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:82
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32200" name="LongAbsenceUsesWholeCyclesWithoutOverflowOrHistoricalReplay" fullname="CavesOfOoo.Tests.RegionalWeatherTests.LongAbsenceUsesWholeCyclesWithoutOverflowOrHistoricalReplay" methodname="LongAbsenceUsesWholeCyclesWithoutOverflowOrHistoricalReplay" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="1445043314" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000172" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.WeatherTestApi.Count (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 first, System.Int32 end) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:34
+at CavesOfOoo.Tests.RegionalWeatherTests.LongAbsenceUsesWholeCyclesWithoutOverflowOrHistoricalReplay () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:62
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32199" name="PrefixCountsMatchAnExplicitBoundedReference" fullname="CavesOfOoo.Tests.RegionalWeatherTests.PrefixCountsMatchAnExplicitBoundedReference" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.001158" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32196" name="PrefixCountsMatchAnExplicitBoundedReference(0,1)" fullname="CavesOfOoo.Tests.RegionalWeatherTests.PrefixCountsMatchAnExplicitBoundedReference(0,1)" methodname="PrefixCountsMatchAnExplicitBoundedReference" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="120646414" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000510" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.WeatherTestApi.Rain (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 window) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:33
+at CavesOfOoo.Tests.RegionalWeatherTests+<>c.<PrefixCountsMatchAnExplicitBoundedReference>b__1_0 (System.Int32 i) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:57
+at System.Linq.Enumerable.Count[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x0002e] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.RegionalWeatherTests.PrefixCountsMatchAnExplicitBoundedReference (System.Int32 first, System.Int32 end) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32197" name="PrefixCountsMatchAnExplicitBoundedReference(3,150)" fullname="CavesOfOoo.Tests.RegionalWeatherTests.PrefixCountsMatchAnExplicitBoundedReference(3,150)" methodname="PrefixCountsMatchAnExplicitBoundedReference" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="1178118197" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.WeatherTestApi.Rain (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 window) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:33
+at CavesOfOoo.Tests.RegionalWeatherTests+<>c.<PrefixCountsMatchAnExplicitBoundedReference>b__1_0 (System.Int32 i) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:57
+at System.Linq.Enumerable.Count[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x0002e] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.RegionalWeatherTests.PrefixCountsMatchAnExplicitBoundedReference (System.Int32 first, System.Int32 end) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32198" name="PrefixCountsMatchAnExplicitBoundedReference(127,517)" fullname="CavesOfOoo.Tests.RegionalWeatherTests.PrefixCountsMatchAnExplicitBoundedReference(127,517)" methodname="PrefixCountsMatchAnExplicitBoundedReference" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="1840671217" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000094" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.WeatherTestApi.Rain (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 window) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:33
+at CavesOfOoo.Tests.RegionalWeatherTests+<>c.<PrefixCountsMatchAnExplicitBoundedReference>b__1_0 (System.Int32 i) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:57
+at System.Linq.Enumerable.Count[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x0002e] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.RegionalWeatherTests.PrefixCountsMatchAnExplicitBoundedReference (System.Int32 first, System.Int32 end) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32201" name="SnapshotUsesPassedWorldTickAndRejectsUnknownPolicy" fullname="CavesOfOoo.Tests.RegionalWeatherTests.SnapshotUsesPassedWorldTickAndRejectsUnknownPolicy" methodname="SnapshotUsesPassedWorldTickAndRejectsUnknownPolicy" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="743923151" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000177" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.RegionalWeatherTests.SnapshotUsesPassedWorldTickAndRejectsUnknownPolicy () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:70
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32202" name="UndergroundDoesNotReceiveSurfaceRain" fullname="CavesOfOoo.Tests.RegionalWeatherTests.UndergroundDoesNotReceiveSurfaceRain" methodname="UndergroundDoesNotReceiveSurfaceRain" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="231719152" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000099" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.WeatherTestApi.Count (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 first, System.Int32 end) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:34
+at CavesOfOoo.Tests.RegionalWeatherTests.UndergroundDoesNotReceiveSurfaceRain () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:79
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32195" name="VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities" fullname="CavesOfOoo.Tests.RegionalWeatherTests.VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000985" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32191" name="VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities(Spread)" fullname="CavesOfOoo.Tests.RegionalWeatherTests.VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities(Spread)" methodname="VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="1646798837" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000234" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.WeatherTestApi.Rain (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 window) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:33
+at CavesOfOoo.Tests.RegionalWeatherTests.VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities (CavesOfOoo.Core.BiomeType biome) [0x00006] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32192" name="VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities(Sodden)" fullname="CavesOfOoo.Tests.RegionalWeatherTests.VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities(Sodden)" methodname="VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="1466728523" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.WeatherTestApi.Rain (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 window) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:33
+at CavesOfOoo.Tests.RegionalWeatherTests.VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities (CavesOfOoo.Core.BiomeType biome) [0x00006] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32193" name="VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities(Beating)" fullname="CavesOfOoo.Tests.RegionalWeatherTests.VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities(Beating)" methodname="VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="193679495" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000076" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.WeatherTestApi.Rain (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 window) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:33
+at CavesOfOoo.Tests.RegionalWeatherTests.VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities (CavesOfOoo.Core.BiomeType biome) [0x00006] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32194" name="VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities(Grovelands)" fullname="CavesOfOoo.Tests.RegionalWeatherTests.VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities(Grovelands)" methodname="VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities" classname="CavesOfOoo.Tests.RegionalWeatherTests" runstate="Runnable" seed="4279233" result="Failed" start-time="2026-11-24 03:27:05Z" end-time="2026-11-24 03:27:05Z" duration="0.000074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing weather opportunity contract: RegionalWeather
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WeatherTestApi.Type (System.String name) [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:16
+at CavesOfOoo.Tests.WeatherTestApi.Call (System.String name, System.Object[] args) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:21
+at CavesOfOoo.Tests.WeatherTestApi.Rain (System.Int32 seed, CavesOfOoo.Core.BiomeType biome, System.Int32 window) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:33
+at CavesOfOoo.Tests.RegionalWeatherTests.VersionOneIsARepeatableFinitePatternWithWetAndFairOpportunities (CavesOfOoo.Core.BiomeType biome) [0x00006] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WeatherOpportunityTests.cs:46
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

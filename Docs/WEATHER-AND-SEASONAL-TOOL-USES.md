@@ -1,7 +1,8 @@
 # Weather opportunities and seasonal tool uses
 
-Design proposal, November23,2026 (America/Chicago). No natural-weather runtime
-or seasonal tool extension is accepted by this document. The governing user
+Living design, November23,2026 (America/Chicago). Bounded W1a collection and
+manual watering are Editor accepted; automatic crop rain, distinct seasonal
+reuse and wholeW1 remain open. See the [W1a receipt](Verification/MachineSystems/WeatherCollection20261123/README.md). The governing user
 direction is that weather makes selected activities more rewarding; skipping an
 opportunity usually means missing a bonus while ordinary exploration remains
 comfortable. Some familiar tools should acquire different practical uses as
@@ -55,7 +56,8 @@ Relevant source: [WorldClock](../Assets/Scripts/Gameplay/Turns/WorldClock.cs),
 
 ## Concrete weather opportunities
 
-Every row below is a proposed extension. The reward is useful because it feeds
+The first row is now bounded W1a Editor behavior at the fresh public Morrowfast
+allotment. The other rows remain proposed extensions. The reward is useful because it feeds
 existing or explicitly planned consumers; quantity, effort and opportunity are
 different benefits and should not become universal item-stat multipliers.
 
@@ -199,6 +201,13 @@ Any later consequential exposure expansion needs explicit animal tolerances,
 NPC survival behavior and player/NPC-consistent shelter rules first.
 
 ## First playable increment
+
+W1 is now split. W1a manual finite collection is accepted in the Editor, with
+actual collected-water crop use and travel/fresh-save persistence. W1b automatic
+crop rainfall remains unimplemented; the wholeW1 gates below still apply.
+W1a fixes one public plot to an exact notice/ground/world binding and two fixed
+frames. It adds no portable collector entitlement or cached retrofit. See the
+[implementation contract](WEATHER-SHOWER-COLLECTION.md) and linked receipt.
 
 W1 is optional shower water with two practical consumers. It adds a regional
 weather context, a qualified catch-cloth on an installed awning or communal

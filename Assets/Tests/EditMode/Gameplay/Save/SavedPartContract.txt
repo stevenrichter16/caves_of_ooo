@@ -1,4 +1,4 @@
-# parts=413
+# parts=415
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -712,6 +712,19 @@ Part CavesOfOoo.Core.PricklebrowNestPart | reflected
   TriggerFaction:System.String
   Triggered:System.Boolean
 Part CavesOfOoo.Core.ProvingGroundPart | reflected
+Part CavesOfOoo.Core.RainCatchmentPart | reflected
+  ActivatedAt:System.Int32
+  Ground:CavesOfOoo.Core.Entity
+  LastWindow:System.Int32
+  PlotKey:System.String
+  PolicyVersion:System.Int32
+  Public:System.Boolean
+  Spent:System.Int32
+  WorldKey:System.String
+Part CavesOfOoo.Core.RainCollectorPart | reflected
+  Anchor:CavesOfOoo.Core.Entity
+  Clean:System.Boolean
+  Ground:CavesOfOoo.Core.Entity
 Part CavesOfOoo.Core.ReadableDocumentPart | reflected
   DocumentId:System.String
 Part CavesOfOoo.Core.ReagentPart | reflected

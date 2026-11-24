@@ -1,18 +1,20 @@
-**Weather design continuation — November23,2026:** the user requested mostly
-optional weather benefits, comfortable ordinary exploration when skipped, and
-different practical seasonal uses for some of the same tools. The
-[weather and seasonal tool design](WEATHER-AND-SEASONAL-TOOL-USES.md) now records
-10candidate opportunities,5tool/apparatus families, regional discovery,
-finite quantities, game-time/save rules and a staged implementation order.
-Independent design/source critique found0publication-blocking P1/P2; W1
-catchment/ownership/crop chronology and W2 seasonal reuse gates remain explicit. W1 proposes optional shower
-collection/crop watering; W2 must separately prove a second actual use for the
-same frame. No weather runtime, tests or play acceptance is claimed. All twelve
-complete-machine statuses and the original failed regression remain open.
-Hourly task ACTIVE after explicit resume; Mac7ed source/package/startup delivery
-is recorded below. Preserve all prior apps/checkpoints. Do not repeat accepted
-builds/tests/startup to prepare this design. See the
-[weather continuation](WEATHER-DESIGN-CONTINUATION-2026-11-23.md).
+**Optional shower collection — November23,2026:** W1a is bounded Editor
+accepted: two fixed public Morrowfast frames share3water per600-tick shower;
+ordinary flask/skin collection feeds existing manual crop watering. Final native
+106total/105pass/0fail/1Explicit utilityskip/0CS (52new weather cases); separate
+saved-contract28/27pass/1skip overlaps. Actual fair refusal/cancel, paid14420
+collection, second-frame shared exhaustion, collected-water crop action14500,
+travel and full fresh14500/14590 passed. Independent source/gameplay-evidence
+review0P1/P2; directed strong fixture, no natural discovery/frequency claim.
+W1b automatic crop rainfall, W2 seasonal second frame job, wholeW1 and package
+acceptance remain open. Current Mac7ed predates weather. All12machine statuses
+and original failed full regression remain open. Root sole Unity/Git owner;
+task ACTIVE every30minutes. Latest user direction: develop numerous connected
+mechanics with medium-depth nuance; stop expanding one instance after its
+meaningful gates and share frequent screenshots at visible progress points.
+Next qualify a useful additional material/tool consumer, preserving ordinary
+alternatives and finite custody. See [W1a receipt](Verification/MachineSystems/WeatherCollection20261123/README.md)
+and [weather continuation](WEATHER-DESIGN-CONTINUATION-2026-11-23.md).
 
 **Current Mac delivery — November23,2026:** accepted inventory1fda and weapon
 supply7ed source are now packaged together at

@@ -1317,6 +1317,7 @@ namespace CavesOfOoo.Core
             {
                 MorrowfastExpedition.TryInstall(zone, Factory);
                 RepairCultivationSite.TryInstall(zone, Factory);
+                ShowerCollectionSite.TryInstall(zone, this);
             }
 
             // Stillleaf Archive SA.2: the Recension Searcher works in

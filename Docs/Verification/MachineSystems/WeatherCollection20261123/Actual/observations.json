@@ -1,0 +1,911 @@
+{
+  "entry": {
+    "tick": 12470,
+    "zone": "Overworld.2.6.0",
+    "x": 40,
+    "y": 12,
+    "hp": 412,
+    "purse": 26,
+    "rain": false,
+    "window": 20,
+    "next": 24,
+    "collectors": [
+      {
+        "id": "33020",
+        "x": 64,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      },
+      {
+        "id": "33019",
+        "x": 60,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      }
+    ],
+    "ledger": [
+      {
+        "id": "repair-cultivation:allotment-notice",
+        "spent": 0,
+        "last": -1,
+        "activation": 12460
+      }
+    ],
+    "water": [
+      {
+        "id": "2231",
+        "volume": 11,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2232",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2233",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2234",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2235",
+        "volume": 1,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2238",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2239",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2240",
+        "volume": 1,
+        "liquid": "water"
+      },
+      {
+        "id": "2241",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2242",
+        "volume": 0,
+        "liquid": ""
+      }
+    ]
+  },
+  "fairMenu": [
+    {
+      "name": "CollectRain",
+      "label": "catch rain",
+      "command": "Disabled:fair",
+      "via": null
+    },
+    {
+      "name": "Examine",
+      "label": "examine",
+      "command": "Examine",
+      "via": null
+    },
+    {
+      "name": "ToolGroup",
+      "label": "pour out a liquid here (10) >>",
+      "command": "ToolGroup|pour out a liquid here",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "spread brine east (1 item) [glimmer-brine]",
+      "command": "MaterialField|Film|Overworld.2.6.0|59|8|60|8||8|brine",
+      "via": "2215"
+    },
+    {
+      "name": "SpreadGrease",
+      "label": "spread grease east (1 item) [frog oil]",
+      "command": "SpreadGrease|Overworld.2.6.0|59|8|60|8|1",
+      "via": "22869"
+    },
+    {
+      "name": "PickCell",
+      "label": "<< everything here",
+      "command": "PickCell",
+      "via": null
+    }
+  ],
+  "fairReader": {
+    "open": true,
+    "page": 0,
+    "pages": 2,
+    "title": "public catch-cloth frame",
+    "subject": "33019",
+    "sections": [
+      {
+        "heading": "Current state",
+        "text": "It shades the ground under it and the cells around it from the glare, for whoever stands there. You are standing in it.\nFair weather; the edge collects during mild showers. Shared catchment: 3/3 water available this interval. The frames share one allowance; missed rain is not stored."
+      },
+      {
+        "heading": "How to use",
+        "text": "Stand under it: it shades its own cell and the cells within 1 of it. During mild showers, stand beside the frame, press C and choose catch rain, then the exact carried flask or waterskin.\nNeeds: a compatible carried water vessel with room, and the intact public collecting edge.\nCost and limits: It only matters where the sun does: in the Beating at the Height of the day, bareheaded in the open you gain a stack of Parched every 10 turns, and under shade the count does not run. A hat or a roof does the same. Carried or taken up, it shades nothing. Both frames share three water per shower interval. This is optional water for existing uses; fair weather costs nothing.\nRight now you cannot: catch rain (There are no mild showers now. Ordinary water sources still work)."
+      },
+      {
+        "heading": "Description",
+        "text": "Waxed cloth on a fixed public frame gathers a little clean rainwater. Both frames share the allotment's catchment. During mild showers, press C here and choose a carried flask or waterskin. Ordinary water sources remain useful in fair weather."
+      }
+    ],
+    "visible": [
+      "CURRENT STATE",
+      "",
+      "It shades the ground under it and the cells around",
+      "it from the glare, for whoever stands there. You",
+      "are standing in it.",
+      "Fair weather; the edge collects during mild",
+      "showers. Shared catchment: 3/3 water available this",
+      "interval. The frames share one allowance; missed",
+      "rain is not stored.",
+      "",
+      "HOW TO USE",
+      "",
+      "Stand under it: it shades its own cell and the",
+      "cells within 1 of it. During mild showers, stand",
+      "beside the frame, press C and choose catch rain,",
+      "then the exact carried flask or waterskin.",
+      "Needs: a compatible carried water vessel with room,",
+      "and the intact public collecting edge.",
+      "Cost and limits: It only matters where the sun",
+      "does: in the Beating at the Height of the day,"
+    ],
+    "tick": 12700,
+    "energy": 1000,
+    "hp": 383
+  },
+  "rainBefore": {
+    "tick": 14410,
+    "zone": "Overworld.2.6.0",
+    "x": 59,
+    "y": 8,
+    "hp": 383,
+    "purse": 26,
+    "rain": true,
+    "window": 24,
+    "next": 24,
+    "collectors": [
+      {
+        "id": "33020",
+        "x": 64,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      },
+      {
+        "id": "33019",
+        "x": 60,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      }
+    ],
+    "ledger": [
+      {
+        "id": "repair-cultivation:allotment-notice",
+        "spent": 0,
+        "last": -1,
+        "activation": 12460
+      }
+    ],
+    "water": [
+      {
+        "id": "2231",
+        "volume": 11,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2232",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2233",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2234",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2235",
+        "volume": 1,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2238",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2239",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2240",
+        "volume": 1,
+        "liquid": "water"
+      },
+      {
+        "id": "2241",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2242",
+        "volume": 0,
+        "liquid": ""
+      }
+    ]
+  },
+  "cancel": {
+    "tick": 14410,
+    "zone": "Overworld.2.6.0",
+    "x": 59,
+    "y": 8,
+    "hp": 383,
+    "purse": 26,
+    "rain": true,
+    "window": 24,
+    "next": 24,
+    "collectors": [
+      {
+        "id": "33020",
+        "x": 64,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      },
+      {
+        "id": "33019",
+        "x": 60,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      }
+    ],
+    "ledger": [
+      {
+        "id": "repair-cultivation:allotment-notice",
+        "spent": 0,
+        "last": -1,
+        "activation": 12460
+      }
+    ],
+    "water": [
+      {
+        "id": "2231",
+        "volume": 11,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2232",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2233",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2234",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2235",
+        "volume": 1,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2238",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2239",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2240",
+        "volume": 1,
+        "liquid": "water"
+      },
+      {
+        "id": "2241",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2242",
+        "volume": 0,
+        "liquid": ""
+      }
+    ]
+  },
+  "collected": {
+    "tick": 14420,
+    "zone": "Overworld.2.6.0",
+    "x": 59,
+    "y": 8,
+    "hp": 383,
+    "purse": 26,
+    "rain": true,
+    "window": 24,
+    "next": 24,
+    "collectors": [
+      {
+        "id": "33020",
+        "x": 64,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      },
+      {
+        "id": "33019",
+        "x": 60,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      }
+    ],
+    "ledger": [
+      {
+        "id": "repair-cultivation:allotment-notice",
+        "spent": 3,
+        "last": 24,
+        "activation": 12460
+      }
+    ],
+    "water": [
+      {
+        "id": "2231",
+        "volume": 11,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2232",
+        "volume": 3,
+        "liquid": "water"
+      },
+      {
+        "id": "2233",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2234",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2235",
+        "volume": 1,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2238",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2239",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2240",
+        "volume": 1,
+        "liquid": "water"
+      },
+      {
+        "id": "2241",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2242",
+        "volume": 0,
+        "liquid": ""
+      }
+    ]
+  },
+  "secondSpent": [
+    {
+      "name": "CollectRain",
+      "label": "catch rain",
+      "command": "Disabled:spent",
+      "via": null
+    },
+    {
+      "name": "Examine",
+      "label": "examine",
+      "command": "Examine",
+      "via": null
+    },
+    {
+      "name": "ToolGroup",
+      "label": "pour out a liquid here (12) >>",
+      "command": "ToolGroup|pour out a liquid here",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "spread brine east (1 item) [glimmer-brine]",
+      "command": "MaterialField|Film|Overworld.2.6.0|63|8|64|8||8|brine",
+      "via": "2215"
+    },
+    {
+      "name": "SpreadGrease",
+      "label": "spread grease east (1 item) [frog oil]",
+      "command": "SpreadGrease|Overworld.2.6.0|63|8|64|8|1",
+      "via": "22869"
+    },
+    {
+      "name": "PickCell",
+      "label": "<< everything here",
+      "command": "PickCell",
+      "via": null
+    }
+  ],
+  "watered": {
+    "tick": 14500,
+    "zone": "Overworld.2.6.0",
+    "x": 61,
+    "y": 11,
+    "hp": 383,
+    "purse": 26,
+    "rain": true,
+    "window": 24,
+    "next": 24,
+    "collectors": [
+      {
+        "id": "33020",
+        "x": 64,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      },
+      {
+        "id": "33019",
+        "x": 60,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      }
+    ],
+    "ledger": [
+      {
+        "id": "repair-cultivation:allotment-notice",
+        "spent": 3,
+        "last": 24,
+        "activation": 12460
+      }
+    ],
+    "water": [
+      {
+        "id": "2231",
+        "volume": 11,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2232",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2233",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2234",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2235",
+        "volume": 1,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2238",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2239",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2240",
+        "volume": 1,
+        "liquid": "water"
+      },
+      {
+        "id": "2241",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2242",
+        "volume": 0,
+        "liquid": ""
+      }
+    ]
+  },
+  "wateredCrop": {
+    "id": "33015",
+    "stage": 0,
+    "growth": 1,
+    "moisture": 39,
+    "last": 14500,
+    "remainder": 0
+  },
+  "fresh14500": {
+    "tick": 14500,
+    "zone": "Overworld.2.6.0",
+    "x": 61,
+    "y": 11,
+    "hp": 383,
+    "purse": 26,
+    "rain": true,
+    "window": 24,
+    "next": 24,
+    "collectors": [
+      {
+        "id": "33019",
+        "x": 60,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      },
+      {
+        "id": "33020",
+        "x": 64,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      }
+    ],
+    "ledger": [
+      {
+        "id": "repair-cultivation:allotment-notice",
+        "spent": 3,
+        "last": 24,
+        "activation": 12460
+      }
+    ],
+    "water": [
+      {
+        "id": "2231",
+        "volume": 11,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2232",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2233",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2234",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2235",
+        "volume": 1,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2238",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2239",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2240",
+        "volume": 1,
+        "liquid": "water"
+      },
+      {
+        "id": "2241",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2242",
+        "volume": 0,
+        "liquid": ""
+      }
+    ]
+  },
+  "returned": {
+    "tick": 14560,
+    "zone": "Overworld.2.6.0",
+    "x": 61,
+    "y": 11,
+    "hp": 383,
+    "purse": 26,
+    "rain": true,
+    "window": 24,
+    "next": 24,
+    "collectors": [
+      {
+        "id": "33019",
+        "x": 60,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      },
+      {
+        "id": "33020",
+        "x": 64,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      }
+    ],
+    "ledger": [
+      {
+        "id": "repair-cultivation:allotment-notice",
+        "spent": 3,
+        "last": 24,
+        "activation": 12460
+      }
+    ],
+    "water": [
+      {
+        "id": "2231",
+        "volume": 11,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2232",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2233",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2234",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2235",
+        "volume": 1,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2238",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2239",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2240",
+        "volume": 1,
+        "liquid": "water"
+      },
+      {
+        "id": "2241",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2242",
+        "volume": 0,
+        "liquid": ""
+      }
+    ]
+  },
+  "returnedCrop": {
+    "stage": 0,
+    "growth": 7,
+    "moisture": 33,
+    "last": 14560,
+    "remainder": 0
+  },
+  "final": {
+    "tick": 14590,
+    "zone": "Overworld.2.6.0",
+    "x": 63,
+    "y": 9,
+    "hp": 383,
+    "purse": 26,
+    "rain": true,
+    "window": 24,
+    "next": 24,
+    "collectors": [
+      {
+        "id": "33019",
+        "x": 60,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      },
+      {
+        "id": "33020",
+        "x": 64,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      }
+    ],
+    "ledger": [
+      {
+        "id": "repair-cultivation:allotment-notice",
+        "spent": 3,
+        "last": 24,
+        "activation": 12460
+      }
+    ],
+    "water": [
+      {
+        "id": "2231",
+        "volume": 11,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2232",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2233",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2234",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2235",
+        "volume": 1,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2238",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2239",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2240",
+        "volume": 1,
+        "liquid": "water"
+      },
+      {
+        "id": "2241",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2242",
+        "volume": 0,
+        "liquid": ""
+      }
+    ]
+  },
+  "finalFresh": {
+    "tick": 14590,
+    "zone": "Overworld.2.6.0",
+    "x": 63,
+    "y": 9,
+    "hp": 383,
+    "purse": 26,
+    "rain": true,
+    "window": 24,
+    "next": 24,
+    "collectors": [
+      {
+        "id": "33019",
+        "x": 60,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      },
+      {
+        "id": "33020",
+        "x": 64,
+        "y": 8,
+        "anchor": "repair-cultivation:allotment-notice"
+      }
+    ],
+    "ledger": [
+      {
+        "id": "repair-cultivation:allotment-notice",
+        "spent": 3,
+        "last": 24,
+        "activation": 12460
+      }
+    ],
+    "water": [
+      {
+        "id": "2231",
+        "volume": 11,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2232",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2233",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2234",
+        "volume": 2,
+        "liquid": "water"
+      },
+      {
+        "id": "2235",
+        "volume": 1,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2238",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2239",
+        "volume": 4,
+        "liquid": "bog-mire"
+      },
+      {
+        "id": "2240",
+        "volume": 1,
+        "liquid": "water"
+      },
+      {
+        "id": "2241",
+        "volume": 0,
+        "liquid": ""
+      },
+      {
+        "id": "2242",
+        "volume": 0,
+        "liquid": ""
+      }
+    ]
+  },
+  "finalCrop": {
+    "growth": 10,
+    "moisture": 30,
+    "last": 14590,
+    "remainder": 0
+  },
+  "notes": "Supplied strong fixture seed64; scouting/directed approach and normal worldmap waiting to the known shower window. Initial approach combat29HP loss; no weather stat/exposure changes, no injected health/items/time. Earlier stale assembly boot excluded; clean idle main restarted, corrected compiled lease guarded before accepted Play. Two observer failures (missing stored code and base ZoneManager.WorldMap) gave no state or gameplay action."
+}

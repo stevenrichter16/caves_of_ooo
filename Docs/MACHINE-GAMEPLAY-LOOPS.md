@@ -56,8 +56,10 @@ mostly optional benefits, with comfortable ordinary exploration when they are
 skipped. The [weather and seasonal tool design](WEATHER-AND-SEASONAL-TOOL-USES.md)
 defines ten candidate opportunities, a table of different uses for the same
 tools, and separate first gates for optional shower water and a second use of
-one reusable frame. No weather extension is accepted by this planning link;
-all twelve complete-machine statuses remain unchanged.
+one reusable frame. Bounded W1a collection/manual watering is now Editor
+accepted; automatic crop rain, seasonal second use and natural discovery stay
+open. See [W1a receipt](Verification/MachineSystems/WeatherCollection20261123/README.md).
+All twelve complete-machine statuses remain unchanged.
 
 Record the player problem and at least two practical approaches. Identify finite
 inputs, capacities, provenance, outputs and waste; show what the player can know
