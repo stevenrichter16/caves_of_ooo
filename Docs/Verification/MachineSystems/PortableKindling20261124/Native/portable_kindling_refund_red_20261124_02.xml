@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 06:19:10Z" end-time="2026-11-24 06:19:11Z" duration="1.1306644">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41315" result="Failed" site="Child" start-time="2026-11-24 06:19:10Z" end-time="2026-11-24 06:19:11Z" duration="1.130664" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50351" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41315" result="Failed" site="Child" start-time="2026-11-24 06:19:10Z" end-time="2026-11-24 06:19:11Z" duration="0.905205" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="4861" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50352" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41315" result="Failed" site="Child" start-time="2026-11-24 06:19:10Z" end-time="2026-11-24 06:19:11Z" duration="0.687332" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50353" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41315" result="Failed" site="Child" start-time="2026-11-24 06:19:10Z" end-time="2026-11-24 06:19:11Z" duration="0.524597" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="16069" name="PortableKindlingTests" fullname="CavesOfOoo.Tests.PortableKindlingTests" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-11-24 06:19:11Z" end-time="2026-11-24 06:19:11Z" duration="0.133354" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="16105" name="RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody" fullname="CavesOfOoo.Tests.PortableKindlingTests.RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 06:19:11Z" end-time="2026-11-24 06:19:11Z" duration="0.130906" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16103" name="RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody(&quot;add&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody(&quot;add&quot;)" methodname="RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="2030738510" result="Failed" start-time="2026-11-24 06:19:11Z" end-time="2026-11-24 06:19:11Z" duration="0.101275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 5
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PortableKindlingTests.RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody (System.String change) [0x0005f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:110
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16104" name="RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody(&quot;drop&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody(&quot;drop&quot;)" methodname="RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="9637642" result="Failed" start-time="2026-11-24 06:19:11Z" end-time="2026-11-24 06:19:11Z" duration="0.025483" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PortableKindlingTests.RollbackRefundsOnlyOneUnitAndPreservesIndependentMossCustody (System.String change) [0x000a6] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:111
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

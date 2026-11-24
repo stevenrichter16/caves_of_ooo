@@ -280,3 +280,23 @@ reload and equipment toggles cannot be free rerolls. Use shared world conditions
 and existing trade/restock systems, with an explicit rule for sold/bought/unsold
 goods and genuinely unique provenance. The new layers and unlocks remain proposed
 until native/source/actual-shopping/save/project evidence earns acceptance.
+
+## A reagent becomes light and productive camp heat — November24
+
+Fire-moss now offers a practical extra choice: keep it for brewing/traps, spend
+one to start a fueled torch away from flame, or start the fueled camp hearth.
+Existing flame and flint remain useful alternatives and keep priority. It is
+ignition, not ongoing fuel; feed timber separately. This is an explicit quoted
+choice, never a surprise cost added to an old light command.
+
+Actual play used moss to light a hearth, then its heat and10fuel to bake8mire
+into1existing fireclay at the adjacent still, leaving4mire in the same flask.
+The clay can be kept for its separately qualified protection/repair uses; this
+increment does not replay or claim a new repair. A lit hearth then provided the
+ordinary torch-lighting alternative without more moss. Leaving that flame behind
+made the same carried moss useful for expedition light again. Neither use forces
+new maintenance or reduces ordinary exploration. Strong fixture and existing
+supplies; frequency and natural discovery remain open. Final source/native/actual
+gates are in [the receipt](Verification/MachineSystems/PortableKindling20261124/README.md);
+final independent artifact/gameplay-evidence review0P1/P2. All whole-machine
+gates remain open.

@@ -43,6 +43,7 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 var actor = e.GetParameter<Entity>("Actor");
+                PortableKindling.AddActions(actor, ParentEntity, actor?.SpatialZone, e.GetParameter<InventoryActionList>("Actions"));
                 if (CanReach(actor, actor?.SpatialZone))
                 {
                     bool lit = ParentEntity.GetPart<LightSourcePart>()?.Enabled == true;
@@ -239,7 +240,9 @@ namespace CavesOfOoo.Core
             copy.GetPart<StatusEffectsPart>().RestoreEffectsForLoad(cloned);
         }
 
-        private bool CanReach(Entity actor, Zone zone)
+        internal void NotifyKindling(Entity actor) { EquipmentChangeBus.NotifyChanged(actor); InvalidateLooseCell(); }
+
+        internal bool CanReach(Entity actor, Zone zone)
         {
             if (actor == null || (ParentEntity.GetPart<StackerPart>()?.StackCount ?? 1) != 1) return false;
             var physics = ParentEntity.GetPart<PhysicsPart>();

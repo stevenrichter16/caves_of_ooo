@@ -34,7 +34,7 @@ namespace CavesOfOoo.Core
                 case "FieldMeal":
                     use = "Share with an injured or bleeding adjacent companion: heal 3d4 HP and stop one ordinary bleed. This meal grants no prepared-meal bonus."; break;
                 case "FireMoss":
-                    return Hint("Spend one moss to kindle nearby dry fuel that this small dose can ignite, or an oil film. Bare stone supplies no fuel. Fire can spread and hurt anyone.");
+                    return Hint("Spend one dry moss to light a fueled torch or camp hearth through its light row when no flame or usable flint is available. Feed the hearth first; moss supplies no ongoing fuel. You can also kindle nearby dry fuel that this small dose can ignite, or an oil film. Bare stone supplies no fuel. Fire can spread and hurt anyone.");
                 case "FrostLichen":
                     return Hint("Spend one lichen to freeze nearby water-coated ground into slippery ice. Occupants can freeze, including companions; other liquid films and dry ground are unsuitable.");
                 case "GlacierSalt":

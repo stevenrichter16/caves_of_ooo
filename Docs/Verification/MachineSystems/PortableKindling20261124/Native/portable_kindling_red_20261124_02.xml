@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="24" result="Failed(Child)" total="24" passed="10" failed="14" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 06:13:29Z" end-time="2026-11-24 06:13:31Z" duration="1.8155122">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41309" result="Failed" site="Child" start-time="2026-11-24 06:13:29Z" end-time="2026-11-24 06:13:31Z" duration="1.815512" total="24" passed="10" failed="14" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50343" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41309" result="Failed" site="Child" start-time="2026-11-24 06:13:29Z" end-time="2026-11-24 06:13:31Z" duration="1.591150" total="24" passed="10" failed="14" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99519" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50344" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41309" result="Failed" site="Child" start-time="2026-11-24 06:13:29Z" end-time="2026-11-24 06:13:31Z" duration="1.368489" total="24" passed="10" failed="14" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50345" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41309" result="Failed" site="Child" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:31Z" duration="1.147558" total="24" passed="10" failed="14" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="16069" name="PortableKindlingTests" fullname="CavesOfOoo.Tests.PortableKindlingTests" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:31Z" duration="0.805118" total="24" passed="10" failed="14" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="16097" name="CommitCallbackCannotDetachTargetAndRefundUnrelatedInjury" fullname="CavesOfOoo.Tests.PortableKindlingTests.CommitCallbackCannotDetachTargetAndRefundUnrelatedInjury" methodname="CommitCallbackCannotDetachTargetAndRefundUnrelatedInjury" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="286919063" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.102341" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.CommitCallbackCannotDetachTargetAndRefundUnrelatedInjury () [0x00021] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:78
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16077" name="ExistingPreferredSourceKeepsMoss" fullname="CavesOfOoo.Tests.PortableKindlingTests.ExistingPreferredSourceKeepsMoss" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.056917" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16075" name="ExistingPreferredSourceKeepsMoss(&quot;flame&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.ExistingPreferredSourceKeepsMoss(&quot;flame&quot;)" methodname="ExistingPreferredSourceKeepsMoss" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1309371399" result="Passed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.028712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16076" name="ExistingPreferredSourceKeepsMoss(&quot;flint&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.ExistingPreferredSourceKeepsMoss(&quot;flint&quot;)" methodname="ExistingPreferredSourceKeepsMoss" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1988122188" result="Passed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.026990" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="16074" name="FuelLessHearthAndTorchDoNotOfferOrSpendKindling" fullname="CavesOfOoo.Tests.PortableKindlingTests.FuelLessHearthAndTorchDoNotOfferOrSpendKindling" methodname="FuelLessHearthAndTorchDoNotOfferOrSpendKindling" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1738558377" result="Passed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.027704" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16073" name="HearthUsesTheSameMaterialAndCanCookWithItsOwnFuel" fullname="CavesOfOoo.Tests.PortableKindlingTests.HearthUsesTheSameMaterialAndCanCookWithItsOwnFuel" methodname="HearthUsesTheSameMaterialAndCanCookWithItsOwnFuel" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="454303456" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.028662" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.HearthUsesTheSameMaterialAndCanCookWithItsOwnFuel () [0x0001d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:25
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16096" name="OuterFailureRestoresOnlyItsMossAndLight" fullname="CavesOfOoo.Tests.PortableKindlingTests.OuterFailureRestoresOnlyItsMossAndLight" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.054385" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16094" name="OuterFailureRestoresOnlyItsMossAndLight(1)" fullname="CavesOfOoo.Tests.PortableKindlingTests.OuterFailureRestoresOnlyItsMossAndLight(1)" methodname="OuterFailureRestoresOnlyItsMossAndLight" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="2025286652" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.027257" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.OuterFailureRestoresOnlyItsMossAndLight (System.Int32 count) [0x0000f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16095" name="OuterFailureRestoresOnlyItsMossAndLight(3)" fullname="CavesOfOoo.Tests.PortableKindlingTests.OuterFailureRestoresOnlyItsMossAndLight(3)" methodname="OuterFailureRestoresOnlyItsMossAndLight" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="2040535123" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.026373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.OuterFailureRestoresOnlyItsMossAndLight (System.Int32 count) [0x0000f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="16080" name="PreviewNamesTheOneItemCostAndReadingIsFree" fullname="CavesOfOoo.Tests.PortableKindlingTests.PreviewNamesTheOneItemCostAndReadingIsFree" methodname="PreviewNamesTheOneItemCostAndReadingIsFree" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="336412566" result="Failed" label="Error" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.026637" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.PortableKindlingTests.PreviewNamesTheOneItemCostAndReadingIsFree () [0x0001f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:45 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16093" name="RetainedQuoteRefusesChangedSelectionWithoutSubstitution" fullname="CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.201539" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16088" name="RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;count&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;count&quot;)" methodname="RetainedQuoteRefusesChangedSelectionWithoutSubstitution" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1307316162" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.035711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution (System.String state) [0x0000f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16089" name="RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;source&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;source&quot;)" methodname="RetainedQuoteRefusesChangedSelectionWithoutSubstitution" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="2128536453" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.080028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution (System.String state) [0x0000f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16090" name="RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;move&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;move&quot;)" methodname="RetainedQuoteRefusesChangedSelectionWithoutSubstitution" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="368329224" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.030041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution (System.String state) [0x0000f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16091" name="RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;fuel&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;fuel&quot;)" methodname="RetainedQuoteRefusesChangedSelectionWithoutSubstitution" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="2006318060" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.027546" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution (System.String state) [0x0000f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16092" name="RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;preferred&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution(&quot;preferred&quot;)" methodname="RetainedQuoteRefusesChangedSelectionWithoutSubstitution" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="2041899836" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.027323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.RetainedQuoteRefusesChangedSelectionWithoutSubstitution (System.String state) [0x0000f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="16098" name="SpentMossAndLitHearthSurviveGraphReload" fullname="CavesOfOoo.Tests.PortableKindlingTests.SpentMossAndLitHearthSurviveGraphReload" methodname="SpentMossAndLitHearthSurviveGraphReload" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1336297922" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.027019" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.SpentMossAndLitHearthSurviveGraphReload () [0x00017] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:84
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16072" name="TorchSpendsExactlyOneMossAndAddsNoFuel" fullname="CavesOfOoo.Tests.PortableKindlingTests.TorchSpendsExactlyOneMossAndAddsNoFuel" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:31Z" duration="0.052882" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16070" name="TorchSpendsExactlyOneMossAndAddsNoFuel(1)" fullname="CavesOfOoo.Tests.PortableKindlingTests.TorchSpendsExactlyOneMossAndAddsNoFuel(1)" methodname="TorchSpendsExactlyOneMossAndAddsNoFuel" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1272884141" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:30Z" duration="0.026148" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.TorchSpendsExactlyOneMossAndAddsNoFuel (System.Int32 count) [0x0001a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16071" name="TorchSpendsExactlyOneMossAndAddsNoFuel(3)" fullname="CavesOfOoo.Tests.PortableKindlingTests.TorchSpendsExactlyOneMossAndAddsNoFuel(3)" methodname="TorchSpendsExactlyOneMossAndAddsNoFuel" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="994275866" result="Failed" start-time="2026-11-24 06:13:30Z" end-time="2026-11-24 06:13:31Z" duration="0.026229" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.TorchSpendsExactlyOneMossAndAddsNoFuel (System.Int32 count) [0x0001a] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16087" name="UnavailableSourceOffersNoKindling" fullname="CavesOfOoo.Tests.PortableKindlingTests.UnavailableSourceOffersNoKindling" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-24 06:13:31Z" end-time="2026-11-24 06:13:31Z" duration="0.163964" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16081" name="UnavailableSourceOffersNoKindling(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.UnavailableSourceOffersNoKindling(&quot;wet&quot;)" methodname="UnavailableSourceOffersNoKindling" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1950894344" result="Passed" start-time="2026-11-24 06:13:31Z" end-time="2026-11-24 06:13:31Z" duration="0.029139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16082" name="UnavailableSourceOffersNoKindling(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.UnavailableSourceOffersNoKindling(&quot;frozen&quot;)" methodname="UnavailableSourceOffersNoKindling" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1478627742" result="Passed" start-time="2026-11-24 06:13:31Z" end-time="2026-11-24 06:13:31Z" duration="0.026178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16083" name="UnavailableSourceOffersNoKindling(&quot;ground&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.UnavailableSourceOffersNoKindling(&quot;ground&quot;)" methodname="UnavailableSourceOffersNoKindling" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="3337654" result="Passed" start-time="2026-11-24 06:13:31Z" end-time="2026-11-24 06:13:31Z" duration="0.026510" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16084" name="UnavailableSourceOffersNoKindling(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.UnavailableSourceOffersNoKindling(&quot;foreign&quot;)" methodname="UnavailableSourceOffersNoKindling" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="58950061" result="Passed" start-time="2026-11-24 06:13:31Z" end-time="2026-11-24 06:13:31Z" duration="0.026360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16085" name="UnavailableSourceOffersNoKindling(&quot;zero&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.UnavailableSourceOffersNoKindling(&quot;zero&quot;)" methodname="UnavailableSourceOffersNoKindling" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1695289221" result="Passed" start-time="2026-11-24 06:13:31Z" end-time="2026-11-24 06:13:31Z" duration="0.026977" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16086" name="UnavailableSourceOffersNoKindling(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.PortableKindlingTests.UnavailableSourceOffersNoKindling(&quot;duplicate&quot;)" methodname="UnavailableSourceOffersNoKindling" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="1923889288" result="Passed" start-time="2026-11-24 06:13:31Z" end-time="2026-11-24 06:13:31Z" duration="0.027894" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="16079" name="UnquotedLegacyCommandsCannotSpendMoss" fullname="CavesOfOoo.Tests.PortableKindlingTests.UnquotedLegacyCommandsCannotSpendMoss" methodname="UnquotedLegacyCommandsCannotSpendMoss" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="899096773" result="Passed" start-time="2026-11-24 06:13:31Z" end-time="2026-11-24 06:13:31Z" duration="0.030464" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16078" name="WornFlintDoesNotHideMossFallback" fullname="CavesOfOoo.Tests.PortableKindlingTests.WornFlintDoesNotHideMossFallback" methodname="WornFlintDoesNotHideMossFallback" classname="CavesOfOoo.Tests.PortableKindlingTests" runstate="Runnable" seed="406280294" result="Failed" start-time="2026-11-24 06:13:31Z" end-time="2026-11-24 06:13:31Z" duration="0.025968" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for KindleFuel|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.PortableKindlingTests.Quote (CavesOfOoo.Core.Entity target) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:14
+at CavesOfOoo.Tests.PortableKindlingTests.WornFlintDoesNotHideMossFallback () [0x00025] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/Items/PortableKindlingTests.cs:39
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

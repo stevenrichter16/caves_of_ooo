@@ -27,7 +27,7 @@ namespace CavesOfOoo.Core
             && (command.StartsWith(GreasePrefix, StringComparison.Ordinal) || command.StartsWith(GritPrefix, StringComparison.Ordinal)
                 || CordSnareActions.IsCommand(command) || EmergencyDousingActions.IsCommand(command)
                 || CompanionCareActions.IsCommand(command) || MaterialFieldActions.IsCommand(command)
-                || EquipmentUtilityActions.IsCommand(command) || BodyCoatingCleanupActions.IsCommand(command));
+                || EquipmentUtilityActions.IsCommand(command) || BodyCoatingCleanupActions.IsCommand(command) || PortableKindling.IsCommand(command));
 
         public static void AddActions(Entity actor, Entity item, Zone zone, InventoryActionList actions)
         {
@@ -55,6 +55,7 @@ namespace CavesOfOoo.Core
         /// supplies; only commit publishes the success receipt and tile reactions.</summary>
         internal static bool TryAct(Entity actor, Entity item, Zone zone, string command, InventoryTransaction transaction)
         {
+            if (PortableKindling.IsCommand(command)) return PortableKindling.TryAct(actor, item, zone, command, transaction);
             if (CordSnareActions.IsCommand(command)) return CordSnareActions.TryAct(actor, item, zone, command, transaction);
             if (EmergencyDousingActions.IsCommand(command)) return EmergencyDousingActions.TryAct(actor, item, zone, command, transaction);
             if (CompanionCareActions.IsCommand(command)) return CompanionCareActions.TryAct(actor, item, zone, command, transaction);

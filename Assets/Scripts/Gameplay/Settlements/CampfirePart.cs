@@ -70,6 +70,7 @@ namespace CavesOfOoo.Core
                 var queryingActor = e.GetParameter<Entity>("Actor");
                 var queryingZone = e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone;
                 CampfireWorkActions.AddActions(queryingActor, this, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
+                PortableKindling.AddActions(queryingActor, ParentEntity, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
                 if (!AllowRest || !WorldResourceActions.Nearby(queryingActor, ParentEntity, queryingZone)) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 actions?.AddAction("Rest", "rest", "RestAtCampfire", 'r', 20);

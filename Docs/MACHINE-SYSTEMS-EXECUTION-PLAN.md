@@ -1,3 +1,21 @@
+**Portable fire-moss — November24,2026:** bounded Editor accepted after native,
+actual and independent final source/artifact/gameplay-evidence review0P1/P2. A quoted1moss row starts an existing
+fueled torch or finite hearth; real flame/flint stay preferred. Moss adds no fuel;
+legacy light/stoke commands never spend it. Exact source/target receipt, one-unit
+late refund and explicit unsupported-custody limits protect finite stock. No new
+recipe, saved Part/field or compulsory upkeep. Final188total/187pass/0fail/
+1Explicit utilityskip/0CS includes35new; prior runs overlap. Actual play caught a
+world-menu integration gap after native GREEN; compiling1RED and Part-event fix
+preceded final GREEN and actual C-menu success. Hearth moss6→5 at370 enabled
+still8mire→1clay at380 (24→25,4mire left). Nearby flame kept moss5 at390; final
+Part-produced torch fallback spent5→4 at420. Full fresh390/420 selected snapshots
+exact; native cost/cancel/readers/screenshots and F5/fourfile-before-Finish passed.
+Strong earned fixture, no new acquisition/discovery/economy claim. Main stopped/
+rootnull/clean; fresh scoped foreign/normal pins preserved. [Receipt](Verification/MachineSystems/PortableKindling20261124/README.md).
+CurrentMac074d predates knife/kindling; next coherent package can batch both.
+All12complete-machine gates, failed full regression, W1b/W2 and natural discovery
+remain open. Root sole owner; task ACTIVE every30minutes, frequent real screenshots.
+
 **Knife fieldwork guide — November23/24,2026:** bounded Editor accepted after
 native, actual readers and independent source/gameplay-evidence review0P1/P2. A capable knife now explains up to
 three existing flexible-stock preparations using the validated live catalogue:
