@@ -1,3 +1,21 @@
+**Portable hand sieve — November24,2026:** One new bounded screening capability
+has native and recorded Editor qualification: reusable sound carried sieve,
+finite authored packet -> one pale-salt/two silver sand, explicit two-weight
+waste. Native e190/190=19new+171retained,0CS; independent source0remainingP1/P2.
+Real late-cancellation injury rollback RED1 fixed by explicit material receipt
+ownership. Actual separate supplied branch: forge20, walk70, free reader/cancel70,
+screen80/fresh80, existing sand note90, same-sieve reuse100, existing dagger
+infusion160/fresh160. Selected fresh pairs exact, three F5archives/all12files,
+one PNG. A separate ordinary search1760 is preserved but obtained no packet;
+opened real cache contained quartz only. No ordinary-acquisition/economics claim.
+Final main stopped/rootnull/clean/inputrestored/unlocked/RequestedSeed0. Current
+Mac a02338565 predates sled/sieve; coherent delivery follows broader batch.
+Independent recorded-play/final wording review:0remainingP1/P2. Exact-owned
+publication follows; native/recorded bounded acceptance is complete.
+All twelve complete-machine/full-suite/NPC/hardware gates remain open. The direct
+liquid pump remains proposed only. See [contract](MACHINE-HAND-SIEVE.md) and
+[evidence](Verification/MachineSystems/HandSieve20261124/README.md).
+
 **Cargo sled — November 24, 2026:** One new bounded local hauling capability
 has native and recorded Editor qualification. Final h352/352 includes25 sled
 cases (two ordinary controls) and327 retained adjacent cases, zero compiler
@@ -1375,6 +1393,15 @@ The twelve machines are not all ready because individual foundations exist. Cont
 The user prioritizes reclamation of damaged finds and regional raw materials into useful component inputs. M3a accepts an explicit damaged-tool manifest, mutually exclusive dismantle/reclaim choices, and cold dressing of recovered iron into an existing piercing point. Retained quotes, Part-owned policies and shared transactions have native and actual acceptance; both routes feed ordinary equipped weapons used outside the service, with travel/fresh reload. Carrying/selling intact is a demonstrated alternative. Regional raw-material processing is a separate remaining qualification: existing pack timber/cord recipes are retained, and a recovered manufactured blank does not establish ore refining. Full heat/fuel, provenance, useful outputs, waste, economy and actual-play gates must be satisfied by their own scoped processes.
 
 ## Dependency matrix for the twelve machines
+
+November24 regional-processing dependency: HandSieve separates only a new finite
+QuarrySweepings packet into existing salt infusion and sand trail/grit stock.
+Native/recorded supplied processing, outside-tool consumers and two fresh pairs
+are qualified; ordinary acquisition remains open after an unsuccessful search.
+This does not establish generic ore refining, the reclamation forge, fractionating
+still, assay cabinet or any complete-machine acceptance. All twelve individual
+statuses below remain open; direct pool pumping is still a proposal. See
+[hand sieve](MACHINE-HAND-SIEVE.md).
 
 November24 local transport dependency: the same cargo sled and load now have
 native/recorded Editor forging, physical following, blocked-step, recovery and

@@ -1,6 +1,46 @@
 {
   "Processes": [
     {
+      "Id": "make_hand_sieve",
+      "SourceBlueprint": "IronSpikeComponent",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "AdditionalInputBlueprints": [
+        "SalvagedTimber",
+        "KnotflaxCord"
+      ],
+      "AdditionalInputCounts": [
+        2,
+        2
+      ],
+      "OutputBlueprints": [
+        "HandSieve"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "make hand sieve",
+      "LossText": "materials become one reusable sieve"
+    },
+    {
+      "Id": "screen_quarry_sweepings",
+      "SourceBlueprint": "QuarrySweepings",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "Screening",
+      "OutputBlueprints": [
+        "PaleSalt",
+        "SilverSand"
+      ],
+      "OutputCounts": [
+        1,
+        2
+      ],
+      "ActionText": "screen quarry sweepings",
+      "LossText": "discard 2 weight of unusable rock dust"
+    },
+    {
       "Id": "make_cargo_sled",
       "SourceBlueprint": "IronSpikeComponent",
       "Mode": "Process",

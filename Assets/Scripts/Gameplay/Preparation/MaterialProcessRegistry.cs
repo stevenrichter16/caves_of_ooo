@@ -126,7 +126,7 @@ namespace CavesOfOoo.Core
         {
             if(row==null || (row.ActionText?.Length??0)>120 || (row.LossText?.Length??0)>200 || !Token(row.Id) || !Token(row.SourceBlueprint)
                 || row.Mode!="Dismantle" && row.Mode!="Reclaim" && row.Mode!="Process"
-                || row.WorkKind!="ForgeCold" && row.WorkKind!="HandCutting" || row.InputCount<1 || row.InputCount>MaximumUnits
+                || row.WorkKind!="ForgeCold" && row.WorkKind!="HandCutting" && row.WorkKind!="Screening" || row.InputCount<1 || row.InputCount>MaximumUnits
                 || row.OutputBlueprints==null || row.OutputCounts==null
                 || row.OutputBlueprints.Length<1 || row.OutputBlueprints.Length>MaximumOutputs
                 || row.OutputBlueprints.Length!=row.OutputCounts.Length)return false;

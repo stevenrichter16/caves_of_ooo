@@ -25,13 +25,13 @@ namespace CavesOfOoo.Core
         readonly Part[] sourceParts, stationParts;
         readonly Cell actorCell, stationCell;
         readonly int count, weight, maximumStack;
-        readonly MaterialCuttingWorkReceipt cutting;
+        readonly IMaterialWorkReceipt work;
 
         MaterialProcessPlan(Entity actor, Entity source, Entity station, Zone zone,
-            EntityFactory factory, MaterialProcessDefinition definition, MaterialProcessIngredient[] extraInputs, MaterialCuttingWorkReceipt cutting=null,MaterialProcessStock stock=null)
+            EntityFactory factory, MaterialProcessDefinition definition, MaterialProcessIngredient[] extraInputs, IMaterialWorkReceipt work=null,MaterialProcessStock stock=null)
         {
             Actor=actor; Source=source; Station=station; Zone=zone; Factory=factory; Definition=definition;
-            this.cutting=cutting;Stock=stock;
+            this.work=work;Stock=stock;
             ExtraInputs=Array.AsReadOnly(extraInputs);
             SourceId=source.ID; StationId=station.ID; actorId=actor.ID; stationBlueprint=station.BlueprintName;
             pack=actor.GetPart<InventoryPart>(); physics=source.GetPart<PhysicsPart>(); stack=source.GetPart<StackerPart>();
@@ -51,9 +51,14 @@ namespace CavesOfOoo.Core
                 || MaterialProcessRegistry.Validate(factory).Count!=0 || !PreparationActions.CurrentActor(actor,zone)
                 || !(stock==null?PreparationActions.Carried(actor,source):stock.Contains(source)) || !Permission(source,definition)
                 || (source.GetPart<StackerPart>()?.StackCount??1)<definition.InputCount)return null;
-            var cutting=definition.WorkKind=="HandCutting"?MaterialCuttingWorkReceipt.Resolve(actor,source,zone):null;
-            var station=definition.WorkKind=="HandCutting"?cutting?.Tool:ForgeWorkReceipt.Resolve(actor,zone);
-            if(station==null || cutting==null && !VisibleStation(actor,station,zone))return null;
+            IMaterialWorkReceipt work=definition.WorkKind switch
+            {
+                "HandCutting"=>MaterialCuttingWorkReceipt.Resolve(actor,source,zone),
+                "Screening"=>MaterialScreeningWorkReceipt.Resolve(actor,source,zone),
+                _=>null
+            };
+            var station=definition.WorkKind=="ForgeCold"?ForgeWorkReceipt.Resolve(actor,zone):work?.Tool;
+            if(station==null || work==null && !VisibleStation(actor,station,zone))return null;
             var extraInputs=new MaterialProcessIngredient[definition.AdditionalInputBlueprints.Count];
             for(int i=0;i<extraInputs.Length;i++)
             {
@@ -63,7 +68,7 @@ namespace CavesOfOoo.Core
             var owners=new[]{actor,source,station}.Concat(extraInputs.SelectMany(i=>i.Takes.Select(t=>t.Owner)))
                 .Concat(stock==null?Array.Empty<Entity>():new[]{stock.Box}).ToArray();
             if(owners.Distinct().Count()!=owners.Length || owners.Select(e=>e.ID).Distinct(StringComparer.Ordinal).Count()!=owners.Length)return null;
-            var plan=new MaterialProcessPlan(actor,source,station,zone,factory,definition,extraInputs,cutting,stock);
+            var plan=new MaterialProcessPlan(actor,source,station,zone,factory,definition,extraInputs,work,stock);
             return plan.Current()?plan:null;
         }
         static Part PermissionPart(Entity source,MaterialProcessDefinition definition)
@@ -97,9 +102,9 @@ namespace CavesOfOoo.Core
                 && !CombatSystem.IsDeathHandled(Actor) && (Actor.GetStat("Hitpoints")==null || Actor.GetStatValue("Hitpoints")>0)
                 && Zone.GetEntityCell(Actor)==actorCell && Zone.GetEntityCell(Station)==stationCell
                 && Station.ID==StationId && Station.BlueprintName==stationBlueprint && Station.Parts.SequenceEqual(stationParts)
-                && (cutting!=null?cutting.Current():VisibleStation(Actor,Station,Zone));
+                && (work!=null?work.Current():VisibleStation(Actor,Station,Zone));
         internal bool BeginWork(CavesOfOoo.Core.Inventory.InventoryTransaction tx,string command)
-            => cutting!=null?cutting.Begin(tx,command):ForgeWorkReceipt.Begin(Actor,Zone,tx,command,Station);
+            => work!=null?work.Begin(tx,command):ForgeWorkReceipt.Begin(Actor,Zone,tx,command,Station);
         internal bool InputAvailable(Entity input)=>Stock==null?PreparationActions.Carried(Actor,input):Stock.Contains(input);
         internal bool BeginInput(Entity input,CavesOfOoo.Core.Inventory.InventoryTransaction tx,string command)
             => Stock==null?PreparationActions.Begin(Actor,input,Zone,tx,command):Stock.Begin(input,tx,command);

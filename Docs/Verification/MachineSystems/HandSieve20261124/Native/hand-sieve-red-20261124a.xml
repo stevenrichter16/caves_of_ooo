@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="2" failed="14" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 23:05:54Z" end-time="2026-11-24 23:05:56Z" duration="1.6268508">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41692" result="Failed" site="Child" start-time="2026-11-24 23:05:54Z" end-time="2026-11-24 23:05:56Z" duration="1.626851" total="16" passed="2" failed="14" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50805" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41692" result="Failed" site="Child" start-time="2026-11-24 23:05:55Z" end-time="2026-11-24 23:05:56Z" duration="1.416807" total="16" passed="2" failed="14" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="61336" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50806" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41692" result="Failed" site="Child" start-time="2026-11-24 23:05:55Z" end-time="2026-11-24 23:05:56Z" duration="1.261390" total="16" passed="2" failed="14" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50807" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41692" result="Failed" site="Child" start-time="2026-11-24 23:05:55Z" end-time="2026-11-24 23:05:56Z" duration="1.075965" total="16" passed="2" failed="14" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="26276" name="HandSieveTests" fullname="CavesOfOoo.Tests.HandSieveTests" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-11-24 23:05:55Z" end-time="2026-11-24 23:05:56Z" duration="0.699950" total="16" passed="2" failed="14" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="26289" name="AuthoredMassAndBaseValueDoNotMultiplyThroughScreening" fullname="CavesOfOoo.Tests.HandSieveTests.AuthoredMassAndBaseValueDoNotMultiplyThroughScreening" methodname="AuthoredMassAndBaseValueDoNotMultiplyThroughScreening" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="719439819" result="Failed" start-time="2026-11-24 23:05:55Z" end-time="2026-11-24 23:05:55Z" duration="0.098374" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.AuthoredMassAndBaseValueDoNotMultiplyThroughScreening () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:79
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+]]></output>
+            </test-case>
+            <test-case id="26280" name="CuttingKnifeDoesNotPretendToBeAMeshScreen" fullname="CavesOfOoo.Tests.HandSieveTests.CuttingKnifeDoesNotPretendToBeAMeshScreen" methodname="CuttingKnifeDoesNotPretendToBeAMeshScreen" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="1142305605" result="Failed" start-time="2026-11-24 23:05:55Z" end-time="2026-11-24 23:05:55Z" duration="0.034478" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  QuarrySweepings
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Feed () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:30
+at CavesOfOoo.Tests.HandSieveTests.CuttingKnifeDoesNotPretendToBeAMeshScreen () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:47
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'QuarrySweepings'
+]]></output>
+            </test-case>
+            <test-case id="26288" name="InsufficientFinalPackCapacityRefusesTheWholeBatch" fullname="CavesOfOoo.Tests.HandSieveTests.InsufficientFinalPackCapacityRefusesTheWholeBatch" methodname="InsufficientFinalPackCapacityRefusesTheWholeBatch" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="1196207716" result="Failed" start-time="2026-11-24 23:05:55Z" end-time="2026-11-24 23:05:55Z" duration="0.030410" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.InsufficientFinalPackCapacityRefusesTheWholeBatch () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:74
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+]]></output>
+            </test-case>
+            <test-case id="26287" name="InterruptedScreeningReturnsPacketAndRetractsOnlyItsOutputs" fullname="CavesOfOoo.Tests.HandSieveTests.InterruptedScreeningReturnsPacketAndRetractsOnlyItsOutputs" methodname="InterruptedScreeningReturnsPacketAndRetractsOnlyItsOutputs" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="1319976844" result="Failed" start-time="2026-11-24 23:05:55Z" end-time="2026-11-24 23:05:55Z" duration="0.029807" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.InterruptedScreeningReturnsPacketAndRetractsOnlyItsOutputs () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:69
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+]]></output>
+            </test-case>
+            <test-case id="26292" name="LoadingAnOldCacheDoesNotInventSweepingsStock" fullname="CavesOfOoo.Tests.HandSieveTests.LoadingAnOldCacheDoesNotInventSweepingsStock" methodname="LoadingAnOldCacheDoesNotInventSweepingsStock" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="195877540" result="Passed" start-time="2026-11-24 23:05:55Z" end-time="2026-11-24 23:05:56Z" duration="0.038821" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26279" name="MissingSieveIsAnHonestDisabledReasonNotAForgeRequirement" fullname="CavesOfOoo.Tests.HandSieveTests.MissingSieveIsAnHonestDisabledReasonNotAForgeRequirement" methodname="MissingSieveIsAnHonestDisabledReasonNotAForgeRequirement" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="1713283412" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.029363" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  QuarrySweepings
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Feed () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:30
+at CavesOfOoo.Tests.HandSieveTests.MissingSieveIsAnHonestDisabledReasonNotAForgeRequirement () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:43
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'QuarrySweepings'
+]]></output>
+            </test-case>
+            <test-case id="26278" name="OnePacketYieldsItsTwoDeclaredFractionsAndKeepsTheSameSieve" fullname="CavesOfOoo.Tests.HandSieveTests.OnePacketYieldsItsTwoDeclaredFractionsAndKeepsTheSameSieve" methodname="OnePacketYieldsItsTwoDeclaredFractionsAndKeepsTheSameSieve" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="448930714" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.031880" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.OnePacketYieldsItsTwoDeclaredFractionsAndKeepsTheSameSieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:37
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+]]></output>
+            </test-case>
+            <test-case id="26293" name="OrdinaryForgeCanMakeTheReusableSieveFromExactStock" fullname="CavesOfOoo.Tests.HandSieveTests.OrdinaryForgeCanMakeTheReusableSieveFromExactStock" methodname="OrdinaryForgeCanMakeTheReusableSieveFromExactStock" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="1195856352" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.092701" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|make_hand_sieve|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.HandSieveTests.OrdinaryForgeCanMakeTheReusableSieveFromExactStock () [0x00048] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:111
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="26277" name="OrdinarySeparateMineralsRemainObtainableWithoutScreening" fullname="CavesOfOoo.Tests.HandSieveTests.OrdinarySeparateMineralsRemainObtainableWithoutScreening" methodname="OrdinarySeparateMineralsRemainObtainableWithoutScreening" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="855219655" result="Passed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.029355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26285" name="PhantomSameIdSieveIsNotAcceptedAsTheActualCarriedTool" fullname="CavesOfOoo.Tests.HandSieveTests.PhantomSameIdSieveIsNotAcceptedAsTheActualCarriedTool" methodname="PhantomSameIdSieveIsNotAcceptedAsTheActualCarriedTool" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="1548709544" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.029228" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.PhantomSameIdSieveIsNotAcceptedAsTheActualCarriedTool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:61
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+]]></output>
+            </test-case>
+            <test-case id="26291" name="RealColdOreCacheStockingCanProduceFinitePackets" fullname="CavesOfOoo.Tests.HandSieveTests.RealColdOreCacheStockingCanProduceFinitePackets" methodname="RealColdOreCacheStockingCanProduceFinitePackets" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="2118269504" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.037601" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HandSieveTests.RealColdOreCacheStockingCanProduceFinitePackets () [0x000c3] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:99
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="26286" name="RepeatedCurrentGathersRetainTheDisplayedMaterialChoice" fullname="CavesOfOoo.Tests.HandSieveTests.RepeatedCurrentGathersRetainTheDisplayedMaterialChoice" methodname="RepeatedCurrentGathersRetainTheDisplayedMaterialChoice" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="755304748" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.031510" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.RepeatedCurrentGathersRetainTheDisplayedMaterialChoice () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:66
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+]]></output>
+            </test-case>
+            <test-case id="26290" name="ScreenedSandWorksInTheExistingTrailMarkSystem" fullname="CavesOfOoo.Tests.HandSieveTests.ScreenedSandWorksInTheExistingTrailMarkSystem" methodname="ScreenedSandWorksInTheExistingTrailMarkSystem" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="1847194368" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.029369" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.ScreenedSandWorksInTheExistingTrailMarkSystem () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:86
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+]]></output>
+            </test-case>
+            <test-case id="26284" name="StaleToolQuoteDoesNotSpendInputOrCreateMinerals" fullname="CavesOfOoo.Tests.HandSieveTests.StaleToolQuoteDoesNotSpendInputOrCreateMinerals" methodname="StaleToolQuoteDoesNotSpendInputOrCreateMinerals" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="1432618837" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.029185" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.StaleToolQuoteDoesNotSpendInputOrCreateMinerals () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:56
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26283" name="UnusableScreenCannotProcessARealPacket" fullname="CavesOfOoo.Tests.HandSieveTests.UnusableScreenCannotProcessARealPacket" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.120254" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26281" name="UnusableScreenCannotProcessARealPacket(&quot;broken&quot;)" fullname="CavesOfOoo.Tests.HandSieveTests.UnusableScreenCannotProcessARealPacket(&quot;broken&quot;)" methodname="UnusableScreenCannotProcessARealPacket" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="875905202" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.043949" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.UnusableScreenCannotProcessARealPacket (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:51
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+]]></output>
+              </test-case>
+              <test-case id="26282" name="UnusableScreenCannotProcessARealPacket(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.HandSieveTests.UnusableScreenCannotProcessARealPacket(&quot;frozen&quot;)" methodname="UnusableScreenCannotProcessARealPacket" classname="CavesOfOoo.Tests.HandSieveTests" runstate="Runnable" seed="632048602" result="Failed" start-time="2026-11-24 23:05:56Z" end-time="2026-11-24 23:05:56Z" duration="0.074692" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandSieve
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.HandSieveTests.Sieve () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:31
+at CavesOfOoo.Tests.HandSieveTests.UnusableScreenCannotProcessARealPacket (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/HandSieveTests.cs:51
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandSieve'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

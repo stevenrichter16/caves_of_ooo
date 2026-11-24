@@ -85,9 +85,12 @@ namespace CavesOfOoo.Core
 
     /// <summary>One exact accessible tool, not a consumable or a workshop location.
     /// A cancelled process does not undo independent effects on the tool.</summary>
-    internal sealed class MaterialCuttingWorkReceipt
+    internal sealed class MaterialCuttingWorkReceipt : IMaterialWorkReceipt
     {
         internal readonly Entity Tool;
+        Entity IMaterialWorkReceipt.Tool=>Tool;
+        bool IMaterialWorkReceipt.Current()=>Current();
+        bool IMaterialWorkReceipt.Begin(InventoryTransaction transaction,string command)=>Begin(transaction,command);
         readonly Entity actor,source;
         readonly Zone zone;
         readonly InventoryPart pack;

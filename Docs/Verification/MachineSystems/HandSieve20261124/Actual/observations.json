@@ -1,0 +1,999 @@
+{
+  "recordedAt": "2026-11-24T23:49Z",
+  "operator": "root, actual native Input System keys through GameBootstrap",
+  "scenario": "HandSieveSuppliedShowcase: separate explicit supplied two packets and construction materials, no finished sieve",
+  "ordinarySearch": {
+    "id": "6845",
+    "zone": "Overworld.10.11.2",
+    "tick": 680,
+    "contents": [
+      {
+        "id": "6846",
+        "bp": "GlowQuartz",
+        "n": 1
+      }
+    ],
+    "taken": false
+  },
+  "initial": {
+    "tick": 10,
+    "zone": "Overworld.10.11.1",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "game": "f752b1e4cbf74edc865a60b867a08ea2",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "3459",
+        "bp": "IronSpikeComponent",
+        "n": 1
+      },
+      {
+        "id": "3460",
+        "bp": "SalvagedTimber",
+        "n": 2
+      },
+      {
+        "id": "3462",
+        "bp": "KnotflaxCord",
+        "n": 2
+      },
+      {
+        "id": "3466",
+        "bp": "QuarrySweepings",
+        "n": 2
+      }
+    ],
+    "visible": [
+      {
+        "id": "3464",
+        "bp": "TinkersForge",
+        "x": 40,
+        "y": 13
+      },
+      {
+        "id": "3444",
+        "bp": "BoneCache",
+        "x": 35,
+        "y": 14
+      }
+    ],
+    "state": "Normal"
+  },
+  "forged20": {
+    "tick": 20,
+    "zone": "Overworld.10.11.1",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "game": "f752b1e4cbf74edc865a60b867a08ea2",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "3466",
+        "bp": "QuarrySweepings",
+        "n": 2
+      },
+      {
+        "id": "3468",
+        "bp": "HandSieve",
+        "n": 1
+      }
+    ],
+    "visible": [
+      {
+        "id": "3464",
+        "bp": "TinkersForge",
+        "x": 40,
+        "y": 13
+      },
+      {
+        "id": "3444",
+        "bp": "BoneCache",
+        "x": 35,
+        "y": 14
+      }
+    ],
+    "state": "Normal"
+  },
+  "toolReader70": {
+    "open": true,
+    "page": 0,
+    "pages": 2,
+    "title": "hand sieve",
+    "subject": "3468",
+    "sections": [
+      {
+        "heading": "How to use",
+        "text": "Carry this sound hand sieve. Choose a packet of salt-bearing quarry sweepings in your pack, then screen it.\nNeeds: one actual mixed packet; room for its declared fractions.\nCost and limits: One action spends the packet and keeps this same sieve. Recover one pale-salt and two silver sand; two weight of unusable rock dust is discarded. No yield from an ordinary ore-cache description, ash or reeds.\nRight now: choose a quarry-sweepings packet in your pack to see the exact preparation."
+      },
+      {
+        "heading": "Description",
+        "text": "A timber frame stretched with a fine knotflax mesh. Screen a real packet of salt-bearing quarry sweepings into its declared pale-salt and silver-sand fractions. The same sieve is kept."
+      }
+    ],
+    "visible": [
+      "HOW TO USE",
+      "",
+      "Carry this sound hand sieve. Choose a packet of",
+      "salt-bearing quarry sweepings in your pack, then",
+      "screen it.",
+      "Needs: one actual mixed packet; room for its",
+      "declared fractions.",
+      "Cost and limits: One action spends the packet and",
+      "keeps this same sieve. Recover one pale-salt and",
+      "two silver sand; two weight of unusable rock dust",
+      "is discarded. No yield from an ordinary ore-cache",
+      "description, ash or reeds.",
+      "Right now: choose a quarry-sweepings packet in your",
+      "pack to see the exact preparation.",
+      "",
+      "A timber frame stretched with a fine knotflax mesh.",
+      "Screen a real packet of salt-bearing quarry",
+      "sweepings into its declared pale-salt and",
+      "silver-sand fractions. The same sieve is kept.",
+      ""
+    ],
+    "tick": 70,
+    "energy": 1000,
+    "hp": 40
+  },
+  "preview70": [
+    {
+      "label": "screen quarry sweepings: 1 -> 1 pale-salt + 2 silver sand; discard 2 weight of unusable rock dust (1 action, pack)",
+      "command": "MaterialProcess|screen_quarry_sweepings|3468|744f4d920b624c6b81fac8ae57cfae95"
+    },
+    {
+      "label": "examine",
+      "command": "Examine"
+    },
+    {
+      "label": "Separate one",
+      "command": "separate_one"
+    },
+    {
+      "label": "Drop",
+      "command": "drop"
+    }
+  ],
+  "cancelled70": {
+    "tick": 70,
+    "zone": "Overworld.10.11.1",
+    "at": {
+      "x": 35,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "game": "f752b1e4cbf74edc865a60b867a08ea2",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "3466",
+        "bp": "QuarrySweepings",
+        "n": 2
+      },
+      {
+        "id": "3468",
+        "bp": "HandSieve",
+        "n": 1
+      }
+    ],
+    "visible": [
+      {
+        "id": "3464",
+        "bp": "TinkersForge",
+        "x": 40,
+        "y": 13
+      }
+    ],
+    "state": "InventoryOpen"
+  },
+  "screened80": {
+    "tick": 80,
+    "zone": "Overworld.10.11.1",
+    "at": {
+      "x": 35,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "game": "f752b1e4cbf74edc865a60b867a08ea2",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "3466",
+        "bp": "QuarrySweepings",
+        "n": 1
+      },
+      {
+        "id": "3468",
+        "bp": "HandSieve",
+        "n": 1
+      },
+      {
+        "id": "3469",
+        "bp": "PaleSalt",
+        "n": 1
+      },
+      {
+        "id": "3470",
+        "bp": "SilverSand",
+        "n": 2
+      }
+    ],
+    "visible": [
+      {
+        "id": "3464",
+        "bp": "TinkersForge",
+        "x": 40,
+        "y": 13
+      }
+    ],
+    "state": "Normal"
+  },
+  "fresh80": {
+    "tick": 80,
+    "zone": "Overworld.10.11.1",
+    "at": {
+      "x": 35,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "game": "f752b1e4cbf74edc865a60b867a08ea2",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "3466",
+        "bp": "QuarrySweepings",
+        "n": 1
+      },
+      {
+        "id": "3468",
+        "bp": "HandSieve",
+        "n": 1
+      },
+      {
+        "id": "3469",
+        "bp": "PaleSalt",
+        "n": 1
+      },
+      {
+        "id": "3470",
+        "bp": "SilverSand",
+        "n": 2
+      }
+    ],
+    "visible": [
+      {
+        "id": "3464",
+        "bp": "TinkersForge",
+        "x": 40,
+        "y": 13
+      }
+    ],
+    "state": "Normal"
+  },
+  "fresh80Exact": true,
+  "mark90": {
+    "tick": 90,
+    "zone": "Overworld.10.11.1",
+    "at": {
+      "x": 35,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "game": "f752b1e4cbf74edc865a60b867a08ea2",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "3466",
+        "bp": "QuarrySweepings",
+        "n": 1
+      },
+      {
+        "id": "3468",
+        "bp": "HandSieve",
+        "n": 1
+      },
+      {
+        "id": "3469",
+        "bp": "PaleSalt",
+        "n": 1
+      },
+      {
+        "id": "3470",
+        "bp": "SilverSand",
+        "n": 1
+      }
+    ],
+    "visible": [
+      {
+        "id": "3464",
+        "bp": "TinkersForge",
+        "x": 40,
+        "y": 13
+      },
+      {
+        "id": "3471",
+        "bp": "TrailMark",
+        "x": 35,
+        "y": 12
+      }
+    ],
+    "state": "Normal"
+  },
+  "reuse100": {
+    "tick": 100,
+    "zone": "Overworld.10.11.1",
+    "at": {
+      "x": 35,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "game": "f752b1e4cbf74edc865a60b867a08ea2",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "3468",
+        "bp": "HandSieve",
+        "n": 1
+      },
+      {
+        "id": "3469",
+        "bp": "PaleSalt",
+        "n": 2
+      },
+      {
+        "id": "3470",
+        "bp": "SilverSand",
+        "n": 3
+      }
+    ],
+    "visible": [
+      {
+        "id": "3464",
+        "bp": "TinkersForge",
+        "x": 40,
+        "y": 13
+      },
+      {
+        "id": "3471",
+        "bp": "TrailMark",
+        "x": 35,
+        "y": 12
+      }
+    ],
+    "state": "Normal"
+  },
+  "toolReaderPage2": {
+    "open": true,
+    "page": 1,
+    "pages": 2,
+    "title": "hand sieve",
+    "subject": "3468",
+    "sections": [
+      {
+        "heading": "How to use",
+        "text": "Carry this sound hand sieve. Choose a packet of salt-bearing quarry sweepings in your pack, then screen it.\nNeeds: one actual mixed packet; room for its declared fractions.\nCost and limits: One action spends the packet and keeps this same sieve. Recover one pale-salt and two silver sand; two weight of unusable rock dust is discarded. No yield from an ordinary ore-cache description, ash or reeds.\nRight now: choose a quarry-sweepings packet in your pack to see the exact preparation."
+      },
+      {
+        "heading": "Description",
+        "text": "A timber frame stretched with a fine knotflax mesh. Screen a real packet of salt-bearing quarry sweepings into its declared pale-salt and silver-sand fractions. The same sieve is kept."
+      }
+    ],
+    "visible": [
+      "Type: Tools",
+      "Weight: 4 lb each"
+    ],
+    "tick": 100,
+    "energy": 1000,
+    "hp": 40
+  },
+  "infused160": {
+    "tick": 160,
+    "zone": "Overworld.10.11.1",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "game": "f752b1e4cbf74edc865a60b867a08ea2",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "3468",
+        "bp": "HandSieve",
+        "n": 1
+      },
+      {
+        "id": "3469",
+        "bp": "PaleSalt",
+        "n": 1
+      },
+      {
+        "id": "3470",
+        "bp": "SilverSand",
+        "n": 3
+      }
+    ],
+    "visible": [
+      {
+        "id": "3444",
+        "bp": "BoneCache",
+        "x": 35,
+        "y": 14
+      },
+      {
+        "id": "3464",
+        "bp": "TinkersForge",
+        "x": 40,
+        "y": 13
+      },
+      {
+        "id": "3471",
+        "bp": "TrailMark",
+        "x": 35,
+        "y": 12
+      }
+    ],
+    "state": "Normal"
+  },
+  "beforeFresh160": {
+    "tick": 160,
+    "energy": 1000,
+    "hp": 40,
+    "str": 18,
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "zone": "Overworld.10.11.1",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1,
+        "owner": "3449"
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2,
+        "owner": "3449"
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2,
+        "owner": "3449"
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "owner": "3449"
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "owner": "3449"
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "owner": "3449"
+      },
+      {
+        "id": "3468",
+        "bp": "HandSieve",
+        "n": 1,
+        "owner": "3449"
+      },
+      {
+        "id": "3469",
+        "bp": "PaleSalt",
+        "n": 1,
+        "owner": "3449"
+      },
+      {
+        "id": "3470",
+        "bp": "SilverSand",
+        "n": 3,
+        "owner": "3449"
+      }
+    ],
+    "dagger": {
+      "id": "3450",
+      "display": "pale-salt-edged dagger",
+      "mods": 1,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Equippable",
+        "Handling",
+        "MeleeWeapon",
+        "Commerce",
+        "Material",
+        "Thermal",
+        "Composition",
+        "Repairable",
+        "CuttingTool",
+        "EnhancementPaleSalt"
+      ]
+    },
+    "mark": {
+      "id": "3471",
+      "note": "exit",
+      "x": 35,
+      "y": 12
+    }
+  },
+  "afterFresh160": {
+    "tick": 160,
+    "energy": 1000,
+    "hp": 40,
+    "str": 18,
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "zone": "Overworld.10.11.1",
+    "pack": [
+      {
+        "id": "3450",
+        "bp": "Dagger",
+        "n": 1,
+        "owner": "3449"
+      },
+      {
+        "id": "3451",
+        "bp": "HealingTonic",
+        "n": 2,
+        "owner": "3449"
+      },
+      {
+        "id": "3452",
+        "bp": "DriedMeat",
+        "n": 2,
+        "owner": "3449"
+      },
+      {
+        "id": "3453",
+        "bp": "WateringGrimoire",
+        "n": 1,
+        "owner": "3449"
+      },
+      {
+        "id": "3454",
+        "bp": "CandyCarrotSeed",
+        "n": 4,
+        "owner": "3449"
+      },
+      {
+        "id": "3455",
+        "bp": "EmberwheatSeed",
+        "n": 2,
+        "owner": "3449"
+      },
+      {
+        "id": "3468",
+        "bp": "HandSieve",
+        "n": 1,
+        "owner": "3449"
+      },
+      {
+        "id": "3469",
+        "bp": "PaleSalt",
+        "n": 1,
+        "owner": "3449"
+      },
+      {
+        "id": "3470",
+        "bp": "SilverSand",
+        "n": 3,
+        "owner": "3449"
+      }
+    ],
+    "dagger": {
+      "id": "3450",
+      "display": "pale-salt-edged dagger",
+      "mods": 1,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Equippable",
+        "Handling",
+        "MeleeWeapon",
+        "Commerce",
+        "Material",
+        "Thermal",
+        "Composition",
+        "Repairable",
+        "CuttingTool",
+        "EnhancementPaleSalt"
+      ]
+    },
+    "mark": {
+      "id": "3471",
+      "note": "exit",
+      "x": 35,
+      "y": 12
+    }
+  },
+  "fresh160Exact": true,
+  "daggerReader": {
+    "open": true,
+    "page": 0,
+    "pages": 3,
+    "title": "pale-salt-edged dagger",
+    "subject": "3450",
+    "sections": [
+      {
+        "heading": "Current state",
+        "text": "This equipment is sound."
+      },
+      {
+        "heading": "How to use",
+        "text": "Keep one sound tool carried or equipped. In your pack, choose the prepared material, then its cutting action. \nExamples:\n1 cured harness-leather offcut -> 1 leather binding\n1 knotflax cord + 1 leather binding -> 1 guard lashing\n1 knotflax cord + 2 spurgrass spine -> 1 serrated edge kit\nNeeds: compatible prepared stock and the exact extra inputs shown in the material's preview.\nCost and limits: Each preparation spends its materials and one action; the tool is kept. The material preview states the output and discarded trimming. Flexible workshop stock and purchased components remain useful alternatives.\nRight now: choose a prepared material in your pack to see its cutting actions and exact requirements."
+      },
+      {
+        "heading": "Description",
+        "text": "A short blade with a close-fitting grip. The point has been kept sharp."
+      },
+      {
+        "heading": "Use & mechanics",
+        "text": "Damage: 1d4 per penetration.\nHit bonus: +0.\nPenetration bonus: +1.\nPenetration uses Strength modifier (cap 3).\nAttributes: Piercing.\nEquip slots: Hand.\nOn damaging hits, independent attempts (targets may resist):\n  10%: Confused - staggers unpredictably for 2 turns."
+      },
+      {
+        "heading": "Enhancements",
+        "text": "Pale-Salt-edged: +4 damage vs Undead-tagged enemies on hit"
+      }
+    ],
+    "visible": [
+      "CURRENT STATE",
+      "",
+      "This equipment is sound.",
+      "",
+      "HOW TO USE",
+      "",
+      "Keep one sound tool carried or equipped. In your",
+      "pack, choose the prepared material, then its",
+      "cutting action. ",
+      "Examples:",
+      "1 cured harness-leather offcut -> 1 leather binding",
+      "1 knotflax cord + 1 leather binding -> 1 guard",
+      "lashing",
+      "1 knotflax cord + 2 spurgrass spine -> 1 serrated",
+      "edge kit",
+      "Needs: compatible prepared stock and the exact",
+      "extra inputs shown in the material's preview.",
+      "Cost and limits: Each preparation spends its",
+      "materials and one action; the tool is kept. The",
+      "material preview states the output and discarded"
+    ],
+    "tick": 160,
+    "energy": 1000,
+    "hp": 40
+  },
+  "daggerReaderLastPage": {
+    "open": true,
+    "page": 2,
+    "pages": 3,
+    "title": "pale-salt-edged dagger",
+    "subject": "3450",
+    "sections": [
+      {
+        "heading": "Current state",
+        "text": "This equipment is sound."
+      },
+      {
+        "heading": "How to use",
+        "text": "Keep one sound tool carried or equipped. In your pack, choose the prepared material, then its cutting action. \nExamples:\n1 cured harness-leather offcut -> 1 leather binding\n1 knotflax cord + 1 leather binding -> 1 guard lashing\n1 knotflax cord + 2 spurgrass spine -> 1 serrated edge kit\nNeeds: compatible prepared stock and the exact extra inputs shown in the material's preview.\nCost and limits: Each preparation spends its materials and one action; the tool is kept. The material preview states the output and discarded trimming. Flexible workshop stock and purchased components remain useful alternatives.\nRight now: choose a prepared material in your pack to see its cutting actions and exact requirements."
+      },
+      {
+        "heading": "Description",
+        "text": "A short blade with a close-fitting grip. The point has been kept sharp."
+      },
+      {
+        "heading": "Use & mechanics",
+        "text": "Damage: 1d4 per penetration.\nHit bonus: +0.\nPenetration bonus: +1.\nPenetration uses Strength modifier (cap 3).\nAttributes: Piercing.\nEquip slots: Hand.\nOn damaging hits, independent attempts (targets may resist):\n  10%: Confused - staggers unpredictably for 2 turns."
+      },
+      {
+        "heading": "Enhancements",
+        "text": "Pale-Salt-edged: +4 damage vs Undead-tagged enemies on hit"
+      }
+    ],
+    "visible": [
+      "",
+      "ENHANCEMENTS",
+      "",
+      "Pale-Salt-edged: +4 damage vs Undead-tagged enemies",
+      "on hit",
+      "",
+      "Type: Melee Weapons",
+      "Material: Steel",
+      "Composition: Metal",
+      "Weight: 4 lb each"
+    ],
+    "tick": 160,
+    "energy": 1000,
+    "hp": 40
+  },
+  "finishedIsolations": [
+    {
+      "token": "d7e2798d468e487da1a65247e687af66",
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/d7e2798d468e487da1a65247e687af66",
+      "receiptHook": true
+    },
+    {
+      "token": "d767bd0fe2a04be48b847ac52c69f8ac",
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/d767bd0fe2a04be48b847ac52c69f8ac"
+    },
+    {
+      "token": "b890124ef10a408e9e948c20118919eb",
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/b890124ef10a408e9e948c20118919eb"
+    },
+    {
+      "token": "55af32275930467d8c69d3c358ba5db2",
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/55af32275930467d8c69d3c358ba5db2"
+    }
+  ],
+  "exclusions": [
+    "Supplied branch is not ordinary acquisition. Ordinary search1760 archive retained separately; no packets obtained.",
+    "No combat damage vs undead was tested; enhancement existence and visible reader qualified only.",
+    "First supplied boot C/direction attempts were ignored behind normal boot menu. Native N selected new game. One readonly background timeout, observed state before further input. No permission/input-access claim.",
+    "Fresh80 Begin refused once before mutation because main was still transiently compiling/updating after reload unlock; observed idle then retried.",
+    "Final e native runtime/data/test pins exact; subsequently added supplied scenario class is actual-play qualified, not included in e tests.",
+    "No thermal/generic ore/cross-zone cargo/machine/full-suite/NPC/economics claim; no whole-world or compressed-byte fresh equality."
+  ]
+}

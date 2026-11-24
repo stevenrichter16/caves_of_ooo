@@ -38,6 +38,10 @@ namespace CavesOfOoo.Core
             {
                 if (MaterialCuttingWorkReceipt.Resolve(actor, source, zone) == null) misses.Add(new Miss(NoTool, "You need a usable cutting tool in your pack."));
             }
+            else if (d.WorkKind == "Screening")
+            {
+                if (MaterialScreeningWorkReceipt.Resolve(actor, source, zone) == null) misses.Add(new Miss(NoTool, "You need a sound hand sieve carried in your pack."));
+            }
             else if (ForgeWorkReceipt.Resolve(actor, zone) == null)
             {
                 // An unready rig or forge within reach already says why in its own menu; only a place with none at all is a miss here.

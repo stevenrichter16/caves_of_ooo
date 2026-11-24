@@ -9,7 +9,7 @@ namespace CavesOfOoo.Core
     { bool Allows(MaterialProcessDefinition definition); }
     internal interface IMaterialReclaimPermission : IMaterialProcessPermission { }
     /// <summary>Authored permission only. No material tag implies a salvage yield.</summary>
-    public sealed class MaterialProcessInputPart : Part
+    public sealed class MaterialProcessInputPart : Part, IInventoryActionReceiptOwner
     {
         public override string Name => "MaterialProcessInput";
         public string ProcessIds = "";
@@ -19,6 +19,14 @@ namespace CavesOfOoo.Core
             && Array.IndexOf((ProcessIds ?? "").Split(','), definition.Id) >= 0;
         public const string CommandPrefix="MaterialProcess|";
         public static bool IsCommand(string command)=>command?.StartsWith(CommandPrefix,StringComparison.Ordinal)==true;
+        // The shared material transaction owns item/quantity undo. A blanket
+        // executor snapshot would heal an independent injury on a late veto.
+        public bool OwnsInventoryReceipt(string command)
+        {
+            if(ParentEntity?.GetPart<MaterialProcessInputPart>()!=this || !IsCommand(command))return false;
+            var fields=command.Split('|');
+            return fields.Length==4 && Allows(MaterialProcessRegistry.Get(fields[1]));
+        }
         public override bool HandleEvent(GameEvent e)=>MaterialProcessActions.Handle(ParentEntity,e,(ProcessIds??" ").Split(','));
     }
     // One cache per actual owner, never a persisted entity-ID lookup. Both

@@ -1,6 +1,178 @@
 {
   "Objects": [
     {
+      "Name": "HandSieve",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hand sieve"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "4"
+            },
+            {
+              "Key": "Category",
+              "Value": "Tools"
+            }
+          ]
+        },
+        {
+          "Name": "ScreeningTool",
+          "Params": []
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A timber frame stretched with a fine knotflax mesh. Screen a real packet of salt-bearing quarry sweepings into its declared pale-salt and silver-sand fractions. The same sieve is kept."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Item",
+          "Value": "true"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "QuarrySweepings",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "salt-bearing quarry sweepings"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "5"
+            },
+            {
+              "Key": "Category",
+              "Value": "Materials"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "StackCount",
+              "Value": "1"
+            },
+            {
+              "Key": "MaxStack",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "MaterialProcessInput",
+          "Params": [
+            {
+              "Key": "ProcessIds",
+              "Value": "screen_quarry_sweepings"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "15"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "One tied packet of material already gathered from a salt-bearing working: coarse pale-salt, flashing sand and unusable rock dust. A carried hand sieve separates one pale-salt and two silver sand; two weight of dust is discarded. Keep or sell the packet, or obtain ordinary minerals elsewhere. A sieve can be made at a forge from one iron spike, two salvaged timber and two knotflax cord."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
       "Name": "CargoSled",
       "Inherits": "PhysicalObject",
       "Parts": [
