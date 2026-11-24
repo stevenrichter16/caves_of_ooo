@@ -1,0 +1,613 @@
+{
+  "equippedBefore": {
+    "tick": 4420,
+    "hp": 40,
+    "zone": "Overworld.6.6.0",
+    "at": {
+      "Item1": 57,
+      "Item2": 6
+    },
+    "purse": 4,
+    "forgeNear": false,
+    "weapon": {
+      "ID": "13682",
+      "BlueprintName": "ForgedWeapon",
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Equippable",
+        "Handling",
+        "MeleeWeapon",
+        "Commerce",
+        "TinkerItem",
+        "WeaponSalvage",
+        "WeaponAssembly",
+        "CraftingMark"
+      ],
+      "head": "CinderhookAxeHeadComponent",
+      "haft": "FieldHaftComponent",
+      "binding": "GuardLashingComponent",
+      "damage": "1d8",
+      "hit": 0,
+      "pen": -1
+    },
+    "components": [
+      {
+        "ID": "13695",
+        "BlueprintName": "PlainCordBindingComponent",
+        "count": 1
+      }
+    ],
+    "tools": [
+      {
+        "ID": "2679",
+        "BlueprintName": "Dagger"
+      }
+    ]
+  },
+  "equippedRefusalMenu": [
+    {
+      "label": "Examine",
+      "command": "examine_item"
+    },
+    {
+      "label": "Compare equipment",
+      "command": "compare_equipment"
+    },
+    {
+      "label": "Unequip",
+      "command": "unequip"
+    },
+    {
+      "label": "Throw",
+      "command": "throw"
+    },
+    {
+      "label": "Take back (crafting)",
+      "command": "toggle_craftmark"
+    },
+    {
+      "label": "Drop",
+      "command": "drop"
+    }
+  ],
+  "carriedMenu": [
+    {
+      "label": "Examine",
+      "command": "examine_item"
+    },
+    {
+      "label": "Compare equipment",
+      "command": "compare_equipment"
+    },
+    {
+      "label": "Equip (auto)",
+      "command": "equip_auto"
+    },
+    {
+      "label": "Equip (manual)",
+      "command": "equip_manual"
+    },
+    {
+      "label": "replace binding with plain knotflax binding; old binding destroyed (1 action, cutter kept)",
+      "command": "FieldBinding|b6b92e6d401143ac93055364a221ddae"
+    },
+    {
+      "label": "forge: head+haft; lose binding/mods",
+      "command": "SalvageForgedWeapon"
+    },
+    {
+      "label": "Throw",
+      "command": "throw"
+    },
+    {
+      "label": "Take back (crafting)",
+      "command": "toggle_craftmark"
+    },
+    {
+      "label": "Drop",
+      "command": "drop"
+    }
+  ],
+  "after": {
+    "tick": 4430,
+    "hp": 40,
+    "zone": "Overworld.6.6.0",
+    "at": {
+      "Item1": 57,
+      "Item2": 6
+    },
+    "purse": 4,
+    "forgeNear": false,
+    "weapon": {
+      "ID": "13682",
+      "BlueprintName": "ForgedWeapon",
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Equippable",
+        "Handling",
+        "MeleeWeapon",
+        "Commerce",
+        "TinkerItem",
+        "WeaponSalvage",
+        "WeaponAssembly",
+        "CraftingMark"
+      ],
+      "head": "CinderhookAxeHeadComponent",
+      "haft": "FieldHaftComponent",
+      "binding": "PlainCordBindingComponent",
+      "damage": "1d8",
+      "hit": -2,
+      "pen": 0
+    },
+    "components": [],
+    "tools": [
+      {
+        "ID": "2679",
+        "BlueprintName": "Dagger"
+      }
+    ]
+  },
+  "reader": [
+    {
+      "open": true,
+      "page": 0,
+      "pages": 6,
+      "title": "field-hafted cord-bound cinderhook axe",
+      "subject": "13682",
+      "sections": [
+        {
+          "heading": "Combat",
+          "text": "Damage: 1d8 per penetration.\nHit bonus: -2.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 1).\nAttributes: Cutting Axe."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Hand."
+        },
+        {
+          "heading": "On-hit effects",
+          "text": "On damaging hits, independent attempts (targets may resist):\n  25%: Bleeding - 1d2 damage a turn until staunched (save 15)."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, replace an assembled weapon's binding with a carried binding and a sound cutter.\nCost and limits: One action; old binding destroyed. Carry a single untempered weapon, unworn. Head and haft stay. A forge refit returns its displaced component and can replace other slots."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: left hand.\n  left hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\nManual equip: right hand.\n  right hand now: torch; natural attack: fist.\n  Displaced: torch (right hand).\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: torch",
+          "text": "Controlled flame: Out. Fuel: 0/50 per torch.\nLit held or loose torches use fuel; stowed torches retain their state.\nTo refuel: extinguish, unequip into your pack, then use lamp oil or an oil-filled flask. One measure or liquid oil unit adds up to 25 fuel, capped at capacity. Relight beside a burning fire.\nEquip slots: Hand.\nWeight per item: 3."
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "1 unit. Weight per unit: 6. Total weight: 6.\nLift Strength: 4; yours: 18.\nYou can carry this item.\nGrip: one hand.\nThrow range: 16 cells. Throw Strength: 5.\nPack weight: 30; with this item: 30. Burden threshold: 270."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        }
+      ],
+      "visible": [
+        "COMBAT",
+        "",
+        "Damage: 1d8 per penetration.",
+        "Hit bonus: -2.",
+        "Penetration bonus: +0.",
+        "Penetration uses Strength modifier (cap 1).",
+        "Attributes: Cutting Axe.",
+        "",
+        "EQUIP SLOTS",
+        "",
+        "Equip slots: Hand.",
+        "",
+        "ON-HIT EFFECTS",
+        "",
+        "On damaging hits, independent attempts (targets may",
+        "resist):",
+        "  25%: Bleeding - 1d2 damage a turn until staunched",
+        "(save 15).",
+        "",
+        ""
+      ],
+      "tick": 4430,
+      "energy": 1000,
+      "hp": 40
+    },
+    {
+      "open": true,
+      "page": 1,
+      "pages": 6,
+      "title": "field-hafted cord-bound cinderhook axe",
+      "subject": "13682",
+      "sections": [
+        {
+          "heading": "Combat",
+          "text": "Damage: 1d8 per penetration.\nHit bonus: -2.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 1).\nAttributes: Cutting Axe."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Hand."
+        },
+        {
+          "heading": "On-hit effects",
+          "text": "On damaging hits, independent attempts (targets may resist):\n  25%: Bleeding - 1d2 damage a turn until staunched (save 15)."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, replace an assembled weapon's binding with a carried binding and a sound cutter.\nCost and limits: One action; old binding destroyed. Carry a single untempered weapon, unworn. Head and haft stay. A forge refit returns its displaced component and can replace other slots."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: left hand.\n  left hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\nManual equip: right hand.\n  right hand now: torch; natural attack: fist.\n  Displaced: torch (right hand).\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: torch",
+          "text": "Controlled flame: Out. Fuel: 0/50 per torch.\nLit held or loose torches use fuel; stowed torches retain their state.\nTo refuel: extinguish, unequip into your pack, then use lamp oil or an oil-filled flask. One measure or liquid oil unit adds up to 25 fuel, capped at capacity. Relight beside a burning fire.\nEquip slots: Hand.\nWeight per item: 3."
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "1 unit. Weight per unit: 6. Total weight: 6.\nLift Strength: 4; yours: 18.\nYou can carry this item.\nGrip: one hand.\nThrow range: 16 cells. Throw Strength: 5.\nPack weight: 30; with this item: 30. Burden threshold: 270."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        }
+      ],
+      "visible": [
+        "HOW TO USE",
+        "",
+        "In your pack, replace an assembled weapon's binding",
+        "with a carried binding and a sound cutter.",
+        "Cost and limits: One action; old binding destroyed.",
+        "Carry a single untempered weapon, unworn. Head and",
+        "haft stay. A forge refit returns its displaced",
+        "component and can replace other slots.",
+        "",
+        "EQUIPMENT COMPARISON",
+        "",
+        "Auto equip: left hand.",
+        "  left hand now: empty; natural attack: fist.",
+        "  No equipped items displaced.",
+        "  Equipment contributions (other effects not",
+        "totaled):",
+        "  No attribute contribution change.",
+        "Manual equip: right hand.",
+        "  right hand now: torch; natural attack: fist.",
+        "  Displaced: torch (right hand)."
+      ],
+      "tick": 4430,
+      "energy": 1000,
+      "hp": 40
+    },
+    {
+      "open": true,
+      "page": 2,
+      "pages": 6,
+      "title": "field-hafted cord-bound cinderhook axe",
+      "subject": "13682",
+      "sections": [
+        {
+          "heading": "Combat",
+          "text": "Damage: 1d8 per penetration.\nHit bonus: -2.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 1).\nAttributes: Cutting Axe."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Hand."
+        },
+        {
+          "heading": "On-hit effects",
+          "text": "On damaging hits, independent attempts (targets may resist):\n  25%: Bleeding - 1d2 damage a turn until staunched (save 15)."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, replace an assembled weapon's binding with a carried binding and a sound cutter.\nCost and limits: One action; old binding destroyed. Carry a single untempered weapon, unworn. Head and haft stay. A forge refit returns its displaced component and can replace other slots."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: left hand.\n  left hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\nManual equip: right hand.\n  right hand now: torch; natural attack: fist.\n  Displaced: torch (right hand).\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: torch",
+          "text": "Controlled flame: Out. Fuel: 0/50 per torch.\nLit held or loose torches use fuel; stowed torches retain their state.\nTo refuel: extinguish, unequip into your pack, then use lamp oil or an oil-filled flask. One measure or liquid oil unit adds up to 25 fuel, capped at capacity. Relight beside a burning fire.\nEquip slots: Hand.\nWeight per item: 3."
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "1 unit. Weight per unit: 6. Total weight: 6.\nLift Strength: 4; yours: 18.\nYou can carry this item.\nGrip: one hand.\nThrow range: 16 cells. Throw Strength: 5.\nPack weight: 30; with this item: 30. Burden threshold: 270."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        }
+      ],
+      "visible": [
+        "  Equipment contributions (other effects not",
+        "totaled):",
+        "  No attribute contribution change.",
+        "",
+        "CURRENT: FIST",
+        "",
+        "Damage: 1d2 per penetration.",
+        "Hit bonus: +0.",
+        "Penetration bonus: +0.",
+        "Penetration uses Strength modifier (cap 50).",
+        "Attributes: Bludgeoning Unarmed.",
+        "On damaging hits, independent attempts (targets may",
+        "resist):",
+        "  15%: Stunned - can't act for 2 turns (Toughness",
+        "may shake it off, save 16).",
+        "Weight per item: 0.",
+        "",
+        "CURRENT: FIST",
+        "",
+        "Damage: 1d2 per penetration."
+      ],
+      "tick": 4430,
+      "energy": 1000,
+      "hp": 40
+    },
+    {
+      "open": true,
+      "page": 3,
+      "pages": 6,
+      "title": "field-hafted cord-bound cinderhook axe",
+      "subject": "13682",
+      "sections": [
+        {
+          "heading": "Combat",
+          "text": "Damage: 1d8 per penetration.\nHit bonus: -2.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 1).\nAttributes: Cutting Axe."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Hand."
+        },
+        {
+          "heading": "On-hit effects",
+          "text": "On damaging hits, independent attempts (targets may resist):\n  25%: Bleeding - 1d2 damage a turn until staunched (save 15)."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, replace an assembled weapon's binding with a carried binding and a sound cutter.\nCost and limits: One action; old binding destroyed. Carry a single untempered weapon, unworn. Head and haft stay. A forge refit returns its displaced component and can replace other slots."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: left hand.\n  left hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\nManual equip: right hand.\n  right hand now: torch; natural attack: fist.\n  Displaced: torch (right hand).\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: torch",
+          "text": "Controlled flame: Out. Fuel: 0/50 per torch.\nLit held or loose torches use fuel; stowed torches retain their state.\nTo refuel: extinguish, unequip into your pack, then use lamp oil or an oil-filled flask. One measure or liquid oil unit adds up to 25 fuel, capped at capacity. Relight beside a burning fire.\nEquip slots: Hand.\nWeight per item: 3."
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "1 unit. Weight per unit: 6. Total weight: 6.\nLift Strength: 4; yours: 18.\nYou can carry this item.\nGrip: one hand.\nThrow range: 16 cells. Throw Strength: 5.\nPack weight: 30; with this item: 30. Burden threshold: 270."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        }
+      ],
+      "visible": [
+        "Hit bonus: +0.",
+        "Penetration bonus: +0.",
+        "Penetration uses Strength modifier (cap 50).",
+        "Attributes: Bludgeoning Unarmed.",
+        "On damaging hits, independent attempts (targets may",
+        "resist):",
+        "  15%: Stunned - can't act for 2 turns (Toughness",
+        "may shake it off, save 16).",
+        "Weight per item: 0.",
+        "",
+        "CURRENT: TORCH",
+        "",
+        "Controlled flame: Out. Fuel: 0/50 per torch.",
+        "Lit held or loose torches use fuel; stowed torches",
+        "retain their state.",
+        "To refuel: extinguish, unequip into your pack, then",
+        "use lamp oil or an oil-filled flask. One measure or",
+        "liquid oil unit adds up to 25 fuel, capped at",
+        "capacity. Relight beside a burning fire.",
+        "Equip slots: Hand."
+      ],
+      "tick": 4430,
+      "energy": 1000,
+      "hp": 40
+    },
+    {
+      "open": true,
+      "page": 4,
+      "pages": 6,
+      "title": "field-hafted cord-bound cinderhook axe",
+      "subject": "13682",
+      "sections": [
+        {
+          "heading": "Combat",
+          "text": "Damage: 1d8 per penetration.\nHit bonus: -2.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 1).\nAttributes: Cutting Axe."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Hand."
+        },
+        {
+          "heading": "On-hit effects",
+          "text": "On damaging hits, independent attempts (targets may resist):\n  25%: Bleeding - 1d2 damage a turn until staunched (save 15)."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, replace an assembled weapon's binding with a carried binding and a sound cutter.\nCost and limits: One action; old binding destroyed. Carry a single untempered weapon, unworn. Head and haft stay. A forge refit returns its displaced component and can replace other slots."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: left hand.\n  left hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\nManual equip: right hand.\n  right hand now: torch; natural attack: fist.\n  Displaced: torch (right hand).\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: torch",
+          "text": "Controlled flame: Out. Fuel: 0/50 per torch.\nLit held or loose torches use fuel; stowed torches retain their state.\nTo refuel: extinguish, unequip into your pack, then use lamp oil or an oil-filled flask. One measure or liquid oil unit adds up to 25 fuel, capped at capacity. Relight beside a burning fire.\nEquip slots: Hand.\nWeight per item: 3."
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "1 unit. Weight per unit: 6. Total weight: 6.\nLift Strength: 4; yours: 18.\nYou can carry this item.\nGrip: one hand.\nThrow range: 16 cells. Throw Strength: 5.\nPack weight: 30; with this item: 30. Burden threshold: 270."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        }
+      ],
+      "visible": [
+        "Weight per item: 3.",
+        "",
+        "READING THESE NUMBERS",
+        "",
+        "Item contributions only. Other effects are not",
+        "totaled; targets, skills and conditions can change",
+        "results.",
+        "Inspection snapshot. Equipping rechecks current",
+        "slots and restrictions.",
+        "",
+        "HANDLING",
+        "",
+        "1 unit. Weight per unit: 6. Total weight: 6.",
+        "Lift Strength: 4; yours: 18.",
+        "You can carry this item.",
+        "Grip: one hand.",
+        "Throw range: 16 cells. Throw Strength: 5.",
+        "Pack weight: 30; with this item: 30. Burden",
+        "threshold: 270.",
+        ""
+      ],
+      "tick": 4430,
+      "energy": 1000,
+      "hp": 40
+    },
+    {
+      "open": true,
+      "page": 5,
+      "pages": 6,
+      "title": "field-hafted cord-bound cinderhook axe",
+      "subject": "13682",
+      "sections": [
+        {
+          "heading": "Combat",
+          "text": "Damage: 1d8 per penetration.\nHit bonus: -2.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 1).\nAttributes: Cutting Axe."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Hand."
+        },
+        {
+          "heading": "On-hit effects",
+          "text": "On damaging hits, independent attempts (targets may resist):\n  25%: Bleeding - 1d2 damage a turn until staunched (save 15)."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, replace an assembled weapon's binding with a carried binding and a sound cutter.\nCost and limits: One action; old binding destroyed. Carry a single untempered weapon, unworn. Head and haft stay. A forge refit returns its displaced component and can replace other slots."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: left hand.\n  left hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\nManual equip: right hand.\n  right hand now: torch; natural attack: fist.\n  Displaced: torch (right hand).\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: fist",
+          "text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "heading": "Current: torch",
+          "text": "Controlled flame: Out. Fuel: 0/50 per torch.\nLit held or loose torches use fuel; stowed torches retain their state.\nTo refuel: extinguish, unequip into your pack, then use lamp oil or an oil-filled flask. One measure or liquid oil unit adds up to 25 fuel, capped at capacity. Relight beside a burning fire.\nEquip slots: Hand.\nWeight per item: 3."
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "1 unit. Weight per unit: 6. Total weight: 6.\nLift Strength: 4; yours: 18.\nYou can carry this item.\nGrip: one hand.\nThrow range: 16 cells. Throw Strength: 5.\nPack weight: 30; with this item: 30. Burden threshold: 270."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        }
+      ],
+      "visible": [
+        "DISASSEMBLY",
+        "",
+        "Disassembly unavailable: no current owned item or",
+        "tinkering access.",
+        "",
+        "Type: Melee Weapons",
+        "Weight: 6 lb each"
+      ],
+      "tick": 4430,
+      "energy": 1000,
+      "hp": 40
+    }
+  ]
+}

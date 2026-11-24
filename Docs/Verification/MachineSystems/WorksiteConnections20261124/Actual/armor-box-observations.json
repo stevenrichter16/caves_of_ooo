@@ -1,0 +1,660 @@
+{
+  "start": {
+    "tick": 1840,
+    "armor": [
+      {
+        "ID": "2333",
+        "count": 3,
+        "parts": [
+          "Render",
+          "Physics",
+          "Examinable",
+          "Stacker",
+          "Equippable",
+          "Armor",
+          "Commerce",
+          "Material",
+          "Thermal",
+          "Composition",
+          "Repairable"
+        ]
+      }
+    ],
+    "box": [
+      {
+        "ID": "2150",
+        "contents": 0,
+        "hp": 14
+      }
+    ]
+  },
+  "failedMenu": [
+    {
+      "label": "Examine",
+      "command": "examine_item"
+    },
+    {
+      "label": "Compare equipment",
+      "command": "compare_equipment"
+    },
+    {
+      "label": "Equip (auto)",
+      "command": "equip_auto"
+    },
+    {
+      "label": "Equip (manual)",
+      "command": "equip_manual"
+    },
+    {
+      "label": "cut spare leather armor: 1 -> 1 cured harness-leather offcut; armor and stitching lost; plain unworn armor and usable cutter required (1 action, pack)",
+      "command": "MaterialProcess|reclaim_leather_armor|2127|e682677055bc4ba09d89ecc3e0f34efb"
+    },
+    {
+      "label": "Put in camp box",
+      "command": "put_container"
+    },
+    {
+      "label": "Separate one",
+      "command": "separate_one"
+    },
+    {
+      "label": "Drop",
+      "command": "drop"
+    }
+  ],
+  "afterRecovery": {
+    "tick": 1850,
+    "hp": 358,
+    "armor": [
+      {
+        "ID": "2333",
+        "count": 2
+      }
+    ],
+    "offcuts": [
+      {
+        "ID": "2728",
+        "count": 1
+      }
+    ],
+    "messages": [
+      "Selected action (reading only):\nopen\n\nYou see a camp box.\nYou set this down. It stays here, with whatever is in it. You can take it up again, or hand it over and leave it for good.\nHow to use: To take it up, move it, name this camp or hand it over, press C beside it. Pack up camp takes up every kit of yours within 4 cells in one action. Open it from its menu to put things in or take them out (it takes up to 12 separate things; a stack counts as one).\nCost and limits: Taking it up keeps its contents and fuel. Handing it over leaves it standing, and you can no longer take it up.\nRight now you can: take up, hand over (you can no longer take it up), pack up camp (5 things), move and 1 more.\n\nA small lidded box with a rope handle.",
+      "You complete the quoted reclaim work. The declared inputs are spent; the products are in your pack.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "deposit": {
+    "tick": 1850,
+    "state": "InventoryOpen",
+    "box": [
+      {
+        "ID": "2728",
+        "BlueprintName": "CuredLeatherOffcut",
+        "count": 1
+      }
+    ]
+  },
+  "boxMenu": [
+    {
+      "name": "Open",
+      "label": "open",
+      "command": "OpenContainer",
+      "via": null
+    },
+    {
+      "name": "TakeUpFixture",
+      "label": "take up",
+      "command": "TakeUp|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "PackUpCamp",
+      "label": "pack up camp (5 things)",
+      "command": "PackUp|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "box-work",
+      "label": "cut leather binding: 1 cured harness-leather offcut from this box -> 1 leather binding; torn margins discarded; usable cutting tool required (1 action, output to pack)",
+      "command": "CampBoxWork|43e436896e6a4af5ac391d777657b860",
+      "via": null
+    },
+    {
+      "name": "Break",
+      "label": "break",
+      "command": "Break",
+      "via": null
+    },
+    {
+      "name": "HandOverFixture",
+      "label": "hand over (you can no longer take it up)",
+      "command": "HandOver|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "MoveFixture",
+      "label": "move",
+      "command": "MovePick|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "NameCamp",
+      "label": "name this camp: Home",
+      "command": "NameCamp|Overworld.10.11.0|2150",
+      "via": null
+    },
+    {
+      "name": "Examine",
+      "label": "examine",
+      "command": "Examine",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "kindle camp box (1 item) [fire-moss]",
+      "command": "MaterialField|Kindle|Overworld.10.11.0|41|9|41|10|2150|4|",
+      "via": "2151"
+    },
+    {
+      "name": "ToolGroup",
+      "label": "pour out a liquid here (8) >>",
+      "command": "ToolGroup|pour out a liquid here",
+      "via": null
+    },
+    {
+      "name": "MaterialField",
+      "label": "spread brine south (1 item) [glimmer-brine]",
+      "command": "MaterialField|Film|Overworld.10.11.0|41|9|41|10||7|brine",
+      "via": "2215"
+    },
+    {
+      "name": "TouchTorch",
+      "label": "touch lit torch — camp box [41,10]",
+      "command": "TouchTorch|Overworld.10.11.0|41|9|41|10|2150|5.000079",
+      "via": "9be07b23c7a24a079adb7aeb10f66c7b"
+    },
+    {
+      "name": "PickCell",
+      "label": "<< everything here",
+      "command": "PickCell",
+      "via": null
+    }
+  ],
+  "afterBox": {
+    "tick": 1860,
+    "hp": 358,
+    "purse": 50,
+    "boxHP": 14,
+    "boxContents": [],
+    "armor": [
+      {
+        "ID": "2333",
+        "count": 2
+      }
+    ],
+    "bindings": [
+      {
+        "ID": "2729",
+        "count": 1
+      }
+    ],
+    "messages": [
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "The cold coat on your leather cap has worn off.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "consumerAvailability": {
+    "tick": 1860,
+    "stock": [
+      {
+        "ID": "2729",
+        "BlueprintName": "LeatherBindingComponent",
+        "slot": "Binding",
+        "assembly": null
+      }
+    ],
+    "near": [
+      {
+        "ID": "2149",
+        "BlueprintName": "CampBench",
+        "pos": {
+          "Item1": 41,
+          "Item2": 9
+        }
+      }
+    ]
+  },
+  "fresh1860": {
+    "tick": 1860,
+    "hp": 358,
+    "armor": [
+      {
+        "ID": "2333",
+        "count": 2
+      }
+    ],
+    "binding": [
+      {
+        "ID": "2729",
+        "count": 1
+      }
+    ],
+    "boxHP": 14,
+    "boxContents": 0,
+    "tool": [
+      "2127"
+    ],
+    "west": [
+      {
+        "BlueprintName": "Grass",
+        "solid": false
+      }
+    ]
+  },
+  "reader": [
+    {
+      "open": true,
+      "page": 0,
+      "pages": 4,
+      "title": "leather armor (x2)",
+      "subject": "2333",
+      "sections": [
+        {
+          "heading": "Protection",
+          "text": "Armor value (AV): +3.\nDodge value (DV): -1.\nAV protects a struck body location, not the whole body."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Body."
+        },
+        {
+          "heading": "Current condition",
+          "text": "This equipment is sound."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, cut one spare plain, unworn armor into a cured leather offcut.\nNeeds: one sound carried or equipped cutting tool.\nCost and limits: Spends one armor and one action. Armor and stitching are lost; the tool is kept. Altered or damaged armor refuses. Wearing, repairing, selling, or buying prepared leather are alternatives.\nRight now you can: cut spare leather armor."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: body.\n  body now: empty.\n  No equipped items displaced.\n  body: AV 0 -> 3 (change: +3). Equipment armor at this hit location only.\n  Equipment contributions (other effects not totaled):\n  DV change: -1"
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "2 units. Weight per unit: 15. Total weight: 30.\nLift Strength: 9; yours: 70.\nYou can carry this item.\nGrip: one hand.\nleather armor (x2) cannot be thrown.\nPack weight: 548; with this item: 548. Burden threshold: 1050."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        },
+        {
+          "heading": "About this item",
+          "text": "Panels of thick leather are joined where the body needs to bend. The fastening straps show repeated use."
+        }
+      ],
+      "visible": [
+        "PROTECTION",
+        "",
+        "Armor value (AV): +3.",
+        "Dodge value (DV): -1.",
+        "AV protects a struck body location, not the whole",
+        "body.",
+        "",
+        "EQUIP SLOTS",
+        "",
+        "Equip slots: Body.",
+        "",
+        "CURRENT CONDITION",
+        "",
+        "This equipment is sound.",
+        "",
+        "HOW TO USE",
+        "",
+        "In your pack, cut one spare plain, unworn armor",
+        "into a cured leather offcut.",
+        "Needs: one sound carried or equipped cutting tool."
+      ],
+      "tick": 1860,
+      "energy": 1000,
+      "hp": 358
+    },
+    {
+      "open": true,
+      "page": 1,
+      "pages": 4,
+      "title": "leather armor (x2)",
+      "subject": "2333",
+      "sections": [
+        {
+          "heading": "Protection",
+          "text": "Armor value (AV): +3.\nDodge value (DV): -1.\nAV protects a struck body location, not the whole body."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Body."
+        },
+        {
+          "heading": "Current condition",
+          "text": "This equipment is sound."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, cut one spare plain, unworn armor into a cured leather offcut.\nNeeds: one sound carried or equipped cutting tool.\nCost and limits: Spends one armor and one action. Armor and stitching are lost; the tool is kept. Altered or damaged armor refuses. Wearing, repairing, selling, or buying prepared leather are alternatives.\nRight now you can: cut spare leather armor."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: body.\n  body now: empty.\n  No equipped items displaced.\n  body: AV 0 -> 3 (change: +3). Equipment armor at this hit location only.\n  Equipment contributions (other effects not totaled):\n  DV change: -1"
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "2 units. Weight per unit: 15. Total weight: 30.\nLift Strength: 9; yours: 70.\nYou can carry this item.\nGrip: one hand.\nleather armor (x2) cannot be thrown.\nPack weight: 548; with this item: 548. Burden threshold: 1050."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        },
+        {
+          "heading": "About this item",
+          "text": "Panels of thick leather are joined where the body needs to bend. The fastening straps show repeated use."
+        }
+      ],
+      "visible": [
+        "Cost and limits: Spends one armor and one action.",
+        "Armor and stitching are lost; the tool is kept.",
+        "Altered or damaged armor refuses. Wearing,",
+        "repairing, selling, or buying prepared leather are",
+        "alternatives.",
+        "Right now you can: cut spare leather armor.",
+        "",
+        "EQUIPMENT COMPARISON",
+        "",
+        "Auto equip: body.",
+        "  body now: empty.",
+        "  No equipped items displaced.",
+        "  body: AV 0 -> 3 (change: +3). Equipment armor at",
+        "this hit location only.",
+        "  Equipment contributions (other effects not",
+        "totaled):",
+        "  DV change: -1",
+        "",
+        "",
+        ""
+      ],
+      "tick": 1860,
+      "energy": 1000,
+      "hp": 358
+    },
+    {
+      "open": true,
+      "page": 2,
+      "pages": 4,
+      "title": "leather armor (x2)",
+      "subject": "2333",
+      "sections": [
+        {
+          "heading": "Protection",
+          "text": "Armor value (AV): +3.\nDodge value (DV): -1.\nAV protects a struck body location, not the whole body."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Body."
+        },
+        {
+          "heading": "Current condition",
+          "text": "This equipment is sound."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, cut one spare plain, unworn armor into a cured leather offcut.\nNeeds: one sound carried or equipped cutting tool.\nCost and limits: Spends one armor and one action. Armor and stitching are lost; the tool is kept. Altered or damaged armor refuses. Wearing, repairing, selling, or buying prepared leather are alternatives.\nRight now you can: cut spare leather armor."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: body.\n  body now: empty.\n  No equipped items displaced.\n  body: AV 0 -> 3 (change: +3). Equipment armor at this hit location only.\n  Equipment contributions (other effects not totaled):\n  DV change: -1"
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "2 units. Weight per unit: 15. Total weight: 30.\nLift Strength: 9; yours: 70.\nYou can carry this item.\nGrip: one hand.\nleather armor (x2) cannot be thrown.\nPack weight: 548; with this item: 548. Burden threshold: 1050."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        },
+        {
+          "heading": "About this item",
+          "text": "Panels of thick leather are joined where the body needs to bend. The fastening straps show repeated use."
+        }
+      ],
+      "visible": [
+        "READING THESE NUMBERS",
+        "",
+        "Item contributions only. Other effects are not",
+        "totaled; targets, skills and conditions can change",
+        "results.",
+        "Inspection snapshot. Equipping rechecks current",
+        "slots and restrictions.",
+        "",
+        "HANDLING",
+        "",
+        "2 units. Weight per unit: 15. Total weight: 30.",
+        "Lift Strength: 9; yours: 70.",
+        "You can carry this item.",
+        "Grip: one hand.",
+        "leather armor (x2) cannot be thrown.",
+        "Pack weight: 548; with this item: 548. Burden",
+        "threshold: 1050.",
+        "",
+        "",
+        ""
+      ],
+      "tick": 1860,
+      "energy": 1000,
+      "hp": 358
+    },
+    {
+      "open": true,
+      "page": 3,
+      "pages": 4,
+      "title": "leather armor (x2)",
+      "subject": "2333",
+      "sections": [
+        {
+          "heading": "Protection",
+          "text": "Armor value (AV): +3.\nDodge value (DV): -1.\nAV protects a struck body location, not the whole body."
+        },
+        {
+          "heading": "Equip slots",
+          "text": "Equip slots: Body."
+        },
+        {
+          "heading": "Current condition",
+          "text": "This equipment is sound."
+        },
+        {
+          "heading": "How to use",
+          "text": "In your pack, cut one spare plain, unworn armor into a cured leather offcut.\nNeeds: one sound carried or equipped cutting tool.\nCost and limits: Spends one armor and one action. Armor and stitching are lost; the tool is kept. Altered or damaged armor refuses. Wearing, repairing, selling, or buying prepared leather are alternatives.\nRight now you can: cut spare leather armor."
+        },
+        {
+          "heading": "Equipment comparison",
+          "text": "Auto equip: body.\n  body now: empty.\n  No equipped items displaced.\n  body: AV 0 -> 3 (change: +3). Equipment armor at this hit location only.\n  Equipment contributions (other effects not totaled):\n  DV change: -1"
+        },
+        {
+          "heading": "Reading these numbers",
+          "text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "heading": "Handling",
+          "text": "2 units. Weight per unit: 15. Total weight: 30.\nLift Strength: 9; yours: 70.\nYou can carry this item.\nGrip: one hand.\nleather armor (x2) cannot be thrown.\nPack weight: 548; with this item: 548. Burden threshold: 1050."
+        },
+        {
+          "heading": "Disassembly",
+          "text": "Disassembly unavailable: no current owned item or tinkering access."
+        },
+        {
+          "heading": "About this item",
+          "text": "Panels of thick leather are joined where the body needs to bend. The fastening straps show repeated use."
+        }
+      ],
+      "visible": [
+        "DISASSEMBLY",
+        "",
+        "Disassembly unavailable: no current owned item or",
+        "tinkering access.",
+        "",
+        "ABOUT THIS ITEM",
+        "",
+        "Panels of thick leather are joined where the body",
+        "needs to bend. The fastening straps show repeated",
+        "use.",
+        "",
+        "Type: Armor",
+        "Material: Leather",
+        "Composition: Leather",
+        "Weight: 15 lb each",
+        "Stack: 2; 30 lb total"
+      ],
+      "tick": 1860,
+      "energy": 1000,
+      "hp": 358
+    }
+  ],
+  "walk": {
+    "tick": 1880,
+    "at": {
+      "x": 41,
+      "y": 9
+    },
+    "zone": "Overworld.10.11.0",
+    "hp": 358,
+    "purse": 50,
+    "effects": [],
+    "inputs": [
+      {
+        "ID": "2151",
+        "BlueprintName": "FireMoss",
+        "count": 4
+      },
+      {
+        "ID": "2167",
+        "BlueprintName": "PitchpodResin",
+        "count": 6
+      },
+      {
+        "ID": "2243",
+        "BlueprintName": "FireClay",
+        "count": 26
+      },
+      {
+        "ID": "2267",
+        "BlueprintName": "SalvagedTimber",
+        "count": 14
+      },
+      {
+        "ID": "2287",
+        "BlueprintName": "SalvagedTimber",
+        "count": 10
+      }
+    ],
+    "flasks": [
+      {
+        "ID": "2231",
+        "liquid": "oil",
+        "volume": 3
+      },
+      {
+        "ID": "2232",
+        "liquid": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2233",
+        "liquid": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2234",
+        "liquid": "water",
+        "volume": 3
+      },
+      {
+        "ID": "2235",
+        "liquid": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "2236",
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "2237",
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "2238",
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "2239",
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "2240",
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "2241",
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "2242",
+        "liquid": "",
+        "volume": 0
+      }
+    ],
+    "fires": [
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "at": {
+          "x": 40,
+          "y": 8
+        },
+        "fuel": 8.5,
+        "max": 30,
+        "temperature": 401.483063,
+        "light": true
+      }
+    ],
+    "traps": [
+      {
+        "id": "2727",
+        "kind": "heat",
+        "armed": true,
+        "pos": {
+          "Item1": 42,
+          "Item2": 9
+        }
+      }
+    ],
+    "kits": [],
+    "state": "Normal"
+  }
+}

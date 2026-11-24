@@ -61,6 +61,10 @@ namespace CavesOfOoo.Core
         {LoadDefaults();return id!=null && Definitions.TryGetValue(id,out var found)?found:null;}
         internal static string[] ForPreparation(Entity source)
         {LoadDefaults();return source==null?Array.Empty<string>():Definitions.Values.Where(d=>d.SourceBlueprint==source.BlueprintName && d.SourceRecipeId.Length>0).Select(d=>d.Id).ToArray();}
+        internal static string[] ForReclamation(Entity source)
+        {LoadDefaults();return source==null?Array.Empty<string>():Definitions.Values.Where(d=>d.SourceBlueprint==source.BlueprintName && d.SourceRecipeId.Length==0 && d.Mode=="Reclaim" && d.WorkKind=="HandCutting").Select(d=>d.Id).ToArray();}
+        internal static MaterialProcessDefinition[] ForSource(Entity source)
+        {LoadDefaults();return source==null?Array.Empty<MaterialProcessDefinition>():Definitions.Values.Where(d=>d.SourceBlueprint==source.BlueprintName).OrderBy(d=>d.Id,StringComparer.Ordinal).ToArray();}
         internal static bool IsPayload(Entity owner)
         {LoadDefaults();return owner!=null && (owner.HasPart<MaterialProcessInputPart>() || KnownPayloads.Contains(owner.BlueprintName));}
         public static IReadOnlyList<string> InitializeFromJson(string json)

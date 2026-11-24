@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 17:10:39Z" end-time="2026-11-24 17:10:41Z" duration="1.3928328">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41562" result="Failed" site="Child" start-time="2026-11-24 17:10:39Z" end-time="2026-11-24 17:10:41Z" duration="1.392833" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50657" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone2/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41562" result="Failed" site="Child" start-time="2026-11-24 17:10:40Z" end-time="2026-11-24 17:10:41Z" duration="1.090426" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="13572" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50658" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41562" result="Failed" site="Child" start-time="2026-11-24 17:10:40Z" end-time="2026-11-24 17:10:41Z" duration="0.792660" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50659" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41562" result="Failed" site="Child" start-time="2026-11-24 17:10:40Z" end-time="2026-11-24 17:10:41Z" duration="0.532318" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32811" name="WorksiteFieldBindingTests" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-11-24 17:10:41Z" end-time="2026-11-24 17:10:41Z" duration="0.101656" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32832" name="RefundCannotConvertASpentUnitIntoAnAlteredBinding" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.RefundCannotConvertASpentUnitIntoAnAlteredBinding" methodname="RefundCannotConvertASpentUnitIntoAnAlteredBinding" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="677983411" result="Failed" start-time="2026-11-24 17:10:41Z" end-time="2026-11-24 17:10:41Z" duration="0.093452" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorksiteFieldBindingTests.RefundCannotConvertASpentUnitIntoAnAlteredBinding () [0x0006c] in /Users/steven/coo-verification/clone2/Assets/Tests/EditMode/Gameplay/World/WorksiteFieldBindingTests.cs:104
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

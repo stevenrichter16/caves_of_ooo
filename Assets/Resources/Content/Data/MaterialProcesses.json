@@ -1,6 +1,17 @@
 {
   "Processes": [
     {
+      "Id": "reclaim_leather_armor",
+      "SourceBlueprint": "LeatherArmor",
+      "Mode": "Reclaim",
+      "InputCount": 1,
+      "WorkKind": "HandCutting",
+      "OutputBlueprints": ["CuredLeatherOffcut"],
+      "OutputCounts": [1],
+      "ActionText": "cut spare leather armor",
+      "LossText": "armor and stitching lost; plain unworn armor and usable cutter required"
+    },
+    {
       "Id": "dismantle",
       "SourceBlueprint": "ReleasedExtractionTool",
       "Mode": "Dismantle",

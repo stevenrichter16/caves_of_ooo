@@ -1,0 +1,78 @@
+{
+  "fresh4430": {
+    "tick": 4430,
+    "hp": 40,
+    "zone": "Overworld.6.6.0",
+    "at": {
+      "Item1": 57,
+      "Item2": 6
+    },
+    "purse": 4,
+    "forgeNear": false,
+    "weapon": {
+      "ID": "13682",
+      "BlueprintName": "ForgedWeapon",
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Equippable",
+        "Handling",
+        "MeleeWeapon",
+        "Commerce",
+        "TinkerItem",
+        "WeaponSalvage",
+        "WeaponAssembly",
+        "CraftingMark"
+      ],
+      "head": "CinderhookAxeHeadComponent",
+      "haft": "FieldHaftComponent",
+      "binding": "PlainCordBindingComponent",
+      "damage": "1d8",
+      "hit": -2,
+      "pen": 0
+    },
+    "components": [],
+    "tools": [
+      {
+        "ID": "2679",
+        "BlueprintName": "Dagger"
+      }
+    ]
+  },
+  "noReplacementMenu": [
+    {
+      "label": "Examine",
+      "command": "examine_item"
+    },
+    {
+      "label": "Compare equipment",
+      "command": "compare_equipment"
+    },
+    {
+      "label": "Equip (auto)",
+      "command": "equip_auto"
+    },
+    {
+      "label": "Equip (manual)",
+      "command": "equip_manual"
+    },
+    {
+      "label": "forge: head+haft; lose binding/mods",
+      "command": "SalvageForgedWeapon"
+    },
+    {
+      "label": "Throw",
+      "command": "throw"
+    },
+    {
+      "label": "Take back (crafting)",
+      "command": "toggle_craftmark"
+    },
+    {
+      "label": "Drop",
+      "command": "drop"
+    }
+  ]
+}

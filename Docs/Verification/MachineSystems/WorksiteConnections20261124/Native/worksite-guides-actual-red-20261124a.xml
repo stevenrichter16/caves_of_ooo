@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 17:20:19Z" end-time="2026-11-24 17:20:21Z" duration="1.5010363">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41564" result="Failed" site="Child" start-time="2026-11-24 17:20:19Z" end-time="2026-11-24 17:20:21Z" duration="1.501036" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50659" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone2/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41564" result="Failed" site="Child" start-time="2026-11-24 17:20:19Z" end-time="2026-11-24 17:20:21Z" duration="1.241411" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="22842" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50660" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41564" result="Failed" site="Child" start-time="2026-11-24 17:20:20Z" end-time="2026-11-24 17:20:21Z" duration="0.988268" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50661" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41564" result="Failed" site="Child" start-time="2026-11-24 17:20:20Z" end-time="2026-11-24 17:20:21Z" duration="0.726906" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32761" name="WorksiteArmorRecoveryTests" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-11-24 17:20:20Z" end-time="2026-11-24 17:20:21Z" duration="0.077362" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32763" name="ReadingArmorCannotInvalidateItsOpenMenuQuote" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.ReadingArmorCannotInvalidateItsOpenMenuQuote" methodname="ReadingArmorCannotInvalidateItsOpenMenuQuote" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1714476884" result="Failed" start-time="2026-11-24 17:20:20Z" end-time="2026-11-24 17:20:21Z" duration="0.071265" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorksiteArmorRecoveryTests.ReadingArmorCannotInvalidateItsOpenMenuQuote () [0x0003e] in /Users/steven/coo-verification/clone2/Assets/Tests/EditMode/Gameplay/World/WorksiteArmorRecoveryTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="32812" name="WorksiteFieldBindingTests" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-11-24 17:20:21Z" end-time="2026-11-24 17:20:21Z" duration="0.041852" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32827" name="ReadingWeaponCannotInvalidateItsOpenFieldQuote" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.ReadingWeaponCannotInvalidateItsOpenFieldQuote" methodname="ReadingWeaponCannotInvalidateItsOpenFieldQuote" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="1784333625" result="Failed" start-time="2026-11-24 17:20:21Z" end-time="2026-11-24 17:20:21Z" duration="0.040255" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorksiteFieldBindingTests.ReadingWeaponCannotInvalidateItsOpenFieldQuote () [0x00045] in /Users/steven/coo-verification/clone2/Assets/Tests/EditMode/Gameplay/World/WorksiteFieldBindingTests.cs:66
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

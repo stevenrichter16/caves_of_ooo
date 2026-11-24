@@ -8,7 +8,7 @@ namespace CavesOfOoo.Core
     /// Containers are interactable world objects — the player opens them from adjacent cells.
     /// Declares "Open"/"Loot" inventory action when interacted with.
     /// </summary>
-    public class ContainerPart : Part
+    public class ContainerPart : Part, IInventoryActionReceiptOwner
     {
         public override string Name => "Container";
 
@@ -31,6 +31,7 @@ namespace CavesOfOoo.Core
 
         /// <summary>Max items allowed. -1 = unlimited.</summary>
         public int MaxItems = -1;
+        public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<ContainerPart>()==this && CampBoxWork.IsCommand(command);
 
         /// <summary>
         /// Add an item to this container. Returns false if full.
@@ -103,6 +104,7 @@ namespace CavesOfOoo.Core
 
         public override bool HandleEvent(GameEvent e)
         {
+            if(!CampBoxWork.Handle(ParentEntity,e))return false;
             if (e.ID == "GetInventoryActions")
             {
                 var actions = e.GetParameter<InventoryActionList>("Actions");

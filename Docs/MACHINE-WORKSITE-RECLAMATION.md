@@ -1,3 +1,17 @@
+**Worksite connections accepted in bounded Editor scope — November24,2026:**
+Three distinct new capabilities: plain unworn leather armor recovery with a
+cutter; supervised material processing from the selected adjacent own installed
+camp box; lossy field replacement of an untempered carried singleton weapon's
+binding. The existing forge refit still returns displaced components. Native
+287/287 (72new/215retained), compiling REDs and countercases; independent source
+and recorded-play review0remainingP1/P2. Actual supplied1840->1860/fresh1860,
+stored-armor F1/cancel/execute1890/fresh1890 and earned axe4420->4430/fresh4430/
+equip/walk4450 qualify the scope. All32 native checkpoint files archived before
+Finish; five game screenshots include one excluded initial menu failure. No
+inventory merge between supplied and earned branches. CurrentMac6b predates this
+batch; coherent delivery follows. All12complete-machine/full-suite/discovery/
+performance gates remain open. See the [receipt](Verification/MachineSystems/WorksiteConnections20261124/README.md).
+
 # Worksite reclamation candidates and camp safety
 
 November24,2026. Work in progress after runtime7a193eae6/current Mac delivery.
@@ -12,6 +26,41 @@ inputs. Box custody must remain exact, private unknown payloads refuse, and town
 chests are not automatic supplies. These candidates are not implementation claims.
 Adjacent companion equipment repair is conditional; real damaged-companion demand
 is unqualified. Existing paid8dram material-backed artisan repairs already ship.
+
+## November 24 worksite batch — proposed, not yet accepted
+
+Player problem: surplus equipment, stock left in camp storage, and a useful
+assembled weapon should each have practical uses away from a specialized menu.
+This batch proposes three distinct capabilities, at medium depth:
+
+- Cut one plain, unworn LeatherArmor into one CuredLeatherOffcut with a sound
+  carried or equipped cutter. The armor and its stitching are lost. Wearing,
+  repairing, selling, or buying prepared leather remain alternatives. Existing
+  binding, repair, and assembly consumers give the recovered stock a purpose.
+- Select an adjacent installed player-held camp box and perform supervised
+  material work using its direct contents. Both primary and extra materials
+  come from that one box; tools stay on the worker and outputs enter the pack.
+  No automatic town-chest access or nested storage search.
+- Replace only the binding on an untempered, carried assembled singleton weapon
+  in the field, using a usable cutter. The old binding is destroyed. Head, haft,
+  weapon identity, and permanent modifications remain. Ordinary forge refits
+  continue to return their displaced component; field work is the lossy option.
+
+Source verification corrections and bounded independent critique:
+
+| Finding | Implementation constraint |
+| --- | --- |
+| Armor already exists in old saves without a recovery permission Part. | Existing Armor delegates only explicit hand-cutting reclamation manifests; any explicit input permission Part takes precedence, even a denial. |
+| Plain armor has a Hitpoints statistic. | Preserve lossless ordinary stack cloning and compare all stat fields; never erase differing damage by merging. |
+| Normal unequip changes null contribution receipts into empty strings. | Compare semantically empty receipts consistently; nonempty applied contributions still refuse. |
+| Repairable carries an Entity reference. | Non-null references cannot enter scalar-only stack splitting or recovery. |
+| Material processing already has claims, final validation, selective rollback and output capacity checks. | Reuse that engine; do not stage box stock through the pack. |
+| Ordinary refit refunds a newly created component and clears temper. | Field binding needs a dedicated narrow path, no refund creation, and refuses tempered weapons. |
+
+No new canon or inferred material yields. This is a deliberate game abstraction,
+not Qud behavior or rawhide tanning. All three require native RED/countercases,
+actual actions and fresh reload, and independent source/recorded-play review.
+No implementation or acceptance is claimed by this planning section.
 
 ## Observed safety defect, separate from new additions
 

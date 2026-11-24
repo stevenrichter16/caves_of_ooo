@@ -181,6 +181,11 @@ namespace CavesOfOoo.Core
             }
             guide.How.Add("To take it up, move it, name this camp or hand it over, press C beside it. Pack up camp takes up every kit of yours within " + HeldFixtureActions.PackUpReach + " cells in one action.");
             if (ParentEntity.GetPart<ContainerPart>() is ContainerPart box) guide.How.Add("Open it from its menu to put things in or take them out" + (box.MaxItems >= 0 ? " (it takes up to " + box.MaxItems + " separate things; a stack counts as one)." : "."));
+            if (Kind == CampKinds.Box && ParentEntity.BlueprintName == "CampBox")
+            {
+                guide.How.Add("For material work, press C beside the box. Work rows use only its direct contents; keep required tools with you. Finished goods go to your pack. A forge process still needs a nearby working forge.");
+                guide.Limits.Add("Each shown work action spends its declared materials and one action.");
+            }
             guide.Limits.Add("Taking it up keeps its contents and fuel. Handing it over leaves it standing, and you can no longer take it up.");
             guide.WhyNot = "you are not beside it";
         }

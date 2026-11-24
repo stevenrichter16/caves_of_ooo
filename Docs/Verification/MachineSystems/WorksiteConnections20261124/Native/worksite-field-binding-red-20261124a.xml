@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:49Z" duration="1.2465584">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41547" result="Failed" site="Child" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:49Z" duration="1.246558" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50640" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41547" result="Failed" site="Child" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:49Z" duration="1.085617" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="8952" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50641" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41547" result="Failed" site="Child" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:49Z" duration="0.875517" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50642" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41547" result="Failed" site="Child" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:49Z" duration="0.654817" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32801" name="WorksiteFieldBindingTests" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:49Z" duration="0.405494" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32813" name="AChangedSelectionCannotExecute" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.AChangedSelectionCannotExecute" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:48Z" duration="0.118066" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32810" name="AChangedSelectionCannotExecute(&quot;tool-drop&quot;)" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.AChangedSelectionCannotExecute(&quot;tool-drop&quot;)" methodname="AChangedSelectionCannotExecute" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="936650445" result="Failed" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:48Z" duration="0.057667" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for FieldBinding|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteFieldBindingTests.AChangedSelectionCannotExecute (System.String change) [0x00013] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteFieldBindingTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32811" name="AChangedSelectionCannotExecute(&quot;assembly&quot;)" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.AChangedSelectionCannotExecute(&quot;assembly&quot;)" methodname="AChangedSelectionCannotExecute" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="1457294430" result="Failed" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:48Z" duration="0.023734" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for FieldBinding|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteFieldBindingTests.AChangedSelectionCannotExecute (System.String change) [0x00013] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteFieldBindingTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32812" name="AChangedSelectionCannotExecute(&quot;replacement-drop&quot;)" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.AChangedSelectionCannotExecute(&quot;replacement-drop&quot;)" methodname="AChangedSelectionCannotExecute" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="822819495" result="Failed" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:48Z" duration="0.034065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for FieldBinding|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteFieldBindingTests.AChangedSelectionCannotExecute (System.String change) [0x00013] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteFieldBindingTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32802" name="BindingCanBeReplacedInTheFieldWhileHeadHaftAndIdentityRemain" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.BindingCanBeReplacedInTheFieldWhileHeadHaftAndIdentityRemain" methodname="BindingCanBeReplacedInTheFieldWhileHeadHaftAndIdentityRemain" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="1059638764" result="Failed" start-time="2026-11-24 17:04:48Z" end-time="2026-11-24 17:04:49Z" duration="0.075320" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for FieldBinding|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteFieldBindingTests.BindingCanBeReplacedInTheFieldWhileHeadHaftAndIdentityRemain () [0x0005d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteFieldBindingTests.cs:24
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32814" name="FailureRefundsTheBindingAndRestoresWeaponContributions" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.FailureRefundsTheBindingAndRestoresWeaponContributions" methodname="FailureRefundsTheBindingAndRestoresWeaponContributions" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="124093617" result="Failed" start-time="2026-11-24 17:04:49Z" end-time="2026-11-24 17:04:49Z" duration="0.025823" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for FieldBinding|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteFieldBindingTests.FailureRefundsTheBindingAndRestoresWeaponContributions () [0x0001e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteFieldBindingTests.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32809" name="FieldWorkDoesNotGrantAnOrdinaryForgeRefit" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.FieldWorkDoesNotGrantAnOrdinaryForgeRefit" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-24 17:04:49Z" end-time="2026-11-24 17:04:49Z" duration="0.157372" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32803" name="FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;no-tool&quot;)" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;no-tool&quot;)" methodname="FieldWorkDoesNotGrantAnOrdinaryForgeRefit" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="1573307800" result="Passed" start-time="2026-11-24 17:04:49Z" end-time="2026-11-24 17:04:49Z" duration="0.026138" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32804" name="FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;blade&quot;)" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;blade&quot;)" methodname="FieldWorkDoesNotGrantAnOrdinaryForgeRefit" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="706586347" result="Passed" start-time="2026-11-24 17:04:49Z" end-time="2026-11-24 17:04:49Z" duration="0.025174" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32805" name="FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;haft&quot;)" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;haft&quot;)" methodname="FieldWorkDoesNotGrantAnOrdinaryForgeRefit" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="1058797663" result="Passed" start-time="2026-11-24 17:04:49Z" end-time="2026-11-24 17:04:49Z" duration="0.024690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32806" name="FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;tempered&quot;)" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;tempered&quot;)" methodname="FieldWorkDoesNotGrantAnOrdinaryForgeRefit" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="848710498" result="Passed" start-time="2026-11-24 17:04:49Z" end-time="2026-11-24 17:04:49Z" duration="0.024588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32807" name="FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;equipped&quot;)" methodname="FieldWorkDoesNotGrantAnOrdinaryForgeRefit" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="1593274679" result="Passed" start-time="2026-11-24 17:04:49Z" end-time="2026-11-24 17:04:49Z" duration="0.029535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32808" name="FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;stack&quot;)" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.FieldWorkDoesNotGrantAnOrdinaryForgeRefit(&quot;stack&quot;)" methodname="FieldWorkDoesNotGrantAnOrdinaryForgeRefit" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="1276830275" result="Passed" start-time="2026-11-24 17:04:49Z" end-time="2026-11-24 17:04:49Z" duration="0.026235" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32815" name="SavingTheRefittedWeaponDoesNotProduceAnotherBinding" fullname="CavesOfOoo.Tests.WorksiteFieldBindingTests.SavingTheRefittedWeaponDoesNotProduceAnotherBinding" methodname="SavingTheRefittedWeaponDoesNotProduceAnotherBinding" classname="CavesOfOoo.Tests.WorksiteFieldBindingTests" runstate="Runnable" seed="712320997" result="Failed" start-time="2026-11-24 17:04:49Z" end-time="2026-11-24 17:04:49Z" duration="0.025131" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for FieldBinding|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteFieldBindingTests.SavingTheRefittedWeaponDoesNotProduceAnotherBinding () [0x00013] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteFieldBindingTests.cs:58
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

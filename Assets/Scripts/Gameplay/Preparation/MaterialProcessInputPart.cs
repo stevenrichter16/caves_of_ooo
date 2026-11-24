@@ -5,6 +5,8 @@ using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
+    internal interface IMaterialReclaimPermission
+    { bool Allows(MaterialProcessDefinition definition); }
     /// <summary>Authored permission only. No material tag implies a salvage yield.</summary>
     public sealed class MaterialProcessInputPart : Part
     {
@@ -50,7 +52,7 @@ namespace CavesOfOoo.Core
                     string outputs=string.Join(" + ",d.OutputBlueprints.Select((bp,i)=>d.OutputCounts[i]+" "+Label(plan.Factory,bp)));
                     string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
-                        MaterialProcessInputPart.CommandPrefix+id+"|"+Uri.EscapeDataString(plan.StationId)+"|"+token,'\0',19);
+                        MaterialProcessInputPart.CommandPrefix+id+"|"+Uri.EscapeDataString(plan.StationId)+"|"+token,'\0',19,false,ActionTime.OneAction);
                 }
                 return true;
             }

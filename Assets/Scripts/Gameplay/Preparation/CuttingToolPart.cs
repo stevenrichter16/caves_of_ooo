@@ -34,7 +34,7 @@ namespace CavesOfOoo.Core
             {
                 string Label(string blueprint) => factory.Blueprints[blueprint].Parts.TryGetValue("Render", out var p)
                     && p.TryGetValue("DisplayName", out var label) ? label : blueprint;
-                var examples = MaterialProcessRegistry.ForWorkKind("HandCutting").Take(3).Select(d =>
+                var examples = MaterialProcessRegistry.ForWorkKind("HandCutting").OrderBy(d=>d.Mode=="Reclaim"?1:0).Take(3).Select(d =>
                 {
                     var inputs = new[] { d.InputCount + " " + Label(d.SourceBlueprint) }
                         .Concat(d.AdditionalInputBlueprints.Select((bp, i) => d.AdditionalInputCounts[i] + " " + Label(bp)));

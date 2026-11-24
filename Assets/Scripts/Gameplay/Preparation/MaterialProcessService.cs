@@ -14,6 +14,7 @@ namespace CavesOfOoo.Core
         internal static bool IsProtected(Entity item)=>item!=null&&Custody.TryGetValue(item,out _);
         internal static bool OwnsConsumption(Entity item,InventoryTransaction tx)
             => item!=null && tx!=null && Custody.TryGetValue(item,out var owner) && owner==tx;
+        internal static bool ReserveInput(Entity item,InventoryTransaction tx)=>item!=null && tx!=null && Guard(item,tx);
         static bool Guard(Entity item,InventoryTransaction tx)
         {
             if(Custody.TryGetValue(item,out var owner))return owner==tx;
@@ -69,9 +70,9 @@ namespace CavesOfOoo.Core
             if(tx==null || quote==null || !quote.Current())return Refuse();
             var actor=plan.Actor;var input=plan.Source;var pack=actor.GetPart<InventoryPart>();var zone=plan.Zone;
             var inputs=new[]{input}.Concat(plan.ExtraInputs.SelectMany(i=>i.Takes.Select(t=>t.Owner))).ToArray();
-            var participants=new[]{actor,plan.Station}.Concat(inputs).ToArray();
-            if(!tx.TryClaimAction(actor) || inputs.Any(i=>!PreparationActions.Begin(actor,i,zone,tx,command))
-                || !plan.BeginWork(tx,command) || !Guard(plan.Station,tx) || inputs.Any(i=>!Guard(i,tx)))return Refuse();
+            var participants=new[]{actor,plan.Station}.Concat(inputs).Concat(plan.Stock==null?Array.Empty<Entity>():new[]{plan.Stock.Box}).ToArray();
+            if(!tx.TryClaimAction(actor) || inputs.Any(i=>!plan.BeginInput(i,tx,command))
+                || !plan.BeginWork(tx,command) || plan.Stock!=null && !Guard(plan.Stock.Box,tx) || !Guard(plan.Station,tx) || inputs.Any(i=>!Guard(i,tx)))return Refuse();
             var sourceTemplate=quote.SourceTemplate;var sourceState=quote.SourceState;
             if(sourceState==null)return Refuse();
             int sourceCount=Count(input),units=plan.Definition.InputCount;
@@ -87,7 +88,7 @@ namespace CavesOfOoo.Core
                 var product=plan.Factory.CreateEntity(plan.Definition.OutputBlueprints[kind]);products.Add(product);
                 tx.Do(null,()=>Detach(product));
                 if(product==null || !PreparationActions.Fresh(product,plan.Definition.OutputBlueprints[kind])
-                    || !ids.Add(product.ID) || pack.Objects.Concat(pack.EquippedItems.Values).Concat(zone.GetReadOnlyEntities()).Any(e=>e==product||e?.ID==product.ID)
+                    || !ids.Add(product.ID) || pack.Objects.Concat(pack.EquippedItems.Values).Concat(zone.GetReadOnlyEntities()).Concat(plan.Stock?.Container.Contents??Enumerable.Empty<Entity>()).Any(e=>e==product||e?.ID==product.ID)
                     || !tx.TryClaim(product,actor,command))return Refuse();
                 var state=templates[kind].Snapshot(product);if(state==null)return Refuse();states.Add(product,state);
             }
@@ -108,15 +109,15 @@ namespace CavesOfOoo.Core
             tx.Do(null,()=>
             {
                 if(restored)return;restored=true;
-                foreach(var owner in products.Concat(received).Concat(consumed).Distinct())Detach(owner);
+                foreach(var owner in products.Concat(received).Concat(plan.Stock==null?consumed:Enumerable.Empty<Entity>()).Distinct())Detach(owner);
                 receipt.Restore();
             });
             if(!receipt.Apply(()=>
             {
-                for(int n=0;n<units;n++){if(!pack.TryConsumeMaterialProcessUnit(input,tx))return false;consumed.Add(input);}
+                for(int n=0;n<units;n++){if(!plan.Consume(input,tx))return false;consumed.Add(input);}
                 foreach(var ingredient in plan.ExtraInputs)
                     foreach(var take in ingredient.Takes)
-                        for(int n=0;n<take.Units;n++){if(!pack.TryConsumeMaterialProcessUnit(take.Owner,tx))return false;consumed.Add(take.Owner);}
+                        for(int n=0;n<take.Units;n++){if(!plan.Consume(take.Owner,tx))return false;consumed.Add(take.Owner);}
                 foreach(var product in products)
                 {
                     if(!pack.AddCraftedUnit(product,out var recipient) || recipient==null)return false;
@@ -127,7 +128,7 @@ namespace CavesOfOoo.Core
             bool Final()
             {
                 if(!plan.ContextCurrent() || !sourceState.Matches() || !templates.All(t=>t.Current()) || Count(input)!=Math.Max(1,sourceCount-units)
-                    || (sourceCount>units?!PreparationActions.Carried(actor,input):!Loose(input)||pack.Objects.Contains(input))
+                    || (sourceCount>units?!plan.InputAvailable(input):!Loose(input)||pack.Objects.Contains(input))
                     || pack.GetCarriedWeight()>ceiling || states.Values.Any(s=>!s.Matches()) || plan.ExtraInputs.Any(i=>!i.After(actor)))return false;
                 foreach(var pair in expected)if(!PreparationActions.Carried(actor,pair.Key) || Count(pair.Key)!=pair.Value)return false;
                 foreach(var product in products)

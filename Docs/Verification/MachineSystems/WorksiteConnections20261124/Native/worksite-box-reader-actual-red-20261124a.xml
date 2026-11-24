@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 17:54:23Z" end-time="2026-11-24 17:54:24Z" duration="1.1394621">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41568" result="Failed" site="Child" start-time="2026-11-24 17:54:23Z" end-time="2026-11-24 17:54:24Z" duration="1.139462" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50663" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone2/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41568" result="Failed" site="Child" start-time="2026-11-24 17:54:24Z" end-time="2026-11-24 17:54:24Z" duration="0.896666" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="54359" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50664" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41568" result="Failed" site="Child" start-time="2026-11-24 17:54:24Z" end-time="2026-11-24 17:54:24Z" duration="0.646745" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50665" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41568" result="Failed" site="Child" start-time="2026-11-24 17:54:24Z" end-time="2026-11-24 17:54:24Z" duration="0.393323" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32784" name="WorksiteBoxProcessingTests" fullname="CavesOfOoo.Tests.WorksiteBoxProcessingTests" classname="CavesOfOoo.Tests.WorksiteBoxProcessingTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-11-24 17:54:24Z" end-time="2026-11-24 17:54:24Z" duration="0.106312" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32788" name="RegatherForWorldDetailsRetainsOnlyAnUnchangedQuote" fullname="CavesOfOoo.Tests.WorksiteBoxProcessingTests.RegatherForWorldDetailsRetainsOnlyAnUnchangedQuote" methodname="RegatherForWorldDetailsRetainsOnlyAnUnchangedQuote" classname="CavesOfOoo.Tests.WorksiteBoxProcessingTests" runstate="Runnable" seed="1660558400" result="Failed" start-time="2026-11-24 17:54:24Z" end-time="2026-11-24 17:54:24Z" duration="0.100699" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  F1 compares the highlighted action with freshly gathered rows.
+  String lengths are both 44. Strings differ at index 12.
+  Expected: "CampBoxWork|940938f887f94506ba0d2e7be9cfb3f1"
+  But was:  "CampBoxWork|71a81d484b754094b4a37a35adf5531a"
+  -----------------------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorksiteBoxProcessingTests.RegatherForWorldDetailsRetainsOnlyAnUnchangedQuote () [0x00023] in /Users/steven/coo-verification/clone2/Assets/Tests/EditMode/Gameplay/World/WorksiteBoxProcessingTests.cs:56
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

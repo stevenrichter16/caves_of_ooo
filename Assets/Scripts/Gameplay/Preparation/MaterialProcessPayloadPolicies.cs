@@ -38,6 +38,8 @@ namespace CavesOfOoo.Core
             foreach(var type in new[]{typeof(RenderPart),typeof(PhysicsPart),typeof(ExaminablePart),typeof(CommercePart),
                 typeof(StackerPart),typeof(WeaponComponentPart),typeof(MaterialPart),typeof(CompositionPart),
                 typeof(PreparationRecipePart),typeof(MaterialProcessInputPart),typeof(MeleeWeaponPart),typeof(HandlingPart)})Policies[type]=new ScalarPolicy(type);
+            foreach(var type in new[]{typeof(ArmorPart),typeof(EquippablePart),typeof(ThermalPart),typeof(RepairablePart)})
+                Policies[type]=new ScalarPolicy(type,false);
             // Compared by inertness only, never by Revision: consuming the last unit of a stack invalidates its throw
             // receipt (bumping Revision), which must not make the commit that caused it refuse.
             Policies[typeof(ThrownRecoveryPart)]=new TrackingPolicy<ThrownRecoveryPart>(t=>string.IsNullOrEmpty(t.ThrowerId) && string.IsNullOrEmpty(t.ItemId)
@@ -53,11 +55,28 @@ namespace CavesOfOoo.Core
         public static bool Unregister(Type type,IMaterialProcessPartPolicy expected)
         {return type!=null && Policies.TryGetValue(type,out var current) && current==expected && Policies.Remove(type);}
         internal static IMaterialProcessPartPolicy Get(Type type)=>Policies.TryGetValue(type,out var policy)?policy:null;
+        // Pure component definition for previews and field binding. No Entity,
+        // Initialize or ObjectCreated callback is run to read authored numbers.
+        internal static WeaponComponentPart ReadComponentDefinition(CavesOfOoo.Data.EntityFactory factory,string blueprint)
+        {
+            if(factory==null || !factory.Blueprints.TryGetValue(blueprint,out var bp) || !bp.Parts.TryGetValue("WeaponComponent",out var values)
+                || Get(typeof(WeaponComponentPart)) is not ScalarPolicy scalar || !scalar.ValidTemplate(values))return null;
+            return scalar.Template(values) as WeaponComponentPart;
+        }
 
         internal static bool IsInertTracking(Part part)=>part!=null && Get(part.GetType()) is IMaterialProcessTrackingPolicy tracking && tracking.Inert(part);
         internal static bool CanSplitProcessingInput(Entity owner)
-            => !MaterialProcessRegistry.IsPayload(owner) || owner.Statistics?.Count==0
-                && owner.Parts.All(p=>p!=null && (Get(p.GetType()) is ScalarPolicy || IsInertTracking(p)));
+            => !MaterialProcessRegistry.IsPayload(owner) || SplitStats(owner)
+                && owner.Parts.All(p=>p!=null && (Get(p.GetType()) is ScalarPolicy scalar && scalar.CanClone(p) || IsInertTracking(p)));
+        static bool SplitStats(Entity owner)
+            => owner.Statistics?.Count==0 || owner.BlueprintName=="LeatherArmor" && owner.HasPart<ArmorPart>()
+                && owner.Statistics?.Count==1 && owner.Statistics.TryGetValue("Hitpoints",out var hp)
+                && hp!=null && hp.Owner==owner && hp.Name=="Hitpoints";
+        static bool SameStats(Entity a,Entity b)
+            => a.Statistics.Count==b.Statistics.Count && a.Statistics.All(p=>b.Statistics.TryGetValue(p.Key,out var q)
+                && p.Value!=null && q!=null && p.Value.Owner==a && q.Owner==b && p.Value.Name==q.Name
+                && p.Value.sValue==q.sValue && p.Value.BaseValue==q.BaseValue && p.Value.Bonus==q.Bonus
+                && p.Value.Penalty==q.Penalty && p.Value.Boost==q.Boost && p.Value.Min==q.Min && p.Value.Max==q.Max);
         internal static bool CanMergeProcessingInputs(Entity first,Entity second)
         {
             if(!MaterialProcessRegistry.IsPayload(first) && !MaterialProcessRegistry.IsPayload(second))return true;
@@ -67,7 +86,7 @@ namespace CavesOfOoo.Core
             var left=first.Parts.Where(p=>!IsInertTracking(p)).ToArray();var right=second.Parts.Where(p=>!IsInertTracking(p)).ToArray();
             if(left.Length!=right.Length)return false;
             bool Same<K,V>(IDictionary<K,V> a,IDictionary<K,V> b)=>a!=null&&b!=null&&a.Count==b.Count&&a.All(p=>b.TryGetValue(p.Key,out var v)&&EqualityComparer<V>.Default.Equals(p.Value,v));
-            if(!Same(first.Tags,second.Tags)||!Same(first.Properties,second.Properties)||!Same(first.IntProperties,second.IntProperties))return false;
+            if(!Same(first.Tags,second.Tags)||!Same(first.Properties,second.Properties)||!Same(first.IntProperties,second.IntProperties)||!SameStats(first,second))return false;
             for(int i=0;i<left.Length;i++)
             {var policy=Get(left[i].GetType());if(left[i].GetType()!=right[i].GetType()||!policy.Matches(right[i],policy.Capture(left[i])))return false;}
             return true;
@@ -90,17 +109,26 @@ namespace CavesOfOoo.Core
         // general object serializer: only scalar authoring fields are supported.
         sealed class ScalarPolicy : IMaterialProcessCreationPartPolicy
         {
-            public bool AllowsCreation => true;
+            public bool AllowsCreation { get; }
             readonly Type type; readonly FieldInfo[] fields;
-            public ScalarPolicy(Type type)
+            public ScalarPolicy(Type type,bool creationSafe=true)
             {
-                this.type=type;
+                this.type=type;AllowsCreation=creationSafe;
                 fields=type.GetFields(BindingFlags.Public|BindingFlags.Instance).Where(f=>f.Name!="ParentEntity"
                     && !(type==typeof(PhysicsPart)&&(f.Name=="InInventory"||f.Name=="Equipped"))
                     && !(type==typeof(StackerPart)&&f.Name=="StackCount")
                     && f.Name!="MaterialTags").OrderBy(f=>f.Name,StringComparer.Ordinal).ToArray();
             }
-            Part Template(IReadOnlyDictionary<string,string> parameters)
+            object Value(Part part,FieldInfo field)
+            {
+                var value=field.GetValue(part);
+                return type==typeof(EquippablePart) && (field.Name=="AppliedEquipBonuses" || field.Name=="AppliedEquipSkillBonuses")
+                    && value==null?"":value;
+            }
+            internal bool CanClone(Part part)=>(part is not EquippablePart equip
+                || string.IsNullOrEmpty(equip.AppliedEquipBonuses) && string.IsNullOrEmpty(equip.AppliedEquipSkillBonuses))
+                && fields.All(f=>f.FieldType.IsPrimitive || f.FieldType.IsEnum || f.FieldType==typeof(string) || f.GetValue(part)==null);
+            internal Part Template(IReadOnlyDictionary<string,string> parameters)
             {
                 var part=(Part)Activator.CreateInstance(type);
                 foreach(var pair in parameters)
@@ -126,18 +154,18 @@ namespace CavesOfOoo.Core
                 try
                 {
                     var expected=Template(parameters);if(expected==null || part?.GetType()!=type)return false;
-                    if(!fields.All(f=>Equals(f.GetValue(part),f.GetValue(expected))))return false;
+                    if(!fields.All(f=>Equals(Value(part,f),Value(expected,f))))return false;
                     if(part is MaterialPart material)
                         return material.MaterialTags.SetEquals((material.MaterialTagsRaw??"").Split(',').Select(s=>s.Trim()).Where(s=>s.Length>0));
                     return true;
                 }catch{return false;}
             }
-            public object Capture(Part part)=>new ScalarState(fields.Select(f=>f.GetValue(part)).ToArray(),
+            public object Capture(Part part)=>new ScalarState(fields.Select(f=>Value(part,f)).ToArray(),
                 part is MaterialPart material?material.MaterialTags.OrderBy(s=>s,StringComparer.Ordinal).ToArray():null);
             public bool Matches(Part part,object state)
             {
                 if(part?.GetType()!=type || state is not ScalarState saved)return false;
-                return fields.Select(f=>f.GetValue(part)).SequenceEqual(saved.Values)
+                return fields.Select(f=>Value(part,f)).SequenceEqual(saved.Values)
                     && (saved.MaterialTags==null || part is MaterialPart material && material.MaterialTags.SetEquals(saved.MaterialTags));
             }
             sealed class ScalarState

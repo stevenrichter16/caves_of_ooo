@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Passed" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 16:58:30Z" end-time="2026-11-24 16:58:31Z" duration="1.3147164">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41516" result="Passed" start-time="2026-11-24 16:58:30Z" end-time="2026-11-24 16:58:31Z" duration="1.314716" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="50602" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41516" result="Passed" start-time="2026-11-24 16:58:30Z" end-time="2026-11-24 16:58:31Z" duration="1.111533" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3240" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="50603" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41516" result="Passed" start-time="2026-11-24 16:58:30Z" end-time="2026-11-24 16:58:31Z" duration="0.956024" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="50604" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41516" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.744221" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="32761" name="WorksiteArmorRecoveryTests" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.501288" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="32776" name="DamagedArmorDoesNotMergeIntoSoundStock" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.DamagedArmorDoesNotMergeIntoSoundStock" methodname="DamagedArmorDoesNotMergeIntoSoundStock" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="522774008" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.042879" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32764" name="EmptyUnequipReceiptsDoNotPreventRecoveryOrLikeStateStacking" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.EmptyUnequipReceiptsDoNotPreventRecoveryOrLikeStateStacking" methodname="EmptyUnequipReceiptsDoNotPreventRecoveryOrLikeStateStacking" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1424329516" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.053240" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32765" name="NormalEquipUnequipThenReclaimWorks" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.NormalEquipUnequipThenReclaimWorks" methodname="NormalEquipUnequipThenReclaimWorks" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="341495455" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.030141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32763" name="OneArmorInAStackIsSpentAndTheOthersRemainUsable" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.OneArmorInAStackIsSpentAndTheOthersRemainUsable" methodname="OneArmorInAStackIsSpentAndTheOthersRemainUsable" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="682697661" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.026028" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32774" name="RecoveryRollsBackWithAnOuterFailure" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.RecoveryRollsBackWithAnOuterFailure" methodname="RecoveryRollsBackWithAnOuterFailure" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="135002077" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.032820" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32775" name="SavedOldArmorGetsOnlyTheManifestBackedAction" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.SavedOldArmorGetsOnlyTheManifestBackedAction" methodname="SavedOldArmorGetsOnlyTheManifestBackedAction" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="738104528" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.079520" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32762" name="SpareArmorBecomesOneFiniteOffcutWithoutAForge" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.SpareArmorBecomesOneFiniteOffcutWithoutAForge" methodname="SpareArmorBecomesOneFiniteOffcutWithoutAForge" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="769918707" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.028140" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32777" name="TheYieldIsAnExplicitDestructiveManifest" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.TheYieldIsAnExplicitDestructiveManifest" methodname="TheYieldIsAnExplicitDestructiveManifest" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1535349157" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.026188" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32773" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.176631" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32766" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;no-tool&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;no-tool&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="269472415" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.025173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32767" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;foreign-part&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="2072688318" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.025313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32768" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;damaged&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;damaged&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="886783450" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.025170" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32769" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;repaired-reference&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;repaired-reference&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="721044087" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.025084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32770" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;receipt&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;receipt&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="101049494" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.026028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32771" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;other-armor&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;other-armor&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1177975639" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.024066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32772" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;explicit-denial&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;explicit-denial&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1292991904" result="Passed" start-time="2026-11-24 16:58:31Z" end-time="2026-11-24 16:58:31Z" duration="0.024061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

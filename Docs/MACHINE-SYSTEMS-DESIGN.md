@@ -1,3 +1,17 @@
+**Worksite connections — November24,2026:** accepted three bounded new
+capabilities: explicit plain unworn LeatherArmor -> one cured offcut using a
+cutter; supervised MaterialProcess work from the selected adjacent installed own
+CampBox's direct contents; field replacement of only an untempered carried
+singleton weapon's binding, old binding destroyed, same weapon/head/haft kept.
+Normal forge refits retain refunds. Native287/287 (72new/215retained), targeted
+RED/countercases and independent source/recorded-play review0P1/P2. Actual native
+armor/box1840->1860/fresh, stored-armor F1/cancel/execute1890/fresh, and earned axe
+4420->4430/fresh/equip/walk4450 qualify this scope. All32 checkpoint files archived
+before Finish;5gamePNGs include1excluded initial menu attempt. Main stopped,
+rootnull,scene clean,profileroff,7views/index0/inputrestored. CurrentMac6b predates
+this batch; publication/coherent package next. All12complete-machine/full-suite/
+ordinary-discovery/hardware gates stay open. See [worksite receipt](Verification/MachineSystems/WorksiteConnections20261124/README.md).
+
 **Camp safety Mac delivery — November24,2026:** runtime
 6b5421a82567a1085d767b5289b06e25fefbb8bb is the pushed/remotely verified current
 bounded Mac package.9line movement guard protects installed player-held camp
@@ -1227,6 +1241,16 @@ The twelve machines are not all ready because individual foundations exist. Cont
 The user prioritizes reclamation of damaged finds and regional raw materials into useful component inputs. M3a accepts an explicit damaged-tool manifest, mutually exclusive dismantle/reclaim choices, and cold dressing of recovered iron into an existing piercing point. Retained quotes, Part-owned policies and shared transactions have native and actual acceptance; both routes feed ordinary equipped weapons used outside the service, with travel/fresh reload. Carrying/selling intact is a demonstrated alternative. Regional raw-material processing is a separate remaining qualification: existing pack timber/cord recipes are retained, and a recovered manufactured blank does not establish ore refining. Full heat/fuel, provenance, useful outputs, waste, economy and actual-play gates must be satisfied by their own scoped processes.
 
 ## Dependency matrix for the twelve machines
+
+November24 worksite dependency: explicit equipment recovery, selected own-box
+material custody and lossy field binding are accepted bounded prerequisites for
+reclamation and restoration access. They add an outside-machine source/use and
+a storage-to-component connection while leaving ordinary crafting and paid
+services available. Field binding changes only one slot and forfeits its old
+binding; it does not grant remote forge work. None completes a reclamation forge,
+restoration cradle, logistics network or any other machine. All twelve rows and
+their individual open acceptance statuses below remain authoritative. See the
+[worksite receipt](Verification/MachineSystems/WorksiteConnections20261124/README.md).
 
 November24 current package: runtime238 now packages the optional fuel prerequisite,
 following accepted source/native/Editor play and bounded Mac source/artifact/startup

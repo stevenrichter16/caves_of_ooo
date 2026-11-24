@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Failed(Child)" total="15" passed="7" failed="8" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 16:56:30Z" end-time="2026-11-24 16:56:31Z" duration="1.3640125">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41516" result="Failed" site="Child" start-time="2026-11-24 16:56:30Z" end-time="2026-11-24 16:56:31Z" duration="1.364013" total="15" passed="7" failed="8" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50602" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41516" result="Failed" site="Child" start-time="2026-11-24 16:56:30Z" end-time="2026-11-24 16:56:31Z" duration="1.146560" total="15" passed="7" failed="8" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="2041" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50603" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41516" result="Failed" site="Child" start-time="2026-11-24 16:56:30Z" end-time="2026-11-24 16:56:31Z" duration="0.932875" total="15" passed="7" failed="8" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50604" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41516" result="Failed" site="Child" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.750370" total="15" passed="7" failed="8" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32761" name="WorksiteArmorRecoveryTests" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.470486" total="15" passed="7" failed="8" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32776" name="DamagedArmorDoesNotMergeIntoSoundStock" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.DamagedArmorDoesNotMergeIntoSoundStock" methodname="DamagedArmorDoesNotMergeIntoSoundStock" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1710409087" result="Failed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.044230" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorksiteArmorRecoveryTests.DamagedArmorDoesNotMergeIntoSoundStock () [0x00034] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteArmorRecoveryTests.cs:76
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32764" name="EmptyUnequipReceiptsDoNotPreventRecoveryOrLikeStateStacking" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.EmptyUnequipReceiptsDoNotPreventRecoveryOrLikeStateStacking" methodname="EmptyUnequipReceiptsDoNotPreventRecoveryOrLikeStateStacking" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1332188145" result="Failed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.030191" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim_leather_armor|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteArmorRecoveryTests.EmptyUnequipReceiptsDoNotPreventRecoveryOrLikeStateStacking () [0x0004e] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteArmorRecoveryTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32765" name="NormalEquipUnequipThenReclaimWorks" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.NormalEquipUnequipThenReclaimWorks" methodname="NormalEquipUnequipThenReclaimWorks" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="750462646" result="Failed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.029557" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorksiteArmorRecoveryTests.NormalEquipUnequipThenReclaimWorks () [0x0000c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteArmorRecoveryTests.cs:47
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32763" name="OneArmorInAStackIsSpentAndTheOthersRemainUsable" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.OneArmorInAStackIsSpentAndTheOthersRemainUsable" methodname="OneArmorInAStackIsSpentAndTheOthersRemainUsable" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="691999761" result="Failed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.025029" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim_leather_armor|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteArmorRecoveryTests.OneArmorInAStackIsSpentAndTheOthersRemainUsable () [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteArmorRecoveryTests.cs:35
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32774" name="RecoveryRollsBackWithAnOuterFailure" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.RecoveryRollsBackWithAnOuterFailure" methodname="RecoveryRollsBackWithAnOuterFailure" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1359555651" result="Failed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.024416" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim_leather_armor|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteArmorRecoveryTests.RecoveryRollsBackWithAnOuterFailure () [0x00018] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteArmorRecoveryTests.cs:65
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32775" name="SavedOldArmorGetsOnlyTheManifestBackedAction" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.SavedOldArmorGetsOnlyTheManifestBackedAction" methodname="SavedOldArmorGetsOnlyTheManifestBackedAction" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1484870519" result="Failed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.034184" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim_leather_armor|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteArmorRecoveryTests.SavedOldArmorGetsOnlyTheManifestBackedAction () [0x00031] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteArmorRecoveryTests.cs:71
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32762" name="SpareArmorBecomesOneFiniteOffcutWithoutAForge" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.SpareArmorBecomesOneFiniteOffcutWithoutAForge" methodname="SpareArmorBecomesOneFiniteOffcutWithoutAForge" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1106852376" result="Failed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.024954" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|reclaim_leather_armor|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.WorksiteArmorRecoveryTests.SpareArmorBecomesOneFiniteOffcutWithoutAForge () [0x00017] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteArmorRecoveryTests.cs:28
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32777" name="TheYieldIsAnExplicitDestructiveManifest" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.TheYieldIsAnExplicitDestructiveManifest" methodname="TheYieldIsAnExplicitDestructiveManifest" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="294948800" result="Failed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.025639" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorksiteArmorRecoveryTests.TheYieldIsAnExplicitDestructiveManifest () [0x0000b] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/WorksiteArmorRecoveryTests.cs:80
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32773" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.226422" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32766" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;no-tool&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;no-tool&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1737760811" result="Passed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.026670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32767" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;foreign-part&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1051992667" result="Passed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.025676" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32768" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;damaged&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;damaged&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1805611184" result="Passed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.025483" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32769" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;repaired-reference&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;repaired-reference&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="957252445" result="Passed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.024348" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32770" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;receipt&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;receipt&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="225147789" result="Passed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.024601" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32771" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;other-armor&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;other-armor&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1153495059" result="Passed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.031968" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32772" name="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;explicit-denial&quot;)" fullname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests.UnsupportedOrUnpermittedStockIsNeverSilentlyReduced(&quot;explicit-denial&quot;)" methodname="UnsupportedOrUnpermittedStockIsNeverSilentlyReduced" classname="CavesOfOoo.Tests.WorksiteArmorRecoveryTests" runstate="Runnable" seed="1339850615" result="Passed" start-time="2026-11-24 16:56:31Z" end-time="2026-11-24 16:56:31Z" duration="0.065956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -465,7 +465,7 @@ namespace CavesOfOoo.Core
         /// Deliberately contains no math of its own — see ForgePreview's
         /// anti-drift note.
         /// </summary>
-        private static void ApplyComponentStats(
+        internal static void ApplyComponentStats(
             Entity weapon,
             WeaponComponentPart blade,
             WeaponComponentPart haft,
