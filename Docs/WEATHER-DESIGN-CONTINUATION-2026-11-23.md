@@ -16,11 +16,13 @@ gameplay-evidence review0remainingP1/P2. See [receipt](Verification/MachineSyste
 and [contract](WEATHER-SHOWER-COLLECTION.md).
 
 W1b automatic crop rainfall, W2 another seasonal job on the SAME physical frame,
-wholeW1, natural discovery/frequency and weather package delivery remain open.
+wholeW1 and natural discovery/frequency remain open.
 The actual trial was directed and used a supplied strong fixture; do not call
 this ordinary acquisition or natural opportunity density. No global rainfall
 FX, HUD forecast, actor exposure or generic portable collection was added.
-Current Mac7ed predates W1a. Preserve all18apps and prior earned checkpoints.
+The new Mac074d packages W1a and vessel-oil refill; see the
+[bounded delivery receipt](Verification/MachineSystems/MacCandidate074D84FA9/README.md).
+Controlled packaged interactions remain open. Preserve all19apps and checkpoints.
 
 Latest user direction: develop numerous connected mechanics with medium-depth
 nuance, and provide frequent screenshots. Do not deepen W1a speculatively now

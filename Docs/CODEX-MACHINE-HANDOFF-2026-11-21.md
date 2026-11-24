@@ -1,3 +1,28 @@
+**Current Mac delivery — November23,2026:** runtime074d84fa9f9c2ee1db2eca407dd8aea19d694912
+packages accepted W1a shower collection and direct vessel-oil torch refill at
+`/Users/steven/coo-verification/builds/mac-074d84fa9-20261123/CavesOfOoo.app`.
+Universal6000.3.4f1/nondev,56.457165s364182637bytes/0errors/5samepriorwarnings.
+32055Git/SHA source pins,32058effective/83changed0missing3added/86overlayexact,
+592external/186player pins,27Cecil feature/wiring/field checks. One owned69751/
+window71562/640x428 actual save-choice/world/HUD7creatures2690entities, closed.
+NormalMacSaves now present from01:50UTC before this build; oldhelperrefused
+BEFORElaunch, source-qualified read-only startup preserved4files byte exact in
+place and restored18logical preferences. Freshpost/AXfalse/screentrue; no input,
+activation or request. All18prior3348files+new186exact=19apps preserved; fresh
+84foreign/861selectednormal/other2foreignexact. Mainstopped/rootnullclean/
+profileroff/original7views/index0. Independent source/package/startup artifact review0P1/P2 is
+recorded in the [Mac receipt](Verification/MachineSystems/MacCandidate074D84FA9/README.md).
+Controlled packaged interaction/save/controller/FPS/Intel remain open.
+Final shared-command integration103total/102pass/0fail/1Explicit utilityskip/0CS
+(52weather+23oil+28savedPart), overlapping prior runs. All12whole-machine gates,
+original failed full regression, W1b/W2 and natural-discovery/frequency remain
+open. Root sole owner/task ACTIVE every30minutes. User wants numerous connected
+mechanics with medium-depth nuance and frequent progress screenshots. Next
+broaden through another useful material/tool or lasting-project connection;
+qualify its source, ordinary alternative and visible consequence before RED.
+This supersedes older currentMac7ed references below; do not repeat earned tests,
+branches/builds. Graphics cancelled; capstan/cultures parked; Deck deferred.
+
 **Vessel oil and torch light — November23,2026:** direct finite liquid oil
 now refills an unlit packed torch:1oil→up to25fuel, existing LampOil tariff,
 no saleable item minting. Final core native257total/256pass/0fail/1utilityskip;
