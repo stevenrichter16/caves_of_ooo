@@ -1,0 +1,12 @@
+applied 1
+compile errors: 0
+{'total': '74', 'passed': '65', 'failed': '9', 'inconclusive': '0'}
+ FAIL FailedFinalCommitPreservesIndependentInjuryAndWaterLoss(False) | Expected: False   But was:  True
+ FAIL FailedFinalCommitPreservesIndependentInjuryAndWaterLoss(True) | Expected: False   But was:  True
+ FAIL FailedRinseDoesNotDryOrExpireAWetEffectRehomedToAnotherActor | Expected: False   But was:  True
+ FAIL FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem(False) | Expected: False   But was:  True
+ FAIL FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem(True) | Expected: False   But was:  True
+ FAIL FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange("replacement") | Expected: False   But was:  True
+ FAIL FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange("move") | Expected: False   But was:  True
+ FAIL FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange("hostile") | Expected: False   But was:  True
+ FAIL FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange("death") | Expected: False   But was:  True

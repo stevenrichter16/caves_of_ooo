@@ -135,15 +135,24 @@ namespace CavesOfOoo.Core
             if (actor == null || zone == null || pack == null || !Standing(zone) || !WorldResourceActions.Nearby(actor, ParentEntity, zone)) return Block(actor, "invalid-context", "You cannot reach the trap now.");
             int now = WorldClock.CurrentTick;
             var before = Project(zone, now); if (before.Held <= 0) return Block(actor, "empty", "There is nothing in the trap.");
-            var factory = HarvestablePart.Factory; var fish = factory?.CreateEntity(FishBlueprint);
-            if (fish == null) return Block(actor, "no-fish", "The trap holds nothing you can take.");
-            int unit = Math.Max(1, HandlingService.GetWeight(fish)), room = pack.MaxWeight < 0 ? int.MaxValue : Math.Max(0, (pack.MaxWeight - pack.GetCarriedWeight()) / unit);
-            int want = Math.Min(before.Held, Math.Min(room, fish.GetPart<StackerPart>()?.MaxStack ?? 1));
-            if (want <= 0) return Block(actor, "no-room", "You cannot carry any more fish.");
             bool own = tx == null; tx ??= new InventoryTransaction();
             try
             {
                 if (!tx.TryClaim(ParentEntity, actor, Command) || !tx.TryClaim(actor, actor, Command)) return Block(actor, "in-progress", "The trap is already being worked.");
+                var anchor = before.Anchor;
+                if (anchor != null && !tx.TryClaim(anchor, actor, Command)) return Block(actor, "in-progress", "The pond is already being worked.");
+                // Creation callbacks can run other actions. Claim the trap,
+                // actor and common pond before creating any output, then use
+                // the current projection rather than the pre-callback amount.
+                var factory = HarvestablePart.Factory; var fish = factory?.CreateEntity(FishBlueprint);
+                if (fish == null) return Block(actor, "no-fish", "The trap holds nothing you can take.");
+                if (!Standing(zone) || actor.GetPart<InventoryPart>() != pack || !WorldResourceActions.Nearby(actor, ParentEntity, zone))
+                    return Block(actor, "invalid-context", "You cannot reach the trap now.");
+                before = Project(zone, now);
+                if (before.Anchor != anchor || before.Held <= 0) return Block(actor, "changed-source", "The catch changed before you could take it.");
+                int unit = Math.Max(1, HandlingService.GetWeight(fish)), room = pack.MaxWeight < 0 ? int.MaxValue : Math.Max(0, (pack.MaxWeight - pack.GetCarriedWeight()) / unit);
+                int want = Math.Min(before.Held, Math.Min(room, fish.GetPart<StackerPart>()?.MaxStack ?? 1));
+                if (want <= 0) return Block(actor, "no-room", "You cannot carry any more fish.");
                 int heldBefore = Held, progressBefore = Progress, lastBefore = LastTick;
                 var stock = before.Anchor == null ? null : FishStockPart.For(zone, before.Anchor, now);
                 int availBefore = stock?.Available ?? 0, stockLastBefore = stock?.LastTick ?? 0, capBefore = stock?.Capacity ?? 0;

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 14:37:44Z" end-time="2026-11-24 14:37:45Z" duration="0.6728596">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41491" result="Failed" site="Child" start-time="2026-11-24 14:37:44Z" end-time="2026-11-24 14:37:45Z" duration="0.672860" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50572" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone4/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41491" result="Failed" site="Child" start-time="2026-11-24 14:37:44Z" end-time="2026-11-24 14:37:45Z" duration="0.669453" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="22961" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50573" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41491" result="Failed" site="Child" start-time="2026-11-24 14:37:44Z" end-time="2026-11-24 14:37:45Z" duration="0.668837" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50574" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41491" result="Failed" site="Child" start-time="2026-11-24 14:37:44Z" end-time="2026-11-24 14:37:45Z" duration="0.668297" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="14079" name="AcidRinseTests" fullname="CavesOfOoo.Tests.AcidRinseTests" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-11-24 14:37:44Z" end-time="2026-11-24 14:37:45Z" duration="0.188673" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="14120" name="EarlierCommitObserverCannotMakeRinseReduceAnotherActorsAcidCoat" fullname="CavesOfOoo.Tests.AcidRinseTests.EarlierCommitObserverCannotMakeRinseReduceAnotherActorsAcidCoat" methodname="EarlierCommitObserverCannotMakeRinseReduceAnotherActorsAcidCoat" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1317881890" result="Failed" start-time="2026-11-24 14:37:44Z" end-time="2026-11-24 14:37:44Z" duration="0.066327" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A committed rinse must not follow its former coating onto an unrelated recipient.
+  Expected: 21
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.AcidRinseTests.EarlierCommitObserverCannotMakeRinseReduceAnotherActorsAcidCoat () [0x000d1] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:178
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="14119" name="FailedRinseDoesNotDryOrExpireAWetEffectRehomedToAnotherActor" fullname="CavesOfOoo.Tests.AcidRinseTests.FailedRinseDoesNotDryOrExpireAWetEffectRehomedToAnotherActor" methodname="FailedRinseDoesNotDryOrExpireAWetEffectRehomedToAnotherActor" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1394569569" result="Failed" start-time="2026-11-24 14:37:44Z" end-time="2026-11-24 14:37:45Z" duration="0.027615" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0.80000001192092896d +/- 9.9999997473787516E-06d
+  But was:  0.19999998807907104d
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.AcidRinseTests.FailedRinseDoesNotDryOrExpireAWetEffectRehomedToAnotherActor () [0x000fb] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:165
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="14118" name="FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem" fullname="CavesOfOoo.Tests.AcidRinseTests.FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 14:37:45Z" end-time="2026-11-24 14:37:45Z" duration="0.088049" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="14116" name="FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem(False)" fullname="CavesOfOoo.Tests.AcidRinseTests.FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem(False)" methodname="FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="157885893" result="Failed" start-time="2026-11-24 14:37:45Z" end-time="2026-11-24 14:37:45Z" duration="0.025588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Rollback cannot refund another item's independently acquired water.
+  Expected: 3
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.AcidRinseTests.FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem (System.Boolean flask) [0x00160] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14117" name="FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem(True)" fullname="CavesOfOoo.Tests.AcidRinseTests.FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem(True)" methodname="FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="765858343" result="Failed" start-time="2026-11-24 14:37:45Z" end-time="2026-11-24 14:37:45Z" duration="0.060861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Rollback cannot refund another item's independently acquired water.
+  Expected: 3
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.AcidRinseTests.FailedRinseDoesNotRefundAVesselPartRehomedToAnotherItem (System.Boolean flask) [0x00160] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:149
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

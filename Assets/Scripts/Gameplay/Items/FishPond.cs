@@ -12,7 +12,9 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class FishPond
     {
-        public const int MinCells = 12, MaxCells = 800;
+        // A zone is already finite. A smaller traversal cap can assign one
+        // connected pond different anchors when approached from opposite shores.
+        public const int MinCells = 12, MaxCells = Zone.Width * Zone.Height;
         public const string PouredPool = "PouredLiquidPool", FishTag = "FishWater", LegacyBlueprint = "SprayPool";
 
         /// <summary>The pool owner of a fishable-water cell, whatever its volume or ice: the pond's structure. Null when the cell holds none.</summary>
@@ -64,18 +66,26 @@ namespace CavesOfOoo.Core
             return best ?? new List<Entity>();
         }
 
-        /// <summary>The pond beside (x, y): its anchor owner, or false when no fishable pond touches the cell.</summary>
+        /// <summary>The pond beside (x, y): retain its lowest existing stock
+        /// holder, or use the structural minimum when it has never been fished.
+        /// This preserves pre-existing budgets after expanding a legacy search;
+        /// multiple old records are never added together or rewritten.</summary>
         public static bool TryFind(Zone zone, int x, int y, out Entity anchor)
         {
             anchor = null;
             var water = Component(zone, x, y);
             if (water.Count < MinCells) return false;
             (int y, int x) best = (int.MaxValue, int.MaxValue);
+            Entity stocked = null; (int y, int x) stockedAt = (int.MaxValue, int.MaxValue);
             foreach (var e in water)
             {
                 var at = zone.GetEntityCell(e); if (at == null) continue;
                 if ((at.Y, at.X).CompareTo(best) < 0) { best = (at.Y, at.X); anchor = e; }
+                var stock = e.GetPart<FishStockPart>();
+                if (stock?.ParentEntity == e && (at.Y, at.X).CompareTo(stockedAt) < 0)
+                { stocked = e; stockedAt = (at.Y, at.X); }
             }
+            anchor = stocked ?? anchor;
             return anchor != null;
         }
     }

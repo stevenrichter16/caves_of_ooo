@@ -1,0 +1,8 @@
+applied 1
+compile errors: 0
+{'total': '74', 'passed': '69', 'failed': '5', 'inconclusive': '0'}
+ FAIL CancelledOuterActionRestoresOnlyItsLiquidAndFuelDeltas | Expected: 27   But was:  32.0f
+ FAIL ExactFourFeedAndFiveFuelCanBeSpentOnce | Expected: True   But was:  False
+ FAIL OneBatchPreservesExcessBrineAndWritesWaterIntoTheExactReceiver | Expected: True   But was:  False
+ FAIL ProducedWaterAndExcessBrineSurviveFullGraphReload | Expected: True   But was:  False
+ FAIL RepeatedRetainedCommandCannotDistillAgain | Expected: True   But was:  False

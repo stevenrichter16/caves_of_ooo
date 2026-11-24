@@ -27,7 +27,7 @@ namespace CavesOfOoo.Core
             && (command.StartsWith(GreasePrefix, StringComparison.Ordinal) || command.StartsWith(GritPrefix, StringComparison.Ordinal)
                 || CordSnareActions.IsCommand(command) || EmergencyDousingActions.IsCommand(command)
                 || CompanionCareActions.IsCommand(command) || MaterialFieldActions.IsCommand(command)
-                || EquipmentUtilityActions.IsCommand(command) || BodyCoatingCleanupActions.IsCommand(command) || PortableKindling.IsCommand(command));
+                || EquipmentUtilityActions.IsCommand(command) || BodyCoatingCleanupActions.IsCommand(command) || AcidRinseActions.IsCommand(command) || PortableKindling.IsCommand(command));
 
         public static void AddActions(Entity actor, Entity item, Zone zone, InventoryActionList actions)
         {
@@ -36,6 +36,7 @@ namespace CavesOfOoo.Core
             CompanionCareActions.AddActions(actor, item, zone, actions);
             MaterialFieldActions.AddActions(actor, item, zone, actions);
             BodyCoatingCleanupActions.AddActions(actor, item, zone, actions);
+            AcidRinseActions.AddActions(actor, item, zone, actions);
             EquipmentUtilityActions.AddActions(actor, item, zone, actions);
             if (actions == null || Validate(actor, item, zone, out bool grease) != null) return;
             var origin = zone.GetEntityCell(actor);
@@ -62,6 +63,7 @@ namespace CavesOfOoo.Core
             if (MaterialFieldActions.IsCommand(command)) return MaterialFieldActions.TryAct(actor, item, zone, command, transaction);
             if (EquipmentUtilityActions.IsCommand(command)) return EquipmentUtilityActions.TryAct(actor, item, zone, command, transaction);
             if (BodyCoatingCleanupActions.IsCommand(command)) return BodyCoatingCleanupActions.TryAct(actor, item, zone, command, transaction);
+            if (AcidRinseActions.IsCommand(command)) return AcidRinseActions.TryAct(actor, item, zone, command, transaction);
             if (!IsCommand(command)) return false;
             string invalid = Validate(actor, item, zone, out bool grease);
             if (invalid != null || transaction == null) return Reject(actor, item, command, invalid ?? "missing-transaction");

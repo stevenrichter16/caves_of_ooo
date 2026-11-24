@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="66" result="Failed(Child)" total="66" passed="20" failed="46" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:10Z" duration="2.6383855">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41483" result="Failed" site="Child" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:10Z" duration="2.638386" total="66" passed="20" failed="46" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50563" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone4/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41483" result="Failed" site="Child" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:10Z" duration="2.634985" total="66" passed="20" failed="46" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12907" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50564" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41483" result="Failed" site="Child" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:10Z" duration="2.634254" total="66" passed="20" failed="46" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50565" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41483" result="Failed" site="Child" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:10Z" duration="2.633653" total="66" passed="20" failed="46" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="14079" name="AcidRinseTests" fullname="CavesOfOoo.Tests.AcidRinseTests" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:09Z" duration="1.135263" total="35" passed="10" failed="25" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="14111" name="BeforeActionVetoSpendsNothing" fullname="CavesOfOoo.Tests.AcidRinseTests.BeforeActionVetoSpendsNothing" methodname="BeforeActionVetoSpendsNothing" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="239327776" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.063643" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.BeforeActionVetoSpendsNothing () [0x0001e] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:90
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="14086" name="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet" fullname="CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.254983" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="14080" name="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(False,1)" fullname="CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(False,1)" methodname="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="352163044" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.026476" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet (System.Boolean flask, System.Int32 amount) [0x00038] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14081" name="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(False,20)" fullname="CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(False,20)" methodname="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="103354654" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.025026" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet (System.Boolean flask, System.Int32 amount) [0x00038] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14082" name="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(False,21)" fullname="CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(False,21)" methodname="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="80085987" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.025182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet (System.Boolean flask, System.Int32 amount) [0x00038] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14083" name="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(True,1)" fullname="CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(True,1)" methodname="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="906455369" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.080552" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet (System.Boolean flask, System.Int32 amount) [0x00038] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14084" name="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(True,20)" fullname="CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(True,20)" methodname="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1760541326" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.069136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet (System.Boolean flask, System.Int32 amount) [0x00038] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14085" name="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(True,21)" fullname="CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet(True,21)" methodname="ExactAcidIsReducedForTwoWaterAndTargetBecomesWet" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="273742865" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.026960" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.ExactAcidIsReducedForTwoWaterAndTargetBecomesWet (System.Boolean flask, System.Int32 amount) [0x00038] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="14114" name="FailedFinalCommitPreservesIndependentInjuryAndWaterLoss" fullname="CavesOfOoo.Tests.AcidRinseTests.FailedFinalCommitPreservesIndependentInjuryAndWaterLoss" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.054616" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="14112" name="FailedFinalCommitPreservesIndependentInjuryAndWaterLoss(False)" fullname="CavesOfOoo.Tests.AcidRinseTests.FailedFinalCommitPreservesIndependentInjuryAndWaterLoss(False)" methodname="FailedFinalCommitPreservesIndependentInjuryAndWaterLoss" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1681508713" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.027294" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.FailedFinalCommitPreservesIndependentInjuryAndWaterLoss (System.Boolean flask) [0x00065] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14113" name="FailedFinalCommitPreservesIndependentInjuryAndWaterLoss(True)" fullname="CavesOfOoo.Tests.AcidRinseTests.FailedFinalCommitPreservesIndependentInjuryAndWaterLoss(True)" methodname="FailedFinalCommitPreservesIndependentInjuryAndWaterLoss" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="614007854" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:08Z" duration="0.026819" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.FailedFinalCommitPreservesIndependentInjuryAndWaterLoss (System.Boolean flask) [0x00065] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="14119" name="FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange" fullname="CavesOfOoo.Tests.AcidRinseTests.FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:09Z" duration="0.109936" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="14115" name="FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange(&quot;replacement&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange(&quot;replacement&quot;)" methodname="FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="290637209" result="Failed" start-time="2026-11-24 14:25:08Z" end-time="2026-11-24 14:25:09Z" duration="0.027511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange (System.String change) [0x0003d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14116" name="FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange(&quot;move&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange(&quot;move&quot;)" methodname="FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="165936447" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027168" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange (System.String change) [0x0003d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14117" name="FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange(&quot;hostile&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange(&quot;hostile&quot;)" methodname="FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1929951613" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027113" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange (System.String change) [0x0003d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14118" name="FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange(&quot;death&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange(&quot;death&quot;)" methodname="FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1774046395" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027309" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.FinalCallbackChangesRejectWithoutCleaningOrUndoingTheIndependentChange (System.String change) [0x0003d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="14087" name="FullWetDoesNotPreventSelfRinseAndOtherConditionsRemain" fullname="CavesOfOoo.Tests.AcidRinseTests.FullWetDoesNotPreventSelfRinseAndOtherConditionsRemain" methodname="FullWetDoesNotPreventSelfRinseAndOtherConditionsRemain" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="331423535" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027522" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.FullWetDoesNotPreventSelfRinseAndOtherConditionsRemain () [0x00087] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:39
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="14100" name="IneligibleTargetsOfferNoRinse" fullname="CavesOfOoo.Tests.AcidRinseTests.IneligibleTargetsOfferNoRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.141144" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="14095" name="IneligibleTargetsOfferNoRinse(&quot;outsider&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.IneligibleTargetsOfferNoRinse(&quot;outsider&quot;)" methodname="IneligibleTargetsOfferNoRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="978279452" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.030400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="14096" name="IneligibleTargetsOfferNoRinse(&quot;hostile&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.IneligibleTargetsOfferNoRinse(&quot;hostile&quot;)" methodname="IneligibleTargetsOfferNoRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="438111194" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027674" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="14097" name="IneligibleTargetsOfferNoRinse(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.IneligibleTargetsOfferNoRinse(&quot;hidden&quot;)" methodname="IneligibleTargetsOfferNoRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="162979663" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027088" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="14098" name="IneligibleTargetsOfferNoRinse(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.IneligibleTargetsOfferNoRinse(&quot;dead&quot;)" methodname="IneligibleTargetsOfferNoRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="564806364" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="14099" name="IneligibleTargetsOfferNoRinse(&quot;far&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.IneligibleTargetsOfferNoRinse(&quot;far&quot;)" methodname="IneligibleTargetsOfferNoRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="269400779" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="14090" name="InsufficientWaterOffersNoRinse" fullname="CavesOfOoo.Tests.AcidRinseTests.InsufficientWaterOffersNoRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.104763" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="14088" name="InsufficientWaterOffersNoRinse(0)" fullname="CavesOfOoo.Tests.AcidRinseTests.InsufficientWaterOffersNoRinse(0)" methodname="InsufficientWaterOffersNoRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="329813803" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.030777" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="14089" name="InsufficientWaterOffersNoRinse(1)" fullname="CavesOfOoo.Tests.AcidRinseTests.InsufficientWaterOffersNoRinse(1)" methodname="InsufficientWaterOffersNoRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="669627357" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.073517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="14094" name="NonWaterNeverAdvertisesRinse" fullname="CavesOfOoo.Tests.AcidRinseTests.NonWaterNeverAdvertisesRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.082729" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="14091" name="NonWaterNeverAdvertisesRinse(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.NonWaterNeverAdvertisesRinse(&quot;oil&quot;)" methodname="NonWaterNeverAdvertisesRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="519397320" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027860" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="14092" name="NonWaterNeverAdvertisesRinse(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.NonWaterNeverAdvertisesRinse(&quot;brine&quot;)" methodname="NonWaterNeverAdvertisesRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1648055806" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027076" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="14093" name="NonWaterNeverAdvertisesRinse(&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.NonWaterNeverAdvertisesRinse(&quot;bog-mire&quot;)" methodname="NonWaterNeverAdvertisesRinse" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1671225124" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="14120" name="ReentrantRinseCannotSpendTheSameActionTwice" fullname="CavesOfOoo.Tests.AcidRinseTests.ReentrantRinseCannotSpendTheSameActionTwice" methodname="ReentrantRinseCannotSpendTheSameActionTwice" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="555722602" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027158" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.ReentrantRinseCannotSpendTheSameActionTwice () [0x00030] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:127
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="14108" name="RetainedSelectionRejectsChangedAuthority" fullname="CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.184386" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="14101" name="RetainedSelectionRejectsChangedAuthority(&quot;amount&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority(&quot;amount&quot;)" methodname="RetainedSelectionRejectsChangedAuthority" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="803361482" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.026465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority (System.String change) [0x00020] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14102" name="RetainedSelectionRejectsChangedAuthority(&quot;kind&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority(&quot;kind&quot;)" methodname="RetainedSelectionRejectsChangedAuthority" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1808729843" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.026285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority (System.String change) [0x00020] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14103" name="RetainedSelectionRejectsChangedAuthority(&quot;source-id&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority(&quot;source-id&quot;)" methodname="RetainedSelectionRejectsChangedAuthority" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="614235765" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.026239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority (System.String change) [0x00020] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14104" name="RetainedSelectionRejectsChangedAuthority(&quot;replacement&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority(&quot;replacement&quot;)" methodname="RetainedSelectionRejectsChangedAuthority" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="539348154" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.026342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority (System.String change) [0x00020] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14105" name="RetainedSelectionRejectsChangedAuthority(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority(&quot;moved&quot;)" methodname="RetainedSelectionRejectsChangedAuthority" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="516840085" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.026147" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority (System.String change) [0x00020] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14106" name="RetainedSelectionRejectsChangedAuthority(&quot;hostile&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority(&quot;hostile&quot;)" methodname="RetainedSelectionRejectsChangedAuthority" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="2008931463" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.026178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority (System.String change) [0x00020] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="14107" name="RetainedSelectionRejectsChangedAuthority(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority(&quot;dead&quot;)" methodname="RetainedSelectionRejectsChangedAuthority" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="236060894" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.025947" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.RetainedSelectionRejectsChangedAuthority (System.String change) [0x00020] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="14121" name="RinseStateAndRemainingWaterRoundTripThroughRealSaveBodies" fullname="CavesOfOoo.Tests.AcidRinseTests.RinseStateAndRemainingWaterRoundTripThroughRealSaveBodies" methodname="RinseStateAndRemainingWaterRoundTripThroughRealSaveBodies" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1393549421" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.026044" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.RinseStateAndRemainingWaterRoundTripThroughRealSaveBodies () [0x00029] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:133
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="14110" name="WetVetoDoesNotDryAnExistingPartialWetEffect" fullname="CavesOfOoo.Tests.AcidRinseTests.WetVetoDoesNotDryAnExistingPartialWetEffect" methodname="WetVetoDoesNotDryAnExistingPartialWetEffect" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1198730638" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.026253" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.WetVetoDoesNotDryAnExistingPartialWetEffect () [0x0003c] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:83
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="14109" name="WetVetoRestoresPaymentWithoutTouchingAcid" fullname="CavesOfOoo.Tests.AcidRinseTests.WetVetoRestoresPaymentWithoutTouchingAcid" methodname="WetVetoRestoresPaymentWithoutTouchingAcid" classname="CavesOfOoo.Tests.AcidRinseTests" runstate="Runnable" seed="1661341329" result="Failed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.026025" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for RinseAcid|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.AcidRinseTests.Pick (CavesOfOoo.Core.Entity water, CavesOfOoo.Core.Entity target) [0x0000d] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:14
+at CavesOfOoo.Tests.AcidRinseTests.WetVetoRestoresPaymentWithoutTouchingAcid () [0x0001e] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/Items/AcidRinseTests.cs:75
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="21698" name="BrineDistillationTests" fullname="CavesOfOoo.Tests.BrineDistillationTests" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:10Z" duration="0.633843" total="20" passed="6" failed="14" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="21718" name="CancelledOuterActionRestoresOnlyItsLiquidAndFuelDeltas" fullname="CavesOfOoo.Tests.BrineDistillationTests.CancelledOuterActionRestoresOnlyItsLiquidAndFuelDeltas" methodname="CancelledOuterActionRestoresOnlyItsLiquidAndFuelDeltas" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1178796869" result="Failed" label="Error" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.035614" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.CancelledOuterActionRestoresOnlyItsLiquidAndFuelDeltas () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:72 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="21700" name="ExactFourFeedAndFiveFuelCanBeSpentOnce" fullname="CavesOfOoo.Tests.BrineDistillationTests.ExactFourFeedAndFiveFuelCanBeSpentOnce" methodname="ExactFourFeedAndFiveFuelCanBeSpentOnce" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="142072291" result="Failed" label="Error" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.067123" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.ExactFourFeedAndFiveFuelCanBeSpentOnce () [0x00027] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:30 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="21717" name="IneligibleInputsHaveNoEnabledDistillation" fullname="CavesOfOoo.Tests.BrineDistillationTests.IneligibleInputsHaveNoEnabledDistillation" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:10Z" duration="0.194063" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="21710" name="IneligibleInputsHaveNoEnabledDistillation(&quot;brine-short&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.IneligibleInputsHaveNoEnabledDistillation(&quot;brine-short&quot;)" methodname="IneligibleInputsHaveNoEnabledDistillation" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1626487355" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.028461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21711" name="IneligibleInputsHaveNoEnabledDistillation(&quot;receiver-small&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.IneligibleInputsHaveNoEnabledDistillation(&quot;receiver-small&quot;)" methodname="IneligibleInputsHaveNoEnabledDistillation" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1205931533" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21712" name="IneligibleInputsHaveNoEnabledDistillation(&quot;receiver-filled&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.IneligibleInputsHaveNoEnabledDistillation(&quot;receiver-filled&quot;)" methodname="IneligibleInputsHaveNoEnabledDistillation" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1372354011" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21713" name="IneligibleInputsHaveNoEnabledDistillation(&quot;stacked&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.IneligibleInputsHaveNoEnabledDistillation(&quot;stacked&quot;)" methodname="IneligibleInputsHaveNoEnabledDistillation" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="158369998" result="Failed" label="Error" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at CavesOfOoo.Tests.BrineDistillationTests.IneligibleInputsHaveNoEnabledDistillation (System.String change) [0x0014c] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:63 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21714" name="IneligibleInputsHaveNoEnabledDistillation(&quot;fuel-short&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.IneligibleInputsHaveNoEnabledDistillation(&quot;fuel-short&quot;)" methodname="IneligibleInputsHaveNoEnabledDistillation" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="451247342" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:09Z" duration="0.027331" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21715" name="IneligibleInputsHaveNoEnabledDistillation(&quot;cold&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.IneligibleInputsHaveNoEnabledDistillation(&quot;cold&quot;)" methodname="IneligibleInputsHaveNoEnabledDistillation" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="279261505" result="Passed" start-time="2026-11-24 14:25:09Z" end-time="2026-11-24 14:25:10Z" duration="0.027374" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21716" name="IneligibleInputsHaveNoEnabledDistillation(&quot;wrong-liquid&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.IneligibleInputsHaveNoEnabledDistillation(&quot;wrong-liquid&quot;)" methodname="IneligibleInputsHaveNoEnabledDistillation" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="310361823" result="Passed" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.028085" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="21699" name="OneBatchPreservesExcessBrineAndWritesWaterIntoTheExactReceiver" fullname="CavesOfOoo.Tests.BrineDistillationTests.OneBatchPreservesExcessBrineAndWritesWaterIntoTheExactReceiver" methodname="OneBatchPreservesExcessBrineAndWritesWaterIntoTheExactReceiver" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="983230657" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026801" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.OneBatchPreservesExcessBrineAndWritesWaterIntoTheExactReceiver () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:23 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="21720" name="ProducedWaterAndExcessBrineSurviveFullGraphReload" fullname="CavesOfOoo.Tests.BrineDistillationTests.ProducedWaterAndExcessBrineSurviveFullGraphReload" methodname="ProducedWaterAndExcessBrineSurviveFullGraphReload" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1348935896" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.027232" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.ProducedWaterAndExcessBrineSurviveFullGraphReload () [0x00028] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:85 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="21719" name="RepeatedRetainedCommandCannotDistillAgain" fullname="CavesOfOoo.Tests.BrineDistillationTests.RepeatedRetainedCommandCannotDistillAgain" methodname="RepeatedRetainedCommandCannotDistillAgain" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="316879070" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026549" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.RepeatedRetainedCommandCannotDistillAgain () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:80 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="21709" name="StaleQuoteNeverSubstitutesOrSpends" fullname="CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.255126" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="21701" name="StaleQuoteNeverSubstitutesOrSpends(&quot;source-volume&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends(&quot;source-volume&quot;)" methodname="StaleQuoteNeverSubstitutesOrSpends" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1474278688" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends (System.String change) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:38 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21702" name="StaleQuoteNeverSubstitutesOrSpends(&quot;source-liquid&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends(&quot;source-liquid&quot;)" methodname="StaleQuoteNeverSubstitutesOrSpends" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="904216783" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026010" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends (System.String change) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:38 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21703" name="StaleQuoteNeverSubstitutesOrSpends(&quot;receiver&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends(&quot;receiver&quot;)" methodname="StaleQuoteNeverSubstitutesOrSpends" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1346077555" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.025944" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends (System.String change) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:38 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21704" name="StaleQuoteNeverSubstitutesOrSpends(&quot;cold&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends(&quot;cold&quot;)" methodname="StaleQuoteNeverSubstitutesOrSpends" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1769853568" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026151" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends (System.String change) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:38 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21705" name="StaleQuoteNeverSubstitutesOrSpends(&quot;fuel&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends(&quot;fuel&quot;)" methodname="StaleQuoteNeverSubstitutesOrSpends" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1012384944" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.032741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends (System.String change) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:38 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21706" name="StaleQuoteNeverSubstitutesOrSpends(&quot;move&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends(&quot;move&quot;)" methodname="StaleQuoteNeverSubstitutesOrSpends" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1151860118" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.062589" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends (System.String change) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:38 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21707" name="StaleQuoteNeverSubstitutesOrSpends(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends(&quot;actor&quot;)" methodname="StaleQuoteNeverSubstitutesOrSpends" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1076550526" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.027429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends (System.String change) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:38 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21708" name="StaleQuoteNeverSubstitutesOrSpends(&quot;capacity&quot;)" fullname="CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends(&quot;capacity&quot;)" methodname="StaleQuoteNeverSubstitutesOrSpends" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1580999956" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026944" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.BrineDistillationTests.Row () [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:19 
+  at CavesOfOoo.Tests.BrineDistillationTests.StaleQuoteNeverSubstitutesOrSpends (System.String change) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:38 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="31291" name="SpringTrapRecoveryTests" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.289765" total="11" passed="4" failed="7" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="31301" name="CancelledRecoveryKeepsOriginalWithoutAnyReplacement" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.CancelledRecoveryKeepsOriginalWithoutAnyReplacement" methodname="CancelledRecoveryKeepsOriginalWithoutAnyReplacement" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="1138881016" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026706" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.Row (CavesOfOoo.Core.Entity d) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:13 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.CancelledRecoveryKeepsOriginalWithoutAnyReplacement () [0x00017] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:37 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31302" name="FullPackDoesNotLoseTheDevice" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.FullPackDoesNotLoseTheDevice" methodname="FullPackDoesNotLoseTheDevice" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="1138253268" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026215" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.Row (CavesOfOoo.Core.Entity d) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:13 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.FullPackDoesNotLoseTheDevice () [0x0000c] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:43 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31303" name="IndependentlyTriggeredDeviceDuringCreationIsNeverRestored" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.IndependentlyTriggeredDeviceDuringCreationIsNeverRestored" methodname="IndependentlyTriggeredDeviceDuringCreationIsNeverRestored" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="1732517754" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026076" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.Row (CavesOfOoo.Core.Entity d) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:13 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.IndependentlyTriggeredDeviceDuringCreationIsNeverRestored () [0x0001e] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:48 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31304" name="RecoveredLoadPersistsAndCanBeLaidAgain" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.RecoveredLoadPersistsAndCanBeLaidAgain" methodname="RecoveredLoadPersistsAndCanBeLaidAgain" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="957673223" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026408" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.Row (CavesOfOoo.Core.Entity d) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:13 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.RecoveredLoadPersistsAndCanBeLaidAgain () [0x00012] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:59 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31295" name="RecoveryRetainsExactlyOneLoadedKit" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.RecoveryRetainsExactlyOneLoadedKit" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.079076" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31292" name="RecoveryRetainsExactlyOneLoadedKit(&quot;heat&quot;,&quot;FireMoss&quot;)" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.RecoveryRetainsExactlyOneLoadedKit(&quot;heat&quot;,&quot;FireMoss&quot;)" methodname="RecoveryRetainsExactlyOneLoadedKit" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="819280737" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.Row (CavesOfOoo.Core.Entity d) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:13 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.RecoveryRetainsExactlyOneLoadedKit (System.String kind, System.String cartridge) [0x00015] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:18 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31293" name="RecoveryRetainsExactlyOneLoadedKit(&quot;cold&quot;,&quot;FrostLichen&quot;)" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.RecoveryRetainsExactlyOneLoadedKit(&quot;cold&quot;,&quot;FrostLichen&quot;)" methodname="RecoveryRetainsExactlyOneLoadedKit" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="764616905" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.025985" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.Row (CavesOfOoo.Core.Entity d) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:13 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.RecoveryRetainsExactlyOneLoadedKit (System.String kind, System.String cartridge) [0x00015] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:18 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31294" name="RecoveryRetainsExactlyOneLoadedKit(&quot;charge&quot;,&quot;SparkRoot&quot;)" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.RecoveryRetainsExactlyOneLoadedKit(&quot;charge&quot;,&quot;SparkRoot&quot;)" methodname="RecoveryRetainsExactlyOneLoadedKit" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="359901708" result="Failed" label="Error" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026110" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.Row (CavesOfOoo.Core.Entity d) [0x00000] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:13 
+  at CavesOfOoo.Tests.SpringTrapRecoveryTests.RecoveryRetainsExactlyOneLoadedKit (System.String kind, System.String cartridge) [0x00015] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:18 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31300" name="UnsupportedOrUnreachableDeviceHasNoRecovery" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.UnsupportedOrUnreachableDeviceHasNoRecovery" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.104126" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31296" name="UnsupportedOrUnreachableDeviceHasNoRecovery(&quot;unknown&quot;)" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.UnsupportedOrUnreachableDeviceHasNoRecovery(&quot;unknown&quot;)" methodname="UnsupportedOrUnreachableDeviceHasNoRecovery" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="566516601" result="Passed" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.026155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31297" name="UnsupportedOrUnreachableDeviceHasNoRecovery(&quot;unarmed&quot;)" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.UnsupportedOrUnreachableDeviceHasNoRecovery(&quot;unarmed&quot;)" methodname="UnsupportedOrUnreachableDeviceHasNoRecovery" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="649404503" result="Passed" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.025353" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31298" name="UnsupportedOrUnreachableDeviceHasNoRecovery(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.UnsupportedOrUnreachableDeviceHasNoRecovery(&quot;hidden&quot;)" methodname="UnsupportedOrUnreachableDeviceHasNoRecovery" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="1405104199" result="Passed" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.025932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31299" name="UnsupportedOrUnreachableDeviceHasNoRecovery(&quot;far&quot;)" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.UnsupportedOrUnreachableDeviceHasNoRecovery(&quot;far&quot;)" methodname="UnsupportedOrUnreachableDeviceHasNoRecovery" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="714038309" result="Passed" start-time="2026-11-24 14:25:10Z" end-time="2026-11-24 14:25:10Z" duration="0.025964" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

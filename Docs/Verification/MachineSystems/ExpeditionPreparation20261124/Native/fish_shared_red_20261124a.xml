@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 14:08:05Z" end-time="2026-11-24 14:08:05Z" duration="0.7866826">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41415" result="Failed" site="Child" start-time="2026-11-24 14:08:05Z" end-time="2026-11-24 14:08:05Z" duration="0.786683" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50481" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41415" result="Failed" site="Child" start-time="2026-11-24 14:08:05Z" end-time="2026-11-24 14:08:05Z" duration="0.720481" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="98551" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50482" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41415" result="Failed" site="Child" start-time="2026-11-24 14:08:05Z" end-time="2026-11-24 14:08:05Z" duration="0.660923" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50483" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41415" result="Failed" site="Child" start-time="2026-11-24 14:08:05Z" end-time="2026-11-24 14:08:05Z" duration="0.533499" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24566" name="FishTrapTests" fullname="CavesOfOoo.Tests.FishTrapTests" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" testcasecount="33" result="Failed" site="Child" start-time="2026-11-24 14:08:05Z" end-time="2026-11-24 14:08:05Z" duration="0.204467" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24571" name="SharedPondReview_CreationCallbackCannotTakeTheSameFishTwice" fullname="CavesOfOoo.Tests.FishTrapTests.SharedPondReview_CreationCallbackCannotTakeTheSameFishTwice" methodname="SharedPondReview_CreationCallbackCannotTakeTheSameFishTwice" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="1546229368" result="Failed" start-time="2026-11-24 14:08:05Z" end-time="2026-11-24 14:08:05Z" duration="0.130250" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  One held fish cannot become two through creation reentry.
+  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FishTrapTests.SharedPondReview_CreationCallbackCannotTakeTheSameFishTwice () [0x00097] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FishTrapTests.cs:121
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="24572" name="SharedPondReview_OppositeShoresOfALargePondKeepOneAnchor" fullname="CavesOfOoo.Tests.FishTrapTests.SharedPondReview_OppositeShoresOfALargePondKeepOneAnchor" methodname="SharedPondReview_OppositeShoresOfALargePondKeepOneAnchor" classname="CavesOfOoo.Tests.FishTrapTests" runstate="Runnable" seed="275241864" result="Failed" start-time="2026-11-24 14:08:05Z" end-time="2026-11-24 14:08:05Z" duration="0.067767" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  All 1260 connected cells share one pond, not one budget per traversal origin.
+  Expected: same as <Entity(spray pool)>
+  But was:  <Entity(spray pool)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FishTrapTests.SharedPondReview_OppositeShoresOfALargePondKeepOneAnchor () [0x000cb] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FishTrapTests.cs:134
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,3 +1,27 @@
+**Expedition preparation — November24,2026:** three new capabilities implemented
+and qualified through actual supplied GameBootstrap1840->2100/fresh2100: finite
+4brine+5fuel->2water in one chosen flask;2water removes up to20acid and leaves Wet;
+recover/re-lay unsprung loaded spring traps while spent traps stay spent.
+Actual brine12->4/two2-water flasks,one timber,then one distilled flask emptied
+on acid60->5 (20rinse+35normal dry-down). Hazard still dealt3damage; no healing or
+complete protection claim. Old water3/second distilled2/brine4/one loadedkit
+persisted exact selected-state fresh2100 at48,16HP352/50drams. Five screenshots,
+free readers, all4save files archived before each Finish; compressed bytes differ.
+Final valid RED74/53fail21controls0CS -> GREEN154/154, adjacent152/152 separately;
+review RED3+4 and3mutants killed. Fish callback/whole-pond/legacy-holder fixes
+separately102/102; no replay of older fishing actual1100. No new saved Parts/fields.
+Independent source/recorded-play review including matched addendum0P1/P2.
+Matched85acid extra branch saves3HP over equal3actions for2water; primary2100
+fresh remains separate. Bounded Editor/native accepted. CurrentMac238 excludes
+this batch. [Contract](MACHINE-EXPEDITION-PREPARATION-BATCH.md) /
+[receipt](Verification/MachineSystems/ExpeditionPreparation20261124/README.md).
+Fresh15:26UTC84foreign861selectednormal2otherforeign22apps4092files4Macsaves
+exact; main stopped/rootnull/clean/profileroff/original7views/index0/inputrestored.
+All12complete-machine gates/failed full suite/W1b/W2/ordinary discovery density
+remain open. Next publish the reviewed batch and one coherent Mac, then broaden
+another material/tool/project connection. Supplied fresh2100 retained; ordinary2440
+separate. Root sole owner; task ACTIVE every30minutes,3-5new capabilities per run.
+
 **Regional fuel Mac delivery — November24,2026:** runtime
 238096389f84ff55c97dc7691b2bfe089b959799 is now the current bounded Mac delivery.
 [Package receipt](Verification/MachineSystems/MacCandidate238096389/README.md)
@@ -1228,7 +1252,7 @@ current statuses. See [weather opportunities](WEATHER-AND-SEASONAL-TOOL-USES.md)
 | Machine | Why it would be useful | Missing support and meaningful choice | First evidence required | Status |
 | --- | --- | --- | --- | --- |
 | Forge and reclamation rig | Recover useful workmanship from finite damaged finds. | Physical recoverable parts/quantities and irreversible salvage choices; preserve an assembly versus obtain repair stock. Existing weapon salvage is a foundation. | Two genuinely useful competing outputs, one source consumed once, both usable outside the new rig. | Complete machine remains proposed. BoundedM3a recovery/cold-dressing accepted:294native plus28distinct UIcases; both actual output branches/assembly/combat/travel/freshreload and independent0P1/P2. Current Mac source1237eae9f actual process/assembly/equip/travel/freshreload3230HP40 accepted, independentdelivery0P1/P2; no raw-ore/heat/jobs acceptance. M3b accepted4dcb2d5bc adds prepared offcut→existingbinding via explicitHandCutting, actualcurrentMac3570HP40 passes. M3c accepted bounded finite multi-input processing adds actualcord+recoveredleather→existingGuardLashing away fromstation,327native/actualexistingrefit/travel/fresh4420HP40/sourcegameplayvisual0P1/P2; publishedc600701d0/currentMac actual4410HP40 passes, independent finaldeliveryreview0P1/P2; currentMac accepted. Neither is a new complete machine. |
-| Fractionating still | Turn a difficult local feed into a useful liquid and retained residue. | Known feed accounting, bounded processing, fuel/work, output and waste receivers. Existing reagent still is not fractionation. | Source-to-receiver accounting, real use of the result, blocked/interrupted/reloaded jobs and waste handling. | Proposed complete machine; M1d discrete preparation and portable output use accepted. November22 bounded baking127native+actual finite mire48->24, two clay/20process fuel, lasting Gleaners well repair and fresh3540/3640 qualified (RegionalClay20261122). Well/flask transport qualified across village/grove/camp (WellFlasks20261122). General fractionation, physical waste, elapsed jobs and unloaded work remain open. |
+| Fractionating still | Turn a difficult local feed into a useful liquid and retained residue. | Known feed accounting, bounded processing, fuel/work, output and waste receivers. Existing reagent still is not fractionation. | Source-to-receiver accounting, real use of the result, blocked/interrupted/reloaded jobs and waste handling. | Proposed complete machine; M1d discrete preparation and portable output use accepted. November22 bounded baking127native+actual finite mire48->24, two clay/20process fuel, lasting Gleaners well repair and fresh3540/3640 qualified (RegionalClay20261122). Well/flask transport qualified across village/grove/camp (WellFlasks20261122). November24 bounded brine distillation adds4brine+5fuel->2water, actual portable acid-rinse use and fresh2100; discarded concentrate/no salt, not general separation or physical waste. General fractionation, physical waste, elapsed jobs and unloaded work remain open. |
 | Restoration cradle | Recover the particular function of damaged equipment. | Persistent component slots, explicit compatibility, faults and tested substitution tradeoffs. | Restored apparatus performs its real action; alternate repair changes a legible capability, not merely item flavor. | Proposed; M1b recovery/service and M1c bounded relocation accepted; current Mac includes M1b/M1c; complete-machine prerequisites open. |
 | Assay cabinet | Spend evidence to make a practical decision. | Samples with quantity/provenance, authored questions and partial findings. | An answer changes a processing, repair or route choice; missing evidence and hidden knowledge remain unavailable. | Proposed; machine-specific prerequisites open. |
 | Culture vat | Grow a finite useful culture from acquired stock. | Strain identity, feedstock, bounded growth, conditions and yield allocation. | Two competing uses for one finite culture, different supported conditions, consent/ownership and persistence. | Proposed; finite culture identity/feed/growth/conditions and competing uses remain open. M1d oil preparation does not implement cultures. |
@@ -1238,7 +1262,7 @@ current statuses. See [weather opportunities](WEATHER-AND-SEASONAL-TOOL-USES.md)
 | Dynamo and charging bench | Prepare finite work for portable equipment. | Authored energy source, storage loss/capacity and at least one real consumer. | Charged equipment does useful work away from the generator; finite conversion and refusal paths are verified. | Proposed; machine-specific prerequisites open. |
 | Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed complete machine; bounded existing sounding-rod supply now follows lasting Cinderhold repair or seep sealing, with actual paid purchase/read/fresh10810 proof. This does not add sensing behavior, calibration or a complete expedition/resonator; machine-specific gates remain open. |
 | Signal relay | Coordinate separated people and owned locations. | Connectivity, observed reports and persistent dispatch/delivery state with genuine cargo custody. | One physical delivery or report follows a real arrangement, survives interruption/reload and cannot duplicate goods. | Proposed; machine-specific prerequisites open. |
-| Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. | Proposed; existing coatings/reagents are foundations; targeted treatment eligibility, effects, alternatives and persistence remain open. M1d does not implement treatment. |
+| Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. | Proposed; existing coatings/reagents are foundations; November24 finite carried-water acid rinse is bounded actual/native qualified (self actual; adjacent party native), leaves Wet and no healing; no complete bath. Broader targeted treatment eligibility, effects, alternatives and persistence remain open. M1d does not implement treatment. |
 
 November24 package addendum: accepted currentMac088 includes both the lasting
 Cinderhold supply and shared water-menu prerequisite with source/artifact/startup

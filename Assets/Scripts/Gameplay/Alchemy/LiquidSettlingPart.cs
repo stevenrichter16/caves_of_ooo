@@ -14,9 +14,22 @@ namespace CavesOfOoo.Core
     /// <para>Fire is coupled, not assumed: the batch burns <see cref="FuelPerBatch"/> from a burning fire within <see cref="FireReach"/> of the still that can spare it, and refuses up front
     /// with the numbers otherwise.</para>
     /// </summary>
-    public sealed class LiquidSettlingPart : Part, IDescribeState, IDescribeUse
+    public sealed class LiquidSettlingPart : Part, IDescribeState, IDescribeUse, IInventoryActionReceiptOwner
     {
         public override string Name => "LiquidSettling";
+        public bool OwnsInventoryReceipt(string command) => BrineDistillation.IsCommand(command);
+        internal bool DistillationStanding => Standing;
+        internal Entity DistillationFire(Zone zone) => FindFire(zone, out _, BrineDistillation.Fuel);
+        internal bool DistillationFireReady(Zone zone, Entity fire, int need)
+        {
+            var at = zone?.GetEntityCell(ParentEntity); var there = fire == null ? null : zone?.GetEntityCell(fire);
+            return at != null && there != null && WorldResourceActions.Ground(fire, zone)
+                && (need == 0 ? fire.GetPart<ThermalPart>() != null && WorldResourceActions.Finite(fire.GetPart<ThermalPart>().Temperature)
+                    && (fire.GetPart<CampfirePart>()?.FiniteCooking == true ? fire.GetPart<ThermalPart>().Temperature >= CookingService.MinimumFiniteCookingTemperature : fire.GetPart<ThermalPart>().IsAflame)
+                    && !(fire.GetEffect<FrozenEffect>()?.Cold > 0) && !(fire.GetEffect<WetEffect>()?.Moisture > WetLimit) : Burning(fire, ParentEntity))
+                && fire.GetPart<FuelPart>()?.FuelMass >= need
+                && Math.Max(Math.Abs(at.X - there.X), Math.Abs(at.Y - there.Y)) <= FireReach;
+        }
 
         public const string Command = "SettleLiquid|", AllCommand = "SettleAll|", Feed = "bog-mire", Water = "water", Oil = "oil";
         public const int Ratio = 4, FuelPerBatch = 5, FireReach = 2;
@@ -34,12 +47,19 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 var actor = e.GetParameter<Entity>("Actor");
+                BrineDistillation.AddRows(actor, this, e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? SettlementRuntime.ActiveZone, e.GetParameter<InventoryActionList>("Actions"));
                 AddRows(actor, e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? SettlementRuntime.ActiveZone, e.GetParameter<InventoryActionList>("Actions"));
                 return true;
             }
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
+                if (BrineDistillation.IsCommand(command))
+                {
+                    var who = e.GetParameter<Entity>("Actor");
+                    if (!BrineDistillation.TryAct(who, this, e.GetParameter<Zone>("Zone") ?? who?.SpatialZone ?? SettlementRuntime.ActiveZone, command, e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
+                    e.Handled = true; return false;
+                }
                 bool one = command != null && command.StartsWith(Command, StringComparison.Ordinal), all = command != null && command.StartsWith(AllCommand, StringComparison.Ordinal), bake = command != null && command.StartsWith(BakeCommand, StringComparison.Ordinal);
                 if (!one && !all && !bake) return true;
                 var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? SettlementRuntime.ActiveZone; var tx = e.GetParameter<InventoryTransaction>("InventoryTransaction");
@@ -126,6 +146,7 @@ namespace CavesOfOoo.Core
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
             if (!Standing) return;
+            guide.How.Add("A hot fire can also distil 4 brine into 2 water in a separate empty flask, using 5 fuel. The concentrate is discarded; no salt is recovered.");
             guide.How.Add("With a flask of bog-mire in your pack, press C beside it and choose settle (to clean water or to oil), or bake to boil mire down to fire clay.");
             guide.Needs.Add("to settle: a flask with at least " + Ratio + " units of bog-mire, and either a burning fire within " + FireReach + " cells that can spare " + FuelPerBatch + " fuel a flask or a steam vent or ash bed within " + FireReach + " cells");
             guide.Needs.Add("to bake clay: a flask with at least " + ClayRatio + " units, and a burning fire within " + FireReach + " cells that can spare " + ClayFuel + " fuel (a vent is not hot enough)");

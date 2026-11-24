@@ -1,3 +1,27 @@
+**Expedition preparation — November24,2026:** three new capabilities implemented
+and qualified through actual supplied GameBootstrap1840->2100/fresh2100: finite
+4brine+5fuel->2water in one chosen flask;2water removes up to20acid and leaves Wet;
+recover/re-lay unsprung loaded spring traps while spent traps stay spent.
+Actual brine12->4/two2-water flasks,one timber,then one distilled flask emptied
+on acid60->5 (20rinse+35normal dry-down). Hazard still dealt3damage; no healing or
+complete protection claim. Old water3/second distilled2/brine4/one loadedkit
+persisted exact selected-state fresh2100 at48,16HP352/50drams. Five screenshots,
+free readers, all4save files archived before each Finish; compressed bytes differ.
+Final valid RED74/53fail21controls0CS -> GREEN154/154, adjacent152/152 separately;
+review RED3+4 and3mutants killed. Fish callback/whole-pond/legacy-holder fixes
+separately102/102; no replay of older fishing actual1100. No new saved Parts/fields.
+Independent source/recorded-play review including matched addendum0P1/P2.
+Matched85acid extra branch saves3HP over equal3actions for2water; primary2100
+fresh remains separate. Bounded Editor/native accepted. CurrentMac238 excludes
+this batch. [Contract](MACHINE-EXPEDITION-PREPARATION-BATCH.md) /
+[receipt](Verification/MachineSystems/ExpeditionPreparation20261124/README.md).
+Fresh15:26UTC84foreign861selectednormal2otherforeign22apps4092files4Macsaves
+exact; main stopped/rootnull/clean/profileroff/original7views/index0/inputrestored.
+All12complete-machine gates/failed full suite/W1b/W2/ordinary discovery density
+remain open. Next publish the reviewed batch and one coherent Mac, then broaden
+another material/tool/project connection. Supplied fresh2100 retained; ordinary2440
+separate. Root sole owner; task ACTIVE every30minutes,3-5new capabilities per run.
+
 **Regional fuel Mac delivery — November24,2026:** runtime
 238096389f84ff55c97dc7691b2bfe089b959799 is now the current bounded Mac delivery.
 [Package receipt](Verification/MachineSystems/MacCandidate238096389/README.md)

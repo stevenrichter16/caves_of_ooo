@@ -31,7 +31,7 @@ namespace CavesOfOoo.Tests
             SettlementRuntime.ActiveZone = wild; Pack.MaxWeight = 400;
             for (int x = PondX0; x <= PondX1; x++) for (int y = PondY0; y <= PondY1; y++) Assert.True(wild.AddEntity(Factory.CreateEntity("SprayPool"), x, y));
         }
-        [TearDown] public void TearDownTrap() { PackableFixtureRegistry.ResetForTests(); }
+        [TearDown] public void TearDownTrap() { PackableFixtureRegistry.ResetForTests(); FiftyWorldCreationProbe.Created = null; }
 
         // ── helpers ──
 
@@ -101,6 +101,74 @@ namespace CavesOfOoo.Tests
         }
 
         // ── catching, reading and taking ──
+
+        [Test] public void SharedPondReview_CreationCallbackCannotTakeTheSameFishTwice()
+        {
+            var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east");
+            Part(trap).Held = 1;
+            bool nested = false;
+            Factory.RegisterPartType<FiftyWorldCreationProbe>();
+            Factory.Blueprints["LakePerch"].Parts["FiftyWorldCreationProbe"] = new Dictionary<string, string>();
+            FiftyWorldCreationProbe.Created = _ =>
+            {
+                FiftyWorldCreationProbe.Created = null;
+                var e = GameEvent.New("InventoryAction");
+                e.SetParameter("Actor", Actor); e.SetParameter("Zone", wild);
+                e.SetParameter("Command", FishTrapPart.Command);
+                nested = !trap.FireEventAndRelease(e);
+            };
+            Assert.True(Act(trap, FishTrapPart.Command));
+            Assert.AreEqual(1, Perch(), "One held fish cannot become two through creation reentry.");
+            Assert.False(nested, "The trap must be claimed before creating its output.");
+            Assert.AreEqual(0, Part(trap).Held);
+        }
+
+        [Test] public void SharedPondReview_OppositeShoresOfALargePondKeepOneAnchor()
+        {
+            LargePond();
+            Assert.True(FishPond.TryFind(wild, 3, 11, out var west));
+            Assert.True(FishPond.TryFind(wild, 74, 11, out var east));
+            Assert.AreSame(west, east, "All 1260 connected cells share one pond, not one budget per traversal origin.");
+            var stock = FishStockPart.For(wild, west, WorldClock.CurrentTick); stock.Available = 1;
+            Assert.AreSame(stock, FishStockPart.For(wild, east, WorldClock.CurrentTick));
+            Assert.AreEqual(1, east.GetPart<FishStockPart>().Available);
+        }
+
+        void LargePond()
+        {
+            foreach (var water in wild.GetReadOnlyEntities().Where(e => e.HasPart<LiquidPoolPart>()).ToArray())
+                Assert.True(wild.RemoveEntity(water));
+            for (int x = 4; x <= 73; x++) for (int y = 3; y <= 20; y++)
+                Assert.True(wild.AddEntity(Factory.CreateEntity("SprayPool"), x, y));
+        }
+
+        [Test] public void SharedPondLegacy_ExhaustedFarAnchorSurvivesSavedGraph()
+        {
+            LargePond();
+            var far = FishPond.StructuralAt(wild, 73, 3);
+            far.AddPart(new FishStockPart { Capacity = 6, Available = 0, LastTick = WorldClock.CurrentTick });
+            var restored = PartRoundTripHelper.RoundTripEntityViaTokenGraph(far);
+            Assert.True(wild.RemoveEntity(far)); Assert.True(wild.AddEntity(restored, 73, 3));
+            Assert.True(FishPond.TryFind(wild, 3, 11, out var west));
+            Assert.True(FishPond.TryFind(wild, 74, 11, out var east));
+            Assert.AreSame(restored, west, "Expanding a saved search must not abandon its exhausted stock.");
+            Assert.AreSame(restored, east);
+            Assert.AreEqual(0, FishStockPart.For(wild, west, WorldClock.CurrentTick).Available);
+        }
+
+        [Test] public void SharedPondLegacy_MultipleSavedBudgetsSelectOneWithoutSumming()
+        {
+            LargePond();
+            var first = FishPond.StructuralAt(wild, 20, 4);
+            var other = FishPond.StructuralAt(wild, 70, 8);
+            first.AddPart(new FishStockPart { Capacity = 4, Available = 1, LastTick = WorldClock.CurrentTick });
+            other.AddPart(new FishStockPart { Capacity = 8, Available = 8, LastTick = WorldClock.CurrentTick });
+            Assert.True(FishPond.TryFind(wild, 3, 11, out var west));
+            Assert.True(FishPond.TryFind(wild, 74, 11, out var east));
+            Assert.AreSame(first, west); Assert.AreSame(first, east);
+            Assert.AreEqual(1, FishStockPart.For(wild, west, WorldClock.CurrentTick).Available);
+            Assert.AreEqual(8, other.GetPart<FishStockPart>().Available, "Do not merge, top up or rewrite another saved budget.");
+        }
 
         [Test] public void ACarriedTrapIsAKitThatOffersNothingAndSaysWhatItIs_Counter()
         {

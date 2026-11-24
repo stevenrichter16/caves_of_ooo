@@ -33,6 +33,7 @@ namespace CavesOfOoo.Core
 
         public static bool IsCommand(string command) => command != null && (command.StartsWith(LoadPrefix, StringComparison.Ordinal) || command.StartsWith(LayPrefix, StringComparison.Ordinal));
         public static string WordFor(string kind) { foreach (var c in Cartridges) if (c.kind == kind) return c.word; return ""; }
+        internal static string CartridgeFor(string kind) { foreach (var c in Cartridges) if (c.kind == kind) return c.blueprint; return ""; }
         static bool Known(string kind) { foreach (var c in Cartridges) if (c.kind == kind) return true; return false; }
 
         public ReaderScope Scope => ReaderScope.Both;
@@ -46,6 +47,7 @@ namespace CavesOfOoo.Core
             if (Loaded.Length == 0) guide.Needs.Add("one fire moss, frost lichen or spark root in your pack, to load it with");
             else guide.Needs.Add("an empty, passable cell beside you to lay it on, ideally one with oil or water on it (it is loaded with " + WordFor(Kind) + ")");
             guide.Limits.Add("Loading spends the cartridge and springing spends the trap. It does not know who laid it: you spring it too. Fire is not laid on the Choir's ground.");
+            guide.How.Add("Before a laid trap springs, stand beside it and choose recover the loaded spring trap. The recovered frame keeps its load for another position.");
             var actor = context.Viewer; if (actor == null) return;
             guide.WhyNot = !UseGuides.CarriedBy(actor, ParentEntity) ? UseGuides.PickUpFirst : actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true ? "you cannot act just now" : "no cell beside you is free to lay it on";
         }
@@ -90,7 +92,7 @@ namespace CavesOfOoo.Core
                 // On the Choir's ground one disabled row says why; the interact menu of each open cell beside you offers that same row, so the refusal is where the player looked. It names no direction for that reason.
                 if (fireBanned) { (banned ??= actions.AddDisabled("LaySpringTrap", "lay the " + WordFor(Kind) + " trap", "grove-law", "Fire is not laid on the Choir's ground.", '\0', 17).InGroup(ToolGroups.Lay)).AtCell(x, y); continue; }
                 string label = "lay the " + WordFor(Kind) + " trap " + d.label;
-                actions.AddActionWithHint("LaySpringTrap", label, LayPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + N(x) + "|" + N(y), "Lays it on that cell. It springs on the next thing to step there, you included, and is spent. It cannot be taken up again.", '\0', 17, false, ActionTime.OneAction).AtCell(x, y).InGroup(ToolGroups.Lay);
+                actions.AddActionWithHint("LaySpringTrap", label, LayPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + N(x) + "|" + N(y), "Lays it on that cell. It springs on the next thing to step there, you included, and is spent. Recover it from beside it before it springs to keep the loaded frame.", '\0', 17, false, ActionTime.OneAction).AtCell(x, y).InGroup(ToolGroups.Lay);
             }
         }
 
@@ -173,8 +175,15 @@ namespace CavesOfOoo.Core
     /// A laid spring trap (<see cref="SpringTrapKitPart"/>): sprung by the next thing to step onto its cell (anyone: it does not know its layer), it writes its load into that cell through the tile-state routines and
     /// resolves the reactions at once, then is spent. It is armed only after the laying action commits.
     /// </summary>
-    public sealed class SpringTrapPart : TriggerOnStepPart
+    public sealed class SpringTrapPart : TriggerOnStepPart, IInventoryActionReceiptOwner, IDescribeUse
     {
+        public int Order => 30;
+        public bool OwnsInventoryReceipt(string command) => SpringTrapRecovery.IsCommand(command);
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("Keep off the trap's cell. Stand beside it, press C and choose recover the loaded spring trap to move the frame with its load still in it.");
+            guide.Limits.Add("Recovery takes one action and needs room in your pack. A trap that has already sprung is spent.");
+        }
         /// <summary>"heat", "cold" or "charge". Saved.</summary>
         public string Kind = "";
         /// <summary>False until the action that laid it commits, so a refused or interrupted laying cannot spring on anyone. Saved (a saved trap is armed).</summary>
@@ -186,6 +195,10 @@ namespace CavesOfOoo.Core
         {
             if (!Armed || ParentEntity == null) return;
             var at = zone.GetEntityCell(ParentEntity); if (at == null) return;
+            if (SpringTrapKitPart.CartridgeFor(Kind) == "") return;
+            // Mark the cartridge spent before reactions can call back into it.
+            // Recovery must distinguish independent firing from its own removal.
+            Armed = false;
             switch (Kind)
             {
                 case "heat": ZoneTileStateSystem.AddHeat(zone, at.X, at.Y, 1, actor, "SpringTrap"); break;
@@ -200,6 +213,14 @@ namespace CavesOfOoo.Core
 
         public override bool HandleEvent(GameEvent e)
         {
+            if (e.ID == "GetInventoryActions")
+            { var who = e.GetParameter<Entity>("Actor"); SpringTrapRecovery.AddRows(who, this, e.GetParameter<Zone>("Zone") ?? who?.SpatialZone, e.GetParameter<InventoryActionList>("Actions")); return true; }
+            if (e.ID == "InventoryAction" && SpringTrapRecovery.IsCommand(e.GetStringParameter("Command")))
+            {
+                var who = e.GetParameter<Entity>("Actor");
+                if (!SpringTrapRecovery.TryAct(who, this, e.GetParameter<Zone>("Zone") ?? who?.SpatialZone, e.GetStringParameter("Command"), e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
+                e.Handled = true; return false;
+            }
             if (!Armed && e.ID == "EntityEnteredCell") return true;   // an unarmed trap does nothing and is not consumed
             return base.HandleEvent(e);
         }

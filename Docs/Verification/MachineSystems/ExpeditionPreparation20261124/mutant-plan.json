@@ -1,0 +1,20 @@
+[
+  {
+    "id": "m1-no-distill-fuel",
+    "file": "Assets/Scripts/Gameplay/Alchemy/BrineDistillation.cs",
+    "old": "fuel.FuelMass -= Fuel;",
+    "new": "fuel.FuelMass -= 0;"
+  },
+  {
+    "id": "m2-no-rinse-final-gate",
+    "file": "Assets/Scripts/Gameplay/Items/AcidRinseActions.cs",
+    "old": "tx.BeforeCommit(() => Current(true));",
+    "new": "tx.BeforeCommit(() => true);"
+  },
+  {
+    "id": "m3-no-spent-cartridge",
+    "file": "Assets/Scripts/Gameplay/Items/SpringTrapParts.cs",
+    "old": "            Armed = false;\n            switch (Kind)",
+    "new": "            // mutant omits spent cartridge\n            switch (Kind)"
+  }
+]

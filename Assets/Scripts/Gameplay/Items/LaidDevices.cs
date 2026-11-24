@@ -148,11 +148,14 @@ namespace CavesOfOoo.Core
 
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 30;
-        public string DescribeState(DescribeContext context) => string.IsNullOrEmpty(ItemBlueprint) ? "Laid for good: it cannot be taken up again." : "Laid on the ground. You can take it up from beside it.";
+        public string DescribeState(DescribeContext context) => SpringTrapRecovery.Supported(ParentEntity)
+            ? "Armed spring trap. Recover it from beside it before it springs to keep the loaded frame."
+            : string.IsNullOrEmpty(ItemBlueprint) ? "Laid for good: it cannot be taken up again." : "Laid on the ground. You can take it up from beside it.";
 
         /// <summary>How to take it up, or why you cannot (the owner, 2026-11-21). The "right now" line is built from the take-up row.</summary>
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
+            if (SpringTrapRecovery.Supported(ParentEntity)) { guide.How.Add("Stand beside the armed spring trap and choose recover the loaded spring trap; its load stays in the frame."); return; }
             if (string.IsNullOrEmpty(ItemBlueprint)) { guide.Limits.Add("Once laid it stays: it cannot be taken up again."); return; }
             guide.How.Add("Stand beside it, press C on it and choose take up the " + Label + "; it comes back to your pack to lay elsewhere.");
             guide.Needs.Add("you beside it, with room in your pack");

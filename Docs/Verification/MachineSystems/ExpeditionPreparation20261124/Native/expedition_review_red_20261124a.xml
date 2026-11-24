@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 14:35:49Z" end-time="2026-11-24 14:35:50Z" duration="0.690643">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41487" result="Failed" site="Child" start-time="2026-11-24 14:35:49Z" end-time="2026-11-24 14:35:50Z" duration="0.690643" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50567" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone4/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41487" result="Failed" site="Child" start-time="2026-11-24 14:35:49Z" end-time="2026-11-24 14:35:50Z" duration="0.630179" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="21331" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50568" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41487" result="Failed" site="Child" start-time="2026-11-24 14:35:49Z" end-time="2026-11-24 14:35:50Z" duration="0.616035" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50569" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41487" result="Failed" site="Child" start-time="2026-11-24 14:35:49Z" end-time="2026-11-24 14:35:50Z" duration="0.602611" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="21699" name="BrineDistillationTests" fullname="CavesOfOoo.Tests.BrineDistillationTests" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-11-24 14:35:50Z" end-time="2026-11-24 14:35:50Z" duration="0.100860" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="21721" name="Review_MultipleVesselPairsAreVisiblyDistinguishable" fullname="CavesOfOoo.Tests.BrineDistillationTests.Review_MultipleVesselPairsAreVisiblyDistinguishable" methodname="Review_MultipleVesselPairsAreVisiblyDistinguishable" classname="CavesOfOoo.Tests.BrineDistillationTests" runstate="Runnable" seed="1908212761" result="Failed" start-time="2026-11-24 14:35:50Z" end-time="2026-11-24 14:35:50Z" duration="0.094748" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 4
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BrineDistillationTests.Review_MultipleVesselPairsAreVisiblyDistinguishable () [0x00066] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/BrineDistillationTests.cs:91
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="31293" name="SpringTrapRecoveryTests" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-11-24 14:35:50Z" end-time="2026-11-24 14:35:50Z" duration="0.069903" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="31308" name="Review_ForcedDropOfProvisionalKitCannotDuplicateTheDevice" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.Review_ForcedDropOfProvisionalKitCannotDuplicateTheDevice" methodname="Review_ForcedDropOfProvisionalKitCannotDuplicateTheDevice" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="370055348" result="Failed" start-time="2026-11-24 14:35:50Z" end-time="2026-11-24 14:35:50Z" duration="0.034408" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpringTrapRecoveryTests.Review_ForcedDropOfProvisionalKitCannotDuplicateTheDevice () [0x0006c] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:90
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31307" name="Review_TriggeredAfterOwnRemovalCannotAlsoReturnALoadedKit" fullname="CavesOfOoo.Tests.SpringTrapRecoveryTests.Review_TriggeredAfterOwnRemovalCannotAlsoReturnALoadedKit" methodname="Review_TriggeredAfterOwnRemovalCannotAlsoReturnALoadedKit" classname="CavesOfOoo.Tests.SpringTrapRecoveryTests" runstate="Runnable" seed="1191983821" result="Failed" start-time="2026-11-24 14:35:50Z" end-time="2026-11-24 14:35:50Z" duration="0.034294" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpringTrapRecoveryTests.Review_TriggeredAfterOwnRemovalCannotAlsoReturnALoadedKit () [0x00062] in /Users/steven/coo-verification/clone4/Assets/Tests/EditMode/Gameplay/World/SpringTrapRecoveryTests.cs:80
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

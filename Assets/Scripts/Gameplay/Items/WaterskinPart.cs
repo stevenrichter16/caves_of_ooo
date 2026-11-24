@@ -4,11 +4,12 @@ namespace CavesOfOoo.Core
 {
     /// <summary>A reusable, water-only vessel. Units are individual drinks.
     /// Public fields persist through the existing part save stream.</summary>
-    public sealed class WaterskinPart : Part, IToolMenuState, IDescribeUse, IDescribeUseRows
+    public sealed class WaterskinPart : Part, IToolMenuState, IDescribeUse, IDescribeUseRows, IInventoryActionReceiptOwner
     {
         public override string Name => "Waterskin";
         public int Capacity = 3;
         public int Charges;
+        public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<WaterskinPart>() == this && AcidRinseActions.IsCommand(command);
 
         /// <summary>What a menu says to tell two skins apart: "2/3".</summary>
         public string ToolMenuState() => Capacity <= 0 || Charges < 0 || Charges > Capacity ? "water state unavailable" : Charges + "/" + Capacity;
@@ -33,6 +34,7 @@ namespace CavesOfOoo.Core
         {
             guide.How.Add("Choose drink water from the pack (a drink relieves one layer of parch). To fill it, stand beside a well, cistern or standing fresh water, press C on the water and choose fill the waterskin.");
             guide.How.Add("To put a fire out, press C on the burning thing and choose douse.");
+            guide.How.Add(AcidRinseActions.UseText);
             guide.Needs.Add("fresh water within reach to fill it: a well, a cistern or a pool of fresh water");
             guide.Needs.Add("a charge in it to drink or douse");
             guide.Limits.Add("It holds " + Capacity + " drinks and holds " + Charges + " now. It carries water only.");
