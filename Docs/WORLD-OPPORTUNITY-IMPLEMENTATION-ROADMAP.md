@@ -524,6 +524,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     flask and one a supplied pump. Both kept the exact liquid in a
     carried vessel or the chosen outlet through fresh Continue.
     [Evidence](Verification/MachineSystems/PeatWorksMireShortcuts20261125/README.md)
+    An ordinary condenser cost one gathered clay, one purchased spike and
+    a bought flask. The player used both tools to catch one water from an
+    existing Sodden vent. The route measured actual local injury and saved
+    finite remaining stock. [Evidence](Verification/MachineSystems/OrdinaryCondenser20261125/README.md)
     A guided version 26 underground route found a packet, carried it,
     screened it and used both fractions in separate saved branches.
     The player used one sand for a cave exit mark and one salt to

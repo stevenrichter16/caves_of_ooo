@@ -1,3 +1,11 @@
+**An ordinary condenser catches water at a natural vent — November 25 UTC, 2026.**
+An earned tray measure and a bought spike became a condenser at Cinderhold.
+A bought flask took one water from a finite Sodden vent group in ordinary
+play. Fresh Continue kept the same tools and the exact remaining catch
+stock. The separate v28 Causeway route has a verified down stair and
+physical return with candidate ground for a future steam clue.
+[Evidence](Verification/MachineSystems/OrdinaryCondenser20261125/README.md)
+
 **One early pitchpod bead gives a shorter working route — November 25 UTC, 2026.**
 At fresh v28 seed 64, ordinary travel reached one feature in thirteen steps
 and the existing ripe source in nineteen. The new gathered resin paid for

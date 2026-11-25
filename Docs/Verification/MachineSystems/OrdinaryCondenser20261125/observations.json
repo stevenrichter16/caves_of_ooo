@@ -1,0 +1,396 @@
+{
+  "scope": "Ordinary Editor GameBootstrap play on a copied earned v25 save. Current v28 scouting used a separate Duelist game.",
+  "entry": {
+    "t": 1170,
+    "zone": "Overworld.11.10.0",
+    "v": 25,
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "hp": 27,
+      "drams": 50,
+      "effects": [
+        "WetEffect"
+      ]
+    }
+  },
+  "trade": {
+    "tick": 1450,
+    "purse": 28,
+    "parcel": {
+      "ID": "53a56eefacc546d68c84918b8ec10a7f",
+      "BlueprintName": "IronSpikeComponent",
+      "n": 1
+    },
+    "sellerRemainder": {
+      "i": 14,
+      "ID": "9196",
+      "BlueprintName": "IronSpikeComponent",
+      "name": "iron spike",
+      "price": 22,
+      "n": 1,
+      "taking": 0
+    }
+  },
+  "forge": {
+    "quote": {
+      "Label": "make steam condenser: 1 iron spike + 1 fire clay -> 1 steam condenser; materials become one reusable tool (1 action, pack)",
+      "Command": "MaterialProcess|make_steam_condenser|9045|0a29e15446384ee1af7aaccc45234ffc",
+      "Hint": ""
+    },
+    "after": {
+      "t": 1480,
+      "zone": "Overworld.6.6.0",
+      "v": 25,
+      "p": {
+        "ID": "2704",
+        "X": 54,
+        "Y": 6,
+        "hp": 27,
+        "drams": 28,
+        "effects": [
+          "WetEffect"
+        ]
+      }
+    },
+    "tool": [
+      {
+        "ID": "9208",
+        "BlueprintName": "SteamCondenser",
+        "n": 1
+      }
+    ],
+    "fresh": {
+      "t": 1480,
+      "zone": "Overworld.6.6.0",
+      "v": 25,
+      "p": {
+        "ID": "2704",
+        "X": 54,
+        "Y": 6,
+        "hp": 27,
+        "drams": 28,
+        "effects": [
+          "WetEffect"
+        ]
+      }
+    }
+  },
+  "flaskPurchase": [
+    {
+      "row": {
+        "i": 0,
+        "ID": "11821",
+        "BlueprintName": "LiquidFlask",
+        "name": "liquid flask",
+        "price": 22,
+        "n": 1,
+        "taking": 0
+      },
+      "purse": 6,
+      "tick": 1650,
+      "held": [
+        {
+          "ID": "11821",
+          "BlueprintName": "LiquidFlask",
+          "n": 1
+        }
+      ]
+    }
+  ],
+  "initialVentScouts": [
+    {
+      "t": 1790,
+      "zone": "Overworld.16.6.0",
+      "v": 25,
+      "p": {
+        "ID": "2704",
+        "X": 40,
+        "Y": 12,
+        "hp": 27,
+        "drams": 6,
+        "wet": true
+      },
+      "features": []
+    },
+    {
+      "t": 1830,
+      "zone": "Overworld.15.5.0",
+      "v": 25,
+      "p": {
+        "ID": "2704",
+        "X": 40,
+        "Y": 12,
+        "hp": 27,
+        "drams": 6,
+        "wet": true
+      },
+      "features": [
+        {
+          "ID": "17300",
+          "BlueprintName": "SteamVent",
+          "at": {
+            "Item1": 65,
+            "Item2": 3
+          }
+        },
+        {
+          "ID": "17301",
+          "BlueprintName": "SteamVent",
+          "at": {
+            "Item1": 64,
+            "Item2": 3
+          }
+        },
+        {
+          "ID": "17302",
+          "BlueprintName": "SteamVent",
+          "at": {
+            "Item1": 64,
+            "Item2": 4
+          }
+        },
+        {
+          "ID": "17303",
+          "BlueprintName": "SteamVent",
+          "at": {
+            "Item1": 65,
+            "Item2": 4
+          }
+        },
+        {
+          "ID": "17304",
+          "BlueprintName": "SteamVent",
+          "at": {
+            "Item1": 66,
+            "Item2": 4
+          }
+        }
+      ]
+    }
+  ],
+  "catch": {
+    "steps": 25,
+    "before": {
+      "t": 2070,
+      "zone": "Overworld.15.5.0",
+      "v": 25,
+      "p": {
+        "ID": "2704",
+        "X": 63,
+        "Y": 5,
+        "hp": 25,
+        "drams": 6,
+        "wet": true
+      }
+    },
+    "quote": {
+      "Command": "CondenseSteam|64|4|4c4744df673340bebe63f711339aa8e5",
+      "Display": "condense 1 water into liquid flask (1 source catch, 1 action) [steam condenser]",
+      "Hint": "Shares this vent's finite catch supply with scrapers and trays. Three to five catches, restoring one per game day. Split an empty flask stack first."
+    },
+    "after": {
+      "t": 2080,
+      "zone": "Overworld.15.5.0",
+      "v": 25,
+      "p": {
+        "ID": "2704",
+        "X": 63,
+        "Y": 5,
+        "hp": 19,
+        "drams": 6,
+        "wet": true
+      }
+    },
+    "savedFlask": [
+      {
+        "ID": "11821",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "liquid": "water",
+        "vol": 1
+      }
+    ],
+    "groupedStock": [
+      {
+        "ID": "17300",
+        "at": {
+          "Item1": 65,
+          "Item2": 3
+        },
+        "capacity": null,
+        "available": null,
+        "last": null
+      },
+      {
+        "ID": "17301",
+        "at": {
+          "Item1": 64,
+          "Item2": 3
+        },
+        "capacity": 4,
+        "available": 3,
+        "last": 2070
+      },
+      {
+        "ID": "17302",
+        "at": {
+          "Item1": 64,
+          "Item2": 4
+        },
+        "capacity": null,
+        "available": null,
+        "last": null
+      },
+      {
+        "ID": "17303",
+        "at": {
+          "Item1": 65,
+          "Item2": 4
+        },
+        "capacity": null,
+        "available": null,
+        "last": null
+      },
+      {
+        "ID": "17304",
+        "at": {
+          "Item1": 66,
+          "Item2": 4
+        },
+        "capacity": null,
+        "available": null,
+        "last": null
+      }
+    ],
+    "fresh": {
+      "t": 2080,
+      "zone": "Overworld.15.5.0",
+      "v": 25,
+      "p": {
+        "ID": "2704",
+        "X": 63,
+        "Y": 5,
+        "hp": 19,
+        "drams": 6,
+        "wet": true
+      }
+    },
+    "relevantLog": [
+      "You catch one water in the flask. The vent's catch supply is reduced.",
+      "bandfrog [left hand: bite] hits you in the right hand for 6 damage! (19 HP remaining)"
+    ]
+  },
+  "linkedSiteScout": {
+    "surface": {
+      "t": 1020,
+      "zone": "Overworld.17.9.0",
+      "v": 28,
+      "p": {
+        "ID": "2703",
+        "X": 40,
+        "Y": 12,
+        "hp": 40,
+        "drams": 70,
+        "wet": false
+      },
+      "features": [
+        {
+          "ID": "12510",
+          "BlueprintName": "StairsDown",
+          "at": {
+            "Item1": 34,
+            "Item2": 11
+          }
+        },
+        {
+          "ID": "12547",
+          "BlueprintName": "BrinePool",
+          "at": {
+            "Item1": 13,
+            "Item2": 17
+          }
+        },
+        {
+          "ID": "12548",
+          "BlueprintName": "BrinePool",
+          "at": {
+            "Item1": 14,
+            "Item2": 17
+          }
+        }
+      ]
+    },
+    "below": {
+      "t": 1090,
+      "zone": "Overworld.17.9.1",
+      "v": 28,
+      "p": {
+        "ID": "2703",
+        "X": 34,
+        "Y": 11,
+        "hp": 40,
+        "drams": 70,
+        "wet": false
+      },
+      "features": [
+        {
+          "ID": "16022",
+          "BlueprintName": "StairsUp",
+          "at": {
+            "Item1": 73,
+            "Item2": 8
+          }
+        },
+        {
+          "ID": "16021",
+          "BlueprintName": "StairsUp",
+          "at": {
+            "Item1": 3,
+            "Item2": 16
+          }
+        },
+        {
+          "ID": "16020",
+          "BlueprintName": "StairsDown",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        },
+        {
+          "ID": "16019",
+          "BlueprintName": "StairsUp",
+          "at": {
+            "Item1": 34,
+            "Item2": 11
+          }
+        }
+      ],
+      "visibleNearby": [
+        {
+          "ID": "16052",
+          "BlueprintName": "CaveBear",
+          "at": {
+            "Item1": 33,
+            "Item2": 3
+          }
+        }
+      ]
+    },
+    "return": {
+      "t": 1100,
+      "zone": "Overworld.17.9.0",
+      "v": 28,
+      "p": {
+        "ID": "2703",
+        "X": 34,
+        "Y": 11,
+        "hp": 40,
+        "drams": 70,
+        "wet": false
+      }
+    }
+  }
+}

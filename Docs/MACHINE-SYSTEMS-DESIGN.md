@@ -1,3 +1,10 @@
+**A portable condenser has an ordinary field route — November 25 UTC, 2026.**
+The Cinderhold and Sill route supplies a useful tool and receiver for
+44 drams and one earned clay. Actual Sodden play spent one shared vent
+catch and put its water in the same flask. The physical stair and return
+at the Causeway were separately scouted for a proposed paired steam clue.
+[Evidence](Verification/MachineSystems/OrdinaryCondenser20261125/README.md)
+
 **Early pitchpod offers a shorter trip for one measure — November 25 UTC, 2026.**
 An admitted fresh patch west of Posy can place a finite wild pitchpod bead
 closer to the ordinary arrival. The same walk can continue to a ripe crop
