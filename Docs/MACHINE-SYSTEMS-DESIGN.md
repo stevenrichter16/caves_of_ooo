@@ -1,3 +1,14 @@
+**Local clay and imported clay both support paid work — November 25 UTC, 2026.**
+The local route earns a tool with existing trade and forge parts, then creates
+two useful grades from one finite packet. The imported route uses the exact
+stock from the committed porter lifecycle. Two measures of either grade
+support the same meal commission, and the separate oven works even during
+pan failure. Actual play establishes the alternatives across two saved
+layouts. Portable screening retained grit and its sieve, while paid clay
+avoided a tool purchase. Current layout variety and unguided discovery still
+need broader trials.
+[Evidence](Verification/MachineSystems/KitchenOrdinaryContrast20261125/README.md)
+
 **Physical hauling can be traced by its saved order — November 25 UTC, 2026.**
 Booking, pickup, settlement and merchant intake can be read from committed
 transaction evidence. The existing order, custody, reserves and payments

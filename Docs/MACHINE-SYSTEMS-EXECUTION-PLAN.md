@@ -1,3 +1,14 @@
+**Two ordinary routes to the same field meal — November 25 UTC, 2026.**
+Fresh v26 seed 2 earned a reusable sieve through native trade and crafting.
+The earlier physical shipment in retained v18 seed 64 provided the other
+route. Both broken kitchens offered free cooking. Both clay routes repaired
+the same kind of pan, then the same commission cost and timing yielded a meal
+that was collected and eaten. Fresh Continue verified the working local job
+and the collected import. The next scoped work is the late cook availability
+and exact ingredient custody regression. Three native failures are reproduced
+in `kitchen-staff-transaction-red-20261125.xml`.
+[Evidence](Verification/MachineSystems/KitchenOrdinaryContrast20261125/README.md)
+
 **One trace follows the real parcel into Orven’s stock — November 25 UTC, 2026.**
 Actual GameBootstrap movement advanced one earned wayside shipment from
 booking through paid pickup and shelf settlement to the exact merchant lot.

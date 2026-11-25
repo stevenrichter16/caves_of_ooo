@@ -210,6 +210,10 @@ cross-seed comparisons remain open.
     exploration work without completing a new project first. Investments become
     attractive through repeated chosen use; do not place a mandatory loading-bay
     or road-repair step in front of every run.
+    In two guided wayside layouts, the free oven cooked a carried item with the
+    same purse while the optional batch pan remained broken. The native shops
+    and public fields supplied both routes.
+    [Evidence](Verification/MachineSystems/KitchenOrdinaryContrast20261125/README.md)
 
 20. **Keep lasting benefits independent of repeated repair.** Once equivalent
     durable work qualifies, apply the same stated benefit at its ordinary
@@ -426,6 +430,12 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     equivalent results earn equal service and ignored bonuses remain comfortable.
     Preserve useful screenshots and independent review; tests alone do not prove
     discovery, pacing or replayability.
+    An actual fresh v26 seed 2 route earned the sieve and screened nearby clay.
+    A retained v18 seed 64 route bought the actual delivered clay. Both paths
+    repaired the same service and then paid, collected and ate the same kind
+    of meal with identical timing and recipe. Broader regions, current-version
+    comparisons and player-led discovery remain to be verified.
+    [Evidence](Verification/MachineSystems/KitchenOrdinaryContrast20261125/README.md)
 
 ## Additional requirement: overdue shipments have social consequences
 
