@@ -1,3 +1,11 @@
+**The short sword also cuts prepared stock — November 25 UTC, 2026.**
+The existing cutting system recognizes an explicit short-sword capability.
+Actual Sill trade brought one offcut from Nerrel’s lot. The exact sword was
+the sole available tool for one native cut on ordinary ground. Fresh Continue
+kept the sword, recovered dagger, one binding and vendor remainder. All 190
+connected native checks passed. Continue fresh regional route comparisons.
+[Evidence](Verification/MachineSystems/ShortSwordCutting20261125/README.md)
+
 **A fresh Gleaners’ notice points to either lining grade — November 25 UTC, 2026.**
 The current well and fresh notice use the same bills as the native action.
 Actual fresh seed 64 reading preserved time and the distant kitchen stayed

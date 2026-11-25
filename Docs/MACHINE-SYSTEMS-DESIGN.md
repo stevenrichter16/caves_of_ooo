@@ -1,3 +1,10 @@
+**A second blade provides the same flexible-stock work — November 25 UTC, 2026.**
+The short sword joins the dagger through the existing explicit capability.
+The common quote pins the exact eligible blade without using combat
+attributes for permission. Actual Sill trade, ordinary ground work and
+fresh Continue connected one bought offcut to one leather binding.
+[Evidence](Verification/MachineSystems/ShortSwordCutting20261125/README.md)
+
 **Discovery uses the same material bill as work — November 25 UTC, 2026.**
 The Gleaners’ sign now names both eligible clay forms for the well and pan
 on fresh layouts. The current well reader keeps the cellar directions and

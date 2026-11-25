@@ -56,7 +56,7 @@ check-in provides continued work across runs.
 | Slice | Requirements and status |
 | --- | --- |
 | Clay suitability and repair result | 1, 4–8 have bounded well/pan evidence. 2 drives repair payment and physical parcel admission for lining clay. 3 has actual separate storage, collection and well repair. The selected NPC shipment has a bounded exact-stock receipt. |
-| Regional preparation and optional services | 9–12 and 14–18 have bounded material, carrying or receiving trials. 13 still needs a second independently useful work provider. 19 has free ordinary cooking and portable treatment trials. 20 has bounded equivalent Tine weir benefits. |
+| Regional preparation and optional services | 9–12 and 14–18 have bounded material, carrying or receiving trials. 13 has a second explicit flexible-stock provider. 19 has free ordinary cooking and portable treatment trials. 20 has bounded equivalent Tine weir benefits. |
 | First paid physical delivery | 21–24 and 28 have bounded Gleaners' hire, movement, shelf receipt and well use. The order-bound actions also have an actual cancel, rebook and reload branch. |
 | Selected NPC shipments and overdue searches | 25 has finite supplier payment, visible physical carrying, exact trade stock and pan repair. 41–42 have a saved deadline and local notice. 43–45 have bounded personal search, recognition, returned reporting, late delivery and intact recovery. A refilled parcel remains shelf storage with the inquiry open. One delegated v22 search has a finite wage, ordinary movement, physical reporting and trade continuity. Broader staffing and settings remain open. |
 | Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. Broader road, load and seasonal variation remain open. |
@@ -157,6 +157,11 @@ cross-seed comparisons remain open.
     contract only when a second real supported operation requires it. A sound
     capable alternative tool can qualify; combat damage types, item names and
     equipment ownership alone do not authorize material work.
+    The existing short sword now uses the same explicit capability as the
+    dagger. An actual Sill branch used it as the sole available blade to cut
+    a bought offcut into one binding. The plain hatchet retained its existing
+    work admission.
+    [Evidence](Verification/MachineSystems/ShortSwordCutting20261125/README.md)
 
 14. **Make source-side processing physical.** Consume an eligible finite batch,
     produce declared fractions and account for any loss. Leave unwanted material

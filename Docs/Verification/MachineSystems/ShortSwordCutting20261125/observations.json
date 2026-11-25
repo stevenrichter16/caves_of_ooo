@@ -1,0 +1,428 @@
+{
+  "Baseline": {
+    "p": {
+      "ID": "2126",
+      "X": 5,
+      "Y": 18,
+      "hp": 412,
+      "drams": 26
+    },
+    "zone": "Overworld.10.10.0",
+    "tick": 11410,
+    "state": "Normal",
+    "pack": [
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "cap": true,
+        "owner": "2126",
+        "equipped": null
+      },
+      {
+        "ID": "17369",
+        "BlueprintName": "ShortSword",
+        "n": 1,
+        "cap": true,
+        "owner": "2126",
+        "equipped": null
+      }
+    ],
+    "equipment": [
+      {
+        "ID": "2342",
+        "BlueprintName": "WardedCloak",
+        "n": 1,
+        "cap": null,
+        "owner": null,
+        "equipped": "2126"
+      }
+    ],
+    "forge": false,
+    "smith": {
+      "ID": "17366",
+      "at": {
+        "Item1": 6,
+        "Item2": 17
+      },
+      "cured": [
+        {
+          "ID": "17377",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 2,
+          "cap": null,
+          "owner": "17366",
+          "equipped": null
+        }
+      ]
+    }
+  },
+  "OffcutOffer": {
+    "i": 8,
+    "ID": "17377",
+    "BlueprintName": "CuredLeatherOffcut",
+    "name": "cured harness-leather offcut (x2)",
+    "price": 22,
+    "n": 2,
+    "taking": 0
+  },
+  "BoughtOffcut": {
+    "p": {
+      "ID": "2126",
+      "X": 5,
+      "Y": 18,
+      "hp": 412,
+      "drams": 15
+    },
+    "zone": "Overworld.10.10.0",
+    "tick": 11410,
+    "state": "TradeOpen",
+    "pack": [
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "cap": true,
+        "owner": "2126",
+        "equipped": null
+      },
+      {
+        "ID": "17369",
+        "BlueprintName": "ShortSword",
+        "n": 1,
+        "cap": true,
+        "owner": "2126",
+        "equipped": null
+      },
+      {
+        "ID": "9fc20b2346a748d39376b31599b53935",
+        "BlueprintName": "CuredLeatherOffcut",
+        "n": 1,
+        "cap": null,
+        "owner": "2126",
+        "equipped": null
+      }
+    ],
+    "equipment": [
+      {
+        "ID": "2342",
+        "BlueprintName": "WardedCloak",
+        "n": 1,
+        "cap": null,
+        "owner": null,
+        "equipped": "2126"
+      }
+    ],
+    "forge": false,
+    "smith": {
+      "ID": "17366",
+      "at": {
+        "Item1": 6,
+        "Item2": 17
+      },
+      "cured": [
+        {
+          "ID": "17377",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 1,
+          "cap": null,
+          "owner": "17366",
+          "equipped": null
+        }
+      ]
+    }
+  },
+  "Away": {
+    "p": {
+      "ID": "2126",
+      "X": 4,
+      "Y": 18,
+      "hp": 412,
+      "drams": 15
+    },
+    "zone": "Overworld.10.10.0",
+    "tick": 11420,
+    "state": "Normal",
+    "pack": [
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "cap": true,
+        "owner": "2126",
+        "equipped": null
+      },
+      {
+        "ID": "17369",
+        "BlueprintName": "ShortSword",
+        "n": 1,
+        "cap": true,
+        "owner": "2126",
+        "equipped": null
+      },
+      {
+        "ID": "9fc20b2346a748d39376b31599b53935",
+        "BlueprintName": "CuredLeatherOffcut",
+        "n": 1,
+        "cap": null,
+        "owner": "2126",
+        "equipped": null
+      }
+    ],
+    "equipment": [
+      {
+        "ID": "2342",
+        "BlueprintName": "WardedCloak",
+        "n": 1,
+        "cap": null,
+        "owner": null,
+        "equipped": "2126"
+      }
+    ],
+    "forge": false,
+    "smith": {
+      "ID": "17366",
+      "at": {
+        "Item1": 6,
+        "Item2": 17
+      },
+      "cured": [
+        {
+          "ID": "17377",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 1,
+          "cap": null,
+          "owner": "17366",
+          "equipped": null
+        }
+      ]
+    }
+  },
+  "DaggerGround": {
+    "p": {
+      "X": 4,
+      "Y": 18
+    },
+    "dagger": {
+      "ID": "2127",
+      "at": {
+        "Item1": 4,
+        "Item2": 18
+      },
+      "holder": null
+    }
+  },
+  "ExactCutQuote": {
+    "panel": 1,
+    "selected": "CuredLeatherOffcut",
+    "popupItem": "CuredLeatherOffcut",
+    "index": 0,
+    "rows": [
+      {
+        "Label": "cut leather binding: 1 -> 1 leather binding; torn margins discarded; usable cutting tool required (1 action, pack)",
+        "Command": "MaterialProcess|cut_binding|17369|148da279acfe4eb68cff3926bc0f519e",
+        "Hint": ""
+      },
+      {
+        "Label": "examine",
+        "Command": "Examine",
+        "Hint": ""
+      },
+      {
+        "Label": "Drop",
+        "Command": "drop",
+        "Hint": null
+      }
+    ]
+  },
+  "DidCut": {
+    "p": {
+      "ID": "2126",
+      "X": 4,
+      "Y": 18,
+      "hp": 412,
+      "drams": 15
+    },
+    "zone": "Overworld.10.10.0",
+    "tick": 11430,
+    "state": "Normal",
+    "pack": [
+      {
+        "ID": "17369",
+        "BlueprintName": "ShortSword",
+        "n": 1,
+        "cap": true,
+        "owner": "2126",
+        "equipped": null
+      },
+      {
+        "ID": "30417",
+        "BlueprintName": "LeatherBindingComponent",
+        "n": 1,
+        "cap": null,
+        "owner": "2126",
+        "equipped": null
+      }
+    ],
+    "equipment": [
+      {
+        "ID": "2342",
+        "BlueprintName": "WardedCloak",
+        "n": 1,
+        "cap": null,
+        "owner": null,
+        "equipped": "2126"
+      }
+    ],
+    "forge": false,
+    "smith": {
+      "ID": "17366",
+      "at": {
+        "Item1": 6,
+        "Item2": 17
+      },
+      "cured": [
+        {
+          "ID": "17377",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 1,
+          "cap": null,
+          "owner": "17366",
+          "equipped": null
+        }
+      ]
+    }
+  },
+  "DaggerRecovered": {
+    "p": {
+      "ID": "2126",
+      "X": 4,
+      "Y": 18,
+      "hp": 412,
+      "drams": 15
+    },
+    "zone": "Overworld.10.10.0",
+    "tick": 11440,
+    "state": "Normal",
+    "pack": [
+      {
+        "ID": "17369",
+        "BlueprintName": "ShortSword",
+        "n": 1,
+        "cap": true,
+        "owner": "2126",
+        "equipped": null
+      },
+      {
+        "ID": "30417",
+        "BlueprintName": "LeatherBindingComponent",
+        "n": 1,
+        "cap": null,
+        "owner": "2126",
+        "equipped": null
+      }
+    ],
+    "equipment": [
+      {
+        "ID": "2342",
+        "BlueprintName": "WardedCloak",
+        "n": 1,
+        "cap": null,
+        "owner": null,
+        "equipped": "2126"
+      },
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "cap": true,
+        "owner": null,
+        "equipped": "2126"
+      }
+    ],
+    "forge": false,
+    "smith": {
+      "ID": "17366",
+      "at": {
+        "Item1": 6,
+        "Item2": 17
+      },
+      "cured": [
+        {
+          "ID": "17377",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 1,
+          "cap": null,
+          "owner": "17366",
+          "equipped": null
+        }
+      ]
+    }
+  },
+  "FreshCompared": {
+    "p": {
+      "ID": "2126",
+      "X": 4,
+      "Y": 18,
+      "hp": 412,
+      "drams": 15
+    },
+    "zone": "Overworld.10.10.0",
+    "tick": 11440,
+    "state": "Normal",
+    "pack": [
+      {
+        "ID": "17369",
+        "BlueprintName": "ShortSword",
+        "n": 1,
+        "cap": true,
+        "owner": "2126",
+        "equipped": null
+      },
+      {
+        "ID": "30417",
+        "BlueprintName": "LeatherBindingComponent",
+        "n": 1,
+        "cap": null,
+        "owner": "2126",
+        "equipped": null
+      }
+    ],
+    "equipment": [
+      {
+        "ID": "2342",
+        "BlueprintName": "WardedCloak",
+        "n": 1,
+        "cap": null,
+        "owner": null,
+        "equipped": "2126"
+      },
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "cap": true,
+        "owner": null,
+        "equipped": "2126"
+      }
+    ],
+    "forge": false,
+    "smith": {
+      "ID": "17366",
+      "at": {
+        "Item1": 6,
+        "Item2": 17
+      },
+      "cured": [
+        {
+          "ID": "17377",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 1,
+          "cap": null,
+          "owner": "17366",
+          "equipped": null
+        }
+      ]
+    }
+  }
+}

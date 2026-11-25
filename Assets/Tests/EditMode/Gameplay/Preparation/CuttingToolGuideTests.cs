@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using CavesOfOoo.Core;
 using NUnit.Framework;
@@ -76,6 +77,27 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void ACombatHatchetDoesNotAcquireFlexibleStockInstructions()
         { Assert.Null(UseGuides.SectionText(Carry("Hatchet"), Zone, null, Actor)); }
+        [Test] public void AuthoredShortSwordCutsOneBindingWithNoOtherFlexibleStockTool()
+        {
+            var hatchet = Carry("Hatchet");
+            var offcut = Carry("CuredLeatherOffcut");
+            Assert.Null(hatchet.GetPart<CuttingToolPart>());
+            Assert.False(Actions(offcut).Any(action => action.Name == "cut_binding" && !action.IsDisabled));
+            Assert.AreEqual(0, PackCount("LeatherBindingComponent"));
+
+            var sword = Carry("ShortSword");
+            var quote = Choice(offcut, MaterialProcessInputPart.CommandPrefix, action => action.Name == "cut_binding");
+            Assert.True(sword.GetPart<CuttingToolPart>()?.FlexibleStock == true);
+            Assert.True(Act(offcut, quote));
+
+            Assert.False(Pack.Objects.Contains(offcut));
+            Assert.Null(offcut.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(1, PackCount("LeatherBindingComponent"));
+            Assert.AreSame(sword, Packed("ShortSword"));
+            Assert.AreEqual(1, PackCount("ShortSword"));
+            Assert.AreSame(Actor, sword.GetPart<PhysicsPart>().InInventory);
+            Assert.AreSame(hatchet, Packed("Hatchet"));
+        }
         [Test] public void KnifeDoesNotGainFictionalDirectMaterialActions()
         {
             var knife = Carry("Dagger"); GuideOrAbsent(knife);
@@ -88,6 +110,27 @@ namespace CavesOfOoo.Tests
             var loaded = RoundTrip(); Actor = loaded.Player; Zone = loaded.ZoneManager.ActiveZone; SettlementRuntime.ActiveZone = Zone;
             knife = Pack.Objects.Single(e => e.ID == id);
             Assert.AreEqual(before, Guide(knife)); Assert.AreEqual(1, knife.Parts.Count(p => p is CuttingToolPart));
+        }
+        [TestCase(false)]
+        [TestCase(true)]
+        public void LoadedShortSwordHonorsWhetherItHasAlreadySeenTheCuttingDefinition(bool known)
+        {
+            var sword = Carry("ShortSword");
+            string id = sword.ID;
+            Assert.True(sword.RemovePart(sword.GetPart<CuttingToolPart>()));
+            if (!known) sword.IntProperties.Remove("CuttingToolDefinitionSeen");
+            using (var stream = new MemoryStream())
+            {
+                var writer = new SaveWriter(stream);
+                writer.WriteEntityReference(sword);
+                writer.WriteQueuedEntityBodies();
+                stream.Position = 0;
+                var reader = new SaveReader(stream, Factory);
+                var loaded = reader.ReadEntityReference();
+                reader.ReadEntityBodies();
+                Assert.AreEqual(id, loaded.ID);
+                Assert.That(loaded.Parts.Count(p => p is CuttingToolPart), Is.EqualTo(known ? 0 : 1));
+            }
         }
     }
 }
