@@ -1,3 +1,10 @@
+**Mac delivery for local porter and seasonal work — November 25 UTC, 2026.**
+Runtime `e87ae17a8` is verified on main and packaged in a new universal Mac
+build. GameBootstrap startup completed on the Mac. Connected gameplay and
+reloading were verified in separate Editor runs. The full regression remains
+open. Continue with the delegated search trial in the local porter design.
+[Delivery](Verification/MachineSystems/MacCandidateE87AE17A8/README.md)
+
 **Porter recovery and connected world work — November 25 UTC, 2026.**
 The earlier delivery and timber evidence review verified 84 checkpoint files.
 It found that a refilled clay stack could keep its original identity and
