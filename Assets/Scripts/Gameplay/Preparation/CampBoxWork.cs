@@ -59,18 +59,33 @@ namespace CavesOfOoo.Core
                 || p.InInventory!=Box || p.Equipped!=null || Container.Contents.Count(e=>e==item)!=1)return false;
             var stack=item.GetPart<StackerPart>();
             if(stack!=null && (stack.StackCount<1 || stack.StackCount>stack.MaxStack))return false;
-            return !actor.GetPart<InventoryPart>().Objects.Concat(actor.GetPart<InventoryPart>().EquippedItems.Values)
-                .Concat(zone.GetReadOnlyEntities()).Any(e=>e==item || e?.ID==item.ID);
+            return !ListedOutsideBox(item);
+        }
+        bool ListedOutsideBox(Entity item)
+        {
+            var pack = actor.GetPart<InventoryPart>();
+            return pack != null && (HasEntry(pack.Objects, item) || HasEntry(pack.EquippedItems.Values, item))
+                || HasEntry(zone.GetReadOnlyEntities(), item);
+        }
+        static bool HasEntry(IEnumerable<Entity> entries, Entity item)
+            => entries.Any(e => e == item || e?.ID == item.ID);
+        // Also checked during undo, when the box may have independently broken.
+        internal bool ExcludesPaidItem(Entity item)
+        {
+            var current = Box.GetPart<ContainerPart>();
+            return !HasEntry(Container.Contents, item)
+                && (current == null || current == Container || !HasEntry(current.Contents, item))
+                && !ListedOutsideBox(item);
         }
         internal bool Begin(Entity item,InventoryTransaction tx,string command)
             => Contains(item) && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked()!=true
                 && tx.TryClaim(actor,actor,command) && tx.TryClaim(Box,actor,command) && tx.TryClaim(item,actor,command);
-        internal bool Consume(Entity item,InventoryTransaction tx,bool allowClayStamp)
+        internal bool Consume(Entity item,InventoryTransaction tx,bool allowClayStamp,Func<bool> refundAllowed=null)
         {
             if(!Contains(item))return false;
             var state=MaterialProcessTemplate.Capture(ForgePart.Factory,item.BlueprintName)?.Snapshot(item,true,allowClayStamp);
             return state!=null && MaterialProcessPayment.Spend(actor,item,Box,zone,tx,state.Matches,
-                allowClayStamp?()=>state.MatchesAfterPayment(1):null);
+                allowClayStamp?()=>state.MatchesAfterPayment(1):null,refundAllowed);
         }
 
     }
@@ -94,20 +109,48 @@ namespace CavesOfOoo.Core
                 var stock=MaterialProcessStock.Resolve(actor,box,zone);var factory=ForgePart.Factory;
                 if(stock==null || factory==null){menu.Quotes.Clear();return true;}
                 var offered=new Dictionary<string,MaterialProcessService.Quote>();
-                foreach(var input in stock.Container.Contents.ToArray())foreach(var definition in MaterialProcessRegistry.ForSource(input))
+                foreach (var input in stock.Container.Contents.ToArray())
                 {
-                    // F1 regathers the actual world rows. Keep the exact old
-                    // quote/token only while every promise remains current.
-                    var retained=menu.Quotes.FirstOrDefault(p=>p.Value.Plan.Actor==actor && p.Value.Plan.Zone==zone
-                        && p.Value.Plan.Stock?.Box==box && p.Value.Plan.Source==input && p.Value.Plan.Definition==definition && p.Value.Current());
-                    var quote=retained.Value??MaterialProcessService.TryQuote(MaterialProcessPlan.TryCreateFromStock(actor,input,definition.Id,zone,factory,stock));
-                    if(quote==null)continue;
-                    string token=retained.Key??Guid.NewGuid().ToString("N");offered[token]=quote;
-                    string inputs=definition.InputCount+" "+Label(factory,definition.SourceBlueprint)
-                        +string.Concat(definition.AdditionalInputBlueprints.Select((bp,i)=>" + "+definition.AdditionalInputCounts[i]+" "+Label(factory,bp)));
-                    string outputs=string.Join(" + ",definition.OutputBlueprints.Select((bp,i)=>definition.OutputCounts[i]+" "+Label(factory,bp)));
-                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("box-work",definition.ActionText+": "+inputs+" from this box -> "+outputs
-                        +(definition.LossText.Length>0?"; "+definition.LossText:"")+" (1 action, output to pack)",Prefix+token,'\0',19,false,ActionTime.OneAction);
+                    var plans = MaterialProcessRegistry.ForSource(input)
+                        .Select(d => MaterialProcessPlan.TryCreateFromStock(actor, input, d.Id, zone, factory, stock));
+                    if (input.GetPart<SiftableStockPart>() is SiftableStockPart sizeStock)
+                        plans = plans.Append(MaterialProcessPlan.TryCreateScreening(actor, input, zone, factory, sizeStock, stock));
+                    foreach (var plan in plans)
+                    {
+                        if (plan == null) continue;
+                        var definition = plan.Definition;
+                        var actions = e.GetParameter<InventoryActionList>("Actions");
+                        bool screening = definition.Id == SiftableStockPart.ProcessId;
+                        string label = screening ? $"screen {Label(factory, definition.SourceBlueprint)} from box" : "";
+                        if (screening && !plan.RoomForStoredScreening())
+                        {
+                            actions?.AddDisabled("box-work", label, "box-screening-pack-full",
+                                $"Make room for {plan.StoredScreeningWeight} lb of screened material.", '\0', 19);
+                            continue;
+                        }
+                        // F1 regathers these rows. Reuse a token only while
+                        // its source, definition and access still agree.
+                        var retained = menu.Quotes.FirstOrDefault(p => p.Value.Plan.Actor == actor && p.Value.Plan.Zone == zone
+                            && p.Value.Plan.Stock?.Box == box && p.Value.Plan.Source == input
+                            && p.Value.Plan.SameDefinition(plan) && p.Value.Current());
+                        var quote = retained.Value ?? MaterialProcessService.TryQuote(plan);
+                        if (quote == null) continue;
+                        string token = retained.Key ?? Guid.NewGuid().ToString("N");
+                        offered[token] = quote;
+                        string outputs = string.Join(" + ", definition.OutputBlueprints.Select((bp, i) =>
+                            definition.OutputCounts[i] + " " + Label(factory, bp)));
+                        if (screening)
+                        {
+                            actions?.AddActionWithHint("box-work", label + $" ({plan.StoredScreeningWeight} lb to pack)",
+                                Prefix + token, "One action. Makes " + outputs + ". Keep the sieve.", '\0', 19, false, ActionTime.OneAction);
+                            continue;
+                        }
+                        string inputs = definition.InputCount + " " + Label(factory, definition.SourceBlueprint)
+                            + string.Concat(definition.AdditionalInputBlueprints.Select((bp, i) => " + " + definition.AdditionalInputCounts[i] + " " + Label(factory, bp)));
+                        actions?.AddAction("box-work", definition.ActionText + ": " + inputs + " from this box -> " + outputs
+                            + (definition.LossText.Length > 0 ? "; " + definition.LossText : "") + " (1 action, output to pack)",
+                            Prefix + token, '\0', 19, false, ActionTime.OneAction);
+                    }
                 }
                 menu.Quotes.Clear();foreach(var pair in offered)menu.Quotes.Add(pair.Key,pair.Value);
                 return true;

@@ -42,11 +42,12 @@ namespace CavesOfOoo.Core
             }
             internal bool GroundCurrent()=>GritGround==null || SiftableStockPart.GritDestination(Plan)==GritGround;
             internal bool OutputsCurrent()=>Outputs.All(t=>t.Current()) && RetainsChaff==(SeedFramePart.RetainedChaff(Plan)!=null) && GroundCurrent();
-            internal bool Current()=>Plan.Current() && SourceState.Matches() && OutputsCurrent();
+            internal bool Current()=>Plan.Current() && Plan.RoomForStoredScreening() && SourceState.Matches() && OutputsCurrent();
         }
         internal static Quote TryQuote(MaterialProcessPlan plan, Cell gritGround = null)
         {
-            if(plan==null || !plan.Current() || gritGround!=null && SiftableStockPart.GritDestination(plan)!=gritGround)return null;
+            if(plan==null || !plan.Current() || !plan.RoomForStoredScreening()
+                || gritGround!=null && SiftableStockPart.GritDestination(plan)!=gritGround)return null;
             var source=MaterialProcessTemplate.Capture(plan.Factory,plan.Source.BlueprintName);
             var state=source?.Snapshot(plan.Source,true);
             var outputs=plan.Definition.OutputBlueprints.Select(bp=>MaterialProcessTemplate.Capture(plan.Factory,bp,true)).ToArray();
@@ -125,13 +126,14 @@ namespace CavesOfOoo.Core
                 && zone.GetEntityCell(groundedGrit)==quote.GritGround && quote.GritGround.Objects.Contains(groundedGrit)
                 && groundedGrit.GetPart<PhysicsPart>() is {InInventory:null,Equipped:null}
                 && !pack.Objects.Contains(groundedGrit) && Count(groundedGrit)==1;
-            // Size separation has one carried source and creates ordinary, unmarked clay.
+            // Size separation has one source and creates ordinary, unmarked clay.
             // Its output may join an existing valid origin stack without touching the stamp.
-            bool screening=plan.Stock==null && plan.ExtraInputs.Count==0 && result.Id==SiftableStockPart.ProcessId;
+            bool screening=plan.ExtraInputs.Count==0 && result.Id==SiftableStockPart.ProcessId;
+            bool storedScreening = screening && plan.Stock != null;
             var markedResidents=new HashSet<Entity>(residents.Where(o=>screening && o.BlueprintName=="FireClay" && o.HasPart<ConnectedClayOriginPart>()));
             // These recipients may leave the pack in an independent spill. Undo
             // only their added units, wherever the original stack ends up.
-            var scopedResidents = groundedGrit == null ? markedResidents : new HashSet<Entity>(residents);
+            var scopedResidents = groundedGrit == null && !storedScreening ? markedResidents : new HashSet<Entity>(residents);
             foreach(var resident in residents)
             {
                 var template=templates[result.OutputBlueprints.ToList().IndexOf(resident.BlueprintName)];
@@ -145,8 +147,9 @@ namespace CavesOfOoo.Core
             var individuallyPaid=new HashSet<Entity>(inputs.Where(plan.IndividuallyPaidClay));
             if (groundedGrit != null) individuallyPaid.Add(input);
             bool CanRetractRecipient(Entity owner) => states[owner].Matches() && Count(owner) == expected[owner];
-            bool CanRefundGroundScreening() => (!placedGrit || ExactGroundedGrit())
-                && received.Where(scopedResidents.Contains).All(CanRetractRecipient);
+            bool CanRefundScreening() => (!placedGrit || ExactGroundedGrit())
+                && received.Where(scopedResidents.Contains).All(CanRetractRecipient)
+                && (!storedScreening || sourceCount > units || plan.Stock.ExcludesPaidItem(input));
             var receipt=InventoryTransferSnapshot.Capture(pack,packProducts);bool restored=false;
             // Only inputs this transaction actually consumed from are detached on undo: Restore re-inserts exactly the changed entries, so detaching an untouched input
             // (reachable once an ingredient can span several stacks and a later take refuses) would lose the player's stack.
@@ -198,8 +201,8 @@ namespace CavesOfOoo.Core
             {
                 for(int n=0;n<units;n++)
                 {
-                    bool paid = groundedGrit == null ? plan.Consume(input, tx)
-                        : MaterialProcessPayment.Spend(actor, input, actor, zone, tx, sourceState.Matches, refundAllowed: CanRefundGroundScreening);
+                    bool paid = groundedGrit == null ? plan.Consume(input, tx, storedScreening ? CanRefundScreening : null)
+                        : MaterialProcessPayment.Spend(actor, input, actor, zone, tx, sourceState.Matches, refundAllowed: CanRefundScreening);
                     if (!paid) return false;
                     consumed.Add(input);
                 }
@@ -221,9 +224,12 @@ namespace CavesOfOoo.Core
             }) || !receipt.ClaimChanges(tx,actor,command))return Refuse();
             bool Final()
             {
+                bool paymentCurrent = sourceCount > units ? plan.InputAvailable(input)
+                    : Loose(input) && !pack.Objects.Contains(input) && (!storedScreening || plan.Stock.ExcludesPaidItem(input));
                 if(!plan.ContextCurrent() || !sourceState.Matches() || !quote.OutputsCurrent() || Count(input)!=Math.Max(1,sourceCount-units)
-                    || (sourceCount>units?!plan.InputAvailable(input):!Loose(input)||pack.Objects.Contains(input))
-                    || pack.GetCarriedWeight()>ceiling || states.Values.Any(s=>!s.Matches()) || plan.ExtraInputs.Any(i=>!i.After(actor)))return false;
+                    || !paymentCurrent
+                    || pack.GetCarriedWeight()>ceiling || storedScreening && pack.MaxWeight>=0 && pack.GetCarriedWeight()>pack.MaxWeight
+                    || states.Values.Any(s=>!s.Matches()) || plan.ExtraInputs.Any(i=>!i.After(actor)))return false;
                 foreach(var pair in expected)if(!PreparationActions.Carried(actor,pair.Key) || Count(pair.Key)!=pair.Value)return false;
                 if (groundedGrit != null && (!ExactGroundedGrit()
                     || zone.GetReadOnlyEntities().Any(e => e != groundedGrit && e.ID == groundedGrit.ID)

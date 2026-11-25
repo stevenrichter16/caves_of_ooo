@@ -1,3 +1,14 @@
+**Screening uses an installed own box as real stock — November 25 UTC, 2026.**
+The same sieve and actual acquired packet traveled to eligible Spread
+ground. Ordinary placement, deposit and fresh Continue established the
+stock, and the real box menu spent it for the two declared fractions.
+The pack gained three pounds and the result survived fresh Continue. Normal
+take-up retained the box, and ordinary grit use left saved footing. The
+final focused run passed 536 executable
+checks and one explicit generator skip. Next, trial equivalent future
+market supply from Tine’s durable weir repairs.
+[Evidence](Verification/MachineSystems/CampBoxScreening20261125/README.md)
+
 **Mac delivery for source-side screening — November 25 UTC, 2026.**
 A universal build of `e33d0dba0` reached GameBootstrap on this Mac. The
 isolated source had zero build errors. The package retains the 186 exact

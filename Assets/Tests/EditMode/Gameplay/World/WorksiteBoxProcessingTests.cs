@@ -30,6 +30,274 @@ namespace CavesOfOoo.Tests
             var item=Factory.CreateEntity(blueprint);Assert.NotNull(item);item.GetPart<StackerPart>().StackCount=count;
             Assert.True(box.GetPart<ContainerPart>().AddItem(item));return item;
         }
+        private static bool IsBoxScreeningRow(InventoryAction row) => !row.IsDisabled
+            && row.Command?.StartsWith(Prefix, StringComparison.Ordinal) == true
+            && row.Display?.IndexOf("screen", StringComparison.OrdinalIgnoreCase) >= 0;
+
+        [Test]
+        public void InstalledBoxScreensOnlyItsExactStoredPacketAndRetainsTheHeldSieve()
+        {
+            var box = Box();
+            var stored = Stock(box, "DryClaySpoil", 2);
+            var carried = Carry("DryClaySpoil");
+            var sieve = Carry("HandSieve");
+            int weight = Pack.GetCarriedWeight();
+            int turn = Clock.TickCount;
+            var row = CellMenu(11, 10).Single(IsBoxScreeningRow);
+            Assert.That(row.Time, Is.EqualTo(ActionTime.OneAction));
+            UseGuides.SectionText(box, Zone, Zone.GetEntityCell(box), Actor);
+            Assert.That(CellMenu(11, 10).Single(IsBoxScreeningRow).Command, Is.EqualTo(row.Command));
+            Assert.That(Clock.TickCount, Is.EqualTo(turn));
+
+            Assert.That(ChooseRow(row, 11, 10), Is.True);
+            Assert.That(Act(box, row.Command), Is.False, "An already spent quote cannot screen a second stored batch.");
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(stored));
+            Assert.That(stored.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(stored.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "DryClaySpoil"), Is.SameAs(carried));
+            Assert.That(carried.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+            Assert.That(Count("FireClay"), Is.EqualTo(2));
+            Assert.That(Count("CoarseGrit"), Is.EqualTo(1));
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "CoarseGrit").GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.That(Zone.GetReadOnlyEntities().Any(e => e.BlueprintName == "FireClay" || e.BlueprintName == "CoarseGrit"), Is.False);
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(weight + 3));
+        }
+
+        [Test]
+        public void CarriedScreeningDoesNotUseSpoilInTheNearbyBox()
+        {
+            var box = Box();
+            var stored = Stock(box, "DryClaySpoil");
+            var carried = Carry("DryClaySpoil");
+            var sieve = Carry("HandSieve");
+            int weight = Pack.GetCarriedWeight();
+            string action = Choice(carried, "MaterialProcess|screen_size_grades|");
+
+            Assert.That(Act(carried, action), Is.True);
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(stored));
+            Assert.That(stored.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.That(stored.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(Pack.Objects.Contains(carried), Is.False);
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+            Assert.That(Count("FireClay"), Is.EqualTo(2));
+            Assert.That(Count("CoarseGrit"), Is.EqualTo(1));
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(weight));
+        }
+
+        [TestCase("sealed")]
+        [TestCase("nested")]
+        [TestCase("offsite")]
+        public void PreviouslyQuotedBoxScreeningCannotReachSealedNestedOrDistantStock(string change)
+        {
+            var box = Box();
+            var stored = Stock(box, "DryClaySpoil");
+            var sieve = Carry("HandSieve");
+            var container = box.GetPart<ContainerPart>();
+            var action = Actions(box).Single(IsBoxScreeningRow).Command;
+            int turn = Clock.TickCount;
+            var actualOwner = box;
+            if (change == "sealed") container.Locked = true;
+            if (change == "nested")
+            {
+                actualOwner = Factory.CreateEntity("WovenBasket");
+                Assert.That(container.RemoveItem(stored), Is.True);
+                Assert.That(actualOwner.GetPart<ContainerPart>().AddItem(stored), Is.True);
+                Assert.That(container.AddItem(actualOwner), Is.True);
+            }
+            if (change == "offsite") Assert.That(Zone.MoveEntity(Actor, 20, 10), Is.True);
+
+            Assert.That(Act(box, action), Is.False);
+            Assert.That(Actions(box).Any(IsBoxScreeningRow), Is.False);
+            Assert.That(stored.GetPart<PhysicsPart>().InInventory, Is.SameAs(actualOwner));
+            Assert.That(actualOwner.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(stored));
+            Assert.That(stored.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+            Assert.That(Clock.TickCount, Is.EqualTo(turn));
+        }
+
+        [TestCase(0)]
+        [TestCase(2)]
+        public void ScreeningFromStoredStockNeedsThreePoundsOfFreeSpace(int insufficientSpace)
+        {
+            var box = Box();
+            var stored = Stock(box, "DryClaySpoil");
+            var sieve = Carry("HandSieve");
+            var container = box.GetPart<ContainerPart>();
+            int weight = Pack.GetCarriedWeight();
+            Pack.MaxWeight = weight + 3;
+            var action = Actions(box).Single(IsBoxScreeningRow).Command;
+            Pack.MaxWeight = weight + insufficientSpace;
+
+            Assert.That(Act(box, action), Is.False);
+            Assert.That(container.Contents.Single(), Is.SameAs(stored));
+            Assert.That(stored.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(weight));
+
+            Pack.MaxWeight = weight + 3;
+            Assert.That(Act(box, Actions(box).Single(IsBoxScreeningRow).Command), Is.True);
+            Assert.That(container.Contents, Is.Empty);
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+            Assert.That(Count("FireClay"), Is.EqualTo(2));
+            Assert.That(Count("CoarseGrit"), Is.EqualTo(1));
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(Pack.MaxWeight));
+        }
+
+        [Test]
+        public void FatalInterruptionReturnsTheExactPacketToTheIntactBoxAndLeavesOrdinaryDeathDrops()
+        {
+            var box = Box();
+            var stored = Stock(box, "DryClaySpoil");
+            var tool = Carry("HandSieve");
+            var dagger = Pack.Objects.Single(e => e.BlueprintName == "Dagger");
+            var container = box.GetPart<ContainerPart>();
+            var drop = Zone.GetEntityCell(Actor);
+            var action = Actions(box).Single(IsBoxScreeningRow).Command;
+            bool sawProvisionalWork = false;
+            Actor.AddPart(new After { Callback = () =>
+            {
+                sawProvisionalWork = !container.Contents.Contains(stored) && Count("FireClay") == 2 && Count("CoarseGrit") == 1;
+                Actor.GetStat("Hitpoints").BaseValue = 0;
+                CombatSystem.HandleDeath(Actor, null, Zone);
+            } });
+
+            Assert.That(Act(box, action), Is.False);
+            Assert.That(sawProvisionalWork, Is.True);
+            Assert.That(CombatSystem.IsDeathHandled(Actor), Is.True);
+            Assert.That(container.Contents.Single(), Is.SameAs(stored));
+            Assert.That(stored.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.That(stored.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(Zone.GetEntityCell(dagger), Is.SameAs(drop));
+            Assert.That(Zone.GetEntityCell(tool), Is.SameAs(drop));
+            Assert.That(Pack.Objects.Contains(dagger) || Pack.Objects.Contains(tool), Is.False);
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+        }
+
+        [Test]
+        public void BrokenBoxSpillsTheExactLastPacketWithoutRestoringTheBoxOrProducts()
+        {
+            var box = Box();
+            var stored = Stock(box, "DryClaySpoil");
+            var unrelated = Stock(box, "KnotflaxCord");
+            var tool = Carry("HandSieve");
+            var container = box.GetPart<ContainerPart>();
+            var boxCell = Zone.GetEntityCell(box);
+            var action = Actions(box).Single(IsBoxScreeningRow).Command;
+            var verdict = DestroyVerdict.NoTarget;
+            bool sawProvisionalWork = false;
+            Actor.AddPart(new After { Callback = () =>
+            {
+                sawProvisionalWork = !container.Contents.Contains(stored) && Count("FireClay") == 2 && Count("CoarseGrit") == 1;
+                verdict = DestructionSystem.Destroy(box, null, Zone, "screening-interruption");
+            } });
+
+            Assert.That(Act(box, action), Is.False);
+            Assert.That(sawProvisionalWork, Is.True);
+            Assert.That(verdict, Is.EqualTo(DestroyVerdict.Destroyed));
+            Assert.That(Zone.GetEntityCell(box), Is.Null);
+            Assert.That(container.Contents, Is.Empty);
+            Assert.That(Zone.GetEntityCell(stored), Is.SameAs(boxCell));
+            Assert.That(Zone.GetEntityCell(unrelated), Is.SameAs(boxCell));
+            Assert.That(boxCell.Objects.Single(e => e.BlueprintName == "DryClaySpoil"), Is.SameAs(stored));
+            Assert.That(stored.GetPart<PhysicsPart>().InInventory, Is.Null);
+            Assert.That(stored.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(Pack.Objects.Contains(tool), Is.True);
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+        }
+
+        [Test]
+        public void ChangedScreenedRecipientKeepsItsNewCustodyWithoutReturningTheStoredPacket()
+        {
+            var box = Box();
+            var stored = Stock(box, "DryClaySpoil");
+            var sieve = Carry("HandSieve");
+            var oldClay = Carry("FireClay");
+            Assert.True(ConnectedSpreadProgress.BindClay(oldClay, Guid.NewGuid().ToString("N"), 0));
+            var cell = Zone.GetCell(10, 12);
+            var action = Actions(box).Single(IsBoxScreeningRow).Command;
+            Actor.AddPart(new After { Callback = () =>
+            {
+                Assert.That(oldClay.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+                Assert.True(Pack.RemoveObject(oldClay));
+                Assert.True(Zone.AddEntity(oldClay, cell.X, cell.Y));
+                oldClay.GetPart<PhysicsPart>().Weight = 2;
+            } });
+
+            Assert.That(Act(box, action), Is.False);
+            Assert.That(box.GetPart<ContainerPart>().Contents, Is.Empty);
+            Assert.That(stored.GetPart<PhysicsPart>().InInventory, Is.Null);
+            Assert.That(Zone.GetEntityCell(stored), Is.Null);
+            Assert.That(Zone.GetEntityCell(oldClay), Is.SameAs(cell));
+            Assert.That(oldClay.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+            Assert.That(oldClay.GetPart<ConnectedClayOriginPart>().Units, Is.EqualTo(1));
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+        }
+
+        [TestCase("same-box-entry")]
+        [TestCase("replacement-box-entry")]
+        [TestCase("replacement-pack-entry")]
+        [TestCase("replacement-box-container")]
+        public void LateReappearanceOfPaidPacketRejectsOutputsWithoutAddingAnAlias(string change)
+        {
+            var box = Box();
+            var stored = Stock(box, "DryClaySpoil");
+            Carry("HandSieve");
+            var container = box.GetPart<ContainerPart>();
+            var action = Actions(box).Single(IsBoxScreeningRow).Command;
+            var replacement = change == "same-box-entry" ? stored : Factory.CreateEntity("DryClaySpoil");
+            replacement.ID = stored.ID;
+            var current = change == "replacement-box-container" ? new ContainerPart() : container;
+            var destination = change == "replacement-pack-entry" ? Pack.Objects : current.Contents;
+            Actor.AddPart(new After { Callback = () =>
+            {
+                Assert.That(container.Contents, Is.Empty);
+                Assert.That(Count("FireClay"), Is.EqualTo(2));
+                if (current != container)
+                {
+                    box.RemovePart(container);
+                    box.AddPart(current);
+                }
+                destination.Add(replacement);
+            } });
+
+            Assert.That(Act(box, action), Is.False);
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+            Assert.That(destination.Single(e => e.ID == stored.ID), Is.SameAs(replacement));
+            Assert.That(Pack.Objects.Concat(current.Contents).Count(e => e.ID == stored.ID), Is.EqualTo(1));
+            Assert.That(Zone.GetReadOnlyEntities().Any(e => e.ID == stored.ID), Is.False);
+        }
+
+        [Test]
+        public void InventoryReplacementStillReturnsThePaidPacketToAnIntactBox()
+        {
+            var box = Box();
+            var stored = Stock(box, "DryClaySpoil");
+            Carry("HandSieve");
+            var oldPack = Pack;
+            var container = box.GetPart<ContainerPart>();
+            var action = Actions(box).Single(IsBoxScreeningRow).Command;
+            Actor.AddPart(new After { Callback = () =>
+            {
+                Assert.That(container.Contents, Is.Empty);
+                Assert.That(Count("FireClay"), Is.EqualTo(2));
+                Actor.RemovePart(oldPack);
+            } });
+
+            Assert.That(Act(box, action), Is.False);
+            Assert.That(Actor.GetPart<InventoryPart>(), Is.Null);
+            Assert.That(container.Contents.Single(), Is.SameAs(stored));
+            Assert.That(stored.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.That(oldPack.Objects.Any(e => e.BlueprintName == "FireClay" || e.BlueprintName == "CoarseGrit"), Is.False);
+        }
+
         [Test] public void SelectedOwnBoxProvidesDirectMaterialsWithoutCarryingThem()
         {
             var box=Box();var input=Stock(box,"CuredLeatherOffcut",3);int tick=Clock.TickCount;

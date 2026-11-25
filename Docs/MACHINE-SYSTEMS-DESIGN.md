@@ -1,3 +1,11 @@
+**An installed own box supports hand screening — November 25 UTC, 2026.**
+The same carried sieve can process a known packet stored directly in an
+adjacent installed camp box. The quoted three pounds belong to the real
+pack capacity. Carried processing remains useful away from camp and has
+a ground destination for recoverable grit. Stored and carried work share
+the declared sizes, material receipts and ordinary consumers.
+[Evidence](Verification/MachineSystems/CampBoxScreening20261125/README.md)
+
 **Physical output destinations at a portable worksite — November 25 UTC, 2026.**
 A supported coarse-grit fraction of hand screening can go to the exact
 clear tile while the fine grade enters the pack. A normal pickup can

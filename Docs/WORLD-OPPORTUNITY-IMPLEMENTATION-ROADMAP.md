@@ -154,6 +154,11 @@ cross-seed comparisons remain open.
     supported process, storage convenience or larger admitted batch. Portable
     tools retain their supported work elsewhere. Current forge supervision and
     own-camp-box limits remain until a specific replacement adapter is qualified.
+    An adjacent installed own box now lets the carried sieve work on its
+    exact direct stock, with three pounds of real output capacity and one
+    inventory transfer saved. Both carried destinations retain
+    their ordinary actions elsewhere.
+    [Evidence](Verification/MachineSystems/CampBoxScreening20261125/README.md)
 
 ## Priority 4: make storage and lasting projects optional investments
 

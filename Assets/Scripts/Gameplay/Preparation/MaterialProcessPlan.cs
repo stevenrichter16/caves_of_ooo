@@ -48,8 +48,10 @@ namespace CavesOfOoo.Core
             => Create(actor,source,id,zone,factory,null);
         internal static MaterialProcessPlan TryCreateFromStock(Entity actor,Entity source,string id,Zone zone,EntityFactory factory,MaterialProcessStock stock)
             => stock==null?null:Create(actor,source,id,zone,factory,stock);
-        internal static MaterialProcessPlan TryCreateScreening(Entity actor,Entity source,Zone zone,EntityFactory factory,SiftableStockPart provider)
-            => provider?.ParentEntity!=source || source?.GetPart<SiftableStockPart>()!=provider?null:Create(actor,source,SiftableStockPart.ProcessId,zone,factory,null,provider);
+        internal static MaterialProcessPlan TryCreateScreening(Entity actor,Entity source,Zone zone,EntityFactory factory,
+            SiftableStockPart provider, MaterialProcessStock stock = null)
+            => provider?.ParentEntity!=source || source?.GetPart<SiftableStockPart>()!=provider?null:
+                Create(actor,source,SiftableStockPart.ProcessId,zone,factory,stock,provider);
         static MaterialProcessPlan Create(Entity actor,Entity source,string id,Zone zone,EntityFactory factory,MaterialProcessStock stock,SiftableStockPart sizeStock=null)
         {
             var definition=sizeStock==null?MaterialProcessRegistry.Get(id):sizeStock.Definition(factory);
@@ -132,9 +134,14 @@ namespace CavesOfOoo.Core
             => Stock==null?PreparationActions.Begin(Actor,input,Zone,tx,command):Stock.Begin(input,tx,command);
         internal bool IndividuallyPaidClay(Entity input)
             => Stock==null && input!=Source && input.BlueprintName=="FireClay" && input.HasPart<ConnectedClayOriginPart>();
-        internal bool Consume(Entity input,CavesOfOoo.Core.Inventory.InventoryTransaction tx)
+        internal int StoredScreeningWeight => Stock != null && sizeStock != null
+            ? SiftableStockPart.Weight(Factory, Definition.SourceBlueprint) : 0;
+        internal bool RoomForStoredScreening()
+            => Stock == null || sizeStock == null || pack.MaxWeight < 0
+                || (long)pack.GetCarriedWeight() + StoredScreeningWeight <= pack.MaxWeight;
+        internal bool Consume(Entity input,CavesOfOoo.Core.Inventory.InventoryTransaction tx,Func<bool> refundAllowed=null)
         {
-            if (Stock != null) return Stock.Consume(input,tx,input!=Source && input.BlueprintName=="FireClay");
+            if (Stock != null) return Stock.Consume(input,tx,input!=Source && input.BlueprintName=="FireClay",refundAllowed);
             if (!IndividuallyPaidClay(input)) return pack.TryConsumeMaterialProcessUnit(input,tx);
             var state=MaterialProcessTemplate.Capture(Factory,input.BlueprintName)?.Snapshot(input,true,allowClayStamp:true);
             return state!=null && MaterialProcessPayment.Spend(Actor,input,Actor,Zone,tx,state.Matches,()=>state.MatchesAfterPayment(1));

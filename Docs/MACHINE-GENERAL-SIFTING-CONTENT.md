@@ -495,3 +495,22 @@ ordinary pickup and independent death spills. In Editor play the player
 collected the existing heap, left the coarse fraction, reloaded it, and
 used the clay at the well before returning for the grit.
 [Evidence](Verification/MachineSystems/GroundScreening20261125/README.md)
+
+## Screening on the way past an installed camp box
+
+Roadmap 15 trial. A player with a sound hand sieve can screen one known
+packet from the accessible direct contents of their adjacent installed box.
+The actual three pounds of output enter the pack and require ordinary
+capacity. The attraction is leaving bulky or prepared stock at a place
+the player already visits for work, with one less transfer for each batch.
+Carrying the packet remains useful on the trail and gives a choice of
+packing both grades or leaving physical grit at the worksite.
+
+Use the existing installed-box access and custody claims, plus the same
+size manifest and hand work as carried screening. Stable world action
+quotes require the same direct source, contents and installation. A locked,
+uninstalled, distant or nested box cannot supply it. A late fatal
+interruption preserves the actual death spill and returns the unspent
+packet to an intact box. If the box independently breaks, undo returns
+the exact packet where it can normally spill. If an independently changed
+recipient has kept output, keep the corresponding packet spent.
