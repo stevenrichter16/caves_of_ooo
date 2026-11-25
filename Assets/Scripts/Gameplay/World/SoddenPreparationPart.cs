@@ -43,7 +43,10 @@ namespace CavesOfOoo.Core
         public string Describe() => (RepairablePart.BlocksFunction(ParentEntity)
             ? "The dressing bench needs two salvaged timber before it can be used. "
             : "The repaired dressing bench can prepare supplies while its keeper is beside it. ")
-            + "One sumpsieve pad, one knotflax cord and two drams make one field dressing. Apply it to treat existing ordinary poison and bleeding together. It does not heal wounds or treat poison gas or fungal infection.";
+            + "The keeper makes a field dressing from one sumpsieve pad, one knotflax cord and two drams. "
+            + "Apply it in one action to treat ordinary poison and bleeding together. It does not heal wounds or treat gas poison or fungal infection.\n"
+            + "A sumpsieve pad alone treats ordinary or gas poison. Make a bandage from one knotflax cord to stop bleeding. "
+            + "You can carry and use either treatment away from the bench.";
 
         bool Station(Zone zone)
         {

@@ -1,3 +1,12 @@
+**Portable treatment stays useful alongside a fixed service — November 25 UTC, 2026.**
+The same pad and cord support two independent carried treatments or Sella’s
+combined dressing. The shelter and Sella name the difference. A two-timber
+repair unlocks the paid bench, and preparation costs two drams per dressing.
+One application addresses both ordinary conditions. The separate pad also
+addresses poison from gas. Two actual branches from the same earned
+supplies verified the different costs, use and saved consequences.
+[Evidence](Verification/MachineSystems/SoddenTreatmentChoices20261125/README.md)
+
 **Compatible repair keeps one readable bill — November 25 UTC, 2026.**
 The amount stays in the action row and the shared compatibility bill wraps
 below it. The existing details and Examine readers show the same bill.

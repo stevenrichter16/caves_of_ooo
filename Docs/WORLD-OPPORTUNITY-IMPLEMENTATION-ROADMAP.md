@@ -56,11 +56,13 @@ check-in provides continued work across runs.
 | Slice | Requirements and status |
 | --- | --- |
 | Clay suitability and repair result | 1, 4–8 have bounded well/pan evidence. 2 drives repair payment and physical parcel admission for lining clay. 3 has actual separate storage, collection and well repair. The selected NPC shipment has a bounded exact-stock receipt. |
+| Regional preparation and optional services | 9–12 and 14–18 have bounded material, carrying or receiving trials. 13 still needs a second independently useful work provider. 19 has free ordinary cooking and portable treatment trials. 20 has bounded equivalent Tine weir benefits. |
 | First paid physical delivery | 21–24 and 28 have bounded Gleaners' hire, movement, shelf receipt and well use. The order-bound actions also have an actual cancel, rebook and reload branch. |
 | Selected NPC shipments and overdue searches | 25 has finite supplier payment, visible physical carrying, exact trade stock and pan repair. 41–42 have a saved deadline and local notice. 43–45 have bounded personal search, recognition, returned reporting, late delivery and intact recovery. A refilled parcel remains shelf storage with the inquiry open. One delegated v22 search has a finite wage, ordinary movement, physical reporting and trade continuity. Broader staffing and settings remain open. |
 | Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. Broader road, load and seasonal variation remain open. |
+| Readers, transactions and comparisons | 36–39 have bounded action, material, delivery and kitchen receipt checks. 40 has guided full wayside meal routes and a same-save Sodden treatment comparison. The next comparisons still need wider regions, fresh-current layouts and discovery without navigation guidance. |
 
-The connected regression passed 615 executable cases. Actual play used
+An earlier connected regression passed 615 executable cases. Actual play used
 separate guided branches. Requirements for ordinary discovery and complete
 cross-seed comparisons remain open.
 [Recovery evidence](Verification/MachineSystems/PorterParcelIntegrity20261125/README.md)
@@ -214,6 +216,10 @@ cross-seed comparisons remain open.
     same purse while the optional batch pan remained broken. The native shops
     and public fields supplied both routes.
     [Evidence](Verification/MachineSystems/KitchenOrdinaryContrast20261125/README.md)
+    At Sella’s shelter the carried pad and bandage treated the ordinary
+    conditions after the player skipped the bench project. The prepared
+    option used one application after up-front repairs and payment.
+    [Evidence](Verification/MachineSystems/SoddenTreatmentChoices20261125/README.md)
 
 20. **Keep lasting benefits independent of repeated repair.** Once equivalent
     durable work qualifies, apply the same stated benefit at its ordinary
@@ -447,6 +453,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     of meal with identical timing and recipe. Broader regions, current-version
     comparisons and player-led discovery remain to be verified.
     [Evidence](Verification/MachineSystems/KitchenOrdinaryContrast20261125/README.md)
+    A same-save Sodden pair compared two free portable applications with
+    one prepared application, using the same earned pad and cord and
+    comparable temporary effects. Both results survived fresh Continue.
+    [Evidence](Verification/MachineSystems/SoddenTreatmentChoices20261125/README.md)
 
 ## Additional requirement: overdue shipments have social consequences
 

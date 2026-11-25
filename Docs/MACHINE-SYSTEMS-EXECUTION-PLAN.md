@@ -1,3 +1,13 @@
+**Two useful treatments at Sella’s shelter — November 25 UTC, 2026.**
+The bench reader and Sella explain independent portable treatments and a
+combined dressing. Actual new harvesting and movement brought timber and
+cord to a common saved branch with the earned two pads. The player either
+used a pad and bandage with the bench still broken, or repaired it and paid
+to combine the same supplies into one application. Both exact outcomes
+survived fresh Continue. Native verification passed 409. Continue broader
+ordinary discovery and practical work choices across other regions.
+[Evidence](Verification/MachineSystems/SoddenTreatmentChoices20261125/README.md)
+
 **A repair menu shows the complete compatible bill — November 25 UTC, 2026.**
 The three lining-clay receivers share a shorter action and wrapped bill.
 Actual F1 cancellation kept time and both exact goods at the Peat Works rig.

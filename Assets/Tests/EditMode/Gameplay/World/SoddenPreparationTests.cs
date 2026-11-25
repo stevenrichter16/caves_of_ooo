@@ -165,6 +165,75 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains("sumpsieve", Service.Describe().ToLowerInvariant());
             Assert.AreEqual(1, Units("SumpsievePad")); Assert.AreEqual(0, Units("SoddenFieldDressing")); Assert.AreEqual(10, TradeSystem.GetDrams(Actor));
         }
+        [Test]
+        public void DressingBenchReaderExplainsWhyThePortableAndCombinedTreatmentsDiffer()
+        {
+            Ingredients();
+            var lines = new System.Collections.Generic.List<string>();
+            StateReader.Collect(Bench, true, Zone, Zone.GetEntityCell(Bench), Actor, lines);
+            string copy = string.Join("\n", lines).ToLowerInvariant();
+            Assert.That(copy, Does.Match(@"sumpsieve pad[^.!?\n]*gas poison"));
+            Assert.That(copy, Does.Match(@"bandage[^.!?\n]*bleeding|bleeding[^.!?\n]*bandage"));
+            Assert.That(copy, Does.Contain("one action"));
+            var service = WorldInteractionSystem.GatherActions(Bench, Actor)
+                .Single(a => a.Command == SoddenPreparationPart.PrepareCommand);
+            Assert.That(service.Display, Does.Contain("1 sumpsieve pad").And.Contain("1 knotflax cord").And.Contain("2 drams"));
+            Assert.That(Units("SumpsievePad"), Is.EqualTo(1));
+            Assert.That(Units("KnotflaxCord"), Is.EqualTo(1));
+            Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(10));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ExactSuppliesGiveEitherPortableTreatmentsOrOneCombinedApplication(bool useService)
+        {
+            Factory.LoadBlueprints(File.ReadAllText(Path.Combine(UnityEngine.Application.dataPath,
+                "Resources/Content/Blueprints/Objects.json")));
+            var pad = Factory.CreateEntity("SumpsievePad");
+            var cord = Factory.CreateEntity("KnotflaxCord");
+            Assert.True(Pack.AddObject(pad));
+            Assert.True(Pack.AddObject(cord));
+            Assert.True(Status.ApplyEffect(new PoisonedEffect()));
+            Assert.True(Status.ApplyEffect(new PoisonedByGasEffect { Duration = 5 }));
+            Assert.True(Status.ApplyEffect(new BleedingEffect()));
+            int hp = Actor.GetStatValue("Hitpoints");
+
+            if (useService)
+            {
+                Assert.True(Prepare());
+                var dressing = Pack.Objects.Single(e => e.BlueprintName == "SoddenFieldDressing");
+                var apply = InventorySystem.GetActions(Actor, dressing).Single(a => a.Command == SoddenDressingPart.ApplyCommand);
+                Assert.True(Act(dressing, apply.Command));
+                Assert.False(Status.HasEffect<PoisonedEffect>());
+                Assert.False(Status.HasEffect<BleedingEffect>());
+                Assert.True(Status.HasEffect<PoisonedByGasEffect>());
+                Assert.That(Units("SoddenFieldDressing"), Is.Zero);
+            }
+            else
+            {
+                Bench.GetPart<RepairablePart>().Repaired = false;
+                Assert.False(Prepare());
+                var applyPad = InventorySystem.GetActions(Actor, pad).Single(a => a.Command == "ApplyTonic");
+                Assert.True(Act(pad, applyPad.Command));
+                Assert.False(Status.HasEffect<PoisonedEffect>());
+                Assert.False(Status.HasEffect<PoisonedByGasEffect>());
+                Assert.True(Status.HasEffect<BleedingEffect>());
+                var makeBandage = InventorySystem.GetActions(Actor, cord).Single(a => a.Command == "PrepareRecipe|bandage");
+                Assert.True(Act(cord, makeBandage.Command));
+                var bandage = Pack.Objects.Single(e => e.BlueprintName == "KnotflaxBandage");
+                var applyBandage = InventorySystem.GetActions(Actor, bandage).Single(a => a.Command == "ApplyTonic");
+                Assert.True(Act(bandage, applyBandage.Command));
+                Assert.False(Status.HasEffect<BleedingEffect>());
+                Assert.That(Units("KnotflaxBandage"), Is.Zero);
+            }
+
+            Assert.That(Units("SumpsievePad"), Is.Zero);
+            Assert.That(Units("KnotflaxCord"), Is.Zero);
+            Assert.That(Actor.GetStatValue("Hitpoints"), Is.EqualTo(hp));
+            Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(useService ? 8 : 10));
+            Assert.That(TradeSystem.GetDrams(Worker), Is.EqualTo(useService ? 9 : 7));
+        }
+
         [Test] public void OuterFailureRestoresExactInputsOutputStackAndBothPurses()
         {
             Ingredients(); var output = Supply("SoddenFieldDressing", 3); Actor.AddPart(new FailAfter());
