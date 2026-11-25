@@ -1,3 +1,13 @@
+**Morrowfast offers one affordable mended fish trap — November 25 UTC, 2026.**
+Fresh Orrit sold the exact mended kit for 35 drams in actual play. The
+player carried it to the natural Stump cascade, placed it on the shore,
+retreated to the world map then came back for one fish. Retrieval
+preserved the trap. Wildlife injured the player and the meal restored
+eight HP on return. Fresh Continue kept the exact kit, no replacement
+stock and the pond’s saved count. All 76 focused native cases passed.
+Continue a contrasting current seed and broaden ordinary tool discovery.
+[Evidence](Verification/MachineSystems/MorrowfastMendedTrap20261125/README.md)
+
 **Current universal Mac package — November 25 UTC, 2026.**
 Runtime eb13f3104 reached GameBootstrap startup on Apple Silicon.
 The current package and all 186 files were verified after launch. Actual

@@ -1,0 +1,852 @@
+{
+  "shopQuote": {
+    "tick": 470,
+    "purse": 50,
+    "actor": "morrowfast-owner:southwest-craftsperson",
+    "kit": {
+      "i": 11,
+      "ID": "6748",
+      "BlueprintName": "CampFishTrap",
+      "name": "mended fish trap",
+      "price": 35,
+      "n": 1,
+      "taking": 0
+    },
+    "grit": [
+      {
+        "i": 10,
+        "ID": "6746",
+        "BlueprintName": "CoarseGrit",
+        "name": "coarse grit (x2)",
+        "price": 12,
+        "n": 2,
+        "taking": 0
+      }
+    ]
+  },
+  "purchase": {
+    "t": 470,
+    "zone": "Overworld.3.6.0",
+    "v": 26,
+    "WorldSeed": 64,
+    "p": {
+      "ID": "2704",
+      "X": 31,
+      "Y": 21,
+      "hp": 40,
+      "drams": 15,
+      "wet": false
+    },
+    "kit": [
+      {
+        "ID": "6748",
+        "BlueprintName": "CampFishTrap",
+        "name": "mended fish trap",
+        "n": 1,
+        "val": 12,
+        "weight": 14,
+        "owner": "2704",
+        "set": -1,
+        "held": 0,
+        "progress": 0,
+        "projected": 0,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "fish": [],
+    "ground": [],
+    "shelf": [
+      {
+        "ID": "6746",
+        "BlueprintName": "CoarseGrit",
+        "name": "coarse grit (x2)",
+        "n": 2,
+        "val": 2,
+        "weight": 1,
+        "owner": "morrowfast-owner:southwest-craftsperson",
+        "set": null,
+        "held": null,
+        "progress": null,
+        "projected": null,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "log": [
+      "Autosaved.",
+      "Autosaved.",
+      "A soft sound slips through the air: sari... sari...",
+      "You buy mended fish trap for 35 drams."
+    ]
+  },
+  "naturalPond": {
+    "line": [
+      {
+        "y": 7,
+        "pool": false,
+        "pass": true,
+        "blocks": false,
+        "touching": 0
+      },
+      {
+        "y": 8,
+        "pool": false,
+        "pass": true,
+        "blocks": false,
+        "touching": 129
+      },
+      {
+        "y": 9,
+        "pool": true,
+        "pass": true,
+        "blocks": false,
+        "touching": 129
+      },
+      {
+        "y": 10,
+        "pool": true,
+        "pass": true,
+        "blocks": false,
+        "touching": 129
+      },
+      {
+        "y": 11,
+        "pool": true,
+        "pass": true,
+        "blocks": false,
+        "touching": 129
+      },
+      {
+        "y": 12,
+        "pool": true,
+        "pass": true,
+        "blocks": true,
+        "touching": 129
+      }
+    ],
+    "actors": [
+      {
+        "BlueprintName": "CascadeFather",
+        "pos": {
+          "Item1": 48,
+          "Item2": 10
+        }
+      },
+      {
+        "BlueprintName": "YellowfootWayfarer",
+        "pos": {
+          "Item1": 54,
+          "Item2": 22
+        }
+      },
+      {
+        "BlueprintName": "SariSnake",
+        "pos": {
+          "Item1": 36,
+          "Item2": 16
+        }
+      },
+      {
+        "BlueprintName": "SariSnake",
+        "pos": {
+          "Item1": 35,
+          "Item2": 15
+        }
+      },
+      {
+        "BlueprintName": "SkySari",
+        "pos": {
+          "Item1": 33,
+          "Item2": 5
+        }
+      }
+    ]
+  },
+  "shore": {
+    "t": 570,
+    "zone": "Overworld.5.5.0",
+    "v": 26,
+    "WorldSeed": 64,
+    "p": {
+      "ID": "2704",
+      "X": 40,
+      "Y": 8,
+      "hp": 40,
+      "drams": 15,
+      "wet": true
+    },
+    "kit": [
+      {
+        "ID": "6748",
+        "BlueprintName": "CampFishTrap",
+        "name": "mended fish trap",
+        "n": 1,
+        "val": 12,
+        "weight": 14,
+        "owner": "2704",
+        "set": -1,
+        "held": 0,
+        "progress": 0,
+        "projected": 0,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "fish": [],
+    "ground": [],
+    "shelf": null,
+    "log": [
+      "The wet coating wears off you.",
+      "The wet coating wears off cascade-father.",
+      "The wet coating wears off sari-snake.",
+      "The wet coating wears off sari-snake."
+    ]
+  },
+  "placement": {
+    "panel": 1,
+    "selected": "CampFishTrap",
+    "popupItem": "CampFishTrap",
+    "index": 0,
+    "rows": [
+      {
+        "Label": "set down east",
+        "Command": "SetDown|Overworld.5.5.0|40|8|41|8|6748",
+        "Hint": ""
+      },
+      {
+        "Label": "set down west",
+        "Command": "SetDown|Overworld.5.5.0|40|8|39|8|6748",
+        "Hint": ""
+      },
+      {
+        "Label": "examine",
+        "Command": "Examine",
+        "Hint": ""
+      },
+      {
+        "Label": "Drop",
+        "Command": "drop",
+        "Hint": null
+      }
+    ]
+  },
+  "placed": {
+    "t": 580,
+    "zone": "Overworld.5.5.0",
+    "v": 26,
+    "WorldSeed": 64,
+    "p": {
+      "ID": "2704",
+      "X": 40,
+      "Y": 8,
+      "hp": 40,
+      "drams": 15,
+      "wet": true
+    },
+    "kit": [],
+    "fish": [],
+    "ground": [
+      {
+        "ID": "6748",
+        "BlueprintName": "CampFishTrap",
+        "name": "mended fish trap",
+        "n": 1,
+        "val": 12,
+        "weight": 14,
+        "owner": null,
+        "set": 570,
+        "held": 0,
+        "progress": 0,
+        "projected": 0,
+        "cell": {
+          "Item1": 41,
+          "Item2": 8
+        }
+      }
+    ],
+    "shelf": null,
+    "log": [
+      "sari-snake is covered in wet.",
+      "sari-snake is covered in wet.",
+      "sky-sari misses you!",
+      "The wet coating wears off sky-sari."
+    ]
+  },
+  "retreat": {
+    "t": 590,
+    "p": {
+      "ID": "2704",
+      "X": 35,
+      "Y": 8,
+      "hp": 40,
+      "drams": 15,
+      "effects": [
+        "WetEffect"
+      ]
+    },
+    "zone": "WorldMap",
+    "stage": "Normal",
+    "WorldSeed": 64,
+    "v": 26,
+    "w": {
+      "Valid": false,
+      "Raining": false,
+      "Window": 0,
+      "Season": 0,
+      "UntilTick": 0
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2
+      }
+    ]
+  },
+  "gameClockWait": {
+    "t": 1170,
+    "p": {
+      "ID": "2704",
+      "X": 35,
+      "Y": 8,
+      "hp": 40,
+      "drams": 15,
+      "effects": [
+        "WetEffect"
+      ]
+    },
+    "zone": "WorldMap",
+    "stage": "Normal",
+    "WorldSeed": 64,
+    "v": 26,
+    "w": {
+      "Valid": false,
+      "Raining": false,
+      "Window": 0,
+      "Season": 0,
+      "UntilTick": 0
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2
+      }
+    ]
+  },
+  "returnCatch": {
+    "t": 1180,
+    "zone": "Overworld.5.5.0",
+    "v": 26,
+    "WorldSeed": 64,
+    "p": {
+      "ID": "2704",
+      "X": 40,
+      "Y": 8,
+      "hp": 40,
+      "drams": 15,
+      "wet": true
+    },
+    "kit": [],
+    "fish": [],
+    "ground": [
+      {
+        "ID": "6748",
+        "BlueprintName": "CampFishTrap",
+        "name": "mended fish trap",
+        "n": 1,
+        "val": 12,
+        "weight": 14,
+        "owner": null,
+        "set": 570,
+        "held": 0,
+        "progress": 0,
+        "projected": 1,
+        "cell": {
+          "Item1": 41,
+          "Item2": 8
+        }
+      }
+    ],
+    "shelf": null,
+    "log": [
+      "Game saved.",
+      "You keep mended fish trap: this place.",
+      "Autosaved.",
+      "You keep here: mended fish trap. As you left it: fish trap holds 1 by now.",
+      "Autosaved."
+    ]
+  },
+  "takeQuote": {
+    "highlight": "TakeTrapFish",
+    "target": "CampFishTrap",
+    "rows": [
+      {
+        "Command": "TakeUp|Overworld.5.5.0|6748",
+        "Display": "take up",
+        "Hint": ""
+      },
+      {
+        "Command": "TakeTrapFish",
+        "Display": "take the fish (1)",
+        "Hint": "Empties the trap into your pack. It catches again while it stands, up to four at a time, from the pond's own supply."
+      },
+      {
+        "Command": "HandOver|Overworld.5.5.0|6748",
+        "Display": "hand over (you can no longer take it up)",
+        "Hint": ""
+      },
+      {
+        "Command": "MovePick|Overworld.5.5.0|6748",
+        "Display": "move",
+        "Hint": "Pick a cell with the arrow keys: green fits, red does not. It keeps its fuel; a burning fire goes out."
+      },
+      {
+        "Command": "NameCamp|Overworld.5.5.0|6748",
+        "Display": "name this camp: Home",
+        "Hint": "Names this camp in the notes of where you keep things. Choose again for the next name."
+      },
+      {
+        "Command": "Examine",
+        "Display": "examine",
+        "Hint": ""
+      },
+      {
+        "Command": "PickCell",
+        "Display": "<< everything here",
+        "Hint": ""
+      }
+    ]
+  },
+  "catch": {
+    "t": 1190,
+    "zone": "Overworld.5.5.0",
+    "v": 26,
+    "WorldSeed": 64,
+    "p": {
+      "ID": "2704",
+      "X": 40,
+      "Y": 8,
+      "hp": 40,
+      "drams": 15,
+      "wet": true
+    },
+    "kit": [],
+    "fish": [
+      {
+        "ID": "9426",
+        "BlueprintName": "LakePerch",
+        "name": "lake perch",
+        "n": 1,
+        "val": 5,
+        "weight": 1,
+        "owner": "2704",
+        "set": null,
+        "held": null,
+        "progress": null,
+        "projected": null,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "ground": [
+      {
+        "ID": "6748",
+        "BlueprintName": "CampFishTrap",
+        "name": "mended fish trap",
+        "n": 1,
+        "val": 12,
+        "weight": 14,
+        "owner": null,
+        "set": 570,
+        "held": 0,
+        "progress": 10,
+        "projected": 0,
+        "cell": {
+          "Item1": 41,
+          "Item2": 8
+        }
+      }
+    ],
+    "shelf": null,
+    "log": [
+      "The wet coating wears off cascade-father.",
+      "The wet coating wears off sari-snake.",
+      "The wet coating wears off sari-snake.",
+      "sky-sari misses you!"
+    ]
+  },
+  "pond": {
+    "ID": "7667",
+    "x": 35,
+    "y": 9,
+    "Available": 3,
+    "Capacity": 4,
+    "LastTick": 1180
+  },
+  "packed": {
+    "t": 1200,
+    "zone": "Overworld.5.5.0",
+    "v": 26,
+    "WorldSeed": 64,
+    "p": {
+      "ID": "2704",
+      "X": 40,
+      "Y": 8,
+      "hp": 22,
+      "drams": 15,
+      "wet": true
+    },
+    "kit": [
+      {
+        "ID": "6748",
+        "BlueprintName": "CampFishTrap",
+        "name": "mended fish trap",
+        "n": 1,
+        "val": 12,
+        "weight": 14,
+        "owner": "2704",
+        "set": -1,
+        "held": 0,
+        "progress": 20,
+        "projected": 0,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "fish": [
+      {
+        "ID": "9426",
+        "BlueprintName": "LakePerch",
+        "name": "lake perch",
+        "n": 1,
+        "val": 5,
+        "weight": 1,
+        "owner": "2704",
+        "set": null,
+        "held": null,
+        "progress": null,
+        "projected": null,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "ground": [],
+    "shelf": null,
+    "log": [
+      "cascade-father is covered in wet.",
+      "sari-snake is covered in wet.",
+      "sari-snake hits you in the body for 4 damage! (36 HP remaining)",
+      "sky-sari hits you in the left arm for 14 damage! (22 HP remaining)"
+    ]
+  },
+  "marketReturn": {
+    "t": 1260,
+    "zone": "Overworld.3.6.0",
+    "v": 26,
+    "WorldSeed": 64,
+    "p": {
+      "ID": "2704",
+      "X": 38,
+      "Y": 10,
+      "hp": 22,
+      "drams": 15,
+      "wet": true
+    },
+    "kit": [
+      {
+        "ID": "6748",
+        "BlueprintName": "CampFishTrap",
+        "name": "mended fish trap",
+        "n": 1,
+        "val": 12,
+        "weight": 14,
+        "owner": "2704",
+        "set": -1,
+        "held": 0,
+        "progress": 20,
+        "projected": 0,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "fish": [
+      {
+        "ID": "9426",
+        "BlueprintName": "LakePerch",
+        "name": "lake perch",
+        "n": 1,
+        "val": 5,
+        "weight": 1,
+        "owner": "2704",
+        "set": null,
+        "held": null,
+        "progress": null,
+        "projected": null,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "ground": [],
+    "shelf": [
+      {
+        "ID": "6746",
+        "BlueprintName": "CoarseGrit",
+        "name": "coarse grit (x2)",
+        "n": 2,
+        "val": 2,
+        "weight": 1,
+        "owner": "morrowfast-owner:southwest-craftsperson",
+        "set": null,
+        "held": null,
+        "progress": null,
+        "projected": null,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "log": [
+      "sari-snake hits you in the body for 4 damage! (36 HP remaining)",
+      "sky-sari hits you in the left arm for 14 damage! (22 HP remaining)",
+      "Autosaved.",
+      "Autosaved."
+    ]
+  },
+  "eatQuote": {
+    "panel": 1,
+    "selected": "LakePerch",
+    "popupItem": "LakePerch",
+    "index": 0,
+    "rows": [
+      {
+        "Label": "Examine",
+        "Command": "examine_item",
+        "Hint": null
+      },
+      {
+        "Label": "eat",
+        "Command": "Eat",
+        "Hint": ""
+      },
+      {
+        "Label": "Drop",
+        "Command": "drop",
+        "Hint": null
+      }
+    ]
+  },
+  "consumed": {
+    "t": 1270,
+    "zone": "Overworld.3.6.0",
+    "v": 26,
+    "WorldSeed": 64,
+    "p": {
+      "ID": "2704",
+      "X": 38,
+      "Y": 10,
+      "hp": 30,
+      "drams": 15,
+      "wet": true
+    },
+    "kit": [
+      {
+        "ID": "6748",
+        "BlueprintName": "CampFishTrap",
+        "name": "mended fish trap",
+        "n": 1,
+        "val": 12,
+        "weight": 14,
+        "owner": "2704",
+        "set": -1,
+        "held": 0,
+        "progress": 20,
+        "projected": 0,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "fish": [],
+    "ground": [],
+    "shelf": [
+      {
+        "ID": "6746",
+        "BlueprintName": "CoarseGrit",
+        "name": "coarse grit (x2)",
+        "n": 2,
+        "val": 2,
+        "weight": 1,
+        "owner": "morrowfast-owner:southwest-craftsperson",
+        "set": null,
+        "held": null,
+        "progress": null,
+        "projected": null,
+        "cell": {
+          "Item1": -1,
+          "Item2": -1
+        }
+      }
+    ],
+    "log": [
+      "sky-sari hits you in the left arm for 14 damage! (22 HP remaining)",
+      "Autosaved.",
+      "Autosaved.",
+      "You heal 8 HP.",
+      "You eat lake perch."
+    ]
+  },
+  "fresh": {
+    "a": {
+      "t": 1270,
+      "zone": "Overworld.3.6.0",
+      "v": 26,
+      "WorldSeed": 64,
+      "p": {
+        "ID": "2704",
+        "X": 38,
+        "Y": 10,
+        "hp": 30,
+        "drams": 15,
+        "wet": true
+      },
+      "kit": [
+        {
+          "ID": "6748",
+          "BlueprintName": "CampFishTrap",
+          "name": "mended fish trap",
+          "n": 1,
+          "val": 12,
+          "weight": 14,
+          "owner": "2704",
+          "set": -1,
+          "held": 0,
+          "progress": 20,
+          "projected": 0,
+          "cell": {
+            "Item1": -1,
+            "Item2": -1
+          }
+        }
+      ],
+      "fish": [],
+      "ground": [],
+      "shelf": [
+        {
+          "ID": "6746",
+          "BlueprintName": "CoarseGrit",
+          "name": "coarse grit (x2)",
+          "n": 2,
+          "val": 2,
+          "weight": 1,
+          "owner": "morrowfast-owner:southwest-craftsperson",
+          "set": null,
+          "held": null,
+          "progress": null,
+          "projected": null,
+          "cell": {
+            "Item1": -1,
+            "Item2": -1
+          }
+        }
+      ],
+      "log": [
+        "sky-sari hits you in the left arm for 14 damage! (22 HP remaining)",
+        "Autosaved.",
+        "Autosaved.",
+        "You heal 8 HP.",
+        "You eat lake perch."
+      ]
+    },
+    "s": {
+      "ID": "7667",
+      "Available": 3,
+      "Capacity": 4,
+      "LastTick": 1180
+    },
+    "originalTonics": {
+      "ID": "2706",
+      "BlueprintName": "HealingTonic",
+      "n": 2
+    }
+  },
+  "idle": {
+    "playing": false,
+    "root": null,
+    "dirty": false,
+    "profiling": false,
+    "total": 7,
+    "builtin": 7,
+    "selected": 0,
+    "viewOwned": false
+  }
+}

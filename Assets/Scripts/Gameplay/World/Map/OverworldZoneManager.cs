@@ -1251,10 +1251,15 @@ namespace CavesOfOoo.Core
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
             && !GleanersDistrict.Retain(zoneID)
             && !SoddenDistrict.Retain(zoneID)
+            && !RetainMorrowfast(zoneID)
             && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
             && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID)
             && !BiomeCropPlacement.Retain(this,zoneID) && !SecondExplorationSites.Retain(this,zoneID)
             && !InstallationMarkerPart.Retain(this,zoneID);
+
+        private bool RetainMorrowfast(string zoneID) => zoneID == MorrowfastSceneRuntime.ZoneID
+            && WorldMap.GetPOI(MorrowfastSceneRuntime.WorldX, MorrowfastSceneRuntime.WorldY)?.Profile == "Morrowfast"
+            && CachedZones.TryGetValue(zoneID, out var zone) && MorrowfastSceneRuntime.GetState(zone)?.Revision == 1;
 
         protected override void OnZoneAttached(Zone zone)
         {

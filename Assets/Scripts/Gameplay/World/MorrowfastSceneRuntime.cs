@@ -180,6 +180,8 @@ namespace CavesOfOoo.Core
                 if(e==null)return false;
                 e.ID=OwnerPrefix+o.id;if(!e.HasPart<MorrowfastPropPart>())e.AddPart(new MorrowfastPropPart{ComponentId=o.id});
                 if(!e.HasPart<ExaminablePart>())e.AddPart(new ExaminablePart{Text=o.description??o.name});
+                if (!preserveExisting && o.id == "southwest-craftsperson")
+                    MorrowfastContent.StageMendedFishTrap(e, factory);
                 if(o.kind=="creature")
                 {
                     e.GetPart<RenderPart>().DisplayName=o.name;

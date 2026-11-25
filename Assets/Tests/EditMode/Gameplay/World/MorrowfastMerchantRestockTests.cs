@@ -64,6 +64,70 @@ namespace CavesOfOoo.Tests
             { Assert.AreSame(merchant, item.GetPart<PhysicsPart>().InInventory); Assert.NotNull(item.GetPart<CommercePart>()); }
         }
 
+        [Test]
+        public void FreshOrritSellsOneAffordableMendedTrapWithOrdinaryFixtureParts()
+        {
+            var manager = new OverworldZoneManager(factory, 64);
+            var zone = manager.GetZone(MorrowfastSceneRuntime.ZoneID);
+            var merchant = MorrowfastSceneRuntime.FindOwner(zone, "southwest-craftsperson");
+            var items = merchant.GetPart<InventoryPart>().Objects;
+            var kits = items.Where(item => item.BlueprintName == "CampFishTrap").ToArray();
+            Assert.That(kits, Has.Length.EqualTo(1));
+            var kit = kits[0];
+            var kitParts = kit.GetPart<PackableFixturePart>();
+            var catchState = kit.GetPart<FishTrapPart>();
+            Assert.AreEqual("mended fish trap", kit.GetDisplayName());
+            Assert.AreEqual(CampKinds.FishTrap, kitParts.Kind);
+            Assert.AreEqual(-1, kitParts.SetTick);
+            Assert.That(catchState.Held, Is.Zero);
+            Assert.That(catchState.Progress, Is.Zero);
+            Assert.AreEqual(-1, catchState.LastTick);
+            Assert.IsNull(kit.GetPart<InstallablePart>());
+            Assert.IsNull(kit.GetPart<StackerPart>());
+            Assert.AreSame(merchant, kit.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(14, kit.GetPart<PhysicsPart>().Weight);
+            Assert.That(items.Where(item => item.BlueprintName == "CoarseGrit")
+                .Sum(item => item.GetPart<StackerPart>()?.StackCount ?? 1), Is.EqualTo(2));
+
+            var buyer = factory.CreateEntity("Player");
+            var performance = TradeSystem.GetTradePerformance(buyer);
+            int price = TradeSystem.GetBuyPrice(kit, performance, merchant);
+            Assert.That(price, Is.InRange(1, TradeSystem.GetDrams(buyer)));
+            Assert.That(TradeSystem.GetSellPrice(kit, performance, merchant), Is.LessThan(price));
+            int drams = TradeSystem.GetDrams(buyer);
+            Assert.IsTrue(TradeSystem.BuyFromTrader(buyer, merchant, kit));
+            Assert.AreEqual(drams - price, TradeSystem.GetDrams(buyer));
+            Assert.Contains(kit, buyer.GetPart<InventoryPart>().Objects);
+            Assert.That(items.Any(item => item.BlueprintName == "CampFishTrap"), Is.False);
+
+            var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(buyer)
+                .GetPart<InventoryPart>().Objects.Single(item => item.ID == kit.ID);
+            Assert.AreEqual(kit.GetDisplayName(), loaded.GetDisplayName());
+            Assert.AreEqual(kit.GetPart<CommercePart>().Value, loaded.GetPart<CommercePart>().Value);
+            Assert.AreEqual(55, factory.CreateEntity("CampFishTrap").GetPart<CommercePart>().Value);
+
+            manager.UnloadZone(zone.ZoneID);
+            Assert.AreSame(zone, manager.GetZone(zone.ZoneID));
+            foreach (var item in items.ToArray()) merchant.GetPart<InventoryPart>().RemoveObject(item);
+            TraderRestockSystem.RestockZone(zone, 1800);
+            Assert.That(items, Is.Not.Empty);
+            Assert.That(items.Any(item => item.BlueprintName == "CampFishTrap"), Is.False);
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void KeepingAnOlderMorrowfastGraphOrAnInvalidTrapTemplateDoesNotGrantOne(bool malformed)
+        {
+            var legacy = new Zone(MorrowfastSceneRuntime.ZoneID);
+            Assert.IsTrue(MorrowfastSceneRuntime.UpgradeCachedZone(legacy, factory));
+            AssertStock(MorrowfastSceneRuntime.FindOwner(legacy, "southwest-craftsperson"), false, 2);
+            if (malformed)
+                factory.Blueprints["CampFishTrap"].Parts["FishTrap"]["Held"] = "1";
+            else
+                Assert.IsTrue(factory.Blueprints.Remove("CampFishTrap"));
+            var zone = new OverworldZoneManager(factory, 64).GetZone(MorrowfastSceneRuntime.ZoneID);
+            AssertStock(MorrowfastSceneRuntime.FindOwner(zone, "southwest-craftsperson"), false, 2);
+        }
+
         [TestCase(false)] [TestCase(true)]
         public void BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(bool food)
         {

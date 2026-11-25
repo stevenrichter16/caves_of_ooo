@@ -85,6 +85,31 @@ namespace CavesOfOoo.Core
             if (index == 5) Stock(actor, factory, new[] { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin", "LiquidFlask", "KnotflaxSeed", "HearthbulbSeed", "SeamleafSeed", "InertSludge" }, new[] { 8, 4, 2, 2, 3, 1, 1, 2, 2, 2, 2 });
             return actor;
         }
+
+        internal static void StageMendedFishTrap(Entity merchant, EntityFactory factory)
+        {
+            const string blueprint = "CampFishTrap";
+            var inventory = merchant.GetPart<InventoryPart>();
+            if (inventory == null || inventory.Objects.Exists(item => item.BlueprintName == blueprint)
+                || !factory.Blueprints.ContainsKey(blueprint)) return;
+
+            var kit = factory.CreateEntity(blueprint);
+            if (kit?.GetPart<PhysicsPart>() is not { Takeable: true, InInventory: null, Weight: 14 }
+                || kit.SpatialZone != null
+                || kit.GetPart<PackableFixturePart>() is not { Kind: CampKinds.FishTrap, SetTick: -1, CampName: "" }
+                || kit.GetPart<FishTrapPart>() is not { Held: 0, Progress: 0, LastTick: -1 }
+                || kit.HasPart<InstallablePart>() || kit.HasPart<StackerPart>()
+                || kit.GetPart<CommercePart>() is not { } commerce
+                || kit.GetPart<RenderPart>() is not { } render
+                || kit.GetPart<ExaminablePart>() is not { } description) return;
+
+            // Price the one mended item itself so ordinary buying and resale use the same value.
+            commerce.Value = 12;
+            render.DisplayName = "mended fish trap";
+            description.Text = "Orrit patched the split-willow funnel and re-lashed it to its frame.";
+            inventory.AddObject(kit);
+        }
+
         private static void Stock(Entity actor, EntityFactory factory, string[] items, int[] counts)
         {
             var inventory = actor.GetPart<InventoryPart>();

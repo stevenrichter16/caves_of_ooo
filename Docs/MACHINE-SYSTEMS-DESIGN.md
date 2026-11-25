@@ -1,3 +1,11 @@
+**One finite mended kit makes a natural catch practical — November 25 UTC, 2026.**
+Orrit’s new opening item uses the normal trade value, fixture and pond
+rules. It remains one saved physical kit through sale, travel, set-down
+and recovery. The real Stump catch spent one unit of the pond budget
+and supplied a meal after wildlife injured the player. Ordinary shops
+and starting provisions remain useful alongside this slower route.
+[Evidence](Verification/MachineSystems/MorrowfastMendedTrap20261125/README.md)
+
 **Current Mac package includes the regional work through eb13f3104 — November 25 UTC, 2026.**
 The universal build reached GameBootstrap startup. Recorded play of the
 regional routes used the Editor on the same runtime.

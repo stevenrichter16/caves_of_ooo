@@ -56,7 +56,7 @@ check-in provides continued work across runs.
 | Slice | Requirements and status |
 | --- | --- |
 | Clay suitability and repair result | 1, 4–8 have bounded well/pan evidence. 2 drives repair payment and physical parcel admission for lining clay. 3 has actual separate storage, collection and well repair. The selected NPC shipment has a bounded exact-stock receipt. |
-| Regional preparation and optional services | 9–12 and 14–18 have bounded material, carrying or receiving trials. 13 has a second explicit flexible-stock provider. 19 has free ordinary cooking and portable treatment trials. 20 has bounded equivalent Tine weir benefits. |
+| Regional preparation and optional services | 9–12 and 14–18 have bounded material, carrying or receiving trials. 13 has a second explicit flexible-stock provider. 19 has free ordinary cooking, portable treatment and an affordable local kit-to-catch route. 20 has bounded equivalent Tine weir benefits. |
 | First paid physical delivery | 21–24 and 28 have bounded Gleaners' hire, movement, shelf receipt and well use. The order-bound actions also have an actual cancel, rebook and reload branch. |
 | Selected NPC shipments and overdue searches | 25 has finite supplier payment, visible physical carrying, exact trade stock and pan repair. 41–42 have a saved deadline and local notice. 43–45 have bounded personal search, recognition, returned reporting, late delivery and intact recovery. A refilled parcel remains shelf storage with the inquiry open. One delegated v22 search has a finite wage, ordinary movement, physical reporting and trade continuity. Broader staffing and settings remain open. |
 | Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. 35 has a bounded ordinary harvest with a live shower offer left unused. Broader road, load and seasonal variation remain open. |
@@ -225,6 +225,11 @@ cross-seed comparisons remain open.
     conditions after the player skipped the bench project. The prepared
     option used one application after up-front repairs and payment.
     [Evidence](Verification/MachineSystems/SoddenTreatmentChoices20261125/README.md)
+    Fresh Morrowfast sells one mended kit that an ordinary starting purse
+    can buy. A current route took it to natural Stump water, waited by
+    ordinary turns, caught a fish and ate it. The exact trap and pond
+    count persisted. Current shop stocks and direct provisions continue.
+    [Evidence](Verification/MachineSystems/MorrowfastMendedTrap20261125/README.md)
 
 20. **Keep lasting benefits independent of repeated repair.** Once equivalent
     durable work qualifies, apply the same stated benefit at its ordinary
@@ -479,6 +484,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     offer. Both retained their exact results after fresh Continue. The
     injured detour remains separate from the two full-health routes.
     [Evidence](Verification/MachineSystems/OptionalWorkOrdinaryRoutes20261125/README.md)
+    One ordinary starting-purse fork bought and deployed the local kit,
+    caught a single fish, then recovered the hardware and ate the fish
+    after wildlife damage. The same trap, sold-out allocation and
+    finite pond count matched on fresh Continue.
+    [Evidence](Verification/MachineSystems/MorrowfastMendedTrap20261125/README.md)
 
 ## Additional requirement: overdue shipments have social consequences
 
