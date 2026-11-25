@@ -1,3 +1,15 @@
+**General sieve content qualification — November25UTC,2026:** Independent
+bounded source/design critique is complete for the first four proposed streams.
+Optional dry fire-clay-working spoil is the leading candidate because fines feed
+existing repairs; suitable coarse-grit traction would be a new capability and
+must be qualified first. Preserve the existing four-clay bank harvest and direct
+Emberwheat/flax benefits. Ash, peat and workshop names provide no recoverable
+budget; Grove compost rows are bodies, not gardening feedstock. Renewing
+SourceStock is unsuitable for finite residue/mineral lots. Size/quantity/purity
+and useful-byproduct gates remain open; no new runtime or source placement.
+See [source qualification](MACHINE-GENERAL-SIFTING-CONTENT.md). Current runtime/
+Mac995d16a36 and all twelve complete-machine statuses remain unchanged.
+
 **Coherent Mac delivery — November24local/25UTC,2026:** Runtime995d16a36 is
 pushed/remotelyverified and packaged at
 `/Users/steven/coo-verification/builds/mac-995d16a36-20261124/CavesOfOoo.app`.
