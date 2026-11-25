@@ -23,6 +23,18 @@ medium-depth nuance. Finish meaningful correctness and actual-play gates for
 each increment, then expand the useful surface instead of repeatedly deepening
 one instance. Share screenshots at visible progress points.
 
+November24 user refinement: avoid predetermined town/road projects becoming
+the same checklist on every playthrough. Let different builds and tools solve
+similar practical problems through shared causal rules. Moving a useful load
+may justify hiring, carrying smaller batches, hauling, supported processing at
+source or an optional access improvement. Baseline services remain useful
+without first completing a project. Vary meaningful local circumstances and
+available work; do not merely reskin a required tool or reward one scripted
+method. A lasting project is an investment the player may choose, not a
+mandatory repeated goal or upkeep obligation. Seeded procedural roads and
+movable loads can vary those circumstances within validated access, placement,
+finite-stock and lore constraints; generated sites persist without reroll/refill.
+
 Build on the existing Entity/Part/event model. Capabilities and persistent instance state belong to composable Parts; shared rules and services coordinate their interactions. New content should participate through those capabilities and contracts. Routine additions of behaviors or effects should not require editing every interacting system or scripting each entity pairing.
 
 Players should be able to reason from the world. With suitable materials, components, objects, machines, knowledge and physical access, an interaction that makes sense should have a consistent supported path. Apply the same implemented rules throughout the world, including combinations and situations the designers did not author individually. Preserve useful alternatives, understandable costs, ownership and consequences. Avoid single-solution tool puzzles and progression padding.

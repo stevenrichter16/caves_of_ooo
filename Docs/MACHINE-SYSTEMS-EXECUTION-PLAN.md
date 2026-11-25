@@ -1,3 +1,27 @@
+**New local-porters design — November24,2026:** User requests paid local
+physical-load carrying and selected visible NPC/vendor shipments, composed from
+shared Parts. See [architecture and source map](WORLD-LOCAL-PORTERS-AND-SHIPMENTS.md).
+Further direction: similar practical outcomes admit different builds and tools;
+baseline service works without prescribed road repairs. Optional lasting
+improvements compete with other approaches. Seeded roads/movable loads vary
+layouts without rerolling saved sites or making basic access tool-dependent.
+Design only; no porter implementation/actual play. Bounded independent critique
+finished0remainingmaterialP1/P2 after durable reservation/import/survival
+clarifications; native RED/implementation follow current sieve qualification.
+Capstan/cultures remain parked, graphics cancelled and Deck deferred. All twelve
+complete-machine gates remain open.
+
+**G2 working checkpoint — November24local/25UTC:** The size-partition, optional
+finite clay-spoil source and one-shot guided start exist as uncommitted runtime
+drafts. Native final f156/156,0CS includes51 new/current G2 cases and105 retained
+material/repair/grit cases. Earlier d51/47pass/4review RED and e51/50pass/1rollback
+RED exposed real Handling-weight admission, optional heap identity and limited
+same-ID rollback defects, now addressed in f. Exact-source membership refuses
+an alias; scoped rollback does not reinsert a colliding identity or erase the
+independent alias. Main compiled0consoleerrors/stopped/rootnull/clean after
+refresh. Actual guided harvest→screen→repair/use, F5/fresh, final source/recorded
+review, source publication and Mac remain open. G1 remains last published runtime.
+
 **G1 continuation — November24,2026:** One new bounded consumable-grit field
 capability is native/supplied-play qualified: e139/139, f32overlapping post-label
 polish,0CS; source/recorded-play review0remainingP1/P2 after earned allocation and same-ID

@@ -1,3 +1,15 @@
+**Local porters — new user direction, November24,2026:** Design and architecture
+now cover paid carrying of exact physical loads between agreed nearby endpoints,
+with explicit capacity/route/cost/state and selected visible NPC/vendor shipments
+using the same Parts and transfer rules. Porters preserve baseline services and
+multiple approaches to moving a useful load; road/pad improvements are optional
+investments, not a repeated quest checklist. Seeded local roads and movable
+loads vary practical circumstances within access/lore/finite-stock constraints.
+Source findings, custody/escrow, merchant supply boundaries, survival priority,
+local unloaded pause and staged acceptance are in [the porter design](WORLD-LOCAL-PORTERS-AND-SHIPMENTS.md).
+No porter runtime, procedural road change, route project, NPC import or acceptance
+is claimed. The full twelve-machine roster and parked capstan/culture scope remain.
+
 **G1 suitable-grit field consumer — November24,2026:** Explicit GritMaterial
 admits plain suitable commodities for existing12-turn footing, with actual
 one-unit consumption and unchanged SilverSand. CoarseGrit stacks20/Materials;
