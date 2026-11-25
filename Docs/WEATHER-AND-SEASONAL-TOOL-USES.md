@@ -28,6 +28,29 @@ creates shorter favorable periods within it. A knife used on flexible stems in
 one period may separate ripe seed heads in another; both uses follow the knife
 and the material, rather than a permission granted by the calendar alone.
 
+### A shorter early-season resin trip near Posy
+
+The ordinary seed 64 trip took nineteen steps from surface arrival to a
+ripe pitchpod. The player gathered two resin and one seed, earned regard
+through Posy’s existing held-composition approach and lacquered the cloak
+they were wearing. One resin raised its armor value from one to two.
+The other resin, the seed and the treatment survived a fresh Continue.
+
+Use the existing early growing period to offer one wild pitchpod bead on
+the near shoulder of an admitted pitchpod patch west of Posy. One hand
+harvest gives one measure of ordinary pitchpod resin. The regular two plants
+keep their growth and yield rules. A shorter walk makes the bead useful to a
+traveler who needs a single measure. A full harvest still gives planting
+stock and more resin. The bead is one saved source and remains available
+in a later early period if nobody has gathered it.
+
+Place the source only when both paths are real on the finished ground and
+the bead saves at least three dry walking steps from ordinary arrival.
+Use the existing seasonal harvest action and game clock. The ready and
+dormant readers describe the visible state of this plant. The patch’s
+existing retained record prevents a spent site from refilling on travel
+or reload. Keep v27 and cached sites on their original layout.
+
 ## Current foundations and required additions
 
 Source qualification refers to committed runtime7edc5a4c2. Source support alone

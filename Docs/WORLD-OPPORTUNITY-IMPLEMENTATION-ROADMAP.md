@@ -387,6 +387,12 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     consumer. The existing optional rain collection does not establish those
     different seasonal tool uses.
 
+    Fresh v28 can add one early resin bead to a real pitchpod patch near Posy.
+    Same-arrival play compared thirteen steps to one resin with nineteen
+    steps to the ordinary two resin and seed. The shorter path supplied
+    one worn-cloak treatment through the existing bench and earned regard.
+    [Evidence](Verification/MachineSystems/PosyEarlyPitchpod20261125/README.md)
+
 32. **Expose material state through observable cues.** A suitable tool acts on
     actual ripe, dry or flexible stock, subject to access and gathering rights.
     A calendar label changes opportunities; it does not supply work permission

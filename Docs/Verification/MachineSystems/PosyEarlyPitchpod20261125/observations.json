@@ -1,0 +1,314 @@
+{
+  "scope": "Guided Editor GameBootstrap, ordinary fresh seed 64 Duelist, normal controls, actions and travel.",
+  "commonArrival": {
+    "tick": 190,
+    "zone": "Overworld.4.9.0",
+    "actor": {
+      "ID": "2703",
+      "X": 40,
+      "Y": 12,
+      "hp": 40,
+      "drams": 50,
+      "wet": false
+    },
+    "version": 28,
+    "plantOwners": [
+      {
+        "ID": "7012",
+        "BlueprintName": "PitchpodCrop",
+        "eName": "pitchpod",
+        "at": {
+          "Item1": 20,
+          "Item2": 14
+        },
+        "stage": 2
+      },
+      {
+        "ID": "7013",
+        "BlueprintName": "PitchpodCrop",
+        "eName": "pitchpod",
+        "at": {
+          "Item1": 18,
+          "Item2": 14
+        },
+        "stage": 0
+      },
+      {
+        "ID": "biome-crops:v1:64:Overworld.4.9.0:1",
+        "BlueprintName": "BiomeCropPatchRecord",
+        "eName": "BiomeCropPatchRecord",
+        "at": {
+          "Item1": 20,
+          "Item2": 14
+        },
+        "stage": null
+      },
+      {
+        "ID": "7014",
+        "BlueprintName": "EarlyPitchpodStand",
+        "eName": "wild pitchpod",
+        "at": {
+          "Item1": 26,
+          "Item2": 14
+        },
+        "stage": null
+      }
+    ]
+  },
+  "early": {
+    "walkSteps": 13,
+    "quote": {
+      "Command": "Harvest",
+      "Display": "gather the amber bead (1 pitchpod resin)",
+      "Hint": ""
+    },
+    "reader": "Selected action (reading only):\ngather the amber bead (1 pitchpod resin)\n\nYou see a wild pitchpod.\nOne soft bead of resin clings beneath a new pod. You can gather it by hand.\n\nPapery pods on a wild stem at the edge of the pitchpod patch. Posy's Setters can work pitchpod resin into lacquer.",
+    "harvest": {
+      "tick": 330,
+      "zone": "Overworld.4.9.0",
+      "actor": {
+        "ID": "2703",
+        "X": 27,
+        "Y": 13,
+        "hp": 40,
+        "drams": 50,
+        "effects": null
+      },
+      "version": 28
+    },
+    "stock": [
+      {
+        "ID": "7015",
+        "BlueprintName": "PitchpodResin",
+        "n": 1
+      }
+    ],
+    "plantsAfter": [
+      {
+        "ID": "7012",
+        "BlueprintName": "PitchpodCrop",
+        "eName": "pitchpod",
+        "at": {
+          "Item1": 20,
+          "Item2": 14
+        },
+        "stage": 2
+      },
+      {
+        "ID": "7013",
+        "BlueprintName": "PitchpodCrop",
+        "eName": "pitchpod",
+        "at": {
+          "Item1": 18,
+          "Item2": 14
+        },
+        "stage": 0
+      },
+      {
+        "ID": "biome-crops:v1:64:Overworld.4.9.0:1",
+        "BlueprintName": "BiomeCropPatchRecord",
+        "eName": "BiomeCropPatchRecord",
+        "at": {
+          "Item1": 20,
+          "Item2": 14
+        },
+        "stage": null
+      }
+    ]
+  },
+  "usual": {
+    "walkSteps": 19,
+    "harvest": {
+      "tick": 390,
+      "zone": "Overworld.4.9.0",
+      "actor": {
+        "ID": "2703",
+        "X": 21,
+        "Y": 13,
+        "hp": 40,
+        "drams": 50,
+        "effects": null
+      },
+      "version": 28
+    },
+    "stock": [
+      {
+        "ID": "7015",
+        "BlueprintName": "PitchpodResin",
+        "n": 2
+      },
+      {
+        "ID": "7017",
+        "BlueprintName": "PitchpodSeed",
+        "n": 1
+      }
+    ],
+    "plantsAfter": [
+      {
+        "ID": "7013",
+        "BlueprintName": "PitchpodCrop",
+        "eName": "pitchpod",
+        "at": {
+          "Item1": 18,
+          "Item2": 14
+        },
+        "stage": 0
+      },
+      {
+        "ID": "biome-crops:v1:64:Overworld.4.9.0:1",
+        "BlueprintName": "BiomeCropPatchRecord",
+        "eName": "BiomeCropPatchRecord",
+        "at": {
+          "Item1": 20,
+          "Item2": 14
+        },
+        "stage": null
+      },
+      {
+        "ID": "7014",
+        "BlueprintName": "EarlyPitchpodStand",
+        "eName": "wild pitchpod",
+        "at": {
+          "Item1": 26,
+          "Item2": 14
+        },
+        "stage": null
+      }
+    ]
+  },
+  "factionAndBench": {
+    "afterDialogue": {
+      "tick": 570,
+      "zone": "Overworld.5.9.0",
+      "actor": {
+        "ID": "2703",
+        "X": 20,
+        "Y": 4,
+        "hp": 40,
+        "drams": 70,
+        "effects": null
+      },
+      "version": 28
+    },
+    "regard": 8,
+    "quote": {
+      "Command": "SetLacquer|2709|1",
+      "Display": "lacquer cloak (worn) to tier 1 (1 pitchpod resin)",
+      "Hint": "+1 armor while it is worn. It takes one of the piece's two treatment slots and cannot be taken out."
+    },
+    "quoteTick": 750,
+    "after": {
+      "tick": 760,
+      "zone": "Overworld.5.9.0",
+      "actor": {
+        "ID": "2703",
+        "X": 38,
+        "Y": 14,
+        "hp": 40,
+        "drams": 70,
+        "effects": null
+      },
+      "version": 28
+    },
+    "cloak": {
+      "ID": "2709",
+      "BlueprintName": "Cloak",
+      "av": 2,
+      "dv": 1,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Equippable",
+        "Armor",
+        "Commerce",
+        "EnhancementLacquered"
+      ]
+    },
+    "stock": [],
+    "fresh": {
+      "tick": 760,
+      "zone": "Overworld.5.9.0",
+      "actor": {
+        "ID": "2703",
+        "X": 38,
+        "Y": 14,
+        "hp": 40,
+        "drams": 70,
+        "effects": null
+      },
+      "version": 28
+    },
+    "savedCropOwners": [
+      {
+        "ID": "7013",
+        "BlueprintName": "PitchpodCrop",
+        "at": {
+          "Item1": 18,
+          "Item2": 14
+        }
+      },
+      {
+        "ID": "biome-crops:v1:64:Overworld.4.9.0:1",
+        "BlueprintName": "BiomeCropPatchRecord",
+        "at": {
+          "Item1": 20,
+          "Item2": 14
+        }
+      },
+      {
+        "ID": "7012",
+        "BlueprintName": "PitchpodCrop",
+        "at": {
+          "Item1": 20,
+          "Item2": 14
+        }
+      }
+    ]
+  },
+  "olderRun": {
+    "walkSteps": 19,
+    "after": {
+      "tick": 860,
+      "zone": "Overworld.5.9.0",
+      "actor": {
+        "ID": "2704",
+        "X": 38,
+        "Y": 14,
+        "hp": 40,
+        "drams": 70,
+        "effects": null
+      },
+      "version": 27
+    },
+    "cloak": {
+      "ID": "2710",
+      "BlueprintName": "Cloak",
+      "av": 2,
+      "dv": 1,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Equippable",
+        "Armor",
+        "Commerce",
+        "EnhancementLacquered"
+      ]
+    },
+    "stock": [
+      {
+        "ID": "7015",
+        "BlueprintName": "PitchpodResin",
+        "n": 1
+      },
+      {
+        "ID": "7017",
+        "BlueprintName": "PitchpodSeed",
+        "n": 1
+      }
+    ]
+  }
+}

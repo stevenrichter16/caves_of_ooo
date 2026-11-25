@@ -10,6 +10,12 @@ namespace CavesOfOoo.Core
     /// Exact source terrain is preserved. No cached migration or world RNG calls.</summary>
     public sealed class BiomeCropPlacement : IZoneBuilder
     {
+        private const string PosyOutskirts = "Overworld.4.9.0";
+        private const string EarlyPitchpod = "EarlyPitchpodStand";
+        private const int EarlyPitchpodVersion = 28;
+        private const int MinimumWalkSaving = 3;
+        private const int PatchShoulderReach = 6;
+
         public string Name => "BiomeCropPlacement";
         public int Priority => 4310;
         readonly OverworldZoneManager manager;
@@ -20,10 +26,100 @@ namespace CavesOfOoo.Core
         {
             if(zone==null||factory!=manager?.Factory)return false;
             var original=zone.GetReadOnlyEntities().ToArray();var proof=SpreadGenerationReceipt.CaptureFinalState(zone,original);
-            if(TryInstall(manager,zone,site))return true;
+            if(TryInstall(manager,zone,site))return OfferEarlyPitchpod(zone, factory);
             // A factory callback that changed another owner must not get its
             // changed cold graph accepted as an ordinary optional refusal.
             return proof() && original.ToHashSet().SetEquals(zone.GetReadOnlyEntities());
+        }
+
+        private bool OfferEarlyPitchpod(Zone zone, EntityFactory factory)
+        {
+            var exploration = manager.Exploration;
+            if (zone.ZoneID != PosyOutskirts || exploration is not { Enabled: true, Version: >= EarlyPitchpodVersion }
+                || string.IsNullOrEmpty(exploration.WorldKey) || !factory.Blueprints.ContainsKey(EarlyPitchpod)
+                || !HarvestablePart.CanCreateYield(factory, "PitchpodResin"))
+                return true;
+
+            var original = zone.GetReadOnlyEntities().ToHashSet();
+            var record = original.FirstOrDefault(entity => entity.ID == site.Key
+                && entity.GetPart<BiomeCropPatchPart>() is { CropBlueprint: "PitchpodCrop" } patch
+                && patch.SiteKey == site.Key);
+            var ripe = record == null ? null : zone.GetEntityCell(record);
+            if (ripe == null || !ripe.Objects.Any(entity => entity.BlueprintName == "PitchpodCrop"
+                    && entity.GetPart<CropPart>() is { GrowthStage: 2, YieldBlueprint: "PitchpodResin", YieldCount: 2 }))
+                return true;
+
+            var entrance = (x: Zone.Width / 2, y: Zone.Height / 2);
+            // A cardinal dry route is a real walk. Compare it to a lower bound
+            // that also holds for someone using diagonal movement to the crop.
+            int allowance = Distance(entrance, (ripe.X, ripe.Y)) - 1 - MinimumWalkSaving;
+            if (allowance < 0) return true;
+            var routes = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>());
+            var usual = routes.Flood(null, entrance, int.MaxValue, null);
+            if (!CanApproach(usual, ripe)) return true;
+            var shortcut = routes.Flood(null, entrance, allowance, null);
+            var shoulder = zone.Cells.Cast<Cell>()
+                .Where(cell => Distance((cell.X, cell.Y), (ripe.X, ripe.Y)) <= PatchShoulderReach
+                    && routes.Place(cell.X, cell.Y) && Bare(zone, cell, false)
+                    && cell.Objects[0].BlueprintName == "Grass" && CanApproach(shortcut, cell))
+                .OrderBy(cell => Distance(entrance, (cell.X, cell.Y)))
+                .ThenBy(cell => Math.Abs(cell.Y - ripe.Y)).ThenBy(cell => cell.Y).ThenBy(cell => cell.X)
+                .FirstOrDefault();
+            if (shoulder == null) return true;
+
+            var ground = shoulder.Objects[0];
+            var originalsIntact = SpreadGenerationReceipt.CaptureFinalState(zone, original);
+            var tileState = zone.TileState.ToSaveString();
+            var reserves = zone.GenReservedCells.ToHashSet();
+            bool OriginalState(Entity added = null) => originalsIntact()
+                && original.SetEquals(zone.GetReadOnlyEntities().Where(entity => entity != added))
+                && zone.TileState.ToSaveString() == tileState && reserves.SetEquals(zone.GenReservedCells)
+                && manager.Exploration == exploration && !manager.CachedZones.ContainsKey(zone.ZoneID);
+
+            Entity stand;
+            try
+            {
+                stand = factory.CreateEntity(EarlyPitchpod);
+            }
+            catch (Exception error)
+            {
+                Diag.Record("worldgen", "SeasonalPitchpodCreationFailed",
+                    payload: new { zone = zone.ZoneID, error = error.Message });
+                return OriginalState();
+            }
+            bool placed = false;
+            try
+            {
+                if (!OriginalState()) return false;
+                if (!Fresh(stand, EarlyPitchpod) || original.Any(entity => entity.ID == stand.ID)
+                    || stand.GetPart<SeasonalHarvestPart>() is not { Harvested: false, Season: 0,
+                        PolicyVersion: RegionalWeather.PolicyVersion,
+                        YieldBlueprint: "PitchpodResin", YieldMin: 1, YieldMax: 1, YieldChance: 100 } harvest
+                    || stand.Parts.Count(part => part is HarvestablePart) != 1
+                    || !Bare(zone, shoulder, false) || shoulder.Objects[0] != ground)
+                    return true;
+
+                harvest.Ground = ground;
+                harvest.WorldKey = exploration.WorldKey;
+                if (!zone.AddEntity(stand, shoulder.X, shoulder.Y)) return OriginalState();
+                if (!OriginalState(stand)) return false;
+                placed = RainCatchmentPart.FixedOn(stand, ground, zone)
+                    && stand.GetPart<SeasonalHarvestPart>() == harvest && harvest.Ground == ground
+                    && harvest.WorldKey == exploration.WorldKey;
+                return true;
+            }
+            finally
+            {
+                if (!placed && stand?.SpatialZone == zone && !original.Contains(stand)) zone.RemoveEntity(stand);
+            }
+        }
+
+        private static bool CanApproach(bool[,] reached, Cell target)
+        {
+            for (int y = Math.Max(0, target.Y - 1); y <= Math.Min(Zone.Height - 1, target.Y + 1); y++)
+                for (int x = Math.Max(0, target.X - 1); x <= Math.Min(Zone.Width - 1, target.X + 1); x++)
+                    if (reached[x, y]) return true;
+            return false;
         }
 
         public static bool TryInstall(OverworldZoneManager manager,Zone zone,BiomeCropSite site)

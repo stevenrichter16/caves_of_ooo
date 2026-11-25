@@ -1,3 +1,11 @@
+**Early pitchpod offers a shorter trip for one measure — November 25 UTC, 2026.**
+An admitted fresh patch west of Posy can place a finite wild pitchpod bead
+closer to the ordinary arrival. The same walk can continue to a ripe crop
+with two resin and planting seed. The extra source follows the saved season
+and ordinary harvest rules. An earned bead paid for real worn-cloak lacquer
+at Posy after the existing material-free composition approach.
+[Evidence](Verification/MachineSystems/PosyEarlyPitchpod20261125/README.md)
+
 **Found quarry minerals support equipment and the cave return — November 25 UTC, 2026.**
 The existing ore-cache supply can be screened with an earned sieve. Actual
 play took the two fractions into an ordinary forge infusion and a visible

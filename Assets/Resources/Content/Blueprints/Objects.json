@@ -50708,6 +50708,48 @@
       "Tags": []
     },
     {
+      "Name": "EarlyPitchpodStand",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "wild pitchpod" },
+            { "Key": "RenderString", "Value": ";" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "4" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "false" },
+            { "Key": "Solid", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "SeasonalHarvestPart",
+          "Params": [
+            { "Key": "YieldBlueprint", "Value": "PitchpodResin" },
+            { "Key": "Season", "Value": "0" },
+            { "Key": "ActionText", "Value": "gather the amber bead (1 pitchpod resin)" },
+            { "Key": "ReadyDescription", "Value": "One soft bead of resin clings beneath a new pod. You can gather it by hand." },
+            { "Key": "DormantDescription", "Value": "The old pods are dry. A bead can form under the new pods early in the growing cycle." }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Papery pods on a wild stem at the edge of the pitchpod patch. Posy's Setters can work pitchpod resin into lacquer." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Vegetation", "Value": "" }
+      ]
+    },
+    {
       "Name": "PitchpodCrop",
       "Inherits": "PhysicalObject",
       "Parts": [

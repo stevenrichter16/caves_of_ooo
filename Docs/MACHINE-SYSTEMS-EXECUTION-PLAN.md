@@ -1,3 +1,12 @@
+**One early pitchpod bead gives a shorter working route — November 25 UTC, 2026.**
+At fresh v28 seed 64, ordinary travel reached one feature in thirteen steps
+and the existing ripe source in nineteen. The new gathered resin paid for
+the exact worn cloak’s first lacquer with ordinarily earned regard.
+The new source and the existing patch retain their separate stock on save.
+All 168 connected native cases passed. Continue ordinary layout comparisons
+and scout a physical surface-to-cave heat route as its own slice.
+[Evidence](Verification/MachineSystems/PosyEarlyPitchpod20261125/README.md)
+
 **A found quarry packet has two earned uses — November 25 UTC, 2026.**
 An ordinary seed 2 search opened the neighboring Spread cave cache,
 took only the quarry packet and screened it with the earned sieve.

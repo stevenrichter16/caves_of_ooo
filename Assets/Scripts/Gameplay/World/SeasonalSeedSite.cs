@@ -16,6 +16,8 @@ namespace CavesOfOoo.Core
         public string WorldKey = "";
         public int Season = 1;
         public int PolicyVersion = RegionalWeather.PolicyVersion;
+        public string ReadyDescription = "The heads rattle with loose seed. One bundle is ready to gather.";
+        public string DormantDescription = "This stand sets usable heads late in the growing cycle. The ordinary allotment crops remain available.";
 
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 38;
@@ -116,8 +118,7 @@ namespace CavesOfOoo.Core
         {
             var zone = context.Zone ?? ParentEntity?.SpatialZone;
             if (FlexibleStems(zone)) return "Flexible stems are ready. Cut them for one cord or let the stand set seed.";
-            return Ready(zone) ? "The heads rattle with loose seed. One bundle is ready to gather."
-                : "This stand sets usable heads late in the growing cycle. The ordinary allotment crops remain available.";
+            return Ready(zone) ? ReadyDescription : DormantDescription;
         }
     }
 

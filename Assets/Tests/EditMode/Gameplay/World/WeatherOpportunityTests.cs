@@ -374,6 +374,134 @@ namespace CavesOfOoo.Tests
         }
     }
 
+    public sealed class SeasonalPitchpodTests : FiftyWorldFixture
+    {
+        private const string Site = "Overworld.4.9.0";
+        private const string Stand = "EarlyPitchpodStand";
+        private const string Resin = "PitchpodResin";
+
+        private OverworldZoneManager EnterPatch(bool old = false)
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            if (old) SoddenDistrictIntegrationTests.Version(manager, 27);
+            var map = manager.GetZone(WorldMap.WorldMapZoneID);
+            var (x, y) = WorldMap.WorldCellToZoneCell(4, 9);
+            Assert.True(Zone.RemoveEntity(Actor));
+            Assert.True(map.AddEntity(Actor, x, y));
+            var arrival = WorldMapTraversal.Descend(Actor, map, manager);
+            Assert.True(arrival.Success, arrival.ErrorReason);
+            Zone = arrival.NewZone;
+            Assert.That(Zone.ZoneID, Is.EqualTo(Site));
+            Assert.That((arrival.NewPlayerX, arrival.NewPlayerY), Is.EqualTo((40, 12)));
+            manager.SetActiveZone(Zone);
+            SettlementRuntime.ActiveZone = Zone;
+            Zone.ForEachCell((cell, _, _) => { cell.IsVisible = true; cell.Explored = true; });
+            return manager;
+        }
+
+        private Entity[] StandardCrops()
+        {
+            var crops = Zone.GetReadOnlyEntities().Where(entity => entity.BlueprintName == "PitchpodCrop").ToArray();
+            Assert.That(crops, Has.Length.EqualTo(2));
+            Assert.That(crops.Select(entity => entity.GetPart<CropPart>().GrowthStage), Is.EquivalentTo(new[] { 0, 2 }));
+            Assert.That(crops.All(entity => entity.GetPart<CropPart>() is
+                { YieldBlueprint: Resin, YieldCount: 2, SeedYieldBlueprint: "PitchpodSeed", SeedYieldCount: 1 }));
+            return crops;
+        }
+
+        private Entity Bead() => Zone.GetReadOnlyEntities().Single(entity => entity.BlueprintName == Stand);
+        private void StandBeside(Entity entity)
+        {
+            var cell = Zone.GetEntityCell(entity);
+            var approach = new[] { (cell.X + 1, cell.Y), (cell.X - 1, cell.Y), (cell.X, cell.Y + 1), (cell.X, cell.Y - 1) }
+                .First(at => Zone.GetCell(at.Item1, at.Item2)?.BlocksMovement() == false);
+            Assert.True(Zone.MoveEntity(Actor, approach.Item1, approach.Item2));
+        }
+
+        [Test]
+        public void EarlyResinIsFiniteAndLeavesTheOrdinaryPatchAvailable()
+        {
+            var manager = EnterPatch();
+            var crops = StandardCrops();
+            var ripe = crops.Single(entity => entity.GetPart<CropPart>().GrowthStage == 2);
+            var source = Bead();
+            var ground = Zone.GetEntityCell(source);
+            Assert.That(ground.X, Is.GreaterThanOrEqualTo(Zone.GetEntityCell(ripe).X + 3));
+            Assert.That(ground.IsInterior, Is.False);
+            Assert.That(ground.Occupants, Does.Contain(source.GetPart<SeasonalHarvestPart>().Ground));
+            Assert.That(ground.Occupants.Count, Is.EqualTo(2));
+            Assert.False(Act(source, "Harvest"));
+
+            StandBeside(source);
+            var row = CellMenu(ground.X, ground.Y).Single(action => action.Command == "Harvest");
+            Assert.That(row.Display, Is.EqualTo("gather the amber bead (1 pitchpod resin)"));
+            Assert.True(ChooseRow(row, ground.X, ground.Y));
+            Assert.False(Act(source, "Harvest"));
+            Assert.That(Pack.Objects.Single(entity => entity.BlueprintName == Resin)
+                .GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(StandardCrops(), Is.EquivalentTo(crops));
+
+            manager.UnloadZone(Zone.ZoneID);
+            Assert.That(manager.GetZone(Site), Is.SameAs(Zone));
+            var loaded = HotbarSaveFixture.RoundTrip(GameSessionState.Capture("pitchpod", "test", manager, Clock, Actor));
+            var saved = loaded.ZoneManager.GetZone(Site);
+            Assert.That(saved.GetReadOnlyEntities().Count(entity => entity.BlueprintName == "PitchpodCrop"), Is.EqualTo(2));
+            Assert.False(saved.GetReadOnlyEntities().Any(entity => entity.BlueprintName == Stand));
+            Assert.That(loaded.Player.GetPart<InventoryPart>().Objects.Single(entity => entity.BlueprintName == Resin)
+                .GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void QuotedEarlyBeadBecomesDormantWithoutSpendingAcrossSeasonBoundary()
+        {
+            EnterPatch();
+            var source = Bead();
+            StandBeside(source);
+            var command = Choice(source, "Harvest");
+            var seasonal = source.GetPart<SeasonalHarvestPart>();
+            var reader = new DescribeContext { Owner = source, Zone = Zone, Cell = Zone.GetEntityCell(source), Viewer = Actor };
+            StringAssert.Contains("resin", seasonal.DescribeState(reader));
+            Clock.AdvanceClock(16 * RegionalWeather.WindowTicks);
+
+            Assert.False(Actions(source).Any(action => action.Command == command));
+            Assert.False(Act(source, command));
+            Assert.That(Count(Resin), Is.Zero);
+            Assert.That(Zone.GetEntityCell(source), Is.Not.Null);
+            StringAssert.Contains("early", seasonal.DescribeState(reader));
+            StandardCrops();
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void OldVersionOrMissingOptionalSourceKeepsTheOrdinaryPatch(bool old)
+        {
+            if (!old) Factory.Blueprints.Remove(Stand);
+            EnterPatch(old);
+            StandardCrops();
+            Assert.False(Zone.GetReadOnlyEntities().Any(entity => entity.BlueprintName == Stand));
+        }
+
+        [Test]
+        public void ReservedApproachLeavesAnOrdinaryPatchWithoutTheBonus()
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            var patch = new Zone(Site);
+            for (int y = 0; y < Zone.Height; y++)
+                for (int x = 0; x < Zone.Width; x++)
+                {
+                    Assert.True(patch.AddEntity(Factory.CreateEntity("Grass"), x, y));
+                    if (x >= 23) patch.GenReservedCells.Add((x, y));
+                }
+
+            var site = BiomeCropPlan.ForZone(manager, Site);
+            Assert.NotNull(site);
+            Assert.True(new BiomeCropPlacement(manager, site).BuildZone(patch, Factory, new System.Random(1)));
+            Assert.That(patch.GetReadOnlyEntities().Count(entity => entity.BlueprintName == "PitchpodCrop"), Is.EqualTo(2));
+            Assert.False(patch.GetReadOnlyEntities().Any(entity => entity.BlueprintName == Stand));
+            Assert.That(patch.GenReservedCells.Count, Is.EqualTo((Zone.Width - 23) * Zone.Height));
+        }
+    }
+
     public sealed class SeasonalSeedFrameTests : FiftyWorldFixture
     {
         const string Patch = "LateKnotflaxStand";
