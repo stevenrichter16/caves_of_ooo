@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Failed(Child)" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 23:56:35Z" end-time="2026-11-24 23:56:36Z" duration="1.3836842">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41722" result="Failed" site="Child" start-time="2026-11-24 23:56:35Z" end-time="2026-11-24 23:56:36Z" duration="1.383684" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50839" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41722" result="Failed" site="Child" start-time="2026-11-24 23:56:35Z" end-time="2026-11-24 23:56:36Z" duration="1.339540" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="89304" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50840" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41722" result="Failed" site="Child" start-time="2026-11-24 23:56:35Z" end-time="2026-11-24 23:56:36Z" duration="1.299747" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50841" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41722" result="Failed" site="Child" start-time="2026-11-24 23:56:35Z" end-time="2026-11-24 23:56:36Z" duration="1.211998" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="23633" name="DirectLiquidPumpTests" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-11-24 23:56:35Z" end-time="2026-11-24 23:56:36Z" duration="0.893919" total="27" passed="1" failed="26" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="23661" name="DepletedOwnerIsNotRemovedIfReplenishedDuringCommittedPublication" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.DepletedOwnerIsNotRemovedIfReplenishedDuringCommittedPublication" methodname="DepletedOwnerIsNotRemovedIfReplenishedDuringCommittedPublication" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="868499723" result="Failed" start-time="2026-11-24 23:56:35Z" end-time="2026-11-24 23:56:36Z" duration="0.041273" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.DepletedOwnerIsNotRemovedIfReplenishedDuringCommittedPublication () [0x00006] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:97
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23646" name="EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.053259" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="23644" name="EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection(&quot;source&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection(&quot;source&quot;)" methodname="EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1906612051" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.026184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection (System.String endpoint) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:55
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+              </test-case>
+              <test-case id="23645" name="EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection(&quot;outlet&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection(&quot;outlet&quot;)" methodname="EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1797002158" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.025957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.EvenAnEmptySecondPoolOwnerRefusesAmbiguousProjection (System.String endpoint) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:55
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="23638" name="ExistingOutletKeepsItsIdentityAndOriginalStock" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.ExistingOutletKeepsItsIdentityAndOriginalStock" methodname="ExistingOutletKeepsItsIdentityAndOriginalStock" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="442044093" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.025831" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.ExistingOutletKeepsItsIdentityAndOriginalStock () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:42
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23658" name="ExternallyConsumedUncommittedCreditCannotAlsoRefundItsSource" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.ExternallyConsumedUncommittedCreditCannotAlsoRefundItsSource" methodname="ExternallyConsumedUncommittedCreditCannotAlsoRefundItsSource" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1929258614" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.025664" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.ExternallyConsumedUncommittedCreditCannotAlsoRefundItsSource () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:84
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23636" name="FinalStrokeRetiresOnlyTheDepletedSourceAndItsProjection" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.FinalStrokeRetiresOnlyTheDepletedSourceAndItsProjection" methodname="FinalStrokeRetiresOnlyTheDepletedSourceAndItsProjection" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1843036507" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.026011" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.FinalStrokeRetiresOnlyTheDepletedSourceAndItsProjection () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:35
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23663" name="ForgeMakesReusablePumpFromExactFiniteComponents" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.ForgeMakesReusablePumpFromExactFiniteComponents" methodname="ForgeMakesReusablePumpFromExactFiniteComponents" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1734464507" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.080989" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialProcess|make_hand_pump|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:97
+at CavesOfOoo.Tests.DirectLiquidPumpTests.ForgeMakesReusablePumpFromExactFiniteComponents () [0x00048] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:111
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="23652" name="FrozenWaterRefusesRatherThanMovingIceAsLiquid" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.FrozenWaterRefusesRatherThanMovingIceAsLiquid" methodname="FrozenWaterRefusesRatherThanMovingIceAsLiquid" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="235198806" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.030777" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.FrozenWaterRefusesRatherThanMovingIceAsLiquid () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:67
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23659" name="FullIntegerOutletRefusesWithoutWrappingOrSpending" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.FullIntegerOutletRefusesWithoutWrappingOrSpending" methodname="FullIntegerOutletRefusesWithoutWrappingOrSpending" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="12390984" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.067927" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.FullIntegerOutletRefusesWithoutWrappingOrSpending () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:89
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23656" name="InterruptedStrokeRestoresQuantitiesAndLeavesNoNewProjection" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.InterruptedStrokeRestoresQuantitiesAndLeavesNoNewProjection" methodname="InterruptedStrokeRestoresQuantitiesAndLeavesNoNewProjection" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1474289270" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.026260" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.InterruptedStrokeRestoresQuantitiesAndLeavesNoNewProjection () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:75
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23635" name="OneStrokeMovesTwentyRealUnitsAndKeepsTheSamePump" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.OneStrokeMovesTwentyRealUnitsAndKeepsTheSamePump" methodname="OneStrokeMovesTwentyRealUnitsAndKeepsTheSamePump" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1998648916" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.026297" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.OneStrokeMovesTwentyRealUnitsAndKeepsTheSamePump () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:29
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23634" name="OrdinaryFlaskRemainsAnAlternativeForTheSameFiniteStock" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.OrdinaryFlaskRemainsAnAlternativeForTheSameFiniteStock" methodname="OrdinaryFlaskRemainsAnAlternativeForTheSameFiniteStock" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="541940426" result="Passed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.039642" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="23655" name="PhantomPumpCannotOperateTheActualCarriedOwner" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.PhantomPumpCannotOperateTheActualCarriedOwner" methodname="PhantomPumpCannotOperateTheActualCarriedOwner" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="329179394" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.026195" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.PhantomPumpCannotOperateTheActualCarriedOwner () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:73
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23662" name="PumpAndActualTransferredPoolSaveWithoutRenewingStock" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.PumpAndActualTransferredPoolSaveWithoutRenewingStock" methodname="PumpAndActualTransferredPoolSaveWithoutRenewingStock" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1208638861" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.026152" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.PumpAndActualTransferredPoolSaveWithoutRenewingStock () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:103
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23654" name="RepeatedGathersKeepTheActualCurrentChoice" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.RepeatedGathersKeepTheActualCurrentChoice" methodname="RepeatedGathersKeepTheActualCurrentChoice" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1605488716" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.025903" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.RepeatedGathersKeepTheActualCurrentChoice () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:71
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23657" name="RollbackPreservesIndependentStocksAndActorInjury" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.RollbackPreservesIndependentStocksAndActorInjury" methodname="RollbackPreservesIndependentStocksAndActorInjury" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="979502583" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.025914" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.RollbackPreservesIndependentStocksAndActorInjury () [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:78
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23637" name="ShortFinalStrokeMovesOnlyTheRemainingStock" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.ShortFinalStrokeMovesOnlyTheRemainingStock" methodname="ShortFinalStrokeMovesOnlyTheRemainingStock" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1954235070" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.025756" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.ShortFinalStrokeMovesOnlyTheRemainingStock () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:40
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23653" name="StaleSourceStockDoesNotExecuteAnOldQuote" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.StaleSourceStockDoesNotExecuteAnOldQuote" methodname="StaleSourceStockDoesNotExecuteAnOldQuote" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1895167698" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.026004" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.StaleSourceStockDoesNotExecuteAnOldQuote () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:69
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-case id="23660" name="UnadmittedFactoryOverridesRefuseBeforeCreatingAPuddle" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnadmittedFactoryOverridesRefuseBeforeCreatingAPuddle" methodname="UnadmittedFactoryOverridesRefuseBeforeCreatingAPuddle" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1597900205" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.027260" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.UnadmittedFactoryOverridesRefuseBeforeCreatingAPuddle () [0x00005] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:92
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="23643" name="UnsafeOutletHasNoDisplayedWestStroke" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsafeOutletHasNoDisplayedWestStroke" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.107379" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="23639" name="UnsafeOutletHasNoDisplayedWestStroke(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsafeOutletHasNoDisplayedWestStroke(&quot;hidden&quot;)" methodname="UnsafeOutletHasNoDisplayedWestStroke" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="854833210" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.025659" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.UnsafeOutletHasNoDisplayedWestStroke (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:46
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+              </test-case>
+              <test-case id="23640" name="UnsafeOutletHasNoDisplayedWestStroke(&quot;occupied&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsafeOutletHasNoDisplayedWestStroke(&quot;occupied&quot;)" methodname="UnsafeOutletHasNoDisplayedWestStroke" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1133346195" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.025914" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.UnsafeOutletHasNoDisplayedWestStroke (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:46
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+              </test-case>
+              <test-case id="23641" name="UnsafeOutletHasNoDisplayedWestStroke(&quot;different&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsafeOutletHasNoDisplayedWestStroke(&quot;different&quot;)" methodname="UnsafeOutletHasNoDisplayedWestStroke" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1033300307" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.025547" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.UnsafeOutletHasNoDisplayedWestStroke (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:46
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+              </test-case>
+              <test-case id="23642" name="UnsafeOutletHasNoDisplayedWestStroke(&quot;blocked&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsafeOutletHasNoDisplayedWestStroke(&quot;blocked&quot;)" methodname="UnsafeOutletHasNoDisplayedWestStroke" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="265660553" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.029334" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.UnsafeOutletHasNoDisplayedWestStroke (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:46
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="23651" name="UnsupportedSourceDoesNotBecomeGenericFreeDrainage" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsupportedSourceDoesNotBecomeGenericFreeDrainage" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.152604" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="23647" name="UnsupportedSourceDoesNotBecomeGenericFreeDrainage(&quot;unknown&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsupportedSourceDoesNotBecomeGenericFreeDrainage(&quot;unknown&quot;)" methodname="UnsupportedSourceDoesNotBecomeGenericFreeDrainage" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1856461748" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.052163" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.UnsupportedSourceDoesNotBecomeGenericFreeDrainage (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:59
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+              </test-case>
+              <test-case id="23648" name="UnsupportedSourceDoesNotBecomeGenericFreeDrainage(&quot;owned&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsupportedSourceDoesNotBecomeGenericFreeDrainage(&quot;owned&quot;)" methodname="UnsupportedSourceDoesNotBecomeGenericFreeDrainage" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1761879003" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.046587" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.UnsupportedSourceDoesNotBecomeGenericFreeDrainage (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:59
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+              </test-case>
+              <test-case id="23649" name="UnsupportedSourceDoesNotBecomeGenericFreeDrainage(&quot;film&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsupportedSourceDoesNotBecomeGenericFreeDrainage(&quot;film&quot;)" methodname="UnsupportedSourceDoesNotBecomeGenericFreeDrainage" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="460554008" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.026825" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.UnsupportedSourceDoesNotBecomeGenericFreeDrainage (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:59
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+]]></output>
+              </test-case>
+              <test-case id="23650" name="UnsupportedSourceDoesNotBecomeGenericFreeDrainage(&quot;renewing&quot;)" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.UnsupportedSourceDoesNotBecomeGenericFreeDrainage(&quot;renewing&quot;)" methodname="UnsupportedSourceDoesNotBecomeGenericFreeDrainage" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1582994991" result="Failed" start-time="2026-11-24 23:56:36Z" end-time="2026-11-24 23:56:36Z" duration="0.026208" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  HandPump
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Carry (System.String blueprint) [0x0000d] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:67
+at CavesOfOoo.Tests.DirectLiquidPumpTests.Tool () [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:17
+at CavesOfOoo.Tests.DirectLiquidPumpTests.UnsupportedSourceDoesNotBecomeGenericFreeDrainage (System.String mode) [0x00000] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:59
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'HandPump'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

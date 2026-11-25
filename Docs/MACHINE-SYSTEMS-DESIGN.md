@@ -1,3 +1,19 @@
+**Direct hand pump — November24local/25UTC,2026:** Third bounded capability in
+the sled/sieve/pump batch has native and recorded Editor qualification. Finalg
+220/220=30pump+190retained,0CS; independent source0remainingP1/P2 after three real
+rollback REDs were fixed. Actual supplied normalStrength18/40HP: forge20,
+reader/freecancel20, stroke30(source40/outlet20)/fresh30, same-pump strokes40/50
+empty source2142 and its legacy acid projection into same60-unit outlet2144.
+Safe step onto former pool60 retains40HP/fresh60; separately preserved outlet
+exposure80 causes acidcoat36/HP37, retaining60acid. Three F5archives/all12files,
+two ID-sorted selected fresh pairs andonePNG. Mainstopped/rootnull/clean/input
+restored/unlocked/RequestedSeed0; four isolation tokens finished. Failed queued
+compilation fresh attempt preserved/excluded; no ordinary acquisition, whole-world,
+installed sump/access, NPC, full-suite or hardware claim. CurrentMac a02338565
+predates allthree; exact publication then coherent delivery pending. Independent
+recorded-play/final wording review0remainingP1/P2. See [contract](MACHINE-DIRECT-LIQUID-PUMP.md)
+and[evidence](Verification/MachineSystems/DirectLiquidPump20261124/README.md).
+
 **Portable hand sieve — November24,2026:** One new bounded screening capability
 has native and recorded Editor qualification: reusable sound carried sieve,
 finite authored packet -> one pale-salt/two silver sand, explicit two-weight
@@ -1394,6 +1410,15 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+November24/25 direct-liquid dependency: the carried hand pump now relocates finite
+simple-pool stock, retires an exact depleted source/projection and preserves the
+outlet's shared hazard. Native/recorded supplied partial/final transfers, actual
+safe source crossing, outlet acid contact and two fresh pairs are qualified.
+This does not provide levels, fittings, submerged-resource thresholds, protected
+site drainage, an installed sump or a generic flood-access project. The twelve
+individual complete-machine statuses remain open. See
+[direct pump](MACHINE-DIRECT-LIQUID-PUMP.md).
+
 November24 regional-processing dependency: HandSieve separates only a new finite
 QuarrySweepings packet into existing salt infusion and sand trail/grit stock.
 Native/recorded supplied processing, outside-tool consumers and two fresh pairs
@@ -1525,7 +1550,7 @@ current statuses. See [weather opportunities](WEATHER-AND-SEASONAL-TOOL-USES.md)
 | Assay cabinet | Spend evidence to make a practical decision. | Samples with quantity/provenance, authored questions and partial findings. | An answer changes a processing, repair or route choice; missing evidence and hidden knowledge remain unavailable. | Proposed; machine-specific prerequisites open. |
 | Culture vat | Grow a finite useful culture from acquired stock. | Strain identity, feedstock, bounded growth, conditions and yield allocation. | Two competing uses for one finite culture, different supported conditions, consent/ownership and persistence. | Proposed and parked; finite culture identity/feed/growth/conditions and competing uses remain open. M1d oil preparation does not implement cultures. |
 | Anchored capstan | Recover or reposition loads ordinary carrying cannot handle. | Valid anchors, cable/pull paths, work budget and installed-versus-loose state. | Actual obstruction, terrain and existing cargo weight affect pulling; movement and interruption remain coherent. | Proposed and parked; M1b recovery/service and M1c bounded relocation accepted; current Mac includes M1b/M1c; complete-machine prerequisites open. |
-| Sump pump | Reach submerged resources or redirect a local liquid supply. | Finite source/receiver transfer, level/state thresholds, compatible fittings and outlet consequences. | A real passage or resource changes access; transferred liquid appears at a valid destination with no regeneration exploit. | Proposed; M1a vessel transfer accepted, but actual finite source/depletion/receiver/access loop remains unqualified. M2a contained recovery is publishedc43631ad6 with native56/56, actual clean/manual/crafting/contact/travel/reload/old-cache and currentMac action/travel/reload; full pump purpose/flow remains open. M1d does not implement pumping. |
+| Sump pump | Reach submerged resources or redirect a local liquid supply. | Finite source/receiver transfer, level/state thresholds, compatible fittings and outlet consequences. | A real passage or resource changes access; transferred liquid appears at a valid destination with no regeneration exploit. | Proposed; M1a vessel transfer accepted, but actual finite source/depletion/receiver/access loop remains unqualified. M2a contained recovery is publishedc43631ad6 with native56/56, actual clean/manual/crafting/contact/travel/reload/old-cache and currentMac action/travel/reload; full pump purpose/flow remains open. M1d does not implement pumping. November24/25 bounded carried HandPump adds actual finite simple-pool relocation, depleted-source/projection retirement, retained outlet hazard and partial/final fresh-load qualification (220native); no levels, submerged-resource access threshold, fittings, installed machine or complete sump acceptance. |
 | Thermal exchanger | Use a local source for drying, cooling or processing. | Explicit source/receiver coupling, work limits and bounded local temperature effects. | Useful cooling/heating and a second consequence share existing thermal rules; unsupported sources do not create energy. | Proposed; bounded owned-hearth cooling now spends finite newly poured water, preserves surplus/older stock, uses shared thermal/light/cooking and has actual recovery/fresh2760 proof. November24 bounded nozzle and condenser add five-fuel aimed tile heat and one-water catches from the shared finite vent stock, with actual thaw, cooling and fresh490. General source/receiver coupling and complete exchanger prerequisites remain open. |
 | Dynamo and charging bench | Prepare finite work for portable equipment. | Authored energy source, storage loss/capacity and at least one real consumer. | Charged equipment does useful work away from the generator; finite conversion and refusal paths are verified. | Proposed complete machine. November24 bounded rod stores one SparkRoot discharge, carries it through fresh170/490 and delivers shared charge one/two clear cells away; actual wet-viper interaction and finite root reuse qualified. Direct root charge already existed. No generator, multi-charge conversion or charging network acceptance; machine-specific gates remain open. |
 | Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed complete machine; bounded existing sounding-rod supply now follows lasting Cinderhold repair or seep sealing, with actual paid purchase/read/fresh10810 proof. This does not add sensing behavior, calibration or a complete expedition/resonator; machine-specific gates remain open. |

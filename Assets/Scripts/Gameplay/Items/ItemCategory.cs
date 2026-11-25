@@ -137,7 +137,8 @@ namespace CavesOfOoo.Core
             if (entity.HasPart<GrimoirePart>()) return Books;
             if (entity.HasPart<ReadableDocumentPart>() || entity.HasPart<SchematicPart>() || DocumentItems.Contains(entity.BlueprintName ?? "")) return Documents;
             if (entity.HasPart<ScraperPart>() || entity.HasPart<SpringTrapKitPart>() || entity.HasPart<SoundingRodPart>()
-                || entity.HasPart<FlintStrikerPart>() || entity.HasPart<FieldWorkToolPart>() || entity.HasPart<LayableDevicePart>()) return Tools;
+                || entity.HasPart<FlintStrikerPart>() || entity.HasPart<FieldWorkToolPart>() || entity.HasPart<LayableDevicePart>()
+                || entity.HasPart<DirectLiquidPumpPart>()) return Tools;
             if (entity.HasPart<SeedPart>()) return Seeds;
             if (entity.HasPart<MaterialProcessInputPart>() || entity.HasPart<MineralPreparationPart>() || entity.HasPart<BotanicalProcessingPart>()
                 || MaterialItems.Contains(entity.BlueprintName ?? "")) return Materials;

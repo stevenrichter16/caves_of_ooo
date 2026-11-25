@@ -1,6 +1,74 @@
 {
   "Objects": [
     {
+      "Name": "HandPump",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hand pump"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "p"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "5"
+            },
+            {
+              "Key": "Solid",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "18"
+            }
+          ]
+        },
+        {
+          "Name": "DirectLiquidPump",
+          "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A hand-driven clay cylinder with leather seals and two short hoses. Stand between a finite pool and clear floor to relocate real liquid. Acid remains acid at the outlet; no liquid is destroyed or purified. Make at a forge with one iron spike, two fire clay and two leather bindings."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [{"Key": "Item", "Value": ""}]
+    },
+    {
       "Name": "HandSieve",
       "Inherits": "PhysicalObject",
       "Parts": [

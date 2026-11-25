@@ -1,6 +1,29 @@
 {
   "Processes": [
     {
+      "Id": "make_hand_pump",
+      "SourceBlueprint": "IronSpikeComponent",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "AdditionalInputBlueprints": [
+        "FireClay",
+        "LeatherBindingComponent"
+      ],
+      "AdditionalInputCounts": [
+        2,
+        2
+      ],
+      "OutputBlueprints": [
+        "HandPump"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "make hand pump",
+      "LossText": "materials become one reusable pump"
+    },
+    {
       "Id": "make_hand_sieve",
       "SourceBlueprint": "IronSpikeComponent",
       "Mode": "Process",

@@ -1,0 +1,1167 @@
+{
+  "operator": "root native InputSystem through GameBootstrap, supplied setup only",
+  "scenario": "DirectLiquidPumpShowcase",
+  "seed": 64,
+  "game": "fd797fe8b568412883d015e97b839dd5",
+  "initial10": {
+    "tick": 10,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2136",
+        "bp": "IronSpikeComponent",
+        "n": 1
+      },
+      {
+        "id": "2137",
+        "bp": "FireClay",
+        "n": 2
+      },
+      {
+        "id": "2139",
+        "bp": "LeatherBindingComponent",
+        "n": 2
+      }
+    ],
+    "pools": [
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      },
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2142",
+        "bp": "AcidPool",
+        "liquid": "acid",
+        "volume": 60,
+        "x": 41,
+        "y": 12
+      }
+    ],
+    "sourceAcid": true,
+    "outletAcid": false,
+    "state": "Normal"
+  },
+  "forged20": {
+    "tick": 20,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2143",
+        "bp": "HandPump",
+        "n": 1
+      }
+    ],
+    "pools": [
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      },
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2142",
+        "bp": "AcidPool",
+        "liquid": "acid",
+        "volume": 60,
+        "x": 41,
+        "y": 12
+      }
+    ],
+    "sourceAcid": true,
+    "outletAcid": false,
+    "state": "Normal"
+  },
+  "sourceReader20": {
+    "open": true,
+    "page": 0,
+    "pages": 1,
+    "title": "pool of acid",
+    "subject": "2142",
+    "sections": [
+      {
+        "heading": "Current state",
+        "text": "On the ground: acid"
+      },
+      {
+        "heading": "Surface details",
+        "text": "On the ground: acid\n\nacid: 3 Acid damage per turn while the coat persists."
+      },
+      {
+        "heading": "Description",
+        "text": "A sharp-smelling pool lies in a shallow depression. A pale line marks its edge."
+      }
+    ],
+    "visible": [
+      "CURRENT STATE",
+      "",
+      "On the ground: acid",
+      "",
+      "SURFACE DETAILS",
+      "",
+      "On the ground: acid",
+      "",
+      "acid: 3 Acid damage per turn while the coat",
+      "persists.",
+      "",
+      "A sharp-smelling pool lies in a shallow depression.",
+      "A pale line marks its edge.",
+      "",
+      "Type: Terrain",
+      "Material: Acid"
+    ],
+    "tick": 20,
+    "energy": 1000,
+    "hp": 40
+  },
+  "toolReader20": {
+    "open": true,
+    "page": 0,
+    "pages": 2,
+    "title": "hand pump",
+    "subject": "2143",
+    "sections": [
+      {
+        "heading": "How to use",
+        "text": "Stand between a finite pool and clear floor, each one cardinal step away. Carry this sound pump and choose the source and outlet shown in its action.\nNeeds: visible clear short hoses; one simple unmixed pool; bare outlet or one matching pool.\nCost and limits: One action moves up to 20 units and keeps the pump. Liquid remains hazardous at its outlet. Emptying the last units removes the source pool. No wells, films, owned fixtures, occupied outlets, irrigation, purification or container filling. No heat history is transferred.\nRight now you can: pump 20 acid from 41,12 to 40,13, pump 20 acid from 41,12 to 39,12."
+      },
+      {
+        "heading": "Description",
+        "text": "A hand-driven clay cylinder with leather seals and two short hoses. Stand between a finite pool and clear floor to relocate real liquid. Acid remains acid at the outlet; no liquid is destroyed or purified. Make at a forge with one iron spike, two fire clay and two leather bindings."
+      }
+    ],
+    "visible": [
+      "HOW TO USE",
+      "",
+      "Stand between a finite pool and clear floor, each",
+      "one cardinal step away. Carry this sound pump and",
+      "choose the source and outlet shown in its action.",
+      "Needs: visible clear short hoses; one simple",
+      "unmixed pool; bare outlet or one matching pool.",
+      "Cost and limits: One action moves up to 20 units",
+      "and keeps the pump. Liquid remains hazardous at its",
+      "outlet. Emptying the last units removes the source",
+      "pool. No wells, films, owned fixtures, occupied",
+      "outlets, irrigation, purification or container",
+      "filling. No heat history is transferred.",
+      "Right now you can: pump 20 acid from 41,12 to",
+      "40,13, pump 20 acid from 41,12 to 39,12.",
+      "",
+      "A hand-driven clay cylinder with leather seals and",
+      "two short hoses. Stand between a finite pool and",
+      "clear floor to relocate real liquid. Acid remains",
+      "acid at the outlet; no liquid is destroyed or"
+    ],
+    "tick": 20,
+    "energy": 1000,
+    "hp": 40
+  },
+  "toolReader20Page2": {
+    "open": true,
+    "page": 1,
+    "pages": 2,
+    "title": "hand pump",
+    "subject": "2143",
+    "sections": [
+      {
+        "heading": "How to use",
+        "text": "Stand between a finite pool and clear floor, each one cardinal step away. Carry this sound pump and choose the source and outlet shown in its action.\nNeeds: visible clear short hoses; one simple unmixed pool; bare outlet or one matching pool.\nCost and limits: One action moves up to 20 units and keeps the pump. Liquid remains hazardous at its outlet. Emptying the last units removes the source pool. No wells, films, owned fixtures, occupied outlets, irrigation, purification or container filling. No heat history is transferred.\nRight now you can: pump 20 acid from 41,12 to 40,13, pump 20 acid from 41,12 to 39,12."
+      },
+      {
+        "heading": "Description",
+        "text": "A hand-driven clay cylinder with leather seals and two short hoses. Stand between a finite pool and clear floor to relocate real liquid. Acid remains acid at the outlet; no liquid is destroyed or purified. Make at a forge with one iron spike, two fire clay and two leather bindings."
+      }
+    ],
+    "visible": [
+      "purified. Make at a forge with one iron spike, two",
+      "fire clay and two leather bindings.",
+      "",
+      "Type: Item",
+      "Weight: 5 lb each"
+    ],
+    "tick": 20,
+    "energy": 1000,
+    "hp": 40
+  },
+  "cancelled20": {
+    "tick": 20,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2143",
+        "bp": "HandPump",
+        "n": 1
+      }
+    ],
+    "pools": [
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      },
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2142",
+        "bp": "AcidPool",
+        "liquid": "acid",
+        "volume": 60,
+        "x": 41,
+        "y": 12
+      }
+    ],
+    "sourceAcid": true,
+    "outletAcid": false,
+    "state": "Normal"
+  },
+  "stroke30": {
+    "tick": 30,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2143",
+        "bp": "HandPump",
+        "n": 1
+      }
+    ],
+    "pools": [
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      },
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2142",
+        "bp": "AcidPool",
+        "liquid": "acid",
+        "volume": 40,
+        "x": 41,
+        "y": 12
+      },
+      {
+        "id": "2144",
+        "bp": "PouredLiquidPool",
+        "liquid": "acid",
+        "volume": 20,
+        "x": 39,
+        "y": 12
+      }
+    ],
+    "sourceAcid": true,
+    "outletAcid": true,
+    "state": "Normal"
+  },
+  "fresh30": {
+    "tick": 30,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2143",
+        "bp": "HandPump",
+        "n": 1
+      }
+    ],
+    "pools": [
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2144",
+        "bp": "PouredLiquidPool",
+        "liquid": "acid",
+        "volume": 20,
+        "x": 39,
+        "y": 12
+      },
+      {
+        "id": "2142",
+        "bp": "AcidPool",
+        "liquid": "acid",
+        "volume": 40,
+        "x": 41,
+        "y": 12
+      },
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      }
+    ],
+    "sourceAcid": true,
+    "outletAcid": true,
+    "state": "Normal"
+  },
+  "comparison30": {
+    "exactSelected": true,
+    "note": "Pool enumeration order changes across load; compare the same ID-sorted selected pool projection, retaining raw observations."
+  },
+  "stroke40": {
+    "tick": 40,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2143",
+        "bp": "HandPump",
+        "n": 1
+      }
+    ],
+    "pools": [
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2144",
+        "bp": "PouredLiquidPool",
+        "liquid": "acid",
+        "volume": 40,
+        "x": 39,
+        "y": 12
+      },
+      {
+        "id": "2142",
+        "bp": "AcidPool",
+        "liquid": "acid",
+        "volume": 20,
+        "x": 41,
+        "y": 12
+      },
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      }
+    ],
+    "sourceAcid": true,
+    "outletAcid": true,
+    "state": "Normal"
+  },
+  "drained50": {
+    "tick": 50,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 40,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2143",
+        "bp": "HandPump",
+        "n": 1
+      }
+    ],
+    "pools": [
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2144",
+        "bp": "PouredLiquidPool",
+        "liquid": "acid",
+        "volume": 60,
+        "x": 39,
+        "y": 12
+      },
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      }
+    ],
+    "sourceAcid": false,
+    "outletAcid": true,
+    "state": "Normal"
+  },
+  "outletReader50": {
+    "open": true,
+    "page": 0,
+    "pages": 1,
+    "title": "poured liquid",
+    "subject": "2144",
+    "sections": [
+      {
+        "heading": "Current state",
+        "text": "On the ground: acid"
+      },
+      {
+        "heading": "Surface details",
+        "text": "On the ground: acid\n\nacid: 3 Acid damage per turn while the coat persists."
+      },
+      {
+        "heading": "Description",
+        "text": "You see a poured liquid."
+      }
+    ],
+    "visible": [
+      "CURRENT STATE",
+      "",
+      "On the ground: acid",
+      "",
+      "SURFACE DETAILS",
+      "",
+      "On the ground: acid",
+      "",
+      "acid: 3 Acid damage per turn while the coat",
+      "persists.",
+      "",
+      "You see a poured liquid.",
+      "",
+      "Type: Terrain"
+    ],
+    "tick": 50,
+    "energy": 1000,
+    "hp": 40
+  },
+  "clearedWalk60": {
+    "tick": 60,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 41,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2143",
+        "bp": "HandPump",
+        "n": 1
+      }
+    ],
+    "pools": [
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2144",
+        "bp": "PouredLiquidPool",
+        "liquid": "acid",
+        "volume": 60,
+        "x": 39,
+        "y": 12
+      },
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      }
+    ],
+    "sourceAcid": false,
+    "outletAcid": true,
+    "state": "Normal"
+  },
+  "fresh60": {
+    "tick": 60,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 41,
+      "y": 12
+    },
+    "hp": 40,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2143",
+        "bp": "HandPump",
+        "n": 1
+      }
+    ],
+    "pools": [
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2144",
+        "bp": "PouredLiquidPool",
+        "liquid": "acid",
+        "volume": 60,
+        "x": 39,
+        "y": 12
+      },
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      }
+    ],
+    "sourceAcid": false,
+    "outletAcid": true,
+    "state": "Normal"
+  },
+  "comparison60": {
+    "exactSelected": true,
+    "scope": "same ID-sorted selected pool projection; raw native enumeration retained"
+  },
+  "toolReaderFresh60Page2": {
+    "open": true,
+    "page": 1,
+    "pages": 2,
+    "title": "hand pump",
+    "subject": "2143",
+    "sections": [
+      {
+        "heading": "How to use",
+        "text": "Stand between a finite pool and clear floor, each one cardinal step away. Carry this sound pump and choose the source and outlet shown in its action.\nNeeds: visible clear short hoses; one simple unmixed pool; bare outlet or one matching pool.\nCost and limits: One action moves up to 20 units and keeps the pump. Liquid remains hazardous at its outlet. Emptying the last units removes the source pool. No wells, films, owned fixtures, occupied outlets, irrigation, purification or container filling. No heat history is transferred.\nRight now: carry the pump between an admitted liquid source and a clear visible outlet."
+      },
+      {
+        "heading": "Description",
+        "text": "A hand-driven clay cylinder with leather seals and two short hoses. Stand between a finite pool and clear floor to relocate real liquid. Acid remains acid at the outlet; no liquid is destroyed or purified. Make at a forge with one iron spike, two fire clay and two leather bindings."
+      }
+    ],
+    "visible": [
+      "purified. Make at a forge with one iron spike, two",
+      "fire clay and two leather bindings.",
+      "",
+      "Type: Item",
+      "Weight: 5 lb each"
+    ],
+    "tick": 60,
+    "energy": 1000,
+    "hp": 40
+  },
+  "separateOutletExposure80": {
+    "tick": 80,
+    "zone": "Overworld.10.11.0",
+    "at": {
+      "x": 39,
+      "y": 12
+    },
+    "hp": 37,
+    "str": 18,
+    "energy": 1000,
+    "game": "fd797fe8b568412883d015e97b839dd5",
+    "pack": [
+      {
+        "id": "2127",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2128",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2129",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2130",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2131",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2132",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "2143",
+        "bp": "HandPump",
+        "n": 1
+      }
+    ],
+    "pools": [
+      {
+        "id": "2107",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 5
+      },
+      {
+        "id": "2108",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 5,
+        "y": 6
+      },
+      {
+        "id": "2144",
+        "bp": "PouredLiquidPool",
+        "liquid": "acid",
+        "volume": 60,
+        "x": 39,
+        "y": 12
+      },
+      {
+        "id": "2104",
+        "bp": "PeatBog",
+        "liquid": "water",
+        "volume": 70,
+        "x": 64,
+        "y": 14
+      }
+    ],
+    "sourceAcid": false,
+    "outletAcid": true,
+    "state": "Normal"
+  },
+  "exposureDetails80": {
+    "category": "Tools",
+    "coating": [
+      {
+        "name": "LiquidId",
+        "value": "acid"
+      },
+      {
+        "name": "SourceActorId",
+        "value": ""
+      },
+      {
+        "name": "Amount",
+        "value": "36"
+      },
+      {
+        "name": "AppliedModsRaw",
+        "value": ""
+      },
+      {
+        "name": "AddedLightSource",
+        "value": "False"
+      },
+      {
+        "name": "AnchorConsumed",
+        "value": "False"
+      },
+      {
+        "name": "RewindSnapshotHp",
+        "value": "-1"
+      },
+      {
+        "name": "Owner",
+        "value": "Entity(you)"
+      },
+      {
+        "name": "Duration",
+        "value": "-1"
+      },
+      {
+        "name": "JustApplied",
+        "value": "False"
+      },
+      {
+        "name": "LastRemovalCause",
+        "value": "duration_expired"
+      }
+    ],
+    "hp": 37,
+    "tick": 80
+  },
+  "finishedIsolations": [
+    {
+      "token": "00b8283da2f2437bafab427e82dc82e0",
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/00b8283da2f2437bafab427e82dc82e0"
+    },
+    {
+      "token": "fda52a1bd90b4d609f4fd4f449ad0737",
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/fda52a1bd90b4d609f4fd4f449ad0737"
+    },
+    {
+      "token": "c21311adf5c74a4aafc2d486369e0937",
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/c21311adf5c74a4aafc2d486369e0937"
+    },
+    {
+      "token": "598c839e37594140a751d24ba54f8269",
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/598c839e37594140a751d24ba54f8269"
+    }
+  ],
+  "exclusions": [
+    "Materials, forge and60-unit AcidPool supplied; no finished pump. No inventory/position/tick/stat/world injection after setup. This is not ordinary acquisition or flooded-room access.",
+    "Pool native enumeration changes on fresh load; comparisons canonically sort by owner ID, retaining raw order. No whole-world/compressed-save byte equality.",
+    "First Begin background timeout observed activefalse/rootnull before retry; no additional owner was created.",
+    "First fresh attempt fda entered provisional boot while queued compilation under reload lock kept readiness pending. No Continue or input setup occurred. Poller stopped; actualstate/token recovered from SessionState; copied four files verified exact before Finish/unlock. Its root remains preserved.",
+    "A second pre-Begin readonly/resource timeout changed nothing. Thereafter mainExecuteFn activates Unity before each call; no repeated ownership/permission audit.",
+    "Initial main if_dirty refresh missed new source import and retained a WIP missing-DirectLiquidPumpPart compile error; force refresh loaded both types. Native final f/g0CS. No assertion every WIP main state compiled.",
+    "Inventory categorization correction added only a pure GetCategory fallback; actual returned Tools. Full reader still displays Type:Item; do not claim its label changed.",
+    "Separate hazard80 branch retains37HP and acid coat36; earned safe40HP ClearedWalk60 stays separate and is never overwritten.",
+    "Existing wild magpie/viper combat continued in the log. No source claim that pump caused it or sustained NPC behavior qualified.",
+    "No general drainage/fluid network, wells, films, NPC installation, heat-history transfer, irrigation, purification, full-suite, complete-machine, packaged input or comparable performance claim."
+  ]
+}

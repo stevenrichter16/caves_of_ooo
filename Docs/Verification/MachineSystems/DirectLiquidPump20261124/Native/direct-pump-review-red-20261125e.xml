@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-25 00:09:15Z" end-time="2026-11-25 00:09:17Z" duration="1.6032426">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="41725" result="Failed" site="Child" start-time="2026-11-25 00:09:15Z" end-time="2026-11-25 00:09:17Z" duration="1.603243" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="50842" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone3/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="41725" result="Failed" site="Child" start-time="2026-11-25 00:09:15Z" end-time="2026-11-25 00:09:17Z" duration="1.549247" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="173" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="50843" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41725" result="Failed" site="Child" start-time="2026-11-25 00:09:15Z" end-time="2026-11-25 00:09:17Z" duration="1.437235" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="50844" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41725" result="Failed" site="Child" start-time="2026-11-25 00:09:16Z" end-time="2026-11-25 00:09:17Z" duration="1.381760" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="23633" name="DirectLiquidPumpTests" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-11-25 00:09:17Z" end-time="2026-11-25 00:09:17Z" duration="0.202514" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="23661" name="EmptyRollbackOutputKeepsAnIndependentAttachedPayload" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.EmptyRollbackOutputKeepsAnIndependentAttachedPayload" methodname="EmptyRollbackOutputKeepsAnIndependentAttachedPayload" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1096517131" result="Failed" start-time="2026-11-25 00:09:17Z" end-time="2026-11-25 00:09:17Z" duration="0.067882" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectLiquidPumpTests.EmptyRollbackOutputKeepsAnIndependentAttachedPayload () [0x00075] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:104
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="23659" name="ReplacedSourcePartCannotDestroyTheAlreadyPaidOutletOnRollback" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.ReplacedSourcePartCannotDestroyTheAlreadyPaidOutletOnRollback" methodname="ReplacedSourcePartCannotDestroyTheAlreadyPaidOutletOnRollback" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1834517515" result="Failed" start-time="2026-11-25 00:09:17Z" end-time="2026-11-25 00:09:17Z" duration="0.027707" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 20
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectLiquidPumpTests.ReplacedSourcePartCannotDestroyTheAlreadyPaidOutletOnRollback () [0x0007c] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:92
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="23660" name="SaturatedSourceCannotDestroyUnrefundableOutletCredit" fullname="CavesOfOoo.Tests.DirectLiquidPumpTests.SaturatedSourceCannotDestroyUnrefundableOutletCredit" methodname="SaturatedSourceCannotDestroyUnrefundableOutletCredit" classname="CavesOfOoo.Tests.DirectLiquidPumpTests" runstate="Runnable" seed="1653866596" result="Failed" start-time="2026-11-25 00:09:17Z" end-time="2026-11-25 00:09:17Z" duration="0.098450" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 20
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectLiquidPumpTests.SaturatedSourceCannotDestroyUnrefundableOutletCredit () [0x0007f] in /Users/steven/coo-verification/clone3/Assets/Tests/EditMode/Gameplay/World/DirectLiquidPumpTests.cs:98
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

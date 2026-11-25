@@ -1,3 +1,19 @@
+**Direct hand pump — November24local/25UTC,2026:** Third bounded capability in
+the sled/sieve/pump batch has native and recorded Editor qualification. Finalg
+220/220=30pump+190retained,0CS; independent source0remainingP1/P2 after three real
+rollback REDs were fixed. Actual supplied normalStrength18/40HP: forge20,
+reader/freecancel20, stroke30(source40/outlet20)/fresh30, same-pump strokes40/50
+empty source2142 and its legacy acid projection into same60-unit outlet2144.
+Safe step onto former pool60 retains40HP/fresh60; separately preserved outlet
+exposure80 causes acidcoat36/HP37, retaining60acid. Three F5archives/all12files,
+two ID-sorted selected fresh pairs andonePNG. Mainstopped/rootnull/clean/input
+restored/unlocked/RequestedSeed0; four isolation tokens finished. Failed queued
+compilation fresh attempt preserved/excluded; no ordinary acquisition, whole-world,
+installed sump/access, NPC, full-suite or hardware claim. CurrentMac a02338565
+predates allthree; exact publication then coherent delivery pending. Independent
+recorded-play/final wording review0remainingP1/P2. See [contract](MACHINE-DIRECT-LIQUID-PUMP.md)
+and[evidence](Verification/MachineSystems/DirectLiquidPump20261124/README.md).
+
 **Portable hand sieve — November24,2026:** One new bounded screening capability
 has native and recorded Editor qualification: reusable sound carried sieve,
 finite authored packet -> one pale-salt/two silver sand, explicit two-weight
