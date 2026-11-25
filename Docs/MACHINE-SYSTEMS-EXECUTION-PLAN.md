@@ -1,3 +1,12 @@
+**Current Mac delivery — November 24 local / November 25 UTC, 2026.**
+Runtime `7ecee70b3` is packaged with the verified grit and size screening.
+The universal build succeeded with zero errors and five existing warnings.
+The owned player reached completed startup and closed. Package review passed,
+including all 186 application files and the 437 prior Part field shapes.
+Packaged gameplay remains open. The next slice scopes compatible lining clay
+to the existing well and batch pan repairs.
+[Delivery receipt](Verification/MachineSystems/MacCandidate7ECEE70B3/README.md)
+
 **New replayability/overdue-shipment direction — November24local/25UTC,2026:**
 [45 implementation requirements](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md)
 separate existing foundations from missing compatibility/outcome/transport/

@@ -28,9 +28,9 @@ workshop access. Fixed public rain collectors offer optional finite water.
 The bounded hand-sieve operation and coarse-grit consumer have Editor evidence,
 with their documented acquisition limits. G2 now has guided heap harvest200,
 screen210, repair240, draw240 and grit250, with selected F5/fresh comparisons
-passing at210 and250. **G2 is now published as7ecee70b3 with bounded Editor
-qualification and final source/recorded-play review0remainingP1/P2. Current
-Mac995 predates it; wider mixtures and discovery remain open.** Its finite
+passing at210 and250. G2 is published as `7ecee70b3` after Editor qualification
+and independent review. The current Mac package includes the change and passed
+startup verification. Wider mixtures and discovery remain open. Its finite
 size manifest is a useful foundation, not a general material-grade system.
 
 Cinderhold already gives the same future paid sounding-rod availability after

@@ -1,3 +1,10 @@
+**Current Mac delivery — November 24 local / November 25 UTC, 2026.**
+The package from `7ecee70b3` includes suitable grit and the finite clay spoil
+screening loop. The build and startup passed independent review. The played
+repair and save evidence comes from the Editor. The twelve complete machine
+acceptance gates remain open.
+[Delivery receipt](Verification/MachineSystems/MacCandidate7ECEE70B3/README.md)
+
 **Replayable practical work — November24local/25UTC,2026:** The source-grounded
 [implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
 concrete requirements for compatible material demand, method-independent
