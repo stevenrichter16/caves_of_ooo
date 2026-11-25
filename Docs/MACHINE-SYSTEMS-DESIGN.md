@@ -1,3 +1,11 @@
+**Growth changes the work available at one finite stand — November 25 UTC, 2026.**
+Early Morrowfast knotflax can give a sound cutter one cord for ordinary
+preparation. Leaving it standing allows the existing later seed harvest and
+public frame. Both choices use the same physical source and saved depletion.
+Neither produces a second harvest after the stand is spent. Ordinary crop
+work and materials remain available independently of this one wild stand.
+[Evidence](Verification/MachineSystems/SeasonalKnotflaxStems20261125/README.md)
+
 **Equivalent durable work supports the same local supply — November 25 UTC, 2026.**
 The existing Tine perch line reads the actual stable saved weir. Normal
 hand repair and the existing paid contract support the same four-perch

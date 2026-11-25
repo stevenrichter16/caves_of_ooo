@@ -1,3 +1,13 @@
+**One knotflax source supports distinct seasonal work — November 25 UTC, 2026.**
+Seed 65 ordinary movement and the starting dagger reached the optional
+Morrowfast stand. An early cut spent it for one cord, fresh Continue kept
+that exact cord, and ordinary preparation made a bandage. A separate
+uncut copy advanced to the ripe phase and supplied the usual bundle and
+frame seed. Both spent branches stayed depleted at the late phase. The
+final native run passed 197 focused checks. The next connected choice is
+small individual deposits in a separate public store by the Gleaners’ well.
+[Evidence](Verification/MachineSystems/SeasonalKnotflaxStems20261125/README.md)
+
 **Mac delivery for Tine’s restored fish supply — November 25 UTC, 2026.**
 A universal build of `d23329978` reached GameBootstrap on this Mac. All
 186 package files matched afterward. It is the current startup-verified

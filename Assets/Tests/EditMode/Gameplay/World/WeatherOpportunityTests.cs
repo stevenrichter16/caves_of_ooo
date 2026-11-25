@@ -413,6 +413,168 @@ namespace CavesOfOoo.Tests
                 && RegionalWeather.Current(Zone, (window + 1) * RegionalWeather.WindowTicks, RegionalWeather.PolicyVersion).Raining);
         }
 
+        static bool CordHarvestRow(InventoryAction row)
+        {
+            var text = row.Display + " " + row.Hint;
+            return !row.IsDisabled && text.IndexOf("cord", StringComparison.OrdinalIgnoreCase) >= 0
+                && (text.IndexOf("stem", StringComparison.OrdinalIgnoreCase) >= 0
+                    || text.IndexOf("cut", StringComparison.OrdinalIgnoreCase) >= 0
+                    || text.IndexOf("trim", StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        [Test] public void EarlyKnotflaxOffersOneCordWithARealCutterAndSpendsTheStand()
+        {
+            var manager = EnterAllotment();
+            var source = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Patch);
+            string sourceId = source.ID;
+            StandBeside(source);
+            var cell = Zone.GetEntityCell(source);
+            Assert.That(RegionalWeather.Current(Zone, WorldClock.CurrentTick, RegionalWeather.PolicyVersion).Season, Is.Zero);
+
+            Carry("Spear");
+            Assert.False(CellMenu(cell.X, cell.Y).Any(CordHarvestRow));
+            var cutter = Carry("Dagger");
+            var cutterState = cutter.GetPart<CuttingToolPart>();
+            int tick = Clock.TickCount;
+            var menu = CellMenu(cell.X, cell.Y);
+            var harvest = menu.Single(CordHarvestRow);
+            Assert.False(menu.Any(a => a.Command == "Harvest"));
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+            Assert.False(source.GetPart<HarvestablePart>().Harvested);
+
+            Assert.True(ChooseRow(harvest, cell.X, cell.Y));
+            Assert.True(source.GetPart<HarvestablePart>().Harvested);
+            Assert.Null(Zone.GetEntityCell(source));
+            Assert.False(Act(source, harvest.Command));
+            Assert.That(Count(Bundle), Is.Zero);
+            Assert.That(Count("KnotflaxCord"), Is.EqualTo(1));
+            Assert.That(Pack.Objects, Does.Contain(cutter));
+            Assert.That(cutter.GetPart<CuttingToolPart>(), Is.SameAs(cutterState));
+            Assert.False(cutter.HasEffect<BrokenEffect>());
+            Assert.That(cutter.GetPart<StackerPart>()?.StackCount ?? 1, Is.EqualTo(1));
+
+            var cord = Pack.Objects.Single(e => e.BlueprintName == "KnotflaxCord");
+            Assert.True(Act(cord, Choice(cord, "PrepareRecipe|bandage")));
+            Assert.That(Count("KnotflaxCord"), Is.Zero);
+            Assert.That(Count("KnotflaxBandage"), Is.EqualTo(1));
+
+            Clock.AdvanceClock(LateGrowth - Clock.TickCount);
+            var loaded = HotbarSaveFixture.RoundTrip(
+                GameSessionState.Capture("early-knotflax", "spent before seed", manager, Clock, Actor));
+            var returned = loaded.ZoneManager.GetZone(Zone.ZoneID);
+            Assert.That(loaded.TurnManager.TickCount, Is.EqualTo(LateGrowth));
+            Assert.False(returned.GetReadOnlyEntities().Any(e => e.ID == sourceId || e.BlueprintName == Patch || e.BlueprintName == Bundle));
+            Assert.That(loaded.Player.GetPart<InventoryPart>().Objects.Count(e => e.BlueprintName == "KnotflaxBandage"), Is.EqualTo(1));
+        }
+
+        [Test] public void AnEarlyCordOfferCannotSpendTheStandAfterPhaseChanges()
+        {
+            EnterAllotment();
+            var source = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Patch);
+            StandBeside(source);
+            var cell = Zone.GetEntityCell(source);
+            Carry("Dagger");
+            Clock.AdvanceClock(LateGrowth - 1);
+            var early = CellMenu(cell.X, cell.Y).Single(CordHarvestRow);
+            Clock.AdvanceClock(1);
+
+            Assert.False(ChooseRow(early, cell.X, cell.Y));
+            Assert.That(Count("KnotflaxCord"), Is.Zero);
+            Assert.False(source.GetPart<HarvestablePart>().Harvested);
+            Assert.That(Zone.GetEntityCell(source), Is.SameAs(cell));
+            var menu = CellMenu(cell.X, cell.Y);
+            var late = menu.Single(a => a.Command == "Harvest");
+            Assert.That(late.Display, Is.EqualTo("gather ripe seed heads (1 bundle)"));
+            Assert.False(menu.Any(CordHarvestRow));
+            Assert.True(ChooseRow(late, cell.X, cell.Y));
+            Assert.That(Count(Bundle), Is.EqualTo(1));
+            Assert.Null(Zone.GetEntityCell(source));
+
+            var frame = Zone.GetReadOnlyEntities().First(e => e.HasPart<SeedFramePart>());
+            StandBeside(frame);
+            var frameCell = Zone.GetEntityCell(frame);
+            var work = CellMenu(frameCell.X, frameCell.Y).Single(a => a.Command.StartsWith(Work, StringComparison.Ordinal));
+            Assert.That(work.Command.Split('|')[2], Is.EqualTo(Uri.EscapeDataString(frame.ID)));
+            Assert.True(ChooseRow(work, frameCell.X, frameCell.Y));
+            Assert.That(Count(Bundle), Is.Zero);
+            Assert.That(Count("KnotflaxSeed"), Is.EqualTo(1));
+        }
+
+        [Test] public void AnUnsafeCordTemplateCannotPublishOutputOrSpendTheSeasonalStand()
+        {
+            EnterAllotment();
+            var source = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Patch);
+            StandBeside(source);
+            var cell = Zone.GetEntityCell(source);
+            Carry("Dagger");
+            var quote = CellMenu(cell.X, cell.Y).Single(CordHarvestRow);
+            var template = Factory.Blueprints["KnotflaxCord"];
+            Factory.RegisterPartType<FiftyWorldCreationProbe>();
+            template.Parts.Add(nameof(FiftyWorldCreationProbe), new Dictionary<string, string>());
+            int callbacks = 0;
+            FiftyWorldCreationProbe.Created = cord => { callbacks++; Pack.AddObject(cord); };
+            try
+            {
+                Assert.False(ChooseRow(quote, cell.X, cell.Y));
+                Assert.That(callbacks, Is.Zero);
+                Assert.That(Count("KnotflaxCord"), Is.Zero);
+                Assert.False(CellMenu(cell.X, cell.Y).Any(CordHarvestRow));
+                Assert.That(Zone.GetEntityCell(source), Is.SameAs(cell));
+                Assert.False(source.GetPart<HarvestablePart>().Harvested);
+
+                Clock.AdvanceClock(LateGrowth);
+                Assert.True(ChooseRow(CellMenu(cell.X, cell.Y).Single(a => a.Command == "Harvest"), cell.X, cell.Y));
+                Assert.That(Count(Bundle), Is.EqualTo(1));
+            }
+            finally
+            {
+                FiftyWorldCreationProbe.Created = null;
+                template.Parts.Remove(nameof(FiftyWorldCreationProbe));
+            }
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void UnavailableCutterReceiptLeavesTheExactEarlyStand(bool competingClaim)
+        {
+            EnterAllotment();
+            var source = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Patch);
+            StandBeside(source);
+            var cell = Zone.GetEntityCell(source);
+            var cutter = Carry("Dagger");
+            var row = CellMenu(cell.X, cell.Y).Single(CordHarvestRow);
+            int tick = Clock.TickCount;
+            var independent = new CavesOfOoo.Core.Inventory.InventoryTransaction();
+            try
+            {
+                if (competingClaim)
+                {
+                    var claim = typeof(CavesOfOoo.Core.Inventory.InventoryTransaction).GetMethod("TryClaim",
+                        System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                    Assert.True((bool)claim.Invoke(independent, new object[] { cutter, Actor, "seasonal-cutter-test" }));
+                }
+                else Assert.True(cutter.ApplyEffect(new BrokenEffect()));
+
+                Assert.False(ChooseRow(row, cell.X, cell.Y));
+                Assert.That(Clock.TickCount, Is.EqualTo(tick));
+                Assert.That(Zone.GetEntityCell(source), Is.SameAs(cell));
+                Assert.False(source.GetPart<HarvestablePart>().Harvested);
+                Assert.That(Count("KnotflaxCord"), Is.Zero);
+                Assert.That(Count(Bundle), Is.Zero);
+                Assert.That(Pack.Objects, Does.Contain(cutter));
+                Assert.That(cutter.HasEffect<BrokenEffect>(), Is.EqualTo(!competingClaim));
+            }
+            finally
+            {
+                independent.Rollback();
+                if (!competingClaim) cutter.RemoveEffect<BrokenEffect>();
+            }
+
+            Assert.True(ChooseRow(CellMenu(cell.X, cell.Y).Single(CordHarvestRow), cell.X, cell.Y));
+            Assert.That(Count("KnotflaxCord"), Is.EqualTo(1));
+            Assert.Null(Zone.GetEntityCell(source));
+        }
+
         [TestCase(false, false)]
         [TestCase(false, true)]
         [TestCase(true, false)]

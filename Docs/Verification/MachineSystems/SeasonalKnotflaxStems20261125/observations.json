@@ -1,0 +1,906 @@
+{
+  "seed": 65,
+  "game": "d548e71589f74d828155a416033088f8",
+  "controlledAdvances": [
+    {
+      "from": 500,
+      "to": 9600,
+      "branch": "spent"
+    },
+    {
+      "from": 480,
+      "to": 9600,
+      "branch": "uncut"
+    }
+  ],
+  "views": {
+    "start": {
+      "ready": true,
+      "tick": 10,
+      "zone": "Overworld.11.10.0",
+      "p": {
+        "ID": "2701",
+        "X": 40,
+        "Y": 12
+      },
+      "hp": 40,
+      "state": "Normal",
+      "weight": 12,
+      "max": 150,
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        }
+      ],
+      "ground": [],
+      "well": {
+        "ID": "2692",
+        "X": 41,
+        "Y": 8,
+        "repaired": false,
+        "usable": false
+      },
+      "heap": null,
+      "bank": null,
+      "gritAtWork": null,
+      "wm": null,
+      "im": null
+    },
+    "arrival": {
+      "ready": true,
+      "tick": 250,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 40,
+        "Y": 12
+      },
+      "hp": 40,
+      "state": "Normal",
+      "weight": 12,
+      "max": 150,
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        }
+      ],
+      "ground": [],
+      "well": {
+        "ID": "7184",
+        "X": 58,
+        "Y": 9,
+        "repaired": false,
+        "usable": false
+      },
+      "heap": {
+        "ID": "7197",
+        "X": 58,
+        "Y": 11
+      },
+      "bank": {
+        "ID": "7187",
+        "X": 58,
+        "Y": 12
+      },
+      "gritAtWork": null,
+      "wm": null,
+      "im": null
+    },
+    "layout": [
+      {
+        "ID": "7198",
+        "BlueprintName": "CampAwning",
+        "X": 60,
+        "Y": 8
+      },
+      {
+        "ID": "7199",
+        "BlueprintName": "CampAwning",
+        "X": 64,
+        "Y": 8
+      },
+      {
+        "ID": "7200",
+        "BlueprintName": "LateKnotflaxStand",
+        "X": 60,
+        "Y": 7
+      }
+    ],
+    "beforeChoice": {
+      "tick": 480,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 0,
+      "rain": true,
+      "weight": 12,
+      "state": "Normal",
+      "cursor": {
+        "X": 0,
+        "Y": 0
+      },
+      "stands": [
+        {
+          "ID": "7200",
+          "X": 60,
+          "Y": 7,
+          "spent": false
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "earlyMenu": {
+      "highlight": "HarvestKnotflaxStems|847f50961486481ebcb2d026a1b39f92",
+      "target": "LateKnotflaxStand",
+      "rows": [
+        {
+          "Command": "HarvestKnotflaxStems|847f50961486481ebcb2d026a1b39f92",
+          "Display": "cut flexible stems for cord (1 unit)",
+          "Hint": "One action. Keep the cutting tool. Cut now and this stand yields no seed later."
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": ""
+        }
+      ]
+    },
+    "earlyCancelled": {
+      "tick": 480,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 0,
+      "rain": true,
+      "weight": 12,
+      "state": "Normal",
+      "cursor": {
+        "X": 0,
+        "Y": 0
+      },
+      "stands": [
+        {
+          "ID": "7200",
+          "X": 60,
+          "Y": 7,
+          "spent": false
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "afterCut": {
+      "tick": 490,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 0,
+      "rain": true,
+      "weight": 13,
+      "state": "LookMode",
+      "cursor": {
+        "X": 60,
+        "Y": 7
+      },
+      "stands": [],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "7201",
+          "BlueprintName": "KnotflaxCord",
+          "n": 1
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "freshCut": {
+      "tick": 490,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 0,
+      "rain": true,
+      "weight": 13,
+      "state": "Normal",
+      "cursor": {
+        "X": 0,
+        "Y": 0
+      },
+      "stands": [],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "7201",
+          "BlueprintName": "KnotflaxCord",
+          "n": 1
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "bandageMenu": {
+      "panel": 1,
+      "selected": "KnotflaxCord",
+      "popupItem": "KnotflaxCord",
+      "index": 0,
+      "rows": [
+        {
+          "Label": "Examine",
+          "Command": "examine_material",
+          "Hint": null
+        },
+        {
+          "Label": "bandage: 1 cord, stops bleeding only",
+          "Command": "PrepareRecipe|bandage",
+          "Hint": ""
+        },
+        {
+          "Label": "braid binding: 1 cord, no bonus",
+          "Command": "PrepareRecipe|braid_binding",
+          "Hint": ""
+        },
+        {
+          "Label": "lay cord snare north (1 cord)",
+          "Command": "LayCordSnare|Overworld.2.6.0|59|8|59|7|1",
+          "Hint": ""
+        },
+        {
+          "Label": "lay cord snare northeast (1 cord)",
+          "Command": "LayCordSnare|Overworld.2.6.0|59|8|60|7|1",
+          "Hint": ""
+        },
+        {
+          "Label": "lay cord snare northwest (1 cord)",
+          "Command": "LayCordSnare|Overworld.2.6.0|59|8|58|7|1",
+          "Hint": ""
+        },
+        {
+          "Label": "lay cord snare south (1 cord)",
+          "Command": "LayCordSnare|Overworld.2.6.0|59|8|59|9|1",
+          "Hint": ""
+        },
+        {
+          "Label": "lay cord snare southeast (1 cord)",
+          "Command": "LayCordSnare|Overworld.2.6.0|59|8|60|9|1",
+          "Hint": ""
+        },
+        {
+          "Label": "lay cord snare west (1 cord)",
+          "Command": "LayCordSnare|Overworld.2.6.0|59|8|58|8|1",
+          "Hint": ""
+        },
+        {
+          "Label": "lash serrated edge kit (unavailable)",
+          "Command": "Disabled:short",
+          "Hint": ""
+        },
+        {
+          "Label": "trim and tension guard lashing (unavailable)",
+          "Command": "Disabled:short",
+          "Hint": ""
+        },
+        {
+          "Label": "Drop",
+          "Command": "drop",
+          "Hint": null
+        }
+      ]
+    },
+    "bandage": {
+      "tick": 500,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 0,
+      "rain": true,
+      "weight": 13,
+      "state": "Normal",
+      "cursor": {
+        "X": 0,
+        "Y": 0
+      },
+      "stands": [],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "7202",
+          "BlueprintName": "KnotflaxBandage",
+          "n": 1
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "spentInLatePhase": {
+      "tick": 9600,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 1,
+      "rain": false,
+      "weight": 13,
+      "state": "Normal",
+      "cursor": {
+        "X": 0,
+        "Y": 0
+      },
+      "stands": [],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "7202",
+          "BlueprintName": "KnotflaxBandage",
+          "n": 1
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "uncutComparisonStart": {
+      "tick": 480,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 0,
+      "rain": true,
+      "weight": 12,
+      "state": "Normal",
+      "cursor": {
+        "X": 0,
+        "Y": 0
+      },
+      "stands": [
+        {
+          "ID": "7200",
+          "X": 60,
+          "Y": 7,
+          "spent": false
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "lateMenu": {
+      "highlight": "Harvest",
+      "target": "LateKnotflaxStand",
+      "rows": [
+        {
+          "Command": "Harvest",
+          "Display": "gather ripe seed heads (1 bundle)",
+          "Hint": ""
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": ""
+        }
+      ]
+    },
+    "lateHarvest": {
+      "tick": 9610,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 1,
+      "rain": false,
+      "weight": 13,
+      "state": "Normal",
+      "cursor": {
+        "X": 0,
+        "Y": 0
+      },
+      "stands": [],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "7201",
+          "BlueprintName": "KnotflaxSeedHeads",
+          "n": 1
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "frameMenu": {
+      "highlight": "MaterialProcess|winnow_knotflax_seed|7198|c7fbdf8082d94df6bc44b7691416c37c",
+      "target": "CampAwning",
+      "rows": [
+        {
+          "Command": "Disabled:fair",
+          "Display": "catch rain",
+          "Hint": ""
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": ""
+        },
+        {
+          "Command": "MaterialProcess|winnow_knotflax_seed|7198|c7fbdf8082d94df6bc44b7691416c37c",
+          "Display": "winnow 1 knotflax seed-head bundle",
+          "Hint": "Makes 1 knotflax seed + 1 dry knotflax chaff. retain dry chaff for fire fuel. One action. Products go into your pack."
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": ""
+        }
+      ]
+    },
+    "frameResult": {
+      "tick": 9620,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 1,
+      "rain": false,
+      "weight": 13,
+      "state": "Normal",
+      "cursor": {
+        "X": 0,
+        "Y": 0
+      },
+      "stands": [],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "7202",
+          "BlueprintName": "KnotflaxSeed",
+          "n": 1
+        },
+        {
+          "ID": "7203",
+          "BlueprintName": "DryKnotflaxChaff",
+          "n": 1
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "freshFrameResult": {
+      "tick": 9620,
+      "zone": "Overworld.2.6.0",
+      "p": {
+        "ID": "2701",
+        "X": 59,
+        "Y": 8,
+        "hp": 40
+      },
+      "phase": 1,
+      "rain": false,
+      "weight": 13,
+      "state": "Normal",
+      "cursor": {
+        "X": 0,
+        "Y": 0
+      },
+      "stands": [],
+      "pack": [
+        {
+          "ID": "2702",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "7202",
+          "BlueprintName": "KnotflaxSeed",
+          "n": 1
+        },
+        {
+          "ID": "7203",
+          "BlueprintName": "DryKnotflaxChaff",
+          "n": 1
+        }
+      ],
+      "ground": [],
+      "action": null
+    },
+    "editorRestored": {
+      "playing": false,
+      "root": null,
+      "dirty": false,
+      "profiling": false,
+      "total": 7,
+      "builtin": 7,
+      "selected": 0,
+      "viewOwned": false
+    }
+  }
+}

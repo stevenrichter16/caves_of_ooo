@@ -337,6 +337,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     the source's declared finite budget. Seasonal transitions cannot reset
     harvested sources or grant both an entire ordinary harvest and an unaccounted
     bonus harvest.
+    The exact Morrowfast stand now supplies early cord or a later seed-head
+    bundle. Editor play made a bandage from the cord and confirmed the spent
+    stand stayed absent in the later phase. In the uncut comparison the same
+    stand supplied the existing seed frame. This is one bounded seasonal site.
+    [Evidence](Verification/MachineSystems/SeasonalKnotflaxStems20261125/README.md)
 
 34. **Make favorable conditions improve a supported process.** A useful weather
     bonus can reduce paid work or retain a declared otherwise lost fraction.

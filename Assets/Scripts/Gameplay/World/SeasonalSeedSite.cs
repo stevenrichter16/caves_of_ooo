@@ -1,12 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>A fixed, one-use source. Season controls gathering, not the portable product.</summary>
     public sealed class SeasonalHarvestPart : HarvestablePart, IDescribeState, IPostCommitInventoryActionNotification
     {
+        const int FlexibleStemSeason = 0;
+        const string Cord = "KnotflaxCord";
+        const string CutStems = "HarvestKnotflaxStems";
         public override string Name => "SeasonalHarvest";
         public Entity Ground;
         public string WorldKey = "";
@@ -16,7 +20,8 @@ namespace CavesOfOoo.Core
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 38;
         public bool OwnsInventoryReceipt(string command)
-            => command == "Harvest" && ParentEntity?.GetPart<HarvestablePart>() == this;
+            => ParentEntity?.GetPart<HarvestablePart>() == this
+                && (command == "Harvest" || command?.StartsWith(CutStems + "|", StringComparison.Ordinal) == true);
         public bool NotifyAfterCommit(string command) => OwnsInventoryReceipt(command);
         internal static bool ActorCanGather(Entity actor, Zone zone) => PreparationActions.CurrentActor(actor, zone)
             && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true;
@@ -28,16 +33,16 @@ namespace CavesOfOoo.Core
                 && StationReadiness.CurrentZone(zone) ? RegionalWeather.Current(zone, WorldClock.CurrentTick, PolicyVersion) : default;
         }
 
-        internal bool Ready(Zone zone)
+        internal bool Ready(Zone zone, int? selectedSeason = null)
         {
             var owner = ParentEntity;
             if (owner?.GetPart<HarvestablePart>() != this || owner.Parts.Count(p => p is HarvestablePart) != 1
                 || !RainCatchmentPart.FixedOn(owner, Ground, zone)) return false;
             var weather = Weather(zone);
-            return weather.Valid && weather.Season == Season;
+            return weather.Valid && weather.Season == (selectedSeason ?? Season);
         }
 
-        internal Func<bool> CaptureSeason(Zone zone, Cell sourceCell)
+        internal Func<bool> CaptureSeason(Zone zone, Cell sourceCell, int? selectedSeason = null)
         {
             var owner = ParentEntity;
             var ground = Ground;
@@ -46,7 +51,7 @@ namespace CavesOfOoo.Core
             return () =>
             {
                 var current = Weather(zone);
-                return current.Valid && current.Window == week && current.Season == season
+                return current.Valid && current.Window == week && current.Season == (selectedSeason ?? season)
                     && owner.ID == sourceID && ParentEntity == owner && owner.GetPart<HarvestablePart>() == this
                     && owner.Parts.Count(p => p is HarvestablePart) == 1 && Harvested && owner.SpatialZone == null
                     && Ground == ground && zone.GetEntityCell(ground) == sourceCell && !sourceCell.IsInterior
@@ -54,10 +59,66 @@ namespace CavesOfOoo.Core
             };
         }
 
+        bool FlexibleStems(Zone zone)
+            => ParentEntity?.BlueprintName == SeasonalSeedSite.Stand && Season == 1
+                && YieldBlueprint == SeasonalSeedSite.Bundle && YieldMin == 1 && YieldMax == 1 && YieldChance == 100
+                && Ready(zone, FlexibleStemSeason) && CanCreateYield(Factory, Cord)
+                && MaterialProcessTemplate.Capture(Factory, Cord, true) != null;
+
+        IEnumerable<RouteWorkMenu.Entry> StemChoices(Entity actor, Zone zone)
+        {
+            var source = ParentEntity;
+            if (Harvested || !FlexibleStems(zone) || !ActorCanGather(actor, zone)) yield break;
+            var from = zone.GetEntityCell(actor);
+            var cell = zone.GetEntityCell(source);
+            if (!RouteWorkMenu.Visible(cell) || SpatialQuery.Distance(zone, actor, source) > 1) yield break;
+            var tool = MaterialCuttingWorkReceipt.Resolve(actor, source, zone);
+            if (tool == null) yield break;
+            var ground = Ground;
+            string id = source.ID, key = WorldKey;
+            int window = Weather(zone).Window, policy = PolicyVersion;
+            bool Before() => !Harvested && ParentEntity == source && source.ID == id && Ground == ground
+                && WorldKey == key && PolicyVersion == policy && FlexibleStems(zone) && ActorCanGather(actor, zone)
+                && zone.GetEntityCell(actor) == from && zone.GetEntityCell(source) == cell && RouteWorkMenu.Visible(cell)
+                && Weather(zone).Window == window && tool.Current();
+            bool After() => Harvested && source.SpatialZone == null && source.BlueprintName == SeasonalSeedSite.Stand
+                && zone.GetEntityCell(actor) == from && tool.Current();
+            yield return new RouteWorkMenu.Entry
+            {
+                Actor = actor, Zone = zone, Cell = cell, Key = CutStems, Claims = new[] { tool.Tool },
+                Label = "cut flexible stems for cord (1 unit)",
+                Hint = "One action. Keep the cutting tool. Cut now and this stand yields no seed later.",
+                Before = Before, After = After,
+                Apply = tx => tool.Begin(tx, CutStems) && DoHarvest(actor, zone, tx, seasonalYield: (Cord, FlexibleStemSeason))
+            };
+        }
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "GetInventoryActions")
+            {
+                base.HandleEvent(e);
+                var actor = e.GetParameter<Entity>("Actor");
+                var zone = PreparationActions.ZoneFor(e, actor);
+                RouteWorkMenu.Rows(ParentEntity, actor, zone, e.GetParameter<InventoryActionList>("Actions"), StemChoices(actor, zone), true);
+                return true;
+            }
+            if (e.ID == "InventoryAction" && e.GetStringParameter("Command")?.StartsWith(CutStems + "|", StringComparison.Ordinal) == true)
+            {
+                if (!RouteWorkMenu.Act(ParentEntity, e)) return true;
+                e.Handled = true;
+                return false;
+            }
+            return base.HandleEvent(e);
+        }
+
         public string DescribeState(DescribeContext context)
-            => Ready(context.Zone ?? ParentEntity?.SpatialZone)
-                ? "The heads rattle with loose seed. One bundle is ready to gather."
+        {
+            var zone = context.Zone ?? ParentEntity?.SpatialZone;
+            if (FlexibleStems(zone)) return "Flexible stems are ready. Cut them for one cord or let the stand set seed.";
+            return Ready(zone) ? "The heads rattle with loose seed. One bundle is ready to gather."
                 : "This stand sets usable heads late in the growing cycle. The ordinary allotment crops remain available.";
+        }
     }
 
     /// <summary>Fixed public mesh on the same frame that collects rain.</summary>

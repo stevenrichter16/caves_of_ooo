@@ -305,3 +305,24 @@ regression remain open. Reclamation/regional processing stays the implementation
 focus; weather supports useful loops within it. Graphics cancelled,
 capstan/cultures parked, Deck deferred. No prior accepted branch or package is
 repeated merely to prepare this design.
+
+## One seasonal knotflax stand, two practical uses
+
+Roadmap 33. Early in the existing growth cycle a sound cutting tool
+can cut and twist one unit of cord from the optional wild stand. Its
+flexible stems have value now. Leaving it standing preserves the existing
+later seed-head harvest and public frame use. Either choice spends the
+same finite stand. Ordinary planted crops, shop stock and seeds are still
+available throughout the rest of the game.
+
+The early row carries a quote for the exact stand, growth window,
+ground and chosen cutter. The late yield retains its authored bundle. Both
+use the same harvest receipt and source depletion. A moved, broken or foreign cutter
+and a new window invalidate that quote. An existing coherent unspent
+stand can use the choice. Its already spent counterpart stays absent.
+
+The Editor trial took early cord to ordinary bandage work. A separate uncut
+copy of the same stand supplied a late seed-head bundle and plantable seed.
+The comparison advanced the owned game clock directly to the next growth
+phase. Normal play uses the saved clock and ages the stand's options over time.
+[Evidence](Verification/MachineSystems/SeasonalKnotflaxStems20261125/README.md)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
@@ -48,18 +49,23 @@ namespace CavesOfOoo.Core
                 return true;
             }
             if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "Harvest") return true;
-            if (!DoHarvest(e.GetParameter<Entity>("Actor"), e)) return true;
+            var harvester = e.GetParameter<Entity>("Actor");
+            if (!DoHarvest(harvester, e.GetParameter<Zone>("Zone") ?? harvester?.SpatialZone,
+                e.GetParameter<InventoryTransaction>("InventoryTransaction"), e.GetParameter<Random>("Random"))) return true;
             e.Handled = true;
             return false;
         }
 
-        private string Validate(Entity actor, Zone zone, out bool carried, out Cell sourceCell, out Cell dropCell)
+        private string Validate(Entity actor, Zone zone, int? selectedSeason, out bool carried, out Cell sourceCell, out Cell dropCell)
         {
             carried = false; sourceCell = dropCell = null;
             if (FieldWorkRigRules.IsRig(ParentEntity) && !FieldWorkRigRules.Available(actor, ParentEntity, zone, true)) return "rig-unavailable";
             if (actor == null || ParentEntity == null) return "missing-context";
-            if (!SeasonalAccess(zone)) return "seasonal-source-unavailable";
-            if (this is SeasonalHarvestPart && !SeasonalHarvestPart.ActorCanGather(actor, zone)) return "seasonal-actor-unavailable";
+            if (this is SeasonalHarvestPart seasonal)
+            {
+                if (!seasonal.Ready(zone, selectedSeason)) return "seasonal-source-unavailable";
+                if (!SeasonalHarvestPart.ActorCanGather(actor, zone)) return "seasonal-actor-unavailable";
+            }
             if (CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)) return "actor-dead";
             var inventory = actor.GetPart<InventoryPart>();
             carried = inventory?.CanConsumeOne(ParentEntity) == true;
@@ -79,24 +85,31 @@ namespace CavesOfOoo.Core
             return null;
         }
 
-        private bool DoHarvest(Entity actor, GameEvent e)
+        internal bool DoHarvest(Entity actor, Zone zone, InventoryTransaction transaction, Random suppliedRandom = null,
+            (string Product, int Season)? seasonalYield = null)
         {
             // Retain this physical source even if a later callback detaches its Part.
             var source = ParentEntity;
-            var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone;
             if (Harvested) return Reject(actor, "spent");
-            string reason = Validate(actor, zone, out bool carried, out var sourceCell, out var dropCell);
+            if (seasonalYield.HasValue && this is not SeasonalHarvestPart) return Reject(actor, "invalid-seasonal-yield");
+            string reason = Validate(actor, zone, seasonalYield?.Season, out bool carried, out var sourceCell, out var dropCell);
             if (reason != null) return Reject(actor, reason);
-            var seasonalProof = (this as SeasonalHarvestPart)?.CaptureSeason(zone, sourceCell);
-            if (YieldMin < 1 || YieldMax < YieldMin || YieldMax > MaximumYieldCount || YieldChance < 0 || YieldChance > 100)
+            var seasonalProof = (this as SeasonalHarvestPart)?.CaptureSeason(zone, sourceCell, seasonalYield?.Season);
+            string declaredProduct = YieldBlueprint;
+            int declaredMin = YieldMin, declaredMax = YieldMax, declaredChance = YieldChance;
+            string product = seasonalYield?.Product ?? declaredProduct;
+            int min = seasonalYield.HasValue ? 1 : declaredMin;
+            int max = seasonalYield.HasValue ? 1 : declaredMax;
+            int chance = seasonalYield.HasValue ? 100 : declaredChance;
+            if (min < 1 || max < min || max > MaximumYieldCount || chance < 0 || chance > 100)
                 return Reject(actor, "invalid-yield-range");
             var factory = Factory;
-            if (factory == null || string.IsNullOrEmpty(YieldBlueprint) || !factory.Blueprints.ContainsKey(YieldBlueprint))
+            if (factory == null || string.IsNullOrEmpty(product) || !factory.Blueprints.ContainsKey(product))
                 return Reject(actor, "missing-yield");
-            if (!CanCreateYield(factory, YieldBlueprint))
+            var outputTemplate = seasonalYield.HasValue ? MaterialProcessTemplate.Capture(factory, product, true) : null;
+            if (!CanCreateYield(factory, product) || seasonalYield.HasValue && outputTemplate == null)
                 return Reject(actor, "invalid-product");
 
-            var transaction = e.GetParameter<InventoryTransaction>("InventoryTransaction");
             bool ownTransaction = transaction == null;
             transaction ??= new InventoryTransaction();
             var inventory = actor.GetPart<InventoryPart>();
@@ -142,11 +155,10 @@ namespace CavesOfOoo.Core
                 // Claim before factory/weight callbacks. Rollback restores this flag;
                 // success leaves it durable even if an old source reference survives.
                 transaction.Do(() => Harvested = true, restore);
-                var rng = e.GetParameter<Random>("Random") ?? new Random();
-                bool rollPassed = YieldChance >= 100 || rng.Next(100) < YieldChance;
-                int count = rollPassed ? (YieldMax > YieldMin ? rng.Next(YieldMin, YieldMax + 1) : YieldMin) : 0;
-                string product = YieldBlueprint, sourceName = source.GetDisplayName();
-                int min = YieldMin, max = YieldMax, chance = YieldChance;
+                var rng = suppliedRandom ?? new Random();
+                bool rollPassed = chance >= 100 || rng.Next(100) < chance;
+                int count = rollPassed ? (max > min ? rng.Next(min, max + 1) : min) : 0;
+                string sourceName = source.GetDisplayName();
                 var products = new Entity[count];
                 for (int i = 0; i < count; i++)
                 {
@@ -156,10 +168,18 @@ namespace CavesOfOoo.Core
                         || item.SpatialZone != null || item.GetPart<PhysicsPart>()?.InInventory != null
                         || item.GetPart<PhysicsPart>()?.Equipped != null || (item.GetPart<StackerPart>()?.StackCount ?? 1) != 1)
                         return Fail("invalid-product");
+                    if (outputTemplate != null && (!outputTemplate.Matches(item) || !PreparationActions.Fresh(item, product)
+                        || item.ID == actor.ID || item.ID == source.ID
+                        || inventory.Objects.Any(owner => owner?.ID == item.ID)
+                        || inventory.EquippedItems.Values.Any(owner => owner?.ID == item.ID)
+                        || zone.GetReadOnlyEntities().Any(owner => owner.ID == item.ID)
+                        || !transaction.TryClaim(item, actor, "Harvest")))
+                        return Fail("invalid-selected-product");
                 }
-                reason = Validate(actor, zone, out bool stillCarried, out var stillSource, out var stillDrop);
+                reason = Validate(actor, zone, seasonalYield?.Season, out bool stillCarried, out var stillSource, out var stillDrop);
                 if (reason != null || stillCarried != carried || !ReferenceEquals(sourceCell, stillSource) || !ReferenceEquals(dropCell, stillDrop)
-                    || actor.GetPart<InventoryPart>() != inventory || YieldBlueprint != product || YieldMin != min || YieldMax != max || YieldChance != chance)
+                    || actor.GetPart<InventoryPart>() != inventory || YieldBlueprint != declaredProduct || YieldMin != declaredMin
+                    || YieldMax != declaredMax || YieldChance != declaredChance)
                     return Fail("source-changed");
 
                 receipt = inventory == null ? null : InventoryTransferSnapshot.Capture(inventory, products);
