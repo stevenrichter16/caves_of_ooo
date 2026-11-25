@@ -378,6 +378,7 @@ namespace CavesOfOoo.Tests
     {
         const string Patch = "LateKnotflaxStand";
         const string Bundle = "KnotflaxSeedHeads";
+        const string Chaff = "DryKnotflaxChaff";
         const string Work = "MaterialProcess|winnow_knotflax_seed|";
         const int LateGrowth = 16 * 600;
         EntityFactory oldForge;
@@ -405,6 +406,146 @@ namespace CavesOfOoo.Tests
             Assert.True(Zone.MoveEntity(Actor, next.Item1, next.Item2));
         }
 
+        int FirstFairWindowBeforeRain()
+        {
+            return Enumerable.Range(0, RegionalWeather.CycleWindows).First(window =>
+                !RegionalWeather.Current(Zone, window * RegionalWeather.WindowTicks, RegionalWeather.PolicyVersion).Raining
+                && RegionalWeather.Current(Zone, (window + 1) * RegionalWeather.WindowTicks, RegionalWeather.PolicyVersion).Raining);
+        }
+
+        [TestCase(false, false)]
+        [TestCase(false, true)]
+        [TestCase(true, false)]
+        public void OnlyFairDryWorkRetainsOnePoundOfChaff(bool raining, bool wetGround)
+        {
+            EnterAllotment();
+            int tick = (FirstFairWindowBeforeRain() + (raining ? 1 : 0)) * RegionalWeather.WindowTicks;
+            Clock.AdvanceClock(tick);
+            var weather = RegionalWeather.Current(Zone, WorldClock.CurrentTick, RegionalWeather.PolicyVersion);
+            Assert.True(weather.Valid);
+            Assert.That(weather.Raining, Is.EqualTo(raining));
+            var frame = Zone.GetReadOnlyEntities().First(e => e.HasPart<RainCollectorPart>());
+            StandBeside(frame);
+            var cell = Zone.GetEntityCell(frame);
+            if (wetGround) Zone.TileState.WriteCoating(cell.X, cell.Y, "water", ZoneTileState.Permanent);
+            var packet = Carry(Bundle);
+
+            bool retained = !raining && !wetGround;
+            var row = CellMenu(cell.X, cell.Y).Single(a => a.Command.StartsWith(Work));
+            Assert.That(row.Hint, Does.Contain(retained ? "retain dry chaff" : "discard dry chaff"));
+            var fromPack = Actions(packet).Single(a => a.Command.StartsWith(Work));
+            Assert.That(fromPack.Command, Is.EqualTo(row.Command));
+            Assert.That(fromPack.Hint, Is.EqualTo(row.Hint));
+            Assert.That(WorldClock.CurrentTick, Is.EqualTo(tick));
+            Assert.True(ChooseRow(row, cell.X, cell.Y));
+            Assert.That(Count(Bundle), Is.Zero);
+            Assert.That(Count("KnotflaxSeed"), Is.EqualTo(1));
+            Assert.That(Count(Chaff), Is.EqualTo(retained ? 1 : 0));
+            if (retained)
+            {
+                var chaff = Pack.Objects.Single(e => e.BlueprintName == Chaff);
+                Assert.That(chaff.GetPart<PhysicsPart>().Weight, Is.EqualTo(1));
+                Assert.That(chaff.GetPart<ReagentPart>().PropertiesRaw, Is.EqualTo("combustible:1"));
+            }
+            Assert.That(frame.GetPart<RainCollectorPart>().Anchor.GetPart<RainCatchmentPart>().Spent, Is.Zero);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AQuotedChaffBonusExpiresWhenRainStartsBeforePayment(bool duringCallback)
+        {
+            EnterAllotment();
+            int rainOpens = (FirstFairWindowBeforeRain() + 1) * RegionalWeather.WindowTicks;
+            Clock.AdvanceClock(rainOpens - 1);
+            var frame = Zone.GetReadOnlyEntities().First(e => e.HasPart<RainCollectorPart>());
+            StandBeside(frame);
+            Carry(Bundle);
+            var cell = Zone.GetEntityCell(frame);
+            var dryRow = CellMenu(cell.X, cell.Y).Single(a => a.Command.StartsWith(Work));
+            var probe = new MachineMaterialProcessActionTests.BeforeProcessProbe { Callback = () => Clock.AdvanceClock(1) };
+            if (duringCallback) Actor.AddPart(probe);
+            else Clock.AdvanceClock(1);
+
+            Assert.False(ChooseRow(dryRow, cell.X, cell.Y));
+            if (duringCallback) Actor.RemovePart(probe);
+            Assert.That(Count(Bundle), Is.EqualTo(1));
+            Assert.That(Count("KnotflaxSeed"), Is.Zero);
+            Assert.That(Count(Chaff), Is.Zero);
+            var wetRow = CellMenu(cell.X, cell.Y).Single(a => a.Command.StartsWith(Work));
+            Assert.True(ChooseRow(wetRow, cell.X, cell.Y));
+            Assert.That(Count(Bundle), Is.Zero);
+            Assert.That(Count("KnotflaxSeed"), Is.EqualTo(1));
+            Assert.That(Count(Chaff), Is.Zero);
+        }
+
+        [TestCase("missing")]
+        [TestCase("weight")]
+        [TestCase("reagent")]
+        [TestCase("carried")]
+        [TestCase("seed weight")]
+        public void UnavailableBonusLeavesTheOrdinarySeedWork(string reason)
+        {
+            EnterAllotment();
+            Clock.AdvanceClock(FirstFairWindowBeforeRain() * RegionalWeather.WindowTicks);
+            Entity altered = null;
+            if (reason == "missing") Factory.Blueprints.Remove(Chaff);
+            if (reason == "weight") Factory.Blueprints[Chaff].Parts["Physics"]["Weight"] = "0";
+            if (reason == "reagent") Factory.Blueprints[Chaff].Parts["Reagent"]["PropertiesRaw"] = "combustible:2";
+            if (reason == "seed weight") Factory.Blueprints["KnotflaxSeed"].Parts["Handling"] = new Dictionary<string, string> { ["Weight"] = "1" };
+            if (reason == "carried")
+            {
+                altered = Carry(Chaff);
+                altered.GetPart<ReagentPart>().PropertiesRaw = "combustible:2";
+                var fresh = Factory.CreateEntity(Chaff);
+                Assert.False(altered.GetPart<StackerPart>().CanStackWith(fresh));
+            }
+
+            var frame = Zone.GetReadOnlyEntities().First(e => e.HasPart<RainCollectorPart>());
+            StandBeside(frame);
+            var packet = Carry(Bundle);
+            var row = Actions(packet).Single(a => a.Command.StartsWith(Work));
+            Assert.That(row.Hint, Does.Contain("discard dry chaff"));
+            Assert.True(Act(packet, row.Command));
+            Assert.That(Count("KnotflaxSeed"), Is.EqualTo(1));
+            Assert.That(Count(Chaff), Is.EqualTo(altered == null ? 0 : 1));
+            if (altered != null) Assert.That(altered.GetPart<ReagentPart>().PropertiesRaw, Is.EqualTo("combustible:2"));
+        }
+
+        [Test] public void RetainedChaffKeepsItsIdentityOnLoadAndFeedsAnOrdinaryFire()
+        {
+            var manager = EnterAllotment();
+            Clock.AdvanceClock(FirstFairWindowBeforeRain() * RegionalWeather.WindowTicks);
+            var frame = Zone.GetReadOnlyEntities().First(e => e.HasPart<RainCollectorPart>());
+            StandBeside(frame);
+            for (int i = 0; i < 2; i++)
+            {
+                var packet = Carry(Bundle);
+                Assert.True(Act(packet, Choice(packet, Work)));
+            }
+            var recovered = Pack.Objects.Single(e => e.BlueprintName == Chaff);
+            Assert.That(recovered.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            var saved = HotbarSaveFixture.RoundTrip(GameSessionState.Capture("fair-chaff", "two retained units", manager, Clock, Actor));
+            var loadedChaff = saved.ZoneManager.GetZone(Zone.ZoneID).GetReadOnlyEntities().Single(e => e.ID == Actor.ID)
+                .GetPart<InventoryPart>().Objects.Single(e => e.ID == recovered.ID);
+            Assert.That(loadedChaff.GetPart<ReagentPart>().PropertiesRaw, Is.EqualTo("combustible:1"));
+            Assert.That(loadedChaff.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+
+            Assert.True(Zone.MoveEntity(Actor, 40, 12));
+            var fire = Place("CampHearth", 41, 12);
+            fire.GetPart<PhysicsPart>().Takeable = false;
+            fire.GetPart<CampfirePart>().FiniteCooking = true;
+            var fuel = fire.GetPart<FuelPart>();
+            fuel.FuelMass = 0;
+            float temperature = fire.GetPart<ThermalPart>().Temperature;
+            var feed = CellMenu(41, 12).Single(a => a.Command.StartsWith("FeedReagentFuel|"));
+            Assert.That(feed.Display, Does.Contain("dry knotflax chaff").And.Contain("+5 fuel"));
+            Assert.True(ChooseRow(feed, 41, 12));
+            Assert.That(fuel.FuelMass, Is.EqualTo(5));
+            Assert.That(fire.GetPart<ThermalPart>().Temperature, Is.EqualTo(temperature));
+            Assert.False(fire.GetPart<LightSourcePart>().Enabled);
+            Assert.That(recovered.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+        }
+
         [Test] public void OneActuallyGeneratedSeasonalBundleCanBecomeAPlantedSeedAfterTheSeason()
         {
             var manager = EnterAllotment();
@@ -422,6 +563,12 @@ namespace CavesOfOoo.Tests
             Assert.That(Count("KnotflaxSeed"), Is.Zero);
             var packet = Pack.Objects.Single(e => e.BlueprintName == Bundle);
             Clock.AdvanceClock(LateGrowth);
+            for (int i = 0; i < RegionalWeather.CycleWindows; i++)
+            {
+                if (RegionalWeather.Current(Zone, WorldClock.CurrentTick, RegionalWeather.PolicyVersion).Raining) break;
+                Clock.AdvanceClock(RegionalWeather.WindowTicks);
+            }
+            Assert.True(RegionalWeather.Current(Zone, WorldClock.CurrentTick, RegionalWeather.PolicyVersion).Raining);
             var frame = Zone.GetReadOnlyEntities().First(e => e.HasPart<RainCollectorPart>());
             StandBeside(frame);
             var cell = Zone.GetEntityCell(frame);

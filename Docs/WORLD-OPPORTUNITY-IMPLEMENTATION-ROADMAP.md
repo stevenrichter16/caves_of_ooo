@@ -288,9 +288,13 @@ Requirements 31–33 have one local candidate. An admitted fresh Morrowfast
 allotment has one late knotflax bundle, a shared frame process and an ordinary
 prepared-bed consumer. Editor play used the same frame for rain collection
 and seed work, then planted and watered the seed. Requirement 35 has bounded
-coverage of the continuing alternatives. A weather bonus to process work
-under 34 and broader seasonal density are open.
+coverage of the continuing alternatives. Requirement 34 has one qualified
+bonus. Fair, dry winnowing retains a pound of chaff which can supply five
+fuel to a compatible fire. Both branches yield the same seed for the same
+action and leave rainwater alone. Ordinary travel and fresh Continue proved
+the retained chaff and the fuel it supplied. Broader seasonal density remains open.
 [Evidence](Verification/MachineSystems/SeasonalSeedFrame20261125/README.md)
+[Fair-weather trial](Verification/MachineSystems/FairWeatherChaff20261125/README.md)
 
 31. **Start with one additional material opportunity.** Choose finite flexible
     stems, ripe heads or another lore-compatible stock whose output has a real

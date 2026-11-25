@@ -27,9 +27,18 @@ namespace CavesOfOoo.Core
             internal readonly MaterialProcessTemplate SourceTemplate;
             internal readonly MaterialProcessItemState SourceState;
             internal readonly MaterialProcessTemplate[] Outputs;
-            internal Quote(MaterialProcessPlan plan,MaterialProcessTemplate source,MaterialProcessItemState state,MaterialProcessTemplate[] outputs)
-            {Plan=plan;SourceTemplate=source;SourceState=state;Outputs=outputs;}
-            internal bool Current()=>Plan.Current() && SourceState.Matches() && Outputs.All(t=>t.Current());
+            internal readonly MaterialProcessDefinition Result;
+            internal readonly bool RetainsChaff;
+            internal Quote(MaterialProcessPlan plan,MaterialProcessTemplate source,MaterialProcessItemState state,MaterialProcessTemplate[] outputs,
+                MaterialProcessTemplate retainedChaff)
+            {
+                Plan=plan;SourceTemplate=source;SourceState=state;
+                RetainsChaff=retainedChaff!=null;
+                Result=RetainsChaff?plan.Definition.RetainOne(SeedFramePart.Chaff,"retain dry chaff for fire fuel"):plan.Definition;
+                Outputs=RetainsChaff?outputs.Append(retainedChaff).ToArray():outputs;
+            }
+            internal bool OutputsCurrent()=>Outputs.All(t=>t.Current()) && RetainsChaff==(SeedFramePart.RetainedChaff(Plan)!=null);
+            internal bool Current()=>Plan.Current() && SourceState.Matches() && OutputsCurrent();
         }
         internal static Quote TryQuote(MaterialProcessPlan plan)
         {
@@ -37,13 +46,14 @@ namespace CavesOfOoo.Core
             var source=MaterialProcessTemplate.Capture(plan.Factory,plan.Source.BlueprintName);
             var state=source?.Snapshot(plan.Source,true);
             var outputs=plan.Definition.OutputBlueprints.Select(bp=>MaterialProcessTemplate.Capture(plan.Factory,bp,true)).ToArray();
-            return state!=null && outputs.All(t=>t!=null)?new Quote(plan,source,state,outputs):null;
+            return state!=null && outputs.All(t=>t!=null)?new Quote(plan,source,state,outputs,SeedFramePart.RetainedChaff(plan)):null;
         }
-        static bool Emit(Entity owner,string id,MaterialProcessPlan plan)
+        static bool Emit(Entity owner,string id,Quote quote)
         {
+            var plan=quote.Plan;
             var e=GameEvent.New(id);e.SetParameter("Actor",plan.Actor);e.SetParameter("Source",plan.Source);
             e.SetParameter("Station",plan.StationKind!=null?plan.Station:null);
-            e.SetParameter("Tool",plan.Definition.WorkKind=="HandCutting"||plan.Definition.WorkKind=="Screening"?plan.Station:null);e.SetParameter("WorkProvider",plan.Station);e.SetParameter("Process",plan.Definition);
+            e.SetParameter("Tool",plan.Definition.WorkKind=="HandCutting"||plan.Definition.WorkKind=="Screening"?plan.Station:null);e.SetParameter("WorkProvider",plan.Station);e.SetParameter("Process",quote.Result);
             e.SetParameter("Inputs",Array.AsReadOnly(new[]{plan.Source}.Concat(plan.ExtraInputs.SelectMany(i=>i.Takes.Select(t=>t.Owner))).ToArray()));
             return owner.FireEventAndRelease(e);
         }
@@ -76,27 +86,27 @@ namespace CavesOfOoo.Core
             var sourceTemplate=quote.SourceTemplate;var sourceState=quote.SourceState;
             if(sourceState==null)return Refuse();
             int sourceCount=Count(input),units=plan.Definition.InputCount;
-            foreach(var owner in participants)if(!Emit(owner,"BeforeMaterialProcess",plan))return Refuse();
+            foreach(var owner in participants)if(!Emit(owner,"BeforeMaterialProcess",quote))return Refuse();
             if(!quote.Current())return Refuse();
-            var templates=quote.Outputs;
+            var templates=quote.Outputs;var result=quote.Result;
             if(templates.Any(t=>t==null))return Refuse();
             var products=new List<Entity>();var states=new Dictionary<Entity,MaterialProcessItemState>();
             var ids=new HashSet<string>(participants.Select(e=>e.ID),StringComparer.Ordinal);
-            for(int kind=0;kind<templates.Length;kind++)for(int n=0;n<plan.Definition.OutputCounts[kind];n++)
+            for(int kind=0;kind<templates.Length;kind++)for(int n=0;n<result.OutputCounts[kind];n++)
             {
-                if(!templates.All(t=>t.Current()) || !plan.Current() || !sourceState.Matches())return Refuse();
-                var product=plan.Factory.CreateEntity(plan.Definition.OutputBlueprints[kind]);products.Add(product);
+                if(!quote.Current())return Refuse();
+                var product=plan.Factory.CreateEntity(result.OutputBlueprints[kind]);products.Add(product);
                 tx.Do(null,()=>Detach(product));
-                if(product==null || !PreparationActions.Fresh(product,plan.Definition.OutputBlueprints[kind])
+                if(product==null || !PreparationActions.Fresh(product,result.OutputBlueprints[kind])
                     || !ids.Add(product.ID) || pack.Objects.Concat(pack.EquippedItems.Values).Concat(zone.GetReadOnlyEntities()).Concat(plan.Stock?.Container.Contents??Enumerable.Empty<Entity>()).Any(e=>e==product||e?.ID==product.ID)
                     || !tx.TryClaim(product,actor,command))return Refuse();
                 var state=templates[kind].Snapshot(product);if(state==null)return Refuse();states.Add(product,state);
             }
             if(!quote.Current())return Refuse();
-            var residents=pack.Objects.Where(o=>plan.Definition.OutputBlueprints.Contains(o.BlueprintName)).ToArray();
+            var residents=pack.Objects.Where(o=>result.OutputBlueprints.Contains(o.BlueprintName)).ToArray();
             foreach(var resident in residents)
             {
-                var template=templates[plan.Definition.OutputBlueprints.ToList().IndexOf(resident.BlueprintName)];var state=template.Snapshot(resident);
+                var template=templates[result.OutputBlueprints.ToList().IndexOf(resident.BlueprintName)];var state=template.Snapshot(resident);
                 if(state==null || !PreparationActions.Carried(actor,resident) || !tx.TryClaim(resident,actor,command))return Refuse();
                 states.Add(resident,state);
             }
@@ -131,7 +141,7 @@ namespace CavesOfOoo.Core
             }) || !receipt.ClaimChanges(tx,actor,command))return Refuse();
             bool Final()
             {
-                if(!plan.ContextCurrent() || !sourceState.Matches() || !templates.All(t=>t.Current()) || Count(input)!=Math.Max(1,sourceCount-units)
+                if(!plan.ContextCurrent() || !sourceState.Matches() || !quote.OutputsCurrent() || Count(input)!=Math.Max(1,sourceCount-units)
                     || (sourceCount>units?!plan.InputAvailable(input):!Loose(input)||pack.Objects.Contains(input))
                     || pack.GetCarriedWeight()>ceiling || states.Values.Any(s=>!s.Matches()) || plan.ExtraInputs.Any(i=>!i.After(actor)))return false;
                 foreach(var pair in expected)if(!PreparationActions.Carried(actor,pair.Key) || Count(pair.Key)!=pair.Value)return false;
@@ -144,7 +154,7 @@ namespace CavesOfOoo.Core
             tx.BeforeCommit(Final);
             PreparationActions.Complete(tx,actor,input,command,"You complete the quoted "+plan.Definition.Mode.ToLowerInvariant()+" work. The declared inputs are spent; the products are in your pack.");
             foreach(var owner in participants)
-            {var captured=owner;tx.AfterCommit(()=>Emit(captured,"MaterialProcessCompleted",plan));}
+            {var captured=owner;tx.AfterCommit(()=>Emit(captured,"MaterialProcessCompleted",quote));}
             return true;
         }
     }

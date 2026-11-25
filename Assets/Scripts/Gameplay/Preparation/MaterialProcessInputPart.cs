@@ -68,7 +68,7 @@ namespace CavesOfOoo.Core
                     var retained=previous.FirstOrDefault(p=>p.Value.Plan.Actor==actor && p.Value.Plan.Source==owner && p.Value.Plan.Zone==zone
                         && p.Value.Plan.Station==plan.Station && p.Value.Plan.SameDefinition(plan) && p.Value.Current());
                     string token=retained.Key??Guid.NewGuid().ToString("N");menu.Quotes[token]=retained.Value??quoted;
-                    var d=plan.Definition;
+                    var d=quoted.Result;
                     string outputs=string.Join(" + ",d.OutputBlueprints.Select((bp,i)=>d.OutputCounts[i]+" "+Label(plan.Factory,bp)));
                     string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));
                     var row=e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
@@ -76,7 +76,7 @@ namespace CavesOfOoo.Core
                     if(row!=null && d.WorkKind==SeedFramePart.WorkKind)
                     {
                         row.Display=d.ActionText+" "+d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint);
-                        row.Hint="Makes "+outputs+". "+d.LossText+". One action. The seed goes into your pack.";
+                        row.Hint="Makes "+outputs+". "+d.LossText+". One action. Products go into your pack.";
                         row.AtEntity(zone,plan.Station);
                     }
                 }

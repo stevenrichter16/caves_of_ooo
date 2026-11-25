@@ -45,6 +45,7 @@ namespace CavesOfOoo.Core
             Policies[typeof(SiftableStockPart)]=new ScalarPolicy(typeof(SiftableStockPart),false);
             Policies[typeof(RepairMaterialPart)]=new ScalarPolicy(typeof(RepairMaterialPart));
             Policies[typeof(SeedPart)]=new ScalarPolicy(typeof(SeedPart));
+            Policies[typeof(ReagentPart)]=new ScalarPolicy(typeof(ReagentPart));
             // Compared by inertness only, never by Revision: consuming the last unit of a stack invalidates its throw
             // receipt (bumping Revision), which must not make the commit that caused it refuse.
             Policies[typeof(ThrownRecoveryPart)]=new TrackingPolicy<ThrownRecoveryPart>(t=>string.IsNullOrEmpty(t.ThrowerId) && string.IsNullOrEmpty(t.ItemId)
@@ -200,10 +201,12 @@ namespace CavesOfOoo.Core
         internal static MaterialProcessTemplate Capture(EntityFactory factory,string name,bool requireCreationSafe=false)
         {
             if(factory?.Blueprints==null || !factory.Blueprints.TryGetValue(name,out var bp) || bp?.Parts==null || bp.Name!=name || bp.Tags==null || bp.Props==null || bp.IntProps==null || bp.Stats==null || bp.Stats.Values.Any(v=>v==null))return null;
+            if (name == SeedFramePart.Chaff && (!ValidChaff(factory, bp) || !requireCreationSafe)) return null;
             var policies=new Dictionary<string,(Type,IMaterialProcessPartPolicy)>();
             foreach(var row in bp.Parts)
             {
                 if(row.Value==null || !factory.TryGetRegisteredPartType(row.Key,out var type))return null;
+                if(type==typeof(ReagentPart) && (name!=SeedFramePart.Chaff || row.Key!="Reagent"))return null;
                 // Only the known stand's ordinary cultivated-bed seed is admitted as an output.
                 if(type==typeof(SeedPart) && (!requireCreationSafe || name!="KnotflaxSeed" || row.Value.Count!=2
                     || !row.Value.TryGetValue("CropBlueprint",out string crop) || crop!="KnotflaxCrop"
@@ -215,6 +218,20 @@ namespace CavesOfOoo.Core
                 policies.Add(row.Key,(type,policy));
             }
             return new MaterialProcessTemplate(factory,bp,policies,requireCreationSafe);
+        }
+        static bool ValidChaff(EntityFactory factory, Blueprint blueprint)
+        {
+            var parts = blueprint.Parts;
+            return MaterialProcessRegistry.Portable(factory, blueprint.Name) && blueprint.Stats.Count == 0
+                && blueprint.Props.Count == 0 && blueprint.IntProps.Count == 0
+                && blueprint.Tags.Count == 1 && blueprint.Tags.TryGetValue("Item", out var itemTag) && itemTag == ""
+                && parts.Count == 5 && parts.ContainsKey("Render") && parts.ContainsKey("Examinable")
+                && parts.TryGetValue("Stacker", out var stack) && stack?.Count == 0
+                && parts.TryGetValue("Physics", out var physics) && physics?.Count == 2
+                && physics.TryGetValue("Weight", out var weight) && weight == "1"
+                && factory.TryGetRegisteredPartType("Reagent", out var type) && type == typeof(ReagentPart)
+                && parts.TryGetValue("Reagent", out var reagent) && reagent?.Count == 1
+                && reagent.TryGetValue("PropertiesRaw", out var raw) && raw == SeedFramePart.ChaffFuel;
         }
         internal bool Current()
         {

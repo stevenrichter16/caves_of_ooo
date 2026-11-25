@@ -1,3 +1,14 @@
+**Fair-weather winnowing and camp fuel — November 25 UTC, 2026.**
+The same public frame gives a seed in rain or fair weather. In a dry fair
+window it also retains the bundle's one-pound chaff fraction. In Editor
+play 16 ordinary waits took the same earned bundle through the change in
+weather. Fresh Continue retained both products. Ordinary travel, installation
+of a supplied camp hearth, and feeding added five fuel without ignition.
+Fresh Continue matched the seeded output and spent chaff state. The expanded
+native run passed 417 executable cases with one utility skip. Item 18 is the
+next trial, using a physical opening and the existing porter quote.
+[Evidence](Verification/MachineSystems/FairWeatherChaff20261125/README.md)
+
 **Mac delivery for loaded timber side parking — November 25 UTC, 2026.**
 Runtime `bd469bc21` is verified on main and packaged for arm64 and x86_64.
 GameBootstrap startup and package integrity passed on the Mac. Loaded

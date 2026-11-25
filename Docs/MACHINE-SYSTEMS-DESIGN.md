@@ -1,3 +1,10 @@
+**Fair-weather recovery at a public frame — November 25 UTC, 2026.**
+An existing one-action winnow retains its declared chaff loss in fair weather
+on dry ground. Ordinary seed work still takes the same bundle and action.
+The one-pound byproduct feeds a compatible finite cooking fire through the
+common reagent action. Both use the saved regional clock and physical inputs.
+[Evidence](Verification/MachineSystems/FairWeatherChaff20261125/README.md)
+
 **Side parking for an actual loaded route — November 25 UTC, 2026.**
 The generated timber opening can publish a conditional place cue after
 the existing site is accepted. Route qualification checks the grounded

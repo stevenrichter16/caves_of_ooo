@@ -66,6 +66,8 @@ namespace CavesOfOoo.Core
         public override string Name => "SeedFrame";
         internal const string WorkKind = "SeedFrame";
         internal const string Kind = "seed-frame";
+        internal const string Chaff = "DryKnotflaxChaff";
+        internal const string ChaffFuel = "combustible:1";
         private static readonly IReadOnlyList<string> AllKinds = Array.AsReadOnly(new[] { Kind });
         public IReadOnlyList<string> Kinds => AllKinds;
         public int Reach => 1;
@@ -86,9 +88,37 @@ namespace CavesOfOoo.Core
 
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
-            guide.How.Add("Bring a knotflax seed-head bundle to the frame. Use its dry mesh to winnow one plantable seed.");
+            guide.How.Add("Bring a knotflax seed-head bundle to the frame and winnow one plantable seed.");
             guide.Needs.Add("one gathered bundle and the intact public frame");
-            guide.Limits.Add("The work takes one action and discards dry chaff. It can be done after the gathering season and uses no rainwater.");
+            guide.Limits.Add("In fair weather on dry ground, the frame can save the chaff for a fire. Otherwise the chaff is discarded. Winnowing takes one action, in any season, and uses no rainwater.");
+        }
+
+        internal static MaterialProcessTemplate RetainedChaff(MaterialProcessPlan plan)
+        {
+            var recipe = plan.Definition;
+            if (recipe.Id != "winnow_knotflax_seed" || recipe.WorkKind != WorkKind
+                || recipe.SourceBlueprint != SeasonalSeedSite.Bundle || recipe.InputCount != 1
+                || recipe.AdditionalInputBlueprints.Count != 0 || recipe.OutputBlueprints.Count != 1
+                || recipe.OutputBlueprints[0] != SeasonalSeedSite.Output || recipe.OutputCounts[0] != 1
+                || TurnManager.Active == null || HandlingService.GetWeight(plan.Source) != 1
+                || !plan.Factory.Blueprints.TryGetValue(SeasonalSeedSite.Output, out var seed)
+                || seed.Parts.ContainsKey("Handling") || !seed.Parts["Physics"].TryGetValue("Weight", out var seedWeight)
+                || seedWeight != "0") return null;
+
+            var cell = plan.Zone.GetEntityCell(plan.Station);
+            var collector = plan.Station.GetPart<RainCollectorPart>();
+            var catchment = collector?.Anchor?.GetPart<RainCatchmentPart>();
+            if (WorldLocationContext.For(plan.Zone)?.ActiveZone != plan.Zone || cell == null
+                || catchment == null || collector?.Clean != true || cell.IsInterior
+                || plan.Zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(layer => layer.Turns > 0) == true
+                || cell.Objects.Any(item => item.GetPart<LiquidPoolPart>() is { Volume: > 0 })) return null;
+            var weather = RegionalWeather.Current(plan.Zone, WorldClock.CurrentTick, catchment.PolicyVersion);
+            if (!weather.Valid || weather.Raining) return null;
+
+            var template = MaterialProcessTemplate.Capture(plan.Factory, Chaff, true);
+            return template != null && plan.Actor.GetPart<InventoryPart>().Objects
+                .Where(item => item.BlueprintName == Chaff)
+                .All(item => PreparationActions.Carried(plan.Actor, item) && template.Matches(item)) ? template : null;
         }
     }
 

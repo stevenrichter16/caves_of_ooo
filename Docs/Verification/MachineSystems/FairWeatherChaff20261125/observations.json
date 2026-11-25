@@ -1,0 +1,1281 @@
+{
+  "cooChaffWetStart": {
+    "ready": true,
+    "tick": 14240,
+    "zone": "Overworld.2.6.0",
+    "p": {
+      "ID": "2699",
+      "X": 59,
+      "Y": 8
+    },
+    "state": "Normal",
+    "weather": {
+      "Valid": true,
+      "Raining": true,
+      "Window": 23,
+      "Season": 1
+    },
+    "hp": 40,
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      }
+    ],
+    "fires": [],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7200",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      }
+    ],
+    "menu": null
+  },
+  "cooChaffWetMenu": {
+    "ready": true,
+    "tick": 14240,
+    "zone": "Overworld.2.6.0",
+    "p": {
+      "ID": "2699",
+      "X": 59,
+      "Y": 8
+    },
+    "state": "WorldActionMenuOpen",
+    "weather": {
+      "Valid": true,
+      "Raining": true,
+      "Window": 23,
+      "Season": 1
+    },
+    "hp": 40,
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      }
+    ],
+    "fires": [],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7200",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      }
+    ],
+    "menu": {
+      "highlight": "CollectRain|repair-cultivation%3Aallotment-notice|7197|2706|23|-1|0||0|12",
+      "rows": [
+        {
+          "Command": "CollectRain|repair-cultivation%3Aallotment-notice|7197|2706|23|-1|0||0|12",
+          "Display": "catch 3 water in liquid flask (0→3/12)",
+          "Hint": "The selected vessel receives ordinary clean water. Both frames share three water this interval."
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": ""
+        },
+        {
+          "Command": "MaterialProcess|winnow_knotflax_seed|7197|d6d3b7923bb94644a68dabc301774645",
+          "Display": "winnow 1 knotflax seed-head bundle",
+          "Hint": "Makes 1 knotflax seed. discard dry chaff. One action. Products go into your pack."
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": ""
+        }
+      ]
+    }
+  },
+  "cooChaffWetWorked": {
+    "ready": true,
+    "tick": 14250,
+    "zone": "Overworld.2.6.0",
+    "p": {
+      "ID": "2699",
+      "X": 59,
+      "Y": 8
+    },
+    "state": "Normal",
+    "weather": {
+      "Valid": true,
+      "Raining": true,
+      "Window": 23,
+      "Season": 1
+    },
+    "hp": 40,
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      }
+    ],
+    "fires": [],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "KnotflaxSeed",
+        "n": 1,
+        "weight": 0,
+        "reagent": null
+      }
+    ],
+    "menu": null
+  },
+  "cooChaffDryWindow": {
+    "ready": true,
+    "tick": 14400,
+    "zone": "Overworld.2.6.0",
+    "p": {
+      "ID": "2699",
+      "X": 59,
+      "Y": 8
+    },
+    "state": "Normal",
+    "weather": {
+      "Valid": true,
+      "Raining": false,
+      "Window": 24,
+      "Season": 1
+    },
+    "hp": 40,
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      }
+    ],
+    "fires": [],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7200",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      }
+    ],
+    "menu": null
+  },
+  "cooChaffDryMenu": {
+    "ready": true,
+    "tick": 14400,
+    "zone": "Overworld.2.6.0",
+    "p": {
+      "ID": "2699",
+      "X": 59,
+      "Y": 8
+    },
+    "state": "WorldActionMenuOpen",
+    "weather": {
+      "Valid": true,
+      "Raining": false,
+      "Window": 24,
+      "Season": 1
+    },
+    "hp": 40,
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      }
+    ],
+    "fires": [],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7200",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      }
+    ],
+    "menu": {
+      "highlight": "MaterialProcess|winnow_knotflax_seed|7197|41b72985a5704f308c3a650daa2809f6",
+      "rows": [
+        {
+          "Command": "Disabled:fair",
+          "Display": "catch rain",
+          "Hint": ""
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": ""
+        },
+        {
+          "Command": "MaterialProcess|winnow_knotflax_seed|7197|41b72985a5704f308c3a650daa2809f6",
+          "Display": "winnow 1 knotflax seed-head bundle",
+          "Hint": "Makes 1 knotflax seed + 1 dry knotflax chaff. retain dry chaff for fire fuel. One action. Products go into your pack."
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": ""
+        }
+      ]
+    }
+  },
+  "cooChaffDryWorked": {
+    "ready": true,
+    "tick": 14410,
+    "zone": "Overworld.2.6.0",
+    "p": {
+      "ID": "2699",
+      "X": 59,
+      "Y": 8
+    },
+    "state": "Normal",
+    "weather": {
+      "Valid": true,
+      "Raining": false,
+      "Window": 24,
+      "Season": 1
+    },
+    "hp": 40,
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      }
+    ],
+    "fires": [],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "KnotflaxSeed",
+        "n": 1,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "DryKnotflaxChaff",
+        "n": 1,
+        "weight": 1,
+        "reagent": "combustible:1"
+      }
+    ],
+    "menu": null
+  },
+  "cooChaffDryFresh": {
+    "ready": true,
+    "tick": 14410,
+    "zone": "Overworld.2.6.0",
+    "p": {
+      "ID": "2699",
+      "X": 59,
+      "Y": 8
+    },
+    "state": "Normal",
+    "weather": {
+      "Valid": true,
+      "Raining": false,
+      "Window": 24,
+      "Season": 1
+    },
+    "hp": 40,
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "Clean": true,
+        "spent": 0
+      }
+    ],
+    "fires": [],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "KnotflaxSeed",
+        "n": 1,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "DryKnotflaxChaff",
+        "n": 1,
+        "weight": 1,
+        "reagent": "combustible:1"
+      }
+    ],
+    "menu": null
+  },
+  "cooChaffFailedStump": {
+    "tick": 14490,
+    "zone": "Overworld.2.5.0",
+    "dead": true,
+    "hp": 0,
+    "dropped": [
+      {
+        "ID": "7202",
+        "BlueprintName": "DryKnotflaxChaff",
+        "pos": {
+          "Item1": 38,
+          "Item2": 9
+        }
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "CampHearth",
+        "pos": {
+          "Item1": 38,
+          "Item2": 9
+        }
+      }
+    ]
+  },
+  "cooChaffHearthFinal": {
+    "ID": "7203",
+    "BlueprintName": "CampHearth",
+    "source": "one supplied canonical kit",
+    "tick": 14410
+  },
+  "cooChaffCampFinalArrival": {
+    "ready": true,
+    "tick": 14490,
+    "zone": "Overworld.4.5.0",
+    "p": {
+      "ID": "2699",
+      "X": 40,
+      "Y": 12
+    },
+    "state": "Normal",
+    "weather": {
+      "Valid": false,
+      "Raining": false,
+      "Window": 0,
+      "Season": 0
+    },
+    "hp": 40,
+    "frames": [],
+    "fires": [],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "KnotflaxSeed",
+        "n": 1,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "DryKnotflaxChaff",
+        "n": 1,
+        "weight": 1,
+        "reagent": "combustible:1"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "CampHearth",
+        "n": 1,
+        "weight": 14,
+        "reagent": null
+      }
+    ],
+    "menu": null
+  },
+  "cooChaffPlaced": {
+    "ready": true,
+    "tick": 14500,
+    "zone": "Overworld.4.5.0",
+    "p": {
+      "ID": "2699",
+      "X": 40,
+      "Y": 12
+    },
+    "state": "Normal",
+    "weather": {
+      "Valid": false,
+      "Raining": false,
+      "Window": 0,
+      "Season": 0
+    },
+    "hp": 40,
+    "frames": [],
+    "fires": [
+      {
+        "ID": "7203",
+        "BlueprintName": "CampHearth",
+        "X": 41,
+        "Y": 12,
+        "fuel": 0,
+        "temp": 25,
+        "lit": false
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "KnotflaxSeed",
+        "n": 1,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "DryKnotflaxChaff",
+        "n": 1,
+        "weight": 1,
+        "reagent": "combustible:1"
+      }
+    ],
+    "menu": null
+  },
+  "cooChaffFireMenu": {
+    "ready": true,
+    "tick": 14500,
+    "zone": "Overworld.4.5.0",
+    "p": {
+      "ID": "2699",
+      "X": 40,
+      "Y": 12
+    },
+    "state": "WorldActionMenuOpen",
+    "weather": {
+      "Valid": false,
+      "Raining": false,
+      "Window": 0,
+      "Season": 0
+    },
+    "hp": 40,
+    "frames": [],
+    "fires": [
+      {
+        "ID": "7203",
+        "BlueprintName": "CampHearth",
+        "X": 41,
+        "Y": 12,
+        "fuel": 0,
+        "temp": 25,
+        "lit": false
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "KnotflaxSeed",
+        "n": 1,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "DryKnotflaxChaff",
+        "n": 1,
+        "weight": 1,
+        "reagent": "combustible:1"
+      }
+    ],
+    "menu": {
+      "highlight": "FeedReagentFuel|Overworld.4.5.0|40|12|7203|7202|1|combustible%3A1|0%3A30%3A0.25%3A25",
+      "rows": [
+        {
+          "Command": "TakeUp|Overworld.4.5.0|7203",
+          "Display": "take up",
+          "Hint": ""
+        },
+        {
+          "Command": "Disabled:no_fuel",
+          "Display": "rest",
+          "Hint": ""
+        },
+        {
+          "Command": "Disabled:no_fuel",
+          "Display": "rest until Height",
+          "Hint": ""
+        },
+        {
+          "Command": "FeedReagentFuel|Overworld.4.5.0|40|12|7203|7202|1|combustible%3A1|0%3A30%3A0.25%3A25",
+          "Display": "feed coals (1 dry knotflax chaff, +5 fuel)",
+          "Hint": "Spends exactly one dry, stable reagent. Adds fuel without lighting it. 0 fuel is discarded beyond capacity; timber and other uses remain separate."
+        },
+        {
+          "Command": "Disabled:no_fuel",
+          "Display": "relight coals from flame",
+          "Hint": ""
+        },
+        {
+          "Command": "HandOver|Overworld.4.5.0|7203",
+          "Display": "hand over (you can no longer take it up)",
+          "Hint": ""
+        },
+        {
+          "Command": "MovePick|Overworld.4.5.0|7203",
+          "Display": "move",
+          "Hint": "Pick a cell with the arrow keys: green fits, red does not. It keeps its fuel; a burning fire goes out."
+        },
+        {
+          "Command": "NameCamp|Overworld.4.5.0|7203",
+          "Display": "name this camp: Home",
+          "Hint": "Names this camp in the notes of where you keep things. Choose again for the next name."
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": ""
+        }
+      ]
+    }
+  },
+  "cooChaffFed": {
+    "ready": true,
+    "tick": 14510,
+    "zone": "Overworld.4.5.0",
+    "p": {
+      "ID": "2699",
+      "X": 40,
+      "Y": 12
+    },
+    "state": "Normal",
+    "weather": {
+      "Valid": false,
+      "Raining": false,
+      "Window": 0,
+      "Season": 0
+    },
+    "hp": 40,
+    "frames": [],
+    "fires": [
+      {
+        "ID": "7203",
+        "BlueprintName": "CampHearth",
+        "X": 41,
+        "Y": 12,
+        "fuel": 5,
+        "temp": 25,
+        "lit": false
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "weight": 4,
+        "reagent": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "weight": 2,
+        "reagent": null
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "weight": 0,
+        "reagent": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "n": 1,
+        "weight": 1,
+        "reagent": null
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "KnotflaxSeed",
+        "n": 1,
+        "weight": 0,
+        "reagent": null
+      }
+    ],
+    "menu": null
+  },
+  "cooChaffFedFresh": {
+    "snapshot": {
+      "ready": true,
+      "tick": 14510,
+      "zone": "Overworld.4.5.0",
+      "p": {
+        "ID": "2699",
+        "X": 40,
+        "Y": 12
+      },
+      "state": "Normal",
+      "weather": {
+        "Valid": false,
+        "Raining": false,
+        "Window": 0,
+        "Season": 0
+      },
+      "hp": 40,
+      "frames": [],
+      "fires": [
+        {
+          "ID": "7203",
+          "BlueprintName": "CampHearth",
+          "X": 41,
+          "Y": 12,
+          "fuel": 5,
+          "temp": 25,
+          "lit": false
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "Dagger",
+          "n": 1,
+          "weight": 4,
+          "reagent": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "HealingTonic",
+          "n": 2,
+          "weight": 1,
+          "reagent": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "DriedMeat",
+          "n": 2,
+          "weight": 2,
+          "reagent": null
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1,
+          "weight": 2,
+          "reagent": null
+        },
+        {
+          "ID": "2704",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4,
+          "weight": 0,
+          "reagent": null
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2,
+          "weight": 0,
+          "reagent": null
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "LiquidFlask",
+          "n": 1,
+          "weight": 1,
+          "reagent": null
+        },
+        {
+          "ID": "7201",
+          "BlueprintName": "KnotflaxSeed",
+          "n": 1,
+          "weight": 0,
+          "reagent": null
+        }
+      ],
+      "menu": null
+    },
+    "fields": [
+      "tick",
+      "zone",
+      "p",
+      "weather",
+      "hp",
+      "frames",
+      "fires",
+      "pack"
+    ]
+  }
+}

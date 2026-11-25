@@ -1,5 +1,29 @@
 # Weather and seasonal tool design continuation
 
+## Fair-weather winnowing — November 25 UTC, 2026
+
+Roadmap 34 starts with the same public frame and the same one-action seed
+work. A fair window over a dry frame cell can retain the single pound of
+chaff the bundle already declares as loss. The seed remains available during
+rain, over wet ground and when the optional output is unavailable. The
+preview describes the actual seed and chaff or the seed and discarded chaff.
+Reading is free. A changed effective output expires the old selection before
+payment, including during a process callback.
+
+The bounded source review found that the frame already has shade. Use the
+bound catchment policy, the saved regional clock and liquid on the frame cell
+to decide availability. Leave the rain allowance unchanged. The retained
+chaff is one plain combustible reagent with no trade value. The existing fire
+action can consume exactly one for up to five units of remaining fuel
+capacity, leaving ignition alone. Verify its exact payload and stacking,
+including modified chaff, and keep seed work available when optional chaff
+cannot be received. Editor play verified both outputs, ordinary waiting
+through the weather change, normal travel and feeding the exact retained
+chaff into a finite hearth that stayed unlit. The dry and fueled checkpoints
+survived fresh Continue. The final targeted run passed 417 executable cases
+with one explicit utility skip. Wider seasonal use and automatic crop rain
+remain open. [Evidence](Verification/MachineSystems/FairWeatherChaff20261125/README.md)
+
 ## First finite seasonal material trial — November 25 UTC, 2026
 
 The first W2 candidate uses the saved second seasonal phase to offer one

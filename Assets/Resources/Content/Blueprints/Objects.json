@@ -49368,6 +49368,35 @@
       "Tags": []
     },
     {
+      "Name": "DryKnotflaxChaff",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "dry knotflax chaff" },
+            { "Key": "RenderString", "Value": "%" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [{ "Key": "Weight", "Value": "1" }]
+        },
+        {
+          "Name": "Reagent",
+          "Params": [{ "Key": "PropertiesRaw", "Value": "combustible:1" }]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [{ "Key": "Description", "Value": "A handful of dry husks caught by the winnowing frame. Feed them to the coals of a cooking fire." }]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "KnotflaxSeed",
       "Inherits": "Item",
       "Parts": [

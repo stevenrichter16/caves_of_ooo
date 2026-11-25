@@ -30,6 +30,17 @@ namespace CavesOfOoo.Core
             OutputBlueprints=Array.AsReadOnly((string[])row.OutputBlueprints.Clone());
             OutputCounts=Array.AsReadOnly((int[])row.OutputCounts.Clone());
         }
+
+        internal MaterialProcessDefinition RetainOne(string blueprint, string description)
+            => new MaterialProcessDefinition(new MaterialProcessRow
+            {
+                Id = Id, SourceBlueprint = SourceBlueprint, Mode = Mode, WorkKind = WorkKind,
+                InputCount = InputCount, SourceRecipeId = SourceRecipeId, ActionText = ActionText,
+                LossText = description, OutputBlueprints = OutputBlueprints.Append(blueprint).ToArray(),
+                OutputCounts = OutputCounts.Append(1).ToArray(),
+                AdditionalInputBlueprints = AdditionalInputBlueprints.ToArray(),
+                AdditionalInputCounts = AdditionalInputCounts.ToArray()
+            });
     }
     [Serializable] internal sealed class MaterialProcessRow
     {
@@ -72,7 +83,7 @@ namespace CavesOfOoo.Core
                 || HarvestablePart.Factory?.Blueprints.TryGetValue(owner.BlueprintName,out var bp)==true
                 && (bp?.Parts?.ContainsKey("SiftableStock")==true || bp?.Parts?.ContainsKey("RepairMaterial")==true))
                 RememberPayload(owner.BlueprintName);
-            return owner.HasPart<MaterialProcessInputPart>() || KnownPayloads.Contains(owner.BlueprintName);
+            return owner.HasPart<MaterialProcessInputPart>() || owner.BlueprintName == SeedFramePart.Chaff || KnownPayloads.Contains(owner.BlueprintName);
         }
         // Classification is sticky within this runtime, including permission
         // removal/revocation. It is never an executable process registration.
