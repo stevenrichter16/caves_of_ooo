@@ -1,3 +1,10 @@
+**Optional work leaves ordinary services available — November 25 UTC, 2026.**
+Fresh v26 Editor play used Quillhold’s existing public loan shelf and
+Sodden’s independent ripe bed before project work. The latter remained
+useful while a one-portion shower opportunity was available. Keep physical
+wildlife consequences separate from weather’s optional rewards.
+[Evidence](Verification/MachineSystems/OptionalWorkOrdinaryRoutes20261125/README.md)
+
 **A second blade provides the same flexible-stock work — November 25 UTC, 2026.**
 The short sword joins the dagger through the existing explicit capability.
 The common quote pins the exact eligible blade without using combat

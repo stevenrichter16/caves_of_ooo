@@ -1,3 +1,13 @@
+**Ordinary routes through Quillhold and Sodden — November 25 UTC, 2026.**
+The fresh sign save supports two guided v26 forks. Sodden’s ordinary ripe
+crop yielded two pads and a seed with the shower offer left unused. Quillhold
+loaned the existing Drying Breeze volume for 29 Ink before the supply project.
+The learned rite cleared Wet after using one drink of water from Gleaners’.
+Both direct forks retained full health and matched fresh Continue. Keep the
+fatal Sill detour separate. Continue contrasting current layouts and extend
+finite ordinary tool acquisition where the next useful use is already present.
+[Evidence](Verification/MachineSystems/OptionalWorkOrdinaryRoutes20261125/README.md)
+
 **The short sword also cuts prepared stock — November 25 UTC, 2026.**
 The existing cutting system recognizes an explicit short-sword capability.
 Actual Sill trade brought one offcut from Nerrel’s lot. The exact sword was

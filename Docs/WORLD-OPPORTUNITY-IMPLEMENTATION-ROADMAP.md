@@ -59,8 +59,8 @@ check-in provides continued work across runs.
 | Regional preparation and optional services | 9–12 and 14–18 have bounded material, carrying or receiving trials. 13 has a second explicit flexible-stock provider. 19 has free ordinary cooking and portable treatment trials. 20 has bounded equivalent Tine weir benefits. |
 | First paid physical delivery | 21–24 and 28 have bounded Gleaners' hire, movement, shelf receipt and well use. The order-bound actions also have an actual cancel, rebook and reload branch. |
 | Selected NPC shipments and overdue searches | 25 has finite supplier payment, visible physical carrying, exact trade stock and pan repair. 41–42 have a saved deadline and local notice. 43–45 have bounded personal search, recognition, returned reporting, late delivery and intact recovery. A refilled parcel remains shelf storage with the inquiry open. One delegated v22 search has a finite wage, ordinary movement, physical reporting and trade continuity. Broader staffing and settings remain open. |
-| Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. Broader road, load and seasonal variation remain open. |
-| Readers, transactions and comparisons | 36–39 have bounded action, material, delivery and kitchen receipt checks. 40 has guided full wayside meal routes and a same-save Sodden treatment comparison. The next comparisons still need wider regions, fresh-current layouts and discovery without navigation guidance. |
+| Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. 35 has a bounded ordinary harvest with a live shower offer left unused. Broader road, load and seasonal variation remain open. |
+| Readers, transactions and comparisons | 36–39 have bounded action, material, delivery and kitchen receipt checks. 40 has guided full wayside meal routes, a same-save Sodden treatment comparison and fresh v26 service and harvest forks before project work. The next comparisons still need varied current layouts and discovery without navigation guidance. |
 
 An earlier connected regression passed 615 executable cases. Actual play used
 separate guided branches. Requirements for ordinary discovery and complete
@@ -396,6 +396,12 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     bought supplies, hand methods and NPC services practical. No exposure chores,
     seasonal progression keys or baseline damp-weather penalties are required.
     Preserve lasting improvements when the favorable period ends.
+    In actual fresh v26 seed 64, a live shower offer could be left alone.
+    The neighboring ripe crop gave two pads and one seed at full health
+    with the dry bed, shower portion and unrepaired bench preserved on
+    fresh Continue. The Quillhold loan service also worked before its
+    supply project. A separate Sill detour changed wildlife and was fatal.
+    [Evidence](Verification/MachineSystems/OptionalWorkOrdinaryRoutes20261125/README.md)
 
 ## Priority 8: explain choices and prove the combined experience
 
@@ -466,6 +472,13 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     one prepared application, using the same earned pad and cord and
     comparable temporary effects. Both results survived fresh Continue.
     [Evidence](Verification/MachineSystems/SoddenTreatmentChoices20261125/README.md)
+    Two guided current-version forks from the same starting sign used
+    Quillhold’s Ink loan and the independent ripe Sodden plot before any
+    project work. The loan taught a rite that cleared Wet after using one
+    drink of locally drawn water. The other fork skipped a live seasonal
+    offer. Both retained their exact results after fresh Continue. The
+    injured detour remains separate from the two full-health routes.
+    [Evidence](Verification/MachineSystems/OptionalWorkOrdinaryRoutes20261125/README.md)
 
 ## Additional requirement: overdue shipments have social consequences
 
