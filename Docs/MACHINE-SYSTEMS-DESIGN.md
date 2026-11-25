@@ -1,3 +1,11 @@
+**Shared lining grades restore the Peat Works rig — November 25 UTC, 2026.**
+Existing fire clay and prepared lining clay can make one shared two-measure
+bill. Examine and the action show the same material requirement. Paid clay
+from the wayside cook traveled to the rig and restored its existing forge
+service. The original assembly was reclaimed for head and haft in place,
+with the binding spent under the existing rule.
+[Evidence](Verification/MachineSystems/FieldRigCompatibleClay20261125/README.md)
+
 **A local store supports one-pound trips — November 25 UTC, 2026.**
 At one admitted Gleaners’ district, the optional public tray stores up to
 two loose lining-clay measures. Exact storage, local access and later

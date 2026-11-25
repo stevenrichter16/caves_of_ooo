@@ -39,6 +39,61 @@ namespace CavesOfOoo.Tests
             Assert.That(well.GetPart<WellPart>().IsUsable, Is.True);
         }
 
+        [TestCase("FireClay", "FireClay")]
+        [TestCase(Prepared, Prepared)]
+        [TestCase("FireClay", Prepared)]
+        public void FieldWorkRigUsesEitherLiningClayGradeForTheSameWorkshop(string first, string second)
+        {
+            var rig = Place("AbandonedFieldWorkRig");
+            var repair = rig.GetPart<RepairablePart>();
+            Carry(first);
+            Carry(second);
+            Assert.That(repair.RecipeId, Is.EqualTo("clay-field-work-rig"));
+            Assert.False(ForgePart.IsNearForge(Actor, Zone));
+
+            var position = Zone.GetEntityPosition(rig);
+            var row = CellMenu(position.x, position.y).Single(a => a.Command == RepairablePart.RepairCommand);
+            Assert.True(ChooseRow(row, position.x, position.y));
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Count(Prepared), Is.Zero);
+            Assert.That(repair.RepairedBy, Is.SameAs(Actor));
+            Assert.That(Zone.GetEntityPosition(rig), Is.EqualTo(position));
+            Assert.That(RepairablePart.BlocksFunction(rig), Is.False);
+            Assert.That(StationQuery.Resolve(Actor, Zone, "forge"), Is.SameAs(rig));
+            Assert.False(ChooseRow(row, position.x, position.y));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FieldWorkRigRefusesSpoilAndInvalidPreparedGradeWithoutTakingTheGoodMeasure(bool invalidGrade)
+        {
+            var rig = Place("AbandonedFieldWorkRig");
+            var available = Carry(invalidGrade ? "FireClay" : Prepared);
+            var spoil = Carry("DryClaySpoil");
+            var stock = new[] { available, spoil };
+            if (invalidGrade)
+            {
+                var altered = Carry(Prepared);
+                altered.GetPart<RepairMaterialPart>().Grade = "raw";
+                stock = stock.Append(altered).ToArray();
+            }
+            var position = Zone.GetEntityPosition(rig);
+            var row = CellMenu(position.x, position.y).Single(a => a.Command == RepairablePart.RepairCommand);
+
+            Assert.False(ChooseRow(row, position.x, position.y));
+            Assert.That(RepairablePart.BlocksFunction(rig), Is.True);
+            Assert.That(rig.GetPart<RepairablePart>().RepairedBy, Is.Null);
+            Assert.False(ForgePart.IsNearForge(Actor, Zone));
+            foreach (var item in stock)
+            {
+                Assert.That(Pack.Objects.Single(e => e.ID == item.ID), Is.SameAs(item));
+                Assert.That(item.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+                Assert.That(item.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+                Assert.That(Zone.GetEntityCell(item), Is.Null);
+            }
+            if (invalidGrade) Assert.That(stock.Last().GetPart<RepairMaterialPart>().Grade, Is.EqualTo("raw"));
+        }
+
         [Test]
         public void TheBillWithholdsFunctionFromIncompleteOrUnpreparedStock()
         {
@@ -57,14 +112,30 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void ExactOnlyStructuralFaultDoesNotAcceptTheNewGrade()
+        public void TimberDressingBenchStillRequiresTwoActualTimberLengths()
         {
-            var well = Place("RepairLinedWell");
-            well.GetPart<RepairablePart>().RecipeId = "clay-field-work-rig";
+            var bench = Place("SoddenDressingBench");
+            var repair = bench.GetPart<RepairablePart>();
+            var clay = Carry(Prepared);
             Carry(Prepared);
-            Carry(Prepared);
-            Assert.That(well.GetPart<RepairablePart>().TryRepair(Actor, Zone), Is.False);
+            var timber = Carry("SalvagedTimber");
+            Assert.That(repair.RecipeId, Is.EqualTo("timber-dressing-bench"));
+            var position = Zone.GetEntityPosition(bench);
+            var row = CellMenu(position.x, position.y).Single(a => a.Command == RepairablePart.RepairCommand);
+
+            Assert.False(ChooseRow(row, position.x, position.y));
+            Assert.That(RepairablePart.BlocksFunction(bench), Is.True);
+            Assert.That(Count("SalvagedTimber"), Is.EqualTo(1));
             Assert.That(Count(Prepared), Is.EqualTo(2));
+            Assert.That(Pack.Objects, Does.Contain(timber));
+            Assert.That(Pack.Objects, Does.Contain(clay));
+
+            Carry("SalvagedTimber");
+            Assert.True(ChooseRow(row, position.x, position.y));
+            Assert.That(RepairablePart.BlocksFunction(bench), Is.False);
+            Assert.That(Count("SalvagedTimber"), Is.Zero);
+            Assert.That(clay.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(clay.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
         }
 
         [Test]

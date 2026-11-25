@@ -86,14 +86,17 @@ namespace CavesOfOoo.Tests
             Assert.Greater(reads,0);Assert.True(Authorized(document));Assert.True(Authorized(document));
             Assert.AreEqual(reads,hook.Reads);Assert.AreEqual(text,document.ToPlainText());
         }
-        [TestCase(false)] [TestCase(true)]
-        public void RepairSupplyFactShowsOnlyAnActualUnrepairedMatchingFault(bool repaired)
+        [TestCase("clay-well-lining", "Masonry", false, "2 measures of fire clay or prepared lining clay, in any mix")]
+        [TestCase("clay-field-work-rig", "Masonry", false, "2 measures of fire clay or prepared lining clay, in any mix")]
+        [TestCase("clay-field-work-rig", "Masonry", true, null)]
+        [TestCase("timber-dressing-bench", "Wood", false, "2 salvaged timber")]
+        public void RepairSupplyFactShowsOnlyAnActualUnrepairedMatchingFault(string recipe, string material, bool repaired, string bill)
         {
             var item=Subject();item.GetPart<PhysicsPart>().Takeable=false;
-            item.AddPart(new CompositionPart { MaterialsRaw="Masonry" });
-            item.AddPart(new RepairablePart { RecipeId="clay-well-lining",Repaired=repaired });var zone=Place(item);
+            item.AddPart(new CompositionPart { MaterialsRaw=material });
+            item.AddPart(new RepairablePart { RecipeId=recipe,Repaired=repaired });var zone=Place(item);
             var document=ExamineDocumentBuilder.BuildWorld(item,zone,zone.GetCell(10,10));
-            Assert.AreEqual(repaired?null:"2 fire clay",document.Facts.FirstOrDefault(f=>f.Label=="Repair")?.Value);
+            Assert.AreEqual(bill,document.Facts.FirstOrDefault(f=>f.Label=="Repair")?.Value);
         }
         [TestCase("unknown")] [TestCase("wrong-composition")] [TestCase("duplicate")]
         public void MalformedRepairCannotAdvertiseAUsableSupplyRecipe(string fault)

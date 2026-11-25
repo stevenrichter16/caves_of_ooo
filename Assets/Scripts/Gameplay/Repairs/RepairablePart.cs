@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
@@ -35,9 +36,13 @@ namespace CavesOfOoo.Core
             && ParentEntity?.GetPart<RepairablePart>() == this
             && UsesMaterialGrade(RepairRecipeRegistry.Get(RecipeId));
 
-        private string Bill(RepairRecipe recipe) => UsesMaterialGrade(recipe)
-            ? recipe.Quantity + " measures of fire clay or prepared lining clay, in any mix"
-            : recipe.Quantity + " " + recipe.MaterialName;
+        internal string Bill(RepairRecipe recipe)
+        {
+            string quantity = recipe.Quantity.ToString(CultureInfo.InvariantCulture);
+            return UsesMaterialGrade(recipe)
+                ? quantity + " measures of fire clay or prepared lining clay, in any mix"
+                : quantity + " " + recipe.MaterialName;
+        }
         /// <summary>Shared functional gate. Unknown or malformed faults remain
         /// broken; owners without this opt-in Part retain their ordinary behavior.</summary>
         public static bool BlocksFunction(Entity owner)

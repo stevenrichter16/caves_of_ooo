@@ -6,7 +6,7 @@ Status: bounded Editor implementation accepted after native checks, ordinary pla
 
 An abandoned field work rig gives a traveller access to existing station-dependent weapon work away from a settlement forge. Keep its useful workmanship, move it a short distance to a chosen working position, or dismantle its two sound timber braces for portable materials. Two timber already brace a gate or dressing bench; individual lengths can become hafts or serve existing trap interactions. Those uses make reclamation more than a sale-price choice.
 
-Restoration costs two existing FireClay to patch the cracked working surface, once. The resulting rig offers the existing reforge, effectful-brew tempering, recorded-weapon reclamation and batch-forging services. Single-weapon pack crafting stays available everywhere. There is no new fuel tax, maintenance timer or forced use. A player who does not need the station can leave it intact or reclaim it immediately.
+Restoration costs two sound lining measures to patch the cracked working surface, once. Fire clay and prepared lining clay can fill that bill in any mix. The resulting rig offers the existing reforge, effectful-brew tempering, recorded-weapon reclamation and batch-forging services. Single-weapon pack crafting stays available everywhere. A player who does not need the station can leave it intact or reclaim it immediately.
 
 Restoring, using and later dismantling is valid. Reclamation always yields only the original two braces; spent repair clay is not refunded. Reclamation permanently removes this station and cannot repeat on return or reload. The menu and reader must state the exact yield and loss before commitment. Do not describe the two choices as permanently exclusive.
 
@@ -23,6 +23,22 @@ Source integration: `SoddenDistrictPlan.Works` owns this furnishing, with a dist
 Lore anchors: `Lore/10_Bible.md` as amended by `Lore/11_SecondSpine.md`; `Lore/History/08_MaterialCulture.md` on mundane surface work, portable Concord equipment and practical materials; `Lore/Factions/04_SaccharineConcord.md` on delegated routine contracts. Reader text must expressly relinquish the rig: an empty building alone grants no salvage right. Do not claim a new faction reward, a supernatural origin or a protected mystery answer.
 
 ## Minimum mechanical contract
+
+### Compatible lining clay at the Peat Works
+
+Roadmap 10. The cracked rig needs two sound lining measures at the
+same masonry surface. Fire clay, prepared lining clay and a mixture can
+qualify through the existing material matcher. The admission belongs to
+this repair bill. The portable workshop's position, ownership, setup,
+finite reclaimed parts and saved restored state stay under its existing rules.
+
+The native repair preview and structured Examine fact show the same bill.
+The Editor trial carried an earned prepared stack from the wayside cook and
+assembled a peat mallet with existing locker stock. The faulted rig refused
+the ordinary reclaim action. After repair the same action recovered a head
+and haft from the exact mallet. Legacy and mixed grades and unsuitable
+stock have native coverage.
+[Evidence](Verification/MachineSystems/FieldRigCompatibleClay20261125/README.md)
 
 - Weight120, solid, noncarryable, nonthrowable, explicit Handling opt-in and no artificial minimum strength above the existing drag rule. STR18 can drag144; pack capacity does not determine single-object lifting. Weaker characters can restore or dismantle the rig in place.
 - One known structural fault and one exact FireClay recipe through existing RepairablePart. No new component inventory, durability simulation or combat-HP restoration.

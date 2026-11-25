@@ -1,3 +1,13 @@
+**Wayside clay restores forge service at Peat Works — November 25 UTC, 2026.**
+The earned two-measure prepared lot arrived through normal movement. The
+player used existing locker stock to make a pack mallet, and its reclaim
+action refused beside the faulted rig. Examine and action named the same
+compatible bill. The repair spent the two measures and the same station
+then reclaimed one head and one haft from the mallet. Fresh Continue matched.
+The connected suite passed 275 with one identical existing art-model failure
+on the baseline. Graphics remain parked.
+[Evidence](Verification/MachineSystems/FieldRigCompatibleClay20261125/README.md)
+
 **Mac delivery for clay staging and seasonal knotflax — November 25 UTC, 2026.**
 The universal build of `b47282110` reached GameBootstrap on this Mac.
 All 186 package files matched afterward. It is the current startup-verified

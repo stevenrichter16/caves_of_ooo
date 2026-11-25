@@ -197,7 +197,7 @@ namespace CavesOfOoo.Core
             var recipe=RepairRecipeRegistry.Get(repair.RecipeId);
             if(recipe==null||!composition.Contains(recipe.Composition))return;
             // A requirement, not a claim that the viewer has supplies, is in reach, or can act.
-            facts.Add(new AnnouncementFact("Repair",recipe.Quantity.ToString(CultureInfo.InvariantCulture)+" "+recipe.MaterialName));
+            facts.Add(new AnnouncementFact("Repair", repair.Bill(recipe)));
         }
 
         static void Add(List<string> values,string text) { if(!string.IsNullOrWhiteSpace(text))values.Add(text); }

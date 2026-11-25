@@ -1,0 +1,105 @@
+{
+  "field-rig-lining-clay-red-retry-20261125": {
+    "xml": "/Users/steven/coo-verification/results/field-rig-lining-clay-red-retry-20261125.xml",
+    "xmlSHA256": "efca7207af9cbf71441a8158cded47bfb55956f8e2cac4f36ca13747d774119f",
+    "log": "/Users/steven/coo-verification/results/field-rig-lining-clay-red-retry-20261125.log",
+    "logSHA256": "938a1b5aebc6ec0c3d0838f073b8c2666bc3d1af34447c9a449306fd1eb4a173",
+    "total": "67",
+    "passed": "65",
+    "failed": "2",
+    "skipped": "0",
+    "inconclusive": "0",
+    "duration": "5.5782822",
+    "compilerErrors": 0,
+    "failures": [
+      {
+        "test": "CavesOfOoo.Tests.CompatibleRepairMaterialTests.FieldWorkRigUsesEitherLiningClayGradeForTheSameWorkshop(\"PreparedLiningClay\",\"PreparedLiningClay\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "test": "CavesOfOoo.Tests.CompatibleRepairMaterialTests.FieldWorkRigUsesEitherLiningClayGradeForTheSameWorkshop(\"FireClay\",\"PreparedLiningClay\")",
+        "message": "  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "field-rig-reader-red-20261125": {
+    "xml": "/Users/steven/coo-verification/results/field-rig-reader-red-20261125.xml",
+    "xmlSHA256": "9421d93f3c1a1b140181d8fc92bab2c6dc24b20dcbcab5589b04c50eaec3f656",
+    "log": "/Users/steven/coo-verification/results/field-rig-reader-red-20261125.log",
+    "logSHA256": "d640ce80038c1e01be0dc61012fd69e2171488e868323f31df4a4eff143b186b",
+    "total": "4",
+    "passed": "2",
+    "failed": "2",
+    "skipped": "0",
+    "inconclusive": "0",
+    "duration": "0.5719487",
+    "compilerErrors": 0,
+    "failures": [
+      {
+        "test": "CavesOfOoo.Tests.ExaminePortraitAuthorizationTests.RepairSupplyFactShowsOnlyAnActualUnrepairedMatchingFault(\"clay-well-lining\",\"Masonry\",False,\"2 measures of fire clay or prepared lining clay, in any mix\")",
+        "message": "  Expected string length 59 but was 11. Strings differ at index 2.\n  Expected: \"2 measures of fire clay or prepared lining clay, in any mix\"\n  But was:  \"2 fire clay\"\n  -------------^\n"
+      },
+      {
+        "test": "CavesOfOoo.Tests.ExaminePortraitAuthorizationTests.RepairSupplyFactShowsOnlyAnActualUnrepairedMatchingFault(\"clay-field-work-rig\",\"Masonry\",False,\"2 measures of fire clay or prepared lining clay, in any mix\")",
+        "message": "  Expected string length 59 but was 11. Strings differ at index 2.\n  Expected: \"2 measures of fire clay or prepared lining clay, in any mix\"\n  But was:  \"2 fire clay\"\n  -------------^\n"
+      }
+    ]
+  },
+  "field-rig-lining-clay-green-20261125": {
+    "xml": "/Users/steven/coo-verification/results/field-rig-lining-clay-green-20261125.xml",
+    "xmlSHA256": "25400bd67871a29c3c9903f9cd852dfc1b5aae32ebb14f3dc2002e4932ff4973",
+    "log": "/Users/steven/coo-verification/results/field-rig-lining-clay-green-20261125.log",
+    "logSHA256": "1d162086fa300bb91afbf5801278667da59b8bae26b475039a222a8f42891985",
+    "total": "255",
+    "passed": "254",
+    "failed": "1",
+    "skipped": "0",
+    "inconclusive": "0",
+    "duration": "58.3643196",
+    "compilerErrors": 0,
+    "failures": [
+      {
+        "test": "CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(\"Overworld.17.7.0\")",
+        "message": "  AbandonedFieldWorkRig: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"AbandonedFieldWorkRig: unmodeled-native-blueprint\" >\n"
+      }
+    ]
+  },
+  "field-rig-art-baseline-20261125": {
+    "xml": "/Users/steven/coo-verification/results/field-rig-art-baseline-20261125.xml",
+    "xmlSHA256": "ae77f9da5f97b0ea5416f9572d0c44bbf9cf763fed6253f1c3ec02f5af2859d6",
+    "log": "/Users/steven/coo-verification/results/field-rig-art-baseline-20261125.log",
+    "logSHA256": "136366947e1a5ebf0c099ca7ca6b6e8155a981a527250f608c9e93c52e27c7b7",
+    "total": "3",
+    "passed": "2",
+    "failed": "1",
+    "skipped": "0",
+    "inconclusive": "0",
+    "duration": "4.5039993",
+    "compilerErrors": 0,
+    "failures": [
+      {
+        "test": "CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(\"Overworld.17.7.0\")",
+        "message": "  AbandonedFieldWorkRig: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"AbandonedFieldWorkRig: unmodeled-native-blueprint\" >\n"
+      }
+    ]
+  },
+  "field-rig-lining-clay-final-20261125": {
+    "xml": "/Users/steven/coo-verification/results/field-rig-lining-clay-final-20261125.xml",
+    "xmlSHA256": "e8abeea247a2eb368ce75f0aac177c175c3d20bdd9cd48c11ecc7ccae9ab83ce",
+    "log": "/Users/steven/coo-verification/results/field-rig-lining-clay-final-20261125.log",
+    "logSHA256": "306c0f60c14988df33811742fb46d5f1d619475fbfc0b3d8f9da8116609e360d",
+    "total": "276",
+    "passed": "275",
+    "failed": "1",
+    "skipped": "0",
+    "inconclusive": "0",
+    "duration": "61.2982792",
+    "compilerErrors": 0,
+    "failures": [
+      {
+        "test": "CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(\"Overworld.17.7.0\")",
+        "message": "  AbandonedFieldWorkRig: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"AbandonedFieldWorkRig: unmodeled-native-blueprint\" >\n"
+      }
+    ]
+  }
+}

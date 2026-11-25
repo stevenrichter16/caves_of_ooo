@@ -122,6 +122,11 @@ cross-seed comparisons remain open.
     qualified commodities with one consumer, plus plausible incompatible
     controls. Screening separates declared sizes; it cannot identify unknown
     substances, purify equally sized mixtures or invent recoverable stock.
+    The Peat Works rig now uses the same material match as the well and pan.
+    Purchased prepared clay restored the actual station and enabled ordinary
+    weapon reclamation. Native controls also checked mixed stock, wrong
+    material and the unchanged timber-only repair bill.
+    [Evidence](Verification/MachineSystems/FieldRigCompatibleClay20261125/README.md)
 
 ## Priority 3: give methods distinct costs and useful portable work
 
@@ -370,6 +375,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     The finite-source Focus hint now uses the same configured label as the
     world action menu. Editor play confirmed the pallet label, free opening
     and free cancellation. [Evidence](Verification/MachineSystems/TimberOpening20261125/README.md)
+    The repair action and structured Examine fact also share the actual
+    material bill. The Peat Works trial read the matching clay requirement
+    before repairing, and native controls checked intact and exact-only bills.
+    [Evidence](Verification/MachineSystems/FieldRigCompatibleClay20261125/README.md)
 
 37. **Let discovery suggest connections.** A found tool names a few supported
     uses; a stock description explains its useful fractions; a recipient explains
