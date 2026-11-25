@@ -104,14 +104,21 @@ namespace CavesOfOoo.Core
             }
             if(!quote.Current())return Refuse();
             var residents=pack.Objects.Where(o=>result.OutputBlueprints.Contains(o.BlueprintName)).ToArray();
+            // Size separation has one carried source and creates ordinary, unmarked clay.
+            // Its output may join an existing valid origin stack without touching the stamp.
+            bool screening=plan.Stock==null && plan.ExtraInputs.Count==0 && result.Id==SiftableStockPart.ProcessId;
+            var markedResidents=new HashSet<Entity>(residents.Where(o=>screening && o.BlueprintName=="FireClay" && o.HasPart<ConnectedClayOriginPart>()));
             foreach(var resident in residents)
             {
-                var template=templates[result.OutputBlueprints.ToList().IndexOf(resident.BlueprintName)];var state=template.Snapshot(resident);
+                var template=templates[result.OutputBlueprints.ToList().IndexOf(resident.BlueprintName)];
+                var state=template.Snapshot(resident,allowClayStamp:markedResidents.Contains(resident));
                 if(state==null || !PreparationActions.Carried(actor,resident) || !tx.TryClaim(resident,actor,command))return Refuse();
                 states.Add(resident,state);
             }
             int ceiling=pack.MaxWeight<0?int.MaxValue:Math.Max(pack.MaxWeight,pack.GetCarriedWeight());
-            var expected=residents.ToDictionary(e=>e,Count);var received=new HashSet<Entity>();
+            var beforeCounts=residents.ToDictionary(e=>e,Count);
+            var expected=new Dictionary<Entity,int>(beforeCounts);var received=new HashSet<Entity>();
+            var individuallyPaid=new HashSet<Entity>(inputs.Where(plan.IndividuallyPaidClay));
             var receipt=InventoryTransferSnapshot.Capture(pack,products.ToArray());bool restored=false;
             // Only inputs this transaction actually consumed from are detached on undo: Restore re-inserts exactly the changed entries, so detaching an untouched input
             // (reachable once an ingredient can span several stacks and a later take refuses) would lose the player's stack.
@@ -121,8 +128,36 @@ namespace CavesOfOoo.Core
                 if(restored)return;restored=true;
                 var conflicts=new HashSet<Entity>(consumed.Where(item=>!pack.Objects.Contains(item)
                     && pack.Objects.Any(other=>other!=item && other?.ID==item.ID)));
-                foreach(var owner in products.Concat(received).Concat(plan.Stock==null?consumed:Enumerable.Empty<Entity>()).Distinct())Detach(owner);
-                receipt.RestoreExcept(conflicts);
+                var separate=new HashSet<Entity>(individuallyPaid);
+                bool retainedOutput=false;
+                foreach(var owner in received.Where(markedResidents.Contains))
+                {
+                    separate.Add(owner);
+                    if(states[owner].Matches() && Count(owner)==expected[owner])
+                    {
+                        owner.GetPart<StackerPart>().StackCount=beforeCounts[owner];
+                        owner.GetPart<PhysicsPart>().InInventory?.GetPart<InventoryPart>()?.RefreshHandlingCarryPenalty();
+                    }
+                    else retainedOutput=true;
+                }
+                var returnable=plan.Stock==null && !retainedOutput?consumed:Enumerable.Empty<Entity>();
+                foreach(var owner in products.Concat(received).Concat(returnable).Distinct())
+                    if(!separate.Contains(owner))Detach(owner);
+                var excluded=new HashSet<Entity>(conflicts);
+                excluded.UnionWith(separate);
+                if(retainedOutput)
+                {
+                    // The independently changed recipient may still hold output.
+                    // Returning its source as well would create a second batch.
+                    excluded.UnionWith(consumed);
+                }
+                receipt.RestoreExcept(excluded);
+                if(retainedOutput)
+                {
+                    CavesOfOoo.Diagnostics.Diag.Record("event","MaterialProcessRollbackLimited",actor:actor,target:input,
+                        payload:new{reason="screening-output-changed"});
+                    MessageLog.Add("Some screened clay could not be recovered safely. The original spoil was spent.");
+                }
                 foreach(var item in conflicts)CavesOfOoo.Diagnostics.Diag.Record("event","MaterialProcessRollbackLimited",actor:actor,target:item,
                     payload:new{reason="source-identity-conflict",identity=item.ID});
             });

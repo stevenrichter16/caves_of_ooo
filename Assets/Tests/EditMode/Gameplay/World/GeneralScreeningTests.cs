@@ -27,6 +27,84 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0,Held("DryClaySpoil"));Assert.AreEqual(2,Held("FireClay"));Assert.AreEqual(1,Held("CoarseGrit"));
             Assert.True(Pack.Objects.Contains(sieve));Assert.AreEqual(mass,Pack.GetCarriedWeight());
         }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ScreeningCanAddPlainClayToTheExactMarkedStackWithoutChangingItsOrigin(bool interrupted)
+        {
+            var sieve = Sieve();
+            var clay = Carry("FireClay");
+            string key = System.Guid.NewGuid().ToString("N");
+            Assert.True(ConnectedSpreadProgress.BindClay(clay, key, 1));
+            var origin = clay.GetPart<ConnectedClayOriginPart>();
+            var feed = Feed();
+            int mass = Pack.GetCarriedWeight();
+            string action = Screen(feed);
+            bool sawOutput = false;
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                sawOutput = true;
+                Assert.That(Pack.Objects.Single(e => e.BlueprintName == "FireClay"), Is.SameAs(clay));
+                Assert.That(Held("FireClay"), Is.EqualTo(3));
+                Assert.That(origin.Units, Is.EqualTo(2));
+            } });
+            if (interrupted) FailAfter();
+
+            Assert.That(Act(feed, action), Is.EqualTo(!interrupted));
+            Assert.True(sawOutput);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "FireClay"), Is.SameAs(clay));
+            Assert.That(Held("FireClay"), Is.EqualTo(interrupted ? 1 : 3));
+            Assert.That(Held("DryClaySpoil"), Is.EqualTo(interrupted ? 1 : 0));
+            Assert.That(Held("CoarseGrit"), Is.EqualTo(interrupted ? 0 : 1));
+            Assert.That(clay.GetPart<ConnectedClayOriginPart>(), Is.SameAs(origin));
+            Assert.That(origin.Units, Is.EqualTo(2));
+            Assert.That(origin.WorldKey, Is.EqualTo(key));
+            Assert.That(origin.OwnerID, Is.EqualTo(clay.ID));
+            Assert.Contains(sieve, Pack.Objects);
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(mass));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ScreeningRollbackPreservesTheMovedMarkedStackWithoutDuplicatingTheFeed(bool independentlyAltered)
+        {
+            var sieve = Sieve();
+            var clay = Carry("FireClay");
+            string key = System.Guid.NewGuid().ToString("N");
+            Assert.True(ConnectedSpreadProgress.BindClay(clay, key, 1));
+            var origin = clay.GetPart<ConnectedClayOriginPart>();
+            var stack = clay.GetPart<StackerPart>();
+            var feed = Feed();
+            string action = Screen(feed);
+            bool sawOutput = false;
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                sawOutput = true;
+                Assert.That(stack.StackCount, Is.EqualTo(3));
+                Assert.That(origin.Units, Is.EqualTo(2));
+                Assert.That(Held("CoarseGrit"), Is.EqualTo(1));
+                Assert.True(Pack.RemoveObject(clay));
+                Assert.True(Zone.AddEntity(clay, 13, 10));
+                if (independentlyAltered) clay.GetPart<PhysicsPart>().Weight = 2;
+            } });
+
+            Assert.False(Act(feed, action));
+            Assert.True(sawOutput);
+            Assert.That(Zone.GetEntityPosition(clay), Is.EqualTo((13, 10)));
+            Assert.That(Zone.GetCell(13, 10).Objects.Single(e => e.BlueprintName == "FireClay"), Is.SameAs(clay));
+            Assert.That(clay.GetPart<PhysicsPart>().InInventory, Is.Null);
+            Assert.That(clay.GetPart<ConnectedClayOriginPart>(), Is.SameAs(origin));
+            Assert.That(origin.OwnerID, Is.EqualTo(clay.ID));
+            Assert.That(origin.WorldKey, Is.EqualTo(key));
+            Assert.That(origin.Units, Is.EqualTo(2));
+            Assert.That(stack.StackCount, Is.EqualTo(independentlyAltered ? 3 : 1));
+            Assert.That(clay.GetPart<PhysicsPart>().Weight, Is.EqualTo(independentlyAltered ? 2 : 1));
+            Assert.That(Held("FireClay"), Is.Zero);
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+            Assert.That(Pack.Objects.SingleOrDefault(e => e.BlueprintName == "DryClaySpoil"), Is.SameAs(independentlyAltered ? null : feed));
+            Assert.Contains(sieve, Pack.Objects);
+        }
+
         [Test] public void DerivedScreeningNeverRegistersAPerBlueprintRecipe()
         {Sieve();var feed=Feed();Assert.IsNull(MaterialProcessRegistry.Get("screen_size_grades"));Assert.True(Act(feed,Screen(feed)));Assert.IsNull(MaterialProcessRegistry.Get("screen_size_grades"));}
         [Test] public void ASecondCanonicalMaterialLotUsesTheSameSizeRule()

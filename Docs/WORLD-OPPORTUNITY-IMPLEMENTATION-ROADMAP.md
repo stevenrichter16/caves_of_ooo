@@ -111,6 +111,12 @@ cross-seed comparisons remain open.
    containers, trade, processing and save/reload must retain relevant material
    state. Introduce explicit adapters where current payload rules cannot safely
    preserve it; do not broadly permit unknown Parts or flatten unlike grades.
+   The two original Gleaners’ cellar measures now form one valid stack. In
+   Editor play the exact marked stack was taken, reloaded, carried back above
+   ground and spent to reopen the well while two purchased prepared measures
+   stayed in the pack. Focused native checks cover split, merge, processing,
+   scoped reversal and unrelated fatal interruption.
+   [Evidence](Verification/MachineSystems/OriginalClayHandling20261125/README.md)
 
 10. **Prove substitution and refusal together.** Use at least two explicitly
     qualified commodities with one consumer, plus plausible incompatible
@@ -387,6 +393,29 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     not omniscience. Preserve assigned actors, evidence and budget on save/load.
     Timeliness terms never secretly change the physical benefit of equivalent
     completed work or turn every missing shipment into a compulsory player quest.
+
+## Improvement pass after all 45 are verified
+
+Revisit all 45 requirements and the systems that implement them after the
+initial acceptance gates are met. Check the actual player experience using
+contrasting routes, builds and regions. Record the concrete evidence behind
+each finding and implement the most valuable improvements in connected slices.
+
+- **Content and variety.** Look for useful materials, tools, recipes, regional
+  work, customers and lasting projects that give existing mechanics a longer
+  life. Check whether each opportunity teaches itself through the world and
+  whether different playthroughs support meaningfully different decisions.
+- **Quality in play.** Revisit discovery, action previews, controls, pacing,
+  consequences, interruption and recovery. Check that the alternatives remain
+  practical and that skipping optional work leaves exploration comfortable.
+- **Expandability and modularity.** Trace new content through shared Parts,
+  capabilities, events, receipts, saves and readers. Identify where adding a
+  material, tool, NPC job, region or station requires unnecessary special
+  cases. Improve extension points where a concrete second use proves value.
+- **Verification and delivery.** Keep what works, rank findings by player
+  impact and cost, and verify changes through the same native, actual-play,
+  reload and independent review gates. Continue the improvement work through
+  the scheduled task after recording the initial 45-item audit.
 
 ## Smallest useful slice and contrasting runs
 

@@ -73,7 +73,8 @@ namespace CavesOfOoo.Core
         internal static bool IsInertTracking(Part part)=>part!=null && Get(part.GetType()) is IMaterialProcessTrackingPolicy tracking && tracking.Inert(part);
         internal static bool CanSplitProcessingInput(Entity owner)
             => !MaterialProcessRegistry.IsPayload(owner) || SplitStats(owner)
-                && owner.Parts.All(p=>p!=null && (Get(p.GetType()) is ScalarPolicy scalar && scalar.CanClone(p) || IsInertTracking(p)));
+                && owner.Parts.All(p=>p!=null && (Get(p.GetType()) is ScalarPolicy scalar && scalar.CanClone(p)
+                    || IsInertTracking(p) || ConnectedClayProvenance.CompatibleStamp(owner,p)));
         static bool SplitStats(Entity owner)
             => owner.Statistics?.Count==0 || owner.BlueprintName=="LeatherArmor" && owner.HasPart<ArmorPart>()
                 && owner.Statistics?.Count==1 && owner.Statistics.TryGetValue("Hitpoints",out var hp)
@@ -88,8 +89,9 @@ namespace CavesOfOoo.Core
             if(!MaterialProcessRegistry.IsPayload(first) && !MaterialProcessRegistry.IsPayload(second))return true;
             if(!MaterialProcessRegistry.IsPayload(first) || !MaterialProcessRegistry.IsPayload(second)
                 || !CanSplitProcessingInput(first) || !CanSplitProcessingInput(second))return false;
-            // Inert bookkeeping Parts are not payload: compare what is left, in order.
-            var left=first.Parts.Where(p=>!IsInertTracking(p)).ToArray();var right=second.Parts.Where(p=>!IsInertTracking(p)).ToArray();
+            // A validated clay stamp is compared and transferred by the quantity operation.
+            var left=first.Parts.Where(p=>!IsInertTracking(p) && p is not ConnectedClayOriginPart).ToArray();
+            var right=second.Parts.Where(p=>!IsInertTracking(p) && p is not ConnectedClayOriginPart).ToArray();
             if(left.Length!=right.Length)return false;
             bool Same<K,V>(IDictionary<K,V> a,IDictionary<K,V> b)=>a!=null&&b!=null&&a.Count==b.Count&&a.All(p=>b.TryGetValue(p.Key,out var v)&&EqualityComparer<V>.Default.Equals(p.Value,v));
             if(!Same(first.Tags,second.Tags)||!Same(first.Properties,second.Properties)||!Same(first.IntProperties,second.IntProperties)||!SameStats(first,second))return false;
@@ -244,7 +246,7 @@ namespace CavesOfOoo.Core
                     || requireCreationSafe && (policies[row.Key].policy is not IMaterialProcessCreationPartPolicy creation || !creation.AllowsCreation))return false;
             return true;
         }
-        internal bool Matches(Entity owner,bool allowInstances=false)
+        internal bool Matches(Entity owner,bool allowInstances=false,bool allowClayStamp=false)
         {
             if(!Current() || owner?.BlueprintName!=name || owner.Parts.Count<parameters.Count
                 || owner.Parts.Any(p=>p==null||p.ParentEntity!=owner) || owner.GetPart<PhysicsPart>()?.Weight<0
@@ -259,7 +261,10 @@ namespace CavesOfOoo.Core
             foreach(var material in owner.Parts.OfType<MaterialPart>())foreach(var tag in material.MaterialTags)expectedTags[tag]="";
             if(!Same(owner.Tags,expectedTags))return false;
             foreach(var extra in owner.Parts.Where(p=>!parameters.ContainsKey(p.Name) && !MaterialProcessPayloadPolicies.IsInertTracking(p)))
+            {
+                if(allowClayStamp && ConnectedClayProvenance.CompatibleStamp(owner,extra))continue;
                 if(!allowInstances || MaterialProcessPayloadPolicies.Get(extra.GetType()) is not IMaterialProcessInstancePartPolicy policy || !policy.AllowsInstance(extra))return false;
+            }
             foreach(var row in parameters)
             {
                 var parts=owner.Parts.Where(p=>p.Name==row.Key).ToArray();var expected=policies[row.Key];
@@ -267,21 +272,31 @@ namespace CavesOfOoo.Core
             }
             return true;
         }
-        internal MaterialProcessItemState Snapshot(Entity owner,bool allowInstances=false)=>Matches(owner,allowInstances)?new MaterialProcessItemState(owner,this,allowInstances):null;
+        internal MaterialProcessItemState Snapshot(Entity owner,bool allowInstances=false,bool allowClayStamp=false)
+            => Matches(owner,allowInstances,allowClayStamp)?new MaterialProcessItemState(owner,this,allowInstances,allowClayStamp):null;
     }
     internal sealed class MaterialProcessItemState
     {
         internal readonly Entity Owner;
-        readonly MaterialProcessTemplate template;readonly bool allowInstances;readonly string id;readonly Part[] parts;
+        readonly MaterialProcessTemplate template;
+        readonly bool allowInstances, allowClayStamp;
+        readonly string id;
+        readonly Part[] parts, payloadParts;
         readonly object[] values;readonly IMaterialProcessPartPolicy[] policies;readonly Dictionary<string,string> tags;
-        internal MaterialProcessItemState(Entity owner,MaterialProcessTemplate template,bool allowInstances)
+        readonly ConnectedClayProvenance.Snapshot clay;
+        internal MaterialProcessItemState(Entity owner,MaterialProcessTemplate template,bool allowInstances,bool allowClayStamp)
         {
-            Owner=owner;this.template=template;this.allowInstances=allowInstances;id=owner.ID;parts=owner.Parts.ToArray();tags=new Dictionary<string,string>(owner.Tags);
-            policies=parts.Select(p=>MaterialProcessPayloadPolicies.Get(p.GetType())).ToArray();
-            values=parts.Select((p,i)=>policies[i].Capture(p)).ToArray();
+            Owner=owner;this.template=template;this.allowInstances=allowInstances;this.allowClayStamp=allowClayStamp;
+            id=owner.ID;parts=owner.Parts.ToArray();tags=new Dictionary<string,string>(owner.Tags);
+            payloadParts=allowClayStamp?parts.Where(p=>p is not ConnectedClayOriginPart).ToArray():parts;
+            clay=new ConnectedClayProvenance.Snapshot(owner);
+            policies=payloadParts.Select(p=>MaterialProcessPayloadPolicies.Get(p.GetType())).ToArray();
+            values=payloadParts.Select((p,i)=>policies[i].Capture(p)).ToArray();
         }
-        internal bool Matches()=>Owner.ID==id && Owner.Parts.SequenceEqual(parts) && template.Matches(Owner,allowInstances)
+        internal bool Matches()=>MatchesAfterPayment(0);
+        internal bool MatchesAfterPayment(int spent)=>Owner.ID==id && Owner.Parts.SequenceEqual(parts) && template.Matches(Owner,allowInstances,allowClayStamp)
             && Owner.Tags.Count==tags.Count && tags.All(p=>Owner.Tags.TryGetValue(p.Key,out var v)&&v==p.Value)
-            && parts.Select((p,i)=>MaterialProcessPayloadPolicies.Get(p.GetType())==policies[i] && policies[i].Matches(p,values[i])).All(v=>v);
+            && (!allowClayStamp || !clay.Changed(Owner,spent))
+            && payloadParts.Select((p,i)=>MaterialProcessPayloadPolicies.Get(p.GetType())==policies[i] && policies[i].Matches(p,values[i])).All(v=>v);
     }
 }

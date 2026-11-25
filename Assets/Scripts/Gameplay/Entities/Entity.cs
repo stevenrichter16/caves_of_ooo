@@ -461,6 +461,12 @@ namespace CavesOfOoo.Core
                     if (field.DeclaringType == typeof(Part)) continue;
                     field.SetValue(newPart, field.GetValue(part));
                 }
+                if (newPart is ConnectedClayOriginPart origin)
+                {
+                    // A structural copy owns no original units. The split can transfer them.
+                    origin.OwnerID = clone.ID;
+                    origin.Units = 0;
+                }
                 clone.AddPart(newPart);
             }
 

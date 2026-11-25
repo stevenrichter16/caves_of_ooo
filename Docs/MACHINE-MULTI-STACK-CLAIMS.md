@@ -2,6 +2,31 @@
 
 Living record, 2026-11-18. Design critique: [MachineDesign/critique-s12-multistack.md](MachineDesign/critique-s12-multistack.md).
 
+## Original clay handling
+
+The broad porter regression reproduced fifteen earlier failures on the
+unchanged source with identical errors. Fire clay is protected because it
+is workshop payment. The generic stack guard refuses the valid original
+clay stamp before the existing quantity operations can conserve it. This
+keeps the two real Gleaners’ cellar units in separate stacks and prevents
+ordinary split, mix and reward paths from recognizing the original units.
+
+The bounded correction admits one coherent stamp to ordinary handling and
+lets its existing rules transfer the exact bits. Raw clones carry no
+original claim. The physical split moves only the quantity it takes.
+Overlap, invalid stamps, different worlds and foreign Parts still refuse.
+
+Marked and ordinary clay can share a stack after this correction, so the
+same stack must remain useful in the existing forge and own-box clay bills.
+Quote exact origin state and validate the predicted paid remainder. Undo
+only the provenance the payment spent. Screening outputs stay ordinary
+clay and may join an admitted marked recipient without changing its stamp.
+Existing creation and recipe permissions still govern new stock and work.
+Actual cellar acquisition, transport, well repair and fresh Continue
+qualified the ordinary route. The focused suite covered exact forge and
+box payment, screened output, scoped reversal and fatal interruption.
+[Evidence](Verification/MachineSystems/OriginalClayHandling20261125/README.md)
+
 ## Problem
 
 A process row resolves each extra input to one carried stack with enough units. The shipped `serrated_kit` row needs two `SpurgrassSpine`; when the spines are two carried stacks (one bought, one recovered after a throw, or stacks split by other

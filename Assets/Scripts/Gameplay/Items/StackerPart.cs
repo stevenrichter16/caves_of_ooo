@@ -125,10 +125,10 @@ namespace CavesOfOoo.Core
             var torch = ParentEntity.GetPart<TorchLightPart>();
             if (torch != null && !torch.CanSplitSafely()) { torch.ReportSplitRefusal(); return null; }
 
+            var clone = ParentEntity.CloneForStack();
             StackCount -= count;
             ThrowingRules.OnStackChanged(ParentEntity);
             RefreshCarriedOwners(ParentEntity);
-            var clone = ParentEntity.CloneForStack();
             clone.GetPart<StackerPart>().StackCount = count;
             ConnectedClayProvenance.Split(ParentEntity, clone, count);
             return clone;
@@ -147,10 +147,10 @@ namespace CavesOfOoo.Core
             var torch = ParentEntity.GetPart<TorchLightPart>();
             if (torch != null && !torch.CanSplitSafely()) { torch.ReportSplitRefusal(); return null; }
 
+            var clone = ParentEntity.CloneForStack();
             StackCount--;
             ThrowingRules.OnStackChanged(ParentEntity);
             RefreshCarriedOwners(ParentEntity);
-            var clone = ParentEntity.CloneForStack();
             clone.GetPart<StackerPart>().StackCount = 1;
             ConnectedClayProvenance.Split(ParentEntity, clone, 1);
             return clone;

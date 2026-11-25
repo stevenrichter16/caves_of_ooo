@@ -65,11 +65,12 @@ namespace CavesOfOoo.Core
         internal bool Begin(Entity item,InventoryTransaction tx,string command)
             => Contains(item) && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked()!=true
                 && tx.TryClaim(actor,actor,command) && tx.TryClaim(Box,actor,command) && tx.TryClaim(item,actor,command);
-        internal bool Consume(Entity item,InventoryTransaction tx)
+        internal bool Consume(Entity item,InventoryTransaction tx,bool allowClayStamp)
         {
             if(!Contains(item))return false;
-            var state=MaterialProcessTemplate.Capture(ForgePart.Factory,item.BlueprintName)?.Snapshot(item,true);
-            return state!=null && MaterialProcessPayment.Spend(actor,item,Box,zone,tx,state.Matches);
+            var state=MaterialProcessTemplate.Capture(ForgePart.Factory,item.BlueprintName)?.Snapshot(item,true,allowClayStamp);
+            return state!=null && MaterialProcessPayment.Spend(actor,item,Box,zone,tx,state.Matches,
+                allowClayStamp?()=>state.MatchesAfterPayment(1):null);
         }
 
     }

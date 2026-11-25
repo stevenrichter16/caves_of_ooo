@@ -74,6 +74,57 @@ namespace CavesOfOoo.Tests
             Pack.RemoveObject(Pack.Objects.Single(e=>e.BlueprintName=="LeatherBindingComponent"));Stock(box,"LeatherBindingComponent");
             Assert.True(Act(box,Choice(box,Prefix)));Assert.AreEqual(1,Count("GuardLashingComponent"));Assert.IsEmpty(box.GetPart<ContainerPart>().Contents);
         }
+
+        [TestCase("make steam condenser", "SteamCondenser", 1, 3, false)]
+        [TestCase("make hearth nozzle", "HearthNozzle", 2, 2, false)]
+        [TestCase("make hearth nozzle", "HearthNozzle", 2, 3, true)]
+        [TestCase("make hearth nozzle", "HearthNozzle", 2, 2, true)]
+        public void OwnBoxForgePaymentSpendsAndRestoresTheExactClayUnits(
+            string label, string result, int quantity, int initialCount, bool interrupted)
+        {
+            Place("TinkersForge", 10, 11);
+            var box = Box();
+            var container = box.GetPart<ContainerPart>();
+            var spike = Stock(box, "IronSpikeComponent");
+            var clay = Stock(box, "FireClay");
+            string key = Guid.NewGuid().ToString("N");
+            Assert.True(ConnectedSpreadProgress.BindClay(clay, key, 0));
+            var origin = clay.GetPart<ConnectedClayOriginPart>();
+            var stack = clay.GetPart<StackerPart>();
+            stack.StackCount = initialCount;
+            origin.Units = 3;
+            var packClay = Carry("FireClay");
+            Assert.That(Count("FireClay"), Is.EqualTo(1));
+
+            string action = Choice(box, Prefix, a => a.Display.StartsWith(label, StringComparison.Ordinal));
+            int remaining = initialCount - quantity;
+            int paidMask = quantity == 1 ? 2 : 0;
+            bool sawPayment = false;
+            Actor.AddPart(new After { Callback = () =>
+            {
+                sawPayment = true;
+                Assert.That(origin.Units, Is.EqualTo(paidMask));
+                Assert.That(stack.StackCount, Is.EqualTo(Math.Max(1, remaining)));
+                Assert.That(container.Contents.Contains(clay), Is.EqualTo(remaining > 0));
+                Assert.That(Count(result), Is.EqualTo(1));
+            } });
+            if (interrupted) FailAfter();
+
+            Assert.That(Act(box, action), Is.EqualTo(!interrupted));
+            Assert.True(sawPayment);
+            Assert.That(stack.StackCount, Is.EqualTo(interrupted ? initialCount : Math.Max(1, remaining)));
+            Assert.That(origin.Units, Is.EqualTo(interrupted ? 3 : paidMask));
+            Assert.That(origin.WorldKey, Is.EqualTo(key));
+            Assert.That(origin.OwnerID, Is.EqualTo(clay.ID));
+            Assert.That(clay.GetPart<ConnectedClayOriginPart>(), Is.SameAs(origin));
+            Assert.That(container.Contents.Contains(clay), Is.EqualTo(interrupted || remaining > 0));
+            Assert.That(clay.GetPart<PhysicsPart>().InInventory, Is.SameAs(interrupted || remaining > 0 ? box : null));
+            Assert.That(container.Contents.Contains(spike), Is.EqualTo(interrupted));
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "FireClay"), Is.SameAs(packClay));
+            Assert.That(Count("FireClay"), Is.EqualTo(1));
+            Assert.That(Count(result), Is.EqualTo(interrupted ? 0 : 1));
+        }
+
         [TestCase("locked")] [TestCase("handed-over")] [TestCase("loose")] [TestCase("far")] [TestCase("hidden")]
         [TestCase("no-tool")] [TestCase("town-chest")] [TestCase("duplicate-id")]
         public void AccessAndExactCustodyAreRequired(string change)

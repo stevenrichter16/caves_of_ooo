@@ -123,6 +123,118 @@ namespace CavesOfOoo.Tests
             Assert.True(Act(spike,command));Assert.AreEqual(0,Count("IronSpikeComponent"));Assert.AreEqual(0,Count(extra));Assert.AreEqual(1,Count(result));
             var tool=Pack.Objects.Single(e=>e.BlueprintName==result);Assert.AreEqual(0,Stored(tool));Assert.False(tool.HasPart<StackerPart>());
         }
+
+        [TestCase("make_steam_condenser", "SteamCondenser", 1, false)]
+        [TestCase("make_hearth_nozzle", "HearthNozzle", 2, false)]
+        [TestCase("make_hearth_nozzle", "HearthNozzle", 2, true)]
+        public void ForgePaysFromTheExactCarriedClayStackAndPreservesUnspentProvenance(
+            string recipe, string result, int quantity, bool interrupted)
+        {
+            Place("TinkersForge");
+            var spike = Carry("IronSpikeComponent");
+            var clay = Carry("FireClay");
+            string key = Guid.NewGuid().ToString("N");
+            Assert.True(ConnectedSpreadProgress.BindClay(clay, key, 0));
+            var origin = clay.GetPart<ConnectedClayOriginPart>();
+            var stack = clay.GetPart<StackerPart>();
+            stack.StackCount = 3;
+            origin.Units = 3;
+
+            string action = Choice(spike, "MaterialProcess|" + recipe + "|");
+            bool sawPayment = false;
+            Actor.AddPart(new Probe { Run = e =>
+            {
+                if (e.ID != "AfterInventoryAction") return;
+                sawPayment = true;
+                Assert.That(stack.StackCount, Is.EqualTo(3 - quantity));
+                Assert.That(origin.Units, Is.EqualTo(quantity == 1 ? 2 : 0));
+                Assert.That(Count(result), Is.EqualTo(1));
+            } });
+            if (interrupted) FailAfter();
+
+            Assert.That(Act(spike, action), Is.EqualTo(!interrupted));
+            Assert.True(sawPayment);
+            Assert.That(stack.StackCount, Is.EqualTo(interrupted ? 3 : 3 - quantity));
+            Assert.That(origin.Units, Is.EqualTo(interrupted ? 3 : quantity == 1 ? 2 : 0));
+            Assert.That(origin.WorldKey, Is.EqualTo(key));
+            Assert.That(origin.OwnerID, Is.EqualTo(clay.ID));
+            Assert.That(clay.GetPart<ConnectedClayOriginPart>(), Is.SameAs(origin));
+            Assert.That(clay.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.That(Count("IronSpikeComponent"), Is.EqualTo(interrupted ? 1 : 0));
+            Assert.That(Count(result), Is.EqualTo(interrupted ? 0 : 1));
+        }
+
+        [TestCase(null)]
+        [TestCase("NoDropOnDeath")]
+        [TestCase("Temporary")]
+        public void AFullMarkedPaymentRefundObeysTheActualDeathDropPolicy(string noDropTag)
+        {
+            Place("TinkersForge");
+            var spike = Carry("IronSpikeComponent");
+            var clay = Carry("FireClay");
+            Assert.True(ConnectedSpreadProgress.BindClay(clay, Guid.NewGuid().ToString("N"), 0));
+            if (noDropTag != null) Actor.SetTag(noDropTag);
+            string action = Choice(spike, "MaterialProcess|make_steam_condenser|");
+            bool sawPayment = false;
+            Actor.AddPart(new Probe { Run = e =>
+            {
+                if (e.ID != "AfterInventoryAction") return;
+                sawPayment = true;
+                Assert.False(Pack.Objects.Contains(clay));
+                Assert.That(clay.GetPart<ConnectedClayOriginPart>().Units, Is.Zero);
+                CombatSystem.HandleDeath(Actor, null, Zone);
+            } });
+
+            Assert.False(Act(spike, action));
+            Assert.True(sawPayment);
+            Assert.True(CombatSystem.IsDeathHandled(Actor));
+            Assert.That(Zone.GetReadOnlyEntities().Count(e => e.ID == clay.ID), Is.EqualTo(noDropTag == null ? 1 : 0));
+            Assert.That(clay.GetPart<ConnectedClayOriginPart>().Units, Is.EqualTo(noDropTag == null ? 1 : 0));
+        }
+
+        [Test]
+        public void CarriedForgeRefundLeavesAnIndependentlyMovedMarkedRemainderOnTheGround()
+        {
+            Place("TinkersForge");
+            var spike = Carry("IronSpikeComponent");
+            var clay = Carry("FireClay");
+            string key = Guid.NewGuid().ToString("N");
+            Assert.True(ConnectedSpreadProgress.BindClay(clay, key, 0));
+            var origin = clay.GetPart<ConnectedClayOriginPart>();
+            var stack = clay.GetPart<StackerPart>();
+            stack.StackCount = 2;
+            origin.Units = 3;
+            int health = Actor.GetStatValue("Hitpoints");
+            string action = Choice(spike, "MaterialProcess|make_steam_condenser|");
+            bool sawPayment = false;
+            Actor.AddPart(new Probe { Run = e =>
+            {
+                if (e.ID != "AfterInventoryAction") return;
+                sawPayment = true;
+                Assert.That(stack.StackCount, Is.EqualTo(1));
+                Assert.That(origin.Units, Is.EqualTo(2));
+                Assert.That(Count("SteamCondenser"), Is.EqualTo(1));
+                Assert.True(Pack.RemoveObject(clay));
+                Assert.True(Zone.AddEntity(clay, 13, 10));
+                Actor.GetStat("Hitpoints").BaseValue--;
+            } });
+
+            Assert.False(Act(spike, action));
+            Assert.True(sawPayment);
+            Assert.That(Actor.GetStatValue("Hitpoints"), Is.EqualTo(health - 1));
+            Assert.That(Zone.GetEntityPosition(clay), Is.EqualTo((13, 10)));
+            Assert.That(Zone.GetCell(13, 10).Objects.Single(e => e.BlueprintName == "FireClay"), Is.SameAs(clay));
+            Assert.False(Pack.Objects.Contains(clay));
+            Assert.That(clay.GetPart<PhysicsPart>().InInventory, Is.Null);
+            Assert.That(clay.GetPart<ConnectedClayOriginPart>(), Is.SameAs(origin));
+            Assert.That(origin.OwnerID, Is.EqualTo(clay.ID));
+            Assert.That(origin.WorldKey, Is.EqualTo(key));
+            Assert.That(origin.Units, Is.EqualTo(3));
+            Assert.That(stack.StackCount, Is.EqualTo(2));
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "IronSpikeComponent"), Is.SameAs(spike));
+            Assert.That(Count("SteamCondenser"), Is.Zero);
+        }
+
         [Test] public void ExplicitComponentPermissionIncludingDenialAlwaysWins()
         {
             Place("TinkersForge");var spike=Carry("IronSpikeComponent");Carry("KnotflaxCord");spike.AddPart(new MaterialProcessInputPart{ProcessIds=""});

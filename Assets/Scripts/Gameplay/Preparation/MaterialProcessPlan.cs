@@ -130,8 +130,15 @@ namespace CavesOfOoo.Core
         internal bool InputAvailable(Entity input)=>Stock==null?PreparationActions.Carried(Actor,input):Stock.Contains(input);
         internal bool BeginInput(Entity input,CavesOfOoo.Core.Inventory.InventoryTransaction tx,string command)
             => Stock==null?PreparationActions.Begin(Actor,input,Zone,tx,command):Stock.Begin(input,tx,command);
+        internal bool IndividuallyPaidClay(Entity input)
+            => Stock==null && input!=Source && input.BlueprintName=="FireClay" && input.HasPart<ConnectedClayOriginPart>();
         internal bool Consume(Entity input,CavesOfOoo.Core.Inventory.InventoryTransaction tx)
-            => Stock==null?pack.TryConsumeMaterialProcessUnit(input,tx):Stock.Consume(input,tx);
+        {
+            if (Stock != null) return Stock.Consume(input,tx,input!=Source && input.BlueprintName=="FireClay");
+            if (!IndividuallyPaidClay(input)) return pack.TryConsumeMaterialProcessUnit(input,tx);
+            var state=MaterialProcessTemplate.Capture(Factory,input.BlueprintName)?.Snapshot(input,true,allowClayStamp:true);
+            return state!=null && MaterialProcessPayment.Spend(Actor,input,Actor,Zone,tx,state.Matches,()=>state.MatchesAfterPayment(1));
+        }
         public bool Current()
             => ContextCurrent() && Source.ID==SourceId && Source.BlueprintName==Definition.SourceBlueprint
                 && Source.Parts.SequenceEqual(sourceParts) && Source.GetPart<PhysicsPart>()==physics
@@ -163,9 +170,10 @@ namespace CavesOfOoo.Core
         internal static MaterialProcessIngredient Resolve(Entity actor,Entity source,Entity tool,string blueprint,int units,EntityFactory factory,MaterialProcessStock stock=null)
         {
             var template=MaterialProcessTemplate.Capture(factory,blueprint);if(template==null)return null;
+            bool allowClayStamp=blueprint=="FireClay";
             var choices=(stock?.Container.Contents??actor.GetPart<InventoryPart>().Objects).Where(e=>e?.BlueprintName==blueprint && e!=source && e!=tool
                 && !string.IsNullOrEmpty(e.ID) && Count(e)>=units && (stock==null?PreparationActions.Carried(actor,e):stock.Contains(e)))
-                .Select(e=>new {Owner=e,State=template.Snapshot(e,true),Plain=template.Snapshot(e)!=null}).Where(e=>e.State!=null).ToArray();
+                .Select(e=>new {Owner=e,State=template.Snapshot(e,true,allowClayStamp),Plain=template.Snapshot(e,allowClayStamp:allowClayStamp)!=null}).Where(e=>e.State!=null).ToArray();
             // Legacy first and unchanged: any single sufficient stack keeps its exact choice, and the deliberate ambiguity refusal (several sufficient stacks with a non-plain one) stays a refusal.
             if(choices.Length>1 && choices.Any(e=>!e.Plain))return null;
             if(choices.Length>0)
@@ -181,9 +189,10 @@ namespace CavesOfOoo.Core
         /// </summary>
         static MaterialProcessIngredient Pool(Entity actor,Entity source,Entity tool,string blueprint,int units,MaterialProcessTemplate template,MaterialProcessStock stock=null)
         {
+            bool allowClayStamp=blueprint=="FireClay";
             var siblings=(stock?.Container.Contents??actor.GetPart<InventoryPart>().Objects).Where(e=>e?.BlueprintName==blueprint && e!=source && e!=tool && e!=actor
                 && !string.IsNullOrEmpty(e.ID) && Count(e)>=1 && (stock==null?PreparationActions.Carried(actor,e):stock.Contains(e)) && !MaterialProcessService.IsProtected(e))
-                .Select(e=>new {Owner=e,State=template.Snapshot(e,true),Plain=template.Snapshot(e)!=null}).Where(e=>e.State!=null && e.Plain)
+                .Select(e=>new {Owner=e,State=template.Snapshot(e,true,allowClayStamp),Plain=template.Snapshot(e,allowClayStamp:allowClayStamp)!=null}).Where(e=>e.State!=null && e.Plain)
                 .OrderBy(e=>Count(e.Owner)).ThenBy(e=>e.Owner.ID,StringComparer.Ordinal).ToArray();
             if(siblings.Length<2 || siblings.Sum(e=>Count(e.Owner))<units)return null;
             var anchor=siblings[0].Owner;
@@ -194,6 +203,9 @@ namespace CavesOfOoo.Core
                 if(remaining<=0)break;
                 int take=Math.Min(remaining,Count(e.Owner));takes.Add(new Take(e.Owner,take,e.State));remaining-=take;
             }
+            if(allowClayStamp)
+                for(int i=0;i<takes.Count;i++)for(int j=i+1;j<takes.Count;j++)
+                    if(!ConnectedClayProvenance.CanMerge(takes[i].Owner,takes[j].Owner))return null;
             return remaining==0?new MaterialProcessIngredient(takes.ToArray(),template,stock):null;
         }
         internal bool Before(Entity actor)=>template.Current() && Takes.All(t=>t.State.Matches() && Count(t.Owner)==t.OriginalCount && Available(actor,t.Owner));
@@ -202,7 +214,7 @@ namespace CavesOfOoo.Core
             if(!template.Current())return false;
             foreach(var t in Takes)
             {
-                if(!t.State.Matches() || Count(t.Owner)!=Math.Max(1,t.OriginalCount-t.Units))return false;
+                if(!t.State.MatchesAfterPayment(t.Units) || Count(t.Owner)!=Math.Max(1,t.OriginalCount-t.Units))return false;
                 if(t.OriginalCount>t.Units){if(!Available(actor,t.Owner))return false;continue;}
                 var p=t.Owner.GetPart<PhysicsPart>();
                 if(!(t.Owner.SpatialZone==null && p.InInventory==null && p.Equipped==null && !actor.GetPart<InventoryPart>().Objects.Contains(t.Owner)))return false;

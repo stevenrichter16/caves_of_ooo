@@ -1,3 +1,14 @@
+**Original cellar clay stacks and pays for ordinary work — November 25 UTC, 2026.**
+Both original counts and their saved origin survived ordinary pickup and fresh
+Continue in the Gleaners’ cellar. On the surface the exact recovered stack
+paid for the well. The prepared clay stayed in the pack, water became
+available, and the repaired result survived a fresh load. The final focused
+run passed 467 executable checks, including the 15 reproduced failures
+that exposed the issue. The larger inherited project regression remains open.
+The next distinct trial is source-side screening that can leave the coarse
+fraction in the world as recoverable stock.
+[Evidence](Verification/MachineSystems/OriginalClayHandling20261125/README.md)
+
 **The worn crossing changes a local porter fare — November 25 UTC, 2026.**
 In seed 64, the actual five-pound box quoted 25 steps and eight drams with
 the wall standing. Ordinary strikes exposed a 23-step seven-dram path. The

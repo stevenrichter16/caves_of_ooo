@@ -17,10 +17,13 @@ namespace CavesOfOoo.Core
         static int Count(Entity item) => item?.GetPart<StackerPart>()?.StackCount ?? 1;
         internal static int Mask(Entity item, string key) => Valid(item, Count(item))
             && item.GetPart<ConnectedClayOriginPart>().WorldKey == key ? item.GetPart<ConnectedClayOriginPart>().Units : 0;
+        internal static bool CompatibleStamp(Entity owner, Part stamp)
+            => stamp != null && stamp == owner?.GetPart<ConnectedClayOriginPart>() && Valid(owner, Count(owner));
         static bool Valid(Entity item, int count)
         {
             var part = item?.GetPart<ConnectedClayOriginPart>();
-            return part != null && part.ParentEntity == item && item.BlueprintName == "FireClay" && part.OwnerID == item.ID
+            return part != null && part.ParentEntity == item && item.BlueprintName == "FireClay"
+                && !string.IsNullOrEmpty(item.ID) && part.OwnerID == item.ID
                 && ConnectedSpreadProgress.ValidKey(part.WorldKey) && (part.Units & ~3) == 0 && part.Units >= 0
                 && Bits(part.Units) <= count && item.Parts.Count(p => p is ConnectedClayOriginPart) == 1;
         }
@@ -61,8 +64,11 @@ namespace CavesOfOoo.Core
             readonly ConnectedClayOriginPart part; readonly string key, owner; readonly int units;
             internal Snapshot(Entity item)
             { part = item?.GetPart<ConnectedClayOriginPart>(); key = part?.WorldKey; owner = part?.OwnerID; units = part?.Units ?? 0; }
-            internal bool Changed(Entity item)
-            { var now = item?.GetPart<ConnectedClayOriginPart>(); return now != part || now != null && (now.WorldKey != key || now.OwnerID != owner || now.Units != units); }
+            internal bool Changed(Entity item, int spent = 0)
+            {
+                var now = item?.GetPart<ConnectedClayOriginPart>();
+                return now != part || now != null && (now.WorldKey != key || now.OwnerID != owner || now.Units != (units & ~First(units, spent)));
+            }
             internal void Restore(Entity item)
             {
                 if (item == null) return;

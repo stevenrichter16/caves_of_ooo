@@ -20,7 +20,32 @@ namespace CavesOfOoo.Tests
         [Test] public void RawStructuralCloneDoesNotMintASecondOriginalUnit()
         {
             var source=Clay(0);var clone=source.CloneForStack();Assert.AreNotEqual(source.ID,clone.ID);
+            Assert.AreEqual(0,clone.GetPart<ConnectedClayOriginPart>().Units);
+            Assert.AreEqual(1,source.GetPart<ConnectedClayOriginPart>().Units);
             Zone.AddEntity(clone,4,4);Assert.True(Pick(clone));Assert.AreEqual(0,XP);Assert.False(Actor.HasPart<ConnectedSpreadProgressPart>());
+        }
+        [TestCase("overlap")]
+        [TestCase("foreign world")]
+        [TestCase("wrong owner")]
+        [TestCase("invalid mask")]
+        [TestCase("unknown part")]
+        public void UnsafeClayOriginsCannotTransferThroughAStack(string fault)
+        {
+            var target = Clay(0);
+            var incoming = Clay(1);
+            var origin = incoming.GetPart<ConnectedClayOriginPart>();
+            if (fault == "overlap") origin.Units = 1;
+            if (fault == "foreign world") origin.WorldKey = Guid.NewGuid().ToString("N");
+            if (fault == "wrong owner") origin.OwnerID = target.ID;
+            if (fault == "invalid mask") origin.Units = 4;
+            if (fault == "unknown part") incoming.AddPart(new ThrowTaken());
+            int original = origin.Units;
+
+            Assert.False(target.GetPart<StackerPart>().CanStackWith(incoming));
+            Assert.That(target.GetPart<StackerPart>().MergeFrom(incoming), Is.Zero);
+            Assert.That(target.GetPart<ConnectedClayOriginPart>().Units, Is.EqualTo(1));
+            Assert.That(origin.Units, Is.EqualTo(original));
+            Assert.That(incoming.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
         }
         [Test] public void UnknownWorldOrNonplayerDoesNotAcquireExplorationAwards()
         {
@@ -35,10 +60,21 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void FailedTakenCallbackRestoresMergedQuantitiesAndOriginMarkers()
         {
-            var clay=Stores();Supply("FireClay",4);var existing=Pack.Objects.Single();clay.AddPart(new ThrowTaken());
-            Assert.False(Take(clay));Assert.AreEqual(0,XP);Assert.AreEqual(4,existing.GetPart<StackerPart>().StackCount);Assert.False(existing.HasPart<ConnectedClayOriginPart>());
+            var clay=Stores();Supply("FireClay",4);var existing=Pack.Objects.Single();
+            bool observedMerge=false;
+            var previous=MessageLog.OnMessage;
+            MessageLog.OnMessage=message=>
+            {
+                if (!message.StartsWith("You take ",StringComparison.Ordinal)) return;
+                observedMerge=existing.GetPart<StackerPart>().StackCount==6 && existing.GetPart<ConnectedClayOriginPart>()?.Units==3;
+                throw new InvalidOperationException("original clay merge rollback probe");
+            };
+            try { Assert.False(Take(clay)); }
+            finally { MessageLog.OnMessage=previous; }
+            Assert.True(observedMerge);
+            Assert.AreEqual(0,XP);Assert.AreEqual(4,existing.GetPart<StackerPart>().StackCount);Assert.False(existing.HasPart<ConnectedClayOriginPart>());
             Assert.AreEqual(2,clay.GetPart<StackerPart>().StackCount);Assert.AreEqual(3,clay.GetPart<ConnectedClayOriginPart>().Units);Assert.Contains(clay,Cache.GetPart<ContainerPart>().Contents);
-            clay.RemovePart(clay.GetPart<ThrowTaken>());Assert.True(Take(clay));Assert.AreEqual(30,XP);
+            Assert.True(Take(clay));Assert.AreEqual(30,XP);
         }
         [Test] public void ExplicitRollbackRestoresLedgerAndDoesNotAnnounceOrGrantXP()
         {
@@ -56,7 +92,7 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void PartialMergeMovesOnlyTheOriginalUnitThatActuallyFit()
         {
-            var clay=Stores();var ordinary=Factory.CreateEntity("FireClay");ordinary.GetPart<StackerPart>().MaxStack=1;ordinary.GetPart<StackerPart>().StackCount=0;
+            var clay=Stores();var ordinary=Factory.CreateEntity("FireClay");var stack=ordinary.GetPart<StackerPart>();stack.StackCount=stack.MaxStack-1;
             Assert.AreEqual(1,ordinary.GetPart<StackerPart>().MergeFrom(clay));Assert.AreEqual(1,ordinary.GetPart<ConnectedClayOriginPart>().Units);Assert.AreEqual(2,clay.GetPart<ConnectedClayOriginPart>().Units);
             Zone.AddEntity(ordinary,4,4);Assert.True(Pick(ordinary));Assert.AreEqual(0,XP);Assert.True(Take(clay));Assert.AreEqual(30,XP);
         }

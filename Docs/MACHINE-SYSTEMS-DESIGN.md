@@ -1,3 +1,12 @@
+**Original cellar clay keeps its provenance in ordinary work — November 25 UTC, 2026.**
+The exact original clay measures can combine, split and move through ordinary
+custody without becoming a second set of original stock. The same measures
+remain valid for existing work, including a forge bill or a lined well. The
+clay stamp follows the units paid, and effects from an independent interruption
+remain in force. The well trial used the recovered original stack while keeping
+both purchased prepared measures.
+[Evidence](Verification/MachineSystems/OriginalClayHandling20261125/README.md)
+
 **Physical clearance can lower a local fare — November 25 UTC, 2026.**
 The worn Gleaners’ crossing demonstrates that a useful change to real
 geometry affects the next hire through the existing live path quote. The
