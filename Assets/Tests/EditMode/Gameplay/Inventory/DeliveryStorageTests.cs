@@ -13,6 +13,8 @@ namespace CavesOfOoo.Tests
         private const string Parcel = "LiningClayParcel";
         private const string Shelf = "LiningClayReceivingShelf";
         private const string Prepared = "PreparedLiningClay";
+        private const string Tray = "LiningClaySupplyTray";
+        private const string TakeOnePrefix = "TakeOneLooseClay|";
 
         [Test]
         public void MixedClayRemainsPhysicalThroughSelfCarryAndRestoresTheWellAfterRetrieval()
@@ -175,6 +177,181 @@ namespace CavesOfOoo.Tests
             Assert.That(parcelStock.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
         }
 
+        [Test]
+        public void OnePoundOfRoomTakesOneOriginalMarkedMeasureAndLeavesTheOtherInTheTray()
+        {
+            using var content = new HaulingContentScope();
+            content.Seed(64);
+            var manager = OverworldZoneManager.CreateDetached(content.Factory, 64, true);
+            var surface = manager.GetZone(GleanersDistrict.SurfaceID);
+            var cellar = manager.GetZone(GleanersCellarBuilder.ZoneID);
+            var cache = cellar.GetReadOnlyEntities().Single(e => e.GetProperty(GleanersCellarBuilder.RoleKey) == "supplies");
+            var stock = cache.GetPart<ContainerPart>().Contents.Single(e => e.BlueprintName == "FireClay");
+            var origin = stock.GetPart<ConnectedClayOriginPart>();
+            Assert.That(origin.Units, Is.EqualTo(3));
+            Assert.That(origin.WorldKey, Is.EqualTo(manager.Exploration.WorldKey));
+            Assert.True(Zone.RemoveEntity(Actor));
+            Zone = cellar;
+            manager.SetActiveZone(Zone);
+            SettlementRuntime.ActiveZone = Zone;
+            var cacheCell = cellar.GetEntityPosition(cache);
+            Assert.True(cellar.AddEntity(Actor, cacheCell.x - 1, cacheCell.y));
+            Assert.True(Take(cache, stock).Success);
+            Assert.True(cellar.TryTransferEntityTo(Actor, surface, 42, 10));
+            Zone = surface;
+            manager.SetActiveZone(Zone);
+            SettlementRuntime.ActiveZone = Zone;
+            var tray = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Tray);
+            var trayCell = Zone.GetEntityCell(tray);
+            trayCell.IsVisible = trayCell.Explored = true;
+            var contents = tray.GetPart<ContainerPart>().Contents;
+            Assert.True(Put(tray, stock).Success);
+            Pack.MaxWeight = Pack.GetCarriedWeight() + 1;
+            int weightBefore = Pack.GetCarriedWeight();
+            int money = TradeSystem.GetDrams(Actor);
+            int experience = Actor.GetStatValue("Experience");
+            Assert.That(CellMenu(42, 9).Any(a => a.Command == "OpenContainer"), Is.True);
+            Assert.False(Take(tray, stock).Success, "Ordinary take still needs room for both pounds.");
+
+            var row = TakeOneRows(42, 9).Single();
+            Assert.That(row.Display + " " + row.Hint, Does.Contain("1 lb"));
+            Assert.True(ChooseRow(row, 42, 9));
+            Assert.That(contents.Single(), Is.SameAs(stock));
+            Assert.That(stock.GetPart<PhysicsPart>().InInventory, Is.SameAs(tray));
+            Assert.That(stock.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(origin.OwnerID, Is.EqualTo(stock.ID));
+            Assert.That(origin.Units, Is.EqualTo(2));
+            var carried = Pack.Objects.Single(e => e.BlueprintName == "FireClay");
+            var carriedOrigin = carried.GetPart<ConnectedClayOriginPart>();
+            Assert.That(carried.ID, Is.Not.EqualTo(stock.ID));
+            Assert.That(carried.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(carried.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.That(carriedOrigin.OwnerID, Is.EqualTo(carried.ID));
+            Assert.That(carriedOrigin.WorldKey, Is.EqualTo(origin.WorldKey));
+            Assert.That(carriedOrigin.Units, Is.EqualTo(1));
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(weightBefore + 1));
+            Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(money));
+            Assert.That(Actor.GetStatValue("Experience"), Is.EqualTo(experience));
+            Assert.That(tray.GetPart<DeliveryStoragePart>().ContentsWithdrawn, Is.False);
+            Assert.That(TakeOneRows(42, 9), Is.Empty);
+            Assert.That(CellMenu(42, 9).Any(a => a.Command == "OpenContainer"), Is.True);
+        }
+
+        [Test]
+        public void TakingOneMeasureMergesIntoTheExistingPackStackWithoutChangingTotalMass()
+        {
+            var tray = Place(Tray, 11, 10);
+            var trayCell = Zone.GetEntityCell(tray);
+            trayCell.IsVisible = trayCell.Explored = true;
+            var stock = Carry(Prepared);
+            stock.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(Put(tray, stock).Success);
+            var resident = Carry(Prepared);
+            int carriedBefore = Pack.GetCarriedWeight();
+            int totalBefore = carriedBefore + InventoryPart.GetItemWeight(stock);
+            Pack.MaxWeight = carriedBefore + 1;
+
+            var row = TakeOneRows(11, 10).Single();
+            Assert.True(ChooseRow(row, 11, 10));
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == Prepared), Is.SameAs(resident));
+            Assert.That(resident.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(resident.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.That(resident.GetPart<ConnectedClayOriginPart>(), Is.Null);
+            Assert.That(tray.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(stock));
+            Assert.That(stock.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(stock.GetPart<PhysicsPart>().InInventory, Is.SameAs(tray));
+            Assert.That(stock.GetPart<ConnectedClayOriginPart>(), Is.Null);
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(carriedBefore + 1));
+            Assert.That(Pack.GetCarriedWeight() + InventoryPart.GetItemWeight(stock), Is.EqualTo(totalBefore));
+        }
+
+        [Test]
+        public void AlteredPreparedGradeHidesTakeOneAndRefusesThePreviouslyValidRow()
+        {
+            var tray = Place(Tray, 11, 10);
+            var trayCell = Zone.GetEntityCell(tray);
+            trayCell.IsVisible = trayCell.Explored = true;
+            var stock = Carry(Prepared);
+            stock.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(Put(tray, stock).Success);
+            var row = TakeOneRows(11, 10).Single();
+            stock.GetPart<RepairMaterialPart>().Grade = "raw";
+
+            Assert.That(TakeOneRows(11, 10), Is.Empty);
+            Assert.False(ChooseRow(row, 11, 10));
+            Assert.That(tray.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(stock));
+            Assert.That(stock.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(stock.GetPart<RepairMaterialPart>().Grade, Is.EqualTo("raw"));
+            Assert.That(stock.GetPart<PhysicsPart>().InInventory, Is.SameAs(tray));
+            Assert.That(Pack.Objects.Any(e => e.BlueprintName == Prepared), Is.False);
+        }
+
+        [Test]
+        public void AlteredRawWeightKeepsOrdinaryTakeButHidesTheOneMeasureQuote()
+        {
+            var tray = Place(Tray, 11, 10);
+            var cell = Zone.GetCell(11, 10);
+            cell.IsVisible = cell.Explored = true;
+            var stock = Carry("FireClay");
+            stock.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(Put(tray, stock).Success);
+            var old = TakeOneRows(11, 10).Single();
+
+            stock.GetPart<PhysicsPart>().Weight = 2;
+            Assert.That(TakeOneRows(11, 10), Is.Empty);
+            Assert.False(ChooseRow(old, 11, 10));
+            Assert.That(tray.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(stock));
+            Assert.That(stock.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.True(Take(tray, stock).Success);
+        }
+
+        [Test]
+        public void OldTakeOneQuoteCannotWithdrawFromAnEquivalentReplacementStack()
+        {
+            var tray = Place(Tray, 11, 10);
+            var trayCell = Zone.GetEntityCell(tray);
+            trayCell.IsVisible = trayCell.Explored = true;
+            var original = Carry(Prepared);
+            original.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(Put(tray, original).Success);
+            var old = TakeOneRows(11, 10).Single();
+            Assert.True(Take(tray, original).Success);
+            Assert.True(InventorySystem.ExecuteCommand(new DropCommand(original), Actor, Zone).Success);
+            var replacement = Carry(Prepared);
+            replacement.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(Put(tray, replacement).Success);
+
+            Assert.False(ChooseRow(old, 11, 10));
+            Assert.That(tray.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(replacement));
+            Assert.That(replacement.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(replacement.GetPart<PhysicsPart>().InInventory, Is.SameAs(tray));
+            Assert.That(original.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(Zone.GetEntityCell(original), Is.SameAs(Zone.GetEntityCell(Actor)));
+            Assert.That(Pack.Objects.Any(e => e.BlueprintName == Prepared), Is.False);
+            var fresh = TakeOneRows(11, 10).Single();
+            Assert.That(fresh.Command, Is.Not.EqualTo(old.Command));
+            Assert.True(ChooseRow(fresh, 11, 10));
+            Assert.That(replacement.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void PackedBoxAndReceivingShelfKeepTheirOrdinaryOpenRowsWithoutLooseTakeOne()
+        {
+            var parcel = Place(Parcel, 10, 10);
+            var shelf = Place(Shelf, 11, 10);
+            var stock = Carry(Prepared);
+            stock.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(Put(parcel, stock).Success);
+            Assert.That(CellMenu(10, 10).Any(a => a.Command == "OpenContainer"), Is.True);
+            Assert.That(TakeOneRows(10, 10), Is.Empty);
+            Assert.True(Pick(parcel).Success);
+            Assert.True(Put(shelf, parcel).Success);
+            Assert.That(CellMenu(11, 10).Any(a => a.Command == "OpenContainer"), Is.True);
+            Assert.That(TakeOneRows(11, 10), Is.Empty);
+            Assert.That(shelf.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(parcel));
+            Assert.That(parcel.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(stock));
+        }
+
         [TestCase(false)]
         [TestCase(true)]
         public void DirectContainerCommandsRefuseRemoteOrMismatchedZoneAccess(bool wrongZone)
@@ -317,6 +494,9 @@ namespace CavesOfOoo.Tests
         }
 
         private static int Distance((int x, int y) a, (int x, int y) b) => Math.Max(Math.Abs(a.x - b.x), Math.Abs(a.y - b.y));
+
+        private InventoryAction[] TakeOneRows(int x, int y) => CellMenu(x, y)
+            .Where(a => a.Command?.StartsWith(TakeOnePrefix, StringComparison.Ordinal) == true).ToArray();
 
         private Entity PlaceLooseTray()
         {

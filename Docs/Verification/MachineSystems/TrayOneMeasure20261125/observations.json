@@ -1,0 +1,1085 @@
+{
+  "cooPartialTrayStart": {
+    "tick": 1160,
+    "zone": "Overworld.11.10.0",
+    "state": "Normal",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 12,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": [
+        {
+          "ID": "2f1867ae27ef4cbb92de76deda9362dd",
+          "BlueprintName": "FireClay",
+          "n": 2,
+          "origin": 3,
+          "holder": "2703"
+        }
+      ]
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": false
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      }
+    ],
+    "wm": null,
+    "pickup": null
+  },
+  "cooPartialTrayOffer": {
+    "tick": 1160,
+    "zone": "Overworld.11.10.0",
+    "state": "WorldActionMenuOpen",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 12,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": [
+        {
+          "ID": "2f1867ae27ef4cbb92de76deda9362dd",
+          "BlueprintName": "FireClay",
+          "n": 2,
+          "origin": 3,
+          "holder": "2703"
+        }
+      ]
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": false
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      }
+    ],
+    "wm": {
+      "target": "LiningClaySupplyTray",
+      "highlight": "TakeOneLooseClay|2703|2704|2f1867ae27ef4cbb92de76deda9362dd|FireClay|1|3",
+      "rows": [
+        {
+          "Command": "OpenContainer",
+          "Display": "open",
+          "Hint": ""
+        },
+        {
+          "Command": "TakeOneLooseClay|2703|2704|2f1867ae27ef4cbb92de76deda9362dd|FireClay|1|3",
+          "Display": "take one measure of fire clay",
+          "Hint": "1 lb. Take one of two and leave one here."
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": ""
+        }
+      ]
+    },
+    "pickup": null
+  },
+  "cooPartialTrayTaken": {
+    "tick": 1170,
+    "zone": "Overworld.11.10.0",
+    "state": "Normal",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 13,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": [
+        {
+          "ID": "2f1867ae27ef4cbb92de76deda9362dd",
+          "BlueprintName": "FireClay",
+          "n": 1,
+          "origin": 2,
+          "holder": "2703"
+        }
+      ]
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": false
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "9d4654882e8d47bca773b647d9b61841",
+        "BlueprintName": "FireClay",
+        "n": 1,
+        "origin": 1,
+        "holder": "2704"
+      }
+    ],
+    "wm": null,
+    "pickup": null
+  },
+  "cooPartialTrayFresh": {
+    "tick": 1170,
+    "zone": "Overworld.11.10.0",
+    "state": "Normal",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 13,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": [
+        {
+          "ID": "2f1867ae27ef4cbb92de76deda9362dd",
+          "BlueprintName": "FireClay",
+          "n": 1,
+          "origin": 2,
+          "holder": "2703"
+        }
+      ]
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": false
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "9d4654882e8d47bca773b647d9b61841",
+        "BlueprintName": "FireClay",
+        "n": 1,
+        "origin": 1,
+        "holder": "2704"
+      }
+    ],
+    "wm": null,
+    "pickup": null
+  },
+  "cooPartialTrayRemainderMenu": {
+    "tick": 1170,
+    "zone": "Overworld.11.10.0",
+    "state": "PickupOpen",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 13,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": [
+        {
+          "ID": "2f1867ae27ef4cbb92de76deda9362dd",
+          "BlueprintName": "FireClay",
+          "n": 1,
+          "origin": 2,
+          "holder": "2703"
+        }
+      ]
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": false
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "9d4654882e8d47bca773b647d9b61841",
+        "BlueprintName": "FireClay",
+        "n": 1,
+        "origin": 1,
+        "holder": "2704"
+      }
+    ],
+    "wm": null,
+    "pickup": [
+      {
+        "ID": "2f1867ae27ef4cbb92de76deda9362dd",
+        "BlueprintName": "FireClay",
+        "n": 1,
+        "origin": 2,
+        "holder": "2703"
+      }
+    ]
+  },
+  "cooPartialTrayRecovered": {
+    "tick": 1180,
+    "zone": "Overworld.11.10.0",
+    "state": "Normal",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 14,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": []
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": false
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "9d4654882e8d47bca773b647d9b61841",
+        "BlueprintName": "FireClay",
+        "n": 2,
+        "origin": 3,
+        "holder": "2704"
+      }
+    ],
+    "wm": null,
+    "pickup": null
+  },
+  "cooPartialTrayRepairMenu": {
+    "tick": 1180,
+    "zone": "Overworld.11.10.0",
+    "state": "WorldActionMenuOpen",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 14,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": []
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": false
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "9d4654882e8d47bca773b647d9b61841",
+        "BlueprintName": "FireClay",
+        "n": 2,
+        "origin": 3,
+        "holder": "2704"
+      }
+    ],
+    "wm": {
+      "target": "RepairLinedWell",
+      "highlight": "RepairObject",
+      "rows": [
+        {
+          "Command": "RepairObject",
+          "Display": "patch the well lining (2 measures of fire clay or prepared lining clay, in any mix)",
+          "Hint": ""
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": ""
+        }
+      ]
+    },
+    "pickup": null
+  },
+  "cooPartialTrayRepaired": {
+    "tick": 1190,
+    "zone": "Overworld.11.10.0",
+    "state": "Normal",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 12,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": []
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": true
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      }
+    ],
+    "wm": null,
+    "pickup": null
+  },
+  "cooPartialTrayDrawMenu": {
+    "tick": 1190,
+    "zone": "Overworld.11.10.0",
+    "state": "WorldActionMenuOpen",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 12,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": []
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": true
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      }
+    ],
+    "wm": {
+      "target": "RepairLinedWell",
+      "highlight": "DrawWaterAtWell",
+      "rows": [
+        {
+          "Command": "DrawWaterAtWell",
+          "Display": "draw water",
+          "Hint": ""
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": ""
+        }
+      ]
+    },
+    "pickup": null
+  },
+  "cooPartialTrayWellUsed": {
+    "s": {
+      "tick": 1190,
+      "zone": "Overworld.11.10.0",
+      "state": "Normal",
+      "p": {
+        "ID": "2704",
+        "X": 41,
+        "Y": 9,
+        "weight": 12,
+        "hp": 27,
+        "drams": 50
+      },
+      "tray": {
+        "ID": "2703",
+        "at": {
+          "Item1": 42,
+          "Item2": 9
+        },
+        "stock": []
+      },
+      "shelf": {
+        "ID": "2700",
+        "n": 0
+      },
+      "box": {
+        "ID": "2699",
+        "n": 0
+      },
+      "well": {
+        "ID": "2694",
+        "at": {
+          "Item1": 41,
+          "Item2": 8
+        },
+        "usable": true
+      },
+      "pack": [
+        {
+          "ID": "2705",
+          "BlueprintName": "Dagger",
+          "n": 1,
+          "origin": null,
+          "holder": "2704"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "n": 2,
+          "origin": null,
+          "holder": "2704"
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "n": 2,
+          "origin": null,
+          "holder": "2704"
+        },
+        {
+          "ID": "2708",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1,
+          "origin": null,
+          "holder": "2704"
+        },
+        {
+          "ID": "2709",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4,
+          "origin": null,
+          "holder": "2704"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2,
+          "origin": null,
+          "holder": "2704"
+        }
+      ],
+      "wm": null,
+      "pickup": null
+    },
+    "msgs": [
+      "The lining is repaired. A fresh clay seam holds the drawn water.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "The wet coating wears off marlback scrabbler.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Kesset Rillpost, warden is covered in wet.",
+      "Kesset Rillpost, warden is drenched.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You drink. The well water is cool."
+    ]
+  },
+  "cooPartialTrayWellFresh": {
+    "tick": 1190,
+    "zone": "Overworld.11.10.0",
+    "state": "Normal",
+    "p": {
+      "ID": "2704",
+      "X": 41,
+      "Y": 9,
+      "weight": 12,
+      "hp": 27,
+      "drams": 50
+    },
+    "tray": {
+      "ID": "2703",
+      "at": {
+        "Item1": 42,
+        "Item2": 9
+      },
+      "stock": []
+    },
+    "shelf": {
+      "ID": "2700",
+      "n": 0
+    },
+    "box": {
+      "ID": "2699",
+      "n": 0
+    },
+    "well": {
+      "ID": "2694",
+      "at": {
+        "Item1": 41,
+        "Item2": 8
+      },
+      "usable": true
+    },
+    "pack": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Dagger",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4,
+        "origin": null,
+        "holder": "2704"
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2,
+        "origin": null,
+        "holder": "2704"
+      }
+    ],
+    "wm": null,
+    "pickup": null
+  },
+  "cooPartialTrayFinalIdle": {
+    "playing": false,
+    "root": null,
+    "dirty": false,
+    "profiling": false,
+    "total": 7,
+    "builtin": 7,
+    "selected": 0,
+    "viewOwned": false
+  }
+}

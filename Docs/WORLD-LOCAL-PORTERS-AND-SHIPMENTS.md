@@ -70,6 +70,15 @@ manifest v25. A blocked fitting position leaves the ordinary district and
 its services available. Older saved and cold legacy districts remain literal.
 [Evidence](Verification/MachineSystems/PublicClayTray20261125/README.md)
 
+The public tray offers a direct one-measure choice when a
+public tray holds one exact two-measure stack. Its remaining measure keeps
+the original owner. Normal pack merge is allowed, but the chosen physical
+unit and its provenance must arrive exactly once. Existing Open and whole
+take are still available when the player has the room. The receiving shelf
+and delivery box keep their separate custody rules. This comparison uses an
+earned full tray and the well’s existing two-measure bill.
+[Evidence](Verification/MachineSystems/TrayOneMeasure20261125/README.md)
+
 ## A clearing with a measurable fare
 
 Roadmap 18 can start at the worn crossing wall in Gleaners’. The living

@@ -134,6 +134,11 @@ cross-seed comparisons remain open.
     personal carrying and explicitly quoted smaller batches before advertising
     another mode. Retain local hauling/sled work only where existing load and
     route rules admit it.
+    The public Gleaners’ tray now gives a real one-pound withdrawal choice
+    beside the ordinary whole take. The smaller load preserved both physical
+    origins and later supplied the same well repair. The native capacity
+    comparison admitted one carried pound where the whole stack refused.
+    [Evidence](Verification/MachineSystems/TrayOneMeasure20261125/README.md)
 
 12. **Compare complete costs.** Show actions, total carried mass, capacity,
     consumed material, discarded fractions, fuel/water and fees where relevant.

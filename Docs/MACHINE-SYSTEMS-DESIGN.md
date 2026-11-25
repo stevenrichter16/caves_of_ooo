@@ -1,3 +1,10 @@
+**Clay can move in separate one-pound trips — November 25 UTC, 2026.**
+The public tray presents a one-measure choice for one eligible stack of
+two. It uses existing exact clay marks, stack merge, capacity and custody.
+The second measure stays physically in the same tray stack. Actual play
+took both independently and used their merged stack in the ordinary well.
+[Evidence](Verification/MachineSystems/TrayOneMeasure20261125/README.md)
+
 **Rain and portable watering share crop work — November 25 UTC, 2026.**
 A new Sodden shelter can guide one currently available shower portion into
 its exact dry bed. It uses the shared crop moisture receipt and the existing

@@ -1,11 +1,12 @@
 using System;
 using System.Linq;
 using CavesOfOoo.Core.Inventory;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>Admits suitable clay to a parcel, a handover shelf, or public loose storage.</summary>
-    public sealed class DeliveryStoragePart : Part
+    public sealed class DeliveryStoragePart : Part, IPostCommitInventoryActionNotification
     {
         public override string Name => "DeliveryStorage";
         public bool ReceivesParcels;
@@ -13,7 +14,103 @@ namespace CavesOfOoo.Core
         public bool ContentsWithdrawn;
 
         private const int Measures = 2;
+        private const string TakeOnePrefix = "TakeOneLooseClay|";
         private bool IsFixed => ReceivesParcels || AcceptsLooseStock;
+
+        public bool OwnsInventoryReceipt(string command) => AcceptsLooseStock && command?.StartsWith(TakeOnePrefix, StringComparison.Ordinal) == true;
+        public bool NotifyAfterCommit(string command) => OwnsInventoryReceipt(command);
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (!AcceptsLooseStock) return true;
+            var actor = e.GetParameter<Entity>("Actor");
+            var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone;
+            if (e.ID == "GetInventoryActions")
+            {
+                var stock = SingleStack(actor, zone, out _);
+                if (stock != null)
+                    e.GetParameter<InventoryActionList>("Actions")?.AddActionWithHint("Take one measure",
+                        $"take one measure of {InventoryPart.GetUnitDisplayName(stock)}", TakeOneQuote(actor, stock),
+                        $"{HandlingService.GetWeight(stock)} lb. Take one of two and leave one here.", '\0', 23, time: ActionTime.OneAction);
+            }
+            if (e.ID != "InventoryAction" || !OwnsInventoryReceipt(e.GetStringParameter("Command"))) return true;
+            e.Handled = TryTakeOne(actor, zone, e.GetStringParameter("Command"), e.GetParameter<InventoryTransaction>("InventoryTransaction"));
+            return !e.Handled;
+        }
+
+        private Entity SingleStack(Entity actor, Zone zone, out MaterialProcessTemplate template)
+        {
+            template = null;
+            var tray = ParentEntity;
+            if (!CanReach(actor, zone) || LocalPorterReservationPart.Blocks(tray) || tray.HasPart<ContainedLiquidSourcePart>()) return null;
+            var items = tray.GetPart<ContainerPart>().Contents;
+            if (items.Count != 1 || ReadMeasures(zone) != Measures) return null;
+            var stock = items[0];
+            if (!CanWithdraw(actor, stock, zone) || LocalPorterReservationPart.Blocks(stock)
+                || stock.GetPart<StackerPart>()?.CanSplit() != true || !HandlingService.CanLift(actor, stock, out _)) return null;
+            int weight = HandlingService.GetWeight(stock);
+            var pack = actor.GetPart<InventoryPart>();
+            if (weight <= 0 || pack.MaxWeight >= 0 && (long)pack.GetCarriedWeight() + weight > pack.MaxWeight) return null;
+            var factory = WorldLocationContext.For(zone)?.Factory ?? HarvestablePart.Factory;
+            template = MaterialProcessTemplate.Capture(factory, stock.BlueprintName);
+            return template?.Matches(stock, allowClayStamp: true) == true ? stock : null;
+        }
+
+        private string TakeOneQuote(Entity actor, Entity stock) =>
+            $"{TakeOnePrefix}{ParentEntity.ID}|{actor.ID}|{stock.ID}|{stock.BlueprintName}|{HandlingService.GetWeight(stock)}|{stock.GetPart<ConnectedClayOriginPart>()?.Units ?? 0}";
+
+        private bool TryTakeOne(Entity actor, Zone zone, string command, InventoryTransaction tx)
+        {
+            if (tx == null) return false;
+            var stock = SingleStack(actor, zone, out var template);
+            if (stock == null || TakeOneQuote(actor, stock) != command) return false;
+            var tray = ParentEntity;
+            var container = tray.GetPart<ContainerPart>();
+            var pack = actor.GetPart<InventoryPart>();
+            var stack = stock.GetPart<StackerPart>();
+            var payload = template.Snapshot(stock, allowClayStamp: true);
+            if (payload == null || !tx.TryClaim(actor, actor, command) || !tx.TryClaim(tray, actor, command)
+                || !tx.TryClaim(stock, actor, command)) return false;
+
+            var unit = stock.CloneForStack();
+            unit.GetPart<StackerPart>().StackCount = 1;
+            if (!payload.Matches() || !template.Matches(unit, allowClayStamp: true) || SingleStack(actor, zone, out _) != stock
+                || TakeOneQuote(actor, stock) != command || actor.GetPart<InventoryPart>() != pack
+                || !WatchLooseTransfer(actor, zone, tx, -1) || !tx.TryClaim(unit, actor, command)) return false;
+
+            var progress = ConnectedSpreadProgress.CaptureTransfer(actor, stock, zone, tray);
+            var gathering = LocalGatheringClaims.CaptureTake(actor, stock, zone, tray);
+            var source = InventoryTransferSnapshot.Capture(container);
+            var destination = InventoryTransferSnapshot.Capture(pack, unit);
+            tx.Do(null, source.Restore);
+            tx.Do(null, destination.Restore);
+            if (!source.Apply(() => { stack.StackCount--; ConnectedClayProvenance.Split(stock, unit, 1); return true; })) return false;
+            string world = LocalGatheringClaims.WorldKeyFor(zone);
+            int remainingMark = ConnectedClayProvenance.Mask(stock, world);
+            int deliveredMark = ConnectedClayProvenance.Mask(unit, world);
+            Entity received = null;
+            if (!destination.Apply(() => pack.AddCraftedUnitWithinCapacity(unit, out received))
+                || !destination.ClaimChanges(tx, actor, command)) return false;
+            int receivedCount = received.GetPart<StackerPart>().StackCount;
+            tx.BeforeCommit(() => actor.GetPart<InventoryPart>() == pack && tray.GetPart<ContainerPart>() == container
+                && container.Contents.Count == 1 && container.Contents[0] == stock && stock.GetPart<StackerPart>() == stack && stack.StackCount == 1
+                && ConnectedClayProvenance.Mask(stock, world) == remainingMark && Unique(received, pack.Objects)
+                && PreparationActions.Carried(actor, received) && received.GetPart<StackerPart>()?.StackCount == receivedCount
+                && (ConnectedClayProvenance.Mask(received, world) & deliveredMark) == deliveredMark
+                && (pack.MaxWeight < 0 || pack.GetCarriedWeight() <= pack.MaxWeight));
+            tx.AfterCommit(() =>
+            {
+                var taken = GameEvent.New("Taken");
+                taken.SetParameter("Actor", (object)actor);
+                taken.SetParameter("Item", (object)unit);
+                unit.FireEventAndRelease(taken);
+                MessageLog.Add($"You take one measure of {InventoryPart.GetUnitDisplayName(unit)} and leave the other in the tray.");
+                Diag.Record("event", "LooseClayMeasureTaken", actor, received, new { tray = tray.ID, source = stock.ID, unit = unit.ID, deliveredMark, remainingMark });
+            });
+            LocalGatheringClaims.RecordTake(gathering, tx, unit);
+            ConnectedSpreadProgress.RecordTransfer(progress, tx);
+            return true;
+        }
 
         internal bool CanReach(Entity actor, Zone zone)
         {

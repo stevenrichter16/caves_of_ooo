@@ -1,3 +1,11 @@
+**One existing measure can be taken from the public tray — November 25 UTC, 2026.**
+The earned Gleaners’ load offered one pound or a whole take. Ordinary use
+split the original provenance across two physical owners, and fresh Continue
+preserved them. An ordinary second retrieval reunited them and the well
+spent both in its existing repair. The next work is the committed porter
+and receiving receipts for the same bounded delivery lifecycle.
+[Evidence](Verification/MachineSystems/TrayOneMeasure20261125/README.md)
+
 **A shower can water the Sodden sumpsieve bed — November 25 UTC, 2026.**
 Fresh version 26 adds an optional one-portion channel at Sella’s shelter.
 Normal travel, native actions and waiting took the dry crop from the channel
