@@ -68,8 +68,10 @@ namespace CavesOfOoo.Core
         internal static bool IsPayload(Entity owner)
         {
             LoadDefaults();if(owner==null)return false;
-            if(owner.HasPart<SiftableStockPart>() || HarvestablePart.Factory?.Blueprints.TryGetValue(owner.BlueprintName,out var bp)==true
-                && bp?.Parts?.ContainsKey("SiftableStock")==true)RememberPayload(owner.BlueprintName);
+            if(owner.HasPart<SiftableStockPart>() || owner.HasPart<RepairMaterialPart>()
+                || HarvestablePart.Factory?.Blueprints.TryGetValue(owner.BlueprintName,out var bp)==true
+                && (bp?.Parts?.ContainsKey("SiftableStock")==true || bp?.Parts?.ContainsKey("RepairMaterial")==true))
+                RememberPayload(owner.BlueprintName);
             return owner.HasPart<MaterialProcessInputPart>() || KnownPayloads.Contains(owner.BlueprintName);
         }
         // Classification is sticky within this runtime, including permission

@@ -116,7 +116,9 @@ namespace CavesOfOoo.Tests
             Assert.False(zone.GetEntityCell(crop).Objects.Any(e => e.BlueprintName == "StoneFloor"));
             Assert.AreEqual(2,crop.GetPart<CropPart>().GrowthStage); Assert.AreEqual(2,crop.GetPart<CropPart>().YieldCount); Assert.AreEqual(1,crop.GetPart<CropPart>().SeedYieldCount);
             var cook = One(zone,"resident"); Assert.AreEqual(35,TradeSystem.GetDrams(cook));
-            Assert.AreEqual(5,cook.GetPart<InventoryPart>().Objects.Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
+            var stock = cook.GetPart<InventoryPart>().Objects;
+            Assert.AreEqual(2, stock.Single(e => e.BlueprintName == "PreparedLiningClay").GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(5, stock.Where(e => e.BlueprintName != "PreparedLiningClay").Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
             var batch = One(zone,"pan").GetPart<KitchenBatchPart>(); Assert.True(batch.Configured);
             Assert.AreSame(cook,batch.Worker); Assert.AreSame(One(zone,"escrow"),batch.Escrow); Assert.AreSame(One(zone,"pickup"),batch.Pickup);
             Assert.AreEqual("Idle",batch.State); Assert.IsEmpty(batch.Escrow.GetPart<ContainerPart>().Contents); Assert.IsEmpty(batch.Pickup.GetPart<ContainerPart>().Contents);

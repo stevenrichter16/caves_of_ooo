@@ -105,7 +105,9 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(32, packet.Length); Assert.AreEqual(15, packet.Count(e => e.GetProperty(Role) == "court-floor"));
             Assert.AreEqual(20, cook.GetStatValue("Hitpoints")); Assert.True(cook.GetPart<BrainPart>().Passive);
             Assert.AreEqual("WaysideCookStock", cook.GetPart<TraderPart>().StockTable); Assert.AreEqual(35, TradeSystem.GetDrams(cook));
-            Assert.AreEqual(5, cook.GetPart<InventoryPart>().Objects.Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
+            var stock = cook.GetPart<InventoryPart>().Objects;
+            Assert.AreEqual(2, stock.Single(e => e.BlueprintName == "PreparedLiningClay").GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(5, stock.Where(e => e.BlueprintName != "PreparedLiningClay").Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
             var pan = packet.Single(e => e.GetProperty(Role) == "pan").GetPart<KitchenBatchPart>();
             Assert.True(pan.Configured); Assert.AreSame(cook, pan.Worker); Assert.AreEqual("Idle", pan.State);
             var plan = SpreadCompositionPlan.Create(Kitchen, seed, Formation.Hedgerow,

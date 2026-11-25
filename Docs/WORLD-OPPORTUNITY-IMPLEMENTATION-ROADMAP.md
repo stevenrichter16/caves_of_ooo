@@ -41,11 +41,23 @@ NPC shipments and their new seeded logistics opportunities remain proposals.
 Existing seeded Spread roads and bounded hauling situations are useful starting
 points; they do not establish the full proposed logistical experience.
 
-The central compatibility gap is exact blueprint matching: structural and
-place-site repairs name materials, place sites can name a required tool, and
-registered processes name their sources and extra ingredients. Explicit tool
-capabilities exist, but material demand cannot yet accept several independently
-qualified results through one suitability rule.
+Most place-site and structural repairs still name materials or tools, and
+registered processes name their sources and extra ingredients. A first shared
+structural payment accepts explicit lining-clay suitability for two recipes.
+Receiving and shipment demand still need that suitability boundary.
+
+## Work queue and evidence
+
+Implement the 45 requirements in connected slices. Once a slice is verified
+and recorded, start the next unblocked slice in the same run. The scheduled
+check-in provides continued work across runs.
+
+| Slice | Requirements and status |
+| --- | --- |
+| Clay suitability and repair result | 1, 4–8 have bounded well/pan evidence. 2 is implemented for those repair payments and shared preview. Its receiving and shipment use remains open. 3 is observed with carried stock and still needs actual receiving storage. |
+| First paid physical delivery | In progress. Use an actual receiving shelf, player carry and one paid porter, with observable well use. This begins the physical storage, custody, routing, fare and interruption requirements. |
+| Selected NPC shipments and overdue searches | Planned after the physical delivery can serve an actual recipient. Preserve the user's expected date, personal or delegated search, and possible player meeting with members of that party. |
+| Contrasting generated opportunities and seasons | Planned after the relevant same-outcome logistics work. Seasonal local materials and work require their own useful consumers. |
 
 ## Priority 1: make needs and benefits independent of method
 
@@ -321,6 +333,38 @@ fractions, automatic production and dynamic markets. None is a prerequisite for
 the bounded experience above, and none inherits acceptance from it.
 
 ## Source map for implementation
+
+### First compatibility trial
+
+The clay-lined well and Orven's batch pan share a two-unit payment. Each can
+accept one grade of prepared lining clay alongside ordinary fire clay. Each
+unit contributes one measure. The two recipes opt in explicitly. Exact fire
+clay remains valid, including old saves and the marked clay from Gleaners'
+cellar. The field work rig and hand pump still require their own exact bills.
+
+Prepared lining clay is a separately authored plain commodity. A finite
+opening reserve of two measures at a fresh wayside cook gives it a paid
+acquisition route. Opening stock already has an allocation fence, so the lot
+can sell out without reappearing through regular restock. The resident's food
+range remains available. The preparation and clay-working context follow the
+surface functional pottery in [Material Culture](../Lore/History/08_MaterialCulture.md).
+
+The structural recipe reads the prepared grade from the actual carried
+item and check its canonical payload. Raw clods, spoil, mire, grit and attached
+private state cannot fill the bill. The payment stays in the native repair
+transaction, with exact owners, quantity and existing clay provenance. The
+existing repair readers describe the accepted materials without listing
+a specific stack from the pack. Validate the selected stock before paying
+and verify its commitment after the action's callbacks. Inventory stacking
+and save/load must preserve or reject changes to the grade.
+
+Actual play used prepared clay from a finite shop allocation on both fixtures.
+The well provided the same ordinary drink action previously earned with Fire
+Clay from screening. The patched pan displayed the normal commission instructions.
+Mixed payments, invalid stock and interrupted payments have targeted native
+tests. Purchase and the two separate repairs have fresh Continue evidence.
+The planned porter receiver still needs lawful storage and a shared admission
+check. [Evidence](Verification/MachineSystems/CompatibleRepairMaterial20261124/README.md)
 
 - Exact material/tool requirements: [structural repair](../Assets/Scripts/Gameplay/Repairs/RepairablePart.cs)
   and [place-site checks](../Assets/Scripts/Gameplay/Settlements/PlaceSiteRepairs.cs).

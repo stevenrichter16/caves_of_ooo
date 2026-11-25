@@ -28407,6 +28407,29 @@
       ]
     },
     {
+      "Name": "PreparedLiningClay",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "prepared lining clay" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Weight", "Value": "1" },
+          { "Key": "Category", "Value": "Materials" }
+        ] },
+        { "Name": "Stacker", "Params": [{ "Key": "MaxStack", "Value": "20" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "2" }] },
+        { "Name": "RepairMaterial", "Params": [{ "Key": "Grade", "Value": "lining-clay" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Potter's clay kneaded for patching fired linings. Use these measures in a clay-lined catch well or in a cracked batch pan." }
+        ] }
+      ]
+    },
+    {
       "Name": "WatchLantern",
       "Inherits": "PhysicalObject",
       "Parts": [
@@ -47076,6 +47099,14 @@
               "Value": "WaysideCookStock"
             },
             {
+              "Key": "OpeningStockBlueprint",
+              "Value": "PreparedLiningClay"
+            },
+            {
+              "Key": "OpeningStockUnits",
+              "Value": "2"
+            },
+            {
               "Key": "Drams",
               "Value": "35"
             }
@@ -59768,7 +59799,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "A shallow clay pan for wrapped expedition meals. The open oven beside it remains free to use. Repair the split with two fire clay, then commission Orven: two emberwheat, one claspbean pulp and two drams. A batch takes 120 world ticks. Leave the tied ingredients alone; interruption returns only what remains, and the fee is kept."
+              "Value": "A shallow clay pan for wrapped expedition meals. The open oven beside it remains free to use. Repair the split with two measures of fire clay or prepared lining clay, then commission Orven: two emberwheat, one claspbean pulp and two drams. A batch takes 120 world ticks. Leave the tied ingredients alone; interruption returns only what remains, and the fee is kept."
             }
           ]
         },

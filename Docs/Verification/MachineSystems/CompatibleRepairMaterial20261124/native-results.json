@@ -1,0 +1,231 @@
+{
+  "red": {
+    "total": 6,
+    "passed": 2,
+    "failed": 4,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compile_errors": 0,
+    "failures": [
+      {
+        "test": "APartialBillCanCombineLegacyAndPreparedClay",
+        "message": "Expected: True\n  But was:  False"
+      },
+      {
+        "test": "FreshCookSellsTwoMeasuresAndRepeatedCreationDoesNotRefill",
+        "message": "Expected: 2\n  But was:  0"
+      },
+      {
+        "test": "TwoPreparedMeasuresRestoreTheSameStructuralFunction(\"RepairLinedWell\")",
+        "message": "Expected: True\n  But was:  False"
+      },
+      {
+        "test": "TwoPreparedMeasuresRestoreTheSameStructuralFunction(\"ConnectedBatchPan\")",
+        "message": "Expected: True\n  But was:  False"
+      }
+    ],
+    "artifacts": {
+      "coo-compatible-repair-red-20261124.xml": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-red-20261124.xml.gz",
+        "body_sha256": "25d211aa3277f94456db12739c20a52a04c04168320384699c5ef9c6746b847d",
+        "gzip_sha256": "9dcc03ab3dec0b8954d727984f817ad345436f96cd8d6be45dfedcdcb85da513"
+      },
+      "coo-compatible-repair-red-20261124.log": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-red-20261124.log.gz",
+        "body_sha256": "bc2350557ba4972c00e2b00e29976f5e29dee516ce2c4625083eec7f4b48658d",
+        "gzip_sha256": "eb9947e8a9cdf8d3ec1d63d3d6c4acaecc022f32b735a1ed3afdc2a58a6a296c"
+      }
+    }
+  },
+  "targeted": {
+    "total": 173,
+    "passed": 173,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compile_errors": 0,
+    "failures": [],
+    "artifacts": {
+      "coo-compatible-repair-targeted-20261124.xml": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-targeted-20261124.xml.gz",
+        "body_sha256": "60d79b97ad555b8d2f8873f01b8d80473ff3908b643358b579558722a525c5a2",
+        "gzip_sha256": "61602ee0239fedb9d713e42b1108e9dc7227cb6ad4772582d60e78007c8a4b04"
+      },
+      "coo-compatible-repair-targeted-20261124.log": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-targeted-20261124.log.gz",
+        "body_sha256": "bb72b025a1ffc5576c981248758e2e63f7dfe6f6defd4ef8c7753fefc29365ba",
+        "gzip_sha256": "1fc72871eacb32c61754ebee6860af18f83d773e924ab4ab9da7ec20353e35cf"
+      }
+    }
+  },
+  "readers": {
+    "total": 213,
+    "passed": 213,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compile_errors": 0,
+    "failures": [],
+    "artifacts": {
+      "coo-compatible-repair-readers-20261124.xml": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-readers-20261124.xml.gz",
+        "body_sha256": "61f8916aae31ad27fb99135fb9092cd45fdf186cababcea2c1094a0e561bd2fe",
+        "gzip_sha256": "6c046eb9cde1c96c593cfd01682551ccad607b11f004dce295e139bca58b06f7"
+      },
+      "coo-compatible-repair-readers-20261124.log": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-readers-20261124.log.gz",
+        "body_sha256": "fed2dc13c2b95ad6e3fceff23e36f9ce8ff38ea5a77c75b2435c6f749c14f657",
+        "gzip_sha256": "ee50fec87d6ba7218abc79354a0f0c39fc43d409946dd873d1190e022e8cf99e"
+      }
+    }
+  },
+  "death-red": {
+    "total": 4,
+    "passed": 0,
+    "failed": 4,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compile_errors": 0,
+    "failures": [
+      {
+        "test": "LateDeathKeepsTheUnpaidRepairMaterialsWithTheGroundDrops(\"PreparedLiningClay\",2)",
+        "message": "Expected: same as <Cell(10,10) [0 objects]>\n  But was:  null"
+      },
+      {
+        "test": "LateDeathKeepsTheUnpaidRepairMaterialsWithTheGroundDrops(\"PreparedLiningClay\",3)",
+        "message": "Expected: 3\n  But was:  1"
+      },
+      {
+        "test": "LateDeathKeepsTheUnpaidRepairMaterialsWithTheGroundDrops(\"FireClay\",2)",
+        "message": "Expected: same as <Cell(10,10) [0 objects]>\n  But was:  null"
+      },
+      {
+        "test": "LateDeathKeepsTheUnpaidRepairMaterialsWithTheGroundDrops(\"FireClay\",3)",
+        "message": "Expected: 3\n  But was:  1"
+      }
+    ],
+    "artifacts": {
+      "coo-compatible-repair-death-red-20261124.xml": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-death-red-20261124.xml.gz",
+        "body_sha256": "4e5ac25b963ff37f72eea33e3e50f2e46e3e08b26b836816cc32653643765e3d",
+        "gzip_sha256": "68b20fed2a1220dd8e925e8da6717b54b9b791673f9abc83530cf8a69a26c879"
+      },
+      "coo-compatible-repair-death-red-20261124.log": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-death-red-20261124.log.gz",
+        "body_sha256": "9430831b22ad65fef9d8818356399cfdf1245faf384c0c17342404c791f32139",
+        "gzip_sha256": "774a8c3ac0ba30355d541b2e92b03f4bcc8bd4572945ab96e40be036b711cec8"
+      }
+    }
+  },
+  "final": {
+    "total": 217,
+    "passed": 217,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compile_errors": 0,
+    "failures": [],
+    "artifacts": {
+      "coo-compatible-repair-final-20261124.xml": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-final-20261124.xml.gz",
+        "body_sha256": "989d73cf36cadaafb9d20090a4f554bb9b724bdc17c9878d7dcf7cb1b33ef874",
+        "gzip_sha256": "41e8933d51bbc88b5dc9ab5a4048c88d144d762bdbf759ccb0b7ba2c973d5216"
+      },
+      "coo-compatible-repair-final-20261124.log": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-final-20261124.log.gz",
+        "body_sha256": "0d4fe889b271669cbe645d71fce1b8e5d880596e51a9161ed9ac3d4e6f5ae51e",
+        "gzip_sha256": "8263e87e6c66eb1005276f75df5ad498f7de55bdee962be8269b717e2e6ca6a8"
+      }
+    }
+  },
+  "site-red": {
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compile_errors": 0,
+    "failures": [
+      {
+        "test": "EachNearbyNativeExampleActuallyCommitsWithoutEditingTerrain(64,\"Overworld.12.11.0\",\"SpreadWaysideCook\")",
+        "message": "Assignment alone is not a usable nearby site: 64 Overworld.12.11.0\n  Expected: 2\n  But was:  1"
+      },
+      {
+        "test": "EachNearbyNativeExampleActuallyCommitsWithoutEditingTerrain(1729,\"Overworld.12.11.0\",\"SpreadWaysideCook\")",
+        "message": "Assignment alone is not a usable nearby site: 1729 Overworld.12.11.0\n  Expected: 2\n  But was:  1"
+      }
+    ],
+    "artifacts": {
+      "coo-compatible-repair-site-red-20261124.xml": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-site-red-20261124.xml.gz",
+        "body_sha256": "8a0408e47f411c840b7d63ec373feee764cb4873ef5fff6f30a803e1377d39eb",
+        "gzip_sha256": "7d34f51239b09208fcfb6a199fd9061d5694ff131b69b78cc96751c548e24fa0"
+      },
+      "coo-compatible-repair-site-red-20261124.log": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-site-red-20261124.log.gz",
+        "body_sha256": "7cef856b28f908d6981b1c9ad9ee7ac2489bb5f0df4680af2276479d40e528bd",
+        "gzip_sha256": "153930b31a03d624022208cb2a0c6a9f1f3d0b91c01e8356a0c2c5dc641955d9"
+      }
+    }
+  },
+  "cook-final": {
+    "total": 331,
+    "passed": 329,
+    "failed": 2,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compile_errors": 0,
+    "failures": [
+      {
+        "test": "OriginalCellarClayDryRootAndSurfaceWellCarryFiniteWorldSources",
+        "message": "System.InvalidOperationException : Sequence contains more than one matching element"
+      },
+      {
+        "test": "OriginalFieldResidentsHaveActualRoleStockAndSmallPurses(\"SpreadSeedKeeper\",\"SpreadSeedKeeper_1\",40)",
+        "message": "Expected: 8\n  But was:  10"
+      }
+    ],
+    "artifacts": {
+      "coo-compatible-repair-cook-final-20261124.xml": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-cook-final-20261124.xml.gz",
+        "body_sha256": "35e09d5d39454c8b421c02acc171beb3eec8e4fbe154359d1e6280c6f2e8c864",
+        "gzip_sha256": "e390a08379d184282e4b4c8add0a1082c06bf7a2e7975564753bb6bc253faa2e"
+      },
+      "coo-compatible-repair-cook-final-20261124.log": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-cook-final-20261124.log.gz",
+        "body_sha256": "b11fefde601211c60f3241121b4ba562ca4b37e8287bc887b8008d0094f0ad80",
+        "gzip_sha256": "ce88fa41691c6213132d57682a835e2ea579a9c6f7f474536ab6fc7c023d6645"
+      }
+    }
+  },
+  "prior-two": {
+    "total": 3,
+    "passed": 1,
+    "failed": 2,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compile_errors": 0,
+    "failures": [
+      {
+        "test": "OriginalCellarClayDryRootAndSurfaceWellCarryFiniteWorldSources",
+        "message": "System.InvalidOperationException : Sequence contains more than one matching element"
+      },
+      {
+        "test": "OriginalFieldResidentsHaveActualRoleStockAndSmallPurses(\"SpreadSeedKeeper\",\"SpreadSeedKeeper_1\",40)",
+        "message": "Expected: 8\n  But was:  10"
+      }
+    ],
+    "artifacts": {
+      "coo-compatible-repair-prior-two-20261124.xml": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-prior-two-20261124.xml.gz",
+        "body_sha256": "4ddeac82cc03bc5b2074eb94949543442f31a99b49b820df67744b4c008665f2",
+        "gzip_sha256": "3514291a16e600e970f33e65881e1c86fd115e2808c7bf8bad1e41e29df7c2d7"
+      },
+      "coo-compatible-repair-prior-two-20261124.log": {
+        "path": "Docs/Verification/MachineSystems/CompatibleRepairMaterial20261124/coo-compatible-repair-prior-two-20261124.log.gz",
+        "body_sha256": "c5de9dde6bbd4381b55be1718e7ad41975616f4c0fa14fbdb3b1f0c96a5bc3f1",
+        "gzip_sha256": "414cf4be076f55249ed8a87cdec1cccb576551e8107d1197ba36a9b1ba713e19"
+      }
+    }
+  }
+}

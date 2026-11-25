@@ -36,7 +36,8 @@ namespace CavesOfOoo.Core
         const string BrokenPanName = "split clay batch pan";
         const string PanDescriptionStart = "A shallow clay pan for wrapped expedition meals. The open oven beside it remains free to use. ";
         const string PanCommissionDetails = "two emberwheat, one claspbean pulp and two drams. A batch takes 120 world ticks. Leave the tied ingredients alone; interruption returns only what remains, and the fee is kept.";
-        const string BrokenPanDescription = PanDescriptionStart + "Repair the split with two fire clay, then commission Orven: " + PanCommissionDetails;
+        const string FormerBrokenPanDescription = PanDescriptionStart + "Repair the split with two fire clay, then commission Orven: " + PanCommissionDetails;
+        const string BrokenPanDescription = PanDescriptionStart + "Repair the split with two measures of fire clay or prepared lining clay, then commission Orven: " + PanCommissionDetails;
         const string RepairedPanDescription = PanDescriptionStart + "Commission Orven: " + PanCommissionDetails;
 
         // Presentation only: repaired saves retain their original authored fields.
@@ -61,8 +62,11 @@ namespace CavesOfOoo.Core
             ? "clay batch pan" : authoredName;
 
         /// <summary>Removes the obsolete repair instruction only from the canonical repaired-pan prose.</summary>
-        internal string ResolveDescription(string authoredText) => authoredText == BrokenPanDescription && HasRepairedPanReadout()
-            ? RepairedPanDescription : authoredText;
+        internal string ResolveDescription(string authoredText)
+        {
+            if (authoredText != BrokenPanDescription && authoredText != FormerBrokenPanDescription) return authoredText;
+            return HasRepairedPanReadout() ? RepairedPanDescription : BrokenPanDescription;
+        }
 
         /// <summary>Pure cues for a current disclosed pan or pickup. The caller
         /// retains art admission/top-owner authority. This never reconciles a

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Diagnostics;
@@ -9,7 +10,7 @@ namespace CavesOfOoo.Core
     /// <summary>One authored structural fault. Repair spends carried materials and
     /// saves a restored-function flag in the same command receipt. It does not heal
     /// combat HP, resurrect destroyed structures, or change settlement quest stages.</summary>
-    public sealed class RepairablePart : Part, IDescribeState
+    public sealed class RepairablePart : Part, IDescribeState, IInventoryActionReceiptOwner
     {
         // ── reader contract (Docs/MACHINE-READERS.md) ──
         public ReaderScope Scope => ReaderScope.Both;
@@ -27,6 +28,16 @@ namespace CavesOfOoo.Core
         /// Existing repaired saves have no retroactively invented author.</summary>
         public Entity RepairedBy;
         public string RepairCauseID, RepairedZoneID, RepairWorldKey;
+        private bool UsesMaterialGrade(RepairRecipe recipe) => !PortableEquipment
+            && !string.IsNullOrEmpty(recipe?.MaterialGrade);
+
+        public bool OwnsInventoryReceipt(string command) => command == RepairCommand
+            && ParentEntity?.GetPart<RepairablePart>() == this
+            && UsesMaterialGrade(RepairRecipeRegistry.Get(RecipeId));
+
+        private string Bill(RepairRecipe recipe) => UsesMaterialGrade(recipe)
+            ? recipe.Quantity + " measures of fire clay or prepared lining clay, in any mix"
+            : recipe.Quantity + " " + recipe.MaterialName;
         /// <summary>Shared functional gate. Unknown or malformed faults remain
         /// broken; owners without this opt-in Part retain their ordinary behavior.</summary>
         public static bool BlocksFunction(Entity owner)
@@ -42,7 +53,7 @@ namespace CavesOfOoo.Core
             var recipe=RepairRecipeRegistry.Get(RecipeId);
             if(recipe==null)return "The damage cannot be repaired with a known method.";
             if (PortableEquipment && ParentEntity?.HasEffect<BrokenEffect>() != true) return "This equipment is sound.";
-            return !PortableEquipment && Repaired ? recipe.RepairedText : recipe.Diagnosis+"\nRepair: "+recipe.Quantity+" "+recipe.MaterialName+". Composition: "+recipe.Composition+".";
+            return !PortableEquipment && Repaired ? recipe.RepairedText : recipe.Diagnosis+"\nRepair: "+Bill(recipe)+". Composition: "+recipe.Composition+".";
         }
         /// <summary>Use the same native command receipt as the player menu. This
         /// method charges no turn; successful gameplay callers charge one action.</summary>
@@ -60,7 +71,7 @@ namespace CavesOfOoo.Core
                 if(PortableEquipment ? ParentEntity.HasEffect<BrokenEffect>() : !Repaired)
                 {
                     var recipe=RepairRecipeRegistry.Get(RecipeId);
-                    if(recipe!=null)e.GetParameter<InventoryActionList>("Actions")?.AddAction("Repair",recipe.ActionText+" ("+recipe.Quantity+" "+recipe.MaterialName+")",RepairCommand,'r',20);
+                    if(recipe!=null)e.GetParameter<InventoryActionList>("Actions")?.AddAction("Repair",recipe.ActionText+" ("+Bill(recipe)+")",RepairCommand,'r',20);
                 }
                 return true;
             }
@@ -71,14 +82,14 @@ namespace CavesOfOoo.Core
             if(!Apply(actor,zone,tx))return true;
             e.Handled=true;return false;
         }
-        private string Context(Entity actor,Zone zone,RepairRecipe recipe)
+        private string Context(Entity actor,Zone zone,RepairRecipe recipe,bool acceptingCommittedFlag=false)
         {
             var owner=ParentEntity;
             if(actor==null || zone==null || owner==null || owner.GetPart<RepairablePart>()!=this)return "missing-context";
             int faultCount=0,compositionCount=0;
             foreach(var part in owner.Parts) { if(part is RepairablePart)faultCount++;if(part is CompositionPart)compositionCount++; }
             if(faultCount!=1 || compositionCount!=1)return "ambiguous-structure";
-            if(!PortableEquipment && Repaired)return "already-repaired";
+            if(!PortableEquipment && Repaired && !acceptingCommittedFlag)return "already-repaired";
             if(recipe==null || RepairRecipeRegistry.Get(RecipeId)!=recipe)return "unknown-recipe";
             if(!actor.HasTag("Player") || actor.GetStatValue("Hitpoints",0)<=0 || CombatSystem.IsDeathHandled(actor)
                 || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked()==true)return "actor-unavailable";
@@ -120,6 +131,95 @@ namespace CavesOfOoo.Core
             int references=0; foreach(var candidate in inventory.Objects)if(candidate==item)references++;
             return references==1;
         }
+
+        private readonly struct Payment
+        {
+            public readonly Entity Item;
+            public readonly string ID, Blueprint;
+            public readonly PhysicsPart Physics;
+            public readonly StackerPart Stack;
+            public readonly int Count, Units;
+            public readonly MaterialProcessItemState Alternate;
+            public readonly ConnectedClayProvenance.Snapshot Provenance;
+
+            public Payment(Entity item, int units, MaterialProcessItemState alternate)
+            {
+                Item = item;
+                ID = item.ID;
+                Blueprint = item.BlueprintName;
+                Physics = item.GetPart<PhysicsPart>();
+                Stack = item.GetPart<StackerPart>();
+                Count = Stack?.StackCount ?? 1;
+                Units = units;
+                Alternate = alternate;
+                Provenance = new ConnectedClayProvenance.Snapshot(item);
+            }
+
+            public bool Current => Item.ID == ID && Item.BlueprintName == Blueprint
+                && Item.GetPart<PhysicsPart>() == Physics && Item.GetPart<StackerPart>() == Stack
+                && (Alternate == null || Alternate.Matches());
+        }
+
+        private static IEnumerable<Payment> SelectPayment(Entity actor, Zone zone, InventoryPart inventory,
+            RepairRecipe recipe, bool compatible)
+        {
+            int remaining = recipe.Quantity;
+            var factory = WorldLocationContext.For(zone)?.Factory ?? HarvestablePart.Factory;
+            // Prefer the legacy bill independently of pack ordering. A shortage
+            // can be filled with measures of the explicitly accepted grade.
+            foreach (bool alternate in compatible ? new[] { false, true } : new[] { false })
+            foreach (var item in inventory.Objects)
+            {
+                if (item == null || (item.BlueprintName != recipe.MaterialBlueprint) != alternate
+                    || !Carried(item, actor, inventory, item.BlueprintName)) continue;
+                if (compatible && (string.IsNullOrEmpty(item.ID) ||
+                    inventory.Objects.Count(other => other?.ID == item.ID) != 1)) continue;
+                var state = alternate ? RepairMaterialPart.Read(factory, item, recipe.MaterialGrade) : null;
+                if (alternate && state == null) continue;
+                int units = Math.Min(remaining, item.GetPart<StackerPart>()?.StackCount ?? 1);
+                yield return new Payment(item, units, state);
+                remaining -= units;
+                if (remaining == 0) yield break;
+            }
+        }
+
+        private static bool PaymentCommitted(Entity actor, InventoryPart inventory, Payment bill)
+        {
+            if (!bill.Current || inventory.Objects.Any(other => other != bill.Item && other?.ID == bill.ID))
+                return false;
+            int remainder = bill.Count - bill.Units;
+            if (remainder > 0)
+                return Carried(bill.Item, actor, inventory, bill.Blueprint) && bill.Stack?.StackCount == remainder;
+            return bill.Item.SpatialZone == null && bill.Physics.InInventory == null && bill.Physics.Equipped == null
+                && !inventory.Objects.Contains(bill.Item);
+        }
+
+        private static bool TryRestoreDeathDrop(Zone zone, Cell origin, Payment payment,
+            ConnectedClayProvenance.Snapshot paidProvenance)
+        {
+            var item = payment.Item;
+            if (origin == null || !payment.Current || paidProvenance.Changed(item)
+                || payment.Physics.InInventory != null || payment.Physics.Equipped != null
+                || zone.GetReadOnlyEntities().Any(other => other != item && other.ID == payment.ID))
+                return false;
+
+            int remainder = payment.Count - payment.Units;
+            if (remainder > 0)
+            {
+                if (item.SpatialZone != zone || zone.GetEntityCell(item) != origin
+                    || payment.Stack?.StackCount != remainder) return false;
+            }
+            else
+            {
+                if (item.SpatialZone != null || (payment.Stack?.StackCount ?? 1) != 1
+                    || !zone.AddEntity(item, origin.X, origin.Y)) return false;
+            }
+
+            if (payment.Stack != null) payment.Stack.StackCount = payment.Count;
+            payment.Provenance.Restore(item);
+            return true;
+        }
+
         private bool Apply(Entity actor,Zone zone,InventoryTransaction tx)
         {
             var recipe=RepairRecipeRegistry.Get(RecipeId); string reason=Context(actor,zone,recipe);
@@ -127,25 +227,59 @@ namespace CavesOfOoo.Core
             if(FieldWorkRigRules.IsRig(ParentEntity) && !FieldWorkRigRules.BeginChange(actor,ParentEntity,zone,tx,false))return Reject(actor,"rig-unavailable");
             var workAudio=WorldAudioWork.Repair(actor,this,zone,recipe);
             if(!tx.TryClaim(ParentEntity,actor,RepairCommand) || !tx.TryClaim(actor,actor,RepairCommand))return Reject(actor,"owner-busy");
-            var inventory=actor.GetPart<InventoryPart>(); var units=new List<Entity>(); int remaining=recipe.Quantity;
-            foreach(var item in inventory.Objects)
+            var inventory = actor.GetPart<InventoryPart>();
+            bool compatible = UsesMaterialGrade(recipe);
+            var bill = SelectPayment(actor, zone, inventory, recipe, compatible).ToArray();
+            if (bill.Sum(p => p.Units) != recipe.Quantity) return Reject(actor, "missing-materials");
+            foreach (var payment in bill)
+                if (!tx.TryClaim(payment.Item, actor, RepairCommand)
+                    || compatible && !MaterialProcessService.ReserveInput(payment.Item, tx))
+                    return Reject(actor, "material-busy");
+            var receipt = InventoryTransferSnapshot.Capture(inventory);
+            var paymentCell = zone.GetEntityCell(actor);
+            ConnectedClayProvenance.Snapshot[] paidProvenance = null;
+            tx.Do(null, () =>
             {
-                if(!Carried(item,actor,inventory,recipe.MaterialBlueprint))continue;
-                int take=Math.Min(remaining,item.GetPart<StackerPart>()?.StackCount??1);
-                for(int i=0;i<take;i++)units.Add(item);
-                remaining-=take;if(remaining==0)break;
-            }
-            if(remaining!=0)return Reject(actor,"missing-materials");
-            foreach(var item in units)if(!tx.TryClaim(item,actor,RepairCommand))return Reject(actor,"material-busy");
-            var receipt=InventoryTransferSnapshot.Capture(inventory); tx.Do(null,receipt.Restore);
+                if (!compatible) { receipt.Restore(); return; }
+                var excluded = new HashSet<Entity>();
+                int limited = 0;
+                bool died = CombatSystem.IsDeathHandled(actor);
+                bool spills = died && !actor.HasTag("NoDropOnDeath") && !actor.HasTag("Temporary");
+                for (int n = 0; n < bill.Length; n++)
+                {
+                    var p = bill[n];
+                    bool identityChanged = p.Item.ID != p.ID || p.Item.GetPart<PhysicsPart>() != p.Physics
+                        || p.Item.GetPart<StackerPart>() != p.Stack
+                        || inventory.Objects.Any(other => other != p.Item && other?.ID == p.ID);
+                    if (spills && paidProvenance != null && !identityChanged
+                        && !inventory.Objects.Contains(p.Item)
+                        && TryRestoreDeathDrop(zone, paymentCell, p, paidProvenance[n]))
+                    {
+                        excluded.Add(p.Item);
+                        continue;
+                    }
+                    if (died || identityChanged || p.Item.SpatialZone != null || p.Physics.Equipped != null
+                        || p.Physics.InInventory != null && p.Physics.InInventory != actor)
+                    {
+                        excluded.Add(p.Item);
+                        limited++;
+                    }
+                }
+                receipt.RestoreExcept(excluded);
+                if (limited != 0)
+                    Diag.Record("furniture", "RepairRefundLimited", actor, ParentEntity, new { count = limited });
+            });
             bool applied=receipt.Apply(()=>
             {
-                foreach(var item in units)
-                {
-                    if(!Carried(item,actor,inventory,recipe.MaterialBlueprint) || !inventory.TryConsumeOne(item))return false;
-                }
+                foreach (var payment in bill)
+                    for (int n = 0; n < payment.Units; n++)
+                        if (!payment.Current || !Carried(payment.Item, actor, inventory, payment.Blueprint)
+                            || !(compatible ? inventory.TryConsumeMaterialProcessUnit(payment.Item, tx)
+                                            : inventory.TryConsumeOne(payment.Item))) return false;
                 return true;
             });
+            if (compatible && applied)
+                paidProvenance = bill.Select(p => new ConnectedClayProvenance.Snapshot(p.Item)).ToArray();
             // Claims protect native command re-entry; recheck the saved owner and
             // selected recipe after payment before granting the structural benefit.
             if(!applied || !receipt.ClaimChanges(tx,actor,RepairCommand) || Context(actor,zone,recipe)!=null
@@ -159,10 +293,22 @@ namespace CavesOfOoo.Core
                 RepairWorldKey=WorldLocationContext.For(zone)?.Exploration?.WorldKey;
             },()=>{RepairedBy=priorAuthor;RepairCauseID=priorCause;RepairedZoneID=priorZone;RepairWorldKey=priorWorld;});
             if (!PortableEquipment) ConnectedSpreadProgress.RecordRepair(actor,ParentEntity,zone,tx);
+            if (compatible)
+            {
+                string cause = RepairCauseID;
+                var actorCell = zone.GetEntityCell(actor);
+                var targetCell = zone.GetEntityCell(ParentEntity);
+                tx.BeforeCommit(() => Repaired && RepairedBy == actor && RepairCauseID == cause
+                    && zone.GetEntityCell(actor) == actorCell && zone.GetEntityCell(ParentEntity) == targetCell
+                    && actor.GetPart<InventoryPart>() == inventory && Context(actor, zone, recipe, true) == null
+                    && bill.Select((p, i) => PaymentCommitted(actor, inventory, p)
+                        && !paidProvenance[i].Changed(p.Item)).All(current => current));
+            }
             tx.AfterCommit(()=>
             {
                 MessageLog.Add(recipe.RepairedText);
-                Diag.Record("furniture","ObjectRepaired",actor,ParentEntity,new{recipeId=recipe.Id,material=recipe.MaterialBlueprint,quantity=recipe.Quantity,zoneId=zone.ZoneID});
+                Diag.Record("furniture","ObjectRepaired",actor,ParentEntity,new{recipeId=recipe.Id,material=recipe.MaterialBlueprint,quantity=recipe.Quantity,zoneId=zone.ZoneID,
+                    actualPayment=bill.Select(p=>new{blueprint=p.Blueprint,id=p.ID,units=p.Units}).ToArray()});
                 var cell=zone.GetEntityCell(ParentEntity); if(cell!=null)ZoneRenderHooks.MarkCellDirty(cell.X,cell.Y,"Repair.Completed");
                 workAudio?.Publish();
             });

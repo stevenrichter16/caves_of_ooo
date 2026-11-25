@@ -1,3 +1,14 @@
+**Compatible repair materials — November 24 local / November 25 UTC, 2026.**
+An explicit lining-clay grade can now contribute to the lined well and batch
+pan alongside exact fire clay. The input grade changes how the player pays for
+the work. The existing repaired state determines its function. Wayside cooks'
+finite opening allocation supplies the alternate through normal trade. Actual
+play verified a purchase, both repairs and the reopened well service with
+selected fresh saves. The pan was inspected after repair. A new prepared item
+does not activate other repair recipes or machines. Receiving storage and paid
+delivery are the next prerequisites. All twelve complete-machine gates remain
+open. [Evidence](Verification/MachineSystems/CompatibleRepairMaterial20261124/README.md)
+
 **Current Mac delivery — November 24 local / November 25 UTC, 2026.**
 The package from `7ecee70b3` includes suitable grit and the finite clay spoil
 screening loop. The build and startup passed independent review. The played

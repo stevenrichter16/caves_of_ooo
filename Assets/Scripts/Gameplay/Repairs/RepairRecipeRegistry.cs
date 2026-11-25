@@ -13,6 +13,7 @@ namespace CavesOfOoo.Core
         public string Composition { get; }
         public string MaterialBlueprint { get; }
         public string MaterialName { get; }
+        public string MaterialGrade { get; }
         public int Quantity { get; }
         public string Diagnosis { get; }
         public string ActionText { get; }
@@ -20,13 +21,13 @@ namespace CavesOfOoo.Core
         internal RepairRecipe(RepairRecipeRow row)
         {
             Id=row.Id; Composition=row.Composition; MaterialBlueprint=row.MaterialBlueprint;
-            MaterialName=row.MaterialName; Quantity=row.Quantity; Diagnosis=row.Diagnosis;
+            MaterialName=row.MaterialName; MaterialGrade=row.MaterialGrade; Quantity=row.Quantity; Diagnosis=row.Diagnosis;
             ActionText=row.ActionText; RepairedText=row.RepairedText;
         }
     }
     [Serializable] internal sealed class RepairRecipeRow
     {
-        public string Id, Composition, MaterialBlueprint, MaterialName, Diagnosis, ActionText, RepairedText;
+        public string Id, Composition, MaterialBlueprint, MaterialName, MaterialGrade, Diagnosis, ActionText, RepairedText;
         public int Quantity;
     }
     [Serializable] internal sealed class RepairRecipeFile { public RepairRecipeRow[] Recipes; }
@@ -62,7 +63,8 @@ namespace CavesOfOoo.Core
                 if(row==null || !Token(row.Id) || !Token(row.Composition) || !Token(row.MaterialBlueprint)
                     || string.IsNullOrWhiteSpace(row.MaterialName) || string.IsNullOrWhiteSpace(row.Diagnosis)
                     || string.IsNullOrWhiteSpace(row.ActionText) || string.IsNullOrWhiteSpace(row.RepairedText)
-                    || row.Quantity<1 || row.Quantity>MaximumMaterialQuantity)
+                    || row.Quantity<1 || row.Quantity>MaximumMaterialQuantity
+                    || !string.IsNullOrEmpty(row.MaterialGrade) && (row.MaterialGrade!=RepairMaterialPart.LiningClay || row.MaterialBlueprint!="FireClay"))
                 { Errors.Add("Invalid repair recipe: "+(row?.Id??"<null>")); continue; }
                 if(Recipes.ContainsKey(row.Id)) { Errors.Add("Duplicate repair recipe: "+row.Id); continue; }
                 Recipes.Add(row.Id,new RepairRecipe(row));

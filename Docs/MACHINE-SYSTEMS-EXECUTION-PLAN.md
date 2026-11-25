@@ -1,3 +1,20 @@
+**Compatible clay trial — November 24 local / November 25 UTC, 2026.**
+This connects the first material suitability and common-result requirements.
+Fresh wayside cooks have two prepared measures for sale in addition to their
+existing food. The well and batch pan accept fire clay, prepared lining clay or
+a mix. The same saved repair condition enables each fixture's existing use.
+Ordinary seed 64 bought the clay at tick 190 for 11 drams. Separate branches
+repaired the pan at 200 and restored and used the well at 300. Three selected
+F5/fresh comparisons match. A kitchen batch was outside this play. Expanded
+native testing passed 329/331, with both retained failures reproduced on the
+prior source and all new repair and cook placement cases passing. Independent
+source and recorded-play review passed within the tested scope. The current Mac
+still carries `7ecee70b3`. Next, establish a physical parcel and receiving shelf
+for manual delivery and the well, then add one paid carrier on the same route.
+The scheduled queue follows the 45 requirements and starts each unblocked slice
+as soon as the preceding one finishes.
+[Evidence](Verification/MachineSystems/CompatibleRepairMaterial20261124/README.md)
+
 **Current Mac delivery — November 24 local / November 25 UTC, 2026.**
 Runtime `7ecee70b3` is packaged with the verified grit and size screening.
 The universal build succeeded with zero errors and five existing warnings.

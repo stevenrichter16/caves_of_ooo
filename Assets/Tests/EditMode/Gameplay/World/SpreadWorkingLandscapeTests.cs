@@ -193,7 +193,9 @@ namespace CavesOfOoo.Tests
                 Assert.False(One(z, "Oven").GetPart<CampfirePart>().FiniteCooking);
                 var crop = One(z, "ClaspbeanCrop").GetPart<CropPart>(); Assert.AreEqual(2, crop.GrowthStage);
                 Assert.AreEqual(2, crop.YieldCount); Assert.AreEqual(1, crop.SeedYieldCount);
-                Assert.That(cook.GetPart<InventoryPart>().Objects.Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1), Is.EqualTo(5));
+                var stock = cook.GetPart<InventoryPart>().Objects;
+                Assert.AreEqual(2, stock.Single(e => e.BlueprintName == "PreparedLiningClay").GetPart<StackerPart>().StackCount);
+                Assert.AreEqual(5, stock.Where(e => e.BlueprintName != "PreparedLiningClay").Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
                 Assert.AreEqual(35, TradeSystem.GetDrams(cook));
             }
         }
