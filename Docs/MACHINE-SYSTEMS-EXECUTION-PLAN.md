@@ -1,3 +1,9 @@
+**Mac delivery for clay staging and seasonal knotflax — November 25 UTC, 2026.**
+The universal build of `b47282110` reached GameBootstrap on this Mac.
+All 186 package files matched afterward. It is the current startup-verified
+package. The earlier packages remain available.
+[Delivery](Verification/MachineSystems/MacCandidateB47282110/README.md)
+
 **One-pound staging at Gleaners’ — November 25 UTC, 2026.**
 Seed 64 v25 exercised ordinary movement into and out of the original cellar.
 Native split and deposit left one exact measure near the well. Fresh Continue
