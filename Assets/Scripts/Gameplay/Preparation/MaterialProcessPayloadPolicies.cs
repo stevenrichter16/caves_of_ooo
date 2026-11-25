@@ -40,6 +40,9 @@ namespace CavesOfOoo.Core
                 typeof(PreparationRecipePart),typeof(MaterialProcessInputPart),typeof(MeleeWeaponPart),typeof(HandlingPart),typeof(FieldWorkToolPart),typeof(DirectedAirPart),typeof(TrailMarkingPart),typeof(TrailMarkPart),typeof(CargoSledPart),typeof(ScreeningToolPart),typeof(MineralPreparationPart),typeof(DirectLiquidPumpPart),typeof(LiquidPoolPart)})Policies[type]=new ScalarPolicy(type);
             foreach(var type in new[]{typeof(ArmorPart),typeof(EquippablePart),typeof(ThermalPart),typeof(RepairablePart)})
                 Policies[type]=new ScalarPolicy(type,false);
+            // Input-only data capability: creation remembers payload protection.
+            // It is not admitted as a nested stock/output creation permission.
+            Policies[typeof(SiftableStockPart)]=new ScalarPolicy(typeof(SiftableStockPart),false);
             // Compared by inertness only, never by Revision: consuming the last unit of a stack invalidates its throw
             // receipt (bumping Revision), which must not make the commit that caused it refuse.
             Policies[typeof(ThrownRecoveryPart)]=new TrackingPolicy<ThrownRecoveryPart>(t=>string.IsNullOrEmpty(t.ThrowerId) && string.IsNullOrEmpty(t.ItemId)

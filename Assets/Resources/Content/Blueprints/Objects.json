@@ -1,6 +1,32 @@
 {
   "Objects": [
     {
+      "Name": "DryClaySpoil",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [{ "Key": "DisplayName", "Value": "dry clay spoil" },{ "Key": "RenderString", "Value": "%" },{ "Key": "ColorString", "Value": "&r" },{ "Key": "RenderLayer", "Value": "5" }] },
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" },{ "Key": "Solid", "Value": "false" },{ "Key": "Weight", "Value": "3" },{ "Key": "Category", "Value": "Materials" }] },
+        { "Name": "Stacker", "Params": [{ "Key": "StackCount", "Value": "1" },{ "Key": "MaxStack", "Value": "20" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "4" }] },
+        { "Name": "SiftableStock", "Params": [{ "Key": "Contents", "Value": "FireClay:2:0;CoarseGrit:1:2" }] },
+        { "Name": "Examinable", "Params": [{ "Key": "Description", "Value": "A dry, known clay-working mixture: two measures of fine fire clay and one measure of coarse grit. A hand sieve separates the sizes. The clay patches suitable well linings and pans; the grit steadies slippery ground. Neither material is created or purified by screening." }] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "DryClaySpoilHeap",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [{ "Key": "DisplayName", "Value": "dry clay sorting heap" },{ "Key": "RenderString", "Value": ":" },{ "Key": "ColorString", "Value": "&r" },{ "Key": "RenderLayer", "Value": "2" }] },
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "false" },{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "Harvestable", "Params": [{ "Key": "YieldBlueprint", "Value": "DryClaySpoil" },{ "Key": "YieldMin", "Value": "1" },{ "Key": "YieldMax", "Value": "1" },{ "Key": "YieldChance", "Value": "100" }] },
+        { "Name": "Examinable", "Params": [{ "Key": "Description", "Value": "One loose lot left beside the clay working, already dry and known to contain two fire-clay measures and one coarse-grit measure. Gather it once, then use a carried hand sieve. The ordinary clay seam remains a separate direct source." }] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "CoarseGrit",
       "Inherits": "Item",
       "Parts": [

@@ -9,11 +9,11 @@ namespace CavesOfOoo.Core
         public int Order=>35;
         public void DescribeUse(DescribeContext context,UseGuide guide)
         {
-            guide.How.Add("Carry this sound hand sieve. Choose a packet of salt-bearing quarry sweepings in your pack, then screen it.");
+            guide.How.Add("Carry this sound hand sieve. Screen a known size-graded mixed stock in your pack, or use the existing quarry-sweepings preparation.");
             guide.Needs.Add("one actual mixed packet; room for its declared fractions");
-            guide.Limits.Add("One action spends the packet and keeps this same sieve. Recover one pale-salt and two silver sand; two weight of unusable rock dust is discarded. No yield from an ordinary ore-cache description, ash or reeds.");
+            guide.Limits.Add("One action spends one actual packet and keeps this same sieve. The fixed mesh passes fine/medium stock and retains coarse stock; overlapping identities refuse. The separate legacy quarry preparation gives one pale-salt and two silver sand, discarding two weight of rock dust. No yield from ordinary soil, ash or descriptions.");
             guide.WhyNot=MaterialScreeningWorkReceipt.Usable(context.Viewer,ParentEntity,context.Zone)
-                ?"choose a quarry-sweepings packet in your pack to see the exact preparation"
+                ?"choose a known size-graded stock or quarry-sweepings packet for its exact preview"
                 :"carry one sound, unfrozen sieve as an actual pack item";
         }
     }

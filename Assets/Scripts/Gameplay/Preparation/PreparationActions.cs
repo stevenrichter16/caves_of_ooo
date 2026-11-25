@@ -22,6 +22,7 @@ namespace CavesOfOoo.Core
                 && !actor.HasEffect<StunnedEffect>() && !actor.HasEffect<AsleepByGasEffect>() && !actor.HasEffect<ParalyzedEffect>();
         }
         internal static bool Carried(Entity actor, Entity item) => WorldResourceActions.Carried(actor, item, false)
+            && actor.GetPart<InventoryPart>().Objects.Contains(item)
             && item.HasTag("Item") && !item.HasTag("Creature") && !item.HasTag("Terrain") && !item.HasPart<CropPart>()
             && !item.HasPart<SpatialFootprintPart>() && !item.GetPart<PhysicsPart>().Solid
             && (item.GetPart<StackerPart>() is not StackerPart stack || stack.StackCount <= stack.MaxStack);

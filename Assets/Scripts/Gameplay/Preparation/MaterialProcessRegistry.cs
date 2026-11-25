@@ -66,7 +66,16 @@ namespace CavesOfOoo.Core
         internal static MaterialProcessDefinition[] ForSource(Entity source)
         {LoadDefaults();return source==null?Array.Empty<MaterialProcessDefinition>():Definitions.Values.Where(d=>d.SourceBlueprint==source.BlueprintName).OrderBy(d=>d.Id,StringComparer.Ordinal).ToArray();}
         internal static bool IsPayload(Entity owner)
-        {LoadDefaults();return owner!=null && (owner.HasPart<MaterialProcessInputPart>() || KnownPayloads.Contains(owner.BlueprintName));}
+        {
+            LoadDefaults();if(owner==null)return false;
+            if(owner.HasPart<SiftableStockPart>() || HarvestablePart.Factory?.Blueprints.TryGetValue(owner.BlueprintName,out var bp)==true
+                && bp?.Parts?.ContainsKey("SiftableStock")==true)RememberPayload(owner.BlueprintName);
+            return owner.HasPart<MaterialProcessInputPart>() || KnownPayloads.Contains(owner.BlueprintName);
+        }
+        // Classification is sticky within this runtime, including permission
+        // removal/revocation. It is never an executable process registration.
+        internal static void RememberPayload(string blueprint)
+        {if(!string.IsNullOrEmpty(blueprint))KnownPayloads.Add(blueprint);}
         public static IReadOnlyList<string> InitializeFromJson(string json)
         {
             loaded=true;var errors=new List<string>();var staged=new Dictionary<string,MaterialProcessDefinition>(StringComparer.Ordinal);
@@ -114,7 +123,7 @@ namespace CavesOfOoo.Core
             }
             return issues.AsReadOnly();
         }
-        static bool Portable(EntityFactory factory,string name)
+        internal static bool Portable(EntityFactory factory,string name)
         {
             if(factory?.Blueprints==null || !factory.Blueprints.TryGetValue(name,out var blueprint) || blueprint?.Tags==null || blueprint.Parts==null
                 || !blueprint.Tags.ContainsKey("Item") || blueprint.Tags.ContainsKey("Creature") || blueprint.Tags.ContainsKey("Terrain") || blueprint.Tags.ContainsKey("Solid")
@@ -122,7 +131,7 @@ namespace CavesOfOoo.Core
             bool True(string key)=>physics.TryGetValue(key,out var raw)&&bool.TryParse(raw,out bool value)&&value;
             return True("Takeable")&&!True("Solid");
         }
-        static bool Valid(MaterialProcessRow row)
+        internal static bool Valid(MaterialProcessRow row)
         {
             if(row==null || (row.ActionText?.Length??0)>120 || (row.LossText?.Length??0)>200 || !Token(row.Id) || !Token(row.SourceBlueprint)
                 || row.Mode!="Dismantle" && row.Mode!="Reclaim" && row.Mode!="Process"

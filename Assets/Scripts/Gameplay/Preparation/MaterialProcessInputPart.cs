@@ -37,7 +37,7 @@ namespace CavesOfOoo.Core
         static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Entity,Menu> Menus=new System.Runtime.CompilerServices.ConditionalWeakTable<Entity,Menu>();
         static string Label(CavesOfOoo.Data.EntityFactory factory,string bp)
             => factory.Blueprints[bp].Parts.TryGetValue("Render",out var p) && p.TryGetValue("DisplayName",out var label)?label:bp;
-        internal static bool Handle(Entity owner,GameEvent e,IEnumerable<string> ids)
+        internal static bool Handle(Entity owner,GameEvent e,IEnumerable<string> ids,SiftableStockPart sizeStock=null)
         {
             if(owner==null)return true;
             var actor=e.GetParameter<Entity>("Actor");var zone=PreparationActions.ZoneFor(e,actor);
@@ -48,17 +48,21 @@ namespace CavesOfOoo.Core
                 var previous=menu.Quotes.ToArray();menu.Quotes.Clear();
                 foreach(var id in ids.Distinct())
                 {
-                    var plan=MaterialProcessPlan.TryCreate(actor,owner,id,zone,ForgePart.Factory);
+                    var plan=sizeStock==null?MaterialProcessPlan.TryCreate(actor,owner,id,zone,ForgePart.Factory)
+                        :MaterialProcessPlan.TryCreateScreening(actor,owner,zone,ForgePart.Factory,sizeStock);
                     var quoted=MaterialProcessService.TryQuote(plan);
                     if(quoted==null)
                     {
                         // Not runnable now: explain a near-miss with one disabled row (no quote, no token, never dispatched).
-                        if(plan==null&&MaterialProcessMisses.Explain(actor,owner,id,zone,ForgePart.Factory) is MaterialProcessMisses.Miss miss)
+                        if(sizeStock==null&&plan==null&&MaterialProcessMisses.Explain(actor,owner,id,zone,ForgePart.Factory) is MaterialProcessMisses.Miss miss)
                             e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id,MaterialProcessRegistry.Get(id).ActionText,miss.Code,miss.Reason,'\0',MaterialProcessMisses.RowPriority);
+                        else if(sizeStock!=null && sizeStock.Definition(ForgePart.Factory)!=null && PreparationActions.CurrentActor(actor,zone)
+                            && PreparationActions.Carried(actor,owner) && MaterialProcessTemplate.Capture(ForgePart.Factory,owner.BlueprintName)?.Snapshot(owner,true)!=null)
+                            e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id,"screen size grades","screening-unavailable","Carry a sound sieve and leave room for both grades.",'\0',19);
                         continue;
                     }
                     var retained=previous.FirstOrDefault(p=>p.Value.Plan.Actor==actor && p.Value.Plan.Source==owner && p.Value.Plan.Zone==zone
-                        && p.Value.Plan.Station==plan.Station && p.Value.Plan.Definition==plan.Definition && p.Value.Current());
+                        && p.Value.Plan.Station==plan.Station && p.Value.Plan.SameDefinition(plan) && p.Value.Current());
                     string token=retained.Key??Guid.NewGuid().ToString("N");menu.Quotes[token]=retained.Value??quoted;
                     var d=plan.Definition;
                     string outputs=string.Join(" + ",d.OutputBlueprints.Select((bp,i)=>d.OutputCounts[i]+" "+Label(plan.Factory,bp)));

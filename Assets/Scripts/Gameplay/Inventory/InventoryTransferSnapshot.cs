@@ -42,11 +42,16 @@ namespace CavesOfOoo.Core.Inventory
                 if (!transaction.TryClaim(state.Item, actor, action)) return false;
             return true;
         }
-        internal void Restore()
+        internal void Restore()=>RestoreExcept(null);
+        // A scoped caller can refuse to reinsert a lost participant whose saved
+        // identity an independent callback has replaced. Other callers retain
+        // the original complete receipt restoration contract.
+        internal void RestoreExcept(ISet<Entity> excluded)
         {
-            foreach (var state in _changed) if (state.Index < 0) _list.Remove(state.Item);
+            foreach (var state in _changed) if (state.Index < 0 && excluded?.Contains(state.Item)!=true) _list.Remove(state.Item);
             foreach (var state in _changed)
             {
+                if(excluded?.Contains(state.Item)==true)continue;
                 if (state.Index >= 0 && !_list.Contains(state.Item))
                     _list.Insert(Math.Min(state.Index, _list.Count), state.Item);
                 state.Restore();

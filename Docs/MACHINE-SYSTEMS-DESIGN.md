@@ -1,3 +1,16 @@
+**G2 shared size screening — November24local/25UTC,2026:** One bounded general
+screening capability now has Editor qualification: explicit finite constituent
+manifest, fixed size partition, exact carried sieve, conserved actual handling
+mass and no purification. One optional once-only dry-clay heap beside fresh2.6
+allotment yields a real packet; original13roles/four-clay bank remain. Native
+f156/156,0CS; final source/recorded-play review0remainingP1/P2. Guided seed65
+craft20/real harvest200/readers-freecancel200/screen210/repair240/freewell240/
+grit250, both selected F5/fresh pairs exact, all8earned files. Seed64 died129
+before source acquisition and is retained separately. No ordinary interregional
+discovery, new slippery-surface effect, material-grade matcher, porter, seasonal
+work or Mac claim. Current Mac995 predates G1/G2. See [contract](MACHINE-GENERAL-SIFTING-CONTENT.md)
+and [evidence](Verification/MachineSystems/GeneralScreening20261124/README.md).
+
 **Local porters — new user direction, November24,2026:** Design and architecture
 now cover paid carrying of exact physical loads between agreed nearby endpoints,
 with explicit capacity/route/cost/state and selected visible NPC/vendor shipments
@@ -1630,6 +1643,15 @@ Weather design dependency note, November23: proposed collection, material
 preparation and seasonal tool configurations may support future loops, but add
 no accepted machine prerequisite. The full twelve-row roster below retains its
 current statuses. See [weather opportunities](WEATHER-AND-SEASONAL-TOOL-USES.md).
+
+November24 G2 dependency update: finite dry-clay spoil, a capability-driven size
+partition and actual fine-clay→restored-well service now form one bounded local
+material loop. Same sieve/custody, both fractions, once-only source, ordinary
+bank4 and selected F5/fresh pairs are qualified. Coarse fraction reaches G1's
+shared field consumer. This supports processing/material transport choices;
+it does not complete heat/fractionation, grade-compatible demand, lasting
+transport routes, NPC production or any of the twelve complete-machine rows.
+See [G2 evidence](Verification/MachineSystems/GeneralScreening20261124/README.md).
 
 | Machine | Why it would be useful | Missing support and meaningful choice | First evidence required | Status |
 | --- | --- | --- | --- | --- |

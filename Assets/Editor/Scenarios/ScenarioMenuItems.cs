@@ -25,6 +25,10 @@ namespace CavesOfOoo.Editor.Scenarios
     /// </summary>
     internal static class ScenarioMenuItems
     {
+        [MenuItem("Caves Of Ooo/Scenarios/Home/General screening and finite clay spoil", priority = 99)]
+        private static void Launch_GeneralScreeningShowcase()
+            => ScenarioRunner.LaunchAt<GeneralScreeningShowcase>(RepairCultivationSite.ZoneID);
+
         [MenuItem("Caves Of Ooo/Scenarios/Home/Grit material and ordinary supply", priority = 99)]
         private static void Launch_GritMaterialShowcase()
             => ScenarioRunner.Launch<GritMaterialShowcase>();
@@ -45,7 +49,7 @@ namespace CavesOfOoo.Editor.Scenarios
                 Debug.LogWarning("[Scenario] No previously-launched scenario to re-run. Launch one first from the Scenarios menu.");
                 return;
             }
-            ScenarioRunner.Launch(ScenarioRunner.LastLaunched, ScenarioRunner.LastWildStart, ScenarioRunner.LastWildBiome, ScenarioRunner.LastWildDepth);
+            ScenarioRunner.LaunchAt(ScenarioRunner.LastLaunched,ScenarioRunner.LastStartZoneID,ScenarioRunner.LastWildStart,ScenarioRunner.LastWildBiome,ScenarioRunner.LastWildDepth);
         }
 
         [MenuItem("Caves Of Ooo/Scenarios/↻ Re-run Last Scenario %#r", validate = true)]

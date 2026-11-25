@@ -109,8 +109,12 @@ namespace CavesOfOoo.Core
             tx.Do(null,()=>
             {
                 if(restored)return;restored=true;
+                var conflicts=new HashSet<Entity>(consumed.Where(item=>!pack.Objects.Contains(item)
+                    && pack.Objects.Any(other=>other!=item && other?.ID==item.ID)));
                 foreach(var owner in products.Concat(received).Concat(plan.Stock==null?consumed:Enumerable.Empty<Entity>()).Distinct())Detach(owner);
-                receipt.Restore();
+                receipt.RestoreExcept(conflicts);
+                foreach(var item in conflicts)CavesOfOoo.Diagnostics.Diag.Record("event","MaterialProcessRollbackLimited",actor:actor,target:item,
+                    payload:new{reason="source-identity-conflict",identity=item.ID});
             });
             if(!receipt.Apply(()=>
             {

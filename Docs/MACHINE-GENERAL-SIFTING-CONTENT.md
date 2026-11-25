@@ -1,11 +1,13 @@
 # General sieving: useful mixed stocks before more recipes
 
-November24local/25UTC,2026. Living content design plus bounded G1 field traction.
+November24local/25UTC,2026. Living content design plus bounded G1 field traction
+and G2 size screening/finite clay-spoil loop, now Editor qualified.
 The user asked
 for a general size-sorting tool, then explicitly asked to brainstorm the missing
 content and uses for its fractions. Current shipped sieve is the bounded
-QuarrySweepings preparation. G1 below adds a useful coarse-material consumer;
-it does not implement general sorting or the proposed mixed sources.
+QuarrySweepings preparation remains separate. G1 adds a suitable coarse-material
+consumer; G2 below now implements a bounded shared size partition and one real
+finite source. Other mixed streams and material grades remain proposals.
 
 ## Player purpose
 
@@ -297,6 +299,101 @@ does not by itself earn a new sorting tool. Before coding, demonstrate what
 the sieve saves or enables beyond the existing container menu.
 
 ## Acceptance and scope
+
+### G2 concrete contract: shared size partition and one finite source
+
+Working runtime checkpoint: f156/156native,0CS after the two Handling-weight
+and optional source-ID review counters plus a real same-ID rollback RED.
+Mass uses the actual positive Handling override or Physics shell rule. Heap
+identity must be nonempty, unique before/after placement and unchanged. A late
+remaining-source alias refuses; scoped limited rollback retracts products and
+preserves the independent alias without inserting a duplicate saved identity.
+Other receipt callers retain their original restoration contract. Actual guided
+seed65 craft20/harvest200/screen210/repair240/free well drink240/grit250 and
+selected F5/fresh210/250 are complete, retaining the same sieve and ordinary
+bank4. Source and independent recorded-play/artifact review0remainingP1/P2.
+Seed64 failed before acquisition; construction materials/forge and initial
+address are supplied/guided, no mixed stock/products. This qualifies bounded
+size screening, not arbitrary mixtures, material-grade substitution, ordinary
+interregional discovery, slippery-ground comparison or whole machines.
+See [G2 evidence](Verification/MachineSystems/GeneralScreening20261124/README.md).
+
+Implemented bounded contract, November24local/25UTC. One general screening
+capability, not a separate recipe for every material. An explicitly authored
+SiftableStock Part declares a small finite per-packet constituent manifest:
+commodity blueprint, integral unit count and size band. Initial grammar is
+semicolon-separated blueprint:count:band entries, bounded to four entries and
+64total units; invalid/empty/duplicate-ambiguous/incomplete input refuses.
+Every output is an audited plain canonical commodity. The source, unit counts,
+declared dry treatment and all creation/payload permissions remain exact.
+
+The existing hand sieve has one fixed physical aperture between bands1and2:
+bands0/1 pass, band2 stays. Keep ScreeningTool's saved shape unchanged; adjustable
+meshes or new tool grades are outside this first increment. Both sides must be
+nonempty and each must resolve to exactly one commodity identity. Equal-sized
+unlike constituents are refused rather than silently separated; no nested mixed
+fraction framework. The same commodity on both sides is also refused because
+the current plain output would erase its grade distinction. Repeat identical
+entries on one side may combine only as the same integral commodity. No input
+may name itself as an output or exceed its declared mass/finite stock.
+
+DryClaySpoil is the initial three-weight packet: FireClay:2:0;CoarseGrit:1:2,
+base value at least the declared four-value outputs. Screening consumes one
+actual packet and retains the same sound carried sieve. Both actual fractions
+enter the ordinary pack through existing output-admission/stack/capacity rules.
+The existing quarry preparation and its declared dust loss remain separate.
+There is no new material identity inferred from soil, a container description
+or a material tag. A second differently named canonical native-test stock and
+different output identities must use the same operation without a registry row.
+
+Reuse MaterialProcessService's payment/output/creation/interruption work rather
+than duplicate an output transaction. MaterialProcessPlan may accept only this
+explicit closed screening provider as an alternative definition source. Capture
+its exact Part, manifest and derived immutable definition; currentness retains
+the same source permission, tool, factory and canonical templates. Registered
+definitions retain their existing registry-identity checks. Transient derived
+definitions are never inserted into the global registry or saved as jobs.
+MaterialProcessActions can share its existing weak owner-quote cache and command
+dispatch, retaining a current derived quote across repeated menu reads without
+accepting changed manifest/count/tool/ownership. Explicit MaterialProcessInput
+denial still wins. SiftableStock owns the inventory receipt so late cancellation
+does not rewind unrelated actor state. Exact policy admission and processing
+stack/split tracking include the new data Part without granting unknown payloads.
+
+Ordinary supply is one separately authored DryClaySpoilHeap beside a fresh
+western Morrowfast allotment's actual clay working. Reuse an exact once-only
+Harvestable yielding one packet; the existing bank still yields its four clay.
+Do not append a mandatory entry to the site's atomic Specs list: inability to
+place the optional heap must never remove existing wells/crops/materials. Add a
+bounded optional placement after the original installation succeeds, choosing
+real bare reachable ground beside the unchanged bank without clearing terrain.
+Missing content or no suitable place leaves the original site intact. Existing
+Role/anchor retention prevents load/re-entry/reload reseeding; an old site never
+gains a heap. Harvest removes the heap through existing source custody rules.
+
+Actual play needs an honest route to this source. The ordinary default start is
+11.10, so do not assume it starts in Morrowfast. A declared editor scenario may
+request an explicit fresh starting zone through the existing fresh-start policy,
+like the existing declared wild-start control. If this minimal debug setting is
+added, an explicit scene destination wins, normal games and continued saves stay
+unchanged, and the one-shot request is cleared after scenario application. This
+is a guided starting fixture, not ordinary random discovery or runtime teleport.
+Prefer fresh2.6 with normal18Strength/40HP/50drams and explicitly supplied sieve
+construction materials/forge only; source packet and finished sieve are not
+granted. Obtain the real heap, forge the sieve, screen away from the forge, use
+the clay for an existing lasting repair and demonstrate the retained grit or a
+consequence of the repaired installation. Ordinary four-clay harvest, purchased
+stock and existing services remain alternatives. This source is not a container
+of individually takeable finished fractions: the mesh separates the actual lot.
+
+Required native RED/countercases: data-driven second stock, both groups and
+quantities, overlap/all-pass/all-retained/refused self-output, malformed/bounded
+manifest, mass, private/active state, stack/split/repeated passes, lost tool,
+retained quote and changed manifest, exact callback custody/capacity/output undo,
+independent injury, source once-only/old-site/no-place retention, fixed legacy
+quarry behavior and normal/scene/wild/continued start controls. Then actual
+source/reader/menu/cancel/work/repair/F5all-four/fresh and independent reviews.
+No foundation or whole sieve acceptance is earned by this contract alone.
 
 ### G1 concrete first increment: useful coarse grit
 

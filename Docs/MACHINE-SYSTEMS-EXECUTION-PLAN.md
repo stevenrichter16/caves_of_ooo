@@ -11,16 +11,25 @@ clarifications; native RED/implementation follow current sieve qualification.
 Capstan/cultures remain parked, graphics cancelled and Deck deferred. All twelve
 complete-machine gates remain open.
 
-**G2 working checkpoint — November24local/25UTC:** The size-partition, optional
-finite clay-spoil source and one-shot guided start exist as uncommitted runtime
-drafts. Native final f156/156,0CS includes51 new/current G2 cases and105 retained
+**G2 qualified checkpoint — November24local/25UTC:** The size-partition, optional
+finite clay-spoil source and one-shot guided start have bounded Editor
+qualification. Native final f156/156,0CS includes51 new/current G2 cases and105 retained
 material/repair/grit cases. Earlier d51/47pass/4review RED and e51/50pass/1rollback
 RED exposed real Handling-weight admission, optional heap identity and limited
 same-ID rollback defects, now addressed in f. Exact-source membership refuses
 an alias; scoped rollback does not reinsert a colliding identity or erase the
 independent alias. Main compiled0consoleerrors/stopped/rootnull/clean after
-refresh. Actual guided harvest→screen→repair/use, F5/fresh, final source/recorded
-review, source publication and Mac remain open. G1 remains last published runtime.
+refresh. Actual guided seed65 craft20/realharvest200/readers-freecancel200/
+screen210/wellrepair240/freecoolwater240/grit250, F5/all4/fresh210/250 selected
+exact, source and recorded-play/artifact review0remainingP1/P2. Seed64 died129
+before acquisition, preserved separately. All8earned external files retained;
+four isolationtokens finished/temporaryroots cleaned. Fresh86foreign861normal
+bodies unchanged. Mainstopped/rootnull/clean/profileroff/originalviews/inputrestored/
+unlocked/seed0. Native input only, guided initial address/raw construction+forge
+supplied, real mixed source/products not granted. No normal-route discovery,
+new oily-surface trial, thirst relief, fullsuite, NPC, wholemachine or Mac claim.
+Exact publication follows; coherent Mac then porter P1/compatible outcome work.
+See [evidence](Verification/MachineSystems/GeneralScreening20261124/README.md).
 
 **G1 continuation — November24,2026:** One new bounded consumable-grit field
 capability is native/supplied-play qualified: e139/139, f32overlapping post-label

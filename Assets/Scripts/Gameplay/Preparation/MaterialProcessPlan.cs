@@ -26,12 +26,15 @@ namespace CavesOfOoo.Core
         readonly Cell actorCell, stationCell;
         readonly int count, weight, maximumStack;
         readonly IMaterialWorkReceipt work;
+        readonly SiftableStockPart sizeStock;
+        readonly string sizeManifest;
 
         MaterialProcessPlan(Entity actor, Entity source, Entity station, Zone zone,
-            EntityFactory factory, MaterialProcessDefinition definition, MaterialProcessIngredient[] extraInputs, IMaterialWorkReceipt work=null,MaterialProcessStock stock=null)
+            EntityFactory factory, MaterialProcessDefinition definition, MaterialProcessIngredient[] extraInputs, IMaterialWorkReceipt work=null,MaterialProcessStock stock=null,SiftableStockPart sizeStock=null)
         {
             Actor=actor; Source=source; Station=station; Zone=zone; Factory=factory; Definition=definition;
             this.work=work;Stock=stock;
+            this.sizeStock=sizeStock;sizeManifest=sizeStock?.Contents;
             ExtraInputs=Array.AsReadOnly(extraInputs);
             SourceId=source.ID; StationId=station.ID; actorId=actor.ID; stationBlueprint=station.BlueprintName;
             pack=actor.GetPart<InventoryPart>(); physics=source.GetPart<PhysicsPart>(); stack=source.GetPart<StackerPart>();
@@ -44,9 +47,11 @@ namespace CavesOfOoo.Core
             => Create(actor,source,id,zone,factory,null);
         internal static MaterialProcessPlan TryCreateFromStock(Entity actor,Entity source,string id,Zone zone,EntityFactory factory,MaterialProcessStock stock)
             => stock==null?null:Create(actor,source,id,zone,factory,stock);
-        static MaterialProcessPlan Create(Entity actor,Entity source,string id,Zone zone,EntityFactory factory,MaterialProcessStock stock)
+        internal static MaterialProcessPlan TryCreateScreening(Entity actor,Entity source,Zone zone,EntityFactory factory,SiftableStockPart provider)
+            => provider?.ParentEntity!=source || source?.GetPart<SiftableStockPart>()!=provider?null:Create(actor,source,SiftableStockPart.ProcessId,zone,factory,null,provider);
+        static MaterialProcessPlan Create(Entity actor,Entity source,string id,Zone zone,EntityFactory factory,MaterialProcessStock stock,SiftableStockPart sizeStock=null)
         {
-            var definition=MaterialProcessRegistry.Get(id);
+            var definition=sizeStock==null?MaterialProcessRegistry.Get(id):sizeStock.Definition(factory);
             if(definition==null || factory==null || ForgePart.Factory!=factory
                 || MaterialProcessRegistry.Validate(factory).Count!=0 || !PreparationActions.CurrentActor(actor,zone)
                 || !(stock==null?PreparationActions.Carried(actor,source):stock.Contains(source)) || !Permission(source,definition)
@@ -68,7 +73,7 @@ namespace CavesOfOoo.Core
             var owners=new[]{actor,source,station}.Concat(extraInputs.SelectMany(i=>i.Takes.Select(t=>t.Owner)))
                 .Concat(stock==null?Array.Empty<Entity>():new[]{stock.Box}).ToArray();
             if(owners.Distinct().Count()!=owners.Length || owners.Select(e=>e.ID).Distinct(StringComparer.Ordinal).Count()!=owners.Length)return null;
-            var plan=new MaterialProcessPlan(actor,source,station,zone,factory,definition,extraInputs,work,stock);
+            var plan=new MaterialProcessPlan(actor,source,station,zone,factory,definition,extraInputs,work,stock,sizeStock);
             return plan.Current()?plan:null;
         }
         static Part PermissionPart(Entity source,MaterialProcessDefinition definition)
@@ -95,7 +100,9 @@ namespace CavesOfOoo.Core
         static bool VisibleStation(Entity actor,Entity station,Zone zone)
             => ForgeWorkReceipt.Near(actor,station,zone) && zone.GetEntityCell(station) is Cell cell && cell.IsVisible && cell.Explored;
         internal bool ContextCurrent()
-            => ForgePart.Factory==Factory && MaterialProcessRegistry.Get(Definition.Id)==Definition
+            => ForgePart.Factory==Factory && (sizeStock==null?MaterialProcessRegistry.Get(Definition.Id)==Definition
+                :sizeStock.ParentEntity==Source && Source.GetPart<SiftableStockPart>()==sizeStock && sizeStock.Contents==sizeManifest
+                    && PermissionPart(Source,Definition)==sizeStock)
                 && MaterialProcessRegistry.Validate(Factory).Count==0
                 && PreparationActions.CurrentActor(Actor,Zone) && Actor.ID==actorId && Actor.GetPart<InventoryPart>()==pack
                 && (Stock==null || Stock.Current())
@@ -103,6 +110,13 @@ namespace CavesOfOoo.Core
                 && Zone.GetEntityCell(Actor)==actorCell && Zone.GetEntityCell(Station)==stationCell
                 && Station.ID==StationId && Station.BlueprintName==stationBlueprint && Station.Parts.SequenceEqual(stationParts)
                 && (work!=null?work.Current():VisibleStation(Actor,Station,Zone));
+        internal bool SameDefinition(MaterialProcessPlan other)
+            => other!=null && (sizeStock==null?other.sizeStock==null && Definition==other.Definition
+                :other.sizeStock==sizeStock && other.sizeManifest==sizeManifest && Definition.Id==other.Definition.Id
+                    && Definition.SourceBlueprint==other.Definition.SourceBlueprint && Definition.Mode==other.Definition.Mode
+                    && Definition.WorkKind==other.Definition.WorkKind && Definition.InputCount==other.Definition.InputCount
+                    && Definition.OutputBlueprints.SequenceEqual(other.Definition.OutputBlueprints)
+                    && Definition.OutputCounts.SequenceEqual(other.Definition.OutputCounts));
         internal bool BeginWork(CavesOfOoo.Core.Inventory.InventoryTransaction tx,string command)
             => work!=null?work.Begin(tx,command):ForgeWorkReceipt.Begin(Actor,Zone,tx,command,Station);
         internal bool InputAvailable(Entity input)=>Stock==null?PreparationActions.Carried(Actor,input):Stock.Contains(input);

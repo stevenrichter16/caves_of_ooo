@@ -81,7 +81,9 @@ namespace CavesOfOoo.Core
                     var terrain=cells[i].Objects.Single(e=>e.HasTag("Terrain"));bool had=terrain.HasTag("Plantable");
                     var marker=new CultivatedSoilPart();terrain.SetTag("Plantable");zone.NotifyEntityTagAdded(terrain,"Plantable");terrain.AddPart(marker);soils.Add((terrain,marker,had));
                 }
-                success=true;Diag.Record("worldgen","RepairCultivationPlaced",target:staged.Last(),payload:new{zoneId=zone.ZoneID,owners=added.Count,beds=soils.Count});return true;
+                success=true;Diag.Record("worldgen","RepairCultivationPlaced",target:staged.Last(),payload:new{zoneId=zone.ZoneID,owners=added.Count,beds=soils.Count});
+                TryInstallOptionalSpoil(zone,factory,staged.Single(e=>e.GetProperty(RoleKey)=="clay"));
+                return true;
             }
             finally
             {
@@ -90,6 +92,45 @@ namespace CavesOfOoo.Core
                     foreach(var soil in soils){soil.Item1.RemovePart(soil.Item2);if(!soil.Item3){soil.Item1.Tags.Remove("Plantable");zone.NotifyEntityTagRemoved(soil.Item1,"Plantable");}}
                     foreach(var e in added.AsEnumerable().Reverse())if(e.SpatialZone==zone)zone.RemoveEntity(e);
                 }
+            }
+        }
+        // Separate from the original atomic Specs: optional new stock must not
+        // make an established well/crop installation fail or gain a refill path.
+        static void TryInstallOptionalSpoil(Zone zone,EntityFactory factory,Entity bank)
+        {
+            Entity heap=null;bool added=false;
+            void Omit(string reason)=>Diag.Record("worldgen","ClaySpoilOmitted",target:bank,payload:new{zoneId=zone?.ZoneID,reason});
+            try
+            {
+                var at=zone.GetEntityCell(bank);var harvest=bank.GetPart<HarvestablePart>();string id=bank.ID;
+                bool Current()=>bank.ID==id && zone.GetEntityCell(bank)==at && bank.GetProperty(RoleKey)=="clay"
+                    && bank.GetPart<HarvestablePart>()==harvest && harvest?.Harvested==false;
+                if(at==null || !Current() || !factory.Blueprints.ContainsKey("DryClaySpoilHeap")){Omit("missing-optional-content");return;}
+                var reached=Reach(zone,new HashSet<(int,int)>());
+                var cells=from y in Enumerable.Range(Math.Max(0,at.Y-2),Math.Min(Zone.Height-1,at.Y+2)-Math.Max(0,at.Y-2)+1)
+                    from x in Enumerable.Range(Math.Max(0,at.X-2),Math.Min(Zone.Width-1,at.X+2)-Math.Max(0,at.X-2)+1)
+                    let c=zone.GetCell(x,y) where Bare(c) && reached.Contains((x,y))
+                    && !zone.GetReadOnlyEntities().Any(e=>e.HasTag("Creature")&&Distance(zone.GetEntityPosition(e),(x,y))<=2)
+                    orderby Math.Abs(x-at.X)+Math.Abs(y-at.Y),y,x select c;
+                var cell=cells.FirstOrDefault();if(cell==null){Omit("no-bare-reachable-ground");return;}
+                heap=factory.CreateEntity("DryClaySpoilHeap");var stock=heap?.GetPart<HarvestablePart>();
+                bool Unique()=>!string.IsNullOrEmpty(heap?.ID) && !zone.GetReadOnlyEntities().Any(e=>e!=heap && e.ID==heap.ID);
+                bool FreshStock()=>Fresh(heap,"DryClaySpoilHeap") && Unique() && stock?.GetType()==typeof(HarvestablePart)
+                    && !stock.Harvested && stock.YieldBlueprint=="DryClaySpoil" && stock.YieldMin==1 && stock.YieldMax==1 && stock.YieldChance==100;
+                if(!FreshStock() || !Current() || !Bare(cell)){Omit("changed-optional-source");return;}
+                string heapID=heap.ID;
+                heap.SetIntProperty("AllotmentClaySpoil",1);
+                if(!zone.AddEntity(heap,cell.X,cell.Y)){Omit("placement-refused");return;}added=true;
+                if(!Current() || heap.ID!=heapID || !Unique() || zone.GetEntityCell(heap)!=cell || heap.GetPart<HarvestablePart>()!=stock || stock.Harvested
+                    || stock.YieldBlueprint!="DryClaySpoil" || stock.YieldMin!=1 || stock.YieldMax!=1 || stock.YieldChance!=100)
+                {if(zone.GetEntityCell(heap)==cell)zone.RemoveEntity(heap);Omit("changed-after-placement");return;}
+                ZoneRenderHooks.MarkCellDirty(cell,"ClaySpoil.Placed");
+                Diag.Record("worldgen","ClaySpoilPlaced",target:heap,payload:new{zoneId=zone.ZoneID,source=bank.ID,packets=1,x=cell.X,y=cell.Y});
+            }
+            catch(Exception)
+            {
+                if(added && heap?.SpatialZone==zone)zone.RemoveEntity(heap);
+                Omit("optional-creation-exception");
             }
         }
         private static bool Fresh(Entity e,string bp)=>e!=null&&e.BlueprintName==bp&&e.SpatialZone==null&&e.GetPart<PhysicsPart>() is PhysicsPart p

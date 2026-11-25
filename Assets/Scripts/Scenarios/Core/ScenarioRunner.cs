@@ -50,6 +50,11 @@ namespace CavesOfOoo.Scenarios
         /// <summary>The depth of the last launched scenario's wild start, so Re-run Last repeats it.</summary>
         public static int LastWildDepth;
 
+        /// <summary>Optional explicit fresh start for an editor scenario. Scene
+        /// destinations win; normal games/loaded actors ignore this one-shot request.</summary>
+        public static string PendingStartZoneID="";
+        public static string LastStartZoneID="";
+
         /// <summary>
         /// The most recently-applied scenario type. Survives across Play mode exits
         /// so <c>Re-run Last</c> can re-launch it without re-navigating the menu.
@@ -66,12 +71,19 @@ namespace CavesOfOoo.Scenarios
         public static void Launch<T>() where T : IScenario, new()
             => Launch(typeof(T));
 
+        /// <summary>Explicit fresh scenario address; ordinary Continue ignores it.</summary>
+        public static void LaunchAt<T>(string startZoneID) where T : IScenario, new()
+            => LaunchAt(typeof(T),startZoneID);
+
         /// <summary>Launch a scenario that starts the fresh game on ordinary wild ground (see <see cref="PendingWildStart"/>).</summary>
         public static void LaunchWild<T>(BiomeType biome = BiomeType.Spread, int depth = 0) where T : IScenario, new()
             => Launch(typeof(T), wildStart: true, wildBiome: biome, wildDepth: depth);
 
         /// <summary>Non-generic Launch — used by the Re-run Last shortcut.</summary>
         public static void Launch(Type scenarioType, bool wildStart = false, BiomeType wildBiome = BiomeType.Spread, int wildDepth = 0)
+            => LaunchAt(scenarioType,null,wildStart,wildBiome,wildDepth);
+
+        public static void LaunchAt(Type scenarioType,string startZoneID,bool wildStart=false,BiomeType wildBiome=BiomeType.Spread,int wildDepth=0)
         {
             if (scenarioType == null)
             {
@@ -91,6 +103,8 @@ namespace CavesOfOoo.Scenarios
             LastWildBiome = wildBiome;
             PendingWildDepth = wildDepth;
             LastWildDepth = wildDepth;
+            PendingStartZoneID=startZoneID??"";
+            LastStartZoneID=PendingStartZoneID;
 
 #if UNITY_EDITOR
             // Enter Play mode if not already playing. If already playing, the user
@@ -132,6 +146,7 @@ namespace CavesOfOoo.Scenarios
             PendingWildStart = false;
             PendingWildBiome = BiomeType.Spread;
             PendingWildDepth = 0;
+            PendingStartZoneID="";
 
             IScenario instance;
             try

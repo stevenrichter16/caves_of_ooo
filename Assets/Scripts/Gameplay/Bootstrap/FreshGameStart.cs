@@ -51,9 +51,19 @@ namespace CavesOfOoo.Core
    return best;
   }
   /// <summary>The fresh-start destination to use: the scene's own setting if it has one, else wild ground when a pending scenario asked for it, else empty (the ordinary Spread policy).</summary>
-  public static string ResolveStartZone(string sceneZoneId,bool scenarioPending,bool wildRequested,OverworldZoneManager manager,BiomeType wildBiome=BiomeType.Spread,int wildDepth=0)
+  public static string ResolveStartZone(string sceneZoneId,bool scenarioPending,bool wildRequested,OverworldZoneManager manager,BiomeType wildBiome=BiomeType.Spread,int wildDepth=0,string scenarioZoneID=null)
   {
    if(!string.IsNullOrWhiteSpace(sceneZoneId))return sceneZoneId;
+   if(scenarioPending && !string.IsNullOrWhiteSpace(scenarioZoneID))
+   {
+    try
+    {
+     var p=WorldMap.FromZoneID(scenarioZoneID);int depth=WorldMap.GetDepth(scenarioZoneID);
+     if(p.x>=0&&p.x<WorldMap.Width&&p.y>=0&&p.y<WorldMap.Height&&depth>=0&&depth<=64
+      && WorldMap.ToZoneID(p.x,p.y,depth)==scenarioZoneID)return scenarioZoneID;
+    }catch(Exception){ }
+    Diag.Record("worldgen","ScenarioStartRequestRejected",payload:new{requested=scenarioZoneID});
+   }
    return scenarioPending&&wildRequested?WildStartZoneId(manager,wildBiome,wildDepth)??"":"";
   }
   /// <summary>Whether a fresh start in <paramref name="zone"/> gets the farm-plot guarantee. The seeder turns the cells around the player into grass, which belongs on the surface: a scenario that starts one floor down (the sounding rod's) would otherwise lose its own cave floor under its feet. A zone that is not a world depth keeps the old behaviour.</summary>
