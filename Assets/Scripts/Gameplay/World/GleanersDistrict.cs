@@ -13,6 +13,9 @@ namespace CavesOfOoo.Core
         public const string RoleKey="GleanersDistrict.Role";
         public const string SurfaceID=ReferenceGladePlan.ZoneID;
         public const int EntranceX=28, EntranceY=19;
+        internal const string LegacyWellFlavor = "Fire clay seals this well's fired lining. A sound lining allows drinking and vessel filling; repairing a split takes two measures of fire clay. The old supply cellar in the western ruin stored repair clay. The reed basin nearby holds only a few drinks; it cannot refill this well.";
+        const string WellFlavor = "A sound fired lining holds water for drinking and filling vessels. Repair clay was stored beneath the western ruin. The nearby reed basin holds a separate supply of only a few drinks.";
+        const string OpeningNoticeTail = " The kitchen southeast offers one-action healing and bleed treatment in a wrapped field meal, while separate ingredients heal more in total. Its public oven and cot need no repair. Sill lies west, the alembic north, the forge east, and Marrowstye south of the kitchen. Inspect each place for its current condition.";
         static readonly (string blueprint,string role,int x,int y)[] placements=
         {
             ("RepairLinedWell","well",41,8),
@@ -85,7 +88,7 @@ namespace CavesOfOoo.Core
                             return Reject(zone,"invalid-well");
                         if(manager.Exploration?.Enabled==true && manager.Exploration.Version>=11 && !ConnectedSpreadProgress.BindRepair(e,manager.Exploration.WorldKey))return Reject(zone,"invalid-well-origin");
                         e.GetPart<RenderPart>().DisplayName="gleaners' lined well";
-                        Describe(e,"Fire clay seals this well's fired lining. A sound lining allows drinking and vessel filling; repairing a split takes two measures of fire clay. The old supply cellar in the western ruin stored repair clay. The reed basin nearby holds only a few drinks; it cannot refill this well.");
+                        Describe(e, opening && manager.Exploration.Version >= 26 ? WellFlavor : LegacyWellFlavor);
                     }
                     else if(p.role=="stairs")
                     {
@@ -112,7 +115,7 @@ namespace CavesOfOoo.Core
                         string text="WELL LINING SPLIT. Two measures of fire clay needed. Stores below the western ruin; leave the landing clear. A second hand adds: the field alembic is one stretch north, the forge one east. Frost lichen can be brewed into a freezing coating and used to quench a melee weapon at a forge, at a cost to its durability. Put the weapon in your pack first. Sill is west; the wayside kitchen is southeast. Marrowstye's receiving hall lies one stretch farther south from the kitchen.";
                         if(manager.Exploration?.Enabled==true && manager.Exploration.Version>=11)
                             text+=" Another hand notes: the kitchen's batch pan also needs two measures of fire clay, for wrapped field meals. Its public oven and cot need no repair. Clay spent there cannot line this well until more is found.";
-                        if(opening)text="Crossing tricks and repair clay were stored below the western ruin. This well and the kitchen's batch pan each need two measures of fire clay; keep them if neither suits your next trip. The kitchen southeast offers one-action healing and bleed treatment in a wrapped field meal, while separate ingredients heal more in total. Its public oven and cot need no repair. Sill lies west, the alembic north, the forge east, and Marrowstye south of the kitchen. Inspect each place for its current condition.";
+                        if (opening) text = OpeningNotice(manager.Exploration.Version);
                         Describe(e,text);
                     }
                     staged.Add(e);
@@ -137,6 +140,32 @@ namespace CavesOfOoo.Core
             catch(Exception error){return Reject(zone,"staging-"+error.GetType().Name);}
             finally{foreach(var e in added)if(e.SpatialZone==zone)zone.RemoveEntity(e);}
         }
+        static string OpeningNotice(int version)
+        {
+            const string cellar = "Crossing tricks and repair clay were stored below the western ruin.";
+            if (version < 26)
+                return cellar + " This well and the kitchen's batch pan each need two measures of fire clay; keep them if neither suits your next trip." + OpeningNoticeTail;
+
+            var well = RepairRecipeRegistry.Get("clay-well-lining");
+            var pan = RepairRecipeRegistry.Get("clay-batch-pan");
+            string wellBill = RepairablePart.FormatBill(well);
+            string panBill = pan == null ? null : RepairablePart.FormatBill(pan);
+            string needs = wellBill == panBill
+                ? " The well and the kitchen's batch pan each need " + wellBill + "."
+                : " The well needs " + wellBill + "." + (panBill == null ? "" : " The kitchen's batch pan needs " + panBill + ".");
+            return cellar + needs + " Keep what you find for the work that suits your next trip." + OpeningNoticeTail;
+        }
+
+        internal static string ResolveWellFlavor(Entity owner)
+        {
+            var well = owner.SpatialZone;
+            var repair = owner.GetPart<RepairablePart>();
+            return owner.BlueprintName == "RepairLinedWell" && owner.GetProperty(RoleKey) == "well"
+                && repair?.ParentEntity == owner && !repair.PortableEquipment && repair.RecipeId == "clay-well-lining"
+                && well?.ZoneID == SurfaceID && well.GetEntityCell(owner)?.Objects.Contains(owner) == true
+                ? WellFlavor : LegacyWellFlavor;
+        }
+
         static void Describe(Entity e,string text)
         {
             var part=e.GetPart<ExaminablePart>();if(part==null){part=new ExaminablePart();e.AddPart(part);}part.Text=text;

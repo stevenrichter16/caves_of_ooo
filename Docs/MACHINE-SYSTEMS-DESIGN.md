@@ -1,3 +1,10 @@
+**Discovery uses the same material bill as work — November 25 UTC, 2026.**
+The Gleaners’ sign now names both eligible clay forms for the well and pan
+on fresh layouts. The current well reader keeps the cellar directions and
+separate reed basin while pulling the repair choices from the shared bill.
+Earlier stored notice and well text remain physically intact.
+[Evidence](Verification/MachineSystems/GleanersDiscovery20261125/README.md)
+
 **Portable treatment stays useful alongside a fixed service — November 25 UTC, 2026.**
 The same pad and cord support two independent carried treatments or Sella’s
 combined dressing. The shelter and Sella name the difference. A two-timber

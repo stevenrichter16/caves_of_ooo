@@ -29,17 +29,20 @@ namespace CavesOfOoo.Core
         /// Existing repaired saves have no retroactively invented author.</summary>
         public Entity RepairedBy;
         public string RepairCauseID, RepairedZoneID, RepairWorldKey;
-        private bool UsesMaterialGrade(RepairRecipe recipe) => !PortableEquipment
+        private bool UsesMaterialGrade(RepairRecipe recipe) => UsesMaterialGrade(recipe, PortableEquipment);
+        private static bool UsesMaterialGrade(RepairRecipe recipe, bool portableEquipment) => !portableEquipment
             && !string.IsNullOrEmpty(recipe?.MaterialGrade);
 
         public bool OwnsInventoryReceipt(string command) => command == RepairCommand
             && ParentEntity?.GetPart<RepairablePart>() == this
             && UsesMaterialGrade(RepairRecipeRegistry.Get(RecipeId));
 
-        internal string Bill(RepairRecipe recipe)
+        internal string Bill(RepairRecipe recipe) => FormatBill(recipe, PortableEquipment);
+
+        internal static string FormatBill(RepairRecipe recipe, bool portableEquipment = false)
         {
             string quantity = recipe.Quantity.ToString(CultureInfo.InvariantCulture);
-            return UsesMaterialGrade(recipe)
+            return UsesMaterialGrade(recipe, portableEquipment)
                 ? quantity + " measures of fire clay or prepared lining clay, in any mix"
                 : quantity + " " + recipe.MaterialName;
         }

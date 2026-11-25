@@ -56,6 +56,8 @@ namespace CavesOfOoo.Core
         public string GetDescriptionText()
         {
             var owner = ParentEntity;
+            if (Text == GleanersDistrict.LegacyWellFlavor && owner?.GetPart<ExaminablePart>() == this)
+                return GleanersDistrict.ResolveWellFlavor(owner);
             if (owner?.GetPart<ExaminablePart>() == this && owner.GetPart<KitchenBatchPart>() is KitchenBatchPart batch
                 && batch.ParentEntity == owner)
                 return batch.ResolveDescription(Text);

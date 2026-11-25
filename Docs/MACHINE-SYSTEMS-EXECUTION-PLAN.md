@@ -1,3 +1,11 @@
+**A fresh Gleaners’ notice points to either lining grade — November 25 UTC, 2026.**
+The current well and fresh notice use the same bills as the native action.
+Actual fresh seed 64 reading preserved time and the distant kitchen stayed
+unloaded. F1 and Examine on an earned earlier save used the current bill
+and local directions with exact saved flavor and sign retained. All 147
+focused native cases passed. Continue the second flexible-stock work provider.
+[Evidence](Verification/MachineSystems/GleanersDiscovery20261125/README.md)
+
 **Two useful treatments at Sella’s shelter — November 25 UTC, 2026.**
 The bench reader and Sella explain independent portable treatments and a
 combined dressing. Actual new harvesting and movement brought timber and

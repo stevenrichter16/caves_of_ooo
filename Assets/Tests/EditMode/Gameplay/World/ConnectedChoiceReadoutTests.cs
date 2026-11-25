@@ -22,10 +22,9 @@ namespace CavesOfOoo.Tests
                 Assert.NotNull(zone);
                 var notice = Notice(zone);
                 string text = notice.GetPart<ExaminablePart>().BuildWorldExamineLine(zone, zone.GetEntityCell(notice)).ToLowerInvariant();
-                Assert.That(text, Does.Contain("well"));
-                Assert.That(text, Does.Contain("kitchen"));
-                Assert.That(text, Does.Match(@"pan[^.]*two measures of fire clay"),
+                Assert.That(text, Does.Contain("well and the kitchen's batch pan each need 2 measures of fire clay or prepared lining clay, in any mix"),
                     "The competing cost must be visible at spawn, before the well consumes the first two clay.");
+                Assert.That(text, Does.Contain("western ruin"));
                 Assert.That(text, Does.Contain("field meal"));
                 Assert.That(text, Does.Contain("oven"));
                 Assert.False(zone.GetReadOnlyEntities().Single(e => e.GetProperty(GleanersDistrict.RoleKey) == "well")
@@ -35,24 +34,58 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [Test] public void LiteralLegacyManifestAndSavedNoticeRetainTheirOriginalDirections()
+        [Test] public void CurrentWellReaderUsesTheLiveBillAndKeepsExactLegacyFlavorOnDisk()
+        {
+            using (var content = new HaulingContentScope())
+            {
+                content.Seed(64);
+                var manager = OverworldZoneManager.CreateDetached(content.Factory, 64, true);
+                var zone = manager.GetZone(GleanersDistrict.SurfaceID);
+                var well = zone.GetReadOnlyEntities().Single(e => e.GetProperty(GleanersDistrict.RoleKey) == "well");
+                var examine = well.GetPart<ExaminablePart>();
+                const string original = "Fire clay seals this well's fired lining. A sound lining allows drinking and vessel filling; repairing a split takes two measures of fire clay. The old supply cellar in the western ruin stored repair clay. The reed basin nearby holds only a few drinks; it cannot refill this well.";
+                examine.Text = original;
+                int tick = WorldClock.CurrentTick;
+                string description = examine.BuildWorldExamineLine(zone, zone.GetEntityCell(well));
+                Assert.That(description, Does.Contain("2 measures of fire clay or prepared lining clay, in any mix"));
+                Assert.That(description, Does.Not.Contain("repairing a split takes two measures of fire clay"));
+                Assert.That(description, Does.Contain("western ruin").And.Contain("reed basin"));
+                Assert.That(examine.Text, Is.EqualTo(original));
+                Assert.That(PartRoundTripHelper.RoundTripEntityViaTokenGraph(well).GetPart<ExaminablePart>().Text,
+                    Is.EqualTo(original));
+                Assert.That(WorldClock.CurrentTick, Is.EqualTo(tick));
+                Assert.False(manager.CachedZones.ContainsKey(KitchenBatchPart.KitchenZoneID));
+                examine.Text = original + " A keeper pencilled a note here.";
+                Assert.That(examine.GetDescriptionText(), Is.EqualTo(examine.Text));
+            }
+        }
+
+        [TestCase(10)]
+        [TestCase(25)]
+        public void LiteralLegacyManifestAndSavedNoticeRetainTheirOriginalDirections(int version)
         {
             using (var content = new HaulingContentScope())
             {
                 content.Seed(64);
                 var manager = OverworldZoneManager.CreateDetached(content.Factory, 64, true);
                 var world = new Entity { BlueprintName = "World" };
-                world.Properties[SpreadExplorationPlan.PropertyKey] = "10|64|0";
+                world.Properties[SpreadExplorationPlan.PropertyKey] = version + "|64|0";
+                world.Properties[SpreadExplorationPlan.WorldKeyProperty] = "0123456789abcdef0123456789abcdef";
                 var restore = typeof(SpreadExplorationPlan).GetMethod("Restore", BindingFlags.Static | BindingFlags.NonPublic);
                 var plan = (SpreadExplorationPlan)restore.Invoke(null, new object[] { manager, world });
                 typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(manager, plan);
-                Assert.AreEqual(10, manager.Exploration.Version);
+                Assert.AreEqual(version, manager.Exploration.Version);
                 var zone = manager.GetZone(GleanersDistrict.SurfaceID);
                 Assert.NotNull(zone);
                 var notice = Notice(zone);
                 string original = notice.GetPart<ExaminablePart>().Text;
-                Assert.That(original, Does.Contain("WELL LINING SPLIT"));
-                Assert.That(original, Does.Not.Contain("batch pan"));
+                if (version == 10)
+                {
+                    Assert.That(original, Does.Contain("WELL LINING SPLIT"));
+                    Assert.That(original, Does.Not.Contain("batch pan"));
+                }
+                else Assert.That(original, Does.Contain("batch pan each need two measures of fire clay;"));
+                Assert.That(original, Does.Not.Contain("prepared lining clay"));
                 var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(notice);
                 Assert.AreEqual(original, loaded.GetPart<ExaminablePart>().Text,
                     "New service directions must not rewrite an old saved notice.");

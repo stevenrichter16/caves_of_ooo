@@ -420,6 +420,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     one locally staged measure and one bought measure in actual play.
     Older authored discovery copy still names the original fire-clay source.
     [Evidence](Verification/MachineSystems/RepairBillReaders20261125/README.md)
+    A fresh Gleaners’ notice uses the well and pan’s shared bills while
+    keeping the cellar and free oven directions. The earlier save’s well
+    now shows the live grade options without replacing its stored text.
+    [Evidence](Verification/MachineSystems/GleanersDiscovery20261125/README.md)
 
 38. **Record causal diagnostics.** Trace exact source units, selected method,
     committed result, receiving owner and benefit qualification. Distinguish
