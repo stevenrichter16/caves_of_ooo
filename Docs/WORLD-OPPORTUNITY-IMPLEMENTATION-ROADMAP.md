@@ -144,6 +144,11 @@ cross-seed comparisons remain open.
     produce declared fractions and account for any loss. Leave unwanted material
     in an actual accessible store or ground location. Portable processing cannot
     silently delete the heavy fraction to grant free transport.
+    At the finite Morrowfast heap, the one-action portable choice reduces
+    carried weight by one pound and leaves exact recoverable grit. The clay
+    and grit both have ordinary uses that worked after fresh Continue.
+    The original all-in-pack choice remains available.
+    [Evidence](Verification/MachineSystems/GroundScreening20261125/README.md)
 
 15. **Keep installed advantages earned and bounded.** A workshop can offer a
     supported process, storage convenience or larger admitted batch. Portable

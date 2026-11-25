@@ -65,19 +65,42 @@ namespace CavesOfOoo.Core
                             e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id,"screen size grades","screening-unavailable","Carry a sound sieve and leave room for both grades.",'\0',19);
                         continue;
                     }
-                    var retained=previous.FirstOrDefault(p=>p.Value.Plan.Actor==actor && p.Value.Plan.Source==owner && p.Value.Plan.Zone==zone
-                        && p.Value.Plan.Station==plan.Station && p.Value.Plan.SameDefinition(plan) && p.Value.Current());
-                    string token=retained.Key??Guid.NewGuid().ToString("N");menu.Quotes[token]=retained.Value??quoted;
+                    string Command(MaterialProcessService.Quote choice)
+                    {
+                        var retained = previous.FirstOrDefault(p => p.Value.Plan.Actor == actor && p.Value.Plan.Source == owner
+                            && p.Value.Plan.Zone == zone && p.Value.Plan.Station == plan.Station && p.Value.Plan.SameDefinition(plan)
+                            && p.Value.GritGround == choice.GritGround && p.Value.Current());
+                        string token = retained.Key ?? Guid.NewGuid().ToString("N");
+                        menu.Quotes[token] = retained.Value ?? choice;
+                        return MaterialProcessInputPart.CommandPrefix + choice.ActionId + "|" + Uri.EscapeDataString(plan.StationId) + "|" + token;
+                    }
                     var d=quoted.Result;
                     string outputs=string.Join(" + ",d.OutputBlueprints.Select((bp,i)=>d.OutputCounts[i]+" "+Label(plan.Factory,bp)));
                     string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));
                     var row=e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
-                        MaterialProcessInputPart.CommandPrefix+id+"|"+Uri.EscapeDataString(plan.StationId)+"|"+token,'\0',19,false,ActionTime.OneAction);
+                        Command(quoted),'\0',19,false,ActionTime.OneAction);
                     if(row!=null && d.WorkKind==SeedFramePart.WorkKind)
                     {
                         row.Display=d.ActionText+" "+d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint);
                         row.Hint="Makes "+outputs+". "+d.LossText+". One action. Products go into your pack.";
                         row.AtEntity(zone,plan.Station);
+                    }
+                    if (sizeStock != null && SiftableStockPart.GritDestination(plan) is Cell ground
+                        && MaterialProcessService.TryQuote(plan, ground) is {} leave)
+                    {
+                        string label = d.SourceBlueprint == "DryClaySpoil" ? "screen clay and leave grit" : "screen size grades and leave grit";
+                        int fine = SiftableStockPart.Weight(plan.Factory, d.OutputBlueprints[0]) * d.OutputCounts[0];
+                        int coarse = SiftableStockPart.Weight(plan.Factory, d.OutputBlueprints[1]);
+                        if (row != null)
+                        {
+                            row.Display = $"screen and pack both ({fine + coarse} lb, 1 action)";
+                            row.Hint = "Makes " + outputs + ". Both grades go into your pack. Keep the sieve.";
+                        }
+                        e.GetParameter<InventoryActionList>("Actions")?.AddActionWithHint(leave.ActionId,
+                            $"{label} (carry {fine} lb, leave {coarse} lb, 1 action)", Command(leave),
+                            $"One action. {fine} lb of {Label(plan.Factory, d.OutputBlueprints[0])} into your pack. "
+                            + $"{coarse} lb of {Label(plan.Factory, d.OutputBlueprints[1])} at your feet. Keep the sieve.",
+                            '\0',18,false,ActionTime.OneAction).AtCell(ground.X, ground.Y);
                     }
                 }
                 return true;
@@ -87,7 +110,7 @@ namespace CavesOfOoo.Core
             if(e.GetParameter<bool>("MaterialProcessAttempted"))return true;e.SetParameter("MaterialProcessAttempted",true);
             var fields=command.Split('|');if(fields.Length!=4 || !Menus.TryGetValue(owner,out var current) || !current.Quotes.TryGetValue(fields[3],out var selectedQuote))return true;
             current.Quotes.Remove(fields[3]);var selected=selectedQuote.Plan;
-            if(selected.Actor!=actor || selected.Source!=owner || selected.Zone!=zone || selected.Definition.Id!=fields[1]
+            if(selected.Actor!=actor || selected.Source!=owner || selected.Zone!=zone || selectedQuote.ActionId!=fields[1]
                 || Uri.EscapeDataString(selected.StationId)!=fields[2]
                 || !MaterialProcessService.TryExecute(selectedQuote,e.GetParameter<InventoryTransaction>("InventoryTransaction"),command))return true;
             e.Handled=true;return false;

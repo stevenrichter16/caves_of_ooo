@@ -13,11 +13,13 @@ namespace CavesOfOoo.Core
         public override string Name=>"SiftableStock";
         public string Contents="";
         internal const string ProcessId="screen_size_grades";
+        internal const string LeaveGritId="screen_size_grades_leave_grit";
         public int Order=>36;
         void Remember()=>MaterialProcessRegistry.RememberPayload(ParentEntity?.BlueprintName);
         public override void OnAfterLoad(SaveReader reader)=>Remember();
         public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<SiftableStockPart>()==this
-            && command?.StartsWith(MaterialProcessInputPart.CommandPrefix+ProcessId+"|",StringComparison.Ordinal)==true;
+            && (command?.StartsWith(MaterialProcessInputPart.CommandPrefix+ProcessId+"|",StringComparison.Ordinal)==true
+                || command?.StartsWith(MaterialProcessInputPart.CommandPrefix+LeaveGritId+"|",StringComparison.Ordinal)==true);
         bool IMaterialProcessPermission.Allows(MaterialProcessDefinition d)=>d!=null && d.Id==ProcessId && d.Mode=="Process"
             && d.WorkKind=="Screening" && d.InputCount==1 && d.SourceBlueprint==ParentEntity?.BlueprintName
             && ParentEntity.GetPart<SiftableStockPart>()==this && ParentEntity.Parts.Count(p=>p is SiftableStockPart)==1;
@@ -56,7 +58,7 @@ namespace CavesOfOoo.Core
                 ActionText="screen size grades",LossText="fine/medium pass; coarse retained; no material lost"};
             return MaterialProcessRegistry.Valid(row)?new MaterialProcessDefinition(row):null;
         }
-        static int Weight(EntityFactory factory,string name)
+        internal static int Weight(EntityFactory factory,string name)
         {
             if(!factory.Blueprints.TryGetValue(name,out var bp) || !bp.Parts.TryGetValue("Physics",out var p)
                 || !p.TryGetValue("Weight",out string raw) || !int.TryParse(raw,NumberStyles.Integer,CultureInfo.InvariantCulture,out int weight))return -1;
@@ -66,11 +68,28 @@ namespace CavesOfOoo.Core
             {if(!int.TryParse(overrideRaw,NumberStyles.Integer,CultureInfo.InvariantCulture,out int overrideWeight))return -1;if(overrideWeight>0)weight=overrideWeight;}
             return weight;
         }
+        internal static Cell GritDestination(MaterialProcessPlan plan)
+        {
+            var result = plan.Definition;
+            if (result.Id != ProcessId || result.OutputBlueprints.Count != 2 || result.OutputCounts[1] != 1
+                || !plan.Factory.Blueprints.TryGetValue(result.OutputBlueprints[1], out var coarse)
+                || !coarse.Parts.ContainsKey("GritMaterial") || Weight(plan.Factory, coarse.Name) <= 0) return null;
+
+            var cell = plan.Zone.GetEntityCell(plan.Actor);
+            if (!RouteWorkMenu.Visible(cell) || cell.ParentZone != plan.Zone || cell.BlocksMovement(plan.Actor)
+                || cell.Objects.Any(item => item.GetPart<LiquidPoolPart>() is { Volume: > 0 })
+                || plan.Zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(layer => layer.Turns > 0) == true)
+                return null;
+            return cell;
+        }
         public void DescribeUse(DescribeContext context,UseGuide guide)
         {
             guide.How.Add("Carry this known mixed stock and a sound hand sieve; choose screen size grades.");
-            guide.Needs.Add("one packet; room for both declared grades; a real carried sieve");
+            guide.Needs.Add("One packet, a sound carried sieve and pack space for the material you keep.");
             guide.Limits.Add("One action keeps the same sieve and separates fine/medium passing stock from coarse retained stock. Quantities and material identities stay the same. Equal-sized unlike materials refuse; screening does not identify, grind, dry or purify anything.");
+            if (Definition(ForgePart.Factory) is {} result && result.OutputCounts[1] == 1
+                && ForgePart.Factory.Blueprints[result.OutputBlueprints[1]].Parts.ContainsKey("GritMaterial"))
+                guide.How.Add("On a clear surface you can leave the coarse grit at your feet for later pickup and carry the finer material.");
             guide.WhyNot="carry a sound sieve and a plain, known stock with two distinct size groups";
         }
     }

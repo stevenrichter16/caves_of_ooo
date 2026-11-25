@@ -21,6 +21,222 @@ namespace CavesOfOoo.Tests
         static Part Stock(Entity e)=>e.Parts.Single(p=>p.Name=="SiftableStock");
         static void SetContents(Entity e,string raw){var p=Stock(e);p.GetType().GetField("Contents").SetValue(p,raw);}
 
+        private static InventoryAction LeaveGritRow(IEnumerable<InventoryAction> rows)
+        {
+            var matches = rows.Where(a => a.Display != null
+                && a.Display.StartsWith("screen clay", StringComparison.OrdinalIgnoreCase)
+                && a.Display.IndexOf("leave grit", StringComparison.OrdinalIgnoreCase) >= 0).ToArray();
+            Assert.That(matches, Has.Length.EqualTo(1), "The choice to leave grit has its own inventory row.");
+            Assert.That(matches[0].IsDisabled, Is.False);
+            return matches[0];
+        }
+
+        [Test]
+        public void LeaveGritKeepsTwoClayAndPlacesExactlyOneNormallyRecoverableGroundOwner()
+        {
+            var sieve = Sieve();
+            var spoil = Feed();
+            var cell = Zone.GetEntityCell(Actor);
+            int mass = Pack.GetCarriedWeight();
+            Pack.MaxWeight = mass;
+            var rows = Actions(spoil);
+            var all = rows.Single(a => a.Command.StartsWith(Prefix, StringComparison.Ordinal));
+            var leave = LeaveGritRow(rows);
+            Assert.That(leave.Command, Is.Not.EqualTo(all.Command));
+            Assert.That(leave.Time, Is.EqualTo(ActionTime.OneAction));
+            Assert.That(rows.ToList().IndexOf(all), Is.LessThan(rows.ToList().IndexOf(leave)));
+            Assert.That(all.Display, Does.Contain("pack both").And.Contain("3 lb"));
+            Assert.That(leave.Display, Does.Contain("carry 2 lb").And.Contain("leave 1 lb"));
+            Assert.That(HandlingService.GetWeight(spoil), Is.EqualTo(3));
+
+            Assert.That(Act(spoil, leave.Command), Is.True);
+            var grit = cell.Objects.Single(e => e.BlueprintName == "CoarseGrit");
+            Assert.That(Zone.GetEntityCell(grit), Is.SameAs(cell));
+            Assert.That(grit.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(grit.GetPart<PhysicsPart>().InInventory, Is.Null);
+            Assert.That(Held("DryClaySpoil"), Is.Zero);
+            Assert.That(Held("FireClay"), Is.EqualTo(2));
+            Assert.That(Held("CoarseGrit"), Is.Zero);
+            Assert.That(Count("CoarseGrit"), Is.EqualTo(1));
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(mass - 1));
+
+            Pack.MaxWeight = mass - 1;
+            Assert.That(InventorySystem.Pickup(Actor, grit, Zone), Is.False);
+            Assert.That(Zone.GetEntityCell(grit), Is.SameAs(cell));
+            Pack.MaxWeight = mass;
+            Assert.That(InventorySystem.Pickup(Actor, grit, Zone), Is.True);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "CoarseGrit"), Is.SameAs(grit));
+            Assert.That(Zone.GetEntityCell(grit), Is.Null);
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(mass));
+        }
+
+        [Test]
+        public void NewCoatingInvalidatesGroundOnlyQuoteAndTheSameSpoilCanStillScreenIntoPack()
+        {
+            var sieve = Sieve();
+            var spoil = Feed();
+            var cell = Zone.GetEntityCell(Actor);
+            int mass = Pack.GetCarriedWeight();
+            var rows = Actions(spoil);
+            var all = rows.Single(a => a.Command.StartsWith(Prefix, StringComparison.Ordinal));
+            var leave = LeaveGritRow(rows);
+            Zone.TileState.WriteCoating(cell.X, cell.Y, "oil", 30);
+
+            Assert.That(Act(spoil, leave.Command), Is.False);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "DryClaySpoil"), Is.SameAs(spoil));
+            Assert.That(spoil.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+            Assert.That(Zone.TileState.CoatingTurns(cell.X, cell.Y, "oil"), Is.EqualTo(30));
+            Assert.That(Act(spoil, all.Command), Is.True);
+            Assert.That(Held("FireClay"), Is.EqualTo(2));
+            Assert.That(Held("CoarseGrit"), Is.EqualTo(1));
+            Assert.That(cell.Objects.Any(e => e.BlueprintName == "CoarseGrit"), Is.False);
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(mass));
+        }
+
+        [Test]
+        public void LateVetoRetractsGroundGritAndPackedClayWhileKeepingIndependentInjury()
+        {
+            var sieve = Sieve();
+            var spoil = Feed(2);
+            var cell = Zone.GetEntityCell(Actor);
+            var existingGrit = Place("CoarseGrit", cell.X + 1, cell.Y);
+            var leave = LeaveGritRow(Actions(spoil));
+            int mass = Pack.GetCarriedWeight();
+            int hp = Actor.GetStat("Hitpoints").BaseValue;
+            Entity stagedGroundGrit = null;
+            int packedClay = 0;
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                stagedGroundGrit = cell.Objects.SingleOrDefault(e => e.BlueprintName == "CoarseGrit");
+                packedClay = Held("FireClay");
+                Actor.GetStat("Hitpoints").BaseValue -= 2;
+            } });
+            FailAfter();
+
+            Assert.That(Act(spoil, leave.Command), Is.False);
+            Assert.That(stagedGroundGrit, Is.Not.Null);
+            Assert.That(packedClay, Is.EqualTo(2));
+            Assert.That(Zone.GetEntityCell(stagedGroundGrit), Is.Null);
+            Assert.That(Pack.Objects.Contains(stagedGroundGrit), Is.False);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "DryClaySpoil"), Is.SameAs(spoil));
+            Assert.That(spoil.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Zone.GetCell(cell.X + 1, cell.Y).Objects.Single(e => e.BlueprintName == "CoarseGrit"), Is.SameAs(existingGrit));
+            Assert.That(Count("CoarseGrit"), Is.EqualTo(1));
+            Assert.That(Actor.GetStat("Hitpoints").BaseValue, Is.EqualTo(hp - 2));
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+            Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(mass));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void NeitherDestinationCommitsWhenIndependentStockExceedsItsWeightBudget(bool leaveOnGround)
+        {
+            var sieve = Sieve();
+            var spoil = Feed();
+            var ballast = Factory.CreateEntity("SalvagedTimber");
+            ballast.GetPart<StackerPart>().StackCount = 2;
+            Assert.That(InventoryPart.GetItemWeight(ballast), Is.EqualTo(2));
+            int mass = Pack.GetCarriedWeight();
+            Pack.MaxWeight = mass;
+            var rows = Actions(spoil);
+            var row = leaveOnGround ? LeaveGritRow(rows)
+                : rows.Single(a => a.Command.StartsWith(Prefix, StringComparison.Ordinal));
+            // A callback brings in unrelated workbench stock after output allocation.
+            // The weighed extra stock is more than this operation can free in either mode.
+            bool added = false;
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                Pack.MaxWeight = 200;
+                added = Pack.AddObject(ballast);
+                Pack.MaxWeight = mass;
+            } });
+
+            Assert.That(Act(spoil, row.Command), Is.False);
+            Assert.That(added, Is.True);
+            Assert.That(Pack.Objects.Contains(ballast), Is.True);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "DryClaySpoil"), Is.SameAs(spoil));
+            Assert.That(spoil.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+        }
+
+        [Test]
+        public void LeaveGritKeepsAnExistingCarriedStackUntouched()
+        {
+            Sieve();
+            var alreadyCarried = Carry("CoarseGrit");
+            alreadyCarried.GetPart<StackerPart>().StackCount = 3;
+            var spoil = Feed();
+            var cell = Zone.GetEntityCell(Actor);
+            var row = LeaveGritRow(Actions(spoil));
+
+            Assert.That(Act(spoil, row.Command), Is.True);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "CoarseGrit"), Is.SameAs(alreadyCarried));
+            Assert.That(Held("CoarseGrit"), Is.EqualTo(3));
+            var loose = cell.Objects.Single(e => e.BlueprintName == "CoarseGrit");
+            Assert.That(loose.ID, Is.Not.EqualTo(alreadyCarried.ID));
+            Assert.That(loose.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void LateMovePreservesTheGroundedResultAndDoesNotAlsoRefundTheSpoil()
+        {
+            Sieve();
+            var spoil = Feed(2);
+            var cell = Zone.GetEntityCell(Actor);
+            var row = LeaveGritRow(Actions(spoil));
+            Entity moved = null;
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                moved = cell.Objects.Single(e => e.BlueprintName == "CoarseGrit");
+                Assert.That(Zone.AddEntity(moved, cell.X + 1, cell.Y), Is.True);
+            } });
+
+            Assert.That(Act(spoil, row.Command), Is.False);
+            Assert.That(moved, Is.Not.Null);
+            Assert.That(Zone.GetEntityCell(moved), Is.SameAs(Zone.GetCell(cell.X + 1, cell.Y)));
+            Assert.That(Count("CoarseGrit"), Is.EqualTo(1));
+            Assert.That(Held("FireClay"), Is.Zero);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "DryClaySpoil"), Is.SameAs(spoil));
+            Assert.That(Held("DryClaySpoil"), Is.EqualTo(1));
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        public void FatalInterruptionRestoresSpentSpoilAndOldClayToTheirDeathSpill(int count)
+        {
+            Sieve();
+            var oldClay = Carry("FireClay");
+            var spoil = Feed(count);
+            var cell = Zone.GetEntityCell(Actor);
+            var row = LeaveGritRow(Actions(spoil));
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                Assert.That(Held("FireClay"), Is.EqualTo(3));
+                Assert.That(cell.Objects.Count(e => e.BlueprintName == "CoarseGrit"), Is.EqualTo(1));
+                Actor.GetStat("Hitpoints").BaseValue = 0;
+                CombatSystem.HandleDeath(Actor, null, Zone);
+            } });
+
+            Assert.That(Act(spoil, row.Command), Is.False);
+            Assert.That(CombatSystem.IsDeathHandled(Actor), Is.True);
+            Assert.That(Actor.GetStatValue("Hitpoints"), Is.Zero);
+            Assert.That(Zone.GetEntityCell(spoil), Is.SameAs(cell));
+            Assert.That(Zone.GetEntityCell(oldClay), Is.SameAs(cell));
+            Assert.That(spoil.GetPart<StackerPart>().StackCount, Is.EqualTo(count));
+            Assert.That(oldClay.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(Count("FireClay"), Is.EqualTo(1));
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+            Assert.That(Pack.Objects.Contains(spoil), Is.False);
+            Assert.That(Pack.Objects.Contains(oldClay), Is.False);
+        }
+
         [Test] public void ARealSievePartitionsTheActualPacketAndRetainsTheSameTool()
         {
             var sieve=Sieve();var feed=Feed();int mass=Pack.GetCarriedWeight();Assert.True(Act(feed,Screen(feed)));

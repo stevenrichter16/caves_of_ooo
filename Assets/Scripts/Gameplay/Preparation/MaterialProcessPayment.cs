@@ -8,7 +8,7 @@ namespace CavesOfOoo.Core
     internal static class MaterialProcessPayment
     {
         internal static bool Spend(Entity actor,Entity item,Entity holder,Zone zone,InventoryTransaction tx,
-            Func<bool> payloadCurrent,Func<bool> clayPaymentCurrent=null)
+            Func<bool> payloadCurrent,Func<bool> clayPaymentCurrent=null,Func<bool> refundAllowed=null)
         {
             if(payloadCurrent==null || !payloadCurrent() || !MaterialProcessService.OwnsConsumption(item,tx))return false;
             var pack=holder.GetPart<InventoryPart>();var container=holder.GetPart<ContainerPart>();
@@ -23,11 +23,12 @@ namespace CavesOfOoo.Core
             else {stack.StackCount--;ThrowingRules.OnStackChanged(item);pack?.RefreshHandlingCarryPenalty();}
             tx.Do(null,()=>
             {
+                if (refundAllowed?.Invoke() == false) return;
                 if(item.ID!=id || item.GetPart<PhysicsPart>()!=physics || physics.ParentEntity!=item
                     || item.GetPart<StackerPart>()!=stack || stack!=null && (stack.ParentEntity!=item || item.Parts.Count(p=>p is StackerPart)!=1))
                 {Refused(actor,item,"changed_input_parts");return;}
                 if(!(clayPaymentCurrent??payloadCurrent)()){Refused(actor,item,"changed_input_payload");return;}
-                if(clayPaymentCurrent!=null && zone.GetReadOnlyEntities().Any(other=>other!=item && other?.ID==id))
+                if((clayPaymentCurrent!=null || refundAllowed!=null) && zone.GetReadOnlyEntities().Any(other=>other!=item && other?.ID==id))
                 {Refused(actor,item,"independent_world_identity");return;}
                 if(!removed)
                 {
@@ -55,7 +56,8 @@ namespace CavesOfOoo.Core
                 }
                 else if(cell!=null)
                 {
-                    if(clayPaymentCurrent!=null && pack!=null && died && (holder.HasTag("NoDropOnDeath") || holder.HasTag("Temporary")))return;
+                    if((clayPaymentCurrent!=null || refundAllowed!=null) && pack!=null && died
+                        && (holder.HasTag("NoDropOnDeath") || holder.HasTag("Temporary")))return;
                     if(zone.AddEntity(item,cell.X,cell.Y) && clayPaymentCurrent!=null)origin.Restore(item);
                 }
             });

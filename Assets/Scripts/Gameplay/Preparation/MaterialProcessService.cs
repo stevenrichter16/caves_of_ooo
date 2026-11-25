@@ -29,24 +29,28 @@ namespace CavesOfOoo.Core
             internal readonly MaterialProcessTemplate[] Outputs;
             internal readonly MaterialProcessDefinition Result;
             internal readonly bool RetainsChaff;
+            internal readonly Cell GritGround;
+            internal string ActionId => GritGround == null ? Plan.Definition.Id : SiftableStockPart.LeaveGritId;
             internal Quote(MaterialProcessPlan plan,MaterialProcessTemplate source,MaterialProcessItemState state,MaterialProcessTemplate[] outputs,
-                MaterialProcessTemplate retainedChaff)
+                MaterialProcessTemplate retainedChaff, Cell gritGround)
             {
                 Plan=plan;SourceTemplate=source;SourceState=state;
                 RetainsChaff=retainedChaff!=null;
+                GritGround=gritGround;
                 Result=RetainsChaff?plan.Definition.RetainOne(SeedFramePart.Chaff,"retain dry chaff for fire fuel"):plan.Definition;
                 Outputs=RetainsChaff?outputs.Append(retainedChaff).ToArray():outputs;
             }
-            internal bool OutputsCurrent()=>Outputs.All(t=>t.Current()) && RetainsChaff==(SeedFramePart.RetainedChaff(Plan)!=null);
+            internal bool GroundCurrent()=>GritGround==null || SiftableStockPart.GritDestination(Plan)==GritGround;
+            internal bool OutputsCurrent()=>Outputs.All(t=>t.Current()) && RetainsChaff==(SeedFramePart.RetainedChaff(Plan)!=null) && GroundCurrent();
             internal bool Current()=>Plan.Current() && SourceState.Matches() && OutputsCurrent();
         }
-        internal static Quote TryQuote(MaterialProcessPlan plan)
+        internal static Quote TryQuote(MaterialProcessPlan plan, Cell gritGround = null)
         {
-            if(plan==null || !plan.Current())return null;
+            if(plan==null || !plan.Current() || gritGround!=null && SiftableStockPart.GritDestination(plan)!=gritGround)return null;
             var source=MaterialProcessTemplate.Capture(plan.Factory,plan.Source.BlueprintName);
             var state=source?.Snapshot(plan.Source,true);
             var outputs=plan.Definition.OutputBlueprints.Select(bp=>MaterialProcessTemplate.Capture(plan.Factory,bp,true)).ToArray();
-            return state!=null && outputs.All(t=>t!=null)?new Quote(plan,source,state,outputs,SeedFramePart.RetainedChaff(plan)):null;
+            return state!=null && outputs.All(t=>t!=null)?new Quote(plan,source,state,outputs,SeedFramePart.RetainedChaff(plan),gritGround):null;
         }
         static bool Emit(Entity owner,string id,Quote quote)
         {
@@ -91,23 +95,43 @@ namespace CavesOfOoo.Core
             var templates=quote.Outputs;var result=quote.Result;
             if(templates.Any(t=>t==null))return Refuse();
             var products=new List<Entity>();var states=new Dictionary<Entity,MaterialProcessItemState>();
+            Entity groundedGrit = null;
+            string groundedGritId = null;
+            bool placedGrit = false;
             var ids=new HashSet<string>(participants.Select(e=>e.ID),StringComparer.Ordinal);
             for(int kind=0;kind<templates.Length;kind++)for(int n=0;n<result.OutputCounts[kind];n++)
             {
                 if(!quote.Current())return Refuse();
                 var product=plan.Factory.CreateEntity(result.OutputBlueprints[kind]);products.Add(product);
-                tx.Do(null,()=>Detach(product));
+                if (quote.GritGround != null && kind == 1)
+                {
+                    groundedGrit = product;
+                    groundedGritId = product?.ID;
+                    tx.Do(null, () => { if (!placedGrit) Detach(product); });
+                }
+                else tx.Do(null,()=>Detach(product));
                 if(product==null || !PreparationActions.Fresh(product,result.OutputBlueprints[kind])
                     || !ids.Add(product.ID) || pack.Objects.Concat(pack.EquippedItems.Values).Concat(zone.GetReadOnlyEntities()).Concat(plan.Stock?.Container.Contents??Enumerable.Empty<Entity>()).Any(e=>e==product||e?.ID==product.ID)
                     || !tx.TryClaim(product,actor,command))return Refuse();
                 var state=templates[kind].Snapshot(product);if(state==null)return Refuse();states.Add(product,state);
             }
             if(!quote.Current())return Refuse();
-            var residents=pack.Objects.Where(o=>result.OutputBlueprints.Contains(o.BlueprintName)).ToArray();
+            if (groundedGrit != null && !Guard(groundedGrit, tx)) return Refuse();
+            var packProducts = products.Where(product => product != groundedGrit).ToArray();
+            var residents=pack.Objects.Where(o=>result.OutputBlueprints.Contains(o.BlueprintName)
+                && o.BlueprintName!=groundedGrit?.BlueprintName).ToArray();
+            bool ExactGroundedGrit()=>groundedGrit!=null && groundedGrit.ID==groundedGritId
+                && groundedGrit.BlueprintName==result.OutputBlueprints[1] && groundedGrit.SpatialZone==zone
+                && zone.GetEntityCell(groundedGrit)==quote.GritGround && quote.GritGround.Objects.Contains(groundedGrit)
+                && groundedGrit.GetPart<PhysicsPart>() is {InInventory:null,Equipped:null}
+                && !pack.Objects.Contains(groundedGrit) && Count(groundedGrit)==1;
             // Size separation has one carried source and creates ordinary, unmarked clay.
             // Its output may join an existing valid origin stack without touching the stamp.
             bool screening=plan.Stock==null && plan.ExtraInputs.Count==0 && result.Id==SiftableStockPart.ProcessId;
             var markedResidents=new HashSet<Entity>(residents.Where(o=>screening && o.BlueprintName=="FireClay" && o.HasPart<ConnectedClayOriginPart>()));
+            // These recipients may leave the pack in an independent spill. Undo
+            // only their added units, wherever the original stack ends up.
+            var scopedResidents = groundedGrit == null ? markedResidents : new HashSet<Entity>(residents);
             foreach(var resident in residents)
             {
                 var template=templates[result.OutputBlueprints.ToList().IndexOf(resident.BlueprintName)];
@@ -119,7 +143,11 @@ namespace CavesOfOoo.Core
             var beforeCounts=residents.ToDictionary(e=>e,Count);
             var expected=new Dictionary<Entity,int>(beforeCounts);var received=new HashSet<Entity>();
             var individuallyPaid=new HashSet<Entity>(inputs.Where(plan.IndividuallyPaidClay));
-            var receipt=InventoryTransferSnapshot.Capture(pack,products.ToArray());bool restored=false;
+            if (groundedGrit != null) individuallyPaid.Add(input);
+            bool CanRetractRecipient(Entity owner) => states[owner].Matches() && Count(owner) == expected[owner];
+            bool CanRefundGroundScreening() => (!placedGrit || ExactGroundedGrit())
+                && received.Where(scopedResidents.Contains).All(CanRetractRecipient);
+            var receipt=InventoryTransferSnapshot.Capture(pack,packProducts);bool restored=false;
             // Only inputs this transaction actually consumed from are detached on undo: Restore re-inserts exactly the changed entries, so detaching an untouched input
             // (reachable once an ingredient can span several stacks and a later take refuses) would lose the player's stack.
             var consumed=new HashSet<Entity>();
@@ -130,10 +158,15 @@ namespace CavesOfOoo.Core
                     && pack.Objects.Any(other=>other!=item && other?.ID==item.ID)));
                 var separate=new HashSet<Entity>(individuallyPaid);
                 bool retainedOutput=false;
-                foreach(var owner in received.Where(markedResidents.Contains))
+                if (placedGrit)
+                {
+                    if (ExactGroundedGrit()) zone.RemoveEntity(groundedGrit);
+                    else retainedOutput = true;
+                }
+                foreach(var owner in received.Where(scopedResidents.Contains))
                 {
                     separate.Add(owner);
-                    if(states[owner].Matches() && Count(owner)==expected[owner])
+                    if(CanRetractRecipient(owner))
                     {
                         owner.GetPart<StackerPart>().StackCount=beforeCounts[owner];
                         owner.GetPart<PhysicsPart>().InInventory?.GetPart<InventoryPart>()?.RefreshHandlingCarryPenalty();
@@ -141,7 +174,7 @@ namespace CavesOfOoo.Core
                     else retainedOutput=true;
                 }
                 var returnable=plan.Stock==null && !retainedOutput?consumed:Enumerable.Empty<Entity>();
-                foreach(var owner in products.Concat(received).Concat(returnable).Distinct())
+                foreach(var owner in packProducts.Concat(received).Concat(returnable).Distinct())
                     if(!separate.Contains(owner))Detach(owner);
                 var excluded=new HashSet<Entity>(conflicts);
                 excluded.UnionWith(separate);
@@ -156,21 +189,33 @@ namespace CavesOfOoo.Core
                 {
                     CavesOfOoo.Diagnostics.Diag.Record("event","MaterialProcessRollbackLimited",actor:actor,target:input,
                         payload:new{reason="screening-output-changed"});
-                    MessageLog.Add("Some screened clay could not be recovered safely. The original spoil was spent.");
+                    MessageLog.Add("Some screened material could not be recovered safely. One packet was spent.");
                 }
                 foreach(var item in conflicts)CavesOfOoo.Diagnostics.Diag.Record("event","MaterialProcessRollbackLimited",actor:actor,target:item,
                     payload:new{reason="source-identity-conflict",identity=item.ID});
             });
             if(!receipt.Apply(()=>
             {
-                for(int n=0;n<units;n++){if(!plan.Consume(input,tx))return false;consumed.Add(input);}
+                for(int n=0;n<units;n++)
+                {
+                    bool paid = groundedGrit == null ? plan.Consume(input, tx)
+                        : MaterialProcessPayment.Spend(actor, input, actor, zone, tx, sourceState.Matches, refundAllowed: CanRefundGroundScreening);
+                    if (!paid) return false;
+                    consumed.Add(input);
+                }
                 foreach(var ingredient in plan.ExtraInputs)
                     foreach(var take in ingredient.Takes)
                         for(int n=0;n<take.Units;n++){if(!plan.Consume(take.Owner,tx))return false;consumed.Add(take.Owner);}
-                foreach(var product in products)
+                foreach(var product in packProducts)
                 {
                     if(!pack.AddCraftedUnit(product,out var recipient) || recipient==null)return false;
                     received.Add(recipient);expected.TryGetValue(recipient,out int prior);expected[recipient]=prior+1;
+                }
+                if (groundedGrit != null)
+                {
+                    if (!quote.GroundCurrent() || !Loose(groundedGrit)) return false;
+                    placedGrit = zone.AddEntity(groundedGrit, quote.GritGround.X, quote.GritGround.Y);
+                    if (!placedGrit) return false;
                 }
                 return true;
             }) || !receipt.ClaimChanges(tx,actor,command))return Refuse();
@@ -180,14 +225,20 @@ namespace CavesOfOoo.Core
                     || (sourceCount>units?!plan.InputAvailable(input):!Loose(input)||pack.Objects.Contains(input))
                     || pack.GetCarriedWeight()>ceiling || states.Values.Any(s=>!s.Matches()) || plan.ExtraInputs.Any(i=>!i.After(actor)))return false;
                 foreach(var pair in expected)if(!PreparationActions.Carried(actor,pair.Key) || Count(pair.Key)!=pair.Value)return false;
-                foreach(var product in products)
+                if (groundedGrit != null && (!ExactGroundedGrit()
+                    || zone.GetReadOnlyEntities().Any(e => e != groundedGrit && e.ID == groundedGrit.ID)
+                    || pack.Objects.Concat(pack.EquippedItems.Values).Any(e => e?.ID == groundedGrit.ID))) return false;
+                foreach(var product in packProducts)
                     if(!received.Contains(product) && (!Loose(product)||Count(product)!=0||pack.Objects.Contains(product)))return false;
                 return true;
             }
             if(!Final())return Refuse();
             foreach(var owner in products.Concat(received).Concat(inputs).Distinct())if(!Guard(owner,tx))return Refuse();
             tx.BeforeCommit(Final);
-            PreparationActions.Complete(tx,actor,input,command,"You complete the quoted "+plan.Definition.Mode.ToLowerInvariant()+" work. The declared inputs are spent; the products are in your pack.");
+            string message = groundedGrit == null
+                ? "You complete the quoted " + plan.Definition.Mode.ToLowerInvariant() + " work. The declared inputs are spent; the products are in your pack."
+                : "You pack the finer fraction and leave the coarse grit loose at your feet.";
+            PreparationActions.Complete(tx,actor,input,command,message);
             foreach(var owner in participants)
             {var captured=owner;tx.AfterCommit(()=>Emit(captured,"MaterialProcessCompleted",quote));}
             return true;

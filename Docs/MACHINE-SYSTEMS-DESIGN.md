@@ -1,3 +1,11 @@
+**Physical output destinations at a portable worksite — November 25 UTC, 2026.**
+A supported coarse-grit fraction of hand screening can go to the exact
+clear tile while the fine grade enters the pack. A normal pickup can
+recover it through the usual capacity rules. Outputs remain physical
+and saveable, and a later actual ground use consumes the retained material.
+The same source and tool still support packing both grades.
+[Evidence](Verification/MachineSystems/GroundScreening20261125/README.md)
+
 **Original cellar clay keeps its provenance in ordinary work — November 25 UTC, 2026.**
 The exact original clay measures can combine, split and move through ordinary
 custody without becoming a second set of original stock. The same measures

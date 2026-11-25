@@ -1,3 +1,12 @@
+**Source-side screening leaves ordinary recoverable material — November 25 UTC, 2026.**
+From the existing one-packet Morrowfast heap, portable screening can carry
+two pounds of clay and leave one pound of grit at the worksite. Fresh Continue
+retained the exact grit. The clay repaired the well, and an ordinary return,
+pickup and scatter used the remaining fraction. The parallel all-in-pack
+choice still takes one action. The next narrow trial is screening from exact
+stock in an installed own camp box with the same carried sieve.
+[Evidence](Verification/MachineSystems/GroundScreening20261125/README.md)
+
 **Mac delivery for the Gleaners’ crossing and clay — November 25 UTC, 2026.**
 A universal build of `2e7b924f0` is verified on this Mac. The isolated source
 had zero build errors and the same five warnings. Startup succeeded and

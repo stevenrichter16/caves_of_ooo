@@ -472,3 +472,26 @@ for both useful fractions and a reason to use size sorting. It then requires
 native RED/countercases, actual ordinary menu/movement/use/F5/fresh evidence and
 independent source/recorded-play review. A broad framework or a list of new
 recipe IDs alone does not satisfy the user's general-tool direction.
+
+## Leaving a coarse fraction at the worksite
+
+Roadmap 14 trial. The existing one-action hand screening puts both products
+in the pack. A second quoted action can screen the same known clay spoil
+and leave its one-pound coarse-grit fraction as a normal pickup at the
+player’s feet. Two one-pound clay measures go in the pack. The sieve stays
+with the player. The coarse output can be collected or used later through
+the existing actions. The original clay bank remains an ordinary alternative.
+
+The work uses the shared material transaction and live product templates.
+The optional destination is the exact visible clear floor occupied by the
+player when quoting. A live pool, active coating or new physical blockage
+invalidates that offer. The other screening action retains its normal
+conditions. The extra choice removes a separate inventory step and leaves
+any already carried grit alone. Both screening choices cost one action,
+and ordinary dropping is free in game time.
+
+Native countercases cover the stale destination, capacity, a late veto,
+ordinary pickup and independent death spills. In Editor play the player
+collected the existing heap, left the coarse fraction, reloaded it, and
+used the clay at the well before returning for the grit.
+[Evidence](Verification/MachineSystems/GroundScreening20261125/README.md)
