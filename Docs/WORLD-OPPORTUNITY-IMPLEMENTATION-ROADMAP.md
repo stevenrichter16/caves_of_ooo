@@ -159,6 +159,12 @@ cross-seed comparisons remain open.
     shorten a valid route; a larger receiver may admit another load. Recalculate
     the actual relevant constraint. A Road tag or project flag cannot make an
     impassable corridor usable.
+    At Gleaners’ ordinary structural work removes a real walking obstruction.
+    In seed 64 the same parcel quoted 25 steps and eight drams before work,
+    and 23 steps and seven drams after the gap opened. An agreed fare stays
+    fixed when a later obstruction changes the live path. The marker also
+    explains ordinary loose carries for 11–12.
+    [Evidence](Verification/MachineSystems/PorterCrossing20261125/README.md)
 
 19. **Preserve baseline convenience.** Ordinary porter service, shops and useful
     exploration work without completing a new project first. Investments become

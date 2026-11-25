@@ -10,7 +10,7 @@ namespace CavesOfOoo.Core
     public enum LocalPorterPhase { Open, Booked, Carrying, Returning, Delivered, Cancelled, Failed }
 
     /// <summary>The fixed loading marker owns the work record and its actual escrow.</summary>
-    public sealed class LocalPorterLedgerPart : Part, IInventoryActionReceiptOwner, IDescribeState, IMenuStatus
+    public sealed class LocalPorterLedgerPart : Part, IInventoryActionReceiptOwner, IDescribeState, IDescribeUse, IMenuStatus
     {
         public override string Name => "LocalPorterLedger";
         public Entity Worker, Box, Shelf, Payer;
@@ -49,6 +49,13 @@ namespace CavesOfOoo.Core
         }
 
         public void AppendMenuStatus(DescribeContext context, List<string> lines) => lines.Add(DescribeState(context));
+
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            if (context.Owner != ParentEntity || Shipment != null || Role == null || Box == null || Shelf == null) return;
+            guide.How.Add("Carry one measure at a time or both loose without a fee. To hire the porter, pack both measures into the box and bring it here.");
+            guide.Limits.Add("A shorter clear walk can lower the next fare. The hire quote includes the current route and the weight of the packed box.");
+        }
 
         public override bool HandleEvent(GameEvent e)
         {

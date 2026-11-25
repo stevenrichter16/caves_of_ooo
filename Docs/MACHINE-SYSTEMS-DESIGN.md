@@ -1,3 +1,10 @@
+**Physical clearance can lower a local fare — November 25 UTC, 2026.**
+The worn Gleaners’ crossing demonstrates that a useful change to real
+geometry affects the next hire through the existing live path quote. The
+marker explains the free loose carry and the packed option. The opening
+has no project flag, and a delivery still yields to actual danger.
+[Evidence](Verification/MachineSystems/PorterCrossing20261125/README.md)
+
 **Fair-weather recovery at a public frame — November 25 UTC, 2026.**
 An existing one-action winnow retains its declared chaff loss in fair weather
 on dry ground. Ordinary seed work still takes the same bundle and action.

@@ -41,6 +41,31 @@ result receive the same resulting service benefit; no bonus is secretly tied
 to pressing a particular "repair road" button. Demand must accept compatible
 results through capabilities/material grades, not demand one named tool.
 
+## A clearing with a measurable fare
+
+Roadmap 18 can start at the worn crossing wall in Gleaners’. The living
+porter already quotes a route around it. In the earned seed 64 layout,
+independent reconstruction predicted a 25-step route quoted at eight drams
+for the five-pound box. Editor play confirmed that intact quote and the
+23-step seven-dram route after ordinary strikes opened the crossing. The
+same box passed through the gap under the same path and fare rules.
+[Evidence](Verification/MachineSystems/PorterCrossing20261125/README.md)
+
+Use the existing structural damage and passable rubble. Keep the current
+route, Vault and personal carrying available. A local guide can explain
+why opening a usable shortcut might lower today's fare. Price follows the
+actual walking route. Partial damage has no effect. An obstruction can
+remove the saving. A changed quote expires, and a booked fare remains
+fixed. Preserve the exact parcel, loading point, worker and shelf on both
+branches. Verify repeat use and fresh Continue. Do not create a repair flag
+or advertise damage to the shelter walls as a project.
+
+The loading point can also explain the loose-carry alternative for roadmap
+11–12. The two clay measures weigh two pounds together. A traveler can carry
+one at a time, or carry the same pair with the three-pound box. The public
+porter quote still covers the packed pair. The alternate one-measure paid
+order needs its own acceptance contract for cargo amount and receiving.
+
 ## Seeded roads and movable loads
 
 The user additionally asks for procedural roads and movable items to vary

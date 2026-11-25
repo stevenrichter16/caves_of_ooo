@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CavesOfOoo.Core;
@@ -8,6 +9,78 @@ namespace CavesOfOoo.Tests
 {
     public sealed class LocalPorterOrderTests : FiftyWorldFixture
     {
+        [Test]
+        public void TheLoadingGuideExplainsFreeSmallCarriesAndTheActualWalkingFare()
+        {
+            var ledger = Arrange();
+            var lines = new List<string>();
+            int tick = Clock.TickCount;
+            string quote = Hire(ledger);
+
+            Assert.True(UseGuides.Collect(ledger.ParentEntity, Zone, Zone.GetEntityCell(ledger.ParentEntity), Actor, lines));
+            Assert.That(string.Join(" ", lines), Does.Contain("one measure at a time or both loose")
+                .And.Contain("shorter clear walk").And.Contain("hire porter (5 drams)"));
+            Assert.That(Hire(ledger), Is.EqualTo(quote));
+            Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(50));
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+            Assert.That(ledger.Phase, Is.EqualTo(LocalPorterPhase.Open));
+
+            ledger.Worker = null;
+            lines.Clear();
+            Assert.False(UseGuides.Collect(ledger.ParentEntity, Zone, Zone.GetEntityCell(ledger.ParentEntity), Actor, lines));
+            Assert.That(lines, Is.Empty);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ClearingASolidCellLowersTheNextFareAndNeverRepricesABookedParcel(bool reblock)
+        {
+            var ledger = Arrange();
+            Assert.True(Zone.MoveEntity(ledger.Shelf, 20, 10));
+            var wall = Place("Wall", 15, 10);
+            var stock = ledger.Box.GetPart<ContainerPart>().Contents.Single();
+            var worker = ledger.Worker;
+            var porter = worker.GetPart<LocalPorterPart>();
+            var oldQuote = Hire(ledger);
+            Assert.True(porter.TryQuote(Actor, ledger.Box, ledger.Shelf, Zone, out var intact, out var reason), reason);
+            Assert.That(intact.Steps.Count, Is.EqualTo(9));
+            Assert.That(intact.Fare, Is.EqualTo(6));
+
+            var oldFactory = DestructionSystem.EntityFactoryRef;
+            DestructionSystem.EntityFactoryRef = Factory;
+            try
+            {
+                Assert.That(DestructionSystem.Damage(wall, 1, Actor, Zone), Is.EqualTo(DestroyVerdict.Damaged));
+                Assert.That(Hire(ledger), Is.EqualTo(oldQuote));
+                Assert.That(DestructionSystem.Damage(wall, 100, Actor, Zone), Is.EqualTo(DestroyVerdict.Destroyed));
+            }
+            finally { DestructionSystem.EntityFactoryRef = oldFactory; }
+
+            Assert.That(Zone.GetCell(15, 10).Objects.Count(e => e.BlueprintName == "Rubble"), Is.EqualTo(1));
+            Assert.That(Act(ledger.ParentEntity, oldQuote), Is.False);
+            Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(50));
+            Assert.True(porter.TryQuote(Actor, ledger.Box, ledger.Shelf, Zone, out var open, out reason), reason);
+            Assert.That(open.Steps.Count, Is.EqualTo(8));
+            Assert.That(open.Fare, Is.EqualTo(5));
+            Assert.That(open.LoadedWeight, Is.EqualTo(intact.LoadedWeight));
+            Assert.True(Act(ledger.ParentEntity, Hire(ledger)));
+            Assert.True(ledger.TryAct(Zone));
+            if (reblock) Place("Wall", 15, 10);
+
+            bool crossed = false;
+            for (int i = 0; i < 16 && ledger.Phase != LocalPorterPhase.Delivered; i++)
+            {
+                Assert.True(ledger.TryAct(Zone));
+                crossed |= Zone.GetEntityPosition(worker) == (15, 10);
+            }
+            Assert.That(crossed, Is.EqualTo(!reblock));
+            Assert.That(ledger.Phase, Is.EqualTo(LocalPorterPhase.Delivered));
+            Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(45));
+            Assert.That(TradeSystem.GetDrams(worker), Is.EqualTo(12));
+            Assert.That(ledger.Shelf.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(ledger.Box));
+            Assert.That(ledger.Box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(stock));
+        }
+
         [Test]
         public void ABookedTransferHoldsRealCargoAndPaysOnceAtReceipt()
         {

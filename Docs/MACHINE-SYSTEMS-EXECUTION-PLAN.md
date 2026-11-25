@@ -1,3 +1,14 @@
+**The worn crossing changes a local porter fare — November 25 UTC, 2026.**
+In seed 64, the actual five-pound box quoted 25 steps and eight drams with
+the wall standing. Ordinary strikes exposed a 23-step seven-dram path. The
+marker reader agreed with that quote after fresh Continue. The same loaded
+box crossed the gap in the ordinary branch, then a combat casualty triggered
+the six-dram unearned refund and physical spill. A separate clear-route
+control delivered and reloaded the exact parcel and final fare. The final
+targeted run passed 153 executable cases with one explicit skip. A broader
+comparison exposed an earlier original-clay stack problem, the next slice.
+[Evidence](Verification/MachineSystems/PorterCrossing20261125/README.md)
+
 **Mac delivery for fair-weather winnowing — November 25 UTC, 2026.**
 Runtime `31fcaf2ed` is verified on main and packaged for arm64 and x86_64.
 GameBootstrap startup and package integrity passed on the Mac. Weather,

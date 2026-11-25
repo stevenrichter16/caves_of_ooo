@@ -99,7 +99,7 @@ namespace CavesOfOoo.Core
                         e.Tags.Remove("Wall"); // Knee-high: solid footing obstacle, but the landing remains visible.
                         e.GetPart<RenderPart>().VisualID="reference-glade-low-wall";
                         e.GetPart<RenderPart>().DisplayName="worn crossing wall";
-                        Describe(e,"A low wall with worn footing on either side. Vault crosses two cells when the landing is clear; the path around remains open. A trapped store once stood one stretch south of this glade. These old marks do not promise surviving supplies.");
+                        Describe(e,"A low wall with worn footing on either side. Vault crosses two cells when the landing is clear. A gap here could shorten a carrier's walk around the ruin. If the loading marker is in use, check its current fare. A trapped store once stood one stretch south of this glade. These old marks do not promise surviving supplies.");
                     }
                     else if(p.role=="cellar-lead")
                     {
