@@ -8,6 +8,46 @@ namespace CavesOfOoo.Core
     {
         private const string ParcelBlueprint = "LiningClayParcel";
         private const string ShelfBlueprint = "LiningClayReceivingShelf";
+        private const string TrayBlueprint = "LiningClaySupplyTray";
+
+        internal static bool TryInstallLooseStorage(Zone zone, OverworldZoneManager manager)
+        {
+            var at = (x: 42, y: 9);
+            if (zone?.ZoneID != GleanersDistrict.SurfaceID || manager?.Exploration is not { Enabled: true, Version: >= 25 }
+                || manager.Factory == null || manager.CachedZones.ContainsKey(zone.ZoneID)
+                || !manager.Factory.Blueprints.ContainsKey(TrayBlueprint)
+                || !Clear(zone, at) || zone.GetReadOnlyEntities().Any(e => e.GetPart<DeliveryStoragePart>()?.AcceptsLooseStock == true)
+                || !FindPath.Search(zone, GleanersDistrict.EntranceX, GleanersDistrict.EntranceY, at.x, at.y).Usable) return false;
+
+            var original = zone.GetReadOnlyEntities().ToHashSet();
+            var area = SpreadGenerationReceipt.CaptureFinalState(zone, original);
+            Entity tray = null;
+            bool committed = false;
+            try
+            {
+                tray = manager.Factory.CreateEntity(TrayBlueprint);
+                bool Ready() => tray?.BlueprintName == TrayBlueprint && !string.IsNullOrEmpty(tray.ID)
+                    && tray.GetPart<PhysicsPart>() is { Takeable: false, Solid: false, InInventory: null, Equipped: null } physics
+                    && physics.ParentEntity == tray && !tray.HasTag("Solid") && tray.GetPart<RenderPart>()?.Visible == true
+                    && tray.GetPart<DeliveryStoragePart>() is { AcceptsLooseStock: true, ReceivesParcels: false } stock
+                    && stock.Intact(tray, tray.GetPart<ContainerPart>()) && Empty(tray);
+                if (!Ready() || tray.SpatialZone != null || original.Any(e => e.ID == tray.ID)
+                    || !area() || !original.SetEquals(zone.GetReadOnlyEntities()) || !Clear(zone, at)) return false;
+                if (!zone.AddEntity(tray, at.x, at.y)) return false;
+                committed = Ready() && area() && zone.GetEntityPosition(tray) == at
+                    && original.Append(tray).ToHashSet().SetEquals(zone.GetReadOnlyEntities());
+                return committed;
+            }
+            catch (System.Exception error)
+            {
+                CavesOfOoo.Diagnostics.Diag.Record("worldgen", "LooseClayStorageRefused", payload: new { zone = zone.ZoneID, error = error.GetType().Name });
+                return false;
+            }
+            finally
+            {
+                if (!committed && tray?.SpatialZone == zone && !original.Contains(tray)) zone.RemoveEntity(tray);
+            }
+        }
 
         internal static bool TryInstallPorter(Zone zone, OverworldZoneManager manager)
         {

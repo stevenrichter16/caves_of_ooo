@@ -41,6 +41,24 @@ result receive the same resulting service benefit; no bonus is secretly tied
 to pressing a particular "repair road" button. Demand must accept compatible
 results through capabilities/material grades, not demand one named tool.
 
+## Park a loose measure near the work
+
+Roadmap 16–17. The Gleaners’ well can have an optional public tray
+for two loose lining-clay measures. Its ground, access and capacity are
+physical. A traveler can leave one pound on a first trip, recover it on
+a later visit, and use the usual well repair after gathering enough. An
+eligible stack of two fits, and the two supported grades can share the
+tray. Stored clay belongs to the ordinary open-access container.
+
+Use existing put and take commands with a local reach check, the shared
+lining-clay payment matcher, exact placement and normal capacity. Keep
+parcel custody and hire quotes on the separate existing shelf. Deposit
+confers no repair credit, hire, protection promise or maintenance bill.
+The fitting belongs to eligible cold generation under enabled Spread
+manifest v25. A blocked fitting position leaves the ordinary district and
+its services available. Older saved and cold legacy districts remain literal.
+[Evidence](Verification/MachineSystems/PublicClayTray20261125/README.md)
+
 ## A clearing with a measurable fare
 
 Roadmap 18 can start at the worn crossing wall in Gleaners’. The living

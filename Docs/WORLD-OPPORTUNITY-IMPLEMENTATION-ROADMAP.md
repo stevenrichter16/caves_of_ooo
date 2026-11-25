@@ -165,11 +165,19 @@ cross-seed comparisons remain open.
 16. **Provide real receiving storage.** A shelf, bay or bench needs an actual
     endpoint with entry limits, mass rules where applicable and lawful access.
     Being labelled a loading bay grants neither capacity nor ownership.
+    The optional public clay tray adds a fixed two-measure loose endpoint
+    beside Gleaners’ well. It uses ordinary inventory and accepts either
+    valid lining grade. The packed freight shelf has its own actual limit.
+    [Evidence](Verification/MachineSystems/PublicClayTray20261125/README.md)
 
 17. **Persist stored work without unpaid upkeep.** Goods and completed supported
     improvements survive departure and reload. Do not introduce routine decay,
     maintenance bills or settlement deterioration merely to keep the player
     performing deliveries.
+    In the tray trial one exact pound of fire clay survived fresh Continue and
+    normal world-map departure and return. A second deposit produced two usable
+    measures. Ordinary collection and well repair used those same units.
+    [Evidence](Verification/MachineSystems/PublicClayTray20261125/README.md)
 
 18. **Tie each improvement to an observable change.** A cleared approach may
     shorten a valid route; a larger receiver may admit another load. Recalculate

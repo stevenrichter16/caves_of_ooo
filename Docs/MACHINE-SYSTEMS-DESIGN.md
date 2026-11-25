@@ -1,3 +1,11 @@
+**A local store supports one-pound trips — November 25 UTC, 2026.**
+At one admitted Gleaners’ district, the optional public tray stores up to
+two loose lining-clay measures. Exact storage, local access and later
+retrieval use the ordinary inventory and material rules. The separate parcel
+shelf supports packed carrying. Stock keeps its identity through travel and
+reload, and the normal well action spends the recovered measures.
+[Evidence](Verification/MachineSystems/PublicClayTray20261125/README.md)
+
 **Growth changes the work available at one finite stand — November 25 UTC, 2026.**
 Early Morrowfast knotflax can give a sound cutter one cord for ordinary
 preparation. Leaving it standing allows the existing later seed harvest and

@@ -1315,9 +1315,12 @@ namespace CavesOfOoo.Core
 
             RegionalSituations.OnZoneGenerated(zone, this);
 
-            if (zoneID == GleanersDistrict.SurfaceID && GleanersDistrict.TryInstall(zone, this)
-                && GleanersReceivingSite.TryInstall(zone, this))
-                GleanersReceivingSite.TryInstallPorter(zone, this);
+            if (zoneID == GleanersDistrict.SurfaceID && GleanersDistrict.TryInstall(zone, this))
+            {
+                if (GleanersReceivingSite.TryInstall(zone, this))
+                    GleanersReceivingSite.TryInstallPorter(zone, this);
+                GleanersReceivingSite.TryInstallLooseStorage(zone, this);
+            }
 
             if (zoneID == MorrowfastExpedition.FieldZoneId && WorldMap.GetPOI(wx, wy) == null
                 && WorldMap.GetBiome(wx, wy) == BiomeType.Grovelands)

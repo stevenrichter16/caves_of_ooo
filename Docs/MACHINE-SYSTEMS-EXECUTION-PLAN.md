@@ -1,3 +1,14 @@
+**One-pound staging at Gleaners’ — November 25 UTC, 2026.**
+Seed 64 v25 exercised ordinary movement into and out of the original cellar.
+Native split and deposit left one exact measure near the well. Fresh Continue
+and ordinary travel kept it there. The packed-delivery shelf refused the second
+loose measure. The public tray admitted it, returned both units in the same
+physical stack, and ordinary repair and water use completed the loop. Fresh
+Continue preserved the working well, empty tray and independent shelf. The
+connected suite passed 760 checks with one explicit generator skip. Next,
+qualify the same lining grades at the Sodden field rig.
+[Evidence](Verification/MachineSystems/PublicClayTray20261125/README.md)
+
 **One knotflax source supports distinct seasonal work — November 25 UTC, 2026.**
 Seed 65 ordinary movement and the starting dagger reached the optional
 Morrowfast stand. An early cut spent it for one cord, fresh Continue kept

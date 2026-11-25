@@ -28516,6 +28516,24 @@
       ]
     },
     {
+      "Name": "LiningClaySupplyTray",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "public clay tray" },
+          { "Key": "RenderString", "Value": "u" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "false" }] },
+        { "Name": "Container", "Params": [{ "Key": "MaxItems", "Value": "2" }] },
+        { "Name": "DeliveryStorage", "Params": [{ "Key": "AcceptsLooseStock", "Value": "true" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Open public storage for two loose measures of fire clay or prepared lining clay. You can leave one measure now and recover it later. Anyone beside the tray can collect it. Take the clay out to patch the well. Packed deliveries use the separate shelf." }
+        ] }
+      ]
+    },
+    {
       "Name": "WaysideClayPorter",
       "Inherits": "GleanersPorter",
       "Parts": [

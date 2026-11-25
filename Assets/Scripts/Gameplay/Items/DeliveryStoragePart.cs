@@ -4,14 +4,16 @@ using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
-    /// <summary>Marks the physical parcel and shelf for a local handover.</summary>
+    /// <summary>Admits suitable clay to a parcel, a handover shelf, or public loose storage.</summary>
     public sealed class DeliveryStoragePart : Part
     {
         public override string Name => "DeliveryStorage";
         public bool ReceivesParcels;
+        public bool AcceptsLooseStock;
         public bool ContentsWithdrawn;
 
         private const int Measures = 2;
+        private bool IsFixed => ReceivesParcels || AcceptsLooseStock;
 
         internal bool CanReach(Entity actor, Zone zone)
         {
@@ -26,7 +28,7 @@ namespace CavesOfOoo.Core
 
         internal string RefuseDeposit(Entity actor, Entity item, Zone zone)
         {
-            if (!CanReach(actor, zone)) return "Stand beside the box or receiving shelf first.";
+            if (!CanReach(actor, zone)) return "Stand beside the storage first.";
             var container = ParentEntity.GetPart<ContainerPart>();
             var pack = actor.GetPart<InventoryPart>();
             if (!PreparationActions.Carried(actor, item) || !Unique(item, pack.Objects)
@@ -44,10 +46,10 @@ namespace CavesOfOoo.Core
 
             int stored = ReadMeasures(zone);
             int incoming = ReadMeasure(item, zone);
-            if (incoming <= 0) return "Pack fire clay or prepared lining clay.";
+            if (incoming <= 0) return "This storage takes fire clay or prepared lining clay.";
             if (container.Contents.Any(e => !ConnectedClayProvenance.CanMerge(e, item)))
-                return "These measures overlap the marks on the clay already in the box.";
-            return stored >= 0 && incoming <= Measures - stored ? null : "The box holds two measures. Separate one from a larger stack.";
+                return "These measures overlap the marks on the clay already stored here.";
+            return stored >= 0 && incoming <= Measures - stored ? null : "This storage holds two measures. Separate a smaller stack first.";
         }
 
         internal bool CanWithdraw(Entity actor, Entity item, Zone zone)
@@ -55,23 +57,48 @@ namespace CavesOfOoo.Core
             if (!CanReach(actor, zone) || !HeldBy(item, ParentEntity)) return false;
             var pack = actor.GetPart<InventoryPart>();
             var container = ParentEntity.GetPart<ContainerPart>();
+            if (AcceptsLooseStock)
+            {
+                if (ReadMeasures(zone) < 0) return false;
+                string world = LocalGatheringClaims.WorldKeyFor(zone);
+                int origin = ConnectedClayProvenance.Mask(item, world);
+                if (pack.EquippedItems.Values.Any(owner => owner?.ID == item.ID)
+                    || origin != 0 && pack.Objects.Concat(pack.EquippedItems.Values)
+                        .Any(owner => (origin & ConnectedClayProvenance.Mask(owner, world)) != 0)) return false;
+            }
             return item.ID != actor.ID && item.ID != ParentEntity.ID && Unique(item, container.Contents)
                 && pack.Objects.All(e => e != item && e?.ID != item.ID)
                 && zone.GetReadOnlyEntities().All(e => e.ID != item.ID)
                 && pack.FindEquippedBodyPart(item) == null && !pack.EquippedItems.ContainsValue(item);
         }
 
+        internal bool WatchLooseTransfer(Entity actor, Zone zone, InventoryTransaction transaction, int change)
+        {
+            if (!AcceptsLooseStock) return true;
+            if (!CanReach(actor, zone)) return false;
+            int previous = ReadMeasures(zone);
+            int total = previous + change;
+            if (previous < 0 || total is < 0 or > Measures) return false;
+            var tray = ParentEntity;
+            var trayCell = zone.GetEntityCell(tray);
+            var actorCell = zone.GetEntityCell(actor);
+            transaction.BeforeCommit(() => AcceptsLooseStock && ParentEntity == tray && CanReach(actor, zone)
+                && zone.GetEntityCell(tray) == trayCell && zone.GetEntityCell(actor) == actorCell
+                && ReadMeasures(zone) == total);
+            return true;
+        }
+
         internal void RecordWithdrawal(InventoryTransaction transaction)
         {
             // A returned shipment can prove continuous packing only until its first committed withdrawal.
-            if (!ReceivesParcels && !ContentsWithdrawn)
+            if (!IsFixed && !ContentsWithdrawn)
                 transaction.AfterCommit(() => ContentsWithdrawn = true);
         }
 
         internal static int ParcelWeightOrZero(Entity item, Zone zone)
         {
             var storage = item?.GetPart<DeliveryStoragePart>();
-            if (storage?.ReadMeasures(zone) != Measures) return 0;
+            if (storage == null || storage.IsFixed || storage.ReadMeasures(zone) != Measures) return 0;
             int weight = HandlingService.GetWeight(item);
             return weight is > 0 and <= 8 ? weight : 0;
         }
@@ -80,7 +107,7 @@ namespace CavesOfOoo.Core
         {
             var box = ParentEntity;
             var container = box?.GetPart<ContainerPart>();
-            if (ReceivesParcels || !Intact(box, container) || box.GetPart<ContainerLoadPart>()?.ParentEntity != box
+            if (ReceivesParcels || !Intact(box, container) || !AcceptsLooseStock && box.GetPart<ContainerLoadPart>()?.ParentEntity != box
                 || box.HasPart<StackerPart>() || container.Contents.Count > Measures) return -1;
             int count = 0;
             int originMask = 0;
@@ -106,12 +133,13 @@ namespace CavesOfOoo.Core
             var at = zone.GetEntityCell(owner);
             return at?.ParentZone == zone && Unique(owner, at.Objects)
                 && owner.GetPart<PhysicsPart>() is PhysicsPart physics && physics.ParentEntity == owner
-                && physics.Takeable != ReceivesParcels && physics.InInventory == null && physics.Equipped == null;
+                && physics.Takeable != IsFixed && physics.InInventory == null && physics.Equipped == null;
         }
 
         internal bool Intact(Entity owner, ContainerPart container) => owner != null && container?.ParentEntity == owner
             && owner.GetPart<DeliveryStoragePart>() == this && owner.Parts.Count(p => p is DeliveryStoragePart) == 1
             && owner.Parts.All(p => p?.ParentEntity == owner) && owner.Parts.Count(p => p is ContainerPart) == 1 && container.Contents != null
+            && (!AcceptsLooseStock || !ReceivesParcels && !owner.HasPart<ContainerLoadPart>() && !owner.HasPart<StackerPart>())
             && container.MaxItems == (ReceivesParcels ? 1 : Measures) && !owner.HasPart<SpatialFootprintPart>();
 
         private static bool HeldBy(Entity item, Entity owner) => item != null && !string.IsNullOrEmpty(item.ID)

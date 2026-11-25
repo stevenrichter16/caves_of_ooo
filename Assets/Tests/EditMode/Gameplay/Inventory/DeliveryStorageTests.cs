@@ -87,6 +87,94 @@ namespace CavesOfOoo.Tests
             Assert.That(parcel.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
         }
 
+        [Test]
+        public void LooseTrayMergesTwoMeasuresAndNeverConsumesAThird()
+        {
+            var tray = PlaceLooseTray();
+            var storage = tray.GetPart<DeliveryStoragePart>();
+            var container = tray.GetPart<ContainerPart>();
+            var first = Carry(Prepared);
+            Assert.That(Put(tray, first).Success, Is.True);
+            var second = Carry(Prepared);
+            Assert.That(Put(tray, second).Success, Is.True);
+            Assert.That(container.Contents.Single(), Is.SameAs(first));
+            Assert.That(first.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(first.GetPart<PhysicsPart>().InInventory, Is.SameAs(tray));
+            Assert.That(second.GetPart<StackerPart>().StackCount, Is.Zero);
+            Assert.That(second.GetPart<PhysicsPart>().InInventory, Is.Null);
+
+            var resident = Carry(Prepared);
+            Assert.That(Put(tray, resident).Success, Is.False, "The existing stack occupies both measures.");
+            Assert.That(container.Contents.Single(), Is.SameAs(first));
+            Assert.That(first.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(resident.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(resident.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.That(Zone.GetReadOnlyEntities().Any(e => e.BlueprintName == Prepared), Is.False);
+
+            int normalCapacity = Pack.MaxWeight;
+            Pack.MaxWeight = Pack.GetCarriedWeight() + 1;
+            Assert.That(Take(tray, first).Success, Is.False);
+            Assert.That(container.Contents.Single(), Is.SameAs(first));
+            Assert.That(first.GetPart<PhysicsPart>().InInventory, Is.SameAs(tray));
+            Assert.That(first.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(resident.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.That(storage.ContentsWithdrawn, Is.False);
+
+            Pack.MaxWeight = normalCapacity;
+            Assert.That(Take(tray, first).Success, Is.True);
+            Assert.That(Take(tray, first).Success, Is.False);
+            Assert.That(container.Contents, Is.Empty);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == Prepared), Is.SameAs(resident));
+            Assert.That(resident.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+
+            var split = new SeparateOneCommand(resident);
+            Assert.That(InventorySystem.ExecuteCommand(split, Actor, Zone).Success, Is.True);
+            var returned = split.SeparatedItem;
+            Assert.That(Put(tray, returned).Success, Is.True);
+            Assert.That(Take(tray, returned).Success, Is.True);
+            Assert.That(container.Contents, Is.Empty);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == Prepared), Is.SameAs(resident));
+            Assert.That(resident.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+            Assert.That(storage.ContentsWithdrawn, Is.False, "The tray does not track continuity of sealed cargo.");
+        }
+
+        [Test]
+        public void LooseTrayAcceptsMixedLiningClayWhileRefusingSpoilAndPackedParcels()
+        {
+            var tray = PlaceLooseTray();
+            var container = tray.GetPart<ContainerPart>();
+            var well = Place("RepairLinedWell", 10, 11);
+            var spoil = Carry("DryClaySpoil");
+            var parcel = PackAndPickTwoMeasures();
+            var parcelStock = parcel.GetPart<ContainerPart>().Contents.Single();
+
+            Assert.That(Put(tray, spoil).Success, Is.False);
+            Assert.That(Put(tray, parcel).Success, Is.False);
+            Assert.That(container.Contents, Is.Empty);
+            Assert.That(spoil.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.That(parcel.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.That(parcel.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(parcelStock));
+            Assert.That(parcelStock.GetPart<PhysicsPart>().InInventory, Is.SameAs(parcel));
+            Assert.That(parcelStock.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(Zone.GetReadOnlyEntities().Any(e => e == spoil || e == parcel || e == parcelStock), Is.False);
+
+            var prepared = Carry(Prepared);
+            var fireClay = Carry("FireClay");
+            Assert.That(Put(tray, prepared).Success, Is.True);
+            Assert.That(Put(tray, fireClay).Success, Is.True);
+            Assert.That(container.Contents, Is.EquivalentTo(new[] { prepared, fireClay }));
+            Assert.That(container.Contents.All(e => e.GetPart<PhysicsPart>().InInventory == tray), Is.True);
+            Assert.That(well.GetPart<WellPart>().IsUsable, Is.False);
+            Assert.That(Take(tray, prepared).Success, Is.True);
+            Assert.That(Take(tray, fireClay).Success, Is.True);
+            Assert.That(container.Contents, Is.Empty);
+            Assert.That(well.GetPart<WellPart>().IsUsable, Is.False);
+            Assert.That(well.GetPart<RepairablePart>().TryRepair(Actor, Zone), Is.True);
+            Assert.That(well.GetPart<WellPart>().IsUsable, Is.True);
+            Assert.That(parcel.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(parcelStock));
+            Assert.That(parcelStock.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+        }
+
         [TestCase(false)]
         [TestCase(true)]
         public void DirectContainerCommandsRefuseRemoteOrMismatchedZoneAccess(bool wrongZone)
@@ -229,6 +317,19 @@ namespace CavesOfOoo.Tests
         }
 
         private static int Distance((int x, int y) a, (int x, int y) b) => Math.Max(Math.Abs(a.x - b.x), Math.Abs(a.y - b.y));
+
+        private Entity PlaceLooseTray()
+        {
+            var tray = Place(Shelf, 11, 10);
+            tray.GetPart<ContainerPart>().MaxItems = 2;
+            var storage = tray.GetPart<DeliveryStoragePart>();
+            storage.ReceivesParcels = false;
+            Assert.That(tray.GetPart<PhysicsPart>().Takeable, Is.False);
+            var mode = typeof(DeliveryStoragePart).GetField("AcceptsLooseStock");
+            Assert.That(mode, Is.Not.Null, "Fixed loose storage needs its own explicit admission mode.");
+            mode.SetValue(storage, true);
+            return tray;
+        }
 
         private Entity PackAndPickTwoMeasures()
         {

@@ -65,7 +65,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var delivery = _container.GetPart<DeliveryStoragePart>();
             if (delivery != null && !delivery.CanWithdraw(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone))
                 return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
-                    "Stand beside the box or receiving shelf to take its contents.");
+                    "The contents are unavailable. Check that the storage is beside you and the stock is intact.");
 
             var physics = _item.GetPart<PhysicsPart>();
             if (physics == null || !physics.Takeable)
@@ -105,7 +105,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 return Refuse(context, "contained_recovery_refused", "Drain the tray first, or explicitly recover through the liquid.");
             var delivery = _container.GetPart<DeliveryStoragePart>();
             if (delivery != null && !transaction.TryClaim(_container, context.Actor, Name))
-                return Refuse(context, "delivery_storage_busy", "The box or shelf is already in use.");
+                return Refuse(context, "delivery_storage_busy", "That storage is already in use.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
             if (containerPart == null || inventory == null)
@@ -136,6 +136,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             string itemName = _item.GetDisplayName();
             var stacker = _item.GetPart<StackerPart>();
             int quantity = stacker?.StackCount ?? 1;
+            if (delivery?.WatchLooseTransfer(context.Actor, context.Zone ?? context.Actor.SpatialZone, transaction, -quantity) == false)
+                return Refuse(context, "delivery_storage_changed", "The tray's stock or access has changed.");
             bool gold = _item.BlueprintName == "GoldCoin";
             var physics = _item.GetPart<PhysicsPart>();
             if (gold && !CoinSourceCurrent(containerPart, inventory, physics))

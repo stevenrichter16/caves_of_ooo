@@ -77,7 +77,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var inventory = context.Inventory;
             var delivery = _container.GetPart<DeliveryStoragePart>();
             if (delivery != null && !transaction.TryClaim(_container, context.Actor, Name))
-                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The box or shelf is already in use.");
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "That storage is already in use.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
             if (containerPart == null || inventory == null)
@@ -109,6 +109,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             string itemName = _item.GetDisplayName();
             int quantity = _item.GetPart<StackerPart>()?.StackCount ?? 1;
+            if (delivery?.WatchLooseTransfer(context.Actor, context.Zone ?? context.Actor.SpatialZone, transaction, quantity) == false)
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The tray's stock or access has changed.");
             var source = InventoryTransferSnapshot.Capture(inventory);
             transaction.Do(apply: null, undo: source.Restore);
             if (!source.Apply(() => inventory.RemoveObject(_item)))

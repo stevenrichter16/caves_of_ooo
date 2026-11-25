@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory.Commands;
 using NUnit.Framework;
@@ -10,6 +12,7 @@ namespace CavesOfOoo.Tests
     public sealed class GleanersDistrictAdversarialTests
     {
         const string Surface="Overworld.11.10.0",Cellar="Overworld.11.10.1";
+        const string ClayTray = "LiningClaySupplyTray";
         HaulingContentScope scope;Zone oldActive;
         [SetUp] public void Setup(){scope=new HaulingContentScope();scope.Seed(64);oldActive=SettlementRuntime.ActiveZone;RepairRecipeRegistry.ResetForTests();}
         [TearDown] public void Cleanup(){SurfaceCreationProbe.Remembered=null;SurfaceCreationProbe.Manager=null;SettlementRuntime.ActiveZone=oldActive;RepairRecipeRegistry.ResetForTests();scope.Dispose();}
@@ -138,6 +141,144 @@ namespace CavesOfOoo.Tests
                 restored.UnloadZone(Surface);restored.UnloadZone(Cellar);
                 Assert.AreSame(freshSurface,restored.GetZone(Surface));Assert.AreSame(freshBelow,restored.GetZone(Cellar));
             }
+        }
+
+        [TestCase(24, false)]
+        [TestCase(25, true)]
+        public void ColdGenerationAddsOneLooseClayTrayOnlyInTheNewManifest(int version, bool hasTray)
+        {
+            var manager = Manager();
+            if (version == 24) RestoreV24Manifest(manager);
+            Assert.That(manager.Exploration.Version, Is.EqualTo(version));
+            Assert.False(manager.CachedZones.ContainsKey(Surface));
+
+            var surface = manager.GetZone(Surface);
+            AssertParcelService(surface);
+            Assert.False(Well(surface).GetPart<WellPart>().IsUsable);
+            var trays = surface.GetReadOnlyEntities().Where(e => e.BlueprintName == ClayTray).ToArray();
+            Assert.That(trays, Has.Length.EqualTo(hasTray ? 1 : 0));
+            if (!hasTray)
+            {
+                Assert.That(surface.GetCell(42, 9).Objects.Any(e => e.HasPart<DeliveryStoragePart>()), Is.False);
+                return;
+            }
+
+            var tray = trays.Single();
+            AssertLooseClayTray(surface, tray);
+            Assert.That(tray.GetPart<ContainerPart>().Contents, Is.Empty);
+            Assert.That(surface.GetReadOnlyEntities().Select(e => e.GetPart<DeliveryStoragePart>())
+                .Where(storage => storage != null).Count(IsLooseStock), Is.EqualTo(1));
+            Assert.That(manager.GetZone(Surface).GetReadOnlyEntities().Single(e => e.BlueprintName == ClayTray), Is.SameAs(tray));
+        }
+
+        [Test]
+        public void ColdWorldWithoutAnEnabledManifestKeepsTheWellAndOmitsTheLooseClayTray()
+        {
+            var manager = OverworldZoneManager.CreateDetached(scope.Factory, 64, enableExploration: false);
+            Assert.False(manager.Exploration.Enabled);
+            Assert.That(manager.Exploration.Version, Is.EqualTo(SpreadExplorationPlan.CurrentVersion));
+            Assert.False(manager.CachedZones.ContainsKey(Surface));
+
+            var surface = manager.GetZone(Surface);
+            Assert.That(surface.GetReadOnlyEntities().Any(e => e.BlueprintName == ClayTray), Is.False);
+            Assert.False(Well(surface).GetPart<WellPart>().IsUsable);
+            Assert.True(GleanersDistrict.CanBuildCellar(manager));
+        }
+
+        [Test]
+        public void GeneratedLooseClayTrayRetainsItsIdentityAndStockAcrossSave()
+        {
+            using var isolation = new HotbarSaveFixture(false, false);
+            var manager = Manager();
+            var surface = manager.GetZone(Surface);
+            manager.SetActiveZone(surface);
+            SettlementRuntime.ActiveZone = surface;
+            var tray = surface.GetReadOnlyEntities().Single(e => e.BlueprintName == ClayTray);
+            var actor = scope.Factory.CreateEntity("Player");
+            var clay = scope.Factory.CreateEntity("PreparedLiningClay");
+            clay.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(surface.AddEntity(actor, 42, 9));
+            Assert.True(actor.GetPart<InventoryPart>().AddObject(clay));
+            Assert.True(InventorySystem.ExecuteCommand(new PutInContainerCommand(tray, clay), actor, surface).Success);
+
+            using var bytes = new MemoryStream();
+            GameSessionState.Capture("gleaners-tray", "saved loose measures", manager, null, actor).Save(new SaveWriter(bytes));
+            bytes.Position = 0;
+            var loaded = GameSessionState.Load(new SaveReader(bytes, scope.Factory));
+            var restored = loaded.ZoneManager.GetZone(Surface);
+            SettlementRuntime.ActiveZone = restored;
+            Assert.That(loaded.ZoneManager.Exploration.Version, Is.EqualTo(25));
+            Assert.That(restored, Is.Not.SameAs(surface));
+            var savedTray = restored.GetReadOnlyEntities().Single(e => e.BlueprintName == ClayTray);
+            Assert.That(savedTray.ID, Is.EqualTo(tray.ID));
+            AssertLooseClayTray(restored, savedTray);
+            var contents = savedTray.GetPart<ContainerPart>().Contents;
+            var savedClay = contents.Single();
+            Assert.That(savedClay.ID, Is.EqualTo(clay.ID));
+            Assert.That(savedClay.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(savedClay.GetPart<PhysicsPart>().InInventory, Is.SameAs(savedTray));
+            Assert.True(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(savedTray, savedClay), loaded.Player, restored).Success);
+            Assert.That(contents, Is.Empty);
+            Assert.That(savedClay.GetPart<PhysicsPart>().InInventory, Is.SameAs(loaded.Player));
+            Assert.That(savedTray.GetPart<DeliveryStoragePart>().ContentsWithdrawn, Is.False);
+            Assert.False(Well(restored).GetPart<WellPart>().IsUsable);
+            AssertParcelService(restored);
+        }
+
+        private static void RestoreV24Manifest(OverworldZoneManager manager)
+        {
+            var world = SpreadExplorationPlan.BindForSave(manager, null);
+            var wire = world.GetProperty(SpreadExplorationPlan.PropertyKey);
+            world.Properties[SpreadExplorationPlan.PropertyKey] = "24" + wire.Substring(wire.IndexOf('|'));
+            var restore = typeof(SpreadExplorationPlan).GetMethod("Restore", BindingFlags.NonPublic | BindingFlags.Static);
+            var plan = restore.Invoke(null, new object[] { manager, world });
+            typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(manager, plan);
+        }
+
+        private static bool IsLooseStock(DeliveryStoragePart storage)
+        {
+            var mode = typeof(DeliveryStoragePart).GetField("AcceptsLooseStock");
+            Assert.That(mode, Is.Not.Null);
+            return (bool)mode.GetValue(storage);
+        }
+
+        private static void AssertLooseClayTray(Zone zone, Entity tray)
+        {
+            Assert.That(zone.GetEntityPosition(tray), Is.EqualTo((42, 9)));
+            Assert.That(zone.GetCell(42, 9).Objects, Does.Contain(tray));
+            var physics = tray.GetPart<PhysicsPart>();
+            Assert.False(physics.Takeable || physics.Solid);
+            Assert.That(physics.InInventory, Is.Null);
+            Assert.That(tray.GetPart<ContainerLoadPart>(), Is.Null);
+            var container = tray.GetPart<ContainerPart>();
+            Assert.False(container.IsLocked);
+            Assert.That(container.MaxItems, Is.EqualTo(2));
+            Assert.That(tray.Parts.Count(p => p is DeliveryStoragePart), Is.EqualTo(1));
+            var storage = tray.GetPart<DeliveryStoragePart>();
+            Assert.False(storage.ReceivesParcels);
+            Assert.True(IsLooseStock(storage));
+        }
+
+        private static void AssertParcelService(Zone zone)
+        {
+            var owners = zone.GetReadOnlyEntities();
+            var box = owners.Single(e => e.BlueprintName == "LiningClayParcel");
+            var shelf = owners.Single(e => e.BlueprintName == "LiningClayReceivingShelf");
+            var porter = owners.Single(e => e.BlueprintName == "GleanersPorter");
+            var marker = owners.Single(e => e.BlueprintName == "GleanersLoadingMarker");
+            Assert.True(box.GetPart<PhysicsPart>().Takeable && box.HasPart<ContainerLoadPart>());
+            Assert.True(shelf.GetPart<DeliveryStoragePart>().ReceivesParcels);
+            Assert.That(shelf.GetPart<ContainerPart>().MaxItems, Is.EqualTo(1));
+            Assert.That(shelf.GetPart<ContainerPart>().Contents, Is.Empty);
+            var ledger = marker.GetPart<LocalPorterLedgerPart>();
+            Assert.That(ledger.Box, Is.SameAs(box));
+            Assert.That(ledger.Shelf, Is.SameAs(shelf));
+            Assert.That(ledger.Worker, Is.SameAs(porter));
+            Assert.That(porter.GetPart<LocalPorterPart>().Ledger, Is.SameAs(marker));
+            Assert.That(zone.GetEntityPosition(marker), Is.EqualTo(zone.GetEntityPosition(box)));
+            var from = zone.GetEntityPosition(porter);
+            var to = zone.GetEntityPosition(shelf);
+            Assert.True(FindPath.Search(zone, from.x, from.y, to.x, to.y).Usable);
         }
     }
 }
