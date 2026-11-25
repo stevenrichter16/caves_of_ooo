@@ -2597,6 +2597,36 @@
       "Tags": []
     },
     {
+      "Name": "SoddenRainGuide",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "shower channel" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&c" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "false" },
+            { "Key": "Solid", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A shallow wooden lip will direct a shower into the sumpsieve bed. A small peg holds it shut." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "SoddenRouteNotice",
       "Inherits": "PhysicalObject",
       "Parts": [

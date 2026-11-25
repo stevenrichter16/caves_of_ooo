@@ -98,6 +98,37 @@ wholeW1 remain open. See the receipt for RED failures, callback fixes, directed
 strong-fixture limits, helper exclusions, exact pins and preservation.
 No offline-only foundation acceptance.
 
+## Local rain guide at Sella’s shelter
+
+Roadmap 34 now has a second kind of optional shower work. The dressing
+shelter already has a dry outdoor sumpsieve bed, a separate ripe crop and an
+ordinary dressing service that uses pads. The public guide directs one
+finite local rain portion into the dry bed through one action. It saves a
+unit of carried water and gives the same moisture as hand watering. It makes
+no pool or inventory item. Sumpsieve needs 48 moist rounds and one watering
+provides 40. The player can tend the remaining growth later, use the ripe
+crop, buy supplies or continue along the ordinary road.
+
+Use the existing Sodden weather observations and crop moisture rules. Admit
+one fitting on clean exterior ground beside the exact bed after the district
+is accepted, only in the next fresh eligible generation version. Leave the
+existing footing and paths clear. The saved fitting, prepared soil and exact
+crop define the access. The current mild shower allows one portion per weather
+window. Nothing accumulates while absent. Selection binds both owners and
+the current window. Reconcile prior crop time before the action. A valid
+receipt commits the crop top-up and finite rain together. A spent, flooded,
+ripe, moved, already watered or replaced bed uses no supply. Reuse the same
+ordinary moisture change for flask and guide so adding this source preserves
+both growth and the readback. Track the selected source and saved use in the
+existing diagnostic stream.
+
+Actual play reached the shelter from an ordinary new start, used the local
+rain portion, returned to ordinary spell watering for the remaining growth,
+and harvested the exact crop. The native comparisons cover carried water,
+fair and stale windows, claims and late failure. This establishes one bounded
+directed-watering site. Automatic rain credit remains a separate design.
+[Evidence](Verification/MachineSystems/SoddenRainGuide20261125/README.md)
+
 W1b must settle the earlier crop interval before each rain credit/exposure
 change, retain wet-tick remainder and handle arbitrary existing moisture above40.
 Credit at rainy-window start only; later planting waits for the next eligible

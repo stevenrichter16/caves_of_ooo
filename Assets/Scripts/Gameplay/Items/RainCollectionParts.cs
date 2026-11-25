@@ -14,13 +14,16 @@ namespace CavesOfOoo.Core
         public string WorldKey = "", PlotKey = "";
         public bool Public;
         public int PolicyVersion, ActivatedAt = -1, LastWindow = -1, Spent;
+        public int ConfiguredAllowance;
         public const int Allowance = 3, Reach = 2;
+        internal int Capacity => ConfiguredAllowance == 0 ? Allowance : ConfiguredAllowance;
 
         internal bool Bound(Zone zone, int now)
         {
             var owner = ParentEntity; var manager = WorldLocationContext.For(zone);
             if (!Public || PolicyVersion != RegionalWeather.PolicyVersion || ActivatedAt < 0 || now < ActivatedAt
-                || LastWindow < -1 || LastWindow > now / RegionalWeather.WindowTicks || Spent < 0 || Spent > Allowance
+                || Capacity < 1 || Capacity > Allowance
+                || LastWindow < -1 || LastWindow > now / RegionalWeather.WindowTicks || Spent < 0 || Spent > Capacity
                 || LastWindow == -1 && Spent != 0 || string.IsNullOrEmpty(PlotKey) || string.IsNullOrEmpty(WorldKey)
                 || manager?.Exploration?.WorldKey != WorldKey || !FixedOn(owner, Ground, zone)
                 || owner.Parts.Count(p => p is RainCatchmentPart) != 1 || owner.GetPart<RainCatchmentPart>() != this) return false;
@@ -34,7 +37,7 @@ namespace CavesOfOoo.Core
             }
             return true;
         }
-        internal int Remaining(int window) => LastWindow == window ? Allowance - Spent : Allowance;
+        internal int Remaining(int window) => LastWindow == window ? Capacity - Spent : Capacity;
         internal static bool FixedOn(Entity owner, Entity ground, Zone zone)
         {
             if (owner == null || ground == null || owner == ground || zone == null || !ground.HasTag("Terrain")
@@ -67,7 +70,7 @@ namespace CavesOfOoo.Core
         {
             claim = Unique<RainCatchmentPart>(Anchor); weather = default;
             int now = WorldClock.CurrentTick;
-            if (!Clean || Unique<RainCollectorPart>(ParentEntity) != this || claim == null
+            if (!Clean || Unique<RainCollectorPart>(ParentEntity) != this || claim == null || claim.ConfiguredAllowance != 0
                 || !RainCatchmentPart.FixedOn(ParentEntity, Ground, zone) || !claim.Bound(zone, now)) return false;
             var at = zone.GetEntityCell(ParentEntity); var root = zone.GetEntityCell(Anchor);
             if (Math.Max(Math.Abs(at.X - root.X), Math.Abs(at.Y - root.Y)) > RainCatchmentPart.Reach) return false;
@@ -163,7 +166,7 @@ namespace CavesOfOoo.Core
                 if (claim.ParentEntity == anchor && Unique<RainCatchmentPart>(anchor) == claim
                     && claim.Ground == rootGround && claim.WorldKey == world && claim.PlotKey == plot
                     && claim.PolicyVersion == policy && claim.ActivatedAt == activation
-                    && claim.LastWindow == weather.Window && claim.Spent >= 0 && claim.Spent <= RainCatchmentPart.Allowance)
+                    && claim.ConfiguredAllowance == 0 && claim.LastWindow == weather.Window && claim.Spent >= 0 && claim.Spent <= RainCatchmentPart.Allowance)
                 {
                     int independent = claim.Spent - expectedSpent;
                     if (independent == 0) { claim.LastWindow = last; claim.Spent = spent; }

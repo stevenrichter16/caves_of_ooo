@@ -145,10 +145,12 @@ namespace CavesOfOoo.Tests
 
         [TestCase(24, false)]
         [TestCase(25, true)]
+        [TestCase(26, true)]
         public void ColdGenerationAddsOneLooseClayTrayOnlyInTheNewManifest(int version, bool hasTray)
         {
             var manager = Manager();
             if (version == 24) RestoreV24Manifest(manager);
+            else if (version != SpreadExplorationPlan.CurrentVersion) SoddenDistrictIntegrationTests.Version(manager, version);
             Assert.That(manager.Exploration.Version, Is.EqualTo(version));
             Assert.False(manager.CachedZones.ContainsKey(Surface));
 
@@ -207,7 +209,7 @@ namespace CavesOfOoo.Tests
             var loaded = GameSessionState.Load(new SaveReader(bytes, scope.Factory));
             var restored = loaded.ZoneManager.GetZone(Surface);
             SettlementRuntime.ActiveZone = restored;
-            Assert.That(loaded.ZoneManager.Exploration.Version, Is.EqualTo(25));
+            Assert.That(loaded.ZoneManager.Exploration.Version, Is.EqualTo(manager.Exploration.Version));
             Assert.That(restored, Is.Not.SameAs(surface));
             var savedTray = restored.GetReadOnlyEntities().Single(e => e.BlueprintName == ClayTray);
             Assert.That(savedTray.ID, Is.EqualTo(tray.ID));

@@ -7,11 +7,14 @@ namespace CavesOfOoo.Rendering
     /// repair flag selects the frame; plans never reconstruct missing objects.</summary>
     public static class SoddenDistrictRecipes
     {
+        internal const string RainGuideModel = "connected-spread-pickup-empty";
+
         public static bool Handles(string blueprint)
         {
             switch (blueprint)
             {
                 case "SoddenDressingBench": case "SoddenWorksSalvage": case "SoddenWorksLocker":
+                case SoddenRainGuidePart.Blueprint:
                 case "SoddenRouteNotice": case "SoddenFieldDressing": case OilStrainingPart.Blueprint: return true;
                 default: return false;
             }
@@ -64,6 +67,11 @@ namespace CavesOfOoo.Rendering
             if (physics.Takeable || owner.HasTag("Item")) return null;
             switch (owner.BlueprintName)
             {
+                case SoddenRainGuidePart.Blueprint:
+                    return zone.ZoneID == SoddenDistrictPlan.StopZoneID && !physics.Solid && Appearance(owner, "=", "&c", 2)
+                        && ExactPart(owner, "SoddenRainGuide") && ExactPart(owner, "RainCatchment")
+                        && owner.GetPart<RainCatchmentPart>()?.ConfiguredAllowance == 1
+                        ? RainGuideModel : null;
                 case OilStrainingPart.Blueprint:
                     return OilStrainingPart.Payload(owner) && Appearance(owner,"=","&y",4)
                         ? SoddenDistrictArtLibrary.WorkingBench : null;

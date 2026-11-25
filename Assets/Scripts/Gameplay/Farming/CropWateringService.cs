@@ -68,31 +68,14 @@ namespace CavesOfOoo.Core
                 int waterBefore = skin != null ? skin.Charges : liquid.Volume;
                 int moistureBefore = crop.MoistureTicks;
                 string liquidBefore = liquid?.LiquidId;
-                var render = owner.GetPart<RenderPart>();
-                string backgroundBefore = render?.BackgroundColor;
+                StageMoisture(transaction, actor, owner, zone, crop, "CropHandWater");
                 transaction.Do(null, () =>
                 {
                     if (skin != null) skin.Charges = waterBefore;
                     else { liquid.Volume = waterBefore; liquid.LiquidId = liquidBefore; }
-                    crop.MoistureTicks = moistureBefore;
-                    if (render != null) render.BackgroundColor = backgroundBefore;
-                    if (CropTime.IsCurrentOwner(crop, zone) && zone.GetEntityCell(owner) == cell)
-                        ZoneRenderHooks.MarkCellDirty(cell, "CropHandWaterRollback");
                 });
                 if (skin != null) skin.Charges--;
                 else { liquid.Volume--; if (liquid.Volume == 0) liquid.LiquidId = ""; }
-                // The old interval is settled; no growth or fractional-time
-                // field changes here. Like rain, supply is a maximum top-up.
-                crop.MoistureTicks = MoisturePerUnit;
-                if (render != null) render.BackgroundColor = CropPart.WET_SOIL_BG;
-                transaction.AfterCommit(() =>
-                {
-                    if (CropTime.IsCurrentOwner(crop, zone) && zone.GetEntityCell(owner) == cell)
-                    {
-                        ZoneRenderHooks.MarkCellDirty(cell, "CropHandWatered");
-                        EntityVisualHooks.EmitInteraction(actor, owner, zone);
-                    }
-                });
                 transaction.AfterCommit(() => Diag.Record("crop", "HandWatered", actor, owner,
                     new { vesselId = vessel.ID, unitsSpent = 1, remaining = waterBefore - 1, moistureBefore, moistureAfter = MoisturePerUnit }));
                 transaction.AfterCommit(() => MessageLog.Add("You water the " + owner.GetDisplayName() + " with the "
@@ -103,7 +86,53 @@ namespace CavesOfOoo.Core
             finally { if (own) transaction.Rollback(); }
         }
 
-        static string CropInvalid(Entity actor, Entity owner, Zone zone, out CropPart crop)
+        // Both manual sources settle earlier time before staging the same top-up.
+        internal static void StageMoisture(InventoryTransaction transaction, Entity actor, Entity owner, Zone zone,
+            CropPart crop, string renderReason, Action afterMoistureUndo = null)
+        {
+            var cell = zone.GetEntityCell(owner);
+            var render = owner.GetPart<RenderPart>();
+            int before = crop.MoistureTicks;
+            string background = render?.BackgroundColor;
+            transaction.Do(() =>
+            {
+                crop.MoistureTicks = MoisturePerUnit;
+                if (render != null) render.BackgroundColor = CropPart.WET_SOIL_BG;
+            }, () =>
+            {
+                var current = owner.GetPart<CropPart>();
+                if (current != crop)
+                {
+                    // This top-up is no longer part of the physical crop.
+                    afterMoistureUndo?.Invoke();
+                    if (render != null && owner.GetPart<RenderPart>() == render && render.BackgroundColor == CropPart.WET_SOIL_BG
+                        && current?.MoistureTicks == 0)
+                    {
+                        render.BackgroundColor = background;
+                        if (CropTime.IsCurrentOwner(current, zone) && zone.GetEntityCell(owner) == cell)
+                            ZoneRenderHooks.MarkCellDirty(cell, renderReason + "Rollback");
+                    }
+                    return;
+                }
+                if (crop.MoistureTicks != MoisturePerUnit) return;
+                crop.MoistureTicks = before;
+                if (render != null && owner.GetPart<RenderPart>() == render && render.BackgroundColor == CropPart.WET_SOIL_BG)
+                    render.BackgroundColor = background;
+                afterMoistureUndo?.Invoke();
+                if (CropTime.IsCurrentOwner(crop, zone) && zone.GetEntityCell(owner) == cell)
+                    ZoneRenderHooks.MarkCellDirty(cell, renderReason + "Rollback");
+            });
+            transaction.AfterCommit(() =>
+            {
+                if (CropTime.IsCurrentOwner(crop, zone) && zone.GetEntityCell(owner) == cell)
+                {
+                    ZoneRenderHooks.MarkCellDirty(cell, renderReason + "ed");
+                    EntityVisualHooks.EmitInteraction(actor, owner, zone);
+                }
+            });
+        }
+
+        internal static string CropInvalid(Entity actor, Entity owner, Zone zone, out CropPart crop)
         {
             crop = owner?.GetPart<CropPart>();
             if (actor == null || zone == null) return "actor-unavailable";

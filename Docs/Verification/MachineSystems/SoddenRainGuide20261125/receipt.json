@@ -1,0 +1,347 @@
+{
+  "saves": {
+    "before": {
+      "archive": "/private/tmp/coo-sodden-rain-guide-before-20261125/f569ebfbdbc3411a90a1d0669d0d58b9",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "f569ebfbdbc3411a90a1d0669d0d58b9",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.7.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.7.0",
+        "Turn": 610,
+        "SaveTimestampUtc": "2026-11-25T17:33:40.4628680Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "149b9723dc7c9c8ee14973b07dab2c255a61cd8ce6a187e29339dc8e86a2ced6",
+        "Quick.sav.gz.bak": "2d32cdf500f957800b77e6a76f672bf1bf46506c51d52f2a613166fb6f8d7dfd",
+        "Quick.json.bak": "a3a85709b7618f54a6020f749e41d810cf582065bbbbd5e2d7ac40d5c6a6e070",
+        "Quick.json": "789cc64cc5642f37eafa5df6df2400d389f2b83e2f3ce44a45e200f51e81701a"
+      }
+    },
+    "wet": {
+      "archive": "/private/tmp/coo-sodden-rain-guide-wet-20261125/f569ebfbdbc3411a90a1d0669d0d58b9",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "f569ebfbdbc3411a90a1d0669d0d58b9",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.7.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.7.0",
+        "Turn": 620,
+        "SaveTimestampUtc": "2026-11-25T17:34:34.2003940Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "9a53a223149e07ae263ca1cce64c6631f1a407daa976d497e25b5225f8f3605b",
+        "Quick.sav.gz.bak": "149b9723dc7c9c8ee14973b07dab2c255a61cd8ce6a187e29339dc8e86a2ced6",
+        "Quick.json.bak": "789cc64cc5642f37eafa5df6df2400d389f2b83e2f3ce44a45e200f51e81701a",
+        "Quick.json": "9988e747662bc622c13f58ccffd8de003a1102e3a780c8b59ac72a829087eace"
+      }
+    },
+    "harvest": {
+      "archive": "/private/tmp/coo-sodden-rain-guide-harvest-20261125/f569ebfbdbc3411a90a1d0669d0d58b9",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "f569ebfbdbc3411a90a1d0669d0d58b9",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.7.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.7.0",
+        "Turn": 1130,
+        "SaveTimestampUtc": "2026-11-25T17:40:24.1982300Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "aacf1bfb220026db6a65255e7e4ab7dc92ee3b98cfc05b8e4f35e41f88aa81c8",
+        "Quick.sav.gz.bak": "9a53a223149e07ae263ca1cce64c6631f1a407daa976d497e25b5225f8f3605b",
+        "Quick.json.bak": "9988e747662bc622c13f58ccffd8de003a1102e3a780c8b59ac72a829087eace",
+        "Quick.json": "a23ebcf9553fc60f68bad0c201f7b96fcc62771eb9a40c9e9a17e75b92f829cc"
+      }
+    }
+  },
+  "tests": {
+    "sodden-rain-guide-red-clean": {
+      "xml": "/Users/steven/coo-verification/results/sodden-rain-guide-red-clean-20261125.xml",
+      "xmlSHA256": "5ce2fef835d9527101debcf7ffdf87c64933abf364e666bede5ff207f1477271",
+      "logSHA256": "f7c2d7373af72d881b0c84ef092f1ef5bf1873de95118c575c8b702667364fd2",
+      "run": {
+        "id": "2",
+        "testcasecount": "5",
+        "result": "Failed(Child)",
+        "total": "5",
+        "passed": "1",
+        "failed": "4",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 17:21:05Z",
+        "end-time": "2026-11-25 17:21:07Z",
+        "duration": "2.0447243"
+      },
+      "failures": [
+        [
+          "CavesOfOoo.Tests.SoddenRainGuideTests.AShowerQuoteExpiresWhenTheWeatherTurnsFair",
+          "System.InvalidOperationException : Sequence contains no elements"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenRainGuideTests.FairWeatherAndTheOldColdSiteKeepOrdinaryFlaskWatering(26,1200,False,True)",
+          "  Expected: 1\n  But was:  0\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenRainGuideTests.LateGuideFailureRestoresTheDryCropAndAllowsTheSameShowerQuote",
+          "  Fresh Sodden generation should place the guide beside this crop.\n  Expected: not null\n  But was:  null\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenRainGuideTests.ShowerGuideWatersTheExactDrySumpsieveAndLeavesTheFlaskAvailable",
+          "  Fresh Sodden generation should place the guide beside this crop.\n  Expected: not null\n  But was:  null\n"
+        ]
+      ]
+    },
+    "sodden-rain-guide-green-retry": {
+      "xml": "/Users/steven/coo-verification/results/sodden-rain-guide-green-retry-20261125.xml",
+      "xmlSHA256": "08b109f30a7172dc0a0cd62c171f1fdf8c33ac6a6d5f90aa0a97ae539a8461f1",
+      "logSHA256": "d23e52b94d16daaf338c8678107424ed10b9426ffc66027298d9dcea06909edd",
+      "run": {
+        "id": "2",
+        "testcasecount": "123",
+        "result": "Failed(Child)",
+        "total": "123",
+        "passed": "120",
+        "failed": "2",
+        "inconclusive": "0",
+        "skipped": "1",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 17:25:35Z",
+        "end-time": "2026-11-25 17:25:53Z",
+        "duration": "18.2505007"
+      },
+      "failures": [
+        [
+          "CavesOfOoo.Tests.MundaneCropWateringArtTests.ActualWateringCommandPublishesWetArtOnlyWhenItsPaymentCommits(False)",
+          "  Expected: collection containing \"CropHandWatered\"\n  But was:  < \"CropWatered\" >\n"
+        ],
+        [
+          "CavesOfOoo.Tests.MundaneCropWateringArtTests.ActualWateringCommandPublishesWetArtOnlyWhenItsPaymentCommits(True)",
+          "  Expected: collection containing \"CropHandWaterRollback\"\n  But was:  < \"CropWaterRollback\" >\n"
+        ]
+      ]
+    },
+    "sodden-rain-guide-regression": {
+      "xml": "/Users/steven/coo-verification/results/sodden-rain-guide-regression-20261125.xml",
+      "xmlSHA256": "44b8c59fc3e6608e0e96113d41a5fc1eb7963c548aef0669170b1a48e76017c0",
+      "logSHA256": "bedec4e3c2db4a3b8005915aa1a80717a954227ff22e061821618336a109f4ab",
+      "run": {
+        "id": "2",
+        "testcasecount": "198",
+        "result": "Failed(Child)",
+        "total": "198",
+        "passed": "195",
+        "failed": "2",
+        "inconclusive": "0",
+        "skipped": "1",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 17:27:19Z",
+        "end-time": "2026-11-25 17:28:08Z",
+        "duration": "49.697882"
+      },
+      "failures": [
+        [
+          "CavesOfOoo.Tests.GleanersDistrictAdversarialTests.ColdGenerationAddsOneLooseClayTrayOnlyInTheNewManifest(25,True)",
+          "  Expected: 25\n  But was:  26\n"
+        ],
+        [
+          "CavesOfOoo.Tests.GleanersDistrictAdversarialTests.GeneratedLooseClayTrayRetainsItsIdentityAndStockAcrossSave",
+          "  Expected: 25\n  But was:  26\n"
+        ]
+      ]
+    },
+    "sodden-rain-guide-review": {
+      "xml": "/Users/steven/coo-verification/results/sodden-rain-guide-review-20261125.xml",
+      "xmlSHA256": "e56bd31188f163241520033605e6e07f8a92b8fd6f626dfa8f6e44dc0f2c4c9f",
+      "logSHA256": "b4bb5c86b95f6bc1356761b21d9699441be7464ea81060f1335429b235d02c24",
+      "run": {
+        "id": "2",
+        "testcasecount": "318",
+        "result": "Failed(Child)",
+        "total": "318",
+        "passed": "315",
+        "failed": "2",
+        "inconclusive": "0",
+        "skipped": "1",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 17:30:50Z",
+        "end-time": "2026-11-25 17:32:24Z",
+        "duration": "93.975341"
+      },
+      "failures": [
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(\"Overworld.15.7.0\")",
+          "  SoddenRainGuide: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"SoddenRainGuide: unmodeled-native-blueprint\" >\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(\"Overworld.17.7.0\")",
+          "  AbandonedFieldWorkRig: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"AbandonedFieldWorkRig: unmodeled-native-blueprint\" >\n"
+        ]
+      ]
+    },
+    "sodden-rain-guide-final": {
+      "xml": "/Users/steven/coo-verification/results/sodden-rain-guide-final-20261125.xml",
+      "xmlSHA256": "93c93f6596b51e7391067a5f5014dc8ba6023bdb506a381b4e8595f22760cd7e",
+      "logSHA256": "0cd32a2c998a75b026e6532ee7f894b671b4b4ca43b44e488d2dc01bee3f5b3c",
+      "run": {
+        "id": "2",
+        "testcasecount": "320",
+        "result": "Failed(Child)",
+        "total": "320",
+        "passed": "311",
+        "failed": "8",
+        "inconclusive": "0",
+        "skipped": "1",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 17:34:27Z",
+        "end-time": "2026-11-25 17:36:00Z",
+        "duration": "92.5477655"
+      },
+      "failures": [
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(\"Bandfrog\",\"spread-visitor-bandfrog\")",
+          "  Expected: 0\n  But was:  1\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(\"Bed\",\"wellmeet-bed-\")",
+          "  Expected: 0\n  But was:  1\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(\"Chair\",\"wellmeet-chair-\")",
+          "  Expected: 0\n  But was:  1\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(\"PeatCutter\",\"spread-person-peat-cutter\")",
+          "  Expected: 0\n  But was:  1\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(\"StoneFloor\",\"wellmeet-floor-\")",
+          "  Expected: 0\n  But was:  1\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(\"StoneWall\",\"sumphold-wall-\")",
+          "  Expected: 0\n  But was:  1\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(\"Overworld.15.7.0\")",
+          "  Expected: 0\n  But was:  1\n"
+        ],
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(\"Overworld.17.7.0\")",
+          "  AbandonedFieldWorkRig: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"AbandonedFieldWorkRig: unmodeled-native-blueprint\" >\n"
+        ]
+      ]
+    },
+    "sodden-rain-guide-publish": {
+      "xml": "/Users/steven/coo-verification/results/sodden-rain-guide-publish-20261125.xml",
+      "xmlSHA256": "6883301a7864cc679f2c85654853b2ef365a0d890755328f52653abae046b22f",
+      "logSHA256": "c256f73cd1b7076fcce8516e5b8d2062d379786b9a1d4f313fbe76a900030080",
+      "run": {
+        "id": "2",
+        "testcasecount": "320",
+        "result": "Failed(Child)",
+        "total": "320",
+        "passed": "318",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "1",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 17:37:58Z",
+        "end-time": "2026-11-25 17:39:29Z",
+        "duration": "90.707498"
+      },
+      "failures": [
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(\"Overworld.17.7.0\")",
+          "  AbandonedFieldWorkRig: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"AbandonedFieldWorkRig: unmodeled-native-blueprint\" >\n"
+        ]
+      ]
+    },
+    "field-rig-art-baseline": {
+      "xml": "/Users/steven/coo-verification/results/field-rig-art-baseline-20261125.xml",
+      "xmlSHA256": "ae77f9da5f97b0ea5416f9572d0c44bbf9cf763fed6253f1c3ec02f5af2859d6",
+      "logSHA256": "136366947e1a5ebf0c099ca7ca6b6e8155a981a527250f608c9e93c52e27c7b7",
+      "run": {
+        "id": "2",
+        "testcasecount": "3",
+        "result": "Failed(Child)",
+        "total": "3",
+        "passed": "2",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 16:30:33Z",
+        "end-time": "2026-11-25 16:30:37Z",
+        "duration": "4.5039993"
+      },
+      "failures": [
+        [
+          "CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(\"Overworld.17.7.0\")",
+          "  AbandonedFieldWorkRig: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"AbandonedFieldWorkRig: unmodeled-native-blueprint\" >\n"
+        ]
+      ]
+    }
+  },
+  "screenshots": {
+    "01-shower-action.png": "faf72e7ce3831fe42ad4bc9d8fcd62cb9e566c751d051209bde21016a5388b9a",
+    "02-harvest.png": "ad99eaa8c9c534cd8098ceaec6c19ad0277041a9b01dd31354383bcdca992c16",
+    "03-final-reader.png": "318eb942d7c4355f409eafaeb65aa567d4b4c1abe7b133f9544aae8da85a6fc8"
+  },
+  "preservation": {
+    "coo-sieve-content-foreign-at-entry": {
+      "matched": 86,
+      "changed": []
+    },
+    "coo-grit-normal-before-play": {
+      "matched": 861,
+      "changed": []
+    }
+  },
+  "sourcePins": {
+    "Assets/Resources/Content/Blueprints/Objects.json": "9a5264b68486e67e25e5549fc371503727395eabe4980268948b8467bdcab705",
+    "Assets/Scripts/Gameplay/Farming/CropWateringService.cs": "37031393f99ca19647d078248190f76d25295f7dea012cc801024504b5ae25ae",
+    "Assets/Scripts/Gameplay/Items/RainCollectionParts.cs": "da8a19eced5e80d8890412f0fb32b491459aa597f327896f165d082954b035e4",
+    "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs": "aef8c573e23b4555ffa4603d08bd38d5a51eb70572db23c4fb746658534c3063",
+    "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs": "b5a1ccf5ca86d121188f6065f31c2f7bff006b3a48172c89556529b28740572c",
+    "Assets/Scripts/Gameplay/World/SoddenRainGuidePart.cs": "1855534f22fc992559375586fa01f2f04e99a1c49e8661a7982afe8adf33561b",
+    "Assets/Scripts/Presentation/Rendering/SoddenDistrictRecipes.cs": "8424a4968594636290f2e7e5bd31e1b89b9af828fc40af2ad39bb9a4b7375131",
+    "Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs": "5303a800662ee2b6fa709910e2dfbc96ae4f542b13e76a14551250da1ab6c9f4",
+    "Assets/Tests/EditMode/Gameplay/Save/SavedPartContract.txt": "a42bcb93411bde8b3aaf53163dd31f03e6e214b2c4d5fe01a80c39aff9bbca44",
+    "Assets/Tests/EditMode/Gameplay/World/GleanersDistrictAdversarialTests.cs": "44ce0318cdf93183805b820633373b351f33ebaefcec827fa052def62d4a5cb5",
+    "Assets/Tests/EditMode/Gameplay/World/SoddenRainGuideTests.cs": "7544d80870897f6b418c61650fbdd166ec0fdafff96fcaf3df074a588e04e1ac"
+  }
+}

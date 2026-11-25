@@ -1,3 +1,11 @@
+**A shower can water the Sodden sumpsieve bed — November 25 UTC, 2026.**
+Fresh version 26 adds an optional one-portion channel at Sella’s shelter.
+Normal travel, native actions and waiting took the dry crop from the channel
+to a later cast, an actual harvest and two pads plus one seed in the pack.
+The separate ripe crop was untouched. The next carrying comparison is exact
+one-measure withdrawal from the public tray so small trips work both ways.
+[Evidence](Verification/MachineSystems/SoddenRainGuide20261125/README.md)
+
 **A porter quote compares the complete clay load — November 25 UTC, 2026.**
 The ordinary quote shows five pounds boxed, two pounds loose, the two
 carrying allowances, walking distance, one action and settlement. The

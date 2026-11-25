@@ -366,6 +366,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     bonus can reduce paid work or retain a declared otherwise lost fraction.
     Specify the accounting before preview/payment. Sunshine is not kiln heat;
     rain is not automatic purification or free output.
+    At Sella’s shelter one saved shower portion can replace one carried water
+    unit in the existing crop moisture process. Actual normal travel and
+    tending combined the channel with spell water, then harvested two pads
+    and one seed. Fair weather preserved the baseline and the other ripe
+    plant remained available. [Evidence](Verification/MachineSystems/SoddenRainGuide20261125/README.md)
 
 35. **Qualify comfortably ignoring the opportunity.** Keep ordinary sources,
     bought supplies, hand methods and NPC services practical. No exposure chores,

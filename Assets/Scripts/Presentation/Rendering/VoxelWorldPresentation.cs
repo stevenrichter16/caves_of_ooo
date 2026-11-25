@@ -57,6 +57,11 @@ namespace CavesOfOoo.Rendering
             sharedWorn.Validate(); foreach (var entry in sharedWorn.Entries) generated.Add(entry.Mesh);
             if (SoddenDistrictPlan.IsSupportedZone(zoneId))
             {
+                if (zoneId == SoddenDistrictPlan.StopZoneID)
+                {
+                    var channel = ConnectedSpread3DLibrary.Load()?.Find(SoddenDistrictRecipes.RainGuideModel);
+                    if (channel != null) generated.Add(channel.Mesh);
+                }
                 var cutters = SumpholdVoxelKitLibrary.Load();
                 if (cutters == null) throw new InvalidOperationException("Required native Sodden keeper art missing.");
                 cutters.Validate(); foreach (var entry in cutters.Entries) generated.Add(entry.Mesh);

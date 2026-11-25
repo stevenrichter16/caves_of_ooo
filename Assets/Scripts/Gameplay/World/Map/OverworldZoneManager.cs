@@ -1224,10 +1224,12 @@ namespace CavesOfOoo.Core
         {
             LegendaryLairEncounters.TryApplyGeneratedFinal(zone, this);
             bool lairAccepted=LairStacks.CommitGenerated(zone,this);
+            bool soddenAccepted = false;
             if(stagedSodden.TryGetValue(zoneID,out var sodden))
             {
                 stagedSodden.Remove(zoneID);
-                lairAccepted=sodden.Commit(zone)&&lairAccepted;
+                soddenAccepted = sodden.Commit(zone);
+                lairAccepted=soddenAccepted&&lairAccepted;
             }
             var staged=StagedWayhouse;
             if(staged?.PendingZone==zone)
@@ -1238,6 +1240,7 @@ namespace CavesOfOoo.Core
             bool accepted = SpreadExplorationPlan.FinalizeGenerated(this,zone,zoneID,lairAccepted);
             if (accepted)
             {
+                if (soddenAccepted) SoddenRainGuidePart.TryInstall(zone, this);
                 SecondExplorationSites.Install(this, zone);
                 if (zoneID == KitchenBatchPart.KitchenZoneID)
                     WaysideShipmentSite.TryInstall(zone, this);

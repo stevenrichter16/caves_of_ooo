@@ -1,3 +1,11 @@
+**Rain and portable watering share crop work — November 25 UTC, 2026.**
+A new Sodden shelter can guide one currently available shower portion into
+its exact dry bed. It uses the shared crop moisture receipt and the existing
+saved weather window. The original ripe crop, carried water and ordinary
+travel stay available. Actual growth combined channel and cast water before
+harvest. This establishes an optional local use with finite supply.
+[Evidence](Verification/MachineSystems/SoddenRainGuide20261125/README.md)
+
 **The clay quote shows weight and carrying room — November 25 UTC, 2026.**
 The loading marker compares the current packed and loose weights, both
 carrying limits, route, one action and fee. A stale selection refuses changed

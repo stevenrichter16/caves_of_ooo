@@ -1,4 +1,4 @@
-# parts=420
+# parts=421
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -736,6 +736,7 @@ Part CavesOfOoo.Core.PricklebrowNestPart | reflected
 Part CavesOfOoo.Core.ProvingGroundPart | reflected
 Part CavesOfOoo.Core.RainCatchmentPart | reflected
   ActivatedAt:System.Int32
+  ConfiguredAllowance:System.Int32
   Ground:CavesOfOoo.Core.Entity
   LastWindow:System.Int32
   PlotKey:System.String
@@ -875,6 +876,9 @@ Part CavesOfOoo.Core.SoddenPreparationPart | reflected
   Worker:CavesOfOoo.Core.Entity
   WorkerID:System.String
   ZoneID:System.String
+Part CavesOfOoo.Core.SoddenRainGuidePart | reflected
+  Crop:CavesOfOoo.Core.Entity
+  Soil:CavesOfOoo.Core.Entity
 Part CavesOfOoo.Core.SortingFramePart | reflected
   PaidPoints:System.Int32
   Places:System.String
