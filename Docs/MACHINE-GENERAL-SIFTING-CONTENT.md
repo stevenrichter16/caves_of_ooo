@@ -1,9 +1,11 @@
 # General sieving: useful mixed stocks before more recipes
 
-November24local/25UTC,2026. Design and source qualification only. The user asked
+November24local/25UTC,2026. Living content design plus bounded G1 field traction.
+The user asked
 for a general size-sorting tool, then explicitly asked to brainstorm the missing
 content and uses for its fractions. Current shipped sieve is the bounded
-QuarrySweepings preparation; this document adds no runtime acceptance.
+QuarrySweepings preparation. G1 below adds a useful coarse-material consumer;
+it does not implement general sorting or the proposed mixed sources.
 
 ## Player purpose
 
@@ -26,7 +28,7 @@ These are direct source findings, not new gameplay observations.
 
 | Candidate | Actual current foundation | Consequence for proposed content |
 | --- | --- | --- |
-| Fire-clay workings | RepairClayBank is a finite Harvestable source of exactly4FireClay. FireClay repairs a well lining or batch pan for2units and is a hand-pump ingredient. | Strong existing fine-fraction consumers. Preserve the ordinary4clay harvest. An optional extra dry spoil lot needs its own declared budget; ordinary soil is not automatically fire clay. Coarse aggregate still needs a genuine consumer. |
+| Fire-clay workings | RepairClayBank is a finite Harvestable source of exactly4FireClay. FireClay repairs a well lining or batch pan for2units and is a hand-pump ingredient. | Strong existing fine-fraction consumers. Preserve the ordinary4clay harvest. Optional dry spoil still needs its own finite source/size contract; G1 now supplies bounded traction for explicitly suitable grit. Ordinary soil is not automatically fire clay. |
 | Old wood-fire residue | AshPile is rendering-only. AshBed is a hot thermal/tile source. FuelPart has FuelMass and ExhaustProduct but no declared recoverable charcoal/ash manifest or feed identity. | First content would be a newly authored finite known-wood residue lot. No free mining of decorative ash or retrospective output for every spent fuel unit. Charcoal fuel and ash soap/soil consumers are new work, not shipped hooks. |
 | Grain and seed cleaning | Emberwheat is already an edible2d4 **sheaf**, directly Cookable into ToastedEmberwheat. Knotflax harvest already strips/twists stems into2cord and returns1seed. | Preserve these convenient yields/actions. A loose detached viable-seed lot must be new authored stock; screening does not thresh a sheaf or reconstruct one from grain. Never force ordinary crops through cleaning to regain their current benefit. Chaff has no demonstrated packing/fuel consumer yet. |
 | Workshop sweepings | RecoveredIronBlank and declared damaged-tool manifests already feed bounded cold processing. Existing material names and composition never imply extra recoverable stock. | New sweepings need actual declared metal identity/quantities and an outlet for both grades. Dust is not another whole iron blank, and a sieve does not concentrate metals of identical particle size. |
@@ -59,20 +61,20 @@ Primary source paths:
 **Clay-working spoil is the leading candidate**, because appropriate fine clay
 already has concrete repair consumers. Its ordinary bank remains useful without
 a sieve. Proposed extra dry loose spoil contains declared fine FireClay and
-coarser aggregate, each finite. The exact values, access and placement are not
-chosen yet. A saved old bank gains neither a new lot nor extra harvest output.
+coarser aggregate, each finite. The proposed three-weight lot below supplies
+initial quantities; access and placement remain unselected. A saved old bank
+gains neither a new lot nor extra harvest output.
 
 Coarse aggregate needs a practical use before this becomes a complete playable
-addition. Two alternatives to qualify are shared suitable-grit traction, and
-a lasting workpad/drainage project with a concrete service benefit. Neither
-consumer is implemented by this document. Ordinary water is already walkable;
+addition. G1 below now qualifies bounded suitable-grit field traction. A lasting
+workpad/drainage project still needs a concrete service benefit. Ordinary water is already walkable;
 do not revive a fictitious bridge/access gate merely to consume gravel. Plain
 aggregate does not become SilverSand, and its material alone grants no recipe.
 
 Source correction: CombatUtilityActions currently admits **SilverSand only**
-and writes grit for12turns. Admitting suitable coarse grit through an explicit
-shared material capability is new behavior, with clay/fine-dust negatives and
-unchanged SilverSand controls. It is the smallest proposed coarse consumer;
+and writes grit for12turns. G1's separate explicit shared material capability
+now admits suitable coarse grit, with clay/private-payload negatives and
+unchanged SilverSand controls. It is the first bounded coarse consumer;
 a project is deferred until a distinct lasting benefit has been qualified.
 
 The next broadening candidates are a separately authored rough seed/crop lot
@@ -103,8 +105,8 @@ The mixture must already be dry and its eligible sizes distinct. Screening
 does not dry wet sediment or make ordinary earth into fire clay.
 
 Two clay already pay for a well-lining, batch-pan or field-rig repair; clay also
-enters the hand-pump construction. Coarse-grit traction is the new consumer to
-qualify first. A player can keep the clay, keep the grit, sell the unsorted lot,
+enters the hand-pump construction. Coarse-grit traction has bounded field
+qualification under G1 below. A player could keep the clay, keep the grit, sell the unsorted lot,
 or leave it. Portable screening should save paid work compared with an explicit
 manual alternative; an ordinary container of individually takeable products
 would not establish this benefit. Manual work and NPC-service costs remain
@@ -260,8 +262,8 @@ framework. Use small complete capabilities with medium depth; new sources and
 grades count as content for those capabilities, not additional feature totals.
 Exact yields outside the proposed clay lot, paid-work savings, access, placement,
 service prices and lasting-project costs remain tuning/design decisions. The
-coarse-grit-first plan below is still proposed; this content pass adds no runtime
-or acceptance claim.
+general sorting and source plans remain proposed. G1's separately qualified
+field consumer below does not make those content streams implemented.
 
 ## Minimum mechanical contract to critique
 
@@ -298,8 +300,8 @@ the sieve saves or enables beyond the existing container menu.
 
 ### G1 concrete first increment: useful coarse grit
 
-The proposed first implementation is the missing coarse consumer, independently of the
-later general sieve partition. Proposed CoarseGrit is a plain one-weight,
+G1 implements the coarse consumer independently of the later general sieve
+partition. CoarseGrit is a plain one-weight,
 base-value2 stackable commodity. An explicit GritMaterial capability lets any
 canonically declared suitable commodity scatter one unit into the existing
 12-turn grit residue. Existing shared slip rules then steady oil/ice for all
@@ -313,28 +315,43 @@ callback interruption, independent injury/custody/quantities, exact staged-layer
 undo and save must retain their existing consequences. Legacy SilverSand keeps
 its current actions and tariff. This need not replace its action producer.
 
-Initial ordinary supply proposal: use TraderPart's existing one-time
+Initial ordinary supply uses TraderPart's existing one-time
 OpeningStockBlueprint/OpeningStockUnits allocation for two CoarseGrit on the
 fresh Morrowfast mender. MorrowfastContent.CreateResident builds this Trader
-from Creature at resident index4 and currently sets no opening allocation; it
-can author the two opening parameters there. Preserve MorrowfastMenderStock and
-its existing four FireClay unchanged. Loading an old trader gains no allocation,
-and ordinary restocking must not reproduce the grit. A differently named
-canonical commodity with the same capability must work in native controls,
-proving admission is not CoarseGrit-name-specific. Qualify opening callbacks,
-construction fallback and saved-state controls before implementing this supply.
+from Creature at resident index4 and now sets the two opening parameters there.
+MorrowfastMenderStock and its existing four FireClay are unchanged. Native
+controls qualify two fresh units, no old-save allocation or restock refill,
+factory-less ordinary fallback and a differently named canonical commodity.
+Actual ordinary purchase/discovery remains open: the first native trial's
+ordinary starting region contained no Morrowfast mender.
 
 Independent review corrected the earlier proposal to append grit to the stock
 table: TraderRestockSystem re-rolls low shelves, and MerchantStockService has no
 replacement profile for this mender. Such a table entry would be renewable,
 not finite opening stock. TraderPart.ApplyOpeningStock is the separate finite
-allocation seam; this correction changes the design, not shipped stock.
+allocation seam, used by this implementation.
 
-Compiling native RED/countercases, bounded independent design/source critique
-and actual pickup/purchase, reader, scatter, visible grit, ordinary movement,
-outside-effect counter and F5/fresh gates remain required. A supplied hazard
-fixture may qualify actual traction separately from ordinary stock acquisition;
-label both honestly. Build a new Mac at the broader playable milestone.
+The bounded G1 implementation critique adds two receipt prerequisites. Freeze
+the finite opening blueprint, count, factory and current trader/pack before
+creation; callbacks cannot enlarge or redirect that allocation. A deliberately
+hostile declared creation adapter supplies the adversarial counterfixture, not
+an assertion that ordinary grit creation has side effects. Retain the once-only
+fence when an allocation refuses. For grit placement, capture the exact written
+residue layer before the synchronous OnCellChanged notification. Looking it up
+after notification can adopt an independent replacement for rollback. Preserve
+replaced layers, stronger leases and the existing max-duration write rule.
+These checks are implementation gates, not additional player capabilities.
+
+Native e139/139 covers34new cases and105retained,0CS; post-label-polish f32/32
+overlaps e. A real two-to-five opening-allocation RED and late same-ID stack
+alias RED were fixed; exact before-notification layer receipts preserve
+independent replacements. Independent source/recorded-play review:0remainingP1/P2. Actual
+supplied ground pickup20, free readers/cancel20, scatter30, step40/HP40 and
+last-unit refresh50 retain oil; F5/all12files across three archives and two
+selected fresh pairs are preserved. See [bounded evidence](Verification/MachineSystems/GritMaterial20261124/README.md).
+Only this field consumer is qualified; ordinary stock acquisition, the finite
+clay source, general sieve partition and repair combination remain open. The
+current delivered Mac995d excludes G1; build at the broader playable milestone.
 
 Independent bounded content/source critique by capability_audit is complete.
 It supports optional dry clay-working spoil plus a new useful coarse-grit
@@ -352,9 +369,8 @@ it accepts no runtime operation or source. Three design risks become gates:
 - P2 compulsory chores/useless outputs: preserve current harvests and services;
   qualify a purpose for each useful fraction before adding byproducts.
 
-No new tests, runtime,
-Unity play, source yields, stock placement or machine gate is accepted here.
-The next implementation must first have finite inputs, meaningful destinations
+The G1 field consumer does not accept a new mixed-source yield, general sorting
+or any complete-machine gate. The next implementation needs finite inputs, meaningful destinations
 for both useful fractions and a reason to use size sorting. It then requires
 native RED/countercases, actual ordinary menu/movement/use/F5/fresh evidence and
 independent source/recorded-play review. A broad framework or a list of new

@@ -25,6 +25,14 @@ namespace CavesOfOoo.Editor.Scenarios
     /// </summary>
     internal static class ScenarioMenuItems
     {
+        [MenuItem("Caves Of Ooo/Scenarios/Home/Grit material and ordinary supply", priority = 99)]
+        private static void Launch_GritMaterialShowcase()
+            => ScenarioRunner.Launch<GritMaterialShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Home/Grit material supplied pickup", priority = 99)]
+        private static void Launch_GritMaterialSuppliedShowcase()
+            => ScenarioRunner.Launch<GritMaterialSuppliedShowcase>();
+
         // =========================================================
         // Accelerators — always present
         // =========================================================

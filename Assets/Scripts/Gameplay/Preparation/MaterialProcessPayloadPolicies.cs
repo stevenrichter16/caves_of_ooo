@@ -36,7 +36,7 @@ namespace CavesOfOoo.Core
         static MaterialProcessPayloadPolicies()
         {
             foreach(var type in new[]{typeof(RenderPart),typeof(PhysicsPart),typeof(ExaminablePart),typeof(CommercePart),
-                typeof(StackerPart),typeof(WeaponComponentPart),typeof(MaterialPart),typeof(CompositionPart),
+                typeof(StackerPart),typeof(WeaponComponentPart),typeof(MaterialPart),typeof(CompositionPart),typeof(GritMaterialPart),
                 typeof(PreparationRecipePart),typeof(MaterialProcessInputPart),typeof(MeleeWeaponPart),typeof(HandlingPart),typeof(FieldWorkToolPart),typeof(DirectedAirPart),typeof(TrailMarkingPart),typeof(TrailMarkPart),typeof(CargoSledPart),typeof(ScreeningToolPart),typeof(MineralPreparationPart),typeof(DirectLiquidPumpPart),typeof(LiquidPoolPart)})Policies[type]=new ScalarPolicy(type);
             foreach(var type in new[]{typeof(ArmorPart),typeof(EquippablePart),typeof(ThermalPart),typeof(RepairablePart)})
                 Policies[type]=new ScalarPolicy(type,false);

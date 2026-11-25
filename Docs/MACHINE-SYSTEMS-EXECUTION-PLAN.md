@@ -1,3 +1,18 @@
+**G1 continuation — November24,2026:** One new bounded consumable-grit field
+capability is native/supplied-play qualified: e139/139, f32overlapping post-label
+polish,0CS; source/recorded-play review0remainingP1/P2 after earned allocation and same-ID
+custody REDs. Native pickup20, free readers/cancel, scatter30, ordinary step40
+and last-unit refresh50 retain oil/40HP; two selected fresh pairs match. All12
+checkpointfiles/three inspected PNGs retained; four isolation sessions finished
+and temporary roots cleaned,
+main stopped/rootnull/clean/inputrestored/unlocked/RequestedSeed0. Fresh861normal
+and86foreign tracked bodies unchanged. Ordinary-source trial10 found no mender
+in the real default11.10 start and obtained no grit. No generic sieving, mixed
+clay source, repair-combination, NPC or Mac acceptance. Next: finite dry-clay
+source and capability-driven size partition; ordinary acquisition must be earned.
+Keep other consumer streams medium-depth; all12 complete machines open. See
+[G1 evidence](Verification/MachineSystems/GritMaterial20261124/README.md).
+
 **Sieve content continuation — November24,2026 (America/Chicago):** The user
 asked to continue the content and uses brainstorm. Four concrete optional loops
 now cover clay/repairs/grit, abrasives/lasting finishing, shavings/packing/freight

@@ -156,7 +156,7 @@ namespace CavesOfOoo.Core
 
         // ── Coatings and residues ────────────────────────────────
 
-        private static void WriteLayer(List<Layer> layers, string id, int turns)
+        private static Layer WriteLayer(List<Layer> layers, string id, int turns)
         {
             for (int i = 0; i < layers.Count; i++)
             {
@@ -164,9 +164,11 @@ namespace CavesOfOoo.Core
                 // Refresh takes the LONGER duration: re-applying must
                 // never shorten what is already there.
                 if (turns > layers[i].Turns) layers[i].Turns = turns;
-                return;
+                return layers[i];
             }
-            layers.Add(new Layer { Id = id, Turns = turns });
+            var written = new Layer { Id = id, Turns = turns };
+            layers.Add(written);
+            return written;
         }
 
         private static int LayerTurns(List<Layer> layers, string id)
@@ -231,9 +233,15 @@ namespace CavesOfOoo.Core
         /// behind (embers, ash). A separate layer from coatings because
         /// the rules differ: embers are not a liquid.</summary>
         public void WriteResidue(int x, int y, string residueId, int turns)
+            => WriteResidue(x, y, residueId, turns, out _);
+
+        /// <summary>Capture the actual written layer before synchronous observers
+        /// can replace it. Receipt owners must still revalidate identity/duration.</summary>
+        internal void WriteResidue(int x, int y, string residueId, int turns, out Layer written)
         {
+            written = null;
             if (!InBounds(x, y) || string.IsNullOrEmpty(residueId) || turns <= 0) return;
-            WriteLayer(GetOrCreate(x, y).Residues, residueId, turns);
+            written = WriteLayer(GetOrCreate(x, y).Residues, residueId, turns);
             Changed(x, y);
         }
 

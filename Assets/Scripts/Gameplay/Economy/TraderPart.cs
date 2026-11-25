@@ -1,4 +1,5 @@
 using CavesOfOoo.Data;
+using System.Linq;
 
 namespace CavesOfOoo.Core
 {
@@ -75,26 +76,31 @@ namespace CavesOfOoo.Core
             // Fence before any creation/weight callbacks, including failure. This
             // is one opening opportunity, not a missing-stock retry on every visit.
             OpeningStockSupplied=true;
-            if(OpeningStockUnits<1 || OpeningStockUnits>64 || Factory==null)return;
-            var pack=ParentEntity?.GetPart<InventoryPart>();if(pack?.ParentEntity!=ParentEntity)return;
-            var template=MaterialProcessTemplate.Capture(Factory,OpeningStockBlueprint,true);if(template==null)return;
+            int units=OpeningStockUnits;string blueprint=OpeningStockBlueprint;
+            var factory=Factory;var owner=ParentEntity;string ownerId=owner?.ID;
+            if(units<1 || units>64 || factory==null)return;
+            var pack=owner?.GetPart<InventoryPart>();if(pack?.ParentEntity!=owner)return;
+            bool Current()=>ParentEntity==owner && owner.ID==ownerId && owner.GetPart<TraderPart>()==this
+                && owner.Parts.Count(p=>p is TraderPart)==1 && owner.GetPart<InventoryPart>()==pack && pack.ParentEntity==owner
+                && Factory==factory && OpeningStockSupplied && OpeningStockUnits==units && OpeningStockBlueprint==blueprint;
+            var template=MaterialProcessTemplate.Capture(factory,blueprint,true);if(template==null)return;
             var products=new System.Collections.Generic.List<Entity>();
             CavesOfOoo.Core.Inventory.InventoryTransferSnapshot receipt=null;
             try
             {
-                for(int n=0;n<OpeningStockUnits;n++)
+                for(int n=0;n<units;n++)
                 {
-                    if(!template.Current())return;
-                    var item=Factory.CreateEntity(OpeningStockBlueprint);
-                    if(!PreparationActions.Fresh(item,OpeningStockBlueprint) || template.Snapshot(item)==null)return;
+                    if(!Current() || !template.Current())return;
+                    var item=factory.CreateEntity(blueprint);
+                    if(!Current() || !PreparationActions.Fresh(item,blueprint) || template.Snapshot(item)==null)return;
                     products.Add(item);
                 }
                 receipt=CavesOfOoo.Core.Inventory.InventoryTransferSnapshot.Capture(pack,products.ToArray());
                 if(!receipt.Apply(()=>
                 {
                     foreach(var item in products)
-                        if(!pack.AddCraftedUnit(item,out var owner) || owner==null || template.Snapshot(owner)==null)return false;
-                    return template.Current() && (pack.MaxWeight<0 || pack.GetCarriedWeight()<=pack.MaxWeight);
+                        if(!Current() || !pack.AddCraftedUnit(item,out var resident) || !Current() || resident==null || template.Snapshot(resident)==null)return false;
+                    return Current() && template.Current() && (pack.MaxWeight<0 || pack.GetCarriedWeight()<=pack.MaxWeight);
                 }))receipt.Restore();
             }
             catch(System.Exception){receipt?.Restore();}

@@ -58,7 +58,7 @@ namespace CavesOfOoo.Tests
         {
             TraderPart.Factory = wired ? factory : null;
             var merchant = Make(food);
-            AssertStock(merchant, food);
+            AssertStock(merchant, food, !food && wired ? 2 : 0);
             Assert.AreEqual(food ? 200 : 300, TradeSystem.GetDrams(merchant));
             foreach (var item in merchant.GetPart<InventoryPart>().Objects)
             { Assert.AreSame(merchant, item.GetPart<PhysicsPart>().InInventory); Assert.NotNull(item.GetPart<CommercePart>()); }
@@ -168,12 +168,12 @@ namespace CavesOfOoo.Tests
             var units = new List<string>(); for (int i = 0; i < names.Length; i++) for (int j = 0; j < counts[i]; j++) units.Add(names[i]);
             return units.ToArray();
         }
-        private static void AssertStock(Entity merchant, bool food)
+        private static void AssertStock(Entity merchant, bool food, int openingGrit = 0)
         {
             var units = new List<string>();
             foreach (var item in merchant.GetPart<InventoryPart>().Objects)
                 for (int i = 0, n = item.GetPart<StackerPart>()?.StackCount ?? 1; i < n; i++) units.Add(item.BlueprintName);
-            CollectionAssert.AreEquivalent(ExpectedUnits(food), units);
+            CollectionAssert.AreEquivalent(ExpectedUnits(food).Concat(Enumerable.Repeat("CoarseGrit", openingGrit)), units);
         }
     }
 }

@@ -1,3 +1,16 @@
+**G1 suitable-grit field consumer — November24,2026:** Explicit GritMaterial
+admits plain suitable commodities for existing12-turn footing, with actual
+one-unit consumption and unchanged SilverSand. CoarseGrit stacks20/Materials;
+fresh Morrowfast menders get two once-only units, with ordinary table/clay
+unchanged. Native e139/139(34new105retained), f32overlapping after label polish,
+0CS; source/recorded-play review0remainingP1/P2. Actual supplied pickup20/readers/freecancel,
+scatter30/step40/last-unit50 at40HP, retained oil, two selected fresh pairs and
+all12checkpointfiles. Ordinary trial found no mender at the real default11.10
+start; no acquisition claim. Dependency update: suitable coarse fractions have
+a bounded field consumer; mixed-source/general sorting/repair loop still need
+implementation. All twelve complete-machine statuses remain open; Mac995d
+predates G1. See [evidence](Verification/MachineSystems/GritMaterial20261124/README.md).
+
 **Sieve content and practical uses — November24,2026 (America/Chicago):**
 The content plan now develops four contrasting optional streams: dry clay spoil
 for existing repairs plus proposed grit; graded abrasives for a new lasting
@@ -1593,6 +1606,13 @@ qualifies packaging/startup only; it supplies no additional complete-machine
 prerequisite or acceptance. All twelve rows below retain their current statuses.
 Controlled packaged gameplay and full regression remain open; see the
 [bounded delivery receipt](Verification/MachineSystems/MacCandidate7EDC5A4C2/README.md).
+
+November24 G1 dependency update: an explicitly suitable coarse commodity now has
+a bounded shared traction consumer, native and supplied field/save qualification.
+This gives a potential coarse fraction a useful destination outside a machine.
+The finite dry-clay lot, general size partition, actual source discovery and
+combined repair outcome remain open. No new forge, drainage/access, culture or
+capstan dependency is complete; all twelve complete-machine rows stay open.
 
 Weather design dependency note, November23: proposed collection, material
 preparation and seasonal tool configurations may support future loops, but add

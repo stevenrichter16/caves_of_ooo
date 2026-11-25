@@ -70,7 +70,11 @@ namespace CavesOfOoo.Core
                 SetStat(bp, "Ego", 14, 999); SetStat(bp, "XPValue", 20, 999);
                 if (index < 2) SetPart(bp, "Loadout", "Equip", "Spear;LeatherArmor");
                 if (index == 4 || index == 5) SetPart(bp, "Trader", "StockTable", index == 4 ? "MorrowfastMenderStock" : "MorrowfastProvisionerStock", "Drams", index == 4 ? "300" : "200");
-                if (index == 4) SetPart(bp, "LoadoutKeeper");
+                if (index == 4)
+                {
+                    SetPart(bp, "LoadoutKeeper");
+                    SetPart(bp, "Trader", "OpeningStockBlueprint", "CoarseGrit", "OpeningStockUnits", "2");
+                }
                 if (index == 0) SetPart(bp, "QuestBeacon", "Quest", MorrowfastQuests.BellQuestId);
                 if (index == 1) SetPart(bp, "QuestBeacon", "Quest", MorrowfastQuests.ReturnQuestId);
                 if (index == 6) SetPart(bp, "QuestBeacon", "Quest", "MorrowfastDryGoods");

@@ -1,6 +1,33 @@
 {
   "Objects": [
     {
+      "Name": "CoarseGrit",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "coarse grit" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Solid", "Value": "false" },
+          { "Key": "Weight", "Value": "1" },
+          { "Key": "Category", "Value": "Materials" }
+        ] },
+        { "Name": "Stacker", "Params": [
+          { "Key": "StackCount", "Value": "1" },
+          { "Key": "MaxStack", "Value": "20" }
+        ] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "2" }] },
+        { "Name": "GritMaterial", "Params": [] },
+        { "Name": "Examinable", "Params": [{ "Key": "Description", "Value": "Dry angular grains chosen for firm footing. Scatter one unit onto clear ground to steady ordinary feet for twelve turns. Oil, ice, acid and other contact hazards remain. Spent grit cannot be gathered back into a useful measure." }] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "HandPump",
       "Inherits": "PhysicalObject",
       "Parts": [
