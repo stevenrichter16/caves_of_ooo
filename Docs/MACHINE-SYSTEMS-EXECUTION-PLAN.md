@@ -1,3 +1,13 @@
+**Kitchen commissions pause with real staff availability — November 25 UTC, 2026.**
+An unavailable cook declines a start and pauses a paid order. Exact held
+portions refund safely if a late callback invalidates the unpaid start.
+GameBootstrap verified the active reader, fresh Continue and ordinary
+recovery with no extra fee or parcel. The connected native run passed
+160 with five explicit allocation skips. Next, qualify readable material
+options at normal screen widths and use that evidence in further #37/#40
+comparisons across regions and current-generation layouts.
+[Evidence](Verification/MachineSystems/KitchenStaffAvailability20261125/README.md)
+
 **Two ordinary routes to the same field meal — November 25 UTC, 2026.**
 Fresh v26 seed 2 earned a reusable sieve through native trade and crafting.
 The earlier physical shipment in retained v18 seed 64 provided the other

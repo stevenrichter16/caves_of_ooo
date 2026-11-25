@@ -1,3 +1,11 @@
+**A station uses its real worker and exact held goods — November 25 UTC, 2026.**
+The kitchen uses the ordinary action-blocking status capability at start
+and deadline. A recoverable block keeps the paid escrow and displays the
+delay. The transaction revalidates the exact participants and capacity before
+charging. Separate tray portions make it possible to refund the real input
+without rewinding unrelated movement, injury or a death spill.
+[Evidence](Verification/MachineSystems/KitchenStaffAvailability20261125/README.md)
+
 **Local clay and imported clay both support paid work — November 25 UTC, 2026.**
 The local route earns a tool with existing trade and forge parts, then creates
 two useful grades from one finite packet. The imported route uses the exact

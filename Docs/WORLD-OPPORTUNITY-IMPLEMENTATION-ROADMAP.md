@@ -424,6 +424,12 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     partial stacks, competing claims, callback veto, changed grades, independent
     injury, full receivers and exactly-once settlement. Test mid-phase saves,
     fresh Continue, old sites, retained lots, finite budgets and omitted layouts.
+    Kitchen commission coverage now includes a changed cook or pickup board,
+    independent injury and death, replaced item parts, duplicate pack
+    membership and a working save with three exact escrow entries. A controlled
+    actual-game interruption preserved the payment and ingredients through
+    fresh Continue, then resumed to one meal on recovery.
+    [Evidence](Verification/MachineSystems/KitchenStaffAvailability20261125/README.md)
 
 40. **Compare complete runs in actual play.** Use ordinary acquisition and normal
     carrying limits, not only supplied fixtures. Measure whether choices differ,

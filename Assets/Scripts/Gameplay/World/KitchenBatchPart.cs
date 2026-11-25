@@ -12,12 +12,13 @@ namespace CavesOfOoo.Core
 
     /// <summary>One optional kitchen commission on exact saved owners. Ingredients
     /// remain physical escrow until completion; time never creates another job.</summary>
-    public sealed class KitchenBatchPart : Part, IDescribeState
+    public sealed class KitchenBatchPart : Part, IDescribeState, IInventoryActionReceiptOwner
     {
         // ── reader contract (Docs/MACHINE-READERS.md) ──
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 20;
         public string DescribeState(DescribeContext context) => Describe();
+        public bool OwnsInventoryReceipt(string command) => command == StartCommand && ParentEntity?.GetPart<KitchenBatchPart>() == this;
 
         public override string Name => "KitchenBatch";
         public const string StartCommand = "StartKitchenBatch", KitchenZoneID = "Overworld.12.11.0";
@@ -252,6 +253,7 @@ namespace CavesOfOoo.Core
             && actor.GetPart<BrainPart>()?.IsPersonallyHostileTo(worker) != true;
         bool StaffAvailable(Zone zone, Entity actor, Entity invalidating = null) => Worker.GetPart<BrainPart>()?.ParentEntity == Worker
             && Worker.GetPart<InventoryPart>()?.ParentEntity == Worker && (Worker == invalidating || Alive(Worker))
+            && Worker.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true
             && SpatialQuery.Distance(zone, Worker, ParentEntity) <= 2 && Friendly(Worker, actor);
         bool LiveStructure(Entity invalidating = null)
         {
@@ -293,9 +295,9 @@ namespace CavesOfOoo.Core
         bool StartContext(Entity actor, Zone zone) => !reconciling && Bound(zone) && State == "Idle" && LiveStructure()
             && ActorAvailable(actor, zone) && StaffAvailable(zone, actor) && JobOrdinal >= 0 && JobOrdinal < int.MaxValue
             && WorldClock.CurrentTick >= 0 && WorldClock.CurrentTick <= int.MaxValue - PreparationTicks
-            && Escrow.GetPart<ContainerPart>().Contents.Count == 0 && Pickup.GetPart<ContainerPart>().Contents.Count == 0
-            && Pickup.GetPart<ContainerPart>().MaxItems != 0 && !Pickup.GetPart<ContainerPart>().IsLocked
+            && Escrow.GetPart<ContainerPart>().Contents.Count == 0 && PickupCanReceive(Pickup.GetPart<ContainerPart>())
             && TradeSystem.GetDrams(actor) >= Fee && TradeSystem.GetDrams(Worker) <= int.MaxValue - Fee;
+        static bool PickupCanReceive(ContainerPart pickup) => pickup?.Contents?.Count == 0 && pickup.MaxItems != 0 && !pickup.IsLocked;
 
         /// <summary>Pure availability query: never advances time, creates output or consumes.</summary>
         public bool CanStart(Entity actor, Zone zone)
@@ -325,41 +327,120 @@ namespace CavesOfOoo.Core
         bool Begin(Entity actor, Zone zone, InventoryTransaction tx)
         {
             if (!CanStart(actor, zone) || !ClaimOwners(tx, actor) || !tx.TryClaim(actor, actor, StartCommand)) return Reject(actor, "unavailable");
-            var selected = SelectInputs(actor); var pack = actor.GetPart<InventoryPart>(); var store = Escrow.GetPart<ContainerPart>();
+            var selected = SelectInputs(actor);
+            var pack = actor.GetPart<InventoryPart>();
+            var worker = Worker;
+            var store = Escrow.GetPart<ContainerPart>();
+            var pickup = Pickup.GetPart<ContainerPart>();
             foreach (var entry in selected) if (!tx.TryClaim(entry.item, actor, StartCommand)) return Reject(actor, "ingredient-busy");
+            var staged = new List<Entity>(selected.Count);
             foreach (var entry in selected)
             {
-                Entity moved = null; var source = InventoryTransferSnapshot.Capture(pack, entry.item); tx.Do(null, source.Restore);
-                bool removed = source.Apply(() =>
-                {
-                    if (!Carried(entry.item, actor, pack) || Count(entry.item) < entry.count) return false;
-                    if (Count(entry.item) > entry.count)
-                    {
-                        moved = entry.item.GetPart<StackerPart>().SplitStack(entry.count);
-                        if (moved == null) return false;
-                        var physical = moved.GetPart<PhysicsPart>(); if (physical == null) return false;
-                        physical.InInventory = null; physical.Equipped = null; return true;
-                    }
-                    moved = entry.item; return pack.RemoveObject(moved);
-                });
-                if (!removed || !Portable(moved) || moved.BlueprintName != entry.item.BlueprintName || Count(moved) != entry.count
-                    || moved.GetPart<PhysicsPart>().InInventory != null || !tx.TryClaim(moved, actor, StartCommand)) return Reject(actor, "ingredient-transfer");
-                var destination = InventoryTransferSnapshot.Capture(store, moved); tx.Do(null, destination.Restore);
-                if (!destination.Apply(() => store.AddItem(moved)) || !destination.ClaimChanges(tx, actor, StartCommand)) return Reject(actor, "escrow-full");
+                if (!StageIngredient(actor, zone, pack, store, entry.item, entry.count, tx, out var portion))
+                    return Reject(actor, "ingredient-transfer");
+                staged.Add(portion);
             }
-            // This is deliberately after split/stack callbacks. They may not turn a
-            // removed worker, moved station or revised recipe into a paid commission.
-            if (!Bound(zone) || State != "Idle" || !LiveStructure() || !ActorAvailable(actor, zone) || !StaffAvailable(zone, actor)
-                || actor.GetPart<InventoryPart>() != pack || Escrow.GetPart<ContainerPart>() != store
-                || Pickup.GetPart<ContainerPart>().Contents.Count != 0 || Pickup.GetPart<ContainerPart>().MaxItems == 0
-                || !RecipeContents(store)) return Reject(actor, "source-changed");
+
+            bool StartOwnersCurrent() => Bound(zone) && LiveStructure() && Worker == worker && StaffAvailable(zone, actor)
+                && ActorAvailable(actor, zone) && actor.GetPart<InventoryPart>() == pack
+                && Escrow.GetPart<ContainerPart>() == store && Pickup.GetPart<ContainerPart>() == pickup
+                && (store.MaxItems < 0 || store.Contents.Count <= store.MaxItems) && PickupCanReceive(pickup);
+            if (!StartOwnersCurrent() || State != "Idle" || !store.Contents.SequenceEqual(staged) || !RecipeContents(store)
+                || WorldClock.CurrentTick < 0 || WorldClock.CurrentTick > int.MaxValue - PreparationTicks)
+                return Reject(actor, "source-changed");
             EnlistState(tx);
             Inputs = new List<Entity>(store.Contents); InputIDs = Inputs.Select(e => e.ID).ToList(); InputCounts = Inputs.Select(Count).ToList();
             Commissioner = actor; CommissionerID = actor.ID; Output = null; OutputID = null;
             StartTick = WorldClock.CurrentTick; DueTick = StartTick + PreparationTicks; JobOrdinal++;
             State = "Working"; BlockedReason = "";
-            tx.DeferCurrencyTransfer(actor, Worker, Fee);
+            int ordinal = JobOrdinal, start = StartTick;
+            var stagedIDs = InputIDs.ToArray();
+            var stagedCounts = InputCounts.ToArray();
+            tx.BeforeCommit(() => StartOwnersCurrent() && ValidJob() && Commissioner == actor
+                && JobOrdinal == ordinal && StartTick == start && WorldClock.CurrentTick == start
+                && InputsCurrent() && Inputs.SequenceEqual(staged) && InputIDs.SequenceEqual(stagedIDs)
+                && InputCounts.SequenceEqual(stagedCounts)
+                && !pack.Objects.Concat(pack.EquippedItems.Values).Any(item => stagedIDs.Contains(item?.ID)));
+            tx.DeferCurrencyTransfer(actor, worker, Fee);
             tx.AfterCommit(() => { Changed(zone, "KitchenBatchStarted"); MessageLog.Add("The meal is set to work. Return in 120 world ticks. If work is interrupted, remaining ingredients are returned; the two-dram fee is retained."); });
+            return true;
+        }
+        bool StageIngredient(Entity actor, Zone zone, InventoryPart pack, ContainerPart store, Entity item, int count,
+            InventoryTransaction tx, out Entity portion)
+        {
+            portion = null;
+            if (!Carried(item, actor, pack) || Count(item) < count) return false;
+            var physical = item.GetPart<PhysicsPart>();
+            var stack = item.GetPart<StackerPart>();
+            int size = Count(item);
+            bool split = size > count;
+            if (split && !stack.CanSplit()) return false;
+            var moved = split ? item.CloneForStack() : item;
+            var movedPhysical = moved.GetPart<PhysicsPart>();
+            var movedStack = moved.GetPart<StackerPart>();
+            var tray = Escrow;
+            var at = zone.GetEntityCell(actor);
+            // Clone initialization can run arbitrary Parts. Recheck custody
+            // before subtracting any portion from the actor's current pack.
+            if (at == null || !ActorAvailable(actor, zone) || actor.GetPart<InventoryPart>() != pack
+                || !Carried(item, actor, pack) || Count(item) != size || item.GetPart<PhysicsPart>() != physical
+                || item.GetPart<StackerPart>() != stack || !Portable(moved) || moved.BlueprintName != item.BlueprintName
+                || split && (movedPhysical.InInventory != null || movedStack == null)
+                || tray?.GetPart<ContainerPart>() != store || store.ParentEntity != tray
+                || store.MaxItems >= 0 && store.Contents.Count >= store.MaxItems
+                || store.Contents.Any(e => e == moved || e?.ID == moved.ID) || !tx.TryClaim(moved, actor, StartCommand)) return false;
+
+            var source = InventoryTransferSnapshot.Capture(pack, item);
+            string itemID = item.ID, movedID = moved.ID;
+            ConnectedClayProvenance.Snapshot placement = default;
+            void Refund()
+            {
+                if (!Portable(moved) || moved.ID != movedID || moved.GetPart<PhysicsPart>().InInventory != tray
+                    || store.Contents.Count(e => e == moved || e?.ID == movedID) != 1 || !store.RemoveItem(moved)) return;
+
+                // The tray owned this portion. Clear a stale pack listing
+                // before returning it. An independent ground spill has priority.
+                pack.Objects.RemoveAll(e => e == moved);
+                bool retainsPack = Alive(actor) ? actor.SpatialZone == zone : actor.HasTag("NoDropOnDeath") || actor.HasTag("Temporary");
+                retainsPack &= actor.GetPart<InventoryPart>() == pack && pack.ParentEntity == actor;
+                if (retainsPack && pack.MaxWeight >= 0)
+                    retainsPack = (long)pack.GetCarriedWeight() + InventoryPart.GetItemWeight(moved) <= pack.MaxWeight;
+
+                bool sameSource = item.ID == itemID && item.GetPart<PhysicsPart>() == physical && item.GetPart<StackerPart>() == stack;
+                bool samePortion = moved.GetPart<PhysicsPart>() == movedPhysical && moved.GetPart<StackerPart>() == movedStack;
+                if (retainsPack && sameSource && samePortion && Count(moved) == count && !placement.Changed(item)
+                    && (split ? Carried(item, actor, pack) && Count(item) == size - count
+                        : !pack.Objects.Any(e => e?.ID == itemID)))
+                {
+                    source.Restore();
+                    return;
+                }
+                if (retainsPack && !pack.Objects.Any(e => e?.ID == movedID) && pack.AddRetrievedObject(moved)) return;
+                // Preserve an existing death spill or forced transfer. Release
+                // just the staged portion at the last known standing cell.
+                if (!zone.AddEntity(moved, at.X, at.Y)) store.AddItem(moved);
+            }
+            tx.Do(null, Refund);
+            source.Apply(() =>
+            {
+                if (split)
+                {
+                    stack.StackCount -= count;
+                    movedStack.StackCount = count;
+                    ConnectedClayProvenance.Split(item, moved, count);
+                }
+                else pack.Objects.Remove(item);
+                // Keep each exact portion separate in this station's escrow.
+                // Ordinary container merges would erase one refund identity.
+                store.Contents.Add(moved);
+                movedPhysical.InInventory = tray;
+                return true;
+            });
+            placement = new ConnectedClayProvenance.Snapshot(item);
+            if (split) ThrowingRules.OnStackChanged(item);
+            else ThrowingRules.OnItemCustodyChanged(item);
+            pack.RefreshHandlingCarryPenalty();
+            portion = moved;
             return true;
         }
         bool RecipeContents(ContainerPart store)
@@ -456,8 +537,11 @@ namespace CavesOfOoo.Core
                 if (!ValidJob()) return;
                 if (!InputsCurrent()) { Cancel(tx, zone, "escrow-altered"); tx.Commit(); return; }
                 bool viable = LiveStructure(invalidating) && (Worker == invalidating || Alive(Worker));
-                if (WorldClock.CurrentTick >= DueTick && viable && StaffAvailable(zone, Commissioner, invalidating)
-                    && Complete(tx, zone, invalidating)) { tx.Commit(); return; }
+                if (WorldClock.CurrentTick >= DueTick && viable)
+                {
+                    if (!StaffAvailable(zone, Commissioner, invalidating)) BlockedReason = "cook-unavailable";
+                    else if (Complete(tx, zone, invalidating)) { tx.Commit(); return; }
+                }
                 if (invalidating != null || invalidatedDuringReconcile || !viable) { Cancel(tx, zone, "work-interrupted"); tx.Commit(); }
             }
             catch (Exception error) { Diag.Record("furniture", "KitchenBatchRejected", target: ParentEntity, payload: new { reason = "reconcile-exception", error = error.GetType().Name }); }
@@ -466,7 +550,7 @@ namespace CavesOfOoo.Core
         bool Complete(InventoryTransaction tx, Zone zone, Entity invalidating)
         {
             var store = Escrow.GetPart<ContainerPart>(); var pickup = Pickup.GetPart<ContainerPart>();
-            if (pickup.Contents.Count != 0 || pickup.MaxItems == 0) { BlockedReason = "pickup-full"; return false; }
+            if (!PickupCanReceive(pickup)) { BlockedReason = pickup.IsLocked ? "pickup-locked" : "pickup-full"; return false; }
             EntityFactory factory = WorldLocationContext.For(zone)?.Factory ?? CropSystem.Factory;
             if (factory == null || !factory.Blueprints.ContainsKey("FieldMeal")) { BlockedReason = "meal-unavailable"; return false; }
             Entity meal;
@@ -477,7 +561,7 @@ namespace CavesOfOoo.Core
                 || !Portable(meal) || meal.BlueprintName != "FieldMeal" || meal.GetPart<FieldMealPart>()?.ParentEntity != meal
                 || meal.GetPart<PhysicsPart>().InInventory != null || Count(meal) != 1
                 || zone.GetReadOnlyEntities().Any(e => e.ID == meal.ID) || Inputs.Any(e => e.ID == meal.ID)
-                || pickup.Contents.Count != 0 || pickup.MaxItems == 0 || !tx.TryClaim(meal, Commissioner, "KitchenComplete"))
+                || !PickupCanReceive(pickup) || !tx.TryClaim(meal, Commissioner, "KitchenComplete"))
             { BlockedReason = "completion-changed"; return false; }
             foreach (var input in Inputs) if (!tx.TryClaim(input, Commissioner, "KitchenComplete")) return false;
             var inputReceipt = InventoryTransferSnapshot.Capture(store); var outputReceipt = InventoryTransferSnapshot.Capture(pickup, meal);

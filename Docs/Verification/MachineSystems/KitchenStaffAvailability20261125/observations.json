@@ -1,0 +1,490 @@
+{
+  "trial": "one controlled instance of the normal cook stun, subsequent ordinary input",
+  "condition": {
+    "applied": true,
+    "status": true
+  },
+  "reader": {
+    "reader": "The paid meal is waiting: cook unavailable. Its remaining ingredients are held here.",
+    "tick": 1690
+  },
+  "recovery": [
+    {
+      "tick": 1700,
+      "state": "Working",
+      "reason": "cook-unavailable",
+      "workerDrams": 37,
+      "drams": 1,
+      "escrow": [
+        {
+          "ID": "2722",
+          "BlueprintName": "Emberwheat",
+          "n": 2
+        },
+        {
+          "ID": "9033b498379f425eb116a7773ce44123",
+          "BlueprintName": "ClaspbeanPulp",
+          "n": 1
+        }
+      ],
+      "pickup": []
+    },
+    {
+      "tick": 1710,
+      "state": "Working",
+      "reason": "cook-unavailable",
+      "workerDrams": 37,
+      "drams": 1,
+      "escrow": [
+        {
+          "ID": "2722",
+          "BlueprintName": "Emberwheat",
+          "n": 2
+        },
+        {
+          "ID": "9033b498379f425eb116a7773ce44123",
+          "BlueprintName": "ClaspbeanPulp",
+          "n": 1
+        }
+      ],
+      "pickup": []
+    },
+    {
+      "tick": 1720,
+      "state": "Working",
+      "reason": "cook-unavailable",
+      "workerDrams": 37,
+      "drams": 1,
+      "escrow": [
+        {
+          "ID": "2722",
+          "BlueprintName": "Emberwheat",
+          "n": 2
+        },
+        {
+          "ID": "9033b498379f425eb116a7773ce44123",
+          "BlueprintName": "ClaspbeanPulp",
+          "n": 1
+        }
+      ],
+      "pickup": []
+    },
+    {
+      "tick": 1730,
+      "state": "Ready",
+      "reason": "",
+      "workerDrams": 37,
+      "drams": 1,
+      "escrow": [],
+      "pickup": [
+        {
+          "ID": "11515",
+          "BlueprintName": "FieldMeal",
+          "n": 1
+        }
+      ]
+    }
+  ],
+  "states": {
+    "StaffOriginal": {
+      "tick": 1580,
+      "player": {
+        "ID": "2715",
+        "X": 54,
+        "Y": 19,
+        "hp": 40,
+        "drams": 1
+      },
+      "kitchen": {
+        "pan": "11484",
+        "at": {
+          "Item1": 55,
+          "Item2": 18
+        },
+        "repaired": true,
+        "State": "Working",
+        "DueTick": 1690,
+        "StartTick": 1570,
+        "JobOrdinal": 1,
+        "BlockedReason": "",
+        "worker": "11464",
+        "workerAt": {
+          "Item1": 53,
+          "Item2": 18
+        },
+        "workerDrams": 37,
+        "escrow": [
+          {
+            "ID": "2722",
+            "BlueprintName": "Emberwheat",
+            "n": 2
+          },
+          {
+            "ID": "9033b498379f425eb116a7773ce44123",
+            "BlueprintName": "ClaspbeanPulp",
+            "n": 1
+          }
+        ],
+        "pickup": [],
+        "pickupPoint": {
+          "Item1": 55,
+          "Item2": 20
+        },
+        "workerStock": [
+          {
+            "ID": "11470",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "wrappedMeals": []
+    },
+    "StaffBeforeCondition": {
+      "tick": 1680,
+      "player": {
+        "ID": "2715",
+        "X": 54,
+        "Y": 19,
+        "hp": 40,
+        "drams": 1
+      },
+      "kitchen": {
+        "pan": "11484",
+        "at": {
+          "Item1": 55,
+          "Item2": 18
+        },
+        "repaired": true,
+        "State": "Working",
+        "DueTick": 1690,
+        "StartTick": 1570,
+        "JobOrdinal": 1,
+        "BlockedReason": "",
+        "worker": "11464",
+        "workerAt": {
+          "Item1": 53,
+          "Item2": 18
+        },
+        "workerDrams": 37,
+        "escrow": [
+          {
+            "ID": "2722",
+            "BlueprintName": "Emberwheat",
+            "n": 2
+          },
+          {
+            "ID": "9033b498379f425eb116a7773ce44123",
+            "BlueprintName": "ClaspbeanPulp",
+            "n": 1
+          }
+        ],
+        "pickup": [],
+        "pickupPoint": {
+          "Item1": 55,
+          "Item2": 20
+        },
+        "workerStock": [
+          {
+            "ID": "11470",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "wrappedMeals": []
+    },
+    "StaffAtDue": {
+      "tick": 1690,
+      "player": {
+        "ID": "2715",
+        "X": 54,
+        "Y": 19,
+        "hp": 40,
+        "drams": 1
+      },
+      "kitchen": {
+        "pan": "11484",
+        "at": {
+          "Item1": 55,
+          "Item2": 18
+        },
+        "repaired": true,
+        "State": "Working",
+        "DueTick": 1690,
+        "StartTick": 1570,
+        "JobOrdinal": 1,
+        "BlockedReason": "cook-unavailable",
+        "worker": "11464",
+        "workerAt": {
+          "Item1": 53,
+          "Item2": 18
+        },
+        "workerDrams": 37,
+        "escrow": [
+          {
+            "ID": "2722",
+            "BlueprintName": "Emberwheat",
+            "n": 2
+          },
+          {
+            "ID": "9033b498379f425eb116a7773ce44123",
+            "BlueprintName": "ClaspbeanPulp",
+            "n": 1
+          }
+        ],
+        "pickup": [],
+        "pickupPoint": {
+          "Item1": 55,
+          "Item2": 20
+        },
+        "workerStock": [
+          {
+            "ID": "11470",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "wrappedMeals": []
+    },
+    "StaffPausedReload": {
+      "tick": 1690,
+      "player": {
+        "ID": "2715",
+        "X": 54,
+        "Y": 19,
+        "hp": 40,
+        "drams": 1
+      },
+      "kitchen": {
+        "pan": "11484",
+        "at": {
+          "Item1": 55,
+          "Item2": 18
+        },
+        "repaired": true,
+        "State": "Working",
+        "DueTick": 1690,
+        "StartTick": 1570,
+        "JobOrdinal": 1,
+        "BlockedReason": "cook-unavailable",
+        "worker": "11464",
+        "workerAt": {
+          "Item1": 53,
+          "Item2": 18
+        },
+        "workerDrams": 37,
+        "escrow": [
+          {
+            "ID": "2722",
+            "BlueprintName": "Emberwheat",
+            "n": 2
+          },
+          {
+            "ID": "9033b498379f425eb116a7773ce44123",
+            "BlueprintName": "ClaspbeanPulp",
+            "n": 1
+          }
+        ],
+        "pickup": [],
+        "pickupPoint": {
+          "Item1": 55,
+          "Item2": 20
+        },
+        "workerStock": [
+          {
+            "ID": "11470",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "wrappedMeals": []
+    },
+    "StaffReady": {
+      "tick": 1730,
+      "player": {
+        "ID": "2715",
+        "X": 54,
+        "Y": 19,
+        "hp": 40,
+        "drams": 1
+      },
+      "kitchen": {
+        "pan": "11484",
+        "at": {
+          "Item1": 55,
+          "Item2": 18
+        },
+        "repaired": true,
+        "State": "Ready",
+        "DueTick": 1690,
+        "StartTick": 1570,
+        "JobOrdinal": 1,
+        "BlockedReason": "",
+        "worker": "11464",
+        "workerAt": {
+          "Item1": 53,
+          "Item2": 18
+        },
+        "workerDrams": 37,
+        "escrow": [],
+        "pickup": [
+          {
+            "ID": "11515",
+            "BlueprintName": "FieldMeal",
+            "n": 1
+          }
+        ],
+        "pickupPoint": {
+          "Item1": 55,
+          "Item2": 20
+        },
+        "workerStock": [
+          {
+            "ID": "11470",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "wrappedMeals": []
+    },
+    "StaffCollected": {
+      "tick": 1740,
+      "player": {
+        "ID": "2715",
+        "X": 54,
+        "Y": 19,
+        "hp": 40,
+        "drams": 1
+      },
+      "kitchen": {
+        "pan": "11484",
+        "at": {
+          "Item1": 55,
+          "Item2": 18
+        },
+        "repaired": true,
+        "State": "Idle",
+        "DueTick": 0,
+        "StartTick": 0,
+        "JobOrdinal": 1,
+        "BlockedReason": "",
+        "worker": "11464",
+        "workerAt": {
+          "Item1": 53,
+          "Item2": 18
+        },
+        "workerDrams": 37,
+        "escrow": [],
+        "pickup": [],
+        "pickupPoint": {
+          "Item1": 55,
+          "Item2": 20
+        },
+        "workerStock": [
+          {
+            "ID": "11470",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "wrappedMeals": [
+        {
+          "ID": "11515",
+          "BlueprintName": "FieldMeal",
+          "n": 1
+        }
+      ]
+    },
+    "StaffAte": {
+      "tick": 1750,
+      "player": {
+        "ID": "2715",
+        "X": 54,
+        "Y": 19,
+        "hp": 40,
+        "drams": 1
+      },
+      "kitchen": {
+        "pan": "11484",
+        "at": {
+          "Item1": 55,
+          "Item2": 18
+        },
+        "repaired": true,
+        "State": "Idle",
+        "DueTick": 0,
+        "StartTick": 0,
+        "JobOrdinal": 1,
+        "BlockedReason": "",
+        "worker": "11464",
+        "workerAt": {
+          "Item1": 53,
+          "Item2": 18
+        },
+        "workerDrams": 37,
+        "escrow": [],
+        "pickup": [],
+        "pickupPoint": {
+          "Item1": 55,
+          "Item2": 20
+        },
+        "workerStock": [
+          {
+            "ID": "11470",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "wrappedMeals": []
+    },
+    "StaffNoDuplicate": {
+      "tick": 1760,
+      "player": {
+        "ID": "2715",
+        "X": 54,
+        "Y": 19,
+        "hp": 40,
+        "drams": 1
+      },
+      "kitchen": {
+        "pan": "11484",
+        "at": {
+          "Item1": 55,
+          "Item2": 18
+        },
+        "repaired": true,
+        "State": "Idle",
+        "DueTick": 0,
+        "StartTick": 0,
+        "JobOrdinal": 1,
+        "BlockedReason": "",
+        "worker": "11464",
+        "workerAt": {
+          "Item1": 53,
+          "Item2": 18
+        },
+        "workerDrams": 37,
+        "escrow": [],
+        "pickup": [],
+        "pickupPoint": {
+          "Item1": 55,
+          "Item2": 20
+        },
+        "workerStock": [
+          {
+            "ID": "11470",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "wrappedMeals": []
+    }
+  }
+}
