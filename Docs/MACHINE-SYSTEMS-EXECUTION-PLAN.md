@@ -1,3 +1,11 @@
+**Mac delivery for loaded timber side parking — November 25 UTC, 2026.**
+Runtime `bd469bc21` is verified on main and packaged for arm64 and x86_64.
+GameBootstrap startup and package integrity passed on the Mac. Loaded
+movement, parking, recovery and both checkpoints were verified in Editor
+play. The next trial is the optional fair-weather winnowing output in
+roadmap 34. Ordinary seed work remains the baseline.
+[Delivery](Verification/MachineSystems/MacCandidateBD469BC21/README.md)
+
 **A loaded turn and side parking — November 25 UTC, 2026.**
 An eligible fresh v24 timber opening can describe the dry shoulder after
 the base site is accepted. In Editor play an actual sled and pallet turned,
