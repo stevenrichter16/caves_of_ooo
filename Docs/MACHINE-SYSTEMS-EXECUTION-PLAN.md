@@ -1,3 +1,9 @@
+**Mac delivery for the Gleaners’ crossing and clay — November 25 UTC, 2026.**
+A universal build of `2e7b924f0` is verified on this Mac. The isolated source
+had zero build errors and the same five warnings. Startup succeeded and
+all 186 package file hashes matched afterward. The previous packages remain.
+[Delivery](Verification/MachineSystems/MacCandidate2E7B924F0/README.md)
+
 **Original cellar clay stacks and pays for ordinary work — November 25 UTC, 2026.**
 Both original counts and their saved origin survived ordinary pickup and fresh
 Continue in the Gleaners’ cellar. On the surface the exact recovered stack
