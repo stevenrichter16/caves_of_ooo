@@ -409,6 +409,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     grit and sand in the world and preserved those effects through reload.
     Broader ordinary discovery remains open.
     [Evidence](Verification/MachineSystems/ScreeningReader20261125/README.md)
+    Lining-clay recipients show the full mixed-grade bill in a wrapped
+    action hint and the existing details reader. The working well accepted
+    one locally staged measure and one bought measure in actual play.
+    Older authored discovery copy still names the original fire-clay source.
+    [Evidence](Verification/MachineSystems/RepairBillReaders20261125/README.md)
 
 38. **Record causal diagnostics.** Trace exact source units, selected method,
     committed result, receiving owner and benefit qualification. Distinguish

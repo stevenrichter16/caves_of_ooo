@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
 using NUnit.Framework;
 
 namespace CavesOfOoo.Tests
@@ -8,6 +9,24 @@ namespace CavesOfOoo.Tests
     public sealed class CompatibleRepairMaterialTests : FiftyWorldFixture
     {
         const string Prepared = "PreparedLiningClay";
+
+        [TestCase("ConnectedBatchPan")]
+        [TestCase("RepairLinedWell")]
+        [TestCase("AbandonedFieldWorkRig")]
+        public void GradeBillFitsTheActionAndItsNarrowThreeLineHint(string blueprint)
+        {
+            var fixture = Place(blueprint);
+            var position = Zone.GetEntityPosition(fixture);
+            var row = CellMenu(position.x, position.y).Single(a => a.Command == RepairablePart.RepairCommand);
+            const string bill = "2 measures of fire clay or prepared lining clay, in any mix";
+
+            Assert.That(row.Display.Length, Is.LessThanOrEqualTo(41));
+            Assert.That(row.Display, Does.EndWith("(2 measures)"));
+            var lines = WorldActionMenuUI.WrapHint(row.Hint, 44, WorldActionMenuUI.MaxHintRows);
+            Assert.That(string.Join(" ", lines), Does.Contain(bill));
+            Assert.That(fixture.GetPart<RepairablePart>().Describe(), Does.Contain(bill));
+            Assert.False(fixture.GetPart<RepairablePart>().Repaired);
+        }
 
         [TestCase("RepairLinedWell")]
         [TestCase("ConnectedBatchPan")]
@@ -122,6 +141,8 @@ namespace CavesOfOoo.Tests
             Assert.That(repair.RecipeId, Is.EqualTo("timber-dressing-bench"));
             var position = Zone.GetEntityPosition(bench);
             var row = CellMenu(position.x, position.y).Single(a => a.Command == RepairablePart.RepairCommand);
+            Assert.That(row.Display, Is.EqualTo("brace the dressing bench (2 salvaged timber)"));
+            Assert.That(row.Hint, Is.Empty);
 
             Assert.False(ChooseRow(row, position.x, position.y));
             Assert.That(RepairablePart.BlocksFunction(bench), Is.True);

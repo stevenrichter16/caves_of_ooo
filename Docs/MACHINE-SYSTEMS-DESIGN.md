@@ -1,3 +1,11 @@
+**Compatible repair keeps one readable bill — November 25 UTC, 2026.**
+The amount stays in the action row and the shared compatibility bill wraps
+below it. The existing details and Examine readers show the same bill.
+The ordinary receipt still validates exact materials. One actual well repair
+spent mixed grades from a tray withdrawal and native trade while leaving the
+last unclaimed measure at the tray.
+[Evidence](Verification/MachineSystems/RepairBillReaders20261125/README.md)
+
 **A station uses its real worker and exact held goods — November 25 UTC, 2026.**
 The kitchen uses the ordinary action-blocking status capability at start
 and deadline. A recoverable block keeps the paid escrow and displays the

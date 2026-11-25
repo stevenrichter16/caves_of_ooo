@@ -76,7 +76,18 @@ namespace CavesOfOoo.Core
                 if(PortableEquipment ? ParentEntity.HasEffect<BrokenEffect>() : !Repaired)
                 {
                     var recipe=RepairRecipeRegistry.Get(RecipeId);
-                    if(recipe!=null)e.GetParameter<InventoryActionList>("Actions")?.AddAction("Repair",recipe.ActionText+" ("+Bill(recipe)+")",RepairCommand,'r',20);
+                    var actions = e.GetParameter<InventoryActionList>("Actions");
+                    if (recipe != null && actions != null)
+                    {
+                        string bill = Bill(recipe);
+                        if (UsesMaterialGrade(recipe))
+                        {
+                            string amount = recipe.Quantity.ToString(CultureInfo.InvariantCulture);
+                            actions.AddActionWithHint("Repair", recipe.ActionText + " (" + amount + " measures)",
+                                RepairCommand, "Uses " + bill + ".", 'r', 20);
+                        }
+                        else actions.AddAction("Repair", recipe.ActionText + " (" + bill + ")", RepairCommand, 'r', 20);
+                    }
                 }
                 return true;
             }
