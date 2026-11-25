@@ -1,0 +1,109 @@
+{
+  "start": "/private/tmp/coo-porter-trace-earned-start-20261125/18046b6f322b4f5f9c608d5a3b198a4b",
+  "startSourceSaveBackup": "/private/tmp/coo-wayside-shipment-final-carrying-20261125/18046b6f322b4f5f9c608d5a3b198a4b",
+  "stocked": {
+    "archive": "/private/tmp/coo-porter-trace-stocked-20261125/18046b6f322b4f5f9c608d5a3b198a4b",
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "18046b6f322b4f5f9c608d5a3b198a4b",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.12.11.0",
+      "ActiveZoneDisplayLabel": "Overworld.12.11.0",
+      "Turn": 190,
+      "SaveTimestampUtc": "2026-11-25T18:04:30.1776540Z",
+      "HPSummary": "40/40",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "files": {
+      "Quick.sav.gz": "c85563320a48986aefd5959d532da5a9beadf22450898651d1b4066678c2bb61",
+      "Quick.sav.gz.bak": "1b51ff37fdd36b678560f37e855db4617ec743665d2bb9808e65d4a22b2d4742",
+      "Quick.json.bak": "14ed251d6fcfbcb9ca4fecf45d5f4a34f27e1ee763ffec752cd2283acaf7f068",
+      "Quick.json": "183dd1f22db1791a8c1139bb35334dfb84f2eeb326559fffa3c4869ee725a0fe"
+    }
+  },
+  "tests": {
+    "red": {
+      "xml": "/Users/steven/coo-verification/results/porter-physical-diagnostics-red-20261125.xml",
+      "xmlSHA256": "32e6f72e2907c5ca35925dc8359131455e55446be3b6359c781c67086ccbf300",
+      "logSHA256": "55f7c4a448e29ff392cd0ca176c756ceb7fe9732e5bd1ca5c90f28736bc65a70",
+      "run": {
+        "id": "2",
+        "testcasecount": "19",
+        "result": "Failed(Child)",
+        "total": "19",
+        "passed": "18",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 17:59:23Z",
+        "end-time": "2026-11-25 17:59:25Z",
+        "duration": "1.593675"
+      }
+    },
+    "green": {
+      "xml": "/Users/steven/coo-verification/results/porter-physical-diagnostics-green-20261125.xml",
+      "xmlSHA256": "49cdb3732740ca156e0185e8a397d401e361f446c54a57dc5d7819580d8f1891",
+      "logSHA256": "29bbbe03441be1ed859bd662720a426fee507ae0cef99ef8f9c278efa255c061",
+      "run": {
+        "id": "2",
+        "testcasecount": "114",
+        "result": "Skipped:Ignored",
+        "total": "114",
+        "passed": "113",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "1",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 18:00:58Z",
+        "end-time": "2026-11-25 18:01:25Z",
+        "duration": "27.037856"
+      }
+    },
+    "final": {
+      "xml": "/Users/steven/coo-verification/results/porter-physical-diagnostics-final-20261125.xml",
+      "xmlSHA256": "b274c244122ba2656aa5d10100e2648dd968362617422155fa04628d0c803ac1",
+      "logSHA256": "720c208bd060cb5b525d4d76a75d872cf5d698ba19f0cf8817d79c10bc39dcb3",
+      "run": {
+        "id": "2",
+        "testcasecount": "146",
+        "result": "Skipped:Ignored",
+        "total": "146",
+        "passed": "145",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "1",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-11-25 18:03:04Z",
+        "end-time": "2026-11-25 18:03:41Z",
+        "duration": "37.2127533"
+      }
+    }
+  },
+  "sourcePins": {
+    "Assets/Scripts/Gameplay/AI/LocalPorterLedgerPart.cs": "fb9bd09d9d24fc16ddc5ea8859474303da3d7680ba9b9167c520e4616a5eb7ce",
+    "Assets/Scripts/Gameplay/Economy/LocalShipmentReceiverPart.cs": "129ae285f61f3ee3e02285bd5313d8d142c8bf5c43cd12e176dfdc4970b94e2d",
+    "Assets/Tests/EditMode/Gameplay/Inventory/LocalPorterOrderTests.cs": "f924602a58ba3ce702b60ac2fa05d386849f28cf942f28647166ac6029304504",
+    "Assets/Tests/EditMode/Gameplay/Inventory/LocalShipmentReceiptTests.cs": "df0aac7de4a2939bbe0ed585c3dec7154e224f1e7565667cc6b8fcf957cbd59c"
+  },
+  "preservation": {
+    "coo-sieve-content-foreign-at-entry": {
+      "matched": 86,
+      "changed": []
+    },
+    "coo-grit-normal-before-play": {
+      "matched": 861,
+      "changed": []
+    }
+  }
+}

@@ -1,3 +1,10 @@
+**Physical hauling can be traced by its saved order — November 25 UTC, 2026.**
+Booking, pickup, settlement and merchant intake can be read from committed
+transaction evidence. The existing order, custody, reserves and payments
+remain authoritative. A live wayside shipment sent its exact clay into the
+merchant’s pack through the same correlated order.
+[Evidence](Verification/MachineSystems/PorterCausalTrace20261125/README.md)
+
 **Clay can move in separate one-pound trips — November 25 UTC, 2026.**
 The public tray presents a one-measure choice for one eligible stack of
 two. It uses existing exact clay marks, stack merge, capacity and custody.

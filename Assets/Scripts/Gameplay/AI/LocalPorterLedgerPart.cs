@@ -134,6 +134,8 @@ namespace CavesOfOoo.Core
             tx.BeforeCommit(() => Shipment == shipment && AtPost(actor, zone) && AtSource(zone) && StaticShelf(zone)
                 && Reserved(zone) && EmptyShelf() && Role?.TryQuote(actor, Box, Shelf, zone, out var current, out _) == true
                 && OfferKey(actor, current, priorOrderID) == command && TradeSystem.GetDrams(ParentEntity) == 0);
+            RecordAfterCommit(tx, "PorterBooked", actor, ParentEntity, quote.Fare, quoteSteps: quote.Steps.Count,
+                loadedWeight: quote.LoadedWeight, looseWeight: quote.LooseWeight);
             tx.AfterCommit(() =>
             {
                 if (shipment == null) MessageLog.Add($"Delivery booked for {quote.Fare} drams. The box stays here until pickup.");
@@ -155,6 +157,7 @@ namespace CavesOfOoo.Core
             string prior = Note;
             tx.Do(() => { Phase = LocalPorterPhase.Returning; Note = message; },
                 () => { Phase = LocalPorterPhase.Carrying; Note = prior; });
+            RecordAfterCommit(tx, "PorterReturning", Worker, null, Fare - DepartureFee);
             return true;
         }
 
@@ -174,27 +177,32 @@ namespace CavesOfOoo.Core
                 return Execute(zone, (z, tx) => Close(z, tx, LocalPorterPhase.Failed, "Delivery stopped. Any surviving box stays where it is."));
             if (Phase == LocalPorterPhase.Carrying && !StaticShelf(zone))
                 return Execute(zone, (_, tx) => RequestReturn(tx, "The shelf is gone. The porter is bringing the box back."));
-            if (Role?.Available(Worker, zone) != true) { Note = "The porter has paused for safety."; return false; }
+            if (Role?.Available(Worker, zone) != true) return Pause("The porter has paused for safety.");
             if (Phase == LocalPorterPhase.Booked)
                 return Execute(zone, Load);
 
             var target = Phase == LocalPorterPhase.Returning ? ParentEntity : Shelf;
-            if (!Role.Fits(Worker, Box, alreadyCarried: true, out _)) { Note = "The loaded box is too heavy."; return false; }
-            if (Phase == LocalPorterPhase.Carrying && !EmptyShelf()) { Note = "The receiving shelf is full or locked."; return false; }
+            if (!Role.Fits(Worker, Box, alreadyCarried: true, out _)) return Pause("The loaded box is too heavy.");
+            if (Phase == LocalPorterPhase.Carrying && !EmptyShelf()) return Pause("The receiving shelf is full or locked.");
             if (SpatialQuery.Distance(zone, Worker, target) <= 1)
                 return Execute(zone, Phase == LocalPorterPhase.Returning ? ReturnBox : Deliver);
 
             var route = LocalPorterPart.Route(Worker, target, zone);
-            if (route == null || route.Count == 0) { Note = "The walking route is blocked."; return false; }
+            if (route == null || route.Count == 0) return Pause("The walking route is blocked.");
             var next = route[0];
             var here = zone.GetEntityCell(Worker);
             var phase = Phase;
+            string order = OrderID;
             bool moved = MovementSystem.TryMoveChecked(Worker, zone, next.X - here.X, next.Y - here.Y,
                 () => Phase == phase && zone.GetEntityCell(Worker) == here && SiteCurrent(zone)
                     && (phase == LocalPorterPhase.Returning || StaticShelf(zone)) && Reserved(zone) && Carrying(zone)
                     && Role?.Available(Worker, zone) == true && Role.Fits(Worker, Box, alreadyCarried: true, out _)
                     && LocalPorterPart.ClearStep(Worker, zone, next));
-            Note = moved ? null : "The porter could not take the next step.";
+            if (OrderID == order && Phase == phase)
+            {
+                if (!moved) return Pause("The porter could not take the next step.");
+                Note = null;
+            }
             return moved;
         }
 
@@ -219,6 +227,7 @@ namespace CavesOfOoo.Core
             tx.Do(() => { Phase = LocalPorterPhase.Carrying; Note = null; }, () => Phase = LocalPorterPhase.Booked);
             tx.DeferCurrencyTransfer(ParentEntity, Worker, DepartureFee);
             tx.BeforeCommit(() => SiteCurrent(zone) && Reserved(zone) && Carrying(zone));
+            RecordAfterCommit(tx, "PorterPickedUp", Worker, Worker, Fare - DepartureFee, transfer: DepartureFee);
             tx.AfterCommit(() =>
             {
                 VisibleNote(zone, $"{Worker.GetDisplayName()} takes the packed clay box.");
@@ -274,6 +283,7 @@ namespace CavesOfOoo.Core
                 shipment?.StageCaseClosure(this, result == LocalPorterPhase.Delivered, tx);
             tx.DeferCurrencyTransfer(ParentEntity, recipient, refund);
             tx.Do(() => { Phase = result; Note = message; }, () => { Phase = oldPhase; Note = oldNote; });
+            RecordAfterCommit(tx, "PorterSettled", Worker, recipient, 0, transfer: refund);
             tx.AfterCommit(() =>
             {
                 if (OrderID == closingOrder && Phase == result) ClearActiveOrder(result, message);
@@ -281,6 +291,34 @@ namespace CavesOfOoo.Core
             });
             return true;
         }
+
+        private bool Pause(string reason)
+        {
+            if (Note == reason) return false;
+            Note = reason;
+            if (Diag.IsChannelEnabled("ai"))
+                Diag.Record("ai", "PorterPaused", Worker, Box, Evidence(null, TradeSystem.GetDrams(ParentEntity), reason: reason));
+            return false;
+        }
+
+        private void RecordAfterCommit(InventoryTransaction tx, string kind, Entity actor, Entity recipient, int escrow,
+            int? quoteSteps = null, int? loadedWeight = null, int? looseWeight = null, int? transfer = null)
+        {
+            if (!Diag.IsChannelEnabled("ai")) return;
+            var target = Box;
+            object evidence = Evidence(recipient, escrow, quoteSteps, loadedWeight, looseWeight, transfer);
+            tx.AfterCommit(() => Diag.Record("ai", kind, actor, target, evidence));
+        }
+
+        private object Evidence(Entity recipient, int escrow, int? quoteSteps = null, int? loadedWeight = null,
+            int? looseWeight = null, int? transfer = null, string reason = null) => new
+        {
+            orderId = OrderID, zoneId = OrderZone, markerId = ParentEntity.ID, boxId = Box?.ID, shelfId = Shelf?.ID,
+            payerId = Payer?.ID, workerId = Worker?.ID, phase = Phase.ToString(), bookedCargo = Manifest,
+            holderId = Box?.GetPart<PhysicsPart>()?.InInventory?.ID, ground = Box?.SpatialZone?.ZoneID,
+            fare = Fare, escrow, quoteSteps, loadedWeight, looseWeight, transfer,
+            recipientId = recipient?.ID, reason
+        };
 
         public static void Reconcile(Entity player, Zone zone)
         {

@@ -79,6 +79,16 @@ and delivery box keep their separate custody rules. This comparison uses an
 earned full tray and the well’s existing two-measure bill.
 [Evidence](Verification/MachineSystems/TrayOneMeasure20261125/README.md)
 
+## Committed delivery evidence
+
+Roadmap 38 tracks the actual booking, pickup and settlement under the same
+saved order identifier. The existing diagnostic channels and transaction
+receipts record the agreed route and fare, the exact worker and parcel, and
+the final custody and payment. The merchant stock transfer carries that
+identifier through to its exact cargo. A changed pause reason is recorded
+once. The records establish outcomes without changing what characters or
+players can see. [Evidence](Verification/MachineSystems/PorterCausalTrace20261125/README.md)
+
 ## A clearing with a measurable fare
 
 Roadmap 18 can start at the worn crossing wall in Gleaners’. The living

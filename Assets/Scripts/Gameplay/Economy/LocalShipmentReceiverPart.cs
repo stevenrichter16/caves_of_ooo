@@ -266,6 +266,14 @@ namespace CavesOfOoo.Core
                     && StockedOrderID == orderID && parcel.GetPart<ContainerPart>() == cargo && cargo.Contents.Count == 0
                     && merchant.GetPart<InventoryPart>() == inventory && !LocalPorterReservationPart.Blocks(parcel)
                     && items.All(item => PreparationActions.Carried(merchant, item)));
+                if (Diag.IsChannelEnabled("trade"))
+                {
+                    var evidence = new { orderId = orderID, zoneId = zone.ZoneID, boxId = parcel.ID,
+                        shelfId = ParentEntity.ID, receiverId = merchant.ID, recovered,
+                        cargo = items.Select(item => new { item.ID, item.BlueprintName,
+                            units = item.GetPart<StackerPart>()?.StackCount ?? 1 }).ToArray() };
+                    tx.AfterCommit(() => Diag.Record("trade", "ShipmentStocked", merchant, parcel, evidence));
+                }
                 tx.Commit();
                 if (zone.GetEntityCell(ParentEntity)?.IsVisible == true)
                     MessageLog.Add($"{merchant.GetDisplayName()} unpacks the {(recovered ? "returned" : "delivered")} lining clay for sale.");

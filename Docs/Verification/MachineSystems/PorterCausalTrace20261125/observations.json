@@ -1,0 +1,405 @@
+{
+  "cooTraceAtStart": {
+    "tick": 60,
+    "zone": "Overworld.12.11.0",
+    "p": {
+      "id": "2703",
+      "X": 40,
+      "Y": 12,
+      "drams": 50
+    },
+    "actor": {
+      "ID": "6854",
+      "at": {
+        "Item1": 27,
+        "Item2": 17
+      },
+      "stock": [
+        {
+          "ID": "6860",
+          "n": 2
+        }
+      ]
+    },
+    "order": {
+      "OrderID": null,
+      "phase": "Open",
+      "marker": "6893",
+      "supplier": "6895",
+      "supplierDrams": 8,
+      "worker": "6894",
+      "workerDrams": 0,
+      "workerAt": {
+        "Item1": 18,
+        "Item2": 17
+      },
+      "escrow": 0,
+      "box": "6897",
+      "shelf": "6896",
+      "boxAt": {
+        "Item1": 17,
+        "Item2": 17
+      },
+      "holder": null,
+      "cargo": [
+        {
+          "ID": "6898",
+          "n": 2
+        }
+      ]
+    },
+    "trace": []
+  },
+  "cooTraceFirst": {
+    "tick": 80,
+    "zone": "Overworld.12.11.0",
+    "p": {
+      "id": "2703",
+      "X": 40,
+      "Y": 14,
+      "drams": 50
+    },
+    "actor": {
+      "ID": "6854",
+      "at": {
+        "Item1": 27,
+        "Item2": 17
+      },
+      "stock": [
+        {
+          "ID": "6860",
+          "n": 2
+        }
+      ]
+    },
+    "order": {
+      "OrderID": "d998e56d661946148f1c8b2c6818958a",
+      "phase": "Carrying",
+      "marker": "6893",
+      "supplier": "6895",
+      "supplierDrams": 3,
+      "worker": "6894",
+      "workerDrams": 1,
+      "workerAt": {
+        "Item1": 18,
+        "Item2": 17
+      },
+      "escrow": 4,
+      "box": "6897",
+      "shelf": "6896",
+      "boxAt": {
+        "Item1": -1,
+        "Item2": -1
+      },
+      "holder": "6894",
+      "cargo": [
+        {
+          "ID": "6898",
+          "n": 2
+        }
+      ]
+    },
+    "trace": [
+      {
+        "TraceId": "45091bbb",
+        "Kind": "PorterBooked",
+        "ActorId": "6895",
+        "TargetId": "6897",
+        "Turn": 70,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"markerId\":\"6893\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"payerId\":\"6895\",\"workerId\":\"6894\",\"phase\":\"Booked\",\"bookedCargo\":\"6898/PreparedLiningClay/2/\",\"holderId\":null,\"ground\":\"Overworld.12.11.0\",\"fare\":5,\"escrow\":5,\"quoteSteps\":8,\"loadedWeight\":5,\"looseWeight\":2,\"transfer\":null,\"recipientId\":\"6893\",\"reason\":null}"
+      },
+      {
+        "TraceId": "118c6036",
+        "Kind": "PorterPickedUp",
+        "ActorId": "6894",
+        "TargetId": "6897",
+        "Turn": 70,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"markerId\":\"6893\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"payerId\":\"6895\",\"workerId\":\"6894\",\"phase\":\"Carrying\",\"bookedCargo\":\"6898/PreparedLiningClay/2/\",\"holderId\":\"6894\",\"ground\":null,\"fare\":5,\"escrow\":4,\"quoteSteps\":null,\"loadedWeight\":null,\"looseWeight\":null,\"transfer\":1,\"recipientId\":\"6894\",\"reason\":null}"
+      }
+    ]
+  },
+  "cooTraceApproach": {
+    "tick": 190,
+    "zone": "Overworld.12.11.0",
+    "p": {
+      "id": "2703",
+      "X": 33,
+      "Y": 18,
+      "drams": 50
+    },
+    "actor": {
+      "ID": "6854",
+      "at": {
+        "Item1": 28,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6860",
+          "n": 2
+        },
+        {
+          "ID": "6898",
+          "n": 2
+        }
+      ]
+    },
+    "order": {
+      "OrderID": "d998e56d661946148f1c8b2c6818958a",
+      "phase": "Delivered",
+      "marker": "6893",
+      "supplier": "6895",
+      "supplierDrams": 3,
+      "worker": "6894",
+      "workerDrams": 5,
+      "workerAt": {
+        "Item1": 24,
+        "Item2": 17
+      },
+      "escrow": 0,
+      "box": "6897",
+      "shelf": "6896",
+      "boxAt": {
+        "Item1": -1,
+        "Item2": -1
+      },
+      "holder": "6896",
+      "cargo": []
+    },
+    "trace": [
+      {
+        "TraceId": "45091bbb",
+        "Kind": "PorterBooked",
+        "ActorId": "6895",
+        "TargetId": "6897",
+        "Turn": 70,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"markerId\":\"6893\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"payerId\":\"6895\",\"workerId\":\"6894\",\"phase\":\"Booked\",\"bookedCargo\":\"6898/PreparedLiningClay/2/\",\"holderId\":null,\"ground\":\"Overworld.12.11.0\",\"fare\":5,\"escrow\":5,\"quoteSteps\":8,\"loadedWeight\":5,\"looseWeight\":2,\"transfer\":null,\"recipientId\":\"6893\",\"reason\":null}"
+      },
+      {
+        "TraceId": "118c6036",
+        "Kind": "PorterPickedUp",
+        "ActorId": "6894",
+        "TargetId": "6897",
+        "Turn": 70,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"markerId\":\"6893\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"payerId\":\"6895\",\"workerId\":\"6894\",\"phase\":\"Carrying\",\"bookedCargo\":\"6898/PreparedLiningClay/2/\",\"holderId\":\"6894\",\"ground\":null,\"fare\":5,\"escrow\":4,\"quoteSteps\":null,\"loadedWeight\":null,\"looseWeight\":null,\"transfer\":1,\"recipientId\":\"6894\",\"reason\":null}"
+      },
+      {
+        "TraceId": "ca3b16fe",
+        "Kind": "PorterSettled",
+        "ActorId": "6894",
+        "TargetId": "6897",
+        "Turn": 160,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"markerId\":\"6893\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"payerId\":\"6895\",\"workerId\":\"6894\",\"phase\":\"Delivered\",\"bookedCargo\":\"6898/PreparedLiningClay/2/\",\"holderId\":\"6896\",\"ground\":null,\"fare\":5,\"escrow\":0,\"quoteSteps\":null,\"loadedWeight\":null,\"looseWeight\":null,\"transfer\":4,\"recipientId\":\"6894\",\"reason\":null}"
+      },
+      {
+        "TraceId": "c0efe086",
+        "Kind": "ShipmentStocked",
+        "ActorId": "6854",
+        "TargetId": "6897",
+        "Turn": 170,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"receiverId\":\"6854\",\"recovered\":false,\"cargo\":[{\"ID\":\"6898\",\"BlueprintName\":\"PreparedLiningClay\",\"units\":2}]}"
+      }
+    ]
+  },
+  "cooTraceCommitted": {
+    "tick": 190,
+    "zone": "Overworld.12.11.0",
+    "p": {
+      "id": "2703",
+      "X": 33,
+      "Y": 18,
+      "drams": 50
+    },
+    "actor": {
+      "ID": "6854",
+      "at": {
+        "Item1": 28,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6860",
+          "n": 2
+        },
+        {
+          "ID": "6898",
+          "n": 2
+        }
+      ]
+    },
+    "order": {
+      "OrderID": "d998e56d661946148f1c8b2c6818958a",
+      "phase": "Delivered",
+      "marker": "6893",
+      "supplier": "6895",
+      "supplierDrams": 3,
+      "worker": "6894",
+      "workerDrams": 5,
+      "workerAt": {
+        "Item1": 24,
+        "Item2": 17
+      },
+      "escrow": 0,
+      "box": "6897",
+      "shelf": "6896",
+      "boxAt": {
+        "Item1": -1,
+        "Item2": -1
+      },
+      "holder": "6896",
+      "cargo": []
+    },
+    "trace": [
+      {
+        "TraceId": "45091bbb",
+        "Kind": "PorterBooked",
+        "ActorId": "6895",
+        "TargetId": "6897",
+        "Turn": 70,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"markerId\":\"6893\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"payerId\":\"6895\",\"workerId\":\"6894\",\"phase\":\"Booked\",\"bookedCargo\":\"6898/PreparedLiningClay/2/\",\"holderId\":null,\"ground\":\"Overworld.12.11.0\",\"fare\":5,\"escrow\":5,\"quoteSteps\":8,\"loadedWeight\":5,\"looseWeight\":2,\"transfer\":null,\"recipientId\":\"6893\",\"reason\":null}"
+      },
+      {
+        "TraceId": "118c6036",
+        "Kind": "PorterPickedUp",
+        "ActorId": "6894",
+        "TargetId": "6897",
+        "Turn": 70,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"markerId\":\"6893\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"payerId\":\"6895\",\"workerId\":\"6894\",\"phase\":\"Carrying\",\"bookedCargo\":\"6898/PreparedLiningClay/2/\",\"holderId\":\"6894\",\"ground\":null,\"fare\":5,\"escrow\":4,\"quoteSteps\":null,\"loadedWeight\":null,\"looseWeight\":null,\"transfer\":1,\"recipientId\":\"6894\",\"reason\":null}"
+      },
+      {
+        "TraceId": "ca3b16fe",
+        "Kind": "PorterSettled",
+        "ActorId": "6894",
+        "TargetId": "6897",
+        "Turn": 160,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"markerId\":\"6893\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"payerId\":\"6895\",\"workerId\":\"6894\",\"phase\":\"Delivered\",\"bookedCargo\":\"6898/PreparedLiningClay/2/\",\"holderId\":\"6896\",\"ground\":null,\"fare\":5,\"escrow\":0,\"quoteSteps\":null,\"loadedWeight\":null,\"looseWeight\":null,\"transfer\":4,\"recipientId\":\"6894\",\"reason\":null}"
+      },
+      {
+        "TraceId": "c0efe086",
+        "Kind": "ShipmentStocked",
+        "ActorId": "6854",
+        "TargetId": "6897",
+        "Turn": 170,
+        "PayloadJson": "{\"orderId\":\"d998e56d661946148f1c8b2c6818958a\",\"zoneId\":\"Overworld.12.11.0\",\"boxId\":\"6897\",\"shelfId\":\"6896\",\"receiverId\":\"6854\",\"recovered\":false,\"cargo\":[{\"ID\":\"6898\",\"BlueprintName\":\"PreparedLiningClay\",\"units\":2}]}"
+      }
+    ]
+  },
+  "cooTraceChannelRestore": {
+    "ai": false,
+    "trade": true
+  },
+  "cooTraceFresh": {
+    "tick": 190,
+    "zone": "Overworld.12.11.0",
+    "p": {
+      "id": "2703",
+      "X": 33,
+      "Y": 18,
+      "drams": 50
+    },
+    "actor": {
+      "ID": "6854",
+      "at": {
+        "Item1": 28,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6860",
+          "n": 2
+        },
+        {
+          "ID": "6898",
+          "n": 2
+        }
+      ]
+    },
+    "order": {
+      "OrderID": "d998e56d661946148f1c8b2c6818958a",
+      "phase": "Delivered",
+      "marker": "6893",
+      "supplier": "6895",
+      "supplierDrams": 3,
+      "worker": "6894",
+      "workerDrams": 5,
+      "workerAt": {
+        "Item1": 24,
+        "Item2": 17
+      },
+      "escrow": 0,
+      "box": "6897",
+      "shelf": "6896",
+      "boxAt": {
+        "Item1": -1,
+        "Item2": -1
+      },
+      "holder": "6896",
+      "cargo": []
+    },
+    "trace": []
+  },
+  "cooTraceUnchanged": {
+    "tick": 250,
+    "zone": "Overworld.12.11.0",
+    "p": {
+      "id": "2703",
+      "X": 33,
+      "Y": 18,
+      "drams": 50
+    },
+    "actor": {
+      "ID": "6854",
+      "at": {
+        "Item1": 28,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6860",
+          "n": 2
+        },
+        {
+          "ID": "6898",
+          "n": 2
+        }
+      ]
+    },
+    "order": {
+      "OrderID": "d998e56d661946148f1c8b2c6818958a",
+      "phase": "Delivered",
+      "marker": "6893",
+      "supplier": "6895",
+      "supplierDrams": 3,
+      "worker": "6894",
+      "workerDrams": 5,
+      "workerAt": {
+        "Item1": 18,
+        "Item2": 17
+      },
+      "escrow": 0,
+      "box": "6897",
+      "shelf": "6896",
+      "boxAt": {
+        "Item1": -1,
+        "Item2": -1
+      },
+      "holder": "6896",
+      "cargo": []
+    },
+    "trace": []
+  },
+  "cooTraceFinalIdle": {
+    "playing": false,
+    "root": null,
+    "dirty": false,
+    "profiling": false,
+    "total": 7,
+    "builtin": 7,
+    "selected": 0,
+    "viewOwned": false
+  },
+  "cooTraceOriginalCfg": {
+    "ai": false,
+    "trade": true
+  }
+}

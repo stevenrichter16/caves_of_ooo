@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory.Commands;
+using CavesOfOoo.Diagnostics;
 using NUnit.Framework;
 
 namespace CavesOfOoo.Tests
@@ -70,6 +71,67 @@ namespace CavesOfOoo.Tests
             Assert.That(receipt.TryStock(Zone), Is.True);
             Assert.That(TradeSystem.GetTraderStock(receipt.Merchant),
                 Is.EquivalentTo(new[] { opening, measures[0], measures[1] }));
+        }
+
+        [Test]
+        public void StockingTraceWaitsForTheExactDeliveryToReachTheMerchantPack()
+        {
+            var prior = Diag.Snapshot(Diag.BufferCapacity).Select(e => e.TraceId).ToHashSet();
+            bool previous = Diag.IsChannelEnabled("trade");
+            Diag.Entry[] Recorded() => Diag.Snapshot(Diag.BufferCapacity)
+                .Where(e => !prior.Contains(e.TraceId) && e.Category == "trade" && e.Kind == "ShipmentStocked").ToArray();
+
+            if (!previous) Diag.SetChannel("trade", true);
+            try
+            {
+                var (receipt, order) = BookForDeadline(split: true);
+                string orderId = order.OrderID;
+                var merchant = receipt.Merchant;
+                var shelf = order.Shelf;
+                var box = order.Box;
+                var cargo = box.GetPart<ContainerPart>();
+                var measures = new[] { receipt.FirstMeasure, receipt.SecondMeasure };
+                var inventory = merchant.GetPart<InventoryPart>();
+                var opening = TradeSystem.GetTraderStock(merchant).Single();
+                inventory.MaxWeight = inventory.GetCarriedWeight() + 1;
+
+                FinishDelivery(order);
+                Assert.That(orderId, Is.Not.Null.And.Not.Empty);
+                Assert.That(shelf.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(box));
+                Assert.That(Recorded(), Is.Empty, "Handover to the shelf alone does not stock the shop.");
+                Assert.False(receipt.TryStock(Zone));
+                Assert.That(Recorded(), Is.Empty, "A rolled-back stock transfer does not publish a receipt.");
+                Assert.That(receipt.StockedOrderID, Is.Null);
+                Assert.That(cargo.Contents, Is.EqualTo(measures));
+                Assert.That(measures.All(item => item.GetPart<PhysicsPart>().InInventory == box), Is.True);
+                Assert.That(TradeSystem.GetTraderStock(merchant), Is.EqualTo(new[] { opening }));
+
+                inventory.MaxWeight++;
+                Assert.True(receipt.TryStock(Zone));
+                Assert.That(receipt.StockedOrderID, Is.EqualTo(orderId));
+                Assert.That(cargo.Contents, Is.Empty);
+                Assert.That(measures.All(item => item.GetPart<PhysicsPart>().InInventory == merchant), Is.True);
+                Assert.That(TradeSystem.GetTraderStock(merchant), Is.EquivalentTo(new[] { opening, measures[0], measures[1] }));
+                Assert.False(receipt.TryStock(Zone));
+                var entry = Recorded().Single();
+                var payload = UnityEngine.JsonUtility.FromJson<ShipmentStockTrace>(entry.PayloadJson);
+                Assert.That(payload.orderId, Is.EqualTo(orderId));
+                Assert.That(payload.boxId, Is.EqualTo(box.ID));
+                Assert.That(payload.shelfId, Is.EqualTo(shelf.ID));
+                Assert.That(payload.receiverId, Is.EqualTo(merchant.ID));
+                Assert.That(entry.ActorId, Is.EqualTo(merchant.ID));
+                Assert.That(entry.TargetId, Is.EqualTo(box.ID));
+            }
+            finally { if (!previous) Diag.SetChannel("trade", false); }
+        }
+
+        [System.Serializable]
+        private sealed class ShipmentStockTrace
+        {
+            public string orderId = "";
+            public string boxId = "";
+            public string shelfId = "";
+            public string receiverId = "";
         }
 
         [Test]
@@ -310,9 +372,9 @@ namespace CavesOfOoo.Tests
             Assert.That(receipt.ExpectedOrderID, Is.EqualTo(receipt.Ledger.GetPart<LocalPorterLedgerPart>().OrderID));
         }
 
-        private (LocalShipmentReceiverPart receipt, LocalPorterLedgerPart order) BookForDeadline()
+        private (LocalShipmentReceiverPart receipt, LocalPorterLedgerPart order) BookForDeadline(bool split = false)
         {
-            var receipt = Arrange(delivered: false, atSource: true);
+            var receipt = Arrange(delivered: false, split: split, atSource: true);
             var order = receipt.Ledger.GetPart<LocalPorterLedgerPart>();
             Assert.That(AIBoredEvent.Check(Sponsor(receipt.Ledger, 8)), Is.False);
             return (receipt, order);

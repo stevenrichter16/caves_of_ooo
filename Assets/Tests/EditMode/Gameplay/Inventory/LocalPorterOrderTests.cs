@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory.Commands;
+using CavesOfOoo.Diagnostics;
 using NUnit.Framework;
 
 namespace CavesOfOoo.Tests
@@ -189,6 +190,83 @@ namespace CavesOfOoo.Tests
             Assert.That(TradeSystem.GetDrams(ledger.ParentEntity), Is.Zero);
             Assert.That(ledger.TryAct(Zone), Is.False);
             Assert.That(TradeSystem.GetDrams(ledger.Worker), Is.EqualTo(7 + fare));
+        }
+
+        [Test]
+        public void CommittedPorterDiagnosticsCorrelateOneOrderThroughItsActualPayout()
+        {
+            var expected = new[] { "PorterBooked", "PorterPickedUp", "PorterSettled" };
+            var prior = Diag.Snapshot(Diag.BufferCapacity).Select(e => e.TraceId).ToHashSet();
+            bool previous = Diag.IsChannelEnabled("ai");
+            Diag.Entry[] Recorded() => Diag.Snapshot(Diag.BufferCapacity)
+                .Where(e => !prior.Contains(e.TraceId) && e.Category == "ai" && expected.Contains(e.Kind)).ToArray();
+
+            Diag.SetChannel("ai", true);
+            try
+            {
+                var ledger = Arrange();
+                var marker = ledger.ParentEntity;
+                var box = ledger.Box;
+                var shelf = ledger.Shelf;
+                string command = Hire(ledger);
+                Assert.True(UseGuides.Collect(marker, Zone, Zone.GetEntityCell(marker), Actor, new List<string>()));
+                Assert.That(Hire(ledger), Is.EqualTo(command));
+                Assert.That(Recorded(), Is.Empty, "Reading and quoting do not book or pay for a delivery.");
+
+                var failure = new FiftyWorldThrowAfterPart();
+                Actor.AddPart(failure);
+                try { Assert.False(Act(marker, command)); }
+                finally { Actor.RemovePart(failure); }
+                Assert.That(ledger.Phase, Is.EqualTo(LocalPorterPhase.Open));
+                Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(50));
+                Assert.That(TradeSystem.GetDrams(marker), Is.Zero);
+                Assert.That(Recorded(), Is.Empty, "A rolled-back booking publishes no committed record.");
+
+                Assert.True(Act(marker, command));
+                string order = ledger.OrderID;
+                int fare = ledger.Fare;
+                Assert.That(order, Is.Not.Null.And.Not.Empty);
+                void AssertCommits(int count)
+                {
+                    var records = Recorded();
+                    Assert.That(records.Select(r => r.Kind), Is.EqualTo(expected.Take(count)));
+                    foreach (var record in records)
+                    {
+                        var payload = UnityEngine.JsonUtility.FromJson<PorterTrace>(record.PayloadJson);
+                        Assert.That(payload.orderId, Is.EqualTo(order), record.Kind);
+                        Assert.That(payload.boxId, Is.EqualTo(box.ID), record.Kind);
+                        Assert.That(payload.shelfId, Is.EqualTo(shelf.ID), record.Kind);
+                    }
+                }
+
+                Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(50 - fare));
+                Assert.That(TradeSystem.GetDrams(marker), Is.EqualTo(fare));
+                Assert.False(Act(marker, command));
+                AssertCommits(1);
+
+                Assert.True(ledger.TryAct(Zone));
+                Assert.That(box.GetPart<PhysicsPart>().InInventory, Is.SameAs(ledger.Worker));
+                Assert.That(TradeSystem.GetDrams(ledger.Worker), Is.EqualTo(8));
+                Assert.That(TradeSystem.GetDrams(marker), Is.EqualTo(fare - 1));
+                AssertCommits(2);
+
+                WorkUntil(ledger, LocalPorterPhase.Delivered);
+                Assert.That(shelf.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(box));
+                Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(50 - fare));
+                Assert.That(TradeSystem.GetDrams(ledger.Worker), Is.EqualTo(7 + fare));
+                Assert.That(TradeSystem.GetDrams(marker), Is.Zero);
+                Assert.False(ledger.TryAct(Zone));
+                AssertCommits(3);
+            }
+            finally { Diag.SetChannel("ai", previous); }
+        }
+
+        [System.Serializable]
+        private sealed class PorterTrace
+        {
+            public string orderId = "";
+            public string boxId = "";
+            public string shelfId = "";
         }
 
         [TestCase(false)]

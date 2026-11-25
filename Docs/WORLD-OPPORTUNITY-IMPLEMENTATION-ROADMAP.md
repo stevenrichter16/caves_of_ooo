@@ -410,6 +410,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     committed result, receiving owner and benefit qualification. Distinguish
     quoted, paid, paused and completed work. Diagnostics help establish
     equivalence; they do not become hidden reward or capability flags.
+    One actual wayside order connected agreed cost, exact box, paid carrier,
+    receiving shelf and the delivered clay in Orven’s stock. Native controls
+    verified rollback and stocking retry. Broader process tracing remains
+    on the same shared diagnostic boundary.
+    [Evidence](Verification/MachineSystems/PorterCausalTrace20261125/README.md)
 
 39. **Validate transactions, saves and generation together.** Cover aliases,
     partial stacks, competing claims, callback veto, changed grades, independent
