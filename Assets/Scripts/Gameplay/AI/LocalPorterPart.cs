@@ -26,6 +26,9 @@ namespace CavesOfOoo.Core
             int weight = DeliveryStoragePart.ParcelWeightOrZero(parcel, zone);
             if (weight == 0)
                 return Refuse("The shelf takes one box packed with two measures of lining clay.", out refusal);
+            long looseWeight = parcel.GetPart<ContainerPart>().Contents.Sum(item => (long)InventoryPart.GetItemWeight(item));
+            if (looseWeight < 0 || looseWeight > weight)
+                return Refuse("The contents do not match the weight of this box.", out refusal);
             if (!LocalGatheringClaims.Ground(shelf, zone) || shelf.GetPart<DeliveryStoragePart>() is not { ReceivesParcels: true } storage
                 || !storage.Intact(shelf, shelf.GetPart<ContainerPart>()) || shelf.GetPart<ContainerPart>().IsLocked
                 || shelf.GetPart<ContainerPart>().Contents.Count != 0)
@@ -43,7 +46,7 @@ namespace CavesOfOoo.Core
             if (TradeSystem.GetDrams(payer) < fare)
                 return Refuse("The fare is " + fare + " drams. You can still carry the box yourself.", out refusal);
 
-            quote = new LocalPorterQuote(fare, weight, freeBefore, steps.AsReadOnly());
+            quote = new LocalPorterQuote(fare, weight, (int)looseWeight, freeBefore, steps.AsReadOnly());
             refusal = null;
             return true;
         }
@@ -157,14 +160,16 @@ namespace CavesOfOoo.Core
     {
         public readonly int Fare;
         public readonly int LoadedWeight;
+        public readonly int LooseWeight;
         public readonly int FreeBefore;
         public int FreeAfter => FreeBefore - LoadedWeight;
         public readonly IReadOnlyList<Cell> Steps;
 
-        internal LocalPorterQuote(int fare, int loadedWeight, int freeBefore, IReadOnlyList<Cell> steps)
+        internal LocalPorterQuote(int fare, int loadedWeight, int looseWeight, int freeBefore, IReadOnlyList<Cell> steps)
         {
             Fare = fare;
             LoadedWeight = loadedWeight;
+            LooseWeight = looseWeight;
             FreeBefore = freeBefore;
             Steps = steps;
         }

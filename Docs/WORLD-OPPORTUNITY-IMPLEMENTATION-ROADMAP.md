@@ -139,6 +139,12 @@ cross-seed comparisons remain open.
     consumed material, discarded fractions, fuel/water and fees where relevant.
     Include container shells and gear. A portable method may save travel while
     requiring more handling; neither method needs to dominate every circumstance.
+    The paid clay option now compares both load weights, remaining capacity,
+    walking distance, action and fee. The actual crossing branches showed
+    both fares for the same parcel, a free cancel and fresh re-quote. This
+    verifies the local carrier comparison. Other work costs remain scoped
+    to their supported actions.
+    [Evidence](Verification/MachineSystems/PorterLoadComparison20261125/README.md)
 
 13. **Extend work providers through explicit capabilities.** Add a narrow provider
     contract only when a second real supported operation requires it. A sound

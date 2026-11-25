@@ -1,0 +1,656 @@
+{
+  "cooPorterLoadIntactStartFinal": {
+    "tick": 460,
+    "zone": "Overworld.11.10.0",
+    "p": {
+      "ID": "2704",
+      "X": 28,
+      "Y": 20,
+      "payer": 39,
+      "weight": 12,
+      "MaxWeight": 150
+    },
+    "state": "Normal",
+    "ledger": {
+      "ID": "2702",
+      "BlueprintName": "GleanersLoadingMarker",
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "phase": "Open",
+      "escrow": 0
+    },
+    "box": {
+      "ID": "2700",
+      "holder": null,
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6861",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        }
+      ]
+    },
+    "worker": {
+      "ID": "2703",
+      "at": {
+        "Item1": 29,
+        "Item2": 20
+      },
+      "drams": 0
+    },
+    "ok": true,
+    "refusal": null,
+    "quote": {
+      "Fare": 8,
+      "LoadedWeight": 5,
+      "LooseWeight": 2,
+      "FreeBefore": 150,
+      "distance": 25
+    },
+    "menu": null
+  },
+  "cooPorterLoadIntactUI": {
+    "s": {
+      "tick": 460,
+      "zone": "Overworld.11.10.0",
+      "p": {
+        "ID": "2704",
+        "X": 28,
+        "Y": 20,
+        "payer": 39,
+        "weight": 12,
+        "MaxWeight": 150
+      },
+      "state": "WorldActionMenuOpen",
+      "ledger": {
+        "ID": "2702",
+        "BlueprintName": "GleanersLoadingMarker",
+        "at": {
+          "Item1": 29,
+          "Item2": 19
+        },
+        "phase": "Open",
+        "escrow": 0
+      },
+      "box": {
+        "ID": "2700",
+        "holder": null,
+        "at": {
+          "Item1": 29,
+          "Item2": 19
+        },
+        "stock": [
+          {
+            "ID": "6861",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "worker": {
+        "ID": "2703",
+        "at": {
+          "Item1": 29,
+          "Item2": 20
+        },
+        "drams": 0
+      },
+      "ok": true,
+      "refusal": null,
+      "quote": {
+        "Fare": 8,
+        "LoadedWeight": 5,
+        "LooseWeight": 2,
+        "FreeBefore": 150,
+        "distance": 25
+      },
+      "menu": {
+        "target": "2702",
+        "highlight": "LocalPorterHire::2704:2703:2701:2700:8:25:5:2:6861/PreparedLiningClay/2/",
+        "rows": [
+          {
+            "Command": "LocalPorterHire::2704:2703:2701:2700:8:25:5:2:6861/PreparedLiningClay/2/",
+            "Display": "hire porter (8 drams)",
+            "Hint": "5 lb boxed, 2 lb loose. 25 steps, 1 action. Porter room 150 lb. Hard pack room 138 lb. One dram at pickup. Rest paid or refunded.",
+            "Time": "OneAction"
+          },
+          {
+            "Command": "Examine",
+            "Display": "examine",
+            "Hint": "",
+            "Time": "Unspecified"
+          },
+          {
+            "Command": "PickCell",
+            "Display": "<< everything here",
+            "Hint": "",
+            "Time": "Unspecified"
+          }
+        ]
+      }
+    },
+    "row": {
+      "Command": "LocalPorterHire::2704:2703:2701:2700:8:25:5:2:6861/PreparedLiningClay/2/",
+      "Display": "hire porter (8 drams)",
+      "Hint": "5 lb boxed, 2 lb loose. 25 steps, 1 action. Porter room 150 lb. Hard pack room 138 lb. One dram at pickup. Rest paid or refunded.",
+      "Time": "OneAction"
+    },
+    "wrapped": {
+      "lines": [
+        "5 lb boxed, 2 lb loose. 25 steps, 1 action.",
+        "Porter room 150 lb. Hard pack room 138 lb.",
+        "One dram at pickup. Rest paid or refunded."
+      ],
+      "rows": 3
+    }
+  },
+  "cooPorterLoadIntactAfter": {
+    "tick": 460,
+    "zone": "Overworld.11.10.0",
+    "p": {
+      "ID": "2704",
+      "X": 28,
+      "Y": 20,
+      "payer": 39,
+      "weight": 12,
+      "MaxWeight": 150
+    },
+    "state": "Normal",
+    "ledger": {
+      "ID": "2702",
+      "BlueprintName": "GleanersLoadingMarker",
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "phase": "Open",
+      "escrow": 0
+    },
+    "box": {
+      "ID": "2700",
+      "holder": null,
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6861",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        }
+      ]
+    },
+    "worker": {
+      "ID": "2703",
+      "at": {
+        "Item1": 29,
+        "Item2": 20
+      },
+      "drams": 0
+    },
+    "ok": true,
+    "refusal": null,
+    "quote": {
+      "Fare": 8,
+      "LoadedWeight": 5,
+      "LooseWeight": 2,
+      "FreeBefore": 150,
+      "distance": 25
+    },
+    "menu": null
+  },
+  "cooPorterLoadOpenUI": {
+    "s": {
+      "tick": 890,
+      "zone": "Overworld.11.10.0",
+      "p": {
+        "ID": "2704",
+        "X": 28,
+        "Y": 20,
+        "payer": 39,
+        "weight": 12,
+        "MaxWeight": 150
+      },
+      "state": "WorldActionMenuOpen",
+      "ledger": {
+        "ID": "2702",
+        "BlueprintName": "GleanersLoadingMarker",
+        "at": {
+          "Item1": 29,
+          "Item2": 19
+        },
+        "phase": "Open",
+        "escrow": 0
+      },
+      "box": {
+        "ID": "2700",
+        "holder": null,
+        "at": {
+          "Item1": 29,
+          "Item2": 19
+        },
+        "stock": [
+          {
+            "ID": "6861",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "worker": {
+        "ID": "2703",
+        "at": {
+          "Item1": 29,
+          "Item2": 20
+        },
+        "drams": 0
+      },
+      "ok": true,
+      "refusal": null,
+      "quote": {
+        "Fare": 7,
+        "LoadedWeight": 5,
+        "LooseWeight": 2,
+        "FreeBefore": 150,
+        "distance": 23
+      },
+      "menu": {
+        "target": "2702",
+        "highlight": "LocalPorterHire::2704:2703:2701:2700:7:23:5:2:6861/PreparedLiningClay/2/",
+        "rows": [
+          {
+            "Command": "LocalPorterHire::2704:2703:2701:2700:7:23:5:2:6861/PreparedLiningClay/2/",
+            "Display": "hire porter (7 drams)",
+            "Hint": "5 lb boxed, 2 lb loose. 23 steps, 1 action. Porter room 150 lb. Hard pack room 138 lb. One dram at pickup. Rest paid or refunded.",
+            "Time": "OneAction"
+          },
+          {
+            "Command": "Examine",
+            "Display": "examine",
+            "Hint": "",
+            "Time": "Unspecified"
+          },
+          {
+            "Command": "PickCell",
+            "Display": "<< everything here",
+            "Hint": "",
+            "Time": "Unspecified"
+          }
+        ]
+      }
+    },
+    "row": {
+      "Command": "LocalPorterHire::2704:2703:2701:2700:7:23:5:2:6861/PreparedLiningClay/2/",
+      "Display": "hire porter (7 drams)",
+      "Hint": "5 lb boxed, 2 lb loose. 23 steps, 1 action. Porter room 150 lb. Hard pack room 138 lb. One dram at pickup. Rest paid or refunded.",
+      "Time": "OneAction"
+    },
+    "wrapped": {
+      "lines": [
+        "5 lb boxed, 2 lb loose. 23 steps, 1 action.",
+        "Porter room 150 lb. Hard pack room 138 lb.",
+        "One dram at pickup. Rest paid or refunded."
+      ],
+      "rows": 3
+    }
+  },
+  "cooPorterLoadBooked": {
+    "tick": 900,
+    "zone": "Overworld.11.10.0",
+    "p": {
+      "ID": "2704",
+      "X": 28,
+      "Y": 20,
+      "payer": 32,
+      "weight": 12,
+      "MaxWeight": 150
+    },
+    "state": "LookMode",
+    "ledger": {
+      "ID": "2702",
+      "BlueprintName": "GleanersLoadingMarker",
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "phase": "Booked",
+      "escrow": 7
+    },
+    "box": {
+      "ID": "2700",
+      "holder": null,
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6861",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        }
+      ]
+    },
+    "worker": {
+      "ID": "2703",
+      "at": {
+        "Item1": 29,
+        "Item2": 20
+      },
+      "drams": 0
+    },
+    "ok": true,
+    "refusal": null,
+    "quote": {
+      "Fare": 7,
+      "LoadedWeight": 5,
+      "LooseWeight": 2,
+      "FreeBefore": 150,
+      "distance": 23
+    },
+    "menu": null
+  },
+  "cooPorterLoadCancelUI": {
+    "tick": 900,
+    "zone": "Overworld.11.10.0",
+    "p": {
+      "ID": "2704",
+      "X": 28,
+      "Y": 20,
+      "payer": 32,
+      "weight": 12,
+      "MaxWeight": 150
+    },
+    "state": "WorldActionMenuOpen",
+    "ledger": {
+      "ID": "2702",
+      "BlueprintName": "GleanersLoadingMarker",
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "phase": "Booked",
+      "escrow": 7
+    },
+    "box": {
+      "ID": "2700",
+      "holder": null,
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6861",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        }
+      ]
+    },
+    "worker": {
+      "ID": "2703",
+      "at": {
+        "Item1": 29,
+        "Item2": 20
+      },
+      "drams": 0
+    },
+    "ok": true,
+    "refusal": null,
+    "quote": {
+      "Fare": 7,
+      "LoadedWeight": 5,
+      "LooseWeight": 2,
+      "FreeBefore": 150,
+      "distance": 23
+    },
+    "menu": {
+      "target": "2702",
+      "highlight": "LocalPorterCancel:f764bc2d39e84b3d8bcff2159bf1c662",
+      "rows": [
+        {
+          "Command": "LocalPorterCancel:f764bc2d39e84b3d8bcff2159bf1c662",
+          "Display": "cancel delivery",
+          "Hint": "Before pickup the whole fare returns. After pickup the porter returns the box and keeps one dram.",
+          "Time": "Free"
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "Hint": "",
+          "Time": "Unspecified"
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "Hint": "",
+          "Time": "Unspecified"
+        }
+      ]
+    }
+  },
+  "cooPorterLoadCancelled": {
+    "tick": 900,
+    "zone": "Overworld.11.10.0",
+    "p": {
+      "ID": "2704",
+      "X": 28,
+      "Y": 20,
+      "payer": 39,
+      "weight": 12,
+      "MaxWeight": 150
+    },
+    "state": "Normal",
+    "ledger": {
+      "ID": "2702",
+      "BlueprintName": "GleanersLoadingMarker",
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "phase": "Cancelled",
+      "escrow": 0
+    },
+    "box": {
+      "ID": "2700",
+      "holder": null,
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6861",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        }
+      ]
+    },
+    "worker": {
+      "ID": "2703",
+      "at": {
+        "Item1": 29,
+        "Item2": 20
+      },
+      "drams": 0
+    },
+    "ok": true,
+    "refusal": null,
+    "quote": {
+      "Fare": 7,
+      "LoadedWeight": 5,
+      "LooseWeight": 2,
+      "FreeBefore": 150,
+      "distance": 23
+    },
+    "menu": null
+  },
+  "cooPorterLoadFresh": {
+    "tick": 900,
+    "zone": "Overworld.11.10.0",
+    "p": {
+      "ID": "2704",
+      "X": 28,
+      "Y": 20,
+      "payer": 39,
+      "weight": 12,
+      "MaxWeight": 150
+    },
+    "state": "Normal",
+    "ledger": {
+      "ID": "2702",
+      "BlueprintName": "GleanersLoadingMarker",
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "phase": "Cancelled",
+      "escrow": 0
+    },
+    "box": {
+      "ID": "2700",
+      "holder": null,
+      "at": {
+        "Item1": 29,
+        "Item2": 19
+      },
+      "stock": [
+        {
+          "ID": "6861",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        }
+      ]
+    },
+    "worker": {
+      "ID": "2703",
+      "at": {
+        "Item1": 29,
+        "Item2": 20
+      },
+      "drams": 0
+    },
+    "ok": true,
+    "refusal": null,
+    "quote": {
+      "Fare": 7,
+      "LoadedWeight": 5,
+      "LooseWeight": 2,
+      "FreeBefore": 150,
+      "distance": 23
+    },
+    "menu": null
+  },
+  "cooPorterLoadFreshUI": {
+    "s": {
+      "tick": 900,
+      "zone": "Overworld.11.10.0",
+      "p": {
+        "ID": "2704",
+        "X": 28,
+        "Y": 20,
+        "payer": 39,
+        "weight": 12,
+        "MaxWeight": 150
+      },
+      "state": "WorldActionMenuOpen",
+      "ledger": {
+        "ID": "2702",
+        "BlueprintName": "GleanersLoadingMarker",
+        "at": {
+          "Item1": 29,
+          "Item2": 19
+        },
+        "phase": "Cancelled",
+        "escrow": 0
+      },
+      "box": {
+        "ID": "2700",
+        "holder": null,
+        "at": {
+          "Item1": 29,
+          "Item2": 19
+        },
+        "stock": [
+          {
+            "ID": "6861",
+            "BlueprintName": "PreparedLiningClay",
+            "n": 2
+          }
+        ]
+      },
+      "worker": {
+        "ID": "2703",
+        "at": {
+          "Item1": 29,
+          "Item2": 20
+        },
+        "drams": 0
+      },
+      "ok": true,
+      "refusal": null,
+      "quote": {
+        "Fare": 7,
+        "LoadedWeight": 5,
+        "LooseWeight": 2,
+        "FreeBefore": 150,
+        "distance": 23
+      },
+      "menu": {
+        "target": "2702",
+        "highlight": "LocalPorterHire:f764bc2d39e84b3d8bcff2159bf1c662:2704:2703:2701:2700:7:23:5:2:6861/PreparedLiningClay/2/",
+        "rows": [
+          {
+            "Command": "LocalPorterHire:f764bc2d39e84b3d8bcff2159bf1c662:2704:2703:2701:2700:7:23:5:2:6861/PreparedLiningClay/2/",
+            "Display": "hire porter (7 drams)",
+            "Hint": "5 lb boxed, 2 lb loose. 23 steps, 1 action. Porter room 150 lb. Hard pack room 138 lb. One dram at pickup. Rest paid or refunded.",
+            "Time": "OneAction"
+          },
+          {
+            "Command": "Examine",
+            "Display": "examine",
+            "Hint": "",
+            "Time": "Unspecified"
+          },
+          {
+            "Command": "PickCell",
+            "Display": "<< everything here",
+            "Hint": "",
+            "Time": "Unspecified"
+          }
+        ]
+      }
+    },
+    "row": {
+      "Command": "LocalPorterHire:f764bc2d39e84b3d8bcff2159bf1c662:2704:2703:2701:2700:7:23:5:2:6861/PreparedLiningClay/2/",
+      "Display": "hire porter (7 drams)",
+      "Hint": "5 lb boxed, 2 lb loose. 23 steps, 1 action. Porter room 150 lb. Hard pack room 138 lb. One dram at pickup. Rest paid or refunded.",
+      "Time": "OneAction"
+    },
+    "wrapped": {
+      "lines": [
+        "5 lb boxed, 2 lb loose. 23 steps, 1 action.",
+        "Porter room 150 lb. Hard pack room 138 lb.",
+        "One dram at pickup. Rest paid or refunded."
+      ],
+      "rows": 3
+    }
+  },
+  "cooPorterLoadIdle": {
+    "playing": false,
+    "root": null,
+    "dirty": false,
+    "profiling": false,
+    "total": 7,
+    "builtin": 7,
+    "selected": 0,
+    "viewOwned": false
+  }
+}

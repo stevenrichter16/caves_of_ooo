@@ -55,6 +55,8 @@ namespace CavesOfOoo.Core
             if (context.Owner != ParentEntity || Shipment != null || Role == null || Box == null || Shelf == null) return;
             guide.How.Add("Carry one measure at a time or both loose without a fee. To hire the porter, pack both measures into the box and bring it here.");
             guide.Limits.Add("A shorter clear walk can lower the next fare. The hire quote includes the current route and the weight of the packed box.");
+            guide.Limits.Add("Hard pack room is the remaining space under your pack limit. The weight on the HUD shows your strength allowance.");
+            guide.Limits.Add("The porter earns one dram at pickup and the rest on receipt. If the parcel returns, you get the remaining fare back.");
         }
 
         public override bool HandleEvent(GameEvent e)
@@ -72,7 +74,7 @@ namespace CavesOfOoo.Core
                 }
                 else if (Offer(actor, zone, out var quote, out var refusal))
                     actions?.AddActionWithHint("Hire porter", $"hire porter ({quote.Fare} drams)", OfferKey(actor, quote, OrderID),
-                        $"{quote.LoadedWeight} lb over {quote.Steps.Count} steps. One dram at pickup. The rest on receipt or back to you if the box returns.", 'h', 50, time: ActionTime.OneAction);
+                        HireHint(actor, quote), 'h', 50, time: ActionTime.OneAction);
                 else
                     actions?.AddDisabled("Hire porter", "hire porter", "porter-unavailable", refusal, 'h', 50);
             }
@@ -345,8 +347,18 @@ namespace CavesOfOoo.Core
             || (Phase == LocalPorterPhase.Booked ? !StaticShelf(zone) || !AtSource(zone) : !Carrying(zone));
         private static bool Exact(Entity owner, Zone zone) => WorldResourceActions.Ground(owner, zone)
             && zone.GetReadOnlyEntities().Count(e => e.ID == owner.ID) == 1;
+        private static string HireHint(Entity actor, LocalPorterQuote quote)
+        {
+            var pack = actor.GetPart<InventoryPart>();
+            int carried = pack?.GetCarriedWeight() ?? -1;
+            string packRoom = carried < 0 ? "unavailable" : pack.MaxWeight < 0 ? "unlimited"
+                : $"{Math.Max(0, pack.MaxWeight - carried)} lb";
+            return $"{quote.LoadedWeight} lb boxed, {quote.LooseWeight} lb loose. {quote.Steps.Count} steps, 1 action. "
+                + $"Porter room {quote.FreeBefore} lb. Hard pack room {packRoom}. "
+                + "One dram at pickup. Rest paid or refunded.";
+        }
         private string OfferKey(Entity actor, LocalPorterQuote quote, string priorOrderID) =>
-            $"{HirePrefix}{priorOrderID}:{actor.ID}:{Worker.ID}:{Shelf.ID}:{Box.ID}:{quote.Fare}:{quote.Steps.Count}:{CargoText()}";
+            $"{HirePrefix}{priorOrderID}:{actor.ID}:{Worker.ID}:{Shelf.ID}:{Box.ID}:{quote.Fare}:{quote.Steps.Count}:{quote.LoadedWeight}:{quote.LooseWeight}:{CargoText()}";
         private string CargoText() => string.Join(",", Box.GetPart<ContainerPart>().Contents.Select(item =>
             $"{item.ID}/{item.BlueprintName}/{item.GetPart<StackerPart>().StackCount}/{item.GetPart<ConnectedClayOriginPart>()?.Units}"));
         private bool Claim(InventoryTransaction tx, Entity actor) => tx.TryClaim(ParentEntity, actor, Name) && tx.TryClaim(Box, actor, Name);

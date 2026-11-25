@@ -1,3 +1,10 @@
+**The clay quote shows weight and carrying room — November 25 UTC, 2026.**
+The loading marker compares the current packed and loose weights, both
+carrying limits, route, one action and fee. A stale selection refuses changed
+weight even if the fare band stays the same. Actual hire and cancellation
+preserved the existing saved settlement rules without adding saved fields.
+[Evidence](Verification/MachineSystems/PorterLoadComparison20261125/README.md)
+
 **A sieve packet points to its work — November 25 UTC, 2026.**
 The shared process declaration supplies the actual yields to Examine and
 both work menus. Clay spoil points toward lining and footholds. Quarry

@@ -31,6 +31,83 @@ namespace CavesOfOoo.Tests
             Assert.That(lines, Is.Empty);
         }
 
+        [Test]
+        public void HireHintComparesTheActualBoxLooseLoadAndRemainingPackRoom()
+        {
+            var ledger = Arrange();
+            var workerPack = ledger.Worker.GetPart<InventoryPart>();
+            var workerStock = Factory.CreateEntity("SalvagedTimber");
+            workerStock.GetPart<StackerPart>().StackCount = 3;
+            workerPack.MaxWeight = 19;
+            Assert.True(workerPack.AddObject(workerStock));
+            var ownStock = Carry("SalvagedTimber");
+            ownStock.GetPart<StackerPart>().StackCount = 4;
+            Pack.MaxWeight = 18;
+            Assert.That(Pack.MaxWeight - Pack.GetCarriedWeight(), Is.EqualTo(14));
+            var porter = ledger.Worker.GetPart<LocalPorterPart>();
+            Assert.True(porter.TryQuote(Actor, ledger.Box, ledger.Shelf, Zone, out var quote, out var refusal), refusal);
+            Assert.That(quote.FreeBefore, Is.EqualTo(16));
+            Assert.That(quote.Steps.Count, Is.EqualTo(7));
+            int tick = Clock.TickCount;
+
+            var hire = HireRow(ledger);
+            Assert.That(hire.Display, Is.EqualTo("hire porter (5 drams)"));
+            Assert.That(hire.Hint, Does.Contain("5 lb boxed").And.Contain("2 lb loose").And.Contain("7 steps"));
+            Assert.That(hire.Hint, Does.Match(@"(?i)porter room[^0-9]*16 lb"));
+            Assert.That(hire.Hint, Does.Match(@"(?i)hard pack room[^0-9]*14 lb"));
+            Assert.That(string.Join(" ", CavesOfOoo.Rendering.WorldActionMenuUI.WrapHint(hire.Hint, 44, 3)),
+                Does.Contain("1 action").And.Contain("Rest paid or refunded.").And.Not.Contain("~"));
+            Assert.That(hire.Time, Is.EqualTo(ActionTime.OneAction));
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+            Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(50));
+            Assert.That(TradeSystem.GetDrams(ledger.ParentEntity), Is.Zero);
+            Assert.That(ledger.Phase, Is.EqualTo(LocalPorterPhase.Open));
+
+            Pack.MaxWeight = -1;
+            var uncapped = HireRow(ledger);
+            Assert.That(uncapped.Command, Is.EqualTo(hire.Command));
+            Assert.That(uncapped.Hint, Does.Contain("Hard pack room unlimited"));
+            Assert.That(string.Join(" ", CavesOfOoo.Rendering.WorldActionMenuUI.WrapHint(uncapped.Hint, 44, 3)),
+                Does.Contain("Rest paid or refunded.").And.Not.Contain("~"));
+        }
+
+        [Test]
+        public void ChangedBoxWeightInvalidatesTheOldHireEvenAtTheSameFareAndDistance()
+        {
+            var ledger = Arrange();
+            var box = ledger.Box;
+            var cargo = box.GetPart<ContainerPart>().Contents.Single();
+            var porter = ledger.Worker.GetPart<LocalPorterPart>();
+            var old = HireRow(ledger);
+            Assert.True(porter.TryQuote(Actor, box, ledger.Shelf, Zone, out var earlier, out var refusal), refusal);
+            Assert.That(earlier.LoadedWeight, Is.EqualTo(5));
+
+            box.AddPart(new HandlingPart { Weight = 4, Carryable = true });
+            Assert.True(porter.TryQuote(Actor, box, ledger.Shelf, Zone, out var reweighed, out refusal), refusal);
+            Assert.That(reweighed.LoadedWeight, Is.EqualTo(6));
+            Assert.That(reweighed.Fare, Is.EqualTo(earlier.Fare));
+            Assert.That(reweighed.Steps.Count, Is.EqualTo(earlier.Steps.Count));
+
+            Assert.False(Act(ledger.ParentEntity, old.Command));
+            Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(50));
+            Assert.That(TradeSystem.GetDrams(ledger.ParentEntity), Is.Zero);
+            Assert.That(TradeSystem.GetDrams(ledger.Worker), Is.EqualTo(7));
+            Assert.That(ledger.Phase, Is.EqualTo(LocalPorterPhase.Open));
+            Assert.That(Zone.GetEntityPosition(box), Is.EqualTo((10, 11)));
+            Assert.That(box.GetPart<LocalPorterReservationPart>(), Is.Null);
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(cargo));
+            Assert.That(cargo.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.That(cargo.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+
+            var fresh = HireRow(ledger);
+            Assert.That(fresh.Command, Is.Not.EqualTo(old.Command));
+            Assert.That(fresh.Hint, Does.Contain("6 lb boxed").And.Contain("2 lb loose"));
+            Assert.True(Act(ledger.ParentEntity, fresh.Command));
+            Assert.That(ledger.Phase, Is.EqualTo(LocalPorterPhase.Booked));
+            Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(50 - reweighed.Fare));
+            Assert.That(TradeSystem.GetDrams(ledger.ParentEntity), Is.EqualTo(reweighed.Fare));
+        }
+
         [TestCase(false)]
         [TestCase(true)]
         public void ClearingASolidCellLowersTheNextFareAndNeverRepricesABookedParcel(bool reblock)
@@ -327,8 +404,10 @@ namespace CavesOfOoo.Tests
             return ledger;
         }
 
-        private string Hire(LocalPorterLedgerPart ledger) =>
-            Actions(ledger.ParentEntity).Single(a => a.Command.StartsWith(LocalPorterLedgerPart.HirePrefix)).Command;
+        private InventoryAction HireRow(LocalPorterLedgerPart ledger) =>
+            Actions(ledger.ParentEntity).Single(a => a.Command.StartsWith(LocalPorterLedgerPart.HirePrefix));
+
+        private string Hire(LocalPorterLedgerPart ledger) => HireRow(ledger).Command;
 
         private string Cancel(LocalPorterLedgerPart ledger) =>
             Actions(ledger.ParentEntity).Single(a => a.Command.StartsWith(LocalPorterLedgerPart.CancelPrefix)).Command;

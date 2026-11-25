@@ -41,6 +41,17 @@ result receive the same resulting service benefit; no bonus is secretly tied
 to pressing a particular "repair road" button. Demand must accept compatible
 results through capabilities/material grades, not demand one named tool.
 
+## Compare the parcel with carrying it yourself
+
+The hire action quotes the current walk and the actual physical load. The
+boxed weight includes the shell, and the loose weight counts the same clay
+in the ordinary pack units. Porter room includes current gear and the
+carrying allowance. The player's current hard pack room is advisory. They
+can carry the clay as smaller loads and choose their own route. The hire still
+spends one action and pays one dram at pickup, then settles or refunds the
+rest. A changed load requires a fresh choice even within the same fare band.
+[Evidence](Verification/MachineSystems/PorterLoadComparison20261125/README.md)
+
 ## Park a loose measure near the work
 
 Roadmap 16–17. The Gleaners’ well can have an optional public tray

@@ -1,3 +1,12 @@
+**A porter quote compares the complete clay load — November 25 UTC, 2026.**
+The ordinary quote shows five pounds boxed, two pounds loose, the two
+carrying allowances, walking distance, one action and settlement. The
+shorter opening still reduced the fare to seven. Actual free cancellation
+returned the full amount and fresh Continue retained the exact box and
+stock. The final native run passed 241 cases with one utility skip. Next,
+test whether a local shower can substitute for one carried crop watering.
+[Evidence](Verification/MachineSystems/PorterLoadComparison20261125/README.md)
+
 **Known sieve packets explain their usable yield — November 25 UTC, 2026.**
 Examine and the carried and camp-box menus share the declared products.
 Actual play used an earned clay packet for firm footing and a supplied
