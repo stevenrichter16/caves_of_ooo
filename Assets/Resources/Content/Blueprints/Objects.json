@@ -28430,6 +28430,51 @@
       ]
     },
     {
+      "Name": "LiningClayParcel",
+      "Inherits": "PhysicalObject",
+      "Tags": [{ "Key": "Item", "Value": "" }],
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "small lining clay box" },
+          { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Weight", "Value": "3" },
+          { "Key": "Category", "Value": "Containers" }
+        ] },
+        { "Name": "Container", "Params": [{ "Key": "MaxItems", "Value": "2" }] },
+        { "Name": "ContainerLoad" },
+        { "Name": "DeliveryStorage" },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A small wooden box for two measures of lining clay. Set it down to pack or unpack it. Either fire clay or prepared lining clay fits. The box and its contents add to your carried load." }
+        ] }
+      ]
+    },
+    {
+      "Name": "LiningClayReceivingShelf",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "lining clay receiving shelf" },
+          { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "false" }] },
+        { "Name": "Container", "Params": [
+          { "Key": "Preposition", "Value": "on" },
+          { "Key": "MaxItems", "Value": "1" }
+        ] },
+        { "Name": "DeliveryStorage", "Params": [{ "Key": "ReceivesParcels", "Value": "true" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "An open shelf for one small box containing two measures of lining clay. Anyone at the shelf can collect it. Unpack the clay and patch the well separately." }
+        ] }
+      ]
+    },
+    {
       "Name": "WatchLantern",
       "Inherits": "PhysicalObject",
       "Parts": [

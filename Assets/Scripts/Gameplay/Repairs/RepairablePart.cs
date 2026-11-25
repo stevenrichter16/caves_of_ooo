@@ -174,8 +174,7 @@ namespace CavesOfOoo.Core
                     || !Carried(item, actor, inventory, item.BlueprintName)) continue;
                 if (compatible && (string.IsNullOrEmpty(item.ID) ||
                     inventory.Objects.Count(other => other?.ID == item.ID) != 1)) continue;
-                var state = alternate ? RepairMaterialPart.Read(factory, item, recipe.MaterialGrade) : null;
-                if (alternate && state == null) continue;
+                if (!RepairMaterialPart.ReadPayment(factory, item, recipe, out var state)) continue;
                 int units = Math.Min(remaining, item.GetPart<StackerPart>()?.StackCount ?? 1);
                 yield return new Payment(item, units, state);
                 remaining -= units;

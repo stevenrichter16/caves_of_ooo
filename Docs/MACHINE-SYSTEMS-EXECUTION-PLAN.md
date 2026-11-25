@@ -1,3 +1,16 @@
+**Physical receiving at Gleaners' — November 24 local / November 25 UTC, 2026.**
+The first delivery slice now has a real two-measure box with loaded mass and a
+one-box public shelf by the lined well. Native 148/148 after two real review
+REDs. Seed 64 bought and packed two measures, carried the five-pound box and
+deposited it while the well was still split. At 550 the shelf and exact contents
+survived fresh Continue. The player retrieved the same clay, repaired the well
+and drank at 580. Final fresh Continue retained the spent clay, usable well and
+reusable empty box. Actual hostile interruptions mean this run does not earn a
+safe porter route. Independent source and recorded-play review completed. Next
+start the paid quote, stable order record and reserved physical handover, then
+wire one available actor and route. The Mac package still predates this slice.
+[Evidence](Verification/MachineSystems/LocalReceiving20261125/README.md)
+
 **Compatible clay trial — November 24 local / November 25 UTC, 2026.**
 This connects the first material suitability and common-result requirements.
 Fresh wayside cooks have two prepared measures for sale in addition to their

@@ -54,8 +54,8 @@ check-in provides continued work across runs.
 
 | Slice | Requirements and status |
 | --- | --- |
-| Clay suitability and repair result | 1, 4–8 have bounded well/pan evidence. 2 is implemented for those repair payments and shared preview. Its receiving and shipment use remains open. 3 is observed with carried stock and still needs actual receiving storage. |
-| First paid physical delivery | In progress. Use an actual receiving shelf, player carry and one paid porter, with observable well use. This begins the physical storage, custody, routing, fare and interruption requirements. |
+| Clay suitability and repair result | 1, 4–8 have bounded well/pan evidence. 2 drives repair payment and physical parcel admission for lining clay. The selected NPC shipment adapter remains open. 3 has actual separate storage, collection and well repair. |
+| First paid physical delivery | Manual receipt is Editor-qualified, covering bounded self-carry, mass/capacity and persistent stock in 11–12 and 16–17. The paid carrier and its route, fare, custody, and interruption are in progress. |
 | Selected NPC shipments and overdue searches | Planned after the physical delivery can serve an actual recipient. Preserve the user's expected date, personal or delegated search, and possible player meeting with members of that party. |
 | Contrasting generated opportunities and seasons | Planned after the relevant same-outcome logistics work. Seasonal local materials and work require their own useful consumers. |
 

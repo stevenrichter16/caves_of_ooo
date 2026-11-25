@@ -53,6 +53,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (_container.HasPart<ContainedLiquidSourcePart>())
                 return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, "This recovery tray does not accept deposits.");
 
+            var delivery = _container.GetPart<DeliveryStoragePart>();
+            if (delivery?.RefuseDeposit(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone) is string deliveryFailure)
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, deliveryFailure);
+
             if (!context.Inventory.Contains(_item))
             {
                 return InventoryValidationResult.Invalid(
@@ -69,6 +73,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "This recovery tray does not accept deposits.");
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
+            var delivery = _container.GetPart<DeliveryStoragePart>();
+            if (delivery != null && !transaction.TryClaim(_container, context.Actor, Name))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The box or shelf is already in use.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
             if (containerPart == null || inventory == null)
@@ -122,13 +129,19 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             if (!destination.ClaimChanges(transaction, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "A destination stack is already being transferred.");
-            if (CanNarrate(context))
-            {
-                string subject = context.Actor.HasTag("Player") ? "You put" : context.Actor.GetDisplayName() + " puts";
-                MessageLog.Add($"{subject} {itemName} {containerPart.Preposition} the {_container.GetDisplayName()}.");
-            }
-            DispositionDiagnostics.Record(context, _item, Name, quantity, _container.ID);
+            if (delivery != null) transaction.AfterCommit(Announce);
+            else Announce();
             return InventoryCommandResult.Ok();
+
+            void Announce()
+            {
+                if (CanNarrate(context))
+                {
+                    string subject = context.Actor.HasTag("Player") ? "You put" : context.Actor.GetDisplayName() + " puts";
+                    MessageLog.Add($"{subject} {itemName} {containerPart.Preposition} the {_container.GetDisplayName()}.");
+                }
+                DispositionDiagnostics.Record(context, _item, Name, quantity, _container.ID);
+            }
         }
         // NPC feedback follows current visible world ownership, never an invented
         // audible event. Keep player feedback and transfer/rollback semantics intact.

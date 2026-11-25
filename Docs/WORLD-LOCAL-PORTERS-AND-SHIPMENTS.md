@@ -375,6 +375,35 @@ mystery is settled by tracking goods or testing a package.
 
 ## Small complete increments and acceptance
 
+### First physical handover at Gleaners'
+
+The public manual handover is Editor-qualified. Actual play deposited two
+prepared measures in the real box, saved and loaded the full shelf, withdrew
+that same stock, and spent it to reopen the well. The ordinary route supports
+self-carry. The paid worker and eligibility under live hazards remain open.
+[Evidence](Verification/MachineSystems/LocalReceiving20261125/README.md)
+
+Start near the western cellar landing. A small portable wooden box takes two
+measures of lining clay. It can carry two separate cellar measures, a prepared
+stack from Orven or a mix. Packing happens on the ground and uses the actual
+carried items. Shell and contents count toward the load. The open shelf near
+the well takes one full box. Use the ordinary container actions to deposit and
+retrieve it. The player can also carry loose clay directly to the well.
+
+The shelf admits only that bounded cargo and requires a live adjacent actor
+and exact custody. Both the parcel and the clay remain recoverable. A partial
+box can still be carried and unpacked. The public shelf has no hidden inventory
+or private claim. Work consumes the recovered measures using the existing well
+repair, so a handover alone leaves a broken well broken.
+
+These are optional fresh-site fittings. Admit them only when their own physical
+placement and approaches fit around the already committed district. Keep the
+stairs and the ordinary repair route available on older or obstructed sites.
+The first carrier will use this same physical transfer and disposal rules, with
+reserved custody and an explicit fare. The seed 64 play branch witnessed a
+villager killed near the southern road, so an ordinary nearby resident cannot
+serve as a promised porter by proximity alone.
+
 **P1: one paid local physical delivery.** One player hire, one package and two
 real endpoints; normal capacity/path/access, free quote/cancel, loading,
 visible ordinary walking, handover, fee settlement, interruption and F5/fresh.

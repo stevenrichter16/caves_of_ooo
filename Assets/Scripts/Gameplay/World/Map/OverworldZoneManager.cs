@@ -1309,8 +1309,8 @@ namespace CavesOfOoo.Core
 
             RegionalSituations.OnZoneGenerated(zone, this);
 
-            if (zoneID == GleanersDistrict.SurfaceID)
-                GleanersDistrict.TryInstall(zone, this);
+            if (zoneID == GleanersDistrict.SurfaceID && GleanersDistrict.TryInstall(zone, this))
+                GleanersReceivingSite.TryInstall(zone, this);
 
             if (zoneID == MorrowfastExpedition.FieldZoneId && WorldMap.GetPOI(wx, wy) == null
                 && WorldMap.GetBiome(wx, wy) == BiomeType.Grovelands)

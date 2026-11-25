@@ -1,3 +1,12 @@
+**Physical local receipt — November 24 local / November 25 UTC, 2026.**
+A fresh Gleaners' district can include a box by its cellar landing and a shelf by
+the well. The box carries two compatible clay measures with real loaded mass.
+The shelf holds one full box. Supply stays physical through withdrawal, and the
+well's separately repaired condition governs drinking. Editor play confirmed
+these states across saves and a hostile encounter. This extends the logistics
+foundation. Paid route eligibility and all twelve complete-machine acceptance
+gates are open. [Evidence](Verification/MachineSystems/LocalReceiving20261125/README.md)
+
 **Compatible repair materials — November 24 local / November 25 UTC, 2026.**
 An explicit lining-clay grade can now contribute to the lined well and batch
 pan alongside exact fire clay. The input grade changes how the player pays for

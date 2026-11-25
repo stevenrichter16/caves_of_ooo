@@ -18,6 +18,15 @@ namespace CavesOfOoo.Core
             return MaterialProcessTemplate.Capture(factory, item.BlueprintName)?.Snapshot(item);
         }
 
+        internal static bool ReadPayment(EntityFactory factory, Entity item, RepairRecipe recipe, out MaterialProcessItemState alternate)
+        {
+            alternate = null;
+            if (item == null || recipe == null) return false;
+            if (item.BlueprintName == recipe.MaterialBlueprint) return true;
+            alternate = Read(factory, item, recipe.MaterialGrade);
+            return alternate != null;
+        }
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "ObjectCreated") MaterialProcessRegistry.RememberPayload(ParentEntity?.BlueprintName);

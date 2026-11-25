@@ -60,6 +60,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
                     "Drain the tray first, or explicitly recover through the liquid.");
 
+            var delivery = _container.GetPart<DeliveryStoragePart>();
+            if (delivery != null && !delivery.CanWithdraw(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone))
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
+                    "Stand beside the box or receiving shelf to take its contents.");
+
             var physics = _item.GetPart<PhysicsPart>();
             if (physics == null || !physics.Takeable)
             {
@@ -96,6 +101,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var contained = _container.GetPart<ContainedLiquidSourcePart>();
             if (contained != null && !contained.PrepareTake(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone, transaction, _wetRecovery, out containedCleanup, out containedGuard))
                 return Refuse(context, "contained_recovery_refused", "Drain the tray first, or explicitly recover through the liquid.");
+            var delivery = _container.GetPart<DeliveryStoragePart>();
+            if (delivery != null && !transaction.TryClaim(_container, context.Actor, Name))
+                return Refuse(context, "delivery_storage_busy", "The box or shelf is already in use.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
             if (containerPart == null || inventory == null)
@@ -178,17 +186,22 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (contained != null)
                 transaction.Do(null, containedCleanup);
             containedGuard?.Invoke();
-            var taken = GameEvent.New("Taken");
-            taken.SetParameter("Actor", (object)context.Actor);
-            taken.SetParameter("Item", (object)_item);
-            _item.FireEventAndRelease(taken);
-
-            MessageLog.Add(gold ? $"You pocket {quantity} gold ({credit} drams) from the {_container.GetDisplayName()}."
-                : $"You take {itemName} from the {_container.GetDisplayName()}.");
-            AcquisitionDiagnostics.Record(context, _item, Name, _container.ID, quantity);
+            if (delivery != null) transaction.AfterCommit(Announce);
+            else Announce();
             LocalGatheringClaims.RecordTake(gathering, transaction);
             ConnectedSpreadProgress.RecordTransfer(progress, transaction);
             return InventoryCommandResult.Ok();
+
+            void Announce()
+            {
+                var taken = GameEvent.New("Taken");
+                taken.SetParameter("Actor", (object)context.Actor);
+                taken.SetParameter("Item", (object)_item);
+                _item.FireEventAndRelease(taken);
+                MessageLog.Add(gold ? $"You pocket {quantity} gold ({credit} drams) from the {_container.GetDisplayName()}."
+                    : $"You take {itemName} from the {_container.GetDisplayName()}.");
+                AcquisitionDiagnostics.Record(context, _item, Name, _container.ID, quantity);
+            }
         }
         private bool CoinSourceCurrent(ContainerPart source, InventoryPart destination, PhysicsPart physics)
         {

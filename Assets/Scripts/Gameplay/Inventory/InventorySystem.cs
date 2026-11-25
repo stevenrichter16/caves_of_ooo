@@ -222,7 +222,7 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Containers the actor can put things into: those at their feet, plus a container the player keeps standing within one cell (a set-down camp box is solid, so it
-        /// can never be stood on). Only the player's own set-down fixtures extend the reach; every other adjacent container keeps its existing at-feet-only rule.
+        /// can never be stood on). Local receiving fixtures can also admit adjacent access.
         /// </summary>
         public static List<Entity> GetDepositContainers(Entity actor, Zone zone)
         {
@@ -235,7 +235,8 @@ namespace CavesOfOoo.Core
                     if (dx == 0 && dy == 0 || !zone.InBounds(cell.X + dx, cell.Y + dy)) continue;
                     var objects = zone.GetCell(cell.X + dx, cell.Y + dy).Objects;
                     for (int i = 0; i < objects.Count; i++)
-                        if (objects[i] != actor && objects[i].GetPart<ContainerPart>() != null && HeldFixtureActions.IsPlayerHeld(objects[i]) && !result.Contains(objects[i]))
+                        if (objects[i] != actor && objects[i].GetPart<ContainerPart>() != null && !result.Contains(objects[i])
+                            && (HeldFixtureActions.IsPlayerHeld(objects[i]) || objects[i].GetPart<DeliveryStoragePart>()?.CanReach(actor, zone) == true))
                             result.Add(objects[i]);
                 }
             return result;
