@@ -1,4 +1,4 @@
-# parts=418
+# parts=420
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -596,6 +596,25 @@ Part CavesOfOoo.Core.LocalPassageTokenPart | reflected
   Guard:CavesOfOoo.Core.Entity
   Spent:System.Boolean
 Part CavesOfOoo.Core.LocalPeopleLedgerPart | custom
+Part CavesOfOoo.Core.LocalShipmentEmploymentPart | reflected
+  Employer:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.LocalShipmentReceiverPart | reflected
+  ArrivedAtTick:System.Int32
+  ConcernClosedAtTick:System.Int32
+  ConcernOpenedAtTick:System.Int32
+  DelegateDueAtTick:System.Int32
+  DelegatedSearcherID:System.String
+  ExpectedByTick:System.Int32
+  ExpectedOrderID:System.String
+  FirstMeasure:CavesOfOoo.Core.Entity
+  Ledger:CavesOfOoo.Core.Entity
+  Merchant:CavesOfOoo.Core.Entity
+  SearchEmployee:CavesOfOoo.Core.Entity
+  SearchReportAtTick:System.Int32
+  SearchReportSawBody:System.Boolean
+  SecondMeasure:CavesOfOoo.Core.Entity
+  Sponsor:CavesOfOoo.Core.Entity
+  StockedOrderID:System.String
 Part CavesOfOoo.Core.LockPart | reflected
   IsLocked:System.Boolean
   KeyId:System.String

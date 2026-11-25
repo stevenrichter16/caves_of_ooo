@@ -1,3 +1,11 @@
+**Paid local search and physical report — November 25 UTC, 2026.**
+A saved kitchen employment relationship can support one exact missing-order
+assignment. The cook's purse funds the wage. The employee walks the same
+bounded route and has to meet the cook to report. The due time supports a
+personal follow-up without another payment. The actual shipment still
+controls the receiving result. Optional safe placement preserves baseline
+kitchen access. [Evidence](Verification/MachineSystems/WaysideDelegatedSearch20261125/README.md)
+
 **Physical custody and shipment recovery — November 25 UTC, 2026.**
 The original shipment receipt requires continuous packing as well as the
 same parcel and cargo. Taking cargo commits a saved withdrawal on the box.

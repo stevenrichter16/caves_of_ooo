@@ -106,19 +106,20 @@ namespace CavesOfOoo.Core
                 && AIHelpers.HasLineOfSight(zone, from.X, from.Y, at.X, at.Y));
         }
 
-        internal static List<Cell> Route(Entity worker, Entity shelf, Zone zone)
+        internal static List<Cell> Route(Entity worker, Entity shelf, Zone zone, Func<Cell, bool> suitableEndpoint = null)
         {
             var start = zone.GetEntityCell(worker);
             var target = zone.GetEntityCell(shelf);
             if (start == null || target == null || Distance(start, target) > MaximumSteps + 1) return null;
-            if (Distance(start, target) <= 1) return new List<Cell>();
+            bool CanStopAt(Cell cell) => Distance(cell, target) <= 1 && suitableEndpoint?.Invoke(cell) != false;
+            if (CanStopAt(start)) return new List<Cell>();
             var visited = new Dictionary<Cell, (Cell prior, int steps)> { [start] = (null, 0) };
             var pending = new Queue<Cell>();
             pending.Enqueue(start);
             while (pending.Count > 0)
             {
                 var at = pending.Dequeue();
-                if (Distance(at, target) == 1)
+                if (CanStopAt(at))
                 {
                     var result = new List<Cell>();
                     for (var next = at; next != start; next = visited[next].prior) result.Add(next);

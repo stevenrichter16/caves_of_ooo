@@ -77,10 +77,13 @@ namespace CavesOfOoo.Core
                     {
                         order.Worker = worker; order.Box = parcel; order.Shelf = shelf;
                         porter.Ledger = sponsor.Ledger = marker;
-                        shelf.AddPart(new LocalShipmentReceiverPart { Ledger = marker, Merchant = merchant, Sponsor = supplier, FirstMeasure = clay });
+                        var receipt = new LocalShipmentReceiverPart { Ledger = marker, Merchant = merchant, Sponsor = supplier, FirstMeasure = clay };
+                        shelf.AddPart(receipt);
                         parcel.AddPart(new LocalPorterReservationPart { Ledger = marker });
                         TradeSystem.SetDrams(supplier, SupplyBudget);
                         committed = proof() && original.Concat(placed).ToHashSet().SetEquals(zone.GetReadOnlyEntities());
+                        if (committed && manager.Exploration.Version >= 22)
+                            TryInstallSearchEmployee(zone, manager, receipt, order);
                         return committed;
                     }
                     foreach (var owner in placed.Where(e => e != shelf && e.SpatialZone == zone))
@@ -98,6 +101,57 @@ namespace CavesOfOoo.Core
                 if (!committed)
                     foreach (var owner in placed.Where(e => e?.SpatialZone == zone && !original.Contains(e)))
                         zone.RemoveEntity(owner);
+            }
+        }
+
+        private static void TryInstallSearchEmployee(Zone zone, OverworldZoneManager manager,
+            LocalShipmentReceiverPart receipt, LocalPorterLedgerPart order)
+        {
+            const string blueprint = "WaysideKitchenHand";
+            if (!manager.Factory.Blueprints.ContainsKey(blueprint)) return;
+            var originals = zone.GetReadOnlyEntities().ToHashSet();
+            var proof = SpreadGenerationReceipt.CaptureFinalState(zone, originals);
+            var geometry = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>());
+            var cookAt = zone.GetEntityPosition(receipt.Merchant);
+            var cells = from x in Enumerable.Range(cookAt.x - 1, 3)
+                        from y in Enumerable.Range(cookAt.y - 1, 3)
+                        where Plain(zone, (x, y), court: true)
+                        let cell = zone.GetCell(x, y)
+                        where receipt.CanSpeakToCookFrom(cell, zone)
+                            && SpreadExplorationResidents.KeepsKitchenAccess(zone, receipt.Merchant, order.Shelf, geometry, (x, y))
+                        select cell;
+            Entity hand = null;
+            try
+            {
+                hand = manager.Factory.CreateEntity(blueprint);
+                if (!Fresh(hand) || !LocalGatheringClaims.Alive(hand)
+                    || hand.GetPart<LocalShipmentEmploymentPart>() is not { Employer: null } role
+                    || hand.GetPart<BrainPart>() is not { } brain
+                    || originals.Any(e => e.ID == hand.ID) || !proof()
+                    || !originals.SetEquals(zone.GetReadOnlyEntities())) return;
+                foreach (var cell in cells)
+                {
+                    if (!zone.AddEntity(hand, cell.X, cell.Y)) continue;
+                    if (proof() && originals.Append(hand).ToHashSet().SetEquals(zone.GetReadOnlyEntities())
+                        && LocalPorterPart.Route(order.Worker, order.Shelf, zone) is { Count: > 0 }
+                        && LocalPorterPart.Route(hand, order.ParentEntity, zone) is { Count: <= LocalShipmentSearchPart.LegAttemptLimit })
+                    {
+                        brain.Stay(cell.X, cell.Y);
+                        role.Employer = receipt.Merchant;
+                        receipt.SearchEmployee = hand;
+                        return;
+                    }
+                    zone.RemoveEntity(hand);
+                }
+            }
+            catch (Exception error)
+            {
+                Diag.Record("worldgen", "WaysideKitchenHandRefused", payload: new { zone = zone.ZoneID, error = error.GetType().Name });
+            }
+            finally
+            {
+                if (hand != null && hand != receipt.SearchEmployee && hand.SpatialZone == zone && !originals.Contains(hand))
+                    zone.RemoveEntity(hand);
             }
         }
 

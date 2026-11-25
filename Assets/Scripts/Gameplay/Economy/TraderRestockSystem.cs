@@ -64,7 +64,8 @@ namespace CavesOfOoo.Core
                     continue;
                 // Work accounts are finite. Receiving a wage or a supply
                 // budget does not enroll an ordinary carrier in trade.
-                if (!authoredTrader && (e.HasPart<LocalPorterPart>() || e.HasPart<LocalShipmentSponsorPart>()))
+                if (!authoredTrader && (e.HasPart<LocalPorterPart>() || e.HasPart<LocalShipmentSponsorPart>()
+                    || e.HasPart<LocalShipmentEmploymentPart>()))
                     continue;
                 // "Is a trader" = carries the Drams property at all
                 // (blueprint-seeded); ordinary villagers have none.

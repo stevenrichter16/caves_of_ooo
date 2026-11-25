@@ -28548,6 +28548,28 @@
       ]
     },
     {
+      "Name": "WaysideKitchenHand",
+      "Inherits": "Creature",
+      "Stats": [{ "Name": "Hitpoints", "Value": 24, "Min": 0, "Max": 999 }],
+      "Tags": [{ "Key": "Faction", "Value": "Villagers" }],
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "wayside kitchen hand" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&g" }
+        ] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "true" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" }
+        ] },
+        { "Name": "LocalShipmentEmployment" },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A kitchen hand who helps Orven keep the wayside kitchen running." }
+        ] }
+      ]
+    },
+    {
       "Name": "WaysideClayLoadingMarker",
       "Inherits": "GleanersLoadingMarker",
       "Parts": [

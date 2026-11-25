@@ -13,6 +13,11 @@ namespace CavesOfOoo.Core
         public Entity Ledger;
         public Entity Merchant;
         public Entity Sponsor;
+        public Entity SearchEmployee;
+        public string DelegatedSearcherID;
+        public int DelegateDueAtTick = -1;
+        public int SearchReportAtTick = -1;
+        public bool SearchReportSawBody;
         public Entity FirstMeasure;
         public Entity SecondMeasure;
         public string StockedOrderID;
@@ -23,6 +28,7 @@ namespace CavesOfOoo.Core
         public int ConcernClosedAtTick = -1;
         private const int TicksPerRouteAction = 10;
         private const int GraceTicks = 40;
+        private const int SearchWage = 2;
 
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 25;
@@ -38,9 +44,15 @@ namespace CavesOfOoo.Core
             if (ConcernOpenedAtTick >= 0)
             {
                 if (ConcernClosedAtTick >= 0) return "The kitchen has closed its overdue shipment notice.";
+                if (SearchReportAtTick >= 0)
+                    return SearchReportSawBody
+                        ? "The kitchen hand reported finding the missing porter dead. Keep the original box packed if you return it."
+                        : "The kitchen hand returned from checking the shipment route. Keep the original box packed if you return it.";
                 if (Merchant?.GetPart<LocalShipmentSearchPart>() is { Phase: LocalShipmentSearchPhase.Finished, SeenPorterBodyID: not null } search
                     && search.Shelf == ParentEntity && search.OrderID == ExpectedOrderID)
                     return "The cook found the missing porter dead. Keep the original box packed if you return it.";
+                if (DelegatedSearcherID != null && !DelegateOverdue)
+                    return $"The cook sent the kitchen hand to check the route. The hand is due back on {Moment(DelegateDueAtTick)}.";
                 return "The kitchen has posted an overdue clay shipment notice. Keep the original box packed if you return it.";
             }
             return $"Clay shipment due on {Moment(ExpectedByTick)}. Allow {GraceTicks} ticks for delays. The porter works while this area is active.";
@@ -103,6 +115,93 @@ namespace CavesOfOoo.Core
         private bool HasAgreement(LocalPorterLedgerPart order) => order.ParentEntity == Ledger
             && order.Shelf == ParentEntity && !string.IsNullOrEmpty(ExpectedOrderID)
             && ExpectedOrderID == order.OrderID && ExpectedByTick >= 0;
+
+        internal bool IsDelegatedSearcher(Entity actor) => DelegatedSearcherID != null
+            && actor?.ID == DelegatedSearcherID && IsSearchEmployee(actor);
+
+        internal bool DelegateOverdue => DelegatedSearcherID != null && SearchReportAtTick < 0
+            && WorldClock.CurrentTick > DelegateDueAtTick;
+
+        private bool IsSearchEmployee(Entity actor) => actor != null && actor == SearchEmployee && actor != Merchant && actor != Sponsor
+            && actor.GetPart<LocalShipmentEmploymentPart>() is { } employment
+            && employment.ParentEntity == actor && employment.Employer == Merchant
+            && actor.Parts.Count(part => part is LocalShipmentEmploymentPart) == 1;
+
+        internal bool CanReceiveSearchReport(Zone zone) => WorldResourceActions.Nearby(Merchant, ParentEntity, zone)
+            && LocalPorterPart.CanDoLocalWork(Merchant, zone) && !LocalShipmentSearchPart.PreparingMeal(Merchant, zone)
+            && zone.GetReadOnlyEntities().Count(e => e.ID == Merchant.ID) == 1;
+
+        internal bool CanSpeakToCookFrom(Cell cell, Zone zone)
+        {
+            var cookAt = zone.GetEntityCell(Merchant);
+            var shelfAt = zone.GetEntityCell(ParentEntity);
+            bool Obscured(Cell at) => at == null || at.IsSolid() || zone.TileState.ObscuresSight(at.X, at.Y);
+            return cell != null && cell.ParentZone == zone && cookAt != null && shelfAt != null
+                && Math.Max(Math.Abs(cell.X - cookAt.X), Math.Abs(cell.Y - cookAt.Y)) <= 1
+                && Math.Max(Math.Abs(cell.X - shelfAt.X), Math.Abs(cell.Y - shelfAt.Y)) <= 1
+                && (cell.X == cookAt.X || cell.Y == cookAt.Y
+                    || !Obscured(zone.GetCell(cell.X, cookAt.Y)) || !Obscured(zone.GetCell(cookAt.X, cell.Y)))
+                && AIHelpers.HasLineOfSight(zone, cell.X, cell.Y, cookAt.X, cookAt.Y);
+        }
+
+        internal bool TryDelegateSearch(LocalPorterLedgerPart order, Zone zone)
+        {
+            var hand = SearchEmployee;
+            long due = (long)WorldClock.CurrentTick + (2 * LocalShipmentSearchPart.LegAttemptLimit + 6) * TicksPerRouteAction;
+            if (DelegatedSearcherID != null || !IsSearchEmployee(hand) || hand == order.Worker
+                || hand.HasPart<LocalShipmentSearchPart>() || !order.StaticShelf(zone)
+                || !CanReceiveSearchReport(zone) || !LocalPorterPart.CanDoLocalWork(hand, zone)
+                || string.IsNullOrEmpty(hand.ID) || zone.GetReadOnlyEntities().Count(e => e.ID == hand.ID) != 1
+                || !CanSpeakToCookFrom(zone.GetEntityCell(hand), zone)
+                || LocalPorterPart.Route(hand, order.ParentEntity, zone) is not { Count: <= LocalShipmentSearchPart.LegAttemptLimit }
+                || TradeSystem.GetDrams(Merchant) < SearchWage
+                || TradeSystem.GetDrams(hand) > int.MaxValue - SearchWage || due > int.MaxValue) return false;
+
+            var search = new LocalShipmentSearchPart
+            {
+                Shelf = ParentEntity, OrderID = ExpectedOrderID, Phase = LocalShipmentSearchPhase.CheckingLoadingPoint
+            };
+            var tx = new InventoryTransaction();
+            try
+            {
+                if (!tx.TryClaim(ParentEntity, Merchant, Name) || !tx.TryClaim(Merchant, Merchant, Name)
+                    || !tx.TryClaim(hand, Merchant, Name)) return false;
+                tx.Do(() =>
+                {
+                    DelegatedSearcherID = hand.ID;
+                    DelegateDueAtTick = (int)due;
+                    hand.AddPart(search);
+                }, () =>
+                {
+                    hand.RemovePart(search);
+                    DelegatedSearcherID = null;
+                    DelegateDueAtTick = -1;
+                });
+                tx.DeferCurrencyTransfer(Merchant, hand, SearchWage);
+                tx.AfterCommit(() =>
+                {
+                    if (zone.GetEntityCell(Merchant)?.IsVisible == true)
+                        MessageLog.Add($"{Merchant.GetDisplayName()} pays the kitchen hand to check the overdue shipment. The hand is due back on {Moment((int)due)}.");
+                });
+                tx.Commit();
+                return true;
+            }
+            finally
+            {
+                if (!tx.IsCommitted) tx.Rollback();
+            }
+        }
+
+        internal bool TryReceiveSearchReport(LocalShipmentSearchPart search, Zone zone)
+        {
+            var actor = search.ParentEntity;
+            if (SearchReportAtTick >= 0 || ConcernClosedAtTick >= 0 || DelegateOverdue || !IsDelegatedSearcher(actor)
+                || search.OrderID != ExpectedOrderID || !CanReceiveSearchReport(zone)
+                || !CanSpeakToCookFrom(zone.GetEntityCell(actor), zone)) return false;
+            SearchReportSawBody = search.SeenPorterBodyID != null;
+            SearchReportAtTick = WorldClock.CurrentTick;
+            return true;
+        }
 
         private static string Moment(int tick) =>
             $"day {tick / WorldClock.DayLengthTicks + 1}, {WorldClock.BandName(WorldClock.GetBand(tick), 0)} + {tick % WorldClock.BandLengthTicks} ticks";

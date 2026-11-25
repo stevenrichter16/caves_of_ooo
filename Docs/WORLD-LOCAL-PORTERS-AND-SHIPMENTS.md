@@ -411,6 +411,42 @@ meet the recipient, one reserved case and a real returned report. Preserve
 the personal search when the offer cannot be funded or staffed. Plan that
 small trial before extending search routes across settlements.
 
+### Delegated search trial
+
+The first delegated trial is one kitchen hand in eligible fresh delivery
+layouts. The hand is present before any overdue event. Their saved employer
+is the actual cook. The sorting layout, established saves and delivery layouts
+without a safe place for the hand keep the existing service and personal
+search. The supplier remains an independent potter.
+
+After the existing notice and grace period, the cook can offer one two-dram
+search from his current purse if both parties can meet by the shelf and the
+hand has a safe, bounded route. Payment and assignment commit together.
+The cook stays at the kitchen, and the hand travels using ordinary search,
+movement and survival behavior. If no eligible hand accepts, the cook can
+use the existing personal search. If the hand misses the agreed return
+time, the cook can follow up personally without learning why the hand is
+late. The paid hand heads back once the agreed search time has passed.
+No reward is created by reloading,
+returning the parcel late or claiming a second search.
+
+A hand carries observations back. The shelf receives a saved report only
+when the hand can speak to the cook in person by the kitchen. An unavailable
+cook delays reporting. A lost or interrupted hand conveys no news. After a
+real report, the notice retains it independently of the person who delivered
+it. Receipt and case closure still follow physical delivery or recovery.
+Before implementation, independent source critique confirmed that the
+current layout has no eligible employee and identified the 24-attempt search
+limit, line of sight at the handover and unintended merchant restock as
+requirements for this trial.
+
+The v22 trial has a guided fresh-layout proof. On the actual route, the
+working kitchen stayed approachable for trade. The paid hand returned to
+the safe standing position after delivering his report. The delayed parcel
+subsequently closed the same case and stocked the same physical clay lot.
+The imposed delay and other verification limits are recorded with the play.
+[Evidence](Verification/MachineSystems/WaysideDelegatedSearch20261125/README.md)
+
 ## Routes, survival and time
 
 The P1 candidate quotes up to 32 walk edges for one portable package and

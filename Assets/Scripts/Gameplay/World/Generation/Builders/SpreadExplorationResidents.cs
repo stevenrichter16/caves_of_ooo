@@ -353,6 +353,37 @@ namespace CavesOfOoo.Core
             return candidates.Length == 1 ? candidates[0] : null;
         }
         static bool Plantable(Zone zone, (int x, int y) p) => zone.GetCell(p.x, p.y) is Cell cell && !BarrenGroundRules.IsBarren(cell) && cell.Objects.Any(e => e.HasTag("Terrain") && e.HasTag("Plantable"));
+
+        internal static bool KeepsKitchenAccess(Zone zone, Entity cook, Entity shelf,
+            SpreadWildernessSituationBuilder.Geometry geometry, (int x, int y) staffAt)
+        {
+            var services = zone.GetReadOnlyEntities().Where(e => e.GetProperty(RoleKey) is
+                "resident" or "oven" or "cot" or "chair" or "pan" or "escrow" or "pickup").ToArray();
+            var cookAt = zone.GetEntityPosition(cook);
+            if (zone.GetReadOnlyEntities().Any(e => e.GetProperty(RoleKey) == "court-floor"))
+            {
+                var chair = services.SingleOrDefault(e => e.GetProperty(RoleKey) == "chair");
+                if (chair == null) return false;
+                var chairAt = zone.GetEntityPosition(chair);
+                if (chairAt != At(cookAt, (2, -1), 0) && chairAt != At(cookAt, (2, -1), 1)) return false;
+                int turn = chairAt == At(cookAt, (2, -1), 0) ? 0 : 1;
+                if (CourtAccess.Any(offset => At(cookAt, offset, turn) == staffAt)
+                    || Enumerable.Range(-2, 6).Any(x => At(cookAt, (x, -3), turn) == staffAt)) return false;
+            }
+            if (!geometry.PreservesRoutes(new[] { staffAt })) return false;
+
+            var reached = geometry.Flood(new HashSet<(int, int)> { staffAt }, null, int.MaxValue, null);
+            foreach (var service in services.Append(shelf))
+            {
+                var p = zone.GetEntityPosition(service);
+                var approaches = new[] { (p.x - 1, p.y), (p.x + 1, p.y), (p.x, p.y - 1), (p.x, p.y + 1) };
+                int baseline = approaches.Count(n => geometry.In(n.Item1, n.Item2) && geometry.BorderReach[n.Item1, n.Item2]);
+                int retained = approaches.Count(n => geometry.In(n.Item1, n.Item2) && reached[n.Item1, n.Item2]);
+                if (retained < Math.Min(2, baseline)) return false;
+            }
+            return true;
+        }
+
         static bool Fits(Zone zone, SpreadWildernessSituationBuilder.Geometry geometry, SpreadWildernessSituationBuilder.Geometry before,
             (int x, int y)[] positions, bool plot, (int x, int y) origin, int rotation, SpreadCompositionPlan plan,
             (string bp, string role, int x, int y)[] courtSpecs = null, string residentFaction = null)

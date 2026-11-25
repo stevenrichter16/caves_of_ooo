@@ -1,3 +1,13 @@
+**Delegated kitchen search — November 25 UTC, 2026.**
+One optional kitchen hand can accept a saved two-dram search in a fresh
+version 22 wayside delivery layout. Orven kept ordinary trade open. The
+worker reported in person and returned to his original stand before the
+actual late box closed the case and stocked trade. Editor play used a
+controlled delay on the existing porter. Fresh Continue matched 23 selected
+fields. The final connected run passed 392 executable cases with one
+utility skip. Broader staffing, delivery routes and full regression remain
+open. [Evidence](Verification/MachineSystems/WaysideDelegatedSearch20261125/README.md)
+
 **Mac delivery for local porter and seasonal work — November 25 UTC, 2026.**
 Runtime `e87ae17a8` is verified on main and packaged in a new universal Mac
 build. GameBootstrap startup completed on the Mac. Connected gameplay and

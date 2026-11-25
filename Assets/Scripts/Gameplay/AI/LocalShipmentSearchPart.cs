@@ -3,9 +3,16 @@ using System.Linq;
 
 namespace CavesOfOoo.Core
 {
+    /// <summary>Identifies the actual employer of an eligible local search worker.</summary>
+    public sealed class LocalShipmentEmploymentPart : Part
+    {
+        public override string Name => "LocalShipmentEmployment";
+        public Entity Employer;
+    }
+
     public enum LocalShipmentSearchPhase { Waiting, CheckingLoadingPoint, Returning, Finished, Stopped }
 
-    /// <summary>A single recipient's walk assigned to one overdue local order.</summary>
+    /// <summary>A single searcher's walk assigned to one overdue local order.</summary>
     public sealed class LocalShipmentSearchPart : Part, IDescribeState
     {
         public override string Name => "LocalShipmentSearch";
@@ -19,7 +26,7 @@ namespace CavesOfOoo.Core
         public int SeenPorterBodyX;
         public int SeenPorterBodyY;
         private const int SearchDelayTicks = 40;
-        private const int LegAttemptLimit = 24;
+        internal const int LegAttemptLimit = 24;
         private const int RecognitionRange = 3;
         [NonSerialized] private bool _stepping;
 
@@ -66,6 +73,7 @@ namespace CavesOfOoo.Core
             if (Phase == LocalShipmentSearchPhase.Waiting)
             {
                 if (receipt.ConcernClosedAtTick >= 0 || receipt.ArrivedAtTick >= 0
+                    || receipt.DelegatedSearcherID != null && !receipt.DelegateOverdue
                     || WorldClock.CurrentTick < (long)receipt.ConcernOpenedAtTick + SearchDelayTicks
                     || SpatialQuery.Distance(zone, actor, Shelf) > 1) return false;
                 if (!LoadingPointCurrent(zone, order))
@@ -73,14 +81,20 @@ namespace CavesOfOoo.Core
                     Phase = LocalShipmentSearchPhase.Stopped;
                     return false;
                 }
+                if (receipt.TryDelegateSearch(order, zone)) return true;
                 Phase = LocalShipmentSearchPhase.CheckingLoadingPoint;
                 Announce(zone, "sets out to check the loading point.");
                 return true;
             }
 
             bool outbound = Phase == LocalShipmentSearchPhase.CheckingLoadingPoint;
-            var target = outbound ? receipt.Ledger : Shelf;
+            bool delegateSearch = receipt.IsDelegatedSearcher(actor);
+            bool reporting = !outbound && delegateSearch && !receipt.DelegateOverdue && receipt.ConcernClosedAtTick < 0;
+            bool recipientAvailable = reporting && receipt.CanReceiveSearchReport(zone);
+            var target = outbound ? receipt.Ledger : recipientAvailable ? receipt.Merchant : Shelf;
+            Func<Cell, bool> endpoint = recipientAvailable ? cell => receipt.CanSpeakToCookFrom(cell, zone) : null;
             if (outbound && (!LoadingPointCurrent(zone, order)
+                || delegateSearch && receipt.DelegateOverdue
                 || receipt.ConcernClosedAtTick >= 0 && CanSee(actor, zone, Shelf)))
             {
                 BeginReturn();
@@ -91,7 +105,7 @@ namespace CavesOfOoo.Core
                 BeginReturn();
                 return true;
             }
-            if (SpatialQuery.Distance(zone, actor, target) <= 1)
+            if (SpatialQuery.Distance(zone, actor, target) <= 1 && endpoint?.Invoke(zone.GetEntityCell(actor)) != false)
             {
                 if (outbound)
                 {
@@ -101,9 +115,11 @@ namespace CavesOfOoo.Core
                 }
                 else
                 {
+                    if (reporting && (!recipientAvailable || !receipt.TryReceiveSearchReport(this, zone))) return false;
                     Phase = LocalShipmentSearchPhase.Finished;
-                    Announce(zone, SeenPorterBodyID == null ? "returns to the kitchen."
-                        : "returns to the kitchen and reports finding the missing porter dead.");
+                    bool reportsBody = SeenPorterBodyID != null && (!delegateSearch || reporting);
+                    Announce(zone, reportsBody ? "returns to the kitchen and reports finding the missing porter dead."
+                        : "returns to the kitchen.");
                 }
                 return true;
             }
@@ -119,7 +135,7 @@ namespace CavesOfOoo.Core
             }
 
             LegAttempts++;
-            if (LocalPorterPart.Route(actor, target, zone) is not { Count: > 0 } path) return false;
+            if (LocalPorterPart.Route(actor, target, zone, endpoint) is not { Count: > 0 } path) return false;
             var here = zone.GetEntityCell(actor);
             var next = path[0];
             var phase = Phase;
@@ -131,7 +147,8 @@ namespace CavesOfOoo.Core
         }
 
         private bool AssignmentCurrent(Zone zone, Entity actor, LocalShipmentReceiverPart receipt, LocalPorterLedgerPart order) =>
-            receipt.Merchant == actor && receipt.ParentEntity == Shelf && Shelf.GetPart<LocalShipmentReceiverPart>() == receipt
+            (receipt.Merchant == actor || receipt.IsDelegatedSearcher(actor))
+            && receipt.ParentEntity == Shelf && Shelf.GetPart<LocalShipmentReceiverPart>() == receipt
             && actor.GetPart<LocalShipmentSearchPart>() == this
             && !string.IsNullOrEmpty(OrderID) && receipt.ExpectedOrderID == OrderID && order.OrderID == OrderID
             && receipt.ConcernOpenedAtTick >= 0 && order.Shelf == Shelf && order.ParentEntity == receipt.Ledger
@@ -140,7 +157,7 @@ namespace CavesOfOoo.Core
         private static bool LoadingPointCurrent(Zone zone, LocalPorterLedgerPart order) =>
             order.SiteCurrent(zone) && zone.GetEntityPosition(order.ParentEntity) == (order.OriginX, order.OriginY);
 
-        private static bool PreparingMeal(Entity actor, Zone zone) =>
+        internal static bool PreparingMeal(Entity actor, Zone zone) =>
             zone.GetReadOnlyEntitiesWithPart<KitchenBatchPart>().Any(e =>
                 e.GetPart<KitchenBatchPart>() is { Configured: true, State: "Working" } batch && batch.Worker == actor);
 

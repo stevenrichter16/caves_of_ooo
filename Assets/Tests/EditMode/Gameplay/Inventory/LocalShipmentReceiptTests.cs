@@ -324,6 +324,113 @@ namespace CavesOfOoo.Tests
             Assert.That(order.Phase, Is.EqualTo(LocalPorterPhase.Delivered));
         }
 
+        [TestCase(false, false)]
+        [TestCase(true, false)]
+        [TestCase(false, true)]
+        public void AnOverdueCookCanPayOneEmployeeToSearchAndStayAtTheKitchen(bool reload, bool missedReturn)
+        {
+            Assert.That(Zone.RemoveEntity(Actor), Is.True);
+            Zone = new Zone("Overworld.12.11.0");
+            Assert.That(Zone.AddEntity(Actor, 10, 10), Is.True);
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            manager.SetActiveZone(Zone);
+            var (receipt, order) = BookForDeadline();
+            var cook = receipt.Merchant;
+            var hand = Place("Creature", 15, 11);
+            hand.SetTag("Faction", "Villagers");
+            hand.AddPart(new LocalShipmentEmploymentPart { Employer = cook });
+            receipt.SearchEmployee = hand;
+            int cookDrams = TradeSystem.GetDrams(cook);
+            var cookAt = Zone.GetEntityPosition(cook);
+            var handAt = Zone.GetEntityPosition(hand);
+            Assert.That(order.TryAct(Zone), Is.True);
+            Clock.AdvanceClock(receipt.ExpectedByTick + 41);
+            LocalPorterLedgerPart.Reconcile(Actor, Zone);
+            Assert.That(receipt.ConcernOpenedAtTick, Is.EqualTo(Clock.TickCount));
+            Assert.That(hand.GetPart<LocalShipmentSearchPart>(), Is.Null);
+            Assert.That(TradeSystem.GetDrams(cook), Is.EqualTo(cookDrams));
+
+            Clock.AdvanceClock(40);
+            AIBoredEvent.Check(cook);
+            var search = hand.GetPart<LocalShipmentSearchPart>();
+            Assert.That(search, Is.Not.Null);
+            Assert.That(search.OrderID, Is.EqualTo(order.OrderID));
+            Assert.That(TradeSystem.GetDrams(cook), Is.EqualTo(cookDrams - 2));
+            Assert.That(TradeSystem.GetDrams(hand), Is.EqualTo(2));
+            AIBoredEvent.Check(cook);
+            Assert.That(hand.GetPart<LocalShipmentSearchPart>(), Is.SameAs(search));
+            Assert.That(TradeSystem.GetDrams(hand), Is.EqualTo(2));
+            for (int i = 0; i < 4 && Zone.GetEntityPosition(hand) == handAt; i++) AIBoredEvent.Check(hand);
+            Assert.That(Zone.GetEntityPosition(hand), Is.Not.EqualTo(handAt));
+            Assert.That(Zone.GetEntityPosition(cook), Is.EqualTo(cookAt));
+            Assert.That(receipt.SearchReportAtTick, Is.EqualTo(-1));
+            int due = receipt.DelegateDueAtTick;
+            if (reload)
+            {
+                var position = Zone.GetEntityPosition(hand);
+                receipt = ReloadReceipt(manager, receipt.ParentEntity.ID, out manager, withClock: true);
+                cook = receipt.Merchant;
+                hand = receipt.SearchEmployee;
+                search = hand.GetPart<LocalShipmentSearchPart>();
+                Assert.That(receipt.DelegatedSearcherID, Is.EqualTo(hand.ID));
+                Assert.That(receipt.DelegateDueAtTick, Is.EqualTo(due));
+                Assert.That(hand.GetPart<LocalShipmentEmploymentPart>().Employer, Is.SameAs(cook));
+                Assert.That(Zone.GetEntityPosition(hand), Is.EqualTo(position));
+                Assert.That(search.Shelf, Is.SameAs(receipt.ParentEntity));
+                AIBoredEvent.Check(cook);
+                Assert.That(TradeSystem.GetDrams(cook), Is.EqualTo(cookDrams - 2));
+                Assert.That(TradeSystem.GetDrams(hand), Is.EqualTo(2));
+            }
+            if (missedReturn)
+            {
+                Clock.AdvanceClock(due - Clock.TickCount + 1);
+                AIBoredEvent.Check(cook);
+                Assert.That(cook.GetPart<LocalShipmentSearchPart>().Phase, Is.EqualTo(LocalShipmentSearchPhase.CheckingLoadingPoint));
+                FinishSearch(search, hand);
+                Assert.That(receipt.SearchReportAtTick, Is.EqualTo(-1));
+                Assert.That(TradeSystem.GetDrams(cook), Is.EqualTo(cookDrams - 2));
+                Assert.That(TradeSystem.GetDrams(hand), Is.EqualTo(2));
+                return;
+            }
+            Assert.That(Zone.MoveEntity(cook, 22, 10), Is.True);
+            for (int i = 0; i < 54; i++) AIBoredEvent.Check(hand);
+            Assert.That(search.Phase, Is.EqualTo(LocalShipmentSearchPhase.Returning));
+            Assert.That(receipt.SearchReportAtTick, Is.EqualTo(-1));
+            Assert.That(Zone.MoveEntity(cook, 17, 10), Is.True);
+            FinishSearch(search, hand);
+            Assert.That(search.CheckedLoadingPoint, Is.True);
+            Assert.That(receipt.SearchReportAtTick, Is.EqualTo(WorldClock.CurrentTick));
+            Assert.That(receipt.SearchReportSawBody, Is.False);
+            Assert.That(receipt.ConcernClosedAtTick, Is.EqualTo(-1));
+            Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Contain("hand returned"));
+            TraderRestockSystem.RestockZone(Zone, TraderRestockSystem.RestockIntervalTurns + 1);
+            Assert.That(TradeSystem.GetDrams(hand), Is.EqualTo(2));
+            Assert.That(Zone.RemoveEntity(hand), Is.True);
+            Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Contain("hand returned"));
+        }
+
+        [TestCase(false, 35)]
+        [TestCase(true, 1)]
+        public void AnUnavailablePaidSearchLeavesThePersonalSearchAndPursesIntact(bool employed, int cookDrams)
+        {
+            var (receipt, order) = BookForDeadline();
+            var cook = receipt.Merchant;
+            var hand = Place("Creature", 15, 11);
+            hand.AddPart(new LocalShipmentEmploymentPart { Employer = employed ? cook : Actor });
+            receipt.SearchEmployee = hand;
+            TradeSystem.SetDrams(cook, cookDrams);
+            Assert.That(order.TryAct(Zone), Is.True);
+            Clock.AdvanceClock(receipt.ExpectedByTick + 41);
+            LocalPorterLedgerPart.Reconcile(Actor, Zone);
+            Clock.AdvanceClock(40);
+            AIBoredEvent.Check(cook);
+
+            Assert.That(cook.GetPart<LocalShipmentSearchPart>().Phase, Is.EqualTo(LocalShipmentSearchPhase.CheckingLoadingPoint));
+            Assert.That(hand.GetPart<LocalShipmentSearchPart>(), Is.Null);
+            Assert.That(TradeSystem.GetDrams(cook), Is.EqualTo(cookDrams));
+            Assert.That(TradeSystem.GetDrams(hand), Is.Zero);
+        }
+
         [Test]
         public void TheSameRecipientChecksTheMarkerAndReturnsOnceForThisConcern()
         {
@@ -750,6 +857,13 @@ namespace CavesOfOoo.Tests
             var chair = zone.GetReadOnlyEntities().Single(e => e.GetProperty("SpreadResident.Role") == "chair");
             var opening = TradeSystem.GetTraderStock(merchant).Single(e => e.BlueprintName == "PreparedLiningClay");
             Assert.That(receipt.Merchant, Is.SameAs(merchant));
+            Assert.That(receipt.SearchEmployee, Is.Not.Null);
+            Assert.That(receipt.SearchEmployee.GetPart<LocalShipmentEmploymentPart>().Employer, Is.SameAs(merchant));
+            Assert.That(receipt.SearchEmployee.GetPart<TraderPart>(), Is.Null);
+            Assert.That(TradeSystem.GetDrams(receipt.SearchEmployee), Is.Zero);
+            var houseBrain = receipt.SearchEmployee.GetPart<BrainPart>();
+            Assert.That(houseBrain.Staying, Is.True);
+            Assert.That((houseBrain.StartingCellX, houseBrain.StartingCellY), Is.EqualTo(zone.GetEntityPosition(receipt.SearchEmployee)));
             Assert.That(SpatialQuery.Distance(zone, shelf, merchant), Is.LessThanOrEqualTo(1));
             Assert.That(SpatialQuery.Distance(zone, shelf, chair), Is.LessThanOrEqualTo(1));
             Assert.That(opening.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
