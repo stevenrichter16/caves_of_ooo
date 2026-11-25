@@ -1,3 +1,11 @@
+**Found quarry minerals support equipment and the cave return — November 25 UTC, 2026.**
+The existing ore-cache supply can be screened with an earned sieve. Actual
+play took the two fractions into an ordinary forge infusion and a visible
+cave exit mark. Trail marks now recognize dry, bare floor carved in an
+ordinary natural cave. The same terrain check guards payment and rollback.
+Cache chances and the existing mineral consumers retain their roles.
+[Evidence](Verification/MachineSystems/OrdinaryQuarryLoop20261125/README.md)
+
 **Moving a finite pool can shorten a real works approach — November 25 UTC, 2026.**
 The saved v27 Peat Works can offer a dry detour and a shorter route
 through either portable liquid method. Material goes into the carried

@@ -52,10 +52,16 @@ positions and selected state persist. This is one new screening capability;
 the existing two mineral consumers are integration evidence.
 
 A separate ordinary-strength seed64 search forged its own sieve and visited
-two caves, but the opened real OreCache6845 contained only GlowQuartz6846.
-Its earned1760 branch remains separate and preserved. No packet was obtained;
-ordinary acquisition remains unqualified. Native cold LootStocker cases prove
-fresh finite supply and existing-cache retention, not actual discovery.
+two caves. The opened real OreCache6845 contained only GlowQuartz6846.
+Its earned1760 branch remains separate and preserved.
+
+An earned sieve in a different seed 2 playthrough later screened a packet
+found in a normal neighboring Spread cave. The physical outputs reached
+Cinderhold’s forge and an ordinary cave exit in two saved branches. The
+screened salt enhanced the starting dagger. The screened sand paid for a
+visible exit mark on naturally carved floor. Both uses survived fresh
+Continue. The route was guided and used the existing loot chances.
+[Ordinary proof](Verification/MachineSystems/OrdinaryQuarryLoop20261125/README.md)
 
 Three F5 archives retain all12files across the two branches, two selected fresh
 pairs match, and one real reader PNG was inspected. Four private isolation roots
@@ -63,6 +69,6 @@ are preserved and already finished; do not finish them again. Input/settings,
 views and reload locks were restored, RequestedSeed0, main stopped/rootnull/clean.
 See [evidence](Verification/MachineSystems/HandSieve20261124/README.md) for exact
 pins, invalid fixture expectations, failed diagnostic/archive attempts and limits.
-Full-suite, ordinary discovery, economic balance, sustained NPC use and all
+Full-suite, unguided discovery, economic balance, sustained NPC use and all
 twelve complete-machine gates remain open. No retroactive stock, general ore
 refining, capstan/culture or weather claim.

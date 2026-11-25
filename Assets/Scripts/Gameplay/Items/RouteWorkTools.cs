@@ -105,10 +105,37 @@ namespace CavesOfOoo.Core
         public override string Name=>"TrailMarking"; public int Order=>40;
         static readonly string[] Notes={"north","east","south","west","exit","water","danger"};
         public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<TrailMarkingPart>()==this && command?.StartsWith("MakeTrailMark|",StringComparison.Ordinal)==true;
-        static bool Floor(Zone zone,Cell at,Entity actor)=>RouteWorkMenu.Visible(at) && !at.BlocksMovement(actor)
-            && at.Objects.Any(e=>e.HasTag("Terrain")) && at.Objects.All(e=>e.HasTag("Terrain") || e.HasTag("Creature"))
-            && !at.Objects.Any(e=>e.HasPart<LiquidPoolPart>() || e.HasPart<GasPoolPart>())
-            && (zone.TileState.Get(at.X,at.Y)?.Coatings.Any(c=>c.Turns>0) != true);
+        static bool Floor(Zone zone, Cell at, Entity actor, Entity placedMark = null)
+        {
+            if (!RouteWorkMenu.Visible(at) || at.BlocksMovement(actor)
+                || zone.TileState.Get(at.X, at.Y)?.Coatings.Any(coating => coating.Turns > 0) == true)
+                return false;
+
+            bool hasTerrain = false;
+            bool hasOtherOccupant = false;
+            foreach (var occupant in at.Occupants)
+            {
+                if (occupant == placedMark) continue;
+                bool terrain = occupant.HasTag("Terrain");
+                if ((!terrain && !occupant.HasTag("Creature"))
+                    || occupant.HasPart<LiquidPoolPart>() || occupant.HasPart<GasPoolPart>())
+                    return false;
+                hasTerrain |= terrain && at.Objects.Contains(occupant);
+                hasOtherOccupant |= occupant != actor;
+            }
+            if (hasTerrain) return true;
+            if (!at.IsInterior || hasOtherOccupant) return false;
+
+            // Strata can carve away a wall and leave ordinary floor without an object.
+            var manager = WorldLocationContext.For(zone);
+            if (manager == null || manager.ActiveZone != zone
+                || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current) || current != zone
+                || !BiomeCropPlan.IsOrdinaryCave(manager, zone.ZoneID))
+                return false;
+            var (x, y, depth) = WorldMap.FromZoneID(zone.ZoneID);
+            return depth < 3 || !UndergroundLayoutPlan.Select(manager.WorldSeed, zone.ZoneID,
+                manager.WorldMap.GetBiome(x, y), null, manager.Factory).IsRoomed;
+        }
         IEnumerable<RouteWorkMenu.Entry> Choices(Entity actor,Zone zone)
         {
             var sand=ParentEntity;var factory=HarvestablePart.Factory;
@@ -128,7 +155,8 @@ namespace CavesOfOoo.Core
                 bool Before()=>Context() && WorldResourceActions.Carried(actor,sand,false) && (stack?.StackCount??1)==count && Floor(zone,origin,actor);
                 bool After()=>Paid() && mark?.SpatialZone==zone && zone.GetEntityCell(mark)==origin && mark.GetPart<TrailMarkPart>()==part && part.Note==note && sameMark() && mark.GetPart<PhysicsPart>()==outputPhysics
                     && outputPhysics.ParentEntity==mark && !outputPhysics.Takeable && !outputPhysics.Solid && outputPhysics.InInventory==null && outputPhysics.Equipped==null
-                    && !pack.Objects.Any(e=>e==mark || e?.ID==mark.ID) && !pack.EquippedItems.Values.Any(e=>e==mark || e?.ID==mark.ID);
+                    && !pack.Objects.Any(e=>e==mark || e?.ID==mark.ID) && !pack.EquippedItems.Values.Any(e=>e==mark || e?.ID==mark.ID)
+                    && Floor(zone,origin,actor,mark);
                 yield return new RouteWorkMenu.Entry{Actor=actor,Zone=zone,Cell=origin,Key="MakeTrailMark|"+note,Label="mark "+note+" here (1 silver sand)",
                     Hint="Leaves your own navigation note. It verifies no exit, water or danger; brushing it away returns no sand.",Before=Before,After=After,Apply=tx=>
                     {

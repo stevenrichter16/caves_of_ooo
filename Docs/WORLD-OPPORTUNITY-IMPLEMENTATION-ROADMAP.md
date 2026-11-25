@@ -60,7 +60,7 @@ check-in provides continued work across runs.
 | First paid physical delivery | 21–24 and 28 have bounded Gleaners' hire, movement, shelf receipt and well use. The order-bound actions also have an actual cancel, rebook and reload branch. |
 | Selected NPC shipments and overdue searches | 25 has finite supplier payment, visible physical carrying, exact trade stock and pan repair. 41–42 have a saved deadline and local notice. 43–45 have bounded personal search, recognition, returned reporting, late delivery and intact recovery. A refilled parcel remains shelf storage with the inquiry open. One delegated v22 search has a finite wage, ordinary movement, physical reporting and trade continuity. Broader staffing and settings remain open. |
 | Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. 35 has a bounded ordinary harvest with a live shower offer left unused. Broader road, load and seasonal variation remain open. |
-| Readers, transactions and comparisons | 36–39 have bounded action, material, delivery and kitchen receipt checks. 40 has guided full wayside meal routes, a same-save Sodden treatment comparison and fresh v26 service and harvest forks before project work. The next comparisons still need varied current layouts and discovery without navigation guidance. |
+| Readers, transactions and comparisons | 36–39 have bounded action, material, delivery and kitchen receipt checks. 40 has guided wayside meals, portable and prepared treatment, ordinary quarry processing and distinct Peat Works approaches. The next comparisons still need varied current layouts and discovery without navigation guidance. |
 
 An earlier connected regression passed 615 executable cases. Actual play used
 separate guided branches. Requirements for ordinary discovery and complete
@@ -455,6 +455,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     keeping the cellar and free oven directions. The earlier save’s well
     now shows the live grade options without replacing its stored text.
     [Evidence](Verification/MachineSystems/GleanersDiscovery20261125/README.md)
+    A normal ore cache’s loot reader explained the packet’s useful fractions
+    before pickup. The screen action and the new natural cave mark described
+    the exact costs.
+    [Evidence](Verification/MachineSystems/OrdinaryQuarryLoop20261125/README.md)
 
 38. **Record causal diagnostics.** Trace exact source units, selected method,
     committed result, receiving owner and benefit qualification. Distinguish
@@ -514,6 +518,12 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     flask and one a supplied pump. Both kept the exact liquid in a
     carried vessel or the chosen outlet through fresh Continue.
     [Evidence](Verification/MachineSystems/PeatWorksMireShortcuts20261125/README.md)
+    A guided version 26 underground route found a packet, carried it,
+    screened it and used both fractions in separate saved branches.
+    The player used one sand for a cave exit mark and one salt to
+    enhance the original dagger at Cinderhold. This is one actual cache
+    draw. General exploration and current cross-seed coverage stay open.
+    [Evidence](Verification/MachineSystems/OrdinaryQuarryLoop20261125/README.md)
 
 ## Additional requirement: overdue shipments have social consequences
 

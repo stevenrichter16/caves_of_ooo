@@ -1,3 +1,14 @@
+**A found quarry packet has two earned uses — November 25 UTC, 2026.**
+An ordinary seed 2 search opened the neighboring Spread cave cache,
+took only the quarry packet and screened it with the earned sieve.
+The original dagger took the screened salt at Cinderhold. The same
+screened stock supplied a separate cave return branch where
+dry carved floor now takes the same sand mark. Both exact outcomes
+survived fresh Continue. All 77 focused native cases passed.
+Continue #31 with a separate bounded seasonal material opportunity and
+the wider #40 work with additional current ordinary layouts.
+[Evidence](Verification/MachineSystems/OrdinaryQuarryLoop20261125/README.md)
+
 **A finite mire shortcut at the Peat Works — November 25 UTC, 2026.**
 Fresh version 27 checks the actual shed gap, dry detour and legal
 outlet before staging two finite bog-mire pools. The ordinary southern

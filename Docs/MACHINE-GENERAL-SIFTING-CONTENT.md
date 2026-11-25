@@ -34,6 +34,21 @@ trail marks and weapon infusion without assuming a nearby source. The play
 comparisons use an earned clay packet and an explicitly supplied quarry lot.
 [GameBootstrap and native evidence](Verification/MachineSystems/ScreeningReader20261125/README.md)
 
+### A found quarry packet and a cave floor that can take a mark
+
+One ordinary shallow ore cache yielded the five-pound packet. The reader
+explained the two useful fractions and the unusable dust before pickup. The
+same earned sieve produced both minerals, and the pale-salt gave the original
+dagger an enhancement at Cinderhold’s forge. Keep the existing cache odds.
+
+The return path exposed a mismatch in the sand action. Strata generation
+sometimes carves a real cave floor without adding a terrain object. That dry,
+visible floor could be walked on but had no trail mark action. The shared sand
+action should admit this existing kind of floor in the active ordinary cave
+where the actor stands alone. Real fixtures, walls, active coatings, obscured
+cells and an existing mark still block it. The same check should validate the
+ground just before payment commits, ignoring only the mark being placed.
+
 The same physical size rule should work across material identities and places.
 Many materials can occupy one size band. A mesh is not an assay, density pan,
 sterilizer or chemical purifier. Overlapping particle sizes stay mixed until

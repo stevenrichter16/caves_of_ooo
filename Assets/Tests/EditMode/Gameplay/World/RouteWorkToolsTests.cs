@@ -69,6 +69,85 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains("water",mark.GetPart<TrailMarkPart>().DescribeState(default));
             var fresh=PartRoundTripHelper.RoundTripEntityViaTokenGraph(mark);Assert.AreEqual(mark.ID,fresh.ID);StringAssert.Contains("water",fresh.GetPart<TrailMarkPart>().DescribeState(default));
         }
+        OverworldZoneManager EnterBareCaveFloor()
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 2, true);
+            Assert.True(Zone.RemoveEntity(Actor));
+            Zone = manager.GetZone("Overworld.6.7.2");
+            Assert.True(BiomeCropPlan.IsOrdinaryCave(manager, Zone.ZoneID));
+            var floor = Zone.Cells.Cast<Cell>().First(cell => cell.IsInterior && cell.IsEmpty()
+                && cell.IsPassable() && !Zone.TileState.Has(cell.X, cell.Y));
+            manager.SetActiveZone(Zone);
+            SettlementRuntime.ActiveZone = Zone;
+            Assert.True(Zone.AddEntity(Actor, floor.X, floor.Y));
+            floor.IsVisible = floor.Explored = true;
+            return manager;
+        }
+
+        [Test]
+        public void MarkOnCarvedCaveFloorSpendsOneUnitAndSurvivesWholeSave()
+        {
+            var manager = EnterBareCaveFloor();
+            var floor = Zone.GetEntityCell(Actor);
+            var sand = Carry("SilverSand");
+            sand.GetPart<StackerPart>().StackCount = 2;
+
+            var command = Choice(sand, "MakeTrailMark|exit|");
+            Assert.True(Act(sand, command));
+            var marker = floor.Occupants.Single(entity => entity.BlueprintName == "TrailMark");
+            Assert.That(sand.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            Assert.False(Actions(sand).Any(action => action.Command.StartsWith("MakeTrailMark|")));
+
+            var state = GameSessionState.Capture("cave-trail", "test", manager, Clock, Actor);
+            using var stream = new MemoryStream();
+            state.Save(new SaveWriter(stream));
+            stream.Position = 0;
+            var loaded = GameSessionState.Load(new SaveReader(stream, Factory));
+            var loadedFloor = loaded.ZoneManager.ActiveZone.GetEntityCell(loaded.Player);
+            var loadedMarker = loadedFloor.Occupants.Single(entity => entity.BlueprintName == "TrailMark");
+            Assert.That(loadedMarker.ID, Is.EqualTo(marker.ID));
+            Assert.That(loadedMarker.GetPart<TrailMarkPart>().Note, Is.EqualTo("exit"));
+            Assert.False(loadedFloor.Occupants.Any(entity => entity.HasTag("Terrain")));
+        }
+
+        [TestCase("unattached")]
+        [TestCase("inactive")]
+        [TestCase("fixture")]
+        [TestCase("wet")]
+        [TestCase("hidden")]
+        public void EmptyGroundNeedsAnActiveDryAndVisibleCaveFloor(string context)
+        {
+            var manager = context == "unattached" ? null : EnterBareCaveFloor();
+            var floor = Zone.GetEntityCell(Actor);
+            if (context == "unattached") floor.IsInterior = true;
+            if (context == "inactive") manager.SetActiveZone(new Zone("Overworld.6.7.1"));
+            if (context == "fixture") Place("SalvagedTimber", floor.X, floor.Y);
+            if (context == "wet") Zone.TileState.WriteCoating(floor.X, floor.Y, "water", 5);
+            if (context == "hidden") floor.IsVisible = false;
+
+            var sand = Carry("SilverSand");
+            Assert.False(Actions(sand).Any(action => action.Command.StartsWith("MakeTrailMark|")));
+            Assert.That(Pack.Objects, Does.Contain(sand));
+        }
+
+        [Test]
+        public void LateWetCaveFloorLeavesSandAndIndependentCoating()
+        {
+            EnterBareCaveFloor();
+            var floor = Zone.GetEntityCell(Actor);
+            var sand = Carry("SilverSand");
+            var command = Choice(sand, "MakeTrailMark|exit|");
+            Actor.AddPart(new RouteWorkAfterProbe
+            {
+                Run = () => Zone.TileState.WriteCoating(floor.X, floor.Y, "water", 5)
+            });
+
+            Assert.False(Act(sand, command));
+            Assert.That(Pack.Objects, Does.Contain(sand));
+            Assert.True(Zone.TileState.HasCoating(floor.X, floor.Y, "water"));
+            Assert.False(floor.Occupants.Any(entity => entity.BlueprintName == "TrailMark"));
+        }
+
         [Test] public void WetFloorAndDuplicateMarkRefuseSandPayment()
         {
             Bed(10,10,false);var sand=Carry("SilverSand");Zone.TileState.WriteCoating(10,10,"water",5);
