@@ -248,6 +248,16 @@ keep their own provenance. The literal version 19 keeps the hoist frame.
 The timber can travel to existing consumers. No site-specific repair credit is
 awarded for moving it. [Evidence](Verification/MachineSystems/TimberOpening20261125/README.md)
 
+The v24 heavy opening trial uses the existing dry shoulder for side
+parking. A traveler can mount the ordinary cargo sled, draw the intact
+pallet south, turn east, park it out of the passage and recover the same
+sled. The extra six pounds still count toward hauling capacity. The place
+cue checks the final parking position after normal site acceptance. Editor
+play followed both physical objects through the turn, recovered the same
+sled, crossed the gap, returned by the detour and reached both cache sides.
+Ordinary bare hauling and the two-board dismantle remain available.
+[Evidence](Verification/MachineSystems/TimberSledShoulder20261125/README.md)
+
 26. **Compose circumstances, not mandatory project lists.** Vary eligible source
     quantities, load size, destination, existing access and service availability.
     Keep regional identity, lore, protected geometry and mandatory entrances

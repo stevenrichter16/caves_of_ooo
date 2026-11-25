@@ -103,6 +103,89 @@ namespace CavesOfOoo.Tests
    CollectionAssert.AreEqual(stockIds,savedCache.GetPart<ContainerPart>().Contents.Select(e=>e.ID));
   }
 
+  [Test]
+  public void GeneratedTimberOpeningShowsAndFitsARealLoadedTurn()
+  {
+   const int seed = 1;
+   using var scope = new HaulingContentScope();
+   var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true);
+   var entry = manager.Exploration.Entries.Single(e => e.Family == SpreadExplorationFamily.HeavyFrame);
+   scope.Seed(seed ^ FormationSelector.StableIndex(entry.ZoneID, int.MaxValue));
+   var zone = manager.GetZone(entry.ZoneID);
+   var pallet = zone.GetReadOnlyEntities().Single(e => e.GetProperty(ConnectedSpreadSatellite.RoleKey) == "frame");
+   Assert.That(pallet.BlueprintName, Is.EqualTo("GleanersTimberPallet"));
+   Assert.That(pallet.GetPart<ExaminablePart>().Text, Does.Contain("south shoulder").And.Contain("cargo sled"));
+   var (x, y) = zone.GetEntityPosition(pallet);
+   var actor = scope.Factory.CreateEntity("Player");
+   actor.Statistics["Strength"].BaseValue = 12;
+   var sled = scope.Factory.CreateEntity("CargoSled");
+   var pack = actor.GetPart<InventoryPart>();
+   Assert.That(pack.AddObject(sled), Is.True);
+   Assert.That(zone.AddEntity(actor, x, y + 1), Is.True);
+   zone.GetCell(x, y).IsVisible = true;
+   zone.GetCell(x, y).Explored = true;
+   var fit = InventorySystem.GetActions(actor, sled).Single(a => a.Command.StartsWith("FitCargoSled|", StringComparison.Ordinal));
+   Assert.That(InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(sled, fit.Command), actor, zone).Success, Is.True);
+   Assert.That(DragSystem.TryGrab(actor, pallet, zone), Is.EqualTo(DragVerdict.Ok));
+   foreach (var (dx, dy) in new[] { (0, 1), (1, 0), (1, 0), (1, 0) })
+   {
+    var from = zone.GetEntityCell(actor);
+    Assert.That(MovementSystem.TryMove(actor, zone, dx, dy), Is.True);
+    Assert.That(zone.GetEntityCell(pallet), Is.SameAs(from));
+    Assert.That(zone.GetEntityCell(sled), Is.SameAs(from));
+   }
+   Assert.That(zone.GetEntityPosition(pallet), Is.EqualTo((x + 2, y + 2)));
+   Assert.That(DragSystem.Release(actor), Is.True);
+   var recover = InventorySystem.GetActions(actor, sled).Single(a => a.Command.StartsWith("TakeCargoSled|", StringComparison.Ordinal));
+   Assert.That(InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(sled, recover.Command), actor, zone).Success, Is.True);
+   Assert.That(pack.Objects, Does.Contain(sled));
+   Assert.That(zone.GetCell(x, y).BlocksMovement(), Is.False);
+   Assert.That(Timber(actor), Is.Zero);
+  }
+
+  [TestCase(23,true,false)]
+  [TestCase(24,false,false)]
+  [TestCase(24,true,true)]
+  public void OriginalPalletAndCacheSurviveWithoutTheParkingGuide(int version, bool hasSled, bool blockedBay)
+  {
+   const int seed = 1;
+   using var scope = new HaulingContentScope();
+   var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true);
+   if(version < SpreadExplorationPlan.CurrentVersion)
+   {
+    var world = SpreadExplorationPlan.BindForSave(manager, null);
+    string wire = world.GetProperty(SpreadExplorationPlan.PropertyKey);
+    world.Properties[SpreadExplorationPlan.PropertyKey] = version.ToString(System.Globalization.CultureInfo.InvariantCulture)
+     + wire.Substring(wire.IndexOf('|'));
+    var restore = typeof(SpreadExplorationPlan).GetMethod("Restore", All);
+    typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(manager, restore.Invoke(null, new object[]{manager,world}));
+   }
+   if(!hasSled)scope.Factory.Blueprints.Remove("CargoSled");
+   var entry = manager.Exploration.Entries.Single(e => e.Family == SpreadExplorationFamily.HeavyFrame);
+   scope.Seed(seed ^ FormationSelector.StableIndex(entry.ZoneID, int.MaxValue));
+   var zone = manager.GetZone(entry.ZoneID);
+   Assert.That(manager.Exploration.DispositionFor(entry.ZoneID), Is.EqualTo(2));
+   var pallet = zone.GetReadOnlyEntities().Single(e => e.GetProperty(ConnectedSpreadSatellite.RoleKey) == "frame");
+   Assert.That(pallet.BlueprintName, Is.EqualTo("GleanersTimberPallet"));
+   if(blockedBay)
+   {
+    var reader = pallet.GetPart<ExaminablePart>();
+    int guideStart = reader.Text.IndexOf("\n\n", StringComparison.Ordinal);
+    Assert.That(guideStart, Is.GreaterThan(0));
+    reader.Text = reader.Text.Substring(0, guideStart);
+    var (x, y) = zone.GetEntityPosition(pallet);
+    var wall = scope.Factory.CreateEntity("StoneWall");
+    Assert.That(zone.AddEntity(wall, x+2, y+2), Is.True);
+    typeof(ConnectedSpreadSatellite).GetMethod("AddSideParkingGuide", All).Invoke(null, new object[]{manager,zone});
+    Assert.That(manager.GetZone(entry.ZoneID), Is.SameAs(zone));
+    Assert.That(zone.GetEntityPosition(pallet), Is.EqualTo((x,y)));
+    Assert.That(zone.GetEntityPosition(wall), Is.EqualTo((x+2,y+2)));
+   }
+   Assert.That(pallet.GetPart<ExaminablePart>().Text, Does.Contain("Dismantling").And.Not.Contain("south shoulder"));
+   Assert.That(zone.GetReadOnlyEntities().Count(e => e.GetPart<ContainerPart>()?.Contents.Any(
+    item => item.BlueprintName == "ShatteredRimeGrimoire") == true), Is.EqualTo(1));
+  }
+
   [TestCase(1,true)]
   [TestCase(16,false)]
   public void OriginalFrameRemainsOnRetainedVersionOrAlternateSeed(int seed,bool retained)

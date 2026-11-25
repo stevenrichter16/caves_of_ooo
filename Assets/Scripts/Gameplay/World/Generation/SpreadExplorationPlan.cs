@@ -36,7 +36,7 @@ namespace CavesOfOoo.Core
     public sealed class SpreadExplorationPlan
     {
         public const string PropertyKey="SpreadExploration.Manifest";
-        public const int CurrentVersion=23;
+        public const int CurrentVersion=24;
         public const string WorldKeyProperty="SpreadExploration.WorldKey";
         public string WorldKey { get; private set; } = "";
         private const int MaxRecords=WorldMap.Width*WorldMap.Height;

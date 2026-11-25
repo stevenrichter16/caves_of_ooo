@@ -889,11 +889,12 @@ namespace CavesOfOoo.Tests
             string id = KitchenBatchPart.KitchenZoneID;
             scope.Seed(unchecked(seed ^ FormationSelector.StableIndex(id, int.MaxValue)));
             var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true);
-            if (version == 22)
+            if (version < SpreadExplorationPlan.CurrentVersion)
             {
                 var world = SpreadExplorationPlan.BindForSave(manager, null);
                 var wire = world.GetProperty(SpreadExplorationPlan.PropertyKey);
-                world.Properties[SpreadExplorationPlan.PropertyKey] = "22" + wire.Substring(wire.IndexOf('|'));
+                world.Properties[SpreadExplorationPlan.PropertyKey] =
+                    version.ToString(System.Globalization.CultureInfo.InvariantCulture) + wire.Substring(wire.IndexOf('|'));
                 var restore = typeof(SpreadExplorationPlan).GetMethod("Restore",
                     System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
                 var plan = (SpreadExplorationPlan)restore.Invoke(null, new object[] { manager, world });

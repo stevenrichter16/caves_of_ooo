@@ -1,3 +1,13 @@
+**A loaded turn and side parking — November 25 UTC, 2026.**
+An eligible fresh v24 timber opening can describe the dry shoulder after
+the base site is accepted. In Editor play an actual sled and pallet turned,
+parked aside and separated using ordinary actions. Fresh Continue matched
+the active grip and the parked state. The player crossed the opening,
+returned by the outside walk and reached both sides of the original cache.
+The exact sled and the finite intact source were preserved. All 318
+targeted cases passed. The run used one supplied canonical sled.
+[Evidence](Verification/MachineSystems/TimberSledShoulder20261125/README.md)
+
 **Mac delivery for seeded loading approaches — November 25 UTC, 2026.**
 Runtime `24fd59ec2` is verified on main and packaged for arm64 and x86_64.
 GameBootstrap startup and package integrity passed on the Mac. The short

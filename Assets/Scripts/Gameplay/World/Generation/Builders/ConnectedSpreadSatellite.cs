@@ -112,6 +112,38 @@ namespace CavesOfOoo.Core
     }
    }
   }
+  internal static void AddSideParkingGuide(OverworldZoneManager manager,Zone zone)
+  {
+   if(manager.Exploration is not { Enabled:true, Version:>=24 } plan
+    ||plan.Find(zone.ZoneID)?.Family!=SpreadExplorationFamily.HeavyFrame
+    ||plan.DispositionFor(zone.ZoneID)!=2||!plan.RetainsGeneratedGraph(manager,zone)
+    ||!manager.Factory.Blueprints.ContainsKey("CargoSled"))return;
+
+   var frames=zone.GetReadOnlyEntities().Where(e=>e.GetProperty(RoleKey)=="frame").Take(2).ToArray();
+   if(frames.Length!=1||frames[0].BlueprintName!=TimberPallet||frames[0].GetPart<ExaminablePart>() is not { } reader
+    ||!KeepsAccessWithSideParking(zone,frames[0]))return;
+   reader.Text+="\n\nIf the pallet is still in the gap and the south shoulder is clear, pull south and turn east to park it out of the way. A cargo sled eases the pull if you can handle its extra weight.";
+  }
+
+  private static bool KeepsAccessWithSideParking(Zone zone,Entity pallet)
+  {
+   var (x,y)=zone.GetEntityPosition(pallet);
+   var turn=new[]{(x,y+1),(x,y+2),(x+1,y+2),(x+2,y+2),(x+3,y+2)};
+   var previous=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>());
+   var geometry=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>{pallet});
+   if(turn.Any(p=>!geometry.Walk(p.Item1,p.Item2,null)||zone.GenReservedCells.Contains(p)
+    ||zone.GetCell(p.Item1,p.Item2).IsInterior))return false;
+
+   var parked=new HashSet<(int,int)>{(x+2,y+2)};
+   if(!geometry.PreservesAgainst(previous,parked.ToArray()))return false;
+   var reach=geometry.Flood(parked,(x+3,y+2),int.MaxValue,null);
+   if(!reach[x,y])return false;
+
+   parked.Add((x,y));
+   var outside=geometry.Flood(parked,(x+3,y+2),int.MaxValue,null);
+   return new[]{(x,y-1),(x-1,y+4),(x+1,y+4),Arrival}.All(p=>geometry.In(p.Item1,p.Item2)&&outside[p.Item1,p.Item2]);
+  }
+
   sealed class Design
   {
    internal (int x,int y) Center;internal bool Wet;internal bool Reclaimable;
@@ -172,6 +204,7 @@ namespace CavesOfOoo.Core
     {var pulled=solid.Where(p=>p!=Center).Concat(new[]{At(0,-2)}).ToArray();if(!g.PreservesAgainst(original,pulled))return false;}
     return true;
    }
+
   }
   static Design Find(Zone z,SpreadWildernessSituationBuilder.Geometry original,HashSet<Entity> ignored,bool wet,bool reclaimable,(int x,int y)anchor,out string report)
   {

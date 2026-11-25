@@ -69,6 +69,45 @@ namespace CavesOfOoo.Tests
             Assert.IsNull(load.GetPart("SledLoad"));Assert.IsNull(Link(sled,"CargoSled","Load"));
             Assert.AreEqual(60,HandlingService.GetWeight(load));Assert.AreEqual(24,DragSystem.PenaltyFor(load));
         }
+        [Test]
+        public void ALoadedPalletRoundsTheBendAndRemainsOneTimberSource()
+        {
+            Actor.GetStat("Strength").BaseValue = 12;
+            var pallet = Load("GleanersTimberPallet");
+            var sled = Sled();
+            Fit(sled);
+            Assert.That(HandlingService.GetWeight(pallet), Is.EqualTo(96));
+            Assert.That(DragSystem.TryGrab(Actor, pallet, Zone), Is.EqualTo(DragVerdict.Ok));
+            Assert.That(Actor.GetStatValue("Speed"), Is.EqualTo(81));
+
+            var wall = Place("StoneWall", 10, 9);
+            Assert.That(MovementSystem.TryMoveTo(Actor, Zone, 10, 9), Is.False);
+            Assert.That(Zone.GetEntityPosition(Actor), Is.EqualTo((10, 10)));
+            Assert.That(Zone.GetEntityPosition(pallet), Is.EqualTo((11, 10)));
+            Assert.That(Zone.GetEntityCell(sled), Is.SameAs(Zone.GetEntityCell(pallet)));
+            Assert.That(DragSystem.GetDragged(Actor), Is.SameAs(pallet));
+            Assert.That(Zone.RemoveEntity(wall), Is.True);
+
+            foreach (var (x, y) in new[] { (9, 10), (9, 11), (8, 11) })
+            {
+                var vacated = Zone.GetEntityCell(Actor);
+                Assert.That(MovementSystem.TryMoveTo(Actor, Zone, x, y), Is.True);
+                Assert.That(Zone.GetEntityCell(pallet), Is.SameAs(vacated));
+                Assert.That(Zone.GetEntityCell(sled), Is.SameAs(vacated));
+                Assert.That(DragSystem.GetDragged(Actor), Is.SameAs(pallet));
+            }
+            Assert.That(Zone.GetEntityPosition(pallet), Is.EqualTo((9, 11)));
+            DragSystem.Release(Actor);
+            Assert.That(Actor.GetStatValue("Speed"), Is.EqualTo(100));
+            Assert.That(Act(sled, Choice(sled, "TakeCargoSled|")), Is.True);
+            Assert.That(Pack.Objects, Does.Contain(sled));
+            Assert.That(Zone.GetEntityPosition(pallet), Is.EqualTo((9, 11)));
+            Assert.That(Act(pallet, "Harvest"), Is.True);
+            Assert.That(Pack.Objects.Single(item => item.BlueprintName == "SalvagedTimber").GetPart<StackerPart>().StackCount,
+                Is.EqualTo(2));
+            Assert.That(Act(pallet, "Harvest"), Is.False);
+            Assert.That(Zone.GetEntityCell(pallet), Is.Null);
+        }
         [Test] public void RemovedLoadLeavesSledRecoverable()
         {
             var load=Load();var sled=Sled();Fit(sled);Assert.True(Zone.RemoveEntity(load));

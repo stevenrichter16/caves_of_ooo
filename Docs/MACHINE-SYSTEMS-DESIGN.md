@@ -1,3 +1,10 @@
+**Side parking for an actual loaded route — November 25 UTC, 2026.**
+The generated timber opening can publish a conditional place cue after
+the existing site is accepted. Route qualification checks the grounded
+90-pound pallet with an ordinary sled attached and an intact parking
+position clear of the gap, outside walk and cache approaches.
+[Evidence](Verification/MachineSystems/TimberSledShoulder20261125/README.md)
+
 **Seeded walking approaches for carried freight — November 25 UTC, 2026.**
 The initial placement preference uses one of two bands of actual walking
 steps. The same quote rules then apply to the route the porter can take
