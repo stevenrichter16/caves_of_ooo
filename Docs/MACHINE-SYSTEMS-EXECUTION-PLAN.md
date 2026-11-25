@@ -1,3 +1,9 @@
+**Mac delivery for source-side screening — November 25 UTC, 2026.**
+A universal build of `e33d0dba0` reached GameBootstrap on this Mac. The
+isolated source had zero build errors. The package retains the 186 exact
+post-build file hashes after startup. The earlier packages remain.
+[Delivery](Verification/MachineSystems/MacCandidateE33D0DBA0/README.md)
+
 **Source-side screening leaves ordinary recoverable material — November 25 UTC, 2026.**
 From the existing one-packet Morrowfast heap, portable screening can carry
 two pounds of clay and leave one pound of grit at the worksite. Fresh Continue
