@@ -291,13 +291,12 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        private Entity EnterShelter(int tick, int version = 26)
+        private Entity EnterShelter(int tick, int version = SpreadExplorationPlan.CurrentVersion)
         {
             Assert.True(Zone.RemoveEntity(Actor));
             var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
-            if (version == 25) SoddenDistrictIntegrationTests.Version(manager, 25);
-            Assert.That(manager.Exploration.Version,
-                Is.EqualTo(version == 25 ? 25 : SpreadExplorationPlan.CurrentVersion));
+            if (manager.Exploration.Version != version) SoddenDistrictIntegrationTests.Version(manager, version);
+            Assert.That(manager.Exploration.Version, Is.EqualTo(version));
             Assert.False(manager.CachedZones.ContainsKey(SoddenDistrictPlan.StopZoneID));
             Clock.AdvanceClock(tick);
             Zone = manager.GetZone(SoddenDistrictPlan.StopZoneID);
@@ -328,7 +327,7 @@ namespace CavesOfOoo.Tests
         {
             var guide = Zone.GetCell(51, 9).Objects.SingleOrDefault(e => e.BlueprintName == Guide);
             Assert.That(guide, Is.Not.Null, "Fresh Sodden generation should place the guide beside this crop.");
-            Assert.That(WorldLocationContext.For(Zone).Exploration.Version, Is.EqualTo(26));
+            Assert.That(WorldLocationContext.For(Zone).Exploration.Version, Is.GreaterThanOrEqualTo(26));
             return guide;
         }
 

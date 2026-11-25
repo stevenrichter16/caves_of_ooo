@@ -1245,6 +1245,7 @@ namespace CavesOfOoo.Core
                 if (zoneID == KitchenBatchPart.KitchenZoneID)
                     WaysideShipmentSite.TryInstall(zone, this);
                 ConnectedSpreadSatellite.AddSideParkingGuide(this, zone);
+                if (soddenAccepted) SoddenWorksDrainage.TryInstall(zone, this);
             }
             return accepted;
         }

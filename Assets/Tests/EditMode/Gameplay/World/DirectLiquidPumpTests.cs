@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using CavesOfOoo.Core;
 using NUnit.Framework;
@@ -128,6 +129,82 @@ namespace CavesOfOoo.Tests
             Carry("LeatherBindingComponent").GetPart<StackerPart>().StackCount=2;
             Assert.True(Act(spike,Choice(spike,"MaterialProcess|make_hand_pump|")));Assert.AreEqual(1,Count("HandPump"));
             Assert.AreEqual(0,Count("FireClay"));Assert.AreEqual(0,Count("LeatherBindingComponent"));Assert.AreEqual(0,Count("IronSpikeComponent"));
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void PeatWorksGapCanBeClearedWithAnOrdinaryFlaskOrPump(bool pumping)
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            Assert.True(Zone.RemoveEntity(Actor));
+            Zone = manager.GetZone(SoddenDistrictPlan.WorksZoneID);
+            Assert.NotNull(Zone);
+            SettlementRuntime.ActiveZone = Zone;
+            foreach (var cell in Zone.Cells) { cell.IsVisible = true; cell.Explored = true; }
+            Assert.True(Zone.AddEntity(Actor, 52, 2));
+
+            var sources = Zone.GetReadOnlyEntities().Where(e => e.BlueprintName == "PouredLiquidPool").ToArray();
+            Assert.That(sources, Has.Length.EqualTo(2));
+            var source = sources.Single(e => Zone.GetEntityPosition(e) == (52, 3));
+            var neighbor = sources.Single(e => Zone.GetEntityPosition(e) == (51, 3));
+            Assert.AreEqual(12, PoolUnits(52, 3));
+            Assert.AreEqual(12, PoolUnits(51, 3));
+            Assert.True(Zone.TileState.HasCoating(52, 3, "bog-mire"));
+            Assert.True(Zone.TileState.HasCoating(51, 3, "bog-mire"));
+            Assert.False(Zone.TileState.Has(54, 10), "The regular door must stay dry.");
+
+            var tool = pumping ? Tool() : Flask(0);
+            string command = pumping
+                ? Choice(tool, "PumpLiquid|" + source.ID + "|", row => row.Display.Contains("to 53,2"))
+                : Choice(tool, "FillLiquidVessel|" + Id(source) + "|");
+            Assert.True(Act(tool, command));
+            Assert.False(Act(tool, command), "The committed source was removed.");
+            Assert.False(Zone.GetReadOnlyEntities().Contains(source));
+            Assert.False(Zone.TileState.HasCoating(52, 3, "bog-mire"));
+            Assert.True(Zone.GetReadOnlyEntities().Contains(neighbor));
+            Assert.AreEqual(12, PoolUnits(51, 3));
+            Assert.AreEqual(pumping ? 12 : 0, PoolUnits(53, 2));
+            Assert.AreEqual(pumping, Zone.TileState.HasCoating(53, 2, "bog-mire"));
+            if (!pumping)
+            {
+                Assert.AreEqual(12, Units(tool));
+                Assert.AreEqual("bog-mire", tool.GetPart<LiquidVesselPart>().LiquidId);
+            }
+            manager.UnloadZone(Zone.ZoneID);
+            Assert.AreSame(Zone, manager.GetZone(Zone.ZoneID));
+            var state = GameSessionState.Capture("sodden-mire", "test", manager, null, null);
+            using var stream = new MemoryStream();
+            state.Save(new SaveWriter(stream));
+            stream.Position = 0;
+            var loaded = GameSessionState.Load(new SaveReader(stream, Factory)).ZoneManager.GetZone(Zone.ZoneID);
+            Assert.That(loaded.GetCell(52, 3).Objects.Any(e => e.HasPart<LiquidPoolPart>()), Is.False);
+            Assert.False(loaded.TileState.HasCoating(52, 3, "bog-mire"));
+            Assert.AreEqual(pumping, loaded.TileState.HasCoating(53, 2, "bog-mire"));
+        }
+
+        [TestCase("old")] [TestCase("missing")] [TestCase("altered")]
+        public void OptionalGapKeepsWorksUsableWhenItsSourcesCannotStage(string mode)
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            if (mode == "old") SoddenDistrictIntegrationTests.Version(manager, 26);
+            if (mode == "missing") Factory.Blueprints.Remove("PouredLiquidPool");
+            if (mode == "altered") Factory.Blueprints["PouredLiquidPool"].Parts["LiquidPool"]["Volume"] = "5";
+            var works = manager.GetZone(SoddenDistrictPlan.WorksZoneID);
+            Assert.NotNull(works);
+            Assert.That(works.GetReadOnlyEntities().Any(e => e.BlueprintName == "PouredLiquidPool"), Is.False);
+            Assert.That(works.GetReadOnlyEntities().Any(e => e.BlueprintName == "SoddenWorksLocker"), Is.True);
+            Assert.False(works.TileState.Has(54, 10));
+        }
+
+        [TestCase(64, 51)] [TestCase(65, 52)]
+        public void TwoRealWorldSeedsUseDifferentNorthWallGaps(int seed, int left)
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, seed, true);
+            var works = manager.GetZone(SoddenDistrictPlan.WorksZoneID);
+            Assert.NotNull(works);
+            CollectionAssert.AreEquivalent(new[] { (left, 3), (left + 1, 3) },
+                works.GetReadOnlyEntities().Where(e => e.BlueprintName == "PouredLiquidPool").Select(works.GetEntityPosition));
+            Assert.True(works.GetCell(54, 10).IsPassable());
+            Assert.False(works.TileState.Has(54, 10));
         }
     }
 }

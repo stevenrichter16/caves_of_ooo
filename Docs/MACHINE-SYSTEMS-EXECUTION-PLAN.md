@@ -1,3 +1,13 @@
+**A finite mire shortcut at the Peat Works — November 25 UTC, 2026.**
+Fresh version 27 checks the actual shed gap, dry detour and legal
+outlet before staging two finite bog-mire pools. The ordinary southern
+entrance keeps its dry walking distance. Actual north entry reached the
+same work rig in 23 detour steps or 17 actions using either an ordinarily
+bought flask or a pump supplied to a separate comparison copy. Both
+clearing methods retained the liquid and open ground through reload.
+All 134 focused native cases passed.
+[Evidence](Verification/MachineSystems/PeatWorksMireShortcuts20261125/README.md)
+
 **Ordinary shops and recovered clay supply a hand pump — November 25 UTC, 2026.**
 An earned version 25 Gleaners’ save carried both original clay measures
 to Cinderhold. Ordinary trade spent 44 on one spike and two offcuts.

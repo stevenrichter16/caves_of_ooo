@@ -1,3 +1,11 @@
+**Moving a finite pool can shorten a real works approach — November 25 UTC, 2026.**
+The saved v27 Peat Works can offer a dry detour and a shorter route
+through either portable liquid method. Material goes into the carried
+flask or onto an accessible patch beside the approach. Both methods
+expose the same cleared floor. The ordinary door and field rig still
+use their established rules.
+[Evidence](Verification/MachineSystems/PeatWorksMireShortcuts20261125/README.md)
+
 **The hand pump has an earned ordinary acquisition route — November 25 UTC, 2026.**
 Original cellar clay, purchased spike and offcuts, the starting blade
 and Cinderhold’s public forge produced one saved pump. The actual finished

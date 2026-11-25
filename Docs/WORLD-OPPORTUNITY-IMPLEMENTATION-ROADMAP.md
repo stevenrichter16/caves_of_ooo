@@ -358,6 +358,16 @@ Ordinary bare hauling and the two-board dismantle remain available.
     and generator updates never reroll an existing site. Promise multiple
     approaches only after validating at least two there.
 
+Fresh v27 Peat Works can use the realized north gaps for optional mire work.
+The ordinary southern approach stays dry. The generation check compares the
+dry detour with the cleared route after spending one action and treating
+the real outlet as wet. Native seed cases move the gap with the wall layout.
+Actual seed 64 play used the detour, an ordinarily bought flask and a pump
+supplied to a separate copy. The last two cleared the same floor and kept
+all 24 units in physical stock. Tests and fresh Continue verified retention
+of the actual owners and coating. This is ordinary walking evidence.
+[Evidence](Verification/MachineSystems/PeatWorksMireShortcuts20261125/README.md)
+
 ## Priority 7: add seasonal bonus work without making travel a chore
 
 Requirements 31–33 have one local candidate. An admitted fresh Morrowfast
@@ -499,6 +509,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     Fresh Continue kept the pump and remaining purse. A natural useful
     crossing and a complete field-use comparison remain open.
     [Evidence](Verification/MachineSystems/OrdinaryHandPumpAcquisition20261125/README.md)
+    The v27 Peat Works north entry gave a 23-step dry detour and two
+    17-action clearing paths to the same work rig. One used a bought
+    flask and one a supplied pump. Both kept the exact liquid in a
+    carried vessel or the chosen outlet through fresh Continue.
+    [Evidence](Verification/MachineSystems/PeatWorksMireShortcuts20261125/README.md)
 
 ## Additional requirement: overdue shipments have social consequences
 
