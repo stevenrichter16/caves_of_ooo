@@ -1,3 +1,16 @@
+**Sieve content continuation — November24,2026 (America/Chicago):** The user
+asked to continue the content and uses brainstorm. Four concrete optional loops
+now cover clay/repairs/grit, abrasives/lasting finishing, shavings/packing/freight
+and detached seeds/planting. Fourteen wider streams and encounter cues connect
+materials to practical consumers and later projects. They are proposals, not
+implemented capabilities. Preserve ordinary harvests, gear, freight and services;
+seasonal opportunities change available work/materials without compulsory upkeep.
+Next implementation remains shared suitable-grit traction, then a finite dry-clay
+lot and real size-based screening; proposed initial lot is three weight containing
+two known clay plus one grit, separately from the unchanged four-clay bank.
+Other consumers must exist before their stocks. No runtime/tests/Unity/build
+change in this content pass. See [content plan](MACHINE-GENERAL-SIFTING-CONTENT.md).
+
 **General sieve content qualification — November25UTC,2026:** Independent
 bounded source/design critique is complete for the first four proposed streams.
 Optional dry fire-clay-working spoil is the leading candidate because fines feed

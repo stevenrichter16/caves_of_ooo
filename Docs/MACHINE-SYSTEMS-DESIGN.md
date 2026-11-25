@@ -1,3 +1,16 @@
+**Sieve content and practical uses — November24,2026 (America/Chicago):**
+The content plan now develops four contrasting optional streams: dry clay spoil
+for existing repairs plus proposed grit; graded abrasives for a new lasting
+finishing consumer; carpentry shavings for a new packing/freight consumer; and
+detached seed lots for existing planting. A wider catalogue connects fourteen
+streams to concrete destinations, with new-work dependencies stated. Proposed
+lasting finishing/packing/seed-exchange projects preserve current services,
+merchant lots, freight and convenient harvests. Seasons change optional work and
+available materials. First candidate is one finite three-weight clay lot with
+two clay/one suitable grit, after shared grit and actual general sorting qualify.
+This is design only; runtime995d16a36, its Mac and all twelve machine statuses
+remain unchanged. See [content and uses](MACHINE-GENERAL-SIFTING-CONTENT.md).
+
 **General sieve content qualification — November25UTC,2026:** Independent
 bounded source/design critique is complete for the first four proposed streams.
 Optional dry fire-clay-working spoil is the leading candidate because fines feed
