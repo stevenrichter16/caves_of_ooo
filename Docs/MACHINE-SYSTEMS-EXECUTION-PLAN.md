@@ -1,3 +1,11 @@
+**Mac delivery for seeded loading approaches — November 25 UTC, 2026.**
+Runtime `24fd59ec2` is verified on main and packaged for arm64 and x86_64.
+GameBootstrap startup and package integrity passed on the Mac. The short
+and longer carried delivery play and fresh Continue ran in the Editor.
+The next slice joins the canonical cargo sled to the existing dry timber
+opening and checks a turn of the physical load itself.
+[Delivery](Verification/MachineSystems/MacCandidate24FD59EC2/README.md)
+
 **Seeded loading approaches — November 25 UTC, 2026.**
 Fresh version 23 can choose a different physical porter approach to the
 same kitchen. Each branch delivered a five-pound box containing two
