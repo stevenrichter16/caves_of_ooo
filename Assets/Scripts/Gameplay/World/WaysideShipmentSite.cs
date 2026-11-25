@@ -67,13 +67,21 @@ namespace CavesOfOoo.Core
                 stack.StackCount = 2;
                 if (!cargo.AddItem(clay) || DeliveryStoragePart.ParcelWeightOrZero(parcel, zone) == 0
                     || !zone.AddEntity(shelf, shelfAt.x, shelfAt.y)) return false;
-                foreach (var placement in LoadingPlaces(zone, at))
+                bool? shortRoute = manager.Exploration.Version >= 23
+                    ? SpreadExplorationPlan.Rank(manager.WorldSeed, zone.ZoneID, "wayside-loading-approach-v23") % 2 == 0
+                    : null;
+                var trials = LoadingPlaces(zone, at).Select(placement => (placement, shortRoute));
+                if (shortRoute.HasValue)
+                    trials = trials.Concat(LoadingPlaces(zone, at).Select(placement => (placement, (bool?)null)));
+                foreach (var (placement, preferredBand) in trials)
                 {
                     if (!zone.AddEntity(supplier, placement.supplier.x, placement.supplier.y)) continue;
                     if (zone.AddEntity(worker, placement.worker.x, placement.worker.y)
                         && LocalPorterPart.Route(worker, shelf, zone) is { Count: > 0 }
                         && zone.AddEntity(marker, placement.loading.x, placement.loading.y)
-                        && zone.AddEntity(parcel, placement.loading.x, placement.loading.y))
+                        && zone.AddEntity(parcel, placement.loading.x, placement.loading.y)
+                        && MatchesPreferredRoute(preferredBand, worker, shelf, zone)
+                        && (!preferredBand.HasValue || porter.Fits(worker, parcel, alreadyCarried: false, out _)))
                     {
                         order.Worker = worker; order.Box = parcel; order.Shelf = shelf;
                         porter.Ledger = sponsor.Ledger = marker;
@@ -83,7 +91,7 @@ namespace CavesOfOoo.Core
                         TradeSystem.SetDrams(supplier, SupplyBudget);
                         committed = proof() && original.Concat(placed).ToHashSet().SetEquals(zone.GetReadOnlyEntities());
                         if (committed && manager.Exploration.Version >= 22)
-                            TryInstallSearchEmployee(zone, manager, receipt, order);
+                            TryInstallSearchEmployee(zone, manager, receipt, order, preferredBand);
                         return committed;
                     }
                     foreach (var owner in placed.Where(e => e != shelf && e.SpatialZone == zone))
@@ -104,8 +112,15 @@ namespace CavesOfOoo.Core
             }
         }
 
+        private static bool MatchesPreferredRoute(bool? shortRoute, Entity worker, Entity shelf, Zone zone)
+        {
+            if (!shortRoute.HasValue) return true;
+            int steps = LocalPorterPart.Route(worker, shelf, zone)?.Count ?? 0;
+            return shortRoute.Value ? steps is >= 1 and <= 8 : steps is >= 9 and <= 16;
+        }
+
         private static void TryInstallSearchEmployee(Zone zone, OverworldZoneManager manager,
-            LocalShipmentReceiverPart receipt, LocalPorterLedgerPart order)
+            LocalShipmentReceiverPart receipt, LocalPorterLedgerPart order, bool? preferredBand)
         {
             const string blueprint = "WaysideKitchenHand";
             if (!manager.Factory.Blueprints.ContainsKey(blueprint)) return;
@@ -134,6 +149,7 @@ namespace CavesOfOoo.Core
                     if (!zone.AddEntity(hand, cell.X, cell.Y)) continue;
                     if (proof() && originals.Append(hand).ToHashSet().SetEquals(zone.GetReadOnlyEntities())
                         && LocalPorterPart.Route(order.Worker, order.Shelf, zone) is { Count: > 0 }
+                        && MatchesPreferredRoute(preferredBand, order.Worker, order.Shelf, zone)
                         && LocalPorterPart.Route(hand, order.ParentEntity, zone) is { Count: <= LocalShipmentSearchPart.LegAttemptLimit })
                     {
                         brain.Stay(cell.X, cell.Y);

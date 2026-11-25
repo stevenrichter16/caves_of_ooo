@@ -879,6 +879,52 @@ namespace CavesOfOoo.Tests
             Assert.That(zone.GetReadOnlyEntities().Any(e => e.BlueprintName == "DryClaySpoil"), Is.False);
         }
 
+        [TestCase(23, 64, 9, 16, 6)]
+        [TestCase(23, 1, 1, 8, 5)]
+        [TestCase(22, 64, 8, 8, 5)]
+        public void SeededLoadingApproachesChangeRealQuotesWithoutChangingTheClay(int version, int seed,
+            int minSteps, int maxSteps, int fare)
+        {
+            using var scope = new HaulingContentScope();
+            string id = KitchenBatchPart.KitchenZoneID;
+            scope.Seed(unchecked(seed ^ FormationSelector.StableIndex(id, int.MaxValue)));
+            var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true);
+            if (version == 22)
+            {
+                var world = SpreadExplorationPlan.BindForSave(manager, null);
+                var wire = world.GetProperty(SpreadExplorationPlan.PropertyKey);
+                world.Properties[SpreadExplorationPlan.PropertyKey] = "22" + wire.Substring(wire.IndexOf('|'));
+                var restore = typeof(SpreadExplorationPlan).GetMethod("Restore",
+                    System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+                var plan = (SpreadExplorationPlan)restore.Invoke(null, new object[] { manager, world });
+                typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(manager, plan);
+            }
+            Assert.That(manager.Exploration.Version, Is.EqualTo(version));
+            var zone = manager.GetZone(id);
+            manager.SetActiveZone(zone);
+            var shelf = zone.GetReadOnlyEntitiesWithPart<LocalShipmentReceiverPart>().Single();
+            var receipt = shelf.GetPart<LocalShipmentReceiverPart>();
+            var order = receipt.Ledger.GetPart<LocalPorterLedgerPart>();
+            var measure = receipt.FirstMeasure;
+            var opening = TradeSystem.GetTraderStock(receipt.Merchant).Single(i => i.BlueprintName == "PreparedLiningClay");
+            var role = order.Worker.GetPart<LocalPorterPart>();
+            Assert.That(role.TryQuote(receipt.Sponsor, order.Box, shelf, zone, out var quote, out string refusal), Is.True, refusal);
+            Assert.That(quote.Steps.Count, Is.InRange(minSteps, maxSteps));
+            Assert.That(quote.LoadedWeight, Is.EqualTo(5));
+            Assert.That(quote.Fare, Is.EqualTo(fare));
+
+            int now = WorldClock.CurrentTick;
+            Assert.That(AIBoredEvent.Check(receipt.Sponsor), Is.False);
+            Assert.That(receipt.ExpectedByTick, Is.EqualTo(now + (quote.Steps.Count + 2) * 10));
+            for (int i = 0; i < 34 && order.Phase != LocalPorterPhase.Delivered; i++) order.TryAct(zone);
+            Assert.That(order.Phase, Is.EqualTo(LocalPorterPhase.Delivered));
+            Assert.That(receipt.TryStock(zone), Is.True);
+            Assert.That(TradeSystem.GetDrams(receipt.Sponsor), Is.EqualTo(8 - fare));
+            Assert.That(TradeSystem.GetTraderStock(receipt.Merchant), Does.Contain(opening));
+            Assert.That(TradeSystem.GetTraderStock(receipt.Merchant), Does.Contain(measure));
+            Assert.That(measure.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+        }
+
         [TestCase(2)]
         [TestCase(1729)]
         public void ASeededWaysideSortingLotKeepsTheSameKitchenAndDoesNotRefill(int seed)

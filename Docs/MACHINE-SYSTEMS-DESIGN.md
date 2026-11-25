@@ -1,3 +1,10 @@
+**Seeded walking approaches for carried freight — November 25 UTC, 2026.**
+The initial placement preference uses one of two bands of actual walking
+steps. The same quote rules then apply to the route the porter can take
+right now. The longer walk costs the payer more and sets a later deadline.
+The actual parcel still supplies the same kitchen once received.
+[Evidence](Verification/MachineSystems/WaysideLoadingApproaches20261125/README.md)
+
 **Paid local search and physical report — November 25 UTC, 2026.**
 A saved kitchen employment relationship can support one exact missing-order
 assignment. The cook's purse funds the wage. The employee walks the same

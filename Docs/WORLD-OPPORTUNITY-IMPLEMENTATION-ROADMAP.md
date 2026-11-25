@@ -208,6 +208,25 @@ receiving service and test each advertised method with its actual load. A
 fresh layout with only a different compass direction is a placement variant.
 The replayability gate requires a practical difference in the choices.
 
+The v23 loading trial uses the actual path of a porter with the same
+five-pound clay parcel. Prefer one seeded band of up to eight walking steps
+or one band of nine to sixteen. Those bands already cost the supplier five
+or six drams respectively and set different expected arrival times. The
+retail value, finite cargo and restored meal service stay consistent. Trial
+placement must validate the settled route with the marked box, supplier and
+optional kitchen hand present. If the preferred band cannot fit, keep the
+existing admissible approach. Earlier layouts and sorting lots keep their
+own construction rules. Road geometry and loaded sled paths have separate
+qualification gates.
+
+Two fresh Editor branches reached the real kitchen after ordinary map
+travel. The short eight-step quote was five drams and arrived at tick 160.
+The longer twelve-step quote was six drams and arrived at tick 200.
+The supplier paid each fare. Both deliveries kept the opening stock and
+stocked the two measures from the actual box. Fresh Continue retained each
+generated layout and completed receipt.
+[Evidence](Verification/MachineSystems/WaysideLoadingApproaches20261125/README.md)
+
 The first local candidate uses two allocations at the established wayside
 kitchen. One keeps the existing paid clay shipment and its physical import.
 The other places one finite, public sorting lot within a few safe steps of

@@ -1,3 +1,13 @@
+**Seeded loading approaches — November 25 UTC, 2026.**
+Fresh version 23 can choose a different physical porter approach to the
+same kitchen. Each branch delivered a five-pound box containing two
+measures of clay. Eight versus twelve actual steps produced five
+versus six drams of supplier cost and forty ticks of arrival difference.
+Both retained the exact saved results in fresh Continue. The connected run
+passed 462 executable cases with one utility skip. The next route trial
+should qualify the actual loaded sled or drag footprint.
+[Evidence](Verification/MachineSystems/WaysideLoadingApproaches20261125/README.md)
+
 **Mac delivery for delegated search — November 25 UTC, 2026.**
 Runtime `35d2c5d7e` is verified on main. The new universal Mac package
 passed startup and package integrity checks. Editor gameplay established
