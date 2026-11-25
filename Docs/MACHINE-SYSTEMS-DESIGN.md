@@ -1,3 +1,8 @@
+**Current Mac package includes the regional work through eb13f3104 — November 25 UTC, 2026.**
+The universal build reached GameBootstrap startup. Recorded play of the
+regional routes used the Editor on the same runtime.
+[Package receipt](Verification/MachineSystems/MacCandidateEB13F3104/README.md)
+
 **Optional work leaves ordinary services available — November 25 UTC, 2026.**
 Fresh v26 Editor play used Quillhold’s existing public loan shelf and
 Sodden’s independent ripe bed before project work. The latter remained

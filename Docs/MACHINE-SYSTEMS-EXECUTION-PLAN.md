@@ -1,3 +1,9 @@
+**Current universal Mac package — November 25 UTC, 2026.**
+Runtime eb13f3104 reached GameBootstrap startup on Apple Silicon.
+The current package and all 186 files were verified after launch. Actual
+packaged play, Intel execution and the full inherited regression remain open.
+[Package receipt](Verification/MachineSystems/MacCandidateEB13F3104/README.md)
+
 **Ordinary routes through Quillhold and Sodden — November 25 UTC, 2026.**
 The fresh sign save supports two guided v26 forks. Sodden’s ordinary ripe
 crop yielded two pads and a seed with the shower offer left unused. Quillhold
