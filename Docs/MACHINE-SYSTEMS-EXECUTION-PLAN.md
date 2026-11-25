@@ -1,3 +1,35 @@
+**Coherent Mac delivery — November24local/25UTC,2026:** Runtime995d16a36 is
+pushed/remotelyverified and packaged at
+`/Users/steven/coo-verification/builds/mac-995d16a36-20261124/CavesOfOoo.app`.
+Three bounded capabilities: cargo sled, hand sieve and finite direct pump.
+Their overlapping native finals352/190/220 and actual Editor/F5/fresh/source
+and recorded-play reviews remain qualified separately. Build0errors/5exactA023
+warnings,61.15871s/364386397bytes;32129Git/tar/SHA inputs,32132effective,
+83changed0missing3added/exact86overlay,592external/186playerpins. SelectedCecil
+250checks(217retained33new),4newParts/all433priorfieldshapesretained/current437.
+OwnedPID21936 startup2678->2679/7creatures,CLOSED;4normalMacsavesbyteexact/
+18logicalprefsrestored. Fresh00:38:34UTC28apps5208files(27prior5022+186new),
+84foreign861normal2otherforeignexact. Mainstopped/rootnull/clean/profileroff/
+original7viewsindex0/inputrestored/unlocked/RequestedSeed0. Packageintegrity/
+startup only; no controlled packaged input/Continue/save/render/Intel/controller/
+FPS claim. Independent package/artifact review0remainingP1/P2. All12complete-machine/wider
+failed-suite/discovery/balance/NPCgatesopen. See
+[delivery](Verification/MachineSystems/MacCandidate995D16A36/README.md).
+
+**New user direction — broader sieve content:** The current explicit packet is
+only a starter. The user wants a general tool for separating smaller/larger
+granules, rocks, minerals and other material, and asked first to brainstorm the
+missing content plus uses for both fractions. Candidate mixed streams include
+clay-bank spoil, road/masonry gravel, workshop/kiln residue, eligible spent-wood
+fire residue, optional threshing/seed-cleaning lots, finished compost, peat,
+saltwork breakings and pigment/quartz/herb preparations. These are proposals;
+new source budgets, output identity and concrete consumers need qualification.
+Screening separates size, not mineral identity or contamination. Keep ordinary
+harvest/crafting/services convenient; bonus mixed finds and local projects should
+broaden useful work without compulsory chores. No new sieve-content runtime is
+implemented by this package.
+
+
 **Direct hand pump — November24local/25UTC,2026:** Third bounded capability in
 the sled/sieve/pump batch has native and recorded Editor qualification. Finalg
 220/220=30pump+190retained,0CS; independent source0remainingP1/P2 after three real
