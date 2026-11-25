@@ -1,3 +1,9 @@
+**Mac delivery for Tine’s restored fish supply — November 25 UTC, 2026.**
+A universal build of `d23329978` reached GameBootstrap on this Mac. All
+186 package files matched afterward. It is the current startup-verified
+package. The earlier packages remain available.
+[Delivery](Verification/MachineSystems/MacCandidateD23329978/README.md)
+
 **Both durable Tine methods supply the same fish — November 25 UTC, 2026.**
 The same saved Tine start supported an ordinary hand repair and an ordinary
 45-dram contract branch. Both supported the real merchant’s four-perch
