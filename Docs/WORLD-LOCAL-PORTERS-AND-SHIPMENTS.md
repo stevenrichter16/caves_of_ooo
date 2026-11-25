@@ -213,6 +213,74 @@ actual surviving goods; refund unearned escrow once. No implicit insurance,
 replacement shipment, duplicated purse or cargo resurrection. A safe reachable
 fallback drop requires explicit agreement and custody/ownership protection.
 
+## Expected dates, missing porters and search parties
+
+Additional user direction, November24local/25UTC: recipients expect a package
+by an agreed in-game date. If it does not arrive, the recipient can go looking
+for the porter, or send available followers/employees when their resources and
+social authority support that. The player who killed a porter can later stumble
+upon that recipient or search party along the actual route. This is proposed
+social consequence, not implemented crime detection or an automatic rescue quest.
+
+The same delivery order stores ExpectedByTick and an agreed grace interval,
+displayed as the game's date/time. Quote realistic route/work expectations;
+never accept an impossible deadline without saying so. A saved recipient-noticed
+flag and one case reference prevent repeated dispatch on reload or every tick.
+Missing the date opens concern/inquiry; it is not proof of death or player guilt.
+
+Add one bounded missing-delivery case to the authoritative local ledger,
+referencing the order rather than copying its cargo/payment state. Save the
+recipient, actual assigned searchers, expense/provision allowance, known leads,
+last genuine report, visited areas, phase and closure reason. A search behavior
+visits pickup, destination and admitted parts of the agreed corridor/last
+reported place, through ordinary movement and survival. It cannot spawn actors
+beside the player, teleport to an unseen corpse or reconstruct lost goods.
+
+A capable recipient may search personally. A wealthier or better staffed NPC
+can assign real available employees/followers, with finite funds/provisions and
+authority to ask them. Wealth does not conjure guards or make an employee
+invulnerable. Reserve those people against simultaneous deliveries/searches;
+cap active parties and preserve essential settlement availability. A search can
+pause, retreat, return or end unsuccessfully when its bounded leads/actions run
+out. Failed searches do not create endless replacements.
+
+Initial knowledge is limited to lateness, expected package, agreed endpoints,
+corridor and reports actually received. Finding the porter alive and blocked,
+discovering the body, recognizing actual cargo or hearing a witness can update
+the case. Evidence of murder or theft must come from supported observations;
+the player merely being nearby or holding an unrelated similar item proves
+nothing. The party may ask questions, recognize its own labeled consignment or
+react to a witnessed attack under normal social/combat rules. Accusations,
+justice and long-distance pursuit are separate later systems, not free powers
+of this case. A player can return goods, help, lie through supported dialogue,
+avoid the group or attack, with only the corresponding implemented consequences.
+
+Committed late delivery, the porter's return, lawful cargo recovery or the
+recipient's death closes/revises the case once. Distant searchers learn changed
+facts through an actual meeting or another supported communication method;
+they do not instantly know a remote handover. Their next supported report or
+return resolves their assignment. Timeliness may affect explicitly agreed
+contract terms, but compatible late-delivered materials still provide the same
+physical repair/service result. No secret named-tool bonus or unsolicited late
+fee is introduced.
+
+Reconcile deadlines with simulation scope before enabling this phase. Use the
+same saved game clock, never wall time. With P1's unloaded local pause, a due
+date can pass but there is no fabricated offscreen walking, harm or discovery;
+the recipient can notice and start physically searching at the next active
+opportunity. State service timing/pause terms in the agreement and add no
+automatic player penalty for that simulation limit. Believable continued
+offscreen deliveries/searches require a separately qualified bounded unloaded
+route policy; do not imply that P1 already supplies it.
+
+First proof after ordinary P1/P2 deliveries: one overdue shipment, one recipient
+personally following known leads, and a player encounter with that same moving
+searcher after killing the porter. Second proof: one existing employee searches
+for a wealthier recipient through the same case machinery. Test living delayed
+porters, late legitimate delivery, no witness, conflicting reports, recipient
+death, staff unavailability, budgets and mid-search save/fresh; no automatic
+perfect guilt inference or repeated dispatch.
+
 ## Routes, survival and time
 
 First implementation is same-zone, short local travel: provisional maximum64

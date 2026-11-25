@@ -1,3 +1,15 @@
+**New replayability/overdue-shipment direction — November24local/25UTC,2026:**
+[45 implementation requirements](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md)
+separate existing foundations from missing compatibility/outcome/transport/
+generation/seasonal/social work. Preserve alternative builds/tools, optional
+investments and baseline comfort. Porters have an agreed expected date; an
+overdue recipient can search personally or send real available staff, so a
+player who killed the porter may meet those actual searchers. Save one bounded
+case, finite actors/budget, real route/reports/evidence and no omniscient guilt.
+Reconcile due dates with unloaded local pause before enabling; no fabricated
+offscreen travel/discovery or automatic extra fees. This remains design only.
+See [porter architecture](WORLD-LOCAL-PORTERS-AND-SHIPMENTS.md).
+
 **New local-porters design — November24,2026:** User requests paid local
 physical-load carrying and selected visible NPC/vendor shipments, composed from
 shared Parts. See [architecture and source map](WORLD-LOCAL-PORTERS-AND-SHIPMENTS.md).

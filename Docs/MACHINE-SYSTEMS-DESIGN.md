@@ -1,3 +1,14 @@
+**Replayable practical work — November24local/25UTC,2026:** The source-grounded
+[implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
+concrete requirements for compatible material demand, method-independent
+physical benefits, transport/tool choices, optional projects, seeded conditions,
+seasonal bonuses and actual comparative play. Existing recipes still often name
+exact materials/tools; the shared suitability/outcome layer remains missing.
+The [porter design](WORLD-LOCAL-PORTERS-AND-SHIPMENTS.md) now also records expected
+delivery dates and recipients searching personally or sending actual staff.
+Searches follow known leads; lateness is not automatic proof of player guilt.
+These additions are design only and do not alter current services/whole-machine gates.
+
 **G2 shared size screening — November24local/25UTC,2026:** One bounded general
 screening capability now has Editor qualification: explicit finite constituent
 manifest, fixed size partition, exact carried sieve, conserved actual handling
