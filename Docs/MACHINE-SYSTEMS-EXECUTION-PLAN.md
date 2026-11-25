@@ -1,3 +1,9 @@
+**Mac delivery for installed camp-box screening — November 25 UTC, 2026.**
+A universal build of `020f5a34a` reached GameBootstrap on this Mac. All
+186 package files matched afterward. It is the current startup-verified
+package. The earlier packages remain available.
+[Delivery](Verification/MachineSystems/MacCandidate020F5A34A/README.md)
+
 **Screening uses an installed own box as real stock — November 25 UTC, 2026.**
 The same sieve and actual acquired packet traveled to eligible Spread
 ground. Ordinary placement, deposit and fresh Continue established the
