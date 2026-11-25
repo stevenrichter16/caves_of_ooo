@@ -1,4 +1,4 @@
-# parts=415
+# parts=418
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -259,6 +259,9 @@ Part CavesOfOoo.Core.CureTonicPart | reflected
 Part CavesOfOoo.Core.CuttingToolPart | reflected
   FlexibleStock:System.Boolean
 Part CavesOfOoo.Core.DamageFlashPart | reflected
+Part CavesOfOoo.Core.DeliveryStoragePart | reflected
+  ContentsWithdrawn:System.Boolean
+  ReceivesParcels:System.Boolean
 Part CavesOfOoo.Core.DestructiblePart | reflected
   Gone:System.Boolean
   HP:System.Int32
@@ -820,6 +823,18 @@ Part CavesOfOoo.Core.SchematicPart | reflected
 Part CavesOfOoo.Core.ScraperPart | reflected
 Part CavesOfOoo.Core.ScribeCopyServicePart | reflected
 Part CavesOfOoo.Core.SealedLibraryBarrierPart | reflected
+Part CavesOfOoo.Core.SeasonalHarvestPart | reflected
+  ActionText:System.String
+  Ground:CavesOfOoo.Core.Entity
+  Harvested:System.Boolean
+  PolicyVersion:System.Int32
+  Season:System.Int32
+  WorldKey:System.String
+  YieldBlueprint:System.String
+  YieldChance:System.Int32
+  YieldMax:System.Int32
+  YieldMin:System.Int32
+Part CavesOfOoo.Core.SeedFramePart | reflected
 Part CavesOfOoo.Core.SeedPart | reflected
   CropBlueprint:System.String
   RequireCultivatedSoil:System.Boolean

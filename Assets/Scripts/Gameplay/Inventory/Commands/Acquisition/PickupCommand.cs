@@ -69,6 +69,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Pickup requires a valid item.");
             }
 
+            if (LocalPorterReservationPart.Blocks(_item))
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, "That box is reserved for a delivery.");
             var physics = _item.GetPart<PhysicsPart>();
             if (physics == null || !physics.Takeable)
             {
@@ -137,7 +139,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             }
 
             // Veto hooks can move/remove the source or change its quantity.
-            if (!IsGroundSource(context) || (_retainIdentity && !RetrievalSourceCurrent(context)))
+            if (LocalPorterReservationPart.Blocks(_item) || !IsGroundSource(context) || (_retainIdentity && !RetrievalSourceCurrent(context)))
                 return Refuse(context, "source_changed", "That item is no longer on this ground.");
             var stacker = _item.GetPart<StackerPart>();
             int quantity = stacker?.StackCount ?? 1;

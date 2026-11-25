@@ -36,6 +36,28 @@ namespace CavesOfOoo.Tests
   [TestCase("locked")][TestCase("foreign-owner")][TestCase("takeable")]
   public void DoorPermissionRefusalsAreNotOpenHints(string why){using(var f=new Fixture()){var d=f.Owner("door",11,10);d.AddPart(new DoorPart{IsOpen=false});if(why=="locked")d.AddPart(new LockPart{IsLocked=true});if(why=="foreign-owner")d.GetPart<DoorPart>().OwnerId="someone-else";if(why=="takeable")d.GetPart<PhysicsPart>().Takeable=true;Assert.IsNull(f.Find());}}
   [TestCase(false)][TestCase(true)]public void OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(bool spent){using(var f=new Fixture()){var c=f.Owner("corpse",11,10);c.AddPart(new HarvestablePart{YieldBlueprint="Yield",YieldChance=0,Harvested=spent});if(spent)Assert.IsNull(f.Find());else Assert.AreEqual("Harvest",Fixture.Get(f.Find(),"Command"));}}
+
+  [TestCase(false,"C, D: menu / ")]
+  [TestCase(true,"Enter: menu / ")]
+  public void FiniteSourceHintUsesTheSameLabelAsItsActualMenu(bool focused,string prefix)
+  {
+   using var f=new Fixture();
+   var stock=f.Owner("pallet",11,10);
+   var harvest=new HarvestablePart{YieldBlueprint="Yield",ActionText="dismantle for timber (2)"};
+   stock.AddPart(harvest);
+   var actual=WorldInteractionSystem.GatherActions(stock,f.Player).Single(a=>a.Command=="Harvest");
+   var probe=new Trap();stock.AddPart(probe);
+   var cue=WorldAffordanceQuery.Find(f.Player,f.Zone,focused,11,10);
+   Assert.That(cue?.Hint,Is.EqualTo(prefix+actual.Display));
+   Assert.That(CavesOfOoo.Rendering.SidebarTextFormatter.FormatActionHint(cue,true),
+    Is.EqualTo("[A] (LS neutral): menu / "+actual.Display));
+   Assert.True(WorldAffordanceQuery.Current(f.Player,f.Zone,cue.Value));
+   harvest.ActionText="harvest";
+   Assert.False(WorldAffordanceQuery.Current(f.Player,f.Zone,cue.Value));
+   Assert.That(WorldAffordanceQuery.Find(f.Player,f.Zone,focused,11,10)?.Hint,Is.EqualTo(prefix+"harvest"));
+   Assert.That(probe.Calls,Is.Zero);
+  }
+
   [Test] public void QueryNeverDispatchesCallbacksOrChangesSources(){using(var f=new Fixture()){var r=f.Row();var a=new Trap();var b=new Trap();f.Player.AddPart(a);r.AddPart(b);for(int i=0;i<100;i++)Assert.NotNull(f.Find());Assert.AreEqual(0,a.Calls+b.Calls);Assert.False(r.GetPart<FieldHarvestPart>().Harvested);Assert.AreEqual(1,r.GetPart<FieldHarvestPart>().YieldCount);Assert.AreEqual(2,f.Zone.GetReadOnlyEntities().Count);}}
   [Test] public void UnderfootWinsAndOneResultNeverRevealsRemoteOwners(){using(var f=new Fixture()){var first=f.Row(10,10);var remote=f.Owner("remote",15,10);remote.AddPart(new ContainerPart());Assert.AreSame(first,Fixture.Get(f.Find(),"Target"));}}
  }

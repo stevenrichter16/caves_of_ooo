@@ -1,7 +1,7 @@
 # Local porters and visible shipments
 
-User direction, November24,2026 (America/Chicago). **Design and architecture;
-not implemented or accepted.** Hire a local person to move a specific physical
+User direction, November24,2026 (America/Chicago). **Design and architecture
+with working local player-hire and selected NPC candidates.** Hire a local person to move a specific physical
 load between agreed nearby locations. Show capacity, route, price and delivery
 state. Selected NPCs also send real supplies by the same service, visible while
 the porter travels. Preserve self-carrying, ordinary hauling, cargo sleds,
@@ -70,6 +70,15 @@ outcome can still be supplying useful material; no road repair is mandatory.
 Current sled rules are local and first porter mode is portable cargo, so a
 heavy-beam porter requires a later tested hauling adapter.
 
+The first seeded candidate uses the same kitchen service in both worlds. One
+seed offers a nearby sorting lot, while another uses the existing paid clay
+shipment. Both give players material for the pan and retain ordinary shop
+stock. Actual play covered each path with fresh loads. The Editor supplied
+the sieve after the player found the lot. This is a change in
+available supply work at one kitchen. Broader road geometry and load modes
+still need their own play and validation.
+[Evidence](Verification/MachineSystems/WaysideClayLayouts20261125/README.md)
+
 Use a deterministic world-seed/site/version stream independent of cosmetic
 randomness. Save the resulting roads, owners, quantities and orders as real
 world state. No travel, season, reload or updated generator version rerolls an
@@ -127,9 +136,12 @@ entry. These are source findings, not new porter gameplay observations.
 
 ## Composition and authority
 
-Definitions describe service profiles and demand; instance Parts hold actual
-participants, condition and commitments. None of the proposed types below
-exists yet. One service implementation serves player hires and NPC orders.
+Definitions describe service profiles and demand. Instance Parts hold actual
+participants, condition and commitments. P1 currently uses
+`LocalPorterPart`, `LocalPorterLedgerPart`, `LocalPorterReservationPart` and
+`DeliveryStoragePart`. The table describes the intended responsibility split
+when a second caller needs it. Player hires and NPC orders should share the
+physical transaction and movement rules.
 
 | Proposed component | Owner and responsibility |
 | --- | --- |
@@ -273,6 +285,115 @@ automatic player penalty for that simulation limit. Believable continued
 offscreen deliveries/searches require a separately qualified bounded unloaded
 route policy; do not imply that P1 already supplies it.
 
+The wayside candidate supplies an exact boundary for the first deadline slice.
+The existing `WorldClock.CurrentTick` reads the persisted turn clock, with
+1,200 ticks per game day. The order already saves a unique ID and the handover
+commits when the shelf takes the physical parcel. Unpacking and sale are
+separate receiving actions. A delivered parcel waiting for Orven to unpack
+cannot open a missing-porter case.
+
+The first agreement budgets ten world ticks for each quoted walking step plus
+one pickup and one handover, then allows forty ticks of grace. These are terms
+for the bounded local service. The order keeps its original estimate when the
+path changes. The marker and receiving shelf can display the day, band and
+tick within that band. Older shipments have no retroactive agreement.
+
+After the grace period, the living assigned recipient can notice the missing
+shelf during active local play when in reach. An incapacitated or absent
+recipient delays that observation. The first observation saves one concern
+against the order and can give a local message. A committed physical receipt
+ends transit and closes any open concern regardless of unpacking or trade.
+A settled cancellation also closes the concerned case. A carrier's death can
+end the physical delivery but gives the recipient no information by itself.
+Physical shipment status and knowledge of what went wrong remain separate.
+Add search movement after the late-case state round-trips and the ordinary
+delivered case stays quiet.
+
+The deadline candidate has actual movement, readers, travel outside the
+shipment area, one local overdue notice, physical late closure and two fresh
+Continue comparisons. The earlier carrying save retained its existing terms.
+[Evidence](Verification/MachineSystems/WaysideDeadline20261125/README.md)
+
+The first searcher can follow a bounded walk from the shelf toward the exact
+loading marker when their own idle AI and current safety permit. They can
+then return to the kitchen. The carrier already uses checked ordinary
+movement and explicit endpoint approaches. Save the actual assignment,
+phase and attempts against the case ID so a reload resumes from the
+resident's saved position. The exact shelf supplies the return destination.
+One short search can start forty ticks after a notice. Paid meal work and
+ordinary survival decisions have priority. Both legs have a fixed attempt
+limit, and the actor remains where their last physical step put them when a
+route is exhausted. If the original loading point moves, the outbound walk
+turns back to the original shelf. Losing the shelf ends the walk in place.
+Finishing a check leaves the late case open until
+receipt, cancellation or another supported resolution. The player can meet
+and examine the same resident along the route.
+
+The first personal search has a controlled Editor witness from the earned
+overdue save. The real recipient made both legs, resumed after a fresh load
+and returned to his existing trade inventory. The delay was supplied with
+an ordinary Rooted effect on that branch.
+[Evidence](Verification/MachineSystems/WaysideSearch20261125/README.md)
+
+The existing death-witness effect conveys distress and has no durable report
+payload. The corpse spawner records a source identity, and a visible real
+box can also provide a lead. Inspect evidence in the searcher's ordinary
+sight and along the admitted route. Identifying a body can establish identity.
+Accusations require a separately supported observation or report. Prove
+recognition and reporting after a first unresolved search and return.
+
+The wayside porter inherits the existing creature corpse spawner and its
+`CreatureCorpse` outcome. The native death flow spills the carried box
+before the death event creates a corpse. For the first recognition slice,
+record one physically seen lead. A nearby corpse bearing the actual carrier
+identity can support recognition. The exact spilled crate can support a
+separate lead if it is visible on the ground. Save the observation's kind,
+location and tick. A later report or lawful transfer carries its own proof.
+Include an ordinary player-caused scene and an obscured or wrong-body
+control. The existing corpse's killer metadata is internal.
+
+Start with Orven recognizing the porter's body during the existing outbound
+walk. Native death drops inventory before the corpse spawner records its
+source ID. The terminal ledger retains its worker and crate references, and
+the saved entity graph can retain references off the map. That gives the
+searcher an order identity to compare when he actually sees a ground corpse.
+Use his own sight range and line of sight. Record the observation once in the
+search assignment and surface it at the kitchen when he actually returns.
+The first cases should cover a body behind a sight blocker, a different
+porter's body, a live carrier and a fresh load after an observation. Leave
+cargo and the ordinary recovery path in place throughout.
+
+The local candidate now has that first player-caused encounter. Orven's
+witnessed reaction temporarily took over. He later resumed the same walk,
+recognized the actual corpse in sight, and returned before the shelf posted
+his report. The resulting save preserves the same crate and clay beside the
+body. The report adds information while the shipment remains open.
+[Evidence](Verification/MachineSystems/WaysideRecognition20261125/README.md)
+
+For physical recovery, use the normal deposit of the exact surviving crate
+onto the available shelf. The failed order has already released custody and
+settled the original fare. The receiver can recognize the original measures
+by their saved parcel and content references, then record receipt and stock
+them through the existing trade path. Preserve the failed transit record and
+avoid paying a second fare. A lawful substitute or an altered parcel requires
+its own policy. A same-looking crate, a partial parcel or stock on the ground
+should leave the case open. Qualify ordinary pickup and deposit from the
+preserved aftermath, plus one downstream use and a reload.
+
+The local candidate now connects ordinary pickup, the original shelf and
+Orven's existing trade inventory. Actual play left the corpse on the ground,
+returned the intact crate, bought the same recovered lot and repaired the pan.
+The returned crate stayed on the shelf and the recipient retained his original
+stock. Fresh Continue matched stock-in and downstream repair checkpoints.
+[Evidence](Verification/MachineSystems/WaysideRecovery20261125/README.md)
+
+Successful withdrawal records that the box was unpacked. An original stack
+can retain its identity after a compatible refill, so exact stack identity
+alone does not establish the original custody. A refilled box can go on the
+shelf and be picked up with its contents. It leaves the inquiry and the
+cook's stock unchanged. Reading and refused transfers preserve eligibility.
+[Recovery and storage verification](Verification/MachineSystems/PorterParcelIntegrity20261125/README.md)
+
 First proof after ordinary P1/P2 deliveries: one overdue shipment, one recipient
 personally following known leads, and a player encounter with that same moving
 searcher after killing the porter. Second proof: one existing employee searches
@@ -281,12 +402,21 @@ porters, late legitimate delivery, no witness, conflicting reports, recipient
 death, staff unavailability, budgets and mid-search save/fresh; no automatic
 perfect guilt inference or repeated dispatch.
 
+November 25 source check for delegated work. The current wayside potter is an
+actual independent supplier at the loading point. Nothing in his saved role
+makes him Orven’s employee or puts him at the receiving shelf. The personal
+search and reader both identify the recipient directly. A paid delegated
+trial needs an explicit offer, an existing eligible worker who can actually
+meet the recipient, one reserved case and a real returned report. Preserve
+the personal search when the offer cannot be funded or staffed. Plan that
+small trial before extending search routes across settlements.
+
 ## Routes, survival and time
 
-First implementation is same-zone, short local travel: provisional maximum64
-walk edges per quoted route, one portable package per porter, four participating
-porters and eight open orders per zone, with at most two ambient NPC shipments
-active. These are implementation budgets to measure, not performance claims.
+The P1 candidate quotes up to 32 walk edges for one portable package and
+one active order at its loading marker. The first selected NPC shipment can
+use the same bound. Larger budgets for multiple simultaneous porters or
+longer routes require evidence from their own slice.
 Reject cyclic/nested/ambiguous custody and packages the actor cannot actually
 carry. No party recruitment requirement, magical capacity or cross-zone warp.
 
@@ -410,11 +540,80 @@ visible ordinary walking, handover, fee settlement, interruption and F5/fresh.
 Demonstrate a second compatible NPC/load composition without changing the
 transaction engine. Self-carrying/hauling remains a usable alternative.
 
+Start the paid route with a porter beside the payer and an actual loaded box
+at the loading position. A free quote reads the carried load, remaining weight
+allowance and a short ordinary walking path to a clear standing cell beside
+the shelf. The first public route accepts dry open ground and a porter who can
+take the work. The fare is a fixed hiring amount plus a charge for distance
+and loaded weight. A route refusal leaves manual carriage available. The
+worker's current danger and the path must be checked again before taking the
+fare and each time the worker moves. A quote cannot reserve cargo or promise
+its eventual delivery. Keep the accepted order and escrow on a separate saved
+owner. Commit the existing physical shelf receipt before settling the worker's
+pay. Interruptions leave the surviving parcel where it actually is.
+
 **P2: selected NPC shipment.** A separately reserved finite source supplies one
 real vendor/worksite through the same order and movement. Watch actual pickup,
 road passage, receipt and a downstream trade/repair using those goods. Confirm
 unselected vendors/staples are unaffected and the abstract stock system cannot
 double-supply the delivered batch. P1 is not acceptance of P2.
+
+The existing merchant reconciliation creates staples for configured floors and
+creates and retires its own tracked special lots. Those memberships are poor
+receiving authority for a physical shipment. The first selected shipment needs
+its own receipt location and an exact-owner transfer into service or trade.
+If sold directly, the delivered entity must enter the real trade inventory
+without joining the special-lot retirement list. Pick a finite source and
+recipient with an existing reader and useful consumer. Keep the worker's pay,
+the cargo and ordinary replenishment independently accountable.
+
+The current Gleaners' candidate demonstrates a player booking and a public
+receipt. It has no NPC supply sponsor at its loading point. Orven's prepared
+stock is real, but it starts in another zone. Treat cross-zone delivery as a
+separate qualification before tying that cook to this route.
+
+For the first NPC candidate, use Orven's own kitchen zone at
+`Overworld.12.11.0`. Stage a separate optional local supply point with one
+actual packed lot of compatible clay, a dedicated finite purse, and a lawful
+route to one actual receiving shelf. Do not reserve Orven's opening trade lot
+or his kitchen escrow. Omit the optional shipment if the ordinary kitchen
+footprint or access cannot be preserved.
+
+`TradeSystem.GetTraderStock` reads actual inventory objects with
+`CommercePart`. Both fire clay and prepared lining clay have that Part and
+the existing pan repair admits both. Once the sealed box reaches the shelf,
+move the exact clay into Orven's trade inventory through a separate committed
+receipt. The kitchen's stock table supplies its existing foods and Orven's
+prepared clay comes from a separate opening-stock declaration. Keep the
+shipment out of staple floors, legacy stock-table quantities and the
+rotating-special membership. At the first receipt boundary test that no goods
+enter trade before delivery, the original lot remains intact, and reloading
+or crossing an ordinary restock boundary never awards the imported batch again.
+
+Start at the receiving boundary. One shelf opts in to stocking an exact
+parcel for an adjacent trader. Save the receiving association and original
+measure references with the shelf. Delivery and stocking are separate
+transactions. A committed delivery leaves the parcel reserved in the shelf
+until the trader can take both measures into their existing trade pack. The
+stocking receipt claims both custody lists, preserves each lot and its ID, and
+records the delivery ID once. The empty box stays on the shelf and becomes
+available for reuse. A full pack, absent trader or replaced parcel leaves the
+arrived cargo in place. This boundary can be tested with a physical receipt
+fixture before the supplier and visible route are installed.
+
+The first source uses two prepared lining-clay measures in one parcel. Orven
+already sells this commodity, so leaving his exact opening stack untouched is
+a useful control for the no-merge transfer. Stock the arrived stack as a
+separate ordinary item. The existing foods, clay-opening allotment and coin
+balance are separate from the supplier's cargo and fare. No shop restock,
+catalogue rotation or trade view initiates the transfer.
+
+This composition has a working candidate. Its first generated placement
+exposed a shelf Orven could not reach from his regular chair. The corrected
+site selects a shelf within ordinary reach of his standing spot and chair
+after the existing kitchen commits. Seed 64 carried, stocked, sold and spent
+the original lot in the batch pan, with separate fresh carrier and repaired
+pan comparisons. [Evidence](Verification/MachineSystems/WaysideShipment20261125/README.md)
 
 **P3: alternative approaches to one practical outcome.** Move useful material
 with at least two genuinely different supported methods and explain their real
@@ -437,5 +636,6 @@ Design documents and native tests alone do not earn a porter implementation.
 Bounded independent source/design review completed November24local/25UTC:
 0remaining material P1/P2 after clarifying durable packed-load reservation,
 separate physical import storage/stacking and release of paused delivery goals.
-This approves the proposed contract only. Porter code, generated-layout quality,
-economics, performance and actual gameplay remain unimplemented/unaccepted.
+This approves the proposed contract only. The P1 code and play evidence are
+tracked in the execution plan. P2 placement, economics, actual route play
+and final review have their own gates.

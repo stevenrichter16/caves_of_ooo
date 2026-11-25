@@ -27,7 +27,8 @@ namespace CavesOfOoo.Core
         /// Generation may still stock a locked container through AddItem.</summary>
         public bool IsLocked => Locked || ParentEntity?.GetPart<LockPart>()?.IsLocked == true;
 
-        public bool AllowsCleanAccess => ParentEntity?.GetPart<ContainedLiquidSourcePart>()?.AllowsCleanAccess ?? true;
+        public bool AllowsCleanAccess => !LocalPorterReservationPart.Blocks(ParentEntity)
+            && (ParentEntity?.GetPart<ContainedLiquidSourcePart>()?.AllowsCleanAccess ?? true);
 
         /// <summary>Max items allowed. -1 = unlimited.</summary>
         public int MaxItems = -1;

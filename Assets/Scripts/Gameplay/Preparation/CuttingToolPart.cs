@@ -29,7 +29,7 @@ namespace CavesOfOoo.Core
             guide.Needs.Add("compatible prepared stock and the exact extra inputs shown in the material's preview");
             guide.Limits.Add("Each preparation spends its materials and one action; the tool is kept. The material preview states the output and discarded trimming. Flexible workshop stock and purchased components remain useful alternatives.");
             var factory = ForgePart.Factory;
-            bool catalogue = factory != null && MaterialProcessRegistry.Validate(factory).Count == 0;
+            bool catalogue = factory != null && MaterialProcessRegistry.ValidateForWork(factory, "HandCutting").Count == 0;
             if (catalogue)
             {
                 string Label(string blueprint) => factory.Blueprints[blueprint].Parts.TryGetValue("Render", out var p)

@@ -1,5 +1,20 @@
 # Weather and seasonal tool design continuation
 
+## First finite seasonal material trial — November 25 UTC, 2026
+
+The first W2 candidate uses the saved second seasonal phase to offer one
+finite seed-head bundle at an admitted fresh public allotment. Its existing
+frame can winnow the heads into the ordinary cultivated-bed knotflax seed.
+The bundle keeps its use through a change of season. The material template
+admits only the known knotflax seed contract and records discarded dry chaff.
+The hand sieve still separates its own declared size grades.
+
+In guided Editor play, one frame caught rain and cleaned the actual gathered
+heads. Ordinary planting and manual watering left a persistent crop. The
+catchment spent only the water collected. The full seasonal work program,
+weather bonuses to process efficiency and automatic crop rainfall remain open.
+[Evidence](Verification/MachineSystems/SeasonalSeedFrame20261125/README.md)
+
 ## Current qualification — November 24, 2026
 
 Screenshot guidance is now a handful per meaningful change, usually 3–5 showing

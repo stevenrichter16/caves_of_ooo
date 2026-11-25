@@ -30,6 +30,130 @@ namespace CavesOfOoo.Tests
   =>RunCorpus(Enumerable.Range(1,65).Concat(new[]{1729,729490642,9091}),"sixty-eight-seed-census.tsv",true);
   [Test]public void NineObservedNativePairSeedsExposeExactRefusalStage()
   =>RunCorpus(new[]{6,12,15,19,24,29,40,46,56},"nine-pair-refusal-diagnostics.tsv",false);
+
+  [TestCase(1,true)]
+  [TestCase(14,false)]
+  public void GeneratedTimberOpeningCanBeClearedAndKeepsItsResult(int seed,bool dismantle)
+  {
+   using var scope=new HaulingContentScope();
+   var manager=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);
+   var entry=manager.Exploration.Entries.Single(e=>e.Family==SpreadExplorationFamily.HeavyFrame);
+   scope.Seed(seed^FormationSelector.StableIndex(entry.ZoneID,int.MaxValue));
+   var zone=manager.GetZone(entry.ZoneID);
+   Assert.That(manager.Exploration.DispositionFor(entry.ZoneID),Is.EqualTo(2));
+   var load=zone.GetReadOnlyEntities().Single(e=>e.GetProperty(ConnectedSpreadSatellite.RoleKey)=="frame");
+   Assert.That(load.BlueprintName,Is.EqualTo("GleanersTimberPallet"));
+   Assert.That(load.GetPart<ExaminablePart>().Text,Does.Not.Contain("garden wicket"));
+   Assert.That(load.GetPart<ExaminablePart>().Text,Does.Not.Contain("blocks the opening"));
+   var (x,y)=zone.GetEntityPosition(load);
+   Assert.True(zone.GetCell(x,y).BlocksMovement());
+
+   var actor=scope.Factory.CreateEntity("Player");
+   actor.Statistics["Strength"].BaseValue=dismantle?11:12;
+   Assert.True(zone.AddEntity(actor,x,y-1));
+   string loadId=load.ID;
+   var cache=zone.GetReadOnlyEntities().Single(e=>e.GetPart<ContainerPart>()?.Contents.Any(v=>v.BlueprintName=="ShatteredRimeGrimoire")==true);
+   var stockIds=cache.GetPart<ContainerPart>().Contents.Select(e=>e.ID).ToArray();
+   if(dismantle)
+   {
+    var oldFactory=HarvestablePart.Factory;
+    try
+    {
+     HarvestablePart.Factory=scope.Factory;
+     Assert.False(WorldInteractionSystem.GatherActions(load,actor).Any(a=>a.Command==HandlingPart.HaulCommand));
+     Assert.True(InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(load,"Harvest"),actor,zone).Success);
+     Assert.False(InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(load,"Harvest"),actor,zone).Success);
+    }
+    finally { HarvestablePart.Factory=oldFactory; }
+    Assert.That(Timber(actor),Is.EqualTo(2));
+    Assert.Null(zone.GetEntityCell(load));
+   }
+   else
+   {
+    Assert.That(DragSystem.TryGrab(actor,load,zone),Is.EqualTo(DragVerdict.Ok));
+    Assert.True(MovementSystem.TryMove(actor,zone,0,-1));
+    Assert.True(MovementSystem.TryMove(actor,zone,0,-1));
+    Assert.True(DragSystem.Release(actor));
+    Assert.That(zone.GetEntityPosition(load),Is.EqualTo((x,y-2)));
+    Assert.False(load.GetPart<HarvestablePart>().Harvested);
+    Assert.That(Timber(actor),Is.Zero);
+    Assert.True(MovementSystem.TryMove(actor,zone,1,0));
+    Assert.True(MovementSystem.TryMove(actor,zone,0,1));
+    Assert.True(MovementSystem.TryMove(actor,zone,-1,1));
+   }
+   Assert.False(zone.GetCell(x,y).BlocksMovement());
+   Assert.True(MovementSystem.TryMove(actor,zone,0,1));
+   Assert.True(MovementSystem.TryMove(actor,zone,0,1));
+   Assert.That(zone.GetEntityPosition(actor),Is.EqualTo((x,y+1)));
+
+   manager.SetActiveZone(zone);
+   var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("satellite-timber","timber opening",manager,null,actor));
+   var returned=loaded.ZoneManager.GetZone(entry.ZoneID);
+   Assert.False(returned.GetCell(x,y).BlocksMovement());
+   Assert.That(Timber(loaded.Player),Is.EqualTo(dismantle?2:0));
+   var savedLoad=returned.GetReadOnlyEntities().SingleOrDefault(e=>e.ID==loadId);
+   if(dismantle)Assert.Null(savedLoad);
+   else
+   {
+    Assert.NotNull(savedLoad);
+    Assert.That(returned.GetEntityPosition(savedLoad),Is.EqualTo((x,y-2)));
+    Assert.False(savedLoad.GetPart<HarvestablePart>().Harvested);
+   }
+   var savedCache=returned.GetReadOnlyEntities().Single(e=>e.ID==cache.ID);
+   CollectionAssert.AreEqual(stockIds,savedCache.GetPart<ContainerPart>().Contents.Select(e=>e.ID));
+  }
+
+  [TestCase(1,true)]
+  [TestCase(16,false)]
+  public void OriginalFrameRemainsOnRetainedVersionOrAlternateSeed(int seed,bool retained)
+  {
+   using var scope=new HaulingContentScope();
+   var manager=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);
+   if(retained)
+   {
+    var world=SpreadExplorationPlan.BindForSave(manager,null);
+    string manifest=world.GetProperty(SpreadExplorationPlan.PropertyKey);
+    world.Properties[SpreadExplorationPlan.PropertyKey]="19"+manifest.Substring(manifest.IndexOf('|'));
+    var legacy=(SpreadExplorationPlan)typeof(SpreadExplorationPlan).GetMethod("Restore",All).Invoke(null,new object[]{manager,world});
+    typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(manager,legacy);
+   }
+   var entry=manager.Exploration.Entries.Single(e=>e.Family==SpreadExplorationFamily.HeavyFrame);
+   scope.Seed(seed^FormationSelector.StableIndex(entry.ZoneID,int.MaxValue));
+   var zone=manager.GetZone(entry.ZoneID);
+   Assert.That(manager.Exploration.DispositionFor(entry.ZoneID),Is.EqualTo(2));
+   var load=zone.GetReadOnlyEntities().Single(e=>e.GetProperty(ConnectedSpreadSatellite.RoleKey)=="frame");
+   Assert.That(load.BlueprintName,Is.EqualTo("ConnectedHeavyFrame"));
+   Assert.Null(load.GetPart<HarvestablePart>());
+  }
+
+  static int Timber(Entity actor)=>actor.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="SalvagedTimber")
+   .Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
+
+  [TestCase("missing")]
+  [TestCase("wrong-count")]
+  [TestCase("fixed-timber")]
+  [TestCase("creature-timber")]
+  [TestCase("multi-unit-timber")]
+  public void UnavailableOrMalformedTimberLeavesTheOriginalGraph(string defect)
+  {
+   using var scope=new HaulingContentScope();
+   const int seed=1;
+   if(defect=="missing")Assert.True(scope.Factory.Blueprints.Remove("SalvagedTimber"));
+   if(defect=="wrong-count")scope.Factory.Blueprints["GleanersTimberPallet"].Parts["Harvestable"]["YieldMax"]="3";
+   if(defect=="fixed-timber")scope.Factory.Blueprints["SalvagedTimber"].Parts["Physics"]["Takeable"]="false";
+   if(defect=="creature-timber")scope.Factory.Blueprints["SalvagedTimber"].Tags["Creature"]="";
+   if(defect=="multi-unit-timber")scope.Factory.Blueprints["SalvagedTimber"].Parts["Stacker"]["StackCount"]="2";
+   var manager=new Manager(scope.Factory,seed);
+   var entry=manager.Exploration.Entries.Single(e=>e.Family==SpreadExplorationFamily.HeavyFrame);
+   scope.Seed(seed^FormationSelector.StableIndex(entry.ZoneID,int.MaxValue));
+   var zone=manager.GetZone(entry.ZoneID);
+   Assert.That(manager.Exploration.DispositionFor(entry.ZoneID),Is.Not.EqualTo(2));
+   Assert.False(zone.GetReadOnlyEntities().Any(e=>e.Properties.ContainsKey(ConnectedSpreadSatellite.RoleKey)));
+   foreach(var entity in manager.Before)Assert.That(zone.GetEntityPosition(entity),Is.EqualTo(manager.At[entity]));
+   CollectionAssert.AreEquivalent(manager.Stock.Keys,
+    manager.Containers.SourceReceipt.Owners.SelectMany(e=>e.GetPart<ContainerPart>().Contents));
+  }
+
   static void RunCorpus(IEnumerable<int> seeds,string file,bool requireBoth)
   {
    bool worldgen=Diag.IsChannelEnabled("worldgen");Diag.SetChannel("worldgen",true);

@@ -1,3 +1,149 @@
+**Porter recovery and connected world work — November 25 UTC, 2026.**
+The earlier delivery and timber evidence review verified 84 checkpoint files.
+It found that a refilled clay stack could keep its original identity and
+close the wrong case. Successful withdrawal now records that the parcel has
+been unpacked. Ordinary shelf storage and collection still work. The live
+counter used the original clay, and the native counters used one substitute
+measure before and after reload. The integrated run passed 615 cases with
+one utility skip. Fresh Continue matched 23 selected fields. The inherited
+full-project regression remains open.
+[Evidence](Verification/MachineSystems/PorterParcelIntegrity20261125/README.md)
+
+Continue the 45-requirement queue with one actual delegated search and
+returned report. Establish a worker and a finite offer from the kitchen
+before extending the existing assignment. The supplier at the loading point
+has an independent role and the current personal search remains available.
+Keep the 30-minute check-in for recovery and advance eligible slices
+consecutively during a run.
+
+**Seasonal knotflax and public frame candidate — November 25 UTC, 2026.**
+Fresh version 21 can offer a finite knotflax bundle in the second saved
+seasonal phase. The same fixed frame can collect rain and winnow that bundle
+into an ordinary seed. In seed 65 Editor play, native gathering, both frame
+actions, ordinary planting and manual watering produced a persistent wet crop.
+The clock and an empty flask were supplied. The independent source review
+rechecked the transaction fixes. Publication and packaged acceptance remain
+open. [Evidence](Verification/MachineSystems/SeasonalSeedFrame20261125/README.md)
+
+**Reclaimable heavy opening candidate — November 25 UTC, 2026.**
+Fresh Spread version 20 can place a finite timber pallet in the optional
+heavy opening. A strong traveler can pull it aside. Dismantling it opens
+the same gap and yields two portable boards. The outside walk is still
+available. Seed 1 Editor play crossed after each action. It also carried both
+boards back to repair the garden wicket. Fresh Continue matched the hauled
+state and the repaired state, including the spent source and untouched cache.
+All 237 targeted native cases passed. A follow-on aligned the Focus hint with
+the action menu. All 112 targeted cases passed, and opening and cancelling
+the menu was free in Editor play. Independent review and delivery remain open.
+[Evidence](Verification/MachineSystems/TimberOpening20261125/README.md)
+
+**Seeded wayside clay alternatives — November 25 UTC, 2026.**
+Fresh Spread version 19 can choose one safe finite sorting lot by the kitchen
+or keep the existing paid physical shipment. Both share opening trade and
+the same pan repair. In fresh seed 2, ordinary exploration found and carried
+the lot. A supplied hand sieve separated two fire clay and one grit. In seed
+64, the real delivery stocked two prepared clay that the player bought. Both
+methods restored the same meal service and the selected saved states survived
+fresh Continue. All 518 expanded native cases passed. Independent final
+review, publication and Mac delivery remain
+open. This evidence concerns one kitchen's materials and receiving routes.
+[Evidence](Verification/MachineSystems/WaysideClayLayouts20261125/README.md)
+
+**Recovered clay shipment candidate — November 25 UTC, 2026.**
+The player can carry the original crate from the scene to the kitchen shelf.
+Orven takes the original contents into normal stock and closes the notice once
+he is available at the shelf. The same failed transit and settled fare remain
+on record. Starting from the prior report save, actual play picked up the crate,
+deposited it, bought the same two measures, and restored the batch pan. Fresh
+Continue matched the stocked and repaired checkpoints. All 470 expanded native
+cases passed. Independent final review, publication and Mac delivery remain
+open. Work on generated layouts can use the existing cold placement and route
+checks. A delegated search still needs a real available worker and payer.
+[Evidence](Verification/MachineSystems/WaysideRecovery20261125/README.md)
+
+**Wayside recognition candidate — November 25 UTC, 2026.**
+Orven can recognize the actual missing porter while outbound and bring the
+news back to the kitchen. A controlled delay held the porter during a
+player-caused combat branch from the earned overdue save. Ordinary spells and
+dagger attacks left the real body and crate on the ground. Orven was shaken,
+then resumed his search, recognized the body, and updated the receiving shelf
+on return. Fresh Continue matched the observed and returned states. Physical
+cargo recovery, delegated searches, independent review and publication are open.
+All 467 expanded native cases passed.
+[Evidence](Verification/MachineSystems/WaysideRecognition20261125/README.md)
+
+**First visible wayside search candidate — November 25 UTC, 2026.**
+Orven can follow one saved search from an open overdue notice to the actual
+loading point and back. Existing idle AI, safety and paid meal work govern
+when he acts. A controlled interruption from the earned overdue checkpoint
+kept the porter in place. Through ordinary player movement and Examine,
+Orven was observed on his outbound route, at the marker and back at the
+kitchen, where normal trade was available. Fresh Continue matched the outbound
+and returned saves. With the endpoint guard in place, fresh Continue advanced
+the same walk, and a controlled loading-marker displacement turned Orven back
+to the original shelf. All 458 expanded native cases passed. A finished search
+leaves the shipment issue unresolved until receipt or another supported outcome.
+Independent review, evidence recognition and delegated search remain open.
+[Next recognition slice](WORLD-LOCAL-PORTERS-AND-SHIPMENTS.md)
+[Evidence](Verification/MachineSystems/WaysideSearch20261125/README.md)
+
+**Wayside delivery deadline candidate — November 25 UTC, 2026.**
+The selected NPC order now saves its expected time and one optional overdue
+notice. In ordinary seed 64 play, a player read the agreement, left the area
+and crossed the grace period on the world map. The worker and cargo stayed
+put. On local return Orven posted the notice. The same physical crate arrived
+and closed it before unpacking. Fresh Continue matched both open and closed
+states. The earlier carrying save retained its original terms. All 451
+targeted native cases passed. Independent
+review and search behavior remain open.
+[Evidence](Verification/MachineSystems/WaysideDeadline20261125/README.md)
+
+**Wayside kitchen shipment candidate — November 25 UTC, 2026.**
+Requirement 25 has a local candidate. A selected supplier at a compatible
+fresh wayside kitchen books the existing porter service with a finite purse.
+The same two-measure clay box moves from supplier to porter to shelf. Orven
+stocks the exact delivered clay and leaves his opening clay and food in place.
+In ordinary seed 64 play the porter held the box at 160, delivered it at 170,
+and was paid five drams in total. Orven offered both lots by 190. The player
+bought the delivered lot for 11 drams and repaired the pan at 210. Separate
+fresh loads matched the selected cargo and repaired-pan checkpoints. All 446
+targeted native cases passed. A first
+live layout exposed the unreachable chair case and the new shelf fits within
+reach of both regular cook positions. Independent final review and publication
+remain open. Deadline source work can use the committed physical shelf
+receipt as the end of transit and the existing saved game clock.
+[Evidence](Verification/MachineSystems/WaysideShipment20261125/README.md)
+
+**Paid local porter action integrity — November 25 UTC, 2026.**
+Two native cases reproduced stale hire and cancel actions affecting later
+bookings. Quotes now carry the last order ID and cancellation carries the
+active order ID. The amended candidate passed all 253 targeted cases.
+From the earned carrying checkpoint at 390, actual play returned the same
+box and refunded seven drams at 400, then accepted a new quote for that box.
+Fresh Continue at 410 matched the new order, cargo and escrow. Independent
+final review and publication remain open. The source work for requirement 25
+identified Orven's kitchen as a candidate for a separately owned finite
+clay shipment with a real trade and pan consumer. The active automation
+follows the 45 requirements and starts the next eligible slice immediately
+within each run.
+[Evidence](Verification/MachineSystems/LocalPorter20261125/README.md)
+
+**Paid local porter candidate — November 25 UTC, 2026.**
+Requirements 21–24 and 28 now have a working paid-route candidate. The draft
+generates a carrier and a loading marker at the existing Gleaners' fittings.
+The marker owns the saved order and actual currency. Booked cargo remains
+reserved, then moves through the worker's inventory to the normal shelf.
+Ordinary seed 64 booked for eight drams, fresh-loaded at 390 with one earned
+and seven held, received the same box at 670, and used its clay at the well at
+700. A separate carrying branch cancelled and fresh-loaded at 400 with the
+same box returned and seven drams refunded. Native order scaffolding failed
+all four initial cases as expected. The expanded native and gameplay evidence
+is indexed in the receipt. The candidate remains local pending independent
+final source and recorded-play review. No new Mac package. Compare exact
+working-tree paths, keep the branches separate, and avoid repeating the earned
+positive route. Next source work is the finite NPC shipment adapter under 25.
+[Evidence](Verification/MachineSystems/LocalPorter20261125/README.md)
+
 **Physical receiving at Gleaners' — November 24 local / November 25 UTC, 2026.**
 The first delivery slice now has a real two-measure box with loaded mass and a
 one-box public shelf by the lined well. Native 148/148 after two real review

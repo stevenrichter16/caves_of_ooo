@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -8,6 +9,7 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "DeliveryStorage";
         public bool ReceivesParcels;
+        public bool ContentsWithdrawn;
 
         private const int Measures = 2;
 
@@ -36,9 +38,7 @@ namespace CavesOfOoo.Core
             if (ReceivesParcels)
             {
                 if (container.Contents.Count != 0) return "The receiving shelf already holds a box.";
-                var parcel = item.GetPart<DeliveryStoragePart>();
-                return parcel != null && !parcel.ReceivesParcels && parcel.ReadMeasures(zone) == Measures
-                    && HandlingService.GetWeight(item) is > 0 and <= 8
+                return ParcelWeightOrZero(item, zone) > 0
                     ? null : "The shelf takes one box packed with two measures of lining clay.";
             }
 
@@ -59,6 +59,21 @@ namespace CavesOfOoo.Core
                 && pack.Objects.All(e => e != item && e?.ID != item.ID)
                 && zone.GetReadOnlyEntities().All(e => e.ID != item.ID)
                 && pack.FindEquippedBodyPart(item) == null && !pack.EquippedItems.ContainsValue(item);
+        }
+
+        internal void RecordWithdrawal(InventoryTransaction transaction)
+        {
+            // A returned shipment can prove continuous packing only until its first committed withdrawal.
+            if (!ReceivesParcels && !ContentsWithdrawn)
+                transaction.AfterCommit(() => ContentsWithdrawn = true);
+        }
+
+        internal static int ParcelWeightOrZero(Entity item, Zone zone)
+        {
+            var storage = item?.GetPart<DeliveryStoragePart>();
+            if (storage?.ReadMeasures(zone) != Measures) return 0;
+            int weight = HandlingService.GetWeight(item);
+            return weight is > 0 and <= 8 ? weight : 0;
         }
 
         internal int ReadMeasures(Zone zone)

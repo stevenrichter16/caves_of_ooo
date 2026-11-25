@@ -36,8 +36,9 @@ size manifest is a useful foundation, not a general material-grade system.
 Cinderhold already gives the same future paid sounding-rod availability after
 either a stable/improved pump or the existing sealed-seep condition. This is an
 accepted bounded authored alternative, not a general physical-outcome service.
-All twelve whole-machine acceptance gates remain open. Porter orders, selected
-NPC shipments and their new seeded logistics opportunities remain proposals.
+All twelve whole-machine acceptance gates remain open. One paid local porter
+route and one selected NPC shipment have working candidates. Wider seeded
+logistics opportunities remain proposals.
 Existing seeded Spread roads and bounded hauling situations are useful starting
 points; they do not establish the full proposed logistical experience.
 
@@ -54,10 +55,15 @@ check-in provides continued work across runs.
 
 | Slice | Requirements and status |
 | --- | --- |
-| Clay suitability and repair result | 1, 4–8 have bounded well/pan evidence. 2 drives repair payment and physical parcel admission for lining clay. The selected NPC shipment adapter remains open. 3 has actual separate storage, collection and well repair. |
-| First paid physical delivery | Manual receipt is Editor-qualified, covering bounded self-carry, mass/capacity and persistent stock in 11–12 and 16–17. The paid carrier and its route, fare, custody, and interruption are in progress. |
-| Selected NPC shipments and overdue searches | Planned after the physical delivery can serve an actual recipient. Preserve the user's expected date, personal or delegated search, and possible player meeting with members of that party. |
-| Contrasting generated opportunities and seasons | Planned after the relevant same-outcome logistics work. Seasonal local materials and work require their own useful consumers. |
+| Clay suitability and repair result | 1, 4–8 have bounded well/pan evidence. 2 drives repair payment and physical parcel admission for lining clay. 3 has actual separate storage, collection and well repair. The selected NPC shipment has a bounded exact-stock receipt. |
+| First paid physical delivery | 21–24 and 28 have bounded Gleaners' hire, movement, shelf receipt and well use. The order-bound actions also have an actual cancel, rebook and reload branch. |
+| Selected NPC shipments and overdue searches | 25 has finite supplier payment, visible physical carrying, exact trade stock and pan repair. 41–42 have a saved deadline and local notice. 43–45 have bounded personal search, recognition, returned reporting, late delivery and intact recovery. A refilled parcel remains shelf storage with the inquiry open. Delegated search and broader settings remain open. |
+| Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. Broader road, load and seasonal variation remain open. |
+
+The connected regression passed 615 executable cases. Actual play used
+separate guided branches. Requirements for ordinary discovery and complete
+cross-seed comparisons remain open.
+[Recovery evidence](Verification/MachineSystems/PorterParcelIntegrity20261125/README.md)
 
 ## Priority 1: make needs and benefits independent of method
 
@@ -192,6 +198,37 @@ check-in provides continued work across runs.
 
 ## Priority 6: vary roads and movable opportunities within safe bounds
 
+The current wayside installer selects the first admissible loading approach
+in a fixed distance and direction order. The separate Spread hauling pocket
+already checks two physical routes and moves only generation-owned objects.
+The regional plan already supports stable ranking by world seed, zone and
+purpose. Reuse those boundaries to compare a longer loaded approach with a
+nearer source that supports small hand-carried batches. Keep the same usable
+receiving service and test each advertised method with its actual load. A
+fresh layout with only a different compass direction is a placement variant.
+The replayability gate requires a practical difference in the choices.
+
+The first local candidate uses two allocations at the established wayside
+kitchen. One keeps the existing paid clay shipment and its physical import.
+The other places one finite, public sorting lot within a few safe steps of
+the kitchen, so a traveler with a sieve can screen repair clay on site. Both
+keep opening trade stock and the original pan and oven. The lot reuses the
+known fire-clay and grit composition from the existing screening work. Pick
+the allocation with a dedicated seed salt in fresh version 19. Preserve the
+literal version 18 shipment policy. The optional allocation depends on the
+accepted kitchen graph and safe ground. Its omission leaves ordinary trade
+available. Save the actual placed lot and depletion with the existing graph.
+[Evidence](Verification/MachineSystems/WaysideClayLayouts20261125/README.md)
+
+The second candidate changes what occupies an optional Spread heavy opening.
+Fresh version 20 uses an independent seed and site choice between the original
+hoist frame and a reclaimable timber pallet. The pallet can be hauled aside
+intact or dismantled for two portable boards. Both clear the same opening,
+and the outside walk stays available. Existing encounters and cache contents
+keep their own provenance. The literal version 19 keeps the hoist frame.
+The timber can travel to existing consumers. No site-specific repair credit is
+awarded for moving it. [Evidence](Verification/MachineSystems/TimberOpening20261125/README.md)
+
 26. **Compose circumstances, not mandatory project lists.** Vary eligible source
     quantities, load size, destination, existing access and service availability.
     Keep regional identity, lore, protected geometry and mandatory entrances
@@ -217,6 +254,14 @@ check-in provides continued work across runs.
     approaches only after validating at least two there.
 
 ## Priority 7: add seasonal bonus work without making travel a chore
+
+Requirements 31–33 have one local candidate. An admitted fresh Morrowfast
+allotment has one late knotflax bundle, a shared frame process and an ordinary
+prepared-bed consumer. Editor play used the same frame for rain collection
+and seed work, then planted and watered the seed. Requirement 35 has bounded
+coverage of the continuing alternatives. A weather bonus to process work
+under 34 and broader seasonal density are open.
+[Evidence](Verification/MachineSystems/SeasonalSeedFrame20261125/README.md)
 
 31. **Start with one additional material opportunity.** Choose finite flexible
     stems, ripe heads or another lore-compatible stock whose output has a real
@@ -249,6 +294,9 @@ check-in provides continued work across runs.
     selected stock, output, loss, cost and exact blocker in player language.
     Material, tool, shop and receiver readers must agree. Reading and cancellation
     remain free and cannot replace a still-valid selection or reserve goods.
+    The finite-source Focus hint now uses the same configured label as the
+    world action menu. Editor play confirmed the pallet label, free opening
+    and free cancellation. [Evidence](Verification/MachineSystems/TimberOpening20261125/README.md)
 
 37. **Let discovery suggest connections.** A found tool names a few supported
     uses; a stock description explains its useful fractions; a recipient explains

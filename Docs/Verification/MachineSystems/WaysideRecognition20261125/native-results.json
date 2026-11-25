@@ -1,0 +1,78 @@
+{
+  "final": {
+    "artifacts": {
+      "coo-wayside-recognition-final-20261125.log.gz": {
+        "gzip_sha256": "9023f2f10fb9d5df62ac51bae762f2c26a7b78b52768380cbd9f2f1228881fa1",
+        "sha256": "3b3816303823f68b7e2b73534d87f38d24b632b95bd177eb5e9274e15923d195"
+      },
+      "coo-wayside-recognition-final-20261125.xml.gz": {
+        "gzip_sha256": "8591b62cc982e738328f73c38cbd4ab516cce68fde2b4c789c1adbb73d5373c2",
+        "sha256": "27de68a49a8d594cb1657bd1bd24a2a6be1e51abbcf42e67017a1b9d8202849a"
+      }
+    },
+    "compiler_error_occurrences": 0,
+    "counts": {
+      "failed": 0,
+      "inconclusive": 0,
+      "passed": 467,
+      "skipped": 0,
+      "total": 467
+    },
+    "failures": {}
+  },
+  "native-a": {
+    "artifacts": {
+      "coo-wayside-recognition-native-a-20261125.log.gz": {
+        "gzip_sha256": "9cc6f764903b28bb9ed8daa1b222a9634a5ed3fdc0978afe9427401cb4481d42",
+        "sha256": "2746a143b10a268a5180524be157c84a5cc85fad4a31fb0341697fab7cfa00bd"
+      },
+      "coo-wayside-recognition-native-a-20261125.xml.gz": {
+        "gzip_sha256": "b5fc5bea24b14a9ce803b4d57b8406bc52bab8b3e63e3f8b83cc1273bb0d04d3",
+        "sha256": "67735f4e90887c7a752cc764e005e5f05d4d6edcc93eef30642d42c764cf8957"
+      }
+    },
+    "compiler_error_occurrences": 0,
+    "counts": {
+      "failed": 0,
+      "inconclusive": 0,
+      "passed": 51,
+      "skipped": 0,
+      "total": 51
+    },
+    "failures": {}
+  },
+  "red": {
+    "artifacts": {
+      "coo-wayside-recognition-red-20261125.log.gz": {
+        "gzip_sha256": "298e2b44dc7013a769d1ca32c79444f2d3765bae9ee02472b844622b4a4bbcdd",
+        "sha256": "d874112703547e783c1e30c7abdff1f60a191525ae048952796f7200b34f3067"
+      }
+    },
+    "compiler_error_occurrences": 6,
+    "counts": null,
+    "failures": {}
+  },
+  "red-b": {
+    "artifacts": {
+      "coo-wayside-recognition-red-b-20261125.log.gz": {
+        "gzip_sha256": "f2ada96cbab355c7ac6041215616414215ec9dd207b6e45a67994515d37c03f4",
+        "sha256": "a54fa9d225297dccf9a8cd7c33a2f70f7c3ccd847d093336d1acb0ede9814f92"
+      },
+      "coo-wayside-recognition-red-b-20261125.xml.gz": {
+        "gzip_sha256": "415516a995e0c599cba3193ba217b5443ee7aa93ae4ecf4dd6fcef6fc8207e6e",
+        "sha256": "fee64a5f8de35b03ca84331486c04af09d5b7f4e8be2dac1c493deb8a52fb2b3"
+      }
+    },
+    "compiler_error_occurrences": 0,
+    "counts": {
+      "failed": 1,
+      "inconclusive": 0,
+      "passed": 22,
+      "skipped": 0,
+      "total": 23
+    },
+    "failures": {
+      "ARealBodyIsReportedOnlyAfterTheSearcherSeesItAndReturns": "Expected: Returning\n  But was:  CheckingLoadingPoint"
+    }
+  }
+}

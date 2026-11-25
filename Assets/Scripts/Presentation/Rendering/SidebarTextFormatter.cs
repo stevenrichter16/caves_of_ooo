@@ -17,7 +17,8 @@ namespace CavesOfOoo.Rendering
             if (!controller) return cue.Value.Hint;
             switch (cue.Value.Command)
             {
-                case "Harvest": return "[A] (LS neutral): menu / harvest";
+                case "Harvest": return cue.Value.HarvestLabel==null ? "[A] (LS neutral): menu / harvest"
+                    : "[A] (LS neutral): menu / "+cue.Value.HarvestLabel;
                 case "OpenContainer": return "[A] (LS neutral): menu / open";
                 case DoorPart.OpenCommand: return "[A] (LS neutral): menu / open door";
                 case DoorPart.CloseCommand: return "[A] (LS neutral): menu / close door";

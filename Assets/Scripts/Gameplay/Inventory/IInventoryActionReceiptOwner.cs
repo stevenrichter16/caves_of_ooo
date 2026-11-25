@@ -8,4 +8,10 @@ namespace CavesOfOoo.Core
     {
         bool OwnsInventoryReceipt(string command);
     }
+
+    /// <summary>Publishes an exact action's informational after-event after its inventory receipt commits.</summary>
+    public interface IPostCommitInventoryActionNotification : IInventoryActionReceiptOwner
+    {
+        bool NotifyAfterCommit(string command);
+    }
 }

@@ -404,6 +404,7 @@ namespace CavesOfOoo.Core
                 if (zone != null)
                     endTurn.SetParameter("Zone", (object)zone);
                 actor.FireEventAndRelease(endTurn);
+                LocalPorterLedgerPart.Reconcile(actor, zone);
                 SeventhPositionPart.OnPlayerTurnEnded(actor, zone);
                 WorldAmbience.OnPlayerTurnEnded(actor, zone);
 

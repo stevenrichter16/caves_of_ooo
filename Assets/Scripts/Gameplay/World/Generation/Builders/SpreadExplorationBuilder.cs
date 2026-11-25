@@ -57,7 +57,10 @@ namespace CavesOfOoo.Core
    if(Priority!=4300)return Refuse(z,entry,"satellite-generation-boundary");
    var owners=new HashSet<Entity>(z.GetReadOnlyEntities());
    var original=SpreadGenerationReceipt.CaptureFinalState(z,owners);
-   if(ConnectedSpreadSatellite.TryPlace(z,f,terrain,population,containers,entry.Family,()=>Current(z,f,entry),out var packet,out var final,plan.Version>=17))
+   bool reclaimable=plan.Version>=20&&entry.Family==SpreadExplorationFamily.HeavyFrame
+    &&SpreadExplorationPlan.Rank(manager.WorldSeed,entry.ZoneID,"satellite-salvage-v20")%2==0;
+   if(ConnectedSpreadSatellite.TryPlace(z,f,terrain,population,containers,entry.Family,()=>Current(z,f,entry),
+    out var packet,out var final,plan.Version>=17,reclaimable))
     return Commit(z,f,entry,packet,final);
    if(!Current(z,f,entry)||!original()||!owners.SetEquals(z.GetReadOnlyEntities()))return false;
    return Refuse(z,entry,"no-safe-satellite-or-original-sources");

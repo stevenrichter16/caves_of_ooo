@@ -1,0 +1,92 @@
+{
+  "final": {
+    "artifacts": {
+      "coo-wayside-recovery-final-20261125.log.gz": {
+        "gzip_sha256": "bf2753f177e062534a86166f151806a5466764677cea398c63e76782d9d3958f",
+        "sha256": "c9886efdb9f067cfe512abef10101ceae1002c196dd264436b849dab8de6801a"
+      },
+      "coo-wayside-recovery-final-20261125.xml.gz": {
+        "gzip_sha256": "c63057cc4ebab8751c9cafc1353e59b101a705e49f25c649a40b402c890ffec7",
+        "sha256": "ce08b8ca12c58c4fcd97db7e0f2ba8619f75d7f9ef1e9be616035e29fe62a3d7"
+      }
+    },
+    "compiler_errors": 0,
+    "counts": {
+      "failed": 0,
+      "inconclusive": 0,
+      "passed": 470,
+      "skipped": 0,
+      "total": 470
+    },
+    "failures": {}
+  },
+  "native-a": {
+    "artifacts": {
+      "coo-wayside-recovery-native-a-20261125.log.gz": {
+        "gzip_sha256": "70d9efae90ed850d8ddd23123ea2efb73288488f412cc231cde10c50ce328e99",
+        "sha256": "e488a16ec70e25858b6d467c1e3ce6e93d52f529146d0d2f13a1be1e3624fe9a"
+      },
+      "coo-wayside-recovery-native-a-20261125.xml.gz": {
+        "gzip_sha256": "890a0a8e1fa2c316468d107a20bfb7cc9c78ed8a48c616e58c4692b42e19d8ed",
+        "sha256": "3c3402e4aba0d06bb4f9f1d79cefd8dad337c5ea415184782e21f57a8dfc7573"
+      }
+    },
+    "compiler_errors": 0,
+    "counts": {
+      "failed": 0,
+      "inconclusive": 0,
+      "passed": 63,
+      "skipped": 0,
+      "total": 63
+    },
+    "failures": {}
+  },
+  "red": {
+    "artifacts": {
+      "coo-wayside-recovery-red-20261125.log.gz": {
+        "gzip_sha256": "34fd1ef47b30a6b719cd858a24862847bccf30db2af5390445d462a50205888a",
+        "sha256": "2a5213013e9a68f2893348d85e56d25ac61e17b6acc57cea3bf1b2735c47122d"
+      },
+      "coo-wayside-recovery-red-20261125.xml.gz": {
+        "gzip_sha256": "8a5a8a87d9dcc61ec230ed11d4e8edc56f80b58578eb073de4abbe0af13fd2f2",
+        "sha256": "8bca86807ff9e0257ac69efdb89abd08c035b52eabaacd963feffef1ecab43d4"
+      }
+    },
+    "compiler_errors": 0,
+    "counts": {
+      "failed": 3,
+      "inconclusive": 0,
+      "passed": 22,
+      "skipped": 0,
+      "total": 25
+    },
+    "failures": {
+      "RecoveringTheSurvivingBoxClosesItsCaseOnceWithoutPayingAnotherFare": "Expected: 111\n  But was:  -1",
+      "TheConcernWaitsForActiveLocalPlayAndSurvivesFreshContinue": "Expected: False\n  But was:  True",
+      "TheSameRecipientChecksTheMarkerAndReturnsOnceForThisConcern": "Expected: False\n  But was:  True"
+    }
+  },
+  "red-b": {
+    "artifacts": {
+      "coo-wayside-recovery-red-b-20261125.log.gz": {
+        "gzip_sha256": "6539c650d74705c79b0d3ebeb0503e461d6f14cd55d6bfa3124bea80b0654de1",
+        "sha256": "2b5a5f5736866b7781c515dc1d07bd1e00f52551bea2d0c3424d597e853c3af8"
+      },
+      "coo-wayside-recovery-red-b-20261125.xml.gz": {
+        "gzip_sha256": "47e2295a839da9f5cce3a20952fb4bc1fe78294de08c6634790d109b474ee585",
+        "sha256": "8e926ed1176db7eb7b515f2ce9f68ca194c18a2302e615a859e89ccc8bb60ac6"
+      }
+    },
+    "compiler_errors": 0,
+    "counts": {
+      "failed": 1,
+      "inconclusive": 0,
+      "passed": 24,
+      "skipped": 0,
+      "total": 25
+    },
+    "failures": {
+      "RecoveringTheSurvivingBoxClosesItsCaseOnceWithoutPayingAnotherFare": "Expected: 111\n  But was:  -1"
+    }
+  }
+}

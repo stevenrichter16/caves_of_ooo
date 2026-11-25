@@ -101,13 +101,18 @@ namespace CavesOfOoo.Core
         }
         // Syntax loading is separate from factory admission. A planner must call
         // this against its current factory before exposing any executable choice.
-        public static IReadOnlyList<string> Validate(EntityFactory factory)
+        public static IReadOnlyList<string> Validate(EntityFactory factory) => ValidateDefinitions(factory, true);
+        internal static IReadOnlyList<string> ValidateForWork(EntityFactory factory, string workKind)
+            => ValidateDefinitions(factory, workKind == SeedFramePart.WorkKind);
+        private static IReadOnlyList<string> ValidateDefinitions(EntityFactory factory, bool includeSeedFrames)
         {
             LoadDefaults();var issues=new List<string>();
             if(Definitions.Count==0)issues.Add("No valid process catalogue.");
             if(factory?.Blueprints==null){issues.Add("Missing process content factory.");return issues.AsReadOnly();}
             foreach(var definition in Definitions.Values)
             {
+                // The fresh public installation is optional. An omitted bundle cannot disable ordinary workshop work.
+                if(!includeSeedFrames && definition.WorkKind==SeedFramePart.WorkKind)continue;
                 if(!Portable(factory,definition.SourceBlueprint))issues.Add(definition.Id+": invalid source "+definition.SourceBlueprint);
                 if(definition.SourceRecipeId.Length>0)
                 {
@@ -137,7 +142,8 @@ namespace CavesOfOoo.Core
         {
             if(row==null || (row.ActionText?.Length??0)>120 || (row.LossText?.Length??0)>200 || !Token(row.Id) || !Token(row.SourceBlueprint)
                 || row.Mode!="Dismantle" && row.Mode!="Reclaim" && row.Mode!="Process"
-                || row.WorkKind!="ForgeCold" && row.WorkKind!="HandCutting" && row.WorkKind!="Screening" || row.InputCount<1 || row.InputCount>MaximumUnits
+                || row.WorkKind!="ForgeCold" && row.WorkKind!="HandCutting" && row.WorkKind!="Screening" && row.WorkKind!=SeedFramePart.WorkKind
+                || row.InputCount<1 || row.InputCount>MaximumUnits
                 || row.OutputBlueprints==null || row.OutputCounts==null
                 || row.OutputBlueprints.Length<1 || row.OutputBlueprints.Length>MaximumOutputs
                 || row.OutputBlueprints.Length!=row.OutputCounts.Length)return false;

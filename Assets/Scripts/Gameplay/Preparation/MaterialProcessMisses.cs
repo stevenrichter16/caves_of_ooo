@@ -42,6 +42,11 @@ namespace CavesOfOoo.Core
             {
                 if (MaterialScreeningWorkReceipt.Resolve(actor, source, zone) == null) misses.Add(new Miss(NoTool, "You need a sound hand sieve carried in your pack."));
             }
+            else if (d.WorkKind == SeedFramePart.WorkKind)
+            {
+                if (StationQuery.Resolve(actor, zone, SeedFramePart.Kind) == null)
+                    misses.Add(new Miss(NoStation, "Stand beside an intact public seed frame."));
+            }
             else if (ForgeWorkReceipt.Resolve(actor, zone) == null)
             {
                 // An unready rig or forge within reach already says why in its own menu; only a place with none at all is a miss here.

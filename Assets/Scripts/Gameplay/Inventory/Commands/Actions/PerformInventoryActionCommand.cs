@@ -69,10 +69,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
             bool wellFlaskReceipt = WellFlaskFilling.OwnsReceipt(_item,_actionCommand);
             bool rainReceipt = RainCollectorPart.OwnsReceipt(_item, _actionCommand);
             bool oilFuelReceipt = VesselTorchRefueling.OwnsReceipt(_item, _actionCommand);
-            bool partReceipt = false;
+            bool partReceipt = false, notifyAfterCommit = false;
             foreach (var part in _item.Parts)
                 if (part?.ParentEntity == _item && part is IInventoryActionReceiptOwner owner && owner.OwnsInventoryReceipt(_actionCommand))
-                { partReceipt = true; break; }
+                {
+                    partReceipt = true;
+                    notifyAfterCommit = owner is IPostCommitInventoryActionNotification notification
+                        && notification.NotifyAfterCommit(_actionCommand);
+                    break;
+                }
             var snapshot = skinReceipt || coolingReceipt || bakeReceipt || wellFlaskReceipt || rainReceipt || oilFuelReceipt || partReceipt ? null : CaptureSnapshot(context, _item, wellStatReceipt);
             if (snapshot != null)
             {
@@ -123,12 +128,16 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     $"Inventory action '{_actionCommand}' failed.");
             }
 
-            // Fire AfterInventoryAction on actor.
-            var after = GameEvent.New("AfterInventoryAction");
-            after.SetParameter("Actor", (object)actor);
-            after.SetParameter("Item", (object)_item);
-            after.SetParameter("Command", _actionCommand);
-            actor.FireEventAndRelease(after);
+            void Notify()
+            {
+                var after = GameEvent.New("AfterInventoryAction");
+                after.SetParameter("Actor", (object)actor);
+                after.SetParameter("Item", (object)_item);
+                after.SetParameter("Command", _actionCommand);
+                actor.FireEventAndRelease(after);
+            }
+            if (notifyAfterCommit) transaction.AfterCommit(Notify);
+            else Notify();
 
             return InventoryCommandResult.Ok();
         }

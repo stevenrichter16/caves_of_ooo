@@ -50,6 +50,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Item is null.");
             }
 
+            if (LocalPorterReservationPart.Blocks(_container) || LocalPorterReservationPart.Blocks(_item))
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, "That box is reserved for a delivery.");
             if (_container.HasPart<ContainedLiquidSourcePart>())
                 return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, "This recovery tray does not accept deposits.");
 

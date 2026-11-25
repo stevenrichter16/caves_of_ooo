@@ -1236,7 +1236,12 @@ namespace CavesOfOoo.Core
                 lairAccepted=staged.FinalizeGenerated(zone)&&lairAccepted;
             }
             bool accepted = SpreadExplorationPlan.FinalizeGenerated(this,zone,zoneID,lairAccepted);
-            if (accepted) SecondExplorationSites.Install(this, zone);
+            if (accepted)
+            {
+                SecondExplorationSites.Install(this, zone);
+                if (zoneID == KitchenBatchPart.KitchenZoneID)
+                    WaysideShipmentSite.TryInstall(zone, this);
+            }
             return accepted;
         }
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
@@ -1309,15 +1314,16 @@ namespace CavesOfOoo.Core
 
             RegionalSituations.OnZoneGenerated(zone, this);
 
-            if (zoneID == GleanersDistrict.SurfaceID && GleanersDistrict.TryInstall(zone, this))
-                GleanersReceivingSite.TryInstall(zone, this);
+            if (zoneID == GleanersDistrict.SurfaceID && GleanersDistrict.TryInstall(zone, this)
+                && GleanersReceivingSite.TryInstall(zone, this))
+                GleanersReceivingSite.TryInstallPorter(zone, this);
 
             if (zoneID == MorrowfastExpedition.FieldZoneId && WorldMap.GetPOI(wx, wy) == null
                 && WorldMap.GetBiome(wx, wy) == BiomeType.Grovelands)
             {
                 MorrowfastExpedition.TryInstall(zone, Factory);
                 RepairCultivationSite.TryInstall(zone, Factory);
-                ShowerCollectionSite.TryInstall(zone, this);
+                if (ShowerCollectionSite.TryInstall(zone, this)) SeasonalSeedSite.TryInstall(zone, this);
             }
 
             // Stillleaf Archive SA.2: the Recension Searcher works in

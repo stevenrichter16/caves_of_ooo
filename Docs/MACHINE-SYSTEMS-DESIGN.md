@@ -1,3 +1,90 @@
+**Physical custody and shipment recovery — November 25 UTC, 2026.**
+The original shipment receipt requires continuous packing as well as the
+same parcel and cargo. Taking cargo commits a saved withdrawal on the box.
+Reading and refused transfers leave the receipt eligible. The box can still
+be repacked, delivered to the shelf as storage and picked up again. The
+trade stock and failed delivery case change only after a qualifying recovery.
+[Evidence](Verification/MachineSystems/PorterParcelIntegrity20261125/README.md)
+
+**Finite seasonal seed and public frame — November 25 UTC, 2026.**
+Fresh allotments can offer one optional stand gated by the saved season.
+Its portable bundle retains its identity and can be winnowed at a fixed rain
+frame after the gathering period. Seed work shares ordinary material receipts
+and planting, and has its own input budget. The alternate work connects
+collection, preparation and ordinary watering in Editor play.
+[Evidence](Verification/MachineSystems/SeasonalSeedFrame20261125/README.md)
+
+**Timber salvage and ordinary passage — November 25 UTC, 2026.**
+An optional heavy opening in fresh Spread can use a finite, reclaimable pallet.
+Shared hauling and ordinary dismantling clear the same tile with distinct
+costs and consequences. A detour surrounds the source. Actual salvaged timber
+also feeds the existing garden wicket repair away from the opening.
+The salted version 20 choice preserves the original hoist in version 19 and
+other seeds. This is a local candidate for requirements 26–30.
+[Evidence](Verification/MachineSystems/TimberOpening20261125/README.md)
+
+**Seeded wayside clay alternatives — November 25 UTC, 2026.**
+Version 19 can place one finite near-site sorting lot or retain the original
+paid local shipment. A known sieve process and the ordinary goods receipt
+both supply the same repair requirement. Editor play reached and repaired the
+pan in each of two seeds, and separate fresh loads retained the results.
+Seed 2 brought a supplied sieve. Independent review and publication remain open.
+[Evidence](Verification/MachineSystems/WaysideClayLayouts20261125/README.md)
+
+**Recovered clay shipment — November 25 UTC, 2026.**
+The original complete parcel can be carried to the shelf after a failure.
+Physical possession and the ordinary inventory action establish the deposit.
+When Orven can receive it, the existing stock transaction transfers the clay
+and records closure. Editor play connects recovery, ordinary trade and the
+existing pan repair. Both checkpoints survived fresh Continue. Independent
+review and publication remain open.
+[Evidence](Verification/MachineSystems/WaysideRecovery20261125/README.md)
+
+**Wayside search and physical evidence — November 25 UTC, 2026.**
+After a failed shipment, the recipient can recognize the matching visible
+body along the outbound search. The recorded observation becomes public at
+the kitchen after the return. The same physical cargo remains available for
+possible recovery. Editor evidence includes actual combat, a witnessed pause,
+the resumed search, two shelf readers and fresh loads. Physical recovery,
+staff-led searches and publication remain open.
+[Evidence](Verification/MachineSystems/WaysideRecognition20261125/README.md)
+
+**First visible local search candidate — November 25 UTC, 2026.**
+An overdue shipment can give its existing recipient one bounded search at
+the exact loading point. A saved job uses ordinary safe movement and returns
+the actor to the kitchen. A controlled delay in the Editor exposed both
+legs and the recovered trade access, with fresh load checks before and
+after return. The loading point can be displaced without sending the recipient
+after it, and losing the original shelf ends the walk. The final targeted set
+passed all 458 cases. Evidence recognition, delegated search and publication
+remain open. [Evidence](Verification/MachineSystems/WaysideSearch20261125/README.md)
+
+**Selected shipment deadlines — November 25 UTC, 2026.**
+The wayside order can record an agreed deadline and one local overdue notice
+on the saved game clock. Physical handover closes the notice independently of
+unpacking or trade. Actual play and fresh Continue cover inactive travel,
+local notice and late receipt. Search movement and independent final review
+remain open. [Evidence](Verification/MachineSystems/WaysideDeadline20261125/README.md)
+
+**Selected NPC shipment candidate — November 25 UTC, 2026.**
+One local supplier can pay the existing porter service to deliver a finite
+parcel of lining clay to the wayside kitchen. The porter and receiving shelf
+retain the same physical box. Orven moves the delivered measures into his
+ordinary trade inventory and the player can spend them in the existing pan
+repair. Money, opening stock, acquisition and the saved repair are separate
+authorities. Editor play covers the route, purchase, downstream repair and
+fresh loads. Independent review and publication remain open.
+[Evidence](Verification/MachineSystems/WaysideShipment20261125/README.md)
+
+**Paid local carrying candidate — November 25 UTC, 2026.**
+The Gleaners' loading marker can hold payment for a local porter to carry one
+packed box to the existing shelf. A saved order tracks the payer, actual
+cargo, worker and fixed destination. Physical receipt pays the balance, and
+cancellation returns unearned drams after the box returns. Fresh Editor play
+has separate delivery and cancellation branches. Independent review and
+publication remain open. Manual carrying and older saved locations retain
+their prior rules. [Evidence](Verification/MachineSystems/LocalPorter20261125/README.md)
+
 **Physical local receipt — November 24 local / November 25 UTC, 2026.**
 A fresh Gleaners' district can include a box by its cellar landing and a shelf by
 the well. The box carries two compatible clay measures with real loaded mass.

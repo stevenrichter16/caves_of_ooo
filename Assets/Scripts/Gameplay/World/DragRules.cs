@@ -127,7 +127,7 @@ namespace CavesOfOoo.Core
             // The brief's one hard line: non-living only.
             if (target.HasTag("Creature")) return DragVerdict.Living;
 
-            if (IsRooted(target)) return DragVerdict.Rooted;
+            if (IsRooted(target) || LocalPorterReservationPart.Blocks(target)) return DragVerdict.Rooted;
 
             // Ask the pickup path its own question rather than guessing at it.
             // Reported as its own outcome rather than a refusal so the UI can

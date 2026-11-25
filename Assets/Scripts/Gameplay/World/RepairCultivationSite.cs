@@ -138,7 +138,7 @@ namespace CavesOfOoo.Core
         private static bool Bare(Cell c)=>c!=null&&!c.IsInterior&&!c.BlocksMovement()&&!BarrenGroundRules.IsBarren(c)
             &&c.Objects.Count==1&&c.Objects[0].BlueprintName=="Grass"&&c.Objects[0].HasTag("Terrain")&&!c.Objects[0].HasPart<CultivatedSoilPart>();
         private static int Distance((int x,int y)a,(int x,int y)b)=>Math.Max(Math.Abs(a.x-b.x),Math.Abs(a.y-b.y));
-        private static HashSet<(int,int)> Reach(Zone zone,HashSet<(int,int)> excluded)
+        internal static HashSet<(int,int)> Reach(Zone zone,HashSet<(int,int)> excluded)
         {
             var result=new HashSet<(int,int)>();var queue=new Queue<Cell>();
             var start=zone.GetCell(Zone.Width-1,Zone.Height/2);

@@ -44,6 +44,7 @@ namespace CavesOfOoo.Core
             // It is not admitted as a nested stock/output creation permission.
             Policies[typeof(SiftableStockPart)]=new ScalarPolicy(typeof(SiftableStockPart),false);
             Policies[typeof(RepairMaterialPart)]=new ScalarPolicy(typeof(RepairMaterialPart));
+            Policies[typeof(SeedPart)]=new ScalarPolicy(typeof(SeedPart));
             // Compared by inertness only, never by Revision: consuming the last unit of a stack invalidates its throw
             // receipt (bumping Revision), which must not make the commit that caused it refuse.
             Policies[typeof(ThrownRecoveryPart)]=new TrackingPolicy<ThrownRecoveryPart>(t=>string.IsNullOrEmpty(t.ThrowerId) && string.IsNullOrEmpty(t.ItemId)
@@ -203,6 +204,12 @@ namespace CavesOfOoo.Core
             foreach(var row in bp.Parts)
             {
                 if(row.Value==null || !factory.TryGetRegisteredPartType(row.Key,out var type))return null;
+                // Only the known stand's ordinary cultivated-bed seed is admitted as an output.
+                if(type==typeof(SeedPart) && (!requireCreationSafe || name!="KnotflaxSeed" || row.Value.Count!=2
+                    || !row.Value.TryGetValue("CropBlueprint",out string crop) || crop!="KnotflaxCrop"
+                    || !row.Value.TryGetValue("RequireCultivatedSoil",out string requiresSoil)
+                    || !bool.TryParse(requiresSoil,out bool required) || !required
+                    || !factory.Blueprints.TryGetValue(crop,out var plant) || !plant.Parts.ContainsKey("Crop")))return null;
                 var policy=MaterialProcessPayloadPolicies.Get(type);
                 if(policy==null || !policy.ValidTemplate(row.Value) || requireCreationSafe && (policy is not IMaterialProcessCreationPartPolicy creation || !creation.AllowsCreation))return null;
                 policies.Add(row.Key,(type,policy));

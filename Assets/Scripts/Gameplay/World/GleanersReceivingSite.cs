@@ -9,6 +9,57 @@ namespace CavesOfOoo.Core
         private const string ParcelBlueprint = "LiningClayParcel";
         private const string ShelfBlueprint = "LiningClayReceivingShelf";
 
+        internal static bool TryInstallPorter(Zone zone, OverworldZoneManager manager)
+        {
+            const string porterBlueprint = "GleanersPorter", markerBlueprint = "GleanersLoadingMarker";
+            if (zone?.ZoneID != GleanersDistrict.SurfaceID || manager?.Factory == null
+                || manager.CachedZones.ContainsKey(zone.ZoneID) || !manager.Factory.Blueprints.ContainsKey(porterBlueprint)
+                || !manager.Factory.Blueprints.ContainsKey(markerBlueprint)) return false;
+            var original = zone.GetReadOnlyEntities().ToHashSet();
+            var boxes = original.Where(e => e.BlueprintName == ParcelBlueprint).Take(2).ToArray();
+            var shelves = original.Where(e => e.BlueprintName == ShelfBlueprint).Take(2).ToArray();
+            if (boxes.Length != 1 || shelves.Length != 1 || original.Any(e => e.HasPart<LocalPorterLedgerPart>())) return false;
+            var box = boxes[0]; var shelf = shelves[0];
+            var at = zone.GetEntityPosition(box);
+            var proof = SpreadGenerationReceipt.CaptureFinalState(zone, original);
+            Entity worker = null, marker = null;
+            bool committed = false;
+            try
+            {
+                marker = manager.Factory.CreateEntity(markerBlueprint);
+                worker = manager.Factory.CreateEntity(porterBlueprint);
+                if (marker?.GetPart<LocalPorterLedgerPart>() is not { } ledger || worker?.GetPart<LocalPorterPart>() is not { } role
+                    || marker.GetPart<PhysicsPart>() is not { Takeable: false, Solid: false }
+                    || !LocalGatheringClaims.Alive(worker) || marker.SpatialZone != null || worker.SpatialZone != null
+                    || marker.ID == worker.ID || original.Any(e => e.ID == marker.ID || e.ID == worker.ID)
+                    || !proof() || !original.SetEquals(zone.GetReadOnlyEntities())) return false;
+                foreach (var standing in Neighbors(at).Where(p => Clear(zone, p)))
+                {
+                    if (!zone.AddEntity(worker, standing.x, standing.y)) continue;
+                    if (LocalPorterPart.Route(worker, shelf, zone) is { Count: > 0 }) break;
+                    zone.RemoveEntity(worker);
+                }
+                if (worker.SpatialZone != zone || !zone.AddEntity(marker, at.x, at.y)) return false;
+                ledger.Worker = worker; ledger.Box = box; ledger.Shelf = shelf; role.Ledger = marker;
+                committed = proof() && zone.GetEntityPosition(marker) == at
+                    && original.Append(worker).Append(marker).ToHashSet().SetEquals(zone.GetReadOnlyEntities());
+                return committed;
+            }
+            catch (System.Exception error)
+            {
+                CavesOfOoo.Diagnostics.Diag.Record("worldgen", "PorterFittingsRefused", payload: new { zone = zone.ZoneID, error = error.GetType().Name });
+                return false;
+            }
+            finally
+            {
+                if (!committed)
+                {
+                    if (worker?.SpatialZone == zone && !original.Contains(worker)) zone.RemoveEntity(worker);
+                    if (marker?.SpatialZone == zone && !original.Contains(marker)) zone.RemoveEntity(marker);
+                }
+            }
+        }
+
         internal static bool TryInstall(Zone zone, OverworldZoneManager manager)
         {
             if (zone?.ZoneID != GleanersDistrict.SurfaceID || manager?.Exploration is not { Version: >= 17 }

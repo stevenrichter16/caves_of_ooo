@@ -32,6 +32,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (_item == null || physics?.ParentEntity != _item || !physics.Takeable
                 || stack != null && (stack.ParentEntity != _item || stack.StackCount <= 0))
                 return Invalid("That item cannot be thrown.");
+            if (LocalPorterReservationPart.Blocks(_item)) return Invalid("That box is reserved for a delivery.");
             if (!HandlingService.CanThrow(context.Actor, _item, out string reason)) return Invalid(reason);
             var source = DetectSource(context, out Cell sourceCell);
             if (source == ThrowSourceKind.None) return Invalid("You do not have access to that item to throw it.");

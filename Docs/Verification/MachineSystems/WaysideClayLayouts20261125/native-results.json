@@ -1,0 +1,71 @@
+{
+  "final": {
+    "artifacts": {
+      "coo-wayside-clay-layout-final-20261125.log.gz": {
+        "gzip_sha256": "9b8aa4c3d78e4bd3f847a5e6a2010b60b9ac7f29c1b22bf38166beac7ccd7f7c",
+        "sha256": "f2eda65122d2d98f854453b09ecf3c5275280b1b65ffce87a35e63f02a71a896"
+      },
+      "coo-wayside-clay-layout-final-20261125.xml.gz": {
+        "gzip_sha256": "113fab3e367a8a3d182b6bf17fed990d3269e8b3848aa64f31ac8e1ac14a97ff",
+        "sha256": "d4b785e027957086c0e8b905d6f7a5dd3896bc827c0d53f64bdc09d085a9543a"
+      }
+    },
+    "compiler_errors": 0,
+    "counts": {
+      "failed": 0,
+      "inconclusive": 0,
+      "passed": 518,
+      "skipped": 0,
+      "total": 518
+    },
+    "duration_seconds": 129.171018,
+    "failures": {}
+  },
+  "native-a": {
+    "artifacts": {
+      "coo-wayside-clay-layout-native-a-20261125.log.gz": {
+        "gzip_sha256": "09ae76a34ab15eeb22e36df6e290ae90475c2997ce0cee5c88a32cbf2fd74835",
+        "sha256": "85543888cdd3dd5c7ce6e5ffe3b2f6a91e4566786c14a501c48699e9ff041c72"
+      },
+      "coo-wayside-clay-layout-native-a-20261125.xml.gz": {
+        "gzip_sha256": "82add34a4f5cfbb5fd2a02aa0fe45b0ac835fa9efbf64743eeda660795bf5c3c",
+        "sha256": "08578ca8a8ce983602167d50a26babbd8a7493c0dad87c7a74dffdd5ff3f16c1"
+      }
+    },
+    "compiler_errors": 0,
+    "counts": {
+      "failed": 0,
+      "inconclusive": 0,
+      "passed": 37,
+      "skipped": 0,
+      "total": 37
+    },
+    "duration_seconds": 10.778612,
+    "failures": {}
+  },
+  "red": {
+    "artifacts": {
+      "coo-wayside-clay-layout-red-20261125.log.gz": {
+        "gzip_sha256": "5143041980209eb6eb915bb79fa597e129658868ab60e26f208a8a11b5f2e0e1",
+        "sha256": "7478032f1ce5e4fadd05c4027931cccba873d0e6f3ae34e8ae1451f591be3baa"
+      },
+      "coo-wayside-clay-layout-red-20261125.xml.gz": {
+        "gzip_sha256": "47312d0b5d1a14472474ad5e0eed5ec52a2a49d89b6d342a58678ac5117f44fa",
+        "sha256": "9e11dc06d7332d624b3e12b8400619ed417eaba5cfc3e389627f92397aab452c"
+      }
+    },
+    "compiler_errors": 0,
+    "counts": {
+      "failed": 2,
+      "inconclusive": 0,
+      "passed": 0,
+      "skipped": 0,
+      "total": 2
+    },
+    "duration_seconds": 7.2439654,
+    "failures": {
+      "ASeededWaysideSortingLotKeepsTheSameKitchenAndDoesNotRefill(1729)": "Expected: property Length equal to 1\n  But was:  0",
+      "ASeededWaysideSortingLotKeepsTheSameKitchenAndDoesNotRefill(2)": "Expected: property Length equal to 1\n  But was:  0"
+    }
+  }
+}

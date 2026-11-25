@@ -62,6 +62,10 @@ namespace CavesOfOoo.Core
                 bool authoredTrader = declaredTrader != null && !string.IsNullOrEmpty(declaredTrader.StockTable);
                 if ((!e.Tags.TryGetValue("Faction", out faction) || faction != "Villagers") && !authoredTrader)
                     continue;
+                // Work accounts are finite. Receiving a wage or a supply
+                // budget does not enroll an ordinary carrier in trade.
+                if (!authoredTrader && (e.HasPart<LocalPorterPart>() || e.HasPart<LocalShipmentSponsorPart>()))
+                    continue;
                 // "Is a trader" = carries the Drams property at all
                 // (blueprint-seeded); ordinary villagers have none.
                 int drams = e.GetIntProperty(TradeSystem.CURRENCY_PROP, -1);

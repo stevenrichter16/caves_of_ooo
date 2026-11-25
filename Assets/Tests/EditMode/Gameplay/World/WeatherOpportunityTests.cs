@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
+using CavesOfOoo.Data;
 using NUnit.Framework;
 
 namespace CavesOfOoo.Tests
@@ -370,6 +371,194 @@ namespace CavesOfOoo.Tests
                 new Dictionary<string, List<ZoneConnection>>());
             Assert.AreSame(cached, manager.GetZone(cached.ZoneID));
             Assert.False(cached.GetReadOnlyEntities().Any(e => Has(e, "RainCatchmentPart") || Has(e, "RainCollectorPart")));
+        }
+    }
+
+    public sealed class SeasonalSeedFrameTests : FiftyWorldFixture
+    {
+        const string Patch = "LateKnotflaxStand";
+        const string Bundle = "KnotflaxSeedHeads";
+        const string Work = "MaterialProcess|winnow_knotflax_seed|";
+        const int LateGrowth = 16 * 600;
+        EntityFactory oldForge;
+
+        [SetUp] public void BindForge() { oldForge = ForgePart.Factory; ForgePart.Factory = Factory; }
+        [TearDown] public void RestoreForge() { ForgePart.Factory = oldForge; }
+
+        OverworldZoneManager EnterAllotment(bool missingProduct = false)
+        {
+            if (missingProduct) Factory.Blueprints.Remove(Bundle);
+            Assert.True(Zone.RemoveEntity(Actor));
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            Zone = manager.GetZone("Overworld.2.6.0");
+            manager.SetActiveZone(Zone); SettlementRuntime.ActiveZone = Zone;
+            Assert.True(Zone.AddEntity(Actor, 40, 12));
+            Zone.ForEachCell((c, x, y) => { c.IsVisible = true; c.Explored = true; });
+            return manager;
+        }
+
+        void StandBeside(Entity target)
+        {
+            var at = Zone.GetEntityCell(target);
+            var next = new[] { (at.X, at.Y + 1), (at.X - 1, at.Y), (at.X + 1, at.Y), (at.X, at.Y - 1) }
+                .First(p => Zone.GetCell(p.Item1, p.Item2)?.BlocksMovement() == false);
+            Assert.True(Zone.MoveEntity(Actor, next.Item1, next.Item2));
+        }
+
+        [Test] public void OneActuallyGeneratedSeasonalBundleCanBecomeAPlantedSeedAfterTheSeason()
+        {
+            var manager = EnterAllotment();
+            var sources = Zone.GetReadOnlyEntities().Where(e => e.BlueprintName == Patch).ToArray();
+            Assert.That(sources, Has.Length.EqualTo(1));
+            var source = sources[0]; StandBeside(source);
+            Assert.False(Actions(source).Any(a => a.Command == "Harvest"));
+            Assert.False(Act(source, "Harvest"));
+            Assert.That(Count(Bundle), Is.Zero);
+            Clock.AdvanceClock(LateGrowth);
+            Assert.That(Actions(source).Single(a => a.Command == "Harvest").Display, Is.EqualTo("gather ripe seed heads (1 bundle)"));
+            Assert.True(Act(source, "Harvest"));
+            Assert.False(Act(source, "Harvest"));
+            Assert.That(Count(Bundle), Is.EqualTo(1));
+            Assert.That(Count("KnotflaxSeed"), Is.Zero);
+            var packet = Pack.Objects.Single(e => e.BlueprintName == Bundle);
+            Clock.AdvanceClock(LateGrowth);
+            var frame = Zone.GetReadOnlyEntities().First(e => e.HasPart<RainCollectorPart>());
+            StandBeside(frame);
+            var cell = Zone.GetEntityCell(frame);
+            var row = CellMenu(cell.X, cell.Y).Single(a => a.Command.StartsWith(Work));
+            Assert.That(row.Via, Is.SameAs(packet));
+            Assert.That(row.Display, Does.Contain("1 knotflax seed-head bundle"));
+            Assert.That(row.Hint, Does.Contain("discard dry chaff").And.Contain("One action"));
+            Assert.True(ChooseRow(row, cell.X, cell.Y));
+            Assert.False(ChooseRow(row, cell.X, cell.Y));
+            Assert.That(Count(Bundle), Is.Zero);
+            var seed = Pack.Objects.Single(e => e.BlueprintName == "KnotflaxSeed");
+            Assert.That(seed.GetPart<SeedPart>().CropBlueprint, Is.EqualTo("KnotflaxCrop"));
+            Assert.True(seed.GetPart<SeedPart>().RequireCultivatedSoil);
+            Assert.That(frame.GetPart<RainCollectorPart>().Anchor.GetPart<RainCatchmentPart>().Spent, Is.Zero);
+
+            var empty = Zone.GetCell(40, 12);
+            var terrain = empty.Objects.Single(e => e.HasTag("Terrain"));
+            terrain.SetTag("Plantable"); terrain.AddPart(new CultivatedSoilPart());
+            Assert.True(Zone.MoveEntity(Actor, empty.X, empty.Y));
+            Assert.True(Act(seed, "PlantSeed"));
+            Assert.That(empty.Objects.Count(e => e.BlueprintName == "KnotflaxCrop"), Is.EqualTo(1));
+
+            var loaded = HotbarSaveFixture.RoundTrip(GameSessionState.Capture("late-knotflax", "spent stand", manager, Clock, Actor));
+            var returned = loaded.ZoneManager.GetZone(Zone.ZoneID);
+            Assert.False(returned.GetReadOnlyEntities().Any(e => e.BlueprintName == Patch || e.BlueprintName == Bundle));
+            Assert.That(returned.GetCell(empty.X, empty.Y).Objects.Count(e => e.BlueprintName == "KnotflaxCrop"), Is.EqualTo(1));
+        }
+
+        [Test] public void BothOriginalRainFramesCanOfferTheNewWorkWithoutBorrowingRainAllowance()
+        {
+            EnterAllotment();
+            Assert.True(Factory.Blueprints.ContainsKey(Bundle));
+            var packet = Carry(Bundle);
+            var frames = Zone.GetReadOnlyEntities().Where(e => e.HasPart<RainCollectorPart>()).ToArray();
+            Assert.That(frames, Has.Length.EqualTo(2));
+            foreach (var frame in frames)
+            {
+                StandBeside(frame);
+                var cell = Zone.GetEntityCell(frame);
+                var row = CellMenu(cell.X, cell.Y).Single(a => a.Command.StartsWith(Work));
+                Assert.That(row.Command.Split('|')[2], Is.EqualTo(Uri.EscapeDataString(frame.ID)));
+                Assert.That(row.Via, Is.SameAs(packet));
+            }
+            Assert.That(Count(Bundle), Is.EqualTo(1));
+            Assert.That(Count("KnotflaxSeed"), Is.Zero);
+            Assert.That(frames[0].GetPart<RainCollectorPart>().Anchor.GetPart<RainCatchmentPart>().Spent, Is.Zero);
+        }
+
+        [Test] public void MissingBundleLeavesPreviouslyWorkingBedsAndRainFrames()
+        {
+            EnterAllotment(true);
+            Assert.False(Zone.GetReadOnlyEntities().Any(e => e.BlueprintName == Patch));
+            Assert.That(Zone.GetReadOnlyEntities().Count(e => e.HasPart<RainCollectorPart>()), Is.EqualTo(2));
+            Assert.That(Zone.GetReadOnlyEntities().Count(e => e.HasPart<CropPart>() && e.GetProperty(RepairCultivationSite.RoleKey) != null), Is.EqualTo(6));
+            Carry("HandSieve");
+            var stock = Carry("DryClaySpoil");
+            Assert.That(Actions(stock).Count(a => a.Command.StartsWith("MaterialProcess|screen_size_grades|")), Is.EqualTo(1));
+        }
+
+        [Test] public void AReadyStandCannotBeGatheredByAStaleOutOfSeasonAction()
+        {
+            EnterAllotment();
+            var source = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Patch);
+            StandBeside(source);
+            Clock.AdvanceClock(2 * LateGrowth - 1);
+            string action = Choice(source, "Harvest");
+            Clock.AdvanceClock(1);
+            Assert.False(Act(source, action));
+            Assert.That(Count(Bundle), Is.Zero);
+            Assert.That(Zone.GetEntityCell(source), Is.Not.Null);
+        }
+
+        [Test] public void SelectedFrameLossDoesNotSwitchTheQuoteToTheOtherFrame()
+        {
+            EnterAllotment();
+            var packet = Carry(Bundle);
+            var frames = Zone.GetReadOnlyEntities().Where(e => e.HasPart<RainCollectorPart>()).ToArray();
+            StandBeside(frames[0]);
+            string command = Choice(packet, Work);
+            Assert.True(Zone.RemoveEntity(frames[0]));
+            Assert.False(Act(packet, command));
+            Assert.That(Pack.Objects, Does.Contain(packet));
+            Assert.That(Count("KnotflaxSeed"), Is.Zero);
+            StandBeside(frames[1]);
+            Assert.True(Act(packet, Choice(packet, Work)));
+            Assert.That(Count("KnotflaxSeed"), Is.EqualTo(1));
+        }
+
+        [Test] public void AStunnedActorCannotGatherThroughDirectDispatch()
+        {
+            EnterAllotment();
+            var source = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Patch);
+            StandBeside(source);
+            Clock.AdvanceClock(LateGrowth);
+            Actor.ApplyEffect(new StunnedEffect { Duration = 3 });
+            Assert.False(Actions(source).Any(a => a.Command == "Harvest"));
+            Assert.False(Act(source, "Harvest"));
+            Assert.That(Count(Bundle), Is.Zero);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FatalNotificationCannotDuplicateTheSourceOrReturnStockToADeadPack(bool processing)
+        {
+            EnterAllotment();
+            var target = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Patch);
+            string command = "Harvest";
+            if (processing)
+            {
+                StandBeside(Zone.GetReadOnlyEntities().First(e => e.HasPart<RainCollectorPart>()));
+                target = Carry(Bundle);
+                command = Choice(target, Work);
+            }
+            else
+            {
+                StandBeside(target);
+                Clock.AdvanceClock(LateGrowth);
+            }
+            Actor.AddPart(new SeasonalFatalAfterPart { Zone = Zone });
+            Assert.True(Act(target, command));
+            Assert.True(CombatSystem.IsDeathHandled(Actor));
+            Assert.That(Pack.Objects.Where(e => e.BlueprintName == Bundle || e.BlueprintName == "KnotflaxSeed"), Is.Empty);
+            string product = processing ? "KnotflaxSeed" : Bundle;
+            Assert.That(Zone.GetReadOnlyEntities().Count(e => e.BlueprintName == product), Is.EqualTo(1));
+            if (processing) Assert.That(Count(Bundle), Is.Zero);
+            else Assert.Null(Zone.GetEntityCell(target));
+        }
+    }
+
+    public sealed class SeasonalFatalAfterPart : Part
+    {
+        public Zone Zone;
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID != "AfterInventoryAction") return true;
+            CombatSystem.HandleDeath(ParentEntity, null, Zone);
+            throw new InvalidOperationException("seasonal committed notification probe");
         }
     }
 

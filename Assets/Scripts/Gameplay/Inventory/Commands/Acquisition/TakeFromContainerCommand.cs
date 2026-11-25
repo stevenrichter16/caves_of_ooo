@@ -54,6 +54,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Item is null.");
             }
 
+            if (LocalPorterReservationPart.Blocks(_container) || LocalPorterReservationPart.Blocks(_item))
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, "That box is reserved for a delivery.");
             var contained = _container.GetPart<ContainedLiquidSourcePart>();
             if (contained != null && !contained.CanTake(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone,
                 _wetRecovery, _wetRecovery?.Transaction))
@@ -186,7 +188,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (contained != null)
                 transaction.Do(null, containedCleanup);
             containedGuard?.Invoke();
-            if (delivery != null) transaction.AfterCommit(Announce);
+            if (delivery != null)
+            {
+                delivery.RecordWithdrawal(transaction);
+                transaction.AfterCommit(Announce);
+            }
             else Announce();
             LocalGatheringClaims.RecordTake(gathering, transaction);
             ConnectedSpreadProgress.RecordTransfer(progress, transaction);

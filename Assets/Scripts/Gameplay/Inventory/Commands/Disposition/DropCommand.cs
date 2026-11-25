@@ -42,6 +42,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Drop requires a valid item.");
             }
 
+            if (LocalPorterReservationPart.Blocks(_item))
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, "That box is reserved for a delivery.");
             if (!context.Inventory.Contains(_item))
             {
                 return InventoryValidationResult.Invalid(

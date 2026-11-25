@@ -9,7 +9,7 @@ namespace CavesOfOoo.Core
     { bool Allows(MaterialProcessDefinition definition); }
     internal interface IMaterialReclaimPermission : IMaterialProcessPermission { }
     /// <summary>Authored permission only. No material tag implies a salvage yield.</summary>
-    public sealed class MaterialProcessInputPart : Part, IInventoryActionReceiptOwner
+    public sealed class MaterialProcessInputPart : Part, IPostCommitInventoryActionNotification
     {
         public override string Name => "MaterialProcessInput";
         public string ProcessIds = "";
@@ -21,12 +21,16 @@ namespace CavesOfOoo.Core
         public static bool IsCommand(string command)=>command?.StartsWith(CommandPrefix,StringComparison.Ordinal)==true;
         // The shared material transaction owns item/quantity undo. A blanket
         // executor snapshot would heal an independent injury on a late veto.
-        public bool OwnsInventoryReceipt(string command)
+        private MaterialProcessDefinition ReceiptedDefinition(string command)
         {
-            if(ParentEntity?.GetPart<MaterialProcessInputPart>()!=this || !IsCommand(command))return false;
+            if(ParentEntity?.GetPart<MaterialProcessInputPart>()!=this || !IsCommand(command))return null;
             var fields=command.Split('|');
-            return fields.Length==4 && Allows(MaterialProcessRegistry.Get(fields[1]));
+            if(fields.Length!=4)return null;
+            var definition=MaterialProcessRegistry.Get(fields[1]);
+            return Allows(definition)?definition:null;
         }
+        public bool OwnsInventoryReceipt(string command)=>ReceiptedDefinition(command)!=null;
+        public bool NotifyAfterCommit(string command)=>ReceiptedDefinition(command)?.WorkKind==SeedFramePart.WorkKind;
         public override bool HandleEvent(GameEvent e)=>MaterialProcessActions.Handle(ParentEntity,e,(ProcessIds??" ").Split(','));
     }
     // One cache per actual owner, never a persisted entity-ID lookup. Both
@@ -67,8 +71,14 @@ namespace CavesOfOoo.Core
                     var d=plan.Definition;
                     string outputs=string.Join(" + ",d.OutputBlueprints.Select((bp,i)=>d.OutputCounts[i]+" "+Label(plan.Factory,bp)));
                     string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));
-                    e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
+                    var row=e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
                         MaterialProcessInputPart.CommandPrefix+id+"|"+Uri.EscapeDataString(plan.StationId)+"|"+token,'\0',19,false,ActionTime.OneAction);
+                    if(row!=null && d.WorkKind==SeedFramePart.WorkKind)
+                    {
+                        row.Display=d.ActionText+" "+d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint);
+                        row.Hint="Makes "+outputs+". "+d.LossText+". One action. The seed goes into your pack.";
+                        row.AtEntity(zone,plan.Station);
+                    }
                 }
                 return true;
             }

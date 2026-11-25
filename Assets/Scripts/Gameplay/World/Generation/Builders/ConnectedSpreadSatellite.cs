@@ -11,11 +11,12 @@ namespace CavesOfOoo.Core
  {
   public const string RoleKey="ConnectedSatellite.Role";
   public const string RefusalKind="ConnectedSatelliteRefused";
+  const string TimberPallet="GleanersTimberPallet";
   const int HalfWall=6,MaxTrials=128;
   static readonly (int x,int y) Arrival=(40,12);
   public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
    PopulationBuilder population,ContainerBuilder containers,SpreadExplorationFamily family,Func<bool> authority,
-   out Entity[] owners,out Func<bool> final,bool opening=false)
+   out Entity[] owners,out Func<bool> final,bool opening=false,bool reclaimable=false)
   {
    owners=null;final=null;bool wet=family==SpreadExplorationFamily.WetCrossing;
    if((!wet&&family!=SpreadExplorationFamily.HeavyFrame)||zone==null||factory==null||authority==null)return false;
@@ -40,10 +41,11 @@ namespace CavesOfOoo.Core
    var all=new HashSet<Entity>(zone.GetReadOnlyEntities());var initial=SpreadGenerationReceipt.CaptureFinalState(zone,all);
    var unchanged=SpreadGenerationReceipt.CaptureFinalState(zone,all.Where(e=>!selected.Contains(e)));
    var before=new SpreadWildernessSituationBuilder.Geometry(zone,selected);
-   var design=Find(zone,before,selected,wet,zone.GetEntityPosition(cache),out search);if(design==null)return Fail("no-layout");
+   var design=Find(zone,before,selected,wet,reclaimable,zone.GetEntityPosition(cache),out search);if(design==null)return Fail("no-layout");
    string discovery=opening?"ShatteredRimeGrimoire":"DitchkeepersFootwork";
    var specs=design.Specs();var goodsNames=wet?new[]{"Emberwheat","Emberwheat","ClaspbeanPulp",discovery}:new[]{"FireClay","FireClay",discovery};
    if(specs.Any(s=>!factory.Blueprints.ContainsKey(s.bp))||goodsNames.Any(bp=>!factory.Blueprints.ContainsKey(bp)))return Fail("missing-blueprint");
+   if(!wet&&reclaimable&&!HarvestablePart.CanCreateYield(factory,"SalvagedTimber"))return Fail("invalid-timber-product");
    var container=cache.GetPart<ContainerPart>();if(container.MaxItems>=0&&container.Contents.Count+goodsNames.Length>container.MaxItems)return Fail("cache-capacity-changed");
    var staged=new List<Entity>();var goods=new List<Entity>();var freshProof=new List<Func<bool>>();
    bool Initial()=>Sources()&&initial()&&all.SetEquals(zone.GetReadOnlyEntities())&&freshProof.All(p=>p());
@@ -52,6 +54,8 @@ namespace CavesOfOoo.Core
     foreach(var spec in specs)
     {
      var e=factory.CreateEntity(spec.bp);if(!Fresh(e,spec.bp)||!authority()||!Initial()||!ValidFeature(e,spec.bp))return Fail("created-feature-changed");
+     if(spec.bp==TimberPallet)
+      e.GetPart<ExaminablePart>().Text="The boards are braced together on two runners. A strong traveler can haul the pallet intact. Dismantling it yields two lengths of salvaged timber.";
      e.Properties[RoleKey]=spec.role;staged.Add(e);freshProof.Add(SpreadGenerationReceipt.CaptureDetachedState(e));
     }
     foreach(string bp in goodsNames)
@@ -110,7 +114,7 @@ namespace CavesOfOoo.Core
   }
   sealed class Design
   {
-   internal (int x,int y) Center;internal bool Wet;
+   internal (int x,int y) Center;internal bool Wet;internal bool Reclaimable;
    internal (int x,int y) At(int x,int y)=>(Center.x+x,Center.y+y);
    internal List<(string bp,string role,int x,int y)> Specs()
    {
@@ -121,7 +125,7 @@ namespace CavesOfOoo.Core
      for(int y=-2;y<=1;y++)s.Add(("WaterPuddle","wet-lane",-1,y));
     }
     else
-    {for(int x=-HalfWall;x<=HalfWall;x++)if(x!=0)s.Add(("StoneWall","shortcut-wall",x,0));s.Add(("ConnectedHeavyFrame","frame",0,0));}
+    {for(int x=-HalfWall;x<=HalfWall;x++)if(x!=0)s.Add(("StoneWall","shortcut-wall",x,0));s.Add((Reclaimable?TimberPallet:"ConnectedHeavyFrame","frame",0,0));}
     return s;
    }
    internal IEnumerable<(int x,int y)> Required()
@@ -169,13 +173,13 @@ namespace CavesOfOoo.Core
     return true;
    }
   }
-  static Design Find(Zone z,SpreadWildernessSituationBuilder.Geometry original,HashSet<Entity> ignored,bool wet,(int x,int y)anchor,out string report)
+  static Design Find(Zone z,SpreadWildernessSituationBuilder.Geometry original,HashSet<Entity> ignored,bool wet,bool reclaimable,(int x,int y)anchor,out string report)
   {
    int trials=0,arrivalRejects=0,otherRejects=0,groundRejects=0,bestGround=int.MaxValue;report="";var others=z.GetReadOnlyEntities().Where(e=>e.HasTag("Creature")&&!ignored.Contains(e)).Select(z.GetEntityPosition).ToArray();
    foreach(var p in from y in Enumerable.Range(6,Zone.Height-12) from x in Enumerable.Range(10,Zone.Width-20) orderby Distance(anchor,(x,y)),y,x select(x,y))
    {
     if(Distance(p,Arrival)<=17){arrivalRejects++;continue;}if(others.Any(at=>Distance(at,p)<12)){otherRejects++;continue;}
-    var d=new Design{Center=p,Wet=wet};int blocked=d.BlockedGround(z,original,ignored);bestGround=Math.Min(bestGround,blocked);if(blocked>0){groundRejects++;continue;}
+    var d=new Design{Center=p,Wet=wet,Reclaimable=reclaimable};int blocked=d.BlockedGround(z,original,ignored);bestGround=Math.Min(bestGround,blocked);if(blocked>0){groundRejects++;continue;}
     if(++trials>MaxTrials)break;if(d.Fits(z,ignored,original)){report="found";return d;}
    }
    report="arrival="+arrivalRejects+";other-creature="+otherRejects+";ground="+groundRejects+";fewest-blocked="+bestGround+";route-trials="+trials;return null;
@@ -203,9 +207,23 @@ namespace CavesOfOoo.Core
    &&e.GetPart<PhysicsPart>() is PhysicsPart p&&!p.Takeable&&p.InInventory==null&&p.Equipped==null&&!e.HasPart<SpatialFootprintPart>()&&!e.HasTag("Owned")&&!e.HasTag("Unique")&&!e.HasTag("QuestItem")&&!z.GenReservedCells.Contains(z.GetEntityPosition(e));
   static bool Fresh(Entity e,string bp)=>e!=null&&e.BlueprintName==bp&&!string.IsNullOrEmpty(e.ID)&&e.SpatialZone==null&&e.GetPart<PhysicsPart>() is PhysicsPart p
    &&p.InInventory==null&&p.Equipped==null&&e.GetPart<RenderPart>()!=null&&e.Parts.All(part=>part!=null&&part.ParentEntity==e)&&!e.HasPart<SpatialFootprintPart>();
-  static bool ValidFeature(Entity e,string bp)=>bp=="WaterPuddle"?e.GetPart<LiquidPoolPart>()?.LiquidId=="water"&&e.GetPart<LiquidPoolPart>().Volume==120
-   :bp=="ConnectedHeavyFrame"?e.GetPart<PhysicsPart>()?.Solid==true&&e.GetPart<PhysicsPart>().Takeable==false&&e.GetPart<HandlingPart>() is HandlingPart h&&h.Weight==136&&!h.Carryable&&!h.Throwable&&h.MinLiftStrength==0
-   :bp=="StoneWall"&&e.GetPart<PhysicsPart>()?.Solid==true;
+  static bool ValidFeature(Entity e,string bp)
+  {
+   var physics=e.GetPart<PhysicsPart>();
+   var handling=e.GetPart<HandlingPart>();
+   bool fixedLoad=physics is { Solid:true,Takeable:false }
+    &&handling is { Carryable:false,Throwable:false,MinLiftStrength:0 };
+   switch(bp)
+   {
+    case "WaterPuddle":return e.GetPart<LiquidPoolPart>() is { LiquidId:"water",Volume:120 };
+    case "ConnectedHeavyFrame":return fixedLoad&&handling.Weight==136;
+    case TimberPallet:
+     return fixedLoad&&physics.Weight==90&&handling.Weight==90&&e.HasPart<ExaminablePart>()
+      &&e.GetPart<HarvestablePart>() is { Harvested:false,YieldBlueprint:"SalvagedTimber",YieldMin:2,YieldMax:2,YieldChance:100 }
+      &&!e.HasPart<ContainerPart>()&&!e.HasPart<InventoryPart>()&&!e.HasPart<DestructiblePart>()&&!e.HasTag("Creature");
+    default:return bp=="StoneWall"&&physics?.Solid==true;
+   }
+  }
   static bool Unique(Zone z,IEnumerable<Entity> extra)
   {
    var seen=new HashSet<Entity>();var ids=new HashSet<string>();var queue=new Queue<Entity>(z.GetReadOnlyEntities().Concat(extra));

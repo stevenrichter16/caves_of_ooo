@@ -27,11 +27,24 @@ namespace CavesOfOoo.Core
         public bool Harvested;
         public const int MaximumYieldCount = 64;
 
+        internal static bool CanCreateYield(EntityFactory factory, string blueprint)
+            => factory != null && !string.IsNullOrEmpty(blueprint) && factory.Blueprints.TryGetValue(blueprint, out var product)
+                && !product.Tags.ContainsKey("Creature") && product.Parts.TryGetValue("Physics", out var physics)
+                && physics.TryGetValue("Takeable", out var text) && bool.TryParse(text, out bool takeable) && takeable
+                && (!product.Parts.TryGetValue("Stacker", out var stacker) || !stacker.TryGetValue("StackCount", out var count)
+                    || int.TryParse(count, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture,
+                        out int units) && units == 1);
+
+        internal bool SeasonalAccess(Zone zone) => this is not SeasonalHarvestPart seasonal || seasonal.Ready(zone);
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions")
             {
-                if (!Harvested) e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", ActionText, "Harvest", 'h', 20);
+                var actor = e.GetParameter<Entity>("Actor");
+                var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? ParentEntity?.SpatialZone;
+                if (!Harvested && SeasonalAccess(zone) && (this is not SeasonalHarvestPart || SeasonalHarvestPart.ActorCanGather(actor, zone)))
+                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", ActionText, "Harvest", 'h', 20);
                 return true;
             }
             if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "Harvest") return true;
@@ -45,6 +58,8 @@ namespace CavesOfOoo.Core
             carried = false; sourceCell = dropCell = null;
             if (FieldWorkRigRules.IsRig(ParentEntity) && !FieldWorkRigRules.Available(actor, ParentEntity, zone, true)) return "rig-unavailable";
             if (actor == null || ParentEntity == null) return "missing-context";
+            if (!SeasonalAccess(zone)) return "seasonal-source-unavailable";
+            if (this is SeasonalHarvestPart && !SeasonalHarvestPart.ActorCanGather(actor, zone)) return "seasonal-actor-unavailable";
             if (CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)) return "actor-dead";
             var inventory = actor.GetPart<InventoryPart>();
             carried = inventory?.CanConsumeOne(ParentEntity) == true;
@@ -72,14 +87,13 @@ namespace CavesOfOoo.Core
             if (Harvested) return Reject(actor, "spent");
             string reason = Validate(actor, zone, out bool carried, out var sourceCell, out var dropCell);
             if (reason != null) return Reject(actor, reason);
+            var seasonalProof = (this as SeasonalHarvestPart)?.CaptureSeason(zone, sourceCell);
             if (YieldMin < 1 || YieldMax < YieldMin || YieldMax > MaximumYieldCount || YieldChance < 0 || YieldChance > 100)
                 return Reject(actor, "invalid-yield-range");
             var factory = Factory;
             if (factory == null || string.IsNullOrEmpty(YieldBlueprint) || !factory.Blueprints.ContainsKey(YieldBlueprint))
                 return Reject(actor, "missing-yield");
-            var outputBlueprint = factory.Blueprints[YieldBlueprint];
-            if (outputBlueprint.Tags.ContainsKey("Creature") || !outputBlueprint.Parts.TryGetValue("Physics", out var outputPhysics)
-                || !outputPhysics.TryGetValue("Takeable", out var takeableText) || !bool.TryParse(takeableText, out bool takeable) || !takeable)
+            if (!CanCreateYield(factory, YieldBlueprint))
                 return Reject(actor, "invalid-product");
 
             var transaction = e.GetParameter<InventoryTransaction>("InventoryTransaction");
@@ -185,6 +199,7 @@ namespace CavesOfOoo.Core
                 }
                 bool applied = receipt == null ? Transfer() : receipt.Apply(Transfer);
                 if (!applied || (receipt != null && !receipt.ClaimChanges(transaction, actor, "Harvest"))) return Fail("transfer-refused");
+                if (seasonalProof != null) transaction.BeforeCommit(seasonalProof);
                 int dropped = droppedItems.Count;
                 transaction.AfterCommit(()=>audio?.Publish());
                 transaction.AfterCommit(() =>

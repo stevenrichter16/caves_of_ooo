@@ -42,7 +42,7 @@ namespace CavesOfOoo.Core
         static bool Emit(Entity owner,string id,MaterialProcessPlan plan)
         {
             var e=GameEvent.New(id);e.SetParameter("Actor",plan.Actor);e.SetParameter("Source",plan.Source);
-            e.SetParameter("Station",plan.Definition.WorkKind=="ForgeCold"?plan.Station:null);
+            e.SetParameter("Station",plan.StationKind!=null?plan.Station:null);
             e.SetParameter("Tool",plan.Definition.WorkKind=="HandCutting"||plan.Definition.WorkKind=="Screening"?plan.Station:null);e.SetParameter("WorkProvider",plan.Station);e.SetParameter("Process",plan.Definition);
             e.SetParameter("Inputs",Array.AsReadOnly(new[]{plan.Source}.Concat(plan.ExtraInputs.SelectMany(i=>i.Takes.Select(t=>t.Owner))).ToArray()));
             return owner.FireEventAndRelease(e);

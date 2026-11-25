@@ -5,14 +5,16 @@ namespace CavesOfOoo.Core
     /// Value-only and ephemeral: no saved state, event dispatch or hidden contents.</summary>
     public readonly struct WorldAffordance
     {
-        internal WorldAffordance(Entity target, Cell cell, int verb, int direction)
-        { Target=target; Cell=cell; VerbIndex=verb; Direction=direction; }
+        internal WorldAffordance(Entity target, Cell cell, int verb, int direction, string harvestLabel)
+        { Target=target; Cell=cell; VerbIndex=verb; Direction=direction; HarvestLabel=harvestLabel; }
         internal int VerbIndex { get; }
         internal int Direction { get; }
+        internal string HarvestLabel { get; }
         public Entity Target { get; }
         public Cell Cell { get; }
         public string Command => WorldAffordanceQuery.Commands[VerbIndex];
-        public string Hint => WorldAffordanceQuery.Hints[VerbIndex*10+Direction];
+        public string Hint => HarvestLabel==null ? WorldAffordanceQuery.Hints[VerbIndex*10+Direction]
+            : WorldAffordanceQuery.MenuPrefixes[Direction]+HarvestLabel;
     }
 
     /// <summary>Bounded read-only hints for native interaction families.
@@ -21,13 +23,14 @@ namespace CavesOfOoo.Core
     public static class WorldAffordanceQuery
     {
         internal static readonly string[] Commands={"Harvest","OpenContainer",DoorPart.OpenCommand,DoorPart.CloseCommand,"Examine",HandlingPart.HaulCommand,HandlingPart.ReleaseCommand,TrapJammingPart.JamCommand};
+        internal static readonly string[] MenuPrefixes={"C, Y: menu / ","C, W: menu / ","C, U: menu / ","C, A: menu / ","C, .: menu / ",
+            "C, D: menu / ","C, B: menu / ","C, S: menu / ","C, N: menu / ","Enter: menu / "};
         internal static readonly string[] Hints=BuildHints();
         private static string[] BuildHints()
         {
-            var keys=new[]{"Y","W","U","A",".","D","B","S","N","Enter"};
             var verbs=new[]{"harvest","open","open door","close door","read","haul","let go","jam trap"};
             var rows=new string[verbs.Length*10];
-            for(int v=0;v<verbs.Length;v++)for(int d=0;d<10;d++)rows[v*10+d]=(d==9?"Enter": "C, "+keys[d])+": menu / "+verbs[v];
+            for(int v=0;v<verbs.Length;v++)for(int d=0;d<10;d++)rows[v*10+d]=MenuPrefixes[d]+verbs[v];
             return rows;
         }
         public static WorldAffordance? Find(Entity actor,Zone zone,bool focused,int x,int y)
@@ -49,7 +52,8 @@ namespace CavesOfOoo.Core
             if(!ActorCurrent(actor,zone,out var standing)||cue.Cell==null)return false;
             var found=At(actor,zone,standing,cue.Cell.X,cue.Cell.Y,cue.Direction==9);
             return found.HasValue&&ReferenceEquals(found.Value.Target,cue.Target)&&ReferenceEquals(found.Value.Cell,cue.Cell)
-                &&found.Value.VerbIndex==cue.VerbIndex&&found.Value.Direction==cue.Direction;
+                &&found.Value.VerbIndex==cue.VerbIndex&&found.Value.Direction==cue.Direction
+                &&string.Equals(found.Value.HarvestLabel,cue.HarvestLabel,StringComparison.Ordinal);
         }
         private static bool ActorCurrent(Entity actor,Zone zone,out Cell standing)
         {
@@ -87,20 +91,21 @@ namespace CavesOfOoo.Core
             if(!zone.InBounds(x,y)||Math.Abs(x-standing.X)>1||Math.Abs(y-standing.Y)>1)return null;
             var cell=zone.GetCell(x,y);
             if(cell==null||!cell.IsVisible||!cell.Explored)return null;
-            Entity best=null;int verb=-1,layer=int.MinValue;
+            Entity best=null;int verb=-1,layer=int.MinValue;string harvestLabel=null;
             // CellOccupants is a value enumerator; indexed access allocates no list.
             var occupants=cell.Occupants;
             for(int i=0;i<occupants.Count;i++)
             {
                 var owner=occupants[i];
                 if(owner==actor||!OwnerCurrent(owner,zone,cell))continue;
-                int candidate=Verb(actor,zone,owner);
+                int candidate=Verb(actor,zone,owner,out var label);
                 if(candidate<0)continue;
                 int ownerLayer=owner.GetPart<RenderPart>().RenderLayer;
                 if(best==null||ownerLayer>layer||(ownerLayer==layer&&string.CompareOrdinal(owner.ID,best.ID)<0))
-                {best=owner;verb=candidate;layer=ownerLayer;}
+                {best=owner;verb=candidate;layer=ownerLayer;harvestLabel=label;}
             }
-            return best==null?(WorldAffordance?)null:new WorldAffordance(best,cell,verb,focused?9:(y-standing.Y+1)*3+x-standing.X+1);
+            return best==null?(WorldAffordance?)null:new WorldAffordance(best,cell,verb,
+                focused?9:(y-standing.Y+1)*3+x-standing.X+1,harvestLabel);
         }
         private static bool OwnerCurrent(Entity owner,Zone zone,Cell cell)
         {
@@ -109,16 +114,23 @@ namespace CavesOfOoo.Core
             return render!=null&&render.ParentEntity==owner&&render.Visible&&physics!=null&&physics.ParentEntity==owner
                 &&physics.InInventory==null&&physics.Equipped==null&&(owner.GetPart<StackerPart>()?.StackCount??1)>0;
         }
-        private static int Verb(Entity actor,Zone zone,Entity owner)
+        private static int Verb(Entity actor,Zone zone,Entity owner,out string harvestLabel)
         {
+            harvestLabel=null;
             var trap=owner.GetPart<TrapJammingPart>();
             if(trap!=null&&trap.CanOfferJam(actor,zone))return 7;
             var field=owner.GetPart<FieldHarvestPart>();
-            if(field!=null&&field.ParentEntity==owner&&!field.Harvested&&field.YieldCount>0&&KnownYield(field.YieldBlueprint,false))return 0;
+            if(field!=null&&field.ParentEntity==owner&&!field.Harvested&&field.YieldCount>0
+                &&!string.IsNullOrEmpty(field.YieldBlueprint)&&HarvestablePart.Factory?.Blueprints.ContainsKey(field.YieldBlueprint)==true)return 0;
             var harvest=owner.GetPart<HarvestablePart>();
             if(harvest!=null&&harvest.GetType()==typeof(HarvestablePart)&&harvest.ParentEntity==owner&&!harvest.Harvested
                 &&harvest.YieldMin>=1&&harvest.YieldMax>=harvest.YieldMin&&harvest.YieldMax<=HarvestablePart.MaximumYieldCount
-                &&harvest.YieldChance>=0&&harvest.YieldChance<=100&&KnownYield(harvest.YieldBlueprint,true))return 0;
+                &&harvest.YieldChance>=0&&harvest.YieldChance<=100&&HarvestablePart.CanCreateYield(HarvestablePart.Factory,harvest.YieldBlueprint))
+            {
+                if(!string.IsNullOrWhiteSpace(harvest.ActionText)&&harvest.ActionText!="harvest")
+                    harvestLabel=harvest.ActionText;
+                return 0;
+            }
             var container=owner.GetPart<ContainerPart>();
             if(container!=null&&container.GetType()==typeof(ContainerPart)&&container.ParentEntity==owner&&!container.IsLocked)return 1;
             var door=owner.GetPart<DoorPart>();
@@ -154,13 +166,6 @@ namespace CavesOfOoo.Core
             }
             if(held!=null)return -1;
             return DragRules.CanDrag(actor,owner)==DragVerdict.Ok?5:-1;
-        }
-        private static bool KnownYield(string id,bool takeable)
-        {
-            var factory=HarvestablePart.Factory;
-            if(factory==null||string.IsNullOrEmpty(id)||!factory.Blueprints.TryGetValue(id,out var bp))return false;
-            return !takeable||(!bp.Tags.ContainsKey("Creature")&&bp.Parts.TryGetValue("Physics",out var p)
-                &&p.TryGetValue("Takeable",out var value)&&bool.TryParse(value,out bool canTake)&&canTake);
         }
     }
 }

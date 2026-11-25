@@ -1,0 +1,954 @@
+{
+  "Initial": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 10,
+    "x": 40,
+    "y": 12,
+    "hp": 40,
+    "seed": 64,
+    "drams": 50,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      29,
+      20
+    ],
+    "workerHP": 28,
+    "workerDrams": 0,
+    "box": "2700",
+    "boxAt": [
+      29,
+      19
+    ],
+    "boxOwner": null,
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 0,
+    "fare": 0,
+    "phase": "Open",
+    "order": null,
+    "note": null,
+    "manifest": []
+  },
+  "Purchase": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "tick": 190,
+    "zone": "Overworld.12.11.0",
+    "x": 28,
+    "y": 17,
+    "hp": 40,
+    "drams": 39,
+    "seed": 64,
+    "kitchenCached": true,
+    "state": "Normal",
+    "pack": [
+      {
+        "id": "2705",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2706",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2707",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2708",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2709",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2710",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "6861",
+        "bp": "PreparedLiningClay",
+        "n": 2
+      }
+    ],
+    "people": [
+      {
+        "id": "6831",
+        "bp": "Magpie",
+        "x": 25,
+        "y": 4,
+        "hp": 6
+      },
+      {
+        "id": "6855",
+        "bp": "SpreadWaysideCook",
+        "x": 27,
+        "y": 17,
+        "hp": 20
+      }
+    ],
+    "work": [
+      {
+        "id": "6855",
+        "bp": "SpreadWaysideCook",
+        "x": 27,
+        "y": 17,
+        "hp": 20,
+        "repaired": null,
+        "usable": null,
+        "cause": null,
+        "stock": []
+      },
+      {
+        "id": "6875",
+        "bp": "ConnectedBatchPan",
+        "x": 29,
+        "y": 17,
+        "hp": 0,
+        "repaired": false,
+        "usable": null,
+        "cause": null,
+        "stock": null
+      }
+    ]
+  },
+  "Packed": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 380,
+    "x": 28,
+    "y": 19,
+    "hp": 40,
+    "seed": 64,
+    "drams": 39,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      29,
+      20
+    ],
+    "workerHP": 28,
+    "workerDrams": 0,
+    "box": "2700",
+    "boxAt": [
+      29,
+      19
+    ],
+    "boxOwner": null,
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 0,
+    "fare": 0,
+    "phase": "Open",
+    "order": null,
+    "note": null,
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  },
+  "QuoteRows": [
+    {
+      "name": "Hire porter",
+      "label": "hire porter (8 drams)",
+      "command": "LocalPorterHire:2700:8:25:6861/PreparedLiningClay/2/",
+      "via": null
+    },
+    {
+      "name": "Examine",
+      "label": "examine",
+      "command": "Examine",
+      "via": null
+    },
+    {
+      "name": "PickCell",
+      "label": "<< everything here",
+      "command": "PickCell",
+      "via": null
+    }
+  ],
+  "Booked": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 390,
+    "x": 28,
+    "y": 19,
+    "hp": 40,
+    "seed": 64,
+    "drams": 31,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      29,
+      20
+    ],
+    "workerHP": 28,
+    "workerDrams": 1,
+    "box": "2700",
+    "boxAt": null,
+    "boxOwner": "2703",
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 7,
+    "fare": 8,
+    "phase": "Carrying",
+    "order": "d613f68e99004fd8b53e9a691cd42ed8",
+    "note": null,
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  },
+  "Fresh390": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 390,
+    "x": 28,
+    "y": 19,
+    "hp": 40,
+    "seed": 64,
+    "drams": 31,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      29,
+      20
+    ],
+    "workerHP": 28,
+    "workerDrams": 1,
+    "box": "2700",
+    "boxAt": null,
+    "boxOwner": "2703",
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 7,
+    "fare": 8,
+    "phase": "Carrying",
+    "order": "d613f68e99004fd8b53e9a691cd42ed8",
+    "note": null,
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  },
+  "Moved": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 450,
+    "x": 28,
+    "y": 19,
+    "hp": 40,
+    "seed": 64,
+    "drams": 31,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      27,
+      16
+    ],
+    "workerHP": 28,
+    "workerDrams": 1,
+    "box": "2700",
+    "boxAt": null,
+    "boxOwner": "2703",
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 7,
+    "fare": 8,
+    "phase": "Carrying",
+    "order": "d613f68e99004fd8b53e9a691cd42ed8",
+    "note": null,
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  },
+  "ArrivalProgress": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 660,
+    "x": 40,
+    "y": 8,
+    "hp": 40,
+    "seed": 64,
+    "drams": 31,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      40,
+      10
+    ],
+    "workerHP": 28,
+    "workerDrams": 1,
+    "box": "2700",
+    "boxAt": null,
+    "boxOwner": "2703",
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 7,
+    "fare": 8,
+    "phase": "Carrying",
+    "order": "d613f68e99004fd8b53e9a691cd42ed8",
+    "note": null,
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  },
+  "Delivered": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 670,
+    "x": 40,
+    "y": 8,
+    "hp": 40,
+    "seed": 64,
+    "drams": 31,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      40,
+      10
+    ],
+    "workerHP": 28,
+    "workerDrams": 8,
+    "box": "2700",
+    "boxAt": null,
+    "boxOwner": "2701",
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [
+      "2700"
+    ],
+    "escrow": 0,
+    "fare": 8,
+    "phase": "Delivered",
+    "order": null,
+    "note": "The box reached the receiving shelf. The porter has been paid.",
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  },
+  "Received": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 680,
+    "x": 40,
+    "y": 8,
+    "hp": 40,
+    "seed": 64,
+    "drams": 31,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      40,
+      11
+    ],
+    "workerHP": 28,
+    "workerDrams": 8,
+    "box": "2700",
+    "boxAt": null,
+    "boxOwner": "2704",
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 0,
+    "fare": 8,
+    "phase": "Delivered",
+    "order": null,
+    "note": "The box reached the receiving shelf. The porter has been paid.",
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  },
+  "Unpacked": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "tick": 690,
+    "zone": "Overworld.11.10.0",
+    "x": 40,
+    "y": 8,
+    "hp": 40,
+    "drams": 31,
+    "seed": 64,
+    "kitchenCached": true,
+    "state": "Normal",
+    "pack": [
+      {
+        "id": "2705",
+        "bp": "Dagger",
+        "n": 1
+      },
+      {
+        "id": "2706",
+        "bp": "HealingTonic",
+        "n": 2
+      },
+      {
+        "id": "2707",
+        "bp": "DriedMeat",
+        "n": 2
+      },
+      {
+        "id": "2708",
+        "bp": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "id": "2709",
+        "bp": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "id": "2710",
+        "bp": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "id": "6861",
+        "bp": "PreparedLiningClay",
+        "n": 2
+      }
+    ],
+    "people": [
+      {
+        "id": "2077",
+        "bp": "MarlbackScrabbler",
+        "x": 17,
+        "y": 8,
+        "hp": 15
+      },
+      {
+        "id": "2703",
+        "bp": "GleanersPorter",
+        "x": 40,
+        "y": 12,
+        "hp": 28
+      },
+      {
+        "id": "2081",
+        "bp": "Warden",
+        "x": 35,
+        "y": 15,
+        "hp": 31
+      },
+      {
+        "id": "2091",
+        "bp": "PetDog",
+        "x": 43,
+        "y": 20,
+        "hp": 15
+      }
+    ],
+    "work": [
+      {
+        "id": "2695",
+        "bp": "RepairLinedWell",
+        "x": 41,
+        "y": 8,
+        "hp": 0,
+        "repaired": false,
+        "usable": false,
+        "cause": null,
+        "stock": null
+      }
+    ]
+  },
+  "Used": {
+    "s": {
+      "game": "f312a9030c2f493baa646ef2d79eb9fd",
+      "zone": "Overworld.11.10.0",
+      "tick": 700,
+      "x": 40,
+      "y": 8,
+      "hp": 40,
+      "seed": 64,
+      "drams": 31,
+      "state": "Normal",
+      "board": "2702",
+      "boardAt": [
+        29,
+        19
+      ],
+      "worker": "2703",
+      "workerAt": [
+        40,
+        13
+      ],
+      "workerHP": 28,
+      "workerDrams": 8,
+      "box": "2700",
+      "boxAt": [
+        40,
+        8
+      ],
+      "boxOwner": null,
+      "shelf": "2701",
+      "shelfAt": [
+        41,
+        9
+      ],
+      "receipts": [],
+      "escrow": 0,
+      "fare": 8,
+      "phase": "Delivered",
+      "order": null,
+      "note": "The box reached the receiving shelf. The porter has been paid.",
+      "manifest": []
+    },
+    "r": {
+      "game": "f312a9030c2f493baa646ef2d79eb9fd",
+      "tick": 700,
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 8,
+      "hp": 40,
+      "drams": 31,
+      "seed": 64,
+      "kitchenCached": true,
+      "state": "Normal",
+      "pack": [
+        {
+          "id": "2705",
+          "bp": "Dagger",
+          "n": 1
+        },
+        {
+          "id": "2706",
+          "bp": "HealingTonic",
+          "n": 2
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat",
+          "n": 2
+        },
+        {
+          "id": "2708",
+          "bp": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "id": "2709",
+          "bp": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "id": "2710",
+          "bp": "EmberwheatSeed",
+          "n": 2
+        }
+      ],
+      "people": [
+        {
+          "id": "2077",
+          "bp": "MarlbackScrabbler",
+          "x": 17,
+          "y": 9,
+          "hp": 15
+        },
+        {
+          "id": "2703",
+          "bp": "GleanersPorter",
+          "x": 40,
+          "y": 13,
+          "hp": 28
+        },
+        {
+          "id": "2081",
+          "bp": "Warden",
+          "x": 35,
+          "y": 15,
+          "hp": 31
+        },
+        {
+          "id": "2091",
+          "bp": "PetDog",
+          "x": 44,
+          "y": 21,
+          "hp": 15
+        }
+      ],
+      "work": [
+        {
+          "id": "2695",
+          "bp": "RepairLinedWell",
+          "x": 41,
+          "y": 8,
+          "hp": 0,
+          "repaired": true,
+          "usable": true,
+          "cause": "d1d7a496aa47414b93ed8096ca49f7dd",
+          "stock": null
+        }
+      ]
+    },
+    "logs": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You gain 30 XP for restoring a district service.",
+      "The lining is repaired. A fresh clay seam holds the drawn water.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You drink. The well water is cool."
+    ]
+  },
+  "UseFresh": {
+    "s": {
+      "game": "f312a9030c2f493baa646ef2d79eb9fd",
+      "zone": "Overworld.11.10.0",
+      "tick": 700,
+      "x": 40,
+      "y": 8,
+      "hp": 40,
+      "seed": 64,
+      "drams": 31,
+      "state": "Normal",
+      "board": "2702",
+      "boardAt": [
+        29,
+        19
+      ],
+      "worker": "2703",
+      "workerAt": [
+        40,
+        13
+      ],
+      "workerHP": 28,
+      "workerDrams": 8,
+      "box": "2700",
+      "boxAt": [
+        40,
+        8
+      ],
+      "boxOwner": null,
+      "shelf": "2701",
+      "shelfAt": [
+        41,
+        9
+      ],
+      "receipts": [],
+      "escrow": 0,
+      "fare": 8,
+      "phase": "Delivered",
+      "order": null,
+      "note": "The box reached the receiving shelf. The porter has been paid.",
+      "manifest": []
+    },
+    "r": {
+      "game": "f312a9030c2f493baa646ef2d79eb9fd",
+      "tick": 700,
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 8,
+      "hp": 40,
+      "drams": 31,
+      "seed": 64,
+      "kitchenCached": true,
+      "state": "Normal",
+      "pack": [
+        {
+          "id": "2705",
+          "bp": "Dagger",
+          "n": 1
+        },
+        {
+          "id": "2706",
+          "bp": "HealingTonic",
+          "n": 2
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat",
+          "n": 2
+        },
+        {
+          "id": "2708",
+          "bp": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "id": "2709",
+          "bp": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "id": "2710",
+          "bp": "EmberwheatSeed",
+          "n": 2
+        }
+      ],
+      "people": [
+        {
+          "id": "2077",
+          "bp": "MarlbackScrabbler",
+          "x": 17,
+          "y": 9,
+          "hp": 15
+        },
+        {
+          "id": "2081",
+          "bp": "Warden",
+          "x": 35,
+          "y": 15,
+          "hp": 31
+        },
+        {
+          "id": "2703",
+          "bp": "GleanersPorter",
+          "x": 40,
+          "y": 13,
+          "hp": 28
+        },
+        {
+          "id": "2091",
+          "bp": "PetDog",
+          "x": 44,
+          "y": 21,
+          "hp": 15
+        }
+      ],
+      "work": [
+        {
+          "id": "2695",
+          "bp": "RepairLinedWell",
+          "x": 41,
+          "y": 8,
+          "hp": 0,
+          "repaired": true,
+          "usable": true,
+          "cause": "d1d7a496aa47414b93ed8096ca49f7dd",
+          "stock": null
+        }
+      ]
+    }
+  },
+  "Returning": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 390,
+    "x": 28,
+    "y": 19,
+    "hp": 40,
+    "seed": 64,
+    "drams": 31,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      29,
+      20
+    ],
+    "workerHP": 28,
+    "workerDrams": 1,
+    "box": "2700",
+    "boxAt": null,
+    "boxOwner": "2703",
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 7,
+    "fare": 8,
+    "phase": "Returning",
+    "order": "d613f68e99004fd8b53e9a691cd42ed8",
+    "note": "The porter will return the box to the loading marker.",
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  },
+  "Cancelled": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 400,
+    "x": 28,
+    "y": 19,
+    "hp": 40,
+    "seed": 64,
+    "drams": 38,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      29,
+      20
+    ],
+    "workerHP": 28,
+    "workerDrams": 1,
+    "box": "2700",
+    "boxAt": [
+      29,
+      19
+    ],
+    "boxOwner": null,
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 0,
+    "fare": 8,
+    "phase": "Cancelled",
+    "order": null,
+    "note": "The same box returned to the loading marker. One dram was earned at pickup.",
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  },
+  "CancelFresh": {
+    "game": "f312a9030c2f493baa646ef2d79eb9fd",
+    "zone": "Overworld.11.10.0",
+    "tick": 400,
+    "x": 28,
+    "y": 19,
+    "hp": 40,
+    "seed": 64,
+    "drams": 38,
+    "state": "Normal",
+    "board": "2702",
+    "boardAt": [
+      29,
+      19
+    ],
+    "worker": "2703",
+    "workerAt": [
+      29,
+      20
+    ],
+    "workerHP": 28,
+    "workerDrams": 1,
+    "box": "2700",
+    "boxAt": [
+      29,
+      19
+    ],
+    "boxOwner": null,
+    "shelf": "2701",
+    "shelfAt": [
+      41,
+      9
+    ],
+    "receipts": [],
+    "escrow": 0,
+    "fare": 8,
+    "phase": "Cancelled",
+    "order": null,
+    "note": "The same box returned to the loading marker. One dram was earned at pickup.",
+    "manifest": [
+      {
+        "id": "6861",
+        "n": 2
+      }
+    ]
+  }
+}

@@ -28430,6 +28430,47 @@
       ]
     },
     {
+      "Name": "GleanersPorter",
+      "Inherits": "Creature",
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 28, "Min": 0, "Max": 999 },
+        { "Name": "Strength", "Value": 16, "Min": 0, "Max": 999 }
+      ],
+      "Tags": [{ "Key": "Faction", "Value": "Villagers" }],
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Gleaners' porter" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&Y" }
+        ] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "true" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" }
+        ] },
+        { "Name": "LocalPorter" },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A local carrier who works the path between the loading marker and the well. The terms are posted at the marker." }
+        ] }
+      ]
+    },
+    {
+      "Name": "GleanersLoadingMarker",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "clay loading marker" },
+          { "Key": "RenderString", "Value": "I" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "6" }
+        ] },
+        { "Name": "LocalPorterLedger" },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "The porter takes a packed clay box from this spot to the shelf by the well. Speak here after packing. Carry it yourself if the route is unsafe or the fare is too dear." }
+        ] }
+      ]
+    },
+    {
       "Name": "LiningClayParcel",
       "Inherits": "PhysicalObject",
       "Tags": [{ "Key": "Item", "Value": "" }],
@@ -28471,6 +28512,58 @@
         { "Name": "DeliveryStorage", "Params": [{ "Key": "ReceivesParcels", "Value": "true" }] },
         { "Name": "Examinable", "Params": [
           { "Key": "Description", "Value": "An open shelf for one small box containing two measures of lining clay. Anyone at the shelf can collect it. Unpack the clay and patch the well separately." }
+        ] }
+      ]
+    },
+    {
+      "Name": "WaysideClayPorter",
+      "Inherits": "GleanersPorter",
+      "Parts": [
+        { "Name": "Render", "Params": [{ "Key": "DisplayName", "Value": "wayside porter" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A local carrier. The clay supplier pays for the short walk to the kitchen shelf." }
+        ] }
+      ]
+    },
+    {
+      "Name": "WaysideClaySupplier",
+      "Inherits": "Creature",
+      "Stats": [{ "Name": "Hitpoints", "Value": 24, "Min": 0, "Max": 999 }],
+      "Tags": [{ "Key": "Faction", "Value": "Villagers" }],
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "clay supplier" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&r" }
+        ] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "true" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" }
+        ] },
+        { "Name": "LocalShipmentSponsor" },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A potter with a single box of prepared clay for the wayside kitchen." }
+        ] }
+      ]
+    },
+    {
+      "Name": "WaysideClayLoadingMarker",
+      "Inherits": "GleanersLoadingMarker",
+      "Parts": [
+        { "Name": "Render", "Params": [{ "Key": "DisplayName", "Value": "kitchen shipment marker" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A clay-marked post where the nearby supplier hands off a sealed box for the kitchen." }
+        ] }
+      ]
+    },
+    {
+      "Name": "WaysideClayReceivingShelf",
+      "Inherits": "LiningClayReceivingShelf",
+      "Parts": [
+        { "Name": "Render", "Params": [{ "Key": "DisplayName", "Value": "kitchen shipment shelf" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A low shelf for the kitchen's clay shipment. The cook can unpack the clay for sale when it arrives." }
         ] }
       ]
     },
@@ -49100,6 +49193,151 @@
             {
               "Key": "Description",
               "Value": "Paired thick leaves joined by a pale seam. Their vital sap is a brewing ingredient; the raw leaves are not a healing potion."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "LateKnotflaxStand",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "late knotflax stand"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "SeasonalHarvestPart",
+          "Params": [
+            {
+              "Key": "YieldBlueprint",
+              "Value": "KnotflaxSeedHeads"
+            },
+            {
+              "Key": "YieldMin",
+              "Value": "1"
+            },
+            {
+              "Key": "YieldMax",
+              "Value": "1"
+            },
+            {
+              "Key": "YieldChance",
+              "Value": "100"
+            },
+            {
+              "Key": "ActionText",
+              "Value": "gather ripe seed heads (1 bundle)"
+            },
+            {
+              "Key": "Season",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A stand of knotflax left to set seed beside the allotment. Ripe heads can be gathered once. The public frames have dry mesh for cleaning the heads."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Vegetation",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "KnotflaxSeedHeads",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "knotflax seed-head bundle"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "MaterialProcessInput",
+          "Params": [
+            {
+              "Key": "ProcessIds",
+              "Value": "winnow_knotflax_seed"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "One bundle of ripe knots and dry chaff. Winnow it at a public seed frame for one plantable knotflax seed. The gathered heads keep beyond their season."
             }
           ]
         }

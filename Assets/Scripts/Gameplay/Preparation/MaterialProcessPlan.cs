@@ -16,6 +16,7 @@ namespace CavesOfOoo.Core
         internal readonly MaterialProcessStock Stock;
         internal readonly Zone Zone;
         internal readonly EntityFactory Factory;
+        internal string StationKind => KindFor(Definition);
         readonly InventoryPart pack;
         readonly PhysicsPart physics;
         readonly StackerPart stack;
@@ -53,7 +54,7 @@ namespace CavesOfOoo.Core
         {
             var definition=sizeStock==null?MaterialProcessRegistry.Get(id):sizeStock.Definition(factory);
             if(definition==null || factory==null || ForgePart.Factory!=factory
-                || MaterialProcessRegistry.Validate(factory).Count!=0 || !PreparationActions.CurrentActor(actor,zone)
+                || MaterialProcessRegistry.ValidateForWork(factory,definition.WorkKind).Count!=0 || !PreparationActions.CurrentActor(actor,zone)
                 || !(stock==null?PreparationActions.Carried(actor,source):stock.Contains(source)) || !Permission(source,definition)
                 || (source.GetPart<StackerPart>()?.StackCount??1)<definition.InputCount)return null;
             IMaterialWorkReceipt work=definition.WorkKind switch
@@ -62,8 +63,9 @@ namespace CavesOfOoo.Core
                 "Screening"=>MaterialScreeningWorkReceipt.Resolve(actor,source,zone),
                 _=>null
             };
-            var station=definition.WorkKind=="ForgeCold"?ForgeWorkReceipt.Resolve(actor,zone):work?.Tool;
-            if(station==null || work==null && !VisibleStation(actor,station,zone))return null;
+            string kind=KindFor(definition);
+            var station=kind==null?work?.Tool:StationQuery.Resolve(actor,zone,kind);
+            if(station==null || work==null && !VisibleStation(actor,station,zone,kind))return null;
             var extraInputs=new MaterialProcessIngredient[definition.AdditionalInputBlueprints.Count];
             for(int i=0;i<extraInputs.Length;i++)
             {
@@ -97,19 +99,25 @@ namespace CavesOfOoo.Core
         static string Authorization(Part part)=>part is MaterialProcessInputPart p?p.ProcessIds
             :part is IMaterialProcessPermission?part.Name:(part as PreparationRecipePart)?.RecipeIds;
         static bool Permission(Entity source,MaterialProcessDefinition definition)=>PermissionPart(source,definition)!=null;
-        static bool VisibleStation(Entity actor,Entity station,Zone zone)
-            => ForgeWorkReceipt.Near(actor,station,zone) && zone.GetEntityCell(station) is Cell cell && cell.IsVisible && cell.Explored;
+        static string KindFor(MaterialProcessDefinition definition) => definition.WorkKind switch
+        {
+            "ForgeCold" => ForgeWorkReceipt.Kind,
+            SeedFramePart.WorkKind => SeedFramePart.Kind,
+            _ => null
+        };
+        static bool VisibleStation(Entity actor,Entity station,Zone zone,string kind)
+            => StationQuery.Near(actor,station,zone,kind) && zone.GetEntityCell(station) is Cell cell && cell.IsVisible && cell.Explored;
         internal bool ContextCurrent()
             => ForgePart.Factory==Factory && (sizeStock==null?MaterialProcessRegistry.Get(Definition.Id)==Definition
                 :sizeStock.ParentEntity==Source && Source.GetPart<SiftableStockPart>()==sizeStock && sizeStock.Contents==sizeManifest
                     && PermissionPart(Source,Definition)==sizeStock)
-                && MaterialProcessRegistry.Validate(Factory).Count==0
+                && MaterialProcessRegistry.ValidateForWork(Factory,Definition.WorkKind).Count==0
                 && PreparationActions.CurrentActor(Actor,Zone) && Actor.ID==actorId && Actor.GetPart<InventoryPart>()==pack
                 && (Stock==null || Stock.Current())
                 && !CombatSystem.IsDeathHandled(Actor) && (Actor.GetStat("Hitpoints")==null || Actor.GetStatValue("Hitpoints")>0)
                 && Zone.GetEntityCell(Actor)==actorCell && Zone.GetEntityCell(Station)==stationCell
                 && Station.ID==StationId && Station.BlueprintName==stationBlueprint && Station.Parts.SequenceEqual(stationParts)
-                && (work!=null?work.Current():VisibleStation(Actor,Station,Zone));
+                && (work!=null?work.Current():VisibleStation(Actor,Station,Zone,StationKind));
         internal bool SameDefinition(MaterialProcessPlan other)
             => other!=null && (sizeStock==null?other.sizeStock==null && Definition==other.Definition
                 :other.sizeStock==sizeStock && other.sizeManifest==sizeManifest && Definition.Id==other.Definition.Id
@@ -118,7 +126,7 @@ namespace CavesOfOoo.Core
                     && Definition.OutputBlueprints.SequenceEqual(other.Definition.OutputBlueprints)
                     && Definition.OutputCounts.SequenceEqual(other.Definition.OutputCounts));
         internal bool BeginWork(CavesOfOoo.Core.Inventory.InventoryTransaction tx,string command)
-            => work!=null?work.Begin(tx,command):ForgeWorkReceipt.Begin(Actor,Zone,tx,command,Station);
+            => work!=null?work.Begin(tx,command):StationReceipt.Begin(Actor,Zone,tx,command,StationKind,Station)!=null;
         internal bool InputAvailable(Entity input)=>Stock==null?PreparationActions.Carried(Actor,input):Stock.Contains(input);
         internal bool BeginInput(Entity input,CavesOfOoo.Core.Inventory.InventoryTransaction tx,string command)
             => Stock==null?PreparationActions.Begin(Actor,input,Zone,tx,command):Stock.Begin(input,tx,command);
