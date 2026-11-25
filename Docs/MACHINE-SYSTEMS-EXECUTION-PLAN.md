@@ -1,3 +1,10 @@
+**Mac delivery for delegated search — November 25 UTC, 2026.**
+Runtime `35d2c5d7e` is verified on main. The new universal Mac package
+passed startup and package integrity checks. Editor gameplay established
+the search walk, ordinary trade, report, late delivery and reload. Continue
+the next eligible loading approach trial in the 45-requirement roadmap.
+[Delivery](Verification/MachineSystems/MacCandidate35D2C5D7E/README.md)
+
 **Delegated kitchen search — November 25 UTC, 2026.**
 One optional kitchen hand can accept a saved two-dram search in a fresh
 version 22 wayside delivery layout. Orven kept ordinary trade open. The
