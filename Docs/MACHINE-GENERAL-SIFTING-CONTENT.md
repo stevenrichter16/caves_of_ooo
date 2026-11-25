@@ -18,6 +18,22 @@ prepare a grade for a project, or concentrate a fraction for another tool.
 Both the retained and passing fractions can be valuable. Readers and previews
 state contents, actual quantities, mesh choice, losses and destinations.
 
+### One readable yield per known packet
+
+The first discovery change shares the existing screening declaration between
+Examine and the action preview. The reader can explain one actual packet before
+a player acquires a sieve. It checks the selected packet's attached permission,
+canonical payload and declared products. It does not look into a nearby cache
+or collect an action quote. The action still explains local choices such as
+packing both grades or leaving grit on suitable ground.
+
+Retain the saved packet descriptions. Remove their legacy yield sentences
+when displaying those descriptions so the current declaration supplies the
+quantities. The sieve's guide points to existing lining repairs, footing,
+trail marks and weapon infusion without assuming a nearby source. The play
+comparisons use an earned clay packet and an explicitly supplied quarry lot.
+[GameBootstrap and native evidence](Verification/MachineSystems/ScreeningReader20261125/README.md)
+
 The same physical size rule should work across material identities and places.
 Many materials can occupy one size band. A mesh is not an assay, density pan,
 sterilizer or chemical purifier. Overlapping particle sizes stay mixed until

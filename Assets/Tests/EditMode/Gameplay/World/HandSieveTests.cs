@@ -36,6 +36,62 @@ namespace CavesOfOoo.Tests
         Entity Feed()=>Carry("QuarrySweepings");
         Entity Sieve()=>Carry("HandSieve");
         string Screen(Entity packet)=>Choice(packet,"MaterialProcess|screen_quarry_sweepings|");
+        string QuarryState(Entity packet)
+        {
+            var document = ExamineDocumentBuilder.BuildInventory(packet, Actor);
+            Assert.NotNull(document);
+            return document.Sections.FirstOrDefault(section => section.Heading == "Current state")?.Text ?? "";
+        }
+
+        [Test]
+        public void QuarryPacketReadersExplainBothFractionsAndDiscardedMassWithoutASieve()
+        {
+            var packet = Feed();
+            int tick = Clock.TickCount;
+            string state = QuarryState(packet);
+            string quick = packet.GetPart<ExaminablePart>().BuildExamineLine();
+
+            StringAssert.Contains("1 pale-salt + 2 silver sand", state);
+            StringAssert.Contains("1 pale-salt + 2 silver sand", quick);
+            Assert.That(state, Does.Match(@"(?i)(2|two)\s*(lb\.?|pounds?)\s*of\s*(unusable\s*)?rock dust"));
+            Assert.That(quick, Does.Match(@"(?i)(2|two)\s*(lb\.?|pounds?)\s*of\s*(unusable\s*)?rock dust"));
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+            Assert.That(Count("HandSieve"), Is.Zero);
+            Assert.That(Count("QuarrySweepings"), Is.EqualTo(1));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void QuarryPacketReaderWithholdsDeclaredFractionsWhenATemplateDoesNotQualify(bool invalidOutput)
+        {
+            var packet = Feed();
+            if (invalidOutput)
+                Factory.Blueprints["SilverSand"].Parts["Physics"]["Weight"] = "invalid";
+            else
+                packet.GetPart<PhysicsPart>().Weight++;
+
+            string state = QuarryState(packet);
+            Assert.That(state, Does.Not.Contain("1 pale-salt + 2 silver sand"));
+            Assert.That(state, Does.Not.Contain("rock dust"));
+            Assert.That(Pack.Objects, Does.Contain(packet));
+        }
+
+        [Test]
+        public void QuarryPacketReaderAgreesWithTheOpenMenuAndKeepsItsSelectionUsable()
+        {
+            var sieve = Sieve();
+            var packet = Feed();
+            var selection = Actions(packet).Single(row => row.Command.StartsWith("MaterialProcess|screen_quarry_sweepings|", StringComparison.Ordinal));
+            string state = QuarryState(packet);
+
+            StringAssert.Contains("1 pale-salt + 2 silver sand", state);
+            StringAssert.Contains("1 pale-salt + 2 silver sand", selection.Display);
+            Assert.True(Act(packet, selection.Command));
+            Assert.That(Count("PaleSalt"), Is.EqualTo(1));
+            Assert.That(Count("SilverSand"), Is.EqualTo(2));
+            Assert.That(Pack.Objects, Does.Contain(sieve));
+        }
+
         [Test] public void OrdinarySeparateMineralsRemainObtainableWithoutScreening()
         {Assert.NotNull(Carry("PaleSalt"));Assert.NotNull(Carry("SilverSand"));Assert.AreEqual(1,Count("PaleSalt"));Assert.AreEqual(1,Count("SilverSand"));}
         [Test] public void OnePacketYieldsItsTwoDeclaredFractionsAndKeepsTheSameSieve()

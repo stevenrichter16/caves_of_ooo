@@ -1,3 +1,11 @@
+**Known sieve packets explain their usable yield — November 25 UTC, 2026.**
+Examine and the carried and camp-box menus share the declared products.
+Actual play used an earned clay packet for firm footing and a supplied
+quarry lot for an exit mark. Both consequences survived fresh Continue.
+The final run passed 324 native checks with one explicit utility skip.
+The next comparison covers the porter’s full boxed and loose loads.
+[Evidence](Verification/MachineSystems/ScreeningReader20261125/README.md)
+
 **Wayside clay restores forge service at Peat Works — November 25 UTC, 2026.**
 The earned two-measure prepared lot arrived through normal movement. The
 player used existing locker stock to make a pack mallet, and its reclaim

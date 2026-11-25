@@ -80,7 +80,7 @@ namespace CavesOfOoo.Core
             var plan=new MaterialProcessPlan(actor,source,station,zone,factory,definition,extraInputs,work,stock,sizeStock);
             return plan.Current()?plan:null;
         }
-        static Part PermissionPart(Entity source,MaterialProcessDefinition definition)
+        internal static Part PermissionPart(Entity source,MaterialProcessDefinition definition)
         {
             if(source==null)return null;
             if(definition.SourceRecipeId.Length==0)

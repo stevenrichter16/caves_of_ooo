@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Collections.Generic;
 using CavesOfOoo.Core.Inventory;
@@ -9,10 +10,21 @@ namespace CavesOfOoo.Core
     { bool Allows(MaterialProcessDefinition definition); }
     internal interface IMaterialReclaimPermission : IMaterialProcessPermission { }
     /// <summary>Authored permission only. No material tag implies a salvage yield.</summary>
-    public sealed class MaterialProcessInputPart : Part, IPostCommitInventoryActionNotification
+    public sealed class MaterialProcessInputPart : Part, IPostCommitInventoryActionNotification, IDescribeState
     {
         public override string Name => "MaterialProcessInput";
         public string ProcessIds = "";
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 36;
+        public string DescribeState(DescribeContext context)
+        {
+            if (context?.Owner == null || context.Owner != ParentEntity) return null;
+            var summaries = MaterialProcessRegistry.ForSource(ParentEntity)
+                .Where(definition => definition.WorkKind == "Screening")
+                .Select(definition => MaterialProcessActions.DescribeScreening(ParentEntity, this, definition))
+                .Where(summary => summary != null);
+            return string.Join("\n", summaries);
+        }
         internal bool Allows(MaterialProcessDefinition definition) => definition != null
             && ParentEntity?.GetPart<MaterialProcessInputPart>() == this
             && ParentEntity.BlueprintName == definition.SourceBlueprint
@@ -41,6 +53,28 @@ namespace CavesOfOoo.Core
         static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Entity,Menu> Menus=new System.Runtime.CompilerServices.ConditionalWeakTable<Entity,Menu>();
         static string Label(CavesOfOoo.Data.EntityFactory factory,string bp)
             => factory.Blueprints[bp].Parts.TryGetValue("Render",out var p) && p.TryGetValue("DisplayName",out var label)?label:bp;
+        internal static string Outputs(CavesOfOoo.Data.EntityFactory factory, MaterialProcessDefinition definition)
+            => string.Join(" + ", definition.OutputBlueprints.Select((bp, i) =>
+                definition.OutputCounts[i].ToString(CultureInfo.InvariantCulture) + " " + Label(factory, bp)));
+
+        // This describes material potential. The action checks the actual tool,
+        // destination and capacity without the reader gathering any action rows.
+        internal static string DescribeScreening(Entity owner, Part provider, MaterialProcessDefinition definition)
+        {
+            var factory = ForgePart.Factory;
+            if (factory == null || string.IsNullOrEmpty(owner?.ID) || definition?.WorkKind != "Screening"
+                || definition.Mode != "Process" || definition.InputCount != 1 || definition.AdditionalInputBlueprints.Count != 0
+                || !ReferenceEquals(MaterialProcessPlan.PermissionPart(owner, definition), provider)
+                || owner.GetPart<StackerPart>() is StackerPart stack && (stack.StackCount <= 0 || stack.StackCount > stack.MaxStack)
+                || MaterialProcessRegistry.ValidateForWork(factory, definition.WorkKind).Count != 0
+                || MaterialProcessTemplate.Capture(factory, owner.BlueprintName)?.Matches(owner, allowInstances: true) != true
+                || definition.OutputBlueprints.Any(bp => MaterialProcessTemplate.Capture(factory, bp, true) == null)) return null;
+
+            var loss = definition.LossText;
+            return "Screen one packet with a hand sieve to get " + Outputs(factory, definition) + "."
+                + (loss.Length == 0 ? "" : " " + char.ToUpperInvariant(loss[0]) + loss.Substring(1) + ".");
+        }
+
         internal static bool Handle(Entity owner,GameEvent e,IEnumerable<string> ids,SiftableStockPart sizeStock=null)
         {
             if(owner==null)return true;
@@ -75,7 +109,7 @@ namespace CavesOfOoo.Core
                         return MaterialProcessInputPart.CommandPrefix + choice.ActionId + "|" + Uri.EscapeDataString(plan.StationId) + "|" + token;
                     }
                     var d=quoted.Result;
-                    string outputs=string.Join(" + ",d.OutputBlueprints.Select((bp,i)=>d.OutputCounts[i]+" "+Label(plan.Factory,bp)));
+                    string outputs = Outputs(plan.Factory, d);
                     string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));
                     var row=e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
                         Command(quoted),'\0',19,false,ActionTime.OneAction);

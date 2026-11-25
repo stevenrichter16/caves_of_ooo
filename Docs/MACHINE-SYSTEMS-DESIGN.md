@@ -1,3 +1,11 @@
+**A sieve packet points to its work — November 25 UTC, 2026.**
+The shared process declaration supplies the actual yields to Examine and
+both work menus. Clay spoil points toward lining and footholds. Quarry
+sweepings point toward weapon infusion and trail marks. Examine reads only
+the selected eligible packet and leaves its action choice alone. Actual
+footing and a trail mark survived fresh Continue.
+[Evidence](Verification/MachineSystems/ScreeningReader20261125/README.md)
+
 **Shared lining grades restore the Peat Works rig — November 25 UTC, 2026.**
 Existing fire clay and prepared lining clay can make one shared two-measure
 bill. Examine and the action show the same material requirement. Paid clay

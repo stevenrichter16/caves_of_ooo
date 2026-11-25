@@ -21,6 +21,83 @@ namespace CavesOfOoo.Tests
         static Part Stock(Entity e)=>e.Parts.Single(p=>p.Name=="SiftableStock");
         static void SetContents(Entity e,string raw){var p=Stock(e);p.GetType().GetField("Contents").SetValue(p,raw);}
 
+        [Test]
+        public void PacketExamineExplainsBothFractionsWithoutASieveAndKeepsTheScreeningQuote()
+        {
+            const string fractions = "2 fire clay + 1 coarse grit";
+            var spoil = Feed(2);
+            int tick = Clock.TickCount;
+            var withoutTool = ExamineDocumentBuilder.BuildInventory(spoil, Actor);
+            Assert.That(withoutTool, Is.Not.Null);
+            Assert.That(withoutTool.ToPlainText(), Does.Contain(fractions).IgnoreCase);
+            Assert.That(withoutTool.ToPlainText(), Does.Not.Contain("4 fire clay + 2 coarse grit").IgnoreCase);
+            Assert.That(Actions(spoil).Any(row => !row.IsDisabled && row.Command.StartsWith(Prefix, StringComparison.Ordinal)), Is.False);
+
+            var sieve = Sieve();
+            var selected = Actions(spoil).Single(row => row.Command.StartsWith(Prefix, StringComparison.Ordinal));
+            Assert.That(selected.Display + " " + selected.Hint, Does.Contain(fractions).IgnoreCase);
+            var withTool = ExamineDocumentBuilder.BuildInventory(spoil, Actor);
+            Assert.That(withTool, Is.Not.Null);
+            Assert.That(withTool.ToPlainText(), Does.Contain(fractions).IgnoreCase);
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+            Assert.That(Held("DryClaySpoil"), Is.EqualTo(2));
+            Assert.That(Held("FireClay") + Held("CoarseGrit"), Is.Zero);
+
+            Assert.True(Act(spoil, selected.Command));
+            Assert.That(Held("DryClaySpoil"), Is.EqualTo(1));
+            Assert.That(Held("FireClay"), Is.EqualTo(2));
+            Assert.That(Held("CoarseGrit"), Is.EqualTo(1));
+            Assert.That(Pack.Objects.Contains(sieve), Is.True);
+        }
+
+        [TestCase("FireClay:2:0;FireClay:1:2")]
+        [TestCase("FireClay:1:0;CoarseGrit:2:2")]
+        public void AlteredPacketExamineDoesNotPromiseScreeningOutput(string contents)
+        {
+            Sieve();
+            var spoil = Feed();
+            SetContents(spoil, contents);
+            var document = ExamineDocumentBuilder.BuildInventory(spoil, Actor);
+            Assert.That(document, Is.Not.Null);
+            Assert.That(document.ToPlainText(), Does.Not.Contain("2 fire clay + 1 coarse grit").IgnoreCase);
+            Assert.That(document.ToPlainText(), Does.Not.Contain("1 fire clay + 2 coarse grit").IgnoreCase);
+            Assert.That(document.ToPlainText(), Does.Not.Contain("two measures of fine fire clay").IgnoreCase);
+            Assert.That(Actions(spoil).Any(row => !row.IsDisabled && row.Command.StartsWith(Prefix, StringComparison.Ordinal)), Is.False);
+            Assert.That(Held("DryClaySpoil"), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void PacketReadersFollowTheCurrentAdmittedManifestRatherThanItsSavedFlavor()
+        {
+            Contents("FireClay:1:0;CoarseGrit:2:2");
+            var spoil = Feed();
+            var description = spoil.GetPart<ExaminablePart>();
+            string stored = description.Text;
+            Assert.That(stored, Does.Contain("two measures of fine fire clay"));
+            const string current = "1 fire clay + 2 coarse grit";
+            Assert.That(description.BuildExamineLine(), Does.Contain(current));
+            Assert.That(ExamineDocumentBuilder.BuildInventory(spoil, Actor).ToPlainText(), Does.Contain(current));
+            Assert.That(description.Text, Is.EqualTo(stored));
+            Sieve();
+            var action = Actions(spoil).Single(row => row.Command.StartsWith(Prefix, StringComparison.Ordinal));
+            Assert.That(action.Display + " " + action.Hint, Does.Contain(current));
+        }
+
+        [Test]
+        public void ReadingAnOwnedPacketDoesNotOpenItsScreeningMenuCache()
+        {
+            var spoil = Feed();
+            Sieve();
+            const string yield = "2 fire clay + 1 coarse grit";
+            var provider = typeof(MaterialProcessInputPart).Assembly.GetType("CavesOfOoo.Core.MaterialProcessActions");
+            var cache = provider?.GetField("Menus", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)?.GetValue(null);
+            bool HasQuoteCache() => cache != null && (bool)cache.GetType().GetMethod("TryGetValue").Invoke(cache, new object[] { spoil, null });
+            Assert.That(HasQuoteCache(), Is.False);
+            Assert.That(spoil.GetPart<ExaminablePart>().BuildExamineLine(), Does.Contain(yield));
+            Assert.That(ExamineDocumentBuilder.BuildInventory(spoil, Actor).ToPlainText(), Does.Contain(yield));
+            Assert.That(HasQuoteCache(), Is.False);
+        }
+
         private static InventoryAction LeaveGritRow(IEnumerable<InventoryAction> rows)
         {
             var matches = rows.Where(a => a.Display != null

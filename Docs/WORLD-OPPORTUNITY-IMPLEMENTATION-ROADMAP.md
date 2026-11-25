@@ -384,6 +384,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     uses; a stock description explains its useful fractions; a recipient explains
     why it accepts them. Show actual nearby work and observed shipment labels
     without exposing sealed contents or unexplored live positions.
+    Two eligible packets now explain their declared fractions and loss in
+    Examine. The sieve points to four supported uses. Actual play used the
+    grit and sand in the world and preserved those effects through reload.
+    Broader ordinary discovery remains open.
+    [Evidence](Verification/MachineSystems/ScreeningReader20261125/README.md)
 
 38. **Record causal diagnostics.** Trace exact source units, selected method,
     committed result, receiving owner and benefit qualification. Distinguish

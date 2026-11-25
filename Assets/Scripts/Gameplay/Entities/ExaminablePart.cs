@@ -63,6 +63,13 @@ namespace CavesOfOoo.Core
                 return (Text ?? "").Replace("It can be hauled locally; release it before working.",
                     "It can be hauled locally. Across a straight area edge, align it behind you on plain, clear ground: "
                     + "preparation costs two hauling rounds before crossing. If interrupted, spent effort is not returned. Release it before working.");
+            // Saved packet prose is part of its admitted payload. The current
+            // state reader supplies the yield while display keeps the flavor.
+            if (owner?.BlueprintName == "DryClaySpoil")
+                return Text?.Replace("A dry, known clay-working mixture: two measures of fine fire clay and one measure of coarse grit.",
+                    "A dry, known clay-working mixture.");
+            if (owner?.BlueprintName == "QuarrySweepings")
+                return Text?.Replace(" A carried hand sieve separates one pale-salt and two silver sand; two weight of dust is discarded.", "");
             return Text;
         }
 

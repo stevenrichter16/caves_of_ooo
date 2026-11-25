@@ -8,13 +8,16 @@ namespace CavesOfOoo.Core
 {
     /// <summary>Finite known constituents per packet. The fixed hand mesh sorts
     /// size only; overlapping identities refuse rather than becoming pure goods.</summary>
-    public sealed class SiftableStockPart : Part,IMaterialProcessPermission,IInventoryActionReceiptOwner,IDescribeUse
+    public sealed class SiftableStockPart : Part,IMaterialProcessPermission,IInventoryActionReceiptOwner,IDescribeUse,IDescribeUseRows,IDescribeState
     {
         public override string Name=>"SiftableStock";
         public string Contents="";
         internal const string ProcessId="screen_size_grades";
         internal const string LeaveGritId="screen_size_grades_leave_grit";
         public int Order=>36;
+        public ReaderScope Scope => ReaderScope.Both;
+        public string DescribeState(DescribeContext context) => context?.Owner != null && context.Owner == ParentEntity
+            ? MaterialProcessActions.DescribeScreening(ParentEntity, this, Definition(ForgePart.Factory)) : null;
         void Remember()=>MaterialProcessRegistry.RememberPayload(ParentEntity?.BlueprintName);
         public override void OnAfterLoad(SaveReader reader)=>Remember();
         public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<SiftableStockPart>()==this
@@ -55,7 +58,7 @@ namespace CavesOfOoo.Core
                 || mass!=Weight(factory,owner.BlueprintName))return null;
             var row=new MaterialProcessRow{Id=ProcessId,SourceBlueprint=owner.BlueprintName,Mode="Process",WorkKind="Screening",InputCount=1,
                 OutputBlueprints=new[]{passing.Keys.Single(),retained.Keys.Single()},OutputCounts=new[]{passing.Values.Single(),retained.Values.Single()},
-                ActionText="screen size grades",LossText="fine/medium pass; coarse retained; no material lost"};
+                ActionText="screen size grades",LossText="keep all material"};
             return MaterialProcessRegistry.Valid(row)?new MaterialProcessDefinition(row):null;
         }
         internal static int Weight(EntityFactory factory,string name)
@@ -82,6 +85,10 @@ namespace CavesOfOoo.Core
                 return null;
             return cell;
         }
+
+        // The guide describes the packet without opening its executable menu.
+        void IDescribeUseRows.AddUseRows(Entity actor, Zone zone, InventoryActionList rows) { }
+
         public void DescribeUse(DescribeContext context,UseGuide guide)
         {
             guide.How.Add("Carry this known mixed stock and a sound hand sieve; choose screen size grades.");
@@ -90,7 +97,7 @@ namespace CavesOfOoo.Core
             if (Definition(ForgePart.Factory) is {} result && result.OutputCounts[1] == 1
                 && ForgePart.Factory.Blueprints[result.OutputBlueprints[1]].Parts.ContainsKey("GritMaterial"))
                 guide.How.Add("On a clear surface you can leave the coarse grit at your feet for later pickup and carry the finer material.");
-            guide.WhyNot="carry a sound sieve and a plain, known stock with two distinct size groups";
+            guide.WhyNot="check the packet's action menu for tool, load and ground options";
         }
     }
 }

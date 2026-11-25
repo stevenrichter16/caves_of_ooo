@@ -137,8 +137,7 @@ namespace CavesOfOoo.Core
                         if (quote == null) continue;
                         string token = retained.Key ?? Guid.NewGuid().ToString("N");
                         offered[token] = quote;
-                        string outputs = string.Join(" + ", definition.OutputBlueprints.Select((bp, i) =>
-                            definition.OutputCounts[i] + " " + Label(factory, bp)));
+                        string outputs = MaterialProcessActions.Outputs(factory, definition);
                         if (screening)
                         {
                             actions?.AddActionWithHint("box-work", label + $" ({plan.StoredScreeningWeight} lb to pack)",
