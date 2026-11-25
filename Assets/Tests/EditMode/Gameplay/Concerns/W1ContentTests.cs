@@ -74,9 +74,193 @@ namespace CavesOfOoo.Tests
 
         // ════════════════ Tine ════════════════
 
+        private const string TinePerchStamp = "PlaceStock:RebuiltByHand.Weir:LakePerch";
+
+        private (Zone zone, OverworldZoneManager manager, Entity elder, Entity merchant) ActiveTineForWeirStock()
+        {
+            turn = 10;
+            var tine = Place(TineZone, "Elder", "Merchant");
+            var manager = new OverworldZoneManager(factory, 64);
+            manager.ReplaceLoadedState(new System.Collections.Generic.Dictionary<string, Zone> { { TineZone, tine } }, TineZone, null);
+            manager.SetTurnProvider(() => turn);
+            return (tine, manager, Who(tine, "Elder"), Who(tine, "Merchant"));
+        }
+
+        private static int TinePerchCount(Entity merchant) => ConcernItems.CountCarried(merchant, "LakePerch");
+
+        private Entity TineOrdinaryTorch(Entity merchant)
+        {
+            var inventory = merchant.GetPart<InventoryPart>();
+            var existing = inventory.Objects.FirstOrDefault(e => e.BlueprintName == "Torch");
+            if (existing != null) return existing;
+            var torch = factory.CreateEntity("Torch");
+            Assert.That(inventory.AddObject(torch), Is.True);
+            return torch;
+        }
+
+        private void FinishNativeTineWeir(Entity elder, bool contract)
+        {
+            Assert.That(ConcernConversation.Accept(elder, player, "tine.weir"), Is.Null);
+            Take(elder, Status(elder, "tine.weir"), contract ? "Pay the Concord to rebuild the weir" : "Repair the fishing weir");
+            Tick();
+            Assert.That(Approach("tine.weir"), Is.EqualTo(contract ? 2 : 1));
+            var weir = PlaceSites.Site("Tine", "Weir");
+            Assert.That(weir.Stage, Is.EqualTo(RepairStage.StableRepair));
+            Assert.That(weir.ResolvedByMethod, Is.EqualTo(contract ? RepairMethodId.Contracted : RepairMethodId.ManualRepair));
+            Assert.That(weir.RelapseAtTurn, Is.Null);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void BothDurableTineWeirMethodsStockPerchAtTheNormalBoundaryWithoutSharingPrices(bool contract)
+        {
+            var (tine, _, elder, merchant) = ActiveTineForWeirStock();
+            var ordinary = TineOrdinaryTorch(merchant);
+            var merchantPack = merchant.GetPart<InventoryPart>();
+            Give("SalvagedTimber", 2);
+            Give("OakHaftComponent", 2);
+            Give("Hatchet", 1);
+            int before = TradeSystem.GetDrams(player);
+
+            FinishNativeTineWeir(elder, contract);
+            Assert.That(TradeSystem.GetDrams(player), Is.EqualTo(before - (contract ? 45 : 0)));
+            Assert.That(ConcernItems.CountCarried(player, "SalvagedTimber"), Is.EqualTo(contract ? 2 : 0));
+            Assert.That(ConcernItems.CountCarried(player, "OakHaftComponent"), Is.EqualTo(contract ? 2 : 0));
+            Assert.That(ConcernItems.CountCarried(player, "Hatchet"), Is.EqualTo(1));
+            Assert.That(PlaceConsequences.PriceModifier(merchant), Is.EqualTo(contract ? 1.04 : .97).Within(1e-9));
+            StringAssert.Contains(contract ? "catch-tax" : "weir's holding", PlaceConsequences.LineFor(TineZone));
+            Assert.That(TinePerchCount(merchant), Is.Zero, "Completing the job does not give an immediate stock grant.");
+            Assert.That(ConcernItems.CountCarried(player, "LakePerch"), Is.Zero);
+            Assert.That(ConversationActions.ExecuteRequired("ContractPlaceRepair", elder, player, "Tine:Weir:45"), Is.EqualTo("already_repaired"));
+            Assert.That(ConversationActions.ExecuteRequired("RepairPlaceSite", elder, player, "Tine:Weir:Lasting"), Is.EqualTo("already_repaired"));
+            Assert.That(TradeSystem.GetDrams(player), Is.EqualTo(before - (contract ? 45 : 0)));
+            Assert.That(ConcernItems.CountCarried(player, "SalvagedTimber"), Is.EqualTo(contract ? 2 : 0));
+
+            PlaceConsequences.OnZoneEntered(player, tine, arriving: true);
+            Assert.That(TinePerchCount(merchant), Is.EqualTo(4));
+            Assert.That(merchantPack.Objects.Contains(ordinary), Is.True);
+            Assert.That(ConcernItems.CountCarried(player, "LakePerch"), Is.Zero, "Perch are paid shop stock.");
+        }
+
+        [TestCase("baseline")]
+        [TestCase("patch")]
+        [TestCase("unfunded")]
+        [TestCase("contract-flag-only")]
+        [TestCase("hand-flag-only")]
+        public void TineKeepsOrdinaryTradeWithoutACompletedDurableWeir(string caseName)
+        {
+            var (tine, _, elder, merchant) = ActiveTineForWeirStock();
+            var ordinary = TineOrdinaryTorch(merchant);
+            var sellerPack = merchant.GetPart<InventoryPart>();
+            if (caseName == "patch")
+            {
+                Give("SalvagedTimber", 1);
+                Assert.That(ConversationActions.ExecuteRequired("RepairPlaceSite", elder, player, "Tine:Weir:Patch"), Is.Null);
+                Assert.That(PlaceSites.Site("Tine", "Weir").Stage, Is.EqualTo(RepairStage.TemporarilyPurified));
+            }
+            if (caseName == "unfunded")
+            {
+                Assert.That(ConcernConversation.Accept(elder, player, "tine.weir"), Is.Null);
+                TradeSystem.SetDrams(player, 44);
+                var offer = Choice(Status(elder, "tine.weir"), "Pay the Concord to rebuild the weir");
+                Assert.That(ConversationActions.TryExecuteAll(offer.Actions, elder, player), Is.False);
+                Assert.That(TradeSystem.GetDrams(player), Is.EqualTo(44));
+                Assert.That(PlaceSites.Site("Tine", "Weir").Stage, Is.EqualTo(RepairStage.Fouled));
+            }
+            if (caseName == "contract-flag-only")
+                SettlementManager.Current.SetCondition(TineZone, "ConcordContract.Weir", true);
+            if (caseName == "hand-flag-only")
+                SettlementManager.Current.SetCondition(TineZone, "RebuiltByHand.Weir", true);
+
+            PlaceConsequences.OnZoneEntered(player, tine, arriving: true);
+            Assert.That(TinePerchCount(merchant), Is.Zero);
+            var sellerCell = tine.GetEntityCell(merchant);
+            Assert.That(tine.MoveEntity(player, sellerCell.X, sellerCell.Y - 1), Is.True);
+            int beforeTorches = ConcernItems.CountCarried(player, "Torch");
+            int boughtTorches = ordinary.GetPart<StackerPart>()?.StackCount ?? 1;
+            Assert.That(TradeSystem.BuyFromTrader(player, merchant, ordinary), Is.True);
+            Assert.That(ConcernItems.CountCarried(player, "Torch"), Is.EqualTo(beforeTorches + boughtTorches));
+            Assert.That(sellerPack.Objects.Contains(ordinary), Is.False);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void TineWeirStockAndTheSharedRestockWindowSurviveTheSavedWorld(bool contract)
+        {
+            var (tine, manager, elder, merchant) = ActiveTineForWeirStock();
+            if (!contract)
+            {
+                Give("SalvagedTimber", 2);
+                Give("OakHaftComponent", 2);
+                Give("Hatchet", 1);
+            }
+            FinishNativeTineWeir(elder, contract);
+            PlaceConsequences.OnZoneEntered(player, tine, arriving: true);
+            Assert.That(TinePerchCount(merchant), Is.EqualTo(4));
+            int firstStock = turn;
+            Assert.That(merchant.GetIntProperty(TinePerchStamp, -1), Is.EqualTo(firstStock));
+            var stockIds = merchant.GetPart<InventoryPart>().Objects.Select(e => e.ID).ToArray();
+
+            using var stream = new MemoryStream();
+            GameSessionState.Capture("tine-weir-stock", "native-receipt", manager, null, player).Save(new SaveWriter(stream));
+            stream.Position = 0;
+            var loaded = GameSessionState.Load(new SaveReader(stream, factory));
+            loaded.ZoneManager.SetTurnProvider(() => turn);
+            var savedTine = loaded.ZoneManager.ActiveZone;
+            var savedMerchant = Who(savedTine, "Merchant");
+            var shelf = savedMerchant.GetPart<InventoryPart>();
+            Assert.That(savedMerchant.ID, Is.EqualTo(merchant.ID));
+            Assert.That(shelf.Objects.Select(e => e.ID), Is.EquivalentTo(stockIds));
+            Assert.That(TinePerchCount(savedMerchant), Is.EqualTo(4));
+            Assert.That(savedMerchant.GetIntProperty(TinePerchStamp, -1), Is.EqualTo(firstStock));
+            Assert.That(PlaceSites.Site("Tine", "Weir").ResolvedByMethod, Is.EqualTo(contract ? RepairMethodId.Contracted : RepairMethodId.ManualRepair));
+
+            var sellerCell = savedTine.GetEntityCell(savedMerchant);
+            Assert.That(savedTine.MoveEntity(loaded.Player, sellerCell.X, sellerCell.Y - 1), Is.True);
+            var paidFish = shelf.Objects.First(e => e.BlueprintName == "LakePerch");
+            int paidUnits = paidFish.GetPart<StackerPart>()?.StackCount ?? 1;
+            int drams = TradeSystem.GetDrams(loaded.Player);
+            int price = TradeSystem.GetBuyPrice(paidFish, TradeSystem.GetTradePerformance(loaded.Player), savedMerchant);
+            Assert.That(TradeSystem.BuyFromTrader(loaded.Player, savedMerchant, paidFish), Is.True);
+            Assert.That(TradeSystem.GetDrams(loaded.Player), Is.EqualTo(drams - price));
+            Assert.That(ConcernItems.CountCarried(loaded.Player, "LakePerch"), Is.EqualTo(paidUnits));
+            turn = firstStock + TraderRestockSystem.RestockIntervalTurns;
+            PlaceConsequences.OnZoneEntered(loaded.Player, savedTine, arriving: true);
+            PlaceConsequences.OnZoneEntered(loaded.Player, savedTine, arriving: false);
+            Assert.That(TinePerchCount(savedMerchant), Is.EqualTo(4 - paidUnits));
+            Assert.That(savedMerchant.GetIntProperty(TinePerchStamp, -1), Is.EqualTo(firstStock));
+
+            turn++;
+            PlaceConsequences.OnZoneEntered(loaded.Player, savedTine, arriving: true);
+            Assert.That(TinePerchCount(savedMerchant), Is.EqualTo(4));
+            Assert.That(savedMerchant.GetIntProperty(TinePerchStamp, -1), Is.EqualTo(turn));
+            Assert.That(ConcernItems.CountCarried(loaded.Player, "LakePerch"), Is.EqualTo(paidUnits));
+        }
+
+        [Test]
+        public void ADetachedSameAddressCannotDrawOnTheLiveWorldsWorkingWeir()
+        {
+            var (tine, _, elder, merchant) = ActiveTineForWeirStock();
+            FinishNativeTineWeir(elder, contract: true);
+
+            var detached = new Zone(TineZone);
+            var foreignPlayer = factory.CreateEntity("Player");
+            var foreignMerchant = factory.CreateEntity("Merchant");
+            detached.AddEntity(foreignPlayer, 10, 10);
+            detached.AddEntity(foreignMerchant, 12, 10);
+            PlaceConsequences.OnZoneEntered(foreignPlayer, detached, arriving: true);
+            Assert.That(TinePerchCount(foreignMerchant), Is.Zero);
+            Assert.That(foreignMerchant.GetIntProperty(TinePerchStamp, -1), Is.EqualTo(-1));
+
+            PlaceConsequences.OnZoneEntered(foreignPlayer, tine, arriving: true);
+            Assert.That(TinePerchCount(merchant), Is.Zero);
+            PlaceConsequences.OnZoneEntered(player, tine, arriving: true);
+            Assert.That(TinePerchCount(merchant), Is.EqualTo(4));
+        }
+
         [Test] public void TheWeirRebuiltByHandFeedsTine()
         {
-            var tine = Place(TineZone, "Elder", "Merchant"); var elder = Who(tine, "Elder");
+            var (tine, _, elder, _) = ActiveTineForWeirStock();
             Assert.IsNull(ConcernConversation.Accept(elder, player, "tine.weir"));
             Give("SalvagedTimber", 2); Give("OakHaftComponent", 2); Give("Hatchet", 1);
             Take(elder, Status(elder, "tine.weir"), "Repair the fishing weir");

@@ -25,6 +25,17 @@ namespace CavesOfOoo.Core
         static bool Holds(string zoneId, string condition)
             => SettlementManager.Current != null && SettlementManager.Current.HasCondition(zoneId, condition);
 
+        static bool StockAvailable(Entity player, Zone zone, PlaceStockData stock, bool conditionHolds)
+        {
+            if (stock == null) return false;
+            if (string.IsNullOrEmpty(stock.StableSite)) return conditionHolds;
+            var world = WorldLocationContext.For(zone);
+            return world != null && world.ActiveZone == zone && world.SettlementManager == SettlementManager.Current
+                && WorldAmbience.IsPresentPlayer(player, zone)
+                && world.SettlementManager.TryGetExistingSite(zone.ZoneID, stock.StableSite, out var site)
+                && (site.Stage == RepairStage.StableRepair || site.Stage == RepairStage.ImprovedWithCaretaker);
+        }
+
         static string ZoneOf(string place)
         {
             foreach (var p in WorldMapAuthoring.Places) if (p.Name == place) return WorldMap.ToZoneID(p.X, p.Y, 0);
@@ -54,9 +65,12 @@ namespace CavesOfOoo.Core
             var factory = ConversationActions.Factory;
             foreach (var c in PlaceConditionCatalog.All)
             {
-                if (c.Place != place || !Holds(zone.ZoneID, c.Condition)) continue;
+                if (c.Place != place) continue;
+                bool conditionHolds = Holds(zone.ZoneID, c.Condition);
                 if (c.Stock != null && factory != null)
                     foreach (var s in c.Stock)
+                    {
+                        if (!StockAvailable(player, zone, s, conditionHolds)) continue;
                         foreach (var owner in zone.GetAllEntities())
                         {
                             if (owner.BlueprintName != s.Owner || owner.GetPart<InventoryPart>() == null) continue;
@@ -72,7 +86,8 @@ namespace CavesOfOoo.Core
                             owner.SetIntProperty(stamp, turn);
                             Record("PlaceStocked", c, owner.BlueprintName + ":" + s.Blueprint);
                         }
-                if (arriving && c.Arrivals != null && factory != null)
+                    }
+                if (conditionHolds && arriving && c.Arrivals != null && factory != null)
                     for (int a = 0; a < c.Arrivals.Count; a++)
                         for (int i = 0; i < c.Arrivals[a].Count; i++)
                         {

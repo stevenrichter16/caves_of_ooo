@@ -191,6 +191,11 @@ cross-seed comparisons remain open.
     durable work qualifies, apply the same stated benefit at its ordinary
     boundary. Preserve current merchant lots and prices; a future-stock benefit
     is neither an immediate free item nor evidence of physical production.
+    Tine’s existing four-perch line now follows the stable saved weir, with
+    one legacy stock window for hand work and the Concord contract. Both
+    actual branches supported paid trade after returning, with their own
+    prices and remarks.
+    [Evidence](Verification/MachineSystems/TineWeirStock20261125/README.md)
 
 ## Priority 5: add actual local carrying, then selected NPC shipments
 

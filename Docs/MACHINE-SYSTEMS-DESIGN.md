@@ -1,3 +1,10 @@
+**Equivalent durable work supports the same local supply — November 25 UTC, 2026.**
+The existing Tine perch line reads the actual stable saved weir. Normal
+hand repair and the existing paid contract support the same four-perch
+stock boundary. Each keeps its separate bill, pricing and story effects.
+Paid purchase and ordinary food use form the downstream trial.
+[Evidence](Verification/MachineSystems/TineWeirStock20261125/README.md)
+
 **An installed own box supports hand screening — November 25 UTC, 2026.**
 The same carried sieve can process a known packet stored directly in an
 adjacent installed camp box. The quoted three pounds belong to the real

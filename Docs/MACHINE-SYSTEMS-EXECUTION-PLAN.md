@@ -1,3 +1,13 @@
+**Both durable Tine methods supply the same fish — November 25 UTC, 2026.**
+The same saved Tine start supported an ordinary hand repair and an ordinary
+45-dram contract branch. Both supported the real merchant’s four-perch
+lot on return. Actual quantity purchase and food use reduced each lot
+to three. Fresh Continue preserved the distinct method and price, stock
+and purse. The final native run passed 83 and one explicit utility skip.
+The next distinct trial is an early cord or later seed choice at one
+finite seasonal knotflax stand.
+[Evidence](Verification/MachineSystems/TineWeirStock20261125/README.md)
+
 **Mac delivery for installed camp-box screening — November 25 UTC, 2026.**
 A universal build of `020f5a34a` reached GameBootstrap on this Mac. All
 186 package files matched afterward. It is the current startup-verified

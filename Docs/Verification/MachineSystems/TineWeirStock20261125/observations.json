@@ -1,0 +1,2521 @@
+{
+  "archivalArrival": {
+    "tick": 6250,
+    "turn": 6250,
+    "zone": "Overworld.13.7.0",
+    "p": {
+      "ID": "2707",
+      "X": 39,
+      "Y": 11
+    },
+    "hp": 40,
+    "purse": 30,
+    "state": "Normal",
+    "pack": [
+      {
+        "ID": "13632",
+        "BlueprintName": "RawMeat",
+        "n": 1
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "ID": "2713",
+        "BlueprintName": "HealingTonic",
+        "n": 2
+      },
+      {
+        "ID": "2714",
+        "BlueprintName": "DriedMeat",
+        "n": 2
+      },
+      {
+        "ID": "9200",
+        "BlueprintName": "KnotflaxSeed",
+        "n": 1
+      }
+    ],
+    "weir": {
+      "stage": "Fouled",
+      "method": "None",
+      "turn": -1,
+      "relapse": null
+    },
+    "elder": {
+      "ID": "27667",
+      "X": 13,
+      "Y": 19
+    },
+    "merchant": {
+      "ID": "27677",
+      "X": 10,
+      "Y": 16,
+      "stamp": -1,
+      "price": 1,
+      "stock": [
+        {
+          "ID": "27678",
+          "BlueprintName": "HealingTonic",
+          "n": 1
+        },
+        {
+          "ID": "27679",
+          "BlueprintName": "SpeedTonic",
+          "n": 1
+        },
+        {
+          "ID": "27680",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "27681",
+          "BlueprintName": "Codex06",
+          "n": 1
+        }
+      ]
+    },
+    "hand": false,
+    "contract": false,
+    "hint": null
+  },
+  "budgetSetup": {
+    "ids": [
+      "29936",
+      "29937",
+      "29938",
+      "29939",
+      "29940"
+    ],
+    "name": [
+      "SalvagedTimber",
+      "SalvagedTimber",
+      "OakHaftComponent",
+      "OakHaftComponent",
+      "Hatchet"
+    ],
+    "addedDrams": 70
+  },
+  "commonPrechoice": {
+    "tick": 6580,
+    "turn": 6580,
+    "zone": "Overworld.13.7.0",
+    "p": {
+      "ID": "2707",
+      "X": 13,
+      "Y": 18
+    },
+    "hp": 40,
+    "purse": 100,
+    "state": "Normal",
+    "pack": [
+      {
+        "ID": "13632",
+        "BlueprintName": "RawMeat",
+        "n": 1
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "ID": "2713",
+        "BlueprintName": "HealingTonic",
+        "n": 2
+      },
+      {
+        "ID": "2714",
+        "BlueprintName": "DriedMeat",
+        "n": 2
+      },
+      {
+        "ID": "29936",
+        "BlueprintName": "SalvagedTimber",
+        "n": 2
+      },
+      {
+        "ID": "29938",
+        "BlueprintName": "OakHaftComponent",
+        "n": 2
+      },
+      {
+        "ID": "29940",
+        "BlueprintName": "Hatchet",
+        "n": 1
+      },
+      {
+        "ID": "9200",
+        "BlueprintName": "KnotflaxSeed",
+        "n": 1
+      }
+    ],
+    "weir": {
+      "stage": "Fouled",
+      "method": "None",
+      "turn": -1,
+      "relapse": null
+    },
+    "elder": {
+      "ID": "27667",
+      "X": 13,
+      "Y": 19
+    },
+    "merchant": {
+      "ID": "27677",
+      "X": 10,
+      "Y": 16,
+      "stamp": -1,
+      "price": 1,
+      "stock": [
+        {
+          "ID": "27678",
+          "BlueprintName": "HealingTonic",
+          "n": 1
+        },
+        {
+          "ID": "27679",
+          "BlueprintName": "SpeedTonic",
+          "n": 1
+        },
+        {
+          "ID": "27680",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "27681",
+          "BlueprintName": "Codex06",
+          "n": 1
+        }
+      ]
+    },
+    "hand": false,
+    "contract": false,
+    "hint": null
+  },
+  "nativeMethods": {
+    "chosen": {
+      "Text": "[About the gapped weir...]",
+      "action": [
+        {
+          "Key": "OpenConcernNode",
+          "Value": "status|tine.weir"
+        }
+      ]
+    },
+    "state": "DialogueOpen",
+    "after": [
+      {
+        "Text": "[Repair the fishing weir.]",
+        "action": [
+          {
+            "Key": "RepairPlaceSite",
+            "Value": "Tine:Weir:Lasting"
+          }
+        ]
+      },
+      {
+        "Text": "[Patch the fishing weir for now.]",
+        "action": [
+          {
+            "Key": "RepairPlaceSite",
+            "Value": "Tine:Weir:Patch"
+          }
+        ]
+      },
+      {
+        "Text": "[Pay the Concord to rebuild the weir: 45 drams]",
+        "action": [
+          {
+            "Key": "TakeConcernOffer",
+            "Value": "tine.weir|contract"
+          }
+        ]
+      },
+      {
+        "Text": "[I'm giving this up. I'm telling you so.]",
+        "action": [
+          {
+            "Key": "RefuseConcern",
+            "Value": "tine.weir"
+          }
+        ]
+      },
+      {
+        "Text": "[Back]",
+        "action": null
+      },
+      {
+        "Text": "[Let's trade.]",
+        "action": [
+          {
+            "Key": "StartTrade",
+            "Value": ""
+          }
+        ]
+      },
+      {
+        "Text": "[Attack]",
+        "action": [
+          {
+            "Key": "StartAttack",
+            "Value": ""
+          }
+        ]
+      }
+    ]
+  },
+  "contract": {
+    "chosen": {
+      "chosen": {
+        "Text": "[Pay the Concord to rebuild the weir: 45 drams]",
+        "action": [
+          {
+            "Key": "TakeConcernOffer",
+            "Value": "tine.weir|contract"
+          }
+        ]
+      },
+      "state": "DialogueOpen",
+      "after": [
+        {
+          "Text": "What does House Vex make here?",
+          "action": []
+        },
+        {
+          "Text": "You carry yourself like a man waiting for bad news.",
+          "action": []
+        },
+        {
+          "Text": "Farewell.",
+          "action": []
+        },
+        {
+          "Text": "[About the gapped weir...]",
+          "action": [
+            {
+              "Key": "OpenConcernNode",
+              "Value": "status|tine.weir"
+            }
+          ]
+        },
+        {
+          "Text": "[What troubles this place?]",
+          "action": [
+            {
+              "Key": "OpenConcernNode",
+              "Value": "list|Tine"
+            }
+          ]
+        },
+        {
+          "Text": "[Let's trade.]",
+          "action": [
+            {
+              "Key": "StartTrade",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Text": "[Attack]",
+          "action": [
+            {
+              "Key": "StartAttack",
+              "Value": ""
+            }
+          ]
+        }
+      ]
+    },
+    "repaired": {
+      "tick": 6580,
+      "turn": 6580,
+      "zone": "Overworld.13.7.0",
+      "p": {
+        "ID": "2707",
+        "X": 13,
+        "Y": 18
+      },
+      "hp": 40,
+      "purse": 55,
+      "state": "DialogueOpen",
+      "pack": [
+        {
+          "ID": "13632",
+          "BlueprintName": "RawMeat",
+          "n": 1
+        },
+        {
+          "ID": "2708",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2709",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "2713",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2714",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "29936",
+          "BlueprintName": "SalvagedTimber",
+          "n": 2
+        },
+        {
+          "ID": "29938",
+          "BlueprintName": "OakHaftComponent",
+          "n": 2
+        },
+        {
+          "ID": "29940",
+          "BlueprintName": "Hatchet",
+          "n": 1
+        },
+        {
+          "ID": "9200",
+          "BlueprintName": "KnotflaxSeed",
+          "n": 1
+        }
+      ],
+      "weir": {
+        "stage": "StableRepair",
+        "method": "Contracted",
+        "turn": 6580,
+        "relapse": null
+      },
+      "elder": {
+        "ID": "27667",
+        "X": 13,
+        "Y": 19
+      },
+      "merchant": {
+        "ID": "27677",
+        "X": 10,
+        "Y": 16,
+        "stamp": -1,
+        "price": 1.04,
+        "stock": [
+          {
+            "ID": "27678",
+            "BlueprintName": "HealingTonic",
+            "n": 1
+          },
+          {
+            "ID": "27679",
+            "BlueprintName": "SpeedTonic",
+            "n": 1
+          },
+          {
+            "ID": "27680",
+            "BlueprintName": "Dagger",
+            "n": 1
+          },
+          {
+            "ID": "27681",
+            "BlueprintName": "Codex06",
+            "n": 1
+          }
+        ]
+      },
+      "hand": false,
+      "contract": true,
+      "hint": "The Concord's weir works. So does the Concord's catch-tax."
+    },
+    "ordinaryRefresh": {
+      "before": {
+        "tick": 6580,
+        "turn": 6580,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 13,
+          "Y": 18
+        },
+        "hp": 40,
+        "purse": 55,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29936",
+            "BlueprintName": "SalvagedTimber",
+            "n": 2
+          },
+          {
+            "ID": "29938",
+            "BlueprintName": "OakHaftComponent",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "Contracted",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": -1,
+          "price": 1.04,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            }
+          ]
+        },
+        "hand": false,
+        "contract": true,
+        "hint": "The Concord's weir works. So does the Concord's catch-tax."
+      },
+      "overland": {
+        "tick": 6590,
+        "turn": 6590,
+        "zone": "WorldMap",
+        "p": {
+          "ID": "2707",
+          "X": 43,
+          "Y": 10
+        },
+        "hp": 40,
+        "purse": 55,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29936",
+            "BlueprintName": "SalvagedTimber",
+            "n": 2
+          },
+          {
+            "ID": "29938",
+            "BlueprintName": "OakHaftComponent",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "Contracted",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": null,
+        "merchant": null,
+        "hand": false,
+        "contract": true,
+        "hint": "The Concord's weir works. So does the Concord's catch-tax."
+      },
+      "after": {
+        "tick": 6600,
+        "turn": 6600,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 13,
+          "Y": 18
+        },
+        "hp": 40,
+        "purse": 55,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29936",
+            "BlueprintName": "SalvagedTimber",
+            "n": 2
+          },
+          {
+            "ID": "29938",
+            "BlueprintName": "OakHaftComponent",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "Contracted",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 1.04,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 4
+            }
+          ]
+        },
+        "hand": false,
+        "contract": true,
+        "hint": "The Concord's weir works. So does the Concord's catch-tax."
+      }
+    },
+    "nativeQuote": {
+      "tick": 6630,
+      "open": true,
+      "IsDealMode": false,
+      "purse": 55,
+      "cursor": 0,
+      "confirm": false,
+      "stock": [
+        {
+          "i": 0,
+          "id": "27678",
+          "item": "HealingTonic",
+          "name": "healing tonic",
+          "price": 43
+        },
+        {
+          "i": 1,
+          "id": "27679",
+          "item": "SpeedTonic",
+          "name": "speed tonic",
+          "price": 57
+        },
+        {
+          "i": 2,
+          "id": "27680",
+          "item": "Dagger",
+          "name": "dagger",
+          "price": 29
+        },
+        {
+          "i": 3,
+          "id": "27681",
+          "item": "Codex06",
+          "name": "copy of Standard contract of carriage (short form)",
+          "price": 23
+        },
+        {
+          "i": 4,
+          "id": "29941",
+          "item": "LakePerch",
+          "name": "lake perch (x4)",
+          "price": 57
+        }
+      ]
+    },
+    "bought": {
+      "before": {
+        "tick": 6630,
+        "turn": 6630,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 11,
+          "Y": 17
+        },
+        "hp": 40,
+        "purse": 55,
+        "state": "TradeOpen",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29936",
+            "BlueprintName": "SalvagedTimber",
+            "n": 2
+          },
+          {
+            "ID": "29938",
+            "BlueprintName": "OakHaftComponent",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "Contracted",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 1.04,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 4
+            }
+          ]
+        },
+        "hand": false,
+        "contract": true,
+        "hint": "The Concord's weir works. So does the Concord's catch-tax."
+      },
+      "selected": {
+        "count": 1,
+        "balance": -15
+      },
+      "after": {
+        "tick": 6630,
+        "turn": 6630,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 11,
+          "Y": 17
+        },
+        "hp": 40,
+        "purse": 40,
+        "state": "TradeOpen",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29936",
+            "BlueprintName": "SalvagedTimber",
+            "n": 2
+          },
+          {
+            "ID": "29938",
+            "BlueprintName": "OakHaftComponent",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "317767e056b64e7f9467be40a3ea912a",
+            "BlueprintName": "LakePerch",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "Contracted",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 1.04,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 3
+            }
+          ]
+        },
+        "hand": false,
+        "contract": true,
+        "hint": "The Concord's weir works. So does the Concord's catch-tax."
+      },
+      "paid": 15,
+      "carried": {
+        "ID": "317767e056b64e7f9467be40a3ea912a",
+        "BlueprintName": "LakePerch",
+        "n": 1
+      }
+    },
+    "used": {
+      "before": {
+        "tick": 6630,
+        "turn": 6630,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 11,
+          "Y": 17
+        },
+        "hp": 40,
+        "purse": 40,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29936",
+            "BlueprintName": "SalvagedTimber",
+            "n": 2
+          },
+          {
+            "ID": "29938",
+            "BlueprintName": "OakHaftComponent",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "317767e056b64e7f9467be40a3ea912a",
+            "BlueprintName": "LakePerch",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "Contracted",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 1.04,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 3
+            }
+          ]
+        },
+        "hand": false,
+        "contract": true,
+        "hint": "The Concord's weir works. So does the Concord's catch-tax."
+      },
+      "after": {
+        "tick": 6640,
+        "turn": 6640,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 11,
+          "Y": 17
+        },
+        "hp": 40,
+        "purse": 40,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29936",
+            "BlueprintName": "SalvagedTimber",
+            "n": 2
+          },
+          {
+            "ID": "29938",
+            "BlueprintName": "OakHaftComponent",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "Contracted",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 1.04,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 3
+            }
+          ]
+        },
+        "hand": false,
+        "contract": true,
+        "hint": "The Concord's weir works. So does the Concord's catch-tax."
+      },
+      "eatRow": {
+        "Label": "eat",
+        "Command": "Eat",
+        "Hint": ""
+      },
+      "receipt": "{\"metadata\": {\"SaveVersion\": 8, \"GameVersion\": \"1.0\", \"GameID\": \"b343f331bf5d40a189c86e4aaba9aa47\", \"PlayerName\": \"Player\", \"PlayerDisplayName\": \"you\", \"PlayerLevel\": 1, \"ActiveZoneID\": \"Overworld.13.7.0\", \"ActiveZoneDisplayLabel\": \"Overworld.13.7.0\", \"Turn\": 6640, \"SaveTimestampUtc\": \"2026-11-25T15:22:53.9541530Z\", \"HPSummary\": \"40/40\", \"Glyph\": \"@\", \"Color\": \"&Y\"}, \"files\": {\"Quick.sav.gz\": \"8aa609f5f5dc3068563ae391eb880d30de713110de59e00587658fbe34519940\", \"Quick.sav.gz.bak\": \"8d6725e1c76a2e3b01ab45763e7aac48ba7e5b3808ca4dda3498f70c4128f79f\", \"Quick.json.bak\": \"d02b16b9984b82cabe3986e4e2121e516977e975be7da6e0394d0d1fd316f491\", \"Quick.json\": \"5e58cb86778e659e256b4af1f0021c44b151b722405754339c39afd9d169a97d\"}}\n"
+    },
+    "fresh": {
+      "tick": 6640,
+      "turn": 6640,
+      "zone": "Overworld.13.7.0",
+      "p": {
+        "ID": "2707",
+        "X": 11,
+        "Y": 17
+      },
+      "hp": 40,
+      "purse": 40,
+      "state": "Normal",
+      "pack": [
+        {
+          "ID": "13632",
+          "BlueprintName": "RawMeat",
+          "n": 1
+        },
+        {
+          "ID": "2708",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2709",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "2713",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2714",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "29936",
+          "BlueprintName": "SalvagedTimber",
+          "n": 2
+        },
+        {
+          "ID": "29938",
+          "BlueprintName": "OakHaftComponent",
+          "n": 2
+        },
+        {
+          "ID": "29940",
+          "BlueprintName": "Hatchet",
+          "n": 1
+        },
+        {
+          "ID": "9200",
+          "BlueprintName": "KnotflaxSeed",
+          "n": 1
+        }
+      ],
+      "weir": {
+        "stage": "StableRepair",
+        "method": "Contracted",
+        "turn": 6580,
+        "relapse": null
+      },
+      "elder": {
+        "ID": "27667",
+        "X": 13,
+        "Y": 19
+      },
+      "merchant": {
+        "ID": "27677",
+        "X": 10,
+        "Y": 16,
+        "stamp": 6590,
+        "price": 1.04,
+        "stock": [
+          {
+            "ID": "27678",
+            "BlueprintName": "HealingTonic",
+            "n": 1
+          },
+          {
+            "ID": "27679",
+            "BlueprintName": "SpeedTonic",
+            "n": 1
+          },
+          {
+            "ID": "27680",
+            "BlueprintName": "Dagger",
+            "n": 1
+          },
+          {
+            "ID": "27681",
+            "BlueprintName": "Codex06",
+            "n": 1
+          },
+          {
+            "ID": "29941",
+            "BlueprintName": "LakePerch",
+            "n": 3
+          }
+        ]
+      },
+      "hand": false,
+      "contract": true,
+      "hint": "The Concord's weir works. So does the Concord's catch-tax."
+    }
+  },
+  "hand": {
+    "commonStart": {
+      "tick": 6580,
+      "turn": 6580,
+      "zone": "Overworld.13.7.0",
+      "p": {
+        "ID": "2707",
+        "X": 13,
+        "Y": 18
+      },
+      "hp": 40,
+      "purse": 100,
+      "state": "Normal",
+      "pack": [
+        {
+          "ID": "13632",
+          "BlueprintName": "RawMeat",
+          "n": 1
+        },
+        {
+          "ID": "2708",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2709",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "2713",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2714",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "29936",
+          "BlueprintName": "SalvagedTimber",
+          "n": 2
+        },
+        {
+          "ID": "29938",
+          "BlueprintName": "OakHaftComponent",
+          "n": 2
+        },
+        {
+          "ID": "29940",
+          "BlueprintName": "Hatchet",
+          "n": 1
+        },
+        {
+          "ID": "9200",
+          "BlueprintName": "KnotflaxSeed",
+          "n": 1
+        }
+      ],
+      "weir": {
+        "stage": "Fouled",
+        "method": "None",
+        "turn": -1,
+        "relapse": null
+      },
+      "elder": {
+        "ID": "27667",
+        "X": 13,
+        "Y": 19
+      },
+      "merchant": {
+        "ID": "27677",
+        "X": 10,
+        "Y": 16,
+        "stamp": -1,
+        "price": 1,
+        "stock": [
+          {
+            "ID": "27678",
+            "BlueprintName": "HealingTonic",
+            "n": 1
+          },
+          {
+            "ID": "27679",
+            "BlueprintName": "SpeedTonic",
+            "n": 1
+          },
+          {
+            "ID": "27680",
+            "BlueprintName": "Dagger",
+            "n": 1
+          },
+          {
+            "ID": "27681",
+            "BlueprintName": "Codex06",
+            "n": 1
+          }
+        ]
+      },
+      "hand": false,
+      "contract": false,
+      "hint": null
+    },
+    "chosen": {
+      "chosen": {
+        "Text": "[Repair the fishing weir.]",
+        "action": [
+          {
+            "Key": "RepairPlaceSite",
+            "Value": "Tine:Weir:Lasting"
+          }
+        ]
+      },
+      "state": "DialogueOpen",
+      "after": [
+        {
+          "Text": "[Back]",
+          "action": null
+        },
+        {
+          "Text": "[Let's trade.]",
+          "action": [
+            {
+              "Key": "StartTrade",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Text": "[Attack]",
+          "action": [
+            {
+              "Key": "StartAttack",
+              "Value": ""
+            }
+          ]
+        }
+      ]
+    },
+    "repaired": {
+      "tick": 6580,
+      "turn": 6580,
+      "zone": "Overworld.13.7.0",
+      "p": {
+        "ID": "2707",
+        "X": 13,
+        "Y": 18
+      },
+      "hp": 40,
+      "purse": 100,
+      "state": "DialogueOpen",
+      "pack": [
+        {
+          "ID": "13632",
+          "BlueprintName": "RawMeat",
+          "n": 1
+        },
+        {
+          "ID": "2708",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2709",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "2713",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2714",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "29940",
+          "BlueprintName": "Hatchet",
+          "n": 1
+        },
+        {
+          "ID": "9200",
+          "BlueprintName": "KnotflaxSeed",
+          "n": 1
+        }
+      ],
+      "weir": {
+        "stage": "StableRepair",
+        "method": "ManualRepair",
+        "turn": 6580,
+        "relapse": null
+      },
+      "elder": {
+        "ID": "27667",
+        "X": 13,
+        "Y": 19
+      },
+      "merchant": {
+        "ID": "27677",
+        "X": 10,
+        "Y": 16,
+        "stamp": -1,
+        "price": 1,
+        "stock": [
+          {
+            "ID": "27678",
+            "BlueprintName": "HealingTonic",
+            "n": 1
+          },
+          {
+            "ID": "27679",
+            "BlueprintName": "SpeedTonic",
+            "n": 1
+          },
+          {
+            "ID": "27680",
+            "BlueprintName": "Dagger",
+            "n": 1
+          },
+          {
+            "ID": "27681",
+            "BlueprintName": "Codex06",
+            "n": 1
+          }
+        ]
+      },
+      "hand": false,
+      "contract": false,
+      "hint": null
+    },
+    "ordinaryRefresh": {
+      "before": {
+        "tick": 6580,
+        "turn": 6580,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 13,
+          "Y": 18
+        },
+        "hp": 40,
+        "purse": 100,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "ManualRepair",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": -1,
+          "price": 1,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            }
+          ]
+        },
+        "hand": false,
+        "contract": false,
+        "hint": null
+      },
+      "overland": {
+        "tick": 6590,
+        "turn": 6590,
+        "zone": "WorldMap",
+        "p": {
+          "ID": "2707",
+          "X": 43,
+          "Y": 10
+        },
+        "hp": 40,
+        "purse": 100,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "ManualRepair",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": null,
+        "merchant": null,
+        "hand": true,
+        "contract": false,
+        "hint": "Perch in the nets again. The weir's holding."
+      },
+      "after": {
+        "tick": 6600,
+        "turn": 6600,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 13,
+          "Y": 18
+        },
+        "hp": 40,
+        "purse": 100,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "ManualRepair",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 0.97,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 4
+            }
+          ]
+        },
+        "hand": true,
+        "contract": false,
+        "hint": "Perch in the nets again. The weir's holding."
+      }
+    },
+    "nativeQuote": {
+      "tick": 6630,
+      "open": true,
+      "IsDealMode": false,
+      "purse": 100,
+      "side": 0,
+      "cursor": 0,
+      "confirm": false,
+      "stock": [
+        {
+          "i": 0,
+          "id": "27678",
+          "item": "HealingTonic",
+          "name": "healing tonic",
+          "price": 40
+        },
+        {
+          "i": 1,
+          "id": "27679",
+          "item": "SpeedTonic",
+          "name": "speed tonic",
+          "price": 53
+        },
+        {
+          "i": 2,
+          "id": "27680",
+          "item": "Dagger",
+          "name": "dagger",
+          "price": 27
+        },
+        {
+          "i": 3,
+          "id": "27681",
+          "item": "Codex06",
+          "name": "copy of Standard contract of carriage (short form)",
+          "price": 22
+        },
+        {
+          "i": 4,
+          "id": "29941",
+          "item": "LakePerch",
+          "name": "lake perch (x4)",
+          "price": 53
+        }
+      ]
+    },
+    "bought": {
+      "before": {
+        "tick": 6630,
+        "turn": 6630,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 11,
+          "Y": 17
+        },
+        "hp": 40,
+        "purse": 100,
+        "state": "TradeOpen",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "ManualRepair",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 0.97,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 4
+            }
+          ]
+        },
+        "hand": true,
+        "contract": false,
+        "hint": "Perch in the nets again. The weir's holding."
+      },
+      "selected": {
+        "count": 1,
+        "balance": -14
+      },
+      "after": {
+        "tick": 6630,
+        "turn": 6630,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 11,
+          "Y": 17
+        },
+        "hp": 40,
+        "purse": 86,
+        "state": "TradeOpen",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "4c923532f4ad4f68a0e5fbdcb3779a0b",
+            "BlueprintName": "LakePerch",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "ManualRepair",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 0.97,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 3
+            }
+          ]
+        },
+        "hand": true,
+        "contract": false,
+        "hint": "Perch in the nets again. The weir's holding."
+      },
+      "paid": 14,
+      "carried": {
+        "ID": "4c923532f4ad4f68a0e5fbdcb3779a0b",
+        "BlueprintName": "LakePerch",
+        "n": 1
+      }
+    },
+    "used": {
+      "before": {
+        "tick": 6630,
+        "turn": 6630,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 11,
+          "Y": 17
+        },
+        "hp": 40,
+        "purse": 86,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "4c923532f4ad4f68a0e5fbdcb3779a0b",
+            "BlueprintName": "LakePerch",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "ManualRepair",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 0.97,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 3
+            }
+          ]
+        },
+        "hand": true,
+        "contract": false,
+        "hint": "Perch in the nets again. The weir's holding."
+      },
+      "after": {
+        "tick": 6640,
+        "turn": 6640,
+        "zone": "Overworld.13.7.0",
+        "p": {
+          "ID": "2707",
+          "X": 11,
+          "Y": 17
+        },
+        "hp": 40,
+        "purse": 86,
+        "state": "Normal",
+        "pack": [
+          {
+            "ID": "13632",
+            "BlueprintName": "RawMeat",
+            "n": 1
+          },
+          {
+            "ID": "2708",
+            "BlueprintName": "WateringGrimoire",
+            "n": 1
+          },
+          {
+            "ID": "2709",
+            "BlueprintName": "CandyCarrotSeed",
+            "n": 4
+          },
+          {
+            "ID": "2710",
+            "BlueprintName": "EmberwheatSeed",
+            "n": 2
+          },
+          {
+            "ID": "2713",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2714",
+            "BlueprintName": "DriedMeat",
+            "n": 2
+          },
+          {
+            "ID": "29940",
+            "BlueprintName": "Hatchet",
+            "n": 1
+          },
+          {
+            "ID": "9200",
+            "BlueprintName": "KnotflaxSeed",
+            "n": 1
+          }
+        ],
+        "weir": {
+          "stage": "StableRepair",
+          "method": "ManualRepair",
+          "turn": 6580,
+          "relapse": null
+        },
+        "elder": {
+          "ID": "27667",
+          "X": 13,
+          "Y": 19
+        },
+        "merchant": {
+          "ID": "27677",
+          "X": 10,
+          "Y": 16,
+          "stamp": 6590,
+          "price": 0.97,
+          "stock": [
+            {
+              "ID": "27678",
+              "BlueprintName": "HealingTonic",
+              "n": 1
+            },
+            {
+              "ID": "27679",
+              "BlueprintName": "SpeedTonic",
+              "n": 1
+            },
+            {
+              "ID": "27680",
+              "BlueprintName": "Dagger",
+              "n": 1
+            },
+            {
+              "ID": "27681",
+              "BlueprintName": "Codex06",
+              "n": 1
+            },
+            {
+              "ID": "29941",
+              "BlueprintName": "LakePerch",
+              "n": 3
+            }
+          ]
+        },
+        "hand": true,
+        "contract": false,
+        "hint": "Perch in the nets again. The weir's holding."
+      },
+      "eatRow": {
+        "Label": "eat",
+        "Command": "Eat",
+        "Hint": ""
+      },
+      "receipt": "{\"metadata\": {\"SaveVersion\": 8, \"GameVersion\": \"1.0\", \"GameID\": \"b343f331bf5d40a189c86e4aaba9aa47\", \"PlayerName\": \"Player\", \"PlayerDisplayName\": \"you\", \"PlayerLevel\": 1, \"ActiveZoneID\": \"Overworld.13.7.0\", \"ActiveZoneDisplayLabel\": \"Overworld.13.7.0\", \"Turn\": 6640, \"SaveTimestampUtc\": \"2026-11-25T15:26:41.7132860Z\", \"HPSummary\": \"40/40\", \"Glyph\": \"@\", \"Color\": \"&Y\"}, \"files\": {\"Quick.sav.gz\": \"41bea9a2e9814f2258b3642c8d70f34f863cfb66cfe4751a1d39cffb8d091ddb\", \"Quick.sav.gz.bak\": \"03733348c31289ab4fc8729876d89395f0ce9ef09049f3a73b898c8853414e24\", \"Quick.json.bak\": \"d8c1e140a131c290b4e9a9988664eff932e87733e16a0c60a987e50132a2a7d9\", \"Quick.json\": \"f564458e2f9bf8dd3edba1805138d1616674d1ccabf9a2265915d3b1d7eaf04b\"}}\n"
+    },
+    "fresh": {
+      "tick": 6640,
+      "turn": 6640,
+      "zone": "Overworld.13.7.0",
+      "p": {
+        "ID": "2707",
+        "X": 11,
+        "Y": 17
+      },
+      "hp": 40,
+      "purse": 86,
+      "state": "Normal",
+      "pack": [
+        {
+          "ID": "13632",
+          "BlueprintName": "RawMeat",
+          "n": 1
+        },
+        {
+          "ID": "2708",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2709",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "2713",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2714",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "29940",
+          "BlueprintName": "Hatchet",
+          "n": 1
+        },
+        {
+          "ID": "9200",
+          "BlueprintName": "KnotflaxSeed",
+          "n": 1
+        }
+      ],
+      "weir": {
+        "stage": "StableRepair",
+        "method": "ManualRepair",
+        "turn": 6580,
+        "relapse": null
+      },
+      "elder": {
+        "ID": "27667",
+        "X": 13,
+        "Y": 19
+      },
+      "merchant": {
+        "ID": "27677",
+        "X": 10,
+        "Y": 16,
+        "stamp": 6590,
+        "price": 0.97,
+        "stock": [
+          {
+            "ID": "27678",
+            "BlueprintName": "HealingTonic",
+            "n": 1
+          },
+          {
+            "ID": "27679",
+            "BlueprintName": "SpeedTonic",
+            "n": 1
+          },
+          {
+            "ID": "27680",
+            "BlueprintName": "Dagger",
+            "n": 1
+          },
+          {
+            "ID": "27681",
+            "BlueprintName": "Codex06",
+            "n": 1
+          },
+          {
+            "ID": "29941",
+            "BlueprintName": "LakePerch",
+            "n": 3
+          }
+        ]
+      },
+      "hand": true,
+      "contract": false,
+      "hint": "Perch in the nets again. The weir's holding."
+    }
+  },
+  "ending": {
+    "playing": false,
+    "root": null,
+    "dirty": false,
+    "profiling": false,
+    "total": 7,
+    "builtin": 7,
+    "selected": 0,
+    "viewOwned": false
+  },
+  "notes": [
+    "Both live branches came from the same isolated copy of the old Tine arrival. The test fixture adds 70 drams, two timber, two oak stakes and one hatchet before the actual common movement. Native selection, paid trade and consumption perform the remaining changes.",
+    "The contract per-item shop initially listed the four-fish stack at 57 drams. The ordinary quantity-trade mode bought one for 15, without selling other stock. The manual leg used the same quantity method and paid 14."
+  ]
+}

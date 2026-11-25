@@ -1314,3 +1314,23 @@ As designed above, with these specifics:
 - 2026-10-31 — W3: the First Tent, the Last Counter and Cinderhold; the Host approach
   kind and reads at named sites; fourth blind voice run and rewrites; oathbreakers
   refused water at Tent-Right wells.
+## A working Tine weir and the existing perch stock
+
+Roadmap 20 trial. The ordinary hand repair and the paid Concord contract
+both record a stable working weir. The hand route currently supplies the
+merchant’s four-perch line. The contract offers the same physical service
+and still keeps its own catch-tax and local remark.
+
+Have this specific stock line read the saved durable weir at the existing
+arrival or report boundary. Keep one stock window and its old save stamp
+for both methods. Purchases reduce the physical lot and stock only fills
+the deficit at an eligible later boundary. The normal market, existing
+stock and the two repair methods’ price and social consequences stay in
+their usual paths.
+
+The actual trial carried both branches through ordinary paid trade and
+food use. The native checks bound refill and saved state. Tine remains
+the fishing village in the existing geography, and the Concord contract
+follows its ordinary exchange and obligations.
+[Geography](../Lore/History/02_Geography.md) · [Concord](../Lore/Factions/04_SaccharineConcord.md)
+[Verification](Verification/MachineSystems/TineWeirStock20261125/README.md)

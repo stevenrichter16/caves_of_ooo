@@ -63,6 +63,8 @@ namespace CavesOfOoo.Core
                         if (!Known(s?.Owner)) problems.Add(who + ": unknown stock owner '" + s?.Owner + "'");
                         if (!Known(s?.Blueprint)) problems.Add(who + ": unknown stock item '" + s?.Blueprint + "'");
                         if ((s?.Count ?? 0) < 1) problems.Add(who + ": stock count");
+                        if (!string.IsNullOrEmpty(s?.StableSite) && PlaceSiteCatalog.Get(c.Place, s.StableSite) == null)
+                            problems.Add(who + ": unknown working stock site '" + s.StableSite + "'");
                     }
                 if (c.Arrivals != null)
                     foreach (var a in c.Arrivals)
@@ -107,6 +109,8 @@ namespace CavesOfOoo.Core
         public string Blueprint;
         /// <summary>Kept topped up to this many, once per restock interval.</summary>
         public int Count = 1;
+        /// <summary>When declared, the saved working site governs stock. The condition still identifies the existing restock window.</summary>
+        public string StableSite;
     }
 
     [Serializable]
