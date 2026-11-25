@@ -1,3 +1,9 @@
+**Mac delivery for fair-weather winnowing — November 25 UTC, 2026.**
+Runtime `31fcaf2ed` is verified on main and packaged for arm64 and x86_64.
+GameBootstrap startup and package integrity passed on the Mac. Weather,
+native installation, feeding and fresh Continue were verified in Editor play.
+[Delivery](Verification/MachineSystems/MacCandidate31FCAF2ED/README.md)
+
 **Fair-weather winnowing and camp fuel — November 25 UTC, 2026.**
 The same public frame gives a seed in rain or fair weather. In a dry fair
 window it also retains the bundle's one-pound chaff fraction. In Editor
