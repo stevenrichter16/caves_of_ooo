@@ -152,6 +152,11 @@ cross-seed comparisons remain open.
     verifies the local carrier comparison. Other work costs remain scoped
     to their supported actions.
     [Evidence](Verification/MachineSystems/PorterLoadComparison20261125/README.md)
+    Cinderhold’s actual shop quoted 22 for two cured offcuts and 44 for
+    two finished bindings. With one 22-dram spike the first option fit
+    the 50-dram purse. Two ordinary cuts supplied the forge bill. The
+    finished-binding price is an observed quote.
+    [Evidence](Verification/MachineSystems/OrdinaryHandPumpAcquisition20261125/README.md)
 
 13. **Extend work providers through explicit capabilities.** Add a narrow provider
     contract only when a second real supported operation requires it. A sound
@@ -489,6 +494,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     after wildlife damage. The same trap, sold-out allocation and
     finite pond count matched on fresh Continue.
     [Evidence](Verification/MachineSystems/MorrowfastMendedTrap20261125/README.md)
+    A guided ordinary hand-pump acquisition connected exact public tray
+    stock, the Cinderhold merchant, the starting dagger and the real forge.
+    Fresh Continue kept the pump and remaining purse. A natural useful
+    crossing and a complete field-use comparison remain open.
+    [Evidence](Verification/MachineSystems/OrdinaryHandPumpAcquisition20261125/README.md)
 
 ## Additional requirement: overdue shipments have social consequences
 

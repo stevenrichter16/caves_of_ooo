@@ -1,3 +1,10 @@
+**The hand pump has an earned ordinary acquisition route — November 25 UTC, 2026.**
+Original cellar clay, purchased spike and offcuts, the starting blade
+and Cinderhold’s public forge produced one saved pump. The actual finished
+binding quote makes the cheaper hand-work choice visible. Continue
+qualifying a practical field use in natural current terrain.
+[Evidence](Verification/MachineSystems/OrdinaryHandPumpAcquisition20261125/README.md)
+
 **One finite mended kit makes a natural catch practical — November 25 UTC, 2026.**
 Orrit’s new opening item uses the normal trade value, fixture and pond
 rules. It remains one saved physical kit through sale, travel, set-down

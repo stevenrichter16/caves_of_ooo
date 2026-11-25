@@ -1,3 +1,12 @@
+**Ordinary shops and recovered clay supply a hand pump — November 25 UTC, 2026.**
+An earned version 25 Gleaners’ save carried both original clay measures
+to Cinderhold. Ordinary trade spent 44 on one spike and two offcuts.
+The starter dagger made two bindings. The existing forge used all five
+measures to give one five-pound pump, retained through fresh Continue.
+Seven current seed 64 Sodden scouts gave no ordinary acid-pool supplier.
+Keep the natural use and a meaningful route alternative open.
+[Evidence](Verification/MachineSystems/OrdinaryHandPumpAcquisition20261125/README.md)
+
 **Morrowfast offers one affordable mended fish trap — November 25 UTC, 2026.**
 Fresh Orrit sold the exact mended kit for 35 drams in actual play. The
 player carried it to the natural Stump cascade, placed it on the shore,
