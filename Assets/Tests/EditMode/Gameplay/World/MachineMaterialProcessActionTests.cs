@@ -47,6 +47,139 @@ namespace CavesOfOoo.Tests
             Assert.True(Act(Packed(Blank),Cmd(Packed(Blank),"point")));Assert.AreEqual(1,Count("IronSpikeComponent"));Assert.AreEqual(0,Count(Blank));
             Zone.RemoveEntity(forge);Assert.True(Act(Packed("SalvagedTimber"),"PrepareRecipe|shape_haft"));Assert.AreEqual(1,Count("FieldHaftComponent"));
         }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void PhysicalAnvilAndSoundHammerGiveTheExistingPoint(bool peatMallet)
+        {
+            Entity hammer;
+            if (peatMallet)
+                Assert.True(WeaponForgingService.TryForge(Actor, Factory, Carry("PeatMalletHeadComponent"),
+                    Carry("OakHaftComponent"), Carry("LeatherBindingComponent"), out hammer, out _));
+            else
+                hammer = Carry("Warhammer");
+            var blank = Carry(Blank);
+            var anvil = Place("SmithAnvil");
+            Assert.IsNull(anvil.GetPart<ForgePart>());
+            var row = Actions(blank).SingleOrDefault(a => a.Command.StartsWith(Prefix + "point|" + Id(anvil) + "|"));
+            Assert.NotNull(row, "An intact anvil and sound hammer should offer the existing point process.");
+            StringAssert.Contains(hammer.GetPart<RenderPart>().DisplayName, row.Hint);
+            Assert.AreEqual(ActionTime.OneAction, row.Time);
+            Assert.True(Act(blank, row.Command));
+            Assert.False(Act(blank, row.Command));
+            Assert.AreEqual(0, Count(Blank));
+            Assert.AreEqual(1, Count("IronSpikeComponent"));
+            Assert.AreSame(hammer, Pack.Objects.Single(e => e.ID == hammer.ID));
+            Assert.AreEqual(0, Count("SalvagedTimber"));
+        }
+
+        [TestCase("anvil-moved")]
+        [TestCase("anvil-denied")]
+        [TestCase("hammer-displaced")]
+        [TestCase("hammer-changed")]
+        public void AnvilPointRefusesALateWorkChangeWithoutReplacingTheTool(string change)
+        {
+            var blank = Carry(Blank);
+            var anvil = Place("SmithAnvil");
+            var hammer = Carry("Warhammer");
+            var gate = new TestAnvilAccess();
+            anvil.AddPart(gate);
+            string command = Cmd(blank, "point");
+            Actor.AddPart(new AfterProbe { Callback = () =>
+            {
+                if (change == "anvil-moved")
+                {
+                    Zone.RemoveEntity(anvil);
+                    Assert.True(Zone.AddEntity(anvil, 11, 11));
+                }
+                if (change == "anvil-denied") gate.Closed = true;
+                if (change == "hammer-displaced")
+                {
+                    Assert.True(Pack.RemoveObject(hammer));
+                    Assert.True(Zone.AddEntity(hammer, 10, 10));
+                }
+                if (change == "hammer-changed") hammer.GetPart<PhysicsPart>().Weight++;
+            } });
+            Assert.False(Act(blank, command));
+            Assert.AreSame(blank, Packed(Blank));
+            Assert.AreEqual(0, Count("IronSpikeComponent"));
+            if (change == "hammer-displaced") Assert.NotNull(Zone.GetEntityCell(hammer));
+            if (change == "hammer-changed") Assert.AreEqual(17, hammer.GetPart<PhysicsPart>().Weight);
+        }
+
+        sealed class TestAnvilAccess : Part, IStationAccessGuard
+        {
+            internal bool Closed;
+            public bool TryDeny(Entity actor, Entity station, Zone zone, string kind, string command,
+                out string code, out string reason)
+            {
+                code = "closed";
+                reason = "The anvil is closed.";
+                return Closed;
+            }
+        }
+
+        [TestCase("Cudgel")]
+        [TestCase("PeatMalletHeadComponent")]
+        public void AnvilRefusesAnUnqualifiedHammerAndCannotReclaimRawFinds(string blueprint)
+        {
+            Place("SmithAnvil");
+            Carry(blueprint);
+            var blank = Carry(Blank);
+            var find = Carry(Find);
+            Assert.False(Actions(blank).Any(a => a.Command.StartsWith(Prefix + "point|")));
+            Carry("Warhammer");
+            Assert.False(Actions(find).Any(a => a.Command.StartsWith(Prefix + "reclaim|") || a.Command.StartsWith(Prefix + "dismantle|")));
+        }
+
+        [Test]
+        public void ReadyForgeRetainsTheOriginalPointChoice()
+        {
+            Place("SmithAnvil");
+            var forge = Place("TinkersForge", 10, 11);
+            Carry("Warhammer");
+            var blank = Carry(Blank);
+            Assert.True(Act(blank, Choice(blank, Prefix + "point|" + Id(forge) + "|")));
+            Assert.AreEqual(1, Count("IronSpikeComponent"));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void LoadedAnvilOnlyGainsMissingLegacyCapability(bool previouslyDeclared)
+        {
+            var original = Factory.CreateEntity("SmithAnvil");
+            Assert.True(original.RemovePart(original.GetPart<AnvilWorkPart>()));
+            if (!previouslyDeclared) original.IntProperties.Remove("AnvilWorkDefinitionSeen");
+            using var stream = new System.IO.MemoryStream();
+            var writer = new SaveWriter(stream);
+            writer.WriteEntityReference(original);
+            writer.WriteQueuedEntityBodies();
+            stream.Position = 0;
+            var reader = new SaveReader(stream, Factory);
+            var loaded = reader.ReadEntityReference();
+            reader.ReadEntityBodies();
+
+            Assert.AreEqual(original.ID, loaded.ID);
+            Assert.AreEqual(120, loaded.GetPart<HandlingPart>().Weight);
+            Assert.AreEqual(!previouslyDeclared, loaded.HasPart<AnvilWorkPart>());
+            Assert.False(loaded.HasPart<ForgePart>());
+            Assert.True(Zone.AddEntity(loaded, 11, 10));
+            Carry("Warhammer");
+            var blank = Carry(Blank);
+            Assert.AreEqual(!previouslyDeclared, Actions(blank).Any(a => a.Command.StartsWith(Prefix + "point|")));
+        }
+
+        [Test]
+        public void UsesTheSamePointFromTheVisibleAnvilWorldMenu()
+        {
+            var anvil = Place("SmithAnvil");
+            var blank = Carry(Blank);
+            Carry("Warhammer");
+            var row = CellMenu(11, 10).Single(a => a.Command.StartsWith(Prefix + "point|" + Id(anvil) + "|"));
+            Assert.AreSame(blank, row.Via);
+            Assert.True(ChooseRow(row, 11, 10));
+            Assert.AreEqual(1, Count("IronSpikeComponent"));
+        }
         [Test] public void PartialSourceStackConsumesExactlyOneAndRetainsItsOtherOptions()
         {
             Place("TinkersForge");var input=Carry(Find);input.GetPart<StackerPart>().StackCount=2;

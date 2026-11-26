@@ -217,6 +217,12 @@ their existing paths.
     cover both materials and refusal of unshaped or stacked stock.
     [Evidence](Verification/MachineSystems/FieldHaftDoorBrace20261126/README.md)
 
+    The recovered iron blank has an anvil method with a sound carried
+    hammer. The ready forge and anvil pay the same blank and produce the
+    same spike. At Cinderhold the player used the new spike and recovered
+    wood to make bellows with an ordinary bought and cut binding.
+    [Evidence](Verification/MachineSystems/AnvilColdDressing20261126/README.md)
+
 14. **Make source-side processing physical.** Consume an eligible finite batch,
     produce declared fractions and account for any loss. Leave unwanted material
     in an actual accessible store or ground location. Portable processing cannot

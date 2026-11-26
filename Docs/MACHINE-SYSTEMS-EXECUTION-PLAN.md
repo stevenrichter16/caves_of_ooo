@@ -116,6 +116,15 @@ wicket, and a second fresh Continue kept the result. The final 56 native
 cases passed. The current Mac package predates this change.
 [Evidence](Verification/MachineSystems/FieldHaftDoorBrace20261126/README.md)
 
+**A working anvil can dress reclaimed iron — November 26 UTC, 2026.**
+One ordinary iron blank became the same spike at Cinderhold's existing
+anvil using the earned peat-packing mallet. The action kept the mallet and
+completed in one turn. The player used the exact spike and recovered wood
+to make bellows with a binding cut from bought leather. Fresh Continues
+kept the spike and the later bellows. The final 240 native cases passed.
+The anvil supplies this one operation through the existing process.
+[Evidence](Verification/MachineSystems/AnvilColdDressing20261126/README.md)
+
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe
 measures to actual elders. One showed the missing second measure and

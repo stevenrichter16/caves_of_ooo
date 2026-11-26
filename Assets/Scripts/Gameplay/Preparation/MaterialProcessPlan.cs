@@ -17,7 +17,7 @@ namespace CavesOfOoo.Core
         internal readonly MaterialProcessStock Stock;
         internal readonly Zone Zone;
         internal readonly EntityFactory Factory;
-        internal string StationKind => work == null ? KindFor(Definition) : null;
+        internal string StationKind => work is AnvilPointWorkReceipt ? AnvilWorkPart.Kind : work == null ? KindFor(Definition) : null;
         internal Entity WorkTool => work?.Tool;
         readonly InventoryPart pack;
         readonly PhysicsPart physics;
@@ -75,6 +75,12 @@ namespace CavesOfOoo.Core
             {
                 work = MaterialScreeningWorkReceipt.Resolve(actor, source, zone);
                 station = work?.Tool;
+            }
+            if (stock == null && AnvilPointWorkReceipt.Supports(definition) && !VisibleStation(actor, station, zone, kind))
+            {
+                var dressing = AnvilPointWorkReceipt.Resolve(actor, source, zone, factory);
+                work = dressing;
+                station = dressing?.Anvil;
             }
             if(station==null || work==null && !VisibleStation(actor,station,zone,kind))return null;
             var extraInputs=new MaterialProcessIngredient[definition.AdditionalInputBlueprints.Count];

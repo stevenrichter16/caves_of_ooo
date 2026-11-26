@@ -55,10 +55,19 @@ namespace CavesOfOoo.Core
             }
             else if (ForgeWorkReceipt.Resolve(actor, zone) == null)
             {
-                // An unready rig or forge within reach already says why in its own menu; only a place with none at all is a miss here.
-                var candidates = new List<StationCandidate>(); StationQuery.Collect(actor, zone, ForgeWorkReceipt.Kind, candidates);
-                if (candidates.Count == 0) misses.Add(new Miss(NoStation, "You need to be beside a forge to do this."));
-                else return null;
+                bool acceptsAnvil = AnvilPointWorkReceipt.Supports(d);
+                if (acceptsAnvil && AnvilPointWorkReceipt.FindAnvil(actor, zone) != null)
+                    misses.Add(new Miss(NoTool, "Carry a sound warhammer or assembled peat-packing mallet loose in your pack."));
+                else
+                {
+                    // An unready forge or rig within reach explains its own fault.
+                    var candidates = new List<StationCandidate>();
+                    StationQuery.Collect(actor, zone, ForgeWorkReceipt.Kind, candidates);
+                    if (candidates.Count > 0) return null;
+                    misses.Add(new Miss(NoStation, acceptsAnvil
+                        ? "Stand beside a ready forge, or beside an anvil with a sound warhammer or assembled peat-packing mallet."
+                        : "You need to be beside a forge to do this."));
+                }
             }
             // Extra inputs.
             var pack = actor.GetPart<InventoryPart>();

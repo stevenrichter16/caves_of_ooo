@@ -86,8 +86,11 @@ namespace CavesOfOoo.Core
             var actor=plan.Actor;var input=plan.Source;var pack=actor.GetPart<InventoryPart>();var zone=plan.Zone;
             var inputs=new[]{input}.Concat(plan.ExtraInputs.SelectMany(i=>i.Takes.Select(t=>t.Owner))).ToArray();
             var participants=new[]{actor,plan.Station}.Concat(inputs).Concat(plan.Stock==null?Array.Empty<Entity>():new[]{plan.Stock.Box}).ToArray();
+            var separateTool = plan.WorkTool != plan.Station ? plan.WorkTool : null;
+            if (separateTool != null) participants = participants.Append(separateTool).ToArray();
             if(!tx.TryClaimAction(actor) || inputs.Any(i=>!plan.BeginInput(i,tx,command))
-                || !plan.BeginWork(tx,command) || plan.Stock!=null && !Guard(plan.Stock.Box,tx) || !Guard(plan.Station,tx) || inputs.Any(i=>!Guard(i,tx)))return Refuse();
+                || !plan.BeginWork(tx,command) || plan.Stock!=null && !Guard(plan.Stock.Box,tx) || !Guard(plan.Station,tx)
+                || separateTool != null && !Guard(separateTool, tx) || inputs.Any(i=>!Guard(i,tx)))return Refuse();
             var sourceTemplate=quote.SourceTemplate;var sourceState=quote.SourceState;
             if(sourceState==null)return Refuse();
             int sourceCount=Count(input),units=plan.Definition.InputCount;

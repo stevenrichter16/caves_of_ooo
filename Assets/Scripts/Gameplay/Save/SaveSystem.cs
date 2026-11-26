@@ -261,6 +261,7 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < _loadedEntities.Count; i++)
             {
                 CuttingToolPart.UpgradeLoadedDefinition(_loadedEntities[i],Factory);
+                AnvilWorkPart.UpgradeLoadedDefinition(_loadedEntities[i], Factory);
                 var parts = _loadedEntities[i].Parts;
                 for (int p = 0; p < parts.Count; p++)
                     parts[p].OnAfterLoad(this);

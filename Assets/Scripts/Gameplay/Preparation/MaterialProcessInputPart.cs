@@ -27,6 +27,8 @@ namespace CavesOfOoo.Core
             if (definitions.Any(definition => SeedFramePart.IsKnotflaxWork(definition)
                 && MaterialProcessPlan.PermissionPart(ParentEntity, definition) == this))
                 summaries = summaries.Append("Away from a ready public frame, rub the heads over a sound hand sieve to keep one seed. Discard the chaff.");
+            if (definitions.Any(definition => AnvilPointWorkReceipt.Supports(definition) && Allows(definition)))
+                summaries = summaries.Append("A sound warhammer or assembled peat-packing mallet can dress this blank beside an anvil. Keep the hammer.");
             return string.Join("\n", summaries);
         }
         internal bool Allows(MaterialProcessDefinition definition) => definition != null
@@ -107,6 +109,7 @@ namespace CavesOfOoo.Core
                     {
                         var retained = previous.FirstOrDefault(p => p.Value.Plan.Actor == actor && p.Value.Plan.Source == owner
                             && p.Value.Plan.Zone == zone && p.Value.Plan.Station == plan.Station && p.Value.Plan.SameDefinition(plan)
+                            && p.Value.Plan.WorkTool == plan.WorkTool
                             && p.Value.GritGround == choice.GritGround && p.Value.Current());
                         string token = retained.Key ?? Guid.NewGuid().ToString("N");
                         menu.Quotes[token] = retained.Value ?? choice;
@@ -117,6 +120,13 @@ namespace CavesOfOoo.Core
                     string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));
                     var row=e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
                         Command(quoted),'\0',19,false,ActionTime.OneAction);
+                    if (row != null && plan.StationKind == AnvilWorkPart.Kind)
+                    {
+                        var hammer = plan.WorkTool.GetPart<RenderPart>()?.DisplayName ?? plan.WorkTool.BlueprintName;
+                        row.Display = "dress iron point at anvil";
+                        row.Hint = $"Use your {hammer} to dress one recovered iron blank. Makes {outputs} in your pack. One action. Keep the hammer.";
+                        row.AtEntity(zone, plan.Station);
+                    }
                     if(row!=null && d.WorkKind==SeedFramePart.WorkKind)
                     {
                         if (plan.WorkTool != null)

@@ -566,6 +566,15 @@ opening and recovered the haft before crossing. No complete-machine
 dependency changes status.
 [Evidence](Verification/MachineSystems/FieldHaftDoorBrace20261126/README.md)
 
+**A retained anvil supplies the same finished iron point — November 26 UTC, 2026.**
+Beside an anvil, a sound packed warhammer or assembled peat-packing mallet
+can dress one recovered blank into one iron spike. The existing forge is
+another provider for that exact recipe. Native Cinderhold play kept the
+original mallet and used the produced spike and wood for hand bellows.
+The same ready-station, permission, custody and transaction rules govern
+payment. The reclamation forge and the eleven other machine gates remain open.
+[Evidence](Verification/MachineSystems/AnvilColdDressing20261126/README.md)
+
 **Replayable practical work — November24local/25UTC,2026:** The source-grounded
 [implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
 concrete requirements for compatible material demand, method-independent

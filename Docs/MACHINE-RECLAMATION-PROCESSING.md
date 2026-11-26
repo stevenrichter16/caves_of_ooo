@@ -22,6 +22,31 @@ The damage is the failed binding or mounting of this authored find; its head and
 
 The iron blank weighs 3, matching IronSpikeComponent. The released source weighs 5; both recovery modes return 4 in carried weight and disclose the spent fastening. Equal inventory weights are not proof of exact physical mass conservation. Material identity and declared recipe units are separate from weight. Actual vendor quotes preserve selling the intact find as an alternative; no buy/process/resell profit loop was demonstrated. The discarded tool and blank are new authored content admitted in this slice, with no claim to broader metallurgical canon.
 
+### Cold dressing at a separate anvil
+
+The existing point process can also use an intact adjoining anvil and one
+sound hammer carried loose. It preserves the same blank, one-action
+cost, iron spike and pack destination. The forge method remains the first
+choice within reach. A warhammer and an assembled peat-packing mallet qualify.
+Neither a loose head nor a generic cudgel qualifies. The anvil offers only cold
+dressing of this blank. It supplies no heat, dismantling or general forge work.
+
+The exact anvil, actor, hammer, assembled components and blank are captured in
+the existing process quote. Visibility, access, custody and readiness must
+survive execution and its callbacks. Finish once or leave the source and output
+unchanged. Existing anvils gain only the stateless capability on load, without
+creation replay. Mundane metalwork follows the material culture documented in
+`Lore/History/08_MaterialCulture.md` and leaves lore and faction ownership intact.
+
+The guided seed 64 player carried the earned peat mallet from Peat Works to
+Cinderhold, took the released tool and reclaimed it at the ordinary forge.
+The earlier inventory row refused work beside anvil `11661` at tick 1180.
+Fresh Continue exposed the new anvil action on that same body. One action
+made the spike and retained the mallet. The player used the spike, reclaimed
+wood and a binding cut from a bought offcut to make hand bellows. Two fresh
+Continues kept the spike and the later bellows, respectively.
+[Evidence](Verification/MachineSystems/AnvilColdDressing20261126/README.md)
+
 ## Source corrections and boundaries
 
 - CinderhookAxeHeadComponent explicitly declares Iron. It cannot become SteelBladeComponent through this process. Existing metal-equipment repair consumes a steel blade; an iron blank is not an equivalent repair input.

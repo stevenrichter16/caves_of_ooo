@@ -1,0 +1,725 @@
+{
+  "archives": {
+    "earned-before": {
+      "root": "/private/tmp/coo-anvil-point-earned-before-20261126/49ecff5253fb4bb3bda4fad9ebc0cb87",
+      "turn": 1180,
+      "files": {
+        "Quick.json": {
+          "sha256": "f0ed9731c822de252ccbcc44cfdd15cc0e674c68c127b333b0e1ac01edd33850",
+          "bytes": 407
+        },
+        "Quick.sav.gz": {
+          "sha256": "c3c9a5adda3569298074d6d2d60f3ecce3984f44d94fa3b6cf665a16ce637366",
+          "bytes": 289542
+        },
+        "Quick.json.bak": {
+          "sha256": "c55396dc2c9e69414af56354438dfda431fba94ffb8b37d49a6e4de371de4eb2",
+          "bytes": 406
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "1be5d2e4b54f76e25f0b7ac02002fd6c7a24399bcbb975cd732eb73a3784f4dd",
+          "bytes": 283738
+        }
+      }
+    },
+    "earned-point": {
+      "root": "/private/tmp/coo-anvil-point-earned-point-20261126/49ecff5253fb4bb3bda4fad9ebc0cb87",
+      "turn": 1190,
+      "files": {
+        "Quick.json": {
+          "sha256": "d8a16c0d410ed5b9329b43f6de903fb81670015c34b1f81b0defa987b5131b95",
+          "bytes": 407
+        },
+        "Quick.sav.gz": {
+          "sha256": "b1527e2f6e8bd1d0f946197d2f889c97d7b0ca8eb9a7a31fcf71faad66d5ec16",
+          "bytes": 291453
+        },
+        "Quick.json.bak": {
+          "sha256": "f0ed9731c822de252ccbcc44cfdd15cc0e674c68c127b333b0e1ac01edd33850",
+          "bytes": 407
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "c3c9a5adda3569298074d6d2d60f3ecce3984f44d94fa3b6cf665a16ce637366",
+          "bytes": 289542
+        }
+      }
+    },
+    "earned-bellows": {
+      "root": "/private/tmp/coo-anvil-point-earned-bellows-20261126/49ecff5253fb4bb3bda4fad9ebc0cb87",
+      "turn": 1290,
+      "files": {
+        "Quick.json": {
+          "sha256": "367ebf880ad443405109ccf4c00b1afbd7931336f482748dacfbe4bd2acd02e6",
+          "bytes": 407
+        },
+        "Quick.sav.gz": {
+          "sha256": "bfc6c19099ccddd7840a06d22b26bb460df226d37e5c7c27fd623e9cdad08354",
+          "bytes": 290102
+        },
+        "Quick.json.bak": {
+          "sha256": "d8a16c0d410ed5b9329b43f6de903fb81670015c34b1f81b0defa987b5131b95",
+          "bytes": 407
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "b1527e2f6e8bd1d0f946197d2f889c97d7b0ca8eb9a7a31fcf71faad66d5ec16",
+          "bytes": 291453
+        }
+      }
+    }
+  },
+  "tests": {
+    "compiling_red": {
+      "xml": "/Users/steven/coo-verification/results/anvil_point_compiling_red_20261126.xml",
+      "sha256": "eb4ab72e0f98f1a158363100ece092dc239aa28aa661684bd98e9ea2043673db",
+      "total": "9",
+      "passed": "3",
+      "failed": "6"
+    },
+    "green_attempt": {
+      "xml": "/Users/steven/coo-verification/results/anvil_point_green_attempt_20261126.xml",
+      "sha256": "e5c552257db9b7913dd0a99373968010ba3d4a6c0ae578aac87999f0bc430f9c",
+      "total": "249",
+      "passed": "247",
+      "failed": "2"
+    },
+    "receipt": {
+      "xml": "/Users/steven/coo-verification/results/anvil_point_receipt_20261126.xml",
+      "sha256": "9f689d9c389de00cf6bac5fbead3260e2b0a88b0962881048f3e8c4f1ebf9db2",
+      "total": "240",
+      "passed": "240",
+      "failed": "0"
+    }
+  },
+  "initial": "/private/tmp/coo-rig-clay-prechoice-20261125/49ecff5253fb4bb3bda4fad9ebc0cb87",
+  "arrived": {
+    "zone": "Overworld.6.6.0",
+    "X": 39,
+    "Y": 11,
+    "tick": 860,
+    "hp": 40,
+    "path": "done 36,9 tick 850"
+  },
+  "sourceConverted": {
+    "tick": 1150,
+    "hp": 40,
+    "items": [
+      {
+        "ID": "9354",
+        "BlueprintName": "ForgedWeapon"
+      },
+      {
+        "ID": "11821",
+        "BlueprintName": "RecoveredIronBlank"
+      },
+      {
+        "ID": "11822",
+        "BlueprintName": "SalvagedTimber"
+      }
+    ]
+  },
+  "baseline": {
+    "approach": {
+      "tick": 1180,
+      "x": 59,
+      "y": 6,
+      "hp": 40,
+      "tx": 60,
+      "ty": 5,
+      "key": 9
+    },
+    "disabled": {
+      "i": 0,
+      "label": "dress iron point (unavailable)",
+      "command": "Disabled:no-station",
+      "dest": null
+    }
+  },
+  "newReader": {
+    "at": "AnnouncementOpen",
+    "open": true,
+    "lines": [
+      "Selected action (reading only):",
+      "dress iron point at anvil [recovered iron blank]",
+      "",
+      "You see an anvil.",
+      "How to use: Stand beside the anvil and choose Dress",
+      "iron point on a recovered iron blank.",
+      "Needs: one recovered iron blank and a sound",
+      "warhammer or assembled peat-packing mallet loose in",
+      "your pack.",
+      "Cost and limits: One action spends the blank and",
+      "makes one iron spike in your pack. Keep the hammer.",
+      "",
+      "Not hard to move because it is heavy. Hard to move",
+      "because there is nowhere to hold it."
+    ],
+    "page": 1,
+    "tick": 1180
+  },
+  "states": {
+    "NativeBefore": {
+      "tick": 1180,
+      "ZoneID": "Overworld.6.6.0",
+      "X": 59,
+      "Y": 6,
+      "hp": 40,
+      "drams": 39,
+      "anvil": "11661",
+      "work": true,
+      "forge": false,
+      "items": [
+        {
+          "ID": "2698",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2700",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "6854",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        },
+        {
+          "ID": "9354",
+          "BlueprintName": "ForgedWeapon",
+          "n": 1
+        },
+        {
+          "ID": "11821",
+          "BlueprintName": "RecoveredIronBlank",
+          "n": 1
+        },
+        {
+          "ID": "11822",
+          "BlueprintName": "SalvagedTimber",
+          "n": 1
+        }
+      ]
+    },
+    "NativePaid": {
+      "tick": 1190,
+      "ZoneID": "Overworld.6.6.0",
+      "X": 59,
+      "Y": 6,
+      "hp": 40,
+      "drams": 39,
+      "anvil": "11661",
+      "work": true,
+      "forge": false,
+      "items": [
+        {
+          "ID": "2698",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2700",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "6854",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        },
+        {
+          "ID": "9354",
+          "BlueprintName": "ForgedWeapon",
+          "n": 1
+        },
+        {
+          "ID": "11822",
+          "BlueprintName": "SalvagedTimber",
+          "n": 1
+        },
+        {
+          "ID": "11823",
+          "BlueprintName": "IronSpikeComponent",
+          "n": 1
+        }
+      ]
+    },
+    "PointFresh": {
+      "tick": 1190,
+      "ZoneID": "Overworld.6.6.0",
+      "X": 59,
+      "Y": 6,
+      "hp": 40,
+      "drams": 39,
+      "anvil": "11661",
+      "work": true,
+      "forge": false,
+      "items": [
+        {
+          "ID": "2698",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2700",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "6854",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        },
+        {
+          "ID": "9354",
+          "BlueprintName": "ForgedWeapon",
+          "n": 1
+        },
+        {
+          "ID": "11822",
+          "BlueprintName": "SalvagedTimber",
+          "n": 1
+        },
+        {
+          "ID": "11823",
+          "BlueprintName": "IronSpikeComponent",
+          "n": 1
+        }
+      ]
+    },
+    "BoughtCut": {
+      "tick": 1220,
+      "ZoneID": "Overworld.6.6.0",
+      "X": 56,
+      "Y": 6,
+      "hp": 40,
+      "drams": 17,
+      "anvil": "11661",
+      "work": true,
+      "forge": false,
+      "items": [
+        {
+          "ID": "2698",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2700",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "6854",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        },
+        {
+          "ID": "9354",
+          "BlueprintName": "ForgedWeapon",
+          "n": 1
+        },
+        {
+          "ID": "11822",
+          "BlueprintName": "SalvagedTimber",
+          "n": 1
+        },
+        {
+          "ID": "11823",
+          "BlueprintName": "IronSpikeComponent",
+          "n": 1
+        },
+        {
+          "ID": "11670",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 2
+        }
+      ]
+    },
+    "BellowsFresh": {
+      "tick": 1290,
+      "ZoneID": "Overworld.6.6.0",
+      "X": 56,
+      "Y": 6,
+      "hp": 40,
+      "drams": 17,
+      "anvil": "11661",
+      "work": true,
+      "forge": false,
+      "items": [
+        {
+          "ID": "2698",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2700",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "6854",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        },
+        {
+          "ID": "9354",
+          "BlueprintName": "ForgedWeapon",
+          "n": 1
+        },
+        {
+          "ID": "11670",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 1
+        },
+        {
+          "ID": "11832",
+          "BlueprintName": "HandBellows",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "cut": {
+    "row": {
+      "i": 0,
+      "label": "cut leather binding: 1 -> 1 leather binding; torn margins discarded; usable cutting tool required (1 action, pack)",
+      "command": "MaterialProcess|cut_binding|2698|<quote>",
+      "dest": null
+    },
+    "state": {
+      "tick": 1250,
+      "ZoneID": "Overworld.6.6.0",
+      "X": 58,
+      "Y": 6,
+      "hp": 40,
+      "drams": 17,
+      "anvil": "11661",
+      "work": true,
+      "forge": false,
+      "items": [
+        {
+          "ID": "2698",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2700",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "6854",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        },
+        {
+          "ID": "9354",
+          "BlueprintName": "ForgedWeapon",
+          "n": 1
+        },
+        {
+          "ID": "11822",
+          "BlueprintName": "SalvagedTimber",
+          "n": 1
+        },
+        {
+          "ID": "11823",
+          "BlueprintName": "IronSpikeComponent",
+          "n": 1
+        },
+        {
+          "ID": "11670",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 1
+        },
+        {
+          "ID": "11830",
+          "BlueprintName": "LeatherBindingComponent",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "shape": {
+    "row": {
+      "i": 1,
+      "label": "shape haft: 1 timber, STR cap 1",
+      "command": "PrepareRecipe|shape_haft",
+      "dest": null
+    },
+    "state": {
+      "tick": 1260,
+      "ZoneID": "Overworld.6.6.0",
+      "X": 58,
+      "Y": 6,
+      "hp": 40,
+      "drams": 17,
+      "anvil": "11661",
+      "work": true,
+      "forge": false,
+      "items": [
+        {
+          "ID": "2698",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2700",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "6854",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        },
+        {
+          "ID": "9354",
+          "BlueprintName": "ForgedWeapon",
+          "n": 1
+        },
+        {
+          "ID": "11823",
+          "BlueprintName": "IronSpikeComponent",
+          "n": 1
+        },
+        {
+          "ID": "11670",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 1
+        },
+        {
+          "ID": "11830",
+          "BlueprintName": "LeatherBindingComponent",
+          "n": 1
+        },
+        {
+          "ID": "11831",
+          "BlueprintName": "FieldHaftComponent",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "forge": {
+    "row": {
+      "i": 0,
+      "label": "make hand bellows with a rough haft: 1 iron spike + 1 rough field haft + 1 leather binding -> 1 hand bellows; materials become one reusable tool (1 action, pack)",
+      "command": "MaterialProcess|make_field_haft_bellows|11660|<quote>",
+      "dest": null
+    },
+    "state": {
+      "tick": 1290,
+      "ZoneID": "Overworld.6.6.0",
+      "X": 56,
+      "Y": 6,
+      "hp": 40,
+      "drams": 17,
+      "anvil": "11661",
+      "work": true,
+      "forge": false,
+      "items": [
+        {
+          "ID": "2698",
+          "BlueprintName": "Dagger",
+          "n": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2700",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "6854",
+          "BlueprintName": "PreparedLiningClay",
+          "n": 2
+        },
+        {
+          "ID": "9354",
+          "BlueprintName": "ForgedWeapon",
+          "n": 1
+        },
+        {
+          "ID": "11670",
+          "BlueprintName": "CuredLeatherOffcut",
+          "n": 1
+        },
+        {
+          "ID": "11832",
+          "BlueprintName": "HandBellows",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "exit": {
+    "playing": false,
+    "dirty": false,
+    "root": null,
+    "lockHeld": false
+  },
+  "scopedPreservation": {
+    "normal": 861,
+    "foreign": 86,
+    "mismatches": 0
+  }
+}
