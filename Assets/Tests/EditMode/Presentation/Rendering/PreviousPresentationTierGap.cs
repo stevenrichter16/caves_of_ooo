@@ -33,6 +33,9 @@ namespace CavesOfOoo.Tests
             // Posy's working fixtures (Docs/MACHINE-INVENTED-USES.md 3s and 3w): the Sorters' frame and the Setters' bench are
             // placed fresh-only by the installation pipeline as glyph-only machines (graphics are cancelled); their flat art is owed.
             "SortingFrame", "SettingBench",
+            // The Gleaners' paid delivery uses four individually selectable glyph owners.
+            // Their current flat fallback is checked in FlatPixelFallbackCatalogTests.
+            "GleanersPorter", "GleanersLoadingMarker", "LiningClayParcel", "LiningClayReceivingShelf",
         };
 
         public static bool Excuses(string blueprint) => blueprint != null && Blueprints.Contains(blueprint);

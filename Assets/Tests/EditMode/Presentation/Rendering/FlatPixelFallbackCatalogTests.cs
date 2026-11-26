@@ -85,6 +85,30 @@ namespace CavesOfOoo.Tests
             Assert.True(worldTile.sprite != null); Assert.True(uiTile.sprite != null);
         }
 
+        [TestCase("GleanersPorter", '@')]
+        [TestCase("GleanersLoadingMarker", 'I')]
+        [TestCase("LiningClayParcel", '=')]
+        [TestCase("LiningClayReceivingShelf", '=')]
+        public void GleanersDeliveryOwnerUsesItsVisibleGlyphAndCanBeSelected(string blueprint, char glyph)
+        {
+            using var content = new DensityLootTestScope();
+            var subject = content.Factory.CreateEntity(blueprint);
+            Assert.That(subject, Is.Not.Null);
+            Assert.That(zone.AddEntity(subject, X, Y), Is.True);
+
+            var resolve = BindResolve(NewDefault());
+            Assert.That(resolve(zone, X, Y, out var visible), Is.True);
+            Assert.That(visible.Owner, Is.SameAs(subject));
+            AssertFrame(visible.ForegroundTile.sprite, CP437TilesetGenerator.GetAtlasTexture(), glyph);
+            var targets = WorldInteractionSystem.BuildTargetPickerActions(zone.GetCell(X, Y));
+            Assert.That(targets.Exists(action =>
+                action.Command == WorldInteractionSystem.PickTargetCommandPrefix + subject.ID), Is.True);
+
+            zone.GetCell(X, Y).IsVisible = false;
+            Assert.That(resolve(zone, X, Y, out var remembered), Is.True);
+            Assert.That(remembered.Owner, Is.Not.SameAs(subject));
+        }
+
         [TestCase(null)][TestCase("")][TestCase("AB")][TestCase("\n")][TestCase("\u2603")][TestCase("Z")][TestCase("\u00b0")]
         public void InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(string glyph)
         {

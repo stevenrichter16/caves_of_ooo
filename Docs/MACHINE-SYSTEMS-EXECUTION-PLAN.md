@@ -1,3 +1,13 @@
+**Gleaners freight passed the scoped renderer regression — November 26 UTC, 2026.**
+The older native failures named only the porter, loading marker, parcel
+and shelf. The previous 3D census now treats exactly those four as
+intentional glyph owners under the existing presentation policy. Four
+new native cases check each current owner’s glyph pixels, exact selection
+and fog behavior. All seven Spread census cases and 83 related checks
+passed. Prior actual porter receipts still support the visible hire and
+handover. The production renderer and art stayed on their existing code.
+Whole-suite acceptance remains open.
+
 **Routine playtest walking uses guarded native input batches — November 26 UTC, 2026.**
 The same 24 keys from the same Cinderhold checkpoint reached cell 39,11
 at turn 3080 in both runs. Fixed delays took 7.38 seconds and the guarded
@@ -101,7 +111,8 @@ registrations for the Gleaners' porter, parcel, loading marker and
 receiving shelf. Two cases had passed in the older `full_s9.xml` result.
 The other two had timed out in that run. The focused log and XML share
 the prefix `machine_regression_seam_ee0287659_20261126` in the results
-directory. Whole-suite acceptance remains open.
+directory. The later corrected scope passed 90 cases with the prefix
+`gleanner_glyph_scope_green_20261126`. Whole-suite acceptance remains open.
 
 **Hand water and Conjure Rain grow a second drawgourd — November 26 UTC, 2026.**
 The ordinary seed `1498104061` branch extended the earlier Gleaners'
