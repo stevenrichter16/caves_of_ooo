@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>A reusable single-liquid vessel. Volume uses the same units as
@@ -10,6 +12,18 @@ namespace CavesOfOoo.Core
         public int Volume;
         public string LiquidId = "";
         public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<LiquidVesselPart>() == this && AcidRinseActions.IsCommand(command);
+
+        internal static bool HasCarriedOil(Entity actor, Entity flask, bool allowEmpty = false)
+        {
+            var liquid = flask?.GetPart<LiquidVesselPart>();
+            return PreparationActions.Carried(actor, flask) && WorldResourceActions.Carried(actor, flask)
+                && liquid?.ParentEntity == flask && flask.Parts.Count(part => part is LiquidVesselPart) == 1
+                && flask.Parts.Count(part => part is PhysicsPart) == 1 && flask.Parts.Count(part => part is StackerPart) <= 1
+                && !flask.HasPart<WaterskinPart>() && liquid.Capacity > 0
+                && liquid.Volume >= (allowEmpty ? 0 : 1) && liquid.Volume <= liquid.Capacity
+                && liquid.LiquidId == (liquid.Volume == 0 ? "" : "oil")
+                && LiquidRegistry.IsInitialized && LiquidRegistry.Get("oil") != null;
+        }
 
         /// <summary>What a menu says to tell two flasks apart: "empty" or "11/12 water".</summary>
         public string ToolMenuState()
@@ -30,6 +44,8 @@ namespace CavesOfOoo.Core
             guide.How.Add(AcidRinseActions.UseText);
             guide.Needs.Add("an unmixed liquid within reach to fill it: it takes one kind at a time");
             guide.How.Add("Oil can refill an unlit torch in your pack: use this flask and choose the torch. One oil adds up to 25 fuel; lamp-oil measures remain another option.");
+            if (LiquidId == "oil" && Volume > 0)
+                guide.How.Add("To feed finite coals, press C beside the hearth. Up to three whole oil units add one fuel each. Cold coals stay cold.");
             guide.Limits.Add("It holds up to " + Capacity + " units" + (Volume > 0 ? " and holds " + Volume + " now" : "") + ". What you pour acts on the ground it lands on: oil burns and slicks, water carries a charge and damps fire.");
             if (context.Viewer != null && !UseGuides.CarriedBy(context.Viewer, ParentEntity)) guide.WhyNot = UseGuides.PickUpFirst;
         }

@@ -595,6 +595,17 @@ Hauling left the trap armed and kept the haft. An earlier layout's trap
 sprang when a creature walked onto it before the player arrived at the gate.
 [Evidence](Verification/MachineSystems/FieldHaftTrapWedge20261126/README.md)
 
+**Reclaimed oil can feed finite coals — November 26 UTC, 2026.**
+The selected finite hearth takes up to three whole units from one carried
+oil flask, at one fuel per unit. The flask remains available when empty.
+Cold coals stay cold. An exhausted hearth with residual cooking heat
+refuses this feed until it cools. Timber, resin, lamp-oil measures and
+torch refilling remain useful. One full mire flask yields three oil,
+below the five fuel paid for a heated batch. At the camp, three oil or
+one timber both made the same second brine batch possible. Timber kept
+the oil and left more heat available for later work.
+[Evidence](Verification/MachineSystems/LiquidHearthFuel20261126/README.md)
+
 **A rough field haft supports Sella’s bench — November 26 UTC, 2026.**
 The existing covered timber bench uses two salvaged timber or one timber
 and one sound loose rough field haft. The recipe prefers two timber.

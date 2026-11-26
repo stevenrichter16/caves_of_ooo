@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -11,7 +13,7 @@ namespace CavesOfOoo.Core
         public override string Name => "Campfire";
         public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<CampfirePart>() == this
             && (PortableKindling.OwnsReceipt(ParentEntity, command)
-                || FiniteCooking && (ReagentFireFuel.IsCommand(command) || StoredTimberFeed.IsCommand(command)));
+                || FiniteCooking && (ReagentFireFuel.IsCommand(command) || StoredTimberFeed.IsCommand(command) || LiquidHearthFuel.IsCommand(command)));
 
         // "What can I do here?": what the fire's rows would offer whoever is looking, in both examine readers.
         public ReaderScope Scope => ReaderScope.Both;
@@ -33,6 +35,7 @@ namespace CavesOfOoo.Core
             }
             guide.Needs.Add("to feed it: salvaged timber (each timber is 10 fuel" + (fuel != null && fuel.MaxFuel > 0 ? "; it holds up to " + fuel.MaxFuel.ToString("G5", System.Globalization.CultureInfo.InvariantCulture) : "") + ")");
             guide.Needs.Add("optional fuel: one dry, stable combustible reagent; pitchpod resin gives " + ReagentFireFuel.FuelPerTier + " fuel, lamp-oil gives " + 3 * ReagentFireFuel.FuelPerTier + ", up to capacity. Feeding does not light it; volatile mixtures are unsuitable");
+            guide.Needs.Add("optional fuel: up to three whole units from a carried oil flask, one fuel each. Cold coals stay cold");
             guide.Needs.Add("to light it: a flame to light it from (a burning fire beside you, a lit torch in your hand, or a flint striker)");
             guide.Limits.Add("It burns its fuel while it is lit and goes out when the fuel does. Taking it up puts it out.");
             guide.WhyNot = "you are not beside it";
@@ -77,7 +80,7 @@ namespace CavesOfOoo.Core
                 CampfireWorkActions.AddActions(queryingActor, this, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
                 if (FiniteCooking)
                     RouteWorkMenu.Rows(ParentEntity, queryingActor, queryingZone, e.GetParameter<InventoryActionList>("Actions"),
-                        StoredTimberFeed.Choices(queryingActor, this, queryingZone), true);
+                        StoredTimberFeed.Choices(queryingActor, this, queryingZone).Concat(LiquidHearthFuel.Choices(queryingActor, this, queryingZone)), true);
                 ReagentFireFuel.AddActions(queryingActor, this, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
                 PortableKindling.AddActions(queryingActor, ParentEntity, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
                 if (!AllowRest || !WorldResourceActions.Nearby(queryingActor, ParentEntity, queryingZone)) return true;
@@ -89,7 +92,7 @@ namespace CavesOfOoo.Core
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
-                if (FiniteCooking && StoredTimberFeed.IsCommand(command))
+                if (FiniteCooking && (StoredTimberFeed.IsCommand(command) || LiquidHearthFuel.IsCommand(command)))
                 {
                     if (!RouteWorkMenu.Act(ParentEntity, e)) return true;
                     e.Handled = true;

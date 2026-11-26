@@ -42,6 +42,7 @@ namespace CavesOfOoo.Core
             var parts = new System.Collections.Generic.List<string>();
             int feedN = FeedCount(fuel, TimberCarried(actor)); if (feedN >= 1) parts.Add("feed it (" + feedN + " timber)");
             if (StoredTimberFeed.Choices(actor, fire, zone).Any()) parts.Add("feed it from your camp box");
+            if (LiquidHearthFuel.Choices(actor, fire, zone).Any()) parts.Add("feed it from a carried oil flask");
             if (fuel.FuelMass > 0 && !Hot(fire) && IgnitionSources.Find(actor, zone, fire.ParentEntity) != null) parts.Add("light it");
             if (Hot(fire) && actor.GetPart<InventoryPart>() is InventoryPart pack)
             {

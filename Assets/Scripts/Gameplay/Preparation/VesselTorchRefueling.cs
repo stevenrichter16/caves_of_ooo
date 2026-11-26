@@ -22,14 +22,6 @@ namespace CavesOfOoo.Core
         static bool Packed(Entity actor, Entity owner) => PreparationActions.Carried(actor, owner)
             && WorldResourceActions.Carried(actor, owner) && Unique<PhysicsPart>(owner) != null
             && owner.Parts.Count(p => p is StackerPart) <= 1;
-        static bool Source(Entity actor, Entity owner, bool allowEmpty = false)
-        {
-            var liquid = Unique<LiquidVesselPart>(owner);
-            return Packed(actor, owner) && liquid != null && !owner.HasPart<WaterskinPart>()
-                && liquid.Capacity > 0 && liquid.Volume >= (allowEmpty ? 0 : 1) && liquid.Volume <= liquid.Capacity
-                && (liquid.Volume == 0 ? liquid.LiquidId == "" : liquid.LiquidId == "oil")
-                && LiquidRegistry.IsInitialized && LiquidRegistry.Get("oil") != null;
-        }
         static bool Torch(Entity actor, Entity owner, bool allowFull = false)
         {
             var fuel = Unique<FuelPart>(owner); var heat = Unique<ThermalPart>(owner);
@@ -53,7 +45,7 @@ namespace CavesOfOoo.Core
         }
         internal static void AddActions(Entity actor, Entity source, Zone zone, InventoryActionList actions)
         {
-            if (actions == null || !PreparationActions.CurrentActor(actor, zone) || !Source(actor, source)) return;
+            if (actions == null || !PreparationActions.CurrentActor(actor, zone) || !LiquidVesselPart.HasCarriedOil(actor, source)) return;
             foreach (var torch in actor.GetPart<InventoryPart>().Objects)
             {
                 if (torch == source || !Torch(actor, torch)) continue;
@@ -68,7 +60,7 @@ namespace CavesOfOoo.Core
         internal static bool TryAct(Entity actor, Entity source, Zone zone, string command, InventoryTransaction tx)
         {
             if (!IsCommand(command) || tx == null || !PreparationActions.CurrentActor(actor, zone)
-                || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true || !Source(actor, source)) return false;
+                || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true || !LiquidVesselPart.HasCarriedOil(actor, source)) return false;
             var fields = command.Split('|'); if (fields.Length != 7) return false;
             var torch = WorldResourceActions.ExactCarried(actor, fields[2]);
             if (torch == source || !Torch(actor, torch) || command != Quote(source, torch)) return false;
@@ -98,7 +90,7 @@ namespace CavesOfOoo.Core
             });
             tx.BeforeCommit(() => PreparationActions.CurrentActor(actor, zone) && zone.GetEntityCell(actor) == cell
                 && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true
-                && source.ID == sourceID && torch.ID == torchID && Source(actor, source, true) && Torch(actor, torch, true)
+                && source.ID == sourceID && torch.ID == torchID && LiquidVesselPart.HasCarriedOil(actor, source, true) && Torch(actor, torch, true)
                 && Unique<LiquidVesselPart>(source) == liquid && Unique<FuelPart>(torch) == fuel
                 && Unique<LightSourcePart>(torch) == light && Unique<ThermalPart>(torch) == heat && Unique<TorchLightPart>(torch) == flame
                 && source.GetPart<PhysicsPart>() == sourcePhysics && torch.GetPart<PhysicsPart>() == torchPhysics

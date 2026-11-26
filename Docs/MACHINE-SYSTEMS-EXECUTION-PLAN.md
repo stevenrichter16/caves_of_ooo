@@ -1,3 +1,13 @@
+**Reclaimed liquid oil can power a second brine batch — November 26 UTC, 2026.**
+At the same camp arrival, the still refused a second batch at four fuel.
+Three previously earned oil let the exact hearth pay for it. One timber
+worked too and left more fuel. On a later branch the exhausted warm
+hearth refused; waiting and feeding the cold hearth kept its flame out.
+Fresh Continues kept the oil payment, output and separate cold result.
+Native checks passed 352 of 352. The original camp and stats were supplied.
+The existing Mac package predates this slice.
+[Evidence](Verification/MachineSystems/LiquidHearthFuel20261126/README.md)
+
 **A field haft can wedge an exposed mechanism — November 26 UTC, 2026.**
 The timber-first jam action accepts one sound loose rough field haft.
 Guided seed 64 play compared the same yard from one saved arrival.

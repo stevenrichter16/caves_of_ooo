@@ -84,6 +84,14 @@ same crate from the other side. This adds a guided #40 tool-versus-haul
 comparison. Wider discovery and layout coverage remain open.
 [Dispatch yard playtest](Verification/MachineSystems/FieldHaftTrapWedge20261126/README.md)
 
+For #14/#15 and #36, liquid oil earned from mire has a second heat use.
+The finite hearth takes whole units from a selected flask, leaving the
+vessel available. At one expedition camp, either oil or timber funded
+the same next batch of brine. The oil kept the timber for other work.
+The timber kept the oil and left more fuel. Cold coals required a
+separate ignition. This guided comparison used a supplied camp.
+[Hearth and still playtest](Verification/MachineSystems/LiquidHearthFuel20261126/README.md)
+
 Stump and Morrowfast now have an extra connected choice for #14/#19/#40.
 The earlier paid-trap branch ate the catch raw. A branch from its earned
 return took the same raw fish to the existing Second Bowl stove and used
