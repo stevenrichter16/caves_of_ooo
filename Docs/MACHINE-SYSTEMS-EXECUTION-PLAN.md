@@ -1,3 +1,10 @@
+**The craft recovery checks now expect visible completion — November 26 UTC, 2026.**
+Both previously failing cases recovered the right mix and units. They
+still expected the old blank success line. They now verify one real brew
+and the legible green completion message alongside the ingredient checks.
+All 327 connected native cases passed. This corrects test expectations.
+The full regression remains open.
+
 **Reserved components explain how to resume forge work — November 26 UTC, 2026.**
 At the Cinderhold forge the exact bought spike was set aside using the
 normal menu. Both otherwise-ready recipes remained visible as unavailable.

@@ -20,12 +20,19 @@ namespace CavesOfOoo.Tests
         }
         [TestCase(-1)] [TestCase(0)] public void RemovingOnlyStalePickRecoversTheExactRemainingMix(int count)
         {
+            Tiles();
             var stale = Carry("SparkRoot", count); var good = Carry("GlimmerBrine", 2); CraftingMarkPart.Toggle(stale); CraftingMarkPart.Toggle(good); BrewMode();
             CollectionAssert.AreEquivalent(new[] { stale, good }, (IEnumerable)Get("_pickedReagents")); Assert.IsFalse(((BrewPreview)Get("_brewPreview")).IsValid); Assert.AreEqual(0, Get("_craftBatchMax"));
             var before = Inventory.Objects.ToArray(); Call("ExecuteCraft", false); CollectionAssert.AreEqual(before, Inventory.Objects); Assert.AreEqual(2, good.GetPart<StackerPart>().StackCount); Assert.IsNotEmpty(Status);
             Pick(stale); Assert.IsFalse(HasCraftRow(stale)); Assert.IsFalse(CraftingMarkPart.IsMarked(stale)); Assert.IsTrue(CraftingMarkPart.IsMarked(good));
             CollectionAssert.AreEqual(new[] { good }, (IEnumerable)Get("_pickedReagents")); Assert.IsTrue(((BrewPreview)Get("_brewPreview")).IsValid);
-            Call("ExecuteCraft", false); Assert.AreEqual(1, good.GetPart<StackerPart>().StackCount); Assert.AreEqual(count, stale.GetPart<StackerPart>().StackCount); Assert.IsTrue(string.IsNullOrEmpty(Status));
+            Call("ExecuteCraft", false);
+            Assert.AreEqual(1, good.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(count, stale.GetPart<StackerPart>().StackCount);
+            var brew = Inventory.Objects.Single(item => !before.Contains(item));
+            Assert.IsTrue(brew.HasPart<BrewItemPart>());
+            Assert.AreEqual(1, brew.GetPart<StackerPart>()?.StackCount ?? 1);
+            AssertCraftSuccessView("Brewed 1 item.");
         }
         [TestCase(-1)] [TestCase(0)] [TestCase(1)] public void TinkerIngredientIndicatorAgreesWithPositivePayment(int count)
         {
