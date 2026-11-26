@@ -64,13 +64,15 @@ both head and haft and requires a usable station. This advances portable
 reclamation and equipment preparation while the full forge gate remains open.
 [Evidence](Verification/MachineSystems/PeatFieldHead20261126/README.md)
 
-**Next regional processing design, prepare a lake perch.** An earned Stump
-catch is already in the player pack. Give the same fish a choice between eating
-it immediately and taking it to existing heat for a more rewarding cooked meal.
-One fish should produce one meal with the same weight and sale value, and the
-old-shaped saved catch needs the cooking capability. Try the ordinary cooking
-and eating actions at The Second Bowl. This treatment and its save
-compatibility are proposed.
+**A Stump catch becomes an optional cooked meal — November 26 UTC, 2026.**
+The earned old lake perch kept its raw meal and gained a normal Cook action.
+After fifteen steps to The Second Bowl, one ordinary action produced one
+roasted perch at the same weight and base value. Fresh Continue kept the
+cooked fish. Eating healed seven HP and another fresh Continue kept the spent
+meal and 29 HP. Native checks passed 128 cases. The raw and cooked actual
+healing rolls were independent. The recipe uses existing heat rules and has
+a dedicated inventory icon.
+[Evidence](Verification/MachineSystems/RoastedLakePerch20261126/README.md)
 
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe

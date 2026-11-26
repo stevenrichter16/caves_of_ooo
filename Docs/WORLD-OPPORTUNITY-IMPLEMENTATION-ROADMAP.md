@@ -75,6 +75,14 @@ and equipped a new mallet away from the rig. The broader recovery and
 reclamation forge gates remain open.
 [Field recovery playtest](Verification/MachineSystems/PeatFieldHead20261126/README.md)
 
+Stump and Morrowfast now have an extra connected choice for #14/#19/#40.
+The earlier paid-trap branch ate the catch raw. A branch from its earned
+return took the same raw fish to the existing Second Bowl stove and used
+the ordinary meal afterward. One raw fish yielded one cooked meal with
+the same carried weight and base trade value. Fresh Continues confirmed
+the meal and eating. The cooking bonus uses the authored healing modifier.
+[Perch playtest](Verification/MachineSystems/RoastedLakePerch20261126/README.md)
+
 ## Priority 1: make needs and benefits independent of method
 
 1. **Describe one practical need in physical terms.** Start with a bounded need

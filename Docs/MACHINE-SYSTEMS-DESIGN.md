@@ -528,6 +528,15 @@ from the station. The complete reclamation forge remains a separate
 dependency and acceptance gate.
 [Evidence](Verification/MachineSystems/PeatFieldHead20261126/README.md)
 
+**An earned Stump catch supplies an ordinary meal — November 26 UTC, 2026.**
+Lake perch still serves as a raw meal. The existing Cook action can trade one
+step of preparation beside usable heat for the cooked healing modifier.
+One fish yields one meal at the same weight and base value. An old saved
+catch used the ordinary Second Bowl stove, inventory icon, meal action and
+fresh Continue. This connects a finite purchased fishing kit to regional
+food preparation without changing fishing capacity or full-machine gates.
+[Evidence](Verification/MachineSystems/RoastedLakePerch20261126/README.md)
+
 **Replayable practical work — November24local/25UTC,2026:** The source-grounded
 [implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
 concrete requirements for compatible material demand, method-independent

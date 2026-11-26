@@ -66,6 +66,62 @@ namespace CavesOfOoo.Tests
         Entity Raw(int quantity=2)
         {var raw=factory.CreateEntity("RawMeat");raw.GetPart<StackerPart>().StackCount=quantity;Assert.True(actor.GetPart<InventoryPart>().AddObject(raw));Assert.AreSame(actor,raw.GetPart<PhysicsPart>().InInventory);return raw;}
         int Units(string blueprint)=>actor.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName==blueprint).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
+
+        [Test]
+        public void LakePerchHasAnOptionalOneForOneCookingRecipeWithAModestHealingBonus()
+        {
+            var raw = factory.CreateEntity("LakePerch");
+            Assert.True(actor.GetPart<InventoryPart>().AddObject(raw));
+            Assert.AreEqual("2d4", raw.GetPart<FoodPart>().Healing);
+            Assert.AreEqual("RoastedLakePerch", raw.GetPart<CookablePart>()?.Into);
+            Assert.False(InventorySystem.PerformAction(actor, raw, "Cook", zone));
+            Assert.AreEqual(1, Units("LakePerch"));
+            Station();
+            Assert.True(InventorySystem.GetActions(actor, raw).Any(row => row.Command == "Cook"));
+            Assert.True(InventorySystem.PerformAction(actor, raw, "Cook", zone));
+            Assert.AreEqual(0, Units("LakePerch"));
+            Assert.AreEqual(1, Units("RoastedLakePerch"));
+
+            var meal = actor.GetPart<InventoryPart>().Objects.Single();
+            Assert.AreEqual(1, meal.GetPart<PhysicsPart>().Weight);
+            Assert.AreEqual(raw.GetPart<CommercePart>().Value, meal.GetPart<CommercePart>().Value);
+            Assert.AreEqual("2d4+2", meal.GetPart<FoodPart>().Healing);
+            Assert.IsNull(meal.GetPart<CookablePart>());
+            Assert.AreEqual(40, actor.GetStatValue("Hitpoints"));
+            actor.GetStat("Hitpoints").BaseValue = 20;
+            Assert.True(InventorySystem.PerformAction(actor, meal, "Eat", zone));
+            Assert.AreEqual(0, Units("RoastedLakePerch"));
+            Assert.That(actor.GetStatValue("Hitpoints"), Is.InRange(24, 30));
+        }
+
+        [Test]
+        public void APreviouslySavedLakePerchCanUseItsAuthoredCookingRecipe()
+        {
+            var raw = factory.CreateEntity("LakePerch");
+            if (raw.GetPart<CookablePart>() is CookablePart recipe) raw.RemovePart(recipe);
+            raw.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(actor.GetPart<InventoryPart>().AddObject(raw));
+            Station();
+            var manager = OverworldZoneManager.CreateDetached(factory, 1);
+            manager.ReplaceLoadedState(new Dictionary<string, Zone> { { zone.ZoneID, zone } }, zone.ZoneID,
+                new Dictionary<string, List<ZoneConnection>>());
+            var state = GameSessionState.Capture("saved-lake-perch", "core-only", manager, null, actor);
+            using var stream = new MemoryStream();
+            state.Save(new SaveWriter(stream));
+            stream.Position = 0;
+            var loaded = GameSessionState.Load(new SaveReader(stream, factory));
+            var pack = loaded.Player.GetPart<InventoryPart>();
+            var fish = pack.Objects.Single();
+            Assert.AreEqual(raw.ID, fish.ID);
+            Assert.AreEqual(2, fish.GetPart<StackerPart>().StackCount);
+            Assert.AreSame(loaded.Player, fish.GetPart<PhysicsPart>().InInventory);
+            Assert.True(InventorySystem.GetActions(loaded.Player, fish).Any(row => row.Command == "Cook"));
+            Assert.True(InventorySystem.PerformAction(loaded.Player, fish, "Cook", loaded.ZoneManager.ActiveZone));
+            var meal = pack.Objects.Single();
+            Assert.AreEqual("RoastedLakePerch", meal.BlueprintName);
+            Assert.AreEqual(2, meal.GetPart<StackerPart>().StackCount);
+        }
+
         void CookAndCheck(Entity raw,bool expected)
         {
             Assert.AreEqual(expected,CookingService.TryCook(actor,raw,zone,factory));Assert.AreEqual(expected?0:2,Units("RawMeat"));Assert.AreEqual(expected?2:0,Units("CookedMeat"));

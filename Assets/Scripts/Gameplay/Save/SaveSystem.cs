@@ -1047,6 +1047,7 @@ namespace CavesOfOoo.Core
             }
             reader.ExpectCheck("Entity.End");
             OriginalEnemyIdentity.EntityBody(entity);
+            CookablePart.RestoreLakePerchRecipe(entity, reader.Factory);
         }
 
         public static void SaveOverworldZoneManager(OverworldZoneManager manager, SaveWriter writer)
