@@ -19,6 +19,63 @@ namespace CavesOfOoo.Tests
             TileReactionSystem.Initialize(File.ReadAllText(Path.Combine(Application.dataPath,"Resources/Content/Data/TileReactions/Reactions.json")));
         }
         [TearDown] public void RestoreTools(){TileReactionSystem.ResetForTests();ForgePart.Factory=oldForge;MaterialProcessRegistry.ResetForTests();}
+
+        [TestCase("make_hearth_nozzle", "HearthNozzle", 2)]
+        [TestCase("make_steam_condenser", "SteamCondenser", 1)]
+        public void SetAsideSpikeExplainsWhyReadyRecipesWaitAndTakingItBackEnablesThem(string recipe, string product, int units)
+        {
+            Place("TinkersForge");
+            var spike = Carry("IronSpikeComponent");
+            var clay = Carry("FireClay");
+            clay.GetPart<StackerPart>().StackCount = units;
+            string prefix = "MaterialProcess|" + recipe + "|";
+            string previous = Choice(spike, prefix);
+            Assert.IsTrue(CraftingMarkPart.Toggle(spike));
+            var marker = spike.GetPart<CraftingMarkPart>();
+
+            var choices = Actions(spike);
+            var blocked = choices.SingleOrDefault(row => row.Name == recipe);
+            Assert.That(blocked, Is.Not.Null);
+            Assert.That(blocked.DisabledCode, Is.EqualTo("crafting-reserved"));
+            StringAssert.Contains("Take back (crafting)", blocked.DisabledReason);
+            Assert.That(choices.Any(row => row.Command.StartsWith(prefix)), Is.False);
+            Assert.That(Act(spike, previous), Is.False);
+            Assert.AreSame(marker, spike.GetPart<CraftingMarkPart>());
+            Assert.That(Count("FireClay"), Is.EqualTo(units));
+
+            Assert.IsFalse(CraftingMarkPart.Toggle(spike));
+            Assert.That(Act(spike, Choice(spike, prefix)), Is.True);
+            Assert.That(Count("FireClay"), Is.Zero);
+            Assert.That(Count("IronSpikeComponent"), Is.Zero);
+            Assert.That(Count(product), Is.EqualTo(1));
+        }
+
+        [TestCase("short")]
+        [TestCase("noncanonical")]
+        [TestCase("foreign-marker")]
+        public void ReadyRecipeReservationDoesNotReplaceOtherRefusalReasons(string failure)
+        {
+            Place("TinkersForge");
+            var spike = Carry("IronSpikeComponent");
+            var clay = Carry("FireClay");
+            CraftingMarkPart.Toggle(spike);
+            if (failure == "noncanonical")
+            {
+                clay.GetPart<StackerPart>().StackCount = 2;
+                spike.SetIntProperty("UnrepresentedMaterialState", 1);
+            }
+            if (failure == "foreign-marker")
+            {
+                clay.GetPart<StackerPart>().StackCount = 2;
+                spike.GetPart<CraftingMarkPart>().ParentEntity = clay;
+            }
+
+            var row = Actions(spike).SingleOrDefault(action => action.Name == "make_hearth_nozzle");
+            if (failure == "short") Assert.That(row?.DisabledCode, Is.EqualTo("short"));
+            else Assert.That(row, Is.Null);
+            Assert.That(CraftingMarkPart.IsMarked(spike), Is.True);
+        }
+
         Entity Hearth()
         {
             var h=Place("CampHearth",9,10);h.GetPart<FuelPart>().FuelMass=15;h.GetPart<ThermalPart>().Temperature=450;

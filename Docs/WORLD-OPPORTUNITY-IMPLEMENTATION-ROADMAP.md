@@ -140,6 +140,12 @@ the exact nozzle. This extends the reward-to-tool part of #40. Ordinary
 acquisition of an own hearth, ignition and natural field heat remain open.
 [Earned nozzle checkpoint](Verification/MachineSystems/EarnedHearthNozzle20261126/README.md)
 
+For #36 and #40, an otherwise usable forge recipe now explains when the
+selected component is set aside for crafting. In Cinderhold, the normal
+mark survived Continue. Taking back the carried spike restored the
+nozzle and condenser choices without spending the spike or clay.
+[Reserved material playtest](Verification/MachineSystems/ReservedMaterialReader20261126/README.md)
+
 For #2, #4, #18 and #40, the quiet watch bell uses verified lining clay.
 One exact purchased Wayside shipment measure established the same quiet
 setting as fire clay. Carrying it to another town made that purchase useful

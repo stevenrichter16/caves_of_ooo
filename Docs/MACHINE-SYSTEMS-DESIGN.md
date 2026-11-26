@@ -2251,6 +2251,13 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+In the November 26 processing update, a valid forge recipe remains
+visible when its carried component is reserved for crafting. The player
+can inspect the reason, take back the same component and see the exact
+quote again, with normal availability and payment rules. Actual
+Cinderhold play verified both ready spike recipes and a saved mark.
+[Reserved material playtest](Verification/MachineSystems/ReservedMaterialReader20261126/README.md)
+
 November24/25 direct-liquid dependency: the carried hand pump now relocates finite
 simple-pool stock, retires an exact depleted source/projection and preserves the
 outlet's shared hazard. Native/recorded supplied partial/final transfers, actual

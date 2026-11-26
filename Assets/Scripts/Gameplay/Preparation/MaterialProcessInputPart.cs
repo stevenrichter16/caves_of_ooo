@@ -94,11 +94,15 @@ namespace CavesOfOoo.Core
                 {
                     var plan=sizeStock==null?MaterialProcessPlan.TryCreate(actor,owner,id,zone,ForgePart.Factory)
                         :MaterialProcessPlan.TryCreateScreening(actor,owner,zone,ForgePart.Factory,sizeStock);
-                    var quoted=MaterialProcessService.TryQuote(plan);
+                    var quoted=MaterialProcessService.TryQuote(plan, out bool reservedForCrafting);
                     if(quoted==null)
                     {
                         // Not runnable now: explain a near-miss with one disabled row (no quote, no token, never dispatched).
-                        if(sizeStock==null&&plan==null&&MaterialProcessMisses.Explain(actor,owner,id,zone,ForgePart.Factory) is MaterialProcessMisses.Miss miss)
+                        if (sizeStock == null && reservedForCrafting)
+                            e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id, plan.Definition.ActionText,
+                                "crafting-reserved", "This item is set aside for crafting. Choose Take back (crafting) to make it available for material work.",
+                                '\0', MaterialProcessMisses.RowPriority);
+                        else if(sizeStock==null&&plan==null&&MaterialProcessMisses.Explain(actor,owner,id,zone,ForgePart.Factory) is MaterialProcessMisses.Miss miss)
                             e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id,MaterialProcessRegistry.Get(id).ActionText,miss.Code,miss.Reason,'\0',MaterialProcessMisses.RowPriority);
                         else if(sizeStock!=null && sizeStock.Definition(ForgePart.Factory)!=null && PreparationActions.CurrentActor(actor,zone)
                             && PreparationActions.Carried(actor,owner) && MaterialProcessTemplate.Capture(ForgePart.Factory,owner.BlueprintName)?.Snapshot(owner,true)!=null)

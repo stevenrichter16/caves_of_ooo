@@ -45,13 +45,23 @@ namespace CavesOfOoo.Core
             internal bool Current()=>Plan.Current() && Plan.RoomForStoredScreening() && SourceState.Matches() && OutputsCurrent();
         }
         internal static Quote TryQuote(MaterialProcessPlan plan, Cell gritGround = null)
+            => TryQuote(plan, out _, gritGround);
+
+        internal static Quote TryQuote(MaterialProcessPlan plan, out bool reservedForCrafting, Cell gritGround = null)
         {
+            reservedForCrafting = false;
             if(plan==null || !plan.Current() || !plan.RoomForStoredScreening()
                 || gritGround!=null && SiftableStockPart.GritDestination(plan)!=gritGround)return null;
             var source=MaterialProcessTemplate.Capture(plan.Factory,plan.Source.BlueprintName);
             var state=source?.Snapshot(plan.Source,true);
             var outputs=plan.Definition.OutputBlueprints.Select(bp=>MaterialProcessTemplate.Capture(plan.Factory,bp,true)).ToArray();
-            return state!=null && outputs.All(t=>t!=null)?new Quote(plan,source,state,outputs,SeedFramePart.RetainedChaff(plan),gritGround):null;
+            if (outputs.Any(template => template == null)) return null;
+            if (state == null)
+            {
+                reservedForCrafting = source?.WouldMatchWithoutCraftingMark(plan.Source) == true;
+                return null;
+            }
+            return new Quote(plan, source, state, outputs, SeedFramePart.RetainedChaff(plan), gritGround);
         }
         static bool Emit(Entity owner,string id,Quote quote)
         {

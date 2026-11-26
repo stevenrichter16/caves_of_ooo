@@ -1,3 +1,20 @@
+**Reserved components explain how to resume forge work — November 26 UTC, 2026.**
+At the Cinderhold forge the exact bought spike was set aside using the
+normal menu. Both otherwise-ready recipes remained visible as unavailable.
+The pack explained how to take the spike back. Fresh Continue kept its
+mark, and the normal take-back action restored both quotes with the
+same spike and clay. This extends #36 and #40. The earned nozzle trial
+found flint strikers in Gantry and Posy and no hearth in the inspected
+stock. Ordinary field heat remains open.
+[Native play and market check](Verification/MachineSystems/ReservedMaterialReader20261126/README.md)
+
+**Inventory search uses guarded native typing — November 26 UTC, 2026.**
+The same ten-key query found the same iron spike in 0.03 seconds versus
+2.77 seconds with fixed input waits. The helper checks the accepted text
+before the next key. It stopped on Escape and left item selection and
+actions to the playtester.
+[Input procedure and calibration](../Tools/NativePlaytest/README.md)
+
 **The two iron jobs fund an earned hearth nozzle — November 26 UTC, 2026.**
 The exact bought spike and both rewarded fire clay made nozzle `21581`
 at the Cinderhold forge. Fresh Continue retained the tool, 32 drams and

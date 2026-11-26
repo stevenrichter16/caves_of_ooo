@@ -250,6 +250,18 @@ namespace CavesOfOoo.Core
             return true;
         }
         internal bool Matches(Entity owner,bool allowInstances=false,bool allowClayStamp=false)
+            => Matches(owner, allowInstances, allowClayStamp, null);
+
+        // A diagnostic only. An actual payment snapshot must match every Part.
+        internal bool WouldMatchWithoutCraftingMark(Entity owner)
+        {
+            var mark = owner?.GetPart<CraftingMarkPart>();
+            return mark?.GetType() == typeof(CraftingMarkPart) && CraftingMarkPart.IsMarkable(owner)
+                && owner.Parts.Count(part => part is CraftingMarkPart) == 1
+                && Matches(owner, true, false, mark);
+        }
+
+        private bool Matches(Entity owner, bool allowInstances, bool allowClayStamp, CraftingMarkPart ignoredMark)
         {
             if(!Current() || owner?.BlueprintName!=name || owner.Parts.Count<parameters.Count
                 || owner.Parts.Any(p=>p==null||p.ParentEntity!=owner) || owner.GetPart<PhysicsPart>()?.Weight<0
@@ -265,6 +277,7 @@ namespace CavesOfOoo.Core
             if(!Same(owner.Tags,expectedTags))return false;
             foreach(var extra in owner.Parts.Where(p=>!parameters.ContainsKey(p.Name) && !MaterialProcessPayloadPolicies.IsInertTracking(p)))
             {
+                if (ReferenceEquals(extra, ignoredMark)) continue;
                 if(allowClayStamp && ConnectedClayProvenance.CompatibleStamp(owner,extra))continue;
                 if(!allowInstances || MaterialProcessPayloadPolicies.Get(extra.GetType()) is not IMaterialProcessInstancePartPolicy policy || !policy.AllowsInstance(extra))return false;
             }
