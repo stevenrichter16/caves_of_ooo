@@ -313,6 +313,7 @@ namespace CavesOfOoo.Core
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.ReportAction, CavesOfOoo.Concerns.ConcernConversation.Report);
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.OfferAction, CavesOfOoo.Concerns.ConcernConversation.TakeOffer);
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.SupplyAction, CavesOfOoo.Concerns.ConcernConversation.HandSupply);
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.LiquidSupplyAction, CavesOfOoo.Concerns.ConcernConversation.HandLiquidSupply);
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.IssueCargoAction, CavesOfOoo.Concerns.ConcernConversation.IssueCargo);
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.DeliverCargoAction, CavesOfOoo.Concerns.ConcernConversation.DeliverCargo);
 

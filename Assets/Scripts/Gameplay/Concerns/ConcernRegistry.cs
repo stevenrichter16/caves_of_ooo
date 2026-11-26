@@ -175,6 +175,11 @@ namespace CavesOfOoo.Concerns
                 if (!Known(a.Supply.Blueprint)) problems.Add(aw + ": unknown supply blueprint '" + a.Supply.Blueprint + "'");
                 if (a.Supply.Count < 1) problems.Add(aw + ": supply count " + a.Supply.Count);
             }
+            if (!string.IsNullOrEmpty(a.Supply?.MeasuredLiquid)
+                && (a.Kind != "Supply" || !a.HasSupply || a.Supply.Count < 1
+                    || string.IsNullOrWhiteSpace(a.Supply.MeasuredLiquid)
+                    || LiquidRegistry.IsInitialized && LiquidRegistry.Get(a.Supply.MeasuredLiquid) == null))
+                problems.Add(aw + ": invalid measured supply liquid '" + a.Supply.MeasuredLiquid + "'");
             if (a.HasCarry)
             {
                 if (!Known(a.Carry.Item)) problems.Add(aw + ": unknown carry item '" + a.Carry.Item + "'");

@@ -96,6 +96,8 @@ namespace CavesOfOoo.Concerns
         /// <summary>Blueprint of the real item asked for; carried units of it count.</summary>
         public string Blueprint;
         public int Count = 1;
+        /// <summary>Optional compatible liquid, measured from one carried flask with the same count.</summary>
+        public string MeasuredLiquid;
     }
 
     [Serializable]

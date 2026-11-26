@@ -7,17 +7,18 @@
       "Faction": "Palimpsest",
       "Tier": 1,
       "Title": "The Dark Copy-Desks",
-      "Pitch": "The record of the copy-room has it that we work until the lamps go out. The lamps went out in spring. We copy by the windows now and lose the evenings. Three flasks of lamp oil and the desks are lit again. Failing oil: if your eyes are better than ours, sit with the conservators' condition report on the First Account and collate it. The last hand stopped mid-line.",
+      "Pitch": "The record of the copy-room has it that we work until the lamps go out. The lamps went out in spring. We copy by the windows now and lose the evenings. Three flasks of lamp oil will light the desks again. If you bring settled oil, we can measure three units into our lamps and leave you the flask. Failing oil, sit with the conservators' condition report on the First Account and collate it. The last hand stopped mid-line.",
       "Thanks": "Entered. The work is paid in ink here, as it always has been. Here is yours.",
       "Approaches": [
         {
           "Id": "oil",
           "Kind": "Supply",
-          "Label": "Bring three flasks of lamp oil for the copy-room lamps.",
-          "Objective": "Bring the Quillhold copyists three flasks of lamp oil",
+          "Label": "Bring three flasks of lamp oil or three measures of settled oil for the copy-room lamps.",
+          "Objective": "Bring the Quillhold copyists three flasks of lamp oil or three measures from one settled oil flask",
           "Supply": {
             "Blueprint": "LampOil",
-            "Count": 3
+            "Count": 3,
+            "MeasuredLiquid": "oil"
           },
           "Outcome": [
             {

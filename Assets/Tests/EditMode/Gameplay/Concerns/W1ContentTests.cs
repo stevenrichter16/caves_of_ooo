@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using CavesOfOoo.Concerns;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
@@ -396,6 +399,164 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(ink + 3, RentalSystem.GetInk(player), "paid in ink");
             ConcernWorld.OnZoneEntered(player, quill, arriving: true);
             Assert.AreEqual(3, ConcernItems.CountCarried(scribe, "InkVial"), "the lit desks sell ink");
+        }
+
+        const string CopyDesks = "quillhold.lamps";
+        const string HandLiquidSupply = "HandConcernLiquidSupply";
+
+        private (Zone zone, Entity scribe) StartCopyDeskSupply()
+        {
+            var zone = Place(QuillZone, "Scribe");
+            var scribe = Who(zone, "Scribe");
+            Assert.True(zone.MoveEntity(player, 11, 10));
+            zone.GetEntityCell(player).IsVisible = zone.GetEntityCell(player).Explored = true;
+            zone.GetEntityCell(scribe).IsVisible = zone.GetEntityCell(scribe).Explored = true;
+            Assert.IsNull(ConcernConversation.Accept(scribe, player, CopyDesks));
+            Assert.True(ConversationManager.StartConversation(scribe, player));
+            return (zone, scribe);
+        }
+
+        private Entity SupplyFlask(string liquid, int volume)
+        {
+            var flask = factory.CreateEntity("LiquidFlask");
+            var contents = flask.GetPart<LiquidVesselPart>();
+            contents.LiquidId = liquid;
+            contents.Volume = volume;
+            Assert.True(player.GetPart<InventoryPart>().AddObject(flask));
+            return flask;
+        }
+
+        private void OpenCopyDeskStatus(Entity scribe)
+        {
+            Assert.IsNull(ConcernConversation.Open(scribe, player, "status|" + CopyDesks));
+            ConversationManager.RefreshVisibleChoices();
+        }
+
+        private ChoiceData[] CopyDeskLiquidChoices() => ConversationManager.VisibleChoices
+            .Where(choice => choice.GetAction(HandLiquidSupply) != null).ToArray();
+
+        private int CopyDeskDone(string method) => NarrativeStatePart.Current.GetFact(ConcernRegistry.DoneFact(CopyDesks, method));
+
+        [Test]
+        public void QuillholdUsesThreeLiquidOilOnceAndReportsTheExistingSupplyApproach()
+        {
+            using var liquids = new CopyDeskLiquidScope();
+            var (zone, scribe) = StartCopyDeskSupply();
+            var flask = SupplyFlask("oil", 5);
+            var water = SupplyFlask("water", 6);
+            Give("LampOil", 3);
+            OpenCopyDeskStatus(scribe);
+            var choice = CopyDeskLiquidChoices().Single();
+            Assert.True(ConversationManager.VisibleChoices.Any(row => row.GetAction(ConcernConversation.SupplyAction) != null));
+            int ink = RentalSystem.GetInk(player);
+
+            Assert.True(ConversationManager.SelectChoice(ConversationManager.VisibleChoices.ToList().IndexOf(choice)));
+            Assert.That(flask.GetPart<LiquidVesselPart>().Volume, Is.EqualTo(2));
+            Assert.That(flask.GetPart<LiquidVesselPart>().LiquidId, Is.EqualTo("oil"));
+            Assert.That(flask.GetPart<PhysicsPart>().InInventory, Is.SameAs(player));
+            Assert.True(player.GetPart<InventoryPart>().Contains(flask));
+            Assert.That(water.GetPart<LiquidVesselPart>().Volume, Is.EqualTo(6));
+            Assert.That(ConcernItems.CountCarried(player, "LampOil"), Is.EqualTo(3));
+            Assert.That(CopyDeskDone("oil"), Is.EqualTo(1));
+            Assert.Zero(CopyDeskDone("collate"));
+            Assert.False(Holds(QuillZone, "Quillhold.DesksLit"));
+            Assert.False(ConversationActions.TryExecuteAll(choice.Actions, scribe, player));
+            Assert.That(RentalSystem.GetInk(player), Is.EqualTo(ink));
+
+            Tick();
+            Assert.That(Approach(CopyDesks), Is.EqualTo(1));
+            Assert.True(Holds(QuillZone, "Quillhold.DesksLit"));
+            Assert.False(Holds(QuillZone, "Quillhold.ReportCollated"));
+            Assert.IsNull(ConcernConversation.Open(scribe, player, "report|" + CopyDesks));
+            ConversationManager.RefreshVisibleChoices();
+            var report = ConversationManager.VisibleChoices.Single(row => row.GetAction(ConcernConversation.ReportAction) != null);
+            Assert.True(ConversationManager.SelectChoice(ConversationManager.VisibleChoices.ToList().IndexOf(report)));
+            Assert.That(RentalSystem.GetInk(player), Is.EqualTo(ink + 3));
+            Assert.False(ConversationActions.TryExecuteAll(report.Actions, scribe, player));
+            Assert.That(RentalSystem.GetInk(player), Is.EqualTo(ink + 3));
+            ConcernWorld.OnZoneEntered(player, zone, arriving: true);
+            Assert.That(ConcernItems.CountCarried(scribe, "InkVial"), Is.EqualTo(3));
+        }
+
+        [TestCase("changed-volume")]
+        [TestCase("replacement-flask")]
+        [TestCase("wrong-recipient")]
+        public void QuillholdRejectsStaleLiquidOilQuotesWithoutSpendingOrFinishing(string change)
+        {
+            using var liquids = new CopyDeskLiquidScope();
+            var (zone, scribe) = StartCopyDeskSupply();
+            var flask = SupplyFlask("oil", 5);
+            OpenCopyDeskStatus(scribe);
+            var quoted = CopyDeskLiquidChoices().Single();
+            var recipient = scribe;
+            if (change == "changed-volume") flask.GetPart<LiquidVesselPart>().Volume = 4;
+            else if (change == "replacement-flask")
+            {
+                Assert.True(player.GetPart<InventoryPart>().RemoveObject(flask));
+                var replacement = SupplyFlask("oil", 5);
+                replacement.ID = flask.ID;
+                flask = replacement;
+            }
+            else
+            {
+                recipient = factory.CreateEntity("Scribe");
+                Assert.True(zone.AddEntity(recipient, 11, 11));
+                zone.GetEntityCell(recipient).IsVisible = zone.GetEntityCell(recipient).Explored = true;
+            }
+
+            Assert.False(ConversationActions.TryExecuteAll(quoted.Actions, recipient, player));
+            if (change == "wrong-recipient")
+            {
+                var oldNode = ConversationManager.CurrentNode;
+                OpenCopyDeskStatus(scribe);
+                Assert.AreNotSame(oldNode, ConversationManager.CurrentNode);
+                Assert.False(ConversationActions.TryExecuteAll(quoted.Actions, scribe, player));
+                var fresh = CopyDeskLiquidChoices().Single();
+                Assert.True(zone.MoveEntity(scribe, 15, 10));
+                Assert.False(ConversationActions.TryExecuteAll(fresh.Actions, scribe, player));
+            }
+            Assert.That(flask.GetPart<LiquidVesselPart>().Volume, Is.EqualTo(change == "changed-volume" ? 4 : 5));
+            Assert.That(flask.GetPart<LiquidVesselPart>().LiquidId, Is.EqualTo("oil"));
+            Assert.That(flask.GetPart<PhysicsPart>().InInventory, Is.SameAs(player));
+            Assert.Zero(CopyDeskDone("oil"));
+            Tick();
+            Assert.Zero(Approach(CopyDesks));
+            Assert.False(Holds(QuillZone, "Quillhold.DesksLit"));
+        }
+
+        [TestCase("oil", 2)]
+        [TestCase("water", 5)]
+        public void QuillholdDoesNotOfferTheLiquidSupplyForAnUnderfilledOrDifferentFlask(string liquid, int volume)
+        {
+            using var liquids = new CopyDeskLiquidScope();
+            var (_, scribe) = StartCopyDeskSupply();
+            var flask = SupplyFlask(liquid, volume);
+            OpenCopyDeskStatus(scribe);
+            Assert.That(CopyDeskLiquidChoices(), Is.Empty);
+            Assert.That(flask.GetPart<LiquidVesselPart>().Volume, Is.EqualTo(volume));
+            Assert.Zero(CopyDeskDone("oil"));
+        }
+
+        private sealed class CopyDeskLiquidScope : IDisposable
+        {
+            private const BindingFlags RegistryFields = BindingFlags.Static | BindingFlags.NonPublic;
+            private readonly Dictionary<string, LiquidDefinition> registry = (Dictionary<string, LiquidDefinition>)
+                typeof(LiquidRegistry).GetField("_byId", RegistryFields).GetValue(null);
+            private readonly Dictionary<string, LiquidDefinition> saved;
+            private readonly bool initialized = LiquidRegistry.IsInitialized;
+
+            public CopyDeskLiquidScope()
+            {
+                saved = new Dictionary<string, LiquidDefinition>(registry);
+                LiquidRegistry.InitializeFromJsonSources(Resources.LoadAll<TextAsset>("Content/Data/LiquidDefinitions").Select(asset => asset.text));
+            }
+
+            public void Dispose()
+            {
+                registry.Clear();
+                foreach (var pair in saved) registry.Add(pair.Key, pair.Value);
+                typeof(LiquidRegistry).GetField("_initialized", RegistryFields).SetValue(null, initialized);
+            }
         }
 
         [Test] public void TallysAccountIsCarriedPaidOrFormallyDeclined()

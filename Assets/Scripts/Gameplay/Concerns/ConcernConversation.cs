@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Data;
 using CavesOfOoo.Storylets;
 
@@ -29,6 +32,7 @@ namespace CavesOfOoo.Concerns
         public const string ReportAction = "ReportConcern";
         public const string OfferAction = "TakeConcernOffer";
         public const string SupplyAction = "HandConcernSupply";
+        public const string LiquidSupplyAction = "HandConcernLiquidSupply";
         public const string IssueCargoAction = "IssueConcernCargo";
         public const string DeliverCargoAction = "DeliverConcernCargo";
         public const string RepairAction = "RepairPlaceSite";
@@ -202,7 +206,12 @@ namespace CavesOfOoo.Concerns
                 if (a.HasRestore && PlaceSiteCatalog.Get(c.Place, a.Restore.Site) is PlaceSiteData site)
                     text.Append(" (needs ").Append(Needs(site.Lasting)).Append(")");
                 if (a.HasSupply && !IsDone(c, a))
-                    text.Append(" (you carry ").Append(ConcernItems.CountCarried(listener, a.Supply.Blueprint)).Append(" of ").Append(a.Supply.Count).Append(")");
+                {
+                    text.Append(" (you carry ").Append(ConcernItems.CountCarried(listener, a.Supply.Blueprint)).Append(" of ").Append(a.Supply.Count);
+                    if (!string.IsNullOrEmpty(a.Supply.MeasuredLiquid))
+                        text.Append(" as ").Append(UnitName(listener, a.Supply.Blueprint)).Append(" items");
+                    text.Append(")");
+                }
             }
             var n = Node("status|" + c.Id, text.ToString());
             foreach (var a in c.Approaches)
@@ -221,6 +230,7 @@ namespace CavesOfOoo.Concerns
                 if (a.HasSupply && ConcernItems.CountCarried(listener, a.Supply.Blueprint) >= a.Supply.Count)
                     n.Choices.Add(new ChoiceData { Text = "[Hand over " + a.Supply.Count + " " + UnitName(listener, a.Supply.Blueprint) + ".]", Target = "",
                         Actions = new List<ConversationParam> { new ConversationParam { Key = SupplyAction, Value = c.Id + "|" + a.Id } } });
+                AddLiquidSupplyChoices(n, c, a, speaker, listener);
                 if (a.HasCarry && ConcernItems.FindCargo(listener, a.Carry.Item, ConcernItems.CargoKey(c.Id, a.Id)) == null)
                     n.Choices.Add(new ChoiceData { Text = "[I'll carry " + a.Carry.ItemName + " to the " + SplitWords(a.Carry.Recipient).ToLowerInvariant() + " at " + a.Carry.Place + ".]", Target = "",
                         Actions = new List<ConversationParam> { new ConversationParam { Key = IssueCargoAction, Value = c.Id + "|" + a.Id } } });
@@ -385,6 +395,132 @@ namespace CavesOfOoo.Concerns
             MessageLog.Add("You hand over " + a.Supply.Count + " " + SplitWords(a.Supply.Blueprint).ToLowerInvariant() + ".");
             Record("SupplyHanded", speaker, c, a.Id);
             ConversationManager.CurrentNode = StatusNode(c, speaker, listener);
+            return null;
+        }
+
+        static readonly ConditionalWeakTable<NodeData, Dictionary<string, LiquidSupplyQuote>> LiquidSupplyQuotes =
+            new ConditionalWeakTable<NodeData, Dictionary<string, LiquidSupplyQuote>>();
+
+        static bool CanMeasureSupply(ConcernData concern, ConcernApproachData approach, Entity speaker, Entity listener)
+            => approach.Kind == "Supply" && approach.HasSupply && approach.Supply.Count > 0 && LiquidRegistry.IsInitialized
+                && !string.IsNullOrEmpty(approach.Supply.MeasuredLiquid)
+                && LiquidRegistry.Get(approach.Supply.MeasuredLiquid) != null
+                && speaker != null && listener?.HasTag("Player") == true && speaker != listener
+                && listener.GetPart<InventoryPart>()?.ParentEntity == listener
+                && OwnedBy(concern, speaker, PlaceOf(speaker)) && WorldResourceActions.Nearby(listener, speaker, speaker.SpatialZone)
+                && speaker.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(speaker)
+                && listener.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true
+                && StateOf(concern, speaker, listener) == State.Working && NarrativeStatePart.Current != null;
+
+        sealed class LiquidSupplyQuote
+        {
+            internal readonly ConcernData Concern;
+            internal readonly ConcernApproachData Approach;
+            internal readonly Entity Speaker, Listener, Flask;
+            internal readonly LiquidVesselPart Vessel;
+            internal readonly NarrativeStatePart Narrative;
+            internal readonly string Fact, Liquid;
+            internal readonly int Volume, Capacity, Count;
+            readonly Zone zone;
+            readonly Cell issuerCell, playerCell;
+            readonly string speakerId, listenerId, flaskId;
+            readonly InventoryPart inventory;
+            readonly Part[] parts;
+
+            internal LiquidSupplyQuote(ConcernData concern, ConcernApproachData approach, Entity speaker, Entity listener,
+                Entity flask, LiquidVesselPart vessel)
+            {
+                Concern = concern; Approach = approach; Speaker = speaker; Listener = listener; Flask = flask; Vessel = vessel;
+                Narrative = NarrativeStatePart.Current; Fact = ConcernRegistry.DoneFact(concern.Id, approach.Id);
+                Liquid = vessel.LiquidId; Volume = vessel.Volume; Capacity = vessel.Capacity; Count = approach.Supply.Count;
+                speakerId = speaker.ID; listenerId = listener.ID; flaskId = flask.ID; parts = flask.Parts.ToArray();
+                inventory = listener.GetPart<InventoryPart>();
+                zone = speaker.SpatialZone; issuerCell = zone.GetEntityCell(speaker); playerCell = zone.GetEntityCell(listener);
+            }
+
+            internal bool Current(bool paid)
+            {
+                int remaining = Volume - (paid ? Count : 0);
+                return ConversationManager.Speaker == Speaker && ConversationManager.Listener == Listener
+                    && CanMeasureSupply(Concern, Approach, Speaker, Listener)
+                    && ReferenceEquals(ConcernRegistry.Get(Concern.Id), Concern) && Concern.Approaches.Contains(Approach)
+                    && NarrativeStatePart.Current == Narrative && Narrative.GetFact(Fact) == (paid ? 1 : 0)
+                    && Approach.Supply.MeasuredLiquid == Liquid && Approach.Supply.Count == Count
+                    && Speaker.SpatialZone == zone && zone.GetEntityCell(Speaker) == issuerCell && zone.GetEntityCell(Listener) == playerCell
+                    && Speaker.ID == speakerId && Listener.ID == listenerId && Flask.ID == flaskId
+                    && Listener.GetPart<InventoryPart>() == inventory && Flask.BlueprintName == "LiquidFlask"
+                    && WorldResourceActions.Carried(Listener, Flask) && Flask.Parts.SequenceEqual(parts)
+                    && Flask.GetPart<LiquidVesselPart>() == Vessel && Vessel.ParentEntity == Flask
+                    && Vessel.Capacity == Capacity && Vessel.Volume == remaining && Vessel.LiquidId == (remaining == 0 ? "" : Liquid);
+            }
+        }
+
+        static void AddLiquidSupplyChoices(NodeData node, ConcernData concern, ConcernApproachData approach, Entity speaker, Entity listener)
+        {
+            if (!CanMeasureSupply(concern, approach, speaker, listener)) return;
+            var eligible = listener.GetPart<InventoryPart>().Objects.Where(item => item?.BlueprintName == "LiquidFlask"
+                && WorldResourceActions.Carried(listener, item) && item.Parts.Count(part => part is LiquidVesselPart) == 1
+                && item.GetPart<LiquidVesselPart>() is LiquidVesselPart vessel && vessel.ParentEntity == item
+                && vessel.LiquidId == approach.Supply.MeasuredLiquid && vessel.Volume >= approach.Supply.Count
+                && vessel.Volume <= vessel.Capacity).OrderBy(item => item.ID, StringComparer.Ordinal).ToArray();
+            var liquid = LiquidRegistry.Get(approach.Supply.MeasuredLiquid);
+            for (int i = 0; i < eligible.Length; i++)
+            {
+                var flask = eligible[i];
+                var quote = new LiquidSupplyQuote(concern, approach, speaker, listener, flask, flask.GetPart<LiquidVesselPart>());
+                string token = Guid.NewGuid().ToString("N");
+                LiquidSupplyQuotes.GetOrCreateValue(node).Add(token, quote);
+                node.Choices.Add(new ChoiceData
+                {
+                    Text = "[Pour " + quote.Count + " measures of " + liquid.DisplayName + " from flask " + (i + 1)
+                        + " (" + quote.Volume + "/" + quote.Capacity + "). Keep the flask.]",
+                    Target = "",
+                    Actions = new List<ConversationParam> { new ConversationParam { Key = LiquidSupplyAction, Value = token } }
+                });
+            }
+        }
+
+        public static string HandLiquidSupply(Entity speaker, Entity listener, string token)
+        {
+            var node = ConversationManager.CurrentNode;
+            if (token == null || node == null || !LiquidSupplyQuotes.TryGetValue(node, out var quotes)
+                || !quotes.TryGetValue(token, out var quote) || quote.Speaker != speaker || quote.Listener != listener
+                || ConversationManager.Speaker != speaker || ConversationManager.Listener != listener)
+                return "measured_supply_changed";
+            quotes.Remove(token);
+            if (!quote.Current(false))
+            {
+                if (CanMeasureSupply(quote.Concern, quote.Approach, speaker, listener))
+                {
+                    MessageLog.Add("That supply changed. Choose a flask again.");
+                    ConversationManager.CurrentNode = StatusNode(quote.Concern, speaker, listener);
+                }
+                return "measured_supply_changed";
+            }
+            var tx = new InventoryTransaction();
+            try
+            {
+                if (!tx.TryClaimAction(listener) || !tx.TryClaim(listener, listener, LiquidSupplyAction)
+                    || !tx.TryClaim(speaker, listener, LiquidSupplyAction) || !tx.TryClaim(quote.Flask, listener, LiquidSupplyAction)
+                    || ConversationManager.CurrentNode != node || !quote.Current(false)) return "measured_supply_changed";
+                tx.Do(() =>
+                {
+                    quote.Vessel.Volume -= quote.Count;
+                    if (quote.Vessel.Volume == 0) quote.Vessel.LiquidId = "";
+                    quote.Narrative.SetFact(quote.Fact, 1);
+                }, () =>
+                {
+                    quote.Vessel.Volume = quote.Volume;
+                    quote.Vessel.LiquidId = quote.Liquid;
+                    quote.Narrative.SetFact(quote.Fact, 0);
+                });
+                tx.BeforeCommit(() => ConversationManager.CurrentNode == node && quote.Current(true));
+                tx.Commit();
+            }
+            finally { tx.Rollback(); }
+            MessageLog.Add("You hand over " + quote.Count + " measures of " + LiquidRegistry.Get(quote.Liquid).DisplayName + " and keep the flask.");
+            Record("SupplyHanded", speaker, quote.Concern, quote.Approach.Id);
+            ConversationManager.CurrentNode = StatusNode(quote.Concern, speaker, listener);
             return null;
         }
 

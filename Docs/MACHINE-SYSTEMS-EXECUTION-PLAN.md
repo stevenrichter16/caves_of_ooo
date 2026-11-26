@@ -1,3 +1,17 @@
+**Measured oil lights Quillhold's copy desks — November 26 UTC, 2026.**
+The expedition branch brought ordinary settled oil to Esset. The
+direct handover used three units, retained the flask, and progressed
+the existing oil approach on the next turn. Reporting paid once.
+Fresh Continue matched the completed project and the exact current
+shop lot, with drying books named for a future consignment.
+The final targeted run passed 303 cases.
+[Evidence](Verification/MachineSystems/QuillholdMeasuredOil20261126/README.md)
+
+Next, check an existing paid porter order through a normal departure,
+unloaded time, Continue and return. The guide should state the pause
+before payment. Use the saved loaded parcel and avoid repeating the
+already qualified route repair, hiring or cancellation.
+
 **An installed camp box can supply the hearth — November 26 UTC, 2026.**
 The same loaded box let the player feed one stored timber in one
 action or take a stack and feed from the pack in two. The existing
@@ -5,13 +19,6 @@ hearth used its normal burn and heat rules. Two ordinary still batches
 spent that heat, and the exact fuel, stored remainder and water flasks
 survived Continue. Final targeted run passed 144 cases.
 [Evidence](Verification/MachineSystems/CampBoxTimberFeed20261126/README.md)
-
-Next, compare Quillhold's copy-desk oil supply with the existing
-settled liquid oil. The same local agreement can accept a compatible
-amount from a flask if it leaves the shell and uses the existing
-project completion and future-consignment rules. Preserve named
-lamp oil and report collation. Start by inspecting the scribe's current
-offers and the already measured expedition flask.
 
 **Brine can leave a recoverable solid — November 26 UTC, 2026.**
 The existing hot still can give up one water to retain a pound of crust.

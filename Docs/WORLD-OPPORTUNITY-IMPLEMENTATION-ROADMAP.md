@@ -266,6 +266,13 @@ cross-seed comparisons remain open.
     prices and remarks.
     [Evidence](Verification/MachineSystems/TineWeirStock20261125/README.md)
 
+    Three measures of settled oil now qualify for Quillhold's existing
+    copy-desk supply. The flask stays with the player. The same lamp
+    condition appears through the existing storylet and affects the
+    next consignment. Actual trade after completion kept the exact
+    active stock and lot date. Bottled oil and collation still work.
+    [Evidence](Verification/MachineSystems/QuillholdMeasuredOil20261126/README.md)
+
 ## Priority 5: add actual local carrying, then selected NPC shipments
 
 21. **Implement the first paid local delivery.** Start with one real packed

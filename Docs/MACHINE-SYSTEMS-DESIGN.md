@@ -1,3 +1,11 @@
+**Settled oil can supply Quillhold's copy-room lamps — November 26 UTC, 2026.**
+The same supply agreement accepts three measures of ordinary oil
+from one carried flask. The player keeps it and any remaining liquid.
+Bottled lamp oils still qualify, and the reading approach keeps its
+own result. The shared storylet applies the existing lasting lamp
+condition. The merchant uses it on the next consignment boundary.
+[Evidence](Verification/MachineSystems/QuillholdMeasuredOil20261126/README.md)
+
 **An installed camp box can supply the hearth directly — November 26 UTC, 2026.**
 Within reach of both fixtures, the player can feed one exact stored
 timber into the existing finite fuel capacity. Carrying timber and
