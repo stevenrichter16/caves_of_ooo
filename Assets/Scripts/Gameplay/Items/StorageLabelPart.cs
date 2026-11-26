@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CavesOfOoo.Core.Anatomy;
 
 namespace CavesOfOoo.Core
 {
     public enum StorageLabelMode { None, ColorMark, Icon, Text }
 
-    /// <summary>Optional cosmetic state on the exact physical storage vessel.</summary>
+    /// <summary>Optional cosmetic state on an exact physical item or stack.</summary>
     public sealed class StorageLabelPart : Part
     {
         public override string Name => "StorageLabel";
@@ -39,21 +40,78 @@ namespace CavesOfOoo.Core
 
         internal static string IconGlyph(int icon) => icon >= 0 && icon < Glyphs.Length ? Glyphs[icon] : "";
 
-        internal static bool CanEdit(Entity actor, Entity vessel) => actor?.HasTag("Player") == true
-            && CarriedStorage.IsEligible(vessel) && WorldResourceActions.Carried(actor, vessel)
-            && InventoryPart.GetItemWeight(vessel) < int.MaxValue;
+        internal static bool CanEdit(Entity actor, Entity item)
+            => TryLocation(actor, item, out _) && LabelPartCurrent(item);
 
-        internal static StorageLabelValue Read(Entity vessel)
+        static bool LabelPartCurrent(Entity item)
         {
-            if (!CarriedStorage.IsEligible(vessel) || vessel.GetPart<StorageLabelPart>() is not StorageLabelPart part
-                || part.ParentEntity != vessel || vessel.Parts.Count(p => p is StorageLabelPart) != 1) return default;
-            return TryValue((StorageLabelMode)part.Mode, part.ColorIndex, part.IconIndex, part.Text, out var value)
-                ? value : default;
+            var part = item.GetPart<StorageLabelPart>();
+            return part == null || part.ParentEntity == item && item.Parts.Count(p => p is StorageLabelPart) == 1;
         }
 
-        internal static StorageLabelEdit Begin(Entity actor, Entity vessel) =>
-            CanEdit(actor, vessel) && vessel.Parts.Count(p => p is StorageLabelPart) <= 1
-                ? new StorageLabelEdit(actor, vessel) : null;
+        internal static bool TryLocation(Entity actor, Entity item,
+            out (Entity vessel, ContainerPart container, BodyPart bodySlot, string legacySlot) location)
+        {
+            location = default;
+            var pack = actor?.GetPart<InventoryPart>();
+            var physics = item?.GetPart<PhysicsPart>();
+            if (actor?.HasTag("Player") != true || pack?.ParentEntity != actor || item == null
+                || pack.Objects == null || pack.EquippedItems == null
+                || string.IsNullOrEmpty(item.ID) || item.SpatialZone != null || physics?.ParentEntity != item
+                || item.GetPart<DestructiblePart>() is { Gone: true }) return false;
+            var stack = item.GetPart<StackerPart>();
+            if (stack != null && (stack.ParentEntity != item || stack.StackCount <= 0 || stack.StackCount > stack.MaxStack))
+                return false;
+
+            if (physics.InInventory == actor)
+                return physics.Equipped == null && pack.Objects.Contains(item)
+                    && pack.Objects.Count(owner => owner?.ID == item.ID) == 1
+                    && !pack.EquippedItems.Values.Any(owner => owner?.ID == item.ID)
+                    && pack.FindEquippedBodyPart(item) == null;
+
+            if (pack.Objects.Any(owner => owner?.ID == item.ID)) return false;
+            if (physics.Equipped == actor && physics.InInventory == null)
+            {
+                if (pack.EquippedItems.Values.Any(owner => owner != item && owner?.ID == item.ID)) return false;
+                if (actor.GetPart<Body>() != null)
+                {
+                    var slot = pack.FindEquippedBodyPart(item);
+                    if (slot == null || pack.GetEquipped(slot.ID.ToString()) != item) return false;
+                    location = (null, null, slot, null);
+                }
+                else
+                {
+                    var slots = pack.EquippedItems.Where(entry => entry.Value == item).Select(entry => entry.Key).ToArray();
+                    if (slots.Length != 1) return false;
+                    location = (null, null, null, slots[0]);
+                }
+                return true;
+            }
+
+            var vessel = physics.InInventory;
+            if (physics.Equipped != null || !CarriedStorage.TryBrowse(actor, vessel, out var container)
+                || !container.Contents.Contains(item)) return false;
+            location = (vessel, container, null, null);
+            return true;
+        }
+
+        internal static StorageLabelValue Read(Entity item) => TryRead(item, out var value) ? value : default;
+
+        internal static bool TryRead(Entity item, out StorageLabelValue value)
+        {
+            value = default;
+            if (item == null || !LabelPartCurrent(item)) return false;
+            var part = item.GetPart<StorageLabelPart>();
+            return part == null || TryValue((StorageLabelMode)part.Mode, part.ColorIndex, part.IconIndex, part.Text, out value);
+        }
+
+        internal static bool SameStackLabel(Entity first, Entity second)
+            => TryRead(first, out var a) && TryRead(second, out var b)
+                && a.Mode == b.Mode && a.ColorIndex == b.ColorIndex && a.IconIndex == b.IconIndex && a.Text == b.Text;
+
+        internal static StorageLabelEdit Begin(Entity actor, Entity item) =>
+            TryLocation(actor, item, out var location) && LabelPartCurrent(item)
+                ? new StorageLabelEdit(actor, item, location) : null;
 
         internal static bool TryValue(StorageLabelMode mode, int color, int icon, string text, out StorageLabelValue value)
         {
@@ -88,7 +146,12 @@ namespace CavesOfOoo.Core
         private readonly Entity actor;
         private readonly Zone zone;
         private readonly InventoryPart pack;
-        private readonly ContainerPart container;
+        private readonly (Entity vessel, ContainerPart container, BodyPart bodySlot, string legacySlot) location;
+        private readonly ContainerPart ownContainer;
+        private readonly PhysicsPart physics;
+        private readonly StackerPart stack;
+        private readonly int quantity;
+        private readonly string vesselId;
         private readonly string ownerId;
         private readonly StorageLabelPart originalPart;
         private readonly (int mode, int color, int icon, string text) originalFields;
@@ -96,16 +159,22 @@ namespace CavesOfOoo.Core
         internal Entity Owner { get; }
         internal StorageLabelValue Original { get; }
 
-        internal StorageLabelEdit(Entity actor, Entity vessel)
+        internal StorageLabelEdit(Entity actor, Entity item,
+            (Entity vessel, ContainerPart container, BodyPart bodySlot, string legacySlot) location)
         {
             this.actor = actor;
             zone = actor.SpatialZone;
             pack = actor.GetPart<InventoryPart>();
-            Owner = vessel;
-            ownerId = vessel.ID;
-            container = vessel.GetPart<ContainerPart>();
-            Original = StorageLabels.Read(vessel);
-            originalPart = vessel.GetPart<StorageLabelPart>();
+            Owner = item;
+            ownerId = item.ID;
+            this.location = location;
+            vesselId = location.vessel?.ID;
+            ownContainer = item.GetPart<ContainerPart>();
+            physics = item.GetPart<PhysicsPart>();
+            stack = item.GetPart<StackerPart>();
+            quantity = stack?.StackCount ?? 1;
+            Original = StorageLabels.Read(item);
+            originalPart = item.GetPart<StorageLabelPart>();
             if (originalPart != null) originalFields = (originalPart.Mode, originalPart.ColorIndex, originalPart.IconIndex, originalPart.Text);
         }
 
@@ -113,8 +182,11 @@ namespace CavesOfOoo.Core
         {
             if (completed || !StorageLabels.TryValue(mode, colorIndex, iconIndex, text, out var value)
                 || actor.SpatialZone != zone || actor.GetPart<InventoryPart>() != pack
-                || Owner.ID != ownerId || Owner.GetPart<ContainerPart>() != container
-                || Owner.GetPart<StorageLabelPart>() != originalPart || !StorageLabels.CanEdit(actor, Owner)
+                || Owner.ID != ownerId || Owner.GetPart<ContainerPart>() != ownContainer
+                || Owner.GetPart<PhysicsPart>() != physics || Owner.GetPart<StackerPart>() != stack
+                || (stack?.StackCount ?? 1) != quantity
+                || location.vessel?.ID != vesselId || !StorageLabels.TryLocation(actor, Owner, out var current)
+                || current != location || Owner.GetPart<StorageLabelPart>() != originalPart
                 || Owner.Parts.Count(p => p is StorageLabelPart) != (originalPart == null ? 0 : 1)) return false;
             if (originalPart != null && (originalPart.ParentEntity != Owner
                 || (originalPart.Mode, originalPart.ColorIndex, originalPart.IconIndex, originalPart.Text) != originalFields)) return false;

@@ -86,12 +86,12 @@ namespace CavesOfOoo.Rendering
 
         bool StorageLabelEditorOpen => _storageLabelEdit != null;
 
-        void OpenStorageLabelEditor(Entity vessel)
+        void OpenStorageLabelEditor(Entity item)
         {
-            var edit = StorageLabels.Begin(PlayerEntity, vessel);
+            var edit = StorageLabels.Begin(PlayerEntity, item);
             if (edit == null)
             {
-                SetActionFailure("That storage is no longer in your pack.");
+                SetActionFailure("That item is no longer available to label.");
                 Render();
                 return;
             }
@@ -169,8 +169,8 @@ namespace CavesOfOoo.Rendering
             bool saved = StorageLabels.CanEdit(PlayerEntity, _storageLabelEdit.Owner)
                 && _storageLabelEdit.Commit(mode, _storageLabelColor, _storageLabelIcon, _storageLabelText);
             _storageLabelEdit = null;
-            if (saved) SetActionSuccess(mode == StorageLabelMode.None ? "Storage label cleared." : "Storage label saved.");
-            else SetActionFailure("That storage or its label changed while you were editing.");
+            if (saved) SetActionSuccess(mode == StorageLabelMode.None ? "Item label cleared." : "Item label saved.");
+            else SetActionFailure("That item or its label changed while you were editing.");
             Rebuild();
             Render();
         }
@@ -238,7 +238,7 @@ namespace CavesOfOoo.Rendering
 
         void RenderStorageLabelEditor()
         {
-            LLabel(new Rect(274, 164, 732, 30), "LABEL STORAGE", LGold, 24);
+            LLabel(new Rect(274, 164, 732, 30), "LABEL ITEM", LGold, 24);
             LLabel(new Rect(274, 198, 732, 27), SkillScreenText.Fit(_storageLabelEdit.Owner.GetDisplayName(), 66, 1), LInk, 22);
             StorageLabelChoice(StorageLabelField.Mode, 242, "Mode", StorageLabelModeNames[Array.IndexOf(StorageLabelModes, _storageLabelMode)]);
             StorageLabelChoice(StorageLabelField.Color, 301, "Color", StorageLabels.ColorNames[_storageLabelColor], StorageLabelColors[_storageLabelColor]);
@@ -364,9 +364,9 @@ namespace CavesOfOoo.Rendering
             else DestroyImmediate(art);
         }
 
-        float DrawStorageLabel(Rect bounds, Entity vessel)
+        float DrawStorageLabel(Rect bounds, Entity item)
         {
-            var label = StorageLabels.Read(vessel);
+            var label = StorageLabels.Read(item);
             const float glyphWidth = 9, gap = 9;
             if (label.Mode == StorageLabelMode.None || bounds.width < 60) return 0;
             var tint = StorageLabelColors[label.ColorIndex];

@@ -57,8 +57,7 @@ namespace CavesOfOoo.Rendering
                     Rebuild(); Render();
                 });
             }
-            else AddLedgerCommand("Item actions", () =>
-            { if (_cursorIndex >= 0 && _cursorIndex < _rows.Count && _rows[_cursorIndex].Item != null) OpenItemActionPopup(_rows[_cursorIndex].Item); });
+            else AddLedgerCommand("Item actions", () => ActivatePackRow(_cursorIndex, browseContents: false));
             if (_panel != PANEL_ABILITIES || GetAbilitiesPart()?.GetAbilityBySlot(_abilitiesCursorSlot) != null)
                 AddLedgerCommand("Full details", () => _ledgerDetailsRequested = true);
             AddLedgerCommand("Character status", () => _ledgerStatusRequested = true);

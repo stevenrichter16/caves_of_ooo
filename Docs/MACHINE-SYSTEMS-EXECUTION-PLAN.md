@@ -1,3 +1,12 @@
+**The pack opens vessels inline and supports labels on ordinary items — November 26 UTC, 2026.**
+Native play used all three label modes on carried gear, equipment, and a
+stored stack. Clicking the loaded satchel revealed its exact children as
+indented rows while the other satchel stayed separate. Ordinary stowing
+preserved the labels and the same total pack weight. The focused run
+passed 313 cases and the wider run passed 491 with one opt-in case
+skipped. Continue the 45 with existing field and regional opportunities.
+[Evidence](Verification/MachineSystems/InlineInventoryLabels20261126/README.md)
+
 **Repair bills and carried storage read clearly in play — November 26 UTC, 2026.**
 Examine puts an amber repair warning above the usual details and names the
 actual inputs and tools for the live fault. Field satchels and portable camp

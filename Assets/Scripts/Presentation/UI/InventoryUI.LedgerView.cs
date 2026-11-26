@@ -14,7 +14,7 @@ namespace CavesOfOoo.Rendering
             Tab, Equipment, Item, TinkerRow, AbilitySlot, CraftRow, TinkerMode, CraftMode,
             ClearPicks, CraftCommit, ClearAbility, PopupRow, DisplaceYes, DisplaceNo,
             Cancel, Details, Close, LoadoutRow, LoadoutAction, PackTextScale, PackGrouping, PackCategory, PackSort, PackBrowse,
-            StorageLabelField, StorageLabelDecrease, StorageLabelIncrease
+            StorageLabelField, StorageLabelDecrease, StorageLabelIncrease, ItemActions
         }
         struct LedgerHit { public Rect Bounds; public LedgerHitKind Kind; public int Index; }
         readonly List<LedgerHit> _ledgerHits = new List<LedgerHit>(48);
@@ -270,14 +270,16 @@ namespace CavesOfOoo.Rendering
                 bool selected = _panel == PANEL_INVENTORY && _cursorIndex == index;
                 var rect = new Rect(360, y - 1, 888, 22);
                 if (selected) { LBox(rect, LSelected); LBox(new Rect(rect.x, rect.y, 3, rect.height), LGold); }
-                float labelWidth = DrawStorageLabel(new Rect(370, y, 404, 21), row.Item.Item);
-                LLabel(new Rect(370 + labelWidth, y, 404 - labelWidth, 21),
-                    SkillScreenText.Fit(row.Item.Name, (int)((404 - labelWidth) / 10), 1), selected ? LGold : LInk, 20);
+                var name = IndentStorageRow(new Rect(370, y, 404, 21), row);
+                float labelWidth = DrawStorageLabel(name, row.Item.Item);
+                float nameWidth = name.width - labelWidth;
+                LLabel(new Rect(name.x + labelWidth, y, nameWidth, name.height),
+                    SkillScreenText.Fit(InlineStorageName(row, row.Item.Name), (int)(nameWidth / 10), 1), selected ? LGold : LInk, 20);
                 LLabel(new Rect(788, y, 96, 21), (row.Group?.TotalUnits ?? row.Item.StackCount).ToString(), LInk, 18);
                 LLabel(new Rect(896, y, 120, 21), (row.Group?.TotalWeight ?? row.Item.Weight) + " lb", LInk, 18);
                 LLabel(new Rect(1026, y, 176, 21), SkillScreenText.Fit(LedgerCombatValue(row.Item.Item), 19, 1), LInk, 18);
                 if (row.Item.IsEquipped) LLabel(new Rect(1220, y, 28, 20), "[E]", LGold, 18);
-                LHit(rect, LedgerHitKind.Item, index);
+                PaintStorageRowActions(rect, index, row);
             }
             if (_rows.Count > LedgerListRows)
                 LLabel(new Rect(370, 444, 850, 16), (_scrollOffset + 1) + "-" + Mathf.Min(_scrollOffset + LedgerListRows, _rows.Count)

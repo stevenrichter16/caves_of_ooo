@@ -51,6 +51,9 @@ namespace CavesOfOoo.Core
             Policies[typeof(ThrownRecoveryPart)]=new TrackingPolicy<ThrownRecoveryPart>(t=>string.IsNullOrEmpty(t.ThrowerId) && string.IsNullOrEmpty(t.ItemId)
                 && string.IsNullOrEmpty(t.Blueprint) && string.IsNullOrEmpty(t.ZoneId) && t.Serial==0);
             Policies[typeof(StatusEffectsPart)]=new TrackingPolicy<StatusEffectsPart>(t=>t.EffectCount==0);
+            // Cosmetic labels do not change material capability. Native stack operations
+            // separately require equal labels and copy them when splitting physical units.
+            Policies[typeof(StorageLabelPart)]=new TrackingPolicy<StorageLabelPart>(t=>StorageLabels.TryRead(t.ParentEntity,out _));
         }
         public static void Register(Type partType,IMaterialProcessPartPolicy policy)
         {

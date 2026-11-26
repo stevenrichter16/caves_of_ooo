@@ -63,6 +63,7 @@ namespace CavesOfOoo.Rendering
                 case LedgerHitKind.LoadoutRow:
                     return SelectLoadout(hit.Index);
                 case LedgerHitKind.Item:
+                case LedgerHitKind.ItemActions:
                     if (_panel == PANEL_INVENTORY && _cursorIndex == hit.Index) return false;
                     _panel = PANEL_INVENTORY; _cursorIndex = hit.Index;
                     RememberBrowseSelection();
@@ -110,7 +111,9 @@ namespace CavesOfOoo.Rendering
                 case LedgerHitKind.Equipment:
                     if (_equipSlots != null && hit.Index >= 0 && hit.Index < _equipSlots.Count) OpenEquipPopup(_equipSlots[hit.Index]); return;
                 case LedgerHitKind.Item:
-                    if (hit.Index >= 0 && hit.Index < _rows.Count && !_rows[hit.Index].IsHeader && _rows[hit.Index].Item != null) OpenItemActionPopup(_rows[hit.Index].Item); return;
+                    ActivatePackRow(hit.Index, browseContents: true); return;
+                case LedgerHitKind.ItemActions:
+                    ActivatePackRow(hit.Index, browseContents: false); return;
                 case LedgerHitKind.TinkerRow: Render(); return;
                 case LedgerHitKind.AbilitySlot: OpenGrimoirePicker(hit.Index); return;
                 case LedgerHitKind.CraftRow: ToggleCraftPickUnderCursor(); return;

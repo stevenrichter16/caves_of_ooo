@@ -49,8 +49,27 @@ namespace CavesOfOoo.Core
         }
 
         public static bool IsCarried(Entity actor, Entity vessel)
-            => IsEligible(vessel) && WorldResourceActions.Carried(actor, vessel)
-                && IntactContents(actor.GetPart<InventoryPart>(), vessel, vessel.GetPart<ContainerPart>());
+            => IsEligible(vessel) && DirectlyCarried(actor, vessel)
+                && IntactContents(actor.GetPart<InventoryPart>(), vessel, vessel.GetPart<ContainerPart>(), true);
+
+        /// <summary>Read the exact direct contents, including valid legacy containers.</summary>
+        public static bool TryBrowse(Entity actor, Entity vessel, out ContainerPart container)
+        {
+            container = null;
+            if (!IsEligible(vessel) || !DirectlyCarried(actor, vessel)) return false;
+            var current = vessel.GetPart<ContainerPart>();
+            if (!IntactContents(actor.GetPart<InventoryPart>(), vessel, current, false)) return false;
+            container = current;
+            return true;
+        }
+
+        static bool DirectlyCarried(Entity actor, Entity vessel)
+        {
+            var pack = actor?.GetPart<InventoryPart>();
+            return pack?.Objects?.Contains(vessel) == true && pack.EquippedItems != null
+                && WorldResourceActions.Carried(actor, vessel)
+                && !pack.EquippedItems.Values.Any(owner => owner?.ID == vessel.ID);
+        }
 
         public static bool CanDeposit(Entity actor, Entity vessel, Entity item, Zone zone, out string failure)
             => CanMove(actor, vessel, item, zone, true, out failure);
@@ -72,13 +91,12 @@ namespace CavesOfOoo.Core
                 && (manager == null || manager.ActiveZone == zone);
         }
 
-        static bool IsLooseGood(Entity item)
+        static bool IsDirectItem(Entity item)
         {
             if (item?.GetPart<PhysicsPart>() is not { Takeable: true } physics || physics.ParentEntity != item
                 || physics.Equipped != null || item.SpatialZone != null || string.IsNullOrEmpty(item.ID)
                 || item.HasTag("Creature") || item.HasPart<SpatialFootprintPart>() || item.HasPart<InventoryPart>()
-                || item.HasPart<ContainerPart>() || item.HasPart<ContainerLoadPart>()
-                || item.HasPart<CargoSledPart>() || item.HasPart<SledLoadPart>() || !HandlingService.IsCarryable(item))
+                || item.GetPart<DestructiblePart>() is { Gone: true })
                 return false;
 
             var stack = item.GetPart<StackerPart>();
@@ -86,7 +104,11 @@ namespace CavesOfOoo.Core
                 && InventoryPart.GetItemWeight(item) < int.MaxValue;
         }
 
-        static bool IntactContents(InventoryPart pack, Entity vessel, ContainerPart container)
+        static bool IsLooseGood(Entity item)
+            => IsDirectItem(item) && !item.HasPart<ContainerPart>() && !item.HasPart<ContainerLoadPart>()
+                && !item.HasPart<CargoSledPart>() && !item.HasPart<SledLoadPart>() && HandlingService.IsCarryable(item);
+
+        static bool IntactContents(InventoryPart pack, Entity vessel, ContainerPart container, bool looseOnly)
         {
             // The existing cargo query bounds the entire physical graph to 64 owners.
             if (container.Contents.Count >= 64 || InventoryPart.GetItemWeight(vessel) == int.MaxValue) return false;
@@ -94,7 +116,8 @@ namespace CavesOfOoo.Core
             var ids = new HashSet<string> { vessel.ID };
             foreach (var item in container.Contents)
             {
-                if (!IsLooseGood(item) || !ids.Add(item.ID) || item.GetPart<PhysicsPart>().InInventory != vessel
+                if (!(looseOnly ? IsLooseGood(item) : IsDirectItem(item))
+                    || !ids.Add(item.ID) || item.GetPart<PhysicsPart>().InInventory != vessel
                     || pack.Objects.Any(owner => owner?.ID == item.ID)
                     || pack.EquippedItems.Values.Any(owner => owner?.ID == item.ID)
                     || pack.FindEquippedBodyPart(item) != null)
@@ -105,7 +128,7 @@ namespace CavesOfOoo.Core
 
         static bool CanMove(Entity actor, Entity vessel, Entity item, Zone zone, bool depositing, out string failure)
         {
-            if (!ActorCurrent(actor, zone) || !IsCarried(actor, vessel))
+            if (!ActorCurrent(actor, zone) || !StorageAvailable(actor, vessel, depositing))
                 return Refuse("That storage is no longer available in your pack.", out failure);
             if (!IsLooseGood(item) || LocalPorterReservationPart.Blocks(item) || MaterialProcessService.IsProtected(item)
                 || ContainedLiquidSourcePart.IsRecoveryCustodyProtected(item))
@@ -123,6 +146,9 @@ namespace CavesOfOoo.Core
             failure = null;
             return true;
         }
+
+        static bool StorageAvailable(Entity actor, Entity vessel, bool depositing)
+            => depositing ? IsCarried(actor, vessel) : TryBrowse(actor, vessel, out _);
 
         static bool HasRoom(ContainerPart container, Entity item)
         {
@@ -200,7 +226,7 @@ namespace CavesOfOoo.Core
 
                 bool Current() => ActorCurrent(actor, zone) && actor.GetPart<InventoryPart>() == pack
                     && zone.GetEntityCell(actor) == actorCell && vessel.GetPart<ContainerPart>() == container
-                    && IsCarried(actor, vessel) && container.MaxItems == maxItems
+                    && StorageAvailable(actor, vessel, depositing) && container.MaxItems == maxItems
                     && (maxItems < 0 || container.Contents.Count <= maxItems)
                     && pack.GetCarriedWeight() == weight;
                 if (!Current()) return Failed("The transfer would change the combined carried weight or storage capacity.");

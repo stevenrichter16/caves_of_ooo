@@ -55,6 +55,7 @@ namespace CavesOfOoo.Core
             if (otherStacker == null) return false;
             if (string.IsNullOrEmpty(ParentEntity.BlueprintName)) return false;
             if (ParentEntity.BlueprintName != other.BlueprintName) return false;
+            if (!StorageLabels.SameStackLabel(ParentEntity, other)) return false;
             if (!CuttingToolPart.CompatibleStackState(ParentEntity,other)) return false;
             if (!MaterialProcessPayloadPolicies.CanMergeProcessingInputs(ParentEntity, other)) return false;
             if (!ConnectedClayProvenance.CanMerge(ParentEntity, other)) return false;
@@ -82,7 +83,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public int MergeFrom(Entity other)
         {
-            if (other == null || !MaterialProcessPayloadPolicies.CanMergeProcessingInputs(ParentEntity, other)) return 0;
+            if (other == null || !StorageLabels.SameStackLabel(ParentEntity, other)
+                || !MaterialProcessPayloadPolicies.CanMergeProcessingInputs(ParentEntity, other)) return 0;
             if (!CuttingToolPart.CompatibleStackState(ParentEntity,other)) return 0;
             if (MaterialProcessService.IsProtected(other) || MaterialProcessService.IsProtected(ParentEntity)
                 || ContainedLiquidSourcePart.IsRecoveryCustodyProtected(other)

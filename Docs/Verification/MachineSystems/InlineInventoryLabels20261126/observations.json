@@ -1,0 +1,878 @@
+{
+  "scope": "Native GameBootstrap input in a private seed64 Sill branch. Native mouse state events used the ordinary painted-row click path. All labels, moves, and cancellation used in-game controls.",
+  "tests": {
+    "red": "inline-storage-red-20261126",
+    "failedExpected": 2,
+    "green": "item-label-inline-green-20261126-0051",
+    "passed": 313
+  },
+  "entry": {
+    "t": 160,
+    "zone": "Overworld.10.10.0",
+    "weight": 38,
+    "edit": false,
+    "focus": "Mode",
+    "mode": "None",
+    "roots": [
+      {
+        "ID": "2706",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire",
+        "n": 1,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)",
+        "n": 2,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2712",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)",
+        "n": 2,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2715",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "n": 1,
+        "mode": 3,
+        "color": 3,
+        "icon": 0,
+        "label": "seed kit",
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2716",
+        "BlueprintName": "Dagger",
+        "name": "dagger",
+        "n": 1,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)",
+        "n": 4,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2714",
+        "BlueprintName": "FieldSatchel",
+        "name": "field satchel",
+        "n": 1,
+        "mode": 2,
+        "color": 4,
+        "icon": 2,
+        "label": "",
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "7341",
+        "BlueprintName": "FieldSatchel",
+        "name": "field satchel",
+        "n": 1,
+        "mode": 1,
+        "color": 1,
+        "icon": 0,
+        "label": "",
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "Dagger",
+        "name": "dagger",
+        "n": 1,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": null,
+        "equipped": true
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "Buckler",
+        "name": "buckler",
+        "n": 1,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": null,
+        "equipped": true
+      },
+      {
+        "ID": "2711",
+        "BlueprintName": "Cloak",
+        "name": "cloak",
+        "n": 1,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": null,
+        "equipped": true
+      }
+    ],
+    "children": [
+      {
+        "ID": "2713",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)",
+        "n": 2,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": "2714",
+        "equipped": false
+      }
+    ]
+  },
+  "permutations": [
+    {
+      "ID": "2709",
+      "BlueprintName": "Dagger",
+      "name": "dagger",
+      "n": 1,
+      "mode": 2,
+      "color": 2,
+      "icon": 0,
+      "label": "",
+      "holder": null,
+      "equipped": true
+    },
+    {
+      "ID": "2710",
+      "BlueprintName": "Buckler",
+      "name": "buckler",
+      "n": 1,
+      "mode": 1,
+      "color": 6,
+      "icon": 0,
+      "label": "",
+      "holder": null,
+      "equipped": true
+    },
+    {
+      "ID": "2711",
+      "BlueprintName": "Cloak",
+      "name": "cloak",
+      "n": 1,
+      "mode": 2,
+      "color": 1,
+      "icon": 4,
+      "label": "",
+      "holder": null,
+      "equipped": true
+    },
+    {
+      "ID": "2712",
+      "BlueprintName": "HealingTonic",
+      "name": "healing tonic (x2)",
+      "n": 2,
+      "mode": 3,
+      "color": 4,
+      "icon": 0,
+      "label": "field meds",
+      "holder": "2705",
+      "equipped": false
+    },
+    {
+      "ID": "2707",
+      "BlueprintName": "CandyCarrotSeed",
+      "name": "gladroot seed (x4)",
+      "n": 4,
+      "mode": 3,
+      "color": 3,
+      "icon": 0,
+      "label": "spring seed",
+      "holder": "2705",
+      "equipped": false
+    },
+    {
+      "ID": "2706",
+      "BlueprintName": "WateringGrimoire",
+      "name": "watering grimoire",
+      "n": 1,
+      "mode": 2,
+      "color": 5,
+      "icon": 6,
+      "label": "",
+      "holder": "2705",
+      "equipped": false
+    }
+  ],
+  "containedMeat": {
+    "ID": "2713",
+    "BlueprintName": "DriedMeat",
+    "name": "dried meat (x2)",
+    "n": 2,
+    "mode": 2,
+    "color": 1,
+    "icon": 1,
+    "label": "",
+    "holder": "2714",
+    "equipped": false
+  },
+  "beforeRows": [
+    {
+      "i": 1,
+      "ID": "2709",
+      "bp": "Dagger",
+      "owner": null
+    },
+    {
+      "i": 2,
+      "ID": "2716",
+      "bp": "Dagger",
+      "owner": null
+    },
+    {
+      "i": 4,
+      "ID": "2710",
+      "bp": "Buckler",
+      "owner": null
+    },
+    {
+      "i": 5,
+      "ID": "2711",
+      "bp": "Cloak",
+      "owner": null
+    },
+    {
+      "i": 7,
+      "ID": "2707",
+      "bp": "CandyCarrotSeed",
+      "owner": null
+    },
+    {
+      "i": 8,
+      "ID": "2708",
+      "bp": "EmberwheatSeed",
+      "owner": null
+    },
+    {
+      "i": 10,
+      "ID": "2712",
+      "bp": "HealingTonic",
+      "owner": null
+    },
+    {
+      "i": 12,
+      "ID": "2715",
+      "bp": "CampBox",
+      "owner": null
+    },
+    {
+      "i": 14,
+      "ID": "2706",
+      "bp": "WateringGrimoire",
+      "owner": null
+    },
+    {
+      "i": 16,
+      "ID": "2714",
+      "bp": "FieldSatchel",
+      "owner": null
+    },
+    {
+      "i": 17,
+      "ID": "7341",
+      "bp": "FieldSatchel",
+      "owner": null
+    }
+  ],
+  "collapsedRows": [
+    {
+      "i": 1,
+      "ID": "2709",
+      "bp": "Dagger",
+      "owner": null
+    },
+    {
+      "i": 2,
+      "ID": "2716",
+      "bp": "Dagger",
+      "owner": null
+    },
+    {
+      "i": 4,
+      "ID": "2710",
+      "bp": "Buckler",
+      "owner": null
+    },
+    {
+      "i": 5,
+      "ID": "2711",
+      "bp": "Cloak",
+      "owner": null
+    },
+    {
+      "i": 7,
+      "ID": "2707",
+      "bp": "CandyCarrotSeed",
+      "owner": null
+    },
+    {
+      "i": 8,
+      "ID": "2708",
+      "bp": "EmberwheatSeed",
+      "owner": null
+    },
+    {
+      "i": 10,
+      "ID": "2715",
+      "bp": "CampBox",
+      "owner": null
+    },
+    {
+      "i": 12,
+      "ID": "2706",
+      "bp": "WateringGrimoire",
+      "owner": null
+    },
+    {
+      "i": 14,
+      "ID": "2714",
+      "bp": "FieldSatchel",
+      "owner": null
+    },
+    {
+      "i": 15,
+      "ID": "7341",
+      "bp": "FieldSatchel",
+      "owner": null
+    }
+  ],
+  "expandedRows": [
+    {
+      "i": 1,
+      "ID": "2709",
+      "bp": "Dagger",
+      "owner": null
+    },
+    {
+      "i": 2,
+      "ID": "2716",
+      "bp": "Dagger",
+      "owner": null
+    },
+    {
+      "i": 4,
+      "ID": "2710",
+      "bp": "Buckler",
+      "owner": null
+    },
+    {
+      "i": 5,
+      "ID": "2711",
+      "bp": "Cloak",
+      "owner": null
+    },
+    {
+      "i": 7,
+      "ID": "2707",
+      "bp": "CandyCarrotSeed",
+      "owner": null
+    },
+    {
+      "i": 8,
+      "ID": "2708",
+      "bp": "EmberwheatSeed",
+      "owner": null
+    },
+    {
+      "i": 10,
+      "ID": "2715",
+      "bp": "CampBox",
+      "owner": null
+    },
+    {
+      "i": 12,
+      "ID": "2706",
+      "bp": "WateringGrimoire",
+      "owner": null
+    },
+    {
+      "i": 14,
+      "ID": "2714",
+      "bp": "FieldSatchel",
+      "owner": null
+    },
+    {
+      "i": 15,
+      "ID": "2713",
+      "bp": "DriedMeat",
+      "owner": "2714"
+    },
+    {
+      "i": 16,
+      "ID": "2712",
+      "bp": "HealingTonic",
+      "owner": "2714"
+    },
+    {
+      "i": 17,
+      "ID": "7341",
+      "bp": "FieldSatchel",
+      "owner": null
+    }
+  ],
+  "afterStow": {
+    "t": 160,
+    "zone": "Overworld.10.10.0",
+    "weight": 38,
+    "edit": false,
+    "focus": "Save",
+    "mode": "Icon",
+    "roots": [
+      {
+        "ID": "2706",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire",
+        "n": 1,
+        "mode": 2,
+        "color": 5,
+        "icon": 6,
+        "label": "",
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2708",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)",
+        "n": 2,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2715",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "n": 1,
+        "mode": 3,
+        "color": 3,
+        "icon": 0,
+        "label": "seed kit",
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2716",
+        "BlueprintName": "Dagger",
+        "name": "dagger",
+        "n": 1,
+        "mode": null,
+        "color": null,
+        "icon": null,
+        "label": null,
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)",
+        "n": 4,
+        "mode": 3,
+        "color": 3,
+        "icon": 0,
+        "label": "spring seed",
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2714",
+        "BlueprintName": "FieldSatchel",
+        "name": "field satchel",
+        "n": 1,
+        "mode": 2,
+        "color": 4,
+        "icon": 2,
+        "label": "",
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "7341",
+        "BlueprintName": "FieldSatchel",
+        "name": "field satchel",
+        "n": 1,
+        "mode": 1,
+        "color": 1,
+        "icon": 0,
+        "label": "",
+        "holder": "2705",
+        "equipped": false
+      },
+      {
+        "ID": "2709",
+        "BlueprintName": "Dagger",
+        "name": "dagger",
+        "n": 1,
+        "mode": 2,
+        "color": 2,
+        "icon": 0,
+        "label": "",
+        "holder": null,
+        "equipped": true
+      },
+      {
+        "ID": "2710",
+        "BlueprintName": "Buckler",
+        "name": "buckler",
+        "n": 1,
+        "mode": 1,
+        "color": 6,
+        "icon": 0,
+        "label": "",
+        "holder": null,
+        "equipped": true
+      },
+      {
+        "ID": "2711",
+        "BlueprintName": "Cloak",
+        "name": "cloak",
+        "n": 1,
+        "mode": 2,
+        "color": 1,
+        "icon": 4,
+        "label": "",
+        "holder": null,
+        "equipped": true
+      }
+    ],
+    "children": [
+      {
+        "ID": "2713",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)",
+        "n": 2,
+        "mode": 2,
+        "color": 1,
+        "icon": 1,
+        "label": "",
+        "holder": "2714",
+        "equipped": false
+      },
+      {
+        "ID": "2712",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)",
+        "n": 2,
+        "mode": 3,
+        "color": 4,
+        "icon": 0,
+        "label": "field meds",
+        "holder": "2714",
+        "equipped": false
+      }
+    ]
+  },
+  "cancelledLabel": {
+    "ID": "2707",
+    "BlueprintName": "CandyCarrotSeed",
+    "name": "gladroot seed (x4)",
+    "n": 4,
+    "mode": 3,
+    "color": 3,
+    "icon": 0,
+    "label": "spring seed",
+    "holder": "2705",
+    "equipped": false
+  },
+  "checkpoint": {
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "a150199855004a7cb295b81d72807ee3",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.10.10.0",
+      "ActiveZoneDisplayLabel": "Overworld.10.10.0",
+      "Turn": 160,
+      "SaveTimestampUtc": "2026-11-26T00:56:26.6609070Z",
+      "HPSummary": "40/40",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "files": {
+      "Quick.sav.gz": "fea6f2f540854789b5bc8f17a8514b0315640ed1f3bab2e8b475111d83a5fc88",
+      "Quick.sav.gz.bak": "6d054cdc79111e5b95da932484e2f232c24224cab9656ade59007ea08d13e71b",
+      "Quick.json.bak": "8a7e5445aa25646d00db40ce14922d45e6829bc86ceb00b1760ced4616413f58",
+      "Quick.json": "4056bf59e6612aba7c84f4885d469ab168321bf4c531abb116074c7d7e1423d0"
+    }
+  },
+  "freshContinue": {
+    "loaded": {
+      "t": 160,
+      "zone": "Overworld.10.10.0",
+      "weight": 38,
+      "edit": false,
+      "focus": "Mode",
+      "mode": "None",
+      "roots": [
+        {
+          "ID": "2706",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "mode": 2,
+          "color": 5,
+          "icon": 6,
+          "label": "",
+          "holder": "2705",
+          "equipped": false
+        },
+        {
+          "ID": "2708",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "mode": null,
+          "color": null,
+          "icon": null,
+          "label": null,
+          "holder": "2705",
+          "equipped": false
+        },
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "name": "camp box",
+          "n": 1,
+          "mode": 3,
+          "color": 3,
+          "icon": 0,
+          "label": "seed kit",
+          "holder": "2705",
+          "equipped": false
+        },
+        {
+          "ID": "2716",
+          "BlueprintName": "Dagger",
+          "name": "dagger",
+          "n": 1,
+          "mode": null,
+          "color": null,
+          "icon": null,
+          "label": null,
+          "holder": "2705",
+          "equipped": false
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "mode": 3,
+          "color": 3,
+          "icon": 0,
+          "label": "spring seed",
+          "holder": "2705",
+          "equipped": false
+        },
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "name": "field satchel",
+          "n": 1,
+          "mode": 2,
+          "color": 4,
+          "icon": 2,
+          "label": "",
+          "holder": "2705",
+          "equipped": false
+        },
+        {
+          "ID": "7341",
+          "BlueprintName": "FieldSatchel",
+          "name": "field satchel",
+          "n": 1,
+          "mode": 1,
+          "color": 1,
+          "icon": 0,
+          "label": "",
+          "holder": "2705",
+          "equipped": false
+        },
+        {
+          "ID": "2709",
+          "BlueprintName": "Dagger",
+          "name": "dagger",
+          "n": 1,
+          "mode": 2,
+          "color": 2,
+          "icon": 0,
+          "label": "",
+          "holder": null,
+          "equipped": true
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "Buckler",
+          "name": "buckler",
+          "n": 1,
+          "mode": 1,
+          "color": 6,
+          "icon": 0,
+          "label": "",
+          "holder": null,
+          "equipped": true
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "Cloak",
+          "name": "cloak",
+          "n": 1,
+          "mode": 2,
+          "color": 1,
+          "icon": 4,
+          "label": "",
+          "holder": null,
+          "equipped": true
+        }
+      ],
+      "children": [
+        {
+          "ID": "2713",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "mode": 2,
+          "color": 1,
+          "icon": 1,
+          "label": "",
+          "holder": "2714",
+          "equipped": false
+        },
+        {
+          "ID": "2712",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "mode": 3,
+          "color": 4,
+          "icon": 0,
+          "label": "field meds",
+          "holder": "2714",
+          "equipped": false
+        }
+      ]
+    },
+    "rows": [
+      {
+        "i": 1,
+        "ID": "2709",
+        "bp": "Dagger",
+        "owner": null
+      },
+      {
+        "i": 2,
+        "ID": "2716",
+        "bp": "Dagger",
+        "owner": null
+      },
+      {
+        "i": 4,
+        "ID": "2710",
+        "bp": "Buckler",
+        "owner": null
+      },
+      {
+        "i": 5,
+        "ID": "2711",
+        "bp": "Cloak",
+        "owner": null
+      },
+      {
+        "i": 7,
+        "ID": "2707",
+        "bp": "CandyCarrotSeed",
+        "owner": null
+      },
+      {
+        "i": 8,
+        "ID": "2708",
+        "bp": "EmberwheatSeed",
+        "owner": null
+      },
+      {
+        "i": 10,
+        "ID": "2715",
+        "bp": "CampBox",
+        "owner": null
+      },
+      {
+        "i": 12,
+        "ID": "2706",
+        "bp": "WateringGrimoire",
+        "owner": null
+      },
+      {
+        "i": 14,
+        "ID": "2714",
+        "bp": "FieldSatchel",
+        "owner": null
+      },
+      {
+        "i": 15,
+        "ID": "2713",
+        "bp": "DriedMeat",
+        "owner": "2714"
+      },
+      {
+        "i": 16,
+        "ID": "2712",
+        "bp": "HealingTonic",
+        "owner": "2714"
+      },
+      {
+        "i": 17,
+        "ID": "7341",
+        "bp": "FieldSatchel",
+        "owner": null
+      }
+    ]
+  }
+}

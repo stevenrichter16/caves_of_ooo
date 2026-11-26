@@ -1,3 +1,12 @@
+**Pack organization follows physical custody — November 26 UTC, 2026.**
+Expanded inventory rows are an exact view of carried vessel contents.
+Their padding and action routing show which vessel owns each item. Labels
+are optional cosmetic state on regular items and storage, and equal labels
+allow the ordinary stack rules to work. A different mark preserves the
+separate owner's identity through transfer and saving.
+[Design](CARRIED-STORAGE-LABELS-DESIGN.md) ·
+[Evidence](Verification/MachineSystems/InlineInventoryLabels20261126/README.md)
+
 **Show the repair bill on the object and count its real cargo — November 26 UTC, 2026.**
 Examine promotes known repair requirements into an amber warning for
 fixtures and broken gear. Town methods list a temporary patch separately,

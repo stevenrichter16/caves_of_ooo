@@ -199,6 +199,8 @@ namespace CavesOfOoo.Rendering
             public Color Color;
             public InventoryScreenData.ItemDisplay Item;
             public InventoryItemGroup Group;
+            public Entity StorageOwner;
+            public ContainerPart StorageContainer;
         }
 
         private struct TinkeringRecipeRow
@@ -272,6 +274,7 @@ namespace CavesOfOoo.Rendering
             public string Label;
             public string Command;
             public Entity Container;
+            public ContainerPart StorageContainer;
             // Declared by the producing row (spec S3). A struct defaults to ActionTime 0 (Free), so a separate flag says whether Time was
             // declared at all; undeclared rows keep the legacy charge chain.
             public bool TimeDeclared;
@@ -318,6 +321,7 @@ namespace CavesOfOoo.Rendering
             _grimoirePicker = null;
             _pendingThrowRequest = null;
             _storageLabelEdit = null;
+            _expandedStorage.Clear();
             Rebuild();
             Render();
         }
@@ -325,6 +329,7 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             _storageLabelEdit = null;
+            _expandedStorage.Clear();
             _loadoutNameEditing = false;
             _loadoutKeeper = null;
             ClearActionStatus();
@@ -357,7 +362,7 @@ namespace CavesOfOoo.Rendering
 
             for (int i = 0; i < _rows.Count; i++)
             {
-                if (_rows[i].IsHeader || _rows[i].Item == null || _rows[i].Item.Item != item)
+                if (_rows[i].IsHeader || _rows[i].StorageOwner != null || _rows[i].Item == null || _rows[i].Item.Item != item)
                     continue;
 
                 _cursorIndex = i;
@@ -487,17 +492,13 @@ namespace CavesOfOoo.Rendering
                     return true;
                 }
 
-                // Mouse click on inventory item row → open item action popup
+                // Pointer activation opens either the item menu or its contents.
                 int clickedRow = GetInventoryRowAtMouse();
                 if (clickedRow >= 0)
                 {
                     _panel = PANEL_INVENTORY;
                     _cursorIndex = clickedRow;
-                    var clickedItem = _rows[clickedRow];
-                    if (clickedItem.Item != null)
-                        OpenItemActionPopup(clickedItem.Item);
-                    else
-                        Render();
+                    ActivatePackRow(clickedRow, browseContents: true);
                     return true;
                 }
             }
@@ -797,7 +798,7 @@ namespace CavesOfOoo.Rendering
                 if (row.Item != null)
                 {
                     // Drop (quick shortcut)
-                    if (InputHelper.GetKeyDown(KeyCode.D))
+                    if (row.StorageOwner == null && InputHelper.GetKeyDown(KeyCode.D))
                     {
                         TryDropViaCommand(row.Item.Item);
                         Rebuild();
@@ -809,7 +810,7 @@ namespace CavesOfOoo.Rendering
                     // Open item action popup (equip/unequip/use/etc.)
                     if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.E))
                     {
-                        OpenItemActionPopup(row.Item);
+                        ActivatePackRow(_cursorIndex, browseContents: false);
                         return;
                     }
                 }
@@ -1194,6 +1195,7 @@ namespace CavesOfOoo.Rendering
             if (DensePack && ReferenceEquals(BrowseSelected, itemDisplay.Item)) RememberBrowseSelection();
             var item = itemDisplay.Item;
             var actions = new List<ItemAction>();
+            bool storageView = CarriedStorage.TryBrowse(PlayerEntity, item, out var storage);
 
             var equippable = item.GetPart<EquippablePart>();
 
@@ -1240,7 +1242,7 @@ namespace CavesOfOoo.Rendering
                 {
                     var a = itemDisplay.Actions[i];
                     if (a.Command == "Throw") continue; // handled below via lowercase "throw"
-                    if (a.Command == "OpenContainer" && CarriedStorage.IsCarried(PlayerEntity, item)) continue;
+                    if (a.Command == "OpenContainer" && storageView) continue;
                     if ((materialGuidance || tonicGuidance || equipmentGuidance)
                         && a.Command == "Examine") continue;
                     actions.Add(new ItemAction
@@ -1252,10 +1254,16 @@ namespace CavesOfOoo.Rendering
                     });
                 }
             }
-            if (CarriedStorage.IsCarried(PlayerEntity, item))
+            if (storageView)
             {
-                actions.Add(new ItemAction { Label = "Open contents", Command = "open_carried_storage" });
-                actions.Add(new ItemAction { Label = "Stow from pack", Command = "stow_in_carried_storage" });
+                actions.Add(new ItemAction
+                {
+                    Label = IsStorageExpanded(item, storage) ? "Collapse contents" : "Expand contents",
+                    Command = "open_carried_storage",
+                    StorageContainer = storage
+                });
+                if (CarriedStorage.IsCarried(PlayerEntity, item))
+                    actions.Add(new ItemAction { Label = "Stow from pack", Command = "stow_in_carried_storage", StorageContainer = storage });
             }
 
             // Tinkering seam: disassemble carried tinkering items via inventory command pipeline.
@@ -1302,7 +1310,7 @@ namespace CavesOfOoo.Rendering
             }
 
             if (StorageLabels.CanEdit(PlayerEntity, item))
-                actions.Add(new ItemAction { Label = "Label storage", Command = "edit_storage_label" });
+                actions.Add(new ItemAction { Label = "Label item", Command = "edit_storage_label" });
 
             if (new SeparateOneCommand(item).Validate(new InventoryContext(PlayerEntity, CurrentZone)).IsValid)
                 actions.Add(new ItemAction { Label = "Separate one", Command = "separate_one" });
@@ -1459,8 +1467,12 @@ namespace CavesOfOoo.Rendering
                 case "disassemble": completed = TryDisassembleViaCommand(item); break;
                 case "toggle_craftmark": completed = TryToggleCraftMarkViaCommand(item); break;
                 case "put_container": completed = TryPutInContainerViaCommand(item, action.Container); break;
-                case "open_carried_storage": OpenCarriedStorage(item, false); return;
-                case "stow_in_carried_storage": OpenCarriedStorage(item, true); return;
+                case "open_carried_storage":
+                    SetStorageExpanded(item, action.StorageContainer, !IsStorageExpanded(item, action.StorageContainer));
+                    return;
+                case "stow_in_carried_storage":
+                    OpenCarriedStorageStow(item, action.StorageContainer);
+                    return;
                 case "edit_storage_label":
                     OpenStorageLabelEditor(item);
                     return;
@@ -1926,9 +1938,14 @@ namespace CavesOfOoo.Rendering
 
         private void Rebuild()
         {
-            int oldOrdinal = DenseOrdinal;
             Entity selectedItem = _cursorIndex >= 0 && _cursorIndex < _rows.Count
                 ? _rows[_cursorIndex].Item?.Item : null;
+            RebuildSelecting(selectedItem);
+        }
+
+        private void RebuildSelecting(Entity selectedItem)
+        {
+            int oldOrdinal = DenseOrdinal;
             _state = InventoryScreenData.Build(PlayerEntity);
 
             RebuildInventoryRows(selectedItem, oldOrdinal);
@@ -1942,6 +1959,8 @@ namespace CavesOfOoo.Rendering
         private void RebuildInventoryRows(Entity selectedItem, int oldOrdinal)
         {
             _rows.Clear();
+            foreach (var entry in _expandedStorage.ToArray())
+                if (!CurrentStorageView(entry.Key, entry.Value)) _expandedStorage.Remove(entry.Key);
             BuildItemRows(selectedItem);
             BuildDenseRows();
             // Row positions can change after spending, dropping or filtering items.
@@ -1981,12 +2000,14 @@ namespace CavesOfOoo.Rendering
                 else line = line.Substring(0, nameWidth);
                 line += item.Weight.ToString().PadLeft(4) + "lb ";
                 line += item.Value.ToString().PadLeft(4) + "$" + equipped;
+                CarriedStorage.TryBrowse(PlayerEntity, item.Item, out var storage);
                 _rows.Add(new DisplayRow
                 {
                     IsHeader = false, Text = line,
                     Color = item.IsEquipped ? QudColorParser.BrightCyan : QudColorParser.Gray,
-                    Item = item, Group = group
+                    Item = item, Group = group, StorageContainer = storage
                 });
+                if (storage != null) AddInlineStorageRows(item.Item, storage);
             }
         }
 

@@ -539,6 +539,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     combined weight. These support maintenance and freight opportunities
     through their ordinary shared actions.
     [Evidence](Verification/MachineSystems/RepairAndCarriedStorage20261126/README.md)
+    The pack can reveal its vessels' exact contents inline and label both
+    carried supplies and stored goods. The native trial moved a marked
+    tonic stack into a satchel without changing the pack's total weight.
+    [Evidence](Verification/MachineSystems/InlineInventoryLabels20261126/README.md)
     A guided version 26 underground route found a packet, carried it,
     screened it and used both fractions in separate saved branches.
     The player used one sand for a cave exit mark and one salt to

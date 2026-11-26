@@ -226,6 +226,62 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        [TestCase(1280, 800)] [TestCase(1920, 1080)]
+        public void ClickingOneVesselShowsOnlyItsExactContentsIndentedBeneathIt(int width, int height)
+        {
+            using (var input = new NativeMouseScope())
+            using (var r = new Rig(width, height))
+            {
+                var first = r.Factory.CreateEntity("FieldSatchel");
+                var second = r.Factory.CreateEntity("FieldSatchel");
+                var ration = r.Factory.CreateEntity("DriedMeat");
+                var otherRation = r.Factory.CreateEntity("DriedMeat");
+                Assert.True(first.GetPart<ContainerPart>().AddItem(ration));
+                Assert.True(second.GetPart<ContainerPart>().AddItem(otherRation));
+                Assert.True(r.Pack.AddObject(first));
+                Assert.True(r.Pack.AddObject(second));
+                int total = r.Pack.GetCarriedWeight();
+                r.Open();
+                r.Tab(1);
+                Click(first);
+                int firstRow = r.InventoryRow(first);
+                int childRow = r.InventoryRow(ration);
+                Assert.AreEqual(firstRow + 1, childRow);
+                Assert.False(r.Rows("_rows").Cast<object>().Any(row =>
+                    Get(row, "Item") is InventoryScreenData.ItemDisplay display && display.Item == otherRation));
+                Assert.IsNull(Get(r.UI, "_itemActionPopup"));
+
+                Rect parentHit = Bounds(r.FindHit("Item", firstRow));
+                Rect childHit = Bounds(r.FindHit("Item", childRow));
+                var parentName = r.Labels().First(label => label.Content.Contains(first.GetDisplayName())
+                    && r.BoundsOf(label).Overlaps(parentHit));
+                var childName = r.Labels().First(label => label.Content.Contains(ration.GetDisplayName())
+                    && r.BoundsOf(label).Overlaps(childHit));
+                Assert.Greater(r.BoundsOf(childName).xMin, r.BoundsOf(parentName).xMin + 5f);
+
+                Click(second);
+                Assert.AreEqual(r.InventoryRow(second) + 1, r.InventoryRow(otherRation));
+                Click(first);
+                Assert.False(r.Rows("_rows").Cast<object>().Any(row =>
+                    Get(row, "Item") is InventoryScreenData.ItemDisplay display && display.Item == ration));
+                Assert.AreEqual(r.InventoryRow(second) + 1, r.InventoryRow(otherRation));
+                Assert.AreSame(first, ration.GetPart<PhysicsPart>().InInventory);
+                Assert.AreSame(second, otherRation.GetPart<PhysicsPart>().InInventory);
+                Assert.AreEqual(total, r.Pack.GetCarriedWeight());
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+
+                void Click(Entity vessel)
+                {
+                    var screen = r.ToScreen(Bounds(r.FindHit("Item", r.InventoryRow(vessel))).center);
+                    input.State(screen);
+                    input.State(screen, pressed: true);
+                    Assert.True((bool)Call(r.UI, "HandleLedgerPointer"));
+                    input.State(screen);
+                    Canvas.ForceUpdateCanvases();
+                }
+            }
+        }
+
         [Test]
         public void NativeMouseParkedBeforeOpeningCannotOverrideEquipmentUntilItActuallyMoves()
         {

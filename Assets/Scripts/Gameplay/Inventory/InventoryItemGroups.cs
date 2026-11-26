@@ -107,8 +107,15 @@ namespace CavesOfOoo.Core
             if (ink != null && (ink.MaxCharges <= 0 || ink.Charges < 0 || ink.Charges > ink.MaxCharges)) return null;
             var stack = item.GetPart<StackerPart>();
             if (stack != null && (stack.MaxStack <= 0 || stack.StackCount > stack.MaxStack)) return null;
+            if (!StorageLabels.TryRead(item, out var label)) return null;
             var key = new StringBuilder();
             Add(key, item.BlueprintName); Add(key, UnitName(display)); Add(key, display.Category); Add(key, display.State);
+            // Preserve exact existing merchant receipt keys for unlabelled goods.
+            if (label.Mode != StorageLabelMode.None)
+            {
+                Add(key, "LABEL"); Add(key, (int)label.Mode); Add(key, label.ColorIndex);
+                Add(key, label.IconIndex); Add(key, label.Text);
+            }
             if (!Map(key, item.Tags) || !Map(key, item.Properties) || !Map(key, item.IntProperties) || item.Statistics == null) return null;
             Add(key, item.Statistics.Count);
             foreach (var pair in item.Statistics.OrderBy(p => p.Key, StringComparer.Ordinal))

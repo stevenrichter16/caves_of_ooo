@@ -154,6 +154,11 @@ namespace CavesOfOoo.Rendering
             }
             if (_panel == PANEL_INVENTORY && _cursorIndex >= 0 && _cursorIndex < _rows.Count)
             {
+                if (TryGetSelectedStorageChild(out var child))
+                {
+                    string summary = DescribeStorageChild(child);
+                    return summary == null ? null : child.Item.Item.GetDisplayName() + "\n\n" + summary;
+                }
                 subject = _rows[_cursorIndex].Item?.Item;
                 return DetailsForItemSnapshot(subject, out sections);
             }

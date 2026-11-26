@@ -63,3 +63,28 @@ Verify exact allowance, refused excess, mass-neutral transfers, eligible
 and excluded storage, every mark mode, clearing and cancelling, visible
 colors, carried-to-world-to-carried identity, and fresh Continue. Exercise
 the ordinary inventory buttons and collect a few actual in-game captures.
+
+## Inline contents and labels throughout the pack
+
+Clicking a carried vessel row expands its direct contents directly below
+that vessel. Clicking again collapses the same exact vessel. Child rows
+use left padding, stay with the parent when sorting or filtering, and show
+their own item name, quantity, and weight. The vessel's loaded weight
+already includes those items. Expanding leaves the pack weight and the
+count of top-level stacks alone. Expansion is view state for the current inventory, with no
+effect on game time or saved custody.
+
+The parent row has a separate item-action button. Keyboard and controller
+item actions offer Expand or Collapse. An accessible child can be labeled
+where it is or moved into the pack with its own Take action. Other pack
+actions become available once the item is in the normal pack list. Both
+click and command selection recheck the physical vessel and child.
+
+Every ordinary item directly held or equipped by the player can carry
+the same cosmetic data. Direct contents of an accessible carried vessel
+can also be labeled. The same saved label Part supports all of them. A
+label applies to the exact item or physical stack chosen. Separate one
+first to mark just one unit. Splits retain the original mark on both
+pieces and compatible stacks with equal labels can still merge. Matching
+items with different marks keep separate rows and stacks, so transferring
+them cannot silently erase a label.
