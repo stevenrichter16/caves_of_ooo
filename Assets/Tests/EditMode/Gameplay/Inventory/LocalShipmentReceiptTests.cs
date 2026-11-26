@@ -654,6 +654,110 @@ namespace CavesOfOoo.Tests
             Assert.That(Zone.GetEntityPosition(merchant), Is.EqualTo(position));
         }
 
+        [TestCase(false, false)]
+        [TestCase(true, false)]
+        [TestCase(true, true)]
+        public void SeeingTheAssignedPorterAliveOnlyChangesTheNoticeAfterReturning(bool delegated, bool reportOverdue)
+        {
+            Assert.That(Zone.RemoveEntity(Actor), Is.True);
+            Zone = new Zone("Overworld.12.11.0");
+            Assert.That(Zone.AddEntity(Actor, 10, 10), Is.True);
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            manager.SetActiveZone(Zone);
+            var (receipt, order, search) = PrepareSearch();
+            var cook = receipt.Merchant;
+            var porter = order.Worker;
+            var searcher = cook;
+            if (delegated)
+            {
+                searcher = Place("Creature", 15, 11);
+                searcher.SetTag("Faction", "Villagers");
+                searcher.AddPart(new LocalShipmentEmploymentPart { Employer = cook });
+                receipt.SearchEmployee = searcher;
+            }
+
+            string shelfID = receipt.ParentEntity.ID;
+            string parcelID = order.Box.ID;
+            string porterID = porter.ID;
+            var opening = TradeSystem.GetTraderStock(cook).Single();
+            Clock.AdvanceClock(40);
+            Assert.That(AIBoredEvent.Check(cook), Is.False);
+            search = searcher.GetPart<LocalShipmentSearchPart>();
+            Assert.That(search.Phase, Is.EqualTo(LocalShipmentSearchPhase.CheckingLoadingPoint));
+            Assert.That(Zone.MoveEntity(porter, 14, 10), Is.True);
+            Assert.That(AIBoredEvent.Check(searcher), Is.False);
+            Assert.That(search.SeenLivingPorterID, Is.EqualTo(porterID));
+            Assert.That(search.SeenLivingPorterAtTick, Is.EqualTo(WorldClock.CurrentTick));
+            Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Not.Contain("porter alive"));
+
+            // The recorded sighting should survive even after the worker leaves sight.
+            Assert.That(Zone.MoveEntity(porter, 28, 10), Is.True);
+            receipt = ReloadReceipt(manager, shelfID, out _, withClock: true);
+            searcher = delegated ? receipt.SearchEmployee : receipt.Merchant;
+            search = searcher.GetPart<LocalShipmentSearchPart>();
+            Assert.That(search.SeenLivingPorterID, Is.EqualTo(porterID));
+            if (reportOverdue)
+            {
+                TurnManager.Active.AdvanceClock(receipt.DelegateDueAtTick - WorldClock.CurrentTick + 1);
+                Assert.That(WorldClock.CurrentTick, Is.GreaterThan(receipt.DelegateDueAtTick));
+            }
+            FinishSearch(search, searcher);
+
+            order = receipt.Ledger.GetPart<LocalPorterLedgerPart>();
+            Assert.That(ReadCurrentState(receipt.ParentEntity).Contains("porter alive"), Is.EqualTo(!reportOverdue));
+            Assert.That(ReadCurrentState(searcher).Contains("porter alive"), Is.EqualTo(!reportOverdue));
+            Assert.That(search.CheckedLoadingPoint, Is.EqualTo(!reportOverdue), "the sighting itself does not change the route");
+            Assert.That(receipt.ConcernClosedAtTick, Is.EqualTo(-1));
+            Assert.That(receipt.ArrivedAtTick, Is.EqualTo(-1));
+            Assert.That(order.Worker.ID, Is.EqualTo(porterID));
+            Assert.That(order.Box.ID, Is.EqualTo(parcelID));
+            Assert.That(order.Box.GetPart<PhysicsPart>().InInventory, Is.SameAs(order.Worker));
+            Assert.That(order.Box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(receipt.FirstMeasure));
+            Assert.That(TradeSystem.GetTraderStock(receipt.Merchant).Single().ID, Is.EqualTo(opening.ID));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AnUnseenPorterOrAnotherPorterCannotGiveALivingReport(bool exactButInvisible)
+        {
+            var (receipt, order, search) = PrepareSearch();
+            if (exactButInvisible)
+                order.Worker.GetPart<RenderPart>().Visible = false;
+            else
+                Assert.That(Zone.MoveEntity(order.Worker, 28, 10), Is.True);
+            Place("GleanersPorter", 13, 10);
+            Clock.AdvanceClock(40);
+            FinishSearch(search, receipt.Merchant);
+
+            Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Not.Contain("porter alive"));
+            Assert.That(receipt.ConcernClosedAtTick, Is.EqualTo(-1));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void OnlyASeparatelySeenBodyCanSupersedeAnEarlierLivingSighting(bool bodyInSight)
+        {
+            var (receipt, order, search) = PrepareSearch();
+            var searcher = receipt.Merchant;
+            var porter = order.Worker;
+            Clock.AdvanceClock(40);
+            Assert.That(AIBoredEvent.Check(searcher), Is.False);
+            Assert.That(Zone.MoveEntity(porter, 14, 10), Is.True);
+            Assert.That(AIBoredEvent.Check(searcher), Is.False);
+            Assert.That(search.SeenLivingPorterID, Is.EqualTo(porter.ID));
+            if (!bodyInSight) Assert.That(Zone.MoveEntity(porter, 28, 10), Is.True);
+
+            KillAndFindBody(porter);
+            LocalPorterLedgerPart.Reconcile(Actor, Zone);
+            FinishSearch(search, searcher);
+
+            string report = ReadCurrentState(receipt.ParentEntity);
+            Assert.That(report.Contains("porter dead"), Is.EqualTo(bodyInSight));
+            Assert.That(report.Contains("porter alive"), Is.EqualTo(!bodyInSight));
+            Assert.That(report, Does.Not.Contain("killed"));
+            Assert.That(receipt.ConcernClosedAtTick, Is.EqualTo(-1));
+        }
+
         [Test]
         public void ARealBodyIsReportedOnlyAfterTheSearcherSeesItAndReturns()
         {

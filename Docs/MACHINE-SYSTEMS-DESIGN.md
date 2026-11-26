@@ -1,3 +1,10 @@
+**A real sighting can revise an overdue delivery notice — November 26 UTC, 2026.**
+The assigned human searcher can see the original porter alive without
+changing the route or taking over the cargo. The returned report conveys
+past knowledge. Physical receipt of the exact cargo still determines when
+the consignee can use its goods. The ordinary oven and stock remain useful.
+[Evidence](Verification/MachineSystems/WaysideLivingPorter20261126/README.md)
+
 **Causeway vent scale can become useful field protection — November 26 UTC, 2026.**
 The Causeway vent reader ties its pale crust to clothing proofing. One
 scale already in the pack makes one temporary coat in a flask. Proofing

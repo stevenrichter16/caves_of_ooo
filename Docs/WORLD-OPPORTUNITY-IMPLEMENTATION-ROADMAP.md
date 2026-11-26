@@ -580,6 +580,12 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     Timeliness terms never secretly change the physical benefit of equivalent
     completed work or turn every missing shipment into a compulsory player quest.
 
+    A wayside search can now record seeing the exact live porter and publish
+    that news only after the searcher returns or the paid hand reports in person.
+    The notice remains open and the reserved cargo remains in transit. Corpses
+    still require a separately supported sighting.
+    [Evidence](Verification/MachineSystems/WaysideLivingPorter20261126/README.md)
+
 ## Improvement pass after all 45 are verified
 
 Revisit all 45 requirements and the systems that implement them after the

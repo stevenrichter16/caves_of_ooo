@@ -475,6 +475,13 @@ porters, late legitimate delivery, no witness, conflicting reports, recipient
 death, staff unavailability, budgets and mid-search save/fresh; no automatic
 perfect guilt inference or repeated dispatch.
 
+The earlier controlled delay left the exact live porter beside Orven's
+route. The search had a rule for finding a body and no way to remember an
+ordinary sighting of the living porter. Allow the existing search to record
+seeing its assigned porter at close range in the active area. The cook can
+write that news after returning, or after the employee speaks to the cook.
+This is news of a past encounter. Physical receipt still closes the notice.
+
 November 25 source check for delegated work. The current wayside potter is an
 actual independent supplier at the loading point. Nothing in his saved role
 makes him Orven’s employee or puts him at the receiving shelf. The personal

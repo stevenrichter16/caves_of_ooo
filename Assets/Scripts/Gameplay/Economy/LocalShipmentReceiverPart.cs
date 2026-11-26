@@ -18,6 +18,7 @@ namespace CavesOfOoo.Core
         public int DelegateDueAtTick = -1;
         public int SearchReportAtTick = -1;
         public bool SearchReportSawBody;
+        public bool SearchReportSawLivingPorter;
         public Entity FirstMeasure;
         public Entity SecondMeasure;
         public string StockedOrderID;
@@ -47,10 +48,17 @@ namespace CavesOfOoo.Core
                 if (SearchReportAtTick >= 0)
                     return SearchReportSawBody
                         ? "The kitchen hand reported finding the missing porter dead. Keep the original box packed if you return it."
-                        : "The kitchen hand returned from checking the shipment route. Keep the original box packed if you return it.";
-                if (Merchant?.GetPart<LocalShipmentSearchPart>() is { Phase: LocalShipmentSearchPhase.Finished, SeenPorterBodyID: not null } search
+                        : SearchReportSawLivingPorter
+                            ? "The kitchen hand returned and reported seeing the missing porter alive while checking the route. Keep the original box packed if you return it."
+                            : "The kitchen hand returned from checking the shipment route. Keep the original box packed if you return it.";
+                if (Merchant?.GetPart<LocalShipmentSearchPart>() is { Phase: LocalShipmentSearchPhase.Finished } search
                     && search.Shelf == ParentEntity && search.OrderID == ExpectedOrderID)
-                    return "The cook found the missing porter dead. Keep the original box packed if you return it.";
+                {
+                    if (search.SeenPorterBodyID != null)
+                        return "The cook found the missing porter dead. Keep the original box packed if you return it.";
+                    if (search.HasLivingSighting)
+                        return "The cook saw the missing porter alive while checking the route. Keep the original box packed if you return it.";
+                }
                 if (DelegatedSearcherID != null && !DelegateOverdue)
                     return $"The cook sent the kitchen hand to check the route. The hand is due back on {Moment(DelegateDueAtTick)}.";
                 return "The kitchen has posted an overdue clay shipment notice. Keep the original box packed if you return it.";
@@ -199,6 +207,7 @@ namespace CavesOfOoo.Core
                 || search.OrderID != ExpectedOrderID || !CanReceiveSearchReport(zone)
                 || !CanSpeakToCookFrom(zone.GetEntityCell(actor), zone)) return false;
             SearchReportSawBody = search.SeenPorterBodyID != null;
+            SearchReportSawLivingPorter = !SearchReportSawBody && search.HasLivingSighting;
             SearchReportAtTick = WorldClock.CurrentTick;
             return true;
         }

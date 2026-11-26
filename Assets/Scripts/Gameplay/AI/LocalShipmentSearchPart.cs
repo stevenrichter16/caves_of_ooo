@@ -25,6 +25,8 @@ namespace CavesOfOoo.Core
         public int SeenPorterBodyAtTick = -1;
         public int SeenPorterBodyX;
         public int SeenPorterBodyY;
+        public string SeenLivingPorterID;
+        public int SeenLivingPorterAtTick = -1;
         private const int SearchDelayTicks = 40;
         internal const int LegAttemptLimit = 24;
         private const int RecognitionRange = 3;
@@ -32,12 +34,14 @@ namespace CavesOfOoo.Core
 
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 25;
+        internal bool HasLivingSighting => !string.IsNullOrEmpty(SeenLivingPorterID) && SeenLivingPorterAtTick >= 0;
 
         public string DescribeState(DescribeContext context) => Phase switch
         {
             LocalShipmentSearchPhase.CheckingLoadingPoint => "Checking the loading point for news of the overdue clay shipment.",
             LocalShipmentSearchPhase.Returning => "Heading back to the kitchen.",
             LocalShipmentSearchPhase.Finished when SeenPorterBodyID != null => "Found the missing porter dead and returned to the kitchen.",
+            LocalShipmentSearchPhase.Finished when LivingReportPublished() => "Saw the missing porter alive while checking the route.",
             LocalShipmentSearchPhase.Finished when CheckedLoadingPoint => "Checked the loading point and returned to the kitchen.",
             _ => null
         };
@@ -100,10 +104,14 @@ namespace CavesOfOoo.Core
                 BeginReturn();
                 return true;
             }
-            if (outbound && receipt.ConcernClosedAtTick < 0 && TryObservePorterBody(actor, zone, order))
+            if (outbound && receipt.ConcernClosedAtTick < 0)
             {
-                BeginReturn();
-                return true;
+                if (TryObservePorterBody(actor, zone, order))
+                {
+                    BeginReturn();
+                    return true;
+                }
+                ObserveLivingPorter(actor, zone, order);
             }
             if (SpatialQuery.Distance(zone, actor, target) <= 1 && endpoint?.Invoke(zone.GetEntityCell(actor)) != false)
             {
@@ -118,7 +126,9 @@ namespace CavesOfOoo.Core
                     if (reporting && (!recipientAvailable || !receipt.TryReceiveSearchReport(this, zone))) return false;
                     Phase = LocalShipmentSearchPhase.Finished;
                     bool reportsBody = SeenPorterBodyID != null && (!delegateSearch || reporting);
+                    bool reportsLiving = HasLivingSighting && (!delegateSearch || reporting);
                     Announce(zone, reportsBody ? "returns to the kitchen and reports finding the missing porter dead."
+                        : reportsLiving ? "returns to the kitchen and reports seeing the missing porter alive."
                         : "returns to the kitchen.");
                 }
                 return true;
@@ -160,6 +170,28 @@ namespace CavesOfOoo.Core
         internal static bool PreparingMeal(Entity actor, Zone zone) =>
             zone.GetReadOnlyEntitiesWithPart<KitchenBatchPart>().Any(e =>
                 e.GetPart<KitchenBatchPart>() is { Configured: true, State: "Working" } batch && batch.Worker == actor);
+
+        private void ObserveLivingPorter(Entity actor, Zone zone, LocalPorterLedgerPart order)
+        {
+            var porter = order.Worker;
+            if (HasLivingSighting || porter == actor || !LocalGatheringClaims.Alive(porter)
+                || !WorldResourceActions.Ground(porter, zone) || !porter.HasTag("Creature")
+                || porter.GetPart<LocalPorterPart>() is not { } worker || worker.ParentEntity != porter || worker.Ledger != order.ParentEntity
+                || porter.GetPart<RenderPart>() is not { Visible: true } render || render.ParentEntity != porter
+                || !CanSee(actor, zone, porter, RecognitionRange)
+                || zone.GetReadOnlyEntities().Count(e => e.ID == porter.ID) != 1) return;
+
+            SeenLivingPorterID = porter.ID;
+            SeenLivingPorterAtTick = WorldClock.CurrentTick;
+        }
+
+        private bool LivingReportPublished()
+        {
+            var receipt = Shelf?.GetPart<LocalShipmentReceiverPart>();
+            return HasLivingSighting && receipt != null && receipt.ExpectedOrderID == OrderID
+                && (receipt.Merchant == ParentEntity || receipt.IsDelegatedSearcher(ParentEntity)
+                    && receipt.SearchReportSawLivingPorter && receipt.SearchReportAtTick >= SeenLivingPorterAtTick);
+        }
 
         private bool TryObservePorterBody(Entity actor, Zone zone, LocalPorterLedgerPart order)
         {

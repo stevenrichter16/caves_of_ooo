@@ -1,3 +1,11 @@
+**A search can bring news of the living porter — November 26 UTC, 2026.**
+At the wayside kitchen, a searcher can see the exact original porter alive
+along the existing route. The cook can publish that historical observation
+at the shelf after returning or after the paid hand reports in person. The
+shipment stays overdue until the existing physical receipt. An earlier
+sighting and a later independently seen body can be distinguished.
+[Evidence](Verification/MachineSystems/WaysideLivingPorter20261126/README.md)
+
 **Causeway scale is readable and useful in the field — November 26 UTC, 2026.**
 The vent reader explains what the scale can do, including on existing
 v29 saves with spent stock. Proofing flasks put the clothing treatment
