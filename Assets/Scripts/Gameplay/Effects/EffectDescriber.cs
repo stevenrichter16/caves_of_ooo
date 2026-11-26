@@ -24,8 +24,8 @@ namespace CavesOfOoo.Core
                     return surge.StatName + " surge: +" + surge.Amount + " for " + surge.Duration + " turns; repeat doses refresh, not stack.";
                 case BrokenEffect broken:
                     return broken.PenaltyApplied
-                        ? "Broken: " + (broken.HitPenalty > 0 ? "−" + broken.HitPenalty + " melee accuracy. " : "")
-                            + (broken.ArmorPenalty > 0 ? "−" + broken.ArmorPenalty + " armor. " : "")
+                        ? "Broken: " + (broken.HitPenalty > 0 ? "-" + broken.HitPenalty + " melee accuracy. " : "")
+                            + (broken.ArmorPenalty > 0 ? "-" + broken.ArmorPenalty + " armor. " : "")
                             + "Unequip and repair with the listed material."
                         : "Broken: damaged condition.";
                 case PreparedMealEffect meal:

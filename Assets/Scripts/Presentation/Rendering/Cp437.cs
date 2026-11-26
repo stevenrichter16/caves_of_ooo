@@ -88,7 +88,8 @@ namespace CavesOfOoo.Rendering
                 // ── No CP437 equivalent: fall back to readable ASCII
                 //    rather than to '?' ──
                 case '—':
-                case '–': return '-';
+                case '–':
+                case '\u2212': return '-';
                 case '…': return '.';
                 case '“':
                 case '”': return '"';

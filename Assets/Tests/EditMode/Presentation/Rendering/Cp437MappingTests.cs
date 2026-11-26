@@ -80,6 +80,14 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual('\'', Cp437.Map('’'));
         }
 
+        [Test]
+        public void UnicodeMinusUsesTheUiHyphenGlyph()
+        {
+            char mapped = Cp437.Map('\u2212');
+            Assert.AreEqual('-', mapped);
+            Assert.AreSame(CP437TilesetGenerator.GetUiTile('-'), CP437TilesetGenerator.GetUiTile(mapped));
+        }
+
         // ════════════════════════════════════════════════════════
         // The sweep — the part that catches the NEXT one
         // ════════════════════════════════════════════════════════

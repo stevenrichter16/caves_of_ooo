@@ -9,6 +9,17 @@ namespace CavesOfOoo.Tests
     public sealed class SkillScreenTextNormalizationTests
     {
         [Test]
+        public void FitPreservesMathSignsWhenWrapping()
+        {
+            const string source = "\u2212300J requires \u226515";
+            const string normalized = "-300J requires >=15";
+            const string wrapped = "-300J\nrequires\n>=15";
+            Assert.AreEqual(normalized, SkillScreenText.Fit(source, 24, 1));
+            Assert.AreEqual(wrapped, SkillScreenText.Fit(source, 10, 3));
+            Assert.AreEqual(wrapped, SkillScreenText.Fit(normalized, 10, 3));
+        }
+
+        [Test]
         public void ConjureRainSeparatorsRemainReadableWithoutChangingAsciiOrWrapping()
         {
             Assert.IsTrue(GrimoireTooltipData.TryGet("Hydromancy_ConjureRain", out var tooltip));

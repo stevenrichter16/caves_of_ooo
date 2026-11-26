@@ -632,6 +632,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     material bill. The Peat Works trial read the matching clay requirement
     before repairing, and native controls checked intact and exact-only bills.
     [Evidence](Verification/MachineSystems/FieldRigCompatibleClay20261125/README.md)
+    The equipment reader now shows the signed accuracy or armor loss
+    consistently. Actual Sill play used the same saved broken dagger
+    before and after the correction and kept the same condition and turn.
+    [Evidence](Verification/MachineSystems/BrokenPenaltyReadout20261126/README.md)
 
 37. **Let discovery suggest connections.** A found tool names a few supported
     uses; a stock description explains its useful fractions; a recipient explains

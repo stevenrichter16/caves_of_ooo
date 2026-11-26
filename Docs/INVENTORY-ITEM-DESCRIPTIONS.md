@@ -44,6 +44,8 @@ with a clear Full details continuation when content does not fit.
 - Effects and condition: current state and attached enhancements. Separate
   conditional bonuses and on-damaging-hit attempts; retain resistance/saving
   throw qualifications. Do not present an attempted effect as guaranteed.
+  Broken equipment uses the same readable minus sign in its condition and
+  stat lines. [Rendered comparison](Verification/MachineSystems/BrokenPenaltyReadout20261126/README.md)
 - Equipment comparison: current equipment and exact per-slot changes, separate
   from the candidate's own stats. Preserve displaced multi-slot gear and natural
   attacks; no single misleading better/worse total for heterogeneous outcomes.

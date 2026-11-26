@@ -181,6 +181,21 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(ExamineDocumentBuilder.BuildInventory(dagger, player).Sections.Any(s => s.Heading == "Needs repair"));
         }
 
+        [TestCase("Dagger", "-2 melee accuracy.")]
+        [TestCase("LeatherArmor", "-1 armor.")]
+        public void BrokenEquipmentShowsAReadableSignedPenalty(string blueprint, string penalty)
+        {
+            var item = factory.CreateEntity(blueprint);
+            var player = Carry(item);
+            StringAssert.DoesNotContain("Broken:", ExamineDocumentBuilder.BuildInventory(item, player).ToPlainText());
+
+            Assert.IsTrue(item.ApplyEffect(new BrokenEffect()));
+            Assert.IsTrue(item.GetEffect<BrokenEffect>().PenaltyApplied);
+            var document = ExamineDocumentBuilder.BuildInventory(item, player);
+            var state = document.Sections.Single(section => section.Heading == "Current state");
+            StringAssert.Contains("Broken: " + penalty, state.Text);
+        }
+
         [Test] public void BrokenObjectWithNoApplicableRecipeShowsNoInventedBill()
         {
             var item = Plain();

@@ -1,3 +1,11 @@
+**Broken equipment shows its signed penalty — November 26 UTC, 2026.**
+Fresh Continues from Sill tick 160 used the same carried broken dagger.
+The native F1 view changed `?2 melee accuracy` to `-2 melee accuracy`
+at the same tick and on the same line. Both captures differ only within
+the sign glyph. All 241 focused native cases passed, including the old
+UI glyph sweep. The whole regression has yet to be rerun on this change.
+[Evidence](Verification/MachineSystems/BrokenPenaltyReadout20261126/README.md)
+
 **Reclaimed liquid oil can power a second brine batch — November 26 UTC, 2026.**
 At the same camp arrival, the still refused a second batch at four fuel.
 Three previously earned oil let the exact hearth pay for it. One timber
