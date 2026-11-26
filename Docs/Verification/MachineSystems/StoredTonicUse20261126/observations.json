@@ -1,0 +1,320 @@
+{
+  "archives": {
+    "source": "/private/tmp/coo-inventory-icons-migrated-20261126/a150199855004a7cb295b81d72807ee3",
+    "direct": "/private/tmp/coo-stored-tonic-direct-20261126/a150199855004a7cb295b81d72807ee3",
+    "control": "/private/tmp/coo-stored-tonic-control-20261126/a150199855004a7cb295b81d72807ee3"
+  },
+  "native": {
+    "red": "stored_tonic_ledger_red_20261126",
+    "missingActionFailures": 2,
+    "mutationRed": "stored_tonic_ledger_adversarial_red_20261126b",
+    "mutationFailures": 4,
+    "green": "stored_tonic_ledger_final_20261126",
+    "passed": 606,
+    "failed": 0,
+    "skipped": 0,
+    "compilerErrors": 0
+  },
+  "directBefore": {
+    "raw": {
+      "tick": 160,
+      "hp": 22,
+      "weight": 38,
+      "isOpen": false,
+      "contents": [
+        {
+          "ID": "2713",
+          "BlueprintName": "DriedMeat",
+          "units": 2
+        },
+        {
+          "ID": "2712",
+          "BlueprintName": "HealingTonic",
+          "units": 2
+        }
+      ],
+      "loose": [],
+      "tonic": {
+        "ID": "2712",
+        "units": 2,
+        "owner": "2714",
+        "txt": "field meds",
+        "color": 4
+      },
+      "logs": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Perret Sedgefold, villager [left hand: fist] hits soot gremlin in the left arm for 2 damage! (2 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Perret Sedgefold, villager [left hand: fist] misses soot gremlin!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "soot gremlin [left hand: dagger] hits Perret Sedgefold, villager in the right hand for 2 damage! (4 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You buy field satchel for 19 drams."
+      ]
+    },
+    "choices": [
+      {
+        "i": 0,
+        "label": "Drink healing tonic (x2) (one action)",
+        "bp": "HealingTonic"
+      },
+      {
+        "i": 1,
+        "label": "Take to pack",
+        "bp": null
+      },
+      {
+        "i": 2,
+        "label": "Label item",
+        "bp": null
+      },
+      {
+        "i": 3,
+        "label": "Back to pack",
+        "bp": null
+      }
+    ]
+  },
+  "directAfter": {
+    "tick": 170,
+    "hp": 40,
+    "weight": 37,
+    "isOpen": false,
+    "contents": [
+      {
+        "ID": "2713",
+        "BlueprintName": "DriedMeat",
+        "units": 2
+      },
+      {
+        "ID": "2712",
+        "BlueprintName": "HealingTonic",
+        "units": 1
+      }
+    ],
+    "loose": [],
+    "tonic": {
+      "ID": "2712",
+      "units": 1,
+      "owner": "2714",
+      "txt": "field meds",
+      "color": 4
+    },
+    "logs": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You buy field satchel for 19 drams.",
+      "You heal 18 HP.",
+      "You drink healing tonic.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "soot gremlin [left hand: dagger] hits Perret Sedgefold, villager in the right hand for 2 damage! (2 HP remaining)",
+      "Perret Sedgefold, villager is confused!",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "directFresh": {
+    "tick": 170,
+    "hp": 40,
+    "weight": 37,
+    "isOpen": false,
+    "contents": [
+      {
+        "ID": "2713",
+        "BlueprintName": "DriedMeat",
+        "units": 2
+      },
+      {
+        "ID": "2712",
+        "BlueprintName": "HealingTonic",
+        "units": 1
+      }
+    ],
+    "loose": [],
+    "tonic": {
+      "ID": "2712",
+      "units": 1,
+      "owner": "2714",
+      "txt": "field meds",
+      "color": 4
+    },
+    "logs": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You buy field satchel for 19 drams.",
+      "You heal 18 HP.",
+      "You drink healing tonic.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "soot gremlin [left hand: dagger] hits Perret Sedgefold, villager in the right hand for 2 damage! (2 HP remaining)",
+      "Perret Sedgefold, villager is confused!",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "controlBefore": {
+    "raw": {
+      "tick": 160,
+      "hp": 22,
+      "weight": 38,
+      "isOpen": false,
+      "contents": [
+        {
+          "ID": "2713",
+          "BlueprintName": "DriedMeat",
+          "units": 2
+        },
+        {
+          "ID": "2712",
+          "BlueprintName": "HealingTonic",
+          "units": 2
+        }
+      ],
+      "loose": [],
+      "tonic": {
+        "ID": "2712",
+        "units": 2,
+        "owner": "2714",
+        "txt": "field meds",
+        "color": 4
+      },
+      "logs": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Perret Sedgefold, villager [left hand: fist] hits soot gremlin in the left arm for 2 damage! (2 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Perret Sedgefold, villager [left hand: fist] misses soot gremlin!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "soot gremlin [left hand: dagger] hits Perret Sedgefold, villager in the right hand for 2 damage! (4 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You buy field satchel for 19 drams."
+      ]
+    },
+    "choices": [
+      {
+        "i": 0,
+        "label": "Drink healing tonic (x2) (one action)",
+        "bp": "HealingTonic"
+      },
+      {
+        "i": 1,
+        "label": "Take to pack",
+        "bp": null
+      },
+      {
+        "i": 2,
+        "label": "Label item",
+        "bp": null
+      },
+      {
+        "i": 3,
+        "label": "Back to pack",
+        "bp": null
+      }
+    ]
+  },
+  "controlUnpacked": {
+    "tick": 160,
+    "hp": 22,
+    "weight": 38,
+    "isOpen": true,
+    "contents": [
+      {
+        "ID": "2713",
+        "BlueprintName": "DriedMeat",
+        "units": 2
+      }
+    ],
+    "loose": [
+      "2712"
+    ],
+    "tonic": {
+      "ID": "2712",
+      "units": 2,
+      "owner": "2705",
+      "txt": "field meds",
+      "color": 4
+    },
+    "logs": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Perret Sedgefold, villager [left hand: fist] hits soot gremlin in the left arm for 2 damage! (2 HP remaining)",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Perret Sedgefold, villager [left hand: fist] misses soot gremlin!",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "soot gremlin [left hand: dagger] hits Perret Sedgefold, villager in the right hand for 2 damage! (4 HP remaining)",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You buy field satchel for 19 drams."
+    ]
+  },
+  "controlAfter": {
+    "tick": 170,
+    "hp": 39,
+    "weight": 37,
+    "isOpen": false,
+    "contents": [
+      {
+        "ID": "2713",
+        "BlueprintName": "DriedMeat",
+        "units": 2
+      }
+    ],
+    "loose": [
+      "2712"
+    ],
+    "tonic": {
+      "ID": "2712",
+      "units": 1,
+      "owner": "2705",
+      "txt": "field meds",
+      "color": 4
+    },
+    "logs": [
+      "You buy field satchel for 19 drams.",
+      "You heal 17 HP.",
+      "You drink healing tonic.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Perret Sedgefold, villager is killed by soot gremlin!",
+      "soot gremlin [left hand: dagger] hits Perret Sedgefold, villager in the head for 4 damage!",
+      "Perret Sedgefold, villager is confused!",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "controlFresh": {
+    "tick": 170,
+    "hp": 39,
+    "weight": 37,
+    "isOpen": false,
+    "contents": [
+      {
+        "ID": "2713",
+        "BlueprintName": "DriedMeat",
+        "units": 2
+      }
+    ],
+    "loose": [
+      "2712"
+    ],
+    "tonic": {
+      "ID": "2712",
+      "units": 1,
+      "owner": "2705",
+      "txt": "field meds",
+      "color": 4
+    },
+    "logs": [
+      "You buy field satchel for 19 drams.",
+      "You heal 17 HP.",
+      "You drink healing tonic.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Perret Sedgefold, villager is killed by soot gremlin!",
+      "soot gremlin [left hand: dagger] hits Perret Sedgefold, villager in the head for 4 damage!",
+      "Perret Sedgefold, villager is confused!",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "restored": {
+    "playing": false,
+    "root": null,
+    "clean": true,
+    "seed": 0,
+    "devices": [
+      "Keyboard",
+      "Mouse",
+      "Pen"
+    ]
+  }
+}

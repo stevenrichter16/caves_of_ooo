@@ -118,12 +118,34 @@ namespace CavesOfOoo.Rendering
             var zone = CurrentZone;
             var item = row.Item.Item;
             _ledgerCommandTitle = item.GetDisplayName() + " in " + row.StorageOwner.GetDisplayName();
+            var tonic = CarriedTonicUse.Offer(actor, row.StorageOwner, item, zone);
+            if (tonic != null)
+                AddLedgerCommand(tonic.Label, () => UseStoredTonic(actor, zone, row, tonic), item);
             if (CarriedStorage.CanWithdraw(actor, row.StorageOwner, item, zone, out _))
                 AddLedgerCommand("Take to pack", () => UseStoredItemAction(actor, zone, row, label: false));
             if (StorageLabels.CanEdit(actor, item))
                 AddLedgerCommand("Label item", () => UseStoredItemAction(actor, zone, row, label: true));
             AddLedgerCommand("Back to pack", () => { });
             _ledgerCommandsOpen = true;
+            Render();
+        }
+
+        void UseStoredTonic(Entity actor, Zone zone, DisplayRow row, CarriedTonicUse tonic)
+        {
+            if (PlayerEntity == actor && CurrentZone == zone && CurrentStorageChild(row))
+            {
+                var result = tonic.Execute();
+                if (result.Success)
+                {
+                    _pendingEverydayTurn = true;
+                    _closingActivationKey = KeyCode.None;
+                    Close();
+                    return;
+                }
+                SetActionFailure(result.ErrorMessage);
+            }
+            else SetActionFailure("That storage selection changed.");
+            Rebuild();
             Render();
         }
 

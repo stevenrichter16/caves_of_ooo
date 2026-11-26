@@ -74,9 +74,9 @@ effect on game time or saved custody.
 
 The parent row has a separate item-action button. Keyboard and controller
 item actions offer Expand or Collapse. An accessible child can be labeled
-where it is or moved into the pack with its own Take action. Other pack
-actions become available once the item is in the normal pack list. Both
-click and command selection recheck the physical vessel and child.
+where it is or moved into the pack with its own Take action. Eligible
+healing tonics can also be used directly. Click and command selection
+recheck the physical vessel and child.
 
 Every ordinary item directly held or equipped by the player can carry
 the same cosmetic data. Direct contents of an accessible carried vessel
@@ -109,3 +109,21 @@ is a player preference, enabled by default. An icon label made in an
 earlier build becomes a simple swatch of the same color. Loading preserves
 each physical entry and its quantity. Entries with equal swatches can
 merge through ordinary inventory actions.
+
+## Direct tonic use
+
+An expanded slot offers the existing Drink or Apply verb for an
+eligible simple healing tonic. Taking it out first remains available.
+Both methods use one action and the ordinary tonic effect. Direct use
+leaves a partial stack in the same slot with its label. The last unit
+leaves the exact container and there is no temporary pack transfer.
+
+Use the existing carried-storage checks and the ordinary inventory
+action events. Bind the quote to the actor, physical vessel, exact
+child, current quantity and eligible tonic payload. Check the same
+custody after listeners run. On failure restore only the action's own
+unit, if it still belongs to the original source. Apply the ordinary
+payload only after payment commits. An open read or canceled chooser
+spends no time. The existing labeled two-dose stack in Sill worked
+in matched direct and unpack-and-drink branches.
+[Native evidence](Verification/MachineSystems/StoredTonicUse20261126/README.md)

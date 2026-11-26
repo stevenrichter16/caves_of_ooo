@@ -12,6 +12,7 @@ namespace CavesOfOoo.Core
     /// </summary>
     public class TonicPart : Part
     {
+        internal const string ApplyCommand = "ApplyTonic";
         public override string Name => "Tonic";
 
         /// <summary>Effect tag applied to the actor (e.g., "Regeneration", "SpeedBoost").</summary>
@@ -42,9 +43,9 @@ namespace CavesOfOoo.Core
                     || actor.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true))
                 {
                     if (Drink)
-                        actions.AddAction("Drink", "drink", "ApplyTonic", 'd', 20);
+                        actions.AddAction("Drink", "drink", ApplyCommand, 'd', 20);
                     else
-                        actions.AddAction("Apply", "apply", "ApplyTonic", 'a', 20);
+                        actions.AddAction("Apply", "apply", ApplyCommand, 'a', 20);
                 }
                 return true;
             }
@@ -52,7 +53,7 @@ namespace CavesOfOoo.Core
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
-                if (command != "ApplyTonic") return true;
+                if (command != ApplyCommand) return true;
 
                 var actor = e.GetParameter<Entity>("Actor");
                 if (actor == null) return true;
@@ -108,8 +109,16 @@ namespace CavesOfOoo.Core
             if (consumeItem && !InventoryPart.TryConsumeOne(user, ParentEntity))
                 return false;
 
-            rng = rng ?? new Random();
+            ApplyPayload(target, user, zone, rng ?? new Random(), consumeItem, showUseMessage, transaction);
+            return true;
+        }
 
+        internal void ApplyPaidStoredUse(Entity actor, Zone zone)
+            => ApplyPayload(actor, actor, zone, new Random(), true, true, null);
+
+        private void ApplyPayload(Entity target, Entity user, Zone zone, Random rng, bool consumed,
+            bool showUseMessage, InventoryTransaction transaction)
+        {
             ApplyHealing(target, rng);
 
             if (!string.IsNullOrEmpty(StatBoost))
@@ -139,8 +148,7 @@ namespace CavesOfOoo.Core
             }
 
             CavesOfOoo.Diagnostics.Diag.Record("event", "TonicApplied", actor: user, target: target,
-                payload: new { item = ParentEntity.ID, consumed = consumeItem, healing = Healing, statBoost = StatBoost });
-            return true;
+                payload: new { item = ParentEntity.ID, consumed, healing = Healing, statBoost = StatBoost });
         }
 
         private void ApplyHealing(Entity target, Random rng)

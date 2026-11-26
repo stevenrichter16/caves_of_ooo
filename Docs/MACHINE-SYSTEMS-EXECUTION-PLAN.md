@@ -27,6 +27,14 @@ ordinary shelves. The patchbearer encounter left 15 HP. The final
 connected native run passed 163 cases.
 [Evidence](Verification/MachineSystems/NorthFairWeatherDrying20261126/README.md)
 
+**A satchel supplies an ordinary healing dose in one action.** Both
+private Sill forks began with the same labeled two-dose stack. Direct
+use kept the remainder in the satchel. The free unpack and ordinary
+Drink control kept the remainder loose. Both spent one action,
+reduced carried weight by one pound and retained the label on fresh
+Continue. Six hundred and six connected native tests passed.
+[Evidence](Verification/MachineSystems/StoredTonicUse20261126/README.md)
+
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe
 measures to actual elders. One showed the missing second measure and

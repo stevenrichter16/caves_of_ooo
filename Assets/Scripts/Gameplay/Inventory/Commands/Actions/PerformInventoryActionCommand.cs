@@ -6,6 +6,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
     {
         private readonly Entity _item;
         private readonly string _actionCommand;
+        private readonly CarriedTonicUse _storedTonic;
 
         public string Name => "PerformInventoryAction";
 
@@ -13,6 +14,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             _item = item;
             _actionCommand = actionCommand;
+        }
+
+        internal PerformInventoryActionCommand(CarriedTonicUse storedTonic)
+            : this(storedTonic.Item, TonicPart.ApplyCommand)
+        {
+            _storedTonic = storedTonic;
         }
 
         public InventoryValidationResult Validate(InventoryContext context)
@@ -50,13 +57,19 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "The item's carried and equipped locations disagree.");
             }
 
-            return InventoryValidationResult.Valid();
+            return _storedTonic == null || _storedTonic.CanPay(context)
+                ? InventoryValidationResult.Valid()
+                : InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
+                    "The selected tonic or its storage changed.");
         }
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
             var actor = context.Actor;
             var zone = context.Zone;
+            if (_storedTonic != null && !_storedTonic.TryClaim(context, transaction))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed,
+                    "The selected tonic or its storage is already in use.");
 
             // Native water commands own quantity/effect deltas. A skin action
             // moves no custody; blanket stats/item restoration would erase an
@@ -78,7 +91,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
                         && notification.NotifyAfterCommit(_actionCommand);
                     break;
                 }
-            var snapshot = skinReceipt || coolingReceipt || bakeReceipt || wellFlaskReceipt || rainReceipt || oilFuelReceipt || partReceipt ? null : CaptureSnapshot(context, _item, wellStatReceipt);
+            var snapshot = _storedTonic != null || skinReceipt || coolingReceipt || bakeReceipt
+                || wellFlaskReceipt || rainReceipt || oilFuelReceipt || partReceipt
+                ? null : CaptureSnapshot(context, _item, wellStatReceipt);
             if (snapshot != null)
             {
                 transaction.Do(
@@ -102,7 +117,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // They retain the same before/after veto and transaction boundary.
             bool nativeUtility = CombatUtilityActions.IsCommand(_actionCommand);
             bool handled;
-            if (nativeUtility)
+            if (_storedTonic != null)
+                handled = _storedTonic.TryStage(context, transaction);
+            else if (nativeUtility)
                 handled = CombatUtilityActions.TryAct(actor, _item, zone, _actionCommand, transaction);
             else
             {

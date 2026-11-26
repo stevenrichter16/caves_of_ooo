@@ -256,6 +256,11 @@ cross-seed comparisons remain open.
     same purse while the optional batch pan remained broken. The native shops
     and public fields supplied both routes.
     [Evidence](Verification/MachineSystems/KitchenOrdinaryContrast20261125/README.md)
+    A carried satchel can supply one exact ordinary healing dose
+    directly from its expanded row. Taking it into the loose pack
+    first remains free and both routes spend one turn to drink.
+    The labeled remainder keeps its chosen custody on Continue.
+    [Evidence](Verification/MachineSystems/StoredTonicUse20261126/README.md)
     At Sella’s shelter the carried pad and bandage treated the ordinary
     conditions after the player skipped the bench project. The prepared
     option used one application after up-front repairs and payment.

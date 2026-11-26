@@ -83,7 +83,7 @@ namespace CavesOfOoo.Core
         public static bool TryWithdraw(Entity actor, Entity vessel, Entity item, Zone zone, out string failure)
             => Move(actor, vessel, item, zone, false, out failure);
 
-        static bool ActorCurrent(Entity actor, Zone zone)
+        internal static bool ActorCurrent(Entity actor, Zone zone)
         {
             var manager = WorldLocationContext.For(zone);
             return PreparationActions.CurrentActor(actor, zone)
