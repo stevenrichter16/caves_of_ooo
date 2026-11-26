@@ -3,7 +3,7 @@
   "historicalSHA256": "5a4df3f02efc485324708f3db6fae2b8676a31a0fdb8dea8662da1ba1ee05172",
   "totalCasesCovered": 40376,
   "wholeFixtures": 2074,
-  "note": "Native split invocation is still unverified. Future discoveries must match exactly one regex; match all planned current cases and reject duplicates before claiming coverage. These partitions do not test global state carried across process boundaries.",
+  "note": "Require each discovered name to match exactly one filter. Reject missing and duplicate names in each result. Partitions do not test global state carried across process boundaries.",
   "groups": {
     "f-to-h": {
       "regex": "^CavesOfOoo\\.Tests\\.[F-H]",
@@ -90,5 +90,29 @@
     "exactExpectedMembership": true,
     "singleFixtureSourceChange": "Assets/Tests/EditMode/Gameplay/World/AtomicClayBakingTests.cs",
     "correctedFixtureSHA256": "a98d9e9fad6bfb26993bb168194ee232a1132fb710a3cd800dd6a0794c35a02b"
+  },
+  "secondNativeBand": {
+    "scope": "b-to-e",
+    "cases": 9373,
+    "passed": 9342,
+    "failed": 31,
+    "skipped": 0,
+    "exactExpectedMembership": true,
+    "matchingBaselineFailures": 22,
+    "previousBaselineFailuresNowPassing": 11,
+    "xml": "/Users/steven/coo-verification/results/current_partition_b_to_e_69ae7ee85_20261126.xml",
+    "sha256": "190b6d3aa3daa3dcab482c946b6a709720b3fae4c42fe3a2f35ef86c81346beb",
+    "additionalFailureIsolation": {
+      "total": 9,
+      "passed": 3,
+      "failed": 6,
+      "xml": "/Users/steven/coo-verification/results/current_partition_b_to_e_new_failure_isolation_20261126.xml",
+      "sha256": "63a368f4345d3a08ec095b6e8ff0dbb3ead81846aac41cdb8c83f773c4a00258",
+      "restoredRepositoryInputs": [
+        "Docs/Verification/DensityCompletion/SpreadBiome/connectivity-source.json",
+        "Docs/Verification/DensityCompletion/Loot/census-before.json.gz",
+        "Lore/Codex/"
+      ]
+    }
   }
 }

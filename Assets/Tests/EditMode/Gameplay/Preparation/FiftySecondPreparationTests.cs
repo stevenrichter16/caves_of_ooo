@@ -105,14 +105,15 @@ namespace CavesOfOoo.Tests
             Assert.True(Act(saved, "SalvageForgedWeapon")); Assert.AreEqual(1, PackCount("SteelBladeComponent")); Assert.AreEqual(1, PackCount("OakHaftComponent"));
         }
 
-        [Test]
-        public void ACarriedDaggerRecoversTheRecordedPeatMalletHeadAwayFromAForge()
+        [TestCase("LeatherBindingComponent", "OakHaftComponent")]
+        [TestCase("PlainCordBindingComponent", "FieldHaftComponent")]
+        public void ACarriedDaggerRecoversTheRecordedPeatMalletHeadAwayFromAForge(string binding, string haft)
         {
             const string headBlueprint = "PeatMalletHeadComponent";
             var head = Stock(headBlueprint);
             var expected = head.GetPart<WeaponComponentPart>();
-            Assert.True(WeaponForgingService.TryForge(Actor, Factory, head, Stock("OakHaftComponent"),
-                Stock("LeatherBindingComponent"), out var weapon, out var reason), reason);
+            Assert.True(WeaponForgingService.TryForge(Actor, Factory, head, Stock(haft),
+                Stock(binding), out var weapon, out var reason), reason);
             Assert.AreEqual(headBlueprint, weapon.GetPart<WeaponAssemblyPart>().BladeBlueprint);
             var dagger = Stock("Dagger");
             var daggerParts = dagger.Parts.ToArray();
@@ -143,6 +144,21 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(Actor, dagger.GetPart<PhysicsPart>().InInventory);
             Assert.False(Act(weapon, cut.Command));
             Assert.AreEqual(1, PackCount(headBlueprint));
+        }
+
+        [Test]
+        public void AnAdvancedLashingStillNeedsTheExistingForgeRecovery()
+        {
+            Assert.True(WeaponForgingService.TryForge(Actor, Factory, Stock("PeatMalletHeadComponent"),
+                Stock("FieldHaftComponent"), Stock("GuardLashingComponent"), out var weapon, out var reason), reason);
+            Stock("Dagger");
+            Assert.IsFalse(Actions(weapon).Any(row => IsFieldRecovery(row.Command)));
+
+            Forge();
+            Assert.IsTrue(Act(weapon, "SalvageForgedWeapon"));
+            Assert.AreEqual(1, PackCount("PeatMalletHeadComponent"));
+            Assert.AreEqual(1, PackCount("FieldHaftComponent"));
+            Assert.AreEqual(0, PackCount("GuardLashingComponent"));
         }
 
         [Test]

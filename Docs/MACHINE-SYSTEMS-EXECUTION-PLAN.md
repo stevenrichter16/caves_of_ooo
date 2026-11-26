@@ -1,9 +1,23 @@
-**Current regression discovery and first filter — November 26 UTC, 2026.**
+**Spent vents and recovered plain cord assemblies — November 26 UTC, 2026.**
+Sodden's exhausted vent now tells the player who shares its catches and
+when they refill. Selecting the unavailable option kept the stock, both
+vessels and the clock, including on fresh Continue. At Peat Works the
+player cut the exact knotflax-bound mallet they had rebuilt. One action
+returned its head with the cutter and repair clay intact. Both routes
+used already earned saves. All 136 connected native cases passed. The
+pack's forge choice still needs a readiness cue when the station is
+unusable. The current Mac package predates these two changes.
+[Playtests, captures and receipts](Verification/MachineSystems/VentAndCord20261126/README.md)
+
+**Current regression discovery and first two filters — November 26 UTC, 2026.**
 Unity found 42,389 case names. The first filter matched all 527
 expected cases and isolated two clay fixture failures. The tests now
 exercise ordinary clay in their merge cases, with the original
-creation-callback cases retained. The same 527 then passed. Eight
-filters and the whole-process regression remain open.
+creation-callback cases retained. The same 527 then passed. B–E ran
+all 9,373 expected names. Nine failures differ from the old baseline.
+Three pass with their original files present. Four need fixture fixes
+and two corroborate one family of missing NPC level/experience data.
+Seven filters and the whole-process verdict remain open.
 [Discovery and native receipts](Verification/MachineSystems/CurrentNativeRegression69AE7EE85/README.md)
 
 **The Mac package with Wayside testimony completed startup — November 26 UTC, 2026.**

@@ -60,6 +60,11 @@ well or spring. Actual Sodden catches and a Gleaners garden watering join
 that supply to ordinary crop growth, with both stages saved and reloaded.
 [Evidence](Verification/MachineSystems/CondenserWaterVessels20261126/README.md)
 
+At a spent vent, the condenser now explains the shared supply and its
+daily recovery. The Sodden menu and a fresh Continue showed that state
+with both vessels still below capacity.
+[Spent supply playtest](Verification/MachineSystems/VentAndCord20261126/README.md)
+
 **A hand sieve can clean gathered knotflax heads away from a frame — November 26 UTC, 2026.**
 The existing exact bundle can yield one plantable seed through a carried
 sieve in one action. The player keeps the sieve and discards the chaff.
@@ -580,15 +585,16 @@ acceptance gates remain open.
 [Delivery receipt](Verification/MachineSystems/MacCandidate7ECEE70B3/README.md)
 
 **Portable forged-head recovery — November 26 UTC, 2026.**
-An ordinary leather-bound forged assembly can be cut apart with a sound
-carried or equipped cutting tool. One action returns the canonical recorded
-head and spends the assembly, haft, binding and improvements. A working
-forge retains its head-and-haft recovery. An actual Peat Works player used
-the field head for a newly equipped mallet made with one local timber and
-one local cord. The shared cutter and physical crafting rules apply away
-from the station. The complete reclamation forge remains a separate
-dependency and acceptance gate.
-[Evidence](Verification/MachineSystems/PeatFieldHead20261126/README.md)
+Ordinary leather-bound and plain knotflax-bound forged assemblies can be
+cut apart with a sound carried or equipped cutting tool. One action
+returns the canonical recorded head and spends the assembly, haft, binding
+and improvements. A working forge retains its head-and-haft recovery.
+At Peat Works the recovered head went into an equipped mallet made with
+local timber and cord. The player later cut that same rebuilt weapon,
+keeping the dagger and prepared repair clay. The complete reclamation
+forge remains a separate dependency and acceptance gate.
+[Initial route](Verification/MachineSystems/PeatFieldHead20261126/README.md)
+[Rebuilt mallet playtest](Verification/MachineSystems/VentAndCord20261126/README.md)
 
 **An earned Stump catch supplies an ordinary meal — November 26 UTC, 2026.**
 Lake perch still serves as a raw meal. The existing Cook action can trade one

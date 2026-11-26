@@ -129,3 +129,14 @@ NEXT publish exact owned implementation/records and verify upstream, then curren
 Accepted implementation1237eae9f pushed and verified against remote main. Current Mac same source completed actual recovery→point/awayhaft→ordinarybindingbarter→existingassembly/equip→worldmap/reentry→F5/freshContinue3230HP40 at56,12 with equippedresult/2drams/28weight. Independent delivery0remainingP1/P2,186packagefiles/665effectivepins and60500snapshotobjects/84prior dirtyfiles/normalstates restored. See [Batch1237EAE](Verification/MachineSystems/Batch1237EAE/README.md); excluded olderAXrelaunch and shutdown diagnostics disclosed. NoLinux/Deck/FPSclaim.
 
 Next regionalchain qualification is pending source/design review, not implemented. Source correction: Tepuibone already has shape_head into existingTepuiboneHeadComponent, alongside ordinary timber/cord recipes; do not add a duplicate or claim it as new processing. Potential hide/stave provenance loops require genuine rawmaterial/source/consumer/cost/alternatives qualification first. Do not implement from candidate prose.
+
+## Field recovery from the rebuilt Peat Works mallet
+
+The ordinary field cut now admits the existing plain knotflax binding as
+well as leather. Unequip the weapon and select it with a separate sound
+cutter. One action releases one ordinary recorded head. It spends the
+assembly, haft, binding and enhancements. A working forge can also save
+the haft. Advanced lashings keep their existing forge route. The actual
+Peat Works trial cut the exact earned cord-bound mallet and kept the cutter
+and both measures of repair clay through a fresh Continue.
+[Peat Works playtest](Verification/MachineSystems/VentAndCord20261126/README.md)

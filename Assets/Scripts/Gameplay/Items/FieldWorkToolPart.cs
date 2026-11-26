@@ -48,7 +48,7 @@ namespace CavesOfOoo.Core
             var mid=zone.GetCell(origin.X+Math.Sign(dx),origin.Y+Math.Sign(dy));
             return Visible(mid) && !mid.BlocksMovement();
         }
-        IEnumerable<Quote> Choices(Entity actor,Zone zone)
+        IEnumerable<Quote> Choices(Entity actor,Zone zone,InventoryActionList rows)
         {
             if(!Usable(actor,zone))yield break;
             var owner=ParentEntity;var origin=zone.GetEntityCell(actor);var pack=actor.GetPart<InventoryPart>();
@@ -138,8 +138,20 @@ namespace CavesOfOoo.Core
                     var element=ProofingSources.ElementOf(vent);var holder=ProofingSources.StockHolder(zone,vent,element);if(holder==null)continue;
                     var stock=holder.GetPart<SourceStockPart>();int now=TurnManager.Active?.TickCount??0;
                     int capacity=stock?.Capacity??SourceStockPart.CapacityFor(zone,holder),available=stock?.AvailableAt(now)??capacity;
-                    if(capacity<SourceStockPart.MinCapacity || capacity>SourceStockPart.MaxCapacity || available<1 || available>capacity)continue;
-                    var ventIdentity=Identity(vent);var holderIdentity=Identity(holder);var ventCell=zone.GetEntityCell(vent);var holderCell=zone.GetEntityCell(holder);
+                    if(capacity<SourceStockPart.MinCapacity || capacity>SourceStockPart.MaxCapacity || available<0 || available>capacity)continue;
+                    var ventCell=zone.GetEntityCell(vent);
+                    if (available == 0)
+                    {
+                        if (stock?.ParentEntity == holder && stock.Available == 0 && stock.LastTick >= 0 && stock.LastTick <= now
+                            && holder.Parts.Count(part => part is SourceStockPart) == 1)
+                        {
+                            rows.AddDisabled("FieldWorkTool", $"condense water at {ventCell.X},{ventCell.Y}", "vent-spent",
+                                "The vent is out of catches. Scrapers and trays share this supply. It recovers one catch per game day.", '\0', 19)
+                                .AtCell(ventCell.X, ventCell.Y);
+                        }
+                        continue;
+                    }
+                    var ventIdentity=Identity(vent);var holderIdentity=Identity(holder);var holderCell=zone.GetEntityCell(holder);
                     int raw=stock?.Available??0,last=stock?.LastTick??0;SourceStockPart paidStock=null;
                     Func<bool> ventAfter=null,holderAfter=null;int paidLast=0;
                     bool SourceBefore()=>ventIdentity() && holderIdentity() && Steam(actor,vent,zone) && zone.GetEntityCell(vent)==ventCell
@@ -204,7 +216,7 @@ namespace CavesOfOoo.Core
         {
             if(rows==null)return;Menu menu=null;Quote[] previous=Array.Empty<Quote>();
             if(publish){menu=Menus.GetValue(ParentEntity,_=>new Menu());previous=menu.Quotes.Values.ToArray();menu.Quotes.Clear();}
-            foreach(var quote in Choices(actor,zone))
+            foreach(var quote in Choices(actor,zone,rows))
             {
                 if(!quote.Before())continue;var offered=quote;
                 if(publish)

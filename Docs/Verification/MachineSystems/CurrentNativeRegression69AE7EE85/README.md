@@ -21,7 +21,22 @@ file. The previous untouched 525-pass result and isolated repeat
 remain available. Production behavior and the Mac runtime did not
 change in this follow-up.
 
+The second filter ran all 9,373 expected B–E cases, with 9,342 passing
+and 31 failing. Twenty-two failures match the historical baseline at
+the same case names. Eleven previously failing names now pass. All
+nine additional failures ran again in an isolated filter. Three passed
+after the scratch clone received the pinned Codex sources, connectivity
+sample and loot census input. These were missing files in the clone.
+
+Six fail again. Four checks need updated fixtures for the kitchen clock
+guard, the armor labels, description length, and the alternative timber
+repair bill. Two related checks found missing level and experience data
+on four new laborer blueprints. The independent reviews identified the
+intended clock rejection and the known presentation changes in source.
+The affected layout cleanup still needs a passing fixture. The authored
+NPC data needs a separate correction and native proof.
+
 Keep later filters on the same pinned clone and compare actual names
-to the discovery list. Eight groups remain. Even after those complete,
-the partitioned run and the whole-process result have separate gates.
+to the discovery list. Seven groups remain. The partitioned suite and
+the whole process have separate gates.
 [Case counts and receipts](coverage.json)

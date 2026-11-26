@@ -71,9 +71,12 @@ At Peat Works, #11/#13/#14 now have two distinct recovery choices from the
 same earned mallet and a useful field outcome. A sound cutter recovers the
 head while a usable forge recovers the head and haft. The player kept the
 field head through Continue, prepared local timber and cord, and assembled
-and equipped a new mallet away from the rig. The broader recovery and
-reclamation forge gates remain open.
-[Field recovery playtest](Verification/MachineSystems/PeatFieldHead20261126/README.md)
+and equipped a new mallet away from the rig. A later field cut on that
+same plain knotflax assembly returned one head and kept both clay measures
+and the cutter through Continue. The broader recovery and reclamation
+forge gates remain open.
+[Initial field recovery](Verification/MachineSystems/PeatFieldHead20261126/README.md)
+[Rebuilt mallet playtest](Verification/MachineSystems/VentAndCord20261126/README.md)
 
 For #11/#13/#14, the loose rough field haft now has another use at a
 visible mechanism that accepts a wooden wedge. The existing plain
@@ -817,6 +820,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     The ordinary route used one catch on a planted drawgourd and
     kept the second vessel's drink through fresh Continue.
     [Evidence](Verification/MachineSystems/CondenserWaterVessels20261126/README.md)
+    A spent vent now names the shared supply and its game-day renewal.
+    Selecting the unavailable choice and reloading kept the same vessels,
+    stock and turn. This gives #36–37 another observed reason for a
+    missing opportunity under ordinary play.
+    [Spent supply playtest](Verification/MachineSystems/VentAndCord20261126/README.md)
     A version 29 Causeway surface vent and its local cave stain made an
     optional cue visible on a crossing that kept its six-step stair
     approach. The two existing portable tools compete for the same
@@ -903,7 +911,7 @@ contrasting routes, builds and regions. Record the concrete evidence behind
 each finding and implement the most valuable improvements in connected slices.
 
 - **Depth benchmark.** Use the Wayside porter playtest as a reference.
-  The player reported a witnessed location, Orven walked there, and the
+  The player reported a witnessed location, Orven checked the spot, and the
   search resumed with the effort already spent still counted. The actual
   parcel and handover remained separate. Look for comparable follow-through
   wherever it fits each requirement. Ask what a player can notice and do,

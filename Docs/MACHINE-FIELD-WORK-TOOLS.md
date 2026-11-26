@@ -33,6 +33,15 @@ ordinary ignition, direct root use, wells, pools, carried water and distillation
    Admission follows the vent's declared steady heat/water source, not the
    incidental ambient cooling of its ThermalPart. It does not need reheating.
 
+The spent Sodden vent now explains its shared catch supply in the pack
+and at the visible vent. The message names scrapers and trays and says
+that one catch returns each game day. Reading follows the existing saved
+stock time. A different ready vent still offers its own action. In actual
+Sodden play, selecting the unavailable action and reloading kept both
+vessels at 2/3 and the shared supply at 0/4. The daily boundary and the
+other vent were verified in EditMode.
+[Spent vent playtest](Verification/MachineSystems/VentAndCord20261126/README.md)
+
 Proposed construction reuses supervised MaterialProcess at a cold forge: one
 iron spike plus two FireClay for the nozzle; one spike plus one KnotflaxCord for
 the rod; one spike plus one FireClay for the condenser. Each yields one reusable

@@ -92,7 +92,6 @@ namespace CavesOfOoo.Core
             readonly int weight, hitpoints;
             readonly MaterialCuttingWorkReceipt cutter;
             readonly MaterialProcessTemplate headTemplate, haftTemplate, bindingTemplate;
-            const string LeatherBinding = "LeatherBindingComponent";
 
             FieldQuote(Entity actor, Entity weapon, Zone zone, EntityFactory factory, MaterialCuttingWorkReceipt cutter,
                 MaterialProcessTemplate headTemplate, MaterialProcessTemplate haftTemplate, MaterialProcessTemplate bindingTemplate)
@@ -123,7 +122,8 @@ namespace CavesOfOoo.Core
                 if (!PreparationActions.CurrentActor(actor, zone) || !PreparationActions.Carried(actor, weapon)
                     || weapon.BlueprintName != WeaponForgingService.ForgedWeaponBlueprintName || string.IsNullOrEmpty(weapon.ID)
                     || weapon.GetPart<WeaponAssemblyPart>() is not WeaponAssemblyPart assembly
-                    || assembly.BindingBlueprint != LeatherBinding || ForgePart.Factory is not EntityFactory factory
+                    || assembly.BindingBlueprint is not ("LeatherBindingComponent" or "PlainCordBindingComponent")
+                    || ForgePart.Factory is not EntityFactory factory
                     || !factory.Blueprints.TryGetValue(weapon.BlueprintName, out var blueprint)
                     || !ComponentBlueprint(factory, assembly.BladeBlueprint, "Blade")
                     || !ComponentBlueprint(factory, assembly.HaftBlueprint, "Haft")

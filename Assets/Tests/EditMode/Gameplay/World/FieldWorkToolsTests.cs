@@ -140,6 +140,58 @@ namespace CavesOfOoo.Tests
             var tool=Carry("SteamCondenser");var flask=Flask(0);Assert.True(Act(tool,Choice(tool,"CondenseSteam|")));
             Assert.AreEqual(1,Units(flask));Assert.AreEqual("water",flask.GetPart<LiquidVesselPart>().LiquidId);Assert.AreEqual(before-1,stock.Available);
         }
+        [Test]
+        public void ASpentVentExplainsItsSharedLimitWithoutChangingStockOrMaskingAFreshVent()
+        {
+            var vent = Place("SteamVent");
+            var stock = SourceStockPart.For(Zone, vent, Clock.TickCount);
+            var tool = Carry("SteamCondenser");
+            var flask = Flask(1);
+            var stale = Choice(tool, "CondenseSteam|");
+            stock.Available = 0;
+
+            Assert.IsFalse(Act(tool, stale));
+            int now = Clock.TickCount;
+            var fresh = Place("SteamVent", 9, 10);
+            var rows = Actions(tool);
+            var blocked = rows.Single(row => row.DisabledCode == "vent-spent");
+            Assert.IsTrue(blocked.IsDisabled);
+            Assert.That(blocked.DisabledReason, Does.Contain("one catch per game day"));
+            Assert.That(rows.Single(row => row.Command.StartsWith("CondenseSteam|")).ActsOnCell(9, 10), Is.True);
+            Assert.That(CellMenu(11, 10).Single(row => row.Via == tool && row.DisabledCode == "vent-spent").DisabledReason,
+                Is.EqualTo(blocked.DisabledReason));
+            Assert.That(CellMenu(9, 10).Any(row => row.DisabledCode == "vent-spent"), Is.False);
+            Assert.That(UseGuides.SectionText(tool, Zone, null, Actor), Does.Contain(blocked.DisabledReason.TrimEnd('.')));
+            Assert.AreEqual(now, Clock.TickCount);
+            Assert.AreEqual(now, stock.LastTick);
+            Assert.AreEqual(0, stock.Available);
+            Assert.AreEqual(1, Units(flask));
+            Assert.IsFalse(fresh.HasPart<SourceStockPart>());
+
+            Zone.GetCell(11, 10).IsVisible = false;
+            Assert.IsFalse(Actions(tool).Any(row => row.DisabledCode == "vent-spent"));
+        }
+
+        [Test]
+        public void CondenserRefillsAfterTheSameSavedDailyBoundary()
+        {
+            var vent = Place("SteamVent");
+            var stock = SourceStockPart.For(Zone, vent, Clock.TickCount);
+            stock.Available = 0;
+            var tool = Carry("SteamCondenser");
+            var flask = Flask(1);
+
+            Clock.AdvanceClock(SourceStockPart.RegenTicks - 1);
+            Assert.That(Actions(tool).Single(row => row.DisabledCode == "vent-spent").IsDisabled, Is.True);
+            Clock.AdvanceClock(1);
+            var quote = Choice(tool, "CondenseSteam|");
+            Assert.AreEqual(0, stock.Available);
+            Assert.IsTrue(Act(tool, quote));
+            Assert.AreEqual(0, stock.Available);
+            Assert.AreEqual(Clock.TickCount, stock.LastTick);
+            Assert.AreEqual(2, Units(flask));
+        }
+
         [TestCase(1)]
         [TestCase(11)]
         public void CondenserAddsOneWaterToTheExactExistingFlask(int initial)
