@@ -110,10 +110,12 @@ namespace CavesOfOoo.Core
         }
 
         internal static List<Cell> Route(Entity worker, Entity shelf, Zone zone, Func<Cell, bool> suitableEndpoint = null)
+            => RouteToCell(worker, zone.GetEntityCell(shelf), zone, suitableEndpoint);
+
+        internal static List<Cell> RouteToCell(Entity worker, Cell target, Zone zone, Func<Cell, bool> suitableEndpoint = null)
         {
             var start = zone.GetEntityCell(worker);
-            var target = zone.GetEntityCell(shelf);
-            if (start == null || target == null || Distance(start, target) > MaximumSteps + 1) return null;
+            if (start == null || target?.ParentZone != zone || Distance(start, target) > MaximumSteps + 1) return null;
             bool CanStopAt(Cell cell) => Distance(cell, target) <= 1 && suitableEndpoint?.Invoke(cell) != false;
             if (CanStopAt(start)) return new List<Cell>();
             var visited = new Dictionary<Cell, (Cell prior, int steps)> { [start] = (null, 0) };

@@ -702,6 +702,13 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     still require a separately supported sighting.
     [Evidence](Verification/MachineSystems/WaysideLivingPorter20261126/README.md)
 
+    A player in Wayside can also note the exact visible body and report
+    its location to the available cook in person. He investigates inside
+    his existing outbound budget. Player testimony, firsthand recognition
+    and physical receipt have separate saved consequences. The original
+    box remains recoverable. Paused pacing progress survives Continue.
+    [Evidence](Verification/MachineSystems/WaysidePlayerWitness20261126/README.md)
+
 ## Improvement pass after all 45 are verified
 
 Revisit all 45 requirements and the systems that implement them after the

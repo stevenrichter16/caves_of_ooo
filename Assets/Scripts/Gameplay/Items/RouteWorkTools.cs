@@ -15,6 +15,7 @@ namespace CavesOfOoo.Core
         {
             internal Entity Actor; internal Zone Zone; internal Cell Cell;
             internal string Key,Label,Hint,Command; internal Entity[] Claims=Array.Empty<Entity>();
+            internal ActionTime Time = ActionTime.OneAction;
             internal Func<bool> Before,After; internal Func<InventoryTransaction,bool> Apply; internal Action Publish;
         }
         static readonly ConditionalWeakTable<Entity,Dictionary<string,Entry>> Menus=new ConditionalWeakTable<Entity,Dictionary<string,Entry>>();
@@ -31,10 +32,10 @@ namespace CavesOfOoo.Core
             {
                 if(!next.Before())continue;
                 var q=retain?old.FirstOrDefault(e=>e.Actor==actor && e.Zone==zone && e.Key==next.Key && e.Cell==next.Cell
-                    && e.Label==next.Label && e.Hint==next.Hint && e.Claims.SequenceEqual(next.Claims) && e.Before())??next:next;
+                    && e.Label==next.Label && e.Hint==next.Hint && e.Time==next.Time && e.Claims.SequenceEqual(next.Claims) && e.Before())??next:next;
                 if(q.Command==null)q.Command=q.Key+"|"+Guid.NewGuid().ToString("N");
                 if(retain)cache[q.Command]=q;
-                rows.AddActionWithHint("RouteWork",q.Label,q.Command,q.Hint,'\0',19,false,ActionTime.OneAction).AtCell(q.Cell.X,q.Cell.Y);
+                rows.AddActionWithHint("RouteWork",q.Label,q.Command,q.Hint,'\0',19,false,q.Time).AtCell(q.Cell.X,q.Cell.Y);
             }
         }
         internal static bool Act(Entity owner,GameEvent e)

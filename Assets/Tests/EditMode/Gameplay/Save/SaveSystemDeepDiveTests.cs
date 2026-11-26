@@ -255,6 +255,42 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
                 "GoToCorpseTries integer field should round-trip exactly");
         }
 
+        [Test]
+        public void ARunningPacingGoalFinishesAfterItsRemainingTurnsOnFullReload()
+        {
+            var (player, zone, manager, turns) = MakeMinimalState();
+            var witness = MakeCreature("pacing-witness");
+            var brain = new BrainPart { CurrentZone = zone, Rng = new System.Random(3) };
+            witness.AddPart(brain);
+            Assert.IsTrue(zone.AddEntity(witness, 12, 12));
+            var goal = new WanderDurationGoal(5, "shaken");
+            brain.PushGoal(goal);
+
+            for (int tick = 0; tick < 3; tick++) TakeTurn(witness);
+            Assert.That(brain.GetGoalsSnapshot().OfType<WanderDurationGoal>().Single(), Is.SameAs(goal));
+            Assert.That(goal.GetDetails(), Does.Contain("ticks=3/5"));
+            Assert.That(goal.Finished(), Is.False);
+
+            var loaded = RoundTrip(player, zone, manager, turns);
+            var active = loaded.ZoneManager.ActiveZone;
+            witness = FindEntityByID(active, witness.ID);
+            brain = witness.GetPart<BrainPart>();
+            brain.CurrentZone = active;
+            var restored = brain.GetGoalsSnapshot().OfType<WanderDurationGoal>().Single();
+            Assert.That(restored.GetDetails(), Is.EqualTo(goal.GetDetails()));
+            Assert.That(restored.Finished(), Is.False);
+
+            TakeTurn(witness);
+            Assert.That(restored.GetDetails(), Does.Contain("ticks=4/5"));
+            Assert.That(restored.Finished(), Is.False);
+            TakeTurn(witness);
+            Assert.That(restored.Finished(), Is.True);
+            TakeTurn(witness);
+            Assert.That(brain.GetGoalsSnapshot().OfType<WanderDurationGoal>(), Is.Empty);
+
+            static void TakeTurn(Entity entity) => entity.FireEventAndRelease(GameEvent.New("TakeTurn"));
+        }
+
         // ============================================================
         // 5. MeleeWeaponPart.Attributes (Phase C field) round-trips
         // ============================================================

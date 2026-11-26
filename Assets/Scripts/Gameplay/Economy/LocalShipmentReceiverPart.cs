@@ -6,7 +6,7 @@ using CavesOfOoo.Diagnostics;
 namespace CavesOfOoo.Core
 {
     /// <summary>A receiving shelf that can stock one paid parcel for its assigned trader.</summary>
-    public sealed class LocalShipmentReceiverPart : Part, IDescribeState
+    public sealed partial class LocalShipmentReceiverPart : Part, IDescribeState, IInventoryActionReceiptOwner
     {
         public override string Name => "LocalShipmentReceiver";
 
@@ -61,6 +61,8 @@ namespace CavesOfOoo.Core
                 }
                 if (DelegatedSearcherID != null && !DelegateOverdue)
                     return $"The cook sent the kitchen hand to check the route. The hand is due back on {Moment(DelegateDueAtTick)}.";
+                if (HasPlayerReport)
+                    return "A witness reported seeing the missing porter's body. The cook's own findings are recorded separately. Keep the original box packed if you return it.";
                 return "The kitchen has posted an overdue clay shipment notice. Keep the original box packed if you return it.";
             }
             return $"Clay shipment due on {Moment(ExpectedByTick)}. Allow {GraceTicks} ticks for delays. The porter works while this area is active.";
@@ -143,13 +145,18 @@ namespace CavesOfOoo.Core
         {
             var cookAt = zone.GetEntityCell(Merchant);
             var shelfAt = zone.GetEntityCell(ParentEntity);
+            return CanSpeakFrom(cell, cookAt, zone) && shelfAt != null
+                && Math.Max(Math.Abs(cell.X - shelfAt.X), Math.Abs(cell.Y - shelfAt.Y)) <= 1;
+        }
+
+        private static bool CanSpeakFrom(Cell cell, Cell target, Zone zone)
+        {
             bool Obscured(Cell at) => at == null || at.IsSolid() || zone.TileState.ObscuresSight(at.X, at.Y);
-            return cell != null && cell.ParentZone == zone && cookAt != null && shelfAt != null
-                && Math.Max(Math.Abs(cell.X - cookAt.X), Math.Abs(cell.Y - cookAt.Y)) <= 1
-                && Math.Max(Math.Abs(cell.X - shelfAt.X), Math.Abs(cell.Y - shelfAt.Y)) <= 1
-                && (cell.X == cookAt.X || cell.Y == cookAt.Y
-                    || !Obscured(zone.GetCell(cell.X, cookAt.Y)) || !Obscured(zone.GetCell(cookAt.X, cell.Y)))
-                && AIHelpers.HasLineOfSight(zone, cell.X, cell.Y, cookAt.X, cookAt.Y);
+            return cell != null && cell.ParentZone == zone && target != null && target.ParentZone == zone
+                && Math.Max(Math.Abs(cell.X - target.X), Math.Abs(cell.Y - target.Y)) <= 1
+                && (cell.X == target.X || cell.Y == target.Y
+                    || !Obscured(zone.GetCell(cell.X, target.Y)) || !Obscured(zone.GetCell(target.X, cell.Y)))
+                && AIHelpers.HasLineOfSight(zone, cell.X, cell.Y, target.X, target.Y);
         }
 
         internal bool TryDelegateSearch(LocalPorterLedgerPart order, Zone zone)

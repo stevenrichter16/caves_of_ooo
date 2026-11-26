@@ -831,6 +831,222 @@ namespace CavesOfOoo.Tests
             Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Not.Contain("found the missing porter"));
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void APlayerReportChangesTheExistingSearchRouteWithoutVerifyingTheBody(bool report)
+        {
+            var (receipt, order, search, body) = PrepareWitnessLead();
+            var cook = receipt.Merchant;
+            var cargo = order.Box.GetPart<ContainerPart>();
+            var original = cargo.Contents.Single();
+            var cookAt = Zone.GetEntityPosition(cook);
+            int attempts = search.LegAttempts;
+            int purse = TradeSystem.GetDrams(cook);
+
+            if (report)
+            {
+                var pile = Zone.GetEntityCell(body);
+                Assert.That(WorldInteractionSystem.IsPileCell(pile, Actor), Is.True);
+                var note = WorldInteractionSystem.BuildPileSummaryActions(pile, Actor)
+                    .Single(IsWitnessNote);
+                Assert.That(note.Via, Is.SameAs(receipt.ParentEntity));
+                Assert.That(note.Time, Is.EqualTo(ActionTime.Free));
+                Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Not.Contain("reported").IgnoreCase);
+                Assert.That(ExecuteWitnessRow(note), Is.True);
+                Assert.That(ExecuteWitnessRow(note), Is.False, "The same observation cannot be recorded twice.");
+                Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Not.Contain("reported").IgnoreCase);
+            }
+
+            Assert.That(Zone.MoveEntity(Actor, 17, 13), Is.True);
+            var reportRows = CellMenu(cookAt.x, cookAt.y).Where(IsWitnessReport).ToArray();
+            Assert.That(reportRows, Has.Length.EqualTo(report ? 1 : 0));
+            if (report)
+            {
+                var offer = reportRows.Single();
+                Assert.That(offer.Via, Is.SameAs(receipt.ParentEntity));
+                Assert.That(offer.Time, Is.EqualTo(ActionTime.OneAction));
+                Assert.That(ExecuteWitnessRow(offer), Is.True);
+                Assert.That(ExecuteWitnessRow(offer), Is.False);
+                Assert.That(CellMenu(cookAt.x, cookAt.y).Where(IsWitnessReport), Is.Empty);
+                Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Contain("reported").IgnoreCase);
+            }
+
+            Assert.That(search.SeenPorterBodyID, Is.Null);
+            Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Not.Contain("cook found").IgnoreCase);
+            Assert.That(search.LegAttempts, Is.EqualTo(attempts));
+            Assert.That(AIBoredEvent.Check(cook), Is.False);
+            var step = Zone.GetEntityPosition(cook);
+            if (report)
+            {
+                var lead = Zone.GetEntityPosition(body);
+                int DistanceToLead((int x, int y) at) => System.Math.Abs(at.x - lead.x) + System.Math.Abs(at.y - lead.y);
+                Assert.That(DistanceToLead(step), Is.LessThan(DistanceToLead(cookAt)));
+            }
+            else Assert.That(step.x, Is.EqualTo(cookAt.x - 1));
+            Assert.That(search.LegAttempts, Is.EqualTo(attempts + 1));
+            Assert.That(search.SeenPorterBodyID, Is.Null);
+            Assert.That(order.Phase, Is.EqualTo(LocalPorterPhase.Failed));
+            Assert.That(receipt.ConcernClosedAtTick, Is.EqualTo(-1));
+            Assert.That(receipt.ArrivedAtTick, Is.EqualTo(-1));
+            Assert.That(cargo.Contents.Single(), Is.SameAs(original));
+            Assert.That(TradeSystem.GetDrams(cook), Is.EqualTo(purse));
+        }
+
+        [Test]
+        public void AVisibleWrongBodyAndAStaleNoteCannotBecomePlayerTestimony()
+        {
+            var (receipt, _, _, body) = PrepareWitnessLead();
+            var unrelatedPorter = Place("GleanersPorter", 23, 12);
+            var wrongBody = KillAndFindBody(unrelatedPorter);
+            var wrongCell = Zone.GetEntityCell(wrongBody);
+            wrongCell.IsVisible = wrongCell.Explored = true;
+            Assert.That(WorldInteractionSystem.GatherCellActions(wrongBody, wrongCell, Actor).Where(IsWitnessNote), Is.Empty);
+
+            var pile = Zone.GetEntityCell(body);
+            var note = WorldInteractionSystem.BuildPileSummaryActions(pile, Actor).Single(IsWitnessNote);
+            Assert.That(Zone.MoveEntity(body, 28, 10), Is.True);
+            Assert.That(ExecuteWitnessRow(note), Is.False);
+            Assert.That(WorldInteractionSystem.BuildPileSummaryActions(pile, Actor).Where(IsWitnessNote), Is.Empty);
+
+            Assert.That(Zone.MoveEntity(Actor, 17, 13), Is.True);
+            var at = Zone.GetEntityPosition(receipt.Merchant);
+            Assert.That(CellMenu(at.x, at.y).Where(IsWitnessReport), Is.Empty);
+        }
+
+        [Test]
+        public void AStaleReportCannotReachTheMovedCookAndCanBeQuotedAgainInPerson()
+        {
+            var (receipt, _, search, body) = PrepareWitnessLead();
+            var pile = Zone.GetEntityCell(body);
+            Assert.That(ExecuteWitnessRow(WorldInteractionSystem.BuildPileSummaryActions(pile, Actor).Single(IsWitnessNote)), Is.True);
+            Assert.That(Zone.MoveEntity(Actor, 17, 13), Is.True);
+            var offer = CellMenu(17, 12).Single(IsWitnessReport);
+            Assert.That(Zone.MoveEntity(receipt.Merchant, 19, 12), Is.True);
+            var newCell = Zone.GetCell(19, 12);
+            newCell.IsVisible = newCell.Explored = true;
+            Assert.That(ExecuteWitnessRow(offer), Is.False);
+            Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Not.Contain("reported").IgnoreCase);
+            Assert.That(search.SeenPorterBodyID, Is.Null);
+            Assert.That(CellMenu(19, 12).Where(IsWitnessReport), Is.Empty);
+
+            Assert.That(Zone.MoveEntity(Actor, 19, 13), Is.True);
+            Assert.That(ExecuteWitnessRow(CellMenu(19, 12).Single(IsWitnessReport)), Is.True);
+            Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Contain("reported").IgnoreCase);
+        }
+
+        [Test]
+        public void ARecalledReportUsesTheOldLocationAndKeepsItsSearchBudgetOnFallback()
+        {
+            Assert.That(Zone.RemoveEntity(Actor), Is.True);
+            Zone = new Zone("Overworld.12.11.0");
+            Assert.That(Zone.AddEntity(Actor, 10, 10), Is.True);
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            manager.SetActiveZone(Zone);
+            var (receipt, _, _, body) = PrepareWitnessLead();
+            string shelfID = receipt.ParentEntity.ID;
+            string bodyID = body.ID;
+            var historical = Zone.GetEntityPosition(body);
+            var pile = Zone.GetEntityCell(body);
+            Assert.That(ExecuteWitnessRow(WorldInteractionSystem.BuildPileSummaryActions(pile, Actor).Single(IsWitnessNote)), Is.True);
+            Assert.That(Zone.MoveEntity(body, 39, 23), Is.True);
+            Assert.That(Zone.MoveEntity(Actor, 17, 13), Is.True);
+
+            receipt = ReloadReceipt(manager, shelfID, out manager, withClock: true);
+            Assert.That(receipt.WitnessBodyID, Is.EqualTo(bodyID));
+            Assert.That((receipt.WitnessX, receipt.WitnessY), Is.EqualTo(historical));
+            var relocated = Zone.GetReadOnlyEntities().Single(entity => entity.ID == bodyID);
+            Assert.That(Zone.GetEntityPosition(relocated), Is.EqualTo((39, 23)));
+            Assert.That(receipt.WitnessReportedAtTick, Is.EqualTo(-1));
+            var cook = receipt.Merchant;
+            var cookCell = Zone.GetEntityCell(cook);
+            cookCell.IsVisible = cookCell.Explored = true;
+            Assert.That(ExecuteWitnessRow(CellMenu(cookCell.X, cookCell.Y).Single(IsWitnessReport)), Is.True);
+            int reported = receipt.WitnessReportedAtTick;
+            var search = cook.GetPart<LocalShipmentSearchPart>();
+
+            for (int step = 0; step < 14 && !search.CheckedPlayerLead; step++)
+            {
+                int before = search.LegAttempts;
+                var previous = Zone.GetEntityPosition(cook);
+                Assert.That(AIBoredEvent.Check(cook), Is.False);
+                Assert.That(search.LegAttempts, Is.EqualTo(before + 1), "The detour and fallback share one outbound budget.");
+                Assert.That(search.SeenPorterBodyID, Is.Null);
+                if (!search.CheckedPlayerLead) continue;
+                Assert.That(System.Math.Max(System.Math.Abs(previous.x - historical.x),
+                    System.Math.Abs(previous.y - historical.y)), Is.LessThanOrEqualTo(1));
+                Assert.That(Zone.GetEntityPosition(cook).x, Is.LessThan(previous.x), "The cook heads back toward the loading point.");
+            }
+            Assert.That(search.CheckedPlayerLead, Is.True);
+            int attempts = search.LegAttempts;
+            var fallback = Zone.GetEntityPosition(cook);
+
+            receipt = ReloadReceipt(manager, shelfID, out _, withClock: true);
+            cook = receipt.Merchant;
+            search = cook.GetPart<LocalShipmentSearchPart>();
+            Assert.That(receipt.WitnessReportedAtTick, Is.EqualTo(reported));
+            Assert.That((receipt.WitnessX, receipt.WitnessY), Is.EqualTo(historical));
+            Assert.That(search.CheckedPlayerLead, Is.True);
+            Assert.That(search.LegAttempts, Is.EqualTo(attempts));
+            Assert.That(AIBoredEvent.Check(cook), Is.False);
+            Assert.That(Zone.GetEntityPosition(cook).x, Is.LessThan(fallback.x));
+            Assert.That(search.LegAttempts, Is.EqualTo(attempts + 1));
+            Assert.That(search.SeenPorterBodyID, Is.Null);
+            Assert.That(receipt.ConcernClosedAtTick, Is.EqualTo(-1));
+            Assert.That(receipt.ArrivedAtTick, Is.EqualTo(-1));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AnUnavailableCookCannotReceiveAReportedLead(bool hidden)
+        {
+            var (receipt, _, _, body) = PrepareWitnessLead();
+            var pile = Zone.GetEntityCell(body);
+            Assert.That(ExecuteWitnessRow(WorldInteractionSystem.BuildPileSummaryActions(pile, Actor).Single(IsWitnessNote)), Is.True);
+            Assert.That(Zone.MoveEntity(Actor, 17, 13), Is.True);
+            var offer = CellMenu(17, 12).Single(IsWitnessReport);
+            var cook = receipt.Merchant;
+            var render = cook.GetPart<RenderPart>();
+            if (hidden) render.Visible = false;
+            else Assert.That(cook.ApplyEffect(new StunnedEffect(), Actor, Zone), Is.True);
+            Assert.That(ExecuteWitnessRow(offer), Is.False);
+            Assert.That(CellMenu(17, 12).Where(IsWitnessReport), Is.Empty);
+            Assert.That(receipt.WitnessReportedAtTick, Is.EqualTo(-1));
+
+            if (hidden) render.Visible = true;
+            else cook.RemoveEffect<StunnedEffect>();
+            Assert.That(ExecuteWitnessRow(CellMenu(17, 12).Single(IsWitnessReport)), Is.True);
+        }
+
+        private (LocalShipmentReceiverPart receipt, LocalPorterLedgerPart order,
+            LocalShipmentSearchPart search, Entity body) PrepareWitnessLead()
+        {
+            var (receipt, order, search) = PrepareSearch();
+            Assert.That(Zone.MoveEntity(order.Worker, 25, 10), Is.True);
+            var body = KillAndFindBody(order.Worker);
+            LocalPorterLedgerPart.Reconcile(Actor, Zone);
+            Assert.That(order.Phase, Is.EqualTo(LocalPorterPhase.Failed));
+            Assert.That(Zone.GetEntityCell(order.Box), Is.SameAs(Zone.GetEntityCell(body)));
+            Clock.AdvanceClock(40);
+            Assert.That(AIBoredEvent.Check(receipt.Merchant), Is.False);
+            Assert.That(search.Phase, Is.EqualTo(LocalShipmentSearchPhase.CheckingLoadingPoint));
+            Assert.That(Zone.MoveEntity(receipt.Merchant, 17, 12), Is.True);
+            Assert.That(Zone.MoveEntity(Actor, 24, 11), Is.True);
+            var bodyCell = Zone.GetEntityCell(body);
+            bodyCell.IsVisible = bodyCell.Explored = true;
+            var cookCell = Zone.GetEntityCell(receipt.Merchant);
+            cookCell.IsVisible = cookCell.Explored = true;
+            return (receipt, order, search, body);
+        }
+
+        private static bool IsWitnessNote(InventoryAction row)
+            => row.Command.StartsWith("ShipmentWitnessNote|", System.StringComparison.Ordinal);
+
+        private static bool IsWitnessReport(InventoryAction row)
+            => row.Command.StartsWith("ShipmentWitnessReport|", System.StringComparison.Ordinal);
+
+        private bool ExecuteWitnessRow(InventoryAction row)
+            => InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(row.Via, row.Command), Actor, Zone).Success;
+
         [Test]
         public void RecoveringTheSurvivingBoxClosesItsCaseOnceWithoutPayingAnotherFare()
         {

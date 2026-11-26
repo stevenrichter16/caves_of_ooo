@@ -111,6 +111,13 @@ past knowledge. Physical receipt of the exact cargo still determines when
 the consignee can use its goods. The ordinary oven and stock remain useful.
 [Evidence](Verification/MachineSystems/WaysideLivingPorter20261126/README.md)
 
+**A remembered location can guide a Wayside search — November 26 UTC, 2026.**
+A visible exact body supports a private note. Telling the available cook
+adds a historical waypoint to his personal outbound search. His normal
+route clearance, budget and independent sighting still govern the outcome.
+The same original cargo remains available for physical recovery.
+[Evidence](Verification/MachineSystems/WaysidePlayerWitness20261126/README.md)
+
 **Causeway vent scale can become useful field protection — November 26 UTC, 2026.**
 The Causeway vent reader ties its pale crust to clothing proofing. One
 scale already in the pack makes one temporary coat in a flask. Proofing

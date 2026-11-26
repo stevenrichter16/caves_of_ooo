@@ -289,6 +289,7 @@ namespace CavesOfOoo.Core
 
             rows.Sort();
             AppendUnderfootActions(rows.Actions, cell, actor);
+            LocalShipmentReceiverPart.AppendWitnessActions(rows.Actions, cell, actor, null);
             AppendToolActions(rows.Actions, cell, actor);
             return rows.Actions;
         }
@@ -433,6 +434,7 @@ namespace CavesOfOoo.Core
         {
             var actions = GatherActions(target, actor);
             AppendUnderfootActions(actions, cell, actor, target);
+            LocalShipmentReceiverPart.AppendWitnessActions(actions, cell, actor, target);
             AppendIgnitionActions(actions, cell, actor);
             AppendToolActions(actions, cell, actor);
             return actions;

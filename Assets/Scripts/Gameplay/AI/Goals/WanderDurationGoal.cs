@@ -25,7 +25,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public string Thought;
 
-        private int _ticksTaken;
+        // Saving the exact count preserves the time remaining after Continue.
+        public int TicksTaken;
 
         public WanderDurationGoal(int duration, string thought = null)
         {
@@ -35,16 +36,16 @@ namespace CavesOfOoo.Core
 
         public override bool IsBusy() => false;
 
-        public override bool Finished() => _ticksTaken >= Duration;
+        public override bool Finished() => TicksTaken >= Duration;
 
         public override string GetDetails()
             => Thought != null
-                ? $"thought={Thought} ticks={_ticksTaken}/{Duration}"
-                : $"ticks={_ticksTaken}/{Duration}";
+                ? $"thought={Thought} ticks={TicksTaken}/{Duration}"
+                : $"ticks={TicksTaken}/{Duration}";
 
         public override void TakeAction()
         {
-            _ticksTaken++;
+            TicksTaken++;
             ParentBrain.CurrentState = AIState.Wander;
             // Re-assert the thought every tick so it shows in the inspector
             // for the whole pacing duration. Without this, LastThought would

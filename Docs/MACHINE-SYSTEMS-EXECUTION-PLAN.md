@@ -35,6 +35,25 @@ reduced carried weight by one pound and retained the label on fresh
 Continue. Six hundred and six connected native tests passed.
 [Evidence](Verification/MachineSystems/StoredTonicUse20261126/README.md)
 
+**Wayside witnesses can guide a live search — November 26 UTC, 2026.**
+The real body at `24,16` had a free note. After six ordinary steps,
+the player told Orven in one action. Fresh Continue kept the report
+before Orven's own sighting. He checked the lead within his existing
+route budget and returned with his own finding. The original box, clay,
+payments and open notice remained. Saves now retain progress in the timed
+pacing goal. Native F5 and fresh Continue kept three of twenty steps.
+The final connected run passed 194 cases.
+[Evidence](Verification/MachineSystems/WaysidePlayerWitness20261126/README.md)
+
+**Next Cinderhold design, compatible clay for the hand seal.** The
+original-clay archive at tick 820 has two ordinary fire clay and two
+prepared lining clay measures. The existing Drowned Level sealing
+approach counts four exact FireClay. A proposed grade-based handover can
+take the exact mixed lot with one shared bill and retain the same seal
+condition and later consignment rule. The current lot keeps its ordinary
+window. Use the already earned archive and retain the existing clearing
+and installed-pump approaches.
+
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe
 measures to actual elders. One showed the missing second measure and
