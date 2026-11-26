@@ -23,7 +23,7 @@ namespace CavesOfOoo.Tests
         readonly Dictionary<string, int?> ints = new Dictionary<string, int?>();
         readonly InputTestFixture devices = new InputTestFixture();
         readonly List<GameObject> roots = new List<GameObject>();
-        WorldPresentationMode oldMode; bool oldSprites, old3D, oldLow; object oldRes, oldShadows;
+        WorldPresentationMode oldMode; bool oldSprites, old3D, oldLow, oldIcons; object oldRes, oldShadows;
         bool hadResolution; float savedResolution; SpellFxMode oldFx;
         Action<string> oldDirty, oldMessage; Action<int,int,string> oldCell; Func<int> oldTick;
         List<MessageLog.Entry> entries; List<string> announcements; int flash, serial;
@@ -32,11 +32,12 @@ namespace CavesOfOoo.Tests
         [SetUp] public void Setup()
         {
             foreach (string key in new[] { ModeKey, SpriteKey, Village3DSettings.PreferenceKey,
-                Village3DSettings.LowDetailPreferenceKey, Village3DSettings.ShadowsPreferenceKey, "CavesOfOoo.Fx.Mode" })
+                Village3DSettings.LowDetailPreferenceKey, Village3DSettings.ShadowsPreferenceKey, "CavesOfOoo.Fx.Mode", InventoryIconSettings.PreferenceKey })
                 ints[key] = PlayerPrefs.HasKey(key) ? PlayerPrefs.GetInt(key) : (int?)null;
             hadResolution = PlayerPrefs.HasKey(Village3DSettings.WorldResolutionPreferenceKey);
             savedResolution = PlayerPrefs.GetFloat(Village3DSettings.WorldResolutionPreferenceKey);
             oldMode = WorldPresentationSettings.Mode; oldSprites = WorldPresentationSettings.LegacySpritesEnabled;
+            oldIcons = InventoryIconSettings.Enabled;
             old3D = Village3DSettings.Enabled; oldLow = Village3DSettings.LowDetail;
             oldRes = Quality("resolutionOverride").GetValue(null); oldShadows = Quality("shadowsOverride").GetValue(null); oldFx = SpellFxSettings.Mode;
             oldDirty = ZoneRenderHooks.FullDirtyCallback; oldCell = ZoneRenderHooks.CellDirtyCallback;
@@ -57,6 +58,7 @@ namespace CavesOfOoo.Tests
             for (int i=roots.Count-1;i>=0;i--) if(roots[i]!=null) Object.DestroyImmediate(roots[i]); roots.Clear();
             devices.TearDown(); NativeGamepadInput.SetContext(oldContext);
             WorldPresentationSettings.Mode=oldMode; WorldPresentationSettings.LegacySpritesEnabled=oldSprites;
+            InventoryIconSettings.Enabled=oldIcons;
             Village3DSettings.Enabled=old3D; Village3DSettings.LowDetail=oldLow;
             Quality("resolutionOverride").SetValue(null,oldRes); Quality("shadowsOverride").SetValue(null,oldShadows); SpellFxSettings.Mode=oldFx;
             foreach(var pair in ints) if(pair.Value.HasValue)PlayerPrefs.SetInt(pair.Key,pair.Value.Value);else PlayerPrefs.DeleteKey(pair.Key);
@@ -92,13 +94,18 @@ namespace CavesOfOoo.Tests
         {
             using(var f=new HotbarSaveFixture())
             {
+                PlayerPrefs.SetInt(InventoryIconSettings.PreferenceKey,0);InventoryIconSettings.Enabled=true;
                 AttachEnvironment(f); Invoke(f.Bootstrap,"InitializeWorldPresentation");
                 Assert.AreEqual(WorldPresentationMode.Flat16x24,WorldPresentationSettings.Mode);
+                Assert.False(InventoryIconSettings.Enabled,"Actual launch must load a saved off choice.");
                 Assert.False(WorldPresentationSettings.LegacySpritesEnabled);Assert.False(Village3DSettings.Enabled);
                 WorldPresentationSettings.Mode=WorldPresentationMode.Previous;Village3DSettings.Enabled=true;
+                InventoryIconSettings.Enabled=true;
                 PlayerPrefs.SetInt(ModeKey,0);PlayerPrefs.SetInt(SpriteKey,1);PlayerPrefs.SetInt(Village3DSettings.PreferenceKey,0);
                 Invoke(f.Bootstrap,"InitializeWorldPresentation");
                 Assert.AreEqual(WorldPresentationMode.Previous,WorldPresentationSettings.Mode);Assert.True(Village3DSettings.Enabled);
+                Assert.True(InventoryIconSettings.Enabled,"Repeated initialization must retain the runtime choice.");
+                Assert.AreEqual(0,PlayerPrefs.GetInt(InventoryIconSettings.PreferenceKey));
                 Assert.False(WorldPresentationSettings.LegacySpritesEnabled);Assert.AreEqual(0,PlayerPrefs.GetInt(ModeKey));
             }
         }
@@ -199,7 +206,7 @@ namespace CavesOfOoo.Tests
                 var env=AttachEnvironment(f);f.Renderer.SetZone(f.Input.CurrentZone);f.Renderer.ApplyWorldPresentation(WorldPresentationMode.Flat16x24,false);
                 Village3DSettings.Enabled=false;
                 var ui=f.Root.AddComponent<PauseMenuUI>();f.Input.PauseMenuUI=ui;ui.Controller.Open();ui.Controller.ClickSelect(PauseMenuController.GraphicsIndex,null,null);
-                Assert.AreEqual(10,ui.Controller.VisibleItemCount);
+                Assert.AreEqual(11,ui.Controller.VisibleItemCount);
                 int model=MenuConstant("Previous3DIndex"),sprites=MenuConstant("PreviousSpritesIndex");
                 StringAssert.Contains("Previous 3D",ui.Controller.GetItemLabel(model));StringAssert.Contains("Previous sprites",ui.Controller.GetItemLabel(sprites));
                 ui.Controller.ClickSelect(model,null,null);Assert.True(Village3DSettings.Enabled);Assert.AreEqual(1,PlayerPrefs.GetInt(Village3DSettings.PreferenceKey));
@@ -242,16 +249,16 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(0,PlayerPrefs.GetInt(ModeKey));Assert.AreEqual(0,PlayerPrefs.GetInt(SpriteKey));
             }
         }
-        [Test] public void TenRowPopupFitsLabelsAndClearsEveryExtraRowOnBackAndClose()
+        [Test] public void ElevenRowPopupFitsLabelsAndClearsEveryExtraRowOnBackAndClose()
         {
             var grid=Make("Menu grid");grid.AddComponent<Grid>();
             var fg=Make("Menu text");fg.transform.SetParent(grid.transform);var bg=Make("Menu background");bg.transform.SetParent(grid.transform);
             var ui=Make("Presentation popup").AddComponent<PauseMenuUI>();ui.Tilemap=fg.AddComponent<Tilemap>();ui.BgTilemap=bg.AddComponent<Tilemap>();
             ui.Controller=new PauseMenuController();ui.Controller.Open();ui.Controller.ClickSelect(PauseMenuController.GraphicsIndex,null,null);
-            Assert.AreEqual(10,ui.Controller.VisibleItemCount);
+            Assert.AreEqual(11,ui.Controller.VisibleItemCount);
             for(int i=0;i<ui.Controller.VisibleItemCount;i++)Assert.LessOrEqual(ui.Controller.GetItemLabel(i).Length,24,"Label must remain inside 28-column popup.");
-            Invoke(ui,"Render");Assert.AreEqual(28*14,Count(ui.BgTilemap));
-            ui.Controller.Back();Invoke(ui,"Render");Assert.AreEqual(28*(PauseMenuController.ItemCount+4),Count(ui.BgTilemap));
+            Invoke(ui,"Render");Assert.AreEqual(28*16,Count(ui.BgTilemap)); // Eleven rows, four border/title rows, one hint row.
+            ui.Controller.Back();Invoke(ui,"Render");Assert.AreEqual(28*(PauseMenuController.ItemCount+5),Count(ui.BgTilemap));
             ui.Controller.Close();Invoke(ui,"ClearAll");Assert.Zero(Count(ui.Tilemap));Assert.Zero(Count(ui.BgTilemap));
         }
         static int MenuConstant(string name){var field=typeof(PauseMenuController).GetField(name,BindingFlags.Public|BindingFlags.Static);Assert.NotNull(field,name+" explicit retained-setting row is missing.");return (int)field.GetRawConstantValue();}

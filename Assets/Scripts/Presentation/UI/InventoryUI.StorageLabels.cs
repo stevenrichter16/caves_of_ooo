@@ -9,8 +9,8 @@ namespace CavesOfOoo.Rendering
         enum StorageLabelField { Mode, Color, Detail, Save, Clear, Cancel }
 
         static readonly StorageLabelMode[] StorageLabelModes =
-            { StorageLabelMode.ColorMark, StorageLabelMode.Icon, StorageLabelMode.Text };
-        static readonly string[] StorageLabelModeNames = { "Color mark", "Icon", "Text" };
+            { StorageLabelMode.ColorMark, StorageLabelMode.Text };
+        static readonly string[] StorageLabelModeNames = { "Color mark", "Text" };
         static readonly Color[] StorageLabelColors =
         {
             new Color(.93f, .93f, .82f),
@@ -22,66 +22,10 @@ namespace CavesOfOoo.Rendering
             new Color(.80f, .65f, .98f)
         };
 
-        const int StorageIconPixels = 12;
-        // Keep this order aligned with the persisted choices in StorageLabels.IconNames.
-        static readonly string[][] StorageIconMasks =
-        {
-            new[] // Tools
-            {
-                "............", "............", "....#####...", "...#######..",
-                "...#######..", "......##....", ".....##.....", "....##......",
-                "...##.......", "..##........", "..#.........", "............",
-            },
-            new[] // Food
-            {
-                "............", ".......##...", "......###...", ".....#......",
-                "...##.###...", "..########..", "..########..", "..########..",
-                "...######...", "...######...", "....#..#....", "............",
-            },
-            new[] // Materials
-            {
-                "............", "....####....", "...######...", "...#....#...",
-                "...######...", "............", ".####..####.", "######.#####",
-                "#....#.#...#", "######.#####", ".####..####.", "............",
-            },
-            new[] // Potions
-            {
-                "............", "....####....", "....#..#....", ".....##.....",
-                ".....##.....", "....####....", "...##..##...", "...#....#...",
-                "...######...", "...######...", "....####....", "............",
-            },
-            new[] // Clothing
-            {
-                "............", "...##..##...", "..###..###..", ".##########.",
-                ".##########.", ".##.####.##.", "....####....", "....####....",
-                "....####....", "....####....", "....####....", "............",
-            },
-            new[] // Trade
-            {
-                "............", ".......#....", ".......##...", "..########..",
-                "..#########.", ".......##...", "...##.......", ".#########..",
-                "..########..", "...##.......", "....#.......", "............",
-            },
-            new[] // Important
-            {
-                "............", ".....##.....", ".....##.....", ".....##.....",
-                ".##########.", "..########..", "...######...", "....####....",
-                "...######...", "...##..##...", "..##....##..", "............",
-            },
-            new[] // Travel
-            {
-                "............", "...####.....", "...####.....", "...####.....",
-                "...####.....", "...#####....", "...######...", "...#######..",
-                "...########.", "...########.", "...##...###.", "............",
-            },
-        };
-        static Texture2D _storageLabelIconAtlas;
-        static Sprite[] _storageLabelIcons;
-
         StorageLabelEdit _storageLabelEdit;
         StorageLabelField _storageLabelFocus;
         StorageLabelMode _storageLabelMode;
-        int _storageLabelColor, _storageLabelIcon;
+        int _storageLabelColor;
         string _storageLabelText;
 
         bool StorageLabelEditorOpen => _storageLabelEdit != null;
@@ -100,9 +44,8 @@ namespace CavesOfOoo.Rendering
             _itemActionPopup = null;
             _storageLabelFocus = StorageLabelField.Mode;
             var original = edit.Original;
-            _storageLabelMode = original.Mode == StorageLabelMode.None ? StorageLabelMode.ColorMark : original.Mode;
+            _storageLabelMode = original.Mode == StorageLabelMode.Text ? StorageLabelMode.Text : StorageLabelMode.ColorMark;
             _storageLabelColor = original.ColorIndex;
-            _storageLabelIcon = original.IconIndex;
             _storageLabelText = original.Text ?? "";
             Render();
         }
@@ -134,9 +77,6 @@ namespace CavesOfOoo.Rendering
                 case StorageLabelField.Color:
                     _storageLabelColor = StepLabelChoice(_storageLabelColor, delta, StorageLabels.ColorNames.Count);
                     break;
-                case StorageLabelField.Detail when _storageLabelMode == StorageLabelMode.Icon:
-                    _storageLabelIcon = StepLabelChoice(_storageLabelIcon, delta, StorageLabels.IconNames.Count);
-                    break;
             }
             Render();
         }
@@ -167,7 +107,7 @@ namespace CavesOfOoo.Rendering
             }
 
             bool saved = StorageLabels.CanEdit(PlayerEntity, _storageLabelEdit.Owner)
-                && _storageLabelEdit.Commit(mode, _storageLabelColor, _storageLabelIcon, _storageLabelText);
+                && _storageLabelEdit.Commit(mode, _storageLabelColor, 0, _storageLabelText);
             _storageLabelEdit = null;
             if (saved) SetActionSuccess(mode == StorageLabelMode.None ? "Item label cleared." : "Item label saved.");
             else SetActionFailure("That item or its label changed while you were editing.");
@@ -243,11 +183,11 @@ namespace CavesOfOoo.Rendering
             StorageLabelChoice(StorageLabelField.Mode, 242, "Mode", StorageLabelModeNames[Array.IndexOf(StorageLabelModes, _storageLabelMode)]);
             StorageLabelChoice(StorageLabelField.Color, 301, "Color", StorageLabels.ColorNames[_storageLabelColor], StorageLabelColors[_storageLabelColor]);
 
-            string detail = _storageLabelMode == StorageLabelMode.Icon ? StorageLabels.IconNames[_storageLabelIcon]
-                : _storageLabelText + (_storageLabelFocus == StorageLabelField.Detail ? "_" : "");
-            if (_storageLabelMode != StorageLabelMode.ColorMark)
-                StorageLabelChoice(StorageLabelField.Detail, 360, _storageLabelMode == StorageLabelMode.Icon ? "Icon" : "Text",
-                    detail, canCycle: _storageLabelMode == StorageLabelMode.Icon);
+            if (_storageLabelMode == StorageLabelMode.Text)
+            {
+                string detail = _storageLabelText + (_storageLabelFocus == StorageLabelField.Detail ? "_" : "");
+                StorageLabelChoice(StorageLabelField.Detail, 360, "Text", detail, canCycle: false);
+            }
 
             LLabel(new Rect(274, 439, 114, 24), "Preview", LMuted, 20);
             var previewBounds = new Rect(393, 435, 613, 30);
@@ -255,7 +195,6 @@ namespace CavesOfOoo.Rendering
             switch (_storageLabelMode)
             {
                 case StorageLabelMode.ColorMark: DrawStorageLabelSwatch(previewBounds, tint); break;
-                case StorageLabelMode.Icon: DrawStorageLabelIcon(previewBounds, 24, _storageLabelIcon, tint); break;
                 case StorageLabelMode.Text: LLabel(previewBounds, _storageLabelText.Trim(), tint, 24); break;
             }
 
@@ -304,66 +243,6 @@ namespace CavesOfOoo.Rendering
             LBox(new Rect(bounds.x, bounds.y + (bounds.height - size) / 2, size, size), tint);
         }
 
-        void DrawStorageLabelIcon(Rect bounds, float size, int index, Color tint)
-        {
-            if (_storageLabelIcons == null || _storageLabelIconAtlas == null) BuildStorageLabelIcons();
-            var iconBounds = new Rect(bounds.x, bounds.y + (bounds.height - size) / 2, size, size);
-            LBox(iconBounds, tint, _storageLabelIcons[index]);
-        }
-
-        static void BuildStorageLabelIcons()
-        {
-            ReleaseStorageLabelIcons();
-            int size = StorageIconPixels;
-            int width = StorageIconMasks.Length * size;
-            var pixels = new Color32[width * size];
-            var ink = new Color32(255, 255, 255, 255);
-            for (int index = 0; index < StorageIconMasks.Length; index++)
-            {
-                var mask = StorageIconMasks[index];
-                for (int row = 0; row < size; row++)
-                    for (int column = 0; column < size; column++)
-                        if (mask[row][column] == '#')
-                            pixels[(size - row - 1) * width + index * size + column] = ink;
-            }
-
-            _storageLabelIconAtlas = new Texture2D(width, size, TextureFormat.RGBA32, false)
-            {
-                name = "Storage Label Icons",
-                filterMode = FilterMode.Point,
-                wrapMode = TextureWrapMode.Clamp,
-                hideFlags = HideFlags.HideAndDontSave
-            };
-            _storageLabelIconAtlas.SetPixels32(pixels);
-            _storageLabelIconAtlas.Apply(false, false);
-            _storageLabelIcons = new Sprite[StorageIconMasks.Length];
-            for (int index = 0; index < _storageLabelIcons.Length; index++)
-            {
-                var bounds = new Rect(index * size, 0, size, size);
-                var icon = Sprite.Create(_storageLabelIconAtlas, bounds, new Vector2(.5f, .5f), size, 0, SpriteMeshType.FullRect);
-                icon.name = "Storage label icon - " + StorageLabels.IconNames[index];
-                icon.hideFlags = HideFlags.HideAndDontSave;
-                _storageLabelIcons[index] = icon;
-            }
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ReleaseStorageLabelIcons()
-        {
-            if (_storageLabelIcons != null)
-                foreach (var icon in _storageLabelIcons) DestroyStorageLabelArt(icon);
-            DestroyStorageLabelArt(_storageLabelIconAtlas);
-            _storageLabelIcons = null;
-            _storageLabelIconAtlas = null;
-        }
-
-        static void DestroyStorageLabelArt(UnityEngine.Object art)
-        {
-            if (art == null) return;
-            if (Application.isPlaying) Destroy(art);
-            else DestroyImmediate(art);
-        }
-
         float DrawStorageLabel(Rect bounds, Entity item)
         {
             var label = StorageLabels.Read(item);
@@ -374,11 +253,6 @@ namespace CavesOfOoo.Rendering
             {
                 DrawStorageLabelSwatch(bounds, tint);
                 return 11 + gap;
-            }
-            if (label.Mode == StorageLabelMode.Icon)
-            {
-                DrawStorageLabelIcon(bounds, 18, label.IconIndex, tint);
-                return 18 + gap;
             }
             int columns = Math.Max(3, (int)(bounds.width / 2 / glyphWidth));
             string text = SkillScreenText.Fit(label.Display, columns, 1);

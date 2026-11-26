@@ -373,14 +373,7 @@ namespace CavesOfOoo.Rendering
                             selected ? QudColorParser.White : QudColorParser.Gray);
                     }
 
-                    // Item glyph
-                    var render = item.GetPart<RenderPart>();
-                    if (render != null && !string.IsNullOrEmpty(render.RenderString))
-                    {
-                        char glyph = render.RenderString[0];
-                        Color glyphColor = QudColorParser.Parse(render.ColorString);
-                        DrawChar(5, rowY, glyph, glyphColor);
-                    }
+                    InventoryItemIcons.Paint(Tilemap, new Vector3Int(_worldOriginX + 5, _worldTopY - rowY, 0), item);
 
                     // Item name + stack count
                     string name = item.GetDisplayName();

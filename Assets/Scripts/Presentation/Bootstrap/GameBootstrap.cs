@@ -88,6 +88,7 @@ namespace CavesOfOoo
             if (_worldPresentationInitialized) return;
             Village3DSettings.Load();
             WorldPresentationSettings.LoadForLaunch();
+            InventoryIconSettings.Load();
             _worldPresentationInitialized = true;
         }
 

@@ -22,17 +22,16 @@ namespace CavesOfOoo.Tests
             return (bool)draft.GetType().GetMethod("Commit", Hidden).Invoke(draft, new object[] { mode, color, icon, text });
         }
 
-        [TestCase(StorageLabelMode.ColorMark, 1, 0, "")]
-        [TestCase(StorageLabelMode.Icon, 4, 2, "")]
-        [TestCase(StorageLabelMode.Text, 3, 0, "seed kit")]
-        public void ALabelIsSavedWithTheExactPhysicalVesselAndItsLoad(StorageLabelMode mode, int color, int icon, string text)
+        [TestCase(StorageLabelMode.ColorMark, 1, "")]
+        [TestCase(StorageLabelMode.Text, 3, "seed kit")]
+        public void ALabelIsSavedWithTheExactPhysicalVesselAndItsLoad(StorageLabelMode mode, int color, string text)
         {
             var vessel = Carry("FieldSatchel");
             var content = Factory.CreateEntity("FireClay");
             Assert.IsTrue(vessel.GetPart<ContainerPart>().AddItem(content));
             string oldName = vessel.GetDisplayName();
             int weight = HandlingService.GetWeight(vessel);
-            Assert.IsTrue(Commit(Begin(Actor, vessel), mode, color, icon, text));
+            Assert.IsTrue(Commit(Begin(Actor, vessel), mode, color, 0, text));
             Assert.AreEqual(oldName, vessel.GetDisplayName());
             Assert.AreEqual(weight, HandlingService.GetWeight(vessel));
 
@@ -42,8 +41,66 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(content.ID, restored.GetPart<ContainerPart>().Contents.Single().ID);
             Assert.AreEqual((int)mode, label.Mode);
             Assert.AreEqual(color, label.ColorIndex);
-            Assert.AreEqual(icon, label.IconIndex);
+            Assert.AreEqual(0, label.IconIndex);
             Assert.AreEqual(text, label.Text);
+        }
+
+        [Test]
+        public void SavedIconsBecomeSwatchesWithoutMovingOrMergingPhysicalStacksOnLoad()
+        {
+            Entity LegacyClay(int quantity, int color, int icon)
+            {
+                var clay = Carry("PreparedLiningClay");
+                clay.GetPart<StackerPart>().StackCount = quantity;
+                clay.AddPart(new StorageLabelPart
+                { Mode = (int)StorageLabelMode.Icon, ColorIndex = color, IconIndex = icon });
+                return clay;
+            }
+
+            var first = LegacyClay(2, 4, 0);
+            var second = LegacyClay(3, 4, 7);
+            var different = LegacyClay(4, 2, 0);
+            var restored = PartRoundTripHelper.RoundTripEntityViaTokenGraph(Actor);
+            var restoredPack = restored.GetPart<InventoryPart>();
+            var originalPiles = restoredPack.Objects.Where(item => item.BlueprintName == "PreparedLiningClay").ToArray();
+            CollectionAssert.AreEqual(new[] { first.ID, second.ID, different.ID }, originalPiles.Select(item => item.ID).ToArray());
+            CollectionAssert.AreEqual(new[] { 2, 3, 4 }, originalPiles.Select(item => item.GetPart<StackerPart>().StackCount).ToArray());
+            CollectionAssert.AreEqual(new[] { 4, 4, 2 }, originalPiles.Select(item => item.GetPart<StorageLabelPart>().ColorIndex).ToArray());
+            foreach (var pile in originalPiles)
+            {
+                var label = pile.GetPart<StorageLabelPart>();
+                Assert.AreEqual((int)StorageLabelMode.ColorMark, label.Mode);
+                Assert.AreEqual(0, label.IconIndex);
+                Assert.AreEqual("", label.Text);
+                Assert.AreSame(pile, label.ParentEntity);
+                Assert.AreSame(restored, pile.GetPart<PhysicsPart>().InInventory);
+            }
+            var resident = originalPiles[0];
+            var incoming = originalPiles[1];
+            var otherColor = originalPiles[2];
+            Assert.IsTrue(resident.GetPart<StackerPart>().CanStackWith(incoming));
+            Assert.IsFalse(resident.GetPart<StackerPart>().CanStackWith(otherColor));
+
+            Assert.IsTrue(Zone.RemoveEntity(Actor));
+            Assert.IsTrue(Zone.AddEntity(restored, 10, 10));
+            Assert.IsTrue(InventorySystem.Drop(restored, incoming, Zone));
+            Assert.IsTrue(InventorySystem.Pickup(restored, incoming, Zone));
+            CollectionAssert.AreEqual(new[] { resident, otherColor },
+                restoredPack.Objects.Where(item => item.BlueprintName == "PreparedLiningClay").ToArray());
+            Assert.AreEqual(5, resident.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(4, otherColor.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(0, incoming.GetPart<StackerPart>().StackCount);
+        }
+
+        [Test]
+        public void TheFormerIconModeCannotOverwriteAnExistingLabel()
+        {
+            var vessel = Carry("FieldSatchel");
+            Assert.IsTrue(Commit(Begin(Actor, vessel), StorageLabelMode.ColorMark, 1, 0, ""));
+            var original = vessel.GetPart<StorageLabelPart>();
+            Assert.IsFalse(Commit(Begin(Actor, vessel), StorageLabelMode.Icon, 4, 2, ""));
+            Assert.AreSame(original, vessel.GetPart<StorageLabelPart>());
+            Assert.AreEqual(1, original.ColorIndex);
         }
 
         [Test]
@@ -53,8 +110,8 @@ namespace CavesOfOoo.Tests
             var second = Carry("FieldSatchel");
             Assert.AreNotSame(first, second);
             var stale = Begin(Actor, first);
-            Assert.IsTrue(Commit(Begin(Actor, first), StorageLabelMode.Icon, 2, 5, ""));
-            Assert.IsTrue(Commit(Begin(Actor, second), StorageLabelMode.Icon, 2, 5, ""));
+            Assert.IsTrue(Commit(Begin(Actor, first), StorageLabelMode.ColorMark, 2, 0, ""));
+            Assert.IsTrue(Commit(Begin(Actor, second), StorageLabelMode.ColorMark, 2, 0, ""));
             Assert.IsFalse(Commit(stale, StorageLabelMode.None, 0, 0, ""));
             Assert.AreEqual(2, Actor.GetPart<InventoryPart>().Objects.Count(e => e.BlueprintName == "FieldSatchel"));
             Assert.IsTrue(Commit(Begin(Actor, first), StorageLabelMode.None, 0, 0, ""));
@@ -72,7 +129,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(CarriedStorage.TryBrowse(Actor, box, out var outer));
             Assert.AreSame(box.GetPart<ContainerPart>(), outer);
             Assert.IsTrue(Commit(Begin(Actor, box), StorageLabelMode.ColorMark, 1, 0, ""));
-            Assert.IsTrue(Commit(Begin(Actor, satchel), StorageLabelMode.Icon, 2, 1, ""));
+            Assert.IsTrue(Commit(Begin(Actor, satchel), StorageLabelMode.ColorMark, 2, 0, ""));
             var onlyInsideTheSatchel = Factory.CreateEntity("Dagger");
             Assert.IsTrue(satchel.GetPart<ContainerPart>().AddItem(onlyInsideTheSatchel));
             Assert.IsFalse(CarriedStorage.TryBrowse(Actor, satchel, out _));
@@ -111,7 +168,7 @@ namespace CavesOfOoo.Tests
             var restored = PartRoundTripHelper.RoundTripEntityViaTokenGraph(Actor);
             var restoredDagger = restored.GetPart<InventoryPart>().EquippedItems.Values.Single(e => e.ID == dagger.ID);
             Assert.AreEqual("keep dry", restoredDagger.GetPart<StorageLabelPart>().Text);
-            Assert.IsTrue(Commit(Begin(restored, restoredDagger), StorageLabelMode.Icon, 1, 0, ""));
+            Assert.IsTrue(Commit(Begin(restored, restoredDagger), StorageLabelMode.ColorMark, 1, 0, ""));
             Assert.IsTrue(InventorySystem.UnequipItem(Actor, dagger));
             Assert.AreEqual("keep dry", dagger.GetPart<StorageLabelPart>().Text);
         }
@@ -191,11 +248,12 @@ namespace CavesOfOoo.Tests
             var clay = Carry("PreparedLiningClay");
             var stack = clay.GetPart<StackerPart>();
             stack.StackCount = 3;
-            Assert.IsTrue(Commit(Begin(Actor, clay), StorageLabelMode.Icon, 3, 2, ""));
+            Assert.IsTrue(Commit(Begin(Actor, clay), StorageLabelMode.ColorMark, 3, 0, ""));
             Assert.IsTrue(stack.CanSplit());
             var unit = stack.RemoveOne();
             Assert.NotNull(unit);
-            Assert.AreEqual(2, unit.GetPart<StorageLabelPart>().IconIndex);
+            Assert.AreEqual((int)StorageLabelMode.ColorMark, unit.GetPart<StorageLabelPart>().Mode);
+            Assert.AreEqual(3, unit.GetPart<StorageLabelPart>().ColorIndex);
             Assert.IsTrue(stack.CanStackWith(unit));
             Assert.AreEqual(1, stack.MergeFrom(unit));
             Assert.AreEqual(3, stack.StackCount);

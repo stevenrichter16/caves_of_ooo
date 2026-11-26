@@ -128,6 +128,14 @@ namespace CavesOfOoo.Rendering
             if (!ReferenceEquals(result.sprite, sprite)) result.sprite = sprite;
             return result;
         }
+        Rect DrawItemRowIcon(Rect name, Entity item)
+        {
+            const float size = 18, gutter = 24;
+            var icon = InventoryItemIcons.For(item);
+            if (icon == null || name.width <= gutter) return name;
+            LBox(new Rect(name.x, name.y + (name.height - size) / 2, size, size), Color.white, icon);
+            return new Rect(name.x + gutter, name.y, name.width - gutter, name.height);
+        }
         void LFrame(Rect bounds, Color border, Color fill)
         {
             LBox(bounds, border);
@@ -235,7 +243,8 @@ namespace CavesOfOoo.Rendering
                 bool selected = _panel == PANEL_EQUIPMENT && _equipCursorIndex == index;
                 if (selected) LBox(rect, LSelected);
                 LLabel(new Rect(38, rect.y + 3, 284, 20), SkillScreenText.Fit(slot.BodyPartName ?? slot.SlotName, 31, 1), selected ? LGold : LMuted, 18);
-                LLabel(new Rect(52, rect.y + 23, 270, 20), SkillScreenText.Fit(slot.ItemName ?? "(empty)", 30, 1),
+                var itemName = DrawItemRowIcon(new Rect(52, rect.y + 23, 270, 20), slot.EquippedItem);
+                LLabel(itemName, SkillScreenText.Fit(slot.ItemName ?? "(empty)", (int)(itemName.width / 9), 1),
                     slot.EquippedItem != null ? LInk : LMuted, 18);
                 LHit(rect, LedgerHitKind.Equipment, index);
             }
@@ -270,7 +279,7 @@ namespace CavesOfOoo.Rendering
                 bool selected = _panel == PANEL_INVENTORY && _cursorIndex == index;
                 var rect = new Rect(360, y - 1, 888, 22);
                 if (selected) { LBox(rect, LSelected); LBox(new Rect(rect.x, rect.y, 3, rect.height), LGold); }
-                var name = IndentStorageRow(new Rect(370, y, 404, 21), row);
+                var name = DrawItemRowIcon(IndentStorageRow(new Rect(370, y, 404, 21), row), row.Item.Item);
                 float labelWidth = DrawStorageLabel(name, row.Item.Item);
                 float nameWidth = name.width - labelWidth;
                 LLabel(new Rect(name.x + labelWidth, y, nameWidth, name.height),

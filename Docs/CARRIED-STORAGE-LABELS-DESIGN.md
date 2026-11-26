@@ -32,8 +32,8 @@ with its contents. Both count against the player's carry limit.
 
 ## Label data and controls
 
-Keep optional cosmetic data on the physical storage owner. Use a fixed
-mode, a named palette entry, and either an icon ID or a single line of text.
+Keep optional cosmetic data on the physical item or stack. Use a fixed
+mode, a named palette entry, and optional single-line text.
 Old vessels start unmarked. Dropping, setting down, handing over, or loading
 a game preserves the label on that exact vessel. Cosmetic data never
 changes the ordinary display name, recipe identity, ownership, or price.
@@ -41,18 +41,16 @@ changes the ordinary display name, recipe identity, ownership, or price.
 | Mode | What the inventory shows |
 | --- | --- |
 | Color mark | A filled pixel square in the chosen color |
-| Icon | A chosen pixel symbol in the chosen color |
 | Text | A single short custom label in the chosen color |
 
-Use a filled pixel swatch and small silhouettes in the existing pixel UI
-style. Provide a named palette with distinct bright tones and readable ivory. Keep every
-color selectable for every assigned icon or text. A vessel's ordinary name
-stays visible beside the label. Players can choose a shape or text to tell
-vessels apart regardless of color. Give the label its own tint and reserved
-space in the inventory row. Full details can name the palette and the mark.
+Use a filled pixel swatch and a named palette with distinct bright tones
+and readable ivory. Keep every color selectable for each swatch or text
+label. The ordinary name stays visible beside the mark. Custom text
+allows players to distinguish same-colored labels. Full details can name
+the palette and the mark.
 
-The selected carried vessel's **Label storage** action opens a draft.
-Choose a mode, icon or text as appropriate, color, and confirm. Cancel
+The selected item's **Label item** action opens a draft.
+Choose a mode and color, type text if applicable, and confirm. Cancel
 leaves the original label intact. Clear is an explicit choice. Names
 accept one line of supported glyphs within a row-sized bound. Draft text
 stays separate from command strings and color markup. Confirm checks the
@@ -88,3 +86,22 @@ first to mark just one unit. Splits retain the original mark on both
 pieces and compatible stacks with equal labels can still merge. Matching
 items with different marks keep separate rows and stacks, so transferring
 them cannot silently erase a label.
+
+## Item icons
+
+Inventory and storage rows use a small pixel silhouette specific to the
+item type. A satchel, a flask and a hand pump have different shapes.
+The row still shows the ordinary name, quantity, weight and indentation
+where applicable. A swatch or text label has its own color.
+
+The same inventory-only atlas serves the pack, equipped items, carried
+storage contents and the lists for opening or choosing world containers.
+It reuses approved item pixels and fills gaps with compact family artwork.
+Types added without an atlas entry get a neutral icon. The menu draws
+icons for rows the player can already see.
+
+**Pause → Graphics → Item icons** turns the silhouettes on or off. This
+is a player preference, enabled by default. An icon label made in an
+earlier build becomes a simple swatch of the same color. Loading preserves
+each physical entry and its quantity. Entries with equal swatches can
+merge through ordinary inventory actions.

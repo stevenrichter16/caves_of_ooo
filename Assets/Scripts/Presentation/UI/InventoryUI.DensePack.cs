@@ -160,7 +160,7 @@ namespace CavesOfOoo.Rendering
                 var row = g.RowBounds(ordinal);
                 bool selected = index == _cursorIndex;
                 if (selected) { LBox(row, LSelected); LBox(new Rect(row.x, row.y, 3, row.height), LGold); }
-                var name = IndentStorageRow(new Rect(row.x + 10, row.y + 1, g.NameWidth, 22), itemRow);
+                var name = DrawItemRowIcon(IndentStorageRow(new Rect(row.x + 10, row.y + 1, g.NameWidth, 22), itemRow), item.Item);
                 float labelWidth = DrawStorageLabel(name, item.Item);
                 float nameWidth = name.width - labelWidth;
                 LLabel(new Rect(name.x + labelWidth, name.y, nameWidth, name.height),

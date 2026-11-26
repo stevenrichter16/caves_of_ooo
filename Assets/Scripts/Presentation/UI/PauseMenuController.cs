@@ -30,8 +30,9 @@ namespace CavesOfOoo.Rendering
         public const int WorldShadowsIndex = 6;
         public const int WorldDetailIndex = 7;
         public const int SpellEffectsIndex = 8;
-        public const int GraphicsBackIndex = 9;
-        public const int GraphicsItemCount = 10;
+        public const int ItemIconsIndex = 9;
+        public const int GraphicsBackIndex = 10;
+        public const int GraphicsItemCount = 11;
         private static readonly float[] ResolutionChoices = { 1f, .75f, .5f };
         private static readonly string[] MainLabels = { "Save game", "Load game", "Controls", "Graphics", "Audio", "Quit" };
 
@@ -127,6 +128,7 @@ namespace CavesOfOoo.Rendering
                 case WorldShadowsIndex: return (flat ? "Previous shadows: " : "World shadows: ") + (Village3DSettings.ShadowsEnabled ? "On" : "Off");
                 case WorldDetailIndex: return (flat ? "Previous detail: " : "World detail: ") + (Village3DSettings.LowDetail ? "Low" : "Full");
                 case SpellEffectsIndex: return "Spell effects: " + SpellFxSettings.Mode;
+                case ItemIconsIndex: return "Item icons: " + (InventoryIconSettings.Enabled ? "On" : "Off");
                 default: return "Back";
             }
         }
@@ -208,7 +210,7 @@ namespace CavesOfOoo.Rendering
             }
 
             if (IsGraphicsOpen && (SelectedIndex <= PreviousSpritesIndex
-                || (SelectedIndex >= WorldResolutionIndex && SelectedIndex <= SpellEffectsIndex)))
+                || (SelectedIndex >= WorldResolutionIndex && SelectedIndex <= ItemIconsIndex)))
             {
                 if (input.GetKeyDown(KeyCode.LeftArrow)) { ChangeGraphics(-1); return true; }
                 if (input.GetKeyDown(KeyCode.RightArrow)) { ChangeGraphics(1); return true; }
@@ -315,6 +317,11 @@ namespace CavesOfOoo.Rendering
         {
             switch (SelectedIndex)
             {
+                case ItemIconsIndex:
+                    InventoryIconSettings.Enabled = !InventoryIconSettings.Enabled;
+                    InventoryIconSettings.Save();
+                    ViewRevision++;
+                    return;
                 case WorldPresentationIndex:
                     if (WorldPresentationSettings.Toggle(WorldPresentationChanged)) ViewRevision++;
                     return;

@@ -111,6 +111,7 @@ namespace CavesOfOoo.Rendering
             string title = "ITEM ACTIONS", owner = "", groupScope = "";
             int count = 0, cursor = 0;
             Func<int, string> label = null;
+            Func<int, Entity> item = null;
             if (_ledgerCommandsOpen)
             { title = _ledgerCommandTitle; count = _ledgerCommands.Count; cursor = _ledgerCommandIndex; label = i => _ledgerCommands[i].Label; }
             else if (_displaceConfirm != null)
@@ -132,6 +133,8 @@ namespace CavesOfOoo.Rendering
             {
                 title = "CHOOSE EQUIPMENT"; owner = _equipPopup.TargetSlot.BodyPartName;
                 count = _equipPopup.TotalRows; cursor = _equipPopup.CursorIndex;
+                item = i => _equipPopup.HasRemoveOption && i == 0 ? null
+                    : _equipPopup.Items[i - (_equipPopup.HasRemoveOption ? 1 : 0)];
                 label = i => _equipPopup.HasRemoveOption && i == 0 ? "Remove current equipment"
                     : _equipPopup.Items[i - (_equipPopup.HasRemoveOption ? 1 : 0)].GetDisplayName();
             }
@@ -150,6 +153,7 @@ namespace CavesOfOoo.Rendering
             {
                 title = "MODIFICATION TARGET"; owner = _modTargetPopup.Recipe.DisplayName;
                 count = _modTargetPopup.TotalRows; cursor = _modTargetPopup.CursorIndex;
+                item = i => _modTargetPopup.Targets[i];
                 label = i => _modTargetPopup.Targets[i].GetDisplayName();
             }
             else if (_grimoirePicker != null)
@@ -178,7 +182,8 @@ namespace CavesOfOoo.Rendering
                 // reserves a preview for the selected label, including its costs.
                 bool hasPreview = false;
                 for (int i = 0; i < count; i++)
-                    if (SkillScreenText.Wrap(rowLabel(i), 72).Count > 1) { hasPreview = true; break; }
+                    if (SkillScreenText.Wrap(rowLabel(i), item != null && InventoryIconSettings.Enabled ? 69 : 72).Count > 1)
+                    { hasPreview = true; break; }
                 int capacity = hasPreview ? 6 : 9;
                 int start = Mathf.Clamp(cursor - capacity + 1, 0, Mathf.Max(0, count - capacity));
                 for (int i = start; i < Mathf.Min(count, start + capacity); i++)
@@ -186,7 +191,9 @@ namespace CavesOfOoo.Rendering
                     var rect = new Rect(x + 16, y + 134 + (i - start) * 34, width - 32, 32);
                     bool selected = i == cursor;
                     if (selected) { LBox(rect, LSelected); LBox(new Rect(rect.x, rect.y, 3, rect.height), LGold); }
-                    LLabel(new Rect(rect.x + 10, rect.y + 6, rect.width - 20, 22), SkillScreenText.Fit(rowLabel(i), 72, 1), selected ? LGold : LInk);
+                    var nameBounds = new Rect(rect.x + 10, rect.y + 6, rect.width - 20, 22);
+                    var name = DrawItemRowIcon(nameBounds, item?.Invoke(i));
+                    LLabel(name, SkillScreenText.Fit(rowLabel(i), name.width < nameBounds.width ? 69 : 72, 1), selected ? LGold : LInk);
                     LHit(rect, LedgerHitKind.PopupRow, i);
                 }
                 if (count == 0) LLabel(new Rect(x + 24, y + 148, width - 48, 72), SkillScreenText.Fit(_modTargetPopup?.EmptyReason ?? "No available choices.", 73, 3), LMuted);

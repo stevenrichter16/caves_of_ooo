@@ -5,6 +5,7 @@ using CavesOfOoo.Core.Anatomy;
 
 namespace CavesOfOoo.Core
 {
+    // Keep the saved ordinal of the former Icon mode for loading old labels.
     public enum StorageLabelMode { None, ColorMark, Icon, Text }
 
     /// <summary>Optional cosmetic state on an exact physical item or stack.</summary>
@@ -13,6 +14,15 @@ namespace CavesOfOoo.Core
         public override string Name => "StorageLabel";
         public int Mode, ColorIndex, IconIndex;
         public string Text = "";
+
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            if (Mode != (int)StorageLabelMode.Icon || !StorageLabels.TryLegacyIcon(ColorIndex, IconIndex, out var mark))
+                return;
+            Mode = (int)mark.Mode;
+            IconIndex = mark.IconIndex;
+            Text = mark.Text;
+        }
     }
 
     internal readonly struct StorageLabelValue
@@ -25,7 +35,6 @@ namespace CavesOfOoo.Core
         { Mode = mode; ColorIndex = color; IconIndex = icon; Text = text; }
 
         internal string Display => Mode == StorageLabelMode.ColorMark ? "■"
-            : Mode == StorageLabelMode.Icon ? StorageLabels.IconGlyph(IconIndex)
             : Mode == StorageLabelMode.Text ? Text : "";
     }
 
@@ -36,9 +45,11 @@ namespace CavesOfOoo.Core
             { "Ivory", "Amber", "Coral", "Green", "Cyan", "Blue", "Violet" });
         internal static readonly IReadOnlyList<string> IconNames = Array.AsReadOnly(new[]
             { "Tools", "Food", "Materials", "Potions", "Clothing", "Trade", "Important", "Travel" });
-        private static readonly string[] Glyphs = { "+", "%", "#", "!", "=", "$", "*", "^" };
-
-        internal static string IconGlyph(int icon) => icon >= 0 && icon < Glyphs.Length ? Glyphs[icon] : "";
+        internal static bool TryLegacyIcon(int color, int icon, out StorageLabelValue value)
+        {
+            value = default;
+            return icon >= 0 && icon < IconNames.Count && TryValue(StorageLabelMode.ColorMark, color, 0, "", out value);
+        }
 
         internal static bool CanEdit(Entity actor, Entity item)
             => TryLocation(actor, item, out _) && LabelPartCurrent(item);
@@ -102,7 +113,9 @@ namespace CavesOfOoo.Core
             value = default;
             if (item == null || !LabelPartCurrent(item)) return false;
             var part = item.GetPart<StorageLabelPart>();
-            return part == null || TryValue((StorageLabelMode)part.Mode, part.ColorIndex, part.IconIndex, part.Text, out value);
+            if (part == null) return true;
+            return part.Mode == (int)StorageLabelMode.Icon ? TryLegacyIcon(part.ColorIndex, part.IconIndex, out value)
+                : TryValue((StorageLabelMode)part.Mode, part.ColorIndex, part.IconIndex, part.Text, out value);
         }
 
         internal static bool SameStackLabel(Entity first, Entity second)
@@ -122,10 +135,6 @@ namespace CavesOfOoo.Core
             {
                 case StorageLabelMode.ColorMark:
                     icon = 0; text = "";
-                    break;
-                case StorageLabelMode.Icon:
-                    if (icon < 0 || icon >= Glyphs.Length) return false;
-                    text = "";
                     break;
                 case StorageLabelMode.Text:
                     if (text == null || text.Any(c => c < ' ' || c > '~' || c == '&')) return false;

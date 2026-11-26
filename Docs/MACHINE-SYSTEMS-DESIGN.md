@@ -1,3 +1,10 @@
+**Item artwork and player labels serve separate roles — November 26 UTC, 2026.**
+The pack and storage lists show default-on item art for every current
+portable item type. The row art follows the item type. Swatches and custom
+text organize individual items or stacks. An old icon label keeps its
+color as a swatch, with the same items and quantities on load.
+[Design](CARRIED-STORAGE-LABELS-DESIGN.md)
+
 **A public cargo crate can serve a chosen Sumphold berth — November 26 UTC, 2026.**
 The fresh boatyard can offer the same two timber units beside a western
 or eastern work finger. Loose carrying suits a small task. A loaded move

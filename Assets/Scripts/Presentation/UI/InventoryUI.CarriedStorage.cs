@@ -82,8 +82,7 @@ namespace CavesOfOoo.Rendering
                 + (item.GetPart<StackerPart>()?.StackCount ?? 1) + "\nWeight " + InventoryPart.GetItemWeight(item) + " lb";
             if (label.Mode != StorageLabelMode.None)
             {
-                string mark = label.Mode == StorageLabelMode.Icon ? StorageLabels.IconNames[label.IconIndex]
-                    : label.Mode == StorageLabelMode.Text ? label.Text : "color mark";
+                string mark = label.Mode == StorageLabelMode.Text ? label.Text : "color mark";
                 text += "\nLabel " + StorageLabels.ColorNames[label.ColorIndex] + " " + mark;
             }
             return text;

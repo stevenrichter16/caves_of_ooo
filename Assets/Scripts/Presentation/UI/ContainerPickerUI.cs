@@ -228,13 +228,7 @@ namespace CavesOfOoo.Rendering
                         DrawText(2, rowY, hotkey + ")", selected ? QudColorParser.White : QudColorParser.Gray);
                     }
 
-                    var render = container.GetPart<RenderPart>();
-                    if (render != null && !string.IsNullOrEmpty(render.RenderString))
-                    {
-                        char glyph = render.RenderString[0];
-                        Color glyphColor = QudColorParser.Parse(render.ColorString);
-                        DrawChar(5, rowY, glyph, glyphColor);
-                    }
+                    InventoryItemIcons.Paint(Tilemap, new Vector3Int(_worldOriginX + 5, _worldTopY - rowY, 0), container);
 
                     string name = container.GetDisplayName();
                     var containerPart = container.GetPart<ContainerPart>();
