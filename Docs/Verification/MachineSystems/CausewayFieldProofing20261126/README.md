@@ -52,7 +52,31 @@ Both observed acid pools kept their 60-unit liquid volumes. At that point
 health stayed at 40 and the player had no active acid effect. On the way
 back the existing cave bear hit the player twice, leaving 4 HP at tick
 690. The private trial stopped there. The earlier full-health save remains
-available. Surface brine and the proposed combination brew are open.
+available. A combined acid and brine brew remains open.
+
+## A safer surface source and two uses for its crust
+
+From the full-health tick 540 checkpoint, 19 dry moves reached the
+surface brine bank. Two native scrapes at ticks 740 and 750 took one
+crust each and left one of the original three catches. Both observed
+pool owners kept 90 units of brine.
+
+- **Portable brew.** Pack Crafting consumed one crust and produced one
+  unsellable electrified tonic. It used no still, flask, fuel or drams.
+- **Shock protection.** The other crust made one unit of shock-proofing
+  in the previously emptied flask. The worn buckler gained +35 shock
+  resistance for 100 worn turns. The worn cloak kept its own heat coat.
+- **Ground use.** From dry `(17,17)`, the player threw the exact tonic at
+  empty brine `(14,17)`. The tonic broke and the brine reacted to its
+  charge. The two pools temporarily gained the electrified effect and
+  neither lost liquid. No creature was struck. Two following waits
+  produced no further brine charge reactions.
+
+Fresh Continue at tick 800 kept the remaining catch, both pool volumes,
+the exact worn shock and heat durations, and the original separate water.
+The used tonic stayed absent. The run stayed at 40 HP and spent no drams.
+This is an existing composition played with one supplied scraper. It adds
+an ordinary surface alternative to the cave branch.
 
 ## Verification
 
@@ -66,8 +90,12 @@ at the existing connection's exact cell.
 Independent review checked the existing vent markers in the saved
 version 29 world, both readers, the exact garment and flask targets,
 and the two native menu captures. The earlier cloak screenshot shows
-the same result on the duration comparison branch.
+the same result on the duration comparison branch. Independent review
+also checked the two brine receipts and confirmed that the two affected
+targets were pools and that no creature gained a new shock effect.
 
 [Vent Examine](01-vent-examine.png) · [Coat menu](02-coat-menu.png) ·
 [Cloak description](03-cloak-reader.png) · [Acid bank](04-acid-bank.png) ·
-[Receipts](observations.json)
+[Portable brine brew](05-portable-brine-brew.png) ·
+[Ground throw](06-brine-ground-throw.png) · [Proofing receipts](observations.json) ·
+[Brine receipts](brine-observations.json)

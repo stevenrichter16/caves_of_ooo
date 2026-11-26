@@ -5,6 +5,10 @@ offers the player's garments before ordinary pours, and the condition
 reader states how much wear remains. Fire-moss is another input for the
 same garment result. The player can save their vent catches for water
 and keep the ordinary dry route without preparing any coating.
+The surface brine bank offers a separate choice. One crust provides
+shock-proofing or a portable tonic that reacts with existing brine when
+thrown. The lower acid bank uses the same scraper and adds a real wildlife
+risk on the return. Each source retains its own finite stock.
 [Evidence](Verification/MachineSystems/CausewayFieldProofing20261126/README.md)
 
 **Pack organization follows physical custody — November 26 UTC, 2026.**

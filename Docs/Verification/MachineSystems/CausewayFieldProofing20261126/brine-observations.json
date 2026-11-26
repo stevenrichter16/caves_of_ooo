@@ -1,0 +1,653 @@
+{
+  "source": "Seed 64, exploration version 29, private tick 540 archive. Scraper was supplied before the earlier vent trial.",
+  "approach": {
+    "start": {
+      "t": 540,
+      "p": {
+        "ID": "2703",
+        "X": 34,
+        "Y": 14,
+        "hp": 40,
+        "drams": 50,
+        "wet": false
+      }
+    },
+    "end": {
+      "t": 730,
+      "p": {
+        "ID": "2703",
+        "X": 15,
+        "Y": 17,
+        "hp": 40,
+        "drams": 50,
+        "wet": false
+      },
+      "zone": "Overworld.17.9.0"
+    },
+    "moves": 19
+  },
+  "prior": {
+    "t": 730,
+    "zone": "Overworld.17.9.0",
+    "pos": {
+      "X": 15,
+      "Y": 17
+    },
+    "hp": 40,
+    "acid": null,
+    "sources": [
+      {
+        "ID": "7618",
+        "BlueprintName": "BrinePool",
+        "pos": {
+          "Item1": 13,
+          "Item2": 17
+        },
+        "volume": 90,
+        "avail": null,
+        "cap": null
+      },
+      {
+        "ID": "7619",
+        "BlueprintName": "BrinePool",
+        "pos": {
+          "Item1": 14,
+          "Item2": 17
+        },
+        "volume": 90,
+        "avail": null,
+        "cap": null
+      }
+    ],
+    "pack": []
+  },
+  "harvests": [
+    {
+      "t": 740,
+      "zone": "Overworld.17.9.0",
+      "pos": {
+        "X": 15,
+        "Y": 17
+      },
+      "hp": 40,
+      "acid": null,
+      "sources": [
+        {
+          "ID": "7618",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 13,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": 2,
+          "cap": 3
+        },
+        {
+          "ID": "7619",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 14,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": null,
+          "cap": null
+        }
+      ],
+      "pack": [
+        {
+          "ID": "11163",
+          "BlueprintName": "BrineCrust",
+          "name": "brine crust",
+          "noTrade": true,
+          "effects": null,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "t": 750,
+      "zone": "Overworld.17.9.0",
+      "pos": {
+        "X": 15,
+        "Y": 17
+      },
+      "hp": 40,
+      "acid": null,
+      "sources": [
+        {
+          "ID": "7618",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 13,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": 1,
+          "cap": 3
+        },
+        {
+          "ID": "7619",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 14,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": null,
+          "cap": null
+        }
+      ],
+      "pack": [
+        {
+          "ID": "11163",
+          "BlueprintName": "BrineCrust",
+          "name": "brine crust (x2)",
+          "noTrade": true,
+          "effects": null,
+          "n": 2
+        }
+      ]
+    }
+  ],
+  "brew": {
+    "preview": {
+      "panel": 4,
+      "mode": "Brew",
+      "cursor": 2,
+      "max": 2,
+      "rows": [
+        {
+          "text": "Reagents",
+          "mark": false,
+          "id": null,
+          "bp": null
+        },
+        {
+          "text": "vent scale (x3)",
+          "mark": false,
+          "id": "11156",
+          "bp": "VentScale"
+        },
+        {
+          "text": "brine crust (x2)",
+          "mark": true,
+          "id": "11163",
+          "bp": "BrineCrust"
+        }
+      ]
+    },
+    "result": {
+      "t": 750,
+      "zone": "Overworld.17.9.0",
+      "pos": {
+        "X": 15,
+        "Y": 17
+      },
+      "hp": 40,
+      "acid": null,
+      "sources": [
+        {
+          "ID": "7618",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 13,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": 1,
+          "cap": 3
+        },
+        {
+          "ID": "7619",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 14,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": null,
+          "cap": null
+        }
+      ],
+      "pack": [
+        {
+          "ID": "11163",
+          "BlueprintName": "BrineCrust",
+          "name": "brine crust",
+          "noTrade": true,
+          "effects": null,
+          "n": 1
+        },
+        {
+          "ID": "11165",
+          "BlueprintName": "BrewedTonic",
+          "name": "electrified tonic",
+          "noTrade": true,
+          "effects": "Electrified:1",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "proofing": {
+    "pressed": {
+      "t": 760,
+      "zone": "Overworld.17.9.0",
+      "hp": 40,
+      "heat": 35,
+      "electric": 0,
+      "shock": null,
+      "duration": 75,
+      "worn": true,
+      "coat": {
+        "Amount": 35,
+        "Kind": "heat",
+        "TurnsLeft": 75,
+        "TurnsTotal": 100
+      },
+      "items": [
+        {
+          "ID": "11154",
+          "BlueprintName": "LiquidFlask",
+          "n": null,
+          "v": 1,
+          "liq": "water"
+        },
+        {
+          "ID": "11156",
+          "BlueprintName": "VentScale",
+          "n": 3,
+          "v": null,
+          "liq": null
+        },
+        {
+          "ID": "11160",
+          "BlueprintName": "LiquidFlask",
+          "n": null,
+          "v": 1,
+          "liq": "shock-proofing"
+        }
+      ]
+    },
+    "applied": {
+      "t": 770,
+      "zone": "Overworld.17.9.0",
+      "hp": 40,
+      "heat": 35,
+      "electric": 35,
+      "shock": {
+        "Kind": "electric",
+        "Amount": 35,
+        "TurnsLeft": 100,
+        "TurnsTotal": 100
+      },
+      "duration": 74,
+      "worn": true,
+      "coat": {
+        "Amount": 35,
+        "Kind": "heat",
+        "TurnsLeft": 74,
+        "TurnsTotal": 100
+      },
+      "items": [
+        {
+          "ID": "11154",
+          "BlueprintName": "LiquidFlask",
+          "n": null,
+          "v": 1,
+          "liq": "water"
+        },
+        {
+          "ID": "11156",
+          "BlueprintName": "VentScale",
+          "n": 3,
+          "v": null,
+          "liq": null
+        },
+        {
+          "ID": "11160",
+          "BlueprintName": "LiquidFlask",
+          "n": null,
+          "v": 0,
+          "liq": ""
+        }
+      ]
+    }
+  },
+  "throw": {
+    "before": {
+      "t": 770,
+      "zone": "Overworld.17.9.0",
+      "pos": {
+        "X": 15,
+        "Y": 17
+      },
+      "hp": 40,
+      "acid": null,
+      "sources": [
+        {
+          "ID": "7618",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 13,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": 1,
+          "cap": 3
+        },
+        {
+          "ID": "7619",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 14,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": null,
+          "cap": null
+        }
+      ],
+      "pack": [
+        {
+          "ID": "11165",
+          "BlueprintName": "BrewedTonic",
+          "name": "electrified tonic",
+          "noTrade": true,
+          "effects": "Electrified:1",
+          "n": 1
+        }
+      ]
+    },
+    "aim": {
+      "stage": "ThrowTargeting",
+      "X": 14,
+      "Y": 17,
+      "ThrowGroundAim": true,
+      "desc": "Ground / 1 item / 1 action. First contact: ground; shatters at [14,17]. Broad initial splash; later reactions can spread. Adds 1 charge per splash cell for existing ground reactions. These inputs do not create a lasting trap on bare ground.",
+      "chargeTrace": true,
+      "creatures": []
+    },
+    "after": {
+      "t": 800,
+      "zone": "Overworld.17.9.0",
+      "pos": {
+        "X": 17,
+        "Y": 17
+      },
+      "hp": 40,
+      "acid": null,
+      "sources": [
+        {
+          "ID": "7618",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 13,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": 1,
+          "cap": 3
+        },
+        {
+          "ID": "7619",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 14,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": null,
+          "cap": null
+        }
+      ],
+      "pack": []
+    },
+    "reactions": [
+      {
+        "tick": 790,
+        "reaction": "electrify_water",
+        "x": 13,
+        "y": 17,
+        "consumedCoating": "",
+        "consumedPhysicalLiquid": 0,
+        "consumedEnergy": 1,
+        "outputCoating": "",
+        "outputCloud": "",
+        "occupantsHit": 0
+      },
+      {
+        "tick": 790,
+        "reaction": "electrify_water",
+        "x": 14,
+        "y": 17,
+        "consumedCoating": "",
+        "consumedPhysicalLiquid": 0,
+        "consumedEnergy": 1,
+        "outputCoating": "",
+        "outputCloud": "",
+        "occupantsHit": 0
+      },
+      {
+        "tick": 790,
+        "reaction": "electrify_water",
+        "x": 13,
+        "y": 17,
+        "consumedCoating": "",
+        "consumedPhysicalLiquid": 0,
+        "consumedEnergy": 1,
+        "outputCoating": "",
+        "outputCloud": "",
+        "occupantsHit": 0
+      },
+      {
+        "tick": 790,
+        "reaction": "electrify_water",
+        "x": 14,
+        "y": 17,
+        "consumedCoating": "",
+        "consumedPhysicalLiquid": 0,
+        "consumedEnergy": 1,
+        "outputCoating": "",
+        "outputCloud": "",
+        "occupantsHit": 0
+      },
+      {
+        "tick": 800,
+        "reaction": "electrify_water",
+        "x": 13,
+        "y": 17,
+        "consumedCoating": "",
+        "consumedPhysicalLiquid": 0,
+        "consumedEnergy": 1,
+        "outputCoating": "",
+        "outputCloud": "",
+        "occupantsHit": 0
+      },
+      {
+        "tick": 800,
+        "reaction": "electrify_water",
+        "x": 14,
+        "y": 17,
+        "consumedCoating": "",
+        "consumedPhysicalLiquid": 0,
+        "consumedEnergy": 1,
+        "outputCoating": "",
+        "outputCloud": "",
+        "occupantsHit": 0
+      },
+      {
+        "tick": 800,
+        "reaction": "electrify_water",
+        "x": 13,
+        "y": 17,
+        "consumedCoating": "",
+        "consumedPhysicalLiquid": 0,
+        "consumedEnergy": 1,
+        "outputCoating": "",
+        "outputCloud": "",
+        "occupantsHit": 0
+      },
+      {
+        "tick": 800,
+        "reaction": "electrify_water",
+        "x": 14,
+        "y": 17,
+        "consumedCoating": "",
+        "consumedPhysicalLiquid": 0,
+        "consumedEnergy": 1,
+        "outputCoating": "",
+        "outputCloud": "",
+        "occupantsHit": 0
+      }
+    ],
+    "laterReactions": []
+  },
+  "receipts": {
+    "beforeThrow": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "519db0ea0827400e84fb7469ee21bad8",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.17.9.0",
+        "ActiveZoneDisplayLabel": "Overworld.17.9.0",
+        "Turn": 770,
+        "SaveTimestampUtc": "2026-11-26T01:25:48.4175470Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "f9e34e0583ae8057afc13bfe1c68de4ff618a2aabf34130a877b0bdeb941c1d8",
+        "Quick.sav.gz.bak": "58b40daf66e5bb656b97b4033a9f5dd9c16064a7c7b9f720f3290afdb9eab419",
+        "Quick.json.bak": "8df8c0e709f9f89c1c43a81787dd59c0da340f522d9767c71e7ef1ff8f9c858f",
+        "Quick.json": "49ca8d2164f315689819b8f5f577c2166a38e1ec8d3814b3118e503d2c07a8bd"
+      }
+    },
+    "afterThrow": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "519db0ea0827400e84fb7469ee21bad8",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.17.9.0",
+        "ActiveZoneDisplayLabel": "Overworld.17.9.0",
+        "Turn": 800,
+        "SaveTimestampUtc": "2026-11-26T01:27:04.6308460Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "7fe9cdd7d9b485ca214b2a14193ebbb903d3461d7937d8163f9001a94c359aaf",
+        "Quick.sav.gz.bak": "f9e34e0583ae8057afc13bfe1c68de4ff618a2aabf34130a877b0bdeb941c1d8",
+        "Quick.json.bak": "49ca8d2164f315689819b8f5f577c2166a38e1ec8d3814b3118e503d2c07a8bd",
+        "Quick.json": "610f8abdfb23ad10075b3aac72a0e3ede77c6532f1757d516284122e105227e6"
+      }
+    }
+  },
+  "fresh": {
+    "state": {
+      "t": 800,
+      "zone": "Overworld.17.9.0",
+      "pos": {
+        "X": 17,
+        "Y": 17
+      },
+      "hp": 40,
+      "acid": null,
+      "sources": [
+        {
+          "ID": "7618",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 13,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": 1,
+          "cap": 3
+        },
+        {
+          "ID": "7619",
+          "BlueprintName": "BrinePool",
+          "pos": {
+            "Item1": 14,
+            "Item2": 17
+          },
+          "volume": 90,
+          "avail": null,
+          "cap": null
+        }
+      ],
+      "pack": []
+    },
+    "gear": {
+      "t": 800,
+      "zone": "Overworld.17.9.0",
+      "hp": 40,
+      "heat": 35,
+      "electric": 35,
+      "shock": {
+        "Kind": "electric",
+        "Amount": 35,
+        "TurnsLeft": 97,
+        "TurnsTotal": 100
+      },
+      "duration": 71,
+      "worn": true,
+      "coat": {
+        "Amount": 35,
+        "Kind": "heat",
+        "TurnsLeft": 71,
+        "TurnsTotal": 100
+      },
+      "items": [
+        {
+          "ID": "11154",
+          "BlueprintName": "LiquidFlask",
+          "n": null,
+          "v": 1,
+          "liq": "water"
+        },
+        {
+          "ID": "11156",
+          "BlueprintName": "VentScale",
+          "n": 3,
+          "v": null,
+          "liq": null
+        },
+        {
+          "ID": "11160",
+          "BlueprintName": "LiquidFlask",
+          "n": null,
+          "v": 0,
+          "liq": ""
+        }
+      ]
+    },
+    "editorAfterStop": {
+      "playing": false,
+      "root": null,
+      "dirty": false,
+      "profiling": false,
+      "total": 7,
+      "builtin": 7,
+      "selected": 0,
+      "viewOwned": false
+    },
+    "preservation": {
+      "foreignFiles": 86,
+      "normalSaveAndPreferenceFiles": 861,
+      "differences": 0
+    }
+  },
+  "independentReview": "Verified both original pool owners and transient effects, coat and tonic custody, all four files in each new archive, and both native screenshots."
+}
