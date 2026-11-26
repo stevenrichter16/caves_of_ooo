@@ -7,7 +7,7 @@ namespace CavesOfOoo.Rendering
 {
     public partial class InventoryUI
     {
-        struct LedgerCommand { public string Label; public Action Run; }
+        struct LedgerCommand { public string Label; public Action Run; public Entity Item; }
         readonly List<LedgerCommand> _ledgerCommands = new List<LedgerCommand>(10);
         bool _ledgerCommandsOpen;
         int _ledgerCommandIndex;
@@ -72,7 +72,8 @@ namespace CavesOfOoo.Rendering
             AddLedgerCommand("Close inventory", Close);
             _ledgerCommandsOpen = true; Render();
         }
-        void AddLedgerCommand(string label, Action run) => _ledgerCommands.Add(new LedgerCommand { Label = label, Run = run });
+        void AddLedgerCommand(string label, Action run, Entity item = null)
+            => _ledgerCommands.Add(new LedgerCommand { Label = label, Run = run, Item = item });
         void ExecuteLedgerCommand(int index)
         {
             if (index < 0 || index >= _ledgerCommands.Count) return;
@@ -113,7 +114,11 @@ namespace CavesOfOoo.Rendering
             Func<int, string> label = null;
             Func<int, Entity> item = null;
             if (_ledgerCommandsOpen)
-            { title = _ledgerCommandTitle; count = _ledgerCommands.Count; cursor = _ledgerCommandIndex; label = i => _ledgerCommands[i].Label; }
+            {
+                title = _ledgerCommandTitle; count = _ledgerCommands.Count; cursor = _ledgerCommandIndex;
+                label = i => _ledgerCommands[i].Label;
+                item = i => _ledgerCommands[i].Item;
+            }
             else if (_displaceConfirm != null)
             {
                 title = "REPLACE EQUIPMENT?"; owner = _displaceConfirm.ItemToEquip.GetDisplayName();
@@ -182,7 +187,7 @@ namespace CavesOfOoo.Rendering
                 // reserves a preview for the selected label, including its costs.
                 bool hasPreview = false;
                 for (int i = 0; i < count; i++)
-                    if (SkillScreenText.Wrap(rowLabel(i), item != null && InventoryIconSettings.Enabled ? 69 : 72).Count > 1)
+                    if (SkillScreenText.Wrap(rowLabel(i), InventoryIconSettings.Enabled && item?.Invoke(i) != null ? 69 : 72).Count > 1)
                     { hasPreview = true; break; }
                 int capacity = hasPreview ? 6 : 9;
                 int start = Mathf.Clamp(cursor - capacity + 1, 0, Mathf.Max(0, count - capacity));

@@ -223,7 +223,7 @@ namespace CavesOfOoo.Rendering
             foreach (var item in actor.GetPart<InventoryPart>().Objects)
             {
                 if (!CarriedStorage.CanDeposit(actor, vessel, item, zone, out _)) continue;
-                AddLedgerCommand("Stow " + item.GetDisplayName(), () => StowInCarriedStorage(actor, vessel, expected, item, zone));
+                AddLedgerCommand("Stow " + item.GetDisplayName(), () => StowInCarriedStorage(actor, vessel, expected, item, zone), item);
             }
             if (_ledgerCommands.Count == 0)
                 AddLedgerCommand("No eligible items fit", () => OpenCarriedStorageStow(vessel, expected));

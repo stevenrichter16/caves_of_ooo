@@ -54,12 +54,46 @@ WORLD_STORAGE = {
     "Chest": ("Live16x24/opening-anchors", 6, 24),
     "LockedChest": ("Live16x24/opening-anchors", 6, 24),
     "MimicChest": ("Live16x24/opening-anchors", 6, 24),
+    "CounterStoreChest": ("Live16x24/opening-anchors", 6, 24),
+    "WoodenBarrel": ("Live16x24/opening-anchors", 7, 24),
     "Crate": ("Live16x24/opening-cellar", 1, 24),
     "StrongBox": ("Environment/cont_strongbox", 0, 16),
     "OreCache": ("Environment/cont_ore_cache", 0, 16),
+    "BoneCache": ("Environment/cont_bone_cache", 0, 16),
     "HollowLog": ("Environment/cont_hollow_log", 0, 16),
     "Sack": ("Environment/cont_sack", 0, 16),
     "Urn": ("Environment/cont_urn", 0, 16),
+    "WovenBasket": ("Environment/cont_woven_basket", 0, 16),
+    "Reliquary": ("Environment/cont_reliquary", 0, 16),
+    "Bookshelf": ("Environment/cont_bookshelf", 0, 16),
+    "WeaponRack": ("Environment/cont_weapon_rack", 0, 16),
+    "AlchemyShelf": ("Environment/cont_alchemy_shelf", 0, 16),
+}
+
+# These fixtures show their construction without sampling what is inside.
+STORAGE_FAMILIES = {
+    "CinderholdOilRecoveryTray": "empty_tray",
+    "ConnectedKitchenEscrow": "empty_tray",
+    "ConnectedKitchenPickup": "board",
+    "ConnectedReserveTray": "empty_tray",
+    "CurationConservationCase": "cabinet",
+    "CurationMaintenanceRack": "shelf",
+    "CurationRecoveryCabinet": "cabinet",
+    "CurationToolCabinet": "cabinet",
+    "GantryExchangeCounter": "bench",
+    "Graveyard": "marker",
+    "LiningClayReceivingShelf": "shelf",
+    "LiningClaySupplyTray": "empty_tray",
+    "QuillholdArchiveShelf": "shelf",
+    "SoddenWorksLocker": "cabinet",
+    "StillleafFileCabinet": "cabinet",
+    "TokenDish": "dish",
+    "WaysideClayReceivingShelf": "shelf",
+    "WellmeetGuestLocker": "cabinet",
+}
+
+ITEM_TEMPLATES = {
+    "Item", "ArmorItem", "FoodItem", "ReagentItem", "TonicItem", "TrinketItem", "WeaponComponentItem"
 }
 
 
@@ -95,6 +129,24 @@ TEMPLATES = {
                           "....ooooooooo"),
     "tray": pixels("...ooooooooooo", "..oTTTTTTTTTTTo", ".oTeeeeeeeeeeeTo", ".oTeAaaAAAaAaeTo",
                     ".oTeeeeeeeeeeeTo", "..otTTTTTTTTtto", "...ottttttttto", "....ooooooooo"),
+    "empty_tray": pixels("...ooooooooooo", "..oTTTTTTTTTTTo", ".oTSsssssssssSTo",
+                         ".oTSsTTTTTTTsSTo", ".oTSSsssssssSSTo", "..otTTTTTTTTtto",
+                         "...ottttttttto", "....ooooooooo"),
+    "board": pixels("...ooooooooo", "..oTTTTTTTTToo", ".ooTtttTTTTTTToo",
+                     "oTTTTTtttTTTTTTo", "otttttttttttttto", ".oooooooooooooo"),
+    "cabinet": pixels("...oooooooooo", "..osSSSSSSSSSo", "..oSoSSSSSSoSo",
+                       "..oSoSssssSoSo", "..oSoSSSSSSoSo", "..oSoSSsSoSoSo",
+                       "..oSoSSSSSSoSo", "..oSooooooooSo", "..oSoSSSSSSoSo",
+                       "..oSoSssssSoSo", "..osSSSSSSSSso", "..oooooooooooo"),
+    "shelf": pixels("..oooooooooooo", "..oTTTTTTTTTTo", "..oTo......oTo",
+                     "..oTo......oTo", "..oTTTTTTTTTTo", "..oTo......oTo",
+                     "..oTo......oTo", "..oTTTTTTTTTTo", "..oTo......oTo",
+                     "..ooo......ooo"),
+    "dish": pixels("....oooooooo", "..ooSSSSSSSSoo", ".oSSssssssssSSo",
+                    ".oSssssssssssSo", "..oSSSSSSSSSSo", "...osssssssso", "....oooooooo"),
+    "marker": pixels(".....oooooo", "....osSSSSso", "....oSSsSSSo", "....oSsssSSo",
+                      "....oSSsSSSo", "....oSSSSsSo", "...oossSSssoo",
+                      "..osssssssssso", "..oooooooooooo"),
     "awning": pixels(".......oo", ".....ooAAoo", "...ooHAAAAaoo", ".ooHHAAAAAAaaoo",
                       "oHHAAAAAAAAAaao", "oooTTToooTToooo", "..oTo....oTo", "..oTo....oTo",
                       "..oTo....oTo", "..oTo....oTo", ".oTTo...oTTo", ".oooo...oooo"),
@@ -155,9 +207,8 @@ ACCENTS = {
 
 
 def eligible_blueprints(blueprints):
-    # The content's Item-suffixed schema rows are templates. Takeable props
-    # such as keys, cups and bodies can also appear as exact inventory rows.
-    return {name for name in blueprints if not world.ABSTRACT.search(name) and world.is_item(blueprints, name)
+    # Takeable props such as keys and cups also appear as exact inventory rows.
+    return {name for name in blueprints if name not in ITEM_TEMPLATES and world.is_item(blueprints, name)
             and "Creature" not in world.merged(blueprints, name)[0]}
 
 
@@ -177,9 +228,13 @@ def centered(frame):
 def render():
     blueprints = {row["Name"]: row for row in json.loads(Path(world.BLUEPRINTS).read_text())["Objects"]}
     item_names = eligible_blueprints(blueprints)
+    storage_names = {name for name in blueprints if "Container" in world.merged(blueprints, name)[1]}
+    missing_storage = storage_names - item_names - WORLD_STORAGE.keys() - STORAGE_FAMILIES.keys()
+    if missing_storage:
+        raise ValueError("Choose icon art for these storage owners: " + ", ".join(sorted(missing_storage)))
     existing = json.loads(Path(world.INDEX).read_text())
     world_frames = {row["Blueprint"]: row["Frame"] for row in existing["Icons"]}
-    named = sorted(item_names | (WORLD_STORAGE.keys() & blueprints.keys()))
+    named = sorted(item_names | storage_names)
     names = [UNKNOWN, *named]
     images = {}
 
@@ -207,7 +262,9 @@ def render():
         render_fields = world.render_of(blueprints, name)
         glyph = (render_fields.get("RenderString") or "?")[0]
         code = ACCENTS.get(name, (render_fields.get("ColorString") or "&y")[-1])
-        family = FAMILIES.get(name, world.family(name, glyph)) if name != UNKNOWN else UNKNOWN
+        family = STORAGE_FAMILIES.get(name) or FAMILIES.get(name)
+        if family is None:
+            family = UNKNOWN if name == UNKNOWN else world.family(name, glyph)
         rows = TEMPLATES[family] if family in TEMPLATES else world.T[family]
         frame = Image.new("RGBA", (SIZE, SIZE))
         world.paint(frame, rows, world.palette_for(code), 0, 0, h=SIZE)

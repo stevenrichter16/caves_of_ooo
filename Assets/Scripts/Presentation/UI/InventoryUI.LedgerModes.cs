@@ -122,7 +122,8 @@ namespace CavesOfOoo.Rendering
                     continue;
                 }
                 string mark = row.IsSelectable ? (row.IsMarked ? "[+] " : "[ ] ") : "    ";
-                LSecondaryText(new Rect(44, bounds.y + 6, 576, 20), mark + row.Text,
+                var name = DrawItemRowIcon(new Rect(44, bounds.y + 6, 576, 20), row.Item);
+                LSecondaryText(name, mark + row.Text,
                     selected ? LInk : row.IsMarked ? LGreen : LMuted, 18);
                 if (!row.IsSelectable) continue;
                 LSecondaryText(new Rect(638, bounds.y + 6, 54, 20), row.Count.ToString(), LMuted, 18);

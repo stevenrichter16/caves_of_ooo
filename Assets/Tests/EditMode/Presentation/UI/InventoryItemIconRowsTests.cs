@@ -17,6 +17,87 @@ namespace CavesOfOoo.Tests
         const string InventoryItemAtlas = "Sprites/Live16x24/inventory-item-icons";
 
         [Test]
+        public void EveryPortableBlueprintAndStorageOwnerHasAnIcon()
+        {
+            bool oldChoice = InventoryIconSettings.Enabled;
+            InventoryIconSettings.Enabled = true;
+            try
+            {
+                var factory = new EntityFactory();
+                factory.LoadBlueprints(Resources.Load<TextAsset>("Content/Blueprints/Objects").text);
+                var templates = new HashSet<string>
+                {
+                    "Item", "ArmorItem", "FoodItem", "ReagentItem", "TonicItem", "TrinketItem", "WeaponComponentItem"
+                };
+                var names = factory.Blueprints.Values.Where(blueprint => !templates.Contains(blueprint.Name)
+                    && (blueprint.Parts.ContainsKey("Container") || !blueprint.Tags.ContainsKey("Creature")
+                        && blueprint.Parts.TryGetValue("Physics", out var physics)
+                        && physics.TryGetValue("Takeable", out var takeable)
+                        && bool.TryParse(takeable, out bool canTake) && canTake))
+                    .Select(blueprint => blueprint.Name).OrderBy(name => name).ToArray();
+                Assert.That(names.Length, Is.GreaterThan(380));
+                var fallback = InventoryItemIcons.For(new Entity { BlueprintName = "unknown" });
+                Assert.NotNull(fallback);
+                var missing = names.Where(name =>
+                {
+                    var icon = InventoryItemIcons.For(new Entity { BlueprintName = name });
+                    return icon == null || icon == fallback;
+                });
+                Assert.That(missing, Is.Empty);
+            }
+            finally
+            {
+                InventoryIconSettings.Enabled = oldChoice;
+            }
+        }
+
+        [Test]
+        public void StowShowsTheExactItemsIconInsideTheChoiceAndHonorsTheSetting()
+        {
+            bool oldChoice = InventoryIconSettings.Enabled;
+            InventoryIconSettings.Enabled = true;
+            try
+            {
+                using var r = new Rig();
+                var vessel = r.Factory.CreateEntity("FieldSatchel");
+                Assert.True(r.Pack.AddObject(vessel));
+                var item = r.Carry("HealingTonic");
+                var sprite = InventoryItemIcons.For(item);
+                Assert.NotNull(sprite);
+                r.Open();
+                r.Tab(1);
+                Call(r.UI, "OpenCarriedStorageStow", vessel, vessel.GetPart<ContainerPart>());
+                object choice = r.FindHit("PopupRow", 0);
+                Assert.True(HasChoiceIcon());
+
+                InventoryIconSettings.Enabled = false;
+                Call(r.UI, "Render");
+                Assert.False(HasChoiceIcon());
+                r.ActivatePainted(r.FindHit("PopupRow", 0));
+                Assert.AreSame(vessel, item.GetPart<PhysicsPart>().InInventory);
+                Assert.False(r.Pack.Contains(item));
+
+                bool HasChoiceIcon()
+                {
+                    var content = (RectTransform)Get(r.UI, "_ledgerContent");
+                    return r.UI.GetComponentsInChildren<Image>(true).Any(image =>
+                    {
+                        if (!image.isActiveAndEnabled || image.sprite != sprite || image.raycastTarget) return false;
+                        var bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(content, image.rectTransform);
+                        float x = bounds.min.x - content.rect.xMin;
+                        float y = content.rect.yMax - bounds.max.y;
+                        var row = Bounds(choice);
+                        return x >= row.xMin + 8 && x <= row.xMin + 12 && y >= row.yMin && y < row.yMax;
+                    });
+                }
+            }
+            finally
+            {
+                InventoryIconSettings.Enabled = oldChoice;
+            }
+        }
+
+        [Test]
         public void CurrentToolsAndStorageUseDistinctInventoryFramesAndOutlines()
         {
             bool oldChoice = InventoryIconSettings.Enabled;
@@ -169,7 +250,7 @@ namespace CavesOfOoo.Tests
             {
                 using var r = new Rig();
                 var map = r.UI.Tilemap;
-                var item = r.Factory.CreateEntity(containerPicker ? "Crate" : "HandPump");
+                var item = r.Factory.CreateEntity(containerPicker ? "WovenBasket" : "HandPump");
                 var sprite = InventoryItemIcons.For(item);
                 Assert.NotNull(sprite);
                 object menu;
