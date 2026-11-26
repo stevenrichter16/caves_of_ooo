@@ -1,3 +1,15 @@
+**Trap wedge, hearth oil and equipment sign Mac delivery — November 26 UTC, 2026.**
+Universal runtime `aa016396d` completed GameBootstrap on Apple M5.
+All 186 app files matched their pins and all six Mach-O binaries are
+universal. The four normal startup saves matched and preferences were
+restored logically. Packaged actions and physical Intel remain open.
+[Delivery receipt](Verification/MachineSystems/MacCandidateAA016396D/README.md)
+
+The new full native regression started from published `ee0287659` in
+the separate `clone-full-ee0287659`. The prior result remains historical
+until the new run completes. The warm clone and scope are recorded with
+`machine_full_ee0287659_20261126` under `/Users/steven/coo-verification/results`.
+
 **Hand water and Conjure Rain grow a second drawgourd — November 26 UTC, 2026.**
 The ordinary seed `1498104061` branch extended the earlier Gleaners'
 sign, harvest, three-drink basin and planting route. Both methods
