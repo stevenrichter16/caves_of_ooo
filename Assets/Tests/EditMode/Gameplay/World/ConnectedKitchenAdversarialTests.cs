@@ -123,10 +123,38 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new ConnectedKitchenFixture())
             {
+                var originals = f.Pack.Objects.ToArray();
+                int before = WorldClock.CurrentTick;
                 var probe = new NestedReconcile { Fixture = f }; f.Player.AddPart(probe);
-                Assert.True(f.Start()); Assert.False(probe.NestedStarted); Assert.AreEqual("Working", f.State);
-                Assert.IsEmpty(f.Finished.Contents); Assert.AreEqual(8, TradeSystem.GetDrams(f.Player));
-                f.Player.RemovePart(probe); f.Advance(1); Assert.AreEqual("Ready", f.State);
+                try { Assert.False(f.Start(), "A changed clock invalidates the staged start before payment commits."); }
+                finally { f.Player.RemovePart(probe); }
+                Assert.False(probe.NestedStarted);
+                Assert.AreEqual(before + KitchenBatchPart.PreparationTicks, WorldClock.CurrentTick,
+                    "Rolling back the commission must preserve independent time advancement.");
+                f.Unspent();
+                Assert.That(f.Pack.Objects, Is.EquivalentTo(originals));
+                foreach (var item in originals)
+                {
+                    Assert.AreSame(item, f.Pack.Objects.Single(e => e.ID == item.ID));
+                    Assert.AreSame(f.Player, item.GetPart<PhysicsPart>().InInventory);
+                }
+
+                int restarted = WorldClock.CurrentTick;
+                Assert.True(f.Start()); Assert.AreEqual("Working", f.State);
+                Assert.AreEqual(restarted, ConnectedKitchenFixture.Field<int>(f.Batch, "StartTick"));
+                Assert.AreEqual(restarted + KitchenBatchPart.PreparationTicks,
+                    ConnectedKitchenFixture.Field<int>(f.Batch, "DueTick"));
+                Assert.AreEqual(8, TradeSystem.GetDrams(f.Player));
+                Assert.AreEqual(37, TradeSystem.GetDrams(f.Worker));
+                f.Advance(KitchenBatchPart.PreparationTicks - 1);
+                Assert.AreEqual("Working", f.State); Assert.IsEmpty(f.Finished.Contents);
+                f.Advance(1); Assert.AreEqual("Ready", f.State); Assert.IsEmpty(f.Stored.Contents);
+                var meal = f.Finished.Contents.Single();
+                Assert.AreEqual("FieldMeal", meal.BlueprintName);
+                Assert.AreSame(f.Pickup, meal.GetPart<PhysicsPart>().InInventory);
+                f.Advance(1); Assert.AreSame(meal, f.Finished.Contents.Single());
+                Assert.AreEqual(8, TradeSystem.GetDrams(f.Player));
+                Assert.AreEqual(37, TradeSystem.GetDrams(f.Worker));
             }
         }
         [Test] public void ZoneReconciliationMayPublishSalvageWithoutInvalidatingItsOwnIteration()

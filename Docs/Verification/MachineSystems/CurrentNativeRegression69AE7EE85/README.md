@@ -28,15 +28,20 @@ nine additional failures ran again in an isolated filter. Three passed
 after the scratch clone received the pinned Codex sources, connectivity
 sample and loot census input. These were missing files in the clone.
 
-Six fail again. Four checks need updated fixtures for the kitchen clock
-guard, the armor labels, description length, and the alternative timber
-repair bill. Two related checks found missing level and experience data
-on four new laborer blueprints. The independent reviews identified the
-intended clock rejection and the known presentation changes in source.
-The affected layout cleanup still needs a passing fixture. The authored
-NPC data needs a separate correction and native proof.
+Six failed again. Four now exercise the intended kitchen clock guard,
+current armor labels, deterministic reader cleanup and the alternative
+timber repair bill. The kitchen test checks exact stock and payment
+rollback, followed by a successful retry. Two related assertions found
+missing level and experience data on four laborer blueprints. Newly
+created Gleaners and Wayside porters, the supplier and kitchen hand now
+use level 2 and 9 XP, the values of comparable villagers. Previously
+saved NPCs retain their serialized stats. A follow-up native run on the
+corrected sources passed all 243 selected cases, including all six
+reproduced failures. The repair-bill test has a new case name because
+its expected text is part of its parameter list.
 
 Keep later filters on the same pinned clone and compare actual names
-to the discovery list. Seven groups remain. The partitioned suite and
-the whole process have separate gates.
+to the discovery list. F–H is running next on the pinned discovery
+snapshot. Seven groups remain. The partitioned suite and the whole
+process have separate gates.
 [Case counts and receipts](coverage.json)

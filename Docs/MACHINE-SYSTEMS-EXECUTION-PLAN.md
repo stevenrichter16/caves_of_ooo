@@ -14,10 +14,11 @@ Unity found 42,389 case names. The first filter matched all 527
 expected cases and isolated two clay fixture failures. The tests now
 exercise ordinary clay in their merge cases, with the original
 creation-callback cases retained. The same 527 then passed. B–E ran
-all 9,373 expected names. Nine failures differ from the old baseline.
-Three pass with their original files present. Four need fixture fixes
-and two corroborate one family of missing NPC level/experience data.
-Seven filters and the whole-process verdict remain open.
+all 9,373 expected names. Three additional failures pass with their
+original files present. Four test corrections and level/experience
+data for newly created shipping workers passed all 243 selected cases.
+F–H is running on the pinned snapshot. Seven filters and the
+whole-process verdict remain open.
 [Discovery and native receipts](Verification/MachineSystems/CurrentNativeRegression69AE7EE85/README.md)
 
 **The Mac package with Wayside testimony completed startup — November 26 UTC, 2026.**

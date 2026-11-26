@@ -89,7 +89,7 @@ namespace CavesOfOoo.Tests
         [TestCase("clay-well-lining", "Masonry", false, "2 measures of fire clay or prepared lining clay, in any mix")]
         [TestCase("clay-field-work-rig", "Masonry", false, "2 measures of fire clay or prepared lining clay, in any mix")]
         [TestCase("clay-field-work-rig", "Masonry", true, null)]
-        [TestCase("timber-dressing-bench", "Wood", false, "2 salvaged timber")]
+        [TestCase("timber-dressing-bench", "Wood", false, "2 salvaged timber or 1 salvaged timber plus 1 rough field haft")]
         public void RepairSupplyFactShowsOnlyAnActualUnrepairedMatchingFault(string recipe, string material, bool repaired, string bill)
         {
             var item=Subject();item.GetPart<PhysicsPart>().Takeable=false;

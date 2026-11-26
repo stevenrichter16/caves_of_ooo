@@ -87,12 +87,18 @@ namespace CavesOfOoo.Tests
         [Test]
         public void LongThenShortDescriptionLeavesNoOldTilesAndCloseErasesBothLayers()
         {
-            string shortText = factory.CreateEntity("LeatherArmor").GetPart<ExaminablePart>().BuildExamineLine();
+            // Keep the cleanup probe independent of changes to authored item copy.
+            // Both fixtures still render through the production reader and tilemaps.
+            const string shortText = "A short inspection.";
+            string longer = string.Join("\n", Enumerable.Repeat("A longer inspection line occupies the reader.", 12));
             ui.Open(shortText);
+            AssertVisible("short cleanup fixture");
             var expectedFg = Occupied(ui.Tilemap); var expectedBg = Occupied(ui.BgTilemap);
-            string longer = factory.CreateEntity("BreacherCleaver").GetPart<ExaminablePart>().BuildExamineLine();
-            Assert.That(longer.Length, Is.GreaterThan(shortText.Length));
-            ui.Open(longer); ui.Open(shortText);
+            ui.Open(longer);
+            AssertVisible("long cleanup fixture");
+            Assert.That(Occupied(ui.Tilemap).Count, Is.GreaterThan(expectedFg.Count), "The long fixture must paint extra foreground tiles.");
+            Assert.That(Occupied(ui.BgTilemap).Count, Is.GreaterThan(expectedBg.Count), "The long fixture must paint extra background tiles.");
+            ui.Open(shortText);
             CollectionAssert.AreEquivalent(expectedFg, Occupied(ui.Tilemap));
             CollectionAssert.AreEquivalent(expectedBg, Occupied(ui.BgTilemap));
             ui.Close();

@@ -97,8 +97,8 @@ namespace CavesOfOoo.Tests
             var item = factory.CreateEntity("LeatherArmor");
             var armor = item.GetPart<ArmorPart>(); armor.AV = 7; armor.DV = -3;
             string text = item.GetPart<ExaminablePart>().BuildExamineLine();
-            Assert.AreEqual(1, Count(text, "AV: +7"));
-            Assert.AreEqual(1, Count(text, "DV: -3"));
+            Assert.AreEqual(1, Count(text, "Armor value (AV): +7"));
+            Assert.AreEqual(1, Count(text, "Dodge value (DV): -3"));
             StringAssert.DoesNotContain("Damage:", text);
             Assert.AreEqual(7, armor.AV); Assert.AreEqual(-3, armor.DV);
         }
