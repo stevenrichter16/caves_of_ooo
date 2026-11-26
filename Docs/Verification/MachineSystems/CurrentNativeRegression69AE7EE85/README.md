@@ -67,6 +67,15 @@ passed a 246-case follow-up and the Sill purchase was exercised in play.
 The entire I–R band was not rerun after the corrections.
 [Provisioner playtest](../ProvisionerSatchel20261126/README.md)
 
-Five filters have yet to run. Keep exact case membership checks for later
-filters. The partitioned suite and the whole process have separate gates.
+The S filter, excluding Spread, matched all 3,850 expected names, with
+3,809 passes, 39 failures and two skips. Fifteen failure names match
+the historical result. Twenty additional cases could not load the
+tracked Rim Forest input missing from the scratch clone. Three
+allotment render checks reported owners with ordinary glyphs and no
+matching Previous-mode model. A custody check counted the Stillleaf
+inventory-icon index as a blueprint supply reference. Isolated reruns
+of those discrepancies remain open.
+
+Four filters have yet to run. Keep the I–R name discrepancy and the
+separate whole-process verdict open.
 [Case counts and receipts](coverage.json)
