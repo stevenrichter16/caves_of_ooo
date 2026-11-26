@@ -120,6 +120,12 @@ namespace CavesOfOoo.Core
             LoadDefaults();
             return place == null ? new InstallationSpec[0] : Specs.Where(s => s.Place == place).ToList().AsReadOnly();
         }
+
+        internal static InstallationSpec SiteBody(string place, string site)
+        {
+            LoadDefaults();
+            return Specs.Find(spec => spec.Place == place && spec.Site == site);
+        }
         public static InstallationExemption ExemptionFor(string place) { LoadDefaults(); return Exemptions.FirstOrDefault(e => e.Place == place); }
         public static InstallationPending PendingFor(string place) { LoadDefaults(); return PendingRows.FirstOrDefault(p => p.Place == place); }
 

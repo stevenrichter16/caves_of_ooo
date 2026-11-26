@@ -81,6 +81,14 @@ namespace CavesOfOoo.Core
             }
         }
 
+        static double QuotedPriceModifier(Entity trader, double performance)
+        {
+            double modifier = GetFactionModifier(trader) * PlaceConsequences.PriceModifier(trader, out bool workingSiteMarket);
+            // At a working-site market the full combination of reputation and
+            // local rates may narrow the spread to parity. It cannot reverse it.
+            return workingSiteMarket ? Math.Max(modifier, performance) : modifier;
+        }
+
         /// <summary>
         /// Price the player pays to buy an item from a trader.
         /// Higher performance = lower price. Better faction standing = lower price.
@@ -95,7 +103,7 @@ namespace CavesOfOoo.Core
             if (value <= 0) return 0;
             if (performance <= 0.01) return value * 20; // safety cap
             // C4: the place's conditions (a Concord tithe, a rebuilt oven) move its prices.
-            double factionMod = GetFactionModifier(trader) * PlaceConsequences.PriceModifier(trader);
+            double factionMod = QuotedPriceModifier(trader, performance);
             // EC5: salt is cheap near the flats and precious far from them (the good's own worth).
             return (int)Math.Ceiling(value * RegionalValue.Modifier(item, trader) / performance * factionMod);
         }
@@ -112,7 +120,7 @@ namespace CavesOfOoo.Core
         {
             int value = GetItemValue(item, count);
             if (value <= 0) return 0;
-            double factionMod = GetFactionModifier(trader) * PlaceConsequences.PriceModifier(trader);
+            double factionMod = QuotedPriceModifier(trader, performance);
             return Math.Max(1, (int)Math.Floor(value * RegionalValue.Modifier(item, trader) * performance / factionMod));
         }
 

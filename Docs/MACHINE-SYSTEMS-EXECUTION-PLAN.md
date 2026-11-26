@@ -90,14 +90,23 @@ Fresh Continue preserved them, and drinking a delivered tonic on the
 world map restored ten HP. Ordinary trade retains the empty-storage rule.
 [Evidence](Verification/MachineSystems/PackedConcordFreight20261126/README.md)
 
-**Next regional design, working scales and short-term trade.**
-Wellmeet can already patch its pan scales for two silver sand. Extend
-the existing scale price factor to the same working service during the
-900-clock-tick patch. Keep the lasting iron condition and report as their
-own results. Use the unexpired saved site with its exact physical owner
-to evaluate the quote, including expiry before another settlement update.
-An ordinary quarry save carries both earned measures and has yet to scout
-the local Wellmeet route. This trade benefit is proposed.
+**Working pan scales help Wellmeet trade — November 26 UTC, 2026.**
+The actual player used two earned silver sand at the original scales.
+Sennel quoted the same three tonics at 129, then 125 while the patch
+worked, and 129 on return after expiry. Fresh Continues kept the working
+and expired states. The same rate is available from a working iron body
+in native tests. The lasting report stays separate. Wellmeet's shared buy
+and sell quotes allow local and reputation discounts to narrow the
+spread to parity. The guided play checked quotes without purchase.
+[Evidence](Verification/MachineSystems/WellmeetWorkingScales20261126/README.md)
+
+**Next route design, use a rough haft as a removable door brace.**
+Consider the existing physical latch gate and recovery behavior for one
+sound loose rough field haft. Ordinary iron spikes remain available.
+An earned trip has the exact shaped haft, spare timber and a known
+Gleaners' wicket. Compare ordinary opening after its repair, holding
+it with the haft and recovery of that exact piece. The wooden brace
+and its readers remain proposed.
 
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe

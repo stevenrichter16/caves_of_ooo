@@ -606,6 +606,7 @@ namespace CavesOfOoo.Rendering
 
                 // The project benefit gets a complete readable line, including in deal mode.
                 string projectBenefit = MerchantStockService.ProjectBenefit(_trader);
+                if (projectBenefit.Length == 0) projectBenefit = PlaceConsequences.WorkingPriceNote(_trader);
                 if (projectBenefit.Length > 0) DrawText(1, CONTENT_BOTTOM + 1, projectBenefit, QudColorParser.BrightGreen);
                 else DrawHLine(0, CONTENT_BOTTOM + 1, W);
 

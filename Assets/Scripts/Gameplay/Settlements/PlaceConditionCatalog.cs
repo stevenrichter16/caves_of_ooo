@@ -52,6 +52,10 @@ namespace CavesOfOoo.Core
                 string who = c.Place + ":" + c.Condition;
                 if (!PlaceExists(c.Place)) problems.Add(who + ": unknown place '" + c.Place + "'");
                 if (c.Price != 0 && (c.Price < MinPrice || c.Price > MaxPrice)) problems.Add(who + ": price " + c.Price + " outside " + MinPrice + "-" + MaxPrice);
+                if (!string.IsNullOrEmpty(c.WorkingPriceSite) && (!c.HasWorkingPrice
+                    || PlaceSiteCatalog.Get(c.Place, c.WorkingPriceSite)?.HasPatch != true
+                    || InstallationRegistry.SiteBody(c.Place, c.WorkingPriceSite) == null))
+                    problems.Add(who + ": invalid working price site '" + c.WorkingPriceSite + "'");
                 if (c.HeardIn != null)
                 {
                     foreach (var p in c.HeardIn) if (!PlaceExists(p)) problems.Add(who + ": heard in unknown place '" + p + "'");
@@ -92,6 +96,10 @@ namespace CavesOfOoo.Core
         /// <summary>Multiplies what the place's traders charge (and divides what they pay).
         /// 0 or 1 leaves prices alone.</summary>
         public double Price;
+        /// <summary>The same price factor can apply while this exact local site works.</summary>
+        public string WorkingPriceSite;
+        internal bool HasWorkingPrice => !string.IsNullOrEmpty(WorkingPriceSite)
+            && Price >= PlaceConditionCatalog.MinPrice && Price <= PlaceConditionCatalog.MaxPrice && Price != 1.0;
         /// <summary>What residents of the place say while it holds.</summary>
         public List<string> Remarks = new List<string>();
         /// <summary>Other places that have heard, and what their residents say.</summary>

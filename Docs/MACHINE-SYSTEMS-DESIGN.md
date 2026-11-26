@@ -547,6 +547,16 @@ storage, regional transport and ordinary carried item use. The
 whole-machine gates remain open.
 [Evidence](Verification/MachineSystems/PackedConcordFreight20261126/README.md)
 
+**A working repair earns the same Wellmeet trade service — November 26 UTC, 2026.**
+The existing physical pan scales provide the local rate while a saved
+patch is valid or a lasting manual repair works. The actual sand route
+changed a merchant's three-unit quote for the duration, with no change to
+the stock or lasting report. The iron route reaches the same rate in
+native tests. Optional repairs provide a positive local service and
+expiration restores the ordinary rate. This is a bounded market service,
+with all twelve machine acceptance gates still open.
+[Evidence](Verification/MachineSystems/WellmeetWorkingScales20261126/README.md)
+
 **Replayable practical work — November24local/25UTC,2026:** The source-grounded
 [implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
 concrete requirements for compatible material demand, method-independent

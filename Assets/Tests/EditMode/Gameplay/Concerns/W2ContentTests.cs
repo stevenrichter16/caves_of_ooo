@@ -203,6 +203,79 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(2, ConcernItems.CountCarried(player, "PaleSalt"), "paid in Pale-Salt");
         }
 
+        [Test]
+        public void WorkingSandPatchedScalesUseTheTradeFactorOnlyUntilExactExpiry()
+        {
+            turn = 10;
+            var manager = OverworldZoneManager.CreateDetached(factory, 2, true);
+            manager.SetTurnProvider(() => turn);
+            typeof(SettlementManager).GetProperty("Current").SetValue(null, manager.SettlementManager);
+            var zone = manager.GetZone(WellmeetZone);
+            manager.SetActiveZone(zone);
+            var scales = Who(zone, "PanScales");
+            var merchant = Who(zone, "Merchant");
+            var at = zone.GetEntityCell(scales);
+            var reach = zone.Cells.Cast<Cell>().First(cell => cell != null && !cell.BlocksMovement(player)
+                && System.Math.Max(System.Math.Abs(cell.X - at.X), System.Math.Abs(cell.Y - at.Y)) == 1);
+            Assert.True(zone.AddEntity(player, reach.X, reach.Y));
+            Assert.AreEqual(1.0, PlaceConsequences.PriceModifier(merchant));
+            var tonic = factory.CreateEntity("HealingTonic");
+            const double typicalPerformance = 0.70;
+            int normalBuy = TradeSystem.GetBuyPrice(tonic, typicalPerformance, merchant, 12);
+            int normalSell = TradeSystem.GetSellPrice(tonic, typicalPerformance, merchant, 12);
+
+            Give("SilverSand", 2);
+            Assert.True(InventorySystem.PerformAction(player, scales, "PlaceSiteRepair|Patch", zone));
+            Assert.AreEqual(0, ConcernItems.CountCarried(player, "SilverSand"));
+            Assert.True(manager.SettlementManager.TryGetExistingSite(zone.ZoneID, "Scales", out var site));
+            Assert.AreEqual(RepairStage.TemporarilyPurified, site.Stage);
+            Assert.AreEqual(910, site.RelapseAtTurn);
+            Assert.False(manager.SettlementManager.HasExistingCondition(zone.ZoneID, "Wellmeet.ScalesTrue"));
+            Assert.AreEqual(0.97, PlaceConsequences.PriceModifier(merchant), 1e-9);
+            Assert.Less(TradeSystem.GetBuyPrice(tonic, typicalPerformance, merchant, 12), normalBuy);
+            Assert.Greater(TradeSystem.GetSellPrice(tonic, typicalPerformance, merchant, 12), normalSell);
+            PlayerReputation.Set(FactionManager.GetFaction(merchant), PlayerReputation.LOVED_THRESHOLD);
+            Assert.AreEqual(0.85, TradeSystem.GetFactionModifier(merchant), 1e-9);
+            Assert.GreaterOrEqual(TradeSystem.GetBuyPrice(tonic, 0.84, merchant, 12),
+                TradeSystem.GetSellPrice(tonic, 0.84, merchant, 12),
+                "A stacked reputation and active scale rate cannot pay more for the same goods than they cost.");
+            manager.SettlementManager.SetCondition(zone.ZoneID, "Wellmeet.TareRead", true);
+            Assert.AreEqual(0.97 * 0.95, PlaceConsequences.PriceModifier(merchant), 1e-9);
+            var paleSalt = factory.CreateEntity("PaleSalt");
+            Assert.GreaterOrEqual(TradeSystem.GetBuyPrice(paleSalt, 0.95, merchant, 12),
+                TradeSystem.GetSellPrice(paleSalt, 0.95, merchant, 12));
+            manager.SettlementManager.SetCondition(zone.ZoneID, "Wellmeet.TareRead", false);
+            PlayerReputation.Reset();
+
+            var marker = scales.GetPart<InstallationMarkerPart>();
+            scales.RemovePart(marker);
+            Assert.AreEqual(1.0, PlaceConsequences.PriceModifier(merchant), "A saved patch needs its own live physical installation.");
+            scales.AddPart(marker);
+            manager.SettlementManager.SetCondition(zone.ZoneID, "Wellmeet.ScalesTrue", true);
+            Assert.AreEqual(0.97, PlaceConsequences.PriceModifier(merchant), 1e-9, "A recorded condition and site never multiply the same factor twice.");
+            manager.SettlementManager.SetCondition(zone.ZoneID, "Wellmeet.ScalesTrue", false);
+
+            turn = 909;
+            Assert.AreEqual(0.97, PlaceConsequences.PriceModifier(merchant), 1e-9);
+            turn = 910;
+            Assert.AreEqual(1.0, PlaceConsequences.PriceModifier(merchant));
+            Assert.AreEqual(normalBuy, TradeSystem.GetBuyPrice(tonic, typicalPerformance, merchant, 12));
+            Assert.AreEqual(normalSell, TradeSystem.GetSellPrice(tonic, typicalPerformance, merchant, 12));
+            PlayerReputation.Set(FactionManager.GetFaction(merchant), PlayerReputation.LOVED_THRESHOLD);
+            Assert.GreaterOrEqual(TradeSystem.GetBuyPrice(tonic, 0.95, merchant, 12),
+                TradeSystem.GetSellPrice(tonic, 0.95, merchant, 12),
+                "Expiry cannot create a reversed spread at this market.");
+            PlayerReputation.Reset();
+            Assert.AreEqual(RepairStage.TemporarilyPurified, site.Stage, "Pricing reads expiry without advancing or mutating the settlement.");
+
+            Give("IronSpikeComponent", 2);
+            Give("LeatherBindingComponent", 1);
+            Assert.True(InventorySystem.PerformAction(player, scales, "PlaceSiteRepair|Lasting", zone));
+            Assert.AreEqual(0.97, PlaceConsequences.PriceModifier(merchant), 1e-9);
+            Assert.False(manager.SettlementManager.HasExistingCondition(zone.ZoneID, "Wellmeet.ScalesTrue"),
+                "Mending the body enables the same service without claiming a concern outcome.");
+        }
+
         [Test] public void TheTareBookAtTallyValuesTheGuestRight()
         {
             var wellmeet = Place(WellmeetZone, "SaltMaster", "Merchant"); var master = Who(wellmeet, "SaltMaster");

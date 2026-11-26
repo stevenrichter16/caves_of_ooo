@@ -91,6 +91,14 @@ from the bag. Ordinary trade and the local porter rules keep their own
 transfer terms.
 [Packed freight playtest](Verification/MachineSystems/PackedConcordFreight20261126/README.md)
 
+For #14/#18/#19/#20, two earned silver sand now earn Wellmeet's working
+scale rate while the physical patch holds. A native test matches the
+manual lasting repair to the same trade factor. The actual merchant's
+quote changed from 129 to 125 for the same three tonics and then returned
+to 129 after expiry. The lasting report and ordinary goods stayed in
+their existing paths.
+[Wellmeet playtest](Verification/MachineSystems/WellmeetWorkingScales20261126/README.md)
+
 ## Priority 1: make needs and benefits independent of method
 
 1. **Describe one practical need in physical terms.** Start with a bounded need

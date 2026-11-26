@@ -42,17 +42,69 @@ namespace CavesOfOoo.Core
             return null;
         }
 
-        /// <summary>The product of the price factors of every condition holding where the
-        /// trader stands; 1 elsewhere.</summary>
-        public static double PriceModifier(Entity trader)
+        /// <summary>Trade rates from saved local conditions and explicitly linked working sites.</summary>
+        public static double PriceModifier(Entity trader) => PriceModifier(trader, out _);
+
+        internal static double PriceModifier(Entity trader, out bool hasWorkingPriceSite)
         {
-            string zoneId = trader?.SpatialZone?.ZoneID;
-            string place = PlaceSiteCatalog.PlaceAt(zoneId);
-            if (place == null) return 1.0;
+            hasWorkingPriceSite = false;
+            var zone = trader?.SpatialZone;
+            string place = PlaceSiteCatalog.PlaceAt(zone?.ZoneID);
+            var settlements = SettlementManager.Current;
+            if (place == null || settlements == null) return 1.0;
             double m = 1.0;
             foreach (var c in PlaceConditionCatalog.All)
-                if (c.Place == place && c.Price > 0 && c.Price != 1.0 && Holds(zoneId, c.Condition)) m *= c.Price;
+            {
+                if (c.Place != place) continue;
+                hasWorkingPriceSite |= c.HasWorkingPrice;
+                if (c.Price > 0 && c.Price != 1.0
+                    && (settlements.HasExistingCondition(zone.ZoneID, c.Condition) || WorkingPriceSite(zone, c) != null))
+                    m *= c.Price;
+            }
             return m;
+        }
+
+        static RepairableSiteState WorkingPriceSite(Zone zone, PlaceConditionData row)
+        {
+            if (!row.HasWorkingPrice) return null;
+            var world = WorldLocationContext.For(zone);
+            if (world == null || world.ActiveZone != zone || world.SettlementManager != SettlementManager.Current
+                || !world.CachedZones.TryGetValue(zone.ZoneID, out var active) || active != zone
+                || !world.SettlementManager.TryGetExistingSite(zone.ZoneID, row.WorkingPriceSite, out var site))
+                return null;
+            int now = world.SettlementManager.GetCurrentTurn();
+            bool patched = site.Stage == RepairStage.TemporarilyPurified && site.OutcomeTier == RepairOutcomeTier.Temporary
+                && site.ResolvedByMethod == RepairMethodId.PatchedRepair && site.RelapseAtTurn is int expires && now < expires;
+            bool mended = site.Stage == RepairStage.StableRepair && site.OutcomeTier == RepairOutcomeTier.Stable
+                && site.ResolvedByMethod == RepairMethodId.ManualRepair;
+            if ((!patched && !mended) || site.ResolvedAtTurn < 0 || now < site.ResolvedAtTurn) return null;
+
+            var installation = InstallationRegistry.SiteBody(row.Place, row.WorkingPriceSite);
+            if (installation == null) return null;
+            bool found = false;
+            foreach (var owner in zone.GetReadOnlyEntitiesWithPart<PlaceSiteObjectPart>())
+            {
+                var marker = owner.GetPart<InstallationMarkerPart>();
+                if (marker?.InstallationId != installation.Id) continue;
+                var linked = owner.GetPart<PlaceSiteObjectPart>();
+                if (found || marker.ParentEntity != owner || marker.Origin != "Generated"
+                    || linked?.ParentEntity != owner || linked.Place != row.Place || linked.SiteId != row.WorkingPriceSite
+                    || owner.BlueprintName != installation.Blueprint || !WorldResourceActions.Ground(owner, zone)
+                    || owner.GetPart<DestructiblePart>()?.Gone == true) return null;
+                found = true;
+            }
+            return found ? site : null;
+        }
+
+        internal static string WorkingPriceNote(Entity trader)
+        {
+            var zone = trader?.SpatialZone;
+            string place = PlaceSiteCatalog.PlaceAt(zone?.ZoneID);
+            if (place == null) return "";
+            foreach (var row in PlaceConditionCatalog.All)
+                if (row.Place == place && WorkingPriceSite(zone, row) != null)
+                    return "Local rates use the working " + (PlaceSiteCatalog.Get(place, row.WorkingPriceSite)?.Name ?? row.WorkingPriceSite) + ".";
+            return "";
         }
 
         /// <summary>Stock top-ups and, on a real arrival, new residents. Returns how many
