@@ -1,3 +1,10 @@
+**Dressing bench and meal sharing Mac delivery — November 26 UTC, 2026.**
+The universal package from `35566d84a` reached GameBootstrap on Apple
+Silicon. It includes the mixed dressing bench repair and companion meal
+sharing. The package and four normal startup saves matched their hashes.
+Packaged gameplay and physical Intel verification remain open.
+[Delivery receipt](Verification/MachineSystems/MacCandidate35566D84A/README.md)
+
 **A rough haft restores Sella’s dressing service — November 26 UTC, 2026.**
 The player sold two earned timber in Sumphold, returned and shaped one
 of the remaining pair. Reading and cancelling the mixed repair was
