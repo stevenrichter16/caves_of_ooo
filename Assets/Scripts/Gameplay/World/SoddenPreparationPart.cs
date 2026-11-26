@@ -17,6 +17,7 @@ namespace CavesOfOoo.Core
         public override string Name => "SoddenPreparation";
         public const string PrepareCommand = "PrepareSoddenDressing";
         public const string StopZoneID = "Overworld.15.7.0";
+        internal const string LegacyBraceSentence = " Sella needs two sound timber lengths to brace it.";
         public const int Fee = 2;
         public bool Configured;
         public Entity Worker;
@@ -40,13 +41,21 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>Read-only instructions for Examine; never repairs or produces goods.</summary>
-        public string Describe() => (RepairablePart.BlocksFunction(ParentEntity)
-            ? "The dressing bench needs two salvaged timber before it can be used. "
-            : "The repaired dressing bench can prepare supplies while its keeper is beside it. ")
-            + "The keeper makes a field dressing from one sumpsieve pad, one knotflax cord and two drams. "
-            + "Apply it in one action to treat ordinary poison and bleeding together. It does not heal wounds or treat gas poison or fungal infection.\n"
-            + "A sumpsieve pad alone treats ordinary or gas poison. Make a bandage from one knotflax cord to stop bleeding. "
-            + "You can carry and use either treatment away from the bench.";
+        public string Describe()
+        {
+            string state = "The repaired dressing bench can prepare supplies while its keeper is beside it. ";
+            if (RepairablePart.BlocksFunction(ParentEntity))
+            {
+                var fault = ParentEntity.GetPart<RepairablePart>();
+                var recipe = RepairRecipeRegistry.Get(fault.RecipeId);
+                state = recipe == null ? "The dressing bench needs repair. "
+                    : "Brace the dressing bench with " + fault.Bill(recipe) + ". ";
+            }
+            return state + "The keeper makes a field dressing from one sumpsieve pad, one knotflax cord and two drams. "
+                + "Apply it in one action to treat ordinary poison and bleeding together. It does not heal wounds or treat gas poison or fungal infection.\n"
+                + "A sumpsieve pad alone treats ordinary or gas poison. Make a bandage from one knotflax cord to stop bleeding. "
+                + "You can carry and use either treatment away from the bench.";
+        }
 
         bool Station(Zone zone)
         {

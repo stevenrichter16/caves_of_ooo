@@ -90,6 +90,14 @@ recipient and one-item cost. Ordinary sales paid for the recruitment
 bell and fresh Continue preserved the warden's health and meal payment.
 [Sharing playtest](Verification/MachineSystems/SharedRoastedPerch20261126/README.md)
 
+For #2/#13/#18, the covered dressing bench has a mixed structural bill.
+One loose rough field haft can supply the second support when the
+player carries one timber. The original two-timber bill has priority.
+Actual trade and field shaping allocated the four earned timber, then
+the repaired bench supplied its ordinary paid dressing through a fresh
+Continue. This is a useful second job for the shaped part.
+[Bench playtest](Verification/MachineSystems/SellaMixedBrace20261126/README.md)
+
 For #12/#16/#17, the old Concord route now takes one loaded field satchel
 as a sealed parcel. A paid Sill bag traveled at seven pounds and four
 drams. The same supplies came back together after the ordinary travel

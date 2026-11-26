@@ -29,22 +29,25 @@ namespace CavesOfOoo.Core
         /// Existing repaired saves have no retroactively invented author.</summary>
         public Entity RepairedBy;
         public string RepairCauseID, RepairedZoneID, RepairWorldKey;
-        private bool UsesMaterialGrade(RepairRecipe recipe) => UsesMaterialGrade(recipe, PortableEquipment);
-        private static bool UsesMaterialGrade(RepairRecipe recipe, bool portableEquipment) => !portableEquipment
-            && !string.IsNullOrEmpty(recipe?.MaterialGrade);
+        private bool UsesCompatibleMaterials(RepairRecipe recipe) => !PortableEquipment
+            && (!string.IsNullOrEmpty(recipe?.MaterialGrade) || !string.IsNullOrEmpty(recipe?.SubstituteBlueprint));
 
         public bool OwnsInventoryReceipt(string command) => command == RepairCommand
             && ParentEntity?.GetPart<RepairablePart>() == this
-            && UsesMaterialGrade(RepairRecipeRegistry.Get(RecipeId));
+            && UsesCompatibleMaterials(RepairRecipeRegistry.Get(RecipeId));
 
         internal string Bill(RepairRecipe recipe) => FormatBill(recipe, PortableEquipment);
 
         internal static string FormatBill(RepairRecipe recipe, bool portableEquipment = false)
         {
             string quantity = recipe.Quantity.ToString(CultureInfo.InvariantCulture);
-            return UsesMaterialGrade(recipe, portableEquipment)
-                ? quantity + " measures of fire clay or prepared lining clay, in any mix"
-                : quantity + " " + recipe.MaterialName;
+            string original = quantity + " " + recipe.MaterialName;
+            if (portableEquipment) return original;
+            if (!string.IsNullOrEmpty(recipe.MaterialGrade))
+                return quantity + " measures of fire clay or prepared lining clay, in any mix";
+            if (string.IsNullOrEmpty(recipe.SubstituteBlueprint)) return original;
+            return original + " or " + (recipe.Quantity - 1).ToString(CultureInfo.InvariantCulture)
+                + " " + recipe.MaterialName + " plus 1 " + recipe.SubstituteName;
         }
         /// <summary>Shared functional gate. Unknown or malformed faults remain
         /// broken; owners without this opt-in Part retain their ordinary behavior.</summary>
@@ -83,11 +86,12 @@ namespace CavesOfOoo.Core
                     if (recipe != null && actions != null)
                     {
                         string bill = Bill(recipe);
-                        if (UsesMaterialGrade(recipe))
+                        if (UsesCompatibleMaterials(recipe))
                         {
-                            string amount = recipe.Quantity.ToString(CultureInfo.InvariantCulture);
-                            actions.AddActionWithHint("Repair", recipe.ActionText + " (" + amount + " measures)",
-                                RepairCommand, "Uses " + bill + ".", 'r', 20);
+                            string label = recipe.ActionText;
+                            if (!string.IsNullOrEmpty(recipe.MaterialGrade))
+                                label += " (" + recipe.Quantity.ToString(CultureInfo.InvariantCulture) + " measures)";
+                            actions.AddActionWithHint("Repair", label, RepairCommand, "Uses " + bill + ".", 'r', 20);
                         }
                         else actions.AddAction("Repair", recipe.ActionText + " (" + bill + ")", RepairCommand, 'r', 20);
                     }
@@ -184,20 +188,23 @@ namespace CavesOfOoo.Core
         {
             int remaining = recipe.Quantity;
             var factory = WorldLocationContext.For(zone)?.Factory ?? HarvestablePart.Factory;
-            // Prefer the legacy bill independently of pack ordering. A shortage
-            // can be filled with measures of the explicitly accepted grade.
+            // Prefer the exact bill independently of pack ordering. Graded
+            // materials can fill any shortage. A substitute fills only one unit.
             foreach (bool alternate in compatible ? new[] { false, true } : new[] { false })
-            foreach (var item in inventory.Objects)
             {
-                if (item == null || (item.BlueprintName != recipe.MaterialBlueprint) != alternate
-                    || !Carried(item, actor, inventory, item.BlueprintName)) continue;
-                if (compatible && (string.IsNullOrEmpty(item.ID) ||
-                    inventory.Objects.Count(other => other?.ID == item.ID) != 1)) continue;
-                if (!RepairMaterialPart.ReadPayment(factory, item, recipe, out var state)) continue;
-                int units = Math.Min(remaining, item.GetPart<StackerPart>()?.StackCount ?? 1);
-                yield return new Payment(item, units, state);
-                remaining -= units;
-                if (remaining == 0) yield break;
+                if (alternate && !string.IsNullOrEmpty(recipe.SubstituteBlueprint) && remaining != 1) yield break;
+                foreach (var item in inventory.Objects)
+                {
+                    if (item == null || (item.BlueprintName != recipe.MaterialBlueprint) != alternate
+                        || !Carried(item, actor, inventory, item.BlueprintName)) continue;
+                    if (compatible && (string.IsNullOrEmpty(item.ID) ||
+                        inventory.Objects.Count(other => other?.ID == item.ID) != 1)) continue;
+                    if (!RepairMaterialPart.ReadPayment(factory, item, recipe, out var state)) continue;
+                    int units = Math.Min(remaining, item.GetPart<StackerPart>()?.StackCount ?? 1);
+                    yield return new Payment(item, units, state);
+                    remaining -= units;
+                    if (remaining == 0) yield break;
+                }
             }
         }
 
@@ -246,7 +253,7 @@ namespace CavesOfOoo.Core
             var workAudio=WorldAudioWork.Repair(actor,this,zone,recipe);
             if(!tx.TryClaim(ParentEntity,actor,RepairCommand) || !tx.TryClaim(actor,actor,RepairCommand))return Reject(actor,"owner-busy");
             var inventory = actor.GetPart<InventoryPart>();
-            bool compatible = UsesMaterialGrade(recipe);
+            bool compatible = UsesCompatibleMaterials(recipe);
             var bill = SelectPayment(actor, zone, inventory, recipe, compatible).ToArray();
             if (bill.Sum(p => p.Units) != recipe.Quantity) return Reject(actor, "missing-materials");
             foreach (var payment in bill)

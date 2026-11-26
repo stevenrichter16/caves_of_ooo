@@ -23,7 +23,13 @@ namespace CavesOfOoo.Core
             alternate = null;
             if (item == null || recipe == null) return false;
             if (item.BlueprintName == recipe.MaterialBlueprint) return true;
-            alternate = Read(factory, item, recipe.MaterialGrade);
+            if (string.IsNullOrEmpty(recipe.SubstituteBlueprint))
+                alternate = Read(factory, item, recipe.MaterialGrade);
+            else if (item.BlueprintName == recipe.SubstituteBlueprint
+                && MaterialProcessRegistry.Portable(factory, item.BlueprintName)
+                && (item.GetPart<StackerPart>() is not StackerPart stack
+                    || stack.StackCount >= 1 && stack.StackCount <= stack.MaxStack))
+                alternate = MaterialProcessTemplate.Capture(factory, item.BlueprintName)?.Snapshot(item);
             return alternate != null;
         }
 

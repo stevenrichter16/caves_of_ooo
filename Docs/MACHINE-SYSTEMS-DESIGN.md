@@ -584,6 +584,17 @@ goods. This advances the comparative play gate at one site. Wider
 unguided discovery and complete-machine acceptance remain open.
 [Evidence](Verification/MachineSystems/GantrySupplyComparison20261126/README.md)
 
+**A rough field haft supports Sella’s bench — November 26 UTC, 2026.**
+The existing covered timber bench uses two salvaged timber or one timber
+and one sound loose rough field haft. The recipe prefers two timber.
+The substitute fills one place in the bill and uses the same validated
+payment, repair cause and bill reader. Actual play sold two of four
+Peat Works timber in Sumphold, shaped one of the remaining two and used
+the mixed bill. After Continue the staffed bench made a paid dressing
+for its existing pad, cord and fee. Tine’s wet stakes use their authored
+oak bill. This advances compatibility and an existing regional service.
+[Evidence](Verification/MachineSystems/SellaMixedBrace20261126/README.md)
+
 **Tine’s weir rewards two ordinary investments — November 26 UTC, 2026.**
 The seed 2 player used the same local signs and elder conversation to
 discover a hand repair and a paid contract. Both branches started with

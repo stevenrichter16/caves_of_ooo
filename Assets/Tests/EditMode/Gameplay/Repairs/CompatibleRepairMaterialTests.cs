@@ -9,6 +9,8 @@ namespace CavesOfOoo.Tests
     public sealed class CompatibleRepairMaterialTests : FiftyWorldFixture
     {
         const string Prepared = "PreparedLiningClay";
+        const string Timber = "SalvagedTimber";
+        const string FieldHaft = "FieldHaftComponent";
 
         [TestCase("ConnectedBatchPan")]
         [TestCase("RepairLinedWell")]
@@ -131,7 +133,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void TimberDressingBenchStillRequiresTwoActualTimberLengths()
+        public void TimberDressingBenchPrefersTwoTimberAndRefusesClay()
         {
             var bench = Place("SoddenDressingBench");
             var repair = bench.GetPart<RepairablePart>();
@@ -141,9 +143,6 @@ namespace CavesOfOoo.Tests
             Assert.That(repair.RecipeId, Is.EqualTo("timber-dressing-bench"));
             var position = Zone.GetEntityPosition(bench);
             var row = CellMenu(position.x, position.y).Single(a => a.Command == RepairablePart.RepairCommand);
-            Assert.That(row.Display, Is.EqualTo("brace the dressing bench (2 salvaged timber)"));
-            Assert.That(row.Hint, Is.Empty);
-
             Assert.False(ChooseRow(row, position.x, position.y));
             Assert.That(RepairablePart.BlocksFunction(bench), Is.True);
             Assert.That(Count("SalvagedTimber"), Is.EqualTo(1));
@@ -151,12 +150,120 @@ namespace CavesOfOoo.Tests
             Assert.That(Pack.Objects, Does.Contain(timber));
             Assert.That(Pack.Objects, Does.Contain(clay));
 
-            Carry("SalvagedTimber");
+            var haft = Carry(FieldHaft);
+            Carry(Timber);
             Assert.True(ChooseRow(row, position.x, position.y));
             Assert.That(RepairablePart.BlocksFunction(bench), Is.False);
             Assert.That(Count("SalvagedTimber"), Is.Zero);
+            Assert.That(Pack.Objects, Does.Contain(haft));
             Assert.That(clay.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
             Assert.That(clay.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+        }
+
+        [Test]
+        public void TimberDressingBenchSpendsOneExactHaftFromAStackInAMixedBill()
+        {
+            var bench = Place("SoddenDressingBench");
+            var repair = bench.GetPart<RepairablePart>();
+            var timber = Carry(Timber);
+            var haft = Carry(FieldHaft);
+            var stack = haft.GetPart<StackerPart>();
+            stack.StackCount = 3;
+            var position = Zone.GetEntityPosition(bench);
+            var row = CellMenu(position.x, position.y).Single(a => a.Command == RepairablePart.RepairCommand);
+            string quote = row.Display + " " + string.Join(" ", WorldActionMenuUI.WrapHint(row.Hint, 44, WorldActionMenuUI.MaxHintRows));
+            string details = repair.Describe();
+            bool applied = ChooseRow(row, position.x, position.y);
+
+            Assert.True(applied, "The normal world action accepts the mixed physical bill.");
+            Assert.That(quote, Does.Contain("salvaged timber").And.Contain("rough field haft"));
+            Assert.That(details, Does.Contain("salvaged timber").And.Contain("rough field haft"));
+            Assert.That(RepairablePart.BlocksFunction(bench), Is.False);
+            Assert.That(repair.RepairedBy, Is.SameAs(Actor));
+            CollectionAssert.DoesNotContain(Pack.Objects, timber);
+            Assert.That(Pack.Objects.Single(item => item.BlueprintName == FieldHaft), Is.SameAs(haft));
+            Assert.That(stack.StackCount, Is.EqualTo(2));
+            Assert.False(ChooseRow(row, position.x, position.y));
+
+            var restored = PartRoundTripHelper.RoundTripEntityViaTokenGraph(bench).GetPart<RepairablePart>();
+            Assert.That(restored.Repaired, Is.True);
+            Assert.That(restored.RepairedBy.ID, Is.EqualTo(Actor.ID));
+            var restoredHaft = restored.RepairedBy.GetPart<InventoryPart>().Objects.Single(item => item.ID == haft.ID);
+            Assert.That(restoredHaft.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+        }
+
+        [TestCase("only-hafts")]
+        [TestCase("altered")]
+        [TestCase("assembled")]
+        [TestCase("equipped")]
+        public void TimberDressingBenchRefusesIneligibleSubstitutionWithoutPayment(string condition)
+        {
+            var bench = Place("SoddenDressingBench");
+            var haft = Carry(FieldHaft);
+            if (condition != "only-hafts") Carry(Timber);
+            switch (condition)
+            {
+                case "only-hafts": haft.GetPart<StackerPart>().StackCount = 2; break;
+                case "altered": haft.GetPart<WeaponComponentPart>().MaxStrengthBonus++; break;
+                case "assembled":
+                    Assert.True(WeaponForgingService.TryForge(Actor, Factory, Carry("PeatMalletHeadComponent"),
+                        haft, Carry("LeatherBindingComponent"), out var assembled, out var reason), reason);
+                    haft = assembled;
+                    break;
+                case "equipped": haft.GetPart<PhysicsPart>().Equipped = Actor; break;
+            }
+            var before = Pack.Objects.ToArray();
+            int quantity = haft.GetPart<StackerPart>()?.StackCount ?? 1;
+            var repair = bench.GetPart<RepairablePart>();
+
+            Assert.False(repair.TryRepair(Actor, Zone));
+            CollectionAssert.AreEqual(before, Pack.Objects);
+            Assert.That(haft.GetPart<StackerPart>()?.StackCount ?? 1, Is.EqualTo(quantity));
+            Assert.That(RepairablePart.BlocksFunction(bench), Is.True);
+            Assert.That(repair.RepairedBy, Is.Null);
+        }
+
+        [Test]
+        public void TimberDressingBenchReadsCurrentBillWithLegacySavedFlavor()
+        {
+            var bench = Place("SoddenDressingBench");
+            var examine = bench.GetPart<ExaminablePart>();
+            const string legacy = "A split-legged dressing bench. Sella needs two sound timber lengths to brace it. The abandoned cutting works lie two stretches east.";
+            examine.Text = legacy;
+
+            string flavor = examine.GetDescriptionText();
+
+            StringAssert.DoesNotContain("Sella needs two sound timber lengths", flavor);
+            StringAssert.Contains("The abandoned cutting works lie two stretches east", flavor);
+            StringAssert.Contains("rough field haft", bench.GetPart<RepairablePart>().Describe());
+            Assert.AreEqual(legacy, examine.Text);
+        }
+
+        [Test]
+        public void TimberDressingBenchMixedPaymentRollsBackAfterLateFailure()
+        {
+            var bench = Place("SoddenDressingBench");
+            var timber = Carry(Timber);
+            var haft = Carry(FieldHaft);
+            haft.GetPart<StackerPart>().StackCount = 2;
+            var hp = Actor.GetStat("Hitpoints");
+            int healthBefore = hp.BaseValue;
+            bool interrupted = false;
+            Actor.AddPart(new AfterAction(() =>
+            {
+                interrupted = true;
+                hp.BaseValue--;
+                throw new InvalidOperationException("interrupted mixed bench repair");
+            }));
+
+            Assert.False(bench.GetPart<RepairablePart>().TryRepair(Actor, Zone));
+            Assert.True(interrupted, "The mixed payment must reach the post-action callback.");
+            CollectionAssert.Contains(Pack.Objects, timber);
+            CollectionAssert.Contains(Pack.Objects, haft);
+            Assert.That(haft.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(hp.BaseValue, Is.EqualTo(healthBefore - 1));
+            Assert.That(RepairablePart.BlocksFunction(bench), Is.True);
+            Assert.That(bench.GetPart<RepairablePart>().RepairedBy, Is.Null);
         }
 
         [Test]

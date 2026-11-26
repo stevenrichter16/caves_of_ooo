@@ -1,3 +1,15 @@
+**A rough haft restores Sella’s dressing service — November 26 UTC, 2026.**
+The player sold two earned timber in Sumphold, returned and shaped one
+of the remaining pair. Reading and cancelling the mixed repair was
+free. One action spent the timber and haft. Fresh Continue kept the
+repair, and a second action paid a pad, cord and two drams for one
+dressing. Fresh Continue kept the dressing, remaining goods and both
+payments. Final native run passed 280 checks with five matching historical
+equipment-art failures. An actual older save displayed the updated bill
+and kept its original route guidance. Independent source and save review
+passed. The preceding Mac build predates this slice.
+[Evidence](Verification/MachineSystems/SellaMixedBrace20261126/README.md)
+
 **Ordinary hand and Concord routes restore Tine’s weir — November 26 UTC, 2026.**
 Fresh seed 2, one ordinary 50-dram start and a common tick 360 checkpoint.
 The contract paid 45 and earned the 15-dram report. Hand work bought

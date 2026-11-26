@@ -14,6 +14,8 @@ namespace CavesOfOoo.Core
         public string MaterialBlueprint { get; }
         public string MaterialName { get; }
         public string MaterialGrade { get; }
+        public string SubstituteBlueprint { get; }
+        public string SubstituteName { get; }
         public int Quantity { get; }
         public string Diagnosis { get; }
         public string ActionText { get; }
@@ -22,12 +24,15 @@ namespace CavesOfOoo.Core
         {
             Id=row.Id; Composition=row.Composition; MaterialBlueprint=row.MaterialBlueprint;
             MaterialName=row.MaterialName; MaterialGrade=row.MaterialGrade; Quantity=row.Quantity; Diagnosis=row.Diagnosis;
+            SubstituteBlueprint = row.SubstituteBlueprint;
+            SubstituteName = row.SubstituteName;
             ActionText=row.ActionText; RepairedText=row.RepairedText;
         }
     }
     [Serializable] internal sealed class RepairRecipeRow
     {
         public string Id, Composition, MaterialBlueprint, MaterialName, MaterialGrade, Diagnosis, ActionText, RepairedText;
+        public string SubstituteBlueprint, SubstituteName;
         public int Quantity;
     }
     [Serializable] internal sealed class RepairRecipeFile { public RepairRecipeRow[] Recipes; }
@@ -64,6 +69,7 @@ namespace CavesOfOoo.Core
                     || string.IsNullOrWhiteSpace(row.MaterialName) || string.IsNullOrWhiteSpace(row.Diagnosis)
                     || string.IsNullOrWhiteSpace(row.ActionText) || string.IsNullOrWhiteSpace(row.RepairedText)
                     || row.Quantity<1 || row.Quantity>MaximumMaterialQuantity
+                    || !ValidSubstitute(row)
                     || !string.IsNullOrEmpty(row.MaterialGrade) && (row.MaterialGrade!=RepairMaterialPart.LiningClay || row.MaterialBlueprint!="FireClay"))
                 { Errors.Add("Invalid repair recipe: "+(row?.Id??"<null>")); continue; }
                 if(Recipes.ContainsKey(row.Id)) { Errors.Add("Duplicate repair recipe: "+row.Id); continue; }
@@ -72,6 +78,15 @@ namespace CavesOfOoo.Core
             if(Errors.Count>0)Recipes.Clear();
             return Errors.ToArray();
         }
+        private static bool ValidSubstitute(RepairRecipeRow row)
+        {
+            if (string.IsNullOrEmpty(row.SubstituteBlueprint)) return string.IsNullOrEmpty(row.SubstituteName);
+            // One substitute can fill the last position of an otherwise exact bill.
+            return row.Quantity > 1 && string.IsNullOrEmpty(row.MaterialGrade)
+                && Token(row.SubstituteBlueprint) && row.SubstituteBlueprint != row.MaterialBlueprint
+                && !string.IsNullOrWhiteSpace(row.SubstituteName);
+        }
+
         private static bool Token(string value)
         {
             if(string.IsNullOrWhiteSpace(value))return false;
@@ -89,6 +104,10 @@ namespace CavesOfOoo.Core
                 if(blueprint.Tags.ContainsKey("Creature") || !blueprint.Parts.TryGetValue("Physics",out var physical)
                     || !physical.TryGetValue("Takeable",out var raw) || !bool.TryParse(raw,out bool takeable) || !takeable)
                     issues.Add(recipe.Id+": supply must be a portable non-creature.");
+                if (!string.IsNullOrEmpty(recipe.SubstituteBlueprint)
+                    && (!MaterialProcessRegistry.Portable(factory, recipe.SubstituteBlueprint)
+                        || MaterialProcessTemplate.Capture(factory, recipe.SubstituteBlueprint) == null))
+                    issues.Add(recipe.Id + ": invalid portable substitute " + recipe.SubstituteBlueprint);
             }
             return issues;
         }
