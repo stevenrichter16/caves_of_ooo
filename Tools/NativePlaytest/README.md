@@ -1,4 +1,6 @@
-# Batching routine native playtest movement
+# Batching routine native playtest input
+
+## Walking
 
 Use the guarded walk for a short, planned route through a single loaded
 zone. It sends one input frame per arrow-key press and checks every actual
@@ -43,3 +45,33 @@ cell and game turn. The guarded route retained all 40 HP and stopped with
 zero moves in separate tests of an occupied cell and an open inventory.
 Delaying observation for 0.31 seconds still produced exactly one move.
 These timings cover movement only. [Calibration record](cinderhold-calibration.json)
+
+## Finding an inventory item
+
+Use the guarded search in an isolated GameBootstrap audit with its own
+keyboard. Open the inventory’s **Find** field with `/` and start with an
+empty query. Prepend these bindings to `inventory-search.cs` and execute
+the combined body through Unity MCP.
+
+```csharp
+string auditOwner = "Codex.CinderholdAudit.";
+string keyboardName = "CinderholdAuditKeyboard";
+string searchText = "iron spike";
+```
+
+Use up to 48 lowercase letters, digits, spaces, hyphens or apostrophes.
+The helper sends one key at a time and checks each accepted character.
+Once `keyJob` clears, read `SessionState.GetString(auditOwner +
+"inventorySearch", "")` and inspect the actual results. Confirm the
+exact item before opening its actions. Press Enter to leave typing mode
+and make the item selection separately. If search closes or the query
+changes unexpectedly, inspect the current menu before sending further
+keys. Keep purchases, crafting, combat and other consequential inputs
+separate from routine navigation.
+
+On Apple M5 both runs found the same sole iron spike at turn 3490.
+Typing ten keys took 2.77 seconds with fixed waits and 0.03 seconds
+with guarded input. The repeat-letter query `nozzle` completed exactly.
+A closed search refused to start, and pressing Escape at the start of
+a scheduled search stopped it with an empty query.
+[Search calibration](inventory-search-calibration.json)
