@@ -35,13 +35,29 @@ namespace CavesOfOoo.Core
                 && StationReadiness.CurrentZone(zone) ? RegionalWeather.Current(zone, WorldClock.CurrentTick, PolicyVersion) : default;
         }
 
-        internal bool Ready(Zone zone, int? selectedSeason = null)
+        private bool FixedSource(Zone zone)
         {
             var owner = ParentEntity;
-            if (owner?.GetPart<HarvestablePart>() != this || owner.Parts.Count(p => p is HarvestablePart) != 1
-                || !RainCatchmentPart.FixedOn(owner, Ground, zone)) return false;
+            return owner?.GetPart<HarvestablePart>() == this && owner.Parts.Count(p => p is HarvestablePart) == 1
+                && RainCatchmentPart.FixedOn(owner, Ground, zone);
+        }
+
+        internal bool Ready(Zone zone, int? selectedSeason = null)
+        {
+            if (!FixedSource(zone)) return false;
             var weather = Weather(zone);
             return weather.Valid && weather.Season == (selectedSeason ?? Season);
+        }
+
+        internal (string Glyph, string Color) KnotflaxAppearance(Zone zone)
+        {
+            if (zone?.ZoneID != RepairCultivationSite.ZoneID || Harvested
+                || ParentEntity?.BlueprintName != SeasonalSeedSite.Stand || Season != 1
+                || !FixedSource(zone)) return default;
+            var weather = Weather(zone);
+            if (!weather.Valid) return default;
+            if (weather.Season == FlexibleStemSeason && FlexibleStems(zone)) return ("|", "&G");
+            return weather.Season == Season ? ("*", "&Y") : (";", "&y");
         }
 
         internal Func<bool> CaptureSeason(Zone zone, Cell sourceCell, int? selectedSeason = null)

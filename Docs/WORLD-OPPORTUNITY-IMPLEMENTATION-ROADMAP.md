@@ -70,6 +70,12 @@ work, and retained the spent seam, working well and grit through Continue.
 Other visible condition cues and comparison across layouts remain open.
 [Native playtest](Verification/MachineSystems/RainClaySeam20261126/README.md)
 
+The existing western allotment knotflax stand also makes #32–33 visible
+through early stems, ripe heads and dormant stalks. A guided native
+comparison used the same view with controlled calendar advances. The
+player harvested the ripe heads and retained the exact bundle through
+Continue. [Knotflax playtest](Verification/MachineSystems/KnotflaxWorldCue20261126/README.md)
+
 The Sumphold oil recovery also supports #39–40 through an earned purchase
 and paid lasting Sill repair. Actual play returned to the same path
 approach and measured greater light in two already visible cells. Fresh

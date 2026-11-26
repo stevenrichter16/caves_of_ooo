@@ -59,7 +59,7 @@ namespace CavesOfOoo.Rendering
 
         private Color ResolveRenderColor(Entity owner, RenderPart render, int x, int y, out Color nativeColorCue, bool preserveAuthoredNativeColor = false)
         {
-            if (!RainSeamWorldAppearance.TryGet(CurrentZone, owner, out _, out string colorString))
+            if (!FieldOpportunityAppearance.TryGet(CurrentZone, owner, out _, out string colorString))
             {
                 colorString = AsciiWorldRenderPolicy.GetColorOrFallback(render, out string issue);
                 LogRenderIssueOnce(owner, issue);

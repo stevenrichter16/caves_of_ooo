@@ -1,3 +1,10 @@
+**Morrowfast's knotflax shows when work changes — November 26 UTC, 2026.**
+The normal map shows stems, ripe heads and dormant growth from the
+existing seasonal authority. The previously earned stand was visible
+through each phase at the same position with controlled calendar jumps.
+An ordinary harvest cleared it. Fresh Continue kept the bundle and the
+starting dagger. [Map and save evidence](Verification/MachineSystems/KnotflaxWorldCue20261126/README.md)
+
 **The Morrowfast seam visibly loosens in rain — November 26 UTC, 2026.**
 The player saw the seam from the path, collected one damp packet just
 after a shower, let it dry and sorted it with their earned sieve. The two

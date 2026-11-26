@@ -630,7 +630,8 @@ namespace CavesOfOoo.Rendering
             ZoneTileStateSystem.BindRenderHook(zone);
             ClearWorldAffordance();
             CurrentZone = zone;
-            _rainSeamPaintTick = int.MinValue;
+            _fieldOpportunityPaintTick = int.MinValue;
+            _knotflaxPaintSeason = -1;
             _envSpriteRenderer?.ClearFlatPaintReceipts();
             SyncFlatPixelMode();
             _fellingScenePresenter?.Bind(FlatPixelModeActive ? null : zone);
@@ -830,20 +831,30 @@ namespace CavesOfOoo.Rendering
 
         internal bool OwnsEnvironmentRenderer(EnvironmentSpriteRenderer renderer) => _envSpriteRenderer == renderer;
 
-        private int _rainSeamPaintTick = int.MinValue;
+        private int _fieldOpportunityPaintTick = int.MinValue;
+        private int _knotflaxPaintSeason = -1;
 
-        // Game-time state can change while the player waits on the same tile.
-        // Repaint just the registered, visible bank cell on a new saved tick.
-        private void InvalidateRainSeamPaint()
+        // A wait can change local bloom or rain without moving the player.
+        // Repaint only the visible sources affected by that clock change.
+        private void InvalidateFieldOpportunityPaint()
         {
             var zone = CurrentZone;
             if (zone?.ZoneID != RepairCultivationSite.ZoneID) return;
             int tick = WorldClock.CurrentTick;
-            if (tick == _rainSeamPaintTick) return;
-            _rainSeamPaintTick = tick;
+            if (tick == _fieldOpportunityPaintTick) return;
+            _fieldOpportunityPaintTick = tick;
             foreach (var owner in zone.GetReadOnlyEntitiesWithPart<RainSeamHarvestPart>())
                 if (zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
                     MarkCellDirty(cell, "Rain seam appearance");
+
+            var weather = RegionalWeather.Current(zone, tick, RegionalWeather.PolicyVersion);
+            int season = weather.Valid ? weather.Season : -1;
+            if (season == _knotflaxPaintSeason) return;
+            _knotflaxPaintSeason = season;
+            foreach (var owner in zone.GetReadOnlyEntitiesWithPart<SeasonalHarvestPart>())
+                if (owner.BlueprintName == SeasonalSeedSite.Stand
+                    && zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
+                    MarkCellDirty(cell, "Knotflax appearance");
         }
 
         private void LateUpdate()
@@ -942,7 +953,7 @@ namespace CavesOfOoo.Rendering
                 }
 
                 // FX ticks only while the world is actually on screen.
-                InvalidateRainSeamPaint();
+                InvalidateFieldOpportunityPaint();
                 SyncVillagePresentation(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
                 _fellingDressingPresenter?.SetPresentationVisible(_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
                 _entityVisualRenderer?.SetPresentationVisible(
@@ -1535,9 +1546,9 @@ namespace CavesOfOoo.Rendering
             if (render == null) return;
 
             char glyph;
-            if (RainSeamWorldAppearance.TryGet(CurrentZone, topEntity, out char seamGlyph, out _))
+            if (FieldOpportunityAppearance.TryGet(CurrentZone, topEntity, out char opportunityGlyph, out _))
             {
-                glyph = seamGlyph;
+                glyph = opportunityGlyph;
             }
             else if (!string.IsNullOrEmpty(render.GlyphVariants))
             {

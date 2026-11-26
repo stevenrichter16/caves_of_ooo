@@ -11,9 +11,45 @@ namespace CavesOfOoo.Tests
     public sealed class FlatPixelRainSeamTests : FiftyWorldFixture
     {
         [Test]
+        public void KnotflaxShowsDistinctStemsSeedHeadsAndDormantStalks()
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 65, true);
+            Zone = manager.GetZone(RepairCultivationSite.ZoneID);
+            manager.SetActiveZone(Zone);
+            var stand = Zone.GetReadOnlyEntities().Single(owner => owner.BlueprintName == "LateKnotflaxStand");
+            var cell = Zone.GetEntityCell(stand);
+            cell.Explored = cell.IsVisible = true;
+            string originalGlyph = stand.GetPart<RenderPart>().RenderString;
+
+            using var flat = new FlatPixelGreyboxCatalog();
+            Tile Draw()
+            {
+                Assert.That(flat.TryResolvePresentation(Zone, cell.X, cell.Y, out var view), Is.True);
+                Assert.That(view.Owner, Is.SameAs(stand));
+                return view.ForegroundTile;
+            }
+
+            Clock.AdvanceClock(480);
+            var stems = Draw();
+            Clock.AdvanceClock(9600);
+            var seeds = Draw();
+            Clock.AdvanceClock(9600);
+            var dormant = Draw();
+            Assert.That(new[] { stems, seeds, dormant }.Distinct().Count(), Is.EqualTo(3));
+            Assert.That(stand.GetPart<RenderPart>().RenderString, Is.EqualTo(originalGlyph));
+            foreach (char glyph in new[] { '|', '*', ';' })
+                Assert.False(EnvironmentSpriteRenderer.GlyphClaimAllowed(glyph, stand.BlueprintName));
+
+            cell.IsVisible = false;
+            Assert.That(flat.TryResolvePresentation(Zone, cell.X, cell.Y, out var memory), Is.True);
+            Assert.That(memory.Owner, Is.Not.SameAs(stand));
+        }
+
+        [Test]
         public void VisibleBankChangesShapeInBothMapModesAndDisappearsIntoFog()
         {
-            const int seed = 64;
+            // This layout also has an earned native route with the optional seam.
+            const int seed = 2;
             var manager = OverworldZoneManager.CreateDetached(Factory, seed, true);
             Zone = manager.GetZone(RepairCultivationSite.ZoneID);
             manager.SetActiveZone(Zone);

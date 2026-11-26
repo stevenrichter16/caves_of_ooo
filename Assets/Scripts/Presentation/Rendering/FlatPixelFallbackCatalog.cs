@@ -6,22 +6,28 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    internal static class RainSeamWorldAppearance
+    internal static class FieldOpportunityAppearance
     {
         internal static bool TryGet(Zone zone, Entity owner, out char glyph, out string color)
         {
             glyph = default;
             color = null;
-            if (owner?.BlueprintName != "RainClaySeam" || owner.SpatialZone != zone
-                || zone?.GetEntityCell(owner) is not { Explored: true, IsVisible: true }
-                || owner.GetPart<RainSeamHarvestPart>() is not { } seam || seam.ParentEntity != owner)
+            if (owner?.BlueprintName is not (RainClaySeamSite.Source or SeasonalSeedSite.Stand) || owner.SpatialZone != zone
+                || zone?.GetEntityCell(owner) is not { Explored: true, IsVisible: true })
                 return false;
 
-            var appearance = seam.Appearance(zone);
-            if (appearance.Glyph?.Length != 1 || !AsciiWorldRenderPolicy.IsPrintableGlyph(appearance.Glyph[0])
-                || !AsciiWorldRenderPolicy.IsValidColorString(appearance.Color)) return false;
-            glyph = appearance.Glyph[0];
-            color = appearance.Color;
+            var source = owner.GetPart<HarvestablePart>();
+            if (source?.ParentEntity != owner) return false;
+            var (symbol, tint) = source switch
+            {
+                RainSeamHarvestPart seam => seam.Appearance(zone),
+                SeasonalHarvestPart stand => stand.KnotflaxAppearance(zone),
+                _ => default
+            };
+            if (symbol?.Length != 1 || !AsciiWorldRenderPolicy.IsPrintableGlyph(symbol[0])
+                || !AsciiWorldRenderPolicy.IsValidColorString(tint)) return false;
+            glyph = symbol[0];
+            color = tint;
             return true;
         }
     }
@@ -102,15 +108,15 @@ namespace CavesOfOoo.Rendering
                 backgroundLayer = render.RenderLayer;
             }
 
-            char? seamGlyph = null;
-            Color? seamColor = null;
-            if (!remembered && RainSeamWorldAppearance.TryGet(zone, owner, out char glyph, out string color))
+            char? opportunityGlyph = null;
+            Color? opportunityColor = null;
+            if (!remembered && FieldOpportunityAppearance.TryGet(zone, owner, out char glyph, out string color))
             {
-                seamGlyph = glyph;
-                seamColor = QudColorParser.Parse(color);
+                opportunityGlyph = glyph;
+                opportunityColor = QudColorParser.Parse(color);
             }
-            Tile foreground = selectedRender == null ? null : _tiles[Glyph(selectedRender, x, y, seamGlyph)];
-            Color foregroundColor = seamColor ?? (selectedRender == null ? Color.white : ForegroundColor(selectedRender));
+            Tile foreground = selectedRender == null ? null : _tiles[Glyph(selectedRender, x, y, opportunityGlyph)];
+            Color foregroundColor = opportunityColor ?? (selectedRender == null ? Color.white : ForegroundColor(selectedRender));
             if (remembered)
             {
                 background *= MemoryDim; background.a = 1;

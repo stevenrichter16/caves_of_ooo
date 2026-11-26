@@ -1,3 +1,9 @@
+**The knotflax stand shows its current work on the map.**
+The existing early cord choice and later seed choice have distinct
+appearances. A dormant stand gives neither cue. The existing growth
+phase and physical source govern the map. Harvest still removes the
+stand. [Native playtest](Verification/MachineSystems/KnotflaxWorldCue20261126/README.md)
+
 **Rain can expose a visible extra deposit at the western allotment.**
 An eligible clay working has one separate finite reserve. Through rain and
 a brief grace period the changed ground shows it can be gathered. The

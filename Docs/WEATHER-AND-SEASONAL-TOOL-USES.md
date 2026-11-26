@@ -277,6 +277,12 @@ state that controls collection. Appearance follows actual visibility and
 the current saved material state. Examine explains what the player saw,
 the likely yield and any tool or timing requirements.
 
+The existing western Morrowfast knotflax stand also shows its condition
+on the map. Green stems cue the early cut for cord, a bright branch
+marks the ripe seed heads, and muted stalks mark dormant growth. The
+player can see these before selecting tools. Harvest clears the stand as
+before. [Knotflax map playtest](Verification/MachineSystems/KnotflaxWorldCue20261126/README.md)
+
 Design opportunities to last long enough for noticing and trying. Where a bonus
 exposes a material, the claimed physical material persists after the weather.
 Where it advances work, bank only validated progress on that exact paid batch.
