@@ -575,6 +575,15 @@ The same ready-station, permission, custody and transaction rules govern
 payment. The reclamation forge and the eleven other machine gates remain open.
 [Evidence](Verification/MachineSystems/AnvilColdDressing20261126/README.md)
 
+**Gantry takes equivalent grain from two routes — November 26 UTC, 2026.**
+Current seeds 64 and 2 used the existing regional request. One followed
+the merchant's directions, and the other brought public grain already
+held. Both moved their exact sheaves into actual stock and received the
+same rate. A field trip is optional when the actor already has the right
+goods. This advances the comparative play gate at one site. Wider
+unguided discovery and complete-machine acceptance remain open.
+[Evidence](Verification/MachineSystems/GantrySupplyComparison20261126/README.md)
+
 **Replayable practical work — November24local/25UTC,2026:** The source-grounded
 [implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
 concrete requirements for compatible material demand, method-independent

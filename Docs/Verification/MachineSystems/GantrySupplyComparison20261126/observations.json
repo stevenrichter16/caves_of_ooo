@@ -1,0 +1,331 @@
+{
+  "gameRoutes": {
+    "2": {
+      "start": {
+        "seed": 2,
+        "v": 31,
+        "ZoneID": "Overworld.11.10.0",
+        "X": 41,
+        "Y": 13,
+        "tick": 20,
+        "hp": 40,
+        "fields": [
+          {
+            "ID": "2150",
+            "X": 44,
+            "Y": 10,
+            "n": "ripe emberwheat row"
+          },
+          {
+            "ID": "2157",
+            "X": 46,
+            "Y": 12,
+            "n": "ripe emberwheat row"
+          },
+          {
+            "ID": "2169",
+            "X": 50,
+            "Y": 14,
+            "n": "ripe emberwheat row"
+          }
+        ]
+      },
+      "arrival": {
+        "zone": "Overworld.7.8.0",
+        "X": 39,
+        "Y": 11,
+        "tick": 180,
+        "hp": 40,
+        "path": "done 37,11 tick 170"
+      },
+      "clue": "Grain for Gantry's exchange [not accepted]. Source (7,7); return to Kesset Rillpost, merchant in Gantry (7,8). Bring 2 x emberwheat sheaf; bought or already carried goods are welcome. Source availability is unknown; it has not been checked. Payment: 6 drams and one healing tonic. Reading does not accept this work. Choose accept this request through the recipient's [C] actions if you wish to undertake it.",
+      "before": {
+        "seed": 2,
+        "v": 31,
+        "id": "6953",
+        "name": "Kesset Rillpost, merchant",
+        "receiver": "15,4",
+        "tick": 420,
+        "Accepted": false,
+        "Completed": false,
+        "drams": 50,
+        "hp": 40,
+        "sourceLoaded": false,
+        "player": [
+          {
+            "ID": "2720",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "2728",
+            "BlueprintName": "Emberwheat",
+            "n": 2
+          }
+        ],
+        "stock": []
+      },
+      "delivered": {
+        "seed": 2,
+        "v": 31,
+        "id": "6953",
+        "name": "Kesset Rillpost, merchant",
+        "receiver": "15,4",
+        "tick": 420,
+        "Accepted": false,
+        "Completed": true,
+        "drams": 56,
+        "hp": 40,
+        "sourceLoaded": true,
+        "player": [
+          {
+            "ID": "2720",
+            "BlueprintName": "HealingTonic",
+            "n": 3
+          }
+        ],
+        "stock": [
+          {
+            "ID": "2728",
+            "n": 2
+          }
+        ]
+      },
+      "fresh": {
+        "seed": 2,
+        "v": 31,
+        "id": "6953",
+        "name": "Kesset Rillpost, merchant",
+        "receiver": "15,4",
+        "tick": 420,
+        "Accepted": false,
+        "Completed": true,
+        "drams": 56,
+        "hp": 40,
+        "sourceLoaded": true,
+        "player": [
+          {
+            "ID": "2720",
+            "BlueprintName": "HealingTonic",
+            "n": 3
+          }
+        ],
+        "stock": [
+          {
+            "ID": "2728",
+            "n": 2
+          }
+        ]
+      },
+      "archive": {
+        "directory": "/private/tmp/coo-gantry-grain-seed2-done-20261126/39966a841d13452aad6375ffd010d893",
+        "files": {
+          "Quick.json": {
+            "sha256": "8708e7af0ef730d739cef6af08196fcfd8a4e0ff5dcbbcf9f8caa81064afff50",
+            "bytes": 406
+          },
+          "Quick.sav.gz": {
+            "sha256": "3d153651b36666a75a9046c62965704103c2b31a8a2b9296f6eefa25b3b36f53",
+            "bytes": 224846
+          },
+          "Quick.json.bak": {
+            "sha256": "2ee43042647bf248f647070311df1562fe353a8578005650db6bf4fec05a2602",
+            "bytes": 406
+          },
+          "Quick.sav.gz.bak": {
+            "sha256": "026efe59cfa9f6c89fd33e5fa936c5a51870a83e81ccca7e6cb28bcb2698e4ce",
+            "bytes": 178055
+          }
+        }
+      },
+      "harvested": {
+        "tick": 80,
+        "zone": "Overworld.11.10.0",
+        "X": 45,
+        "Y": 11,
+        "hp": 40,
+        "drams": 50,
+        "grain": [
+          {
+            "ID": "2728",
+            "count": 2
+          }
+        ],
+        "rows": []
+      },
+      "markedRows": [
+        {
+          "ID": "regional:2:gantry-grain:source",
+          "appearance": "ripe emberwheat row"
+        },
+        {
+          "ID": "regional:2:gantry-grain:source:1",
+          "appearance": "ripe emberwheat row"
+        }
+      ],
+      "markedExploredCells": 0
+    },
+    "64": {
+      "start": {
+        "state": "Normal",
+        "ID": "2701",
+        "ZoneID": "Overworld.11.10.0",
+        "seed": 64,
+        "v": 31,
+        "tick": 20
+      },
+      "arrival": {
+        "zone": "Overworld.7.8.0",
+        "X": 39,
+        "Y": 11,
+        "tick": 120,
+        "hp": 40,
+        "path": "done 37,11 tick 110"
+      },
+      "clue": "Grain for Gantry's exchange [not accepted]. Source (7,7); return to Brinna Reedfall, merchant in Gantry (7,8). Bring 2 x emberwheat sheaf; bought or already carried goods are welcome. Source availability is unknown; it has not been checked. Payment: 6 drams and one healing tonic. Reading does not accept this work. Choose accept this request through the recipient's [C] actions if you wish to undertake it.",
+      "before": {
+        "seed": 64,
+        "v": 31,
+        "id": "6930",
+        "name": "Brinna Reedfall, merchant",
+        "receiver": "45,13",
+        "tick": 810,
+        "Accepted": true,
+        "Completed": false,
+        "drams": 50,
+        "hp": 25,
+        "sourceLoaded": true,
+        "player": [
+          {
+            "ID": "2703",
+            "BlueprintName": "HealingTonic",
+            "n": 2
+          },
+          {
+            "ID": "9339",
+            "BlueprintName": "Emberwheat",
+            "n": 2
+          }
+        ],
+        "stock": []
+      },
+      "delivered": {
+        "seed": 64,
+        "v": 31,
+        "id": "6930",
+        "name": "Brinna Reedfall, merchant",
+        "receiver": "45,13",
+        "tick": 810,
+        "Accepted": false,
+        "Completed": true,
+        "drams": 56,
+        "hp": 25,
+        "sourceLoaded": true,
+        "player": [
+          {
+            "ID": "2703",
+            "BlueprintName": "HealingTonic",
+            "n": 3
+          }
+        ],
+        "stock": [
+          {
+            "ID": "9339",
+            "n": 2
+          }
+        ]
+      },
+      "fresh": {
+        "seed": 64,
+        "v": 31,
+        "id": "6930",
+        "name": "Brinna Reedfall, merchant",
+        "receiver": "45,13",
+        "tick": 810,
+        "Accepted": false,
+        "Completed": true,
+        "drams": 56,
+        "hp": 25,
+        "sourceLoaded": true,
+        "player": [
+          {
+            "ID": "2703",
+            "BlueprintName": "HealingTonic",
+            "n": 3
+          }
+        ],
+        "stock": [
+          {
+            "ID": "9339",
+            "n": 2
+          }
+        ]
+      },
+      "archive": {
+        "directory": "/private/tmp/coo-gantry-grain-seed64-done-20261126/ffc8f732797d4acf8cd533c679959486",
+        "files": {
+          "Quick.json": {
+            "sha256": "fb50734ce3cb7412d12122468a603ca1e1cf278f1586c96bed3c86a603dc98ca",
+            "bytes": 406
+          },
+          "Quick.sav.gz": {
+            "sha256": "4fa8d980c022c2c33de650363f8e6f1fccb1308965e214f581bb771cb5971675",
+            "bytes": 229150
+          },
+          "Quick.json.bak": {
+            "sha256": "455f142ec4f9521c354853bfccb5a9c32b83820cd07cc38c97a54142f0ae9db1",
+            "bytes": 406
+          },
+          "Quick.sav.gz.bak": {
+            "sha256": "72974a2486c203bf1ecf8346a7142cfd771ffe78e0a73816fcdd9cfdeeeb6962",
+            "bytes": 228163
+          }
+        }
+      },
+      "fieldArrival": {
+        "zone": "Overworld.7.7.0",
+        "X": 40,
+        "Y": 12,
+        "tick": 310,
+        "hp": 40,
+        "path": "done 37,10 tick 300"
+      },
+      "harvested": {
+        "tick": 690,
+        "zone": "Overworld.7.7.0",
+        "X": 4,
+        "Y": 4,
+        "hp": 25,
+        "drams": 50,
+        "grain": [
+          {
+            "ID": "9339",
+            "count": 2
+          }
+        ],
+        "rows": [
+          {
+            "ID": "regional:64:gantry-grain:source",
+            "BlueprintName": "RipeCropRow",
+            "n": "cut emberwheat row"
+          },
+          {
+            "ID": "regional:64:gantry-grain:source:1",
+            "BlueprintName": "RipeCropRow",
+            "n": "cut emberwheat row"
+          }
+        ]
+      }
+    }
+  },
+  "editorExit": {
+    "playing": false,
+    "dirty": false,
+    "root": null,
+    "seed": 0
+  },
+  "selectedPreservation": {
+    "normalMatched": 861,
+    "foreignMatched": 86
+  }
+}

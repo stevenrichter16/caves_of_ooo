@@ -655,6 +655,14 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     equivalent results earn equal service and ignored bonuses remain comfortable.
     Preserve useful screenshots and independent review; tests alone do not prove
     discovery, pacing or replayability.
+    Two fresh version 31 Gantry runs reached the same request result.
+    Seed 64 followed the merchant's note to the marked field. Seed 2
+    brought public Gleaners' grain without visiting that field. Both merchants
+    stocked the exact sheaves and paid six drams and one tonic. Their
+    different clocks and HP outcomes reflect both the route and the seed.
+    The paired play remains guided.
+    [Evidence](Verification/MachineSystems/GantrySupplyComparison20261126/README.md)
+
     An actual fresh v26 seed 2 route earned the sieve and screened nearby clay.
     A retained v18 seed 64 route bought the actual delivered clay. Both paths
     repaired the same service and then paid, collected and ate the same kind

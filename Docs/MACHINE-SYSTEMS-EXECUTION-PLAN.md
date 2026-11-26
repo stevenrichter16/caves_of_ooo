@@ -125,6 +125,22 @@ kept the spike and the later bellows. The final 240 native cases passed.
 The anvil supplies this one operation through the existing process.
 [Evidence](Verification/MachineSystems/AnvilColdDressing20261126/README.md)
 
+**Gantry accepts grain from two ordinary journeys — November 26 UTC, 2026.**
+Two current-version playthroughs brought two physical sheaves to the
+merchant. Seed 64 followed the marked field directions and finished at
+tick 810 with 25 HP. Seed 2 brought original Gleaners' grain and finished
+at 420 with 40 HP. Both paid six drams and one tonic. The exact sheaves
+joined trade stock and both receipts survived fresh Continue. The guided
+comparison leaves wider seed coverage and unguided discovery open.
+[Evidence](Verification/MachineSystems/GantrySupplyComparison20261126/README.md)
+
+**Door brace and anvil Mac delivery — November 26 UTC, 2026.**
+The universal package from `ad0a28f61` reached GameBootstrap on Apple
+Silicon. It includes both the rough-haft brace and the anvil option.
+Package and ordinary startup save hashes matched. Packaged gameplay
+and Intel execution remain open.
+[Delivery](Verification/MachineSystems/MacCandidateAD0A28F61/README.md)
+
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe
 measures to actual elders. One showed the missing second measure and
