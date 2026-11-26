@@ -510,6 +510,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     tending combined the channel with spell water, then harvested two pads
     and one seed. Fair weather preserved the baseline and the other ripe
     plant remained available. [Evidence](Verification/MachineSystems/SoddenRainGuide20261125/README.md)
+    Fair air at a newly generated North Works shelf removes up to 25
+    points from one packed item's actual moisture. The quoted change
+    enabled a damp striker to light an ordinary torch using one strike.
+    [Evidence](Verification/MachineSystems/NorthFairWeatherDrying20261126/README.md)
 
 35. **Qualify comfortably ignoring the opportunity.** Keep ordinary sources,
     bought supplies, hand methods and NPC services practical. No exposure chores,
@@ -521,6 +525,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     fresh Continue. The Quillhold loan service also worked before its
     supply project. A separate Sill detour changed wildlife and was fatal.
     [Evidence](Verification/MachineSystems/OptionalWorkOrdinaryRoutes20261125/README.md)
+    North Works air drying is optional and its existing approach remains
+    contested. Native checks retain ordinary hearth drying and shelf
+    storage. An older North Works save kept both of its ordinary shelves.
+    [Evidence](Verification/MachineSystems/NorthFairWeatherDrying20261126/README.md)
 
 ## Priority 8: explain choices and prove the combined experience
 

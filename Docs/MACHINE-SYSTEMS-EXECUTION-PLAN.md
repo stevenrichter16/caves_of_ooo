@@ -17,6 +17,16 @@ rules. The final native run passed 247 cases. The feature keeps the
 flask and wet reach alternatives and the finite shared transfer.
 [Evidence](Verification/MachineSystems/CinderholdTrayPump20261126/README.md)
 
+**Fair-weather shelves restore a wet striker at North Works.** Two
+freshly generated shelves provide a one-action reduction of up to
+25 moisture points on one exact carried item. Actual North Works play
+read the 50% to 25% quote, aired the supplied damp striker and used
+one strike to light the previously unlightable torch. Fresh Continue
+kept both results and a separate cached-site Continue kept the original
+ordinary shelves. The patchbearer encounter left 15 HP. The final
+connected native run passed 163 cases.
+[Evidence](Verification/MachineSystems/NorthFairWeatherDrying20261126/README.md)
+
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe
 measures to actual elders. One showed the missing second measure and

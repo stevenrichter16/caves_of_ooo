@@ -84,6 +84,12 @@ allotment. The other rows remain proposed extensions. The reward is useful becau
 existing or explicitly planned consumers; quantity, effort and opportunity are
 different benefits and should not become universal item-stat multipliers.
 
+New North Works shelves also provide one paid fair-weather action that
+removes up to 25 moisture points from a carried item. Actual play used
+it to restore ordinary flint ignition. The shelf retains normal storage
+and uses the existing weather clock. The fibre-batch opportunity below
+remains proposed. [Native shelf evidence](Verification/MachineSystems/NorthFairWeatherDrying20261126/README.md)
+
 | Opportunity and discovery cue | Choice and benefit | Accounting and ordinary alternative |
 | --- | --- | --- |
 | A mild shower passes an installed, clean catch-cloth with a collecting edge. Its reader offers collection and names a receiver. | Gather a few units of clean water for crop tending or other supported water uses while travelling. | Shared finite local rain allowance, exact compatible receiver and paid action. Carry water, use a well/source or buy supplies instead. Shade alone grants no collection. |

@@ -187,6 +187,11 @@ namespace CavesOfOoo.Core
      if(spec.role=="ranged"&&(!e.HasTag("Creature")||e.GetPart<BrainPart>()==null||e.GetPart<BrainPart>().SightRadius<1||e.GetPart<BrainPart>().SightRadius>6||e.GetPart<CombatTacticsPart>()?.AssistAllies!=true
       ||e.GetPart<SkillsPart>()?.HasSkill(forge?"Pyromancy_EmberSpit":"Corrosion_AcidSpray")!=true||e.GetPart<ActivatedAbilitiesPart>()==null))return false;
      if(emergencyWater&&spec.role=="ranged"&&!waterStock.Attach(e))return false;
+     if(spec.role=="drying-shelf")
+     {
+      if(e.HasPart<FairWeatherDryingPart>())return false;
+      e.AddPart(new FairWeatherDryingPart());
+     }
      if((spec.role=="still"&&!e.HasPart<AlchemyStillPart>())||(spec.role=="forge"&&!e.HasPart<ForgePart>())||(spec.role=="trap"&&(!e.HasPart<SpikeTrapTriggerPart>()||!e.HasPart<TrapJammingPart>()))
       ||(spec.role=="broken-wall"&&e.GetPart<PhysicsPart>()?.Solid!=true)||((spec.role=="binding-forage"||spec.role=="cold-forage")&&!e.HasPart<HarvestablePart>()))return false;
      if(store&&!StoreOwner(e,spec.bp,spec.role))return false;
@@ -366,6 +371,7 @@ namespace CavesOfOoo.Core
      &&inventory!=null&&inventory.Objects.Where(item=>item?.BlueprintName=="HealingTonic").Sum(item=>item.GetPart<StackerPart>()?.StackCount??1)==1;
    }
    if(role=="drying-shelf")return !e.HasTag("Creature")&&physical.Solid&&!physical.Takeable&&e.HasTag("Solid")
+    &&e.Parts.Count(p=>p is FairWeatherDryingPart)==1
     &&e.GetPart<ContainerPart>() is ContainerPart container&&!container.IsLocked&&container.Contents.Count==0;
    if(role=="medicine-forage")return !e.HasTag("Creature")&&!physical.Solid&&!physical.Takeable&&!e.HasPart<CropPart>()
     &&e.GetPart<HarvestablePart>() is HarvestablePart harvest&&!harvest.Harvested&&harvest.YieldBlueprint=="MendleafSprig"
