@@ -85,16 +85,31 @@ namespace CavesOfOoo.Tests
             LoadLoot();try
             {
                 var f=Factory();var z=new Zone(Id);var b=new CinderholdCompositionBuilder(64);Assert.IsTrue(b.BuildZone(z,f,new Random(1)));
-                var expected=new[]{"ConcordFactor","CinderholdNoticeBoard","Chest","Campfire","TinkersForge","SmithAnvil","Weaponsmith","CinderholdOilRecoveryTray"};
+                var expected = new[]
+                {
+                    "ConcordFactor", "CinderholdNoticeBoard", "Chest", "Campfire", "TinkersForge",
+                    "SmithAnvil", "Weaponsmith", "CinderholdOilRecoveryTray", "ReleasedExtractionTool"
+                };
                 CollectionAssert.AreEquivalent(expected,b.Plan.Profile.Select(p=>p.Blueprint));
                 foreach(var bp in expected)Assert.IsFalse(z.GetAllEntities().Any(e=>e.BlueprintName==bp));
                 var late=new CinderholdProfileBuilder(b);Assert.AreEqual(3860,late.Priority);Assert.IsTrue(late.BuildZone(z,f,new Random(2)));
                 foreach(var bp in expected)Assert.AreEqual(1,z.GetAllEntities().Count(e=>e.BlueprintName==bp),bp);
-                foreach(var p in b.Plan.Profile){var e=z.GetCell(p.X,p.Y).Objects.Single(a=>a.BlueprintName==p.Blueprint);Assert.AreEqual(Id,e.GetProperty("SettlementId"));}
+                foreach (var p in b.Plan.Profile)
+                {
+                    var owner = z.GetCell(p.X, p.Y).Objects.Single(entity => entity.BlueprintName == p.Blueprint);
+                    if (p.Blueprint == "ReleasedExtractionTool")
+                    {
+                        Assert.IsTrue(owner.GetPart<PhysicsPart>().Takeable);
+                        Assert.IsTrue(string.IsNullOrEmpty(owner.GetProperty("SettlementId")));
+                    }
+                    else
+                        Assert.AreEqual(Id, owner.GetProperty("SettlementId"));
+                }
                 var chest=z.GetAllEntities().Single(e=>e.BlueprintName=="Chest");Assert.Greater(chest.GetPart<ContainerPart>().Contents.Count,0);
                 var forge=z.GetAllEntities().Single(e=>e.BlueprintName=="TinkersForge");var anvil=z.GetAllEntities().Single(e=>e.BlueprintName=="SmithAnvil");
                 Assert.NotNull(forge.GetPart<ForgePart>());Assert.IsFalse(forge.GetPart<PhysicsPart>().Solid);Assert.IsFalse(forge.HasPart<LightSourcePart>());
                 Assert.IsFalse(anvil.HasPart<ForgePart>());Assert.IsTrue(anvil.GetPart<PhysicsPart>().Solid);Assert.AreEqual(120,anvil.GetPart<HandlingPart>().Weight);
+                Assert.IsNotNull(anvil.GetPart<AnvilWorkPart>());
                 Assert.IsFalse(z.GetAllEntities().Any(e=>e.BlueprintName=="LastCounterSign"));
                 var before=z.GetAllEntities().ToArray();Assert.IsFalse(late.BuildZone(z,f,new Random(3)));CollectionAssert.AreEquivalent(before,z.GetAllEntities());
             }finally{LootTableRegistry.ResetForTests();}

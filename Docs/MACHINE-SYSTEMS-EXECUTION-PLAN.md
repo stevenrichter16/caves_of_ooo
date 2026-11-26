@@ -121,7 +121,10 @@ One ordinary iron blank became the same spike at Cinderhold's existing
 anvil using the earned peat-packing mallet. The action kept the mallet and
 completed in one turn. The player used the exact spike and recovered wood
 to make bellows with a binding cut from bought leather. Fresh Continues
-kept the spike and the later bellows. The final 240 native cases passed.
+kept the spike and the later bellows. The first scoped receipt passed 240
+native cases. After correcting the stale Cinderhold profile test to
+require the published find and its loose custody, the connected run
+passed 261 cases.
 The anvil supplies this one operation through the existing process.
 [Evidence](Verification/MachineSystems/AnvilColdDressing20261126/README.md)
 

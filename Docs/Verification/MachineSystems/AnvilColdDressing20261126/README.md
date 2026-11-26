@@ -20,7 +20,11 @@ Cinderhold layout expectation. The reader now preserves the unready
 rig's own explanation. The same layout assertion also failed in
 `full_s9.xml` and the November 22 full run. Its expected list omits the
 previously shipped released extraction tool. The final scoped run includes
-the current village pipeline cases and leaves that inherited result open.
+the current village pipeline cases. A subsequent test-only correction
+requires the loose released tool in the plan and preserves the ownership,
+placement and once-only checks for the civic fittings. The entire connected
+scope then passed 261 cases, including the previously stale assertion.
+The archived full-project results are still historical.
 
 ## GameBootstrap play
 
