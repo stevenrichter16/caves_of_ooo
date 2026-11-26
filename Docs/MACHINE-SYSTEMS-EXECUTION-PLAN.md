@@ -1,3 +1,15 @@
+**Causeway scale is readable and useful in the field — November 26 UTC, 2026.**
+The vent reader explains what the scale can do, including on existing
+v29 saves with spent stock. Proofing flasks put the clothing treatment
+directly after Examine. Native play spent one previously gathered scale
+on the original cloak, preserved the separate water flask and confirmed
+the coat's worn-turn behavior and persistence in a private save. Continue
+with a separate surface brine bank or with the natural acid bank after
+accounting for the cave bear. A dry acid harvest worked, but the bear
+interrupted the return at 4 HP before an ordinary brew could be attempted.
+Keep any actual heat damage comparison separate from the Causeway vent.
+[Evidence](Verification/MachineSystems/CausewayFieldProofing20261126/README.md)
+
 **The pack opens vessels inline and supports labels on ordinary items — November 26 UTC, 2026.**
 Native play used all three label modes on carried gear, equipment, and a
 stored stack. Clicking the loaded satchel revealed its exact children as

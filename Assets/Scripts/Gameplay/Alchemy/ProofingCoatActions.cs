@@ -15,6 +15,7 @@ namespace CavesOfOoo.Core
     internal static class ProofingCoatActions
     {
         const string Prefix = "CoatGarment|";
+        const int FirstUsePriority = 23; // Keep the proofing's own use above ordinary liquid handling.
 
         internal static bool IsCommand(string command) => command != null && command.StartsWith(Prefix, StringComparison.Ordinal);
 
@@ -64,7 +65,7 @@ namespace CavesOfOoo.Core
             var garments = Holdings(actor).Where(o => o != flask && Held(actor, o)).ToList();
             // What you wear first (the pieces you are about to rely on), then by name; every held garment remains reachable in the scrolling menu.
             garments.Sort((a, b) => Worn(actor, a) != Worn(actor, b) ? (Worn(actor, a) ? -1 : 1) : string.CompareOrdinal(a.GetDisplayName(), b.GetDisplayName()) is int c && c != 0 ? c : string.CompareOrdinal(a.ID, b.ID));
-            if (garments.Count == 0) { actions.AddDisabled("CoatGarment", "coat a garment", "no-garment", "Nothing you carry fits: armor or clothing.", '\0', 16); return; }
+            if (garments.Count == 0) { actions.AddDisabled("CoatGarment", "coat a garment", "no-garment", "Nothing you carry fits: armor or clothing.", '\0', FirstUsePriority); return; }
             string hint = "Spends one unit of " + element.Label + "-proofing. +" + ProofingRules.CoatAmount + " " + element.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, paused when taken off, and it blunts " + element.Status + ". Another coat of the same adds turns." + ProofingPressActions.SeenNote(zone, actor, element);
             for (int i = 0; i < garments.Count; i++)
             {
@@ -73,8 +74,9 @@ namespace CavesOfOoo.Core
                 string label = "coat " + garment.GetDisplayName() + GarmentStacks.Suffix(garment) + (Worn(actor, garment) ? " (worn)" : "") + note;
                 bool counted = coat != null && ProofingRegistry.Canonical(coat.Kind) == element.Id;   // a top-up of a coat you already count changes only the turns
                 string rowHint = hint + ProofingPressActions.ResistanceNote(actor, garment, element, ProofingRules.CoatAmount, counted);
-                if (refusal == null) actions.AddActionWithHint("CoatGarment", label, Prefix + Uri.EscapeDataString(garment.ID), rowHint, '\0', 16 - i, false, ActionTime.OneAction);
-                else actions.AddDisabled("CoatGarment", label, refusal, why, '\0', 16 - i);
+                int priority = FirstUsePriority + (garments.Count - 1 - i);
+                if (refusal == null) actions.AddActionWithHint("CoatGarment", label, Prefix + Uri.EscapeDataString(garment.ID), rowHint, '\0', priority, false, ActionTime.OneAction);
+                else actions.AddDisabled("CoatGarment", label, refusal, why, '\0', priority);
             }
         }
 

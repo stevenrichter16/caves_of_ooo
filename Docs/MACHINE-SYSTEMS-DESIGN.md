@@ -1,3 +1,12 @@
+**Causeway vent scale can become useful field protection — November 26 UTC, 2026.**
+The Causeway vent reader ties its pale crust to clothing proofing. One
+scale already in the pack makes one temporary coat in a flask. Proofing
+offers the player's garments before ordinary pours, and the condition
+reader states how much wear remains. Fire-moss is another input for the
+same garment result. The player can save their vent catches for water
+and keep the ordinary dry route without preparing any coating.
+[Evidence](Verification/MachineSystems/CausewayFieldProofing20261126/README.md)
+
 **Pack organization follows physical custody — November 26 UTC, 2026.**
 Expanded inventory rows are an exact view of carried vessel contents.
 Their padding and action routing show which vessel owns each item. Labels
@@ -2056,7 +2065,7 @@ See [G2 evidence](Verification/MachineSystems/GeneralScreening20261124/README.md
 | Dynamo and charging bench | Prepare finite work for portable equipment. | Authored energy source, storage loss/capacity and at least one real consumer. | Charged equipment does useful work away from the generator; finite conversion and refusal paths are verified. | Proposed complete machine. November24 bounded rod stores one SparkRoot discharge, carries it through fresh170/490 and delivers shared charge one/two clear cells away; actual wet-viper interaction and finite root reuse qualified. Direct root charge already existed. No generator, multi-charge conversion or charging network acceptance; machine-specific gates remain open. |
 | Survey resonator | Find a worthwhile direction or cavity without knowing its exact contents. | Bounded signals, calibration and coarse observations tied to actual generated/authored features. | A lead supports a real expedition; uncertainty is legible, false precision and hidden-actor leaks are absent. | Proposed complete machine; bounded existing sounding-rod supply now follows lasting Cinderhold repair or seep sealing, with actual paid purchase/read/fresh10810 proof. This does not add sensing behavior, calibration or a complete expedition/resonator; machine-specific gates remain open. |
 | Signal relay | Coordinate separated people and owned locations. | Connectivity, observed reports and persistent dispatch/delivery state with genuine cargo custody. | One physical delivery or report follows a real arrangement, survives interruption/reload and cannot duplicate goods. | Proposed; machine-specific prerequisites open. |
-| Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. | Proposed; existing coatings/reagents are foundations; November24 finite carried-water acid rinse is bounded actual/native qualified (self actual; adjacent party native), leaves Wet and no healing; no complete bath. Broader targeted treatment eligibility, effects, alternatives and persistence remain open. M1d does not implement treatment. |
+| Treatment bath | Prepare for a specific environmental exposure or remove a supported contaminant. | Targeted reagents, eligibility, exposure rules and bounded temporary treatment. | Treatment interacts with a real hazard, has an alternative solution and does not become mandatory general healing. | Proposed. The November24 finite carried-water acid rinse leaves the target Wet, with no healing. Self-use has actual play and adjacent-party use has native checks. The Causeway scale-to-coat route has actual worn resistance, paused duration and exact reload evidence. A matched heat-risk trial, broader treatment eligibility and the complete bath remain open. |
 
 November24 package addendum: accepted currentMac088 includes both the lasting
 Cinderhold supply and shared water-menu prerequisite with source/artifact/startup

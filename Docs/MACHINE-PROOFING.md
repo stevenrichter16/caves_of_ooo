@@ -1,3 +1,10 @@
+**Causeway field use.** The linked steam vent's Examine text should connect its
+visible crust to the use of scraped vent scale. Reserve the same catch for
+water when that matters more, or use fire-moss for the same garment benefit.
+The clue belongs to the source and remains useful when that day's supply is
+spent. A flask of proofing should offer garment coats immediately after
+Examine, worn gear first, with ordinary pouring still available below.
+
 **November21 menu-access qualification:** [bounded receipt](Verification/MachineSystems/ProofingMenuAccess20261121/README.md)
 removes coat12/trough12/unpick6 caps. Native107/107 plus revised unpick1/1; actual
 late coat/plate selection, finite payments, worn35cold resistance/paused old coat,

@@ -38,6 +38,30 @@ namespace CavesOfOoo.Tests
             var flask = Flask(2, "heat-proofing"); Carry("Dagger"); var rows = CoatRows(flask); Assert.AreEqual(1, rows.Length); Assert.True(rows[0].IsDisabled); Assert.AreEqual("no-garment", rows[0].DisabledCode); StringAssert.Contains("armor", rows[0].DisabledReason);
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void GarmentCoatingAppearsBeforeBothKindsOfPour(bool hasGarments)
+        {
+            var flask = Flask(2, "heat-proofing");
+            if (hasGarments)
+            {
+                var worn = Carry("KilnfeltApron");
+                Assert.True(InventorySystem.Equip(Actor, worn));
+                foreach (string blueprint in new[] { "ChainMail", "FilterHood", "ColdwardCloak", "LeatherArmor", "GroundwireScreen" })
+                    Carry(blueprint);
+            }
+
+            var actions = Actions(flask);
+            var coats = actions.Where(action => action.Name == "CoatGarment").ToArray();
+            Assert.AreEqual(hasGarments ? 6 : 1, coats.Length);
+            Assert.AreEqual(!hasGarments, coats[0].IsDisabled);
+            if (hasGarments) StringAssert.Contains("(worn)", coats[0].Display);
+            Assert.True(actions.Any(action => action.Name == "PourLiquid"));
+            Assert.True(actions.Any(action => action.Name == "PourOneLiquid"));
+            Assert.Less(Array.IndexOf(actions, coats.Last()),
+                Array.FindIndex(actions, action => action.Name is "PourLiquid" or "PourOneLiquid"));
+        }
+
         [Test] public void CoatingSpendsOneUnitAndLeavesTheGarmentWithAColdCoatThatWorksWhenWorn()
         {
             var flask = Flask(3, "cold-proofing"); var garment = Carry("LeatherArmor"); Assert.True(Act(flask, Row(flask, garment)), string.Join("|", MessageLog.GetRecent(3)));

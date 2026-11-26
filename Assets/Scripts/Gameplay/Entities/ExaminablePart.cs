@@ -65,6 +65,8 @@ namespace CavesOfOoo.Core
                 return (Text ?? "").Replace("It can be hauled locally; release it before working.",
                     "It can be hauled locally. Across a straight area edge, align it behind you on plain, clear ground: "
                     + "preparation costs two hauling rounds before crossing. If interrupted, spent effort is not returned. Release it before working.");
+            if (owner?.GetPart<ExaminablePart>() == this && CausewaySteamSeam.ScaleClue(owner) is string scaleClue)
+                return string.IsNullOrWhiteSpace(Text) ? scaleClue : Text.TrimEnd() + " " + scaleClue;
             // Saved packet prose is part of its admitted payload. The current
             // state reader supplies the yield while display keeps the flavor.
             if (owner?.BlueprintName == "DryClaySpoil")

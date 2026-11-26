@@ -132,6 +132,17 @@ namespace CavesOfOoo.Core
 
         private static string PositionKey(Cell cell) => cell == null ? null : $"{cell.X},{cell.Y}";
 
+        internal static string ScaleClue(Entity vent)
+        {
+            var zone = vent?.SpatialZone;
+            if (zone?.ZoneID != Surface || vent.BlueprintName != "SteamVent" || !SuppliesSteam(vent)
+                || string.IsNullOrEmpty(vent.GetProperty(StairId))) return null;
+
+            var cell = zone.GetEntityCell(vent);
+            return cell != null && cell.Objects.Contains(vent) && vent.GetProperty(Fissure) == PositionKey(cell)
+                ? "Scraped vent scale can be pressed into heat-proofing for clothing." : null;
+        }
+
         private static void MarkReturn(Zone below, Zone surface, ZoneConnection link)
         {
             if (surface.ZoneID != Surface) return;

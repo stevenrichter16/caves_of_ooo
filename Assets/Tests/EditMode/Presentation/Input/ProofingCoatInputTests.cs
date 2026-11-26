@@ -53,6 +53,14 @@ namespace CavesOfOoo.Tests
                     { Assert.True(ItemEnhancing.Apply(late, "EnhancementLacquered")); Assert.True(ItemEnhancing.Apply(late, "EnhancementProofed")); }
                     Call(ui.Input, "OpenInventory"); Assert.True(inventory.ReopenItemActionPopupFor(flask));
                     var popup = Get(inventory, "_itemActionPopup"); var actions = (IList)Get(popup, "Actions");
+                    var commands = actions.Cast<object>().Select(row => (string)Get(row, "Command")).ToArray();
+                    Assert.AreEqual("examine_material", commands[0]);
+                    Assert.AreEqual(1, commands.Count(command => command == "examine_material" || command == "Examine"));
+                    int firstPour = Array.FindIndex(commands, command => command.StartsWith("PourLiquidVessel|", StringComparison.Ordinal));
+                    int firstPourOne = Array.FindIndex(commands, command => command.StartsWith("PourOneLiquidVessel|", StringComparison.Ordinal));
+                    Assert.Greater(firstPour, 30);
+                    Assert.Greater(firstPourOne, 30);
+                    for (int n = 1; n <= 30; n++) StringAssert.StartsWith("coat garment", (string)Get(actions[n], "Label"));
                     int index = -1;
                     for (int n = 0; n < actions.Count; n++)
                         if (((string)Get(actions[n], "Label")).StartsWith("coat garment 29", StringComparison.Ordinal)) index = n;
