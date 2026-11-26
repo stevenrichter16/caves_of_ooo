@@ -130,6 +130,13 @@ cross-seed comparisons remain open.
     material and the unchanged timber-only repair bill.
     [Evidence](Verification/MachineSystems/FieldRigCompatibleClay20261125/README.md)
 
+    The hand bellows now uses either an oak haft or a rough field haft in
+    explicit, separately quoted bills. The iron spike and leather binding
+    are shared ingredients. The rough haft from Sumphold's original cargo
+    worked at Cinderhold's forge and made the same portable bellows. Loose
+    timber and a willow haft were refused by both bills in native tests.
+    [Evidence](Verification/MachineSystems/FieldHaftBellows20261126/README.md)
+
 ## Priority 3: give methods distinct costs and useful portable work
 
 11. **Offer genuinely usable ordinary alternatives.** For a chosen load, support

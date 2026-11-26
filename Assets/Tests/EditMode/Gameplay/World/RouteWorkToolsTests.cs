@@ -241,6 +241,89 @@ namespace CavesOfOoo.Tests
             string command=Choice(spike,"MaterialProcess|make_hand_bellows|");UseGuides.SectionText(spike,Zone,null,Actor);Actions(spike);
             Assert.True(Act(spike,command));Assert.AreEqual(0,Count("IronSpikeComponent"));Assert.AreEqual(0,Count("OakHaftComponent"));Assert.AreEqual(0,Count("LeatherBindingComponent"));Assert.AreEqual(1,Count("HandBellows"));
         }
+
+        [TestCase("make_hand_bellows", "OakHaftComponent", "FieldHaftComponent")]
+        [TestCase("make_field_haft_bellows", "FieldHaftComponent", "OakHaftComponent")]
+        public void BellowsOffersBothBillsAndSpendsOnlyTheSelectedHaft(string recipe, string spent, string retained)
+        {
+            Place("TinkersForge");
+            var spike = Carry("IronSpikeComponent");
+            var binding = Carry("LeatherBindingComponent");
+            var usedHaft = Carry(spent);
+            var unusedHaft = Carry(retained);
+            Assert.That(Choice(spike, "MaterialProcess|make_hand_bellows|"), Is.Not.EqualTo(
+                Choice(spike, "MaterialProcess|make_field_haft_bellows|")));
+
+            string selected = Choice(spike, "MaterialProcess|" + recipe + "|");
+            UseGuides.SectionText(spike, Zone, null, Actor);
+            Actions(spike);
+            Assert.True(Act(spike, selected));
+            Assert.Zero(Count("IronSpikeComponent"));
+            Assert.Zero(Count("LeatherBindingComponent"));
+            Assert.Zero(Count(spent));
+            Assert.That(Count(retained), Is.EqualTo(1));
+            Assert.That(unusedHaft.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.False(Pack.Contains(spike) || Pack.Contains(binding) || Pack.Contains(usedHaft));
+            Assert.That(Count("HandBellows"), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void FieldPreparedTimberCanSupplyBellowsWithoutAnyOakHaft()
+        {
+            var timber = Carry("SalvagedTimber");
+            Assert.True(Act(timber, "PrepareRecipe|shape_haft"));
+            var fieldHaft = Pack.Objects.Single(item => item.BlueprintName == "FieldHaftComponent");
+            Assert.Zero(Count("SalvagedTimber"));
+            Assert.Zero(Count("OakHaftComponent"));
+
+            Place("TinkersForge");
+            var spike = Carry("IronSpikeComponent");
+            Carry("LeatherBindingComponent");
+            Assert.True(Act(spike, Choice(spike, "MaterialProcess|make_field_haft_bellows|")));
+            Assert.False(Pack.Contains(fieldHaft));
+            Assert.Zero(Count("FieldHaftComponent"));
+            Assert.That(Count("HandBellows"), Is.EqualTo(1));
+        }
+
+        [TestCase("SalvagedTimber")]
+        [TestCase("WillowHaftComponent")]
+        public void NeitherBellowsBillAcceptsUnpreparedTimberOrOtherWeaponHafts(string unsuitable)
+        {
+            Place("TinkersForge");
+            var spike = Carry("IronSpikeComponent");
+            var binding = Carry("LeatherBindingComponent");
+            var wrong = Carry(unsuitable);
+            Assert.False(Actions(spike).Any(action => !action.IsDisabled &&
+                (action.Command.StartsWith("MaterialProcess|make_hand_bellows|", StringComparison.Ordinal)
+                || action.Command.StartsWith("MaterialProcess|make_field_haft_bellows|", StringComparison.Ordinal))));
+            Assert.True(Pack.Contains(spike) && Pack.Contains(binding) && Pack.Contains(wrong));
+            Assert.Zero(Count("HandBellows"));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FieldHaftBellowsRefusesStaleStockOrRollsBackAStagedBill(bool lateFailure)
+        {
+            Place("TinkersForge");
+            var spike = Carry("IronSpikeComponent");
+            var binding = Carry("LeatherBindingComponent");
+            var fieldHaft = Carry("FieldHaftComponent");
+            var oakHaft = Carry("OakHaftComponent");
+            string command = Choice(spike, "MaterialProcess|make_field_haft_bellows|");
+            if (lateFailure) FailAfter();
+            else Assert.True(InventorySystem.Drop(Actor, fieldHaft, Zone));
+
+            Assert.False(Act(spike, command));
+            Assert.True(Pack.Contains(spike) && Pack.Contains(binding) && Pack.Contains(oakHaft));
+            Assert.That(Count("IronSpikeComponent"), Is.EqualTo(1));
+            Assert.That(Count("LeatherBindingComponent"), Is.EqualTo(1));
+            Assert.That(Count("OakHaftComponent"), Is.EqualTo(1));
+            Assert.That(Count("FieldHaftComponent"), Is.EqualTo(1));
+            Assert.That(Pack.Contains(fieldHaft), Is.EqualTo(lateFailure));
+            if (!lateFailure) Assert.That(Zone.GetEntityCell(fieldHaft), Is.SameAs(Zone.GetEntityCell(Actor)));
+            Assert.Zero(Count("HandBellows"));
+        }
+
         [Test] public void DestroyedDoorLeavesExactSpikeRecoverable()
         {
             var door=Door();var spike=Carry("IronSpikeComponent");Assert.True(Act(spike,Choice(spike,"BraceDoor|")));Assert.True(Zone.RemoveEntity(door));

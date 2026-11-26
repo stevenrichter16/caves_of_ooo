@@ -1,12 +1,24 @@
+**The rough field haft makes a useful hand bellows — November 26 UTC, 2026.**
+Original Sumphold timber made the grip. In Cinderhold, the ordinary forge
+spent that grip, a bought spike and a binding cut from a bought offcut.
+The other timber stayed in the pack. The same finished bellows moved a
+supplied thin cloud on the road and stayed in the pack. The oak bill is
+still available. The current Mac package predates this increment.
+[Evidence](Verification/MachineSystems/FieldHaftBellows20261126/README.md)
+
+Next, check the choice between a water-only brine batch and retaining
+crust for temporary garment proofing. Keep existing thermal, portable
+and ordinary producer paths. The expedition checkpoint already records
+four brine and five process fuel yielding two water. A retained solid
+must have a legitimate destination and cost the batch part of its water
+yield. [Baseline](Verification/MachineSystems/ExpeditionPreparation20261124/README.md)
+
 **An ordinary sounding carries across bare sandstone — November 26 UTC, 2026.**
 The shared floor check now lets the purchased rod work on genuinely bare
 stone in an ordinary natural cave. A guided native walk beyond Cinderhold
 reproduced the old refusal at the same tile. The new action produced a
 12-pace sounding and recorded it at the usual one-action cost. The
 ordinary notebook action and fresh Continue kept the same entry.
-Next, compare the hand bellows' handle bill with the exact rough haft
-made from Sumphold timber. Check the existing forge and field use before
-changing that recipe. The current bellows requires an oak haft.
 [Evidence](Verification/MachineSystems/SoundingRodBareFloor20261126/README.md)
 
 **Late-cycle lichen at North Works — November 26 UTC, 2026.**

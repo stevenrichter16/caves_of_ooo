@@ -1,3 +1,11 @@
+**Reclaimed timber can become a hand bellows grip — November 26 UTC, 2026.**
+A rough field haft can replace oak in one explicit forge bill. Both bills
+consume one iron spike, one prepared grip and one leather binding. They
+produce the same reusable bellows. Loose timber and other weapon hafts
+remain outside these bills. The directed-air action still moves an
+existing thin cloud through a clear lane and leaves the cloud in the world.
+[Evidence](Verification/MachineSystems/FieldHaftBellows20261126/README.md)
+
 **Bare cave stone serves the same portable tools as ordinary rock floor — November 26 UTC, 2026.**
 The sounding rod and trail marks share the current natural-floor check.
 The rod takes its usual range from the stone layer, whether the carved

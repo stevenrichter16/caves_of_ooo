@@ -110,6 +110,29 @@
       "LossText": "materials become one reusable tool"
     },
     {
+      "Id": "make_field_haft_bellows",
+      "SourceBlueprint": "IronSpikeComponent",
+      "Mode": "Process",
+      "InputCount": 1,
+      "WorkKind": "ForgeCold",
+      "AdditionalInputBlueprints": [
+        "FieldHaftComponent",
+        "LeatherBindingComponent"
+      ],
+      "AdditionalInputCounts": [
+        1,
+        1
+      ],
+      "OutputBlueprints": [
+        "HandBellows"
+      ],
+      "OutputCounts": [
+        1
+      ],
+      "ActionText": "make hand bellows with a rough haft",
+      "LossText": "materials become one reusable tool"
+    },
+    {
       "Id": "make_hearth_nozzle",
       "SourceBlueprint": "IronSpikeComponent",
       "Mode": "Process",
