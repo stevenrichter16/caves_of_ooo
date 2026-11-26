@@ -143,6 +143,17 @@ both useful fractions and the option to walk past comfortably. This is a
 proposal. Window length, source placement and wet screening still need
 qualification.
 
+Source check, November 26. The existing weather observation ends at the
+next 600-tick interval. Consecutive wet intervals must count as one
+shower. A short grace can be evaluated in the first fair interval by
+checking the preceding interval and the elapsed game ticks. It starts at
+the actual wet-to-fair boundary even if the player arrives late. Reuse
+the fixed, one-use harvest ownership and transaction checks for the seam.
+The existing screened spoil is explicitly dry. Directly yielding that
+packet from newly wetted ground would remove a material condition. The
+first complete seam trial needs an explicitly qualified wet screening
+or drying step and a visible source cue.
+
 ## Different seasonal uses for familiar tools
 
 The four columns are planning periods, not approved canonical season names or
@@ -169,6 +180,22 @@ configurations require their actual cloth/mesh/fittings and keep finite contents
 No capstan or culture-vat implementation is brought forward by this table.
 
 ## Regional character and lasting projects
+
+Player direction, November 26. A short walk from home should turn up many
+useful materials through distinct actions and conditions. Start with a
+few recognizable nearby places such as a bank, a path, a hedge and a
+working yard. Each can have ordinary stock, an occasional environmental
+opportunity or an output from someone's actual work. A familiar walk
+changes when water falls, a plant ripens, a worker finishes a batch or
+the player removes a real obstruction. Home placement makes those nearby
+sources convenient. It does not generate a new material reserve.
+
+Different home regions should offer different mixes. Give each area
+practical ways to get everyday repair stock, binding material, food or
+fuel. Where an ingredient is unusual, give it a distinctive use and a
+visible collection cue. Claimed items keep their usefulness after the
+condition passes. Ground stocks only return through an explicit source,
+such as actual regrowth, a new paid batch or a separate deposited lot.
 
 Use the current generated biomes for implementation authority and the actual
 places/cultures for descriptions. The lore's place-network is not a mandate to
