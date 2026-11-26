@@ -42,9 +42,19 @@ final connected run passed all 378 cases. The generator reproduced the
 current atlas and index byte for byte. Independent review matched all four
 screens and all twelve checkpoint files. The editor stopped with the
 original save root, and all 861 selected normal files and 86 selected
-foreign workspace files matched the prior hashes. A new Mac package and
-the full regression suite remain open. Available space was 148 MiB after
-the Editor playtest.
+foreign workspace files matched the prior hashes. The full regression
+suite remains open.
+
+## Mac package
+
+Disk space recovered after the playtest. Unity built an Apple Silicon and
+Intel package from the published icon implementation `c034d3698`. The
+build took 67.52 seconds with zero errors and five warnings. It reached
+GameBootstrap startup on Apple Silicon. All 186 package files and the
+four ordinary startup save files matched their hashes after closing.
+The editor playtest above covers the feature flows. Packaged gameplay
+and Intel execution remain open.
+[Build and startup verification](mac-verification.json)
 
 [Trade on](coo-item-icons-final-trade-on.png) · [Trade off](coo-item-icons-final-trade-off.png) ·
 [Deposit choice](coo-item-icons-final-deposit.png) · [Expanded pack](coo-item-icons-final-expanded.png) ·
