@@ -10,9 +10,12 @@ watchkeepers and the second measure remained through Continue.
 Cinderhold and Morrowfast now pay 24 drams plus one fire clay for one
 choir-iron ore. An ordinary Cinderhold route spent 22 of the reward
 on a spike that can go into a tool. The clay was still available for
-repair work. Mining retained its real standing cost.
+repair work. Mining retained its real standing cost. The player carried
+the second ore to Orrit, who awarded the quoted work payment and put the
+same ore into stock. A fresh load retained both completed jobs.
 [Economy design](ECONOMY-SYSTEM.md#job-and-mission-rewards) ·
-[Playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md)
+[Cinderhold playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md) ·
+[Morrowfast playtest](Verification/MachineSystems/MorrowfastCarriedOre20261126/README.md)
 
 **Silver sand from the Sumphold recovery has a lasting use at Sill.**
 The player brought the exact reward to the existing MainWell project.

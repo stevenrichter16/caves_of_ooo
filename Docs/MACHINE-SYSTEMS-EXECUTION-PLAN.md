@@ -1,3 +1,18 @@
+**The iron reward and Morrowfast bell Mac package started on M5 — November 26 UTC, 2026.**
+Universal runtime `2dc8c92fe` includes the reward change and the
+compatible watch bell sleeve. Both current and previous apps matched
+186 files. The new app completed GameBootstrap with six universal
+binaries and preserved the four startup saves. Packaged gameplay and
+physical Intel remain open.
+[Build and startup receipt](Verification/MachineSystems/MacCandidate2DC8C92FE/README.md)
+
+**Orrit pays for ore carried from Cinderhold — November 26 UTC, 2026.**
+The Morrowfast trader offered six drams for the spare ore. His work
+request paid 24 and one fire clay for that same exact ore. The player
+skipped the marked mine, and fresh Continue kept the stock, 32 drams,
+two clay and the completed request. The shop still offered trade.
+[Carried-in ore comparison](Verification/MachineSystems/MorrowfastCarriedOre20261126/README.md)
+
 **A delivered clay measure quiets Morrowfast’s watch bell — November 26 UTC, 2026.**
 The quiet sleeve accepts verified lining clay and keeps the existing
 fire clay path and free bare setting. In ordinary seed 64, one of the
@@ -15,7 +30,9 @@ intentional glyph owners under the existing presentation policy. Four
 new native cases check each current owner’s glyph pixels, exact selection
 and fog behavior. All seven Spread census cases and 83 related checks
 passed. Prior actual porter receipts still support the visible hire and
-handover. The production renderer and art stayed on their existing code.
+handover. A separate 45-case check also passed the current district
+presentation, fieldwork art, porter orders and delivery storage.
+The production renderer and art stayed on their existing code.
 Whole-suite acceptance remains open.
 
 **Routine playtest walking uses guarded native input batches — November 26 UTC, 2026.**
@@ -122,7 +139,8 @@ receiving shelf. Two cases had passed in the older `full_s9.xml` result.
 The other two had timed out in that run. The focused log and XML share
 the prefix `machine_regression_seam_ee0287659_20261126` in the results
 directory. The later corrected scope passed 90 cases with the prefix
-`gleanner_glyph_scope_green_20261126`. Whole-suite acceptance remains open.
+`gleanner_glyph_scope_green_20261126`. The supplemental 45-case result is
+`gleaners_glyph_connected_20261126`. Whole-suite acceptance remains open.
 
 **Hand water and Conjure Rain grow a second drawgourd — November 26 UTC, 2026.**
 The ordinary seed `1498104061` branch extended the earlier Gleaners'

@@ -28,10 +28,14 @@ The first adjustment pays 24 drams and keeps the fire clay for each job.
 Actual Cinderhold play used 22 of the reward for one iron spike and retained
 the clay and the second ore earned from the vein. The reader and receipt
 showed the correct payment, and fresh Continue kept the completed result.
-Morrowfast has the same offer and focused native verification.
+In ordinary Morrowfast play, trade offered six drams for the spare ore
+from Cinderhold. Orrit’s work request paid 24 and one fire clay for that
+same ore. The player avoided a second mining trip, and fresh Continue
+kept the saved payment and the exact ore in Orrit’s stock.
 
 [Sumphold to Sill](Verification/MachineSystems/SillEarnedSandFiltration20261126/README.md) ·
-[Cinderhold reward and purchase playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md)
+[Cinderhold reward and purchase playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md) ·
+[Morrowfast trade and work comparison](Verification/MachineSystems/MorrowfastCarriedOre20261126/README.md)
 
 ## 1. Existing documents
 

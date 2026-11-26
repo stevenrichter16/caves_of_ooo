@@ -127,8 +127,12 @@ For #39 and #40, useful regional job pay now supports the next equipment
 purchase. The two iron jobs each offer 24 drams and one fire clay.
 The Cinderhold player surrendered one of two earned ore and purchased
 an iron spike for 22 drams. Fresh Continue kept the purchased part,
-unspent materials and settled job. Morrowfast has targeted native coverage.
-[Work and purchase playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md)
+unspent materials and settled job. Morrowfast then accepted the exact
+spare ore already carried from Cinderhold. Its ordinary sale offered
+six drams, while the work paid 24 and a measure of fire clay. The same
+ore joined Orrit’s stock and survived Continue.
+[Work and purchase playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md) ·
+[Carried-in ore comparison](Verification/MachineSystems/MorrowfastCarriedOre20261126/README.md)
 
 For #2, #4, #18 and #40, the quiet watch bell uses verified lining clay.
 One exact purchased Wayside shipment measure established the same quiet
