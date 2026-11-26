@@ -1,0 +1,1078 @@
+{
+  "initial": {
+    "tick": 160,
+    "zone": "Overworld.10.10.0",
+    "X": 45,
+    "Y": 6,
+    "ID": "2705",
+    "hp": 40,
+    "drams": 31,
+    "weight": 38,
+    "pack": [
+      {
+        "self": {
+          "ID": "2712",
+          "b": "HealingTonic",
+          "n": "healing tonic (x2)",
+          "count": 2,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": null
+      },
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 5,
+        "contents": [
+          {
+            "ID": "2713",
+            "b": "DriedMeat",
+            "n": "dried meat (x2)",
+            "count": 2,
+            "owner": "2714"
+          }
+        ]
+      },
+      {
+        "self": {
+          "ID": "7341",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      }
+    ],
+    "parcel": null
+  },
+  "packed": {
+    "tick": 160,
+    "zone": "Overworld.10.10.0",
+    "X": 45,
+    "Y": 6,
+    "ID": "2705",
+    "hp": 40,
+    "drams": 31,
+    "weight": 38,
+    "pack": [
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      },
+      {
+        "self": {
+          "ID": "7341",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 7,
+        "contents": [
+          {
+            "ID": "2713",
+            "b": "DriedMeat",
+            "n": "dried meat (x2)",
+            "count": 2,
+            "owner": "7341"
+          },
+          {
+            "ID": "2712",
+            "b": "HealingTonic",
+            "n": "healing tonic (x2)",
+            "count": 2,
+            "owner": "7341"
+          }
+        ]
+      }
+    ],
+    "parcel": null
+  },
+  "cinderholdArrival": {
+    "tick": 260,
+    "zone": "Overworld.6.6.0",
+    "ID": "2705",
+    "x": 39,
+    "y": 11,
+    "noise": 230,
+    "hp": 40,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 71,
+        "Y": 19,
+        "down": true
+      }
+    ],
+    "hunters": [],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You buy field satchel for 19 drams.",
+      "Game saved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "The air here says sari, sari, and does not finish the word.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved."
+    ]
+  },
+  "departureQuote": {
+    "tick": 420,
+    "active": true,
+    "speaker": "9948",
+    "cursor": 0,
+    "revealing": true,
+    "node": "carriage:confirm|Overworld.18.18.0|7341",
+    "text": "field satchel to the Last Counter, ready in 3 days. You carry 31 drams.\n\nContents: dried meat (x2), healing tonic (x2)\n7 lb total. One sealed parcel.",
+    "choices": [
+      {
+        "i": 0,
+        "Text": "[Send sealed satchel - 4 drams.]",
+        "route": [
+          "CarriageSend"
+        ]
+      },
+      {
+        "i": 1,
+        "Text": "[Back]",
+        "route": [
+          "CarriageOpen"
+        ]
+      },
+      {
+        "i": 2,
+        "Text": "[Attack]",
+        "route": [
+          "StartAttack"
+        ]
+      }
+    ]
+  },
+  "cancelled": {
+    "tick": 420,
+    "zone": "Overworld.6.6.0",
+    "X": 23,
+    "Y": 6,
+    "ID": "2705",
+    "hp": 30,
+    "drams": 31,
+    "weight": 38,
+    "pack": [
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      },
+      {
+        "self": {
+          "ID": "7341",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 7,
+        "contents": [
+          {
+            "ID": "2713",
+            "b": "DriedMeat",
+            "n": "dried meat (x2)",
+            "count": 2,
+            "owner": "7341"
+          },
+          {
+            "ID": "2712",
+            "b": "HealingTonic",
+            "n": "healing tonic (x2)",
+            "count": 2,
+            "owner": "7341"
+          }
+        ]
+      }
+    ],
+    "parcel": null
+  },
+  "sent": {
+    "tick": 420,
+    "zone": "Overworld.6.6.0",
+    "X": 23,
+    "Y": 6,
+    "ID": "2705",
+    "hp": 30,
+    "drams": 27,
+    "weight": 31,
+    "pack": [
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      }
+    ],
+    "parcel": [
+      {
+        "goods": {
+          "self": {
+            "ID": "7341",
+            "b": "FieldSatchel",
+            "n": "field satchel",
+            "count": 1,
+            "owner": null
+          },
+          "weight": 7,
+          "contents": [
+            {
+              "ID": "2713",
+              "b": "DriedMeat",
+              "n": "dried meat (x2)",
+              "count": 2,
+              "owner": "7341"
+            },
+            {
+              "ID": "2712",
+              "b": "HealingTonic",
+              "n": "healing tonic (x2)",
+              "count": 2,
+              "owner": "7341"
+            }
+          ]
+        },
+        "fee": 4,
+        "sent": 420,
+        "ready": 4020,
+        "from": "Overworld.6.6.0",
+        "to": "Overworld.18.18.0"
+      }
+    ]
+  },
+  "freshSent": {
+    "tick": 420,
+    "zone": "Overworld.6.6.0",
+    "X": 23,
+    "Y": 6,
+    "ID": "2705",
+    "hp": 30,
+    "drams": 27,
+    "weight": 31,
+    "pack": [
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      }
+    ],
+    "parcel": [
+      {
+        "goods": {
+          "self": {
+            "ID": "7341",
+            "b": "FieldSatchel",
+            "n": "field satchel",
+            "count": 1,
+            "owner": null
+          },
+          "weight": 7,
+          "contents": [
+            {
+              "ID": "2713",
+              "b": "DriedMeat",
+              "n": "dried meat (x2)",
+              "count": 2,
+              "owner": "7341"
+            },
+            {
+              "ID": "2712",
+              "b": "HealingTonic",
+              "n": "healing tonic (x2)",
+              "count": 2,
+              "owner": "7341"
+            }
+          ]
+        },
+        "fee": 4,
+        "sent": 420,
+        "ready": 4020,
+        "from": "Overworld.6.6.0",
+        "to": "Overworld.18.18.0"
+      }
+    ]
+  },
+  "lastCounterEarly": {
+    "tick": 740,
+    "active": true,
+    "speaker": "12352",
+    "cursor": 0,
+    "revealing": true,
+    "node": "Start",
+    "text": "Ah, a new face! How delightful. The Saccharine Concord extends its warmest greetings. We are merchants of the possible, traders in what-remains. How may we sweeten your day?\n\nYour name in the ledger: standing 0, credit line 20 drams. Nothing owed.\n\nIn your name on the cart:\n- field satchel for this post, due in 3 days.",
+    "choices": [
+      {
+        "i": 0,
+        "Text": "Who are the Saccharine Concord?",
+        "route": []
+      },
+      {
+        "i": 1,
+        "Text": "What do you trade?",
+        "route": []
+      },
+      {
+        "i": 2,
+        "Text": "Tell me about the Falling-Due.",
+        "route": []
+      },
+      {
+        "i": 3,
+        "Text": "What do you know about the other factions?",
+        "route": []
+      },
+      {
+        "i": 4,
+        "Text": "Farewell.",
+        "route": []
+      },
+      {
+        "i": 5,
+        "Text": "[Is something wrong here?]",
+        "route": [
+          "OpenConcernNode"
+        ]
+      },
+      {
+        "i": 6,
+        "Text": "[Carriage] Send a parcel to Cinderhold (about 3 days).",
+        "route": [
+          "CarriageOpen"
+        ]
+      },
+      {
+        "i": 7,
+        "Text": "[Let's trade.]",
+        "route": [
+          "StartTrade"
+        ]
+      },
+      {
+        "i": 8,
+        "Text": "[Attack]",
+        "route": [
+          "StartAttack"
+        ]
+      }
+    ]
+  },
+  "unsafeWait": {
+    "tick": 760,
+    "hp": 0,
+    "log": [
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sky-sari hits you in the left arm for 16 damage! (14 HP remaining)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You are killed by sky-sari!",
+      "Your cloak falls to the ground!",
+      "Your dagger falls to the ground!",
+      "Your buckler falls to the ground!",
+      "Veldra Colwick, scribe looks shaken.",
+      "sky-sari CRITICALLY hits you in the feet for 14 damage!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You are dead. Press [L] to load last save, [R] to restart.",
+      "Controller: [A] load, [X] restart."
+    ]
+  },
+  "worldMapWaitStart": {
+    "tick": 720,
+    "zone": "WorldMap",
+    "ID": "2705",
+    "x": 48,
+    "y": 21,
+    "noise": 650,
+    "hp": 30,
+    "state": "Normal",
+    "stairs": [],
+    "hunters": [],
+    "log": [
+      "The Concord's cart carries 1 parcel in your name.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "The air here says sari, sari, and does not finish the word.",
+      "The Concord's cart carries 1 parcel in your name.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "paidOrdinaryWaits": [
+    {
+      "tick": 1020,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 1320,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 1620,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 1920,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 2220,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 2520,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 2820,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 3120,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 3420,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 3720,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    },
+    {
+      "tick": 4020,
+      "hp": 30,
+      "x": 48,
+      "y": 21
+    }
+  ],
+  "readyOnMap": {
+    "tick": 4020,
+    "zone": "WorldMap",
+    "X": 48,
+    "Y": 21,
+    "ID": "2705",
+    "hp": 30,
+    "drams": 27,
+    "weight": 31,
+    "pack": [
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      }
+    ],
+    "parcel": [
+      {
+        "goods": {
+          "self": {
+            "ID": "7341",
+            "b": "FieldSatchel",
+            "n": "field satchel",
+            "count": 1,
+            "owner": null
+          },
+          "weight": 7,
+          "contents": [
+            {
+              "ID": "2713",
+              "b": "DriedMeat",
+              "n": "dried meat (x2)",
+              "count": 2,
+              "owner": "7341"
+            },
+            {
+              "ID": "2712",
+              "b": "HealingTonic",
+              "n": "healing tonic (x2)",
+              "count": 2,
+              "owner": "7341"
+            }
+          ]
+        },
+        "fee": 4,
+        "sent": 420,
+        "ready": 4020,
+        "from": "Overworld.6.6.0",
+        "to": "Overworld.18.18.0"
+      }
+    ]
+  },
+  "dueConversation": {
+    "tick": 4090,
+    "active": true,
+    "speaker": "12352",
+    "cursor": 0,
+    "revealing": true,
+    "node": "Start",
+    "text": "Ah, a new face! How delightful. The Saccharine Concord extends its warmest greetings. We are merchants of the possible, traders in what-remains. How may we sweeten your day?\n\nYour name in the ledger: standing 0, credit line 20 drams. Nothing owed.\n\nIn your name on the cart:\n- field satchel for this post, ready to collect.",
+    "choices": [
+      {
+        "i": 0,
+        "Text": "Who are the Saccharine Concord?",
+        "route": []
+      },
+      {
+        "i": 1,
+        "Text": "What do you trade?",
+        "route": []
+      },
+      {
+        "i": 2,
+        "Text": "Tell me about the Falling-Due.",
+        "route": []
+      },
+      {
+        "i": 3,
+        "Text": "What do you know about the other factions?",
+        "route": []
+      },
+      {
+        "i": 4,
+        "Text": "Farewell.",
+        "route": []
+      },
+      {
+        "i": 5,
+        "Text": "[Is something wrong here?]",
+        "route": [
+          "OpenConcernNode"
+        ]
+      },
+      {
+        "i": 6,
+        "Text": "[Carriage] Collect what has arrived (1).",
+        "route": [
+          "CarriageCollect"
+        ]
+      },
+      {
+        "i": 7,
+        "Text": "[Carriage] Send a parcel to Cinderhold (about 3 days).",
+        "route": [
+          "CarriageOpen"
+        ]
+      },
+      {
+        "i": 8,
+        "Text": "[Let's trade.]",
+        "route": [
+          "StartTrade"
+        ]
+      },
+      {
+        "i": 9,
+        "Text": "[Attack]",
+        "route": [
+          "StartAttack"
+        ]
+      }
+    ]
+  },
+  "collected": {
+    "tick": 4090,
+    "zone": "Overworld.18.18.0",
+    "X": 34,
+    "Y": 6,
+    "ID": "2705",
+    "hp": 30,
+    "drams": 27,
+    "weight": 38,
+    "pack": [
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      },
+      {
+        "self": {
+          "ID": "7341",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 7,
+        "contents": [
+          {
+            "ID": "2713",
+            "b": "DriedMeat",
+            "n": "dried meat (x2)",
+            "count": 2,
+            "owner": "7341"
+          },
+          {
+            "ID": "2712",
+            "b": "HealingTonic",
+            "n": "healing tonic (x2)",
+            "count": 2,
+            "owner": "7341"
+          }
+        ]
+      }
+    ],
+    "parcel": []
+  },
+  "freshCollected": {
+    "tick": 4090,
+    "zone": "Overworld.18.18.0",
+    "X": 34,
+    "Y": 6,
+    "ID": "2705",
+    "hp": 30,
+    "drams": 27,
+    "weight": 38,
+    "pack": [
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      },
+      {
+        "self": {
+          "ID": "7341",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 7,
+        "contents": [
+          {
+            "ID": "2713",
+            "b": "DriedMeat",
+            "n": "dried meat (x2)",
+            "count": 2,
+            "owner": "7341"
+          },
+          {
+            "ID": "2712",
+            "b": "HealingTonic",
+            "n": "healing tonic (x2)",
+            "count": 2,
+            "owner": "7341"
+          }
+        ]
+      }
+    ],
+    "parcel": []
+  },
+  "afterCollectConversation": {
+    "tick": 4090,
+    "active": true,
+    "speaker": "12352",
+    "cursor": 0,
+    "revealing": true,
+    "node": "Start",
+    "text": "Ah, a new face! How delightful. The Saccharine Concord extends its warmest greetings. We are merchants of the possible, traders in what-remains. How may we sweeten your day?\n\nYour name in the ledger: standing 0, credit line 20 drams. Nothing owed.",
+    "choices": [
+      {
+        "i": 0,
+        "Text": "Who are the Saccharine Concord?",
+        "route": []
+      },
+      {
+        "i": 1,
+        "Text": "What do you trade?",
+        "route": []
+      },
+      {
+        "i": 2,
+        "Text": "Tell me about the Falling-Due.",
+        "route": []
+      },
+      {
+        "i": 3,
+        "Text": "What do you know about the other factions?",
+        "route": []
+      },
+      {
+        "i": 4,
+        "Text": "Farewell.",
+        "route": []
+      },
+      {
+        "i": 5,
+        "Text": "[Is something wrong here?]",
+        "route": [
+          "OpenConcernNode"
+        ]
+      },
+      {
+        "i": 6,
+        "Text": "[Carriage] Send a parcel to Cinderhold (about 3 days).",
+        "route": [
+          "CarriageOpen"
+        ]
+      },
+      {
+        "i": 7,
+        "Text": "[Let's trade.]",
+        "route": [
+          "StartTrade"
+        ]
+      },
+      {
+        "i": 8,
+        "Text": "[Attack]",
+        "route": [
+          "StartAttack"
+        ]
+      }
+    ]
+  },
+  "tonicUsed": {
+    "tick": 4110,
+    "zone": "WorldMap",
+    "X": 48,
+    "Y": 21,
+    "ID": "2705",
+    "hp": 40,
+    "drams": 27,
+    "weight": 37,
+    "pack": [
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      },
+      {
+        "self": {
+          "ID": "7341",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 6,
+        "contents": [
+          {
+            "ID": "2713",
+            "b": "DriedMeat",
+            "n": "dried meat (x2)",
+            "count": 2,
+            "owner": "7341"
+          },
+          {
+            "ID": "2712",
+            "b": "HealingTonic",
+            "n": "healing tonic",
+            "count": 1,
+            "owner": "7341"
+          }
+        ]
+      }
+    ],
+    "parcel": []
+  },
+  "freshTonicUsed": {
+    "tick": 4110,
+    "zone": "WorldMap",
+    "X": 48,
+    "Y": 21,
+    "ID": "2705",
+    "hp": 40,
+    "drams": 27,
+    "weight": 37,
+    "pack": [
+      {
+        "self": {
+          "ID": "2714",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 1,
+        "contents": []
+      },
+      {
+        "self": {
+          "ID": "7341",
+          "b": "FieldSatchel",
+          "n": "field satchel",
+          "count": 1,
+          "owner": "2705"
+        },
+        "weight": 6,
+        "contents": [
+          {
+            "ID": "2713",
+            "b": "DriedMeat",
+            "n": "dried meat (x2)",
+            "count": 2,
+            "owner": "7341"
+          },
+          {
+            "ID": "2712",
+            "b": "HealingTonic",
+            "n": "healing tonic",
+            "count": 1,
+            "owner": "7341"
+          }
+        ]
+      }
+    ],
+    "parcel": []
+  },
+  "nativeTests": {
+    "red": "concord_satchel_freight_red_20261126",
+    "redMissingOffer": 1,
+    "redOkControl": 1,
+    "final": "concord_satchel_freight_final_20261126",
+    "passed": 141,
+    "compilerErrors": 0
+  },
+  "checkpoints": {
+    "initial": {
+      "path": "/private/tmp/coo-storage-bought-v29-20261126/a150199855004a7cb295b81d72807ee3",
+      "tick": 160,
+      "files": {
+        "Quick.json": {
+          "sha256": "8a7e5445aa25646d00db40ce14922d45e6829bc86ceb00b1760ced4616413f58",
+          "bytes": 410
+        },
+        "Quick.json.bak": {
+          "sha256": "04d9ca1fc87a0d472b6a010a923138013939c3149310b3622cd2921b125da070",
+          "bytes": 409
+        },
+        "Quick.sav.gz": {
+          "sha256": "6d054cdc79111e5b95da932484e2f232c24224cab9656ade59007ea08d13e71b",
+          "bytes": 210907
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "41a3a1d433d8b4d446a45446879600c337b27e388feb5bf5f553dc3301d97a42",
+          "bytes": 201857
+        }
+      }
+    },
+    "packed": {
+      "path": "/private/tmp/coo-freight-satchel-packed-20261126/a150199855004a7cb295b81d72807ee3",
+      "tick": 160,
+      "files": {
+        "Quick.json": {
+          "sha256": "a6b4dc76044b38fae07eb48a24d4c0d956f4af5aec94480578d664c6f967e558",
+          "bytes": 410
+        },
+        "Quick.json.bak": {
+          "sha256": "8a7e5445aa25646d00db40ce14922d45e6829bc86ceb00b1760ced4616413f58",
+          "bytes": 410
+        },
+        "Quick.sav.gz": {
+          "sha256": "73367126ebff1546b66860c2f8846ba05b1528981d8f3ccec4a2eddce937f13d",
+          "bytes": 224243
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "6d054cdc79111e5b95da932484e2f232c24224cab9656ade59007ea08d13e71b",
+          "bytes": 210907
+        }
+      }
+    },
+    "sent": {
+      "path": "/private/tmp/coo-freight-satchel-sent-20261126/a150199855004a7cb295b81d72807ee3",
+      "tick": 420,
+      "files": {
+        "Quick.json": {
+          "sha256": "a65ebdc4820fe80d0f57be6b8928930a7f73029bc494f68976e08e51d1bb8126",
+          "bytes": 406
+        },
+        "Quick.json.bak": {
+          "sha256": "dfa905287344adce8553e186cdf79966eefb76d731a46dca0306daaaa87436bb",
+          "bytes": 406
+        },
+        "Quick.sav.gz": {
+          "sha256": "1de163dbee2c85d731bb04a91e9457d0074a892706cd55e194b86617926347e9",
+          "bytes": 292745
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "7c60a6b54d068de71e6824238ce6f1873e2c191c42e070f54dce50472029da96",
+          "bytes": 289237
+        }
+      }
+    },
+    "arrivedEarly": {
+      "path": "/private/tmp/coo-freight-satchel-map-arrival-20261126/a150199855004a7cb295b81d72807ee3",
+      "tick": 670,
+      "files": {
+        "Quick.json": {
+          "sha256": "9f599149ebff7940731a8458fdf9e04821f6b237d13ae6483ec54f6c08a3807f",
+          "bytes": 410
+        },
+        "Quick.json.bak": {
+          "sha256": "a964350a0b781ace854d619e5fb3b354cc70d00e4b3b0c6531f5510a6cb52439",
+          "bytes": 392
+        },
+        "Quick.sav.gz": {
+          "sha256": "c320e2a10911dc1604b861e8ff9d18bbcfe7278c3a78784a5ba69fc1321bce25",
+          "bytes": 354583
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "9c6fedf7842ed5529581df1d2c5ae6f42489025d4021c37afe93465f4643fd24",
+          "bytes": 293690
+        }
+      }
+    },
+    "dueOnMap": {
+      "path": "/private/tmp/coo-freight-satchel-due-20261126/a150199855004a7cb295b81d72807ee3",
+      "tick": 4020,
+      "files": {
+        "Quick.json": {
+          "sha256": "27a9f662b415def4addc6bfc9a91c0339b633fc23950287e1691d731a413fcf1",
+          "bytes": 393
+        },
+        "Quick.json.bak": {
+          "sha256": "d5666f8d3ab63383c8d5d5c80298879cf209f384840a4841faf7be84430fd666",
+          "bytes": 392
+        },
+        "Quick.sav.gz": {
+          "sha256": "eb2836fba5f5eaf95b4dafc279b12bf7010070035ceb7c9fdc6abe7dbf02aec1",
+          "bytes": 355695
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "ae78b6b742920f67f8757de39e350787c67f1a5bfbe0d72de17274ec083a8716",
+          "bytes": 355678
+        }
+      }
+    },
+    "collected": {
+      "path": "/private/tmp/coo-freight-satchel-collected-20261126/a150199855004a7cb295b81d72807ee3",
+      "tick": 4090,
+      "files": {
+        "Quick.json": {
+          "sha256": "3574ca2a50bc9c1312d214ffaef46c1ae048048bfa5ce173653395d7856edfa9",
+          "bytes": 411
+        },
+        "Quick.json.bak": {
+          "sha256": "51280a71861e97f1f0ae49e5803c0b5cac7a9acb2fb996cf7d5c2bc8a46fc884",
+          "bytes": 411
+        },
+        "Quick.sav.gz": {
+          "sha256": "0632204132bacc5e9a2d3f22dd5e70613642eb71eda522d4fedd19052fdf3079",
+          "bytes": 360620
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "ef4f02a9a46409276f066abcd816b4d922602e313f03ee63f79433396b291929",
+          "bytes": 355762
+        }
+      }
+    },
+    "used": {
+      "path": "/private/tmp/coo-freight-satchel-used-20261126/a150199855004a7cb295b81d72807ee3",
+      "tick": 4110,
+      "files": {
+        "Quick.json": {
+          "sha256": "2bdb3b0e63bd2b4ca43d27e5df994b6d0e466542cc433126eb0a5849259db991",
+          "bytes": 393
+        },
+        "Quick.json.bak": {
+          "sha256": "7f20103546eb38d82c8d181f85abc4c9abba716b5b20212df394fd25d3c6c4b0",
+          "bytes": 393
+        },
+        "Quick.sav.gz": {
+          "sha256": "f77cafbc666369eb609cb7e37e5cd3b19659084afd6f069ea91a8fa1a9ee5cd5",
+          "bytes": 360607
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "d7e91f12dc9f737fa1c7b0c7dad67c922f5a344c7345284a7f2c01a96a8bfc80",
+          "bytes": 360584
+        }
+      }
+    }
+  },
+  "preservation": {
+    "coo-grit-normal-before-play": {
+      "checked": 861,
+      "mismatches": []
+    },
+    "coo-sieve-content-foreign-at-entry": {
+      "checked": 86,
+      "mismatches": []
+    }
+  }
+}

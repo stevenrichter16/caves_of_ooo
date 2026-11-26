@@ -80,16 +80,24 @@ Apple Silicon. Package and ordinary startup save hashes matched. Full
 packaged play and Intel execution remain open.
 [Delivery receipt](Verification/MachineSystems/MacCandidate8308DE3A4/README.md)
 
-**Next exchange design, a whole satchel as one sealed parcel.**
-Consider admitting one directly carried, intact loaded field satchel to
-the existing Concord carriage. Check both the shell and every enclosed
-item against existing transfer and Clause Five refusals, with a complete
-quote and exact saved custody through send and collection. Use the full
-load for the existing fee and collection capacity. Ordinary sale still
-requires an empty vessel. The earned Sill purchase has the exact satchel
-and enough drams to exercise the existing route. This is a proposal for
-inter-post exchange, with visible porter travel handled by its separate
-existing rules.
+**A field satchel travels as one sealed parcel — November 26 UTC, 2026.**
+The paid Sill satchel held two meat and two tonics, weighing seven pounds.
+Cinderhold quoted all contents and four drams. The player cancelled free,
+then sent the bag and continued from a save. The Last Counter withheld it
+until due. Waiting locally led to a wildlife death, so the successful
+branch waited on the world map. The exact bag and goods returned once.
+Fresh Continue preserved them, and drinking a delivered tonic on the
+world map restored ten HP. Ordinary trade retains the empty-storage rule.
+[Evidence](Verification/MachineSystems/PackedConcordFreight20261126/README.md)
+
+**Next regional design, working scales and short-term trade.**
+Wellmeet can already patch its pan scales for two silver sand. Extend
+the existing scale price factor to the same working service during the
+900-clock-tick patch. Keep the lasting iron condition and report as their
+own results. Use the unexpired saved site with its exact physical owner
+to evaluate the quote, including expiry before another settlement update.
+An ordinary quarry save carries both earned measures and has yet to scout
+the local Wellmeet route. This trade benefit is proposed.
 
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe

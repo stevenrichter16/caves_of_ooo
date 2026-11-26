@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
     /// stacks that could go with the fee beside each; choosing one shows the whole bargain (fee, days, your purse) before anything is spent. Synthetic node ids are prefixed
     /// <see cref="NodePrefix"/>; "Back" returns to the authored Start node. Diag (trade): CarriageSent, CarriageCollected, CarriageRefused.</para>
     /// </summary>
-    public static class ConcordCarriage
+    public static partial class ConcordCarriage
     {
         public const string OpenAction = "CarriageOpen", SendAction = "CarriageSend", CollectAction = "CarriageCollect";
         public const string NodePrefix = "carriage:";
@@ -80,7 +80,8 @@ namespace CavesOfOoo.Core
         public static int Fee(Entity item, int count = 0)
         {
             int stack = StackOf(item); if (count <= 0 || count > stack) count = stack;
-            return BaseFee + (HandlingService.GetWeight(item) * count + WeightPerDram - 1) / WeightPerDram;
+            long weight = (long)HandlingService.GetWeight(item) * count;
+            return (int)Math.Min(int.MaxValue, BaseFee + (weight + WeightPerDram - 1) / WeightPerDram);
         }
 
         // ── what the carriage will and will not take ──
@@ -105,10 +106,16 @@ namespace CavesOfOoo.Core
         public static string ItemRefusal(Entity player, Entity keeper, Entity item)
         {
             if (item == null) return "nothing";
+            if (IsPackedSatchel(item)) return CheckPacked(player, keeper, item, out _);
             string name = item.GetDisplayName();
             if (item.GetPart<PhysicsPart>()?.Equipped != null) return "You wear " + name + ". Take it off first.";
             if (MaterialProcessService.IsProtected(item) || ContainedLiquidSourcePart.IsRecoveryCustodyProtected(item)) return name + " is held for work in progress. The cart cannot take it.";
             if (!TradeSystem.CanBeTraded(item, player, keeper, "Carriage")) return "The Concord carries only what can change hands. " + name + " cannot.";
+            return ClauseRefusal(item);
+        }
+
+        static string ClauseRefusal(Entity item)
+        {
             string bp = item.BlueprintName ?? "";
             if (UnboxedSpores.Contains(bp) || item.HasTag("Spore")) return "Clause the fifth: no unboxed spores.";
             if (UnsealedBodies.Contains(bp) || item.HasTag("Corpse")) return "Clause the fifth: no bodies not sealed to Curation intake standard.";
@@ -270,10 +277,14 @@ namespace CavesOfOoo.Core
         {
             var item = Find(player, itemId);
             if (item == null) return null;
-            string refusal = KeeperRefusal(keeper) ?? ItemRefusal(player, keeper, item) ?? GateRefusal(player);
+            PackedParcel packed = null;
+            string refusal = KeeperRefusal(keeper) ?? (IsPackedSatchel(item) ? CheckPacked(player, keeper, item, out packed)
+                : ItemRefusal(player, keeper, item)) ?? GateRefusal(player);
             int drams = TradeSystem.GetDrams(player);
             var text = new StringBuilder();
             text.Append(item.GetDisplayName()).Append(" to ").Append(to.Name).Append(", ready in ").Append(Days(here, to)).Append(" days. You carry ").Append(drams).Append(" drams.");
+            if (packed != null)
+                text.Append("\n\nContents: ").Append(packed.ContentsText).Append("\n").Append(packed.Weight).Append(" lb total. One sealed parcel.");
             if (refusal != null) text.Append("\n\n\"").Append(refusal).Append('"');
             var node = Node("confirm|" + to.ZoneId + "|" + itemId, text.ToString());
             bool any = false; int stack = StackOf(item);
@@ -284,8 +295,10 @@ namespace CavesOfOoo.Core
                     if (drams < fee) continue;
                     any = true;
                     string what = stack == 1 ? "it" : count == stack ? "all " + count : count == 1 ? "one" : "half (" + count + ")";
-                    node.Choices.Add(new ChoiceData { Text = "[Send " + what + " - " + fee + " drams.]", Target = "Start",
-                        Actions = Params(SendAction, to.ZoneId + "|" + itemId + (count == stack ? "" : "|" + count)) });
+                    string argument = to.ZoneId + "|" + itemId + (count == stack ? "" : "|" + count);
+                    if (packed != null) argument += "|1|" + RememberPackedQuote(player, packed, to.ZoneId);
+                    node.Choices.Add(new ChoiceData { Text = "[Send " + (packed != null ? "sealed satchel" : what) + " - " + fee + " drams.]", Target = "Start",
+                        Actions = Params(SendAction, argument) });
                 }
             if (refusal == null && !any) node.Text += "\n\nYou do not have the fee.";
             node.Choices.Add(new ChoiceData { Text = "[Back]", Target = "", Actions = Params(OpenAction, "send|" + to.ZoneId) });
@@ -308,7 +321,7 @@ namespace CavesOfOoo.Core
         public static string Send(Entity keeper, Entity player, string arg)
         {
             var parts = arg?.Split('|');
-            if (parts == null || parts.Length < 2 || parts.Length > 3) return Refuse(keeper, player, "invalid_argument", null);
+            if (parts == null || parts.Length < 2 || parts.Length > 4) return Refuse(keeper, player, "invalid_argument", null);
             if (!AtPost(keeper, out var here)) return Refuse(keeper, player, "not_a_post", "This is not a Concord post that runs a cart.");
             if (!TryPost(parts[0], out var to) || to.ZoneId == here.ZoneId) return Refuse(keeper, player, "unknown_destination", "The cart does not run there.");
             string unable = KeeperRefusal(keeper); if (unable != null) return Refuse(keeper, player, "keeper_unable", unable);
@@ -316,6 +329,8 @@ namespace CavesOfOoo.Core
             if (gate != null) return Refuse(keeper, player, "ledger_closed", gate);
             var item = Find(player, parts[1]);
             if (item == null) return Refuse(keeper, player, "not_carried", "You are not carrying that any more.");
+            if (parts.Length == 4 || IsPackedSatchel(item))
+                return SendPacked(keeper, player, item, here, to, parts);
             string refusal = ItemRefusal(player, keeper, item);
             if (refusal != null) return Refuse(keeper, player, "not_carried_by_cart", refusal);
             int stack = StackOf(item), count = stack;
@@ -360,8 +375,17 @@ namespace CavesOfOoo.Core
             {
                 if (!part.Whole(i) || part.To[i] != here.ZoneId || now < part.ReadyTick[i]) continue;
                 var goods = part.Goods[i]; string label = goods.GetDisplayName();
-                if (!inv.AddObject(goods)) { tooHeavy++; continue; }
-                part.RemoveAt(i); collected++;
+                if (IsPackedSatchel(goods))
+                {
+                    if (!CollectPacked(keeper, player, part, i, now, out bool overweight))
+                    { if (overweight) tooHeavy++; continue; }
+                }
+                else
+                {
+                    if (!inv.AddObject(goods)) { tooHeavy++; continue; }
+                    part.RemoveAt(i);
+                }
+                collected++;
                 MessageLog.Add("The clerk hands over " + label + ", seal unbroken.");
                 Record("CarriageCollected", keeper, player, new { item = goods.BlueprintName, label, at = here.ZoneId });
             }

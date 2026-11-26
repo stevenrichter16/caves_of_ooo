@@ -49,8 +49,11 @@ namespace CavesOfOoo.Core
         }
 
         public static bool IsCarried(Entity actor, Entity vessel)
-            => IsEligible(vessel) && DirectlyCarried(actor, vessel)
-                && IntactContents(actor.GetPart<InventoryPart>(), vessel, vessel.GetPart<ContainerPart>(), true);
+            => DirectlyCarried(actor, vessel) && HasUnaliasedLooseContents(actor.GetPart<InventoryPart>(), vessel);
+
+        // Freight checks the same physical contents while the vessel is detached.
+        internal static bool HasUnaliasedLooseContents(InventoryPart pack, Entity vessel)
+            => pack != null && IsEligible(vessel) && IntactContents(pack, vessel, vessel.GetPart<ContainerPart>(), true);
 
         /// <summary>Read the exact direct contents, including valid legacy containers.</summary>
         public static bool TryBrowse(Entity actor, Entity vessel, out ContainerPart container)

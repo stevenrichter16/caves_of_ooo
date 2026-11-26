@@ -537,6 +537,16 @@ fresh Continue. This connects a finite purchased fishing kit to regional
 food preparation without changing fishing capacity or full-machine gates.
 [Evidence](Verification/MachineSystems/RoastedLakePerch20261126/README.md)
 
+**Sealed carried storage on the Concord carriage — November 26 UTC, 2026.**
+One intact loaded field satchel can ride the existing inter-post service.
+Its exact members share one fee based on their combined physical weight,
+with existing restriction checks and full-weight arrival capacity. Travel
+keeps the bag and its contents together through saves. On arrival the
+player used a delivered tonic directly from the bag. This connects
+storage, regional transport and ordinary carried item use. The
+whole-machine gates remain open.
+[Evidence](Verification/MachineSystems/PackedConcordFreight20261126/README.md)
+
 **Replayable practical work — November24local/25UTC,2026:** The source-grounded
 [implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
 concrete requirements for compatible material demand, method-independent

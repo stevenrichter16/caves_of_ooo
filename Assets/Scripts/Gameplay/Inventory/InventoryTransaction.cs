@@ -45,6 +45,8 @@ namespace CavesOfOoo.Core.Inventory
         /// spending until commit; rollback discards it without rewinding other payments.</summary>
         internal void DeferCurrencyCredit(Entity actor, int amount) => AddCurrencyDelta(actor, amount);
 
+        internal void DeferCurrencyDebit(Entity actor, int amount) => AddCurrencyDelta(actor, -(long)amount);
+
         /// <summary>Queue both sides of a purchase/sale. Commit publishes all resulting
         /// purses before notifying observers, so no listener sees half a payment.</summary>
         internal void DeferCurrencyTransfer(Entity payer, Entity receiver, int amount)

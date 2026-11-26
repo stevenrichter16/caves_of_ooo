@@ -83,6 +83,14 @@ the same carried weight and base trade value. Fresh Continues confirmed
 the meal and eating. The cooking bonus uses the authored healing modifier.
 [Perch playtest](Verification/MachineSystems/RoastedLakePerch20261126/README.md)
 
+For #12/#16/#17, the old Concord route now takes one loaded field satchel
+as a sealed parcel. A paid Sill bag traveled at seven pounds and four
+drams. The same supplies came back together after the ordinary travel
+time and survived Continue. The player used a delivered dose directly
+from the bag. Ordinary trade and the local porter rules keep their own
+transfer terms.
+[Packed freight playtest](Verification/MachineSystems/PackedConcordFreight20261126/README.md)
+
 ## Priority 1: make needs and benefits independent of method
 
 1. **Describe one practical need in physical terms.** Start with a bounded need

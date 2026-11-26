@@ -403,6 +403,17 @@ namespace CavesOfOoo.Core
             // own trade eligibility and prices, so empty the vessel first.
             if (CarriedStorage.UsesCarriedContents(item) && item.GetPart<ContainerPart>()?.Contents?.Count != 0)
                 return false;
+            return AllowsOwnershipChange(item, actor, trader, direction);
+        }
+
+        // The carriage validates the whole container and its children itself.
+        // It still needs the shell's ordinary ownership vetoes.
+        internal static bool CanEntrustPackedShell(Entity shell, Entity actor, Entity clerk)
+            => shell?.BlueprintName == "FieldSatchel" && !shell.HasTag("NoTrade")
+                && AllowsOwnershipChange(shell, actor, clerk, "Carriage");
+
+        static bool AllowsOwnershipChange(Entity item, Entity actor, Entity trader, string direction)
+        {
             // EC3: nothing is bought from or sold to the Choir (Docs/ECONOMY-SYSTEM.md §9).
             if (ChoirOffering.KeepsNoShop(trader)) return false;
 

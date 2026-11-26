@@ -171,6 +171,110 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("bog-mire", gone.LiquidId); Assert.AreEqual(9, gone.Volume);
         }
 
+        [Test]
+        public void ALoadedFieldSatchelTravelsAsOneSealedParcelAndNeedsRoomForItsWholeWeight()
+        {
+            var player = Player();
+            var factor = Keeper(Cinderhold);
+            var origin = lastZone;
+            Assert.True(origin.AddEntity(player, 19, 12));
+            var satchel = Carry(player, "FieldSatchel");
+            var food = Carry(player, "DriedMeat", 2);
+            var tonic = Carry(player, "HealingTonic");
+            Assert.True(CarriedStorage.TryDeposit(player, satchel, food, origin, out var foodFailure), foodFailure);
+            Assert.True(CarriedStorage.TryDeposit(player, satchel, tonic, origin, out var tonicFailure), tonicFailure);
+            var contents = satchel.GetPart<ContainerPart>().Contents;
+            CollectionAssert.AreEquivalent(new[] { food, tonic }, contents);
+            Assert.AreEqual(6, HandlingService.GetWeight(satchel));
+            Assert.AreEqual(4, ConcordCarriage.Fee(satchel));
+            Assert.AreEqual(6, ConcordCarriage.Fee(food) + ConcordCarriage.Fee(tonic));
+
+            Assert.False(TradeSystem.CanBeTraded(satchel, player, factor, "Sell"), "A normal shop still quotes only the empty shell.");
+            Assert.True(ConcordCarriage.Eligible(player, factor).Contains(satchel), "The freight list offers the sealed load.");
+            Assert.IsNull(ConcordCarriage.Send(factor, player, Arg(LastCounter, satchel)));
+            var carriage = player.GetPart<ConcordCarriagePart>();
+            Assert.AreEqual(96, TradeSystem.GetDrams(player));
+            Assert.AreSame(satchel, carriage.Goods.Single());
+            Assert.IsEmpty(Pack(player).Objects);
+            Assert.AreSame(satchel, food.GetPart<PhysicsPart>().InInventory);
+            Assert.AreSame(satchel, tonic.GetPart<PhysicsPart>().InInventory);
+
+            var envoy = Keeper(LastCounter, "SaccharineEnvoy");
+            origin.RemoveEntity(player);
+            Assert.True(lastZone.AddEntity(player, 19, 12));
+            clock.AdvanceClock(3 * WorldClock.DayLengthTicks);
+            Pack(player).MaxWeight = 5;
+            Assert.AreEqual("too_heavy", ConcordCarriage.Collect(envoy, player, LastCounter));
+            Assert.AreSame(satchel, carriage.Goods.Single());
+            Assert.IsEmpty(Pack(player).Objects);
+            Pack(player).MaxWeight = 6;
+            Assert.IsNull(ConcordCarriage.Collect(envoy, player, LastCounter));
+            Assert.IsEmpty(carriage.Goods);
+            Assert.AreSame(satchel, Pack(player).Objects.Single());
+            CollectionAssert.AreEquivalent(new[] { food, tonic }, contents);
+            Assert.AreEqual(2, food.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(96, TradeSystem.GetDrams(player));
+            Assert.AreEqual("nothing_to_collect", ConcordCarriage.Collect(envoy, player, LastCounter));
+        }
+
+        [Test]
+        public void AChildVetoCannotBeBypassedByClosingTheSatchel()
+        {
+            var player = Player();
+            var factor = Keeper(Cinderhold);
+            Assert.True(lastZone.AddEntity(player, 19, 12));
+            var satchel = Carry(player, "FieldSatchel");
+            var food = Carry(player, "DriedMeat");
+            var tonic = Carry(player, "HealingTonic");
+            Assert.True(CarriedStorage.TryDeposit(player, satchel, food, lastZone, out _));
+            Assert.True(CarriedStorage.TryDeposit(player, satchel, tonic, lastZone, out _));
+            tonic.AddPart(new CarriageVetoProbe { EarlierItem = food });
+
+            Assert.AreEqual("not_carried_by_cart", ConcordCarriage.Send(factor, player, Arg(LastCounter, satchel)));
+            Assert.True(food.HasTag("Sings"), "An earlier child gained a Clause Five restriction in a later callback.");
+            Assert.AreEqual(100, TradeSystem.GetDrams(player));
+            Assert.IsNull(player.GetPart<ConcordCarriagePart>());
+            Assert.AreSame(satchel, Pack(player).Objects.Single());
+            CollectionAssert.AreEquivalent(new[] { food, tonic }, satchel.GetPart<ContainerPart>().Contents);
+        }
+
+        sealed class CarriageVetoProbe : Part
+        {
+            internal Entity EarlierItem;
+
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "CanBeTraded") EarlierItem.SetTag("Sings");
+                return true;
+            }
+        }
+
+        [Test]
+        public void AQuotedSatchelRefusesAReplacementOfTheSameKindWeightAndCount()
+        {
+            var player = Player();
+            var factor = Keeper(Cinderhold);
+            Assert.True(lastZone.AddEntity(player, 19, 12));
+            var satchel = Carry(player, "FieldSatchel");
+            var original = Carry(player, "HealingTonic");
+            Assert.True(CarriedStorage.TryDeposit(player, satchel, original, lastZone, out _));
+            var node = ConcordCarriage.BuildNode("confirm|" + Arg(LastCounter, satchel), factor, player);
+            StringAssert.Contains("Contents: healing tonic", node.Text);
+            StringAssert.Contains("2 lb total", node.Text);
+            var quote = node.Choices.SelectMany(c => c.Actions).Single(a => a.Key == ConcordCarriage.SendAction).Value;
+
+            Assert.True(CarriedStorage.TryWithdraw(player, satchel, original, lastZone, out _));
+            Assert.True(Pack(player).RemoveObject(original));
+            var replacement = Carry(player, "HealingTonic");
+            Assert.AreNotEqual(original.ID, replacement.ID);
+            Assert.True(CarriedStorage.TryDeposit(player, satchel, replacement, lastZone, out _));
+
+            Assert.AreEqual("not_carried_by_cart", ConcordCarriage.Send(factor, player, quote));
+            Assert.AreEqual(100, TradeSystem.GetDrams(player));
+            Assert.IsNull(player.GetPart<ConcordCarriagePart>());
+            Assert.AreSame(replacement, satchel.GetPart<ContainerPart>().Contents.Single());
+        }
+
         [TestCase("insufficient_drams")] [TestCase("ledger_closed_default")] [TestCase("ledger_closed_standing")] [TestCase("cart_full")] [TestCase("worn")] [TestCase("spore")]
         public void ARefusedSendChangesNothing(string why)
         {

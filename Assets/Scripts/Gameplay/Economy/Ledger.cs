@@ -41,6 +41,14 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        internal static bool StageDebit(Entity from, int amount, string sink, Inventory.InventoryTransaction transaction)
+        {
+            if (Check(from, null, amount, credit: false) != null) return false;
+            transaction.DeferCurrencyDebit(from, amount);
+            transaction.AfterCommit(() => Record("Debited", from, null, amount, sink, TradeSystem.GetDrams(from)));
+            return true;
+        }
+
         /// <summary>A payment between two purses; the total in the world is unchanged.</summary>
         public static bool TryTransfer(Entity from, Entity to, int amount, string reason, out string refusal)
         {
