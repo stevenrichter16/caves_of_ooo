@@ -38,7 +38,8 @@ The original-runtime branch went back across the boundary and up both stairs
 to Cinderhold’s actual forge. An ordinary action spent only the screened
 pale-salt at tick 2640, enhancing the exact dagger 2716. Fresh Continue kept
 the pale-salt-edged dagger, both sand units, the sieve, 40 HP and three drams.
-Combat use of the enhanced dagger remains open.
+The later Spivenor continuation records a successful landed bonus and
+its saved effect. [Ordinary field use](../QuarryPaleSaltFieldUse20261126/README.md)
 
 The updated-runtime branch continued the exact tick 2000 save. The player
 used one sand at tick 2010 to mark the north exit from the existing floor.

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Linq;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
 
@@ -28,6 +29,7 @@ namespace CavesOfOoo.Tests
         public void Setup()
         {
             Diag.ResetAll();
+            MessageLog.Clear();
             EnhancementFactory.ResetForTests();
             EnhancementFactory.Register(typeof(EnhancementPaleSalt));
             EnhancementFactory.Register(typeof(EnhancementChoirIron));
@@ -69,6 +71,155 @@ namespace CavesOfOoo.Tests
         }
 
         private static Entity MakeAttacker() => MakeTaggedCreature("Organic", hp: 100, id: "attacker");
+
+        private static (Zone zone, Entity attacker, Entity defender, Entity weapon) FeedbackScene(
+            System.Type enhancementType, string tag, int hp = 24)
+        {
+            var zone = new Zone("TagBonusFeedback");
+            var attacker = MakeAttacker();
+            attacker.Tags["Player"] = "";
+            var defender = MakeTaggedCreature(tag, hp);
+            Assert.IsTrue(zone.AddEntity(attacker, 5, 5));
+            Assert.IsTrue(zone.AddEntity(defender, 6, 5));
+            zone.GetCell(5, 5).IsVisible = true;
+            zone.GetCell(6, 5).IsVisible = true;
+            var weapon = MakeCuttingWeapon();
+            var enhancement = (EnhancementTagBonusBase)System.Activator.CreateInstance(enhancementType);
+            enhancement.ApplyTier(2);
+            weapon.AddPart(enhancement);
+            return (zone, attacker, defender, weapon);
+        }
+
+        private static void DispatchFeedbackHit(
+            (Zone zone, Entity attacker, Entity defender, Entity weapon) scene, int primaryDamage = 3)
+            => ItemEnhancementDispatch.DispatchOnHit(scene.weapon, scene.defender, scene.attacker,
+                new Damage(primaryDamage), primaryDamage, scene.zone, new System.Random(0));
+
+        private static string[] BonusMessages()
+            => MessageLog.GetMessages().Where(message => message.Contains(" extra damage")).ToArray();
+
+        private sealed class BonusFeedbackProbe : Part
+        {
+            public System.Func<GameEvent, bool> OnEvent;
+            public override bool HandleEvent(GameEvent e) => OnEvent?.Invoke(e) ?? true;
+        }
+
+        [TestCase(typeof(EnhancementPaleSalt), "Undead", "Pale-Salt-edged")]
+        [TestCase(typeof(EnhancementChoirIron), "Fungal", "Choir-Iron-edged")]
+        public void VisiblePlayerBonusExplainsActualExtraDamageAndRemainingHp(
+            System.Type enhancementType, string tag, string label)
+        {
+            var scene = FeedbackScene(enhancementType, tag);
+            CombatSystem.ApplyDamage(scene.defender, 3, scene.attacker, scene.zone);
+            Assert.AreEqual(21, scene.defender.GetStatValue("Hitpoints"));
+            DispatchFeedbackHit(scene);
+            Assert.AreEqual(17, scene.defender.GetStatValue("Hitpoints"));
+            CollectionAssert.AreEqual(new[] { label + " adds 4 extra damage (17 HP remaining)." }, BonusMessages());
+        }
+
+        [TestCase(typeof(EnhancementPaleSalt), "Undead", "Pale-Salt-edged")]
+        [TestCase(typeof(EnhancementChoirIron), "Fungal", "Choir-Iron-edged")]
+        public void VisibleLethalBonusReportsOnlyAppliedDamageAndNoRemainingHp(
+            System.Type enhancementType, string tag, string label)
+        {
+            var scene = FeedbackScene(enhancementType, tag, hp: 1);
+            int deaths = 0;
+            scene.defender.AddPart(new BonusFeedbackProbe
+            {
+                OnEvent = e => { if (e.ID == "Died") deaths++; return true; }
+            });
+            DispatchFeedbackHit(scene);
+            Assert.AreEqual(0, scene.defender.GetStatValue("Hitpoints"));
+            Assert.AreEqual(1, deaths);
+            Assert.IsNull(scene.zone.GetEntityCell(scene.defender), "Death removes the formerly visible target.");
+            CollectionAssert.AreEqual(new[] { label + " adds 1 extra damage." }, BonusMessages());
+        }
+
+        [TestCase("reduce", 19, 2)]
+        [TestCase("independent injury", 14, 4)]
+        [TestCase("independent healing", 19, 4)]
+        public void BonusMessageUsesCommittedDamageRatherThanConfiguredOrNetHpDelta(
+            string callback, int expectedHp, int expectedBonus)
+        {
+            var scene = FeedbackScene(typeof(EnhancementPaleSalt), "Undead");
+            CombatSystem.ApplyDamage(scene.defender, 3, scene.attacker, scene.zone);
+            scene.defender.AddPart(new BonusFeedbackProbe
+            {
+                OnEvent = e =>
+                {
+                    if (e.ID == "BeforeTakeDamage")
+                    {
+                        if (callback == "reduce") e.GetParameter<Damage>("Damage").Amount = 2;
+                        if (callback == "independent injury") scene.defender.GetStat("Hitpoints").BaseValue -= 3;
+                    }
+                    return true;
+                }
+            });
+            scene.attacker.AddPart(new BonusFeedbackProbe
+            {
+                OnEvent = e =>
+                {
+                    if (e.ID == "DamageDealt" && callback == "independent healing")
+                        scene.defender.GetStat("Hitpoints").BaseValue += 2;
+                    return true;
+                }
+            });
+            DispatchFeedbackHit(scene);
+            Assert.AreEqual(expectedHp, scene.defender.GetStatValue("Hitpoints"));
+            CollectionAssert.AreEqual(new[]
+            {
+                $"Pale-Salt-edged adds {expectedBonus} extra damage ({expectedHp} HP remaining)."
+            }, BonusMessages());
+        }
+
+        [TestCase("zero primary")]
+        [TestCase("wrong tag")]
+        [TestCase("veto")]
+        [TestCase("zero bonus")]
+        public void UnappliedBonusDoesNotClaimExtraDamage(string refusal)
+        {
+            var scene = FeedbackScene(typeof(EnhancementPaleSalt), refusal == "wrong tag" ? "Organic" : "Undead");
+            scene.defender.AddPart(new BonusFeedbackProbe
+            {
+                OnEvent = e =>
+                {
+                    if (e.ID != "BeforeTakeDamage") return true;
+                    if (refusal == "zero bonus") e.GetParameter<Damage>("Damage").Amount = 0;
+                    return refusal != "veto";
+                }
+            });
+            DispatchFeedbackHit(scene, refusal == "zero primary" ? 0 : 3);
+            Assert.AreEqual(24, scene.defender.GetStatValue("Hitpoints"));
+            Assert.IsEmpty(BonusMessages());
+        }
+
+        [TestCase("hidden cell")]
+        [TestCase("hidden render")]
+        [TestCase("NPC attacker")]
+        [TestCase("remote attacker")]
+        [TestCase("remote defender")]
+        [TestCase("noncreature")]
+        [TestCase("no zone")]
+        public void UnobservedBonusPreservesDamageWithoutDisclosingTargetInformation(string context)
+        {
+            var scene = FeedbackScene(typeof(EnhancementPaleSalt), "Undead");
+            if (context == "hidden cell") scene.zone.GetCell(6, 5).IsVisible = false;
+            if (context == "hidden render") scene.defender.GetPart<RenderPart>().Visible = false;
+            if (context == "NPC attacker") scene.attacker.Tags.Remove("Player");
+            if (context == "noncreature") scene.defender.Tags.Remove("Creature");
+            if (context == "remote attacker" || context == "remote defender")
+            {
+                var remote = new Zone("OtherTagBonusZone");
+                var moved = context == "remote attacker" ? scene.attacker : scene.defender;
+                scene.zone.RemoveEntity(moved);
+                Assert.IsTrue(remote.AddEntity(moved, 6, 5));
+                remote.GetCell(6, 5).IsVisible = true;
+            }
+            if (context == "no zone") scene.zone = null;
+            DispatchFeedbackHit(scene);
+            Assert.AreEqual(20, scene.defender.GetStatValue("Hitpoints"), "Feedback gates must not change combat rules.");
+            Assert.IsEmpty(BonusMessages());
+        }
 
         // ════════════════════════════════════════════════════════════════
         // Applicable — both reject non-melee items

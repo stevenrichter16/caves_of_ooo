@@ -1,3 +1,13 @@
+**Quarry pale-salt reaches an ordinary field fight — November 26 UTC, 2026.**
+The original dagger from the ordinary quarry packet and forge route
+landed four extra damage on a natural Charred Husk below Spivenor.
+The old log displayed only the base attack. The corrected native replay
+showed the four-point bonus and the husk's actual remaining health.
+Fresh Continue retained the equipped dagger, injury, target health and
+visible log. The connected native suite passed 379 of 379. This extends
+#40 through a landed effect in one retained world layout.
+[Evidence](Verification/MachineSystems/QuarryPaleSaltFieldUse20261126/README.md)
+
 **Caught steam serves a Gleaners crop — November 26 UTC, 2026.**
 Ordinary seed 64 travel took an earned condenser, a found waterskin and
 a harvested drawgourd shell to a natural Sodden vent. Each vessel took

@@ -793,6 +793,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     enhance the original dagger at Cinderhold. This is one actual cache
     draw. General exploration and current cross-seed coverage stay open.
     [Evidence](Verification/MachineSystems/OrdinaryQuarryLoop20261125/README.md)
+    The exact enhanced dagger later landed its four-point bonus on a
+    natural Charred Husk below Spivenor. The corrected log reports the
+    actual extra damage and saved target health. This adds one guided
+    ordinary use of the screened pale-salt against a compatible target.
+    [Evidence](Verification/MachineSystems/QuarryPaleSaltFieldUse20261126/README.md)
 
 ## Additional requirement: overdue shipments have social consequences
 

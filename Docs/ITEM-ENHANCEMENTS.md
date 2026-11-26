@@ -442,8 +442,13 @@ cost when their dependencies later don't exist.
 
 | Mineral | Enhancement produced | Mechanic (v1) | Forward-compat with full IDEAS.md design |
 |---|---|---|---|
-| **Pale-Salt** | `EnhancementPaleSalt` | OnAttackerHit: +Tier flat damage if defender has `Undead` MaterialTag | Faithful to IDEAS.md "bonus damage on... undead-tier enemies." Preservation passive deferred to E.5+. |
-| **Choir-Iron** | `EnhancementChoirIron` | OnAttackerHit: +Tier flat damage if defender has `Fungal` MaterialTag | Faithful to IDEAS.md "weapons resist Choir colonization" intent — currently expressed as bonus damage vs Fungal-tagged. "Bloomed status duration" passive deferred. |
+| **Pale-Salt** | `EnhancementPaleSalt` | A landed melee hit adds two damage per tier against a defender with the `Undead` material tag. | Preservation passive deferred to E.5+. |
+| **Choir-Iron** | `EnhancementChoirIron` | A landed melee hit adds two damage per tier against a defender with the `Fungal` material tag. | Reduced Bloomed status duration remains deferred. |
+
+For a player strike on a visible local creature, the log explains the
+committed extra damage and the remaining health of a surviving target.
+Both edges use the same damage and feedback path.
+[Ordinary Pale-Salt field use](Verification/MachineSystems/QuarryPaleSaltFieldUse20261126/README.md)
 | **Glow-Quartz** | `EnhancementGlowQuartz` | OnEquipped: `bearer.LightSourcePart.Radius += Tier` (auto-creates LightSourcePart if missing). OnUnequipped: subtracts back. AppliedBonus atomicity. | Direct map to IDEAS.md "Glow-Quartz-tipped lantern-rods extend bio-light range substantially." |
 
 All three are `IMeleeEnhancement`-applicable for v1 — keep the scope

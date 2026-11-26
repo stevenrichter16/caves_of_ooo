@@ -1,3 +1,11 @@
+**Quarry pale-salt gives visible extra damage against a Charred Husk.**
+Physical screening yielded the pale-salt used on the same starting
+dagger. The native Spivenor route used that blade on a natural husk.
+Both landed hits added four. The combat log now shows the damage actually
+applied and the remaining health of a surviving visible target. Fresh
+Continue retained the weapon and the combat result.
+[Evidence](Verification/MachineSystems/QuarryPaleSaltFieldUse20261126/README.md)
+
 **Steam caught in either water-only vessel can serve an ordinary crop.**
 A condenser fills one chosen carried waterskin or drawgourd shell by one
 measure at the same finite vent supply that serves flasks, scrapers and

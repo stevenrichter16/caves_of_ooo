@@ -1,0 +1,140 @@
+{
+  "start": {
+    "ZoneID": "Overworld.16.4.2",
+    "TickCount": 3430,
+    "X": 9,
+    "Y": 19,
+    "hp": 29,
+    "exits": [
+      {
+        "BlueprintName": "StairsUp",
+        "X": 40,
+        "Y": 12
+      },
+      {
+        "BlueprintName": "StairsDown",
+        "X": 41,
+        "Y": 13
+      }
+    ],
+    "targets": [
+      {
+        "ID": "31264",
+        "BlueprintName": "CharredHusk",
+        "X": 8,
+        "Y": 20,
+        "IsVisible": true,
+        "hp": 24
+      }
+    ],
+    "latest": [
+      "charred husk [left hand: charred touch] hits you in the left arm for 4 damage! (31 HP remaining)",
+      "charred husk [right hand: charred touch] misses you!",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You take 2 fire damage."
+    ]
+  },
+  "landed": [
+    {
+      "ZoneID": "Overworld.16.4.2",
+      "TickCount": 3440,
+      "X": 9,
+      "Y": 19,
+      "hp": 21,
+      "exits": [
+        {
+          "BlueprintName": "StairsUp",
+          "X": 40,
+          "Y": 12
+        },
+        {
+          "BlueprintName": "StairsDown",
+          "X": 41,
+          "Y": 13
+        }
+      ],
+      "targets": [
+        {
+          "ID": "31264",
+          "BlueprintName": "CharredHusk",
+          "X": 8,
+          "Y": 20,
+          "IsVisible": true,
+          "hp": 16
+        }
+      ],
+      "latest": [
+        "You are charred.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "charred husk [left hand: charred touch] hits you in the body for 8 damage! (21 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    [
+      {
+        "TraceId": "c7f7f882",
+        "Category": "enhancement",
+        "Kind": "Triggered",
+        "TimestampUnixMs": 1795713843578,
+        "Turn": 3430,
+        "ActorId": "2715",
+        "TargetId": "31264",
+        "CauseTraceId": "774f6f541e3e4de29a04746272554e70",
+        "PayloadJson": "{\"enhancement\":\"EnhancementPaleSalt\",\"tier\":2,\"bonusDamage\":4,\"targetTag\":\"Undead\"}"
+      }
+    ]
+  ],
+  "visibleLog": [
+    "You take 2 fire damage.",
+    "charred husk [left hand: charred touch] hits you in the left arm for 4 damage! (31 HP remaining)",
+    "charred husk [right hand: charred touch] misses you!",
+    "You take 2 fire damage.",
+    "You [left hand: pale-salt-edged dagger] hit charred husk in the right arm for 4 damage! (20 HP remaining)",
+    "Pale-Salt-edged adds 4 extra damage (16 HP remaining).",
+    "You are no longer burning.",
+    "You are charred.",
+    "charred husk [left hand: charred touch] hits you in the body for 8 damage! (21 HP remaining)"
+  ],
+  "fresh": [
+    {
+      "ZoneID": "Overworld.16.4.2",
+      "TickCount": 3440,
+      "X": 9,
+      "Y": 19,
+      "hp": 21,
+      "exits": [
+        {
+          "BlueprintName": "StairsUp",
+          "X": 40,
+          "Y": 12
+        },
+        {
+          "BlueprintName": "StairsDown",
+          "X": 41,
+          "Y": 13
+        }
+      ],
+      "targets": [
+        {
+          "ID": "31264",
+          "BlueprintName": "CharredHusk",
+          "X": 8,
+          "Y": 20,
+          "IsVisible": true,
+          "hp": 16
+        }
+      ],
+      "latest": [
+        "You are charred.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "charred husk [left hand: charred touch] hits you in the body for 8 damage! (21 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    {
+      "equipped": true,
+      "bonus": 4,
+      "note": "Pale-Salt-edged adds 4 extra damage (16 HP remaining)."
+    }
+  ]
+}

@@ -933,6 +933,9 @@ namespace CavesOfOoo.Core
         public static void ApplyDamage(Entity target, Damage damage, Entity source, Zone zone)
             => ApplyDamageCore(target, damage, source, zone, default);
 
+        internal static int ApplyDamageAndGetAmount(Entity target, Damage damage, Entity source, Zone zone)
+            => ApplyDamageCore(target, damage, source, zone, default).ActualDamage;
+
         private static (int ActualDamage, bool Killed) ApplyDamageCore(Entity target, Damage damage, Entity source, Zone zone, WorldAudioCombatAttempt audioAttempt)
         {
             using (PerformanceMarkers.Combat.ApplyDamage.Auto())

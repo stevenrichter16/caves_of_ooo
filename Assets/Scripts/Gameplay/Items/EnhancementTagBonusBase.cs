@@ -78,9 +78,17 @@ namespace CavesOfOoo.Core
             if (mat == null) return;
             if (!mat.HasMaterialTag(TargetMaterialTag)) return;
 
-            // Apply flat bonus damage via the canonical CombatSystem
-            // path so resistances + lethal-handling all flow correctly.
-            CombatSystem.ApplyDamage(defender, BonusDamage, attacker, zone);
+            // Capture visibility while the defender still occupies its cell.
+            bool showBonus = attacker?.HasTag("Player") == true && defender.HasTag("Creature")
+                && zone?.GetEntityCell(defender)?.IsVisible == true
+                && zone.GetEntityCell(attacker) != null && defender.GetPart<RenderPart>()?.Visible != false;
+            int applied = CombatSystem.ApplyDamageAndGetAmount(defender, new Damage(BonusDamage), attacker, zone);
+            if (showBonus && applied > 0)
+            {
+                int remaining = defender.GetStatValue("Hitpoints");
+                string health = remaining > 0 ? $" ({remaining} HP remaining)" : "";
+                MessageLog.Add($"{GetDisplayName()} adds {applied} extra damage{health}.");
+            }
 
             if (Diag.IsChannelEnabled(ItemEnhancing.DIAG_CATEGORY))
             {
