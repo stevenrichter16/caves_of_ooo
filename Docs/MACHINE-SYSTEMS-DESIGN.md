@@ -517,6 +517,17 @@ repair and save evidence comes from the Editor. The twelve complete machine
 acceptance gates remain open.
 [Delivery receipt](Verification/MachineSystems/MacCandidate7ECEE70B3/README.md)
 
+**Portable forged-head recovery — November 26 UTC, 2026.**
+An ordinary leather-bound forged assembly can be cut apart with a sound
+carried or equipped cutting tool. One action returns the canonical recorded
+head and spends the assembly, haft, binding and improvements. A working
+forge retains its head-and-haft recovery. An actual Peat Works player used
+the field head for a newly equipped mallet made with one local timber and
+one local cord. The shared cutter and physical crafting rules apply away
+from the station. The complete reclamation forge remains a separate
+dependency and acceptance gate.
+[Evidence](Verification/MachineSystems/PeatFieldHead20261126/README.md)
+
 **Replayable practical work — November24local/25UTC,2026:** The source-grounded
 [implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
 concrete requirements for compatible material demand, method-independent

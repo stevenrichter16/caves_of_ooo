@@ -104,6 +104,104 @@ namespace CavesOfOoo.Tests
             var saved = Pack.Objects.Single(e => e.ID == id); Assert.AreNotSame(weapon, saved);
             Assert.True(Act(saved, "SalvageForgedWeapon")); Assert.AreEqual(1, PackCount("SteelBladeComponent")); Assert.AreEqual(1, PackCount("OakHaftComponent"));
         }
+
+        [Test]
+        public void ACarriedDaggerRecoversTheRecordedPeatMalletHeadAwayFromAForge()
+        {
+            const string headBlueprint = "PeatMalletHeadComponent";
+            var head = Stock(headBlueprint);
+            var expected = head.GetPart<WeaponComponentPart>();
+            Assert.True(WeaponForgingService.TryForge(Actor, Factory, head, Stock("OakHaftComponent"),
+                Stock("LeatherBindingComponent"), out var weapon, out var reason), reason);
+            Assert.AreEqual(headBlueprint, weapon.GetPart<WeaponAssemblyPart>().BladeBlueprint);
+            var dagger = Stock("Dagger");
+            var daggerParts = dagger.Parts.ToArray();
+            Assert.NotNull(dagger.GetPart<CuttingToolPart>());
+            Assert.AreEqual(0, PackCount(headBlueprint));
+            var remainder = Pack.Objects.Where(item => item != weapon).ToArray();
+
+            Assert.False(ForgePart.IsNearForge(Actor, Zone));
+            Assert.False(Act(weapon, "SalvageForgedWeapon"));
+            var rows = Actions(weapon);
+            var cut = rows.Single(row => row.Command.StartsWith("CutBindingForHead|", StringComparison.Ordinal));
+            Assert.AreEqual(ActionTime.OneAction, cut.Time);
+            StringAssert.Contains("lose haft, binding, mods", cut.Display);
+            Assert.True(Act(weapon, cut.Command));
+
+            var recovered = Packed(headBlueprint);
+            var component = recovered.GetPart<WeaponComponentPart>();
+            Assert.AreNotSame(head, recovered);
+            Assert.AreEqual("Blade", component.Slot);
+            Assert.AreEqual(expected.BaseDamage, component.BaseDamage);
+            Assert.AreEqual(expected.PenBonus, component.PenBonus);
+            Assert.AreEqual(expected.HitBonus, component.HitBonus);
+            Assert.AreEqual(expected.Attributes, component.Attributes);
+            Assert.AreEqual(0, ItemEnhancing.CountEnhancements(recovered));
+            Assert.IsNull(weapon.GetPart<PhysicsPart>().InInventory);
+            CollectionAssert.AreEquivalent(remainder.Append(recovered).ToArray(), Pack.Objects);
+            CollectionAssert.AreEqual(daggerParts, dagger.Parts);
+            Assert.AreSame(Actor, dagger.GetPart<PhysicsPart>().InInventory);
+            Assert.False(Act(weapon, cut.Command));
+            Assert.AreEqual(1, PackCount(headBlueprint));
+        }
+
+        [Test]
+        public void FieldHeadRecoveryDoesNotSubstituteADifferentCutterAfterTheQuote()
+        {
+            var weapon = Weapon();
+            Assert.False(Actions(weapon).Any(row => IsFieldRecovery(row.Command)));
+            var dagger = Stock("Dagger");
+            var quote = Actions(weapon).Single(row => IsFieldRecovery(row.Command));
+            Pack.RemoveObject(dagger);
+            var otherDagger = Stock("Dagger");
+            Assert.AreNotSame(dagger, otherDagger);
+            Assert.False(Act(weapon, quote.Command));
+            Assert.True(Pack.Objects.Contains(weapon));
+            Assert.AreEqual(0, PackCount("SteelBladeComponent"));
+            Assert.True(Act(weapon, Actions(weapon).Single(row => IsFieldRecovery(row.Command)).Command));
+        }
+
+        [Test]
+        public void FieldHeadRecoveryRollsBackAnOutputMergeWhenTheExactCutterIsDamagedLate()
+        {
+            var weapon = Weapon();
+            var existingHead = Stock("SteelBladeComponent");
+            var dagger = Stock("Dagger");
+            Actor.AddPart(new BreakFieldCutter { Cutter = dagger });
+            Assert.False(Act(weapon, Actions(weapon).Single(row => IsFieldRecovery(row.Command)).Command));
+            Assert.AreEqual(1, PackCount("SteelBladeComponent"));
+            Assert.AreSame(existingHead, Packed("SteelBladeComponent"));
+            Assert.AreSame(Actor, weapon.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(0, dagger.GetStatValue("Hitpoints"));
+        }
+
+        [Test]
+        public void FieldHeadRecoveryReturnsAnIndependentlyInjuredWeaponWithoutHealingIt()
+        {
+            var weapon = Weapon();
+            Stock("Dagger");
+            int injured = weapon.GetStatValue("Hitpoints") - 1;
+            Actor.AddPart(new BreakFieldCutter { Cutter = weapon, Hitpoints = injured });
+            Assert.False(Act(weapon, Actions(weapon).Single(row => IsFieldRecovery(row.Command)).Command));
+            Assert.AreSame(Actor, weapon.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(injured, weapon.GetStatValue("Hitpoints"));
+            Assert.AreEqual(0, PackCount("SteelBladeComponent"));
+        }
+
+        static bool IsFieldRecovery(string command) => command.StartsWith("CutBindingForHead|", StringComparison.Ordinal);
+
+        sealed class BreakFieldCutter : Part
+        {
+            internal Entity Cutter;
+            internal int Hitpoints;
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "AfterInventoryAction" && IsFieldRecovery(e.GetStringParameter("Command")))
+                    Cutter.GetStat("Hitpoints").BaseValue = Hitpoints;
+                return true;
+            }
+        }
+
         [TestCase("SalvagedTimber", "shape_haft", "FieldHaftComponent")]
         [TestCase("KnotflaxCord", "braid_binding", "PlainCordBindingComponent")]
         [TestCase("Tepuibone", "shape_head", "TepuiboneHeadComponent")]

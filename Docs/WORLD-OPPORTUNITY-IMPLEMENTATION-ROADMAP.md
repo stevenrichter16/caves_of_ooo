@@ -67,6 +67,14 @@ separate guided branches. Requirements for ordinary discovery and complete
 cross-seed comparisons remain open.
 [Recovery evidence](Verification/MachineSystems/PorterParcelIntegrity20261125/README.md)
 
+At Peat Works, #11/#13/#14 now have two distinct recovery choices from the
+same earned mallet and a useful field outcome. A sound cutter recovers the
+head while a usable forge recovers the head and haft. The player kept the
+field head through Continue, prepared local timber and cord, and assembled
+and equipped a new mallet away from the rig. The broader recovery and
+reclamation forge gates remain open.
+[Field recovery playtest](Verification/MachineSystems/PeatFieldHead20261126/README.md)
+
 ## Priority 1: make needs and benefits independent of method
 
 1. **Describe one practical need in physical terms.** Start with a bounded need

@@ -54,6 +54,24 @@ drams, and the exact purchase survived fresh Continue. The final connected
 run passed 115 cases.
 [Evidence](Verification/MachineSystems/CinderholdMixedClay20261126/README.md)
 
+**A cutter recovers a usable forged head in the field — November 26 UTC, 2026.**
+The earned Peat Works branch used its dagger to recover the recorded mallet
+head in one action, leaving its clay and broken rig alone. Fresh Continue
+kept the head. The player recovered cord and timber, shaped a haft,
+braided binding, assembled and equipped a different mallet away from the
+rig, walked and continued again. The prior working forge comparison returns
+both head and haft and requires a usable station. This advances portable
+reclamation and equipment preparation while the full forge gate remains open.
+[Evidence](Verification/MachineSystems/PeatFieldHead20261126/README.md)
+
+**Next regional processing design, prepare a lake perch.** An earned Stump
+catch is already in the player pack. Give the same fish a choice between eating
+it immediately and taking it to existing heat for a more rewarding cooked meal.
+One fish should produce one meal with the same weight and sale value, and the
+old-shaped saved catch needs the cooking capability. Try the ordinary cooking
+and eating actions at The Second Bowl. This treatment and its save
+compatibility are proposed.
+
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe
 measures to actual elders. One showed the missing second measure and
