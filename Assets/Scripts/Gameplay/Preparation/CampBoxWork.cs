@@ -77,6 +77,25 @@ namespace CavesOfOoo.Core
                 && (current == null || current == Container || !HasEntry(current.Contents, item))
                 && !ListedOutsideBox(item);
         }
+        internal bool CanRefundRemainingUnit(Entity item)
+        {
+            var physics = item.GetPart<PhysicsPart>();
+            if (physics?.ParentEntity != item || physics.Equipped != null) return false;
+            var current = Box.GetPart<ContainerPart>();
+            if (physics.InInventory == Box && current == Container && item.SpatialZone == null)
+                return Container.Contents.Count(entry => entry == item) == 1
+                    && Container.Contents.Count(entry => entry?.ID == item.ID) == 1
+                    && !ListedOutsideBox(item);
+
+            // An independent structural spill keeps the original stack on the
+            // ground. Refund its own unit there rather than re-opening the box.
+            var pack = actor.GetPart<InventoryPart>();
+            return WorldResourceActions.Ground(item, zone)
+                && zone.GetReadOnlyEntities().Count(entry => entry.ID == item.ID) == 1
+                && !HasEntry(Container.Contents, item)
+                && (current == null || current == Container || !HasEntry(current.Contents, item))
+                && (pack == null || !HasEntry(pack.Objects, item) && !HasEntry(pack.EquippedItems.Values, item));
+        }
         internal bool Begin(Entity item,InventoryTransaction tx,string command)
             => Contains(item) && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked()!=true
                 && tx.TryClaim(actor,actor,command) && tx.TryClaim(Box,actor,command) && tx.TryClaim(item,actor,command);

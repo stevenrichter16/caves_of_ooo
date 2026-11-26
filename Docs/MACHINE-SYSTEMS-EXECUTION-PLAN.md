@@ -1,3 +1,18 @@
+**An installed camp box can supply the hearth — November 26 UTC, 2026.**
+The same loaded box let the player feed one stored timber in one
+action or take a stack and feed from the pack in two. The existing
+hearth used its normal burn and heat rules. Two ordinary still batches
+spent that heat, and the exact fuel, stored remainder and water flasks
+survived Continue. Final targeted run passed 144 cases.
+[Evidence](Verification/MachineSystems/CampBoxTimberFeed20261126/README.md)
+
+Next, compare Quillhold's copy-desk oil supply with the existing
+settled liquid oil. The same local agreement can accept a compatible
+amount from a flask if it leaves the shell and uses the existing
+project completion and future-consignment rules. Preserve named
+lamp oil and report collation. Start by inspecting the scribe's current
+offers and the already measured expedition flask.
+
 **Brine can leave a recoverable solid — November 26 UTC, 2026.**
 The existing hot still can give up one water to retain a pound of crust.
 The supplied seed 64 expedition camp showed the ordinary option from
@@ -6,12 +21,6 @@ crust survived fresh Continue, was picked up and proofed the original
 worn leather cap away from the still. The final coat and independent
 water flask also survived fresh Continue. Final targeted run 586/586.
 [Evidence](Verification/MachineSystems/RetainedBrineCrust20261126/README.md)
-
-Next, assess one direct timber feed from installed camp-box stock.
-Use both fixtures within the player's reach and preserve the ordinary
-pack feed. Compare the same deposit checkpoint with ordinary retrieval
-and quote exactly one stored timber for the existing fuel gain.
-The old expedition camp already has a box and hot hearth in reach.
 
 **The rough field haft makes a useful hand bellows — November 26 UTC, 2026.**
 Original Sumphold timber made the grip. In Cinderhold, the ordinary forge

@@ -1,3 +1,11 @@
+**An installed camp box can supply the hearth directly — November 26 UTC, 2026.**
+Within reach of both fixtures, the player can feed one exact stored
+timber into the existing finite fuel capacity. Carrying timber and
+feeding by hand still works. Feeding spends a real unit, reports the
+gain and leaves any unused timber in the box. Heat, burn and relighting
+all use the existing hearth rules.
+[Evidence](Verification/MachineSystems/CampBoxTimberFeed20261126/README.md)
+
 **A hot still can keep crust instead of one water — November 26 UTC, 2026.**
 The existing finite brine batch can yield two water or one water with a
 pound of recoverable crust. Both use the same four carried brine, five

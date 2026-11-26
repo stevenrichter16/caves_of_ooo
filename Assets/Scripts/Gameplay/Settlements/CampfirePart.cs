@@ -10,7 +10,8 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "Campfire";
         public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<CampfirePart>() == this
-            && (PortableKindling.OwnsReceipt(ParentEntity, command) || FiniteCooking && ReagentFireFuel.IsCommand(command));
+            && (PortableKindling.OwnsReceipt(ParentEntity, command)
+                || FiniteCooking && (ReagentFireFuel.IsCommand(command) || StoredTimberFeed.IsCommand(command)));
 
         // "What can I do here?": what the fire's rows would offer whoever is looking, in both examine readers.
         public ReaderScope Scope => ReaderScope.Both;
@@ -27,6 +28,7 @@ namespace CavesOfOoo.Core
             else
             {
                 guide.How.Add("Press C beside it. Feed coals with salvaged timber (or feed to full); light it with relight coals, or stoke to feed and light in one action. Once it burns, dry wet gear on it.");
+                guide.How.Add("You can feed one timber straight from your installed camp box when both fixtures are beside you.");
                 guide.How.Add("Cook raw food by choosing cook this stack beside a fire from the food in your pack.");
             }
             guide.Needs.Add("to feed it: salvaged timber (each timber is 10 fuel" + (fuel != null && fuel.MaxFuel > 0 ? "; it holds up to " + fuel.MaxFuel.ToString("G5", System.Globalization.CultureInfo.InvariantCulture) : "") + ")");
@@ -73,6 +75,9 @@ namespace CavesOfOoo.Core
                 var queryingActor = e.GetParameter<Entity>("Actor");
                 var queryingZone = e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone;
                 CampfireWorkActions.AddActions(queryingActor, this, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
+                if (FiniteCooking)
+                    RouteWorkMenu.Rows(ParentEntity, queryingActor, queryingZone, e.GetParameter<InventoryActionList>("Actions"),
+                        StoredTimberFeed.Choices(queryingActor, this, queryingZone), true);
                 ReagentFireFuel.AddActions(queryingActor, this, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
                 PortableKindling.AddActions(queryingActor, ParentEntity, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
                 if (!AllowRest || !WorldResourceActions.Nearby(queryingActor, ParentEntity, queryingZone)) return true;
@@ -84,6 +89,12 @@ namespace CavesOfOoo.Core
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
+                if (FiniteCooking && StoredTimberFeed.IsCommand(command))
+                {
+                    if (!RouteWorkMenu.Act(ParentEntity, e)) return true;
+                    e.Handled = true;
+                    return false;
+                }
                 if (ReagentFireFuel.IsCommand(command))
                 {
                     if (!ReagentFireFuel.TryAct(e.GetParameter<Entity>("Actor"), this, e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone,

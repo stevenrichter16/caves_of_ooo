@@ -19,10 +19,13 @@ namespace CavesOfOoo.Tests
     public sealed class CampBoxTests : FiftyWorldFixture
     {
         OverworldZoneManager manager; string wildId; Zone wild; const int AX = 20, AY = 12;
+        EntityFactory previousForgeFactory;
 
         [SetUp] public void SetupBox()
         {
             PackableFixtureRegistry.ResetForTests(); Diag.ResetAll(); MessageLog.Clear();
+            previousForgeFactory = ForgePart.Factory;
+            ForgePart.Factory = Factory;
             manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
             wildId = Enumerable.Range(0, WorldMap.Width * WorldMap.Height).Select(i => WorldMap.ToZoneID(i % WorldMap.Width, i / WorldMap.Width, 0))
                 .First(id => HeldPlaceZones.Classify(manager, id) == HeldPlaceZoneClass.WildSurface);
@@ -32,7 +35,11 @@ namespace CavesOfOoo.Tests
             manager.ReplaceLoadedState(new Dictionary<string, Zone> { { wildId, wild } }, wildId, new Dictionary<string, List<ZoneConnection>>());
             SettlementRuntime.ActiveZone = wild;
         }
-        [TearDown] public void TearDownBox() { PackableFixtureRegistry.ResetForTests(); }
+        [TearDown] public void TearDownBox()
+        {
+            ForgePart.Factory = previousForgeFactory;
+            PackableFixtureRegistry.ResetForTests();
+        }
 
         // ── shipped content ──
 
@@ -81,6 +88,158 @@ namespace CavesOfOoo.Tests
 
         string SetDownRow(Entity kit, string direction = "east") => Actions(kit).Single(a => a.Name == "SetDownFixture" && a.Display == "set down " + direction).Command;
         string Tail(Entity f) => Uri.EscapeDataString(wildId) + "|" + f.ID;
+
+        (Entity hearth, Entity box, Entity timber) TimberAndHearth(float fuel)
+        {
+            for (int x = AX - 1; x <= AX + 1; x++)
+            {
+                var cell = wild.GetCell(x, AY);
+                cell.IsVisible = cell.Explored = true;
+            }
+            var box = Carry("CampBox");
+            Assert.True(Act(box, SetDownRow(box)));
+            var timber = Carry("SalvagedTimber");
+            timber.GetPart<StackerPart>().StackCount = 3;
+            Assert.True(InventorySystem.PutInContainer(Actor, box, timber));
+            var hearth = Place("CampHearth", AX - 1, AY);
+            hearth.GetPart<PhysicsPart>().Takeable = false;
+            hearth.GetPart<FuelPart>().FuelMass = fuel;
+            hearth.GetPart<ThermalPart>().Temperature = 25f;
+            hearth.GetPart<LightSourcePart>().Enabled = false;
+            return (hearth, box, timber);
+        }
+
+        InventoryAction[] StoredTimberRows() => CellMenu(AX - 1, AY).Where(row => !row.IsDisabled
+            && row.Command.StartsWith("FeedStoredTimber|", StringComparison.Ordinal)).ToArray();
+
+        [TestCase(5f, 15f, false)]
+        [TestCase(27f, 30f, true)]
+        public void TheFireTakesOneExactStoredTimberAndLeavesItUnlit(float before, float after, bool packedAlternative)
+        {
+            var (hearth, box, timber) = TimberAndHearth(before);
+            var packed = packedAlternative ? Carry("SalvagedTimber") : null;
+            Assert.That(CellMenu(AX - 1, AY).Any(row => row.Command == "FeedCookingFire" && !row.IsDisabled),
+                Is.EqualTo(packedAlternative));
+            var row = StoredTimberRows().Single();
+
+            Assert.True(ChooseRow(row, AX - 1, AY));
+            Assert.That(hearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(after));
+            Assert.That(hearth.GetPart<ThermalPart>().Temperature, Is.EqualTo(25f));
+            Assert.False(hearth.GetPart<LightSourcePart>().Enabled);
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(timber));
+            Assert.That(timber.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.That(timber.GetPart<StackerPart>().StackCount, Is.EqualTo(2));
+            Assert.That(Pack.Objects.Count(item => item.BlueprintName == "SalvagedTimber"), Is.EqualTo(packedAlternative ? 1 : 0));
+            if (packed != null)
+            {
+                Assert.True(Pack.Contains(packed));
+                Assert.That(packed.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+            }
+        }
+
+        [Test]
+        public void AReplacementDepositCannotSatisfyAStaleTimberQuoteOrSpendThePackedAlternative()
+        {
+            var (hearth, box, timber) = TimberAndHearth(5f);
+            var stale = StoredTimberRows().Single();
+            var contents = box.GetPart<ContainerPart>();
+            Assert.True(contents.RemoveItem(timber));
+            Assert.True(wild.AddEntity(timber, AX, AY + 2));
+            var replacement = Carry("SalvagedTimber");
+            replacement.GetPart<StackerPart>().StackCount = 3;
+            Assert.True(InventorySystem.PutInContainer(Actor, box, replacement));
+            var packed = Carry("SalvagedTimber");
+
+            Assert.False(ChooseRow(stale, AX - 1, AY));
+            Assert.That(hearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(5f));
+            Assert.That(contents.Contents.Single(), Is.SameAs(replacement));
+            Assert.That(timber.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+            Assert.That(replacement.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+            Assert.That(packed.GetPart<StackerPart>().StackCount, Is.EqualTo(1));
+
+            var ordinary = CellMenu(AX - 1, AY).Single(row => row.Command == "FeedCookingFire" && !row.IsDisabled);
+            Assert.True(ChooseRow(ordinary, AX - 1, AY));
+            Assert.That(hearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(15f));
+            Assert.False(Pack.Contains(packed));
+            Assert.That(replacement.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void LateFuelChangeRefundsOnlyTheStagedFeedAndKeepsIndependentInjury()
+        {
+            var (hearth, box, timber) = TimberAndHearth(5f);
+            int hp = Actor.GetStatValue("Hitpoints");
+            var fuel = hearth.GetPart<FuelPart>();
+            int unitsDuringCallback = 0;
+            float fuelDuringCallback = 0;
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                unitsDuringCallback = timber.GetPart<StackerPart>().StackCount;
+                fuelDuringCallback = fuel.FuelMass;
+                fuel.FuelMass += 2;
+                Actor.GetStat("Hitpoints").Penalty += 2;
+            } });
+            var selected = StoredTimberRows().Single();
+
+            Assert.False(ChooseRow(selected, AX - 1, AY));
+            Assert.That(unitsDuringCallback, Is.EqualTo(2));
+            Assert.That(fuelDuringCallback, Is.EqualTo(15f));
+            Assert.That(fuel.FuelMass, Is.EqualTo(7f));
+            Assert.That(Actor.GetStatValue("Hitpoints"), Is.EqualTo(hp - 2));
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(timber));
+            Assert.That(timber.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.That(timber.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void InterruptedFeedRestoresTheSpentUnitToTheExactStackSpilledByDestruction()
+        {
+            var (hearth, box, timber) = TimberAndHearth(5f);
+            var boxCell = wild.GetEntityCell(box);
+            var contents = box.GetPart<ContainerPart>();
+            var fuel = hearth.GetPart<FuelPart>();
+            int hp = Actor.GetStatValue("Hitpoints");
+            var verdict = DestroyVerdict.NoTarget;
+            bool sawStagedFeed = false;
+            Cell spilledCell = null;
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                sawStagedFeed = contents.Contents.Contains(timber)
+                    && timber.GetPart<StackerPart>().StackCount == 2 && fuel.FuelMass == 15f;
+                verdict = DestructionSystem.Destroy(box, null, wild, "feed-interruption");
+                spilledCell = wild.GetEntityCell(timber);
+                Actor.GetStat("Hitpoints").Penalty += 2;
+            } });
+
+            Assert.False(ChooseRow(StoredTimberRows().Single(), AX - 1, AY));
+            Assert.True(sawStagedFeed);
+            Assert.That(verdict, Is.EqualTo(DestroyVerdict.Destroyed));
+            Assert.That(spilledCell, Is.SameAs(boxCell));
+            Assert.That(wild.GetEntityCell(box), Is.Null);
+            Assert.That(contents.Contents, Is.Empty);
+            Assert.That(wild.GetEntityCell(timber), Is.SameAs(boxCell));
+            Assert.That(wild.GetReadOnlyEntities().Single(item => item.BlueprintName == "SalvagedTimber"), Is.SameAs(timber));
+            Assert.That(timber.GetPart<PhysicsPart>().InInventory, Is.Null);
+            Assert.That(timber.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+            Assert.That(fuel.FuelMass, Is.EqualTo(5f));
+            Assert.That(Actor.GetStatValue("Hitpoints"), Is.EqualTo(hp - 2));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AFullFireOrForeignBoxCannotSpendStoredTimber(bool foreign)
+        {
+            var (hearth, box, timber) = TimberAndHearth(5f);
+            var stale = StoredTimberRows().Single();
+            if (foreign) box.GetPart<InstallationMarkerPart>().Origin = "Generated";
+            else hearth.GetPart<FuelPart>().FuelMass = 30f;
+
+            Assert.That(StoredTimberRows(), Is.Empty);
+            Assert.False(ChooseRow(stale, AX - 1, AY));
+            Assert.That(hearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(foreign ? 5f : 30f));
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(timber));
+            Assert.That(timber.GetPart<StackerPart>().StackCount, Is.EqualTo(3));
+        }
 
         [Test] public void ABoughtBoxCanBeSetDownFilledTakenUpAndSetDownElsewhereWithItsContents()
         {

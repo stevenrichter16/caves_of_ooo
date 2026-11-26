@@ -202,6 +202,12 @@ cross-seed comparisons remain open.
     their ordinary actions elsewhere.
     [Evidence](Verification/MachineSystems/CampBoxScreening20261125/README.md)
 
+    The same installed box now gives the hearth a real local fuel supply.
+    One exact stored timber can feed it without retrieval. The matched
+    native branches show one action from stock and two via ordinary
+    retrieval and pack feed. The heat then powered two still batches.
+    [Evidence](Verification/MachineSystems/CampBoxTimberFeed20261126/README.md)
+
 ## Priority 4: make storage and lasting projects optional investments
 
 16. **Provide real receiving storage.** A shelf, bay or bench needs an actual

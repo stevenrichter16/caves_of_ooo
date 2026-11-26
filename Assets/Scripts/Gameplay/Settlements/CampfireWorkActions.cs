@@ -41,6 +41,7 @@ namespace CavesOfOoo.Core
             if (actor == null || fire == null || zone == null || !Source(actor, fire, zone) || !Fuel(fire, out var fuel)) return null;
             var parts = new System.Collections.Generic.List<string>();
             int feedN = FeedCount(fuel, TimberCarried(actor)); if (feedN >= 1) parts.Add("feed it (" + feedN + " timber)");
+            if (StoredTimberFeed.Choices(actor, fire, zone).Any()) parts.Add("feed it from your camp box");
             if (fuel.FuelMass > 0 && !Hot(fire) && IgnitionSources.Find(actor, zone, fire.ParentEntity) != null) parts.Add("light it");
             if (Hot(fire) && actor.GetPart<InventoryPart>() is InventoryPart pack)
             {
@@ -184,6 +185,92 @@ namespace CavesOfOoo.Core
                 if (own) tx.Commit(); return true;
             }
             finally { if (own) tx.Rollback(); }
+        }
+    }
+
+    internal static class StoredTimberFeed
+    {
+        const string Timber = "SalvagedTimber";
+        const string Prefix = "FeedStoredTimber|";
+
+        internal static bool IsCommand(string command) => command?.StartsWith(Prefix, StringComparison.Ordinal) == true;
+
+        internal static System.Collections.Generic.IEnumerable<RouteWorkMenu.Entry> Choices(Entity actor, CampfirePart fire, Zone zone)
+        {
+            if (!RouteWorkMenu.ActorReady(actor, zone) || !CampfireWorkActions.Source(actor, fire, zone)
+                || !CampfireWorkActions.Fuel(fire, out var fuel)) yield break;
+            var hearth = fire.ParentEntity;
+            var hearthCell = zone.GetEntityCell(hearth);
+            var actorCell = zone.GetEntityCell(actor);
+            if (!RouteWorkMenu.Visible(hearthCell) || hearth.HasEffect<BrokenEffect>()) yield break;
+            var heat = hearth.GetPart<ThermalPart>();
+            var maximum = fuel.MaxFuel;
+            var before = fuel.FuelMass;
+            var filled = Math.Min(maximum, before + 10);
+            double gain = (double)filled - before;
+            if (gain <= 0 || gain > 10) yield break;
+            var temperature = heat.Temperature;
+            var sameHearth = RouteWorkMenu.Identity(hearth);
+            var factory = ForgePart.Factory;
+            var template = MaterialProcessTemplate.Capture(factory, Timber);
+            if (template == null) yield break;
+
+            foreach (var box in InventorySystem.GetDepositContainers(actor, zone))
+            {
+                var stock = MaterialProcessStock.Resolve(actor, box, zone);
+                if (stock == null) continue;
+                var timber = stock.Container.Contents.FirstOrDefault(item => item.BlueprintName == Timber
+                    && stock.Contains(item) && template.Snapshot(item, allowInstances: true) != null);
+                if (timber == null) continue;
+                var payload = template.Snapshot(timber, allowInstances: true);
+                var physics = timber.GetPart<PhysicsPart>();
+                var stack = timber.GetPart<StackerPart>();
+                int count = stack?.StackCount ?? 1;
+                string timberId = timber.ID;
+                var boxCell = zone.GetEntityCell(box);
+
+                bool FireCurrent(float expected) => ForgePart.Factory == factory && RouteWorkMenu.ActorReady(actor, zone)
+                    && CampfireWorkActions.Source(actor, fire, zone) && sameHearth()
+                    && zone.GetEntityCell(actor) == actorCell && zone.GetEntityCell(hearth) == hearthCell
+                    && RouteWorkMenu.Visible(hearthCell) && !hearth.HasEffect<BrokenEffect>() && hearth.GetPart<ThermalPart>() == heat
+                    && heat.Temperature == temperature && CampfireWorkActions.Fuel(fire, out var current)
+                    && current == fuel && fuel.MaxFuel == maximum && fuel.FuelMass == expected;
+                bool Before() => FireCurrent(before) && stock.Contains(timber) && payload.Matches()
+                    && (stack?.StackCount ?? 1) == count;
+                bool After() => FireCurrent(filled) && stock.Current() && payload.Matches()
+                    && (count > 1 ? stock.Contains(timber) && stack.StackCount == count - 1
+                        : stock.ExcludesPaidItem(timber) && timber.SpatialZone == null
+                            && physics.InInventory == null && physics.Equipped == null && (stack?.StackCount ?? 1) == 1);
+                bool Refundable() => count == 1 ? stock.ExcludesPaidItem(timber)
+                    : stock.CanRefundRemainingUnit(timber);
+                string key = Prefix + Uri.EscapeDataString(box.ID) + "|" + Uri.EscapeDataString(timberId);
+                string fuelText = gain.ToString("G5", System.Globalization.CultureInfo.InvariantCulture);
+                yield return new RouteWorkMenu.Entry
+                {
+                    Actor = actor, Zone = zone, Cell = hearthCell, Key = key, Claims = new[] { box, timber },
+                    Label = "feed from camp box at " + boxCell.X + "," + boxCell.Y + " (+" + fuelText + " fuel)",
+                    Hint = "Uses one salvaged timber directly from your installed camp box. One action. Cold coals stay cold.",
+                    Before = Before, After = After,
+                    Apply = tx =>
+                    {
+                        if (!MaterialProcessService.ReserveInput(timber, tx) || !stock.Consume(timber, tx, false, Refundable)
+                            || !FireCurrent(before)) return false;
+                        tx.Do(() => fuel.FuelMass = filled, () =>
+                        {
+                            if (hearth.GetPart<FuelPart>() == fuel && fuel.ParentEntity == hearth
+                                && WorldResourceActions.Finite(fuel.FuelMass) && WorldResourceActions.Finite(fuel.MaxFuel) && fuel.MaxFuel >= 0)
+                                fuel.FuelMass = (float)Math.Max(0, Math.Min(fuel.MaxFuel, fuel.FuelMass - gain));
+                        });
+                        return true;
+                    },
+                    Publish = () =>
+                    {
+                        hearth.GetPart<HearthGlowPart>()?.SyncLight();
+                        ZoneRenderHooks.MarkCellDirty(hearthCell, "StoredTimberFed");
+                        MessageLog.Add("You feed one salvaged timber from the camp box to the coals.");
+                    }
+                };
+            }
         }
     }
 }
