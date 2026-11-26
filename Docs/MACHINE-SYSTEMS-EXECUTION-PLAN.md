@@ -100,6 +100,12 @@ and sell quotes allow local and reputation discounts to narrow the
 spread to parity. The guided play checked quotes without purchase.
 [Evidence](Verification/MachineSystems/WellmeetWorkingScales20261126/README.md)
 
+**Sealed freight and working scales Mac delivery — November 26 UTC, 2026.**
+The universal Mac package from `31a2513ff` reached GameBootstrap on
+Apple Silicon. Package and ordinary startup save hashes matched.
+Packaged gameplay and Intel execution remain open.
+[Delivery receipt](Verification/MachineSystems/MacCandidate31A2513FF/README.md)
+
 **Next route design, use a rough haft as a removable door brace.**
 Consider the existing physical latch gate and recovery behavior for one
 sound loose rough field haft. Ordinary iron spikes remain available.
