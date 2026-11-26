@@ -584,6 +584,17 @@ goods. This advances the comparative play gate at one site. Wider
 unguided discovery and complete-machine acceptance remain open.
 [Evidence](Verification/MachineSystems/GantrySupplyComparison20261126/README.md)
 
+**A spare wedge at the dispatch yard — November 26 UTC, 2026.**
+A sound loose rough field haft can serve as one spent wedge when the
+player carries no suitable timber. The adjacent exposed mechanism must
+already support jamming. Both materials produce the same saved jammed
+state. At the dispatch yard the existing salvage action recovers one
+spike. Actual play reached the same crate by following either the
+jammed entrance or the passage cleared by hauling its fallen beam.
+Hauling left the trap armed and kept the haft. An earlier layout's trap
+sprang when a creature walked onto it before the player arrived at the gate.
+[Evidence](Verification/MachineSystems/FieldHaftTrapWedge20261126/README.md)
+
 **A rough field haft supports Sella’s bench — November 26 UTC, 2026.**
 The existing covered timber bench uses two salvaged timber or one timber
 and one sound loose rough field haft. The recipe prefers two timber.

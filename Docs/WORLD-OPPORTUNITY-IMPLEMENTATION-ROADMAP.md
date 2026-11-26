@@ -75,6 +75,15 @@ and equipped a new mallet away from the rig. The broader recovery and
 reclamation forge gates remain open.
 [Field recovery playtest](Verification/MachineSystems/PeatFieldHead20261126/README.md)
 
+For #11/#13/#14, the loose rough field haft now has another use at a
+visible mechanism that accepts a wooden wedge. The existing plain
+timber bill has priority. At one dispatch yard, the direct branch spent
+its haft, crossed the jammed gate and kept one recovered spike. A branch
+from the same arrival hauled the beam, kept the haft and came to the
+same crate from the other side. This adds a guided #40 tool-versus-haul
+comparison. Wider discovery and layout coverage remain open.
+[Dispatch yard playtest](Verification/MachineSystems/FieldHaftTrapWedge20261126/README.md)
+
 Stump and Morrowfast now have an extra connected choice for #14/#19/#40.
 The earlier paid-trap branch ate the catch raw. A branch from its earned
 return took the same raw fish to the existing Second Bowl stove and used

@@ -117,4 +117,132 @@ namespace CavesOfOoo.Tests
             Assert.False(Offer());Supply();Assert.False(Act());Assert.True(MovementSystem.TryMove(Actor,Zone,1,0));Assert.AreEqual(88,Actor.GetStatValue("Hitpoints"));
         }
     }
+
+    public sealed class TrapJammingFieldHaftTests : FiftyWorldFixture
+    {
+        const string Haft = "FieldHaftComponent";
+        const string Timber = "SalvagedTimber";
+
+        Entity VisibleTrap(string blueprint = "SpikeTrap")
+        {
+            var trap = Place(blueprint);
+            var cell = Zone.GetEntityCell(trap);
+            cell.IsVisible = true;
+            cell.Explored = true;
+            return trap;
+        }
+
+        Entity ShapeHaft()
+        {
+            Assert.True(Act(Carry(Timber), "PrepareRecipe|shape_haft"));
+            return Pack.Objects.Single(item => item.BlueprintName == Haft);
+        }
+
+        InventoryAction JamRow() => CellMenu(11, 10).Single(row => row.Command == TrapJammingPart.JamCommand);
+
+        [TestCase(1)]
+        [TestCase(3)]
+        public void OrdinaryTrapMenuSpendsOneExactPreparedHaftAndTheTrapStaysSafe(int quantity)
+        {
+            var trap = VisibleTrap();
+            var haft = ShapeHaft();
+            haft.GetPart<StackerPart>().StackCount = quantity;
+            var row = JamRow();
+
+            Assert.True(ChooseRow(row, 11, 10), "The ordinary C menu accepts the carried rough field haft.");
+            Assert.True(TrapJammingPart.IsJammed(trap));
+            Assert.AreEqual(quantity > 1, Pack.Objects.Contains(haft));
+            Assert.AreSame(quantity > 1 ? Actor : null, haft.GetPart<PhysicsPart>().InInventory);
+            if (quantity > 1) Assert.AreEqual(quantity - 1, haft.GetPart<StackerPart>().StackCount);
+            Assert.False(ChooseRow(row, 11, 10));
+            int hp = Actor.GetStatValue("Hitpoints");
+            Assert.True(MovementSystem.TryMove(Actor, Zone, 1, 0));
+            Assert.AreEqual(hp, Actor.GetStatValue("Hitpoints"));
+            Assert.AreSame(Zone.GetEntityCell(Actor), Zone.GetEntityCell(trap));
+        }
+
+        [Test]
+        public void OrdinaryTimberStillTakesPriorityOverAnEarlierRoughHaft()
+        {
+            var trap = VisibleTrap();
+            var haft = ShapeHaft();
+            var timber = Carry(Timber);
+
+            Assert.True(ChooseRow(JamRow(), 11, 10));
+            Assert.True(TrapJammingPart.IsJammed(trap));
+            CollectionAssert.AreEqual(new[] { haft }, Pack.Objects);
+            Assert.AreSame(Actor, haft.GetPart<PhysicsPart>().InInventory);
+            Assert.IsNull(timber.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [TestCase("altered")]
+        [TestCase("assembled")]
+        [TestCase("equipped")]
+        public void AlteredOrAttachedHaftsDoNotPayForAJam(string condition)
+        {
+            var trap = VisibleTrap();
+            var haft = ShapeHaft();
+            switch (condition)
+            {
+                case "altered": haft.GetPart<WeaponComponentPart>().MaxStrengthBonus++; break;
+                case "assembled":
+                    Assert.True(WeaponForgingService.TryForge(Actor, Factory, Carry("PeatMalletHeadComponent"),
+                        haft, Carry("LeatherBindingComponent"), out var assembled, out var reason), reason);
+                    Assert.That(assembled.GetPart<WeaponAssemblyPart>().HaftBlueprint, Is.EqualTo(Haft));
+                    break;
+                case "equipped": haft.GetPart<PhysicsPart>().Equipped = Actor; break;
+            }
+            var before = Pack.Objects.ToArray();
+
+            Assert.False(ChooseRow(JamRow(), 11, 10));
+            Assert.False(TrapJammingPart.IsJammed(trap));
+            CollectionAssert.AreEqual(before, Pack.Objects);
+        }
+
+        [Test]
+        public void LateInterruptionRestoresThePaidHaftAndPreservesIndependentInjury()
+        {
+            var trap = VisibleTrap();
+            var haft = ShapeHaft();
+            var hp = Actor.GetStat("Hitpoints");
+            int before = hp.BaseValue;
+            bool interrupted = false;
+            Actor.AddPart(new TrapJammingAdversarialTests.AfterAction { Callback = () =>
+            {
+                interrupted = true;
+                hp.BaseValue--;
+                throw new InvalidOperationException("interrupted haft jam");
+            }});
+
+            Assert.False(ChooseRow(JamRow(), 11, 10));
+            Assert.True(interrupted, "The successful haft payment must reach the late callback.");
+            Assert.False(TrapJammingPart.IsJammed(trap));
+            CollectionAssert.AreEqual(new[] { haft }, Pack.Objects);
+            Assert.AreSame(Actor, haft.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(before - 1, hp.BaseValue);
+        }
+
+        [Test]
+        public void VisibleTrapExplainsBothMaterialsButHiddenOrUnsupportedTrapsHaveNoJamRow()
+        {
+            var trap = VisibleTrap();
+            var row = JamRow();
+            string menu = row.Display + " " + row.Hint;
+            string help = trap.GetPart<TrapJammingPart>().DescribeJamming();
+            Assert.False(ChooseRow(row, 11, 10));
+            StringAssert.Contains("salvaged timber", menu);
+            StringAssert.Contains("field haft", menu);
+            StringAssert.Contains("salvaged timber", help);
+            StringAssert.Contains("field haft", help);
+
+            ShapeHaft();
+            Zone.GetEntityCell(trap).IsVisible = false;
+            Assert.False(CellMenu(11, 10).Any(action => action.Command == TrapJammingPart.JamCommand));
+            Assert.True(Zone.RemoveEntity(trap));
+            var rune = VisibleTrap("RuneOfFlame");
+            rune.AddPart(new TrapJammingPart());
+            Assert.False(CellMenu(11, 10).Any(action => action.Command == TrapJammingPart.JamCommand));
+            Assert.IsEmpty(rune.GetPart<TrapJammingPart>().DescribeJamming());
+        }
+    }
 }

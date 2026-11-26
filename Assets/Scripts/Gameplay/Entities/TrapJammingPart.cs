@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Diagnostics;
@@ -6,9 +7,8 @@ using CavesOfOoo.Diagnostics;
 namespace CavesOfOoo.Core
 {
     /// <summary>Opt-in intervention on four mechanical floor traps. One carried
-    /// salvaged timber permanently jams this exact mechanism. The saved owner and
-    /// its original trigger stay in place; there is no rearm or recoverable timber.</summary>
-    public sealed class TrapJammingPart : Part, IDescribeState
+    /// wedge permanently jams the exact mechanism and is spent.</summary>
+    public sealed class TrapJammingPart : Part, IDescribeState, IInventoryActionReceiptOwner
     {
         // ── reader contract (Docs/MACHINE-READERS.md) ──
         public ReaderScope Scope => ReaderScope.Both;
@@ -18,7 +18,12 @@ namespace CavesOfOoo.Core
         public override string Name => "TrapJamming";
         public const string JamCommand = "JamTrap";
         public const string TimberBlueprint = "SalvagedTimber";
+        public const string HaftBlueprint = "FieldHaftComponent";
+        private const string WedgeBill = "1 salvaged timber or 1 sound rough field haft";
         public bool Jammed;
+
+        public bool OwnsInventoryReceipt(string command) => command == JamCommand
+            && ParentEntity?.GetPart<TrapJammingPart>() == this;
 
         /// <summary>Pure shape check. Magical, living, grouped, duplicated or
         /// mismatched mechanisms cannot gain this action through the opt-in alone.</summary>
@@ -60,8 +65,9 @@ namespace CavesOfOoo.Core
         {
             if (!IsSupported(ParentEntity) || ParentEntity.GetPart<TrapJammingPart>() != this) return "";
             return Jammed
-                ? "A length of salvaged timber wedges the mechanism. It is jammed permanently; stepping here will not fire this trap. The timber cannot be recovered."
-                : "The exposed mechanism can be wedged from an adjacent tile: jam it with 1 carried salvaged timber. This takes one action and permanently disables this trap; the timber cannot be recovered.";
+                ? "A wooden wedge holds the mechanism. It is jammed permanently. The wedge is spent."
+                : "Stand beside the exposed mechanism to jam it with " + WedgeBill
+                    + ". Timber is used first. One action spends the wedge and permanently disables the trap.";
         }
 
         /// <summary>Use the native inventory command receipt. This helper charges
@@ -79,7 +85,8 @@ namespace CavesOfOoo.Core
             {
                 var actor = e.GetParameter<Entity>("Actor");
                 if (CanOfferJam(actor, actor?.SpatialZone))
-                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("JamTrap", "jam mechanism (1 salvaged timber)", JamCommand, 'j', 20);
+                    e.GetParameter<InventoryActionList>("Actions")?.AddActionWithHint("JamTrap", "jam mechanism", JamCommand,
+                        "Uses " + WedgeBill + ". Timber first. The wedge stays spent.", 'j', 20, time: ActionTime.OneAction);
                 return true;
             }
             if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != JamCommand) return true;
@@ -136,13 +143,13 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        private static bool CarriedTimber(Entity item, Entity actor, Entity target, InventoryPart inventory)
+        private static bool CarriedWedge(Entity item, Entity actor, Entity target, InventoryPart inventory, string blueprint)
         {
             var physical = item?.GetPart<PhysicsPart>(); var stack = item?.GetPart<StackerPart>();
-            if (item == null || item.BlueprintName != TimberBlueprint || string.IsNullOrWhiteSpace(item.ID)
+            if (item == null || item.BlueprintName != blueprint || string.IsNullOrWhiteSpace(item.ID)
                 || item.ID == actor.ID || item.ID == target.ID || item.HasTag("Creature") || item.SpatialZone != null
                 || physical?.ParentEntity != item || !physical.Takeable || physical.InInventory != actor || physical.Equipped != null
-                || stack != null && (stack.ParentEntity != item || stack.StackCount < 1)) return false;
+                || stack != null && (stack.ParentEntity != item || stack.StackCount < 1 || stack.StackCount > stack.MaxStack)) return false;
             foreach (var equipped in inventory.EquippedItems.Values) if (equipped == item) return false;
             if (inventory.FindEquippedBodyPart(item) != null) return false;
             int references = 0;
@@ -177,22 +184,58 @@ namespace CavesOfOoo.Core
             reason = Context(actor, zone);
             if (reason != null) return Reject(actor, reason);
             if (!CurrentIdentities(actor, owner, zone)) return Reject(actor, "ambiguous-identity");
-            var inventory = actor.GetPart<InventoryPart>(); Entity timber = null;
-            foreach (var item in inventory.Objects)
-                if (CarriedTimber(item, actor, owner, inventory)) { timber = item; break; }
-            if (timber == null) return Reject(actor, "missing-material");
-            if (!transaction.TryClaim(timber, actor, JamCommand)) return Reject(actor, "material-busy");
-            var snapshot = InventoryTransferSnapshot.Capture(inventory);
-            transaction.Do(null, snapshot.Restore);
-            bool paid = snapshot.Apply(() => CarriedTimber(timber, actor, owner, inventory) && inventory.TryConsumeOne(timber));
-            if (!paid || !snapshot.ClaimChanges(transaction, actor, JamCommand) || Context(actor, zone) != null
-                || actor.GetPart<InventoryPart>() != inventory || !CurrentIdentities(actor, owner, zone)) return Reject(actor, "state-changed");
+            var inventory = actor.GetPart<InventoryPart>();
+            var wedge = inventory.Objects.FirstOrDefault(item => CarriedWedge(item, actor, owner, inventory, TimberBlueprint));
+            MaterialProcessItemState haft = null;
+            if (wedge == null)
+            {
+                var factory = WorldLocationContext.For(zone)?.Factory ?? HarvestablePart.Factory;
+                var template = MaterialProcessTemplate.Capture(factory, HaftBlueprint);
+                if (template != null)
+                    foreach (var item in inventory.Objects)
+                    {
+                        if (!CarriedWedge(item, actor, owner, inventory, HaftBlueprint)) continue;
+                        haft = template.Snapshot(item);
+                        if (haft == null) continue;
+                        wedge = item;
+                        break;
+                    }
+            }
+            if (wedge == null) return Reject(actor, "missing-material");
+            if (!inventory.CanConsumeOne(wedge) || !transaction.TryClaim(wedge, actor, JamCommand)
+                || !MaterialProcessService.ReserveInput(wedge, transaction)) return Reject(actor, "material-busy");
+
+            var origin = zone.GetEntityCell(actor);
+            var physics = wedge.GetPart<PhysicsPart>();
+            var stack = wedge.GetPart<StackerPart>();
+            int count = stack?.StackCount ?? 1;
+            string id = wedge.ID, material = wedge.BlueprintName;
+            bool PayloadCurrent() => wedge.ID == id && wedge.BlueprintName == material
+                && wedge.GetPart<PhysicsPart>() == physics && wedge.GetPart<StackerPart>() == stack
+                && (haft == null || haft.Matches());
+            bool RefundingSafe() => inventory.Objects.All(item => item == wedge || item?.ID != id)
+                && inventory.EquippedItems.Values.All(item => item?.ID != id)
+                && inventory.FindEquippedBodyPart(wedge) == null;
+            bool PaymentCurrent() => PayloadCurrent() && RefundingSafe() && actor.GetPart<InventoryPart>() == inventory
+                && actor.SpatialZone == zone && zone.GetEntityCell(actor) == origin
+                && actor.GetStatValue("Hitpoints", 0) > 0 && !CombatSystem.IsDeathHandled(actor)
+                && (count > 1
+                    ? CarriedWedge(wedge, actor, owner, inventory, material) && stack.StackCount == count - 1
+                    : wedge.SpatialZone == null && physics.InInventory == null && physics.Equipped == null
+                        && (stack?.StackCount ?? 1) == 1 && !inventory.Objects.Contains(wedge));
+            if (!MaterialProcessPayment.Spend(actor, wedge, actor, zone, transaction, PayloadCurrent,
+                    refundAllowed: RefundingSafe) || !PaymentCurrent() || Context(actor, zone) != null
+                || !CurrentIdentities(actor, owner, zone)) return Reject(actor, "state-changed");
+            // Independent listeners can move the trap. Its presentation below
+            // checks the current owner. The payment still needs exact custody.
+            transaction.BeforeCommit(PaymentCurrent);
             transaction.Do(() => Jammed = true, () => Jammed = false);
             transaction.AfterCommit(() =>
             {
-                MessageLog.Add("You wedge salvaged timber into the mechanism. The trap is permanently jammed.");
+                string wedgeName = material == TimberBlueprint ? "salvaged timber" : "a rough field haft";
+                MessageLog.Add("You wedge " + wedgeName + " into the mechanism. The trap is permanently jammed.");
                 Diag.Record("furniture", "TrapJammed", actor, owner,
-                    new { blueprint = owner.BlueprintName, material = TimberBlueprint, quantity = 1, zoneId = zone.ZoneID });
+                    new { blueprint = owner.BlueprintName, material, materialId = id, quantity = 1, zoneId = zone.ZoneID });
                 var cell = zone.GetEntityCell(owner);
                 if (cell != null) ZoneRenderHooks.MarkCellDirty(cell.X, cell.Y, "Trap.Jammed");
                 // AfterInventoryAction observers may independently move or replace
@@ -211,7 +254,7 @@ namespace CavesOfOoo.Core
         {
             if (actor?.HasTag("Player") == true)
                 MessageLog.Add(reason == "already-jammed" ? "That trap is already jammed."
-                    : reason == "missing-material" ? "Jamming this mechanism needs 1 carried salvaged timber."
+                    : reason == "missing-material" ? "Jamming this mechanism needs " + WedgeBill + "."
                     : "You cannot jam that mechanism here.");
             Diag.Record("furniture", "TrapJamRejected", actor, ParentEntity, new { reason });
             return false;

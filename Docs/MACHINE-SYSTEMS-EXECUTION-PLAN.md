@@ -1,3 +1,16 @@
+**A field haft can wedge an exposed mechanism — November 26 UTC, 2026.**
+The timber-first jam action accepts one sound loose rough field haft.
+Guided seed 64 play compared the same yard from one saved arrival.
+The direct crossing spent the haft and recovered one spike. Hauling
+the fallen beam kept the haft and left the trap armed. Both reached
+the same crate and took the same dried meat at 40 HP. Fresh Continues
+confirmed the jam, salvage and haul outcome. A creature triggered the
+first visited yard's trap before the player reached it. The connected
+native run passed 248 of 248 checks. Wider discovery and the original
+45 acceptance checks remain the current work before the improvement pass.
+The `35566d84a` Mac package predates this slice.
+[Evidence](Verification/MachineSystems/FieldHaftTrapWedge20261126/README.md)
+
 **Dressing bench and meal sharing Mac delivery — November 26 UTC, 2026.**
 The universal package from `35566d84a` reached GameBootstrap on Apple
 Silicon. It includes the mixed dressing bench repair and companion meal

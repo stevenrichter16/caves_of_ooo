@@ -52,7 +52,7 @@ namespace CavesOfOoo.Core
         protected override string[] Verbs => new[] { "SalvageJammedTrap" };
         protected override bool Civilian => false;
         bool Ready() => ParentEntity.BlueprintName == "SpikeTrap" && TrapJammingPart.IsJammed(ParentEntity);
-        protected override void Choices(Entity actor, Zone zone, InventoryActionList a) { if (Ready()) Offer(a, "salvage spike (timber stays spent)", "SalvageJammedTrap"); }
+        protected override void Choices(Entity actor, Zone zone, InventoryActionList a) { if (Ready()) Offer(a, "salvage spike (wedge stays spent)", "SalvageJammedTrap"); }
         protected override bool Apply(Entity actor, Zone zone, string command, InventoryTransaction tx) => command == "SalvageJammedTrap"
             && ExplorationDismantle.Apply(actor, ParentEntity, zone, tx, command, "IronSpikeComponent", 1, Ready);
     }
