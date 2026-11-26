@@ -134,6 +134,12 @@ ore joined Orrit’s stock and survived Continue.
 [Work and purchase playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md) ·
 [Carried-in ore comparison](Verification/MachineSystems/MorrowfastCarriedOre20261126/README.md)
 
+The same player spent both rewarded clay and the exact bought spike on
+the existing forge recipe for a reusable hearth nozzle. Continue kept
+the exact nozzle. This extends the reward-to-tool part of #40. Ordinary
+acquisition of an own hearth, ignition and natural field heat remain open.
+[Earned nozzle checkpoint](Verification/MachineSystems/EarnedHearthNozzle20261126/README.md)
+
 For #2, #4, #18 and #40, the quiet watch bell uses verified lining clay.
 One exact purchased Wayside shipment measure established the same quiet
 setting as fire clay. Carrying it to another town made that purchase useful

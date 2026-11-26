@@ -1,3 +1,11 @@
+**The two iron jobs fund an earned hearth nozzle — November 26 UTC, 2026.**
+The exact bought spike and both rewarded fire clay made nozzle `21581`
+at the Cinderhold forge. Fresh Continue retained the tool, 32 drams and
+40 HP. The current trader inventories and pack had no camp hearth or
+striker. The next bounded field-use trial needs an earned owned fire,
+fuel and a natural target. Acquisition is verified.
+[Earned tool checkpoint](Verification/MachineSystems/EarnedHearthNozzle20261126/README.md)
+
 **The iron reward and Morrowfast bell Mac package started on M5 — November 26 UTC, 2026.**
 Universal runtime `2dc8c92fe` includes the reward change and the
 compatible watch bell sleeve. Both current and previous apps matched

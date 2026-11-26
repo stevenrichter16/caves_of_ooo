@@ -13,9 +13,12 @@ on a spike that can go into a tool. The clay was still available for
 repair work. Mining retained its real standing cost. The player carried
 the second ore to Orrit, who awarded the quoted work payment and put the
 same ore into stock. A fresh load retained both completed jobs.
+The two earned clay and bought spike then made one reusable hearth
+nozzle. Its ordinary heating route still needs a player-owned fire.
 [Economy design](ECONOMY-SYSTEM.md#job-and-mission-rewards) ·
 [Cinderhold playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md) ·
-[Morrowfast playtest](Verification/MachineSystems/MorrowfastCarriedOre20261126/README.md)
+[Morrowfast playtest](Verification/MachineSystems/MorrowfastCarriedOre20261126/README.md) ·
+[Earned nozzle](Verification/MachineSystems/EarnedHearthNozzle20261126/README.md)
 
 **Silver sand from the Sumphold recovery has a lasting use at Sill.**
 The player brought the exact reward to the existing MainWell project.
