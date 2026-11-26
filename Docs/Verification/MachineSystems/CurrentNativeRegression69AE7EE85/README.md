@@ -76,6 +76,13 @@ matching Previous-mode model. A custody check counted the Stillleaf
 inventory-icon index as a blueprint supply reference. Isolated reruns
 of those discrepancies remain open.
 
-Four filters have yet to run. Keep the I–R name discrepancy and the
+Spread A–G matched all 1,385 names, with 1,383 passes and two failures.
+Two historical geometry cases now passed. The seed-keeper purse still
+differs from its historical fixture. The additional failure could not
+load the tracked creature appearance requirements in the scratch clone.
+That exact file and the Rim Forest input were restored from the original
+commit for a separate rerun.
+
+Three filters have yet to run. Keep the I–R name discrepancy and the
 separate whole-process verdict open.
 [Case counts and receipts](coverage.json)
