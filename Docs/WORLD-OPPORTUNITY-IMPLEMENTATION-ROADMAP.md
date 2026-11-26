@@ -615,6 +615,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     during the shower and briefly afterward. The collected packet remains
     usable later. Some optional materials can have genuinely weather-exclusive
     wild collection windows. [Workable-seam design](WEATHER-AND-SEASONAL-TOOL-USES.md#weather-exposes-a-workable-seam)
+    The source or its surroundings show the change during ordinary
+    exploration. Compare the same approach before and during the opportunity,
+    then after the window closes or the stock is taken. Examine explains
+    the visible cue. [Visual acceptance](WEATHER-AND-SEASONAL-TOOL-USES.md#show-the-change-in-the-world)
 
 33. **Allocate the source once.** Alternative fibre, seed and produce uses share
     the source's declared finite budget. Seasonal transitions cannot reset

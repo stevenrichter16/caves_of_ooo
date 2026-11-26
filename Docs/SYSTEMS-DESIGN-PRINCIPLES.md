@@ -90,6 +90,12 @@ capabilities; a calendar label or combat attribute is not work permission.
 Learning a tool should suggest applications elsewhere, including useful town
 services and portable counterparts where supported.
 
+Player direction, November 26. Environmental opportunities should be visible
+on an ordinary walk near home or farther afield. A change in the source
+or surrounding terrain tells the player that something is different.
+Examine can explain the material and the available work. Verify that
+the visible change follows the same state as the actual opportunity.
+
 The [weather design](WEATHER-AND-SEASONAL-TOOL-USES.md) records concrete proposed
 uses, regional discovery, resource/timing policies and staged acceptance. These
 are design extensions except bounded W1a collection/manual watering, now

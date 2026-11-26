@@ -243,6 +243,23 @@ without showing an overwhelming catalogue. Local workers can mention one nearby
 opportunity; merchant goods can suggest a preparation or project. Forecasts
 describe ordinary conditions only, not unseen actors, contents or mysteries.
 
+### Show the change in the world
+
+Every environmental material opportunity needs a visible cue in normal
+exploration at the usual viewing scale. The cue comes from what changed
+in that place. A bank gains a broken edge and a loose apron of sediment.
+A falling river leaves a wet line and exposes stones with distinct shapes.
+A windblown pile gathers in a visible streak against a wall. A cracked
+frost plate lifts at one edge. These shapes, textures and motions can
+carry the meaning alongside color.
+
+Where a collection window has a closing phase, show that too. At the clay
+seam the fresh apron looks loose, the closing apron starts to crust over,
+and a gathered seam shows bare ground. Each look follows the same local
+state that controls collection. Appearance follows actual visibility and
+the current saved material state. Examine explains what the player saw,
+the likely yield and any tool or timing requirements.
+
 Design opportunities to last long enough for noticing and trying. Where a bonus
 exposes a material, the claimed physical material persists after the weather.
 Where it advances work, bank only validated progress on that exact paid batch.
@@ -388,6 +405,9 @@ Runtime acceptance and current Mac delivery are separate from this design.
 Natural-discovery trials must include an ordinary route without a prepared
 recipe checklist. Record noticeable clues, usable sources, reachable consumers,
 what equipment was actually acquired, alternatives and opportunities skipped.
+For each environmental opportunity, compare the ordinary and changed looks
+from the same approach before opening Examine. Show that the visible cue
+still matches readiness, closing or spent state after leaving and reloading.
 Test both taking and ignoring a bonus. Tune encounter frequency and window
 length from those observations; a directed success does not prove density.
 
