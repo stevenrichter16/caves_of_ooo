@@ -601,6 +601,15 @@ faulted rig points to a repair. Paying for the Peat Works patch restored
 the forge option on the same mallet through fresh Continue.
 [Readiness playtest](Verification/MachineSystems/ForgeRecoveryReadiness20261126/README.md)
 
+**Restoring the watch lantern extends actual nearby light.**
+The existing paid stable repair extends the original map light from
+ten to twelve cells. Temporary repairs keep the ordinary radius.
+At Sill, the player bought one portion from the Sumphold oil shipment,
+paid the warden and returned to the same approach. Two previously
+visible ground cells grew brighter and stayed brighter through Continue.
+The claim covers illumination under the existing occlusion and fog rules.
+[Sill light playtest](Verification/MachineSystems/SillLanternLight20261126/README.md)
+
 **An earned Stump catch supplies an ordinary meal — November 26 UTC, 2026.**
 Lake perch still serves as a raw meal. The existing Cook action can trade one
 step of preparation beside usable heat for the cooked healing modifier.

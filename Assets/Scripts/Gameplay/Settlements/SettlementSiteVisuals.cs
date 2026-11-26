@@ -191,7 +191,10 @@ namespace CavesOfOoo.Core
 
             var lanternPart = entity.GetPart<LanternSitePart>();
             if (lanternPart != null)
+            {
+                lanternPart.SyncLightReach(site);
                 lanternPart.OnStageChanged(site.Stage);
+            }
         }
 
         private static void ApplyLanternGroundMarkerVisuals(Entity entity, RepairableSiteState site)

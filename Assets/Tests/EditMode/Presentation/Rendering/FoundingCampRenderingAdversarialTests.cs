@@ -26,6 +26,54 @@ namespace CavesOfOoo.Tests
             var plain=f.CreateEntity(bp);zone.AddEntity(plain,11,10);
             Assert.AreEqual("wellmeet-"+family+"-2",SpawnRing3DRecipes.Resolve(zone,plain,Catalog).ModelId,"An ordinary fixture cannot inherit a repair site's state.");
         }
+
+        [Test]
+        public void RestoredWatchLanternExtendsRealLightWithoutChangingTheBaselineOrVisibility()
+        {
+            var prior = SettlementRuntime.ActiveZone;
+            AsciiFxBus.Clear();
+            try
+            {
+                var zone = new Zone("Overworld.8.16.0") { AmbientLevel = 0.2f };
+                SettlementRuntime.ActiveZone = zone;
+                var owner = GrovelandsCompositionTests.Factory().CreateEntity("WatchLantern");
+                const string lantern = SettlementSiteDefinitions.VillageLanternSiteId;
+                owner.Properties["SettlementId"] = zone.ZoneID;
+                owner.Properties["SettlementSiteId"] = lantern;
+                owner.AddPart(new LanternSitePart { SettlementId = zone.ZoneID, SiteId = lantern });
+                Assert.True(zone.AddEntity(owner, 10, 10));
+                var light = owner.GetPart<LightSourcePart>();
+                var site = new RepairableSiteState { SiteId = lantern, SiteType = RepairableSiteType.LightBeacon };
+                var map = new LightMap();
+                site.Stage = RepairStage.TemporarilyPurified;
+                SettlementSiteVisuals.ApplyToEntity(owner, site);
+                map.Compute(zone);
+                Assert.AreEqual(10, light.Radius);
+                Assert.AreEqual(zone.AmbientLevel, map.GetBrightness(21, 10));
+
+                site.Stage = RepairStage.StableRepair;
+                SettlementSiteVisuals.ApplyToEntity(owner, site);
+                map.Compute(zone);
+                Assert.AreEqual(12, light.Radius);
+                Assert.Greater(map.GetBrightness(21, 10), zone.AmbientLevel);
+                Assert.AreEqual(0.6f, light.Intensity);
+                Assert.False(zone.GetCell(21, 10).Explored);
+                Assert.False(zone.GetCell(21, 10).IsVisible);
+
+                int version = EquipmentChangeBus.GlobalVersion;
+                site.Stage = RepairStage.ImprovedWithCaretaker;
+                SettlementSiteVisuals.ApplyToEntity(owner, site);
+                Assert.AreEqual(12, light.Radius);
+                Assert.AreEqual(version, EquipmentChangeBus.GlobalVersion, "The same light output must not invalidate the cache again.");
+
+                site.Stage = RepairStage.Fouled;
+                SettlementSiteVisuals.ApplyToEntity(owner, site);
+                map.Compute(zone);
+                Assert.AreEqual(10, light.Radius);
+                Assert.AreEqual(zone.AmbientLevel, map.GetBrightness(21, 10));
+            }
+            finally { SettlementRuntime.ActiveZone = prior; AsciiFxBus.Clear(); }
+        }
         [TestCase("Overworld.4.6.2","FoundingListener")]
         [TestCase("Overworld.4.6.2","FoundingPlaqueTender")]
         [TestCase("Overworld.8.16.0","TentRightHost")]

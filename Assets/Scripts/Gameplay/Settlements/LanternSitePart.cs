@@ -126,6 +126,32 @@ namespace CavesOfOoo.Core
             _lastAppliedStage = newStage;
         }
 
+        internal void SyncLightReach(RepairableSiteState site)
+        {
+            const int ordinaryRadius = 10;
+            const int restoredRadius = 12;
+            var owner = ParentEntity;
+            var zone = GetZone();
+            if (zone == null || owner?.BlueprintName != "WatchLantern" || owner.SpatialZone != zone
+                || zone.GetEntityCell(owner) == null || owner.GetPart<LanternSitePart>() != this
+                || SiteId != SettlementSiteDefinitions.VillageLanternSiteId || site.SiteId != SiteId
+                || SettlementId != zone.ZoneID || owner.GetProperty("SettlementId") != SettlementId
+                || owner.GetProperty("SettlementSiteId") != SiteId) return;
+
+            var manager = WorldLocationContext.For(zone)?.SettlementManager;
+            if (manager != null && !ReferenceEquals(manager.GetSite(SettlementId, SiteId), site)) return;
+
+            var light = owner.GetPart<LightSourcePart>();
+            if (light?.ParentEntity != owner || light.Radius is not (ordinaryRadius or restoredRadius)) return;
+            int radius = site.Stage is RepairStage.StableRepair or RepairStage.ImprovedWithCaretaker
+                ? restoredRadius : ordinaryRadius;
+            if (light.Radius == radius) return;
+
+            light.Radius = radius;
+            EquipmentChangeBus.NotifyChanged(null);
+            ZoneRenderHooks.MarkFullDirty("LanternSite.LightReach");
+        }
+
         public void StartAuraForStage(RepairStage stage, Zone zone)
         {
             if (zone == null || ParentEntity == null
@@ -203,7 +229,7 @@ namespace CavesOfOoo.Core
                 case RepairStage.StableRepair:
                     return "Steady light pools around the lantern post.";
                 case RepairStage.ImprovedWithCaretaker:
-                    return "The lantern burns bright and sure. Nothing creeps close while it shines.";
+                    return "The lantern burns bright and sure. Its light reaches farther along the ground.";
                 default:
                     return null;
             }

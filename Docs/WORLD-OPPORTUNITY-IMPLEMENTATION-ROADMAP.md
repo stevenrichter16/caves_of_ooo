@@ -62,6 +62,12 @@ check-in provides continued work across runs.
 | Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. 35 has a bounded ordinary harvest with a live shower offer left unused. Broader road, load and seasonal variation remain open. |
 | Readers, transactions and comparisons | 36–39 have bounded action, material, delivery and kitchen receipt checks. 40 has guided wayside meals, portable and prepared treatment, ordinary quarry processing and distinct Peat Works approaches. At the Causeway, one supplied scraper supports both garment protection and an ordinary brew with a physical effect on the local brine. The next comparisons still need varied current layouts and discovery without navigation guidance. |
 
+The Sumphold oil recovery also supports #39–40 through an earned purchase
+and paid lasting Sill repair. Actual play returned to the same path
+approach and measured greater light in two already visible cells. Fresh
+Continue kept the lamp's reach and the retained recipe.
+[Sill light playtest](Verification/MachineSystems/SillLanternLight20261126/README.md)
+
 An earlier connected regression passed 615 executable cases. Actual play used
 separate guided branches. Requirements for ordinary discovery and complete
 cross-seed comparisons remain open.

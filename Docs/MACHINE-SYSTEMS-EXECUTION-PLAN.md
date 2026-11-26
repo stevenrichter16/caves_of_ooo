@@ -1,3 +1,12 @@
+**Sumphold oil extends a Sill lantern's light — November 26 UTC, 2026.**
+The player bought one portion from the recovered Sumphold shipment for
+14 drams. The Sill repair spent the exact oil and widened the original
+lantern from ten to twelve cells. Two already visible path points
+brightened at the same approach. Fresh Continue retained the light and
+the unused recipe. The guided route included ordinary combat. Native
+151/151 passed. The current Mac predates the change.
+[Light playtest and native checks](Verification/MachineSystems/SillLanternLight20261126/README.md)
+
 **Forge recovery explains its worksite — November 26 UTC, 2026.**
 In the earned Peat Works save, selecting the unavailable forge choice
 pointed to the visible fault and spent nothing. Visiting the rig's
