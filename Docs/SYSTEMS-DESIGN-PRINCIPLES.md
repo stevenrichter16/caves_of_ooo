@@ -23,6 +23,15 @@ medium-depth nuance. Finish meaningful correctness and actual-play gates for
 each increment, then expand the useful surface instead of repeatedly deepening
 one instance. Share screenshots at visible progress points.
 
+November 26 user refinement: use Orven's response to a player's porter
+sighting as a benchmark for depth. A player can tell him where they saw
+the overdue porter alive. In the Wayside playtest he changed direction,
+checked that spot, and resumed the search. The parcel stayed in transit.
+Look for similar links between ordinary player actions and visible world
+behavior wherever the mechanics support them. Verify the change during
+play, including what persists when the player leaves or reloads.
+[Wayside playtest](Verification/MachineSystems/WaysideLivingPlayerWitness20261126/README.md)
+
 November24 user refinement: avoid predetermined town/road projects becoming
 the same checklist on every playthrough. Let different builds and tools solve
 similar practical problems through shared causal rules. Moving a useful load

@@ -902,6 +902,15 @@ initial acceptance gates are met. Check the actual player experience using
 contrasting routes, builds and regions. Record the concrete evidence behind
 each finding and implement the most valuable improvements in connected slices.
 
+- **Depth benchmark.** Use the Wayside porter playtest as a reference.
+  The player reported a witnessed location, Orven walked there, and the
+  search resumed with the effort already spent still counted. The actual
+  parcel and handover remained separate. Look for comparable follow-through
+  wherever it fits each requirement. Ask what a player can notice and do,
+  what the world demonstrably changes in response, and how that response
+  handles delay, interruption, revised information or reload. Check that
+  the consequence matters in an ordinary playthrough.
+  [Wayside playtest](Verification/MachineSystems/WaysideLivingPlayerWitness20261126/README.md)
 - **Content and variety.** Look for useful materials, tools, recipes, regional
   work, customers and lasting projects that give existing mechanics a longer
   life. Check whether each opportunity teaches itself through the world and
