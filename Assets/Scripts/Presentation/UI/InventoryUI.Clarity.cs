@@ -106,6 +106,11 @@ namespace CavesOfOoo.Rendering
                 if (_itemActionPopup.CursorIndex >= 0 && _itemActionPopup.CursorIndex < _itemActionPopup.Actions.Count)
                 {
                     var action = _itemActionPopup.Actions[_itemActionPopup.CursorIndex];
+                    if (CompanionCareActions.IsCommand(action.Command))
+                    {
+                        subject = item;
+                        return CompanionCareActions.DescribeSelection(PlayerEntity, item, CurrentZone, action.Command);
+                    }
                     if (action.Command == "put_container") return InventoryDecisionDetails.Container(PlayerEntity, CurrentZone, action.Container, item);
                     if (action.Command == "disassemble")
                     {

@@ -584,6 +584,18 @@ goods. This advances the comparative play gate at one site. Wider
 unguided discovery and complete-machine acceptance remain open.
 [Evidence](Verification/MachineSystems/GantrySupplyComparison20261126/README.md)
 
+**A cooked catch can support a companion — November 26 UTC, 2026.**
+One ordinary roasted lake perch supports self Eat or Share with an
+adjacent injured party member. Both cost one portion. Sharing uses the
+authored healing roll and existing care transaction, with the exact
+recipient and payment rechecked. The pack reader uses the same captured
+selection and shows its recipient, cost and expected healing. The live
+seed 64 branch used Cinderhold salvage to fund a recruitment bell, then
+fed a naturally injured warden. Fresh Continue preserved the healing and
+spent portion. This is one use of regional food preparation through
+ordinary crafting and care. The complete machine gates remain open.
+[Evidence](Verification/MachineSystems/SharedRoastedPerch20261126/README.md)
+
 **Replayable practical work — November24local/25UTC,2026:** The source-grounded
 [implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
 concrete requirements for compatible material demand, method-independent

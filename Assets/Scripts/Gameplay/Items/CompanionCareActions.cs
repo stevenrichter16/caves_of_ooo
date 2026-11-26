@@ -8,7 +8,7 @@ using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
-    /// <summary>Paid, adjacent care using the existing payloads of eighteen
+    /// <summary>Paid, adjacent care using the existing payloads of supported
     /// carried remedies and meals. Party consent, usefulness and exact selection
     /// are rechecked through the final inventory commit.</summary>
     public static class CompanionCareActions
@@ -28,26 +28,52 @@ namespace CavesOfOoo.Core
                 string command = (payload.Meal ? Share : Treat) + Escape(zone.ZoneID) + "|" + origin.X + "|" + origin.Y
                     + "|" + Escape(target.ID) + "|" + at.X + "|" + at.Y + "|" + Quantity(item) + "|" + Escape(payload.Signature);
                 actions.AddAction(payload.Meal ? "ShareMeal" : "TreatCompanion",
-                    (payload.Meal ? "share with " : "treat ") + target.GetDisplayName() + " (1 item; " + payload.Description + ")",
-                    command, '\0', 18);
+                    DescribeAction(target, payload), command, '\0', 18);
             }
+        }
+
+        public static string DescribeSelection(Entity actor, Entity item, Zone zone, string command)
+        {
+            if (!IsCommand(command) || !Source(actor, item, zone, out var payload)
+                || SelectionFailure(actor, item, zone, command, payload, out var target, out _) != null) return null;
+            var hp = target.GetStat("Hitpoints");
+            return item.GetDisplayName() + "\n\n" + DescribeAction(target, payload)
+                + "\nRecipient HP: " + hp.Value + " / " + hp.Max + "."
+                + (payload.Kind == "HealingMeal" ? "\nExisting meal preparation and other effects stay in place." : "");
+        }
+
+        static string DescribeAction(Entity target, Payload payload)
+            => (payload.Meal ? "share with " : "treat ") + target.GetDisplayName() + " (1 item; " + payload.Description + ")";
+
+        static string SelectionFailure(Entity actor, Entity item, Zone zone, string command, Payload payload,
+            out Entity target, out int amount)
+        {
+            target = null;
+            amount = 0;
+            string[] fields = command.Split('|');
+            if (fields.Length != 9 || fields[0] + "|" != (payload.Meal ? Share : Treat)
+                || !Number(fields[2], out int ox) || !Number(fields[3], out int oy)
+                || !Number(fields[5], out int x) || !Number(fields[6], out int y) || !Number(fields[7], out amount))
+                return "malformed-selection";
+            var origin = zone.GetEntityCell(actor);
+            target = WorldResourceActions.ExactGround(zone, fields[4]);
+            var at = target == null ? null : zone.GetEntityCell(target);
+            if (WorldResourceActions.Decode(fields[1]) != zone.ZoneID || origin.X != ox || origin.Y != oy
+                || at == null || at.X != x || at.Y != y || amount != Quantity(item)
+                || WorldResourceActions.Decode(fields[8]) != payload.Signature || !Recipient(actor, target, zone) || !Useful(target, payload))
+                return "stale-or-useless-selection";
+            return null;
         }
 
         internal static bool TryAct(Entity actor, Entity item, Zone zone, string command, InventoryTransaction tx)
         {
             if (!IsCommand(command)) return false;
             if (tx == null || !Source(actor, item, zone, out var payload)) return Reject(actor, item, "source-unavailable");
-            string[] fields = command.Split('|');
-            if (fields.Length != 9 || fields[0] + "|" != (payload.Meal ? Share : Treat)
-                || !Number(fields[2], out int ox) || !Number(fields[3], out int oy)
-                || !Number(fields[5], out int x) || !Number(fields[6], out int y) || !Number(fields[7], out int amount))
-                return Reject(actor, item, "malformed-selection");
-            var origin = zone.GetEntityCell(actor); var target = WorldResourceActions.ExactGround(zone, fields[4]);
-            var at = target == null ? null : zone.GetEntityCell(target);
-            if (WorldResourceActions.Decode(fields[1]) != zone.ZoneID || origin.X != ox || origin.Y != oy
-                || at == null || at.X != x || at.Y != y || amount != Quantity(item)
-                || WorldResourceActions.Decode(fields[8]) != payload.Signature || !Recipient(actor, target, zone) || !Useful(target, payload))
-                return Reject(actor, item, "stale-or-useless-selection");
+            string failure = SelectionFailure(actor, item, zone, command, payload, out var target, out int amount);
+            if (failure != null) return Reject(actor, item, failure);
+            var origin = zone.GetEntityCell(actor);
+            var at = zone.GetEntityCell(target);
+            string targetKey = Escape(target.ID);
             if (!tx.TryClaim(actor, actor, command) || !tx.TryClaim(item, actor, command) || !tx.TryClaim(target, actor, command))
                 return Reject(actor, item, "in-progress");
             var pack = actor.GetPart<InventoryPart>(); var physics = item.GetPart<PhysicsPart>(); var parts = item.Parts.ToArray();
@@ -61,7 +87,7 @@ namespace CavesOfOoo.Core
                 && Recipient(actor, target, zone) && zone.GetEntityCell(target) == at
                 && target.GetStat("Hitpoints") == recipientHealth
                 && (treatedStatus == null || target.GetPart<StatusEffectsPart>() == treatedStatus)
-                && WorldResourceActions.ExactGround(zone, fields[4]) == target && actor.GetPart<InventoryPart>() == pack
+                && WorldResourceActions.ExactGround(zone, targetKey) == target && actor.GetPart<InventoryPart>() == pack
                 && item.BlueprintName == blueprint && item.Parts.SequenceEqual(parts) && ReadPayload(item)?.Signature == payload.Signature
                 && (amount > 1 ? WorldResourceActions.Carried(actor, item, false) && Quantity(item) == amount - 1
                     : !pack.Objects.Contains(item) && item.SpatialZone == null && physics.InInventory == null && physics.Equipped == null);
@@ -180,6 +206,13 @@ namespace CavesOfOoo.Core
             {
                 case "SoddenFieldDressing": return item.GetPart<SoddenDressingPart>()?.ParentEntity == item ? new Payload { Kind = "Dressing", Description = "ordinary poison and bleeding" } : null;
                 case "FieldMeal": return item.GetPart<FieldMealPart>()?.ParentEntity == item ? new Payload { Kind = "FieldMeal", Healing = "3d4", Description = "heal 3d4; one bleed" } : null;
+                case "RoastedLakePerch":
+                    var perch = item.GetPart<FoodPart>();
+                    return perch?.ParentEntity == item && item.Parts.Count(part => part is FoodPart) == 1
+                        && perch.Cooking == "Meal" && perch.Healing == "2d4+2"
+                        && string.IsNullOrEmpty(perch.MealStat) && perch.MealBonus == 0
+                        ? new Payload { Kind = "HealingMeal", Healing = perch.Healing, Description = "heal 4 to 10 HP" }
+                        : null;
                 case "CookedMeat": case "ToastedEmberwheat": case "RoastedMushroom": case "RoastedHearthbulb": case "RoastedStarapple":
                     var food = item.GetPart<FoodPart>();
                     return food?.ParentEntity == item && PreparedMealEffect.Valid(food.MealStat, food.MealBonus, food.MealDuration)
@@ -198,7 +231,7 @@ namespace CavesOfOoo.Core
         sealed class Payload
         {
             internal string Kind, Healing = "", Cure = "", Stat = "", Description; internal int Bonus, Duration; internal bool Drink;
-            internal bool Meal => Kind == "Food" || Kind == "FieldMeal";
+            internal bool Meal => Kind == "Food" || Kind == "FieldMeal" || Kind == "HealingMeal";
             internal string Signature => Kind + ";" + Healing + ";" + Cure + ";" + Drink + ";" + Stat + ";" + Bonus + ";" + Duration;
         }
         static int Quantity(Entity item) => item.GetPart<StackerPart>()?.StackCount ?? 1;

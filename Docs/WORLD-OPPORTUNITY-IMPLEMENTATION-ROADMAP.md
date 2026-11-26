@@ -83,6 +83,13 @@ the same carried weight and base trade value. Fresh Continues confirmed
 the meal and eating. The cooking bonus uses the authored healing modifier.
 [Perch playtest](Verification/MachineSystems/RoastedLakePerch20261126/README.md)
 
+The cooked perch now has a second use for #14/#19. An earned meal paid
+one portion to heal a recruited, injured warden. The other option is
+self Eat. The selected Share reader supports #36 by naming the actual
+recipient and one-item cost. Ordinary sales paid for the recruitment
+bell and fresh Continue preserved the warden's health and meal payment.
+[Sharing playtest](Verification/MachineSystems/SharedRoastedPerch20261126/README.md)
+
 For #12/#16/#17, the old Concord route now takes one loaded field satchel
 as a sealed parcel. A paid Sill bag traveled at seven pounds and four
 drams. The same supplies came back together after the ordinary travel

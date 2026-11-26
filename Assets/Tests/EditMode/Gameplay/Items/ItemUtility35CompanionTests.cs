@@ -92,6 +92,55 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(meal, target.GetEffect<PreparedMealEffect>()); Assert.False(Pack.Objects.Contains(item));
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void RoastedPerchSharesOnePortionWithoutReplacingPreparation(bool loaded)
+        {
+            var target = Companion();
+            target.GetStat("Hitpoints").BaseValue = 1;
+            var prepared = new PreparedMealEffect("ColdResistance", 20);
+            Assert.True(target.ApplyEffect(prepared));
+            var bleeding = new BleedingEffect();
+            Assert.True(target.ApplyEffect(bleeding));
+            var perch = Factory.CreateEntity("RoastedLakePerch");
+            perch.GetPart<StackerPart>().StackCount = 2;
+            if (loaded) perch = PartRoundTripHelper.RoundTripEntityViaTokenGraph(perch);
+            Assert.True(Pack.AddObject(perch));
+            int actorHp = Actor.GetStatValue("Hitpoints");
+
+            Assert.True(Act(perch, SelectCare(perch, target, true)));
+            Assert.That(target.GetStatValue("Hitpoints"), Is.InRange(5, 11));
+            Assert.AreEqual(actorHp, Actor.GetStatValue("Hitpoints"));
+            Assert.AreEqual(1, Amount(perch));
+            Assert.AreSame(prepared, target.GetEffect<PreparedMealEffect>());
+            Assert.AreSame(bleeding, target.GetEffect<BleedingEffect>());
+        }
+
+        [Test]
+        public void PerchShareLateVetoRestoresTheExactMealAndItsHealing()
+        {
+            var target = Companion();
+            target.GetStat("Hitpoints").BaseValue = 2;
+            var perch = Carry("RoastedLakePerch");
+            string choice = SelectCare(perch, target, true);
+            FailAfter();
+
+            Assert.False(Act(perch, choice));
+            Assert.AreSame(perch, Pack.Objects.Single(item => item.BlueprintName == "RoastedLakePerch"));
+            Assert.AreEqual(2, target.GetStatValue("Hitpoints"));
+        }
+
+        [TestCase("RoastedLakePerch", false)]
+        [TestCase("LakePerch", true)]
+        public void PerchShareRefusesUnneededOrRawFood(string blueprint, bool injured)
+        {
+            var target = Companion();
+            if (injured) target.GetStat("Hitpoints").BaseValue = 1;
+            var perch = Carry(blueprint);
+            Assert.False(Actions(perch).Any(CareAction));
+            Assert.AreEqual(1, Amount(perch));
+        }
+
         [TestCase("SoddenFieldDressing", false)] [TestCase("SumpsievePad", true)] [TestCase("Antidote", true)]
         public void RealGasPoisonCureDistinctionIsPreserved(string blueprint, bool treatsGas)
         {

@@ -1,3 +1,13 @@
+**A cooked catch can support a companion — November 26 UTC, 2026.**
+The original earned perch reached an injured Gleaners' warden after
+ordinary salvage, purchase of the 58-dram recruitment bell and recruitment.
+Reading the selected Share row and returning spent no turn. One portion
+and one action raised the warden from 22 to 28 HP, confirmed by fresh
+Continue. The final connected run passed 252 native cases. Independent
+source and recorded-play review found no blocking issues. Current Mac
+runtime ad0a28f61 predates this change.
+[Evidence](Verification/MachineSystems/SharedRoastedPerch20261126/README.md)
+
 **Portable knotflax cleaning feeds the ordinary allotment — November 26 UTC, 2026.**
 The exact earlier gathered bundle and a supplied canonical sieve went
 two steps out of frame range. The native pack row took one action and
