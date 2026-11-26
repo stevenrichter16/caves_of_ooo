@@ -1,0 +1,278 @@
+{
+  "start": {
+    "game": "a8eb42433d614f9c9e60755cae08096c",
+    "seed": 2,
+    "generation": 31,
+    "tick": 1300
+  },
+  "recipientArrival": {
+    "zone": "Overworld.15.6.0",
+    "X": 39,
+    "Y": 11,
+    "TickCount": 1360,
+    "purse": 28,
+    "owners": [
+      {
+        "ID": "12622",
+        "DefinitionId": "sumphold-oil",
+        "InstanceId": "regional:2:sumphold-oil",
+        "name": "Vellin Mosswick, merchant",
+        "X": 17,
+        "Y": 7
+      }
+    ]
+  },
+  "firstRead": [
+    "The wet coating wears off Yevven Lowbank, peat-cutter.",
+    "Interact — choose a direction, or . for underfoot.",
+    "The stranded lamp-oil consignment [not accepted]. Source (16,6); return to Vellin Mosswick, merchant in Sumphold (15,6). Recover the marked sealed consignment containing 2 x ward oil intact; ordinary loose goods do not replace it. Source availability is unknown; it has not been checked. Follow the dry approach; heat makes peat release marsh gas. Leaving the marked bank intact earns three extra drams. Payment: 12 drams and one silver sand. Reading does not accept this work. Choose accept this request through the recipient's [C] actions if you wish to undertake it."
+  ],
+  "accepted": [
+    {
+      "zone": "Overworld.15.6.0",
+      "X": 18,
+      "Y": 7,
+      "TickCount": 1670,
+      "purse": 28,
+      "owners": [
+        {
+          "ID": "12622",
+          "DefinitionId": "sumphold-oil",
+          "InstanceId": "regional:2:sumphold-oil",
+          "Accepted": true,
+          "Completed": false,
+          "name": "Vellin Mosswick, merchant",
+          "X": 17,
+          "Y": 7
+        }
+      ]
+    },
+    [
+      "Interact — choose a direction, or . for underfoot.",
+      "The stranded lamp-oil consignment [not accepted]. Source (16,6); return to Vellin Mosswick, merchant in Sumphold (15,6). Recover the marked sealed consignment containing 2 x ward oil intact; ordinary loose goods do not replace it. Source availability is unknown; it has not been checked. Follow the dry approach; heat makes peat release marsh gas. Leaving the marked bank intact earns three extra drams. Payment: 12 drams and one silver sand. Reading does not accept this work. Choose accept this request through the recipient's [C] actions if you wish to undertake it.",
+      "Interact — choose a direction, or . for underfoot.",
+      "The stranded lamp-oil consignment [accepted]. Source (16,6); return to Vellin Mosswick, merchant in Sumphold (15,6). Recover the marked sealed consignment containing 2 x ward oil intact; ordinary loose goods do not replace it. The marked source is currently available. Follow the dry approach; heat makes peat release marsh gas. Leaving the marked bank intact earns three extra drams. Payment: 12 drams and one silver sand. Read, deliver, or release through the recipient's [C] actions. Recorded in [Q], [Tab] Field Notes."
+    ]
+  ],
+  "sourceArrival": {
+    "ZoneID": "Overworld.16.6.0",
+    "X": 40,
+    "Y": 12,
+    "TickCount": 1710,
+    "hp": 40,
+    "floor": {
+      "ID": "regional:2:sumphold-oil:source",
+      "X": 22,
+      "Y": 3,
+      "BlueprintName": "Sack",
+      "durability": 12,
+      "habitat": "15427|15428",
+      "bonus": 3
+    },
+    "mats": [
+      {
+        "ID": "15427",
+        "X": 27,
+        "Y": 2,
+        "hp": 40
+      },
+      {
+        "ID": "15428",
+        "X": 27,
+        "Y": 1,
+        "hp": 40
+      }
+    ],
+    "carried": []
+  },
+  "cargoRead": {
+    "TickCount": 1880,
+    "state": "AnnouncementOpen",
+    "messages": [
+      "reedfrog is killed by something!",
+      "The mire-soaked coating wears off reedfrog.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You see a sealed lamp-oil consignment.\n\nA sealed consignment for Sumphold's merchant. Its oil belongs in trade, not in the peat. Burning this wet ground releases marsh gas; leaving the marked bank intact earns a small preservation payment. The bank at local (27,2) is included. The bank at local (27,1) is included."
+    ]
+  },
+  "take": {
+    "ZoneID": "Overworld.16.6.0",
+    "X": 23,
+    "Y": 4,
+    "TickCount": 1890,
+    "hp": 40,
+    "floor": null,
+    "mats": [],
+    "carried": [
+      {
+        "ID": "regional:2:sumphold-oil:source",
+        "BlueprintName": "Sack",
+        "weight": 6
+      }
+    ]
+  },
+  "carryContinue": {
+    "ZoneID": "Overworld.16.6.0",
+    "X": 23,
+    "Y": 4,
+    "TickCount": 1890,
+    "hp": 40,
+    "floor": null,
+    "mats": [
+      {
+        "ID": "15428",
+        "X": 27,
+        "Y": 1,
+        "hp": 40
+      },
+      {
+        "ID": "15427",
+        "X": 27,
+        "Y": 2,
+        "hp": 40
+      }
+    ],
+    "carried": [
+      {
+        "ID": "regional:2:sumphold-oil:source",
+        "BlueprintName": "Sack",
+        "weight": 6
+      }
+    ]
+  },
+  "beforeDelivery": {
+    "ZoneID": "Overworld.15.6.0",
+    "TickCount": 1930,
+    "X": 39,
+    "Y": 11,
+    "hp": 40,
+    "drams": 28,
+    "Accepted": true,
+    "Completed": false,
+    "player": [
+      {
+        "ID": "regional:2:sumphold-oil:source",
+        "BlueprintName": "Sack",
+        "count": 1
+      }
+    ],
+    "stock": [
+      {
+        "ID": "12629",
+        "BlueprintName": "WardOil",
+        "count": 1
+      }
+    ],
+    "merchant": {
+      "ID": "12622",
+      "X": 17,
+      "Y": 7,
+      "purse": 500
+    }
+  },
+  "delivery": [
+    {
+      "ZoneID": "Overworld.15.6.0",
+      "TickCount": 2160,
+      "X": 18,
+      "Y": 7,
+      "hp": 40,
+      "drams": 43,
+      "Accepted": false,
+      "Completed": true,
+      "player": [
+        {
+          "ID": "15454",
+          "BlueprintName": "SilverSand",
+          "count": 1
+        }
+      ],
+      "stock": [
+        {
+          "ID": "12629",
+          "BlueprintName": "WardOil",
+          "count": 3
+        }
+      ],
+      "merchant": {
+        "ID": "12622",
+        "X": 17,
+        "Y": 7,
+        "purse": 500
+      }
+    },
+    [
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "Delivered: The stranded lamp-oil consignment. The goods join the recipient's trade stock. The marked wetland bank remained intact; three extra drams are included.",
+      "Game saved."
+    ]
+  ],
+  "completedContinue": [
+    {
+      "ZoneID": "Overworld.15.6.0",
+      "TickCount": 2160,
+      "X": 18,
+      "Y": 7,
+      "hp": 40,
+      "drams": 43,
+      "Accepted": false,
+      "Completed": true,
+      "player": [
+        {
+          "ID": "15454",
+          "BlueprintName": "SilverSand",
+          "count": 1
+        }
+      ],
+      "stock": [
+        {
+          "ID": "12629",
+          "BlueprintName": "WardOil",
+          "count": 3
+        }
+      ],
+      "merchant": {
+        "ID": "12622",
+        "X": 17,
+        "Y": 7,
+        "purse": 500
+      }
+    },
+    {
+      "cursor": 0,
+      "rows": [
+        {
+          "Display": "chat",
+          "Command": "Chat",
+          "key": 99
+        },
+        {
+          "Display": "examine",
+          "Command": "Examine",
+          "key": 120
+        },
+        {
+          "Display": "scatter grit west (1 item) [silver sand]",
+          "Command": "ScatterGrit|Overworld.15.6.0|18|7|17|7|1",
+          "key": 0
+        },
+        {
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "key": 0
+        }
+      ]
+    }
+  ],
+  "actualTradeRow": {
+    "ID": "12629",
+    "BlueprintName": "WardOil",
+    "label": "ward oil (x3)",
+    "price": 41
+  }
+}

@@ -1,3 +1,11 @@
+**An intact Sumphold recovery feeds the merchant's visible stock.**
+A sealed sack carries two lamp-oil measures through ordinary travel.
+Protecting the two marked banks adds three drams to the agreed payment.
+The exact sack survived a middle save and filled the merchant's existing
+ward oil listing at delivery. The completed request, reward and stock
+survived a second Continue.
+[Evidence](Verification/MachineSystems/SumpholdOilRecovery20261126/README.md)
+
 **An earned hand pump joins the Gleaners cellar to Peat Works.**
 The player recovered original clay, bartered two cellar finds and seeds,
 and made a pump from the exact spike, clay and bindings at Cinderhold.

@@ -685,6 +685,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     actual-game interruption preserved the payment and ingredients through
     fresh Continue, then resumed to one meal on recovery.
     [Evidence](Verification/MachineSystems/KitchenStaffAvailability20261125/README.md)
+    In the current seed 2 Sumphold layout, the exact sealed oil sack
+    survived a mid-route Continue. Intact delivery spent it once, paid
+    base and preservation rewards, and the same merchant displayed all
+    three ward oil portions after a separate fresh Continue.
+    [Evidence](Verification/MachineSystems/SumpholdOilRecovery20261126/README.md)
 
 40. **Compare complete runs in actual play.** Use ordinary acquisition and normal
     carrying limits, not only supplied fixtures. Measure whether choices differ,

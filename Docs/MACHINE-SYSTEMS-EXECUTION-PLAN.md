@@ -1,3 +1,12 @@
+**A recovered consignment stocks Sumphold's merchant — November 26 UTC, 2026.**
+In the ordinary version 31 seed 2 world, Vellin's reader led to the marked
+six-pound sack. Both banks remained intact. Native take and fresh Continue
+retained the exact sealed cargo. Delivery spent it, paid 15 drams and one
+silver sand, and left three ward oil in the existing merchant listing.
+Fresh Continue preserved the payout, completed request and actual
+trade row. This advances #39 and #40 in one guided current layout.
+[Evidence](Verification/MachineSystems/SumpholdOilRecovery20261126/README.md)
+
 **An earned hand pump clears the Peat Works shortcut — November 26 UTC, 2026.**
 The ordinary seed 64 generation 27 branch took the exact cellar clay,
 bartered and forged its own pump, returned across the north edge and
