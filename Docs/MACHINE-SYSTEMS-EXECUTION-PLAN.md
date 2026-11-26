@@ -1,3 +1,10 @@
+**Shared steam catch and applied weapon feedback Mac delivery — November 26 UTC, 2026.**
+Universal runtime `ceee937b7` completed GameBootstrap on Apple M5.
+All 186 files in each retained app and six new universal binaries were
+verified. Startup kept the four normal saves and logical preferences.
+Packaged actions, physical Intel and the full native regression remain open.
+[Delivery receipt](Verification/MachineSystems/MacCandidateCEEE937B7/README.md)
+
 **Sumphold's exact silver sand restores Sill's filtration ring — November 26 UTC, 2026.**
 The ordinary generation 31 player brought the one earned sand to Sill,
 took the elder's manual and paid Perret for the existing stable repair.

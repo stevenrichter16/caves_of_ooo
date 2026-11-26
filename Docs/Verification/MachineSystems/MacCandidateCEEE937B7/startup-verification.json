@@ -1,0 +1,118 @@
+{
+  "build": {
+    "project": "/Users/steven/coo-verification/mac-ceee937b7-20261126/Assets",
+    "commit": "ceee937b778338eaab26fd3af93fb6e07abe09b2",
+    "result": "Succeeded",
+    "output": "/Users/steven/coo-verification/builds/mac-ceee937b7-20261126/CavesOfOoo.app",
+    "errors": 0,
+    "warnings": 5,
+    "bytes": 365198173,
+    "seconds": 58.126070999999996,
+    "messages": [
+      {
+        "type": "Log",
+        "content": "1 URP assets included in build\n- UniversalRP - Assets/Settings/UniversalRP.asset\n\t - Renderer2D - Assets/Settings/Renderer2D.asset - UnityEngine.Rendering.Universal.Renderer2DData\n\t - Village3DRenderer - Assets/Art3D/Village/Rendering/Village3DRenderer.asset - UnityEngine.Rendering.Universal.UniversalRendererData\n"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Effects/Concrete/PoisonedByGasEffect.cs(39,23): warning CS0108: 'PoisonedByGasEffect.Owner' hides inherited member 'Effect.Owner'. Use the new keyword if hiding was intended."
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Effects/Concrete/CoatedInPlasmaEffect.cs(44,23): warning CS0108: 'CoatedInPlasmaEffect.Owner' hides inherited member 'Effect.Owner'. Use the new keyword if hiding was intended."
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs(552,25): warning CS0162: Unreachable code detected"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Skills/ShortBlades_Backstab.cs(49,22): warning CS0414: The field 'ShortBlades_Backstab._isFlanked' is assigned but its value is never used"
+      },
+      {
+        "type": "Log",
+        "content": "Including Unity Splash Screen logo because 'Show Unity Logo' is enabled."
+      },
+      {
+        "type": "Warning",
+        "content": "Access token is empty. Native symbols will not be uploaded for this build. Please make sure you are signed in to the Unity Cloud."
+      }
+    ]
+  },
+  "pinnedInputs": {
+    "commit": "ceee937b778338eaab26fd3af93fb6e07abe09b2",
+    "sourcePins": 32244,
+    "effectivePins": 32247,
+    "changed": 84,
+    "missing": 0,
+    "added": 3,
+    "externalPins": 592,
+    "playerPins": 186,
+    "architecture": "x86_64 arm64",
+    "runtimeCSharpChanged": []
+  },
+  "process": {
+    "pid": 5637,
+    "exe": "/Users/steven/coo-verification/builds/mac-ceee937b7-20261126/CavesOfOoo.app/Contents/MacOS/caves-of-ooo",
+    "exe_sha256": "e1bb806fdfc4ef31fb440ead5d2337d8b9adc5592ee216c72fc8f0dce9303edb",
+    "saves_before": "present, four files pinned; read-only save-choice startup",
+    "purpose": "Boot/render verification; fresh native input preflight required before any input"
+  },
+  "preservation": {
+    "player_stopped": true,
+    "normal_saves_preserved": "same four files, byte exact; never renamed or restored",
+    "preferences_logically_restored": true,
+    "changed_preference_keys": [
+      "Screenmanager Fullscreen mode",
+      "Screenmanager Resolution Height",
+      "Screenmanager Resolution Use Native",
+      "Screenmanager Resolution Width",
+      "Screenmanager Window Position Y",
+      "unity.player_session_count",
+      "unity.player_sessionid",
+      "unity_connect.mega_session_id",
+      "unity_connect.session_id"
+    ],
+    "no_byte_exact_plist_claim": true
+  },
+  "rawReceipts": "/private/tmp/coo-mac-ceee937b7-20261126-export",
+  "startupLog": "/private/tmp/coo-mac-ceee937b7-20261126-native/player.log",
+  "startupVerified": true,
+  "hardware": "Apple M5",
+  "bootstrapEntities": 2693,
+  "appFilesVerified": 186,
+  "priorAppFilesVerified": 186,
+  "universalMachOBinaries": {
+    "Contents/Frameworks/UnityPlayer.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/Frameworks/libMonoPosixHelper.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/Frameworks/libmono-native.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/Frameworks/libmonobdwgc-2.0.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/MacOS/caves-of-ooo": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/PlugIns/lib_burst_generated.bundle": [
+      "x86_64",
+      "arm64"
+    ]
+  },
+  "runtimeAssemblySha256": "a9ef32c72989d4203be5c708c12fae6ff91497aa2ee2aca4819a13068181ebcb",
+  "runtimeMarkers": [
+    "CanReceiveWater",
+    "ApplyDamageAndGetAmount",
+    "The vent's catch supply is reduced."
+  ],
+  "effectiveDeltaMatchesPrior": true
+}
