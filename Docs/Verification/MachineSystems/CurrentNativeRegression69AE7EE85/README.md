@@ -72,17 +72,22 @@ The S filter, excluding Spread, matched all 3,850 expected names, with
 the historical result. Twenty additional cases could not load the
 tracked Rim Forest input missing from the scratch clone. Three
 allotment render checks reported owners with ordinary glyphs and no
-matching Previous-mode model. A custody check counted the Stillleaf
-inventory-icon index as a blueprint supply reference. Isolated reruns
-of those discrepancies remain open.
+matching Previous-mode model. The census now verifies the visible glyph
+and fog behavior of the exact generated knotflax stand, public catch
+frame and dry clay heap. It also rejects unbound lookalikes. The
+Stillleaf custody check now recognizes the inventory icon atlas, as it
+does the other icon indexes. All four original failures and 70 nearby
+checks passed on the corrected fixtures. The full S band has its
+original receipt.
 
 Spread A–G matched all 1,385 names, with 1,383 passes and two failures.
 Two historical geometry cases now passed. The seed-keeper purse still
 differs from its historical fixture. The additional failure could not
 load the tracked creature appearance requirements in the scratch clone.
 That exact file and the Rim Forest input were restored from the original
-commit for a separate rerun.
+commit for a separate rerun. All 21 missing-input failures and an adjacent
+control passed. The original partition receipts remain intact.
 
-Three filters have yet to run. Keep the I–R name discrepancy and the
-separate whole-process verdict open.
+The remaining Spread filter has started. Two other filters, strict I–R
+membership and the separate whole-process verdict remain open.
 [Case counts and receipts](coverage.json)

@@ -74,7 +74,7 @@ namespace CavesOfOoo.Tests
                 if(bp.Parts.ContainsKey("Key")&&_factory.CreateEntity(bp.Name).GetPart<KeyPart>()?.KeyId==SealedLibraryBuilder.KeyID)openers.Add(bp.Name);
             CollectionAssert.AreEqual(new[]{StillleafArchive.KeyBlueprint},openers,"exactly one key opens the vault");
             // The icon atlases draw the key; they cannot supply one (glyph -> pixel added the key's icon).
-            var drawsOnly=new System.Collections.Generic.HashSet<string>{"ItemIcons.json","PropIcons.json"};
+            var drawsOnly=new System.Collections.Generic.HashSet<string>{"ItemIcons.json","PropIcons.json","InventoryItemIcons.json"};
             int scanned=0;
             foreach(var file in System.IO.Directory.GetFiles(System.IO.Path.Combine(Application.dataPath,"Resources/Content/Data"),"*.json",System.IO.SearchOption.AllDirectories))
             {

@@ -41,16 +41,77 @@ namespace CavesOfOoo.Tests
         {Assert.IsFalse(Supported(r));Assert.IsNotEmpty(Value<string>(r,"Failure"));if(reason!=null)Assert.AreEqual(reason,Value<string>(r,"Failure"));}
         static IEnumerable<TestCaseData> Worlds()
         {foreach(int seed in new[]{64,1729,729490642})foreach(string id in Ring)yield return new TestCaseData(seed,id);}
+
+        static bool IsAllotmentGlyphOwner(Zone zone, Entity owner)
+        {
+            if (zone.ZoneID != RepairCultivationSite.ZoneID
+                || zone.GetEntityCell(owner) is not { IsInterior: false } cell
+                || owner.GetPart<PhysicsPart>() is not { Solid: false, Takeable: false, InInventory: null, Equipped: null }
+                || owner.GetPart<RenderPart>() is not { Visible: true } render)
+                return false;
+
+            bool GroundAt(Entity ground, Cell location) => ground?.BlueprintName == "Grass"
+                && ground.HasTag("Terrain") && zone.GetEntityCell(ground) == location;
+
+            return owner.BlueprintName switch
+            {
+                "LateKnotflaxStand" => render.RenderString == "#" && render.RenderLayer == 3
+                    && owner.GetPart<SeasonalHarvestPart>() is { Harvested: false, Season: 1, YieldBlueprint: "KnotflaxSeedHeads" } stand
+                    && stand.ParentEntity == owner && GroundAt(stand.Ground, cell) && !string.IsNullOrEmpty(stand.WorldKey)
+                    && stand.WorldKey == WorldLocationContext.For(zone)?.Exploration?.WorldKey,
+                "CampAwning" => render.RenderString == "^" && render.RenderLayer == 5 && !owner.HasPart<PackableFixturePart>()
+                    && owner.GetPart<RainCollectorPart>() is { Clean: true, Anchor: { } notice } frame
+                    && frame.ParentEntity == owner && GroundAt(frame.Ground, cell) && notice.ID == "repair-cultivation:allotment-notice"
+                    && notice.GetPart<RainCatchmentPart>() is { Public: true, PlotKey: "morrowfast-public-allotment-v1" } catchment
+                    && catchment.ParentEntity == notice
+                    && zone.GetEntityCell(notice) is { IsInterior: false } noticeCell
+                    && GroundAt(catchment.Ground, noticeCell) && catchment.WorldKey == WorldLocationContext.For(zone)?.Exploration?.WorldKey,
+                "DryClaySpoilHeap" => render.RenderString == ":" && render.RenderLayer == 2
+                    && owner.GetIntProperty("AllotmentClaySpoil") == 1 && cell.Objects.Any(ground => GroundAt(ground, cell))
+                    && owner.GetPart<HarvestablePart>() is { Harvested: false, YieldBlueprint: "DryClaySpoil", YieldMin: 1, YieldMax: 1, YieldChance: 100 } spoil
+                    && spoil.ParentEntity == owner && spoil.GetType() == typeof(HarvestablePart),
+                _ => false
+            };
+        }
+
+        static void AssertVisibleGlyphAndFog(FlatPixelFallbackCatalog fallback, Zone zone, Entity owner)
+        {
+            var cell = zone.GetEntityCell(owner);
+            bool explored = cell.Explored, visible = cell.IsVisible;
+            try
+            {
+                cell.Explored = cell.IsVisible = true;
+                Assert.True(fallback.TryResolve(zone, cell.X, cell.Y, out var current), owner.BlueprintName);
+                Assert.AreSame(owner, current.Owner);
+                // The generated census has no active zone, so it uses the authored glyph.
+                char glyph = owner.GetPart<RenderPart>().RenderString[0];
+                Assert.AreEqual("Flat world glyph " + (int)glyph, current.ForegroundTile?.name);
+
+                cell.IsVisible = false;
+                Assert.True(fallback.TryResolve(zone, cell.X, cell.Y, out var remembered), owner.BlueprintName);
+                Assert.AreNotSame(owner, remembered.Owner);
+            }
+            finally { cell.IsVisible = visible; cell.Explored = explored; }
+        }
+
         [TestCaseSource(nameof(Worlds))] public void CurrentNativeGroundGraphResolvesWithoutMutation(int seed,string id)
         {
             var manager=new OverworldZoneManager(scope.Factory,seed);var zone=manager.GetZone(id);
             var members=zone.GetReadOnlyEntities().ToArray();var positions=members.Select(zone.GetEntityPosition).ToArray();
             var ids=members.Select(e=>e.ID).ToArray();int version=zone.EntityVersion;string tiles=zone.TileState.ToSaveString();
+            using var fallback = id == RepairCultivationSite.ZoneID ? new FlatPixelFallbackCatalog() : null;
             foreach(var entity in members)
             {
                 var recipe=Resolve(zone,entity);var render=entity.GetPart<RenderPart>();
                 if(render==null||!render.Visible) {Refused(recipe);continue;}
                 if(!Supported(recipe)&&PreviousPresentationTierGap.Excuses(entity.BlueprintName))continue;
+                // These exact public allotment owners have map glyphs and no legacy 3D models.
+                if (!Supported(recipe) && fallback != null && IsAllotmentGlyphOwner(zone, entity))
+                {
+                    Refused(recipe, "unmodeled-native-blueprint");
+                    AssertVisibleGlyphAndFog(fallback, zone, entity);
+                    continue;
+                }
                 Assert.IsTrue(Supported(recipe),id+" "+entity.BlueprintName+": "+Value<string>(recipe,"Failure"));
                 Assert.AreSame(entity,Value<Entity>(recipe,"Owner"));
                 var at=zone.GetEntityPosition(entity);
@@ -61,6 +122,18 @@ namespace CavesOfOoo.Tests
             }
             CollectionAssert.AreEquivalent(members,zone.GetReadOnlyEntities());CollectionAssert.AreEqual(positions,members.Select(zone.GetEntityPosition));
             CollectionAssert.AreEqual(ids,members.Select(e=>e.ID));Assert.AreEqual(version,zone.EntityVersion);Assert.AreEqual(tiles,zone.TileState.ToSaveString());
+        }
+
+        [TestCase("LateKnotflaxStand")]
+        [TestCase("CampAwning")]
+        [TestCase("DryClaySpoilHeap")]
+        public void AllotmentGlyphCensusRequiresTheExactGeneratedOwner(string blueprint)
+        {
+            var zone = new Zone(RepairCultivationSite.ZoneID);
+            var fresh = scope.Factory.CreateEntity(blueprint);
+            Assert.True(zone.AddEntity(scope.Factory.CreateEntity("Grass"), 12, 7));
+            Assert.True(zone.AddEntity(fresh, 12, 7));
+            Assert.False(IsAllotmentGlyphOwner(zone, fresh), "A matching blueprint alone is insufficient.");
         }
         [Test] public void VariantsFollowCurrentCoordinatesAndRemainStableAcrossFreshEquivalentGraphs()
         {

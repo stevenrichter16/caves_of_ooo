@@ -1,3 +1,11 @@
+**The S regression follow-up qualified the pinned inputs and fixtures — November 26 UTC, 2026.**
+Two files from the original commit restored 21 tests in the isolated
+clone. The four other additional S assertions passed with exact
+allotment glyph and archive key fixture corrections. Their 74-case
+follow-up passed. The historical failures and ongoing Spread band
+remain tracked separately.
+[Pinned regression status](Verification/MachineSystems/CurrentNativeRegression69AE7EE85/README.md)
+
 **Morrowfast's knotflax shows when work changes — November 26 UTC, 2026.**
 The normal map shows stems, ripe heads and dormant growth from the
 existing seasonal authority. The previously earned stand was visible
