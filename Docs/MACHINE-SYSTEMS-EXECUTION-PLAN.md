@@ -1,3 +1,18 @@
+**Brine can leave a recoverable solid — November 26 UTC, 2026.**
+The existing hot still can give up one water to retain a pound of crust.
+The supplied seed 64 expedition camp showed the ordinary option from
+the bench and offered crust one step onto clear ground. The exact loose
+crust survived fresh Continue, was picked up and proofed the original
+worn leather cap away from the still. The final coat and independent
+water flask also survived fresh Continue. Final targeted run 586/586.
+[Evidence](Verification/MachineSystems/RetainedBrineCrust20261126/README.md)
+
+Next, assess one direct timber feed from installed camp-box stock.
+Use both fixtures within the player's reach and preserve the ordinary
+pack feed. Compare the same deposit checkpoint with ordinary retrieval
+and quote exactly one stored timber for the existing fuel gain.
+The old expedition camp already has a box and hot hearth in reach.
+
 **The rough field haft makes a useful hand bellows — November 26 UTC, 2026.**
 Original Sumphold timber made the grip. In Cinderhold, the ordinary forge
 spent that grip, a bought spike and a binding cut from a bought offcut.
@@ -5,13 +20,6 @@ The other timber stayed in the pack. The same finished bellows moved a
 supplied thin cloud on the road and stayed in the pack. The oak bill is
 still available. The current Mac package predates this increment.
 [Evidence](Verification/MachineSystems/FieldHaftBellows20261126/README.md)
-
-Next, check the choice between a water-only brine batch and retaining
-crust for temporary garment proofing. Keep existing thermal, portable
-and ordinary producer paths. The expedition checkpoint already records
-four brine and five process fuel yielding two water. A retained solid
-must have a legitimate destination and cost the batch part of its water
-yield. [Baseline](Verification/MachineSystems/ExpeditionPreparation20261124/README.md)
 
 **An ordinary sounding carries across bare sandstone — November 26 UTC, 2026.**
 The shared floor check now lets the purchased rod work on genuinely bare

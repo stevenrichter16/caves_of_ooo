@@ -1,3 +1,12 @@
+**A hot still can keep crust instead of one water — November 26 UTC, 2026.**
+The existing finite brine batch can yield two water or one water with a
+pound of recoverable crust. Both use the same four carried brine, five
+fuel and separate empty receiver. The retained crust dries on the
+actor's clear, dry work cell. It has the same use and trade limits as
+crust scraped at an ordinary brine bank. Taking it is a separate action.
+The two-water choice needs no dry landing space for a solid.
+[Evidence](Verification/MachineSystems/RetainedBrineCrust20261126/README.md)
+
 **Reclaimed timber can become a hand bellows grip — November 26 UTC, 2026.**
 A rough field haft can replace oak in one explicit forge bill. Both bills
 consume one iron spike, one prepared grip and one leather binding. They

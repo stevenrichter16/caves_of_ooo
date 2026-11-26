@@ -1,0 +1,2185 @@
+{
+  "inputBaseline": {
+    "tick": 1840,
+    "zone": "Overworld.10.11.0",
+    "actor": {
+      "ID": "2126",
+      "X": 41,
+      "Y": 9,
+      "hp": 358,
+      "shock": 0
+    },
+    "mode": "Normal",
+    "flasks": [
+      {
+        "ID": "2231",
+        "kind": "oil",
+        "volume": 3
+      },
+      {
+        "ID": "2232",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2233",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2234",
+        "kind": "water",
+        "volume": 3
+      },
+      {
+        "ID": "2235",
+        "kind": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "2236",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2237",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2238",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2239",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2240",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2241",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2242",
+        "kind": "",
+        "volume": 0
+      }
+    ],
+    "at": [
+      {
+        "ID": "790",
+        "BlueprintName": "Grass",
+        "terrain": true
+      },
+      {
+        "ID": "2149",
+        "BlueprintName": "CampBench",
+        "terrain": false
+      },
+      {
+        "ID": "2126",
+        "BlueprintName": "Player",
+        "terrain": false
+      }
+    ],
+    "cell": {
+      "IsVisible": true,
+      "Explored": true,
+      "coat": null
+    },
+    "crust": [],
+    "gear": [
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch"
+      },
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger"
+      },
+      {
+        "ID": "19e161d0e4094b16b6746d8cd360cf38",
+        "BlueprintName": "LeatherCap"
+      }
+    ],
+    "fire": {
+      "ID": "2147",
+      "BlueprintName": "CampHearth",
+      "x": 40,
+      "y": 8,
+      "fuel": 9.5,
+      "temperature": 433.17
+    },
+    "still": {
+      "ID": "2148",
+      "BlueprintName": "CampStill",
+      "x": 41,
+      "y": 8
+    },
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "Interact — choose a direction, or . for underfoot.",
+      "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot."
+    ]
+  },
+  "benchControl": {
+    "open": true,
+    "target": "2148",
+    "item": "CampStill",
+    "index": 0,
+    "current": "TakeUp|Overworld.10.11.0|2148",
+    "rows": [
+      {
+        "Name": "TakeUpFixture",
+        "Display": "take up",
+        "Hint": "",
+        "Command": "TakeUp|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "PackUpCamp",
+        "Display": "pack up camp (5 things)",
+        "Hint": "Takes up every kit of yours within 4 cells in one action. All or nothing; a burning fire goes out.",
+        "Command": "PackUp|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "Brew",
+        "Display": "brew the mix",
+        "Hint": "Brews one of the mix and uses up the picked reagents. Pick reagents below first.",
+        "Command": "BrewMix",
+        "IsDisabled": false
+      },
+      {
+        "Name": "BrewBatch",
+        "Display": "brew a full batch",
+        "Hint": "Brews as many as the picked reagents allow, in one go.",
+        "Command": "BrewMixBatch",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleLiquid",
+        "Display": "settle 4 mire to 1 water #1",
+        "Hint": "Settles bog-mire into clean water, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleLiquid|water|2232|4",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleLiquid",
+        "Display": "settle 4 mire to 1 water #2",
+        "Hint": "Settles bog-mire into clean water, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleLiquid|water|2233|4",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleLiquid",
+        "Display": "settle 4 mire to 1 oil #1",
+        "Hint": "Settles bog-mire into clean oil, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleLiquid|oil|2232|4",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleLiquid",
+        "Display": "settle 4 mire to 1 oil #2",
+        "Hint": "Settles bog-mire into clean oil, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleLiquid|oil|2233|4",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] fire-moss (x4) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2151",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleAll",
+        "Display": "settle 1 of 2 flasks to 1 water",
+        "Hint": "Settles bog-mire into clean water, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleAll|water",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] ember-fruit (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2159",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleAll",
+        "Display": "settle 1 of 2 flasks to 1 oil",
+        "Hint": "Settles bog-mire into clean oil, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleAll|oil",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] pitchpod resin (x6) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2167",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] frost lichen (x7) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2175",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 1 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 1 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2236|2147|4C7D3331BAAF76D00726D58E0000C6E154B3C538AD66A963777F722FE241BDD1",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 2 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 2 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2237|2147|ADC6EF2B382CC1A21D408A011BE13D9409E7A37583B344628E7FDA3E8F3EB70B",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 3 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 3 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2238|2147|31BFCA763A9ABD1E22DAF670F2E474387FD3AC17AA50AAE69E40F48BC0DD7522",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 4 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 4 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2239|2147|733B00795EB70947E45C66128E384415CE2B2A89653C0A9F418B93A01A6C7268",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 5 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 5 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2240|2147|65F9B66AEA81D1C8E67F682138485C813FF5C337AE60D4B3477D4461FD52F831",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 6 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 6 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2241|2147|B3DF03EEE68A7FDCC49A77B77D2E1583AE4C45F16CFAA0F813184560E2F79C15",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 7 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 7 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2242|2147|8E140CDFAF70BDD7285469A146F07FA93096EDA27A137C135EE634651A5489A5",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrineKeepCrust",
+        "Display": "keep brine crust",
+        "Hint": "",
+        "Command": "Disabled:needs-clear-ground",
+        "IsDisabled": true
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] glacier salt (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2183",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] chillcress tip (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2191",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] spark-root (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2199",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] prismreed pith (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2207",
+        "IsDisabled": false
+      },
+      {
+        "Name": "HandOverFixture",
+        "Display": "hand over (you can no longer take it up)",
+        "Hint": "",
+        "Command": "HandOver|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "MoveFixture",
+        "Display": "move",
+        "Hint": "Pick a cell with the arrow keys: green fits, red does not. It keeps its fuel; a burning fire goes out.",
+        "Command": "MovePick|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] glimmer-brine (x7) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2215",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] sourmantle fold (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2223",
+        "IsDisabled": false
+      },
+      {
+        "Name": "NameCamp",
+        "Display": "name this camp: Home",
+        "Hint": "Names this camp in the notes of where you keep things. Choose again for the next name.",
+        "Command": "NameCamp|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "Examine",
+        "Display": "examine",
+        "Hint": "",
+        "Command": "Examine",
+        "IsDisabled": false
+      },
+      {
+        "Name": "ToolGroup",
+        "Display": "pour out a liquid here (8) >>",
+        "Hint": "Choose from: liquid flask.",
+        "Command": "ToolGroup|pour out a liquid here",
+        "IsDisabled": false
+      },
+      {
+        "Name": "MaterialField",
+        "Display": "spread brine north (1 item) [glimmer-brine]",
+        "Hint": "",
+        "Command": "MaterialField|Film|Overworld.10.11.0|41|9|41|8||7|brine",
+        "IsDisabled": false
+      },
+      {
+        "Name": "PickCell",
+        "Display": "<< everything here",
+        "Hint": "",
+        "Command": "PickCell",
+        "IsDisabled": false
+      }
+    ]
+  },
+  "clearBefore": {
+    "tick": 1850,
+    "zone": "Overworld.10.11.0",
+    "actor": {
+      "ID": "2126",
+      "X": 40,
+      "Y": 9,
+      "hp": 358,
+      "shock": 0
+    },
+    "mode": "Normal",
+    "flasks": [
+      {
+        "ID": "2231",
+        "kind": "oil",
+        "volume": 3
+      },
+      {
+        "ID": "2232",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2233",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2234",
+        "kind": "water",
+        "volume": 3
+      },
+      {
+        "ID": "2235",
+        "kind": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "2236",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2237",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2238",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2239",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2240",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2241",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2242",
+        "kind": "",
+        "volume": 0
+      }
+    ],
+    "at": [
+      {
+        "ID": "789",
+        "BlueprintName": "Grass",
+        "terrain": true
+      },
+      {
+        "ID": "2126",
+        "BlueprintName": "Player",
+        "terrain": false
+      }
+    ],
+    "cell": {
+      "IsVisible": true,
+      "Explored": true,
+      "coat": null
+    },
+    "crust": [],
+    "gear": [
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch"
+      },
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger"
+      },
+      {
+        "ID": "19e161d0e4094b16b6746d8cd360cf38",
+        "BlueprintName": "LeatherCap"
+      }
+    ],
+    "fire": {
+      "ID": "2147",
+      "BlueprintName": "CampHearth",
+      "x": 40,
+      "y": 8,
+      "fuel": 9.25,
+      "temperature": 425.006622
+    },
+    "still": {
+      "ID": "2148",
+      "BlueprintName": "CampStill",
+      "x": 41,
+      "y": 8
+    },
+    "recent": [
+      "Interact — choose a direction, or . for underfoot.",
+      "You lay the fire moss trap. It springs on the next thing to step there, you included.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "Interact — choose a direction, or . for underfoot.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "beforeArchive": {
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "d3c56928ecec4cd0a4532b3402867974",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.10.11.0",
+      "ActiveZoneDisplayLabel": "Overworld.10.11.0",
+      "Turn": 1850,
+      "SaveTimestampUtc": "2026-11-26T04:13:52.1618900Z",
+      "HPSummary": "358/400",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "files": {
+      "Quick.sav.gz": "9fd1fff4b66a79770a9222b9d225695f919e41c51410631561f2b8f59573d596",
+      "Quick.sav.gz.bak": "5e97aa79f562303b4b351cea5e25130221edb423cab7ebcc30aa677dc0824384",
+      "Quick.json.bak": "3d70be9daf13bee3f761f686e6426e4e5afc76ac35049236c14397a6bff50dbb",
+      "Quick.json": "f32a759c0f542af712ca46eeaaada19fde3ab7d900afe740081b0e73ab801c9d"
+    }
+  },
+  "currentStillMenu": {
+    "open": true,
+    "target": "2148",
+    "item": "CampStill",
+    "index": 0,
+    "current": "TakeUp|Overworld.10.11.0|2148",
+    "rows": [
+      {
+        "Name": "TakeUpFixture",
+        "Display": "take up",
+        "Hint": "",
+        "Command": "TakeUp|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "PackUpCamp",
+        "Display": "pack up camp (5 things)",
+        "Hint": "Takes up every kit of yours within 4 cells in one action. All or nothing; a burning fire goes out.",
+        "Command": "PackUp|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "Brew",
+        "Display": "brew the mix",
+        "Hint": "Brews one of the mix and uses up the picked reagents. Pick reagents below first.",
+        "Command": "BrewMix",
+        "IsDisabled": false
+      },
+      {
+        "Name": "BrewBatch",
+        "Display": "brew a full batch",
+        "Hint": "Brews as many as the picked reagents allow, in one go.",
+        "Command": "BrewMixBatch",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleLiquid",
+        "Display": "settle 4 mire to 1 water #1",
+        "Hint": "Settles bog-mire into clean water, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleLiquid|water|2232|4",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleLiquid",
+        "Display": "settle 4 mire to 1 water #2",
+        "Hint": "Settles bog-mire into clean water, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleLiquid|water|2233|4",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleLiquid",
+        "Display": "settle 4 mire to 1 oil #1",
+        "Hint": "Settles bog-mire into clean oil, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleLiquid|oil|2232|4",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleLiquid",
+        "Display": "settle 4 mire to 1 oil #2",
+        "Hint": "Settles bog-mire into clean oil, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleLiquid|oil|2233|4",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] fire-moss (x4) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2151",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleAll",
+        "Display": "settle 1 of 2 flasks to 1 water",
+        "Hint": "Settles bog-mire into clean water, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleAll|water",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] ember-fruit (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2159",
+        "IsDisabled": false
+      },
+      {
+        "Name": "SettleAll",
+        "Display": "settle 1 of 2 flasks to 1 oil",
+        "Hint": "Settles bog-mire into clean oil, 4 mire to 1. The lit fire spends 5 fuel per flask.",
+        "Command": "SettleAll|oil",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] pitchpod resin (x6) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2167",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] frost lichen (x7) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2175",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 1 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 1 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2236|2147|31F7589AC705674B09FFBA8EB18601BB58E714A222E7B613BA49B878982D5A30",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 2 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 2 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2237|2147|15B1FE7801E7A3685DDCC5F210DEE8882F068698FC5F7B5D1AC0335212146B83",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 3 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 3 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2238|2147|79F739D2D42667C50688D6C2CFA6DC2A81EA857ED0E3CDC8DB3FC7806A419854",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 4 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 4 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2239|2147|B0778450D12981BCDC9B27C7BA516F8EE554B5CF227D3922607BEF6DC7FA9F58",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 5 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 5 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2240|2147|53684104C2C23E9489B788AB4A6B50356DB99FDD5848D6E3F6DCCE1475AD163D",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 6 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 6 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2241|2147|3D097D8C831AABF01C7F7B932F8DFB5B07B2E5AB90DDFC94036305FD890B1815",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrine",
+        "Display": "distil brine flask 1 (12/12) into empty flask 7 (0/12) (2 water; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and receives 2 water in empty flask 7 (0/12). Two units of concentrate are discarded; no salt is recovered.",
+        "Command": "DistillBrine|2235|2242|2147|50C2BD239592F8CA109CABE0FF46934B33258E55B385B94C93E61771B382F41B",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrineKeepCrust",
+        "Display": "keep crust, get 1 water (brine 1 to flask 1; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and 5 fuel in one action. Receives 1 water in empty flask 1 (0/12) and leaves one pound of brine crust at your feet. Keeping the crust costs one water.",
+        "Command": "DistillBrineKeepCrust|2235|2236|2147|9D3C46EC9471301242441421409FC22853E87B6683F15B110BF740BA376EA6F8",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrineKeepCrust",
+        "Display": "keep crust, get 1 water (brine 1 to flask 2; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and 5 fuel in one action. Receives 1 water in empty flask 2 (0/12) and leaves one pound of brine crust at your feet. Keeping the crust costs one water.",
+        "Command": "DistillBrineKeepCrust|2235|2237|2147|7751F9B4EBA848793B455DEBB877D6E2E2B722AC6483E3E0D0A4C443D2ABB00D",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrineKeepCrust",
+        "Display": "keep crust, get 1 water (brine 1 to flask 3; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and 5 fuel in one action. Receives 1 water in empty flask 3 (0/12) and leaves one pound of brine crust at your feet. Keeping the crust costs one water.",
+        "Command": "DistillBrineKeepCrust|2235|2238|2147|3669CB15347671843A817136F08CC9C866358DF664A8CC531BFA0C6F9822A096",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrineKeepCrust",
+        "Display": "keep crust, get 1 water (brine 1 to flask 4; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and 5 fuel in one action. Receives 1 water in empty flask 4 (0/12) and leaves one pound of brine crust at your feet. Keeping the crust costs one water.",
+        "Command": "DistillBrineKeepCrust|2235|2239|2147|BD52F12CDAB7B5CA1300005215A01DEED3F858E07341E7E762347CA30FDB5BF1",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrineKeepCrust",
+        "Display": "keep crust, get 1 water (brine 1 to flask 5; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and 5 fuel in one action. Receives 1 water in empty flask 5 (0/12) and leaves one pound of brine crust at your feet. Keeping the crust costs one water.",
+        "Command": "DistillBrineKeepCrust|2235|2240|2147|832415125F01C77DBCD0112FF23091E95A9D2BAEC996FB00FCB4D7BEB859979A",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrineKeepCrust",
+        "Display": "keep crust, get 1 water (brine 1 to flask 6; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and 5 fuel in one action. Receives 1 water in empty flask 6 (0/12) and leaves one pound of brine crust at your feet. Keeping the crust costs one water.",
+        "Command": "DistillBrineKeepCrust|2235|2241|2147|2612A6D79D88474B2CE3D61E588F280B5459E8B91B632ED9CD321F352B4F1754",
+        "IsDisabled": false
+      },
+      {
+        "Name": "DistillBrineKeepCrust",
+        "Display": "keep crust, get 1 water (brine 1 to flask 7; 5 fuel)",
+        "Hint": "Uses 4 brine from brine flask 1 (12/12) and 5 fuel in one action. Receives 1 water in empty flask 7 (0/12) and leaves one pound of brine crust at your feet. Keeping the crust costs one water.",
+        "Command": "DistillBrineKeepCrust|2235|2242|2147|479C0C6CCF4FAC532CA6460F551A477503F18CFE2D1EB8AC7019F7C9EEACC58F",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] glacier salt (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2183",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] chillcress tip (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2191",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] spark-root (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2199",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] prismreed pith (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2207",
+        "IsDisabled": false
+      },
+      {
+        "Name": "HandOverFixture",
+        "Display": "hand over (you can no longer take it up)",
+        "Hint": "",
+        "Command": "HandOver|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "MoveFixture",
+        "Display": "move",
+        "Hint": "Pick a cell with the arrow keys: green fits, red does not. It keeps its fuel; a burning fire goes out.",
+        "Command": "MovePick|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] glimmer-brine (x7) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2215",
+        "IsDisabled": false
+      },
+      {
+        "Name": "CraftToggle",
+        "Display": "[ ] sourmantle fold (x8) - add",
+        "Hint": "",
+        "Command": "CraftToggle:2223",
+        "IsDisabled": false
+      },
+      {
+        "Name": "NameCamp",
+        "Display": "name this camp: Home",
+        "Hint": "Names this camp in the notes of where you keep things. Choose again for the next name.",
+        "Command": "NameCamp|Overworld.10.11.0|2148",
+        "IsDisabled": false
+      },
+      {
+        "Name": "Examine",
+        "Display": "examine",
+        "Hint": "",
+        "Command": "Examine",
+        "IsDisabled": false
+      },
+      {
+        "Name": "ToolGroup",
+        "Display": "pour out a liquid here (8) >>",
+        "Hint": "Choose from: liquid flask.",
+        "Command": "ToolGroup|pour out a liquid here",
+        "IsDisabled": false
+      },
+      {
+        "Name": "MaterialField",
+        "Display": "spread brine northeast (1 item) [glimmer-brine]",
+        "Hint": "",
+        "Command": "MaterialField|Film|Overworld.10.11.0|40|9|41|8||7|brine",
+        "IsDisabled": false
+      },
+      {
+        "Name": "PickCell",
+        "Display": "<< everything here",
+        "Hint": "",
+        "Command": "PickCell",
+        "IsDisabled": false
+      }
+    ]
+  },
+  "earnedGround": {
+    "tick": 1860,
+    "zone": "Overworld.10.11.0",
+    "actor": {
+      "ID": "2126",
+      "X": 40,
+      "Y": 9,
+      "hp": 358,
+      "shock": 0
+    },
+    "mode": "Normal",
+    "flasks": [
+      {
+        "ID": "2231",
+        "kind": "oil",
+        "volume": 3
+      },
+      {
+        "ID": "2232",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2233",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2234",
+        "kind": "water",
+        "volume": 3
+      },
+      {
+        "ID": "2235",
+        "kind": "brine",
+        "volume": 8
+      },
+      {
+        "ID": "2236",
+        "kind": "water",
+        "volume": 1
+      },
+      {
+        "ID": "2237",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2238",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2239",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2240",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2241",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2242",
+        "kind": "",
+        "volume": 0
+      }
+    ],
+    "at": [
+      {
+        "ID": "789",
+        "BlueprintName": "Grass",
+        "terrain": true
+      },
+      {
+        "ID": "2728",
+        "BlueprintName": "BrineCrust",
+        "terrain": false
+      },
+      {
+        "ID": "2126",
+        "BlueprintName": "Player",
+        "terrain": false
+      }
+    ],
+    "cell": {
+      "IsVisible": true,
+      "Explored": true,
+      "coat": null
+    },
+    "crust": [
+      {
+        "ID": "2728",
+        "X": 40,
+        "Y": 9,
+        "n": 1,
+        "holder": null,
+        "noTrade": true
+      }
+    ],
+    "gear": [
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch"
+      },
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger"
+      },
+      {
+        "ID": "19e161d0e4094b16b6746d8cd360cf38",
+        "BlueprintName": "LeatherCap"
+      }
+    ],
+    "fire": {
+      "ID": "2147",
+      "BlueprintName": "CampHearth",
+      "x": 40,
+      "y": 8,
+      "fuel": 4,
+      "temperature": 417.0065
+    },
+    "still": {
+      "ID": "2148",
+      "BlueprintName": "CampStill",
+      "x": 41,
+      "y": 8
+    },
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "Interact — choose a direction, or . for underfoot.",
+      "You distil 4 brine into 1 clean water and leave a pound of brine crust at your feet. The fire spends 5 fuel.",
+      "The cold coat on your leather cap has worn off.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "groundArchive": {
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "d3c56928ecec4cd0a4532b3402867974",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.10.11.0",
+      "ActiveZoneDisplayLabel": "Overworld.10.11.0",
+      "Turn": 1860,
+      "SaveTimestampUtc": "2026-11-26T04:16:44.9496750Z",
+      "HPSummary": "358/400",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "files": {
+      "Quick.sav.gz": "270b716a9d7efc85a391e2ce0dc42fdd99387a8829628c8c3825d2c716af332a",
+      "Quick.sav.gz.bak": "9fd1fff4b66a79770a9222b9d225695f919e41c51410631561f2b8f59573d596",
+      "Quick.json.bak": "f32a759c0f542af712ca46eeaaada19fde3ab7d900afe740081b0e73ab801c9d",
+      "Quick.json": "deda2a42874537defc0d2bc1f27854b1b6e50320ca094d6d0b15c69a7fadf4de"
+    }
+  },
+  "reloadedGround": {
+    "snapshot": {
+      "tick": 1860,
+      "zone": "Overworld.10.11.0",
+      "actor": {
+        "ID": "2126",
+        "X": 40,
+        "Y": 9,
+        "hp": 358,
+        "shock": 0
+      },
+      "mode": "Normal",
+      "flasks": [
+        {
+          "ID": "2231",
+          "kind": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "kind": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "kind": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2234",
+          "kind": "water",
+          "volume": 3
+        },
+        {
+          "ID": "2235",
+          "kind": "brine",
+          "volume": 8
+        },
+        {
+          "ID": "2236",
+          "kind": "water",
+          "volume": 1
+        },
+        {
+          "ID": "2237",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "kind": "",
+          "volume": 0
+        }
+      ],
+      "at": [
+        {
+          "ID": "789",
+          "BlueprintName": "Grass",
+          "terrain": true
+        },
+        {
+          "ID": "2728",
+          "BlueprintName": "BrineCrust",
+          "terrain": false
+        },
+        {
+          "ID": "2126",
+          "BlueprintName": "Player",
+          "terrain": false
+        }
+      ],
+      "cell": {
+        "IsVisible": true,
+        "Explored": true,
+        "coat": null
+      },
+      "crust": [
+        {
+          "ID": "2728",
+          "X": 40,
+          "Y": 9,
+          "n": 1,
+          "holder": null,
+          "noTrade": true
+        }
+      ],
+      "gear": [
+        {
+          "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+          "BlueprintName": "Torch"
+        },
+        {
+          "ID": "2127",
+          "BlueprintName": "Dagger"
+        },
+        {
+          "ID": "19e161d0e4094b16b6746d8cd360cf38",
+          "BlueprintName": "LeatherCap"
+        }
+      ],
+      "fire": {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "x": 40,
+        "y": 8,
+        "fuel": 4,
+        "temperature": 417.0065
+      },
+      "still": {
+        "ID": "2148",
+        "BlueprintName": "CampStill",
+        "x": 41,
+        "y": 8
+      },
+      "recent": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You distil 4 brine into 1 clean water and leave a pound of brine crust at your feet. The fire spends 5 fuel.",
+        "The cold coat on your leather cap has worn off.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "match": true
+  },
+  "takeStart": {
+    "tick": 1870,
+    "zone": "Overworld.10.11.0",
+    "actor": {
+      "ID": "2126",
+      "X": 40,
+      "Y": 9,
+      "hp": 358,
+      "shock": 0
+    },
+    "mode": "Normal",
+    "flasks": [
+      {
+        "ID": "2231",
+        "kind": "oil",
+        "volume": 3
+      },
+      {
+        "ID": "2232",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2233",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2234",
+        "kind": "water",
+        "volume": 3
+      },
+      {
+        "ID": "2235",
+        "kind": "brine",
+        "volume": 8
+      },
+      {
+        "ID": "2236",
+        "kind": "water",
+        "volume": 1
+      },
+      {
+        "ID": "2237",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2238",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2239",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2240",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2241",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2242",
+        "kind": "",
+        "volume": 0
+      }
+    ],
+    "at": [
+      {
+        "ID": "789",
+        "BlueprintName": "Grass",
+        "terrain": true
+      },
+      {
+        "ID": "2126",
+        "BlueprintName": "Player",
+        "terrain": false
+      }
+    ],
+    "cell": {
+      "IsVisible": true,
+      "Explored": true,
+      "coat": null
+    },
+    "crust": [
+      {
+        "ID": "2728",
+        "X": null,
+        "Y": null,
+        "n": 1,
+        "holder": "2126",
+        "noTrade": true
+      }
+    ],
+    "gear": [
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch"
+      },
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger"
+      },
+      {
+        "ID": "19e161d0e4094b16b6746d8cd360cf38",
+        "BlueprintName": "LeatherCap"
+      }
+    ],
+    "fire": {
+      "ID": "2147",
+      "BlueprintName": "CampHearth",
+      "x": 40,
+      "y": 8,
+      "fuel": 3.75,
+      "temperature": 409.166382
+    },
+    "still": {
+      "ID": "2148",
+      "BlueprintName": "CampStill",
+      "x": 41,
+      "y": 8
+    },
+    "recent": [
+      "Interact — choose a direction, or . for underfoot.",
+      "You distil 4 brine into 1 clean water and leave a pound of brine crust at your feet. The fire spends 5 fuel.",
+      "The cold coat on your leather cap has worn off.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You pick up brine crust.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "outside": {
+    "tick": 1890,
+    "zone": "Overworld.10.11.0",
+    "actor": {
+      "ID": "2126",
+      "X": 38,
+      "Y": 9,
+      "hp": 358,
+      "shock": 0
+    },
+    "mode": "Normal",
+    "flasks": [
+      {
+        "ID": "2231",
+        "kind": "oil",
+        "volume": 3
+      },
+      {
+        "ID": "2232",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2233",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2234",
+        "kind": "water",
+        "volume": 3
+      },
+      {
+        "ID": "2235",
+        "kind": "brine",
+        "volume": 8
+      },
+      {
+        "ID": "2236",
+        "kind": "water",
+        "volume": 1
+      },
+      {
+        "ID": "2237",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2238",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2239",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2240",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2241",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2242",
+        "kind": "",
+        "volume": 0
+      }
+    ],
+    "at": [
+      {
+        "ID": "787",
+        "BlueprintName": "Grass",
+        "terrain": true
+      },
+      {
+        "ID": "2126",
+        "BlueprintName": "Player",
+        "terrain": false
+      }
+    ],
+    "cell": {
+      "IsVisible": true,
+      "Explored": true,
+      "coat": null
+    },
+    "crust": [
+      {
+        "ID": "2728",
+        "X": null,
+        "Y": null,
+        "n": 1,
+        "holder": "2126",
+        "noTrade": true
+      }
+    ],
+    "gear": [
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch"
+      },
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger"
+      },
+      {
+        "ID": "19e161d0e4094b16b6746d8cd360cf38",
+        "BlueprintName": "LeatherCap"
+      }
+    ],
+    "fire": {
+      "ID": "2147",
+      "BlueprintName": "CampHearth",
+      "x": 40,
+      "y": 8,
+      "fuel": 3.25,
+      "temperature": 393.9534
+    },
+    "still": {
+      "ID": "2148",
+      "BlueprintName": "CampStill",
+      "x": 41,
+      "y": 8
+    },
+    "recent": [
+      "Interact — choose a direction, or . for underfoot.",
+      "You distil 4 brine into 1 clean water and leave a pound of brine crust at your feet. The fire spends 5 fuel.",
+      "The cold coat on your leather cap has worn off.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You pick up brine crust.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "pressMenu": {
+    "panel": 1,
+    "selected": "BrineCrust",
+    "selectedID": "2728",
+    "popupID": "2728",
+    "popupItem": "BrineCrust",
+    "index": 0,
+    "rows": [
+      {
+        "Label": "press into liquid flask (shock-proofing, 1 coat; 0→1/12)",
+        "Command": "PressProofing|electric|2237",
+        "Hint": "Spends one brine crust. Each coat later proofs one garment against shock: +35 shock resistance for 100 worn turns, and it blunts shock stun. No fire or workbench needed."
+      },
+      {
+        "Label": "press into liquid flask (shock-proofing, 1 coat; 0→1/12)",
+        "Command": "PressProofing|electric|2238",
+        "Hint": "Spends one brine crust. Each coat later proofs one garment against shock: +35 shock resistance for 100 worn turns, and it blunts shock stun. No fire or workbench needed."
+      },
+      {
+        "Label": "press into liquid flask (shock-proofing, 1 coat; 0→1/12)",
+        "Command": "PressProofing|electric|2239",
+        "Hint": "Spends one brine crust. Each coat later proofs one garment against shock: +35 shock resistance for 100 worn turns, and it blunts shock stun. No fire or workbench needed."
+      },
+      {
+        "Label": "press into liquid flask (shock-proofing, 1 coat; 0→1/12)",
+        "Command": "PressProofing|electric|2240",
+        "Hint": "Spends one brine crust. Each coat later proofs one garment against shock: +35 shock resistance for 100 worn turns, and it blunts shock stun. No fire or workbench needed."
+      },
+      {
+        "Label": "press into liquid flask (shock-proofing, 1 coat; 0→1/12)",
+        "Command": "PressProofing|electric|2241",
+        "Hint": "Spends one brine crust. Each coat later proofs one garment against shock: +35 shock resistance for 100 worn turns, and it blunts shock stun. No fire or workbench needed."
+      },
+      {
+        "Label": "press into liquid flask (shock-proofing, 1 coat; 0→1/12)",
+        "Command": "PressProofing|electric|2242",
+        "Hint": "Spends one brine crust. Each coat later proofs one garment against shock: +35 shock resistance for 100 worn turns, and it blunts shock stun. No fire or workbench needed."
+      },
+      {
+        "Label": "examine",
+        "Command": "Examine",
+        "Hint": ""
+      },
+      {
+        "Label": "Set aside for crafting",
+        "Command": "toggle_craftmark",
+        "Hint": null
+      },
+      {
+        "Label": "Label item",
+        "Command": "edit_storage_label",
+        "Hint": null
+      },
+      {
+        "Label": "Drop",
+        "Command": "drop",
+        "Hint": null
+      }
+    ]
+  },
+  "pressed": {
+    "tick": 1900,
+    "zone": "Overworld.10.11.0",
+    "actor": {
+      "ID": "2126",
+      "X": 38,
+      "Y": 9,
+      "hp": 358,
+      "shock": 0
+    },
+    "mode": "Normal",
+    "flasks": [
+      {
+        "ID": "2231",
+        "kind": "oil",
+        "volume": 3
+      },
+      {
+        "ID": "2232",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2233",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2234",
+        "kind": "water",
+        "volume": 3
+      },
+      {
+        "ID": "2235",
+        "kind": "brine",
+        "volume": 8
+      },
+      {
+        "ID": "2236",
+        "kind": "water",
+        "volume": 1
+      },
+      {
+        "ID": "2237",
+        "kind": "shock-proofing",
+        "volume": 1
+      },
+      {
+        "ID": "2238",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2239",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2240",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2241",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2242",
+        "kind": "",
+        "volume": 0
+      }
+    ],
+    "at": [
+      {
+        "ID": "787",
+        "BlueprintName": "Grass",
+        "terrain": true
+      },
+      {
+        "ID": "2126",
+        "BlueprintName": "Player",
+        "terrain": false
+      }
+    ],
+    "cell": {
+      "IsVisible": true,
+      "Explored": true,
+      "coat": null
+    },
+    "crust": [],
+    "gear": [
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch"
+      },
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger"
+      },
+      {
+        "ID": "19e161d0e4094b16b6746d8cd360cf38",
+        "BlueprintName": "LeatherCap"
+      }
+    ],
+    "fire": {
+      "ID": "2147",
+      "BlueprintName": "CampHearth",
+      "x": 40,
+      "y": 8,
+      "fuel": 3,
+      "temperature": 386.574341
+    },
+    "still": {
+      "ID": "2148",
+      "BlueprintName": "CampStill",
+      "x": 41,
+      "y": 8
+    },
+    "recent": [
+      "The cold coat on your leather cap has worn off.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You pick up brine crust.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You press the brine crust into the flask: 1 coat of shock-proofing.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "coatMenu": {
+    "panel": 1,
+    "selected": "LiquidFlask",
+    "selectedID": "2237",
+    "popupID": "2237",
+    "popupItem": "LiquidFlask",
+    "index": 0,
+    "rows": [
+      {
+        "Label": "Examine",
+        "Command": "examine_material",
+        "Hint": null
+      },
+      {
+        "Label": "coat kilnfelt apron (worn)",
+        "Command": "CoatGarment|2373",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35."
+      },
+      {
+        "Label": "coat leather cap (worn)",
+        "Command": "CoatGarment|19e161d0e4094b16b6746d8cd360cf38",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35."
+      },
+      {
+        "Label": "coat acidworker apron",
+        "Command": "CoatGarment|2378",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat buckler",
+        "Command": "CoatGarment|2360",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat chain mail (x3) (1 of 3)",
+        "Command": "CoatGarment|2348",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat cloak (x4) (1 of 4)",
+        "Command": "CoatGarment|2337",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat coldward cloak (x3) (1 of 3)",
+        "Command": "CoatGarment|2347",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat filter hood (x2) (1 of 2)",
+        "Command": "CoatGarment|2344",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat groundwire screen",
+        "Command": "CoatGarment|2380",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat iron buckler",
+        "Command": "CoatGarment|2370",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat iron helmet (x5) (1 of 5)",
+        "Command": "CoatGarment|2349",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat ironshod boots (x5) (1 of 5)",
+        "Command": "CoatGarment|2351",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat leather armor (x3) (1 of 3)",
+        "Command": "CoatGarment|2333",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat leather boots (x5) (1 of 5)",
+        "Command": "CoatGarment|2336",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat leather cap (x2) (1 of 2)",
+        "Command": "CoatGarment|2334",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat leather gloves (x7) (1 of 7)",
+        "Command": "CoatGarment|2335",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat plate armor (x2) (1 of 2)",
+        "Command": "CoatGarment|2363",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "coat warded cloak (x3) (1 of 3)",
+        "Command": "CoatGarment|2342",
+        "Hint": "Spends one unit of shock-proofing. +35 shock resistance for 100 worn turns, paused when taken off, and it blunts shock stun. Another coat of the same adds turns. Your shock resistance: 0 → 35 once worn."
+      },
+      {
+        "Label": "transfer 1 shock-proofing (src 1→0; to #1 0→1/12)",
+        "Command": "TransferLiquid|2237|2238|shock-proofing|1|12||0|12|Overworld.10.11.0",
+        "Hint": ""
+      },
+      {
+        "Label": "transfer 1 shock-proofing (src 1→0; to #2 0→1/12)",
+        "Command": "TransferLiquid|2237|2239|shock-proofing|1|12||0|12|Overworld.10.11.0",
+        "Hint": ""
+      },
+      {
+        "Label": "transfer 1 shock-proofing (src 1→0; to #3 0→1/12)",
+        "Command": "TransferLiquid|2237|2240|shock-proofing|1|12||0|12|Overworld.10.11.0",
+        "Hint": ""
+      },
+      {
+        "Label": "transfer 1 shock-proofing (src 1→0; to #4 0→1/12)",
+        "Command": "TransferLiquid|2237|2241|shock-proofing|1|12||0|12|Overworld.10.11.0",
+        "Hint": ""
+      },
+      {
+        "Label": "transfer 1 shock-proofing (src 1→0; to #5 0→1/12)",
+        "Command": "TransferLiquid|2237|2242|shock-proofing|1|12||0|12|Overworld.10.11.0",
+        "Hint": ""
+      },
+      {
+        "Label": "pour shock-proofing east (1)",
+        "Command": "PourLiquidVessel|shock-proofing|1|Overworld.10.11.0|39|9",
+        "Hint": ""
+      },
+      {
+        "Label": "pour shock-proofing here (1)",
+        "Command": "PourLiquidVessel|shock-proofing|1|Overworld.10.11.0|38|9",
+        "Hint": ""
+      },
+      {
+        "Label": "pour shock-proofing north (1)",
+        "Command": "PourLiquidVessel|shock-proofing|1|Overworld.10.11.0|38|8",
+        "Hint": ""
+      },
+      {
+        "Label": "pour shock-proofing northeast (1)",
+        "Command": "PourLiquidVessel|shock-proofing|1|Overworld.10.11.0|39|8",
+        "Hint": ""
+      },
+      {
+        "Label": "pour shock-proofing northwest (1)",
+        "Command": "PourLiquidVessel|shock-proofing|1|Overworld.10.11.0|37|8",
+        "Hint": ""
+      },
+      {
+        "Label": "pour shock-proofing south (1)",
+        "Command": "PourLiquidVessel|shock-proofing|1|Overworld.10.11.0|38|10",
+        "Hint": ""
+      },
+      {
+        "Label": "pour shock-proofing southeast (1)",
+        "Command": "PourLiquidVessel|shock-proofing|1|Overworld.10.11.0|39|10",
+        "Hint": ""
+      },
+      {
+        "Label": "pour shock-proofing southwest (1)",
+        "Command": "PourLiquidVessel|shock-proofing|1|Overworld.10.11.0|37|10",
+        "Hint": ""
+      },
+      {
+        "Label": "pour shock-proofing west (1)",
+        "Command": "PourLiquidVessel|shock-proofing|1|Overworld.10.11.0|37|9",
+        "Hint": ""
+      },
+      {
+        "Label": "pour one shock-proofing east",
+        "Command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.11.0|39|9",
+        "Hint": ""
+      },
+      {
+        "Label": "pour one shock-proofing here",
+        "Command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.11.0|38|9",
+        "Hint": ""
+      },
+      {
+        "Label": "pour one shock-proofing north",
+        "Command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.11.0|38|8",
+        "Hint": ""
+      },
+      {
+        "Label": "pour one shock-proofing northeast",
+        "Command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.11.0|39|8",
+        "Hint": ""
+      },
+      {
+        "Label": "pour one shock-proofing northwest",
+        "Command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.11.0|37|8",
+        "Hint": ""
+      },
+      {
+        "Label": "pour one shock-proofing south",
+        "Command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.11.0|38|10",
+        "Hint": ""
+      },
+      {
+        "Label": "pour one shock-proofing southeast",
+        "Command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.11.0|39|10",
+        "Hint": ""
+      },
+      {
+        "Label": "pour one shock-proofing southwest",
+        "Command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.11.0|37|10",
+        "Hint": ""
+      },
+      {
+        "Label": "pour one shock-proofing west",
+        "Command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.11.0|37|9",
+        "Hint": ""
+      },
+      {
+        "Label": "Throw",
+        "Command": "throw",
+        "Hint": null
+      },
+      {
+        "Label": "Label item",
+        "Command": "edit_storage_label",
+        "Hint": null
+      },
+      {
+        "Label": "Drop",
+        "Command": "drop",
+        "Hint": null
+      }
+    ]
+  },
+  "firstCoat": {
+    "tick": 1911,
+    "zone": "Overworld.10.11.0",
+    "actor": {
+      "ID": "2126",
+      "X": 38,
+      "Y": 9,
+      "hp": 358,
+      "shock": 35
+    },
+    "mode": "Normal",
+    "flasks": [
+      {
+        "ID": "2231",
+        "kind": "oil",
+        "volume": 3
+      },
+      {
+        "ID": "2232",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2233",
+        "kind": "bog-mire",
+        "volume": 4
+      },
+      {
+        "ID": "2234",
+        "kind": "water",
+        "volume": 3
+      },
+      {
+        "ID": "2235",
+        "kind": "brine",
+        "volume": 8
+      },
+      {
+        "ID": "2236",
+        "kind": "water",
+        "volume": 1
+      },
+      {
+        "ID": "2237",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2238",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2239",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2240",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2241",
+        "kind": "",
+        "volume": 0
+      },
+      {
+        "ID": "2242",
+        "kind": "",
+        "volume": 0
+      }
+    ],
+    "at": [
+      {
+        "ID": "787",
+        "BlueprintName": "Grass",
+        "terrain": true
+      },
+      {
+        "ID": "2126",
+        "BlueprintName": "Player",
+        "terrain": false
+      }
+    ],
+    "cell": {
+      "IsVisible": true,
+      "Explored": true,
+      "coat": null
+    },
+    "crust": [],
+    "gear": [
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch",
+        "coat": []
+      },
+      {
+        "ID": "2127",
+        "BlueprintName": "Dagger",
+        "coat": []
+      },
+      {
+        "ID": "19e161d0e4094b16b6746d8cd360cf38",
+        "BlueprintName": "LeatherCap",
+        "coat": [
+          {
+            "Kind": "electric",
+            "Amount": 35,
+            "TurnsLeft": 100,
+            "TurnsTotal": 100
+          }
+        ]
+      },
+      {
+        "ID": "2373",
+        "BlueprintName": "KilnfeltApron",
+        "coat": []
+      }
+    ],
+    "wearer": [
+      {
+        "GarmentId": "19e161d0e4094b16b6746d8cd360cf38",
+        "Kind": "electric",
+        "Duration": 100
+      }
+    ],
+    "fire": {
+      "ID": "2147",
+      "BlueprintName": "CampHearth",
+      "x": 40,
+      "y": 8,
+      "fuel": 2.75,
+      "temperature": 379.342865
+    },
+    "still": {
+      "ID": "2148",
+      "BlueprintName": "CampStill",
+      "x": 41,
+      "y": 8
+    },
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You press the brine crust into the flask: 1 coat of shock-proofing.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You equip kilnfelt apron.",
+      "You coat leather cap with shock-proofing. It will turn shock for 100 turns of wear.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "firstCoatArchive": {
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "d3c56928ecec4cd0a4532b3402867974",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.10.11.0",
+      "ActiveZoneDisplayLabel": "Overworld.10.11.0",
+      "Turn": 1911,
+      "SaveTimestampUtc": "2026-11-26T04:26:13.9838570Z",
+      "HPSummary": "358/400",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "files": {
+      "Quick.sav.gz": "3ee415c291a95caef7a7606dc998e4bd6b4e50c8b4f8a1420333dcca556e5fe2",
+      "Quick.sav.gz.bak": "270b716a9d7efc85a391e2ce0dc42fdd99387a8829628c8c3825d2c716af332a",
+      "Quick.json.bak": "deda2a42874537defc0d2bc1f27854b1b6e50320ca094d6d0b15c69a7fadf4de",
+      "Quick.json": "baa5ccd8a9e970aaec2fe15962c32c1451a5c951e3f9682882d888bd338f160a"
+    }
+  },
+  "reloadedCoat": {
+    "snapshot": {
+      "tick": 1911,
+      "zone": "Overworld.10.11.0",
+      "actor": {
+        "ID": "2126",
+        "X": 38,
+        "Y": 9,
+        "hp": 358,
+        "shock": 35
+      },
+      "mode": "Normal",
+      "flasks": [
+        {
+          "ID": "2231",
+          "kind": "oil",
+          "volume": 3
+        },
+        {
+          "ID": "2232",
+          "kind": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2233",
+          "kind": "bog-mire",
+          "volume": 4
+        },
+        {
+          "ID": "2234",
+          "kind": "water",
+          "volume": 3
+        },
+        {
+          "ID": "2235",
+          "kind": "brine",
+          "volume": 8
+        },
+        {
+          "ID": "2236",
+          "kind": "water",
+          "volume": 1
+        },
+        {
+          "ID": "2237",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2238",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2239",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2240",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2241",
+          "kind": "",
+          "volume": 0
+        },
+        {
+          "ID": "2242",
+          "kind": "",
+          "volume": 0
+        }
+      ],
+      "at": [
+        {
+          "ID": "787",
+          "BlueprintName": "Grass",
+          "terrain": true
+        },
+        {
+          "ID": "2126",
+          "BlueprintName": "Player",
+          "terrain": false
+        }
+      ],
+      "cell": {
+        "IsVisible": true,
+        "Explored": true,
+        "coat": null
+      },
+      "crust": [],
+      "gear": [
+        {
+          "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+          "BlueprintName": "Torch",
+          "coat": []
+        },
+        {
+          "ID": "2127",
+          "BlueprintName": "Dagger",
+          "coat": []
+        },
+        {
+          "ID": "19e161d0e4094b16b6746d8cd360cf38",
+          "BlueprintName": "LeatherCap",
+          "coat": [
+            {
+              "Kind": "electric",
+              "Amount": 35,
+              "TurnsLeft": 100,
+              "TurnsTotal": 100
+            }
+          ]
+        },
+        {
+          "ID": "2373",
+          "BlueprintName": "KilnfeltApron",
+          "coat": []
+        }
+      ],
+      "wearer": [
+        {
+          "GarmentId": "19e161d0e4094b16b6746d8cd360cf38",
+          "Kind": "electric",
+          "Duration": 100
+        }
+      ],
+      "fire": {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "x": 40,
+        "y": 8,
+        "fuel": 2.75,
+        "temperature": 379.342865
+      },
+      "still": {
+        "ID": "2148",
+        "BlueprintName": "CampStill",
+        "x": 41,
+        "y": 8
+      },
+      "recent": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You press the brine crust into the flask: 1 coat of shock-proofing.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You equip kilnfelt apron.",
+        "You coat leather cap with shock-proofing. It will turn shock for 100 turns of wear.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "match": true
+  },
+  "verification": {
+    "red": {
+      "total": 26,
+      "passed": 21,
+      "failed": 5,
+      "compileErrors": 0
+    },
+    "final": {
+      "total": 586,
+      "passed": 586,
+      "failed": 0,
+      "skipped": 0,
+      "compileErrors": 0,
+      "durationSeconds": 72.239
+    }
+  }
+}

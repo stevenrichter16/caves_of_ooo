@@ -146,7 +146,8 @@ namespace CavesOfOoo.Core
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
             if (!Standing) return;
-            guide.How.Add("A hot fire can also distil 4 brine into 2 water in a separate empty flask, using 5 fuel. The concentrate is discarded; no salt is recovered.");
+            guide.How.Add("Distil 4 brine with 5 fuel into a separate empty flask. Choose 2 water or 1 water and a pound of brine crust at your feet.");
+            guide.Needs.Add("to keep brine crust: a clear, dry cell beside the still");
             guide.How.Add("With a flask of bog-mire in your pack, press C beside it and choose settle (to clean water or to oil), or bake to boil mire down to fire clay.");
             guide.Needs.Add("to settle: a flask with at least " + Ratio + " units of bog-mire, and either a burning fire within " + FireReach + " cells that can spare " + FuelPerBatch + " fuel a flask or a steam vent or ash bed within " + FireReach + " cells");
             guide.Needs.Add("to bake clay: a flask with at least " + ClayRatio + " units, and a burning fire within " + FireReach + " cells that can spare " + ClayFuel + " fuel (a vent is not hot enough)");

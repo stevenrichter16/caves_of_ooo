@@ -185,6 +185,13 @@ cross-seed comparisons remain open.
     The original all-in-pack choice remains available.
     [Evidence](Verification/MachineSystems/GroundScreening20261125/README.md)
 
+    At a hot still, the player can keep one recoverable brine crust in
+    place of one of the two water units. The optional output occupies a
+    clear adjacent work cell until someone takes it. The same canonical
+    crust works in portable garment proofing. Ordinary distillation and
+    scraping remain separate choices.
+    [Evidence](Verification/MachineSystems/RetainedBrineCrust20261126/README.md)
+
 15. **Keep installed advantages earned and bounded.** A workshop can offer a
     supported process, storage convenience or larger admitted batch. Portable
     tools retain their supported work elsewhere. Current forge supervision and
