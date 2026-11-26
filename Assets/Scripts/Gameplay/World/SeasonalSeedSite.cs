@@ -155,13 +155,16 @@ namespace CavesOfOoo.Core
             guide.Limits.Add("In fair weather on dry ground, the frame can save the chaff for a fire. Otherwise the chaff is discarded. Winnowing takes one action, in any season, and uses no rainwater.");
         }
 
+        internal static bool IsKnotflaxWork(MaterialProcessDefinition recipe)
+            => recipe?.Id == "winnow_knotflax_seed" && recipe.WorkKind == WorkKind
+                && recipe.Mode == "Process" && recipe.SourceBlueprint == SeasonalSeedSite.Bundle
+                && recipe.InputCount == 1 && recipe.AdditionalInputBlueprints.Count == 0
+                && recipe.OutputBlueprints.Count == 1 && recipe.OutputBlueprints[0] == SeasonalSeedSite.Output
+                && recipe.OutputCounts[0] == 1;
+
         internal static MaterialProcessTemplate RetainedChaff(MaterialProcessPlan plan)
         {
-            var recipe = plan.Definition;
-            if (recipe.Id != "winnow_knotflax_seed" || recipe.WorkKind != WorkKind
-                || recipe.SourceBlueprint != SeasonalSeedSite.Bundle || recipe.InputCount != 1
-                || recipe.AdditionalInputBlueprints.Count != 0 || recipe.OutputBlueprints.Count != 1
-                || recipe.OutputBlueprints[0] != SeasonalSeedSite.Output || recipe.OutputCounts[0] != 1
+            if (plan.StationKind != Kind || !IsKnotflaxWork(plan.Definition)
                 || TurnManager.Active == null || HandlingService.GetWeight(plan.Source) != 1
                 || !plan.Factory.Blueprints.TryGetValue(SeasonalSeedSite.Output, out var seed)
                 || seed.Parts.ContainsKey("Handling") || !seed.Parts["Physics"].TryGetValue("Weight", out var seedWeight)

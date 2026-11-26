@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Data;
 
@@ -16,7 +17,8 @@ namespace CavesOfOoo.Core
         internal readonly MaterialProcessStock Stock;
         internal readonly Zone Zone;
         internal readonly EntityFactory Factory;
-        internal string StationKind => KindFor(Definition);
+        internal string StationKind => work == null ? KindFor(Definition) : null;
+        internal Entity WorkTool => work?.Tool;
         readonly InventoryPart pack;
         readonly PhysicsPart physics;
         readonly StackerPart stack;
@@ -66,7 +68,14 @@ namespace CavesOfOoo.Core
                 _=>null
             };
             string kind=KindFor(definition);
-            var station=kind==null?work?.Tool:StationQuery.Resolve(actor,zone,kind);
+            bool canUseSieve = stock == null && SeedFramePart.IsKnotflaxWork(definition);
+            var station = canUseSieve ? VisibleSeedFrame(actor, zone)
+                : kind == null ? work?.Tool : StationQuery.Resolve(actor, zone, kind);
+            if (station == null && canUseSieve)
+            {
+                work = MaterialScreeningWorkReceipt.Resolve(actor, source, zone);
+                station = work?.Tool;
+            }
             if(station==null || work==null && !VisibleStation(actor,station,zone,kind))return null;
             var extraInputs=new MaterialProcessIngredient[definition.AdditionalInputBlueprints.Count];
             for(int i=0;i<extraInputs.Length;i++)
@@ -109,6 +118,13 @@ namespace CavesOfOoo.Core
         };
         static bool VisibleStation(Entity actor,Entity station,Zone zone,string kind)
             => StationQuery.Near(actor,station,zone,kind) && zone.GetEntityCell(station) is Cell cell && cell.IsVisible && cell.Explored;
+        internal static Entity VisibleSeedFrame(Entity actor, Zone zone)
+        {
+            var candidates = new List<StationCandidate>();
+            StationQuery.Collect(actor, zone, SeedFramePart.Kind, candidates);
+            return candidates.FirstOrDefault(candidate => candidate.Ready
+                && VisibleStation(actor, candidate.Station, zone, SeedFramePart.Kind)).Station;
+        }
         internal bool ContextCurrent()
             => ForgePart.Factory==Factory && (sizeStock==null?MaterialProcessRegistry.Get(Definition.Id)==Definition
                 :sizeStock.ParentEntity==Source && Source.GetPart<SiftableStockPart>()==sizeStock && sizeStock.Contents==sizeManifest

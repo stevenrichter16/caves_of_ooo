@@ -550,6 +550,83 @@ namespace CavesOfOoo.Tests
                     || text.IndexOf("trim", StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
+        [Test]
+        public void CarriedSieveCleansOneGatheredBundleWithNeitherFrameNorChaff()
+        {
+            var packet = Carry(Bundle);
+            Assert.False(Actions(packet).Any(a => a.Command.StartsWith(Work)));
+            var sieve = Carry("HandSieve");
+            var row = Actions(packet).Single(a => a.Command.StartsWith(Work));
+            Assert.That(row.Display, Does.Contain("rub and sift"));
+            Assert.That(row.Hint, Does.Contain("discard dry chaff"));
+            Assert.That(row.Time, Is.EqualTo(ActionTime.OneAction));
+            var observer = new SeedWorkObserver();
+            Actor.AddPart(observer);
+
+            Assert.True(Act(packet, row.Command));
+            Assert.That(observer.Tool, Is.SameAs(sieve));
+            Assert.That(observer.Provider, Is.SameAs(sieve));
+            Assert.Null(observer.Station);
+            Assert.That(Pack.Objects, Does.Contain(sieve));
+            Assert.That(Count(Bundle), Is.Zero);
+            Assert.That(Count("KnotflaxSeed"), Is.EqualTo(1));
+            Assert.That(Count(Chaff), Is.Zero);
+            Assert.False(Act(packet, row.Command));
+        }
+
+        [Test]
+        public void OldSieveQuoteCannotSwitchToASpareSieve()
+        {
+            var packet = Carry(Bundle);
+            var sieves = new[] { Carry("HandSieve"), Carry("HandSieve") }
+                .OrderBy(item => item.ID, StringComparer.Ordinal).ToArray();
+            var sieve = sieves[0];
+            var spare = sieves[1];
+            string selected = Choice(packet, Work);
+            Assert.That(selected, Does.Contain("|" + Id(sieve) + "|"));
+            Assert.True(Pack.RemoveObject(sieve));
+            Assert.True(Zone.AddEntity(sieve, 12, 10));
+
+            Assert.False(Act(packet, selected));
+            Assert.That(Pack.Objects, Does.Contain(packet));
+            Assert.That(Count("KnotflaxSeed"), Is.Zero);
+            Assert.That(Choice(packet, Work), Does.Contain("|" + Id(spare) + "|"));
+        }
+
+        [Test]
+        public void ValidFairFrameStillWinsAnOrdinaryQuoteWhenSieveIsCarried()
+        {
+            EnterAllotment();
+            Clock.AdvanceClock(FirstFairWindowBeforeRain() * RegionalWeather.WindowTicks);
+            var frame = Zone.GetReadOnlyEntities().First(e => e.HasPart<RainCollectorPart>());
+            StandBeside(frame);
+            var sieve = Carry("HandSieve");
+            var packet = Carry(Bundle);
+            var row = Actions(packet).Single(a => a.Command.StartsWith(Work));
+            Assert.That(row.Command, Does.Contain("|" + Id(frame) + "|"));
+            Assert.That(row.Hint, Does.Contain("retain dry chaff"));
+            foreach (var placed in Zone.GetReadOnlyEntities().Where(e => e.HasPart<RainCollectorPart>()).ToArray())
+                Assert.True(Zone.RemoveEntity(placed));
+
+            Assert.False(Act(packet, row.Command));
+            Assert.That(Pack.Objects, Does.Contain(packet));
+            Assert.That(Count(Chaff), Is.Zero);
+            Assert.That(Choice(packet, Work), Does.Contain("|" + Id(sieve) + "|"));
+        }
+
+        sealed class SeedWorkObserver : Part
+        {
+            public Entity Tool, Station, Provider;
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID != "BeforeMaterialProcess") return true;
+                Tool = e.GetParameter<Entity>("Tool");
+                Station = e.GetParameter<Entity>("Station");
+                Provider = e.GetParameter<Entity>("WorkProvider");
+                return true;
+            }
+        }
+
         [Test] public void EarlyKnotflaxOffersOneCordWithARealCutterAndSpendsTheStand()
         {
             var manager = EnterAllotment();

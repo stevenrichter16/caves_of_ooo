@@ -58,7 +58,7 @@ namespace CavesOfOoo.Core
             var plan=quote.Plan;
             var e=GameEvent.New(id);e.SetParameter("Actor",plan.Actor);e.SetParameter("Source",plan.Source);
             e.SetParameter("Station",plan.StationKind!=null?plan.Station:null);
-            e.SetParameter("Tool",plan.Definition.WorkKind=="HandCutting"||plan.Definition.WorkKind=="Screening"?plan.Station:null);e.SetParameter("WorkProvider",plan.Station);e.SetParameter("Process",quote.Result);
+            e.SetParameter("Tool",plan.WorkTool);e.SetParameter("WorkProvider",plan.Station);e.SetParameter("Process",quote.Result);
             e.SetParameter("Inputs",Array.AsReadOnly(new[]{plan.Source}.Concat(plan.ExtraInputs.SelectMany(i=>i.Takes.Select(t=>t.Owner))).ToArray()));
             return owner.FireEventAndRelease(e);
         }

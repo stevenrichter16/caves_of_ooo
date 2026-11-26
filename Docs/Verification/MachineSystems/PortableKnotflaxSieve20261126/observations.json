@@ -1,0 +1,910 @@
+{
+  "original": {
+    "tick": 14240,
+    "zone": "Overworld.2.6.0",
+    "X": 59,
+    "Y": 8,
+    "hp": 40,
+    "drams": 50,
+    "season": 1,
+    "raining": true,
+    "pack": [
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "count": 1,
+        "volume": 0
+      },
+      {
+        "ID": "7200",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "count": 1,
+        "volume": null
+      }
+    ],
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "spent": 0,
+        "distance": 1
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "spent": 0,
+        "distance": 5
+      }
+    ],
+    "stand": 0,
+    "plot": [
+      {
+        "ID": "7190",
+        "BlueprintName": "HearthbulbCrop",
+        "stage": 2,
+        "moist": 0
+      }
+    ],
+    "bed": true,
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You see a late knotflax stand.\nThe heads rattle with loose seed. One bundle is ready to gather.\n\nA stand of knotflax left to set seed beside the allotment. Ripe heads can be gathered once. The public frames have dry mesh for cleaning the heads.",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You harvest late knotflax stand: 1 x KnotflaxSeedHeads.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "supplied": {
+    "ID": "7201",
+    "before": 14,
+    "after": 18,
+    "tick": 14240
+  },
+  "frameMenu": {
+    "open": true,
+    "target": "7197",
+    "cell": {
+      "X": 60,
+      "Y": 8
+    },
+    "i": 0,
+    "rows": [
+      {
+        "i": 0,
+        "Display": "catch 3 water in liquid flask (0\u21923/12)",
+        "Command": "CollectRain|repair-cultivation%3Aallotment-notice|7197|2706|23|-1|0||0|12",
+        "tool": null,
+        "cost": "OneAction"
+      },
+      {
+        "i": 1,
+        "Display": "examine",
+        "Command": "Examine",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 2,
+        "Display": "winnow 1 knotflax seed-head bundle",
+        "Command": "MaterialProcess|winnow_knotflax_seed|7197|d36943a56595434a8b391b6136f4c9a2",
+        "tool": "7200",
+        "cost": "OneAction"
+      },
+      {
+        "i": 3,
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "tool": null,
+        "cost": "Unspecified"
+      }
+    ]
+  },
+  "rain": {
+    "tick": 14250,
+    "zone": "Overworld.2.6.0",
+    "X": 59,
+    "Y": 8,
+    "hp": 40,
+    "drams": 50,
+    "season": 1,
+    "raining": true,
+    "pack": [
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "count": 1,
+        "volume": 3
+      },
+      {
+        "ID": "7200",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "count": 1,
+        "volume": null
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "HandSieve",
+        "count": 1,
+        "volume": null
+      }
+    ],
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "spent": 3,
+        "distance": 1
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "spent": 3,
+        "distance": 5
+      }
+    ],
+    "stand": 0,
+    "plot": [
+      {
+        "ID": "7190",
+        "BlueprintName": "HearthbulbCrop",
+        "stage": 2,
+        "moist": 0
+      }
+    ],
+    "bed": true,
+    "log": [
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You see a late knotflax stand.\nThe heads rattle with loose seed. One bundle is ready to gather.\n\nA stand of knotflax left to set seed beside the allotment. Ripe heads can be gathered once. The public frames have dry mesh for cleaning the heads.",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You harvest late knotflax stand: 1 x KnotflaxSeedHeads.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You catch 3 water in the liquid flask. 0 remain in this shared catchment interval.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "away": {
+    "tick": 14270,
+    "zone": "Overworld.2.6.0",
+    "X": 59,
+    "Y": 10,
+    "hp": 40,
+    "drams": 50,
+    "season": 1,
+    "raining": true,
+    "pack": [
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "count": 1,
+        "volume": 3
+      },
+      {
+        "ID": "7200",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "count": 1,
+        "volume": null
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "HandSieve",
+        "count": 1,
+        "volume": null
+      }
+    ],
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "spent": 3,
+        "distance": 2
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "spent": 3,
+        "distance": 5
+      }
+    ],
+    "stand": 0,
+    "plot": [
+      {
+        "ID": "7190",
+        "BlueprintName": "HearthbulbCrop",
+        "stage": 2,
+        "moist": 0
+      }
+    ],
+    "bed": true,
+    "log": [
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You see a late knotflax stand.\nThe heads rattle with loose seed. One bundle is ready to gather.\n\nA stand of knotflax left to set seed beside the allotment. Ripe heads can be gathered once. The public frames have dry mesh for cleaning the heads.",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You harvest late knotflax stand: 1 x KnotflaxSeedHeads.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You catch 3 water in the liquid flask. 0 remain in this shared catchment interval.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "packMenu": {
+    "_inventoryCategory": "Materials",
+    "_ledgerCommandTitle": "CATEGORIES",
+    "_inventoryQuery": "",
+    "_cursorIndex": "1",
+    "_itemActionPopup": {
+      "Item": "Entity(knotflax seed-head bundle)",
+      "ItemDisplay": "CavesOfOoo.Core.InventoryScreenData+ItemDisplay",
+      "Actions": [
+        {
+          "Label": "rub and sift 1 knotflax seed-head bundle",
+          "Command": "MaterialProcess|winnow_knotflax_seed|7201|1b71451255b84291b63f123359e355e7",
+          "Container": null,
+          "CargoDeposit": null,
+          "StorageContainer": null,
+          "TimeDeclared": "True",
+          "Time": "OneAction",
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": "Makes 1 knotflax seed. Rub the heads over the sieve and discard dry chaff. Keep the sieve. One action."
+        },
+        {
+          "Label": "examine",
+          "Command": "Examine",
+          "Container": null,
+          "CargoDeposit": null,
+          "StorageContainer": null,
+          "TimeDeclared": "False",
+          "Time": "Unspecified",
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Label": "Label item",
+          "Command": "edit_storage_label",
+          "Container": null,
+          "CargoDeposit": null,
+          "StorageContainer": null,
+          "TimeDeclared": "False",
+          "Time": "Free",
+          "DisabledCode": null,
+          "DisabledReason": null,
+          "Hint": null
+        },
+        {
+          "Label": "Drop",
+          "Command": "drop",
+          "Container": null,
+          "CargoDeposit": null,
+          "StorageContainer": null,
+          "TimeDeclared": "False",
+          "Time": "Free",
+          "DisabledCode": null,
+          "DisabledReason": null,
+          "Hint": null
+        }
+      ],
+      "CursorIndex": "0",
+      "BodyParts": null,
+      "BodyPartCursor": "0",
+      "InBodyPartPicker": "False"
+    },
+    "_ledgerCommands": [
+      [
+        "[x] All categories",
+        "System.Action"
+      ],
+      [
+        "[ ] Melee Weapons",
+        "System.Action"
+      ],
+      [
+        "[ ] Food",
+        "System.Action"
+      ],
+      [
+        "[ ] Seeds",
+        "System.Action"
+      ],
+      [
+        "[ ] Tonics",
+        "System.Action"
+      ],
+      [
+        "[ ] Materials",
+        "System.Action"
+      ],
+      [
+        "[ ] Containers",
+        "System.Action"
+      ],
+      [
+        "[ ] Tools",
+        "System.Action"
+      ],
+      [
+        "[ ] Books",
+        "System.Action"
+      ]
+    ],
+    "_ledgerCommandsOpen": "False",
+    "_ledgerCommandIndex": "5"
+  },
+  "reader": {
+    "tick": 14270,
+    "zone": "Overworld.2.6.0",
+    "ID": "2699",
+    "x": 59,
+    "y": 10,
+    "noise": 14260,
+    "hp": 40,
+    "state": "AnnouncementOpen",
+    "stairs": [],
+    "hunters": [],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You see a late knotflax stand.\nThe heads rattle with loose seed. One bundle is ready to gather.\n\nA stand of knotflax left to set seed beside the allotment. Ripe heads can be gathered once. The public frames have dry mesh for cleaning the heads.",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You harvest late knotflax stand: 1 x KnotflaxSeedHeads.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You catch 3 water in the liquid flask. 0 remain in this shared catchment interval.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "processed": {
+    "tick": 14280,
+    "zone": "Overworld.2.6.0",
+    "X": 59,
+    "Y": 10,
+    "hp": 40,
+    "drams": 50,
+    "season": 1,
+    "raining": true,
+    "pack": [
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "count": 1,
+        "volume": 3
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "HandSieve",
+        "count": 1,
+        "volume": null
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "KnotflaxSeed",
+        "count": 1,
+        "volume": null
+      }
+    ],
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "spent": 3,
+        "distance": 2
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "spent": 3,
+        "distance": 5
+      }
+    ],
+    "stand": 0,
+    "plot": [
+      {
+        "ID": "7190",
+        "BlueprintName": "HearthbulbCrop",
+        "stage": 2,
+        "moist": 0
+      }
+    ],
+    "bed": true,
+    "log": [
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You see a late knotflax stand.\nThe heads rattle with loose seed. One bundle is ready to gather.\n\nA stand of knotflax left to set seed beside the allotment. Ripe heads can be gathered once. The public frames have dry mesh for cleaning the heads.",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You harvest late knotflax stand: 1 x KnotflaxSeedHeads.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You catch 3 water in the liquid flask. 0 remain in this shared catchment interval.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "oldCropMenu": {
+    "open": true,
+    "target": "7190",
+    "cell": {
+      "X": 62,
+      "Y": 11
+    },
+    "i": 0,
+    "rows": [
+      {
+        "i": 0,
+        "Display": "harvest",
+        "Command": "HarvestCultivatedCrop",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 1,
+        "Display": "gather into pack",
+        "Command": "GatherCrop",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 2,
+        "Display": "harvest: 3x seeds, no produce",
+        "Command": "HarvestCropSeeds",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 3,
+        "Display": "examine",
+        "Command": "Examine",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 4,
+        "Display": "pour water southeast (3) [liquid flask]",
+        "Command": "PourLiquidVessel|water|3|Overworld.2.6.0|62|11",
+        "tool": "2706",
+        "cost": "OneAction"
+      },
+      {
+        "i": 5,
+        "Display": "pour one water southeast [liquid flask]",
+        "Command": "PourOneLiquidVessel|water|3|Overworld.2.6.0|62|11",
+        "tool": "2706",
+        "cost": "OneAction"
+      },
+      {
+        "i": 6,
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "tool": null,
+        "cost": "Unspecified"
+      }
+    ]
+  },
+  "bedClear": {
+    "tick": 14310,
+    "zone": "Overworld.2.6.0",
+    "X": 61,
+    "Y": 10,
+    "hp": 40,
+    "drams": 50,
+    "season": 1,
+    "raining": true,
+    "pack": [
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "count": 1,
+        "volume": 3
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "HandSieve",
+        "count": 1,
+        "volume": null
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "KnotflaxSeed",
+        "count": 1,
+        "volume": null
+      }
+    ],
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "spent": 3,
+        "distance": 2
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "spent": 3,
+        "distance": 3
+      }
+    ],
+    "stand": 0,
+    "plot": [],
+    "bed": true,
+    "log": [
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You catch 3 water in the liquid flask. 0 remain in this shared catchment interval.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Game saved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You harvest hearthbulb crop. The produce and saved seed lie here to pick up.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "plantGroup": {
+    "open": true,
+    "target": "7205",
+    "cell": {
+      "X": 62,
+      "Y": 11
+    },
+    "i": 0,
+    "rows": [
+      {
+        "i": 0,
+        "Display": "plant prepared bed (62,11) [emberwheat seed]",
+        "Command": "PlantSeedAt|Overworld.2.6.0|62|11",
+        "tool": "2705",
+        "cost": "OneAction"
+      },
+      {
+        "i": 1,
+        "Display": "plant prepared bed (62,11) [gladroot seed]",
+        "Command": "PlantSeedAt|Overworld.2.6.0|62|11",
+        "tool": "2704",
+        "cost": "OneAction"
+      },
+      {
+        "i": 2,
+        "Display": "plant prepared bed (62,11) [knotflax seed]",
+        "Command": "PlantSeedAt|Overworld.2.6.0|62|11",
+        "tool": "7202",
+        "cost": "OneAction"
+      },
+      {
+        "i": 3,
+        "Display": "<< back",
+        "Command": "ToolGroupBack|plant a seed here",
+        "tool": null,
+        "cost": "Unspecified"
+      }
+    ]
+  },
+  "planted": {
+    "tick": 14320,
+    "zone": "Overworld.2.6.0",
+    "X": 61,
+    "Y": 10,
+    "hp": 40,
+    "drams": 50,
+    "season": 1,
+    "raining": true,
+    "pack": [
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "count": 1,
+        "volume": 3
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "HandSieve",
+        "count": 1,
+        "volume": null
+      }
+    ],
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "spent": 3,
+        "distance": 2
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "spent": 3,
+        "distance": 3
+      }
+    ],
+    "stand": 0,
+    "plot": [
+      {
+        "ID": "7206",
+        "BlueprintName": "KnotflaxCrop",
+        "stage": 0,
+        "moist": 0
+      }
+    ],
+    "bed": true,
+    "log": [
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Game saved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You harvest hearthbulb crop. The produce and saved seed lie here to pick up.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You plant knotflax seed.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "waterExact": {
+    "open": true,
+    "target": "7206",
+    "cell": {
+      "X": 62,
+      "Y": 11
+    },
+    "i": 0,
+    "rows": [
+      {
+        "i": 0,
+        "Display": "water with liquid flask (1 of 3)",
+        "Command": "WaterCrop|2706",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 1,
+        "Display": "clear young crop (no yield)",
+        "Command": "ClearCrop",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 2,
+        "Display": "examine",
+        "Command": "Examine",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 3,
+        "Display": "pour water southeast (3) [liquid flask]",
+        "Command": "PourLiquidVessel|water|3|Overworld.2.6.0|62|11",
+        "tool": "2706",
+        "cost": "OneAction"
+      },
+      {
+        "i": 4,
+        "Display": "pour one water southeast [liquid flask]",
+        "Command": "PourOneLiquidVessel|water|3|Overworld.2.6.0|62|11",
+        "tool": "2706",
+        "cost": "OneAction"
+      },
+      {
+        "i": 5,
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "tool": null,
+        "cost": "Unspecified"
+      }
+    ]
+  },
+  "watered": {
+    "tick": 14330,
+    "zone": "Overworld.2.6.0",
+    "X": 61,
+    "Y": 10,
+    "hp": 40,
+    "drams": 50,
+    "season": 1,
+    "raining": true,
+    "pack": [
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "count": 1,
+        "volume": 2
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "HandSieve",
+        "count": 1,
+        "volume": null
+      }
+    ],
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "spent": 3,
+        "distance": 2
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "spent": 3,
+        "distance": 3
+      }
+    ],
+    "stand": 0,
+    "plot": [
+      {
+        "ID": "7206",
+        "BlueprintName": "KnotflaxCrop",
+        "stage": 0,
+        "moist": 39
+      }
+    ],
+    "bed": true,
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You harvest hearthbulb crop. The produce and saved seed lie here to pick up.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You plant knotflax seed.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You water the knotflax crop with the liquid flask. (2 water remain)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "fresh": {
+    "tick": 14330,
+    "zone": "Overworld.2.6.0",
+    "X": 61,
+    "Y": 10,
+    "hp": 40,
+    "drams": 50,
+    "season": 1,
+    "raining": true,
+    "pack": [
+      {
+        "ID": "2706",
+        "BlueprintName": "LiquidFlask",
+        "count": 1,
+        "volume": 2
+      },
+      {
+        "ID": "7201",
+        "BlueprintName": "HandSieve",
+        "count": 1,
+        "volume": null
+      }
+    ],
+    "frames": [
+      {
+        "ID": "7197",
+        "X": 60,
+        "Y": 8,
+        "spent": 3,
+        "distance": 2
+      },
+      {
+        "ID": "7198",
+        "X": 64,
+        "Y": 8,
+        "spent": 3,
+        "distance": 3
+      }
+    ],
+    "stand": 0,
+    "plot": [
+      {
+        "ID": "7206",
+        "BlueprintName": "KnotflaxCrop",
+        "stage": 0,
+        "moist": 39
+      }
+    ],
+    "bed": true,
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You harvest hearthbulb crop. The produce and saved seed lie here to pick up.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You plant knotflax seed.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You water the knotflax crop with the liquid flask. (2 water remain)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "archives": {
+    "coo-seasonal-seed-bundle-20261125": {
+      "path": "/private/tmp/coo-seasonal-seed-bundle-20261125/cbe1eaf7b4f3494289ffbb059fd8c91a",
+      "turn": 14240,
+      "zone": "Overworld.2.6.0",
+      "files": {
+        "Quick.json": "2c15917db8803a518a2aa9d516af7e0aadb9fac55e8494460d1b2033c112b4cc",
+        "Quick.json.bak": "6d4a55951dca80da44827efb2c76a81436b6a0494c503ae980d6017f97574735",
+        "Quick.sav.gz": "ef6ffb2b98a7f2c075f002fd88ebe6b555370ba3ef09203e68f00083ed819606",
+        "Quick.sav.gz.bak": "693844c5195777598a18cad7243f5191ac9f125e1a7cd069a436de6b3513cb4f"
+      }
+    },
+    "coo-field-knotflax-processed-20261126": {
+      "path": "/private/tmp/coo-field-knotflax-processed-20261126/cbe1eaf7b4f3494289ffbb059fd8c91a",
+      "turn": 14280,
+      "zone": "Overworld.2.6.0",
+      "files": {
+        "Quick.json": "8b255c29371fa754efd0be63f9f49d1ba31c839933f15724551422c876b2259b",
+        "Quick.json.bak": "2c15917db8803a518a2aa9d516af7e0aadb9fac55e8494460d1b2033c112b4cc",
+        "Quick.sav.gz": "1261d19b91d94321f21413f1b9f52498d65a9c2edfcb647da798a99d05fbde67",
+        "Quick.sav.gz.bak": "ef6ffb2b98a7f2c075f002fd88ebe6b555370ba3ef09203e68f00083ed819606"
+      }
+    },
+    "coo-field-knotflax-planted-20261126": {
+      "path": "/private/tmp/coo-field-knotflax-planted-20261126/cbe1eaf7b4f3494289ffbb059fd8c91a",
+      "turn": 14330,
+      "zone": "Overworld.2.6.0",
+      "files": {
+        "Quick.json": "dbd4c00096eb5121232a36fd4920544e4dbf19018529dea5225a4a3e06c31759",
+        "Quick.json.bak": "8b255c29371fa754efd0be63f9f49d1ba31c839933f15724551422c876b2259b",
+        "Quick.sav.gz": "04a45f4e2940b1d3a5063e70343b18e410c0e5f6817b9a56bc5cc89434a51908",
+        "Quick.sav.gz.bak": "1261d19b91d94321f21413f1b9f52498d65a9c2edfcb647da798a99d05fbde67"
+      }
+    }
+  },
+  "tests": {
+    "portable_knotflax_red_20261126": {
+      "xmlPath": "/Users/steven/coo-verification/results/portable_knotflax_red_20261126.xml",
+      "xmlSha": "db3b353068e30b241d80bbb59dd1e100a09aace8f0150f4b2f60da59e46f00bb",
+      "logPath": "/Users/steven/coo-verification/results/portable_knotflax_red_20261126.log",
+      "logSha": "24177f34681a73e18690609519ff3888cde5394f6257e0335ad29502a8dbd9e8",
+      "total": "27",
+      "passed": "24",
+      "failed": "3",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "26.8418077",
+      "failureNames": [
+        "CarriedSieveCleansOneGatheredBundleWithNeitherFrameNorChaff",
+        "OldSieveQuoteCannotSwitchToASpareSieve",
+        "ValidFairFrameStillWinsAnOrdinaryQuoteWhenSieveIsCarried"
+      ]
+    },
+    "portable_knotflax_green_20261126": {
+      "xmlPath": "/Users/steven/coo-verification/results/portable_knotflax_green_20261126.xml",
+      "xmlSha": "95f876b4682f2d961b4eb7c6a53d06dff66d6a759a51177e66c09b989f526dab",
+      "logPath": "/Users/steven/coo-verification/results/portable_knotflax_green_20261126.log",
+      "logSha": "58900cceb97e5e0e12a7537b5b9756e5064944d2ef46ae96e202ff8e0c90d512",
+      "total": "271",
+      "passed": "271",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "39.8123837",
+      "failureNames": []
+    }
+  },
+  "preservation": {
+    "coo-sieve-content-foreign-at-entry.json": 86,
+    "coo-grit-normal-before-play.json": 861
+  }
+}

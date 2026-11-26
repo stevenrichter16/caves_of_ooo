@@ -1,3 +1,11 @@
+**A hand sieve can clean gathered knotflax heads away from a frame — November 26 UTC, 2026.**
+The existing exact bundle can yield one plantable seed through a carried
+sieve in one action. The player keeps the sieve and discards the chaff.
+A ready visible fixed frame within reach keeps its own winnowing option
+and fair-weather chaff bonus. Actual field work fed an ordinary planted
+and watered crop while the same sieve and remaining water stayed carried.
+[Evidence](Verification/MachineSystems/PortableKnotflaxSieve20261126/README.md)
+
 **Ordinary pitchpod resin can finish Posy's east composition — November 26 UTC, 2026.**
 The existing working concern takes two carried resin. The player keeps
 the exact gathered seed for planting. A single early bead leaves the

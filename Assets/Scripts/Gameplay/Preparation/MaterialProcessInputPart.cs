@@ -19,10 +19,14 @@ namespace CavesOfOoo.Core
         public string DescribeState(DescribeContext context)
         {
             if (context?.Owner == null || context.Owner != ParentEntity) return null;
-            var summaries = MaterialProcessRegistry.ForSource(ParentEntity)
+            var definitions = MaterialProcessRegistry.ForSource(ParentEntity);
+            var summaries = definitions
                 .Where(definition => definition.WorkKind == "Screening")
                 .Select(definition => MaterialProcessActions.DescribeScreening(ParentEntity, this, definition))
                 .Where(summary => summary != null);
+            if (definitions.Any(definition => SeedFramePart.IsKnotflaxWork(definition)
+                && MaterialProcessPlan.PermissionPart(ParentEntity, definition) == this))
+                summaries = summaries.Append("Away from a ready public frame, rub the heads over a sound hand sieve to keep one seed. Discard the chaff.");
             return string.Join("\n", summaries);
         }
         internal bool Allows(MaterialProcessDefinition definition) => definition != null
@@ -115,9 +119,17 @@ namespace CavesOfOoo.Core
                         Command(quoted),'\0',19,false,ActionTime.OneAction);
                     if(row!=null && d.WorkKind==SeedFramePart.WorkKind)
                     {
-                        row.Display=d.ActionText+" "+d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint);
-                        row.Hint="Makes "+outputs+". "+d.LossText+". One action. Products go into your pack.";
-                        row.AtEntity(zone,plan.Station);
+                        if (plan.WorkTool != null)
+                        {
+                            row.Display = "rub and sift " + d.InputCount + " " + Label(plan.Factory, d.SourceBlueprint);
+                            row.Hint = "Makes " + outputs + ". Rub the heads over the sieve and discard dry chaff. Keep the sieve. One action.";
+                        }
+                        else
+                        {
+                            row.Display=d.ActionText+" "+d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint);
+                            row.Hint="Makes "+outputs+". "+d.LossText+". One action. Products go into your pack.";
+                            row.AtEntity(zone,plan.Station);
+                        }
                     }
                     if (sizeStock != null && SiftableStockPart.GritDestination(plan) is Cell ground
                         && MaterialProcessService.TryQuote(plan, ground) is {} leave)

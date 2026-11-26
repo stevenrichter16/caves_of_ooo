@@ -484,6 +484,12 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     stand stayed absent in the later phase. In the uncut comparison the same
     stand supplied the existing seed frame. This is one bounded seasonal site.
     [Evidence](Verification/MachineSystems/SeasonalKnotflaxStems20261125/README.md)
+    A carried hand sieve now cleans the same gathered bundle away from
+    a fixed frame. It preserves the one-seed output and discards chaff.
+    Actual rainy-phase play used that seed in the ordinary prepared bed
+    and watered the resulting crop. Fair dry frame work remains a
+    useful option for retaining chaff.
+    [Evidence](Verification/MachineSystems/PortableKnotflaxSieve20261126/README.md)
 
 34. **Make favorable conditions improve a supported process.** A useful weather
     bonus can reduce paid work or retain a declared otherwise lost fraction.

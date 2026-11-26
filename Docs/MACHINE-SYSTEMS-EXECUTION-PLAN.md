@@ -1,15 +1,25 @@
+**Portable knotflax cleaning feeds the ordinary allotment — November 26 UTC, 2026.**
+The exact earlier gathered bundle and a supplied canonical sieve went
+two steps out of frame range. The native pack row took one action and
+yielded one seed. The player used it in an ordinary prepared bed and
+watered the new crop from the existing rain flask. Fresh Continue kept
+the crop, sieve, remaining water and spent stand. The final connected
+run passed 271 cases.
+[Evidence](Verification/MachineSystems/PortableKnotflaxSieve20261126/README.md)
+
+Next, source-qualify use of a hand pump against the existing finite
+Cinderhold oil tray. Keep a moved volume in an inspected outlet and
+the tray itself intact, with the exact submerged fitting and ordinary
+flask or wet reach options preserved. Check the archived actual tray
+and near-forge earned pump before choosing a small scope. No new tray,
+fitting or general submerged-source policies are selected yet.
+
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe
 measures to actual elders. One showed the missing second measure and
 preserved the held option. Two sealed the composition after one wait,
 kept the seed, and paid one report. Both fresh Continues matched.
 [Evidence](Verification/MachineSystems/PosyResinHandover20261126/README.md)
-
-Next, qualify the hand sieve for field-cleaning an exact gathered
-knotflax-head bundle away from the public frame. The small candidate
-reuses the one-seed process and keeps fair-weather chaff recovery at
-the fixed frame. The archived tick-14240 bundle gives an exact play
-start. Record ordinary or controlled sieve acquisition separately.
 
 **A second steam catch supplies a dry crop — November 26 UTC, 2026.**
 A native Sodden vent quoted the existing flask's fill change from

@@ -11,10 +11,11 @@ namespace CavesOfOoo.Core
         {
             guide.How.Add("Carry this sieve and examine a known packet to see what screening yields.");
             guide.How.Add("Sort clay spoil for lining repairs and grit for footing. Quarry sweepings can supply pale-salt for weapon infusion and silver sand for trail marks.");
-            guide.Needs.Add("A known mixed packet and room for the fractions you keep.");
-            guide.Limits.Add("One action spends one packet and keeps the sieve. The mesh passes fine and medium stock and retains coarse stock. Unlike materials of the same size stay mixed.");
+            guide.How.Add("Away from a public seed frame, rub one gathered knotflax bundle over the sieve to keep a seed. The fixed frame can also save chaff in fair weather.");
+            guide.Needs.Add("An identified packet or gathered knotflax bundle and room for what you keep.");
+            guide.Limits.Add("One action spends one packet or bundle and keeps the sieve. The mesh passes fine and medium stock and retains coarse stock. Unlike materials of the same size stay mixed.");
             guide.WhyNot=MaterialScreeningWorkReceipt.Usable(context.Viewer,ParentEntity,context.Zone)
-                ?"choose a known size-graded stock or quarry-sweepings packet for its exact preview"
+                ?"choose a known stock, quarry-sweepings packet or gathered knotflax bundle for its exact preview"
                 :"carry one sound, unfrozen sieve as an actual pack item";
         }
     }

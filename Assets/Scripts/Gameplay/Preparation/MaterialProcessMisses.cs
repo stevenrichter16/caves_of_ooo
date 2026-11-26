@@ -44,7 +44,13 @@ namespace CavesOfOoo.Core
             }
             else if (d.WorkKind == SeedFramePart.WorkKind)
             {
-                if (StationQuery.Resolve(actor, zone, SeedFramePart.Kind) == null)
+                if (SeedFramePart.IsKnotflaxWork(d))
+                {
+                    if (MaterialProcessPlan.VisibleSeedFrame(actor, zone) == null
+                        && MaterialScreeningWorkReceipt.Resolve(actor, source, zone) == null)
+                        misses.Add(new Miss(NoTool, "Carry a sound hand sieve or stand beside an intact public seed frame."));
+                }
+                else if (StationQuery.Resolve(actor, zone, SeedFramePart.Kind) == null)
                     misses.Add(new Miss(NoStation, "Stand beside an intact public seed frame."));
             }
             else if (ForgeWorkReceipt.Resolve(actor, zone) == null)
