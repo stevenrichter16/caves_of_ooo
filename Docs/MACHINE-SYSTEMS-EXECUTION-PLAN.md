@@ -1,3 +1,16 @@
+**An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
+Separate ordinary seed 64 starts brought one early resin or two ripe
+measures to actual elders. One showed the missing second measure and
+preserved the held option. Two sealed the composition after one wait,
+kept the seed, and paid one report. Both fresh Continues matched.
+[Evidence](Verification/MachineSystems/PosyResinHandover20261126/README.md)
+
+Next, qualify the hand sieve for field-cleaning an exact gathered
+knotflax-head bundle away from the public frame. The small candidate
+reuses the one-seed process and keeps fair-weather chaff recovery at
+the fixed frame. The archived tick-14240 bundle gives an exact play
+start. Record ordinary or controlled sieve acquisition separately.
+
 **A second steam catch supplies a dry crop — November 26 UTC, 2026.**
 A native Sodden vent quoted the existing flask's fill change from
 1/12 to 2/12. Free reader and cancellation kept the three remaining
@@ -13,12 +26,6 @@ new matched fork let the same native Pale Stalker hear a bare step and
 stay untargeted after the felt step. The strip was recovered and the
 exact outcome persisted at fresh tick 1500. Final connected native run
 passed 359 cases. [Evidence](Verification/MachineSystems/CaveFeltAndSteamTopUp20261126/README.md)
-
-Next, qualify the existing optional Posy composition from the exact
-earned two-resin branch at tick 390. A one-resin branch at 330 can show
-the insufficient-payment countercase. Follow actual handover, exact
-remaining seed, persisted condition and one report. Keep the existing
-alternative and do not infer new bench access from four Bower regard.
 
 **A paid porter order waits during ordinary travel — November 26 UTC, 2026.**
 The existing loading guide explains the pause before payment. The

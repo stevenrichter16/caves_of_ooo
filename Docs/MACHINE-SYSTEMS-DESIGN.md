@@ -1,3 +1,11 @@
+**Ordinary pitchpod resin can finish Posy's east composition — November 26 UTC, 2026.**
+The existing working concern takes two carried resin. The player keeps
+the exact gathered seed for planting. A single early bead leaves the
+held-composition alternative available. Actual play kept the sealed
+condition and one report through Continue. This is a saved village
+condition and dialogue, with no new installation or recipe.
+[Evidence](Verification/MachineSystems/PosyResinHandover20261126/README.md)
+
 **A steam condenser can top up the same flask — November 26 UTC, 2026.**
 An empty singleton flask and a water flask with room both receive one
 water from one existing catch. The quote shows the fill change, checks

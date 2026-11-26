@@ -464,6 +464,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     steps to the ordinary two resin and seed. The shorter path supplied
     one worn-cloak treatment through the existing bench and earned regard.
     [Evidence](Verification/MachineSystems/PosyEarlyPitchpod20261125/README.md)
+    A separate native comparison kept the exact one early bead where the
+    Posy supply quote needed two. Two resin from the ripe path sealed the
+    existing composition and left the exact seed available. The held
+    alternative, saved reputation and single report use their original rules.
+    [Evidence](Verification/MachineSystems/PosyResinHandover20261126/README.md)
 
 32. **Expose material state through observable cues.** A suitable tool acts on
     actual ripe, dry or flexible stock, subject to access and gathering rights.

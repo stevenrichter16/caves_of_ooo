@@ -1,0 +1,454 @@
+{
+  "PosyInitial": {
+    "tick": 620,
+    "z": "Overworld.5.9.0",
+    "X": 20,
+    "Y": 4,
+    "hp": 40,
+    "drams": 50,
+    "xp": 0,
+    "reputation": 0,
+    "resin": 0,
+    "held": 0,
+    "isSealed": false,
+    "wasHeld": false,
+    "active": false,
+    "done": false,
+    "stage": null,
+    "closure": null,
+    "pack": [
+      {
+        "ID": "7015",
+        "BlueprintName": "PitchpodResin",
+        "count": 2
+      },
+      {
+        "ID": "7017",
+        "BlueprintName": "PitchpodSeed",
+        "count": 1
+      }
+    ]
+  },
+  "PosyTwoQuote": {
+    "speaker": "9606",
+    "node": "concern:status|posy.composition",
+    "text": "\"Any word on it?\"\n\n[ ] Bring the elder of Posy two measures of pitchpod resin (you carry 2 of 2)\n[ ] Be held in the east composition for an evening",
+    "cs": [
+      {
+        "i": 0,
+        "Text": "[Hand over 2 pitchpod resin.]",
+        "actions": [
+          {
+            "Key": "HandConcernSupply",
+            "Value": "posy.composition|resin"
+          }
+        ]
+      },
+      {
+        "i": 1,
+        "Text": "[Stand where she places you, until the light goes]",
+        "actions": [
+          {
+            "Key": "TakeConcernOffer",
+            "Value": "posy.composition|held"
+          }
+        ]
+      },
+      {
+        "i": 2,
+        "Text": "[I'm giving this up. I'm telling you so.]",
+        "actions": [
+          {
+            "Key": "RefuseConcern",
+            "Value": "posy.composition"
+          }
+        ]
+      },
+      {
+        "i": 3,
+        "Text": "[Back]",
+        "actions": null
+      },
+      {
+        "i": 4,
+        "Text": "[Let's trade.]",
+        "actions": [
+          {
+            "Key": "StartTrade",
+            "Value": ""
+          }
+        ]
+      },
+      {
+        "i": 5,
+        "Text": "[Attack]",
+        "actions": [
+          {
+            "Key": "StartAttack",
+            "Value": ""
+          }
+        ]
+      }
+    ]
+  },
+  "PosyPaid": {
+    "tick": 620,
+    "z": "Overworld.5.9.0",
+    "X": 20,
+    "Y": 4,
+    "hp": 40,
+    "drams": 50,
+    "xp": 0,
+    "reputation": 0,
+    "resin": 1,
+    "held": 0,
+    "isSealed": false,
+    "wasHeld": false,
+    "active": true,
+    "done": false,
+    "stage": 0,
+    "closure": "Open",
+    "pack": [
+      {
+        "ID": "7017",
+        "BlueprintName": "PitchpodSeed",
+        "count": 1
+      }
+    ]
+  },
+  "PosySealed": {
+    "tick": 630,
+    "z": "Overworld.5.9.0",
+    "X": 20,
+    "Y": 4,
+    "hp": 40,
+    "drams": 50,
+    "xp": 0,
+    "reputation": 4,
+    "resin": 1,
+    "held": 0,
+    "isSealed": true,
+    "wasHeld": false,
+    "active": true,
+    "done": false,
+    "stage": 1,
+    "closure": "Open",
+    "pack": [
+      {
+        "ID": "7017",
+        "BlueprintName": "PitchpodSeed",
+        "count": 1
+      }
+    ]
+  },
+  "PosyReportQuote": {
+    "speaker": "9606",
+    "node": "concern:report|posy.composition",
+    "text": "\"Finished. Do not look at it yet. Walk to the well, turn, and then look.\"",
+    "cs": [
+      {
+        "i": 0,
+        "Text": "[Glad to help.]",
+        "actions": [
+          {
+            "Key": "ReportConcern",
+            "Value": "posy.composition"
+          }
+        ]
+      },
+      {
+        "i": 1,
+        "Text": "[Let's trade.]",
+        "actions": [
+          {
+            "Key": "StartTrade",
+            "Value": ""
+          }
+        ]
+      },
+      {
+        "i": 2,
+        "Text": "[Attack]",
+        "actions": [
+          {
+            "Key": "StartAttack",
+            "Value": ""
+          }
+        ]
+      }
+    ]
+  },
+  "PosyReported": {
+    "tick": 630,
+    "z": "Overworld.5.9.0",
+    "X": 20,
+    "Y": 4,
+    "hp": 40,
+    "drams": 70,
+    "xp": 50,
+    "reputation": 4,
+    "resin": 1,
+    "held": 0,
+    "isSealed": true,
+    "wasHeld": false,
+    "active": false,
+    "done": true,
+    "stage": null,
+    "closure": "Closed",
+    "pack": [
+      {
+        "ID": "7017",
+        "BlueprintName": "PitchpodSeed",
+        "count": 1
+      }
+    ]
+  },
+  "PosyReportedFresh": {
+    "tick": 630,
+    "z": "Overworld.5.9.0",
+    "X": 20,
+    "Y": 4,
+    "hp": 40,
+    "drams": 70,
+    "xp": 50,
+    "reputation": 4,
+    "resin": 1,
+    "held": 0,
+    "isSealed": true,
+    "wasHeld": false,
+    "active": false,
+    "done": true,
+    "stage": null,
+    "closure": "Closed",
+    "pack": [
+      {
+        "ID": "7017",
+        "BlueprintName": "PitchpodSeed",
+        "count": 1
+      }
+    ]
+  },
+  "PosyReportUnavailableFresh": {
+    "speaker": "9606",
+    "node": "Start",
+    "text": "Corvin Thresker looks up from a knot he has been tying and untying. 'You're the traveler everyone's been talking about. Salt-weaving used to be what we were known for. Now I'm not sure what we're known for.'",
+    "cs": [
+      {
+        "i": 0,
+        "Text": "What happened to the craft?",
+        "actions": []
+      },
+      {
+        "i": 1,
+        "Text": "You don't seem sure about much.",
+        "actions": []
+      },
+      {
+        "i": 2,
+        "Text": "Farewell.",
+        "actions": []
+      },
+      {
+        "i": 3,
+        "Text": "[Let's trade.]",
+        "actions": [
+          {
+            "Key": "StartTrade",
+            "Value": ""
+          }
+        ]
+      },
+      {
+        "i": 4,
+        "Text": "[Attack]",
+        "actions": [
+          {
+            "Key": "StartAttack",
+            "Value": ""
+          }
+        ]
+      }
+    ]
+  },
+  "PosyCounterInitial": {
+    "tick": 330,
+    "z": "Overworld.4.9.0",
+    "X": 27,
+    "Y": 13,
+    "hp": 40,
+    "drams": 50,
+    "xp": 0,
+    "reputation": 0,
+    "resin": 0,
+    "held": 0,
+    "isSealed": false,
+    "wasHeld": false,
+    "active": false,
+    "done": false,
+    "stage": null,
+    "closure": null,
+    "pack": [
+      {
+        "ID": "7015",
+        "BlueprintName": "PitchpodResin",
+        "count": 1
+      }
+    ]
+  },
+  "PosyOneQuote": {
+    "speaker": "9604",
+    "node": "concern:status|posy.composition",
+    "text": "\"Any word on it?\"\n\n[ ] Bring the elder of Posy two measures of pitchpod resin (you carry 1 of 2)\n[ ] Be held in the east composition for an evening",
+    "cs": [
+      {
+        "i": 0,
+        "Text": "[Stand where she places you, until the light goes]",
+        "actions": [
+          {
+            "Key": "TakeConcernOffer",
+            "Value": "posy.composition|held"
+          }
+        ]
+      },
+      {
+        "i": 1,
+        "Text": "[I'm giving this up. I'm telling you so.]",
+        "actions": [
+          {
+            "Key": "RefuseConcern",
+            "Value": "posy.composition"
+          }
+        ]
+      },
+      {
+        "i": 2,
+        "Text": "[Back]",
+        "actions": null
+      },
+      {
+        "i": 3,
+        "Text": "[Let's trade.]",
+        "actions": [
+          {
+            "Key": "StartTrade",
+            "Value": ""
+          }
+        ]
+      },
+      {
+        "i": 4,
+        "Text": "[Attack]",
+        "actions": [
+          {
+            "Key": "StartAttack",
+            "Value": ""
+          }
+        ]
+      }
+    ]
+  },
+  "PosyOneStayed": {
+    "tick": 560,
+    "z": "Overworld.5.9.0",
+    "X": 20,
+    "Y": 4,
+    "hp": 40,
+    "drams": 50,
+    "xp": 0,
+    "reputation": 0,
+    "resin": 0,
+    "held": 0,
+    "isSealed": false,
+    "wasHeld": false,
+    "active": true,
+    "done": false,
+    "stage": 0,
+    "closure": "Open",
+    "pack": [
+      {
+        "ID": "7015",
+        "BlueprintName": "PitchpodResin",
+        "count": 1
+      }
+    ]
+  },
+  "PosyOneFresh": {
+    "tick": 560,
+    "z": "Overworld.5.9.0",
+    "X": 20,
+    "Y": 4,
+    "hp": 40,
+    "drams": 50,
+    "xp": 0,
+    "reputation": 0,
+    "resin": 0,
+    "held": 0,
+    "isSealed": false,
+    "wasHeld": false,
+    "active": true,
+    "done": false,
+    "stage": 0,
+    "closure": "Open",
+    "pack": [
+      {
+        "ID": "7015",
+        "BlueprintName": "PitchpodResin",
+        "count": 1
+      }
+    ]
+  },
+  "reputationNote": "Initial and Paid read the neutral attitude projection. Sealed, Reported and countercase read the exact reputation value.",
+  "archives": {
+    "coo-posy-early-v28-ordinary-20261125": {
+      "path": "/private/tmp/coo-posy-early-v28-ordinary-20261125/9d0861c3cd7e4715b558696a6d662435",
+      "turn": 390,
+      "zone": "Overworld.4.9.0",
+      "files": {
+        "Quick.json": "a773784bb12048cb5e486f0b092816b612516194d4b60ac9a0f5bb0ccc10ad30",
+        "Quick.json.bak": "b7f4f735c9ca2947359a636a41e5986741549318559afb3f94063653de0ca2b5",
+        "Quick.sav.gz": "53c8a557956c308bad7cc3ce03118522987f835b884806808eb6e19b862efae8",
+        "Quick.sav.gz.bak": "06c0f4bbe00aa22fa839f3aba03b87415d28ea4536844403c955abad40544a75"
+      }
+    },
+    "coo-posy-early-v28-gathered-20261125": {
+      "path": "/private/tmp/coo-posy-early-v28-gathered-20261125/9d0861c3cd7e4715b558696a6d662435",
+      "turn": 330,
+      "zone": "Overworld.4.9.0",
+      "files": {
+        "Quick.json": "e6620c311cf85751c58860792c836f2371d15502657c47c3e02923639fddc470",
+        "Quick.json.bak": "b7f4f735c9ca2947359a636a41e5986741549318559afb3f94063653de0ca2b5",
+        "Quick.sav.gz": "a55e6ec20a1c5457c857c347c90ad09d3f8697ab44e9726da84b1523e5e31ed5",
+        "Quick.sav.gz.bak": "06c0f4bbe00aa22fa839f3aba03b87415d28ea4536844403c955abad40544a75"
+      }
+    },
+    "coo-posy-resin-reported-20261126": {
+      "path": "/private/tmp/coo-posy-resin-reported-20261126/9d0861c3cd7e4715b558696a6d662435",
+      "turn": 630,
+      "zone": "Overworld.5.9.0",
+      "files": {
+        "Quick.json": "635cde07713e9484e4c6942e42a33203b7a762a3a475a305e25da1c4e33be891",
+        "Quick.json.bak": "01fa00f60be35c8ecbd3effa92721e6ae42e38d823be8ca104ee1fdbcc6924c1",
+        "Quick.sav.gz": "041d73182848777b9b8578506f63afdb9ea6a130fe83b539ef42fd063d03ac12",
+        "Quick.sav.gz.bak": "41ac12602b9c5945b5cb68f9dce0971d1ac493f3a97af6f415e4a77aa9e106da"
+      }
+    },
+    "coo-posy-resin-one-bead-20261126": {
+      "path": "/private/tmp/coo-posy-resin-one-bead-20261126/9d0861c3cd7e4715b558696a6d662435",
+      "turn": 560,
+      "zone": "Overworld.5.9.0",
+      "files": {
+        "Quick.json": "144bac3c3ab0c1df92576e051ebba2ce1e59016ffae2ac3c36149a9cb732d476",
+        "Quick.json.bak": "83100dde711562dd640128a1d4c71621cbcb7e3a7302892f41ea6faa64f8ac90",
+        "Quick.sav.gz": "3e12f3261fa49cff4ef2f6890aeb4327c3b64d0ceeba7c125cfb53d17cadc234",
+        "Quick.sav.gz.bak": "b5003258182498826ca3e35f0cdd82d24d32294b8981365a7bd286fab68e322c"
+      }
+    }
+  },
+  "screenshot": {
+    "01-one-bead.png": "e7ab112de7f9c5f33a0584919a3169bf2f0e8d25e9aa2ed212f05c4fd15e8a4e"
+  },
+  "preservation": {
+    "coo-sieve-content-foreign-at-entry.json": 86,
+    "coo-grit-normal-before-play.json": 861
+  }
+}
