@@ -6,6 +6,13 @@ shipment stays overdue until the existing physical receipt. An earlier
 sighting and a later independently seen body can be distinguished.
 [Evidence](Verification/MachineSystems/WaysideLivingPorter20261126/README.md)
 
+**Sumphold has two distinct candidate cargo approaches — November 26 UTC, 2026.**
+Ordinary cold entries reached the existing crates in seeds 64 and 65.
+On-foot approaches reached dry working and roadside berths. Continue with
+a finite optional public store and real loaded turns before offering either
+choice. The ordinary empty crates still expose their standard Open action.
+[Scout](Verification/MachineSystems/SumpholdCargoScout20261126.md)
+
 **Causeway scale is readable and useful in the field — November 26 UTC, 2026.**
 The vent reader explains what the scale can do, including on existing
 v29 saves with spent stock. Proofing flasks put the clothing treatment
