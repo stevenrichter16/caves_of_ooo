@@ -1,3 +1,13 @@
+**A public cargo crate can serve a chosen Sumphold berth — November 26 UTC, 2026.**
+The fresh boatyard can offer the same two timber units beside a western
+or eastern work finger. Loose carrying suits a small task. A loaded move
+keeps the reusable store together and costs movement speed while held.
+The parked crate takes compatible loose goods through existing custody
+and stack rules. Finite stock, load weight and cleared service access
+apply to either choice. The retrieved timber works with the existing
+field haft recipe.
+[Evidence](Verification/MachineSystems/SumpholdPublicCargo20261126/README.md)
+
 **A real sighting can revise an overdue delivery notice — November 26 UTC, 2026.**
 The assigned human searcher can see the original porter alive without
 changing the route or taking over the cargo. The returned report conveys

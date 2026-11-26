@@ -27,6 +27,7 @@ namespace CavesOfOoo.Core
         // replaces the selected plan before acceptance.
         internal SpreadWayhousePlan StagedWayhouse;
         private readonly Dictionary<string,SoddenDistrict.Attempt> stagedSodden=new Dictionary<string,SoddenDistrict.Attempt>();
+        private SumpholdFurnishingBuilder stagedSumphold;
         private System.Func<int> _turnProvider;
 
         public OverworldZoneManager(EntityFactory factory, int worldSeed = 0)
@@ -1160,7 +1161,12 @@ namespace CavesOfOoo.Core
                 pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]){RespectReservations=ordinaryVillage!=null||cinderhold||sumphold||drownedLedger||marrowstye||firstTent||lastCounter||civicQuartet,CanOpenOrdinaryDoors=ordinaryVillage!=null});
             }
 
-            if(sumphold)pipeline.AddBuilder(new SumpholdFurnishingBuilder(this,yard));
+            if (sumphold)
+            {
+                var furnishings = new SumpholdFurnishingBuilder(this, yard);
+                pipeline.AddBuilder(furnishings);
+                if (SumpholdFurnishingBuilder.RetainsCargoSite(this, zoneID)) stagedSumphold = furnishings;
+            }
             if(quillhold)pipeline.AddBuilder(new QuillholdCopyHallBuilder(this,quillholdBase));
             if(InstallationRegistry.For(poi.Name).Count>0)pipeline.AddBuilder(new InstallationPostBuilder(this,poi,zoneID));
             return pipeline;
@@ -1222,6 +1228,8 @@ namespace CavesOfOoo.Core
 
         protected override bool CommitGeneratedZone(Zone zone, string zoneID)
         {
+            var sumphold = SumpholdCompositionPlan.IsSupportedZone(zoneID) ? stagedSumphold : null;
+            if (sumphold != null) stagedSumphold = null;
             LegendaryLairEncounters.TryApplyGeneratedFinal(zone, this);
             bool lairAccepted=LairStacks.CommitGenerated(zone,this);
             bool soddenAccepted = false;
@@ -1247,6 +1255,7 @@ namespace CavesOfOoo.Core
                 ConnectedSpreadSatellite.AddSideParkingGuide(this, zone);
                 if (soddenAccepted) SoddenWorksDrainage.TryInstall(zone, this);
                 CausewaySteamSeam.Install(this, zone);
+                sumphold?.InstallCargo(zone);
             }
             return accepted;
         }
@@ -1257,7 +1266,8 @@ namespace CavesOfOoo.Core
             && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
             && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID)
             && !BiomeCropPlacement.Retain(this,zoneID) && !SecondExplorationSites.Retain(this,zoneID)
-            && !InstallationMarkerPart.Retain(this,zoneID) && !CausewaySteamSeam.Retain(this,zoneID);
+            && !InstallationMarkerPart.Retain(this,zoneID) && !CausewaySteamSeam.Retain(this,zoneID)
+            && !SumpholdFurnishingBuilder.RetainsCargoSite(this,zoneID);
 
         private bool RetainMorrowfast(string zoneID) => zoneID == MorrowfastSceneRuntime.ZoneID
             && WorldMap.GetPOI(MorrowfastSceneRuntime.WorldX, MorrowfastSceneRuntime.WorldY)?.Profile == "Morrowfast"

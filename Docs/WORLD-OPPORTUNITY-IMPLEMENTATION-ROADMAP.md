@@ -368,28 +368,26 @@ all 24 units in physical stock. Tests and fresh Continue verified retention
 of the actual owners and coating. This is ordinary walking evidence.
 [Evidence](Verification/MachineSystems/PeatWorksMireShortcuts20261125/README.md)
 
-### Sumphold cargo candidate
+### Sumphold cargo allocation
 
 Two cold entries from retained version 26 worlds reached the real boatyard
 from ordinary map travel. Seed 64 has an empty crate at `(20,19)` and a
 six-move dry route from its east side to the working finger. Seed 65 has an
 empty crate at `(65,19)` and an eight-move dry route from its west side to a
 roadside berth, using its existing duckboards. Both routes were walked at
-full health. The crates were left in their original places. The scout
-establishes candidate floor and standing space. Loaded turns still need
-their own movement proof.
+full health. The scout left the original empty crates in place.
 
-An optional new allocation could use one freshly staged public crate with
-real stock. Take loose timber at the source or haul the loaded crate to a
-chosen dry berth and use it as a local supply store. Count the shell and
-contents with `ContainerLoadPart`. Existing crates already offer Open and
-Take. Adjacent deposits require explicit authority and an actual supported
-transfer in the current pack; the clay delivery shelf policy only admits
-its own goods. Make nearby reuse real before advertising the intact route.
-Protect the town road, well access and other owners. Retain a generated
-allocation after depletion or crate destruction so the wood never rerolls.
+Fresh v30 supplies one eligible finger with two salvage timber units in
+the existing crate. Seed 64 took the loaded western route, restocked from
+the pack, then removed the exact timber and shaped a rough haft. Seed 65
+took the same amount in place from its eastern crate. The optional loaded
+route has native coverage in both layouts. The shared storage allowance is
+eight entries and 24 pounds above the shell. Existing inventory commands
+check the released, unlocked crate and the real owners. The road, well
+and other approved furnishings keep their existing services.
 
-[Walking and source checks](Verification/MachineSystems/SumpholdCargoScout20261126.md)
+[Walking scout](Verification/MachineSystems/SumpholdCargoScout20261126.md) ·
+[Loaded movement and real use](Verification/MachineSystems/SumpholdPublicCargo20261126/README.md)
 
 ## Priority 7: add seasonal bonus work without making travel a chore
 

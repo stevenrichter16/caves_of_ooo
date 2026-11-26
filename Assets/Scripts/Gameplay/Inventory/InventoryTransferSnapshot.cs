@@ -42,6 +42,24 @@ namespace CavesOfOoo.Core.Inventory
                 if (!transaction.TryClaim(state.Item, actor, action)) return false;
             return true;
         }
+
+        /// <summary>Seal the actual recipients of a transfer, including its merge targets.</summary>
+        internal void WatchChangedOwners(InventoryTransaction transaction)
+        {
+            foreach (var change in _changed)
+            {
+                var item = change.Item;
+                var expected = new ItemState(item, _list.IndexOf(item));
+                var physics = item.GetPart<PhysicsPart>();
+                var stack = item.GetPart<StackerPart>();
+                var zone = item.SpatialZone;
+                string id = item.ID;
+                transaction.BeforeCommit(() => item.ID == id && item.SpatialZone == zone
+                    && item.GetPart<PhysicsPart>() == physics && item.GetPart<StackerPart>() == stack
+                    && !expected.HasChanged(_list));
+            }
+        }
+
         internal void Restore()=>RestoreExcept(null);
         // A scoped caller can refuse to reinsert a lost participant whose saved
         // identity an independent callback has replaced. Other callers retain

@@ -4,6 +4,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
     {
         private readonly Entity _container;
         private readonly Entity _item;
+        private readonly PublicCargoStoragePart _cargo;
+        private readonly ContainerPart _cargoContents;
+        private readonly Cell _cargoCell;
 
         public string Name => "PutInContainer";
 
@@ -11,6 +14,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             _container = container;
             _item = item;
+            _cargo = container?.GetPart<PublicCargoStoragePart>();
+            if (_cargo == null) return;
+            _cargoContents = container.GetPart<ContainerPart>();
+            _cargoCell = container.SpatialZone?.GetEntityCell(container);
         }
 
         public InventoryValidationResult Validate(InventoryContext context)
@@ -58,6 +65,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var delivery = _container.GetPart<DeliveryStoragePart>();
             if (delivery?.RefuseDeposit(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone) is string deliveryFailure)
                 return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, deliveryFailure);
+            if (CargoRefusal(context) is string cargoFailure)
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, cargoFailure);
 
             if (!context.Inventory.Contains(_item))
             {
@@ -71,12 +80,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            if (CargoRefusal(context) is string cargoFailure)
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, cargoFailure);
             if (_container.HasPart<ContainedLiquidSourcePart>())
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "This recovery tray does not accept deposits.");
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
             var delivery = _container.GetPart<DeliveryStoragePart>();
-            if (delivery != null && !transaction.TryClaim(_container, context.Actor, Name))
+            if ((delivery != null || _cargo != null) && !transaction.TryClaim(_container, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "That storage is already in use.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
@@ -111,6 +122,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             int quantity = _item.GetPart<StackerPart>()?.StackCount ?? 1;
             if (delivery?.WatchLooseTransfer(context.Actor, context.Zone ?? context.Actor.SpatialZone, transaction, quantity) == false)
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The tray's stock or access has changed.");
+            if (_cargo?.WatchTransfer(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone, transaction, deposit: true) == false)
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The cargo crate's stock or access has changed.");
             var source = InventoryTransferSnapshot.Capture(inventory);
             transaction.Do(apply: null, undo: source.Restore);
             if (!source.Apply(() => inventory.RemoveObject(_item)))
@@ -133,7 +146,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             if (!destination.ClaimChanges(transaction, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "A destination stack is already being transferred.");
-            if (delivery != null) transaction.AfterCommit(Announce);
+            if (_cargo != null) destination.WatchChangedOwners(transaction);
+            if (delivery != null || _cargo != null) transaction.AfterCommit(Announce);
             else Announce();
             return InventoryCommandResult.Ok();
 
@@ -147,6 +161,18 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 DispositionDiagnostics.Record(context, _item, Name, quantity, _container.ID);
             }
         }
+
+        private string CargoRefusal(InventoryContext context)
+        {
+            if (!ReferenceEquals(_container?.GetPart<PublicCargoStoragePart>(), _cargo))
+                return "The cargo crate has changed. Open the pack again to see its current options.";
+            if (_cargo == null) return null;
+            var zone = context.Zone ?? context.Actor.SpatialZone;
+            if (_cargoContents != _container.GetPart<ContainerPart>() || _cargoCell != zone?.GetEntityCell(_container))
+                return "The cargo crate has moved or changed. Choose it again from your pack.";
+            return _cargo.RefuseDeposit(context.Actor, _item, zone);
+        }
+
         // NPC feedback follows current visible world ownership, never an invented
         // audible event. Keep player feedback and transfer/rollback semantics intact.
         private bool CanNarrate(InventoryContext context)

@@ -236,7 +236,8 @@ namespace CavesOfOoo.Core
                     var objects = zone.GetCell(cell.X + dx, cell.Y + dy).Objects;
                     for (int i = 0; i < objects.Count; i++)
                         if (objects[i] != actor && objects[i].GetPart<ContainerPart>() != null && !result.Contains(objects[i])
-                            && (HeldFixtureActions.IsPlayerHeld(objects[i]) || objects[i].GetPart<DeliveryStoragePart>()?.CanReach(actor, zone) == true))
+                            && (HeldFixtureActions.IsPlayerHeld(objects[i]) || objects[i].GetPart<DeliveryStoragePart>()?.CanReach(actor, zone) == true
+                                || objects[i].GetPart<PublicCargoStoragePart>()?.CanReach(actor, zone) == true))
                             result.Add(objects[i]);
                 }
             return result;

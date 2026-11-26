@@ -1,3 +1,14 @@
+**Sumphold's finite cargo can be moved, stocked or taken in place — November 26 UTC, 2026.**
+Fresh v30 admits one exact crate after the final approach and berth check.
+Seed 64 hauled the loaded west crate through the turn, deposited the exact
+rations, then recovered and shaped original timber into a field haft.
+Seed 65 took both timber units from the east crate without relocating it.
+The parked, worked and emptied states matched on fresh Continue.
+Final native coverage passed 467 cases with one opt-in skip. Carry forward
+both layouts and continue with another distinct field or seasonal use.
+The current Mac package predates this increment.
+[Evidence](Verification/MachineSystems/SumpholdPublicCargo20261126/README.md)
+
 **A search can bring news of the living porter — November 26 UTC, 2026.**
 At the wayside kitchen, a searcher can see the exact original porter alive
 along the existing route. The cook can publish that historical observation
@@ -6,11 +17,10 @@ shipment stays overdue until the existing physical receipt. An earlier
 sighting and a later independently seen body can be distinguished.
 [Evidence](Verification/MachineSystems/WaysideLivingPorter20261126/README.md)
 
-**Sumphold has two distinct candidate cargo approaches — November 26 UTC, 2026.**
+**Earlier Sumphold cargo approaches — November 26 UTC, 2026.**
 Ordinary cold entries reached the existing crates in seeds 64 and 65.
-On-foot approaches reached dry working and roadside berths. Continue with
-a finite optional public store and real loaded turns before offering either
-choice. The ordinary empty crates still expose their standard Open action.
+On-foot approaches reached dry working and roadside berths. This scout
+kept both crates in their original places.
 [Scout](Verification/MachineSystems/SumpholdCargoScout20261126.md)
 
 **Causeway scale is readable and useful in the field — November 26 UTC, 2026.**

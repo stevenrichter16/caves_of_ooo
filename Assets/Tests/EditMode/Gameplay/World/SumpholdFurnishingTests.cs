@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
 using NUnit.Framework;
 
@@ -161,6 +164,188 @@ namespace CavesOfOoo.Tests
             foreach(var c in fixtures)Assert.IsTrue(new[]{(-1,0),(1,0),(0,-1),(0,1)}.Any(d=>reach.Contains((c.x+d.Item1,c.y+d.Item2))));
             Assert.IsTrue(reach.Contains((0,12)));Assert.IsTrue(reach.Contains((79,12)));Assert.IsTrue(reach.Contains((40,0)));
             Assert.AreSame(z,m.GetZone(Id));Assert.AreEqual(z.EntityCount,m.GetZone(Id).EntityCount);
+        }
+
+        [TestCase(64, 20, 21, 22, 15, 6)]
+        [TestCase(65, 65, 64, 63, 13, 8)]
+        public void FreshCargoUsesTheExactFurnishingAndFollowsTheOrdinaryTurnIntoItsBerth(int seed,
+            int sourceX, int laneX, int berthX, int berthY, int steps)
+        {
+            using var scope = new HaulingContentScope();
+            scope.Seed(seed);
+            var m = OverworldZoneManager.CreateDetached(scope.Factory, seed, true);
+            var z = m.GetZone(Id);
+            var crate = z.GetReadOnlyEntities().Single(e => e.HasPart<PublicCargoStoragePart>());
+            Assert.AreEqual((sourceX, 19), z.GetEntityPosition(crate));
+            Assert.AreEqual("Crate", crate.BlueprintName);
+            var stock = crate.GetPart<ContainerPart>().Contents.Single();
+            Assert.AreEqual("SalvagedTimber", stock.BlueprintName);
+            Assert.AreEqual(2, stock.GetPart<StackerPart>().StackCount);
+            Assert.AreSame(crate, stock.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(74, DragRules.WeightOf(crate));
+            var peerCrates = z.GetReadOnlyEntities().Where(e => e.BlueprintName == "Crate" && e != crate)
+                .ToDictionary(e => e, z.GetEntityPosition);
+            var well = z.GetCell(40, 12).Objects.Single(e => e.BlueprintName == "Well");
+            var player = scope.Factory.CreateEntity("Player");
+            Assert.True(z.AddEntity(player, laneX, 19));
+            m.SetActiveZone(z);
+            Assert.AreEqual(DragVerdict.Ok, DragSystem.TryGrab(player, crate, z));
+            int walked = 0;
+            void Pull(int dx, int dy)
+            {
+                var before = z.GetEntityPosition(player);
+                Assert.True(MovementSystem.TryMove(player, z, dx, dy));
+                Assert.AreEqual(before, z.GetEntityPosition(crate));
+                Assert.AreSame(crate, DragSystem.GetDragged(player));
+                walked++;
+            }
+            for (int y = 19; y > berthY; y--) Pull(0, -1);
+            Pull(Math.Sign(berthX - laneX), 0);
+            Pull(0, -1);
+            Assert.AreEqual(steps, walked);
+            Assert.AreEqual((berthX, berthY), z.GetEntityPosition(crate));
+            DragSystem.Release(player);
+            Assert.IsNull(DragSystem.GetDragged(player));
+            Assert.AreSame(stock, crate.GetPart<ContainerPart>().Contents.Single());
+            Assert.AreSame(well, z.GetCell(40, 12).Objects.Single(e => e.BlueprintName == "Well"));
+            foreach (var peer in peerCrates) Assert.AreEqual(peer.Value, z.GetEntityPosition(peer.Key));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void TakingTheStockAndOptionalCrateDestructionSurviveSaveWithoutRefill(bool destroyed)
+        {
+            using var scope = new HaulingContentScope();
+            scope.Seed(64);
+            var m = OverworldZoneManager.CreateDetached(scope.Factory, 64, true);
+            var z = m.GetZone(Id);
+            var crate = z.GetReadOnlyEntities().Single(e => e.HasPart<PublicCargoStoragePart>());
+            var stock = crate.GetPart<ContainerPart>().Contents.Single();
+            var player = scope.Factory.CreateEntity("Player");
+            Assert.True(z.AddEntity(player, 21, 19));
+            m.SetActiveZone(z);
+            var crateCell = z.GetEntityCell(crate);
+            crateCell.Explored = crateCell.IsVisible = true;
+            Assert.True(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(crate, stock), player, z).Success);
+            Assert.AreSame(stock, player.GetPart<InventoryPart>().Objects.Single(item => item.ID == stock.ID));
+            Assert.IsEmpty(crate.GetPart<ContainerPart>().Contents);
+            Assert.AreEqual(72, DragRules.WeightOf(crate));
+            if (destroyed)
+            {
+                Assert.AreEqual(DestroyVerdict.Destroyed,
+                    DestructionSystem.Damage(crate, crate.GetPart<DestructiblePart>().HP, player, z));
+                Assert.IsNull(z.GetEntityCell(crate));
+            }
+
+            var away = m.GetZone(ReferenceGladePlan.ZoneID);
+            Cell destination = null;
+            away.ForEachCell((cell, x, y) =>
+            {
+                if (destination == null && away.CanPlaceFootprint(player, x, y)) destination = cell;
+            });
+            Assert.NotNull(destination);
+            Assert.True(z.RemoveEntity(player));
+            Assert.True(away.AddEntity(player, destination.X, destination.Y));
+            m.SetActiveZone(away);
+            m.UnloadZone(Id);
+            Assert.AreSame(z, m.GetZone(Id));
+
+            using var bytes = new MemoryStream();
+            GameSessionState.Capture("sumphold-cargo", "stock-taken", m, null, player).Save(new SaveWriter(bytes));
+            bytes.Position = 0;
+            var loaded = GameSessionState.Load(new SaveReader(bytes, scope.Factory));
+            var savedStock = loaded.Player.GetPart<InventoryPart>().Objects.Single(item => item.ID == stock.ID);
+            Assert.AreEqual(2, savedStock.GetPart<StackerPart>().StackCount);
+            Assert.AreSame(loaded.Player, savedStock.GetPart<PhysicsPart>().InInventory);
+            loaded.ZoneManager.UnloadZone(Id);
+            var returned = loaded.ZoneManager.GetZone(Id);
+            var savedCrate = returned.GetReadOnlyEntities().SingleOrDefault(e => e.HasPart<PublicCargoStoragePart>());
+            if (destroyed) Assert.IsNull(savedCrate);
+            else
+            {
+                Assert.NotNull(savedCrate);
+                Assert.AreEqual(crate.ID, savedCrate.ID);
+                Assert.IsEmpty(savedCrate.GetPart<ContainerPart>().Contents);
+                Assert.AreEqual(72, DragRules.WeightOf(savedCrate));
+            }
+        }
+
+        [Test]
+        public void LiteralVersion29AndCachedPredecessorKeepTheOriginalEmptyFurnishings()
+        {
+            using var scope = new HaulingContentScope();
+            scope.Seed(64);
+            var m = OverworldZoneManager.CreateDetached(scope.Factory, 64, true);
+            SoddenDistrictIntegrationTests.Version(m, 29);
+            var z = m.GetZone(Id);
+            var crate = z.GetCell(20, 19).Objects.Single(e => e.BlueprintName == "Crate");
+            Assert.IsEmpty(crate.GetPart<ContainerPart>().Contents);
+            Assert.IsFalse(z.GetReadOnlyEntities().Any(e => e.HasPart<PublicCargoStoragePart>()));
+            var current = OverworldZoneManager.CreateDetached(scope.Factory, 64, true);
+            current.SetActiveZone(z);
+            Assert.AreSame(z, current.GetZone(Id));
+            Assert.IsEmpty(crate.GetPart<ContainerPart>().Contents);
+            Assert.IsFalse(crate.HasPart<PublicCargoStoragePart>());
+        }
+
+        [TestCase("wet")]
+        [TestCase("occupied")]
+        [TestCase("missing-stock")]
+        [TestCase("quest-stock")]
+        public void LateObstructionOrMissingTimberKeepsTheOriginalEmptyFurnishing(string fault)
+        {
+            using var scope = new HaulingContentScope();
+            scope.Seed(64);
+            if (fault == "missing-stock") scope.Factory.Blueprints.Remove("SalvagedTimber");
+            if (fault == "quest-stock") scope.Factory.Blueprints["SalvagedTimber"].Tags["QuestItem"] = "";
+            var m = new CargoProbeManager(scope.Factory, fault);
+            var z = m.GetZone(Id);
+            var crate = z.GetCell(20, 19).Objects.Single(e => e.BlueprintName == "Crate");
+            Assert.AreSame(m.Probe.Crate, crate);
+            Assert.IsEmpty(crate.GetPart<ContainerPart>().Contents);
+            Assert.IsFalse(crate.HasPart<PublicCargoStoragePart>());
+            Assert.IsFalse(crate.HasPart<HandlingPart>());
+            if (fault == "wet") Assert.IsFalse(z.TileState.Get(22, 15).IsEmpty);
+            if (fault == "occupied") Assert.AreSame(m.Probe.Blocker, z.GetCell(22, 15).Objects.Single(e => e == m.Probe.Blocker));
+        }
+
+        sealed class CargoProbeManager : OverworldZoneManager
+        {
+            public readonly LateCargoProbe Probe;
+            public CargoProbeManager(EntityFactory f, string fault) : base(f, 64)
+            {
+                Probe = new LateCargoProbe(fault);
+                typeof(OverworldZoneManager).GetProperty("Exploration",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                    .SetValue(this, SpreadExplorationPlan.Create(this));
+            }
+            protected override ZoneGenerationPipeline GetPipelineForZone(string id)
+            {
+                var pipeline = base.GetPipelineForZone(id);
+                if (id == Id) pipeline.AddBuilder(Probe);
+                return pipeline;
+            }
+        }
+
+        sealed class LateCargoProbe : IZoneBuilder
+        {
+            readonly string fault;
+            public Entity Crate { get; private set; }
+            public Entity Blocker { get; private set; }
+            public LateCargoProbe(string fault) => this.fault = fault;
+            public string Name => "Late cargo lane probe";
+            public int Priority => 4700;
+            public bool BuildZone(Zone z, EntityFactory f, Random rng)
+            {
+                Crate = z.GetCell(20, 19).Objects.Single(e => e.BlueprintName == "Crate");
+                if (fault == "wet") z.TileState.WriteCoating(22, 15, "water", ZoneTileState.Permanent);
+                if (fault == "occupied")
+                {
+                    Blocker = f.CreateEntity("SandstoneWall");
+                    Assert.True(z.AddEntity(Blocker, 22, 15));
+                }
+                return true;
+            }
         }
     }
 }

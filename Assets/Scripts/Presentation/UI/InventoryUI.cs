@@ -274,6 +274,7 @@ namespace CavesOfOoo.Rendering
             public string Label;
             public string Command;
             public Entity Container;
+            public PutInContainerCommand CargoDeposit;
             public ContainerPart StorageContainer;
             // Declared by the producing row (spec S3). A struct defaults to ActionTime 0 (Free), so a separate flag says whether Time was
             // declared at all; undeclared rows keep the legacy charge chain.
@@ -1300,11 +1301,15 @@ namespace CavesOfOoo.Rendering
                 {
                     var container = containersAtFeet[i];
                     string label = $"Put in {container.GetDisplayName()}";
+                    var cargo = container.GetPart<PublicCargoStoragePart>() == null ? null : new PutInContainerCommand(container, item);
+                    var quote = cargo?.Validate(new InventoryContext(PlayerEntity, CurrentZone));
                     actions.Add(new ItemAction
                     {
                         Label = label,
                         Command = "put_container",
-                        Container = container
+                        Container = container,
+                        CargoDeposit = cargo,
+                        DisabledReason = quote?.ErrorMessage
                     });
                 }
             }
@@ -1466,7 +1471,7 @@ namespace CavesOfOoo.Rendering
                 case "drop": completed = TryDropViaCommand(item); break;
                 case "disassemble": completed = TryDisassembleViaCommand(item); break;
                 case "toggle_craftmark": completed = TryToggleCraftMarkViaCommand(item); break;
-                case "put_container": completed = TryPutInContainerViaCommand(item, action.Container); break;
+                case "put_container": completed = TryPutInContainerViaCommand(item, action.Container, action.CargoDeposit); break;
                 case "open_carried_storage":
                     SetStorageExpanded(item, action.StorageContainer, !IsStorageExpanded(item, action.StorageContainer));
                     return;
@@ -1787,7 +1792,7 @@ namespace CavesOfOoo.Rendering
         /// Container flow seam: put selected item into a chosen nearby container
         /// through command execution.
         /// </summary>
-        private bool TryPutInContainerViaCommand(Entity item, Entity container)
+        private bool TryPutInContainerViaCommand(Entity item, Entity container, PutInContainerCommand quotedCargo)
         {
             ClearActionStatus();
             if (item == null)
@@ -1800,7 +1805,7 @@ namespace CavesOfOoo.Rendering
             }
 
             var result = InventorySystem.ExecuteCommand(
-                new PutInContainerCommand(container, item),
+                quotedCargo ?? new PutInContainerCommand(container, item),
                 PlayerEntity,
                 CurrentZone);
 

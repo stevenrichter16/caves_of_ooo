@@ -1,0 +1,1750 @@
+{
+  "scope": "Guided GameBootstrap keyboard play with private seed selection and isolated saves. Runtime observations use the ordinary live world and pack.",
+  "worldObservations": {
+    "westStart": {
+      "t": 10,
+      "zone": "Overworld.11.10.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 40,
+        "Y": 12,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": null,
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [],
+      "wells": [
+        {
+          "ID": "2693",
+          "at": {
+            "Item1": 41,
+            "Item2": 8
+          }
+        }
+      ]
+    },
+    "westArrival": {
+      "t": 110,
+      "zone": "Overworld.15.6.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 39,
+        "Y": 11,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7470",
+        "x": 20,
+        "y": 19,
+        "mass": 74,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "7472",
+            "BlueprintName": "SalvagedTimber",
+            "name": "salvaged timber (x2)",
+            "n": 2,
+            "holder": "7470"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5036",
+          "at": {
+            "Item1": 35,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7439",
+          "at": {
+            "Item1": 54,
+            "Item2": 8
+          },
+          "n": 1
+        },
+        {
+          "ID": "7471",
+          "at": {
+            "Item1": 66,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7297",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "westApproach": {
+      "before": {
+        "t": 110,
+        "p": {
+          "ID": "2703",
+          "X": 39,
+          "Y": 11,
+          "hp": 40,
+          "drams": 50,
+          "wet": false
+        }
+      },
+      "end": {
+        "t": 300,
+        "p": {
+          "ID": "2703",
+          "X": 21,
+          "Y": 19,
+          "hp": 40,
+          "drams": 50,
+          "wet": false
+        },
+        "zone": "Overworld.15.6.0"
+      },
+      "pools": [],
+      "steps": [
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "Numpad1",
+        "Numpad1",
+        "Numpad1",
+        "Numpad1",
+        "DownArrow",
+        "Numpad1",
+        "Numpad1",
+        "Numpad1"
+      ]
+    },
+    "westBeforeLoadedTurn": {
+      "t": 300,
+      "zone": "Overworld.15.6.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 21,
+        "Y": 19,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7470",
+        "x": 20,
+        "y": 19,
+        "mass": 74,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "7472",
+            "BlueprintName": "SalvagedTimber",
+            "name": "salvaged timber (x2)",
+            "n": 2,
+            "holder": "7470"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5036",
+          "at": {
+            "Item1": 35,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7439",
+          "at": {
+            "Item1": 54,
+            "Item2": 8
+          },
+          "n": 1
+        },
+        {
+          "ID": "7471",
+          "at": {
+            "Item1": 66,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7297",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "westAfterLoadedTurn": {
+      "t": 385,
+      "zone": "Overworld.15.6.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 22,
+        "Y": 14,
+        "hp": 40,
+        "speed": 71,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7470",
+        "x": 22,
+        "y": 15,
+        "mass": 74,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "7472",
+            "BlueprintName": "SalvagedTimber",
+            "name": "salvaged timber (x2)",
+            "n": 2,
+            "holder": "7470"
+          }
+        ]
+      },
+      "holding": "7470",
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5036",
+          "at": {
+            "Item1": 35,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7439",
+          "at": {
+            "Item1": 54,
+            "Item2": 8
+          },
+          "n": 1
+        },
+        {
+          "ID": "7471",
+          "at": {
+            "Item1": 66,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7297",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "westDeposit": {
+      "t": 385,
+      "zone": "Overworld.15.6.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 22,
+        "Y": 14,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "InventoryOpen",
+      "crate": {
+        "ID": "7470",
+        "x": 22,
+        "y": 15,
+        "mass": 78,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "7472",
+            "BlueprintName": "SalvagedTimber",
+            "name": "salvaged timber (x2)",
+            "n": 2,
+            "holder": "7470"
+          },
+          {
+            "ID": "2711",
+            "BlueprintName": "DriedMeat",
+            "name": "dried meat (x2)",
+            "n": 2,
+            "holder": "7470"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5036",
+          "at": {
+            "Item1": 35,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7439",
+          "at": {
+            "Item1": 54,
+            "Item2": 8
+          },
+          "n": 1
+        },
+        {
+          "ID": "7471",
+          "at": {
+            "Item1": 66,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7297",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "westParked": {
+      "t": 385,
+      "zone": "Overworld.15.6.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 22,
+        "Y": 14,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7470",
+        "x": 22,
+        "y": 15,
+        "mass": 78,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "7472",
+            "BlueprintName": "SalvagedTimber",
+            "name": "salvaged timber (x2)",
+            "n": 2,
+            "holder": "7470"
+          },
+          {
+            "ID": "2711",
+            "BlueprintName": "DriedMeat",
+            "name": "dried meat (x2)",
+            "n": 2,
+            "holder": "7470"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5036",
+          "at": {
+            "Item1": 35,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7439",
+          "at": {
+            "Item1": 54,
+            "Item2": 8
+          },
+          "n": 1
+        },
+        {
+          "ID": "7471",
+          "at": {
+            "Item1": 66,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7297",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "westParkedContinue": {
+      "t": 385,
+      "zone": "Overworld.15.6.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 22,
+        "Y": 14,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7470",
+        "x": 22,
+        "y": 15,
+        "mass": 78,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "7472",
+            "BlueprintName": "SalvagedTimber",
+            "name": "salvaged timber (x2)",
+            "n": 2,
+            "holder": "7470"
+          },
+          {
+            "ID": "2711",
+            "BlueprintName": "DriedMeat",
+            "name": "dried meat (x2)",
+            "n": 2,
+            "holder": "7470"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5036",
+          "at": {
+            "Item1": 35,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "7439",
+          "at": {
+            "Item1": 54,
+            "Item2": 8
+          },
+          "n": 1
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7471",
+          "at": {
+            "Item1": 66,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7297",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "westTaken": {
+      "t": 385,
+      "zone": "Overworld.15.6.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 22,
+        "Y": 14,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "PickupOpen",
+      "crate": {
+        "ID": "7470",
+        "x": 22,
+        "y": 15,
+        "mass": 76,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "2711",
+            "BlueprintName": "DriedMeat",
+            "name": "dried meat (x2)",
+            "n": 2,
+            "holder": "7470"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "7472",
+          "BlueprintName": "SalvagedTimber",
+          "name": "salvaged timber (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5036",
+          "at": {
+            "Item1": 35,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "7439",
+          "at": {
+            "Item1": 54,
+            "Item2": 8
+          },
+          "n": 1
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7471",
+          "at": {
+            "Item1": 66,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7297",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "westWorked": {
+      "t": 405,
+      "zone": "Overworld.15.6.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 22,
+        "Y": 14,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7470",
+        "x": 22,
+        "y": 15,
+        "mass": 76,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "2711",
+            "BlueprintName": "DriedMeat",
+            "name": "dried meat (x2)",
+            "n": 2,
+            "holder": "7470"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "7472",
+          "BlueprintName": "SalvagedTimber",
+          "name": "salvaged timber",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "7473",
+          "BlueprintName": "FieldHaftComponent",
+          "name": "rough field haft",
+          "n": 1,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5036",
+          "at": {
+            "Item1": 35,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "7439",
+          "at": {
+            "Item1": 54,
+            "Item2": 8
+          },
+          "n": 1
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7471",
+          "at": {
+            "Item1": 66,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7297",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "westWorkedContinue": {
+      "t": 405,
+      "zone": "Overworld.15.6.0",
+      "seed": 64,
+      "ver": 30,
+      "game": "169d0f9f53754fc796803da764bd7100",
+      "p": {
+        "ID": "2703",
+        "X": 22,
+        "Y": 14,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7470",
+        "x": 22,
+        "y": 15,
+        "mass": 76,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "2711",
+            "BlueprintName": "DriedMeat",
+            "name": "dried meat (x2)",
+            "n": 2,
+            "holder": "7470"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "7472",
+          "BlueprintName": "SalvagedTimber",
+          "name": "salvaged timber",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "7473",
+          "BlueprintName": "FieldHaftComponent",
+          "name": "rough field haft",
+          "n": 1,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5036",
+          "at": {
+            "Item1": 35,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "7439",
+          "at": {
+            "Item1": 54,
+            "Item2": 8
+          },
+          "n": 1
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7471",
+          "at": {
+            "Item1": 66,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7297",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "eastStart": {
+      "t": 10,
+      "zone": "Overworld.11.10.0",
+      "seed": 65,
+      "ver": 30,
+      "game": "146e38b75fab4bc0bcc6d426f1d7b3ea",
+      "p": {
+        "ID": "2703",
+        "X": 40,
+        "Y": 12,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": null,
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [],
+      "wells": [
+        {
+          "ID": "2693",
+          "at": {
+            "Item1": 41,
+            "Item2": 8
+          }
+        }
+      ]
+    },
+    "eastArrival": {
+      "t": 110,
+      "zone": "Overworld.15.6.0",
+      "seed": 65,
+      "ver": 30,
+      "game": "146e38b75fab4bc0bcc6d426f1d7b3ea",
+      "p": {
+        "ID": "2703",
+        "X": 39,
+        "Y": 11,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7479",
+        "x": 65,
+        "y": 19,
+        "mass": 74,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "7480",
+            "BlueprintName": "SalvagedTimber",
+            "name": "salvaged timber (x2)",
+            "n": 2,
+            "holder": "7479"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5037",
+          "at": {
+            "Item1": 36,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7478",
+          "at": {
+            "Item1": 19,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7320",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "eastApproach": {
+      "t": 370,
+      "zone": "Overworld.15.6.0",
+      "seed": 65,
+      "ver": 30,
+      "game": "146e38b75fab4bc0bcc6d426f1d7b3ea",
+      "p": {
+        "ID": "2703",
+        "X": 64,
+        "Y": 19,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7479",
+        "x": 65,
+        "y": 19,
+        "mass": 74,
+        "locked": false,
+        "contents": [
+          {
+            "ID": "7480",
+            "BlueprintName": "SalvagedTimber",
+            "name": "salvaged timber (x2)",
+            "n": 2,
+            "holder": "7479"
+          }
+        ]
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5037",
+          "at": {
+            "Item1": 36,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7478",
+          "at": {
+            "Item1": 19,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7320",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "eastEmptied": {
+      "t": 380,
+      "zone": "Overworld.15.6.0",
+      "seed": 65,
+      "ver": 30,
+      "game": "146e38b75fab4bc0bcc6d426f1d7b3ea",
+      "p": {
+        "ID": "2703",
+        "X": 64,
+        "Y": 19,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7479",
+        "x": 65,
+        "y": 19,
+        "mass": 72,
+        "locked": false,
+        "contents": []
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "7480",
+          "BlueprintName": "SalvagedTimber",
+          "name": "salvaged timber (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "5037",
+          "at": {
+            "Item1": 36,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        },
+        {
+          "ID": "7478",
+          "at": {
+            "Item1": 19,
+            "Item2": 19
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7320",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    },
+    "eastEmptiedContinue": {
+      "t": 380,
+      "zone": "Overworld.15.6.0",
+      "seed": 65,
+      "ver": 30,
+      "game": "146e38b75fab4bc0bcc6d426f1d7b3ea",
+      "p": {
+        "ID": "2703",
+        "X": 64,
+        "Y": 19,
+        "hp": 40,
+        "speed": 100,
+        "str": 16,
+        "drams": 50
+      },
+      "stage": "Normal",
+      "crate": {
+        "ID": "7479",
+        "x": 65,
+        "y": 19,
+        "mass": 72,
+        "locked": false,
+        "contents": []
+      },
+      "holding": null,
+      "pack": [
+        {
+          "ID": "2704",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire",
+          "n": 1,
+          "holder": "2703"
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "n": 4,
+          "holder": "2703"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2710",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "2711",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "n": 2,
+          "holder": "2703"
+        },
+        {
+          "ID": "7480",
+          "BlueprintName": "SalvagedTimber",
+          "name": "salvaged timber (x2)",
+          "n": 2,
+          "holder": "2703"
+        }
+      ],
+      "otherCrates": [
+        {
+          "ID": "7478",
+          "at": {
+            "Item1": 19,
+            "Item2": 19
+          },
+          "n": 0
+        },
+        {
+          "ID": "5037",
+          "at": {
+            "Item1": 36,
+            "Item2": 3
+          },
+          "n": 0
+        },
+        {
+          "ID": "5253",
+          "at": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "n": 0
+        }
+      ],
+      "wells": [
+        {
+          "ID": "7320",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          }
+        }
+      ]
+    }
+  },
+  "checkpoints": {
+    "westParked": {
+      "path": "/private/tmp/coo-sumphold-v30-parked64-20261126",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "169d0f9f53754fc796803da764bd7100",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.6.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.6.0",
+        "Turn": 385,
+        "SaveTimestampUtc": "2026-11-26T02:19:28.8006070Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "f87391c1f22622ed8ee0d2b954f4fb538403e8f836b58634e71092e3f979c6f2",
+        "Quick.sav.gz.bak": "7eb44c1bdbb19acc0038bb4782013f5edc3734bc683f87d70fe11709503bbabe",
+        "Quick.json.bak": "978269ed6bfbfa5a62fd7ad7efaeb21c2a2757711ba93773bb4ee8ee75a39ef5",
+        "Quick.json": "4d486dc7e3ff32cee825dfc246530538f2c747907332c6c62356843c6bb6a721"
+      }
+    },
+    "westWorked": {
+      "path": "/private/tmp/coo-sumphold-v30-worked64-20261126",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "169d0f9f53754fc796803da764bd7100",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.6.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.6.0",
+        "Turn": 405,
+        "SaveTimestampUtc": "2026-11-26T02:33:25.9095980Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "8c4ac4c15652d98f29cb1a413516ddf627300dd75530c897cdc012ea056b6d10",
+        "Quick.sav.gz.bak": "f87391c1f22622ed8ee0d2b954f4fb538403e8f836b58634e71092e3f979c6f2",
+        "Quick.json.bak": "4d486dc7e3ff32cee825dfc246530538f2c747907332c6c62356843c6bb6a721",
+        "Quick.json": "632a52c6481708b7a12eb4d8fe3301c025c8442386d1ffbb8c5d047f4364f4e0"
+      }
+    },
+    "eastSource": {
+      "path": "/private/tmp/coo-sumphold-v30-source65-20261126",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "146e38b75fab4bc0bcc6d426f1d7b3ea",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.6.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.6.0",
+        "Turn": 370,
+        "SaveTimestampUtc": "2026-11-26T02:34:50.7344760Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "434bec19d99c89e8d4ce07d50210cd514114ad116f41b8bca3f2e715ead7b27a",
+        "Quick.sav.gz.bak": "2391acb75d5107cba7d6f42635221fa1ee5a1110ab15530b7c334f8353d69ebd",
+        "Quick.json.bak": "810524b0bf8d35c31e30069283a98fdb6e9f3f139dd06b30ab8f5addef6e18e2",
+        "Quick.json": "05c0e2f61312ee656db22cc4771e21f0ac175ccb125c33a2dba672fa758985c5"
+      }
+    },
+    "eastEmptied": {
+      "path": "/private/tmp/coo-sumphold-v30-emptied65-20261126",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "146e38b75fab4bc0bcc6d426f1d7b3ea",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.6.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.6.0",
+        "Turn": 380,
+        "SaveTimestampUtc": "2026-11-26T02:35:03.5353520Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "d3c3a15b84184744d10bac237fd1f4f9f86b8bf089856b5a8496a34e2edd0106",
+        "Quick.sav.gz.bak": "434bec19d99c89e8d4ce07d50210cd514114ad116f41b8bca3f2e715ead7b27a",
+        "Quick.json.bak": "05c0e2f61312ee656db22cc4771e21f0ac175ccb125c33a2dba672fa758985c5",
+        "Quick.json": "33bda442e8f160541959b5879e413833aada515986828264ef5b654ab5262bee"
+      }
+    }
+  },
+  "nativeResults": [
+    "sumphold_public_cargo_red_20261126b",
+    "sumphold_cargo_and_custody_red_20261126",
+    "sumphold_public_cargo_green_20261126b"
+  ],
+  "comparison": "Canonicalized only unrelated crate array order by ID. All remaining selected saved owners and values matched."
+}

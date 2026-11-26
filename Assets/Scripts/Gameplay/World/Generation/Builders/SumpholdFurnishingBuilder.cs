@@ -9,6 +9,8 @@ namespace CavesOfOoo.Core
     /// Residents, original furniture, stock, routes and reservations retain first claim.</summary>
     public sealed class SumpholdFurnishingBuilder : IZoneBuilder
     {
+        internal const int CargoVersion = 30;
+        const int CargoShellWeight = 72;
         public string Name => "SumpholdFurnishing";
         public int Priority => 4600;
         readonly OverworldZoneManager manager;
@@ -16,13 +18,19 @@ namespace CavesOfOoo.Core
         readonly EntityFactory sourceFactory;
         readonly SumpholdCompositionBuilder terrain;
         SumpholdCompositionPlan completed;
+        Entity cargoCrate;
+        Func<bool> cargoUnchanged;
+        bool westCargo;
         public SumpholdFurnishingBuilder(OverworldZoneManager manager, SumpholdCompositionBuilder terrain)
         { this.manager=manager; map=manager?.WorldMap; sourceFactory=manager?.Factory; this.terrain=terrain; }
 
-        public bool BuildZone(Zone zone, EntityFactory factory, Random rng)
-        {
-            var plan=terrain?.Plan;
-            bool Current() => zone!=null && manager!=null && plan!=null
+        internal static bool RetainsCargoSite(OverworldZoneManager manager, string zoneID)
+            => SumpholdCompositionPlan.IsSupportedZone(zoneID) && manager?.Exploration?.Enabled == true
+                && manager.Exploration.Version >= CargoVersion && manager.WorldMap?.Tiles[15,6] == BiomeType.Spread
+                && AreaCompositionScope.IsSumpholdSite(manager.WorldMap.GetPOI(15,6));
+
+        bool Current(Zone zone, EntityFactory factory, SumpholdCompositionPlan plan)
+            => zone!=null && manager!=null && plan!=null
                 && SumpholdCompositionPlan.IsSupportedZone(zone.ZoneID)
                 && ReferenceEquals(map,manager.WorldMap) && map.Tiles[15,6]==BiomeType.Spread
                 && AreaCompositionScope.IsSumpholdSite(map.GetPOI(15,6))
@@ -30,8 +38,20 @@ namespace CavesOfOoo.Core
                 && ReferenceEquals(terrain.SourceFactory,factory) && terrain.Seed==manager.WorldSeed
                 && ReferenceEquals(terrain.RealizedZone,zone) && ReferenceEquals(terrain.Plan,plan) && terrain.ProfileRealized
                 && !manager.CachedZones.ContainsKey(zone.ZoneID) && !ReferenceEquals(manager.ActiveZone,zone);
-            if(!Current() || ReferenceEquals(completed,plan))return true;
+
+        public bool BuildZone(Zone zone, EntityFactory factory, Random rng)
+        {
+            var plan=terrain?.Plan;
+            if(!Current(zone,factory,plan) || ReferenceEquals(completed,plan))return true;
             completed=plan;
+            cargoCrate=null;
+            cargoUnchanged=null;
+            int cargoGroup = -1;
+            if (RetainsCargoSite(manager, zone.ZoneID))
+            {
+                westCargo = SpreadExplorationPlan.Rank(manager.WorldSeed, zone.ZoneID, "sumphold-public-freight-v30") % 2 == 0;
+                cargoGroup = westCargo ? 2 : 3;
+            }
             var rest=plan.Rooms.Single(r=>r.Role=="CuttersHouse");
             var records=plan.Rooms.Single(r=>r.Role=="RecordsShelter");
             var left=plan.WorkAreas.Single(w=>w.Role=="HullTrestles");
@@ -49,7 +69,7 @@ namespace CavesOfOoo.Core
             var originals=zone.GetReadOnlyEntities().ToArray();
             var intact=SpreadGenerationReceipt.CaptureFinalState(zone,originals);
             string tiles=zone.TileState.ToSaveString(); var reserves=new HashSet<(int,int)>(zone.GenReservedCells);
-            bool Preserved() => Current() && intact() && tiles==zone.TileState.ToSaveString() && reserves.SetEquals(zone.GenReservedCells);
+            bool Preserved() => Current(zone,factory,plan) && intact() && tiles==zone.TileState.ToSaveString() && reserves.SetEquals(zone.GenReservedCells);
             var ids=new HashSet<string>(originals.Select(e=>e.ID),StringComparer.Ordinal);
             // Stage and validate before AddEntity: no Barren/footprint/tile-state payload
             // may alter an old owner as a side effect of this optional addition.
@@ -96,9 +116,100 @@ namespace CavesOfOoo.Core
                     added.Add(staged[g][i]);
                 }
                 if(!complete || !Preserved())foreach(var e in added)zone.RemoveEntity(e);
+                else if (g == cargoGroup)
+                {
+                    cargoCrate = added.Single();
+                    cargoUnchanged = SpreadGenerationReceipt.CaptureFinalState(zone, added);
+                }
             }
             return true;
         }
+
+        /// <summary>Promote only the selected furnishing on the final, uncached graph.</summary>
+        internal void InstallCargo(Zone zone)
+        {
+            var crate = cargoCrate;
+            var unchanged = cargoUnchanged;
+            cargoCrate = null;
+            cargoUnchanged = null;
+            if (crate == null || unchanged == null || !RetainsCargoSite(manager, zone?.ZoneID)
+                || !Current(zone, sourceFactory, completed) || !unchanged()
+                || !CargoLane(zone, crate, westCargo) || !sourceFactory.Blueprints.ContainsKey("SalvagedTimber")) return;
+
+            var owners = zone.GetReadOnlyEntities().ToArray();
+            var graph = SpreadGenerationReceipt.CaptureFinalState(zone, owners);
+            string tileState = zone.TileState.ToSaveString();
+            var reservations = new HashSet<(int,int)>(zone.GenReservedCells);
+            var timber = sourceFactory.CreateEntity("SalvagedTimber");
+            if (!ValidTimber(timber) || !Current(zone, sourceFactory, completed) || !unchanged() || !graph()
+                || !owners.SequenceEqual(zone.GetReadOnlyEntities()) || tileState != zone.TileState.ToSaveString()
+                || !reservations.SetEquals(zone.GenReservedCells) || HasLocalID(owners, timber.ID)
+                || !CargoLane(zone, crate, westCargo)) return;
+
+            var container = crate.GetPart<ContainerPart>();
+            timber.GetPart<StackerPart>().StackCount = 2;
+            if (!container.AddItem(timber)) return;
+            crate.AddPart(new HandlingPart { Weight = CargoShellWeight, Carryable = false, Throwable = false, BulkClass = "Massive" });
+            crate.AddPart(new ContainerLoadPart());
+            crate.AddPart(new PublicCargoStoragePart());
+            crate.GetPart<ExaminablePart>().Description = "The yard leaves its spare timber here for anyone who can use it. Take the loose stock, or haul the whole crate to dry ground nearer the road and keep it there as storage.";
+        }
+
+        bool CargoLane(Zone zone, Entity crate, bool west)
+        {
+            if (!Payload(crate, "Crate", allowPlaced: true) || crate.SpatialZone != zone
+                || crate.HasPart<HandlingPart>() || crate.HasPart<ContainerLoadPart>() || crate.HasPart<PublicCargoStoragePart>()
+                || crate.HasPart<InstallationMarkerPart>() || LocalPorterReservationPart.Blocks(crate)) return false;
+            var source = zone.GetEntityCell(crate);
+            if (source == null || !source.Objects.Contains(crate) || !DryLaneCell(zone, source, crate)) return false;
+
+            int side = west ? 1 : -1;
+            int berthY = west ? 15 : 13;
+            int laneX = source.X + side;
+            int berthX = laneX + side;
+            var berth = (x: berthX, y: berthY);
+            // The load follows each vacated cell. Verify the standing cell,
+            // the straight pull and both cells of the turn past the berth.
+            for (int y = source.Y; y >= berthY; y--)
+                if (!DryLaneCell(zone, zone.GetCell(laneX, y))) return false;
+            if (!DryLaneCell(zone, zone.GetCell(berthX, berthY))
+                || !DryLaneCell(zone, zone.GetCell(berthX, berthY - 1)) || completed.IsApproach(berthX, berthY)
+                || completed.IsReserved(berthX, berthY) || zone.GenReservedCells.Contains(berth)) return false;
+
+            var current = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>());
+            var clear = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity> { crate });
+            if (!current.BorderReach[laneX, source.Y] || !clear.PreservesAgainst(current, new[] { berth })) return false;
+            var reached = clear.Flood(new HashSet<(int,int)> { berth }, null, int.MaxValue, null);
+            return reached[berthX, berthY - 1] && !zone.GetReadOnlyEntities().Any(owner =>
+            {
+                if (owner == crate || owner.GetPart<PhysicsPart>()?.Solid != true) return false;
+                var cell = zone.GetEntityCell(owner);
+                return cell != null && Adjacent(current.BorderReach, cell.X, cell.Y) && !Adjacent(reached, cell.X, cell.Y);
+            });
+        }
+
+        bool DryLaneCell(Zone zone, Cell cell, Entity ignored = null)
+            => cell != null && !cell.IsInterior && !completed.IsWet(cell.X, cell.Y)
+                && zone.TileState.Get(cell.X, cell.Y)?.IsEmpty != false
+                && cell.Objects.Count(e => e.BlueprintName == "Floor") == 1
+                && cell.Occupants.All(e => e == ignored || Safe(e)
+                    && (e.BlueprintName == "Floor" || e.BlueprintName == "Duckboard")
+                    && SumpholdCompositionBuilder.Valid(e, e.BlueprintName));
+
+        static bool HasLocalID(IEnumerable<Entity> owners, string id)
+            => owners.Any(e => e.ID == id || e.GetPart<ContainerPart>()?.Contents.Any(item => item?.ID == id) == true
+                || e.GetPart<InventoryPart>() is InventoryPart pack
+                    && (pack.Objects.Any(item => item?.ID == id) || pack.EquippedItems.Values.Any(item => item?.ID == id)));
+
+        static bool ValidTimber(Entity timber)
+            => timber?.BlueprintName == "SalvagedTimber" && !string.IsNullOrEmpty(timber.ID) && timber.SpatialZone == null
+                && timber.Tags.Count == 1 && timber.HasTag("Item")
+                && timber.GetPart<StackerPart>() is { StackCount: 1, MaxStack: 20 }
+                && timber.GetPart<PhysicsPart>() is { Takeable: true, Solid: false, Weight: 1, InInventory: null, Equipped: null }
+                && timber.GetPart<CommercePart>()?.Value == 3 && timber.GetPart<PreparationRecipePart>()?.RecipeIds == "shape_haft"
+                && timber.Parts.Count == 6 && timber.Parts.All(p => p?.ParentEntity == timber
+                    && (p is RenderPart || p is PhysicsPart || p is StackerPart || p is CommercePart
+                        || p is ExaminablePart || p is PreparationRecipePart));
         static bool Adjacent(bool[,] reach,int x,int y) =>
             (x>0&&reach[x-1,y])||(x+1<Zone.Width&&reach[x+1,y])||(y>0&&reach[x,y-1])||(y+1<Zone.Height&&reach[x,y+1]);
         static bool Fits(Zone z,SumpholdCompositionPlan p,int x,int y,bool interior)
@@ -117,9 +228,9 @@ namespace CavesOfOoo.Core
             &&!e.HasPart<CropPart>()&&!e.HasPart<CultivatedSoilPart>()&&!e.HasPart<FieldHarvestPart>()&&!e.HasPart<HarvestablePart>()
             &&!e.HasPart<InventoryPart>()&&!e.HasPart<TraderPart>()&&!e.HasPart<ConversationPart>()&&!e.HasPart<ThrowingStatePart>()
             &&!e.HasPart<DoorPart>()&&!e.HasPart<SealedLibraryBarrierPart>()&&!e.HasPart<StairsUpPart>()&&!e.HasPart<StairsDownPart>();
-        static bool Payload(Entity e,string bp)
+        static bool Payload(Entity e,string bp,bool allowPlaced = false)
         {
-            if(!SumpholdCompositionBuilder.Valid(e,bp)||!Safe(e)||string.IsNullOrEmpty(e.ID)||e.SpatialZone!=null
+            if(!SumpholdCompositionBuilder.Valid(e,bp)||!Safe(e)||string.IsNullOrEmpty(e.ID)||!allowPlaced&&e.SpatialZone!=null
                 ||e.Parts.Any(p=>p==null||p.ParentEntity!=e))return false;
             var render=e.GetPart<RenderPart>();
             if(render.RenderLayer!=(bp=="Crate"?1:5)||render.RenderString!=(bp=="Crate"?"0":bp=="Chair"?"h":"=")

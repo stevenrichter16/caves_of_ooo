@@ -5,6 +5,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
         private readonly Entity _container;
         private readonly Entity _item;
         private readonly ContainedLiquidSourcePart.RecoveryPermission _wetRecovery;
+        private readonly PublicCargoStoragePart _cargo;
+        private readonly ContainerPart _cargoContents;
+        private readonly Cell _cargoCell;
 
         public string Name => "TakeFromContainer";
 
@@ -12,6 +15,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             _container = container;
             _item = item;
+            _cargo = container?.GetPart<PublicCargoStoragePart>();
+            if (_cargo == null) return;
+            _cargoContents = container.GetPart<ContainerPart>();
+            _cargoCell = container.SpatialZone?.GetEntityCell(container);
         }
 
         internal TakeFromContainerCommand(Entity container, Entity item, ContainedLiquidSourcePart.RecoveryPermission permission)
@@ -66,6 +73,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (delivery != null && !delivery.CanWithdraw(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone))
                 return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
                     "The contents are unavailable. Check that the storage is beside you and the stock is intact.");
+            if (!CargoSourceCurrent(context))
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
+                    "The cargo is no longer available in that crate. Stand beside it and open it again.");
 
             var physics = _item.GetPart<PhysicsPart>();
             if (physics == null || !physics.Takeable)
@@ -107,6 +117,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            if (!CargoSourceCurrent(context))
+                return Refuse(context, "public_cargo_changed", "The cargo is no longer available in that crate.");
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
             bool storageVessel = CarriedStorage.UsesCarriedContents(_item);
@@ -115,7 +127,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (contained != null && !contained.PrepareTake(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone, transaction, _wetRecovery, out containedCleanup, out containedGuard))
                 return Refuse(context, "contained_recovery_refused", "Drain the tray first, or explicitly recover through the liquid.");
             var delivery = _container.GetPart<DeliveryStoragePart>();
-            if ((delivery != null || storageVessel) && !transaction.TryClaim(_container, context.Actor, Name))
+            if ((delivery != null || storageVessel || _cargo != null) && !transaction.TryClaim(_container, context.Actor, Name))
                 return Refuse(context, "delivery_storage_busy", "That storage is already in use.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
@@ -156,6 +168,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             int quantity = stacker?.StackCount ?? 1;
             if (delivery?.WatchLooseTransfer(context.Actor, context.Zone ?? context.Actor.SpatialZone, transaction, -quantity) == false)
                 return Refuse(context, "delivery_storage_changed", "The tray's stock or access has changed.");
+            if (_cargo?.WatchTransfer(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone, transaction, deposit: false) == false)
+                return Refuse(context, "public_cargo_changed", "The cargo crate's stock or access has changed.");
             bool gold = _item.BlueprintName == "GoldCoin";
             if (gold && !ExactContainedSource(containerPart, inventory, physics))
                 return Refuse(context, "invalid_coin_source", "The coin's container ownership is no longer valid.");
@@ -198,6 +212,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 }
                 if (!destination.ClaimChanges(transaction, context.Actor, Name))
                     return Refuse(context, "destination_in_progress", "A destination stack is already being transferred.");
+                if (_cargo != null) destination.WatchChangedOwners(transaction);
                 if (storageVessel)
                     transaction.BeforeCommit(() => StorageContainerCurrent(context, containerPart)
                         && _item.GetPart<PhysicsPart>() == physics && !containerPart.Contents.Contains(_item)
@@ -213,7 +228,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             containedGuard?.Invoke();
             if (delivery != null)
                 delivery.RecordWithdrawal(transaction);
-            if (delivery != null || storageVessel)
+            if (delivery != null || storageVessel || _cargo != null)
                 transaction.AfterCommit(Announce);
             else Announce();
             LocalGatheringClaims.RecordTake(gathering, transaction);
@@ -231,6 +246,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 AcquisitionDiagnostics.Record(context, _item, Name, _container.ID, quantity);
             }
         }
+        private bool CargoSourceCurrent(InventoryContext context)
+        {
+            if (!ReferenceEquals(_container?.GetPart<PublicCargoStoragePart>(), _cargo)) return false;
+            if (_cargo == null) return true;
+            var zone = context.Zone ?? context.Actor.SpatialZone;
+            return _cargoContents == _container.GetPart<ContainerPart>() && _cargoCell == zone?.GetEntityCell(_container)
+                && _cargo.CanWithdraw(context.Actor, _item, zone);
+        }
+
         private bool StorageContainerCurrent(InventoryContext context, ContainerPart source)
         {
             var actor = context.Actor;
