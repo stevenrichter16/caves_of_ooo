@@ -49,6 +49,22 @@ Prove the architecture through small playable increments: more than one particip
 
 The immediate implementation priority remains reclamation and regional processing. This principle guides that work and later systems; it does not reactivate the cancelled graphics program or parked capstan/culture implementation.
 
+## Job and mission rewards
+
+User direction, November 26, 2026. Completing a job should noticeably advance
+the player. Give enough money to fund a practical next purchase or a meaningful
+share of a larger project, useful materials the player can put to work, or both.
+Calibrate the scale against the goods surrendered, travel, risk and consumables
+and against what nearby merchants actually charge. A short local job and a risky
+expedition can make different contributions to progress.
+
+Use existing recipes, repairs and services as destinations for material rewards.
+Communicate payment before acceptance and record what was actually received.
+Keep comparable jobs and alternate solutions economically coherent, and check
+that delivery, stock and payment survive reload and settle once.
+
+[Economy design and initial balance comparison](ECONOMY-SYSTEM.md#job-and-mission-rewards)
+
 ## Weather and seasonal opportunities
 
 User direction, November23,2026: weather should primarily make selected

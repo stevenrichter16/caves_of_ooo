@@ -1,3 +1,11 @@
+**Choir-iron jobs now cover a useful tool purchase — November 26 UTC, 2026.**
+Cinderhold and Morrowfast each pay 24 drams and one fire clay for one iron.
+At Cinderhold, the player earned the ore, paid one to Perret and bought
+a 22-dram spike. Fresh Continue kept eight drams, the spike, clay and
+the spare ore, with no repeat request action. Focused native tests passed
+118 of 118. The latest Mac build predates the change.
+[Reward playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md)
+
 **Shared steam catch and applied weapon feedback Mac delivery — November 26 UTC, 2026.**
 Universal runtime `ceee937b7` completed GameBootstrap on Apple M5.
 All 186 files in each retained app and six new universal binaries were

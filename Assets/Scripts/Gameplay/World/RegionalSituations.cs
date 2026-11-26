@@ -38,12 +38,14 @@ namespace CavesOfOoo.Core
     /// cue and action queries never generate another chunk or repair its owners.</summary>
     public static class RegionalSituations
     {
+        private const int IronSupplyRewardDrams = 24;
+
         private static readonly RegionalSituationDefinition[] definitions =
         {
             new RegionalSituationDefinition("morrowfast-iron", "Iron for Orrit's repairs", "Overworld.3.6.0", "Overworld.1.5.0",
-                "ChoirIron",1,8,"FireClay",RegionalSituationKind.Supply,BiomeType.Grovelands,null,"southwest-craftsperson"),
+                "ChoirIron",1,IronSupplyRewardDrams,"FireClay",RegionalSituationKind.Supply,BiomeType.Grovelands,null,"southwest-craftsperson"),
             new RegionalSituationDefinition("cinderhold-iron", "Iron for the pruning-post smith", "Overworld.6.6.0", "Overworld.5.6.0",
-                "ChoirIron",1,8,"FireClay",RegionalSituationKind.Supply,BiomeType.Grovelands,"Weaponsmith"),
+                "ChoirIron",1,IronSupplyRewardDrams,"FireClay",RegionalSituationKind.Supply,BiomeType.Grovelands,"Weaponsmith"),
             new RegionalSituationDefinition("gantry-grain", "Grain for Gantry's exchange", "Overworld.7.8.0", "Overworld.7.7.0",
                 "Emberwheat",2,6,"HealingTonic",RegionalSituationKind.Supply,BiomeType.Spread,"Merchant"),
             new RegionalSituationDefinition("sumphold-oil", "The stranded lamp-oil consignment", "Overworld.15.6.0", "Overworld.16.6.0",

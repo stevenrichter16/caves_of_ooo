@@ -7,6 +7,32 @@ the §5.3 verification sweep, then EC1.
 system. Start from existing design documents if there are any; otherwise brainstorm a system
 that fits the game.
 
+## Job and mission rewards
+
+November 26, 2026. Size rewards by what they let the player do after payment.
+For a supply request, account for the trade-in value and the later use the
+player gives up by handing over the material. For a journey, account for travel,
+rough ground, risky encounters and plausible consumables. Check the resulting
+gain against an actual local shop quote, useful service or recipe bill. A modest
+cash payment can work when the material pays a real project cost. More demanding
+work can fund a larger share of an upgrade or provide an item with a direct use.
+Leave the player free to spend the money or use the material elsewhere.
+
+Sumphold is an observed example. Returning its intact oil consignment paid
+15 drams including the bank bonus, plus one silver sand. The player used that
+same sand for the lasting filtration repair at Sill. The iron requests at
+Cinderhold and Morrowfast each ask for one choir-iron ore. The prior offer is
+8 drams and one fire clay. At a neutral trade quote the ore sells for six,
+so that payment adds only two cash drams plus clay for arranging delivery.
+The first adjustment pays 24 drams and keeps the fire clay for each job.
+Actual Cinderhold play used 22 of the reward for one iron spike and retained
+the clay and the second ore earned from the vein. The reader and receipt
+showed the correct payment, and fresh Continue kept the completed result.
+Morrowfast has the same offer and focused native verification.
+
+[Sumphold to Sill](Verification/MachineSystems/SillEarnedSandFiltration20261126/README.md) ·
+[Cinderhold reward and purchase playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md)
+
 ## 1. Existing documents
 
 | Document | What it is | Authority |

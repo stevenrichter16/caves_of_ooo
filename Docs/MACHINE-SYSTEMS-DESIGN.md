@@ -1,3 +1,11 @@
+**A regional job can fund the next practical purchase.**
+Cinderhold and Morrowfast now pay 24 drams plus one fire clay for one
+choir-iron ore. An ordinary Cinderhold route spent 22 of the reward
+on a spike that can go into a tool. The clay was still available for
+repair work. Mining retained its real standing cost.
+[Economy design](ECONOMY-SYSTEM.md#job-and-mission-rewards) ·
+[Playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md)
+
 **Silver sand from the Sumphold recovery has a lasting use at Sill.**
 The player brought the exact reward to the existing MainWell project.
 One portion and the elder's reusable manual qualified the keeper's

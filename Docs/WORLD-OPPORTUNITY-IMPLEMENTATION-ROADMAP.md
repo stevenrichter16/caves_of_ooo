@@ -123,6 +123,13 @@ from the bag. Ordinary trade and the local porter rules keep their own
 transfer terms.
 [Packed freight playtest](Verification/MachineSystems/PackedConcordFreight20261126/README.md)
 
+For #39 and #40, useful regional job pay now supports the next equipment
+purchase. The two iron jobs each offer 24 drams and one fire clay.
+The Cinderhold player surrendered one of two earned ore and purchased
+an iron spike for 22 drams. Fresh Continue kept the purchased part,
+unspent materials and settled job. Morrowfast has targeted native coverage.
+[Work and purchase playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md)
+
 For #14/#18/#19/#20, two earned silver sand now earn Wellmeet's working
 scale rate while the physical patch holds. A native test matches the
 manual lasting repair to the same trade factor. The actual merchant's

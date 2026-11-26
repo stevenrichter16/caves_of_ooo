@@ -43,15 +43,20 @@ namespace CavesOfOoo.Tests
 
 
  // These tests specify receipt semantics, not punctuation or full prose.
- [TestCase("morrowfast-iron")][TestCase("cinderhold-iron")][TestCase("gantry-grain")]
- public void CompletedSupplyReplacesInstructionsWithActualOutcome(string id)
+ [TestCase("morrowfast-iron",24)][TestCase("cinderhold-iron",24)][TestCase("gantry-grain",6)]
+ public void CompletedSupplyReplacesInstructionsWithActualOutcome(string id,int expectedDrams)
  {
   var d=RegionalSituations.Find(id);var b=Bind(id);StandBy(b.zone,b.recipient);
+  Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+  StringAssert.Contains($"Payment: {expectedDrams} drams and one {ItemLabel(d.RewardBlueprint)}",MessageLog.GetRecent(1).Single());
   Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
   StringAssert.Contains("Bring ",Note());StringAssert.Contains("deliver",Note().ToLowerInvariant());
-  Carry(d.ItemBlueprint,d.ItemCount);int money=TradeSystem.GetDrams(player);
+  StringAssert.Contains($"Payment: {expectedDrams} drams",Note());
+  Carry(d.ItemBlueprint,d.ItemCount);int money=TradeSystem.GetDrams(player),reward=Units(player,d.RewardBlueprint);
   Assert.IsTrue(b.request.TryAct(player,b.zone,"deliver"));
-  AssertCompleted(Note());StringAssert.Contains((TradeSystem.GetDrams(player)-money)+" drams",Note());
+  Assert.AreEqual(money+expectedDrams,TradeSystem.GetDrams(player));
+  Assert.AreEqual(reward+1,Units(player,d.RewardBlueprint));
+  AssertCompleted(Note());StringAssert.Contains($"Paid: {expectedDrams} drams",Note());
   StringAssert.Contains(ItemLabel(d.RewardBlueprint),Note());
   StringAssert.Contains("trade",Note().ToLowerInvariant());
  }
