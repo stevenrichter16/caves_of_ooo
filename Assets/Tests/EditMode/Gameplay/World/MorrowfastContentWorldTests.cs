@@ -32,20 +32,22 @@ namespace CavesOfOoo.Tests
         private bool Act(string id, string action, out int energy) => MorrowfastQuests.TryWorldAction(Approach(id), player, zone, action, out energy);
         private int Units(string bp) => player.GetPart<InventoryPart>().Objects.Where(i => i.BlueprintName == bp).Sum(i => i.GetPart<StackerPart>()?.StackCount ?? 1);
 
-        [Test] public void BellRequiresTheRealCordThenConsumesExactlyOneClayAndResolvesOnlyOnce()
+        [TestCase("FireClay")]
+        [TestCase("PreparedLiningClay")]
+        public void BellRequiresTheRealCordThenConsumesExactlyOneClayAndResolvesOnlyOnce(string material)
         {
             Assert.IsTrue(Talk("north-guard-west", "accept-bell"));
-            var inv = player.GetPart<InventoryPart>(); inv.AddObject(factory.CreateEntity("FireClay")); inv.AddObject(factory.CreateEntity("FireClay"));
-            Assert.IsFalse(Act("north-oath-arch", MorrowfastQuests.RepairBellCommand, out int denied)); Assert.AreEqual(0, denied); Assert.AreEqual(2, Units("FireClay"));
+            var inv = player.GetPart<InventoryPart>(); inv.AddObject(factory.CreateEntity(material)); inv.AddObject(factory.CreateEntity(material));
+            Assert.IsFalse(Act("north-oath-arch", MorrowfastQuests.RepairBellCommand, out int denied)); Assert.AreEqual(0, denied); Assert.AreEqual(2, Units(material));
             Assert.IsTrue(Act("rope-reserve-coil", MorrowfastQuests.InspectCordCommand, out int inspect)); Assert.AreEqual(1000, inspect);
-            Assert.IsTrue(Act("north-oath-arch", MorrowfastQuests.RepairBellCommand, out int labor)); Assert.AreEqual(1000, labor); Assert.AreEqual(1, Units("FireClay"));
+            Assert.IsTrue(Act("north-oath-arch", MorrowfastQuests.RepairBellCommand, out int labor)); Assert.AreEqual(1000, labor); Assert.AreEqual(1, Units(material));
             var arch = MorrowfastSceneRuntime.FindOwner(zone, "north-oath-arch"); Assert.AreEqual("quiet", arch.GetProperty("MorrowfastBellMode"));
-            Assert.IsFalse(Act("north-oath-arch", MorrowfastQuests.RepairBellCommand, out denied)); Assert.AreEqual(0, denied); Assert.AreEqual(1, Units("FireClay"));
+            Assert.IsFalse(Act("north-oath-arch", MorrowfastQuests.RepairBellCommand, out denied)); Assert.AreEqual(0, denied); Assert.AreEqual(1, Units(material));
             Assert.AreEqual(1, StoryletPart.Current.GetQuestState(MorrowfastQuests.BellQuestId).CurrentStageIndex);
             Assert.IsTrue(Talk("north-guard-west", "report-bell")); Assert.IsTrue(StoryletPart.Current.IsQuestCompleted(MorrowfastQuests.BellQuestId));
             Assert.IsFalse(Talk("north-guard-west", "report-bell"));
             Assert.IsTrue(Act("north-oath-arch", MorrowfastQuests.LoudBellCommand, out labor)); Assert.AreEqual("loud", arch.GetProperty("MorrowfastBellMode"));
-            Assert.AreEqual(1, Units("FireClay")); Assert.IsTrue(StoryletPart.Current.IsQuestCompleted(MorrowfastQuests.BellQuestId));
+            Assert.AreEqual(1, Units(material)); Assert.IsTrue(StoryletPart.Current.IsQuestCompleted(MorrowfastQuests.BellQuestId));
         }
         [Test] public void BareClapperOffersAMaterialFreeResolutionAndMissingClayDoesNotAdvance()
         {
@@ -55,6 +57,41 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, player.GetIntProperty(MorrowfastQuests.BellWorked));
             Assert.IsTrue(Act("north-oath-arch", MorrowfastQuests.LoudBellCommand, out int labor)); Assert.AreEqual(1000, labor);
             Assert.AreEqual(drams, TradeSystem.GetDrams(player)); Assert.IsTrue(Talk("north-guard-west", "report-bell"));
+        }
+
+        [TestCase("grade")]
+        [TestCase("payload")]
+        [TestCase("custody")]
+        public void QuietBellRefusesUnusablePreparedStock(string failure)
+        {
+            Assert.IsTrue(Talk("north-guard-west", "accept-bell"));
+            Assert.IsTrue(Act("rope-reserve-coil", MorrowfastQuests.InspectCordCommand, out _));
+            var clay = factory.CreateEntity("PreparedLiningClay");
+            var inv = player.GetPart<InventoryPart>();
+            Assert.IsTrue(inv.AddObject(clay));
+            if (failure == "grade") clay.GetPart<RepairMaterialPart>().Grade = "silt";
+            if (failure == "payload") clay.SetIntProperty("UnrepresentedClayState", 1);
+            if (failure == "custody") clay.GetPart<PhysicsPart>().InInventory = null;
+
+            Assert.IsFalse(Act("north-oath-arch", MorrowfastQuests.RepairBellCommand, out int energy));
+            Assert.AreEqual(0, energy);
+            Assert.Contains(clay, inv.Objects);
+            Assert.AreEqual(1, Units("PreparedLiningClay"));
+            Assert.AreEqual(0, player.GetIntProperty(MorrowfastQuests.BellWorked));
+        }
+
+        [Test]
+        public void QuietBellPrefersOrdinaryClayWhenBothMaterialsAreCarried()
+        {
+            Assert.IsTrue(Talk("north-guard-west", "accept-bell"));
+            Assert.IsTrue(Act("rope-reserve-coil", MorrowfastQuests.InspectCordCommand, out _));
+            var inv = player.GetPart<InventoryPart>();
+            Assert.IsTrue(inv.AddObject(factory.CreateEntity("PreparedLiningClay")));
+            Assert.IsTrue(inv.AddObject(factory.CreateEntity("FireClay")));
+
+            Assert.IsTrue(Act("north-oath-arch", MorrowfastQuests.RepairBellCommand, out _));
+            Assert.AreEqual(0, Units("FireClay"));
+            Assert.AreEqual(1, Units("PreparedLiningClay"));
         }
         [Test] public void RingingQuietAndLoudBellsChangesAwarenessOnTheActualLivingResidents()
         {
@@ -79,14 +116,26 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void GuestRestUsesNativeHealingAndHostileRefusalWithoutChargingMoney()
         {
-            var bed = Approach("guest-bed-west"); int drams = TradeSystem.GetDrams(player); var hp = player.GetStat("Hitpoints");
-            hp.BaseValue = Math.Max(1, hp.Max - 5); int before = hp.Value;
-            var hostile = factory.CreateEntity("MarlbackScrabbler"); hostile.GetPart<BrainPart>().SetPersonallyHostile(player);
-            var pc = zone.GetEntityCell(player); zone.AddEntity(hostile, pc.X, pc.Y);
-            Assert.IsFalse(MorrowfastQuests.TryWorldAction(bed, player, zone, MorrowfastQuests.RestCommand, out int energy)); Assert.AreEqual(0, energy); Assert.AreEqual(before, hp.Value);
-            zone.RemoveEntity(hostile);
-            Assert.IsTrue(MorrowfastQuests.TryWorldAction(bed, player, zone, MorrowfastQuests.RestCommand, out energy)); Assert.AreEqual(0, energy);
-            Assert.AreEqual(hp.Max, hp.Value); Assert.AreEqual(drams, TradeSystem.GetDrams(player));
+            var previousClock = TurnManager.Active;
+            var clock = new TurnManager();
+            try
+            {
+                clock.AddEntity(player);
+                clock.ProcessUntilPlayerTurn();
+                int start = clock.TickCount;
+                var bed = Approach("guest-bed-west"); int drams = TradeSystem.GetDrams(player); var hp = player.GetStat("Hitpoints");
+                hp.BaseValue = Math.Max(1, hp.Max - 5); int before = hp.Value;
+                var hostile = factory.CreateEntity("MarlbackScrabbler"); hostile.GetPart<BrainPart>().SetPersonallyHostile(player);
+                var pc = zone.GetEntityCell(player); zone.AddEntity(hostile, pc.X, pc.Y);
+                Assert.IsFalse(MorrowfastQuests.TryWorldAction(bed, player, zone, MorrowfastQuests.RestCommand, out int energy));
+                Assert.AreEqual(0, energy); Assert.AreEqual(before, hp.Value); Assert.AreEqual(start, clock.TickCount);
+                StringAssert.Contains(hostile.GetDisplayName() + " is nearby", MessageLog.GetRecent(1).Single());
+                zone.RemoveEntity(hostile);
+                Assert.IsTrue(MorrowfastQuests.TryWorldAction(bed, player, zone, MorrowfastQuests.RestCommand, out energy));
+                Assert.AreEqual(0, energy); Assert.AreEqual(start + 60, clock.TickCount);
+                Assert.AreEqual(hp.Max, hp.Value); Assert.AreEqual(drams, TradeSystem.GetDrams(player));
+            }
+            finally { typeof(TurnManager).GetProperty(nameof(TurnManager.Active)).SetValue(null, previousClock); }
         }
         [Test] public void ADetachedOrForgedWorldOwnerCannotConsumeClayOrSetBellState()
         {

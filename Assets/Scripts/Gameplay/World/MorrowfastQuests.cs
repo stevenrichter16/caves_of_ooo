@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using CavesOfOoo.Data;
 using CavesOfOoo.Storylets;
 
 namespace CavesOfOoo.Core
@@ -78,7 +80,7 @@ namespace CavesOfOoo.Core
                     MessageLog.Add("Edden: 'Tell her I am safe. That is all I am asking you to carry.'"); return true;
                 case "report-return": return Complete(ReturnQuestId, actor, "Hesta erases the open notch. 'Safe. I can let that be the whole sentence.'");
                 case "refuse-return": return Refuse(ReturnQuestId, actor, "You release the promise. Hesta accepts that Edden's account is his to give.");
-                case "accept-bell": Start(BellQuestId); StoryletPart.Current.SetGiver(BellQuestId, speaker, SettlementRuntime.ActiveZone); if (Flag(actor, BellDiagnosed)) Finish(BellQuestId, "cord", actor); if (Flag(actor, BellWorked)) Finish(BellQuestId, "bell", actor); MessageLog.Add("Examine the reserve cord inside the southwest rope shop, then work at the northern arch. Fire clay makes a quiet sleeve; leaving the clapper bare costs no material."); return true;
+                case "accept-bell": Start(BellQuestId); StoryletPart.Current.SetGiver(BellQuestId, speaker, SettlementRuntime.ActiveZone); if (Flag(actor, BellDiagnosed)) Finish(BellQuestId, "cord", actor); if (Flag(actor, BellWorked)) Finish(BellQuestId, "bell", actor); MessageLog.Add("Examine the reserve cord inside the southwest rope shop, then work at the northern arch. Fire clay or prepared lining clay makes a quiet sleeve. Leaving the clapper bare costs no material."); return true;
                 case "report-bell": return Complete(BellQuestId, actor, "Nemm checks the bell's new voice. The setting remains yours to change at the arch.");
                 case "refuse-bell": return Refuse(BellQuestId, actor, "You leave the bell work to the watch. Any work already done remains in place.");
                 case "accept-supper": Start(SupperQuestId); StoryletPart.Current.SetGiver(SupperQuestId, speaker, SettlementRuntime.ActiveZone); if (Flag(actor, SupperMoved)) Finish(SupperQuestId, "stool", actor); MessageLog.Add("Farra asks you to move the spare supper stool inside the western guesthouse, leaving the doorway clear, then return to her."); return true;
@@ -120,7 +122,7 @@ namespace CavesOfOoo.Core
             {
                 if (id != "rope-reserve-coil" || !Active(BellQuestId) || Flag(actor, BellDiagnosed)) return false;
                 actor.SetIntProperty(BellDiagnosed, 1); Finish(BellQuestId, "cord", actor);
-                MessageLog.Add("The spare cord is sound. The arch bell's clapper needs a sleeve of fire clay for a quiet call, or the bare setting for a call that carries across the square.");
+                MessageLog.Add("The spare cord is sound. Shape fire clay or prepared lining clay around the clapper for a quiet call. Bare metal carries across the square.");
             }
             else if (command == RepairBellCommand || command == LoudBellCommand)
             {
@@ -128,16 +130,26 @@ namespace CavesOfOoo.Core
                     || (!Active(BellQuestId) && StoryletPart.Current?.IsQuestCompleted(BellQuestId) != true)) return false;
                 string mode = command == RepairBellCommand ? "quiet" : "loud";
                 if (target.GetProperty("MorrowfastBellMode") == mode) return false;
+                string material = null;
                 if (mode == "quiet")
                 {
-                    var inv = actor.GetPart<InventoryPart>(); var clay = inv?.FindConsumableByBlueprint("FireClay");
-                    if (clay == null || !inv.TryConsumeOne(clay)) { MessageLog.Add("A quiet sleeve needs one measure of fire clay. Orrit stocks it; a bare clapper costs no material."); return false; }
+                    var inv = actor.GetPart<InventoryPart>();
+                    var clay = inv?.FindConsumableByBlueprint("FireClay");
+                    if (clay == null && inv != null && WorldLocationContext.For(zone)?.Factory is EntityFactory factory)
+                        clay = inv.Objects.FirstOrDefault(item => WorldResourceActions.Carried(actor, item, single: false)
+                            && inv.CanConsumeOne(item) && RepairMaterialPart.Read(factory, item, RepairMaterialPart.LiningClay) != null);
+                    if (clay == null || !inv.TryConsumeOne(clay))
+                    {
+                        MessageLog.Add("A quiet sleeve needs one measure of fire clay or suitable prepared lining clay. Orrit stocks fire clay. A bare clapper costs no material.");
+                        return false;
+                    }
+                    material = InventoryPart.GetUnitDisplayName(clay);
                 }
                 target.Properties["MorrowfastBellMode"] = mode; actor.SetIntProperty(BellWorked, 1);
                 Finish(BellQuestId, "bell", actor);
                 var examine = target.GetPart<ExaminablePart>();
                 if (examine != null) examine.Text = "An open stone arch with a watch bell. Passage is free. The clapper is set for a " + mode + " call.";
-                MessageLog.Add(mode == "quiet" ? "You spend one fire clay to sleeve the clapper. Its low note will reach the two watchkeepers." : "You leave the clapper bare. Its clear note will carry across Morrowfast.");
+                MessageLog.Add(mode == "quiet" ? $"You spend one {material} to sleeve the clapper. Its low note will reach the two watchkeepers." : "You leave the clapper bare. Its clear note will carry across Morrowfast.");
             }
             else if (command == RingBellCommand)
             {
@@ -179,7 +191,8 @@ namespace CavesOfOoo.Core
             var actions = e.GetParameter<InventoryActionList>("Actions"); if (actions == null) return true;
             if (ComponentId == "rope-reserve-coil") actions.AddAction("InspectCord", "inspect the watch cord", MorrowfastQuests.InspectCordCommand, 'i', 20);
             if (ComponentId == "north-oath-arch") {
-                actions.AddAction("QuietBell", "sleeve the bell (1 fire clay)", MorrowfastQuests.RepairBellCommand, 'q', 21);
+                actions.AddActionWithHint("QuietBell", "sleeve the bell (1 clay)", MorrowfastQuests.RepairBellCommand,
+                    "Use one fire clay or suitable prepared lining clay for a call heard by the two watchkeepers.", 'q', 21);
                 actions.AddAction("LoudBell", "set a bare clapper (free)", MorrowfastQuests.LoudBellCommand, 'l', 20);
                 actions.AddAction("RingBell", "ring the watch bell", MorrowfastQuests.RingBellCommand, 'b', 19);
             }

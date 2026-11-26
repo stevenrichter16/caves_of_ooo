@@ -130,6 +130,13 @@ an iron spike for 22 drams. Fresh Continue kept the purchased part,
 unspent materials and settled job. Morrowfast has targeted native coverage.
 [Work and purchase playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md)
 
+For #2, #4, #18 and #40, the quiet watch bell uses verified lining clay.
+One exact purchased Wayside shipment measure established the same quiet
+setting as fire clay. Carrying it to another town made that purchase useful
+outside the original pan repair. Ordinary ringing reached the two guards,
+and the free bare setting remains available.
+[Morrowfast bell playtest](Verification/MachineSystems/MorrowfastCompatibleBellClay20261126/README.md)
+
 For #14/#18/#19/#20, two earned silver sand now earn Wellmeet's working
 scale rate while the physical patch holds. A native test matches the
 manual lasting repair to the same trade factor. The actual merchant's

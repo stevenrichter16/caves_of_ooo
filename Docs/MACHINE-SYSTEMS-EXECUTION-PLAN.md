@@ -1,3 +1,13 @@
+**A delivered clay measure quiets Morrowfast’s watch bell — November 26 UTC, 2026.**
+The quiet sleeve accepts verified lining clay and keeps the existing
+fire clay path and free bare setting. In ordinary seed 64, one of the
+exact purchased Wayside shipment measures made the quiet sleeve.
+Only the two watchkeepers reacted to the call. A repeat spent nothing.
+Fresh Continue kept the completed job, quiet arch and spare measure.
+All 49 related native cases passed, including the isolated guest rest
+test with its own clock. Whole-suite acceptance remains open.
+[Bell playtest](Verification/MachineSystems/MorrowfastCompatibleBellClay20261126/README.md)
+
 **Gleaners freight passed the scoped renderer regression — November 26 UTC, 2026.**
 The older native failures named only the porter, loading marker, parcel
 and shelf. The previous 3D census now treats exactly those four as

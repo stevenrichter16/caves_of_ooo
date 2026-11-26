@@ -1,3 +1,11 @@
+**Delivered lining clay has a second settlement use at Morrowfast.**
+The watch bell’s quiet sleeve accepts one fire clay or verified lining
+clay. This uses the same graded material check as existing repair work.
+One of the exact delivered measures from the Wayside merchant was carried
+to the arch and spent. The original quiet action reached only the two
+watchkeepers and the second measure remained through Continue.
+[Bell playtest](Verification/MachineSystems/MorrowfastCompatibleBellClay20261126/README.md)
+
 **A regional job can fund the next practical purchase.**
 Cinderhold and Morrowfast now pay 24 drams plus one fire clay for one
 choir-iron ore. An ordinary Cinderhold route spent 22 of the reward
