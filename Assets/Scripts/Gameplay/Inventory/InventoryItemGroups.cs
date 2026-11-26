@@ -54,7 +54,7 @@ namespace CavesOfOoo.Core
             typeof(HearthGlowPart), typeof(HearthRestPart), typeof(PackableFixturePart), typeof(GasGrenadePart)
         }.ToDictionary(t => t, t => t.GetFields(BindingFlags.Public | BindingFlags.Instance)
             .OrderBy(f => f.Name, StringComparer.Ordinal).ToArray());
-        // The rod's notebook is the only audited non-scalar merchant payload.
+        // The rod's notebook is the only audited nonempty list payload.
         // Fail closed if its saved public schema grows; no general list support.
         static readonly bool MerchantRodSchema = typeof(SoundingRodPart)
             .GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
@@ -63,6 +63,24 @@ namespace CavesOfOoo.Core
             {
                 ("LastReading", typeof(string)), ("LastTick", typeof(int)), ("Log", typeof(List<string>))
             });
+        static readonly bool MerchantSatchelSchema = typeof(ContainerPart)
+            .GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+            .OrderBy(f => f.Name, StringComparer.Ordinal).Select(f => (f.Name, f.FieldType))
+            .SequenceEqual(new[]
+            {
+                ("Contents", typeof(List<Entity>)), ("Locked", typeof(bool)),
+                ("MaxItems", typeof(int)), ("Preposition", typeof(string))
+            }) && typeof(ContainerLoadPart).GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).Length == 0;
+
+        // Only the ordinary empty shell is merchant stock. This grants no
+        // grouping, nested-cargo, arbitrary-container or physical stack permission.
+        internal static bool IsEmptyMerchantSatchel(Entity item)
+        {
+            if (!MerchantSatchelSchema || item?.BlueprintName != "FieldSatchel" || !CarriedStorage.IsEligible(item)) return false;
+            var container = item.GetPart<ContainerPart>();
+            return container.Contents.Count == 0 && container.MaxItems == 6 && container.Preposition == "in"
+                && item.GetPart<ContainerLoadPart>()?.GetType() == typeof(ContainerLoadPart);
+        }
 
         public static List<InventoryItemGroup> Project(IEnumerable<InventoryScreenData.ItemDisplay> items, Entity preferred, bool grouped)
         {
@@ -96,6 +114,8 @@ namespace CavesOfOoo.Core
                 || physics?.ParentEntity != item || physics.InInventory != actor || physics.Equipped != null || !physics.Takeable
                 || item.SpatialZone != null || render?.ParentEntity != item || !render.Visible || display.StackCount <= 0
                 || MaterialProcessService.IsProtected(item)) return null;
+            bool satchel = merchantExtras && item.BlueprintName == "FieldSatchel";
+            if (satchel && (!IsEmptyMerchantSatchel(item) || !CarriedStorage.IsCarried(actor, item))) return null;
             var vessel = item.GetPart<LiquidVesselPart>();
             if (vessel != null && (vessel.Capacity <= 0 || vessel.Volume < 0 || vessel.Volume > vessel.Capacity
                 || (vessel.Volume == 0 ? vessel.LiquidId != "" : !LiquidRegistry.IsInitialized || LiquidRegistry.Get(vessel.LiquidId) == null))) return null;
@@ -135,14 +155,24 @@ namespace CavesOfOoo.Core
                 bool vial = merchantExtras && type == typeof(InkVialPart);
                 bool document = merchantExtras && type == typeof(ReadableDocumentPart);
                 bool rod = merchantExtras && type == typeof(SoundingRodPart);
+                bool container = satchel && type == typeof(ContainerPart);
+                bool load = satchel && type == typeof(ContainerLoadPart);
                 FieldInfo[] extraFields = null;
                 bool extra = merchantExtras && MerchantFields.TryGetValue(type, out extraFields);
-                if ((!Known.Contains(type) && !mask && !vial && !document && !rod && !extra) || !types.Add(type)) return null;
+                if ((!Known.Contains(type) && !mask && !vial && !document && !rod && !container && !load && !extra) || !types.Add(type)) return null;
                 Add(key, type.FullName);
                 if (mask) { Add(key, "Power"); Add(key, ((GasMaskPart)part).Power); continue; }
                 if (vial) { Add(key, "InkAmount"); Add(key, ((InkVialPart)part).InkAmount); continue; }
                 if (document) { Add(key, "DocumentId"); Add(key, ((ReadableDocumentPart)part).DocumentId); continue; }
                 if (rod) { if (!RodIdentity(key, (SoundingRodPart)part)) return null; continue; }
+                if (container)
+                {
+                    var contents = (ContainerPart)part;
+                    Add(key, "Contents"); Add(key, 0); Add(key, "Locked"); Add(key, contents.Locked);
+                    Add(key, "MaxItems"); Add(key, contents.MaxItems); Add(key, "Preposition"); Add(key, contents.Preposition);
+                    continue;
+                }
+                if (load) continue;
                 foreach (var field in extra ? extraFields : Fields[type])
                 {
                     if (field.Name == "ParentEntity" || type == typeof(PhysicsPart) && (field.Name == "InInventory" || field.Name == "Equipped")

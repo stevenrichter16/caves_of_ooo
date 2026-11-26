@@ -1,3 +1,11 @@
+**Provisioner stock can carry the ordinary empty satchel — November 26 UTC, 2026.**
+The planned new satchel had blocked the entire shop profile. The fix
+admits that exact empty shell for supplies. Sill's native trade opening
+topped up ordinary oil and kept the existing satchel. The player bought
+it, stored four seeds and reloaded both together without a shelf
+duplicate. The targeted regression passed 246 checks.
+[Merchant playtest and receipts](Verification/MachineSystems/ProvisionerSatchel20261126/README.md)
+
 **Sumphold oil extends a Sill lantern's light — November 26 UTC, 2026.**
 The player bought one portion from the recovered Sumphold shipment for
 14 drams. The Sill repair spent the exact oil and widened the original
@@ -25,7 +33,7 @@ used already earned saves. All 136 connected native cases passed. The
 current Mac package predates these two changes.
 [Playtests, captures and receipts](Verification/MachineSystems/VentAndCord20261126/README.md)
 
-**Current regression discovery and first three filters — November 26 UTC, 2026.**
+**Current regression discovery and first four filters — November 26 UTC, 2026.**
 Unity found 42,389 case names. The first filter matched all 527
 expected cases and isolated two clay fixture failures. The tests now
 exercise ordinary clay in their merge cases, with the original
@@ -35,8 +43,11 @@ original files present. Four test corrections and level/experience
 data for newly created shipping workers passed all 243 selected cases.
 F–H matched all 12,889 names. Both additional failures reproduced and
 now pass with fixture updates for freight glyphs and shop stock. The
-398-case follow-up includes the adjacent controls. Six filters and
-the whole-process verdict remain open.
+398-case follow-up includes the adjacent controls. I–R recorded 7,625
+rows but has one duplicate displayed float name. The two float cases
+now have unique names. The stock correction and two fixture updates
+passed 246 targeted checks. Five unrun filters, exact I–R membership
+and the whole-process verdict remain open.
 [Discovery and native receipts](Verification/MachineSystems/CurrentNativeRegression69AE7EE85/README.md)
 
 **The Mac package with Wayside testimony completed startup — November 26 UTC, 2026.**

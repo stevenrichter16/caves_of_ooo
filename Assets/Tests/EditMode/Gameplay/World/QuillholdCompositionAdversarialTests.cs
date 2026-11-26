@@ -123,6 +123,15 @@ namespace CavesOfOoo.Tests
             {
                 var f=QuillholdCompositionTests.Factory();TraderPart.Factory=f;TraderPart.Rng=new Random(64);TraderRestockSystem.Factory=noFactory?null:f;
                 var z=new OverworldZoneManager(f,64).GetZone(Id);var scribe=z.GetAllEntities().Single(e=>e.BlueprintName=="Scribe");var inv=scribe.GetPart<InventoryPart>();Assert.AreEqual("Palimpsest",scribe.GetTag("Faction"));Assert.AreEqual("ScribeStock",scribe.GetPart<TraderPart>().StockTable);Assert.IsTrue(inv.Objects.Any(e=>e.BlueprintName=="InkVial"));
+                // Establish the actual saved consignment clock before testing renewal.
+                // LastRestockTurn alone controls the older purse/table policy, not the
+                // first arrival of a scribe's staple and special stock profile.
+                if (!noFactory)
+                {
+                    Assert.True(MerchantStockService.Reconcile(scribe, z, 0));
+                    Assert.AreEqual(0, scribe.GetPart<MerchantStockPart>().LastStapleTick);
+                    Assert.AreEqual(0, scribe.GetPart<MerchantStockPart>().LastSpecialTick);
+                }
                 foreach(var item in inv.Objects.ToArray())inv.RemoveObject(item);scribe.SetIntProperty(TraderRestockSystem.LastRestockProp,0);
                 TraderRestockSystem.RestockZone(z,300);Assert.AreEqual(0,inv.Objects.Count);TraderRestockSystem.RestockZone(z,301);Assert.AreEqual(!noFactory,inv.Objects.Any(e=>e.BlueprintName=="InkVial"));
             }finally{TraderPart.Factory=oldFactory;TraderPart.Rng=oldRng;TraderRestockSystem.Factory=oldRestock;}

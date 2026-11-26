@@ -100,6 +100,7 @@ namespace CavesOfOoo.Tests
                 { "Gameplay/Inventory/InventoryTransaction.cs", "transactional currency deltas" },
                 { "Gameplay/Economy/TraderPart.cs", "a trader's opening purse" },
                 { "Gameplay/World/Generation/Builders/CurationReceivingBuilder.cs", "a generated indexer's empty purse" },
+                { "Gameplay/World/WaysideShipmentSite.cs", "a freshly generated shipment sponsor's finite eight-dram work budget" },
                 { "Presentation/Bootstrap/GameBootstrap.cs", "the bootstrap elder's purse" },
             };
             var write = new System.Text.RegularExpressions.Regex(@"SetDrams\s*\(|SetIntProperty\s*\(\s*(TradeSystem\.CURRENCY_PROP|""Drams"")|IntProperties\s*\[\s*(TradeSystem\.CURRENCY_PROP|""Drams"")\s*\]\s*=[^=]");

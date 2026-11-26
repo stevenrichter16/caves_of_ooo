@@ -135,7 +135,11 @@ namespace CavesOfOoo.Tests
             Assert.False(owner.OwnsInventoryReceipt("LightTorch")); Assert.False(Act(torch, "KindleFuel|forged"));
             torch.RemovePart(part); Assert.False(owner.OwnsInventoryReceipt("KindleFuel|forged"));
         }
-        [TestCase(134217728f)] [TestCase(134217720f)] public void UnrepresentableOrRoundedUpFuelGainsNeverSpendAReagent(float before)
+        // NUnit's default seven-digit float display gives these distinct inputs
+        // the same name. Pin separate names without changing either precision boundary.
+        [TestCase(134217728f, TestName = "UnrepresentableFuelGainAt134217728NeverSpendsAReagent")]
+        [TestCase(134217720f, TestName = "RoundedUpFuelGainAt134217720NeverSpendsAReagent")]
+        public void UnrepresentableOrRoundedUpFuelGainsNeverSpendAReagent(float before)
         {
             var f = Fire(before); f.GetPart<FuelPart>().MaxFuel = 134217760f; Resin(1);
             Assert.IsEmpty(Rows(f), "A precision gap must not consume stock for zero fuel or create more fuel than the item provides.");

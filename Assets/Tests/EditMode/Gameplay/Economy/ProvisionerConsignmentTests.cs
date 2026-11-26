@@ -39,9 +39,121 @@ namespace CavesOfOoo.Tests
             QuillholdFactoryProbe.CreatedCallback = callback;
         }
         [TestCase("LiquidFlask", 1)] [TestCase("Waterskin", 1)] [TestCase("DriedMeat", 2)]
-        [TestCase("Starapple", 1)] [TestCase("Torch", 1)] [TestCase("CandyCarrotSeed", 1)] [TestCase("LampOil", 3)]
+        [TestCase("Starapple", 1)] [TestCase("Torch", 1)] [TestCase("CandyCarrotSeed", 1)] [TestCase("LampOil", 3)] [TestCase("FieldSatchel", 1)]
         public void EveryPreviouslyGuaranteedLineAndUsefulOilSupplyRemainsAvailable(string bp, int floor)
         { var e = Keeper(); Start(e); Assert.AreEqual(floor, Units(e, bp)); }
+        [Test]
+        public void CleanSatchelIsOneRealEmptyShellAndRetainsItsIdentityAcrossRestockAndSave()
+        {
+            var e = Keeper(); Start(e);
+            var satchel = e.GetPart<InventoryPart>().Objects.Single(i => i.BlueprintName == "FieldSatchel");
+            string id = satchel.ID;
+            Assert.AreSame(e, satchel.GetPart<PhysicsPart>().InInventory);
+            Assert.IsTrue(CarriedStorage.IsCarried(e, satchel));
+            Assert.IsEmpty(satchel.GetPart<ContainerPart>().Contents);
+            Assert.AreEqual(6, satchel.GetPart<ContainerPart>().MaxItems);
+            Assert.AreEqual("in", satchel.GetPart<ContainerPart>().Preposition);
+            Assert.AreEqual(1, satchel.GetPart<PhysicsPart>().Weight);
+            Assert.AreEqual(8, satchel.GetPart<CommercePart>().Value);
+            Assert.IsNull(satchel.GetPart<StackerPart>());
+            Assert.IsNull(typeof(InventoryItemGroups).GetMethod("CaptureIdentity", BindingFlags.Static | BindingFlags.NonPublic,
+                null, new[] { typeof(Entity), typeof(InventoryScreenData.ItemDisplay) }, null).Invoke(null,
+                new object[] { e, new InventoryScreenData.ItemDisplay { Item = satchel, Name = satchel.GetDisplayName(), StackCount = 1 } }),
+                "Merchant identity must not grant ordinary grouping permission.");
+            Assert.True(MerchantStockService.Reconcile(e, Zone, 311));
+            Assert.AreSame(satchel, e.GetPart<InventoryPart>().Objects.Single(i => i.BlueprintName == "FieldSatchel"));
+            Entity copy;
+            using (var stream = new MemoryStream())
+            {
+                var writer = new SaveWriter(stream); writer.WriteEntityReference(e); writer.WriteQueuedEntityBodies();
+                stream.Position = 0; var reader = new SaveReader(stream, Factory); copy = reader.ReadEntityReference(); reader.ReadEntityBodies();
+            }
+            Assert.True(Zone.RemoveEntity(e)); Assert.True(Zone.AddEntity(copy, 11, 10));
+            Assert.True(MerchantStockService.Reconcile(copy, Zone, 612));
+            var saved = copy.GetPart<InventoryPart>().Objects.Single(i => i.BlueprintName == "FieldSatchel");
+            Assert.AreEqual(id, saved.ID); Assert.IsTrue(CarriedStorage.IsCarried(copy, saved));
+            Assert.IsEmpty(saved.GetPart<ContainerPart>().Contents); Assert.AreEqual(3, Units(copy, "LampOil"));
+        }
+
+        [TestCase("capacity")] [TestCase("preposition")] [TestCase("locked")] [TestCase("filled")]
+        [TestCase("null-contents")] [TestCase("null-entry")] [TestCase("nested")]
+        [TestCase("foreign-container")] [TestCase("duplicate-container")] [TestCase("container-subclass")]
+        [TestCase("missing-load")] [TestCase("foreign-load")] [TestCase("weight")] [TestCase("value")] [TestCase("label")]
+        public void MalformedFreshSatchelRefusesTheWholeLotWithoutSpendingExistingShelfGoods(string fault)
+        {
+            var e = Keeper(); var pack = e.GetPart<InventoryPart>(); var old = Factory.CreateEntity("LampOil");
+            Assert.True(pack.AddObject(old)); var before = pack.Objects.ToArray(); int purse = TradeSystem.GetDrams(e);
+            Entity made = null, child = null;
+            Probe("FieldSatchel", item =>
+            {
+                made = item; var container = item.GetPart<ContainerPart>();
+                switch (fault)
+                {
+                    case "capacity": container.MaxItems = 7; break;
+                    case "preposition": container.Preposition = "on"; break;
+                    case "locked": container.Locked = true; break;
+                    case "filled": case "nested":
+                        child = Factory.CreateEntity(fault == "nested" ? "Sack" : "Starapple"); Assert.True(container.AddItem(child)); break;
+                    case "null-contents": container.Contents = null; break;
+                    case "null-entry": container.Contents.Add(null); break;
+                    case "foreign-container": container.ParentEntity = Actor; break;
+                    case "duplicate-container": item.Parts.Add(new ContainerPart { ParentEntity = item }); break;
+                    case "container-subclass": item.RemovePart(container); item.AddPart(new UnknownMerchantContainer { MaxItems = 6 }); break;
+                    case "missing-load": item.RemovePart(item.GetPart<ContainerLoadPart>()); break;
+                    case "foreign-load": item.GetPart<ContainerLoadPart>().ParentEntity = Actor; break;
+                    case "weight": item.GetPart<PhysicsPart>().Weight = 2; break;
+                    case "value": item.GetPart<CommercePart>().Value = 99; break;
+                    case "label": item.AddPart(new StorageLabelPart { Mode = (int)StorageLabelMode.Text, Text = "reserved" }); break;
+                }
+            });
+            Assert.False(MerchantStockService.Reconcile(e, Zone, 10)); Assert.NotNull(made);
+            Assert.IsNull(e.GetPart<MerchantStockPart>()); CollectionAssert.AreEqual(before, pack.Objects);
+            Assert.AreSame(e, old.GetPart<PhysicsPart>().InInventory); Assert.AreEqual(1, BarterDeal.Units(old));
+            Assert.AreEqual(purse, TradeSystem.GetDrams(e)); Assert.False(pack.Objects.Contains(made));
+            if (child != null) Assert.AreSame(made, child.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [TestCase("filled")] [TestCase("capacity")] [TestCase("locked")] [TestCase("label")]
+        public void ChangedResidentSatchelSurvivesAndDoesNotHideTheCleanShellDeficit(string change)
+        {
+            var e = Keeper(); Start(e); var pack = e.GetPart<InventoryPart>();
+            var old = pack.Objects.Single(i => i.BlueprintName == "FieldSatchel"); var before = pack.Objects.ToArray();
+            Entity child = null;
+            if (change == "filled") { child = Factory.CreateEntity("Starapple"); Assert.True(old.GetPart<ContainerPart>().AddItem(child)); }
+            if (change == "capacity") old.GetPart<ContainerPart>().MaxItems = 9;
+            if (change == "locked") old.GetPart<ContainerPart>().Locked = true;
+            if (change == "label") old.AddPart(new StorageLabelPart { Mode = (int)StorageLabelMode.Text, Text = "my roots" });
+            Assert.True(MerchantStockService.Reconcile(e, Zone, 311));
+            CollectionAssert.IsSubsetOf(before, pack.Objects); Assert.AreEqual(before.Length + 1, pack.Objects.Count);
+            Assert.AreSame(e, old.GetPart<PhysicsPart>().InInventory);
+            var fresh = pack.Objects.Single(i => !before.Contains(i)); Assert.AreEqual("FieldSatchel", fresh.BlueprintName);
+            Assert.IsEmpty(fresh.GetPart<ContainerPart>().Contents); Assert.AreEqual(6, fresh.GetPart<ContainerPart>().MaxItems);
+            Assert.False(fresh.GetPart<ContainerPart>().IsLocked); Assert.IsNull(fresh.GetPart<StorageLabelPart>());
+            if (child != null) { Assert.AreSame(child, old.GetPart<ContainerPart>().Contents.Single()); Assert.AreSame(old, child.GetPart<PhysicsPart>().InInventory); }
+            if (change == "capacity") Assert.AreEqual(9, old.GetPart<ContainerPart>().MaxItems);
+            if (change == "locked") Assert.True(old.GetPart<ContainerPart>().Locked);
+            if (change == "label") Assert.AreEqual("my roots", old.GetPart<StorageLabelPart>().Text);
+        }
+
+        [Test]
+        public void SatchelFilledAfterItsFactoryCheckCannotPublishTheStagedLot()
+        {
+            var e = Keeper(); var pack = e.GetPart<InventoryPart>(); var old = Factory.CreateEntity("Dagger");
+            Assert.True(pack.AddObject(old)); Entity satchel = null, child = null;
+            Factory.RegisterPartType<QuillholdFactoryProbe>();
+            foreach (string bp in Choices.Append("FieldSatchel")) Factory.Blueprints[bp].Parts[nameof(QuillholdFactoryProbe)] = new Dictionary<string, string>();
+            QuillholdFactoryProbe.CreatedCallback = item =>
+            {
+                if (item.BlueprintName == "FieldSatchel") { satchel = item; return; }
+                if (satchel == null || child != null) return;
+                child = Factory.CreateEntity("Starapple"); Assert.True(satchel.GetPart<ContainerPart>().AddItem(child));
+                old.GetPart<MeleeWeaponPart>().HitBonus = 7;
+            };
+            Assert.False(MerchantStockService.Reconcile(e, Zone, 10)); Assert.NotNull(child);
+            CollectionAssert.AreEqual(new[] { old }, pack.Objects); Assert.IsNull(e.GetPart<MerchantStockPart>());
+            Assert.AreEqual(7, old.GetPart<MeleeWeaponPart>().HitBonus);
+            Assert.AreSame(child, satchel.GetPart<ContainerPart>().Contents.Single()); Assert.AreSame(satchel, child.GetPart<PhysicsPart>().InInventory);
+        }
         [Test] public void EveryOriginalOptionalGoodAppearsInTheSixDayCycle()
         {
             var e = Keeper(); var s = Start(e); var seen = new HashSet<string>();
@@ -171,4 +283,5 @@ namespace CavesOfOoo.Tests
     }
     public sealed class UnknownMerchantReagent : ReagentPart { }
     public sealed class UnknownMerchantFlicker : LightSourceFlickerPart { }
+    public sealed class UnknownMerchantContainer : ContainerPart { }
 }

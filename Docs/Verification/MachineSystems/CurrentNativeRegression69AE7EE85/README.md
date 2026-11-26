@@ -51,7 +51,22 @@ shelf. Both original failure cases and the adjacent controls passed in a
 398-case follow-up. These test corrections did not change production art
 or merchant behavior.
 
-Keep later filters on the same pinned clone and compare actual names
-to the discovery list. Six groups remain. The partitioned suite and the
-whole process have separate gates.
+I–R produced 7,625 rows with 7,587 passes and 38 failures. Strict name
+comparison found 7,624 distinct names. Two passed reagent fuel cases with
+different runner IDs shared a rounded float display name. Discovery had
+given the second a generated suffix. The test now names the two inputs
+explicitly, preserving their literals and assertions. The original
+report remains ambiguous by name.
+
+Eleven failure names are historical. Twenty-five provisioner cases
+found one shared defect: the ordinary empty satchel refused the merchant
+fingerprint, preventing a new provisioner profile from publishing.
+Two other cases needed fixture updates for the existing finite sponsor
+budget and the scribe's actual saved stock clock. The corrected sources
+passed a 246-case follow-up and the Sill purchase was exercised in play.
+The entire I–R band was not rerun after the corrections.
+[Provisioner playtest](../ProvisionerSatchel20261126/README.md)
+
+Five filters have yet to run. Keep exact case membership checks for later
+filters. The partitioned suite and the whole process have separate gates.
 [Case counts and receipts](coverage.json)

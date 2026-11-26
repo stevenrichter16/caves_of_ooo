@@ -185,6 +185,11 @@ namespace CavesOfOoo.Core
         // Resident altered goods remain intact and are compared by their key.
         static bool ValidFreshPayload(Entity item)
         {
+            if (item.BlueprintName == "FieldSatchel")
+                return InventoryItemGroups.IsEmptyMerchantSatchel(item)
+                    && item.GetPart<PhysicsPart>()?.GetType() == typeof(PhysicsPart) && item.GetPart<PhysicsPart>().Weight == 1
+                    && item.GetPart<CommercePart>()?.GetType() == typeof(CommercePart) && item.GetPart<CommercePart>().Value == 8
+                    && item.GetPart<StorageLabelPart>() == null;
             if (item.BlueprintName == "SoundingRod")
             {
                 var rod = item.GetPart<SoundingRodPart>();

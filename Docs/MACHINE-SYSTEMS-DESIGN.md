@@ -28,6 +28,13 @@ and opened the maintenance conversation. The same stable state survived
 Continue, with ordinary well drinking still available.
 [Evidence](Verification/MachineSystems/SillEarnedSandFiltration20261126/README.md)
 
+**An ordinary empty satchel can enter the provisioner's stock profile.**
+The fixed shop inventory admits that exact shell. Labels, changed shell
+state and contents still distinguish a real container. In Sill, the
+profile restored the three-oil supply, and a bought satchel took four
+seeds through the normal carried-storage action and Continue.
+[Stock and storage playtest](Verification/MachineSystems/ProvisionerSatchel20261126/README.md)
+
 **An intact Sumphold recovery feeds the merchant's visible stock.**
 A sealed sack carries two lamp-oil measures through ordinary travel.
 Protecting the two marked banks adds three drams to the agreed payment.
