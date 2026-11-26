@@ -94,7 +94,7 @@ remains proposed. [Native shelf evidence](Verification/MachineSystems/NorthFairW
 | --- | --- | --- |
 | A mild shower passes an installed, clean catch-cloth with a collecting edge. Its reader offers collection and names a receiver. | Gather a few units of clean water for crop tending or other supported water uses while travelling. | Shared finite local rain allowance, exact compatible receiver and paid action. Carry water, use a well/source or buy supplies instead. Shade alone grants no collection. |
 | Showers reach an exposed planted bed; the crop's reader identifies the rainfall contribution. | Save some tending water while doing another activity nearby. | A bounded moisture top-up, no extra produce or seed grant. Existing vessel watering and Conjure Rain remain available. A roofed bed does not receive open-sky rain. |
-| After rain, a visible shallow bank shows loosened ordinary clay-rich sediment. | Use a suitable digging implement to recover an additional optional material portion for an existing clay-preparation path. | An authored finite reserve is exposed, not a regenerated deposit. Ordinary mineral sources, processing and purchased clay remain. No buried relic or protected site is revealed by weather. |
+| During rain and shortly afterward, a visible slump leaves loose sediment below an eligible clay bank. | Collect a finite mixed deposit and screen it for fire clay and coarse grit. | The shower exposes an authored reserve. The existing clay bank stays available on its ordinary terms. [Collection window proposal](#weather-exposes-a-workable-seam) |
 | Clear dry air reaches a loaded drying rack. Its preview shows reduced work for the selected batch. | Prepare carried flexible fibres or selected harvested material with fewer work steps. | Same finite input and output; a proposed 3-step baseline may become 2 steps, never zero. A rack/process contract must exist first. Hand preparation or a town service remains. No damp-weather penalty is added to the baseline. |
 | A steady breeze moves chaff in a prepared grain or seed bundle. | A mesh screen or suitable tray can winnow it, making planting or cooking supplies from an alternative material fraction. | Consume the exact mixed bundle once; allocate its declared grain/seed/chaff budget. Do not grant an extra full harvest on top. Hand separation or milling is the alternative. |
 | A wet-growth period leaves optional fresh flexible stems on an eligible plant. | A cutting tool can take a fibre preparation instead of that source's alternative harvest, supplying cord or binding work. | Plant-specific finite material manifest and gathering rights. No universal tree cutting and no duplicated seed/fibre allocation. Ordinary cord and workshop supplies remain. |
@@ -107,6 +107,41 @@ For the initial weather release, select only the first two opportunities.
 The other rows are a dependency-backed catalogue, not a promise to implement
 all of them at once. In particular, timed drying, sediment recovery, new seasonal
 fractions and condenser benefits need complete process contracts.
+
+### Weather exposes a workable seam
+
+Rain can give a player a reason to change their plans. At an eligible clay
+working, the bank slumps and leaves a visible apron of loose sediment.
+It stays workable during the shower and briefly afterward. Examine can
+say “freshly loosened,” then “starting to set” as the window closes.
+Once collected, the same packet can travel and be screened later in a
+better place. A player who left their sieve at camp still has a choice.
+
+Begin with one separately budgeted deposit at a source whose geology
+supports the existing fire-clay and coarse-grit fractions. Screen it
+through the same admitted mesh rules. Use the clay for a physical repair
+and compare the grit on a slick step. The ordinary bank still gives its
+existing yield, and the current dry spoil remains its own stock. Rain
+changes access to the seam. A wet packet needs either a qualified wet
+screening method or existing supported drying before dry screening.
+[Current screening rules](MACHINE-GENERAL-SIFTING-CONTENT.md)
+
+Some materials can have genuinely weather-exclusive wild collection
+windows. Give those materials optional, distinctive uses that a player
+might deliberately wait for. Ordinary repairs and exploration keep
+their existing supplies. A low-water spell could expose a gravel bar;
+frost might work a thin plate loose along an existing split. Each cue and
+yield needs a physical source and a specific downstream use.
+
+Use the saved local game clock for the shower and its short grace period.
+An uninterrupted shower has one end. Once the seam is gathered, later
+showers, crossing the zone boundary and reloading keep it spent. Queries
+read the existing source and weather without creating stock. Verify the
+same bank in dry weather, while raining, shortly afterward and after the
+grace period. Then verify a late collection, processing after the window,
+both useful fractions and the option to walk past comfortably. This is a
+proposal. Window length, source placement and wet screening still need
+qualification.
 
 ## Different seasonal uses for familiar tools
 

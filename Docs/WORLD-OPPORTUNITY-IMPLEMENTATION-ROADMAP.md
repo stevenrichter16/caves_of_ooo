@@ -606,6 +606,10 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     actual ripe, dry or flexible stock, subject to access and gathering rights.
     A calendar label changes opportunities; it does not supply work permission
     or forbid an otherwise compatible material outside its usual season.
+    Proposed weather window: a rain-loosened clay seam stays collectible
+    during the shower and briefly afterward. The collected packet remains
+    usable later. Some optional materials can have genuinely weather-exclusive
+    wild collection windows. [Workable-seam design](WEATHER-AND-SEASONAL-TOOL-USES.md#weather-exposes-a-workable-seam)
 
 33. **Allocate the source once.** Alternative fibre, seed and produce uses share
     the source's declared finite budget. Seasonal transitions cannot reset
