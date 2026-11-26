@@ -77,7 +77,8 @@ namespace CavesOfOoo.Core
             if (depth <= 0) { message = "The ground up here is too loose to carry a sounding."; return "surface"; }
             // The same words as for ground the rod cannot bite into, so a refusal never marks a floor as special (the dossier's rule).
             if (!OrdinaryColumn(zone, zx, zy, depth)) { message = "There is no solid floor here for the rod to bite into."; return "not-ordinary"; }
-            string floor = FloorUnder(origin); reach = Reach(floor);
+            string floor = FloorUnder(origin) ?? BareCaveFloor.Resolve(zone, origin, actor);
+            reach = Reach(floor);
             if (reach <= 0) { message = "There is no solid floor here for the rod to bite into."; return "ground-uncoupled"; }
             return null;
         }
@@ -196,7 +197,7 @@ namespace CavesOfOoo.Core
             int low = int.MaxValue, high = 0; foreach (var (_, reach) in Ground) { low = Math.Min(low, reach); high = Math.Max(high, reach); }
             guide.How.Add("Press C on your own cell and choose sound the ground (or choose it from the pack). The stone answers with a bearing and a distance for open ground, a way up or down, or dense stone you have not seen.");
             guide.How.Add("Choose read the survey log to read back your last " + LogSize + " soundings.");
-            guide.Needs.Add("an ordinary cave floor below the surface, in stone that carries a sounding (" + low + " to " + high + " paces, by the floor)");
+            guide.Needs.Add("an ordinary cave floor below the surface, including dry bare rock in a natural cave (" + low + " to " + high + " paces, by the stone)");
             guide.Needs.Add("the rod in your pack");
             guide.Limits.Add("The strike rings through the stone: eyeless hunters hear it. It names only terrain, never creatures or things, and nothing nearer than " + MinPaces + " paces. It uses nothing up.");
             if (context.Viewer != null && !UseGuides.CarriedBy(context.Viewer, ParentEntity)) guide.WhyNot = UseGuides.PickUpFirst;

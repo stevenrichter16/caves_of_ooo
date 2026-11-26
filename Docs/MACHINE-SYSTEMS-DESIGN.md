@@ -1,3 +1,10 @@
+**Bare cave stone serves the same portable tools as ordinary rock floor — November 26 UTC, 2026.**
+The sounding rod and trail marks share the current natural-floor check.
+The rod takes its usual range from the stone layer, whether the carved
+floor has a separate terrain object or is bare. This adds one practical
+setting for the existing notebook and noise rules.
+[Evidence](Verification/MachineSystems/SoundingRodBareFloor20261126/README.md)
+
 **North Works has a late-cycle field material — November 26 UTC, 2026.**
 A shorter dry approach can reach one seasonal pinch of frost lichen
 before the deep work yard. The original patch and still keep their

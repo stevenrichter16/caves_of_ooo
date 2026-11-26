@@ -495,6 +495,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     before pickup. The screen action and the new natural cave mark described
     the exact costs.
     [Evidence](Verification/MachineSystems/OrdinaryQuarryLoop20261125/README.md)
+    The purchased sounding rod now uses the same natural ground check
+    as trail marking on dry, bare floor. Actual play compared the refusal
+    with the available 12-pace action at the same native sandstone cell,
+    then made a saved ordinary notebook entry.
+    [Evidence](Verification/MachineSystems/SoundingRodBareFloor20261126/README.md)
 
 38. **Record causal diagnostics.** Trace exact source units, selected method,
     committed result, receiving owner and benefit qualification. Distinguish

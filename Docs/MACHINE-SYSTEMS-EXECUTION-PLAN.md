@@ -1,11 +1,20 @@
+**An ordinary sounding carries across bare sandstone — November 26 UTC, 2026.**
+The shared floor check now lets the purchased rod work on genuinely bare
+stone in an ordinary natural cave. A guided native walk beyond Cinderhold
+reproduced the old refusal at the same tile. The new action produced a
+12-pace sounding and recorded it at the usual one-action cost. The
+ordinary notebook action and fresh Continue kept the same entry.
+Next, compare the hand bellows' handle bill with the exact rough haft
+made from Sumphold timber. Check the existing forge and field use before
+changing that recipe. The current bellows requires an oak haft.
+[Evidence](Verification/MachineSystems/SoundingRodBareFloor20261126/README.md)
+
 **Late-cycle lichen at North Works — November 26 UTC, 2026.**
 Fresh v31 can offer a finite shallow crust reached without entering the
 working yard. Native seed 64 gathered its exact one lichen and used it
 to freeze a local puddle. The test calendar was advanced and the flask
 was supplied. Fresh Continue kept the ice, water and depleted source.
-The deeper patch and services were retained. The next source check is
-the ordinary sounding rod's refusal on bare carved cave floors. Reuse
-the native floor authority already checked by trail marking.
+The deeper patch and services were retained.
 [Evidence](Verification/MachineSystems/NorthSeasonalLichen20261126/README.md)
 
 **Item icons default on in the pack and storage — November 26 UTC, 2026.**

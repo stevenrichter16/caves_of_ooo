@@ -1,0 +1,661 @@
+{
+  "scope": "Private Continue from the previously purchased rod branch with inherited high health and unchanged purse. Native movement, stairs, pack and notebook controls. The old and corrected cases continued from the same tick 11800 bare-floor save.",
+  "nativeTests": {
+    "red": "sounding_bare_floor_red_20261126",
+    "expectedFailures": 2,
+    "green": "sounding_bare_floor_green_20261126b",
+    "passed": 154
+  },
+  "observations": {
+    "start": {
+      "t": 10810,
+      "zone": "Overworld.6.6.0",
+      "p": {
+        "X": 22,
+        "Y": 19,
+        "hp": 412
+      },
+      "stage": "Normal",
+      "stairs": [
+        {
+          "ID": "27908",
+          "at": {
+            "Item1": 71,
+            "Item2": 19
+          },
+          "down": true
+        }
+      ],
+      "rod": [
+        {
+          "ID": "30387",
+          "BlueprintName": "SoundingRod"
+        }
+      ],
+      "refusal": "surface",
+      "why": "The ground up here is too loose to carry a sounding.",
+      "reach": 0
+    },
+    "surfaceSteps": {
+      "before": {
+        "t": 10810,
+        "p": {
+          "ID": "2126",
+          "X": 22,
+          "Y": 19,
+          "hp": 412,
+          "drams": 10,
+          "wet": false
+        }
+      },
+      "end": {
+        "t": 11300,
+        "p": {
+          "ID": "2126",
+          "X": 71,
+          "Y": 19,
+          "hp": 412,
+          "drams": 10,
+          "wet": false
+        },
+        "zone": "Overworld.6.6.0"
+      },
+      "pools": [],
+      "steps": [
+        "Numpad9",
+        "RightArrow",
+        "Numpad9",
+        "Numpad9",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "RightArrow",
+        "Numpad3",
+        "Numpad3",
+        "Numpad3",
+        "RightArrow"
+      ]
+    },
+    "firstDepth": {
+      "t": 11310,
+      "zone": "Overworld.6.6.1",
+      "p": {
+        "X": 71,
+        "Y": 19,
+        "hp": 412
+      },
+      "stage": "Normal",
+      "stairs": [
+        {
+          "ID": "33846",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          },
+          "down": true
+        },
+        {
+          "ID": "33845",
+          "at": {
+            "Item1": 71,
+            "Item2": 19
+          },
+          "down": false
+        }
+      ],
+      "rod": [
+        {
+          "ID": "30387",
+          "BlueprintName": "SoundingRod"
+        }
+      ],
+      "refusal": "not-ordinary",
+      "why": "There is no solid floor here for the rod to bite into.",
+      "reach": 0
+    },
+    "firstDepthSteps": {
+      "before": {
+        "t": 11310,
+        "p": {
+          "ID": "2126",
+          "X": 71,
+          "Y": 19,
+          "hp": 412,
+          "drams": 10,
+          "wet": false
+        }
+      },
+      "end": {
+        "t": 11620,
+        "p": {
+          "ID": "2126",
+          "X": 40,
+          "Y": 12,
+          "hp": 412,
+          "drams": 10,
+          "wet": false
+        },
+        "zone": "Overworld.6.6.1"
+      },
+      "pools": [],
+      "steps": [
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "Numpad7",
+        "Numpad7",
+        "Numpad7",
+        "Numpad7",
+        "LeftArrow",
+        "LeftArrow",
+        "LeftArrow",
+        "Numpad7",
+        "Numpad7",
+        "Numpad7"
+      ]
+    },
+    "secondDepth": {
+      "t": 11630,
+      "zone": "Overworld.6.6.2",
+      "p": {
+        "X": 40,
+        "Y": 12,
+        "hp": 412
+      },
+      "stage": "Normal",
+      "stairs": [
+        {
+          "ID": "37303",
+          "at": {
+            "Item1": 40,
+            "Item2": 13
+          },
+          "down": true
+        },
+        {
+          "ID": "37302",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          },
+          "down": false
+        }
+      ],
+      "rod": [
+        {
+          "ID": "30387",
+          "BlueprintName": "SoundingRod"
+        }
+      ],
+      "refusal": "not-ordinary",
+      "why": "There is no solid floor here for the rod to bite into.",
+      "reach": 0
+    },
+    "toNaturalExit": {
+      "before": {
+        "t": 11630,
+        "p": {
+          "ID": "2126",
+          "X": 40,
+          "Y": 12,
+          "hp": 412,
+          "drams": 10,
+          "wet": false
+        }
+      },
+      "end": {
+        "t": 11750,
+        "p": {
+          "ID": "2126",
+          "X": 43,
+          "Y": 24,
+          "hp": 412,
+          "drams": 10,
+          "wet": false
+        },
+        "zone": "Overworld.6.6.2"
+      },
+      "pools": [],
+      "steps": [
+        "DownArrow",
+        "DownArrow",
+        "DownArrow",
+        "DownArrow",
+        "DownArrow",
+        "DownArrow",
+        "DownArrow",
+        "DownArrow",
+        "Numpad3",
+        "Numpad3",
+        "Numpad3",
+        "DownArrow"
+      ]
+    },
+    "naturalEntry": {
+      "t": 11760,
+      "zone": "Overworld.6.7.2",
+      "p": {
+        "X": 42,
+        "Y": 0,
+        "hp": 412
+      },
+      "stage": "Normal",
+      "stairs": [
+        {
+          "ID": "40851",
+          "at": {
+            "Item1": 56,
+            "Item2": 15
+          },
+          "down": false
+        },
+        {
+          "ID": "40850",
+          "at": {
+            "Item1": 33,
+            "Item2": 14
+          },
+          "down": false
+        },
+        {
+          "ID": "40849",
+          "at": {
+            "Item1": 7,
+            "Item2": 5
+          },
+          "down": false
+        },
+        {
+          "ID": "40848",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          },
+          "down": true
+        }
+      ],
+      "rod": [
+        {
+          "ID": "30387",
+          "BlueprintName": "SoundingRod"
+        }
+      ],
+      "refusal": null,
+      "why": null,
+      "reach": 12
+    },
+    "bareBefore": {
+      "t": 11800,
+      "zone": "Overworld.6.7.2",
+      "p": {
+        "X": 38,
+        "Y": 2,
+        "hp": 412
+      },
+      "stage": "Normal",
+      "stairs": [
+        {
+          "ID": "40851",
+          "at": {
+            "Item1": 56,
+            "Item2": 15
+          },
+          "down": false
+        },
+        {
+          "ID": "40850",
+          "at": {
+            "Item1": 33,
+            "Item2": 14
+          },
+          "down": false
+        },
+        {
+          "ID": "40849",
+          "at": {
+            "Item1": 7,
+            "Item2": 5
+          },
+          "down": false
+        },
+        {
+          "ID": "40848",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          },
+          "down": true
+        }
+      ],
+      "rod": [
+        {
+          "ID": "30387",
+          "BlueprintName": "SoundingRod"
+        }
+      ],
+      "refusal": "ground-uncoupled",
+      "why": "There is no solid floor here for the rod to bite into.",
+      "reach": 0
+    },
+    "census": {
+      "IsInterior": true,
+      "IsVisible": true,
+      "Explored": true,
+      "objects": [
+        "Player"
+      ],
+      "wet": false
+    },
+    "refusalMenu": {
+      "panel": 1,
+      "selected": "SoundingRod",
+      "selectedID": "30387",
+      "popupID": "30387",
+      "popupItem": "SoundingRod",
+      "index": 0,
+      "rows": [
+        {
+          "Label": "sound the ground (unavailable)",
+          "Command": "Disabled:ground-uncoupled",
+          "Hint": ""
+        },
+        {
+          "Label": "read the survey log (unavailable)",
+          "Command": "Disabled:empty",
+          "Hint": ""
+        },
+        {
+          "Label": "examine",
+          "Command": "Examine",
+          "Hint": ""
+        },
+        {
+          "Label": "Label item",
+          "Command": "edit_storage_label",
+          "Hint": null
+        },
+        {
+          "Label": "Drop",
+          "Command": "drop",
+          "Hint": null
+        }
+      ]
+    },
+    "bareAfter": {
+      "t": 11800,
+      "zone": "Overworld.6.7.2",
+      "p": {
+        "X": 38,
+        "Y": 2,
+        "hp": 412
+      },
+      "stage": "Normal",
+      "stairs": [
+        {
+          "ID": "40849",
+          "at": {
+            "Item1": 7,
+            "Item2": 5
+          },
+          "down": false
+        },
+        {
+          "ID": "40850",
+          "at": {
+            "Item1": 33,
+            "Item2": 14
+          },
+          "down": false
+        },
+        {
+          "ID": "40848",
+          "at": {
+            "Item1": 40,
+            "Item2": 12
+          },
+          "down": true
+        },
+        {
+          "ID": "40851",
+          "at": {
+            "Item1": 56,
+            "Item2": 15
+          },
+          "down": false
+        }
+      ],
+      "rod": [
+        {
+          "ID": "30387",
+          "BlueprintName": "SoundingRod"
+        }
+      ],
+      "refusal": null,
+      "why": null,
+      "reach": 12
+    },
+    "soundMenu": {
+      "panel": 1,
+      "selected": "SoundingRod",
+      "selectedID": "30387",
+      "popupID": "30387",
+      "popupItem": "SoundingRod",
+      "index": 0,
+      "rows": [
+        {
+          "Label": "sound the ground (carries about 12 paces)",
+          "Command": "SoundGround",
+          "Hint": "Drives the rod into the floor and strikes it. It hears open ground, ways up or down and dense stone you have not seen, as a bearing and a distance. The strike is loud."
+        },
+        {
+          "Label": "read the survey log (unavailable)",
+          "Command": "Disabled:empty",
+          "Hint": ""
+        },
+        {
+          "Label": "examine",
+          "Command": "Examine",
+          "Hint": ""
+        },
+        {
+          "Label": "Label item",
+          "Command": "edit_storage_label",
+          "Hint": null
+        },
+        {
+          "Label": "Drop",
+          "Command": "drop",
+          "Hint": null
+        }
+      ]
+    },
+    "sounded": {
+      "t": 11810,
+      "hp": 412,
+      "X": 38,
+      "Y": 2,
+      "ground": [
+        "Player"
+      ],
+      "ID": "30387",
+      "LastTick": 11800,
+      "LastReading": "Open ground lies southeast, close. Something bored through the stone lies south, middling.",
+      "Log": [
+        "11800|map (6,7) depth 2, at (38,2)|Open ground lies southeast, close. Something bored through the stone lies south, middling."
+      ],
+      "noise": 11800
+    },
+    "logMenu": {
+      "panel": 1,
+      "selected": "SoundingRod",
+      "selectedID": "30387",
+      "popupID": "30387",
+      "popupItem": "SoundingRod",
+      "index": 0,
+      "rows": [
+        {
+          "Label": "sound the ground (carries about 12 paces)",
+          "Command": "SoundGround",
+          "Hint": "Drives the rod into the floor and strikes it. It hears open ground, ways up or down and dense stone you have not seen, as a bearing and a distance. The strike is loud."
+        },
+        {
+          "Label": "read the survey log (1 sounding)",
+          "Command": "ReadSurveyLog",
+          "Hint": "Reads back what the rod told you, oldest first, and where you stood. It changes nothing and takes no time."
+        },
+        {
+          "Label": "examine",
+          "Command": "Examine",
+          "Hint": ""
+        },
+        {
+          "Label": "Label item",
+          "Command": "edit_storage_label",
+          "Hint": null
+        },
+        {
+          "Label": "Drop",
+          "Command": "drop",
+          "Hint": null
+        }
+      ]
+    },
+    "logRead": {
+      "t": 11810,
+      "hp": 412,
+      "X": 38,
+      "Y": 2,
+      "ground": [
+        "Player"
+      ],
+      "ID": "30387",
+      "LastTick": 11800,
+      "LastReading": "Open ground lies southeast, close. Something bored through the stone lies south, middling.",
+      "Log": [
+        "11800|map (6,7) depth 2, at (38,2)|Open ground lies southeast, close. Something bored through the stone lies south, middling."
+      ],
+      "noise": 11800
+    },
+    "freshNotebook": {
+      "t": 11810,
+      "hp": 412,
+      "X": 38,
+      "Y": 2,
+      "ground": [
+        "Player"
+      ],
+      "ID": "30387",
+      "LastTick": 11800,
+      "LastReading": "Open ground lies southeast, close. Something bored through the stone lies south, middling.",
+      "Log": [
+        "11800|map (6,7) depth 2, at (38,2)|Open ground lies southeast, close. Something bored through the stone lies south, middling."
+      ],
+      "noise": 11800
+    }
+  },
+  "archives": {
+    "denied": {
+      "path": "/private/tmp/coo-rod-bare-denied-20261126",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "8ab6a6384c2a44deb8b3a68303809d8f",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 5,
+        "ActiveZoneID": "Overworld.6.7.2",
+        "ActiveZoneDisplayLabel": "Overworld.6.7.2",
+        "Turn": 11800,
+        "SaveTimestampUtc": "2026-11-26T03:21:21.0317390Z",
+        "HPSummary": "412/412",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "f9994e56119d120db16afa69876817ea02b8a6714427f66a49b2786c9d120a19",
+        "Quick.sav.gz.bak": "e3a74b10a6bf5bbea4de37c826b752de25f373c47e6af3b836d7ee27cd68e9b5",
+        "Quick.json.bak": "70aa80ef6e88134e7118660b912dd405c11985f1fbad138c035d0a805bd31f0e",
+        "Quick.json": "ea946d3198e193f7a40abd730ffb234c221a8b7d5de0a5548c89fd831b0dcdec"
+      }
+    },
+    "notebook": {
+      "path": "/private/tmp/coo-rod-bare-notebook-20261126",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "8ab6a6384c2a44deb8b3a68303809d8f",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 5,
+        "ActiveZoneID": "Overworld.6.7.2",
+        "ActiveZoneDisplayLabel": "Overworld.6.7.2",
+        "Turn": 11810,
+        "SaveTimestampUtc": "2026-11-26T03:25:55.4948480Z",
+        "HPSummary": "412/412",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "d720758d49172642e534d994114bae65cc0b3ead2ef976fa737b75ed4e9fbb02",
+        "Quick.sav.gz.bak": "f9994e56119d120db16afa69876817ea02b8a6714427f66a49b2786c9d120a19",
+        "Quick.json.bak": "ea946d3198e193f7a40abd730ffb234c221a8b7d5de0a5548c89fd831b0dcdec",
+        "Quick.json": "b1f1c5abfd5b9a1ef6cc983c70484758b2e9986f717d5a737a2933b8d5375c54"
+      }
+    }
+  }
+}

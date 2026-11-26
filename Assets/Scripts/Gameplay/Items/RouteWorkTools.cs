@@ -51,6 +51,27 @@ namespace CavesOfOoo.Core
             return true;
         }
     }
+    internal static class BareCaveFloor
+    {
+        internal static string Resolve(Zone zone, Cell cell, Entity actor, Entity placedMark = null)
+        {
+            if (zone == null || actor == null || !RouteWorkMenu.Visible(cell) || !cell.IsInterior
+                || zone.GetEntityCell(actor) != cell || cell.BlocksMovement(actor)
+                || zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(coating => coating.Turns > 0) == true
+                || cell.Occupants.Any(owner => owner != actor && owner != placedMark))
+                return null;
+
+            // Strata may carve an ordinary floor without placing a terrain object.
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.ActiveZone != zone || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || current != zone || !BiomeCropPlan.IsOrdinaryCave(manager, zone.ZoneID))
+                return null;
+            var (x, y, _) = WorldMap.FromZoneID(zone.ZoneID);
+            var plan = UndergroundLayoutPlan.Select(manager.WorldSeed, zone.ZoneID,
+                manager.WorldMap.GetBiome(x, y), manager.WorldMap.GetPOI(x, y), manager.Factory);
+            return plan.IsOrdinaryColumn && !plan.IsRoomed ? plan.FloorBlueprint : null;
+        }
+    }
     public sealed class DirectedAirPart : Part,IDescribeUse,IDescribeUseRows,IInventoryActionReceiptOwner
     {
         public override string Name=>"DirectedAir";
@@ -112,7 +133,6 @@ namespace CavesOfOoo.Core
                 return false;
 
             bool hasTerrain = false;
-            bool hasOtherOccupant = false;
             foreach (var occupant in at.Occupants)
             {
                 if (occupant == placedMark) continue;
@@ -121,20 +141,8 @@ namespace CavesOfOoo.Core
                     || occupant.HasPart<LiquidPoolPart>() || occupant.HasPart<GasPoolPart>())
                     return false;
                 hasTerrain |= terrain && at.Objects.Contains(occupant);
-                hasOtherOccupant |= occupant != actor;
             }
-            if (hasTerrain) return true;
-            if (!at.IsInterior || hasOtherOccupant) return false;
-
-            // Strata can carve away a wall and leave ordinary floor without an object.
-            var manager = WorldLocationContext.For(zone);
-            if (manager == null || manager.ActiveZone != zone
-                || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current) || current != zone
-                || !BiomeCropPlan.IsOrdinaryCave(manager, zone.ZoneID))
-                return false;
-            var (x, y, depth) = WorldMap.FromZoneID(zone.ZoneID);
-            return depth < 3 || !UndergroundLayoutPlan.Select(manager.WorldSeed, zone.ZoneID,
-                manager.WorldMap.GetBiome(x, y), null, manager.Factory).IsRoomed;
+            return hasTerrain || BareCaveFloor.Resolve(zone, at, actor, placedMark) != null;
         }
         IEnumerable<RouteWorkMenu.Entry> Choices(Entity actor,Zone zone)
         {
